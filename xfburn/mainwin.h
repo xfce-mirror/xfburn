@@ -23,28 +23,28 @@
 
 G_BEGIN_DECLS
 
-#define TYPE_MAIN_WINDOW            (main_window_get_type ())
-#define MAIN_WINDOW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_MAIN_WINDOW, MainWindow))
-#define MAIN_WINDOW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_MAIN_WINDOW, MainWindowClass))
-#define IS_MAIN_WINDOW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_MAIN_WINDOW))
-#define IS_MAIN_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_MAIN_WINDOW))
-#define MAIN_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_MAIN_WINDOW, MainWindowClass))
+#define XFBURN_TYPE_MAIN_WINDOW            (xfburn_main_window_get_type ())
+#define XFBURN_MAIN_WINDOW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindow))
+#define XFBURN_MAIN_WINDOW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
+#define XFBURN_IS_MAIN_WINDOW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_MAIN_WINDOW))
+#define XFBURN_IS_MAIN_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_MAIN_WINDOW))
+#define XFBURN_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
 
-typedef struct _MainWindow		MainWindow;
-typedef struct _MainWindowClass	MainWindowClass;
+typedef struct _XfburnMainWindow		XfburnMainWindow;
+typedef struct _XfburnMainWindowClass	XfburnMainWindowClass;
 
-struct _MainWindow {
+struct _XfburnMainWindow {
   GtkWindow window;
   
   GtkWidget *vbox;
 };
 
-struct _MainWindowClass {
+struct _XfburnMainWindowClass {
   GtkWindowClass	parent_class;
 };
 
-extern GtkType		main_window_get_type (void) G_GNUC_CONST;
-extern GtkWidget	*main_window_new (void);
+extern GtkType		xfburn_main_window_get_type (void) G_GNUC_CONST;
+extern GtkWidget	*xfburn_main_window_new (void);
 
 G_END_DECLS
 

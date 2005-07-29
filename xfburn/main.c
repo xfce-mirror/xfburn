@@ -43,7 +43,7 @@ main (int argc, char **argv)
   
   gtk_init (&argc, &argv);
     
-  mainwin = main_window_new ();
+  mainwin = xfburn_main_window_new ();
 
   gtk_widget_show (mainwin);
   

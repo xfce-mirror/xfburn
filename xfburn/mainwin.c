@@ -27,41 +27,43 @@
 #include "mainwin.h"
 
 /* prototypes */
-static void main_window_class_init (MainWindowClass *);
-static void main_window_init (MainWindow *);
+static void xfburn_main_window_class_init (XfburnMainWindowClass *);
+static void xfburn_main_window_init (XfburnMainWindow *);
+
+static gboolean cb_delete_main_window (GtkWidget *, GdkEvent *, gpointer);
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
 
-/********************/
-/* MainWindow class */
-/********************/
+/**************************/
+/* XfburnMainWindow class */
+/**************************/
 GtkType
-main_window_get_type (void)
+xfburn_main_window_get_type (void)
 {
   static GtkType main_window_type = 0;
 
   if (!main_window_type) {
     static const GTypeInfo main_window_info = {
-      sizeof (MainWindowClass),
+      sizeof (XfburnMainWindowClass),
       NULL,
       NULL,
-      (GClassInitFunc) main_window_class_init,
+      (GClassInitFunc) xfburn_main_window_class_init,
       NULL,
       NULL,
-      sizeof (MainWindow),
+      sizeof (XfburnMainWindow),
       0,
-      (GInstanceInitFunc) main_window_init
+      (GInstanceInitFunc) xfburn_main_window_init
     };
 
-    main_window_type = g_type_register_static (GTK_TYPE_WINDOW, "MainWindow", &main_window_info, 0);
+    main_window_type = g_type_register_static (GTK_TYPE_WINDOW, "XfburnMainWindow", &main_window_info, 0);
   }
 
   return main_window_type;
 }
 
 static void
-main_window_class_init (MainWindowClass * klass)
+xfburn_main_window_class_init (XfburnMainWindowClass * klass)
 {
   GObjectClass *gobject_class;
 
@@ -71,19 +73,32 @@ main_window_class_init (MainWindowClass * klass)
 }
 
 static void
-main_window_init (MainWindow *mainwin)
+xfburn_main_window_init (XfburnMainWindow *mainwin)
 {
+  /* the window itself */
+  gtk_window_set_position (GTK_WINDOW (mainwin), GTK_WIN_POS_CENTER_ON_PARENT);
+  gtk_window_set_title (GTK_WINDOW (mainwin), "Xfburn");
+  
+  g_signal_connect (G_OBJECT (mainwin), "delete-event", G_CALLBACK (cb_delete_main_window), mainwin);
+    
   mainwin->vbox = gtk_vbox_new (FALSE, 0);
   
   gtk_container_add (GTK_CONTAINER (mainwin), mainwin->vbox);
   gtk_widget_show (mainwin->vbox);
+}
+
+/* private methods */
+static gboolean
+cb_delete_main_window (GtkWidget *widget, GdkEvent *event, gpointer data)
+{
+  gtk_main_quit ();
   
-  gtk_window_set_position (GTK_WINDOW (mainwin), GTK_WIN_POS_CENTER_ON_PARENT);
+  return FALSE;
 }
 
 /* public methods */
 GtkWidget *
-main_window_new (void)
+xfburn_main_window_new (void)
 {
-  return g_object_new (main_window_get_type(), NULL);
+  return g_object_new (xfburn_main_window_get_type(), NULL);
 }
