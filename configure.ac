@@ -18,10 +18,13 @@ AC_PROG_CC()
 AC_PROG_INSTALL()
 AC_PROG_LIBTOOL()
 
-dnl Check for i18n support
+dnl check for libexo-0.3
+XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.0])
+
+dnl check for i18n support
 XDT_I18N([fr])
 
-dnl Check for required packages
+dnl check for required packages
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
 
 AC_OUTPUT([

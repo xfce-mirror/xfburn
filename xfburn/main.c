@@ -20,12 +20,34 @@
 #include <config.h>
 #endif
 
+#include <stdlib.h>
+
 #include <libxfcegui4/libxfcegui4.h>
+
+#include "mainwin.h"
 
 int
 main (int argc, char **argv)
 {
+  GtkWidget *mainwin;
+  
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-  g_print (_("Hello World!\n"));
+  
+  if (argc > 1 && (!strcmp (argv[1], "--version") || !strcmp (argv[1], "-V"))) {
+	g_print ("\tThis is %s version %s for Xfce %s\n", PACKAGE, VERSION, xfce_version_string ());
+    g_print ("\tbuilt with GTK+-%d.%d.%d, ", GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
+    g_print ("linked with GTK+-%d.%d.%d.\n", gtk_major_version, gtk_minor_version, gtk_micro_version);
+    
+    exit (EXIT_SUCCESS);
+  }
+  
+  gtk_init (&argc, &argv);
+    
+  mainwin = main_window_new ();
+
+  gtk_widget_show (mainwin);
+  
+  gtk_main ();
+  
   return 0;
 }
