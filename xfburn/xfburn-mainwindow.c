@@ -28,6 +28,7 @@
 
 #include "xfburn-mainwindow.h"
 #include "xfburn-filebrowser.h"
+#include "xfburn-disc-content.h"
 
 /* prototypes */
 static void xfburn_main_window_class_init (XfburnMainWindowClass *);
@@ -149,11 +150,12 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   gtk_container_add (GTK_CONTAINER (vbox), vpaned);
   gtk_widget_show (vpaned);
 
+  /* filebrowser */
   mainwin->file_browser = xfburn_file_browser_new ();
   gtk_paned_add1 (GTK_PANED (vpaned), mainwin->file_browser);
   gtk_widget_show (mainwin->file_browser);
   
-  /* */
+  /* disc content */
   vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_paned_add2 (GTK_PANED (vpaned), vbox2);
   gtk_widget_show (vbox2);

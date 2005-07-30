@@ -8,8 +8,9 @@ bin_PROGRAMS = xfburn
 
 xfburn_SOURCES =							\
 	xfburn-main.c 							\
-	xfburn-mainwindow.c 						\
-	xfburn-filebrowser.c						
+	xfburn-main-window.c 						\
+	xfburn-file-browser.c						\
+	xfburn-disc-content.c
 
 xfburn_CFLAGS =								\
 	$(LIBXFCEGUI4_CFLAGS)						\
