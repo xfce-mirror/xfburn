@@ -1,4 +1,6 @@
 INCLUDES = -DPACKAGE_LOCALE_DIR=\"$(localedir)\" 			\
+	   -DEXO_API_SUBJECT_TO_CHANGE					\
+	   -DDATADIR=\"$(datadir)\"						\
            -I$(top_srcdir)
 
 bin_PROGRAMS = xfburn

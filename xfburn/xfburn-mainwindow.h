@@ -36,7 +36,10 @@ typedef struct _XfburnMainWindowClass	XfburnMainWindowClass;
 struct _XfburnMainWindow {
   GtkWindow window;
   
-  GtkWidget *vbox;
+  GtkActionGroup *action_group;
+  GtkUIManager   *ui_manager;
+  
+  GtkWidget *menubar;
 };
 
 struct _XfburnMainWindowClass {

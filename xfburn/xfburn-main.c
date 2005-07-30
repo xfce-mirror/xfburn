@@ -24,7 +24,7 @@
 
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "mainwin.h"
+#include "xfburn-mainwindow.h"
 
 int
 main (int argc, char **argv)

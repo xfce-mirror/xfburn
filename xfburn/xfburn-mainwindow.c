@@ -24,7 +24,9 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "mainwin.h"
+#include <exo/exo.h>
+
+#include "xfburn-mainwindow.h"
 
 /* prototypes */
 static void xfburn_main_window_class_init (XfburnMainWindowClass *);
@@ -32,8 +34,18 @@ static void xfburn_main_window_init (XfburnMainWindow *);
 
 static gboolean cb_delete_main_window (GtkWidget *, GdkEvent *, gpointer);
 
+static void xfburn_window_action_about (GtkAction *, XfburnMainWindow *);
+
+
 /* globals */
 static GtkWindowClass *parent_class = NULL;
+static GtkActionEntry action_entries[] =
+{
+  { "file-menu", NULL, N_ ("_File"), NULL, },
+  { "quit", GTK_STOCK_QUIT, N_ ("Quit"), NULL, N_ ("Quit Xfburn"), },
+  { "help-menu", NULL, N_ ("_Help"), NULL, },
+  { "about", GTK_STOCK_ABOUT, N_ ("_About"), NULL, N_ ("Display information about Xfburn"), G_CALLBACK (xfburn_window_action_about), },
+};
 
 /**************************/
 /* XfburnMainWindow class */
@@ -75,19 +87,102 @@ xfburn_main_window_class_init (XfburnMainWindowClass * klass)
 static void
 xfburn_main_window_init (XfburnMainWindow *mainwin)
 {
+  GtkAccelGroup *accel_group;
+  GtkAction *action;
+  gchar *file;
+  
+  GtkWidget *vbox;
+  
   /* the window itself */
   gtk_window_set_position (GTK_WINDOW (mainwin), GTK_WIN_POS_CENTER_ON_PARENT);
   gtk_window_set_title (GTK_WINDOW (mainwin), "Xfburn");
   
   g_signal_connect (G_OBJECT (mainwin), "delete-event", G_CALLBACK (cb_delete_main_window), mainwin);
-    
-  mainwin->vbox = gtk_vbox_new (FALSE, 0);
-  
-  gtk_container_add (GTK_CONTAINER (mainwin), mainwin->vbox);
-  gtk_widget_show (mainwin->vbox);
+
+  /* create ui manager */
+  mainwin->action_group = gtk_action_group_new ("xfburn-main-window");
+  gtk_action_group_set_translation_domain (mainwin->action_group, GETTEXT_PACKAGE);
+  gtk_action_group_add_actions (mainwin->action_group, action_entries, G_N_ELEMENTS (action_entries),
+								GTK_WIDGET (mainwin));
+
+  mainwin->ui_manager = gtk_ui_manager_new ();
+  gtk_ui_manager_insert_action_group (mainwin->ui_manager, mainwin->action_group, 0);
+
+  xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
+  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "Xfburn/Xfburn.ui");
+  xfce_resource_pop_path (XFCE_RESOURCE_DATA);
+
+  if (G_LIKELY (file != NULL)) {
+	GError *error = NULL;
+	if (gtk_ui_manager_add_ui_from_file (mainwin->ui_manager, file, &error) == 0) {
+	  g_warning ("Unable to load %s: %s", file, error->message);
+	  g_error_free (error);
+	}
+	gtk_ui_manager_ensure_update (mainwin->ui_manager);
+	g_free (file);
+  } else {
+	g_warning ("Unable to locate Xfburn/Xfburn.ui !");
+  }
+
+  /* accel group */
+  accel_group = gtk_ui_manager_get_accel_group (mainwin->ui_manager);
+  gtk_window_add_accel_group (GTK_WINDOW (mainwin), accel_group);
+
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (mainwin), vbox);
+  gtk_widget_show (vbox);
+
+  /* menubar */
+  mainwin->menubar = gtk_ui_manager_get_widget (mainwin->ui_manager, "/main-menu");
+  if (G_LIKELY (mainwin->menubar != NULL)) {
+	gtk_box_pack_start (GTK_BOX (vbox), mainwin->menubar, FALSE, FALSE, 0);
+	gtk_widget_show (mainwin->menubar);
+  }
+ 
+  gtk_widget_set_size_request (GTK_WIDGET (mainwin), 350, 200);
 }
 
 /* private methods */
+static void
+xfburn_window_action_about (GtkAction *action, XfburnMainWindow *window)
+{
+  XfceAboutInfo  *info;
+  GtkWidget      *dialog;
+  GdkPixbuf      *icon;
+  guint           n;
+
+  static const struct { gchar *name, *email, *language; } translators[] = {
+    { NULL, },
+  };
+
+  icon = xfce_themed_icon_load ("xfburn", 48);
+  //if (G_UNLIKELY (icon == NULL))
+    //icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
+
+  info = xfce_about_info_new ("Xfburn", VERSION, _("Another cd burning tool"),
+                              XFCE_COPYRIGHT_TEXT ("2005", "Jean-François Wauthy"),
+                              XFCE_LICENSE_GPL);
+  xfce_about_info_set_homepage (info, "http://www.xfce.org/");
+  xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Maintainer"));
+  //xfce_about_info_add_credit (info, "Francois Le Clainche", "fleclainche@wanadoo.fr", _("Icon Designer"));
+
+  for (n = 0; translators[n].name != NULL; ++n) {
+	gchar *s;
+	
+	s = g_strdup_printf (_("Translator (%s)"), translators[n].language);
+	xfce_about_info_add_credit (info, translators[n].name, translators[n].email, s);
+	g_free (s);
+  }
+
+  dialog = xfce_about_dialog_new (GTK_WINDOW (window), info, icon);
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+
+  xfce_about_info_free (info);
+  if (G_LIKELY (icon != NULL))
+    g_object_unref (G_OBJECT (icon));
+}
+
 static gboolean
 cb_delete_main_window (GtkWidget *widget, GdkEvent *event, gpointer data)
 {
@@ -102,3 +197,4 @@ xfburn_main_window_new (void)
 {
   return g_object_new (xfburn_main_window_get_type(), NULL);
 }
+
