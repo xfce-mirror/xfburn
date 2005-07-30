@@ -26,8 +26,8 @@
 
 #include <exo/exo.h>
 
-#include "xfburn-mainwindow.h"
-#include "xfburn-filebrowser.h"
+#include "xfburn-main-window.h"
+#include "xfburn-file-browser.h"
 #include "xfburn-disc-content.h"
 
 /* prototypes */

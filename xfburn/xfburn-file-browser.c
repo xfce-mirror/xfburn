@@ -24,7 +24,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "xfburn-filebrowser.h"
+#include "xfburn-file-browser.h"
 
 /* prototypes */
 static void xfburn_file_browser_class_init (XfburnFileBrowserClass *);
