@@ -3,8 +3,8 @@ INCLUDES = -DPACKAGE_LOCALE_DIR=\"$(localedir)\" 			\
 
 bin_PROGRAMS = xfburn
 
-xfburn_SOURCES = main.c 						\
-	 	 mainwin.c 
+xfburn_SOURCES = xfburn-main.c 						\
+	 	 xfburn-mainwindow.c 
 
 xfburn_CFLAGS = $(LIBXFCEGUI4_CFLAGS)					\
 		$(EXO_CFLAGS)
