@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
  
-#ifndef __XFBURN_MAINWIN_H__
-#define __XFBURN_MAINWIN_H__
+#ifndef __XFBURN_MAIN_WINDOW_H__
+#define __XFBURN_MAIN_WINDOW_H__
 
 #include <gtk/gtk.h>
 
@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 #define XFBURN_MAIN_WINDOW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
 #define XFBURN_IS_MAIN_WINDOW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_MAIN_WINDOW))
 #define XFBURN_IS_MAIN_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_MAIN_WINDOW))
-#define XFBURN_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
+#define XFBURN_MAIN_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
 
 typedef struct _XfburnMainWindow		XfburnMainWindow;
 typedef struct _XfburnMainWindowClass	XfburnMainWindowClass;
@@ -40,6 +40,7 @@ struct _XfburnMainWindow {
   GtkUIManager   *ui_manager;
   
   GtkWidget *menubar;
+  GtkWidget *file_browser;
 };
 
 struct _XfburnMainWindowClass {

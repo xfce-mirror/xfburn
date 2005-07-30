@@ -30,9 +30,9 @@ int
 main (int argc, char **argv)
 {
   GtkWidget *mainwin;
-  
-  xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-  
+    
+  g_set_application_name (_("Xfburn"));
+   
   if (argc > 1 && (!strcmp (argv[1], "--version") || !strcmp (argv[1], "-V"))) {
 	g_print ("\tThis is %s version %s for Xfce %s\n", PACKAGE, VERSION, xfce_version_string ());
     g_print ("\tbuilt with GTK+-%d.%d.%d, ", GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
@@ -42,12 +42,14 @@ main (int argc, char **argv)
   }
   
   gtk_init (&argc, &argv);
-    
+  
+  xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+  
   mainwin = xfburn_main_window_new ();
 
   gtk_widget_show (mainwin);
   
   gtk_main ();
   
-  return 0;
+  return EXIT_SUCCESS;
 }
