@@ -94,7 +94,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   /* the window itself */
   gtk_window_set_position (GTK_WINDOW (mainwin), GTK_WIN_POS_CENTER_ON_PARENT);
   gtk_window_set_title (GTK_WINDOW (mainwin), "Xfburn");
-  gtk_widget_set_size_request (GTK_WIDGET (mainwin), 350, 200);
+  gtk_widget_set_size_request (GTK_WIDGET (mainwin), 850, 400);
 
   g_signal_connect (G_OBJECT (mainwin), "delete-event", G_CALLBACK (cb_delete_main_window), mainwin);
 

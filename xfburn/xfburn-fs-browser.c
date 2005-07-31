@@ -16,11 +16,16 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4util/libxfce4util.h>
+
 #include "xfburn-fs-browser.h"
 
 /* prototypes */
 static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass);
 static void xfburn_fs_browser_init (XfburnFsBrowser * sp);
+
+static gint fs_tree_sort_func (GtkTreeModel *, GtkTreeIter *, GtkTreeIter *, gpointer);
 
 /* globals */
 static GtkTreeViewClass *parent_class = NULL;
@@ -57,13 +62,151 @@ xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass)
 }
 
 static void
-xfburn_fs_browser_init (XfburnFsBrowser * obj)
+xfburn_fs_browser_init (XfburnFsBrowser * browser)
 {
-
+  GtkTreeStore *model;
+  GtkTreeViewColumn *column_directory;
+  GtkCellRenderer *cell_icon, *cell_directory;
+  
+  gtk_widget_set_size_request (GTK_WIDGET (browser), 200, 300);
+  
+  model = gtk_tree_store_new (FS_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
+  gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), 0, fs_tree_sort_func, NULL, NULL);
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), 0, GTK_SORT_ASCENDING);
+  gtk_tree_view_set_model (GTK_TREE_VIEW (browser), GTK_TREE_MODEL (model));  
+  
+  column_directory = gtk_tree_view_column_new ();
+  gtk_tree_view_column_set_title (column_directory, _("Filesystem"));
+  gtk_tree_view_column_set_expand (column_directory, TRUE);
+    
+  cell_icon = gtk_cell_renderer_pixbuf_new ();
+  gtk_tree_view_column_pack_start (column_directory, cell_icon, FALSE);
+  gtk_tree_view_column_set_attributes (column_directory, cell_icon, "pixbuf", FS_BROWSER_COLUMN_ICON, NULL);
+  g_object_set (cell_icon, "xalign", 0.0, "ypad", 0, NULL);
+  
+  cell_directory = gtk_cell_renderer_text_new ();
+  gtk_tree_view_column_pack_start (column_directory, cell_directory, TRUE);
+  gtk_tree_view_column_set_attributes (column_directory, cell_directory, "text", FS_BROWSER_COLUMN_DIRECTORY, NULL);
+  
+  gtk_tree_view_append_column (GTK_TREE_VIEW (browser), column_directory);
+  
+  /* load the directory list */
+  xfburn_fs_browser_refresh (browser);
 }
 
+/* internals */
+static gint
+fs_tree_sort_func (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data)
+{
+  gchar *a_str = NULL;
+  gchar *b_str = NULL;
+  gint result;
+
+  gtk_tree_model_get (model, a, FS_BROWSER_COLUMN_DIRECTORY, &a_str, -1);
+  gtk_tree_model_get (model, b, FS_BROWSER_COLUMN_DIRECTORY, &b_str, -1);
+
+  if (a_str == NULL)
+    a_str = g_strdup ("");
+  if (b_str == NULL)
+    b_str = g_strdup ("");
+
+  result = g_utf8_collate (a_str, b_str);
+
+  g_free (a_str);
+  g_free (b_str);
+
+  return result;
+}
+
+static void
+load_directory_in_browser (XfburnFsBrowser *browser, const gchar *path, GtkTreeIter *parent) 
+{
+  GDir *dir;
+  GError *error = NULL;
+  GdkPixbuf *icon;
+  GtkTreeModel *model;
+  const gchar *dir_entry;
+  int x,y;
+  
+  dir = g_dir_open (path, 0, &error);
+  if (!dir) {
+	g_warning ("unable to open the %s directory : %s", path, error->message);
+	g_error_free (error);
+	return;
+  }
+  
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
+  
+  gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
+  icon = xfce_themed_icon_load ("gnome-fs-directory", x);
+	
+  while ( (dir_entry = g_dir_read_name (dir)) ) {
+	gchar *full_path;
+	
+	full_path = g_build_filename (path, dir_entry, NULL);
+	if (dir_entry[0] != '.' && g_file_test (full_path, G_FILE_TEST_IS_DIR & ~G_FILE_TEST_IS_SYMLINK)) {
+	  GtkTreeIter iter;
+	  
+	  gtk_tree_store_append (GTK_TREE_STORE (model), &iter, parent);
+	  gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+						  FS_BROWSER_COLUMN_ICON, icon,
+						  FS_BROWSER_COLUMN_DIRECTORY, dir_entry,
+						  FS_BROWSER_COLUMN_PATH, full_path, -1);
+	}
+	g_free (full_path);
+  }
+  
+  if (icon)
+	g_object_unref (icon);
+  
+  g_dir_close (dir);
+}
+
+/* public methods */
 GtkWidget *
 xfburn_fs_browser_new ()
 {
   return g_object_new (XFBURN_TYPE_FS_BROWSER, NULL);
+}
+
+void
+xfburn_fs_browser_refresh (XfburnFsBrowser *browser)
+{
+  GtkTreeModel *model;
+  GtkTreeIter iter_home, iter_root;
+  int x,y;
+  gchar *text;
+  GdkPixbuf *icon;
+  
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
+  
+  gtk_tree_store_clear (GTK_TREE_STORE (model));
+    
+  gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
+  
+  /* load the user's home dir */
+  text = g_strdup_printf (_("%s's home"), g_get_user_name ());
+  icon = xfce_themed_icon_load ("gnome-fs-home", x);
+  gtk_tree_store_append (GTK_TREE_STORE (model), &iter_home, NULL);
+  gtk_tree_store_set (GTK_TREE_STORE (model), &iter_home,
+					  FS_BROWSER_COLUMN_ICON, icon,
+					  FS_BROWSER_COLUMN_DIRECTORY, text,
+					  FS_BROWSER_COLUMN_PATH, xfce_get_homedir (), -1);
+  if (icon)
+	g_object_unref (icon);
+  g_free (text);
+  
+  load_directory_in_browser (browser, xfce_get_homedir (), &iter_home);
+  
+  /* load the fs root */
+  icon = xfce_themed_icon_load ("gnome-dev-harddisk", x);
+  gtk_tree_store_append (GTK_TREE_STORE (model), &iter_root, NULL);
+  gtk_tree_store_set (GTK_TREE_STORE (model), &iter_root,
+					  FS_BROWSER_COLUMN_ICON, icon,
+					  FS_BROWSER_COLUMN_DIRECTORY, _("Filesystem"),
+					  FS_BROWSER_COLUMN_PATH, "/", -1);
+  if (icon)
+	g_object_unref (icon);
+  
+  load_directory_in_browser (browser, "/", &iter_root);
 }

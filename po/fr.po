@@ -1,13 +1,12 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright (C) 2005
+# This file is distributed under the same license as the Xfburn package.
+# Jean-François Wauthy <pollux@xfce.org>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn dev version\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-30 20:07+0200\n"
+"POT-Creation-Date: 2005-07-31 17:29+0200\n"
 "PO-Revision-Date: 2005-07-30 20:08+0100\n"
 "Last-Translator: Jean-François Wauthy <pollux@xfce.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,45 +14,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: xfburn/xfburn-main.c:34
-msgid "Xfburn"
-msgstr "Xfburn"
+#: xfburn/xfburn-fs-browser.c:79 xfburn/xfburn-fs-browser.c:206
+msgid "Filesystem"
+msgstr ""
 
-#: xfburn/xfburn-mainwindow.c:44
+#. load the user's home dir
+#: xfburn/xfburn-fs-browser.c:188
+#, c-format
+msgid "%s's home"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:45
 msgid "_File"
 msgstr "_Fichier"
 
-#: xfburn/xfburn-mainwindow.c:45
+#: xfburn/xfburn-main-window.c:46
 msgid "Quit"
 msgstr "Quitter"
 
-#: xfburn/xfburn-mainwindow.c:45
+#: xfburn/xfburn-main-window.c:46
 msgid "Quit Xfburn"
 msgstr "Quitter Xfburn"
 
-#: xfburn/xfburn-mainwindow.c:46
+#: xfburn/xfburn-main-window.c:47
 msgid "_Help"
 msgstr "_Aide"
 
-#: xfburn/xfburn-mainwindow.c:47
+#: xfburn/xfburn-main-window.c:48
 msgid "_About"
 msgstr "_A propos de Xfburn"
 
-#: xfburn/xfburn-mainwindow.c:47
+#: xfburn/xfburn-main-window.c:48
 msgid "Display information about Xfburn"
 msgstr ""
 
 #. if (G_UNLIKELY (icon == NULL))
-#: xfburn/xfburn-mainwindow.c:177
+#. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
+#: xfburn/xfburn-main-window.c:180
 msgid "Another cd burning tool"
 msgstr ""
 
-#: xfburn/xfburn-mainwindow.c:181
+#: xfburn/xfburn-main-window.c:183
 msgid "Maintainer"
 msgstr ""
 
-#: xfburn/xfburn-mainwindow.c:187
+#: xfburn/xfburn-main-window.c:189
 #, c-format
 msgid "Translator (%s)"
 msgstr ""
 
+#: xfburn/xfburn-main.c:38
+msgid "Xfburn"
+msgstr "Xfburn"
