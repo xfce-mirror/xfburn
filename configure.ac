@@ -27,6 +27,9 @@ XDT_I18N([fr])
 dnl check for required packages
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
 
+dnl check for debugging support
+BM_DEBUG_SUPPORT()
+
 AC_OUTPUT([
 Makefile
 po/Makefile.in

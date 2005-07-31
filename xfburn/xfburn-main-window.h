@@ -15,41 +15,43 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
+
 #ifndef __XFBURN_MAIN_WINDOW_H__
 #define __XFBURN_MAIN_WINDOW_H__
 
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-
 #define XFBURN_TYPE_MAIN_WINDOW            (xfburn_main_window_get_type ())
 #define XFBURN_MAIN_WINDOW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindow))
 #define XFBURN_MAIN_WINDOW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
 #define XFBURN_IS_MAIN_WINDOW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_MAIN_WINDOW))
 #define XFBURN_IS_MAIN_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_MAIN_WINDOW))
 #define XFBURN_MAIN_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
+typedef struct _XfburnMainWindow XfburnMainWindow;
+typedef struct _XfburnMainWindowClass XfburnMainWindowClass;
 
-typedef struct _XfburnMainWindow		XfburnMainWindow;
-typedef struct _XfburnMainWindowClass	XfburnMainWindowClass;
-
-struct _XfburnMainWindow {
+struct _XfburnMainWindow
+{
   GtkWindow window;
-  
+
   GtkActionGroup *action_group;
-  GtkUIManager   *ui_manager;
-  
+  GtkUIManager *ui_manager;
+
   GtkWidget *menubar;
   GtkWidget *file_browser;
+  GtkWidget *disc_content;
 };
 
-struct _XfburnMainWindowClass {
-  GtkWindowClass	parent_class;
+struct _XfburnMainWindowClass
+{
+  GtkWindowClass parent_class;
 };
 
-extern GtkType		xfburn_main_window_get_type (void) G_GNUC_CONST;
-extern GtkWidget	*xfburn_main_window_new (void);
+GtkType
+xfburn_main_window_get_type (void)
+  G_GNUC_CONST;
+     GtkWidget *xfburn_main_window_new (void);
 
 G_END_DECLS
-
 #endif

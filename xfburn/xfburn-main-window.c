@@ -79,10 +79,6 @@ xfburn_main_window_get_type (void)
 static void
 xfburn_main_window_class_init (XfburnMainWindowClass * klass)
 {
-  GObjectClass *gobject_class;
-
-  gobject_class = G_OBJECT_CLASS (klass);
-
   parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -90,12 +86,10 @@ static void
 xfburn_main_window_init (XfburnMainWindow * mainwin)
 {
   GtkAccelGroup *accel_group;
-  GtkAction *action;
   gchar *file;
 
-  GtkWidget *vbox, *vbox2;
-  GtkWidget *vpaned, *hpaned;
-  GtkWidget *scrolled_window;
+  GtkWidget *vbox;
+  GtkWidget *vpaned;
 
   /* the window itself */
   gtk_window_set_position (GTK_WINDOW (mainwin), GTK_WIN_POS_CENTER_ON_PARENT);
@@ -154,18 +148,11 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   mainwin->file_browser = xfburn_file_browser_new ();
   gtk_paned_add1 (GTK_PANED (vpaned), mainwin->file_browser);
   gtk_widget_show (mainwin->file_browser);
-  
+
   /* disc content */
-  vbox2 = gtk_vbox_new (FALSE, 0);
-  gtk_paned_add2 (GTK_PANED (vpaned), vbox2);
-  gtk_widget_show (vbox2);
-  
-  scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
-  gtk_widget_show (scrolled_window);
-  gtk_box_pack_start (GTK_BOX (vbox2), scrolled_window, TRUE, TRUE, 0);
-  
+  mainwin->disc_content = xfburn_disc_content_new ();
+  gtk_paned_add2 (GTK_PANED (vpaned), mainwin->disc_content);
+  gtk_widget_show (mainwin->disc_content);
 }
 
 /* private methods */

@@ -25,6 +25,8 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "xfburn-file-browser.h"
+#include "xfburn-fs-browser.h"
+#include "xfburn-directory-browser.h"
 
 /* prototypes */
 static void xfburn_file_browser_class_init (XfburnFileBrowserClass *);
@@ -73,21 +75,29 @@ xfburn_file_browser_class_init (XfburnFileBrowserClass * klass)
 static void
 xfburn_file_browser_init (XfburnFileBrowser * file_browser)
 {
-  GtkWidget *hpaned;
   GtkWidget *scrolled_window;
-    
+  
+  /* FS browser */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
   gtk_paned_add1 (GTK_PANED (file_browser), scrolled_window);
   gtk_widget_show (scrolled_window);
 
+  file_browser->fs_browser = xfburn_fs_browser_new ();
+  gtk_widget_show (file_browser->fs_browser);
+  gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (file_browser->fs_browser));
+  
+  /* directory browser */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
   gtk_paned_add2 (GTK_PANED (file_browser), scrolled_window);
   gtk_widget_show (scrolled_window);
-  
+
+  file_browser->directory_browser = xfburn_directory_browser_new ();
+  gtk_widget_show (file_browser->directory_browser);
+  gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (file_browser->directory_browser));
 
 }
 

@@ -54,7 +54,7 @@ xfburn_disc_content_get_type (void)
       (GInstanceInitFunc) xfburn_disc_content_init
     };
 
-    disc_content_type = g_type_register_static (GTK_TYPE_HPANED, "XfburnDiscContent", &disc_content_info, 0);
+    disc_content_type = g_type_register_static (GTK_TYPE_VBOX, "XfburnDiscContent", &disc_content_info, 0);
   }
 
   return disc_content_type;
@@ -63,16 +63,20 @@ xfburn_disc_content_get_type (void)
 static void
 xfburn_disc_content_class_init (XfburnDiscContentClass * klass)
 {
-  GObjectClass *gobject_class;
-
-  gobject_class = G_OBJECT_CLASS (klass);
-
   parent_class = g_type_class_peek_parent (klass);
 }
 
 static void
 xfburn_disc_content_init (XfburnDiscContent * disc_content)
 {
+  GtkWidget *scrolled_window;
+
+  scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
+  gtk_widget_show (scrolled_window);
+  gtk_box_pack_start (GTK_BOX (disc_content), scrolled_window, TRUE, TRUE, 0);
+
 
 }
 
