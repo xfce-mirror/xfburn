@@ -15,6 +15,13 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
+#ifdef	HAVE_CONFIG_H
+#include <config.h>
+#endif /* !HAVE_CONFIG_H */
+
+#ifdef HAVE_STRINGS_H
+#include <string.h>
+#endif
 
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4util/libxfce4util.h>
@@ -24,7 +31,7 @@
 /* prototypes */
 static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass);
 static void xfburn_fs_browser_init (XfburnFsBrowser * sp);
-
+static void cb_browser_row_expanded (GtkTreeView *, GtkTreeIter *, GtkTreePath *, gpointer);
 static gint fs_tree_sort_func (GtkTreeModel *, GtkTreeIter *, GtkTreeIter *, gpointer);
 
 /* globals */
@@ -67,6 +74,7 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   GtkTreeStore *model;
   GtkTreeViewColumn *column_directory;
   GtkCellRenderer *cell_icon, *cell_directory;
+  GtkTreeSelection *selection;
   
   gtk_widget_set_size_request (GTK_WIDGET (browser), 200, 300);
   
@@ -89,6 +97,11 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   gtk_tree_view_column_set_attributes (column_directory, cell_directory, "text", FS_BROWSER_COLUMN_DIRECTORY, NULL);
   
   gtk_tree_view_append_column (GTK_TREE_VIEW (browser), column_directory);
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
+  gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
+  
+  g_signal_connect (G_OBJECT (browser), "row-expanded", G_CALLBACK (cb_browser_row_expanded), browser);
   
   /* load the directory list */
   xfburn_fs_browser_refresh (browser);
@@ -136,7 +149,7 @@ load_directory_in_browser (XfburnFsBrowser *browser, const gchar *path, GtkTreeI
   }
   
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
-  
+
   gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
   icon = xfce_themed_icon_load ("gnome-fs-directory", x);
 	
@@ -144,22 +157,56 @@ load_directory_in_browser (XfburnFsBrowser *browser, const gchar *path, GtkTreeI
 	gchar *full_path;
 	
 	full_path = g_build_filename (path, dir_entry, NULL);
-	if (dir_entry[0] != '.' && g_file_test (full_path, G_FILE_TEST_IS_DIR & ~G_FILE_TEST_IS_SYMLINK)) {
+	if (dir_entry[0] != '.' && g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
 	  GtkTreeIter iter;
+	  GtkTreeIter iter_empty;
 	  
 	  gtk_tree_store_append (GTK_TREE_STORE (model), &iter, parent);
 	  gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
 						  FS_BROWSER_COLUMN_ICON, icon,
 						  FS_BROWSER_COLUMN_DIRECTORY, dir_entry,
 						  FS_BROWSER_COLUMN_PATH, full_path, -1);
+	  gtk_tree_store_append (GTK_TREE_STORE (model), &iter_empty, &iter);
+	  gtk_tree_store_set (GTK_TREE_STORE (model), &iter_empty,
+						  FS_BROWSER_COLUMN_DIRECTORY, "", -1);
 	}
 	g_free (full_path);
   }
   
   if (icon)
 	g_object_unref (icon);
-  
+
   g_dir_close (dir);
+  gtk_tree_view_set_model (GTK_TREE_VIEW (browser), model);
+}
+
+static void        
+cb_browser_row_expanded (GtkTreeView *treeview, GtkTreeIter *iter, GtkTreePath *path, gpointer user_data)
+{    
+  GtkTreeModel *model;
+  GtkTreeIter iter_empty;
+  gchar *value;
+  
+  model = gtk_tree_view_get_model (treeview);
+  if (!gtk_tree_model_iter_nth_child (model, &iter_empty, iter, 0))
+	return;
+ 
+  gtk_tree_model_get (model, &iter_empty, FS_BROWSER_COLUMN_DIRECTORY, &value, -1);
+      
+  if (gtk_tree_path_get_depth (path) > 1 && strlen (value) == 0) {
+	gchar *full_path;
+    	
+	gtk_tree_store_remove (GTK_TREE_STORE (model), &iter_empty);
+  
+	gtk_tree_model_get (model, iter, FS_BROWSER_COLUMN_PATH, &full_path, -1);
+  	
+	load_directory_in_browser (user_data, full_path, iter);
+	gtk_tree_view_expand_row (treeview, path, FALSE);
+	
+	g_free (full_path);
+  }
+  
+  g_free (value);
 }
 
 /* public methods */
