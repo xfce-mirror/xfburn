@@ -39,11 +39,20 @@ struct _XfburnDiscContent
 {
   GtkVBox vbox;
 
+  GtkWidget *content;
 };
 
 struct _XfburnDiscContentClass
 {
   GtkVBoxClass parent_class;
+};
+
+enum {
+  DISC_CONTENT_COLUMN_ICON,
+  DISC_CONTENT_COLUMN_CONTENT,
+  DISC_CONTENT_COLUMN_SIZE,
+  DISC_CONTENT_COLUMN_PATH,
+  DISC_CONTENT_N_COLUMNS
 };
 
 GtkType

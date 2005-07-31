@@ -12,7 +12,8 @@ xfburn_headers = 							\
 	xfburn-file-browser.h						\
 	xfburn-disc-content.h						\
 	xfburn-fs-browser.h						\
-	xfburn-directory-browser.h					
+	xfburn-directory-browser.h					\
+	xfburn-utils.h
 	
 xfburn_SOURCES =							\
 	$(xfburn_headers)						\
@@ -21,7 +22,8 @@ xfburn_SOURCES =							\
 	xfburn-file-browser.c						\
 	xfburn-disc-content.c    	                             	\
 	xfburn-fs-browser.c 	                                       	\
-	xfburn-directory-browser.c
+	xfburn-directory-browser.c					\
+	xfburn-utils.c
 
 xfburn_CFLAGS =								\
 	$(LIBXFCEGUI4_CFLAGS)						\

@@ -46,6 +46,15 @@ struct _XfburnDirectoryBrowserClass
   GtkTreeViewClass parent_class;
 };
 
+enum {
+  DIRECTORY_BROWSER_COLUMN_ICON,
+  DIRECTORY_BROWSER_COLUMN_FILE,
+  DIRECTORY_BROWSER_COLUMN_SIZE,
+  DIRECTORY_BROWSER_COLUMN_TYPE,
+  DIRECTORY_BROWSER_COLUMN_PATH,
+  DIRECTORY_BROWSER_N_COLUMNS
+};
+
 GtkType xfburn_directory_browser_get_type (void) G_GNUC_CONST;
 GtkWidget *xfburn_directory_browser_new (void);
 

@@ -15,6 +15,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
+
 #ifdef	HAVE_CONFIG_H
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
@@ -27,6 +28,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "xfburn-fs-browser.h"
+#include "xfburn-utils.h"
 
 /* prototypes */
 static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass);
@@ -82,6 +84,7 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), 0, fs_tree_sort_func, NULL, NULL);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), 0, GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (browser), GTK_TREE_MODEL (model));  
+  gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (browser), TRUE);
   
   column_directory = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column_directory, _("Filesystem"));
@@ -141,6 +144,9 @@ load_directory_in_browser (XfburnFsBrowser *browser, const gchar *path, GtkTreeI
   const gchar *dir_entry;
   int x,y;
   
+  if (GTK_WIDGET (browser)->parent)
+	xfburn_busy_cursor (GTK_WIDGET (browser));
+  
   dir = g_dir_open (path, 0, &error);
   if (!dir) {
 	g_warning ("unable to open the %s directory : %s", path, error->message);
@@ -178,6 +184,9 @@ load_directory_in_browser (XfburnFsBrowser *browser, const gchar *path, GtkTreeI
 
   g_dir_close (dir);
   gtk_tree_view_set_model (GTK_TREE_VIEW (browser), model);
+  
+  if (GTK_WIDGET (browser)->parent)
+	xfburn_default_cursor (GTK_WIDGET (browser));
 }
 
 static void        
@@ -224,6 +233,7 @@ xfburn_fs_browser_refresh (XfburnFsBrowser *browser)
   int x,y;
   gchar *text;
   GdkPixbuf *icon;
+  GtkTreePath *path;
   
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
   
@@ -244,7 +254,7 @@ xfburn_fs_browser_refresh (XfburnFsBrowser *browser)
   g_free (text);
   
   load_directory_in_browser (browser, xfce_get_homedir (), &iter_home);
-  
+    
   /* load the fs root */
   icon = xfce_themed_icon_load ("gnome-dev-harddisk", x);
   gtk_tree_store_append (GTK_TREE_STORE (model), &iter_root, NULL);
@@ -256,4 +266,9 @@ xfburn_fs_browser_refresh (XfburnFsBrowser *browser)
 	g_object_unref (icon);
   
   load_directory_in_browser (browser, "/", &iter_root);
+  
+  /* expand the home dir row */
+  path = gtk_tree_model_get_path (model, &iter_home);
+  gtk_tree_view_expand_row (GTK_TREE_VIEW (browser), path, FALSE);
+  gtk_tree_path_free (path);
 }

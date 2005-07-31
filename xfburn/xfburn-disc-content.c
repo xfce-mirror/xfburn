@@ -30,6 +30,8 @@
 static void xfburn_disc_content_class_init (XfburnDiscContentClass *);
 static void xfburn_disc_content_init (XfburnDiscContent *);
 
+static gint content_tree_sort_func (GtkTreeModel *, GtkTreeIter *, GtkTreeIter *, gpointer);
+
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
 
@@ -70,14 +72,72 @@ static void
 xfburn_disc_content_init (XfburnDiscContent * disc_content)
 {
   GtkWidget *scrolled_window;
-
+  GtkTreeStore *model;
+  GtkTreeViewColumn *column_file;
+  GtkCellRenderer *cell_icon, *cell_file;
+  GtkTreeSelection *selection;
+  
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
   gtk_widget_show (scrolled_window);
   gtk_box_pack_start (GTK_BOX (disc_content), scrolled_window, TRUE, TRUE, 0);
+    
+  disc_content->content = gtk_tree_view_new ();
+  model = gtk_tree_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+  gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), 0, content_tree_sort_func, NULL, NULL);
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), 0, GTK_SORT_ASCENDING);
+  gtk_tree_view_set_model (GTK_TREE_VIEW (disc_content->content), GTK_TREE_MODEL (model));  
+  gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (disc_content->content), TRUE);
+  gtk_widget_show (disc_content->content);
+  gtk_container_add (GTK_CONTAINER (scrolled_window), disc_content->content);
+  
+  column_file = gtk_tree_view_column_new ();
+  gtk_tree_view_column_set_title (column_file, _("Contents"));
+      
+  cell_icon = gtk_cell_renderer_pixbuf_new ();
+  gtk_tree_view_column_pack_start (column_file, cell_icon, FALSE);
+  gtk_tree_view_column_set_attributes (column_file, cell_icon, "pixbuf", DISC_CONTENT_COLUMN_ICON, NULL);
+  g_object_set (cell_icon, "xalign", 0.0, "ypad", 0, NULL);
+  
+  cell_file = gtk_cell_renderer_text_new ();
+  gtk_tree_view_column_pack_start (column_file, cell_file, TRUE);
+  gtk_tree_view_column_set_attributes (column_file, cell_file, "text", DISC_CONTENT_COLUMN_CONTENT, NULL);
+    
+  gtk_tree_view_append_column (GTK_TREE_VIEW (disc_content->content), column_file);
+  
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->content), -1, _("Size"),
+											   gtk_cell_renderer_text_new (), "text", DISC_CONTENT_COLUMN_SIZE, NULL);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->content), -1, _("Full path"),
+											   gtk_cell_renderer_text_new (), "text", DISC_CONTENT_COLUMN_PATH, NULL);
+  
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (disc_content->content));
+  gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
+  
+}
 
+/* internals */
+static gint
+content_tree_sort_func (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data)
+{
+  gchar *a_str = NULL;
+  gchar *b_str = NULL;
+  gint result;
 
+  gtk_tree_model_get (model, a, DISC_CONTENT_COLUMN_CONTENT, &a_str, -1);
+  gtk_tree_model_get (model, b, DISC_CONTENT_COLUMN_CONTENT, &b_str, -1);
+
+  if (a_str == NULL)
+    a_str = g_strdup ("");
+  if (b_str == NULL)
+    b_str = g_strdup ("");
+
+  result = g_utf8_collate (a_str, b_str);
+
+  g_free (a_str);
+  g_free (b_str);
+
+  return result;
 }
 
 /* public methods */
