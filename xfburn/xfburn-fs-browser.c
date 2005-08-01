@@ -34,7 +34,6 @@
 static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass);
 static void xfburn_fs_browser_init (XfburnFsBrowser * sp);
 static void cb_browser_row_expanded (GtkTreeView *, GtkTreeIter *, GtkTreePath *, gpointer);
-static gint fs_tree_sort_func (GtkTreeModel *, GtkTreeIter *, GtkTreeIter *, gpointer);
 
 /* globals */
 static GtkTreeViewClass *parent_class = NULL;
@@ -81,8 +80,7 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   gtk_widget_set_size_request (GTK_WIDGET (browser), 200, 300);
   
   model = gtk_tree_store_new (FS_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
-  gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), 0, fs_tree_sort_func, NULL, NULL);
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), 0, GTK_SORT_ASCENDING);
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), FS_BROWSER_COLUMN_DIRECTORY, GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (browser), GTK_TREE_MODEL (model));  
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (browser), TRUE);
   
@@ -108,30 +106,6 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   
   /* load the directory list */
   xfburn_fs_browser_refresh (browser);
-}
-
-/* internals */
-static gint
-fs_tree_sort_func (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data)
-{
-  gchar *a_str = NULL;
-  gchar *b_str = NULL;
-  gint result;
-
-  gtk_tree_model_get (model, a, FS_BROWSER_COLUMN_DIRECTORY, &a_str, -1);
-  gtk_tree_model_get (model, b, FS_BROWSER_COLUMN_DIRECTORY, &b_str, -1);
-
-  if (a_str == NULL)
-    a_str = g_strdup ("");
-  if (b_str == NULL)
-    b_str = g_strdup ("");
-
-  result = g_utf8_collate (a_str, b_str);
-
-  g_free (a_str);
-  g_free (b_str);
-
-  return result;
 }
 
 static void
@@ -163,7 +137,8 @@ load_directory_in_browser (XfburnFsBrowser *browser, const gchar *path, GtkTreeI
 	gchar *full_path;
 	
 	full_path = g_build_filename (path, dir_entry, NULL);
-	if (dir_entry[0] != '.' && g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
+	if (dir_entry[0] != '.' && g_file_test (full_path, G_FILE_TEST_IS_DIR) &&
+		!g_file_test (full_path, G_FILE_TEST_IS_SYMLINK)) {
 	  GtkTreeIter iter;
 	  GtkTreeIter iter_empty;
 	  
@@ -183,7 +158,6 @@ load_directory_in_browser (XfburnFsBrowser *browser, const gchar *path, GtkTreeI
 	g_object_unref (icon);
 
   g_dir_close (dir);
-  gtk_tree_view_set_model (GTK_TREE_VIEW (browser), model);
   
   if (GTK_WIDGET (browser)->parent)
 	xfburn_default_cursor (GTK_WIDGET (browser));
@@ -233,6 +207,7 @@ xfburn_fs_browser_refresh (XfburnFsBrowser *browser)
   int x,y;
   gchar *text;
   GdkPixbuf *icon;
+  GtkTreeSelection *selection;
   GtkTreePath *path;
   
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
@@ -266,6 +241,10 @@ xfburn_fs_browser_refresh (XfburnFsBrowser *browser)
 	g_object_unref (icon);
   
   load_directory_in_browser (browser, "/", &iter_root);
+  
+  /* set cursor on home dir row */
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
+  gtk_tree_selection_select_iter (selection, &iter_home);
   
   /* expand the home dir row */
   path = gtk_tree_model_get_path (model, &iter_home);

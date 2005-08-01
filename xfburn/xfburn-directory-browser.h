@@ -57,6 +57,7 @@ enum {
 
 GtkType xfburn_directory_browser_get_type (void) G_GNUC_CONST;
 GtkWidget *xfburn_directory_browser_new (void);
+void xfburn_directory_browser_load_path (XfburnDirectoryBrowser *, const gchar *);
 
 G_END_DECLS
 #endif

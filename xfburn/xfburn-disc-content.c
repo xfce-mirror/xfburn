@@ -30,8 +30,6 @@
 static void xfburn_disc_content_class_init (XfburnDiscContentClass *);
 static void xfburn_disc_content_init (XfburnDiscContent *);
 
-static gint content_tree_sort_func (GtkTreeModel *, GtkTreeIter *, GtkTreeIter *, gpointer);
-
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
 
@@ -85,8 +83,7 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
     
   disc_content->content = gtk_tree_view_new ();
   model = gtk_tree_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-  gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), 0, content_tree_sort_func, NULL, NULL);
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), 0, GTK_SORT_ASCENDING);
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DISC_CONTENT_COLUMN_CONTENT,	GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (disc_content->content), GTK_TREE_MODEL (model));  
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (disc_content->content), TRUE);
   gtk_widget_show (disc_content->content);
@@ -114,30 +111,6 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (disc_content->content));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
   
-}
-
-/* internals */
-static gint
-content_tree_sort_func (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data)
-{
-  gchar *a_str = NULL;
-  gchar *b_str = NULL;
-  gint result;
-
-  gtk_tree_model_get (model, a, DISC_CONTENT_COLUMN_CONTENT, &a_str, -1);
-  gtk_tree_model_get (model, b, DISC_CONTENT_COLUMN_CONTENT, &b_str, -1);
-
-  if (a_str == NULL)
-    a_str = g_strdup ("");
-  if (b_str == NULL)
-    b_str = g_strdup ("");
-
-  result = g_utf8_collate (a_str, b_str);
-
-  g_free (a_str);
-  g_free (b_str);
-
-  return result;
 }
 
 /* public methods */

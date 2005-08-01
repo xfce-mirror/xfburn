@@ -32,6 +32,8 @@
 static void xfburn_file_browser_class_init (XfburnFileBrowserClass *);
 static void xfburn_file_browser_init (XfburnFileBrowser *);
 
+static void cb_fs_browser_selection_changed (GtkTreeSelection *, XfburnFileBrowser *);
+
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
 
@@ -76,6 +78,7 @@ static void
 xfburn_file_browser_init (XfburnFileBrowser * file_browser)
 {
   GtkWidget *scrolled_window;
+  GtkTreeSelection *selection;
   
   /* FS browser */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -99,6 +102,26 @@ xfburn_file_browser_init (XfburnFileBrowser * file_browser)
   gtk_widget_show (file_browser->directory_browser);
   gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (file_browser->directory_browser));
 
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (file_browser->fs_browser));
+  g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_fs_browser_selection_changed), file_browser);
+}
+
+/* internals */
+static void
+cb_fs_browser_selection_changed (GtkTreeSelection * selection, XfburnFileBrowser *browser)
+{
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  
+  if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
+	gchar *path;
+	
+	gtk_tree_model_get (model, &iter, FS_BROWSER_COLUMN_PATH, &path, -1);
+	
+	xfburn_directory_browser_load_path (XFBURN_DIRECTORY_BROWSER (browser->directory_browser), path);
+	
+	g_free (path);
+  }
 }
 
 /* public methods */
