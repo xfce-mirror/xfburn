@@ -105,7 +105,7 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->content), -1, _("Size"),
 											   gtk_cell_renderer_text_new (), "text", DISC_CONTENT_COLUMN_SIZE, NULL);
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->content), -1, _("Full path"),
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->content), -1, _("Full Path"),
 											   gtk_cell_renderer_text_new (), "text", DISC_CONTENT_COLUMN_PATH, NULL);
   
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (disc_content->content));
