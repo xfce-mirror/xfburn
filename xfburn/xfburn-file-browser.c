@@ -129,24 +129,26 @@ cb_directory_browser_row_actived (GtkWidget * treeview, GtkTreePath * path, GtkT
 		
     gtk_tree_model_get (model_dir, &iter_dir, DIRECTORY_BROWSER_COLUMN_FILE, &directory, -1);
 
+	/* expand the parent directory in the FS browser */
+    path_fs = gtk_tree_model_get_path (model_fs, &iter_fs);
+    gtk_tree_view_expand_row (GTK_TREE_VIEW (browser->fs_browser), path_fs, FALSE);
+		
     do {
       gchar *temp;
 
       gtk_tree_model_get (model_fs, &iter, FS_BROWSER_COLUMN_DIRECTORY, &temp, -1);
-
+	  
 	  if (!g_ascii_strcasecmp (temp, directory))
 		break;
-	  
+
       g_free (temp);
     } while (gtk_tree_model_iter_next (model_fs, &iter));
-
-	/* expand the parent directory in the FS browser */
-    path_fs = gtk_tree_model_get_path (model_fs, &iter);
-    gtk_tree_view_expand_row (GTK_TREE_VIEW (browser->fs_browser), path_fs, FALSE);
-    gtk_tree_path_free (path_fs);
-
+    
 	/* select the current directory in the FS browser */
 	gtk_tree_selection_select_iter (selection_fs, &iter);
+	gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (browser->fs_browser), path_fs, NULL, FALSE, 0, 0);
+	
+	gtk_tree_path_free (path_fs);
 	g_free (directory);
   }
 }
