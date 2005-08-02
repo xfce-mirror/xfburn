@@ -25,17 +25,19 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "xfburn-directory-browser.h"
+#include "xfburn-disc-content.h"
 #include "xfburn-utils.h"
 
 /* prototypes */
 static void xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass *);
 static void xfburn_directory_browser_init (XfburnDirectoryBrowser *);
+static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectionData *, guint, guint, gpointer);
 
 static gint directory_tree_sortfunc (GtkTreeModel *, GtkTreeIter *, GtkTreeIter *, gpointer);
 
 /* globals */
 static GtkTreeViewClass *parent_class = NULL;
-static const gchar *DIRECTORY = N_ ("Folder");
+static const gchar *DIRECTORY = N_("Folder");
 
 /********************************/
 /* XfburnDirectoryBrowser class */
@@ -83,10 +85,12 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
   GtkCellRenderer *cell_icon, *cell_file;
   GtkTreeSelection *selection;
 
+  GtkTargetEntry gte[] = { {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN} };
+
   model = gtk_tree_store_new (DIRECTORY_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_STRING, G_TYPE_STRING);
-  gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DIRECTORY_BROWSER_COLUMN_FILE, 
-								   directory_tree_sortfunc, NULL, NULL);
+  gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DIRECTORY_BROWSER_COLUMN_FILE,
+                                   directory_tree_sortfunc, NULL, NULL);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DIRECTORY_BROWSER_COLUMN_FILE, GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (browser), GTK_TREE_MODEL (model));
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (browser), TRUE);
@@ -111,7 +115,12 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
                                                "text", DIRECTORY_BROWSER_COLUMN_TYPE, NULL);
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
-  gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
+  gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
+
+  /* set up DnD */
+  gtk_tree_view_enable_model_drag_source (GTK_TREE_VIEW (browser), GDK_BUTTON1_MASK, gte,
+                                          DISC_CONTENT_DND_TARGETS, GDK_ACTION_COPY);
+  g_signal_connect (G_OBJECT (browser), "drag-data-get", G_CALLBACK (cb_browser_drag_data_get), browser);
 }
 
 /* internals */
@@ -123,13 +132,13 @@ directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b,
   gboolean aisdir = FALSE;
   gboolean bisdir = FALSE;
   gint result = 0;
-  
+
   gtk_tree_model_get (model, a, DIRECTORY_BROWSER_COLUMN_FILE, &aname, DIRECTORY_BROWSER_COLUMN_TYPE, &amime, -1);
   gtk_tree_model_get (model, b, DIRECTORY_BROWSER_COLUMN_FILE, &bname, DIRECTORY_BROWSER_COLUMN_TYPE, &bmime, -1);
-  
+
   aisdir = !g_ascii_strcasecmp (amime, DIRECTORY);
   bisdir = !g_ascii_strcasecmp (bmime, DIRECTORY);
-  
+
   if (aisdir && !bisdir)
     result = -1;
   else if (!aisdir && bisdir)
@@ -143,6 +152,47 @@ directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b,
   g_free (bmime);
 
   return result;
+}
+
+static void
+cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
+						  GtkSelectionData * data, guint info, guint time, gpointer user_data)
+{
+  if (info == DISC_CONTENT_DND_TARGET_TEXT_PLAIN) {
+	GtkTreeSelection *selection;
+	GtkTreeModel *model;
+	GList *selected_rows;
+	gchar *full_paths;
+	
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
+	
+	full_paths = g_strdup ("");
+	selected_rows = gtk_tree_selection_get_selected_rows (selection, &model);
+	selected_rows = g_list_last (selected_rows);
+	while (selected_rows) {
+	  GtkTreeIter iter;
+	  gchar *current_path;
+	  gchar *temp;
+	  
+	  gtk_tree_model_get_iter (model, &iter, (GtkTreePath *) selected_rows->data);
+	  gtk_tree_model_get (model, &iter, DIRECTORY_BROWSER_COLUMN_PATH, &current_path, -1);
+	  
+	  temp = g_strdup_printf ("file://%s\n%s", current_path, full_paths);
+	  g_free (current_path);
+	  g_free (full_paths);
+	  full_paths = temp;
+	  
+	  selected_rows = g_list_previous (selected_rows);
+	}
+	
+	selected_rows = g_list_first (selected_rows);
+	g_list_foreach (selected_rows, (GFunc) gtk_tree_path_free, NULL);
+	g_list_free (selected_rows);
+	
+	gtk_selection_data_set_text (data, full_paths, -1);
+		
+	g_free (full_paths);
+  }
 }
 
 /* public methods */
@@ -160,58 +210,57 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   GError *error = NULL;
   GdkPixbuf *icon_directory, *icon_file;
   const gchar *dir_entry;
-  int x,y;
-  
+  int x, y;
+
   if (GTK_WIDGET (browser)->parent)
-	xfburn_busy_cursor (GTK_WIDGET (browser));
-  
+    xfburn_busy_cursor (GTK_WIDGET (browser));
+
   dir = g_dir_open (path, 0, &error);
   if (!dir) {
-	g_warning ("unable to open the %s directory : %s", path, error->message);
-	g_error_free (error);
-	return;
+    g_warning ("unable to open the %s directory : %s", path, error->message);
+    g_error_free (error);
+    return;
   }
-  
+
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
   gtk_tree_store_clear (GTK_TREE_STORE (model));
 
   gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
   icon_directory = xfce_themed_icon_load ("gnome-fs-directory", x);
   icon_file = xfce_themed_icon_load ("gnome-fs-regular", x);
-    
-  while ( (dir_entry = g_dir_read_name (dir)) ) {
-	gchar *full_path;
-	
-	full_path = g_build_filename (path, dir_entry, NULL);
-	if (dir_entry[0] != '.' && !g_file_test (full_path, G_FILE_TEST_IS_SYMLINK)) {
-	  GtkTreeIter iter;
-	  	  
-	  gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
-	  
-	  if (g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
-		gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
-							DIRECTORY_BROWSER_COLUMN_ICON, icon_directory,
-							DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
-							DIRECTORY_BROWSER_COLUMN_TYPE, DIRECTORY,
-							DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
-	  } else if (g_file_test (full_path, G_FILE_TEST_IS_REGULAR)) {
-		gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
-							DIRECTORY_BROWSER_COLUMN_ICON, icon_file,
-							DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
-							DIRECTORY_BROWSER_COLUMN_TYPE, "file", 
-							DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
-	  }
-	}
-	g_free (full_path);
+
+  while ((dir_entry = g_dir_read_name (dir))) {
+    gchar *full_path;
+
+    full_path = g_build_filename (path, dir_entry, NULL);
+    if (dir_entry[0] != '.' && !g_file_test (full_path, G_FILE_TEST_IS_SYMLINK)) {
+      GtkTreeIter iter;
+
+      gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
+
+      if (g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
+        gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+                            DIRECTORY_BROWSER_COLUMN_ICON, icon_directory,
+                            DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
+                            DIRECTORY_BROWSER_COLUMN_TYPE, DIRECTORY, DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
+      }
+      else if (g_file_test (full_path, G_FILE_TEST_IS_REGULAR)) {
+        gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+                            DIRECTORY_BROWSER_COLUMN_ICON, icon_file,
+                            DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
+                            DIRECTORY_BROWSER_COLUMN_TYPE, _("File"), DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
+      }
+    }
+    g_free (full_path);
   }
-    
+
   if (icon_directory)
-	g_object_unref (icon_directory);
+    g_object_unref (icon_directory);
   if (icon_file)
-	g_object_unref (icon_file);
+    g_object_unref (icon_file);
 
   g_dir_close (dir);
-  
+
   if (GTK_WIDGET (browser)->parent)
-	xfburn_default_cursor (GTK_WIDGET (browser));
+    xfburn_default_cursor (GTK_WIDGET (browser));
 }

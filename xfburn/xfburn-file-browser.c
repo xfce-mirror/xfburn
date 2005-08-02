@@ -118,38 +118,45 @@ cb_directory_browser_row_actived (GtkWidget * treeview, GtkTreePath * path, GtkT
   GtkTreeSelection *selection_dir, *selection_fs;
   GtkTreeModel *model_dir, *model_fs;
   GtkTreeIter iter_dir, iter_fs, iter;
-     
+
   selection_dir = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
   selection_fs = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser->fs_browser));
-  if (gtk_tree_selection_get_selected (selection_dir, &model_dir, &iter_dir) &&
+  if (gtk_tree_selection_count_selected_rows (selection_dir) == 1 &&
       gtk_tree_selection_get_selected (selection_fs, &model_fs, &iter_fs) &&
-	  gtk_tree_model_iter_children (model_fs, &iter, &iter_fs)) {
-    GtkTreePath *path_fs;
+      gtk_tree_model_iter_children (model_fs, &iter, &iter_fs)) {
+    GtkTreePath *path_fs, *path_dir;
+    GList *selected_row;
     gchar *directory;
-		
-    gtk_tree_model_get (model_dir, &iter_dir, DIRECTORY_BROWSER_COLUMN_FILE, &directory, -1);
 
-	/* expand the parent directory in the FS browser */
+    selected_row = gtk_tree_selection_get_selected_rows (selection_dir, &model_dir);
+	path_dir = (GtkTreePath *) selected_row->data;
+    gtk_tree_model_get_iter (model_dir, &iter_dir, path_dir);
+    gtk_tree_model_get (model_dir, &iter_dir, DIRECTORY_BROWSER_COLUMN_FILE, &directory, -1);
+    
+	g_list_foreach (selected_row, (GFunc) gtk_tree_path_free, NULL);
+	g_list_free (selected_row);
+		
+    /* expand the parent directory in the FS browser */
     path_fs = gtk_tree_model_get_path (model_fs, &iter_fs);
     gtk_tree_view_expand_row (GTK_TREE_VIEW (browser->fs_browser), path_fs, FALSE);
-		
+
     do {
       gchar *temp;
 
       gtk_tree_model_get (model_fs, &iter, FS_BROWSER_COLUMN_DIRECTORY, &temp, -1);
-	  
-	  if (!g_ascii_strcasecmp (temp, directory))
-		break;
+
+      if (!g_ascii_strcasecmp (temp, directory))
+        break;
 
       g_free (temp);
     } while (gtk_tree_model_iter_next (model_fs, &iter));
-    
-	/* select the current directory in the FS browser */
-	gtk_tree_selection_select_iter (selection_fs, &iter);
-	gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (browser->fs_browser), path_fs, NULL, FALSE, 0, 0);
-	
-	gtk_tree_path_free (path_fs);
-	g_free (directory);
+
+    /* select the current directory in the FS browser */
+    gtk_tree_selection_select_iter (selection_fs, &iter);
+    gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (browser->fs_browser), path_fs, NULL, FALSE, 0, 0);
+
+    gtk_tree_path_free (path_fs);
+    g_free (directory);
   }
 }
 

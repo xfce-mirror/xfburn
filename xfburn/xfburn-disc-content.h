@@ -55,6 +55,11 @@ enum {
   DISC_CONTENT_N_COLUMNS
 };
 
+enum {
+  DISC_CONTENT_DND_TARGET_TEXT_PLAIN,
+  DISC_CONTENT_DND_TARGETS
+};
+
 GtkType
 xfburn_disc_content_get_type (void)
   G_GNUC_CONST;

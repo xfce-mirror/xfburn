@@ -28,12 +28,15 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "xfburn-fs-browser.h"
+#include "xfburn-disc-content.h"
 #include "xfburn-utils.h"
 
 /* prototypes */
 static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass);
 static void xfburn_fs_browser_init (XfburnFsBrowser * sp);
+
 static void cb_browser_row_expanded (GtkTreeView *, GtkTreeIter *, GtkTreePath *, gpointer);
+static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectionData *, guint, guint, gpointer);
 
 /* globals */
 static GtkTreeViewClass *parent_class = NULL;
@@ -77,6 +80,8 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   GtkCellRenderer *cell_icon, *cell_directory;
   GtkTreeSelection *selection;
   
+  GtkTargetEntry gte[] = { {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN} };
+   
   gtk_widget_set_size_request (GTK_WIDGET (browser), 200, 300);
   
   model = gtk_tree_store_new (FS_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
@@ -106,6 +111,11 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   
   /* load the directory list */
   xfburn_fs_browser_refresh (browser);
+  
+  /* set up DnD */
+  gtk_tree_view_enable_model_drag_source (GTK_TREE_VIEW (browser), GDK_BUTTON1_MASK, gte,
+										  DISC_CONTENT_DND_TARGETS, GDK_ACTION_COPY);
+  g_signal_connect (G_OBJECT (browser), "drag-data-get", G_CALLBACK (cb_browser_drag_data_get), browser);
 }
 
 static void
@@ -190,6 +200,31 @@ cb_browser_row_expanded (GtkTreeView *treeview, GtkTreeIter *iter, GtkTreePath *
   }
   
   g_free (value);
+}
+
+static void
+cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
+						  GtkSelectionData * data, guint info, guint time, gpointer user_data)
+{
+  if (info == DISC_CONTENT_DND_TARGET_TEXT_PLAIN) {
+	GtkTreeSelection *selection;
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+	gchar *path;
+	gchar *full_path;
+	
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
+	gtk_tree_selection_get_selected (selection, &model, &iter);
+	
+	gtk_tree_model_get (model, &iter, FS_BROWSER_COLUMN_PATH, &path, -1);
+	
+	full_path = g_strdup_printf ("file://%s", path);
+	g_free (path);
+	
+	gtk_selection_data_set_text (data, full_path, -1);
+		
+	g_free (full_path);
+  }
 }
 
 /* public methods */
