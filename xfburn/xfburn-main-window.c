@@ -38,21 +38,30 @@ static gboolean cb_delete_main_window (GtkWidget *, GdkEvent *, gpointer);
 static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 
 static void xfburn_window_action_about (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
 
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
 static GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL,},
-  {"quit", GTK_STOCK_QUIT, N_("Quit"), NULL, N_("Quit Xfburn"),},
+  {"quit", GTK_STOCK_QUIT, N_("Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (xfburn_window_action_quit),},
   {"help-menu", NULL, N_("_Help"), NULL,},
   {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
    G_CALLBACK (xfburn_window_action_about),},
-  {"blank-cd", NULL, N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),},
+  {"blank-cd", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),},
+  {"format-dvd", "xfburn-blank-dvdrw", N_("Format DVD-RW"), NULL, N_("Format DVD-RW"),},
+  {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),},
+  {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+  {"burn-cd", "xfburn-burn-cd", N_("Burn CD Image"), NULL, N_("Burn CD Image"),},
   {"refresh", GTK_STOCK_REFRESH, N_("Refresh"), NULL, N_("Refresh file list"),}
 };
 static const gchar *toolbar_actions[] = {
   "blank-cd",
+  "format-dvd",
+  "copy-data",
+  "copy-audio",
+  "burn-cd",
   "refresh",
   "about",
 };
@@ -156,8 +165,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
     model = exo_toolbars_model_new ();
     exo_toolbars_model_set_actions (model, (gchar **) toolbar_actions, G_N_ELEMENTS (toolbar_actions));
     if (exo_toolbars_model_load_from_file (model, file, &error)) {
-      mainwin->toolbars = exo_toolbars_view_new (mainwin->ui_manager);
-      exo_toolbars_view_set_model (EXO_TOOLBARS_VIEW (mainwin->toolbars), model);
+      mainwin->toolbars = exo_toolbars_view_new_with_model (mainwin->ui_manager, model);
       gtk_box_pack_start (GTK_BOX (vbox), mainwin->toolbars, FALSE, FALSE, 0);
       gtk_widget_show (mainwin->toolbars);
       
@@ -236,6 +244,13 @@ cb_delete_main_window (GtkWidget * widget, GdkEvent * event, gpointer data)
 
 /* actions */
 static void
+xfburn_window_action_quit (GtkAction * action, XfburnMainWindow * window)
+{
+  if (xfce_confirm (_("Are sure you want to quit?"), GTK_STOCK_QUIT, _("Quit")))
+    gtk_main_quit ();
+}
+
+static void
 xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
 {
   XfceAboutInfo *info;
@@ -247,8 +262,8 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   {
     gchar *name, *email, *language;
   } translators[] = {
-    {
-  NULL,},};
+    {"Jean-François Wauthy", "pollux@xfce.org", "fr",},
+    };
 
   icon = xfce_themed_icon_load ("xfburn", 48);
   //if (G_UNLIKELY (icon == NULL))

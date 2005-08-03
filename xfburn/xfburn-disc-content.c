@@ -32,6 +32,8 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#include <exo/exo.h>
+
 #include "xfburn-disc-content.h"
 #include "xfburn-utils.h"
 
@@ -43,6 +45,12 @@ static void cb_content_drag_data_rcv (GtkWidget *, GdkDragContext *, guint, guin
 
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
+static GtkActionEntry action_entries[] = {
+  {"add-file", GTK_STOCK_ADD, N_("_Add file(s)"), NULL, N_("Add file(s)"),},
+};
+static const gchar *toolbar_actions[] = {
+  "add-file",
+};
 
 /***************************/
 /* XfburnDiscContent class */
@@ -80,6 +88,8 @@ xfburn_disc_content_class_init (XfburnDiscContentClass * klass)
 static void
 xfburn_disc_content_init (XfburnDiscContent * disc_content)
 {
+  ExoToolbarsModel *model_toolbar;
+  gint toolbar_position;
   GtkWidget *scrolled_window;
   GtkListStore *model;
   GtkTreeViewColumn *column_file;
@@ -88,6 +98,29 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
 
   GtkTargetEntry gte[] = { {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN} };
 
+  /* create ui manager */
+  disc_content->action_group = gtk_action_group_new ("xfburn-main-window");
+  gtk_action_group_set_translation_domain (disc_content->action_group, GETTEXT_PACKAGE);
+  gtk_action_group_add_actions (disc_content->action_group, action_entries, G_N_ELEMENTS (action_entries),
+                                GTK_WIDGET (disc_content));
+
+  disc_content->ui_manager = gtk_ui_manager_new ();
+  gtk_ui_manager_insert_action_group (disc_content->ui_manager, disc_content->action_group, 0);
+  
+  /* toolbar */
+  model_toolbar = exo_toolbars_model_new ();
+  exo_toolbars_model_set_actions (model_toolbar, (gchar **) toolbar_actions, G_N_ELEMENTS (toolbar_actions));
+  toolbar_position = exo_toolbars_model_add_toolbar (model_toolbar, -1, "content-toolbar");
+  exo_toolbars_model_set_style (model_toolbar, GTK_TOOLBAR_BOTH, toolbar_position);
+  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "add-file", EXO_TOOLBARS_ITEM_TYPE);
+  
+  exo_toolbars_model_add_separator (model_toolbar, toolbar_position, 1);
+  
+  disc_content->toolbar = exo_toolbars_view_new_with_model (disc_content->ui_manager, model_toolbar);
+  gtk_box_pack_start (GTK_BOX (disc_content), disc_content->toolbar, FALSE, FALSE, 0);
+  gtk_widget_show (disc_content->toolbar);
+  
+  /* content treeview */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);

@@ -26,10 +26,117 @@
 
 #include <stdlib.h>
 
+#include <gtk/gtk.h>
+
+#include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "xfburn-main-window.h"
 
+/* globals */
+static GtkIconFactory *icon_factory = NULL;
+
+/* internals */
+static void
+xfburn_setup_icons (void)
+{
+  GtkIconSource *source = NULL;
+  GtkIconSet *set = NULL;
+  GdkPixbuf *icon = NULL;
+  
+  if (icon_factory)
+    return;
+  
+  icon_factory = gtk_icon_factory_new ();
+    
+  icon = xfce_themed_icon_load ("baker-audio-copy", 24);
+  if (icon) {
+    set = gtk_icon_set_new ();
+    source = gtk_icon_source_new ();
+    gtk_icon_source_set_pixbuf (source, icon);
+    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
+    gtk_icon_set_add_source (set, source);
+    g_object_unref (G_OBJECT (icon));
+    gtk_icon_factory_add (icon_factory, "xfburn-audio-copy", set);
+    gtk_icon_set_unref (set);
+  }
+  
+  icon = xfce_themed_icon_load ("baker-blank-cdrw", 24);
+  if (icon) {
+    set = gtk_icon_set_new ();
+    source = gtk_icon_source_new ();
+    gtk_icon_source_set_pixbuf (source, icon);
+    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
+    gtk_icon_set_add_source (set, source);
+    g_object_unref (G_OBJECT (icon));
+    gtk_icon_factory_add (icon_factory, "xfburn-blank-cdrw", set);
+    gtk_icon_set_unref (set);
+  }
+  
+  icon = xfce_themed_icon_load ("baker-blank-dvdrw", 24);
+  if (icon) {
+    set = gtk_icon_set_new ();
+    source = gtk_icon_source_new ();
+    gtk_icon_source_set_pixbuf (source, icon);
+    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
+    gtk_icon_set_add_source (set, source);
+    g_object_unref (G_OBJECT (icon));
+    gtk_icon_factory_add (icon_factory, "xfburn-blank-dvdrw", set);
+    gtk_icon_set_unref (set);
+  }
+  
+  icon = xfce_themed_icon_load ("baker-burn-cd", 24);
+  if (icon) {
+    set = gtk_icon_set_new ();
+    source = gtk_icon_source_new ();
+    gtk_icon_source_set_pixbuf (source, icon);
+    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
+    gtk_icon_set_add_source (set, source);
+    g_object_unref (G_OBJECT (icon));
+    gtk_icon_factory_add (icon_factory, "xfburn-burn-cd", set);
+    gtk_icon_set_unref (set);
+  }
+  
+  icon = xfce_themed_icon_load ("baker-cd", 24);
+  if (icon) {
+    set = gtk_icon_set_new ();
+    source = gtk_icon_source_new ();
+    gtk_icon_source_set_pixbuf (source, icon);
+    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
+    gtk_icon_set_add_source (set, source);
+    g_object_unref (G_OBJECT (icon));
+    gtk_icon_factory_add (icon_factory, "xfburn-cd", set);
+    gtk_icon_set_unref (set);
+  }
+  
+  icon = xfce_themed_icon_load ("baker-data-copy", 24);
+  if (icon) {
+    set = gtk_icon_set_new ();
+    source = gtk_icon_source_new ();
+    gtk_icon_source_set_pixbuf (source, icon);
+    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
+    gtk_icon_set_add_source (set, source);
+    g_object_unref (G_OBJECT (icon));
+    gtk_icon_factory_add (icon_factory, "xfburn-data-copy", set);
+    gtk_icon_set_unref (set);
+  }
+  
+  icon = xfce_themed_icon_load ("baker-import-session", 24);
+  if (icon) {
+    set = gtk_icon_set_new ();
+    source = gtk_icon_source_new ();
+    gtk_icon_source_set_pixbuf (source, icon);
+    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
+    gtk_icon_set_add_source (set, source);
+    g_object_unref (G_OBJECT (icon));
+    gtk_icon_factory_add (icon_factory, "xfburn-import-session", set);
+    gtk_icon_set_unref (set);
+  }
+  
+  gtk_icon_factory_add_default (icon_factory);
+}
+
+/* entry point */
 int
 main (int argc, char **argv)
 {
@@ -49,6 +156,7 @@ main (int argc, char **argv)
 
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
+  xfburn_setup_icons ();
   mainwin = xfburn_main_window_new ();
 
   gtk_widget_show (mainwin);

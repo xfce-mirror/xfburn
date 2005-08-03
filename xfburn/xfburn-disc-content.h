@@ -39,6 +39,10 @@ struct _XfburnDiscContent
 {
   GtkVBox vbox;
 
+  GtkActionGroup *action_group;
+  GtkUIManager *ui_manager;
+  
+  GtkWidget *toolbar;
   GtkWidget *content;
 };
 
