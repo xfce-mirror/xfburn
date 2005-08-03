@@ -162,6 +162,8 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 	  		
 	  if (g_str_has_prefix (file, "file://"))
 		full_path = g_build_filename (&file[7], NULL);
+      else if (g_str_has_prefix (sd->data, "file:"))
+        full_path = g_build_filename (&file[5], NULL);
 	  else
 		full_path = g_build_filename (file, NULL);
 	 

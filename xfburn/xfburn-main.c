@@ -34,7 +34,7 @@ int
 main (int argc, char **argv)
 {
   GtkWidget *mainwin;
-
+  
   g_set_application_name (_("Xfburn"));
 
   if (argc > 1 && (!strcmp (argv[1], "--version") || !strcmp (argv[1], "-V"))) {

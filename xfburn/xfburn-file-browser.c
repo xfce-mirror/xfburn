@@ -103,6 +103,8 @@ xfburn_file_browser_init (XfburnFileBrowser * file_browser)
   gtk_widget_show (file_browser->directory_browser);
   gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (file_browser->directory_browser));
 
+  xfburn_directory_browser_load_path (XFBURN_DIRECTORY_BROWSER (file_browser->directory_browser), xfce_get_homedir ());
+  
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (file_browser->fs_browser));
   g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_fs_browser_selection_changed), file_browser);
 

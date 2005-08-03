@@ -43,6 +43,7 @@ struct _XfburnMainWindow
   GtkUIManager *ui_manager;
 
   GtkWidget *menubar;
+  GtkWidget *toolbars;
   GtkWidget *file_browser;
   GtkWidget *disc_content;
 };
@@ -52,10 +53,8 @@ struct _XfburnMainWindowClass
   GtkWindowClass parent_class;
 };
 
-GtkType
-xfburn_main_window_get_type (void)
-  G_GNUC_CONST;
-     GtkWidget *xfburn_main_window_new (void);
+GtkType xfburn_main_window_get_type (void);
+GtkWidget *xfburn_main_window_new (void);
 
 G_END_DECLS
 #endif

@@ -35,6 +35,7 @@ static void xfburn_main_window_class_init (XfburnMainWindowClass *);
 static void xfburn_main_window_init (XfburnMainWindow *);
 
 static gboolean cb_delete_main_window (GtkWidget *, GdkEvent *, gpointer);
+static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 
 static void xfburn_window_action_about (GtkAction *, XfburnMainWindow *);
 
@@ -47,6 +48,13 @@ static GtkActionEntry action_entries[] = {
   {"help-menu", NULL, N_("_Help"), NULL,},
   {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
    G_CALLBACK (xfburn_window_action_about),},
+  {"blank-cd", NULL, N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),},
+  {"refresh", GTK_STOCK_REFRESH, N_("Refresh"), NULL, N_("Refresh file list"),}
+};
+static const gchar *toolbar_actions[] = {
+  "blank-cd",
+  "refresh",
+  "about",
 };
 
 /**************************/
@@ -109,7 +117,6 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
 
   xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
   file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "Xfburn/Xfburn.ui");
-  xfce_resource_pop_path (XFCE_RESOURCE_DATA);
 
   if (G_LIKELY (file != NULL)) {
     GError *error = NULL;
@@ -139,6 +146,34 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
     gtk_widget_show (mainwin->menubar);
   }
 
+  /* toolbar */
+  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "Xfburn/Xfburn-toolbars.ui");
+
+  if (G_LIKELY (file != NULL)) {
+    ExoToolbarsModel *model;
+    GError *error = NULL;
+
+    model = exo_toolbars_model_new ();
+    exo_toolbars_model_set_actions (model, (gchar **) toolbar_actions, G_N_ELEMENTS (toolbar_actions));
+    if (exo_toolbars_model_load_from_file (model, file, &error)) {
+      mainwin->toolbars = exo_toolbars_view_new (mainwin->ui_manager);
+      exo_toolbars_view_set_model (EXO_TOOLBARS_VIEW (mainwin->toolbars), model);
+      gtk_box_pack_start (GTK_BOX (vbox), mainwin->toolbars, FALSE, FALSE, 0);
+      gtk_widget_show (mainwin->toolbars);
+      
+      g_signal_connect (G_OBJECT (mainwin->toolbars), "customize", G_CALLBACK (cb_edit_toolbars_view), mainwin);
+    }
+    else {
+      g_warning ("Unable to load %s: %s", file, error->message);
+      g_error_free (error);
+    }
+
+    g_free (file);
+  }
+  else {
+    g_warning ("Unable to locate Xfburn/Xfburn-toolbars.ui !");
+  }
+
   /* vpaned */
   vpaned = gtk_vpaned_new ();
   gtk_container_add (GTK_CONTAINER (vbox), vpaned);
@@ -153,9 +188,51 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   mainwin->disc_content = xfburn_disc_content_new ();
   gtk_paned_add2 (GTK_PANED (vpaned), mainwin->disc_content);
   gtk_widget_show (mainwin->disc_content);
+
+  xfce_resource_pop_path (XFCE_RESOURCE_DATA);
 }
 
-/* private methods */
+/* internals */
+static void
+cb_edit_toolbars_view_done (ExoToolbarsEditorDialog *dialog, ExoToolbarsView *toolbar)
+{
+  exo_toolbars_view_set_editing (toolbar, FALSE);
+  
+  gtk_widget_destroy (GTK_WIDGET (dialog));
+}
+
+static void
+cb_edit_toolbars_view (ExoToolbarsView *toolbar, gpointer user_data)
+{
+  GtkWidget *editor_dialog;
+  ExoToolbarsModel  *model;
+  GtkUIManager      *ui_manager;
+  GtkWidget         *toplevel;
+  
+  g_return_if_fail (EXO_IS_TOOLBARS_VIEW (toolbar));
+
+  exo_toolbars_view_set_editing (toolbar, TRUE);
+  
+  model = exo_toolbars_view_get_model (EXO_TOOLBARS_VIEW (toolbar));
+  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (toolbar));
+  ui_manager = exo_toolbars_view_get_ui_manager (EXO_TOOLBARS_VIEW (toolbar));
+
+  editor_dialog = exo_toolbars_editor_dialog_new_with_model (ui_manager, model);
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (editor_dialog), TRUE);
+  gtk_window_set_title (GTK_WINDOW (editor_dialog), _("Toolbar Editor"));
+  gtk_window_set_transient_for (GTK_WINDOW (editor_dialog), GTK_WINDOW (toplevel));
+  gtk_widget_show (editor_dialog);
+  
+  g_signal_connect (G_OBJECT (editor_dialog), "destroy", G_CALLBACK (cb_edit_toolbars_view_done), toolbar);
+}
+
+static gboolean
+cb_delete_main_window (GtkWidget * widget, GdkEvent * event, gpointer data)
+{
+  gtk_main_quit ();
+
+  return FALSE;
+}
 
 /* actions */
 static void
@@ -198,15 +275,6 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   xfce_about_info_free (info);
   if (G_LIKELY (icon != NULL))
     g_object_unref (G_OBJECT (icon));
-}
-
-/* callbacks */
-static gboolean
-cb_delete_main_window (GtkWidget * widget, GdkEvent * event, gpointer data)
-{
-  gtk_main_quit ();
-
-  return FALSE;
 }
 
 /* public methods */
