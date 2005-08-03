@@ -20,6 +20,10 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
@@ -88,7 +92,7 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
   GtkTargetEntry gte[] = { {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN} };
 
   model = gtk_list_store_new (DIRECTORY_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
-                              G_TYPE_STRING, G_TYPE_STRING);
+                              G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DIRECTORY_BROWSER_COLUMN_FILE,
                                    directory_tree_sortfunc, NULL, NULL);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DIRECTORY_BROWSER_COLUMN_FILE, GTK_SORT_ASCENDING);
@@ -110,7 +114,7 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
   gtk_tree_view_append_column (GTK_TREE_VIEW (browser), column_file);
 
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (browser), -1, _("Size"), gtk_cell_renderer_text_new (),
-                                               "text", DIRECTORY_BROWSER_COLUMN_SIZE, NULL);
+                                               "text", DIRECTORY_BROWSER_COLUMN_HUMANSIZE, NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (browser), -1, _("Type"), gtk_cell_renderer_text_new (),
                                                "text", DIRECTORY_BROWSER_COLUMN_TYPE, NULL);
 
@@ -156,42 +160,42 @@ directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b,
 
 static void
 cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
-						  GtkSelectionData * data, guint info, guint time, gpointer user_data)
+                          GtkSelectionData * data, guint info, guint time, gpointer user_data)
 {
   if (info == DISC_CONTENT_DND_TARGET_TEXT_PLAIN) {
-	GtkTreeSelection *selection;
-	GtkTreeModel *model;
-	GList *selected_rows;
-	gchar *full_paths;
-	
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
-	
-	full_paths = g_strdup ("");
-	selected_rows = gtk_tree_selection_get_selected_rows (selection, &model);
-	selected_rows = g_list_last (selected_rows);
-	while (selected_rows) {
-	  GtkTreeIter iter;
-	  gchar *current_path;
-	  gchar *temp;
-	  
-	  gtk_tree_model_get_iter (model, &iter, (GtkTreePath *) selected_rows->data);
-	  gtk_tree_model_get (model, &iter, DIRECTORY_BROWSER_COLUMN_PATH, &current_path, -1);
-	  
-	  temp = g_strdup_printf ("file://%s\n%s", current_path, full_paths);
-	  g_free (current_path);
-	  g_free (full_paths);
-	  full_paths = temp;
-	  
-	  selected_rows = g_list_previous (selected_rows);
-	}
-	
-	selected_rows = g_list_first (selected_rows);
-	g_list_foreach (selected_rows, (GFunc) gtk_tree_path_free, NULL);
-	g_list_free (selected_rows);
-	
-	gtk_selection_data_set_text (data, full_paths, -1);
-		
-	g_free (full_paths);
+    GtkTreeSelection *selection;
+    GtkTreeModel *model;
+    GList *selected_rows;
+    gchar *full_paths;
+
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
+
+    full_paths = g_strdup ("");
+    selected_rows = gtk_tree_selection_get_selected_rows (selection, &model);
+    selected_rows = g_list_last (selected_rows);
+    while (selected_rows) {
+      GtkTreeIter iter;
+      gchar *current_path;
+      gchar *temp;
+
+      gtk_tree_model_get_iter (model, &iter, (GtkTreePath *) selected_rows->data);
+      gtk_tree_model_get (model, &iter, DIRECTORY_BROWSER_COLUMN_PATH, &current_path, -1);
+
+      temp = g_strdup_printf ("file://%s\n%s", current_path, full_paths);
+      g_free (current_path);
+      g_free (full_paths);
+      full_paths = temp;
+
+      selected_rows = g_list_previous (selected_rows);
+    }
+
+    selected_rows = g_list_first (selected_rows);
+    g_list_foreach (selected_rows, (GFunc) gtk_tree_path_free, NULL);
+    g_list_free (selected_rows);
+
+    gtk_selection_data_set_text (data, full_paths, -1);
+
+    g_free (full_paths);
   }
 }
 
@@ -231,24 +235,36 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
 
   while ((dir_entry = g_dir_read_name (dir))) {
     gchar *full_path;
-
-    full_path = g_build_filename (path, dir_entry, NULL);
-    if (dir_entry[0] != '.' && !g_file_test (full_path, G_FILE_TEST_IS_SYMLINK)) {
+    struct stat s;
+	 
+	full_path = g_build_filename (path, dir_entry, NULL);
+		
+    if (dir_entry[0] != '.' && (stat (full_path, &s) == 0)) {
       GtkTreeIter iter;
-
+	  	  
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
 
-      if (g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
+      if ( (s.st_mode & S_IFDIR) ) {
         gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_directory,
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
-                            DIRECTORY_BROWSER_COLUMN_TYPE, DIRECTORY, DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
+							DIRECTORY_BROWSER_COLUMN_HUMANSIZE, "4 B",
+							DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) 0,
+                            DIRECTORY_BROWSER_COLUMN_TYPE, DIRECTORY,
+							DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
       }
-      else if (g_file_test (full_path, G_FILE_TEST_IS_REGULAR)) {
+      else if ( (s.st_mode & S_IFREG) ) {
+		gchar *humansize;
+		
+		humansize = xfburn_humanreadable_filesize (s.st_size);
         gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_file,
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
-                            DIRECTORY_BROWSER_COLUMN_TYPE, _("File"), DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
+							DIRECTORY_BROWSER_COLUMN_HUMANSIZE, humansize,
+							DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) s.st_size,
+                            DIRECTORY_BROWSER_COLUMN_TYPE, _("File"), 
+							DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
+		g_free (humansize);
       }
     }
     g_free (full_path);

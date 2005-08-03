@@ -24,6 +24,10 @@
 #include <string.h>
 #endif
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
@@ -91,7 +95,8 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   gtk_box_pack_start (GTK_BOX (disc_content), scrolled_window, TRUE, TRUE, 0);
 
   disc_content->content = gtk_tree_view_new ();
-  model = gtk_list_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+  model = gtk_list_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, 
+							  G_TYPE_UINT64, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DISC_CONTENT_COLUMN_CONTENT, GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (disc_content->content), GTK_TREE_MODEL (model));
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (disc_content->content), TRUE);
@@ -113,7 +118,7 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   gtk_tree_view_append_column (GTK_TREE_VIEW (disc_content->content), column_file);
 
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->content), -1, _("Size"),
-                                               gtk_cell_renderer_text_new (), "text", DISC_CONTENT_COLUMN_SIZE, NULL);
+                                               gtk_cell_renderer_text_new (), "text", DISC_CONTENT_COLUMN_HUMANSIZE, NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->content), -1, _("Full Path"),
                                                gtk_cell_renderer_text_new (), "text", DISC_CONTENT_COLUMN_PATH, NULL);
 
@@ -150,10 +155,11 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
 	file = strtok ((gchar*)sd->data,"\n");
 	while (file) {
+	  struct stat s;
 	  GtkTreeIter iter;
 	  gchar *full_path;
 	  gchar *basename;
-	  
+	  		
 	  if (g_str_has_prefix (file, "file://"))
 		full_path = g_build_filename (&file[7], NULL);
 	  else
@@ -163,20 +169,34 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 		full_path[strlen (full_path) - 1] = '\0';
 	  
 	  basename = g_path_get_basename (full_path);
-	  
-	  gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+	  	  
+	  if ( (stat (full_path, &s) == 0) ) {
+		gchar *humansize = NULL;
+				
+		gtk_list_store_append (GTK_LIST_STORE (model), &iter);
 	 
-	  if (g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
-		gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                            DISC_CONTENT_COLUMN_ICON, icon_directory,
-                            DISC_CONTENT_COLUMN_CONTENT, basename,
-                            DISC_CONTENT_COLUMN_PATH, full_path, -1);
-	  }
-	  else if (g_file_test (full_path, G_FILE_TEST_IS_REGULAR)) {
-		gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                            DISC_CONTENT_COLUMN_ICON, icon_file,
-                            DISC_CONTENT_COLUMN_CONTENT, basename,
-                            DISC_CONTENT_COLUMN_PATH, full_path, -1);
+ 	    if ( (s.st_mode & S_IFDIR) ) {
+		  guint64 dirsize;
+		  
+		  dirsize = xfburn_calc_dirsize (full_path);
+		  humansize = xfburn_humanreadable_filesize (dirsize);
+		  gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+							  DISC_CONTENT_COLUMN_ICON, icon_directory,
+							  DISC_CONTENT_COLUMN_CONTENT, basename,
+							  DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
+							  DISC_CONTENT_COLUMN_SIZE, dirsize,
+							  DISC_CONTENT_COLUMN_PATH, full_path, -1);
+		}
+	    else if ( (s.st_mode & S_IFREG) ) {
+		  humansize = xfburn_humanreadable_filesize (s.st_size);
+		  gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+							  DISC_CONTENT_COLUMN_ICON, icon_file,
+							  DISC_CONTENT_COLUMN_CONTENT, basename,
+							  DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
+							  DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size,
+							  DISC_CONTENT_COLUMN_PATH, full_path, -1);
+		}
+		g_free (humansize);
 	  }
 	  
 	  g_free (full_path);
