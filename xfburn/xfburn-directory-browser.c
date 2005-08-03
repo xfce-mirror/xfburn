@@ -140,8 +140,8 @@ directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b,
   gtk_tree_model_get (model, a, DIRECTORY_BROWSER_COLUMN_FILE, &aname, DIRECTORY_BROWSER_COLUMN_TYPE, &amime, -1);
   gtk_tree_model_get (model, b, DIRECTORY_BROWSER_COLUMN_FILE, &bname, DIRECTORY_BROWSER_COLUMN_TYPE, &bmime, -1);
 
-  aisdir = !g_ascii_strcasecmp (amime, DIRECTORY);
-  bisdir = !g_ascii_strcasecmp (bmime, DIRECTORY);
+  aisdir = !g_ascii_strcasecmp (amime, _(DIRECTORY));
+  bisdir = !g_ascii_strcasecmp (bmime, _(DIRECTORY));
 
   if (aisdir && !bisdir)
     result = -1;
@@ -250,7 +250,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
 							DIRECTORY_BROWSER_COLUMN_HUMANSIZE, "4 B",
 							DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) 0,
-                            DIRECTORY_BROWSER_COLUMN_TYPE, DIRECTORY,
+                            DIRECTORY_BROWSER_COLUMN_TYPE, _(DIRECTORY),
 							DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
       }
       else if ( (s.st_mode & S_IFREG) ) {

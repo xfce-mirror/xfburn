@@ -116,7 +116,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   gtk_ui_manager_insert_action_group (mainwin->ui_manager, mainwin->action_group, 0);
 
   xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
-  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "Xfburn/Xfburn.ui");
+  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn.ui");
 
   if (G_LIKELY (file != NULL)) {
     GError *error = NULL;
@@ -128,7 +128,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
     g_free (file);
   }
   else {
-    g_warning ("Unable to locate Xfburn/Xfburn.ui !");
+    g_warning ("Unable to locate xfburn/xfburn.ui !");
   }
 
   /* accel group */
@@ -147,7 +147,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   }
 
   /* toolbar */
-  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "Xfburn/Xfburn-toolbars.ui");
+  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn-toolbars.ui");
 
   if (G_LIKELY (file != NULL)) {
     ExoToolbarsModel *model;
@@ -171,7 +171,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
     g_free (file);
   }
   else {
-    g_warning ("Unable to locate Xfburn/Xfburn-toolbars.ui !");
+    g_warning ("Unable to locate xfburn/xfburn-toolbars.ui !");
   }
 
   /* vpaned */

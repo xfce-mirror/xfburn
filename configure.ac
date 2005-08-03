@@ -32,6 +32,7 @@ BM_DEBUG_SUPPORT()
 
 AC_OUTPUT([
 Makefile
+pixmaps/Makefile
 po/Makefile.in
 xfburn/Makefile
 ])

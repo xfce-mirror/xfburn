@@ -1,11 +1,14 @@
-SUBDIRS = po 								\
-          xfburn
+SUBDIRS = 								\
+	pixmaps								\
+	po 								\
+    	xfburn
 
 AUTOMAKE_OPTIONS = dist-bzip2
 
-uidir = $(datadir)/Xfburn
+uidir = $(datadir)/xfburn
 ui_DATA =  	                                                        \
-        Xfburn.ui
+        xfburn.ui							\
+	xfburn-toolbars.ui
 		
 EXTRA_DIST = 								\
 	$(ui_DATA)

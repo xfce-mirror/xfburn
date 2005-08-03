@@ -6,23 +6,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn dev version\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-31 17:29+0200\n"
-"PO-Revision-Date: 2005-07-30 20:08+0100\n"
+"POT-Creation-Date: 2005-08-03 17:38+0200\n"
+"PO-Revision-Date: 2005-08-03 19:33+0100\n"
 "Last-Translator: Jean-François Wauthy <pollux@xfce.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: xfburn/xfburn-fs-browser.c:79 xfburn/xfburn-fs-browser.c:206
+#: xfburn/xfburn-directory-browser.c:44
+msgid "Folder"
+msgstr "Répertoire"
+
+#: xfburn/xfburn-directory-browser.c:103
+#: xfburn/xfburn-directory-browser.c:265
+msgid "File"
+msgstr "Fichier"
+
+#: xfburn/xfburn-directory-browser.c:116
+#: xfburn/xfburn-disc-content.c:120
+msgid "Size"
+msgstr "Taille"
+
+#: xfburn/xfburn-directory-browser.c:118
+msgid "Type"
+msgstr "Type"
+
+#: xfburn/xfburn-disc-content.c:107
+msgid "Contents"
+msgstr "Contenu"
+
+#: xfburn/xfburn-disc-content.c:122
+msgid "Full Path"
+msgstr "Chemin complet"
+
+#: xfburn/xfburn-fs-browser.c:93
+#: xfburn/xfburn-fs-browser.c:273
 msgid "Filesystem"
-msgstr ""
+msgstr "Système de fichier"
 
 #. load the user's home dir
-#: xfburn/xfburn-fs-browser.c:188
+#: xfburn/xfburn-fs-browser.c:255
 #, c-format
 msgid "%s's home"
-msgstr ""
+msgstr "Dossier personnel de %s"
 
 #: xfburn/xfburn-main-window.c:45
 msgid "_File"
@@ -49,20 +76,20 @@ msgid "Display information about Xfburn"
 msgstr ""
 
 #. if (G_UNLIKELY (icon == NULL))
-#. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: xfburn/xfburn-main-window.c:180
+#: xfburn/xfburn-main-window.c:185
 msgid "Another cd burning tool"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:183
+#: xfburn/xfburn-main-window.c:188
 msgid "Maintainer"
-msgstr ""
+msgstr "Mainteneur"
 
-#: xfburn/xfburn-main-window.c:189
+#: xfburn/xfburn-main-window.c:194
 #, c-format
 msgid "Translator (%s)"
-msgstr ""
+msgstr "Traducteur (%s)"
 
 #: xfburn/xfburn-main.c:38
 msgid "Xfburn"
 msgstr "Xfburn"
+

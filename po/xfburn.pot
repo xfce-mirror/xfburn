@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-31 17:29+0200\n"
+"POT-Creation-Date: 2005-08-03 17:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,12 +16,36 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: xfburn/xfburn-fs-browser.c:79 xfburn/xfburn-fs-browser.c:206
+#: xfburn/xfburn-directory-browser.c:44
+msgid "Folder"
+msgstr ""
+
+#: xfburn/xfburn-directory-browser.c:103 xfburn/xfburn-directory-browser.c:265
+msgid "File"
+msgstr ""
+
+#: xfburn/xfburn-directory-browser.c:116 xfburn/xfburn-disc-content.c:120
+msgid "Size"
+msgstr ""
+
+#: xfburn/xfburn-directory-browser.c:118
+msgid "Type"
+msgstr ""
+
+#: xfburn/xfburn-disc-content.c:107
+msgid "Contents"
+msgstr ""
+
+#: xfburn/xfburn-disc-content.c:122
+msgid "Full Path"
+msgstr ""
+
+#: xfburn/xfburn-fs-browser.c:93 xfburn/xfburn-fs-browser.c:273
 msgid "Filesystem"
 msgstr ""
 
 #. load the user's home dir
-#: xfburn/xfburn-fs-browser.c:188
+#: xfburn/xfburn-fs-browser.c:255
 #, c-format
 msgid "%s's home"
 msgstr ""
@@ -52,15 +76,15 @@ msgstr ""
 
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: xfburn/xfburn-main-window.c:180
+#: xfburn/xfburn-main-window.c:185
 msgid "Another cd burning tool"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:183
+#: xfburn/xfburn-main-window.c:188
 msgid "Maintainer"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:189
+#: xfburn/xfburn-main-window.c:194
 #, c-format
 msgid "Translator (%s)"
 msgstr ""
