@@ -80,14 +80,14 @@ xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass * klass)
 static void
 xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
 {
-  GtkTreeStore *model;
+  GtkListStore *model;
   GtkTreeViewColumn *column_file;
   GtkCellRenderer *cell_icon, *cell_file;
   GtkTreeSelection *selection;
 
   GtkTargetEntry gte[] = { {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN} };
 
-  model = gtk_tree_store_new (DIRECTORY_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
+  model = gtk_list_store_new (DIRECTORY_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DIRECTORY_BROWSER_COLUMN_FILE,
                                    directory_tree_sortfunc, NULL, NULL);
@@ -223,7 +223,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   }
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
-  gtk_tree_store_clear (GTK_TREE_STORE (model));
+  gtk_list_store_clear (GTK_LIST_STORE (model));
 
   gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
   icon_directory = xfce_themed_icon_load ("gnome-fs-directory", x);
@@ -236,16 +236,16 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
     if (dir_entry[0] != '.' && !g_file_test (full_path, G_FILE_TEST_IS_SYMLINK)) {
       GtkTreeIter iter;
 
-      gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
+      gtk_list_store_append (GTK_LIST_STORE (model), &iter);
 
       if (g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
-        gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_directory,
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
                             DIRECTORY_BROWSER_COLUMN_TYPE, DIRECTORY, DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
       }
       else if (g_file_test (full_path, G_FILE_TEST_IS_REGULAR)) {
-        gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_file,
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
                             DIRECTORY_BROWSER_COLUMN_TYPE, _("File"), DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);

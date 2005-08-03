@@ -77,7 +77,7 @@ static void
 xfburn_disc_content_init (XfburnDiscContent * disc_content)
 {
   GtkWidget *scrolled_window;
-  GtkTreeStore *model;
+  GtkListStore *model;
   GtkTreeViewColumn *column_file;
   GtkCellRenderer *cell_icon, *cell_file;
   GtkTreeSelection *selection;
@@ -91,7 +91,7 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   gtk_box_pack_start (GTK_BOX (disc_content), scrolled_window, TRUE, TRUE, 0);
 
   disc_content->content = gtk_tree_view_new ();
-  model = gtk_tree_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+  model = gtk_list_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DISC_CONTENT_COLUMN_CONTENT, GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (disc_content->content), GTK_TREE_MODEL (model));
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (disc_content->content), TRUE);
@@ -164,16 +164,16 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 	  
 	  basename = g_path_get_basename (full_path);
 	  
-	  gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
+	  gtk_list_store_append (GTK_LIST_STORE (model), &iter);
 	 
 	  if (g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
-		gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+		gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DISC_CONTENT_COLUMN_ICON, icon_directory,
                             DISC_CONTENT_COLUMN_CONTENT, basename,
                             DISC_CONTENT_COLUMN_PATH, full_path, -1);
 	  }
 	  else if (g_file_test (full_path, G_FILE_TEST_IS_REGULAR)) {
-		gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+		gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DISC_CONTENT_COLUMN_ICON, icon_file,
                             DISC_CONTENT_COLUMN_CONTENT, basename,
                             DISC_CONTENT_COLUMN_PATH, full_path, -1);
