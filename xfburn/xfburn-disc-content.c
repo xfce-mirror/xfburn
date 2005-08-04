@@ -42,7 +42,7 @@
 static void xfburn_disc_content_class_init (XfburnDiscContentClass *);
 static void xfburn_disc_content_init (XfburnDiscContent *);
 
-static void cb_content_drag_data_rcv (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint, gpointer);
+static void cb_content_drag_data_rcv (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint, XfburnDiscContent *);
 
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
@@ -184,7 +184,7 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
 /* internals */
 static void
 cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
-						  guint info, guint t, gpointer user_data)
+						  guint info, guint t, XfburnDiscContent *content)
 {
   GtkTreeModel *model;
   
@@ -237,6 +237,8 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 							  DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
 							  DISC_CONTENT_COLUMN_SIZE, dirsize,
 							  DISC_CONTENT_COLUMN_PATH, full_path, -1);
+          
+          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (content->disc_usage), dirsize);
 		}
 	    else if ( (s.st_mode & S_IFREG) ) {
 		  humansize = xfburn_humanreadable_filesize (s.st_size);
@@ -246,6 +248,8 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 							  DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
 							  DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size,
 							  DISC_CONTENT_COLUMN_PATH, full_path, -1);
+          
+          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (content->disc_usage), s.st_size);
 		}
 		g_free (humansize);
 	  }
