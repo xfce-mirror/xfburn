@@ -11,6 +11,7 @@ xfburn_headers = 							\
 	xfburn-main-window.h						\
 	xfburn-file-browser.h						\
 	xfburn-disc-content.h						\
+	xfburn-disc-usage.h						\
 	xfburn-fs-browser.h						\
 	xfburn-directory-browser.h					\
 	xfburn-utils.h
@@ -21,6 +22,7 @@ xfburn_SOURCES =							\
 	xfburn-main-window.c 						\
 	xfburn-file-browser.c						\
 	xfburn-disc-content.c    	                             	\
+	xfburn-disc-usage.c						\
 	xfburn-fs-browser.c 	                                       	\
 	xfburn-directory-browser.c					\
 	xfburn-utils.c

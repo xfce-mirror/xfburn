@@ -26,7 +26,7 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-#define XFBURN_TYPE_DIRECTORY_BROWSER            (xfburn_file_browser_get_type ())
+#define XFBURN_TYPE_DIRECTORY_BROWSER            (xfburn_directory_browser_get_type ())
 #define XFBURN_DIRECTORY_BROWSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DIRECTORY_BROWSER, XfburnDirectoryBrowser))
 #define XFBURN_DIRECTORY_BROWSER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DIRECTORY_BROWSER, XfburnDirectoryBrowserClass))
 #define XFBURN_IS_DIRECTORY_BROWSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DIRECTORY_BROWSER))

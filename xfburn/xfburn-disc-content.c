@@ -35,6 +35,7 @@
 #include <exo/exo.h>
 
 #include "xfburn-disc-content.h"
+#include "xfburn-disc-usage.h"
 #include "xfburn-utils.h"
 
 /* prototypes */
@@ -46,10 +47,16 @@ static void cb_content_drag_data_rcv (GtkWidget *, GdkDragContext *, guint, guin
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
 static GtkActionEntry action_entries[] = {
-  {"add-file", GTK_STOCK_ADD, N_("_Add file(s)"), NULL, N_("Add file(s)"),},
+  {"add-file", GTK_STOCK_ADD, N_("Add file(s)"), NULL, N_("Add the selected files to the CD"),},
+  {"remove-file", GTK_STOCK_REMOVE, N_("Remove selected"), NULL, N_("Remove the selected files from the CD"),},
+  {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the contents of the CD"),},
+  {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 };
 static const gchar *toolbar_actions[] = {
   "add-file",
+  "remove-file",
+  "clear",
+  "import-session",
 };
 
 /***************************/
@@ -112,9 +119,13 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   exo_toolbars_model_set_actions (model_toolbar, (gchar **) toolbar_actions, G_N_ELEMENTS (toolbar_actions));
   toolbar_position = exo_toolbars_model_add_toolbar (model_toolbar, -1, "content-toolbar");
   exo_toolbars_model_set_style (model_toolbar, GTK_TOOLBAR_BOTH, toolbar_position);
-  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "add-file", EXO_TOOLBARS_ITEM_TYPE);
   
-  exo_toolbars_model_add_separator (model_toolbar, toolbar_position, 1);
+  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "add-file", EXO_TOOLBARS_ITEM_TYPE);
+  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "remove-file", EXO_TOOLBARS_ITEM_TYPE);
+  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "clear", EXO_TOOLBARS_ITEM_TYPE);
+  exo_toolbars_model_add_separator (model_toolbar, toolbar_position, -1);
+  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "import-session", EXO_TOOLBARS_ITEM_TYPE);
+  
   
   disc_content->toolbar = exo_toolbars_view_new_with_model (disc_content->ui_manager, model_toolbar);
   gtk_box_pack_start (GTK_BOX (disc_content), disc_content->toolbar, FALSE, FALSE, 0);
@@ -158,6 +169,11 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (disc_content->content));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 
+  /* disc usage */
+  disc_content->disc_usage = xfburn_disc_usage_new ();
+  gtk_box_pack_start (GTK_BOX (disc_content), disc_content->disc_usage, FALSE, FALSE, 5);
+  gtk_widget_show (disc_content->disc_usage);
+    
   /* set up DnD */
   gtk_tree_view_enable_model_drag_dest (GTK_TREE_VIEW (disc_content->content), gte, DISC_CONTENT_DND_TARGETS,
                                         GDK_ACTION_COPY);

@@ -26,7 +26,7 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-#define XFBURN_TYPE_DISC_CONTENT            (xfburn_file_browser_get_type ())
+#define XFBURN_TYPE_DISC_CONTENT            (xfburn_disc_content_get_type ())
 #define XFBURN_DISC_CONTENT(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DISC_CONTENT, XfburnDiscContent))
 #define XFBURN_DISC_CONTENT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DISC_CONTENT, XfburnDiscContentClass))
 #define XFBURN_IS_DISC_CONTENT(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DISC_CONTENT))
@@ -44,6 +44,7 @@ struct _XfburnDiscContent
   
   GtkWidget *toolbar;
   GtkWidget *content;
+  GtkWidget *disc_usage;
 };
 
 struct _XfburnDiscContentClass
