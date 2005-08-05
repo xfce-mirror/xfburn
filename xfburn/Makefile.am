@@ -14,6 +14,7 @@ xfburn_headers = 							\
 	xfburn-disc-usage.h						\
 	xfburn-fs-browser.h						\
 	xfburn-directory-browser.h					\
+	xfburn-preferences-dialog.h					\
 	xfburn-utils.h
 	
 xfburn_SOURCES =							\
@@ -25,6 +26,7 @@ xfburn_SOURCES =							\
 	xfburn-disc-usage.c						\
 	xfburn-fs-browser.c 	                                       	\
 	xfburn-directory-browser.c					\
+	xfburn-preferences-dialog.c					\
 	xfburn-utils.c
 
 xfburn_CFLAGS =								\

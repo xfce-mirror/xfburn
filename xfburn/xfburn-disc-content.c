@@ -42,6 +42,8 @@
 static void xfburn_disc_content_class_init (XfburnDiscContentClass *);
 static void xfburn_disc_content_init (XfburnDiscContent *);
 
+static void xfburn_disc_content_action_clear (GtkAction *, XfburnDiscContent *);
+
 static void cb_content_drag_data_rcv (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint, XfburnDiscContent *);
 
 /* globals */
@@ -49,7 +51,7 @@ static GtkHPanedClass *parent_class = NULL;
 static GtkActionEntry action_entries[] = {
   {"add-file", GTK_STOCK_ADD, N_("Add file(s)"), NULL, N_("Add the selected files to the CD"),},
   {"remove-file", GTK_STOCK_REMOVE, N_("Remove selected"), NULL, N_("Remove the selected files from the CD"),},
-  {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the contents of the CD"),},
+  {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the contents of the CD"), G_CALLBACK (xfburn_disc_content_action_clear),},
   {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 };
 static const gchar *toolbar_actions[] = {
@@ -182,6 +184,17 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
 }
 
 /* internals */
+static void
+xfburn_disc_content_action_clear (GtkAction *action, XfburnDiscContent *content)
+{
+  GtkTreeModel *model;
+  
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (content->content));
+  gtk_list_store_clear (GTK_LIST_STORE (model));
+  
+  xfburn_disc_usage_set_size (XFBURN_DISC_USAGE (content->disc_usage), 0);
+}
+
 static void
 cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
 						  guint info, guint t, XfburnDiscContent *content)

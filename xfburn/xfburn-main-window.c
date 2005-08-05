@@ -27,6 +27,7 @@
 #include <exo/exo.h>
 
 #include "xfburn-main-window.h"
+#include "xfburn-preferences-dialog.h"
 #include "xfburn-file-browser.h"
 #include "xfburn-disc-content.h"
 
@@ -38,6 +39,7 @@ static gboolean cb_delete_main_window (GtkWidget *, GdkEvent *, gpointer);
 static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 
 static void xfburn_window_action_about (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_preferences (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
 
 
@@ -45,7 +47,10 @@ static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
 static GtkWindowClass *parent_class = NULL;
 static GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL,},
-  {"quit", GTK_STOCK_QUIT, N_("Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (xfburn_window_action_quit),},
+  {"quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (xfburn_window_action_quit),},
+  {"edit-menu", NULL, N_("_Edit"), NULL,},
+  {"preferences", GTK_STOCK_PREFERENCES, N_("Prefere_nces"), NULL, N_("Show preferences dialog"),
+    G_CALLBACK (xfburn_window_action_preferences),},
   {"help-menu", NULL, N_("_Help"), NULL,},
   {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
    G_CALLBACK (xfburn_window_action_about),},
@@ -64,6 +69,7 @@ static const gchar *toolbar_actions[] = {
   "burn-cd",
   "refresh",
   "about",
+  "preferences",
 };
 
 /**************************/
@@ -246,7 +252,7 @@ cb_delete_main_window (GtkWidget * widget, GdkEvent * event, gpointer data)
 static void
 xfburn_window_action_quit (GtkAction * action, XfburnMainWindow * window)
 {
-  if (xfce_confirm (_("Are sure you want to quit?"), GTK_STOCK_QUIT, _("Quit")))
+  if (xfce_confirm (_("Are sure you want to quit?"), GTK_STOCK_QUIT, _("_Quit")))
     gtk_main_quit ();
 }
 
@@ -290,6 +296,17 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   xfce_about_info_free (info);
   if (G_LIKELY (icon != NULL))
     g_object_unref (G_OBJECT (icon));
+}
+
+static void
+xfburn_window_action_preferences (GtkAction *action, XfburnMainWindow *window)
+{
+  GtkWidget *dialog;
+  
+  dialog = xfburn_preferences_dialog_new ();
+  
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
 }
 
 /* public methods */
