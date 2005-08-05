@@ -176,6 +176,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   model = gtk_list_store_new (DEVICE_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
   priv->treeview_devices = gtk_tree_view_new_with_model (GTK_TREE_MODEL (model));
+  gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview_devices), TRUE);
   gtk_widget_show (priv->treeview_devices);
   gtk_container_add (GTK_CONTAINER (scrolled_window), priv->treeview_devices);
   

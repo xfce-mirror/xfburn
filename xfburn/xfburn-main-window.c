@@ -41,7 +41,9 @@ static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 static void xfburn_window_action_about (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_preferences (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
 
+static void xfburn_window_action_show_filebrowser (GtkToggleAction *, XfburnMainWindow *);
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
@@ -51,6 +53,9 @@ static GtkActionEntry action_entries[] = {
   {"edit-menu", NULL, N_("_Edit"), NULL,},
   {"preferences", GTK_STOCK_PREFERENCES, N_("Prefere_nces"), NULL, N_("Show preferences dialog"),
     G_CALLBACK (xfburn_window_action_preferences),},
+  {"action-menu", NULL, N_("_Actions"), NULL,},
+  {"view-menu", NULL, N_("_View"), NULL,},
+  {"refresh", GTK_STOCK_REFRESH, N_("Refresh"), NULL, N_("Refresh file list"),},
   {"help-menu", NULL, N_("_Help"), NULL,},
   {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
    G_CALLBACK (xfburn_window_action_about),},
@@ -59,8 +64,13 @@ static GtkActionEntry action_entries[] = {
   {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),},
   {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
   {"burn-cd", "xfburn-burn-cd", N_("Burn CD Image"), NULL, N_("Burn CD Image"),},
-  {"refresh", GTK_STOCK_REFRESH, N_("Refresh"), NULL, N_("Refresh file list"),}
 };
+
+static GtkToggleActionEntry toggle_action_entries[] = {
+  {"show-filebrowser", NULL, N_("Show file browser"), NULL, N_("Show/hide the file browser"), 
+    G_CALLBACK (xfburn_window_action_show_filebrowser), TRUE,},
+};
+
 static const gchar *toolbar_actions[] = {
   "blank-cd",
   "format-dvd",
@@ -126,7 +136,9 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   gtk_action_group_set_translation_domain (mainwin->action_group, GETTEXT_PACKAGE);
   gtk_action_group_add_actions (mainwin->action_group, action_entries, G_N_ELEMENTS (action_entries),
                                 GTK_WIDGET (mainwin));
-
+  gtk_action_group_add_toggle_actions (mainwin->action_group, toggle_action_entries, G_N_ELEMENTS (toggle_action_entries),
+                                       GTK_WIDGET (mainwin));
+                                       
   mainwin->ui_manager = gtk_ui_manager_new ();
   gtk_ui_manager_insert_action_group (mainwin->ui_manager, mainwin->action_group, 0);
 
@@ -290,6 +302,7 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   }
 
   dialog = xfce_about_dialog_new (GTK_WINDOW (window), info, icon);
+  gtk_widget_set_size_request (GTK_WIDGET (dialog), 400, 300);
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 
@@ -307,6 +320,16 @@ xfburn_window_action_preferences (GtkAction *action, XfburnMainWindow *window)
   
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
+}
+
+static void
+xfburn_window_action_show_filebrowser (GtkToggleAction *action, XfburnMainWindow *window)
+{
+  if (gtk_toggle_action_get_active (action)) {
+    gtk_widget_show (window->file_browser);
+  } else {
+    gtk_widget_hide (window->file_browser);
+  }
 }
 
 /* public methods */
