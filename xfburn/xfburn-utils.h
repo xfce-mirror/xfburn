@@ -23,8 +23,14 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#include "xfburn-global.h"
+
 void xfburn_busy_cursor (GtkWidget *);
 void xfburn_default_cursor (GtkWidget *);
+
+void xfburn_device_content_free (XfburnDevice *device, gpointer user_data);
+void xfburn_device_free (XfburnDevice *device);
+void xfburn_scan_devices ();
 
 gchar * xfburn_humanreadable_filesize (guint64);
 guint64 xfburn_calc_dirsize (const gchar *);

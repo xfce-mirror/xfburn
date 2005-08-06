@@ -34,11 +34,9 @@ struct XfburnPreferencesDialogPrivate
   GtkWidget *check_clean_tmpdir;
   GtkWidget *check_show_hidden;
   GtkWidget *check_show_human_readable;
-  
+
   GtkWidget *treeview_devices;
-  GtkWidget *button_add_device;
   GtkWidget *button_scan;
-  GtkWidget *check_scan_at_startup;
 };
 
 typedef struct
@@ -92,12 +90,12 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   GtkWidget *frame;
   GtkWidget *scrolled_window;
   GtkListStore *model;
-  
+
   obj->priv = g_new0 (XfburnPreferencesDialogPrivate, 1);
   priv = obj->priv;
 
   gtk_widget_set_size_request (GTK_WIDGET (obj), 450, 300);
-  
+
   priv->notebook = gtk_notebook_new ();
   gtk_container_set_border_width (GTK_CONTAINER (priv->notebook), BORDER);
   gtk_box_pack_start (box, priv->notebook, TRUE, TRUE, BORDER);
@@ -130,29 +128,29 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   priv->check_clean_tmpdir = gtk_check_button_new_with_mnemonic (_("_Clean temporary directory on exit"));
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_clean_tmpdir, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->check_clean_tmpdir);
-  
+
   frame = xfce_framebox_new (_("File browser"), TRUE);
   gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, BORDER);
   gtk_widget_show (frame);
-  
+
   vbox2 = gtk_vbox_new (FALSE, 0);
   xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox2);
   gtk_widget_show (vbox2);
-  
+
   priv->check_show_hidden = gtk_check_button_new_with_mnemonic (_("Show _hidden files"));
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_show_hidden, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->check_show_hidden);
-  
+
   priv->check_show_human_readable = gtk_check_button_new_with_mnemonic (_("Show human_readable filesizes"));
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_show_human_readable, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->check_show_human_readable);
-  
+
   /* devices tab */
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), BORDER);
   gtk_container_add (GTK_CONTAINER (priv->notebook), vbox);
   gtk_widget_show (vbox);
-    
+
   label = gtk_label_new (_("Devices"));
   gtk_widget_show (label);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->notebook),
@@ -162,38 +160,31 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   frame = xfce_framebox_new (_("Detected devices"), TRUE);
   gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, BORDER);
   gtk_widget_show (frame);
-  
+
   vbox2 = gtk_vbox_new (FALSE, 0);
   xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox2);
   gtk_widget_show (vbox2);
-  
+
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
   gtk_widget_show (scrolled_window);
   gtk_box_pack_start (GTK_BOX (vbox2), scrolled_window, TRUE, TRUE, BORDER);
-  
-  model = gtk_list_store_new (DEVICE_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
+
+  model = gtk_list_store_new (DEVICE_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
+                              G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
   priv->treeview_devices = gtk_tree_view_new_with_model (GTK_TREE_MODEL (model));
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview_devices), TRUE);
   gtk_widget_show (priv->treeview_devices);
   gtk_container_add (GTK_CONTAINER (scrolled_window), priv->treeview_devices);
-  
+
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, BORDER);
   gtk_widget_show (hbox);
-  
+
   priv->button_scan = xfce_create_mixed_button (GTK_STOCK_CDROM, _("Sc_an for devices"));
   gtk_box_pack_end (GTK_BOX (hbox), priv->button_scan, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->button_scan);
-
-  priv->button_add_device = xfce_create_mixed_button (GTK_STOCK_ADD, _("_Add device"));
-  gtk_box_pack_end (GTK_BOX (hbox), priv->button_add_device, FALSE, FALSE, BORDER);
-  gtk_widget_show (priv->button_add_device);
-    
-  priv->check_scan_at_startup = gtk_check_button_new_with_mnemonic (_("Always _scan for devices at startup"));
-  gtk_box_pack_start (GTK_BOX (vbox2), priv->check_scan_at_startup, FALSE, FALSE, BORDER);
-  gtk_widget_show (priv->check_scan_at_startup);
 }
 
 /* internals */

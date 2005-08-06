@@ -32,10 +32,13 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "xfburn-global.h"
+#include "xfburn-utils.h"
 #include "xfburn-main-window.h"
 
 /* globals */
 static GtkIconFactory *icon_factory = NULL;
+
+GList *list_devices = NULL;
 
 /* internals */
 static void
@@ -158,11 +161,14 @@ main (int argc, char **argv)
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
   
   xfburn_setup_icons ();
+  xfburn_scan_devices ();
   mainwin = xfburn_main_window_new ();
 
   gtk_widget_show (mainwin);
 
   gtk_main ();
 
+  g_list_foreach (list_devices, (GFunc) xfburn_device_content_free, NULL);
+  g_list_free (list_devices);
   return EXIT_SUCCESS;
 }
