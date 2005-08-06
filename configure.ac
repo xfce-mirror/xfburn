@@ -1,7 +1,7 @@
 dnl Version information
 m4_define([xfburn_version_major], [0])
 m4_define([xfburn_version_minor], [0])
-m4_define([xfburn_version_micro], [1svn])
+m4_define([xfburn_version_micro], [2svn])
 m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()])
 
 dnl Initialize autoconf
