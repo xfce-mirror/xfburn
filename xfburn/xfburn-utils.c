@@ -29,6 +29,13 @@
 
 #include "xfburn-utils.h"
 
+/**************/
+/* cd-burning */
+/**************/
+
+/***********/
+/* cursors */
+/***********/
 void
 xfburn_busy_cursor (GtkWidget * widget)
 {
@@ -51,6 +58,9 @@ xfburn_default_cursor (GtkWidget * widget)
  */
 }
 
+/*******************/
+/* for filebrowser */
+/*******************/
 gchar *
 xfburn_humanreadable_filesize (guint64 size)
 {

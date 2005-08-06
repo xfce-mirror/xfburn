@@ -8,6 +8,7 @@ bin_PROGRAMS = 								\
 	xfburn
 
 xfburn_headers = 							\
+	xfburn-global.h							\
 	xfburn-main-window.h						\
 	xfburn-file-browser.h						\
 	xfburn-disc-content.h						\

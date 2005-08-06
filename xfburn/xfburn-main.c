@@ -31,6 +31,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#include "xfburn-global.h"
 #include "xfburn-main-window.h"
 
 /* globals */
@@ -49,7 +50,7 @@ xfburn_setup_icons (void)
   
   icon_factory = gtk_icon_factory_new ();
     
-  icon = xfce_themed_icon_load ("baker-audio-copy", 24);
+  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-audio-copy.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
     source = gtk_icon_source_new ();
@@ -61,7 +62,7 @@ xfburn_setup_icons (void)
     gtk_icon_set_unref (set);
   }
   
-  icon = xfce_themed_icon_load ("baker-blank-cdrw", 24);
+  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-blank-cdrw.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
     source = gtk_icon_source_new ();
@@ -73,7 +74,7 @@ xfburn_setup_icons (void)
     gtk_icon_set_unref (set);
   }
   
-  icon = xfce_themed_icon_load ("baker-blank-dvdrw", 24);
+  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-blank-dvdrw.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
     source = gtk_icon_source_new ();
@@ -85,7 +86,7 @@ xfburn_setup_icons (void)
     gtk_icon_set_unref (set);
   }
   
-  icon = xfce_themed_icon_load ("baker-burn-cd", 24);
+  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-burn-cd.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
     source = gtk_icon_source_new ();
@@ -97,7 +98,7 @@ xfburn_setup_icons (void)
     gtk_icon_set_unref (set);
   }
   
-  icon = xfce_themed_icon_load ("baker-cd", 24);
+  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-cd.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
     source = gtk_icon_source_new ();
@@ -109,7 +110,7 @@ xfburn_setup_icons (void)
     gtk_icon_set_unref (set);
   }
   
-  icon = xfce_themed_icon_load ("baker-data-copy", 24);
+  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-data-copy.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
     source = gtk_icon_source_new ();
@@ -121,7 +122,7 @@ xfburn_setup_icons (void)
     gtk_icon_set_unref (set);
   }
   
-  icon = xfce_themed_icon_load ("baker-import-session", 24);
+  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-import-session.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
     source = gtk_icon_source_new ();
@@ -155,7 +156,7 @@ main (int argc, char **argv)
   gtk_init (&argc, &argv);
 
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-
+  
   xfburn_setup_icons ();
   mainwin = xfburn_main_window_new ();
 
