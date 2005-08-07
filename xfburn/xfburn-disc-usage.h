@@ -42,7 +42,7 @@ struct _XfburnDiscUsage
   GtkWidget *progress_bar;
   GtkWidget *combo;
   GtkWidget *button;
-  
+
   gdouble size;
 };
 

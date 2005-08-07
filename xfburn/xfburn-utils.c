@@ -73,7 +73,7 @@ get_file_as_list (const gchar * file)
 static void
 devices_for_each (gpointer key, gpointer value, gpointer user_data)
 {
-  /* DBG ("---- key [%s], value [%s]", (gchar *) key, (gchar *) value);*/
+  /* DBG ("---- key [%s], value [%s]", (gchar *) key, (gchar *) value); */
   g_free (key);
   g_free (value);
 }
@@ -137,12 +137,12 @@ get_ide_device (const gchar * devicenode, const gchar * devicenodepath, gchar **
   /* from GnomeBaker */
   gchar *contents = NULL;
   gchar *file = g_strdup_printf ("/proc/ide/%s/model", devicenode);
-  
+
   g_return_if_fail (devicenode != NULL);
   g_return_if_fail (modelname != NULL);
   g_return_if_fail (deviceid != NULL);
   DBG ("probing [%s]", devicenode);
-  
+
   if (g_file_get_contents (file, &contents, NULL, NULL)) {
     g_strstrip (contents);
     *modelname = g_strdup (contents);
@@ -161,12 +161,12 @@ get_scsi_device (const gchar * devicenode, const gchar * devicenodepath, gchar *
 {
   /* from GnomeBaker */
   gchar **device_strs = NULL, **devices = NULL;
-  
+
   g_return_if_fail (devicenode != NULL);
   g_return_if_fail (modelname != NULL);
   g_return_if_fail (deviceid != NULL);
   DBG ("probing [%s]", devicenode);
-  
+
   if ((devices = get_file_as_list ("/proc/scsi/sg/devices")) == NULL) {
     g_critical (_("Failed to open /proc/scsi/sg/devices"));
   }
@@ -223,7 +223,7 @@ xfburn_scan_devices ()
   g_list_foreach (list_devices, (GFunc) xfburn_device_content_free, NULL);
   g_list_free (list_devices);
   list_devices = NULL;
-  
+
 #ifdef __linux__
   if (!(info = get_file_as_list ("/proc/sys/dev/cdrom/info"))) {
     g_critical ("Failed to open /proc/sys/dev/cdrom/info");
@@ -239,16 +239,16 @@ xfburn_scan_devices ()
 
       gchar *modelname = NULL, *deviceid = NULL;
 
-      if(device[0] == 'h')
-        get_ide_device(device, devicenodepath, &modelname, &deviceid);
+      if (device[0] == 'h')
+        get_ide_device (device, devicenodepath, &modelname, &deviceid);
       else
-        get_scsi_device(device, devicenodepath, &modelname, &deviceid);
+        get_scsi_device (device, devicenodepath, &modelname, &deviceid);
 
       device_entry = g_new0 (XfburnDevice, 1);
       device_entry->name = modelname;
       device_entry->id = deviceid;
       device_entry->node_path = devicenodepath;
-      
+
       if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write CD-R:"), "1") == 0)
         device_entry->cdr = TRUE;
       if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write CD-RW:"), "1") == 0)
@@ -257,14 +257,14 @@ xfburn_scan_devices ()
         device_entry->dvdr = TRUE;
       if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write DVD-RAM:"), "1") == 0)
         device_entry->dvdram = TRUE;
-                  
+
       list_devices = g_list_append (list_devices, device_entry);
-      
+
       g_message ("device [%d] found : %s (%s)", devicenum, modelname, devicenodepath);
       g_message ("device [%d] capabilities :%s%s%s%s", devicenum, device_entry->cdr ? " CD-R" : "",
                  device_entry->cdrw ? " CD-RW" : "", device_entry->dvdr ? " DVD-R" : "",
                  device_entry->dvdram ? " DVD-RAM" : "");
-      
+
       g_hash_table_foreach (devinfo, devices_for_each, NULL);
       g_hash_table_destroy (devinfo);
       devinfo = NULL;

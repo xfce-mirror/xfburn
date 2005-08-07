@@ -47,12 +47,12 @@ xfburn_setup_icons (void)
   GtkIconSource *source = NULL;
   GtkIconSet *set = NULL;
   GdkPixbuf *icon = NULL;
-  
+
   if (icon_factory)
     return;
-  
+
   icon_factory = gtk_icon_factory_new ();
-    
+
   icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-audio-copy.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
@@ -64,7 +64,7 @@ xfburn_setup_icons (void)
     gtk_icon_factory_add (icon_factory, "xfburn-audio-copy", set);
     gtk_icon_set_unref (set);
   }
-  
+
   icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-blank-cdrw.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
@@ -76,7 +76,7 @@ xfburn_setup_icons (void)
     gtk_icon_factory_add (icon_factory, "xfburn-blank-cdrw", set);
     gtk_icon_set_unref (set);
   }
-  
+
   icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-blank-dvdrw.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
@@ -88,7 +88,7 @@ xfburn_setup_icons (void)
     gtk_icon_factory_add (icon_factory, "xfburn-blank-dvdrw", set);
     gtk_icon_set_unref (set);
   }
-  
+
   icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-burn-cd.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
@@ -100,7 +100,7 @@ xfburn_setup_icons (void)
     gtk_icon_factory_add (icon_factory, "xfburn-burn-cd", set);
     gtk_icon_set_unref (set);
   }
-  
+
   icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-cd.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
@@ -112,7 +112,7 @@ xfburn_setup_icons (void)
     gtk_icon_factory_add (icon_factory, "xfburn-cd", set);
     gtk_icon_set_unref (set);
   }
-  
+
   icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-data-copy.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
@@ -124,7 +124,7 @@ xfburn_setup_icons (void)
     gtk_icon_factory_add (icon_factory, "xfburn-data-copy", set);
     gtk_icon_set_unref (set);
   }
-  
+
   icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-import-session.png", 24, 24, NULL);
   if (icon) {
     set = gtk_icon_set_new ();
@@ -136,7 +136,7 @@ xfburn_setup_icons (void)
     gtk_icon_factory_add (icon_factory, "xfburn-import-session", set);
     gtk_icon_set_unref (set);
   }
-  
+
   gtk_icon_factory_add_default (icon_factory);
 }
 
@@ -145,7 +145,7 @@ int
 main (int argc, char **argv)
 {
   GtkWidget *mainwin;
-  
+
   g_set_application_name (_("Xfburn"));
 
   if (argc > 1 && (!strcmp (argv[1], "--version") || !strcmp (argv[1], "-V"))) {
@@ -159,7 +159,7 @@ main (int argc, char **argv)
   gtk_init (&argc, &argv);
 
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-  
+
   xfburn_setup_icons ();
   xfburn_scan_devices ();
   mainwin = xfburn_main_window_new ();

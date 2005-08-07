@@ -104,7 +104,7 @@ xfburn_file_browser_init (XfburnFileBrowser * file_browser)
   gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (file_browser->directory_browser));
 
   xfburn_directory_browser_load_path (XFBURN_DIRECTORY_BROWSER (file_browser->directory_browser), xfce_get_homedir ());
-  
+
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (file_browser->fs_browser));
   g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_fs_browser_selection_changed), file_browser);
 
@@ -131,13 +131,13 @@ cb_directory_browser_row_actived (GtkWidget * treeview, GtkTreePath * path, GtkT
     gchar *directory;
 
     selected_row = gtk_tree_selection_get_selected_rows (selection_dir, &model_dir);
-	path_dir = (GtkTreePath *) selected_row->data;
+    path_dir = (GtkTreePath *) selected_row->data;
     gtk_tree_model_get_iter (model_dir, &iter_dir, path_dir);
     gtk_tree_model_get (model_dir, &iter_dir, DIRECTORY_BROWSER_COLUMN_FILE, &directory, -1);
-    
-	g_list_foreach (selected_row, (GFunc) gtk_tree_path_free, NULL);
-	g_list_free (selected_row);
-		
+
+    g_list_foreach (selected_row, (GFunc) gtk_tree_path_free, NULL);
+    g_list_free (selected_row);
+
     /* expand the parent directory in the FS browser */
     path_fs = gtk_tree_model_get_path (model_fs, &iter_fs);
     gtk_tree_view_expand_row (GTK_TREE_VIEW (browser->fs_browser), path_fs, FALSE);

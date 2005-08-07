@@ -25,6 +25,7 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "xfburn-disc-usage.h"
+#include "xfburn-global.h"
 #include "xfburn-utils.h"
 
 /* prototypes */
@@ -37,16 +38,21 @@ static void cb_combo_changed (GtkComboBox *, XfburnDiscUsage *);
 static GtkHBoxClass *parent_class = NULL;
 
 #define DEFAULT_DISK_SIZE_LABEL 2
-struct {
+struct
+{
   gdouble size;
-  gchar* label;	
+  gchar *label;
 } datadisksizes[] = {
-	{200 * 1000 * 1000, "200MB CD"},
-	{600 * 1000 * 1000, "600MB CD"},
-	{700 * 1000 * 1000, "700MB CD"},
-	{4.7 * 1000 * 1000 * 1000, "4.7GB DVD"},
-	{8.5 * 1000 * 1000 * 1000, "8.5GB DVD"},
-};
+  {
+  200 *1000 * 1000, "200MB CD"},
+  {
+  600 *1000 * 1000, "600MB CD"},
+  {
+  700 *1000 * 1000, "700MB CD"},
+  {
+  4.7 *1000 * 1000 * 1000, "4.7GB DVD"},
+  {
+8.5 *1000 * 1000 * 1000, "8.5GB DVD"},};
 
 /***************************/
 /* XfburnDiscContent class */
@@ -85,68 +91,68 @@ static void
 xfburn_disc_usage_init (XfburnDiscUsage * disc_usage)
 {
   int i;
-  
+
   disc_usage->size = 0;
-  
+
   disc_usage->progress_bar = gtk_progress_bar_new ();
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), "0 B");
-  gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->progress_bar, TRUE, TRUE, 5);
+  gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->progress_bar, TRUE, TRUE, BORDER);
   gtk_widget_show (disc_usage->progress_bar);
-    
+
   disc_usage->combo = gtk_combo_box_new_text ();
   for (i = 0; i < G_N_ELEMENTS (datadisksizes); i++)
     gtk_combo_box_append_text (GTK_COMBO_BOX (disc_usage->combo), datadisksizes[i].label);
   gtk_combo_box_set_active (GTK_COMBO_BOX (disc_usage->combo), DEFAULT_DISK_SIZE_LABEL);
-  gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->combo, FALSE, FALSE, 5);
+  gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->combo, FALSE, FALSE, BORDER);
   gtk_widget_show (disc_usage->combo);
-    
+
   disc_usage->button = xfce_create_mixed_button (GTK_STOCK_CDROM, _("Burn Data CD"));
-  gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->button, FALSE, FALSE, 5);
+  gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->button, FALSE, FALSE, BORDER);
   gtk_widget_set_sensitive (disc_usage->button, FALSE);
   gtk_widget_show (disc_usage->button);
-  
+
   g_signal_connect (G_OBJECT (disc_usage->combo), "changed", G_CALLBACK (cb_combo_changed), disc_usage);
 }
 
 /* internals */
 static void
-xfburn_disc_usage_update_size (XfburnDiscUsage *disc_usage)
+xfburn_disc_usage_update_size (XfburnDiscUsage * disc_usage)
 {
   gfloat fraction;
   gchar *human_size;
-  
+
   fraction = disc_usage->size / datadisksizes[gtk_combo_box_get_active (GTK_COMBO_BOX (disc_usage->combo))].size;
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (disc_usage->progress_bar), fraction > 1.0 ? 1.0 : fraction);    
-  
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (disc_usage->progress_bar), fraction > 1.0 ? 1.0 : fraction);
+
   human_size = xfburn_humanreadable_filesize ((guint64) disc_usage->size);
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), human_size);
-  
+
   g_free (human_size);
 }
 
-static void 
-cb_combo_changed (GtkComboBox *combo, XfburnDiscUsage *usage)
+static void
+cb_combo_changed (GtkComboBox * combo, XfburnDiscUsage * usage)
 {
   xfburn_disc_usage_update_size (usage);
 }
 
 /* public methods */
-gdouble 
-xfburn_disc_usage_get_size (XfburnDiscUsage *disc_usage)
+gdouble
+xfburn_disc_usage_get_size (XfburnDiscUsage * disc_usage)
 {
   return disc_usage->size;
 }
 
 void
-xfburn_disc_usage_set_size (XfburnDiscUsage *disc_usage, gdouble size)
+xfburn_disc_usage_set_size (XfburnDiscUsage * disc_usage, gdouble size)
 {
   disc_usage->size = size;
   xfburn_disc_usage_update_size (disc_usage);
 }
 
 void
-xfburn_disc_usage_add_size (XfburnDiscUsage *disc_usage, gdouble size)
-{ 
+xfburn_disc_usage_add_size (XfburnDiscUsage * disc_usage, gdouble size)
+{
   disc_usage->size = disc_usage->size + size;
   xfburn_disc_usage_update_size (disc_usage);
 }

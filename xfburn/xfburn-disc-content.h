@@ -41,7 +41,7 @@ struct _XfburnDiscContent
 
   GtkActionGroup *action_group;
   GtkUIManager *ui_manager;
-  
+
   GtkWidget *toolbar;
   GtkWidget *content;
   GtkWidget *disc_usage;
@@ -52,7 +52,8 @@ struct _XfburnDiscContentClass
   GtkVBoxClass parent_class;
 };
 
-enum {
+enum
+{
   DISC_CONTENT_COLUMN_ICON,
   DISC_CONTENT_COLUMN_CONTENT,
   DISC_CONTENT_COLUMN_HUMANSIZE,
@@ -61,7 +62,8 @@ enum {
   DISC_CONTENT_N_COLUMNS
 };
 
-enum {
+enum
+{
   DISC_CONTENT_DND_TARGET_TEXT_PLAIN,
   DISC_CONTENT_DND_TARGETS
 };

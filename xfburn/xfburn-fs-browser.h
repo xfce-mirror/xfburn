@@ -42,16 +42,17 @@ typedef struct
   GtkTreeViewClass parent_class;
 } XfburnFsBrowserClass;
 
-enum {
+enum
+{
   FS_BROWSER_COLUMN_ICON,
   FS_BROWSER_COLUMN_DIRECTORY,
   FS_BROWSER_COLUMN_PATH,
   FS_BROWSER_N_COLUMNS
 };
 
-GType      xfburn_fs_browser_get_type ();
+GType xfburn_fs_browser_get_type ();
 GtkWidget *xfburn_fs_browser_new ();
-void       xfburn_fs_browser_refresh (XfburnFsBrowser *);
+void xfburn_fs_browser_refresh (XfburnFsBrowser *);
 
 G_END_DECLS
 #endif /* __XFBURN_FS_BROWSER_H__ */

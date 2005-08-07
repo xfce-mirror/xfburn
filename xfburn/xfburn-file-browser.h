@@ -48,8 +48,10 @@ struct _XfburnFileBrowserClass
   GtkHPanedClass parent_class;
 };
 
-GtkType xfburn_file_browser_get_type (void) G_GNUC_CONST;
-GtkWidget *xfburn_file_browser_new (void);
+GtkType
+xfburn_file_browser_get_type (void)
+  G_GNUC_CONST;
+     GtkWidget *xfburn_file_browser_new (void);
 
 G_END_DECLS
 #endif

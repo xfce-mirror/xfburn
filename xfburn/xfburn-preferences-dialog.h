@@ -42,7 +42,8 @@ typedef struct
   /* Add Signal Functions Here */
 } XfburnPreferencesDialogClass;
 
-enum {
+enum
+{
   DEVICE_LIST_COLUMN_ICON,
   DEVICE_LIST_COLUMN_NAME,
   DEVICE_LIST_COLUMN_ID,
