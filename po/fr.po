@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn dev version\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-04 20:50+0200\n"
+"POT-Creation-Date: 2005-08-07 10:49+0200\n"
 "PO-Revision-Date: 2005-08-03 19:33+0100\n"
 "Last-Translator: Jean-François Wauthy <pollux@xfce.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,6 +70,10 @@ msgstr "Contenu"
 msgid "Full Path"
 msgstr "Chemin complet"
 
+#: xfburn/xfburn-disc-usage.c:103
+msgid "Burn Data CD"
+msgstr ""
+
 #: xfburn/xfburn-fs-browser.c:93 xfburn/xfburn-fs-browser.c:273
 msgid "Filesystem"
 msgstr "Système de fichier"
@@ -80,89 +84,160 @@ msgstr "Système de fichier"
 msgid "%s's home"
 msgstr "Dossier personnel de %s"
 
-#: xfburn/xfburn-main-window.c:47
+#: xfburn/xfburn-main-window.c:51
 msgid "_File"
 msgstr "_Fichier"
 
-#: xfburn/xfburn-main-window.c:48 xfburn/xfburn-main-window.c:252
-msgid "Quit"
+#: xfburn/xfburn-main-window.c:52 xfburn/xfburn-main-window.c:267
+#, fuzzy
+msgid "_Quit"
 msgstr "Quitter"
 
-#: xfburn/xfburn-main-window.c:48
+#: xfburn/xfburn-main-window.c:52
 msgid "Quit Xfburn"
 msgstr "Quitter Xfburn"
 
-#: xfburn/xfburn-main-window.c:49
+#: xfburn/xfburn-main-window.c:53
 msgid "_Edit"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:50
+#: xfburn/xfburn-main-window.c:54
 msgid "Prefere_nces"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:51
-msgid "_Help"
-msgstr "_Aide"
-
-#: xfburn/xfburn-main-window.c:52
-msgid "_About"
-msgstr "_A propos de Xfburn"
-
-#: xfburn/xfburn-main-window.c:52
-msgid "Display information about Xfburn"
-msgstr ""
-
 #: xfburn/xfburn-main-window.c:54
-msgid "Blank CD-RW"
-msgstr ""
-
-#: xfburn/xfburn-main-window.c:55
-msgid "Format DVD-RW"
+msgid "Show preferences dialog"
 msgstr ""
 
 #: xfburn/xfburn-main-window.c:56
-msgid "Copy Data CD"
+msgid "_Actions"
 msgstr ""
 
 #: xfburn/xfburn-main-window.c:57
-msgid "Copy Audio CD"
-msgstr ""
+#, fuzzy
+msgid "_View"
+msgstr "_Fichier"
 
 #: xfburn/xfburn-main-window.c:58
-msgid "Burn CD Image"
-msgstr ""
-
-#: xfburn/xfburn-main-window.c:59
 msgid "Refresh"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:59
+#: xfburn/xfburn-main-window.c:58
 msgid "Refresh file list"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:233
+#: xfburn/xfburn-main-window.c:59
+msgid "_Help"
+msgstr "_Aide"
+
+#: xfburn/xfburn-main-window.c:60
+msgid "_About"
+msgstr "_A propos de Xfburn"
+
+#: xfburn/xfburn-main-window.c:60
+msgid "Display information about Xfburn"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:62
+msgid "Blank CD-RW"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:63
+msgid "Format DVD-RW"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:64
+msgid "Copy Data CD"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:65
+msgid "Copy Audio CD"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:66
+msgid "Burn CD Image"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:70
+msgid "Show file browser"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:70
+msgid "Show/hide the file browser"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:248
 msgid "Toolbar Editor"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:252
+#: xfburn/xfburn-main-window.c:267
 msgid "Are sure you want to quit?"
 msgstr ""
 
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: xfburn/xfburn-main-window.c:275
+#: xfburn/xfburn-main-window.c:290
 msgid "Another cd burning tool"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:278
+#: xfburn/xfburn-main-window.c:293
 msgid "Maintainer"
 msgstr "Mainteneur"
 
-#: xfburn/xfburn-main-window.c:284
+#: xfburn/xfburn-main-window.c:299
 #, c-format
 msgid "Translator (%s)"
 msgstr "Traducteur (%s)"
 
-#: xfburn/xfburn-main.c:145
+#: xfburn/xfburn-main.c:149
 msgid "Xfburn"
 msgstr "Xfburn"
+
+#: xfburn/xfburn-preferences-dialog.c:110
+msgid "General"
+msgstr ""
+
+#: xfburn/xfburn-preferences-dialog.c:116
+#: xfburn/xfburn-preferences-dialog.c:124
+msgid "Temporary directory"
+msgstr ""
+
+#: xfburn/xfburn-preferences-dialog.c:128
+msgid "_Clean temporary directory on exit"
+msgstr ""
+
+#: xfburn/xfburn-preferences-dialog.c:132
+msgid "File browser"
+msgstr ""
+
+#: xfburn/xfburn-preferences-dialog.c:140
+msgid "Show _hidden files"
+msgstr ""
+
+#: xfburn/xfburn-preferences-dialog.c:144
+msgid "Show human_readable filesizes"
+msgstr ""
+
+#: xfburn/xfburn-preferences-dialog.c:154
+msgid "Devices"
+msgstr ""
+
+#: xfburn/xfburn-preferences-dialog.c:160
+msgid "Detected devices"
+msgstr ""
+
+#: xfburn/xfburn-preferences-dialog.c:185
+msgid "Sc_an for devices"
+msgstr ""
+
+#: xfburn/xfburn-utils.c:170
+msgid "Failed to open /proc/scsi/sg/devices"
+msgstr ""
+
+#: xfburn/xfburn-utils.c:173
+msgid "Failed to open /proc/scsi/sg/device_strs"
+msgstr ""
+
+#: xfburn/xfburn-utils.c:184
+msgid "Error reading scsi information from /proc/scsi/sg/devices"
+msgstr ""
