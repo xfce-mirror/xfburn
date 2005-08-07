@@ -31,6 +31,7 @@
 #include "xfburn-file-browser.h"
 #include "xfburn-disc-content.h"
 #include "xfburn-blank-cd-dialog.h"
+#include "xfburn-burn-image-dialog.h"
 
 /* prototypes */
 static void xfburn_main_window_class_init (XfburnMainWindowClass *);
@@ -44,6 +45,7 @@ static void xfburn_window_action_preferences (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
 
 static void xfburn_window_action_blank_cd (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_burn_image (GtkAction *, XfburnMainWindow *);
 
 static void xfburn_window_action_show_filebrowser (GtkToggleAction *, XfburnMainWindow *);
 
@@ -62,11 +64,12 @@ static GtkActionEntry action_entries[] = {
   {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
    G_CALLBACK (xfburn_window_action_about),},
   {"blank-cd", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),
-    G_CALLBACK (xfburn_window_action_blank_cd),},
+   G_CALLBACK (xfburn_window_action_blank_cd),},
   {"format-dvd", "xfburn-blank-dvdrw", N_("Format DVD-RW"), NULL, N_("Format DVD-RW"),},
   {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),},
   {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
-  {"burn-cd", "xfburn-burn-cd", N_("Burn CD Image"), NULL, N_("Burn CD Image"),},
+  {"burn-cd", "xfburn-burn-cd", N_("Burn CD Image"), NULL, N_("Burn CD Image"),
+   G_CALLBACK (xfburn_window_action_burn_image),},
 };
 
 static GtkToggleActionEntry toggle_action_entries[] = {
@@ -265,11 +268,22 @@ cb_delete_main_window (GtkWidget * widget, GdkEvent * event, gpointer data)
 
 /* actions */
 static void
-xfburn_window_action_blank_cd (GtkAction *action, XfburnMainWindow * window)
+xfburn_window_action_blank_cd (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
 
   dialog = xfburn_blank_cd_dialog_new ();
+
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+}
+
+static void
+xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
+{
+  GtkWidget *dialog;
+
+  dialog = xfburn_burn_image_dialog_new ();
 
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);

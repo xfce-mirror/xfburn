@@ -10,6 +10,7 @@ bin_PROGRAMS = 								\
 xfburn_headers = 							\
 	xfburn-global.h							\
 	xfburn-blank-cd-dialog.h					\
+	xfburn-burn-image-dialog.h					\
 	xfburn-main-window.h						\
 	xfburn-file-browser.h						\
 	xfburn-disc-content.h						\
@@ -22,6 +23,7 @@ xfburn_headers = 							\
 xfburn_SOURCES =							\
 	$(xfburn_headers)						\
 	xfburn-blank-cd-dialog.c					\
+	xfburn-burn-image-dialog.c					\
 	xfburn-main.c 							\
 	xfburn-main-window.c 						\
 	xfburn-file-browser.c						\
