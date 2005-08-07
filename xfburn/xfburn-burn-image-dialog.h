@@ -24,26 +24,26 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-
 #define XFBURN_TYPE_BURN_IMAGE_DIALOG         (xfburn_burn_image_dialog_get_type ())
 #define XFBURN_BURN_IMAGE_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialog))
 #define XFBURN_BURN_IMAGE_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialogClass))
 #define XFBURN_IS_BURN_IMAGE_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_IMAGE_DIALOG))
 #define XFBURN_IS_BURN_IMAGE_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_IMAGE_DIALOG))
 #define XFBURN_BURN_IMAGE_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialogClass))
-
 typedef struct XfburnBurnImageDialogPrivate XfburnBurnImageDialogPrivate;
 
-typedef struct {
-	GtkDialog parent;
-	XfburnBurnImageDialogPrivate *priv;
+typedef struct
+{
+  GtkDialog parent;
+  XfburnBurnImageDialogPrivate *priv;
 } XfburnBurnImageDialog;
 
-typedef struct {
-	GtkDialogClass parent_class;
+typedef struct
+{
+  GtkDialogClass parent_class;
 } XfburnBurnImageDialogClass;
 
-GtkType xfburn_burn_image_dialog_get_type();
-GtkWidget *xfburn_burn_image_dialog_new();
+GtkType xfburn_burn_image_dialog_get_type ();
+GtkWidget *xfburn_burn_image_dialog_new ();
 
 #endif /* XFBURN_BURN_IMAGE_DIALOG_H */

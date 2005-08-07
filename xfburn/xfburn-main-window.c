@@ -32,6 +32,7 @@
 #include "xfburn-disc-content.h"
 #include "xfburn-blank-cd-dialog.h"
 #include "xfburn-burn-image-dialog.h"
+#include "xfburn-burning-dialog.h"
 
 /* prototypes */
 static void xfburn_main_window_class_init (XfburnMainWindowClass *);
@@ -79,9 +80,9 @@ static GtkToggleActionEntry toggle_action_entries[] = {
 
 static const gchar *toolbar_actions[] = {
   "blank-cd",
-  "format-dvd",
-  "copy-data",
-  "copy-audio",
+  //"format-dvd",
+  //"copy-data",
+  //"copy-audio",
   "burn-cd",
   "refresh",
   "about",
@@ -282,11 +283,18 @@ static void
 xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
-
+  gint ret;
+  
   dialog = xfburn_burn_image_dialog_new ();
-
-  gtk_dialog_run (GTK_DIALOG (dialog));
+  ret = gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
+  
+  if ( ret == GTK_RESPONSE_OK ) {  
+    dialog = xfburn_burning_dialog_new ("");
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    gtk_widget_destroy (dialog);
+  }
+    
 }
 
 static void
