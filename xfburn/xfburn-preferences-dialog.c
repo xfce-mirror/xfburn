@@ -16,15 +16,24 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifdef	HAVE_CONFIG_H
+#include <config.h>
+#endif /* !HAVE_CONFIG_H */
+
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "xfburn-preferences-dialog.h"
+#include "xfburn-global.h"
+#include "xfburn-utils.h"
 
 #define BORDER 5
 
 static void xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass);
 static void xfburn_preferences_dialog_init (XfburnPreferencesDialog * sp);
 static void xfburn_preferences_dialog_finalize (GObject * object);
+
+static void refresh_devices_list (XfburnPreferencesDialog *dialog);
+static void cb_scan_button_clicked (GtkWidget *button, gpointer user_data);
 
 struct XfburnPreferencesDialogPrivate
 {
@@ -90,7 +99,9 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   GtkWidget *frame;
   GtkWidget *scrolled_window;
   GtkListStore *model;
-
+  GtkTreeViewColumn *column_name;
+  GtkCellRenderer *cell_icon, *cell_name;
+  
   obj->priv = g_new0 (XfburnPreferencesDialogPrivate, 1);
   priv = obj->priv;
 
@@ -158,7 +169,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
 
   frame = xfce_framebox_new (_("Detected devices"), TRUE);
-  gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, BORDER);
+  gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, BORDER);
   gtk_widget_show (frame);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
@@ -174,20 +185,92 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   model = gtk_list_store_new (DEVICE_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
   priv->treeview_devices = gtk_tree_view_new_with_model (GTK_TREE_MODEL (model));
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DEVICE_LIST_COLUMN_NAME, GTK_SORT_ASCENDING);
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview_devices), TRUE);
   gtk_widget_show (priv->treeview_devices);
   gtk_container_add (GTK_CONTAINER (scrolled_window), priv->treeview_devices);
-
+  
+  /* add columns */
+  column_name = gtk_tree_view_column_new ();
+  gtk_tree_view_column_set_title (column_name, _("Name"));
+  gtk_tree_view_column_set_expand (column_name, TRUE);
+    
+  cell_icon = gtk_cell_renderer_pixbuf_new ();
+  gtk_tree_view_column_pack_start (column_name, cell_icon, FALSE);
+  gtk_tree_view_column_set_attributes (column_name, cell_icon, "pixbuf", DEVICE_LIST_COLUMN_ICON, NULL);
+  g_object_set (cell_icon, "xalign", 0.0, "ypad", 0, NULL);
+  
+  cell_name = gtk_cell_renderer_text_new ();
+  gtk_tree_view_column_pack_start (column_name, cell_name, TRUE);
+  gtk_tree_view_column_set_attributes (column_name, cell_name, "text", DEVICE_LIST_COLUMN_NAME, NULL);
+  
+  gtk_tree_view_append_column (GTK_TREE_VIEW (priv->treeview_devices), column_name);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Id"), 
+                                               gtk_cell_renderer_text_new (), "text", DEVICE_LIST_COLUMN_ID, NULL);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Node"), 
+                                               gtk_cell_renderer_text_new (), "text", DEVICE_LIST_COLUMN_NODE, NULL);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Write CD-R"), 
+                                               gtk_cell_renderer_toggle_new (), "active", DEVICE_LIST_COLUMN_CDR, NULL);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Write CD-RW"), 
+                                               gtk_cell_renderer_toggle_new (), "active", DEVICE_LIST_COLUMN_CDRW, NULL);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Write DVD-R"), 
+                                               gtk_cell_renderer_toggle_new (), "active", DEVICE_LIST_COLUMN_DVDR, NULL);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Write DVD-RAM"), 
+                                               gtk_cell_renderer_toggle_new (), "active", DEVICE_LIST_COLUMN_DVDRAM, NULL);
+  
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, BORDER);
   gtk_widget_show (hbox);
 
   priv->button_scan = xfce_create_mixed_button (GTK_STOCK_CDROM, _("Sc_an for devices"));
   gtk_box_pack_end (GTK_BOX (hbox), priv->button_scan, FALSE, FALSE, BORDER);
+  g_signal_connect (G_OBJECT (priv->button_scan), "clicked", G_CALLBACK (cb_scan_button_clicked), obj);
   gtk_widget_show (priv->button_scan);
+  
+  refresh_devices_list (obj);
 }
 
 /* internals */
+static void
+refresh_devices_list (XfburnPreferencesDialog *dialog)
+{
+  GtkTreeModel *model;
+  XfburnPreferencesDialogPrivate *priv;
+  GList *device;
+  
+  priv = dialog->priv;
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->treeview_devices));
+  
+  gtk_list_store_clear (GTK_LIST_STORE (model));
+  
+  device = list_devices;
+  while (device) {
+    GtkTreeIter iter;
+    XfburnDevice *device_data;
+    
+    device_data = (XfburnDevice *) device->data;
+    
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                        DEVICE_LIST_COLUMN_NAME, device_data->name,
+                        DEVICE_LIST_COLUMN_ID, device_data->id,
+                        DEVICE_LIST_COLUMN_NODE, device_data->node_path,
+                        DEVICE_LIST_COLUMN_CDR, device_data->cdr,
+                        DEVICE_LIST_COLUMN_CDRW, device_data->cdrw,
+                        DEVICE_LIST_COLUMN_DVDR, device_data->dvdr,
+                        DEVICE_LIST_COLUMN_DVDRAM, device_data->dvdram, -1);
+    
+    device = g_list_next (device);
+  }
+}
+
+static void
+cb_scan_button_clicked (GtkWidget *button, gpointer user_data)
+{
+  xfburn_scan_devices ();
+  refresh_devices_list (user_data);
+}
+
 static void
 xfburn_preferences_dialog_finalize (GObject * object)
 {

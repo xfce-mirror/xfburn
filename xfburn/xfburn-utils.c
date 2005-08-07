@@ -43,6 +43,7 @@ xfburn_device_content_free (XfburnDevice * device, gpointer user_data)
   DBG ("freeing '%s'", device->name);
   g_free (device->name);
   g_free (device->id);
+  g_free (device->node_path);
 }
 
 void
@@ -215,13 +216,14 @@ get_scsi_device (const gchar * devicenode, const gchar * devicenodepath, gchar *
 void
 xfburn_scan_devices ()
 {
-  /* adapted from GnomeMaker */
+  /* adapted from GnomeBaker */
   gchar **info = NULL;
 
   /* clear current devices list */
   g_list_foreach (list_devices, (GFunc) xfburn_device_content_free, NULL);
   g_list_free (list_devices);
-
+  list_devices = NULL;
+  
 #ifdef __linux__
   if (!(info = get_file_as_list ("/proc/sys/dev/cdrom/info"))) {
     g_critical ("Failed to open /proc/sys/dev/cdrom/info");
@@ -246,9 +248,22 @@ xfburn_scan_devices ()
       device_entry->name = modelname;
       device_entry->id = deviceid;
       device_entry->node_path = devicenodepath;
+      
+      if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write CD-R:"), "1") == 0)
+        device_entry->cdr = TRUE;
+      if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write CD-RW:"), "1") == 0)
+        device_entry->cdrw = TRUE;
+      if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write DVD-R:"), "1") == 0)
+        device_entry->dvdr = TRUE;
+      if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write DVD-RAM:"), "1") == 0)
+        device_entry->dvdram = TRUE;
+                  
       list_devices = g_list_append (list_devices, device_entry);
       
       g_message ("device [%d] found : %s (%s)", devicenum, modelname, devicenodepath);
+      g_message ("device [%d] capabilities :%s%s%s%s", devicenum, device_entry->cdr ? " CD-R" : "",
+                 device_entry->cdrw ? " CD-RW" : "", device_entry->dvdr ? " DVD-R" : "",
+                 device_entry->dvdram ? " DVD-RAM" : "");
       
       g_hash_table_foreach (devinfo, devices_for_each, NULL);
       g_hash_table_destroy (devinfo);
