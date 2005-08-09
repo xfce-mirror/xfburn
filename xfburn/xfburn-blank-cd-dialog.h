@@ -21,6 +21,8 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#include "xfburn-global.h"
+
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
@@ -45,5 +47,8 @@ typedef struct
 
 GtkType xfburn_blank_cd_dialog_get_type ();
 GtkWidget *xfburn_blank_cd_dialog_new ();
+
+gchar *xfburn_blank_cd_dialog_get_command (XfburnBlankCdDialog *dialog);
+XfburnDevice *xfburn_blank_cd_dialog_get_device (XfburnBlankCdDialog *dialog);
 
 #endif /* XFBURN_BLANK_CD_H */

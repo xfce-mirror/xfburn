@@ -32,7 +32,7 @@
 #include "xfburn-disc-content.h"
 #include "xfburn-blank-cd-dialog.h"
 #include "xfburn-burn-image-dialog.h"
-#include "xfburn-burning-dialog.h"
+#include "xfburn-progress-dialog.h"
 
 /* prototypes */
 static void xfburn_main_window_class_init (XfburnMainWindowClass *);
@@ -272,28 +272,51 @@ static void
 xfburn_window_action_blank_cd (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
-
+  gint ret;
+  
   dialog = xfburn_blank_cd_dialog_new ();
-
-  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+  ret = gtk_dialog_run (GTK_DIALOG (dialog));
+  
+  gtk_widget_hide (dialog);
+  
+  if (ret == GTK_RESPONSE_OK) {
+    gchar *command;
+    XfburnDevice *device;
+    GtkWidget *dialog_progress;
+    
+    command = xfburn_blank_cd_dialog_get_command (XFBURN_BLANK_CD_DIALOG (dialog));
+    device = xfburn_blank_cd_dialog_get_device (XFBURN_BLANK_CD_DIALOG (dialog));
+    
+    dialog_progress = xfburn_progress_dialog_new (device, command);
+    gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), GTK_WINDOW (window));
+    gtk_dialog_run (GTK_DIALOG (dialog_progress));
+    gtk_widget_destroy (dialog_progress);
+    
+    g_free (command);
+  }
+  
   gtk_widget_destroy (dialog);
 }
 
 static void
 xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
 {
-  GtkWidget *dialog;
-  gint ret;
-  
-  dialog = xfburn_burn_image_dialog_new ();
-  ret = gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
-  
-  if ( ret == GTK_RESPONSE_OK ) {  
-    dialog = xfburn_burning_dialog_new ("");
-    gtk_dialog_run (GTK_DIALOG (dialog));
-    gtk_widget_destroy (dialog);
-  }
+/*   GtkWidget *dialog;
+ *   gint ret;
+ *   
+ *   dialog = xfburn_burn_image_dialog_new ();
+ *   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+ *   ret = gtk_dialog_run (GTK_DIALOG (dialog));
+ *   gtk_widget_destroy (dialog);
+ *   
+ *   if ( ret == GTK_RESPONSE_OK ) {  
+ *     dialog = xfburn_burning_dialog_new ("");
+ *     gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+ *     gtk_dialog_run (GTK_DIALOG (dialog));
+ *     gtk_widget_destroy (dialog);
+ *   }
+ */
     
 }
 
@@ -353,7 +376,8 @@ xfburn_window_action_preferences (GtkAction * action, XfburnMainWindow * window)
   GtkWidget *dialog;
 
   dialog = xfburn_preferences_dialog_new ();
-
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+  
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 }

@@ -23,6 +23,8 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#include <linux/cdrom.h>
+
 #include "xfburn-global.h"
 
 void xfburn_busy_cursor (GtkWidget *);
@@ -30,6 +32,9 @@ void xfburn_default_cursor (GtkWidget *);
 
 void xfburn_device_content_free (XfburnDevice * device, gpointer user_data);
 void xfburn_device_free (XfburnDevice * device);
+XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
+gint xfburn_device_query_cdstatus (XfburnDevice * device);
+
 void xfburn_scan_devices ();
 
 gchar *xfburn_humanreadable_filesize (guint64);

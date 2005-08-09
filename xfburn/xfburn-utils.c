@@ -25,10 +25,12 @@
 #endif
 
 #include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
-
+#include <sys/ioctl.h>
+#include <linux/cdrom.h>
 
 #include <gtk/gtk.h>
 
@@ -276,6 +278,49 @@ xfburn_scan_devices ()
 #else
 #warning this program currently supports only Linux sorry :-(
 #endif
+}
+
+XfburnDevice *
+xfburn_device_lookup_by_name (const gchar * name)
+{
+  GList *device;
+
+  device = list_devices;
+
+  while (device) {
+    XfburnDevice *device_data = (XfburnDevice *) device->data;
+
+    if (g_ascii_strcasecmp (device_data->name, name) == 0)
+      return device_data;
+
+    device = g_list_next (device);
+  }
+
+  return NULL;
+}
+
+/* CDS_NO_DISC
+ * CDS_TRAY_OPEN
+ * CDS_DRIVE_NOT_READY
+ * CDS_DISC_OK
+ */
+gint
+xfburn_device_query_cdstatus (XfburnDevice * device)
+{
+  int fd, ret;
+   
+  /* adapted from GnomeBaker */
+  g_return_val_if_fail (device != NULL, FALSE);
+
+  fd = open (device->node_path, O_RDONLY | O_NONBLOCK);
+
+  ret = ioctl (fd, CDROM_DRIVE_STATUS, CDSL_CURRENT);
+  
+  
+  if (ret == -1)
+    g_critical ("xfburn_device_query_cdstatus - ioctl failed");
+  
+  return ret;
 }
 
 /***********/
