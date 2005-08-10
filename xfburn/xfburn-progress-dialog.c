@@ -25,6 +25,7 @@
 #endif
 
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <signal.h>
 
 #include <gtk/gtk.h>
@@ -106,7 +107,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   GtkWidget *expander;
   GtkWidget *scrolled_window;
   GtkTextBuffer *textbuffer;
-  
+
   obj->priv = g_new0 (XfburnProgressDialogPrivate, 1);
   priv = obj->priv;
 
@@ -129,6 +130,10 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_widget_show (expander);
   gtk_box_pack_start (GTK_BOX (vbox), expander, TRUE, TRUE, 0);
 
+#ifdef DEBUG
+  gtk_expander_set_expanded (GTK_EXPANDER (expander), TRUE);
+#endif
+
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_IN);
@@ -136,10 +141,10 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_container_add (GTK_CONTAINER (expander), scrolled_window);
 
   priv->textview_output = gtk_text_view_new ();
-  
+
   textbuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->textview_output));
   gtk_text_buffer_create_tag (textbuffer, "error", "foreground", "red", NULL);
-  
+
   gtk_widget_set_size_request (priv->textview_output, 350, 500);
   gtk_text_view_set_cursor_visible (GTK_TEXT_VIEW (priv->textview_output), FALSE);
   gtk_text_view_set_editable (GTK_TEXT_VIEW (priv->textview_output), FALSE);
@@ -237,22 +242,25 @@ xfburn_progress_dialog_update (XfburnProgressDialog * dialog)
   fd_set set;
   struct timeval tval;
   int ret;
-  gchar buffer[1024];
 
   FD_ZERO (&set);
   FD_SET (dialog->priv->fd_stdout, &set);
   FD_SET (dialog->priv->fd_stderr, &set);
   tval.tv_sec = 2;
   tval.tv_usec = 0;
+  
   ret = select (FD_SETSIZE, &set, NULL, NULL, &tval);
 
   if (ret > 0) {
-    if (read (dialog->priv->fd_stdout, buffer, sizeof (buffer)) > 0) {
+    gchar buffer[1024];
+
+    if ( (ret = read (dialog->priv->fd_stdout, buffer, sizeof (buffer))) > 0) {
       hack_characters (buffer);
       g_strstrip (buffer);
       xfburn_progress_dialog_append_output (dialog, buffer);
       xfburn_progress_dialog_append_output (dialog, "\n");
     }
+
     memset (buffer, 0, sizeof (buffer));
     if (read (dialog->priv->fd_stderr, buffer, sizeof (buffer)) > 0) {
       hack_characters (buffer);
@@ -260,10 +268,9 @@ xfburn_progress_dialog_update (XfburnProgressDialog * dialog)
       xfburn_progress_dialog_append_error (dialog, buffer);
       xfburn_progress_dialog_append_output (dialog, "\n");
     }
+    return TRUE;
   }
-
-
-  return TRUE;
+  return FALSE;
 }
 
 /* public */
@@ -278,14 +285,11 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
   int argc;
   gchar **argvp;
   GError *error = NULL;
-
   DBG ("command : %s", priv->command);
-  
   while (!ready) {
     switch (xfburn_device_query_cdstatus (priv->device)) {
     case CDS_NO_DISC:
       message = g_strdup (_("No disc in the cdrom drive"));
-
       break;
     case CDS_DISC_OK:
     default:
@@ -319,6 +323,7 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
     g_strfreev (argvp);
     return;
   }
+
   g_strfreev (argvp);
 
   priv->id_refresh_fct = g_timeout_add (500, (GSourceFunc) xfburn_progress_dialog_update, dialog);
@@ -328,11 +333,8 @@ GtkWidget *
 xfburn_progress_dialog_new (XfburnDevice * device, const gchar * command)
 {
   XfburnProgressDialog *obj;
-
   obj = XFBURN_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_PROGRESS_DIALOG, NULL));
-
   obj->priv->command = g_strdup (command);
   obj->priv->device = device;
-
   return GTK_WIDGET (obj);
 }
