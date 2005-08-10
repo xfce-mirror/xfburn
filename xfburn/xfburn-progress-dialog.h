@@ -50,5 +50,6 @@ typedef struct
 GtkType xfburn_progress_dialog_get_type ();
 
 GtkWidget *xfburn_progress_dialog_new (XfburnDevice *device, const gchar *command);
+void xfburn_progress_dialog_start (XfburnProgressDialog * dialog);
 
 #endif /* XFBURN_PROGRESS_DIALOG_H */

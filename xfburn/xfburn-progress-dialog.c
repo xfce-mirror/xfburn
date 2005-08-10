@@ -41,7 +41,6 @@ static void xfburn_progress_dialog_finalize (GObject * object);
 
 static void xfburn_progress_dialog_response_cb (XfburnProgressDialog * dialog, gint response_id,
                                                 XfburnProgressDialogPrivate * priv);
-static void xfburn_progress_dialog_show_cb (XfburnProgressDialog * dialog, gpointer user_data);
 
 struct XfburnProgressDialogPrivate
 {
@@ -161,7 +160,6 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_widget_grab_default (priv->button_close);
   gtk_widget_set_sensitive (priv->button_close, FALSE);
 
-  g_signal_connect (G_OBJECT (obj), "show", G_CALLBACK (xfburn_progress_dialog_show_cb), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_progress_dialog_response_cb), priv);
 }
 
@@ -268,8 +266,9 @@ xfburn_progress_dialog_update (XfburnProgressDialog * dialog)
   return TRUE;
 }
 
-static void
-xfburn_progress_dialog_show_cb (XfburnProgressDialog * dialog, gpointer user_data)
+/* public */
+void
+xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
 {
   XfburnProgressDialogPrivate *priv = dialog->priv;
   gboolean ready = FALSE;
@@ -325,7 +324,6 @@ xfburn_progress_dialog_show_cb (XfburnProgressDialog * dialog, gpointer user_dat
   priv->id_refresh_fct = g_timeout_add (500, (GSourceFunc) xfburn_progress_dialog_update, dialog);
 }
 
-/* public */
 GtkWidget *
 xfburn_progress_dialog_new (XfburnDevice * device, const gchar * command)
 {

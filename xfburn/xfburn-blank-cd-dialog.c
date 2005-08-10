@@ -249,7 +249,7 @@ xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_
       blank_type = g_strdup ("fast");
     }
 
-    temp = g_strconcat ("cdrecord", " dev=", priv->device->node_path, " blank=", blank_type, " speed=", speed,
+    temp = g_strconcat ("cdrecord -v", " dev=", priv->device->node_path, " blank=", blank_type, " speed=", speed,
                         gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
                         gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_force)) ? " -force" : "", NULL);
     g_free (priv->command);
