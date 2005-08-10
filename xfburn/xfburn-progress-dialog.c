@@ -49,11 +49,12 @@ struct XfburnProgressDialogPrivate
   gchar *command;
 
   int pid_command;
-  int fd_stdout;
-  int fd_stderr;
+  GIOChannel *channel_stdout;
+  GIOChannel *channel_stderr;
 
-  guint id_refresh_fct;
-
+  guint id_refresh_stdout;
+  guint id_refresh_stderr;
+  
   GtkWidget *progress_bar;
   GtkWidget *textview_output;
 
@@ -214,9 +215,12 @@ xfburn_progress_dialog_append_error (XfburnProgressDialog * dialog, const gchar 
 static void
 xfburn_progress_dialog_response_cb (XfburnProgressDialog * dialog, gint response_id, XfburnProgressDialogPrivate * priv)
 {
-  if (priv->id_refresh_fct > 0)
-    g_source_remove (priv->id_refresh_fct);
+  if (priv->id_refresh_stdout > 0)
+    g_source_remove (priv->id_refresh_stdout);
 
+  if (priv->id_refresh_stderr > 0)
+    g_source_remove (priv->id_refresh_stderr);
+  
   if (response_id == GTK_RESPONSE_CANCEL) {
     kill (priv->pid_command, SIGTERM);
   }
@@ -235,42 +239,27 @@ hack_characters (gchar * buf)
   }
 }
 
-
 static gboolean
-xfburn_progress_dialog_update (XfburnProgressDialog * dialog)
+xfburn_progress_update_stdout (GIOChannel *source, GIOCondition condition, XfburnProgressDialog *dialog)
 {
-  fd_set set;
-  struct timeval tval;
-  int ret;
-
-  FD_ZERO (&set);
-  FD_SET (dialog->priv->fd_stdout, &set);
-  FD_SET (dialog->priv->fd_stderr, &set);
-  tval.tv_sec = 2;
-  tval.tv_usec = 0;
-  
-  ret = select (FD_SETSIZE, &set, NULL, NULL, &tval);
-
-  if (ret > 0) {
-    gchar buffer[1024];
-
-    if ( (ret = read (dialog->priv->fd_stdout, buffer, sizeof (buffer))) > 0) {
-      hack_characters (buffer);
-      g_strstrip (buffer);
-      xfburn_progress_dialog_append_output (dialog, buffer);
-      xfburn_progress_dialog_append_output (dialog, "\n");
-    }
-
-    memset (buffer, 0, sizeof (buffer));
-    if (read (dialog->priv->fd_stderr, buffer, sizeof (buffer)) > 0) {
-      hack_characters (buffer);
-      g_strstrip (buffer);
-      xfburn_progress_dialog_append_error (dialog, buffer);
-      xfburn_progress_dialog_append_output (dialog, "\n");
-    }
-    return TRUE;
+  gchar buffer[1024] = "";
+  gsize bytes_read = 0;
+  GError *error = NULL;
+    
+  if (!g_io_channel_read_chars (source, buffer , sizeof (buffer) - 1, &bytes_read, &error)) {
+    g_warning ("Error while reading from pipe : %s", error->message);
+    g_error_free (error);
   }
-  return FALSE;
+  
+  buffer[bytes_read] = '\0';
+  
+  hack_characters (buffer);
+  if (source == dialog->priv->channel_stdout)
+    xfburn_progress_dialog_append_output (dialog, buffer);
+  else
+    xfburn_progress_dialog_append_error (dialog, buffer);
+  
+  return TRUE;
 }
 
 /* public */
@@ -284,7 +273,10 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
   gint ret;
   int argc;
   gchar **argvp;
+  int fd_stdout;
+  int fd_stderr;
   GError *error = NULL;
+  
   DBG ("command : %s", priv->command);
   while (!ready) {
     switch (xfburn_device_query_cdstatus (priv->device)) {
@@ -317,16 +309,26 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
   }
 
   if (!g_spawn_async_with_pipes (NULL, argvp, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, &(priv->pid_command),
-                                 NULL, &(priv->fd_stdout), &(priv->fd_stderr), &error)) {
+                                 NULL, &fd_stdout, &fd_stderr, &error)) {
     g_warning ("Unable to spawn process : %s", error->message);
     g_error_free (error);
     g_strfreev (argvp);
     return;
   }
-
   g_strfreev (argvp);
-
-  priv->id_refresh_fct = g_timeout_add (500, (GSourceFunc) xfburn_progress_dialog_update, dialog);
+  
+  priv->channel_stdout = g_io_channel_unix_new (fd_stdout);
+  g_io_channel_set_encoding (priv->channel_stdout, NULL, NULL);
+  g_io_channel_set_buffered (priv->channel_stdout, FALSE);
+  g_io_channel_set_flags (priv->channel_stdout, G_IO_FLAG_NONBLOCK, NULL);
+  
+  priv->channel_stderr = g_io_channel_unix_new (fd_stderr);
+  g_io_channel_set_encoding (priv->channel_stderr, NULL, NULL);
+  g_io_channel_set_buffered (priv->channel_stderr, FALSE);
+  g_io_channel_set_flags (priv->channel_stderr, G_IO_FLAG_NONBLOCK, NULL);
+  
+  priv->id_refresh_stdout = g_io_add_watch (priv->channel_stdout, G_IO_IN, (GIOFunc) xfburn_progress_update_stdout, dialog);
+  priv->id_refresh_stderr = g_io_add_watch (priv->channel_stderr, G_IO_IN, (GIOFunc) xfburn_progress_update_stdout, dialog);
 }
 
 GtkWidget *

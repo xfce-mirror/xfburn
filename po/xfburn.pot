@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-07 22:33+0200\n"
+"POT-Creation-Date: 2005-08-10 20:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,50 +16,55 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: xfburn/xfburn-blank-cd-dialog.c:93 xfburn/xfburn-blank-cd-dialog.c:96
+#: xfburn/xfburn-blank-cd-dialog.c:102 xfburn/xfburn-blank-cd-dialog.c:105
 #: xfburn/xfburn-main-window.c:67
 msgid "Blank CD-RW"
 msgstr ""
 
 #. devices list
-#: xfburn/xfburn-blank-cd-dialog.c:100 xfburn/xfburn-burn-image-dialog.c:113
+#: xfburn/xfburn-blank-cd-dialog.c:109 xfburn/xfburn-burn-image-dialog.c:113
 msgid "Burning device"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:128 xfburn/xfburn-burn-image-dialog.c:140
+#: xfburn/xfburn-blank-cd-dialog.c:137 xfburn/xfburn-burn-image-dialog.c:140
 msgid "_Speed :"
 msgstr ""
 
 #. blank type
-#: xfburn/xfburn-blank-cd-dialog.c:153
+#: xfburn/xfburn-blank-cd-dialog.c:162
 msgid "Blank type"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:158
+#: xfburn/xfburn-blank-cd-dialog.c:167
 msgid "Fast"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:159
+#: xfburn/xfburn-blank-cd-dialog.c:168
 msgid "Complete"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:160
-msgid "Erase last track"
-msgstr ""
-
-#: xfburn/xfburn-blank-cd-dialog.c:161
+#: xfburn/xfburn-blank-cd-dialog.c:169
 msgid "Reopen last session"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:162
+#: xfburn/xfburn-blank-cd-dialog.c:170
 msgid "Erase last session"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:167 xfburn/xfburn-burn-image-dialog.c:192
-msgid "Eject disk"
+#. options
+#: xfburn/xfburn-blank-cd-dialog.c:176 xfburn/xfburn-burn-image-dialog.c:184
+msgid "Options"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:177
+#: xfburn/xfburn-blank-cd-dialog.c:184
+msgid "_Force"
+msgstr ""
+
+#: xfburn/xfburn-blank-cd-dialog.c:188
+msgid "E_ject disk"
+msgstr ""
+
+#: xfburn/xfburn-blank-cd-dialog.c:198
 msgid "_Blank"
 msgstr ""
 
@@ -80,9 +85,8 @@ msgstr ""
 msgid "default"
 msgstr ""
 
-#. options
-#: xfburn/xfburn-burn-image-dialog.c:184
-msgid "Options"
+#: xfburn/xfburn-burn-image-dialog.c:192
+msgid "Eject disk"
 msgstr ""
 
 #: xfburn/xfburn-burn-image-dialog.c:197
@@ -97,13 +101,17 @@ msgstr ""
 msgid "_Burn image"
 msgstr ""
 
-#: xfburn/xfburn-burning-dialog.c:90
+#: xfburn/xfburn-progress-dialog.c:115
 msgid "Burning disk..."
 msgstr ""
 
 #. output
-#: xfburn/xfburn-burning-dialog.c:105
+#: xfburn/xfburn-progress-dialog.c:130
 msgid "View _output"
+msgstr ""
+
+#: xfburn/xfburn-progress-dialog.c:284
+msgid "No disc in the cdrom drive"
 msgstr ""
 
 #: xfburn/xfburn-directory-browser.c:44
@@ -180,7 +188,7 @@ msgstr ""
 msgid "_File"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:57 xfburn/xfburn-main-window.c:303
+#: xfburn/xfburn-main-window.c:57 xfburn/xfburn-main-window.c:326
 msgid "_Quit"
 msgstr ""
 
@@ -256,21 +264,21 @@ msgstr ""
 msgid "Toolbar Editor"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:303
+#: xfburn/xfburn-main-window.c:326
 msgid "Are sure you want to quit?"
 msgstr ""
 
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: xfburn/xfburn-main-window.c:326
+#: xfburn/xfburn-main-window.c:349
 msgid "Another cd burning tool"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:329
+#: xfburn/xfburn-main-window.c:352
 msgid "Maintainer"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:335
+#: xfburn/xfburn-main-window.c:358
 #, c-format
 msgid "Translator (%s)"
 msgstr ""
@@ -348,14 +356,14 @@ msgstr ""
 msgid "Sc_an for devices"
 msgstr ""
 
-#: xfburn/xfburn-utils.c:171
+#: xfburn/xfburn-utils.c:173
 msgid "Failed to open /proc/scsi/sg/devices"
 msgstr ""
 
-#: xfburn/xfburn-utils.c:174
+#: xfburn/xfburn-utils.c:176
 msgid "Failed to open /proc/scsi/sg/device_strs"
 msgstr ""
 
-#: xfburn/xfburn-utils.c:185
+#: xfburn/xfburn-utils.c:187
 msgid "Error reading scsi information from /proc/scsi/sg/devices"
 msgstr ""
