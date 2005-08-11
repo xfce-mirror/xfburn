@@ -51,6 +51,7 @@ static void xfburn_progress_dialog_finalize (GObject * object);
 
 static void xfburn_progress_dialog_label_set_text (XfburnProgressDialog * dialog, const gchar * text);
 
+static void xfburn_progress_dialog_expander_activate_cb (GtkExpander * expander, XfburnProgressDialog * dialog);
 static gboolean xfburn_progress_dialog_delete_cb (XfburnProgressDialog * dialog, GdkEvent * event,
                                                   XfburnProgressDialogPrivate * priv);
 static void xfburn_progress_dialog_response_cb (XfburnProgressDialog * dialog, gint response_id,
@@ -135,6 +136,9 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   obj->priv = g_new0 (XfburnProgressDialogPrivate, 1);
   priv = obj->priv;
 
+  gtk_window_set_default_size (GTK_WINDOW (obj), 575, 200);
+
+  /* label */
   priv->label = gtk_label_new ("Initializing ...");
   gtk_misc_set_alignment (GTK_MISC (priv->label), 0.0, 0.0);
   gtk_label_set_justify (GTK_LABEL (priv->label), GTK_JUSTIFY_LEFT);
@@ -152,10 +156,8 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   expander = gtk_expander_new_with_mnemonic (_("View _output"));
   gtk_widget_show (expander);
   gtk_box_pack_start (box, expander, TRUE, TRUE, 0);
-
-#ifdef DEBUG
-  gtk_expander_set_expanded (GTK_EXPANDER (expander), TRUE);
-#endif
+  g_signal_connect_after (G_OBJECT (expander), "activate", G_CALLBACK (xfburn_progress_dialog_expander_activate_cb),
+                          obj);
 
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
@@ -168,7 +170,6 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   textbuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->textview_output));
   gtk_text_buffer_create_tag (textbuffer, "error", "foreground", "red", NULL);
 
-  gtk_widget_set_size_request (priv->textview_output, 350, 500);
   gtk_text_view_set_cursor_visible (GTK_TEXT_VIEW (priv->textview_output), FALSE);
   gtk_text_view_set_editable (GTK_TEXT_VIEW (priv->textview_output), FALSE);
   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (priv->textview_output), GTK_WRAP_WORD);
@@ -237,6 +238,12 @@ xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar
   gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (priv->textview_output), &iter, 0.0, TRUE, 0.0, 0.0);
 }
 
+static void
+xfburn_progress_dialog_expander_activate_cb (GtkExpander * expander, XfburnProgressDialog * dialog)
+{
+  // TODO
+}
+
 static gboolean
 xfburn_progress_dialog_delete_cb (XfburnProgressDialog * dialog, GdkEvent * event, XfburnProgressDialogPrivate * priv)
 {
@@ -287,7 +294,7 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
       gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), 1.0);
     }
 
-    xfburn_progress_dialog_label_set_text (dialog, _("Operation terminated"));
+    xfburn_progress_dialog_label_set_text (dialog, _("Operation finished"));
 
     switch (dialog->priv->status) {
     case PROGRESS_STATUS_CANCELLED:
@@ -295,10 +302,12 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
       break;
     case PROGRESS_STATUS_COMPLETED:
       gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), _("Completed"));
+      xfce_info (_("Blanking process exited with success"));
       break;
     case PROGRESS_STATUS_FAILED:
     default:
       gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), _("Failed"));
+      xfce_err (_("An error occured while trying to blank the disc (see output for more details)"));
     }
 
     return FALSE;
@@ -318,14 +327,16 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
   }
 
   xfburn_progress_dialog_append_output (dialog, converted_buffer, (source == dialog->priv->channel_stderr));
-    
+
   switch (dialog->priv->dialog_type) {
   case XFBURN_PROGRESS_DIALOG_BLANK_CD:
     if (strstr (converted_buffer, CDRECORD_BLANKING_TIME)) {
       dialog->priv->status = PROGRESS_STATUS_COMPLETED;
-    } else if (strstr (converted_buffer, CDRECORD_BLANKING)) {
+    }
+    else if (strstr (converted_buffer, CDRECORD_BLANKING)) {
       xfburn_progress_dialog_label_set_text (dialog, _("Blanking..."));
-    } else if (strstr (converted_buffer, CDRECORD_OPC)) {
+    }
+    else if (strstr (converted_buffer, CDRECORD_OPC)) {
       xfburn_progress_dialog_label_set_text (dialog, _("Performing OPC..."));
     }
     break;
@@ -373,6 +384,8 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
     }
 
     if (!ready) {
+      xfburn_progress_dialog_append_output (dialog, message, TRUE);
+      xfburn_progress_dialog_append_output (dialog, "\n", FALSE);
       dialog_message = gtk_message_dialog_new (GTK_WINDOW (dialog), GTK_DIALOG_DESTROY_WITH_PARENT,
                                                GTK_MESSAGE_WARNING, GTK_BUTTONS_OK_CANCEL, message);
       ret = gtk_dialog_run (GTK_DIALOG (dialog_message));
@@ -381,6 +394,10 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
       if (ret == GTK_RESPONSE_CANCEL) {
         gtk_widget_set_sensitive (priv->button_stop, FALSE);
         gtk_widget_set_sensitive (priv->button_close, TRUE);
+        priv->status = PROGRESS_STATUS_CANCELLED;
+        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), _("Cancelled"));
+        gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), 1.0);
+        xfburn_progress_dialog_label_set_text (dialog, _("Operation finished"));
         return;
       }
     }

@@ -22,17 +22,25 @@
 
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-global.h"
+#include "xfburn-utils.h"
 
 static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass);
 static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
 static void xfburn_burn_image_dialog_finalize (GObject * object);
 
+static void xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data);
+
 struct XfburnBurnImageDialogPrivate
 {
+  gchar *command;
+  XfburnDevice *device;
+
   GtkWidget *chooser_image;
+
   GtkWidget *combo_device;
   GtkWidget *combo_speed;
   GtkWidget *combo_mode;
+
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
   GtkWidget *check_dummy;
@@ -88,36 +96,36 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   GtkWidget *label;
   GtkWidget *button;
   int i;
- 
+
   obj->priv = g_new0 (XfburnBurnImageDialogPrivate, 1);
 
   priv = obj->priv;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn CD image"));
-  
+
   img = gtk_image_new_from_stock ("xfburn-burn-cd", GTK_ICON_SIZE_LARGE_TOOLBAR);
   header = xfce_create_header_with_image (img, _("Burn CD image"));
   gtk_widget_show (header);
   gtk_box_pack_start (box, header, FALSE, FALSE, 0);
-  
+
   /* file */
   frame = xfce_framebox_new (_("Image to burn"), TRUE);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-  
+
   priv->chooser_image = gtk_file_chooser_button_new (_("Image to burn"), GTK_FILE_CHOOSER_ACTION_OPEN);
   xfce_framebox_add (XFCE_FRAMEBOX (frame), priv->chooser_image);
   gtk_widget_show (priv->chooser_image);
-  
+
   /* devices list */
   frame = xfce_framebox_new (_("Burning device"), TRUE);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-  
+
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
   xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox);
-    
+
   priv->combo_device = gtk_combo_box_new_text ();
   gtk_widget_show (priv->combo_device);
   gtk_box_pack_start (GTK_BOX (vbox), priv->combo_device, FALSE, FALSE, BORDER);
@@ -125,51 +133,51 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   device = list_devices;
   while (device) {
     XfburnDevice *device_data = (XfburnDevice *) device->data;
-    
+
     gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_device), device_data->name);
-    
+
     device = g_list_next (device);
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_device), 0);
-  
+
   /* speed */
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox);
   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, BORDER);
-  
+
   label = gtk_label_new_with_mnemonic (_("_Speed :"));
   gtk_widget_show (label);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, BORDER);
-      
+
   priv->combo_speed = gtk_combo_box_new_text ();
   gtk_widget_show (priv->combo_speed);
   gtk_box_pack_start (GTK_BOX (hbox), priv->combo_speed, TRUE, TRUE, BORDER);
-  
-  for (i=2; i <= 52; i+=2) {
+
+  for (i = 2; i <= 52; i += 2) {
     gchar *str;
-    
+
     str = g_strdup_printf ("%d", i);
     gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_speed), str);
     g_free (str);
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_speed), 19);
-  
+
   img = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_SMALL_TOOLBAR);
   gtk_widget_show (img);
   button = gtk_button_new ();
   gtk_container_add (GTK_CONTAINER (button), img);
   gtk_widget_show (button);
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
-  
+
   /* mode */
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox);
   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, BORDER);
-  
+
   label = gtk_label_new_with_mnemonic (_("Write _mode :"));
   gtk_widget_show (label);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, BORDER);
-  
+
   priv->combo_mode = gtk_combo_box_new_text ();
   gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), _("default"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), "tao");
@@ -179,41 +187,43 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_mode), 0);
   gtk_box_pack_start (GTK_BOX (hbox), priv->combo_mode, TRUE, TRUE, BORDER);
   gtk_widget_show (priv->combo_mode);
-  
+
   /* options */
   frame = xfce_framebox_new (_("Options"), TRUE);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-  
+
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
   xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox);
-  
+
   priv->check_eject = gtk_check_button_new_with_mnemonic (_("Eject disk"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_eject), TRUE);
   gtk_widget_show (priv->check_eject);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_eject, FALSE, FALSE, BORDER);
-  
+
   priv->check_dummy = gtk_check_button_new_with_mnemonic (_("Dummy write"));
   gtk_widget_show (priv->check_dummy);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_dummy, FALSE, FALSE, BORDER);
-  
+
   priv->check_burnfree = gtk_check_button_new_with_mnemonic (_("BurnFree"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_burnfree), TRUE);
   gtk_widget_show (priv->check_burnfree);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);
-  
+
   /* action buttons */
   button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
-  
+
   button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn image"));
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
   GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
+
+  g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_burn_image_dialog_response_cb), obj);
 }
 
 /* internals */
@@ -222,12 +232,74 @@ xfburn_burn_image_dialog_finalize (GObject * object)
 {
   XfburnBurnImageDialog *cobj;
   cobj = XFBURN_BURN_IMAGE_DIALOG (object);
- 
+
+  g_free (cobj->priv->command);
+
   g_free (cobj->priv);
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
+static void
+xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data)
+{
+  if (response_id == GTK_RESPONSE_OK) {
+    XfburnBurnImageDialogPrivate *priv;
+    gchar *iso_path, *device_name, *speed, *write_mode;
+    gchar *temp;
+
+    priv = dialog->priv;
+
+    iso_path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
+
+    device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
+    priv->device = xfburn_device_lookup_by_name (device_name);
+
+    speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
+
+    switch (gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combo_mode))) {
+    case 2:
+      write_mode = g_strdup (" -dao");
+      break;
+    case 3:
+      write_mode = g_strdup (" -raw96p");
+      break;
+    case 4:
+      write_mode = g_strdup (" -raw16");
+      break;
+    case 0:
+    case 1:
+    default:
+      write_mode = g_strdup (" -tao");
+    }
+
+    temp = g_strconcat ("cdrecord -v gracetime=2", " dev=", priv->device->node_path, write_mode, " speed=", speed,
+                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
+                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " -dummy" : "",
+                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree)) ? " driveropts=burnfree"
+                        : "", " ", iso_path, NULL);
+    g_free (priv->command);
+    priv->command = temp;
+
+    g_free (device_name);
+    g_free (write_mode);
+    g_free (speed);
+    g_free (iso_path);
+  }
+}
+
 /* public */
+XfburnDevice *
+xfburn_burn_image_dialog_get_device (XfburnBurnImageDialog * dialog)
+{
+  return dialog->priv->device;
+}
+
+gchar *
+xfburn_burn_image_dialog_get_command (XfburnBurnImageDialog * dialog)
+{
+  return g_strdup (dialog->priv->command);
+}
+
 GtkWidget *
 xfburn_burn_image_dialog_new ()
 {

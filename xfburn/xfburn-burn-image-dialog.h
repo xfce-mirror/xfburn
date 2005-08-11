@@ -23,6 +23,8 @@
 
 #include <gtk/gtk.h>
 
+#include "xfburn-global.h"
+
 G_BEGIN_DECLS
 #define XFBURN_TYPE_BURN_IMAGE_DIALOG         (xfburn_burn_image_dialog_get_type ())
 #define XFBURN_BURN_IMAGE_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialog))
@@ -45,5 +47,8 @@ typedef struct
 
 GtkType xfburn_burn_image_dialog_get_type ();
 GtkWidget *xfburn_burn_image_dialog_new ();
+
+gchar *xfburn_burn_image_dialog_get_command (XfburnBurnImageDialog *dialog);
+XfburnDevice *xfburn_burn_image_dialog_get_device (XfburnBurnImageDialog *dialog);
 
 #endif /* XFBURN_BURN_IMAGE_DIALOG_H */
