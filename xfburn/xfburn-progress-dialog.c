@@ -251,7 +251,6 @@ xfburn_progress_update_stdout (GIOChannel * source, GIOCondition condition, Xfbu
   gsize bytes_read = 0, bytes_written = 0;
   GError *error = NULL;
   GIOStatus status;
-  const gchar *charset;
   
   if (condition == G_IO_HUP || condition == G_IO_ERR) {
     gtk_widget_set_sensitive (dialog->priv->button_close, TRUE);
@@ -271,8 +270,7 @@ xfburn_progress_update_stdout (GIOChannel * source, GIOCondition condition, Xfbu
   }
   buffer[bytes_read] = '\0';
   
-  g_get_charset (&charset);
-  if ( (converted_buffer = g_convert (buffer, bytes_read, charset, "ISO-8859-1", &bytes_read, &bytes_written, &error)) ) {
+  if ( (converted_buffer = g_convert (buffer, bytes_read, "UTF-8", "ISO-8859-1", &bytes_read, &bytes_written, &error)) ) {
     xfburn_progress_dialog_append_output (dialog, converted_buffer, (source == dialog->priv->channel_stderr) );
     g_free (converted_buffer);
   } else {
