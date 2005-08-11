@@ -36,17 +36,40 @@
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
 
+#define CDRECORD_OPC "Performing OPC..."
+#define CDRECORD_BLANKING "Blanking "
+
+#define CDRECORD_BLANKING_TIME "Blanking time:"
+#define CDRECORD_CANNOT_BLANK "Cannot blank disk, aborting"
+#define CDRECORD_INCOMPATIBLE_MEDIUM "cannot format medium - incmedium"
+#define CDRECORD_FIXATING_TIME "Fixating time:"
+
+/* globals */
 static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass);
 static void xfburn_progress_dialog_init (XfburnProgressDialog * sp);
 static void xfburn_progress_dialog_finalize (GObject * object);
 
-static gboolean xfburn_progress_dialog_delete_cb (XfburnProgressDialog *dialog, GdkEvent *event, XfburnProgressDialogPrivate *priv);
-static void xfburn_progress_dialog_response_cb (XfburnProgressDialog * dialog, gint response_id, XfburnProgressDialogPrivate * priv);
+static void xfburn_progress_dialog_label_set_text (XfburnProgressDialog * dialog, const gchar * text);
+
+static gboolean xfburn_progress_dialog_delete_cb (XfburnProgressDialog * dialog, GdkEvent * event,
+                                                  XfburnProgressDialogPrivate * priv);
+static void xfburn_progress_dialog_response_cb (XfburnProgressDialog * dialog, gint response_id,
+                                                XfburnProgressDialogPrivate * priv);
+
+/* structs */
+typedef enum
+{
+  PROGRESS_STATUS_FAILED,
+  PROGRESS_STATUS_CANCELLED,
+  PROGRESS_STATUS_COMPLETED
+} XfburnProgressDialogStatus;
 
 struct XfburnProgressDialogPrivate
 {
+  XfburnProgressDialogType dialog_type;
   XfburnDevice *device;
   gchar *command;
+  XfburnProgressDialogStatus status;
 
   int pid_command;
   GIOChannel *channel_stdout;
@@ -54,7 +77,9 @@ struct XfburnProgressDialogPrivate
 
   guint id_refresh_stdout;
   guint id_refresh_stderr;
+  guint id_pulse;
 
+  GtkWidget *label;
   GtkWidget *progress_bar;
   GtkWidget *textview_output;
 
@@ -103,8 +128,6 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
 {
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   XfburnProgressDialogPrivate *priv;
-  GtkWidget *frame;
-  GtkWidget *vbox;
   GtkWidget *expander;
   GtkWidget *scrolled_window;
   GtkTextBuffer *textbuffer;
@@ -112,24 +135,23 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   obj->priv = g_new0 (XfburnProgressDialogPrivate, 1);
   priv = obj->priv;
 
-  frame = xfce_framebox_new (_("Burning disk..."), FALSE);
-  gtk_widget_show (frame);
-  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-
-  vbox = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (vbox);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox);
+  priv->label = gtk_label_new ("Initializing ...");
+  gtk_misc_set_alignment (GTK_MISC (priv->label), 0.0, 0.0);
+  gtk_label_set_justify (GTK_LABEL (priv->label), GTK_JUSTIFY_LEFT);
+  xfburn_progress_dialog_label_set_text (obj, _("Initializing..."));
+  gtk_widget_show (priv->label);
+  gtk_box_pack_start (box, priv->label, FALSE, TRUE, BORDER);
 
   /* progress bar */
   priv->progress_bar = gtk_progress_bar_new ();
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), "0 %");
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), " ");
   gtk_widget_show (priv->progress_bar);
-  gtk_box_pack_start (GTK_BOX (vbox), priv->progress_bar, FALSE, FALSE, BORDER);
+  gtk_box_pack_start (box, priv->progress_bar, FALSE, FALSE, BORDER);
 
   /* output */
   expander = gtk_expander_new_with_mnemonic (_("View _output"));
   gtk_widget_show (expander);
-  gtk_box_pack_start (GTK_BOX (vbox), expander, TRUE, TRUE, 0);
+  gtk_box_pack_start (box, expander, TRUE, TRUE, 0);
 
 #ifdef DEBUG
   gtk_expander_set_expanded (GTK_EXPANDER (expander), TRUE);
@@ -157,7 +179,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   priv->button_stop = gtk_button_new_from_stock (GTK_STOCK_STOP);
   gtk_widget_show (priv->button_stop);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), priv->button_stop, GTK_RESPONSE_CANCEL);
-  
+
   priv->button_close = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
   gtk_widget_show (priv->button_close);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), priv->button_close, GTK_RESPONSE_CLOSE);
@@ -181,12 +203,6 @@ xfburn_progress_dialog_finalize (GObject * object)
   priv = cobj->priv;
 
   g_free (priv->command);
-
-  if (priv->id_refresh_stdout > 0)
-    g_source_remove (priv->id_refresh_stdout);
-
-  if (priv->id_refresh_stderr > 0)
-    g_source_remove (priv->id_refresh_stderr);
 
   if (priv->channel_stdout) {
     g_io_channel_shutdown (priv->channel_stdout, FALSE, NULL);
@@ -222,13 +238,14 @@ xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar
 }
 
 static gboolean
-xfburn_progress_dialog_delete_cb (XfburnProgressDialog *dialog, GdkEvent *event, XfburnProgressDialogPrivate *priv)
+xfburn_progress_dialog_delete_cb (XfburnProgressDialog * dialog, GdkEvent * event, XfburnProgressDialogPrivate * priv)
 {
+  DBG ("test");
   if (!GTK_WIDGET_SENSITIVE (priv->button_close)) {
     xfburn_progress_dialog_response_cb (dialog, GTK_RESPONSE_CANCEL, priv);
     return TRUE;
   }
-  
+
   return FALSE;
 }
 
@@ -236,25 +253,54 @@ static void
 xfburn_progress_dialog_response_cb (XfburnProgressDialog * dialog, gint response_id, XfburnProgressDialogPrivate * priv)
 {
   if (response_id == GTK_RESPONSE_CANCEL) {
-    kill (priv->pid_command, SIGTERM);
-    
+    if (priv->pid_command > 0)
+      kill (priv->pid_command, SIGTERM);
+
     gtk_widget_set_sensitive (priv->button_stop, FALSE);
-  } else 
+    priv->status = PROGRESS_STATUS_CANCELLED;
+  }
+  else
     gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
 static gboolean
-xfburn_progress_update_stdout (GIOChannel * source, GIOCondition condition, XfburnProgressDialog * dialog)
+xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition condition, XfburnProgressDialog * dialog)
 {
   gchar buffer[1024] = "";
   gchar *converted_buffer = NULL;
   gsize bytes_read = 0, bytes_written = 0;
   GError *error = NULL;
   GIOStatus status;
-  
+
   if (condition == G_IO_HUP || condition == G_IO_ERR) {
     gtk_widget_set_sensitive (dialog->priv->button_close, TRUE);
     gtk_widget_set_sensitive (dialog->priv->button_stop, FALSE);
+
+    if (dialog->priv->id_refresh_stdout > 0)
+      g_source_remove (dialog->priv->id_refresh_stdout);
+
+    if (dialog->priv->id_refresh_stderr > 0)
+      g_source_remove (dialog->priv->id_refresh_stderr);
+
+    if (dialog->priv->id_pulse > 0) {
+      g_source_remove (dialog->priv->id_pulse);
+      gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), 1.0);
+    }
+
+    xfburn_progress_dialog_label_set_text (dialog, _("Operation terminated"));
+
+    switch (dialog->priv->status) {
+    case PROGRESS_STATUS_CANCELLED:
+      gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), _("Cancelled"));
+      break;
+    case PROGRESS_STATUS_COMPLETED:
+      gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), _("Completed"));
+      break;
+    case PROGRESS_STATUS_FAILED:
+    default:
+      gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), _("Failed"));
+    }
+
     return FALSE;
   }
 
@@ -263,22 +309,41 @@ xfburn_progress_update_stdout (GIOChannel * source, GIOCondition condition, Xfbu
     g_error_free (error);
   }
 
-  if (status == G_IO_STATUS_ERROR || status == G_IO_STATUS_AGAIN) {
-    gtk_widget_set_sensitive (dialog->priv->button_close, TRUE);
-    gtk_widget_set_sensitive (dialog->priv->button_stop, FALSE);
-    return FALSE;
-  }
   buffer[bytes_read] = '\0';
-  
-  if ( (converted_buffer = g_convert (buffer, bytes_read, "UTF-8", "ISO-8859-1", &bytes_read, &bytes_written, &error)) ) {
-    xfburn_progress_dialog_append_output (dialog, converted_buffer, (source == dialog->priv->channel_stderr) );
-    g_free (converted_buffer);
-  } else {
+
+  if (!(converted_buffer = g_convert (buffer, bytes_read, "UTF-8", "ISO-8859-1", &bytes_read, &bytes_written, &error))) {
     g_warning ("Conversion error : %s", error->message);
     g_error_free (error);
+    return TRUE;
   }
-  
+
+  xfburn_progress_dialog_append_output (dialog, converted_buffer, (source == dialog->priv->channel_stderr));
+    
+  switch (dialog->priv->dialog_type) {
+  case XFBURN_PROGRESS_DIALOG_BLANK_CD:
+    if (strstr (converted_buffer, CDRECORD_BLANKING_TIME)) {
+      dialog->priv->status = PROGRESS_STATUS_COMPLETED;
+    } else if (strstr (converted_buffer, CDRECORD_BLANKING)) {
+      xfburn_progress_dialog_label_set_text (dialog, _("Blanking..."));
+    } else if (strstr (converted_buffer, CDRECORD_OPC)) {
+      xfburn_progress_dialog_label_set_text (dialog, _("Performing OPC..."));
+    }
+    break;
+  }
+
+  g_free (converted_buffer);
   return TRUE;
+}
+
+static void
+xfburn_progress_dialog_label_set_text (XfburnProgressDialog * dialog, const gchar * text)
+{
+  gchar *temp;
+
+  temp = g_strdup_printf ("<b>%s</b>", text);
+  gtk_label_set_markup (GTK_LABEL (dialog->priv->label), temp);
+
+  g_free (temp);
 }
 
 /* public */
@@ -347,17 +412,32 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
   g_io_channel_set_flags (priv->channel_stderr, G_IO_FLAG_NONBLOCK, NULL);
 
   priv->id_refresh_stdout = g_io_add_watch (priv->channel_stdout, G_IO_IN | G_IO_HUP | G_IO_ERR,
-                                            (GIOFunc) xfburn_progress_update_stdout, dialog);
+                                            (GIOFunc) xfburn_progress_dialog_update_stdout, dialog);
   priv->id_refresh_stderr = g_io_add_watch (priv->channel_stderr, G_IO_IN | G_IO_HUP | G_IO_ERR,
-                                            (GIOFunc) xfburn_progress_update_stdout, dialog);
+                                            (GIOFunc) xfburn_progress_dialog_update_stdout, dialog);
+
+  switch (priv->dialog_type) {
+  case XFBURN_PROGRESS_DIALOG_BLANK_CD:
+    gtk_progress_bar_set_pulse_step (GTK_PROGRESS_BAR (priv->progress_bar), 0.05);
+    priv->id_pulse = g_timeout_add (250, (GSourceFunc) gtk_progress_bar_pulse, GTK_PROGRESS_BAR (priv->progress_bar));
+    break;
+  case XFBURN_PROGRESS_DIALOG_BURN_ISO:
+    break;
+  }
+
 }
 
 GtkWidget *
-xfburn_progress_dialog_new (XfburnDevice * device, const gchar * command)
+xfburn_progress_dialog_new (XfburnProgressDialogType type, XfburnDevice * device, const gchar * command)
 {
   XfburnProgressDialog *obj;
+  XfburnProgressDialogPrivate *priv;
+
   obj = XFBURN_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_PROGRESS_DIALOG, NULL));
-  obj->priv->command = g_strdup (command);
-  obj->priv->device = device;
+  priv = obj->priv;
+  priv->command = g_strdup (command);
+  priv->device = device;
+  priv->dialog_type = type;
+
   return GTK_WIDGET (obj);
 }

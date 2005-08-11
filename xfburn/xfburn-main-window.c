@@ -288,7 +288,7 @@ xfburn_window_action_blank_cd (GtkAction * action, XfburnMainWindow * window)
     command = xfburn_blank_cd_dialog_get_command (XFBURN_BLANK_CD_DIALOG (dialog));
     device = xfburn_blank_cd_dialog_get_device (XFBURN_BLANK_CD_DIALOG (dialog));
     
-    dialog_progress = xfburn_progress_dialog_new (device, command);
+    dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BLANK_CD, device, command);
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), GTK_WINDOW (window));
     gtk_widget_show (dialog_progress);
     xfburn_progress_dialog_start (XFBURN_PROGRESS_DIALOG (dialog_progress));
