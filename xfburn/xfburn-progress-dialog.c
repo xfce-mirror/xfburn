@@ -204,7 +204,7 @@ xfburn_progress_dialog_finalize (GObject * object)
 }
 
 static void
-xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar * output)
+xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar * output, gboolean is_error)
 {
   XfburnProgressDialogPrivate *priv = dialog->priv;
   GtkTextBuffer *buffer;
@@ -213,22 +213,10 @@ xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->textview_output));
 
   gtk_text_buffer_get_end_iter (buffer, &iter);
-  gtk_text_buffer_insert (buffer, &iter, output, strlen (output));
-  gtk_text_iter_set_line (&iter, gtk_text_buffer_get_line_count (buffer));
-  gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (priv->textview_output), &iter, 0.0, TRUE, 0.0, 0.0);
-}
-
-static void
-xfburn_progress_dialog_append_error (XfburnProgressDialog * dialog, const gchar * output)
-{
-  XfburnProgressDialogPrivate *priv = dialog->priv;
-  GtkTextBuffer *buffer;
-  GtkTextIter iter;
-
-  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->textview_output));
-
-  gtk_text_buffer_get_end_iter (buffer, &iter);
-  gtk_text_buffer_insert_with_tags_by_name (buffer, &iter, output, strlen (output), "error", NULL);
+  if (is_error)
+    gtk_text_buffer_insert_with_tags_by_name (buffer, &iter, output, strlen (output), "error", NULL);
+  else
+    gtk_text_buffer_insert (buffer, &iter, output, strlen (output));
   gtk_text_iter_set_line (&iter, gtk_text_buffer_get_line_count (buffer));
   gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (priv->textview_output), &iter, 0.0, TRUE, 0.0, 0.0);
 }
@@ -255,28 +243,16 @@ xfburn_progress_dialog_response_cb (XfburnProgressDialog * dialog, gint response
     gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
-static void
-hack_characters (gchar * buf)
-{
-  /* From GnomeBaker */
-  const gint len = strlen (buf);
-  gint i = 0;
-  for (; i < len; i++) {
-    if (!g_ascii_isalnum (buf[i]) && !g_ascii_iscntrl (buf[i])
-        && !g_ascii_ispunct (buf[i]) && !g_ascii_isspace (buf[i])) {
-      buf[i] = ' ';
-    }
-  }
-}
-
 static gboolean
 xfburn_progress_update_stdout (GIOChannel * source, GIOCondition condition, XfburnProgressDialog * dialog)
 {
   gchar buffer[1024] = "";
-  gsize bytes_read = 0;
+  gchar *converted_buffer = NULL;
+  gsize bytes_read = 0, bytes_written = 0;
   GError *error = NULL;
   GIOStatus status;
-
+  const gchar *charset;
+  
   if (condition == G_IO_HUP || condition == G_IO_ERR) {
     gtk_widget_set_sensitive (dialog->priv->button_close, TRUE);
     gtk_widget_set_sensitive (dialog->priv->button_stop, FALSE);
@@ -293,15 +269,17 @@ xfburn_progress_update_stdout (GIOChannel * source, GIOCondition condition, Xfbu
     gtk_widget_set_sensitive (dialog->priv->button_stop, FALSE);
     return FALSE;
   }
-
   buffer[bytes_read] = '\0';
-
-  hack_characters (buffer);
-  if (source == dialog->priv->channel_stdout)
-    xfburn_progress_dialog_append_output (dialog, buffer);
-  else
-    xfburn_progress_dialog_append_error (dialog, buffer);
-
+  
+  g_get_charset (&charset);
+  if ( (converted_buffer = g_convert (buffer, bytes_read, charset, "ISO-8859-1", &bytes_read, &bytes_written, &error)) ) {
+    xfburn_progress_dialog_append_output (dialog, converted_buffer, (source == dialog->priv->channel_stderr) );
+    g_free (converted_buffer);
+  } else {
+    g_warning ("Conversion error : %s", error->message);
+    g_error_free (error);
+  }
+  
   return TRUE;
 }
 
