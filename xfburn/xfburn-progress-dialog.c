@@ -37,12 +37,17 @@
 #include "xfburn-utils.h"
 
 #define CDRECORD_OPC "Performing OPC..."
-#define CDRECORD_BLANKING "Blanking "
 
+#define CDRECORD_COPY "Track"
+#define CDRECORD_FIXATING "Fixating..."
+#define CDRECORD_FIXATING_TIME "Fixating time:"
+
+#define CDRECORD_BLANKING "Blanking "
 #define CDRECORD_BLANKING_TIME "Blanking time:"
+
 #define CDRECORD_CANNOT_BLANK "Cannot blank disk, aborting"
 #define CDRECORD_INCOMPATIBLE_MEDIUM "cannot format medium - incmedium"
-#define CDRECORD_FIXATING_TIME "Fixating time:"
+
 
 /* globals */
 static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass);
@@ -148,7 +153,14 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
 
   /* progress bar */
   priv->progress_bar = gtk_progress_bar_new ();
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), " ");
+  switch (priv->dialog_type) {
+  case XFBURN_PROGRESS_DIALOG_BLANK_CD:
+    gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), " ");
+    break;
+  case XFBURN_PROGRESS_DIALOG_BURN_ISO:
+    gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), "O%");
+    break;
+  }
   gtk_widget_show (priv->progress_bar);
   gtk_box_pack_start (box, priv->progress_bar, FALSE, FALSE, BORDER);
 
@@ -299,15 +311,34 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
     switch (dialog->priv->status) {
     case PROGRESS_STATUS_CANCELLED:
       gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), _("Cancelled"));
+      gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), 1.0);
       break;
     case PROGRESS_STATUS_COMPLETED:
       gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), _("Completed"));
-      xfce_info (_("Blanking process exited with success"));
+      gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), 1.0);
+    
+      switch (dialog->priv->dialog_type) {
+      case XFBURN_PROGRESS_DIALOG_BLANK_CD:
+        xfce_info (_("Blanking process exited with success"));
+        break;
+      case XFBURN_PROGRESS_DIALOG_BURN_ISO:
+        xfce_info (_("Burning process exited with success"));
+        break;
+      }
       break;
     case PROGRESS_STATUS_FAILED:
     default:
       gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), _("Failed"));
-      xfce_err (_("An error occured while trying to blank the disc (see output for more details)"));
+      gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), 1.0);
+    
+      switch (dialog->priv->dialog_type) {
+      case XFBURN_PROGRESS_DIALOG_BLANK_CD:
+        xfce_err (_("An error occured while trying to blank the disc (see output for more details)"));
+        break;
+      case XFBURN_PROGRESS_DIALOG_BURN_ISO:
+        xfce_err (_("An error occured while trying to burn the disc (see output for more details)"));
+        break;
+      }
     }
 
     return FALSE;
@@ -338,6 +369,34 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
     }
     else if (strstr (converted_buffer, CDRECORD_OPC)) {
       xfburn_progress_dialog_label_set_text (dialog, _("Performing OPC..."));
+    }
+    break;
+  case XFBURN_PROGRESS_DIALOG_BURN_ISO:
+    if (strstr (converted_buffer, CDRECORD_FIXATING_TIME)) {
+      dialog->priv->status = PROGRESS_STATUS_COMPLETED;
+    }
+    else if (strstr (converted_buffer, CDRECORD_FIXATING)) {
+      xfburn_progress_dialog_label_set_text (dialog, _("Fixating..."));
+    }
+    else if (strstr (converted_buffer, CDRECORD_COPY)) {
+      gfloat current = 0, total = 0;
+
+      if (sscanf (converted_buffer, "%*s %*d %*s %f %*s %f", &current, &total) == 2 && total > 0) {
+        gdouble fraction;
+        gchar *text;
+
+        fraction = (gdouble) (current / total);
+        if (fraction < 0.0)
+          fraction = 0.0;
+        else if (fraction > 1.0)
+          fraction = 1.0;
+
+        gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), fraction);
+        text = g_strdup_printf ("%d%%", (int) (fraction * 100));
+        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), text);
+        g_free (text);
+        xfburn_progress_dialog_label_set_text (dialog, _("Writing ISO..."));
+      }
     }
     break;
   }
