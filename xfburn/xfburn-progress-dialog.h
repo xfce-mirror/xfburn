@@ -50,7 +50,7 @@ typedef struct
 typedef enum
 {
   XFBURN_PROGRESS_DIALOG_BLANK_CD,
-  XFBURN_PROGRESS_DIALOG_BURN_ISO
+  XFBURN_PROGRESS_DIALOG_BURN_ISO,
 }  XfburnProgressDialogType;
 
 GtkType xfburn_progress_dialog_get_type ();

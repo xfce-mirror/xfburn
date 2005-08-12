@@ -39,6 +39,7 @@
 #define CDRECORD_OPC "Performing OPC..."
 
 #define CDRECORD_COPY "Track"
+#define CDRECORD_AVERAGE_WRITE_SPEED "Average write speed"
 #define CDRECORD_FIXATING "Fixating..."
 #define CDRECORD_FIXATING_TIME "Fixating time:"
 
@@ -54,7 +55,8 @@ static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass
 static void xfburn_progress_dialog_init (XfburnProgressDialog * sp);
 static void xfburn_progress_dialog_finalize (GObject * object);
 
-static void xfburn_progress_dialog_label_set_text (XfburnProgressDialog * dialog, const gchar * text);
+static void xfburn_progress_dialog_label_action_set_text (XfburnProgressDialog * dialog, const gchar * text);
+static void xfburn_progress_dialog_label_speed_set_text (XfburnProgressDialog * dialog, const gchar * text);
 
 static void xfburn_progress_dialog_expander_activate_cb (GtkExpander * expander, XfburnProgressDialog * dialog);
 static gboolean xfburn_progress_dialog_delete_cb (XfburnProgressDialog * dialog, GdkEvent * event,
@@ -85,8 +87,11 @@ struct XfburnProgressDialogPrivate
   guint id_refresh_stderr;
   guint id_pulse;
 
-  GtkWidget *label;
+  GtkWidget *label_action;
   GtkWidget *progress_bar;
+  GtkWidget *label_speed;
+  GtkWidget *fifo_bar;
+  GtkWidget *buffer_bar;
   GtkWidget *textview_output;
 
   GtkWidget *button_stop;
@@ -126,30 +131,39 @@ xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
 
   parent_class = g_type_class_peek_parent (klass);
   object_class->finalize = xfburn_progress_dialog_finalize;
-
 }
 
 static void
 xfburn_progress_dialog_init (XfburnProgressDialog * obj)
 {
-  GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
+  obj->priv = g_new0 (XfburnProgressDialogPrivate, 1);
+}
+
+/* internals */
+static void
+xfburn_progress_dialog_create (XfburnProgressDialog * obj)
+{
   XfburnProgressDialogPrivate *priv;
+  GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   GtkWidget *expander;
+  GtkWidget *hbox;
+  GtkWidget *frame;
+  GtkWidget *table;
+  GtkWidget *label;
   GtkWidget *scrolled_window;
   GtkTextBuffer *textbuffer;
 
-  obj->priv = g_new0 (XfburnProgressDialogPrivate, 1);
   priv = obj->priv;
 
   gtk_window_set_default_size (GTK_WINDOW (obj), 575, 200);
 
   /* label */
-  priv->label = gtk_label_new ("Initializing ...");
-  gtk_misc_set_alignment (GTK_MISC (priv->label), 0.0, 0.0);
-  gtk_label_set_justify (GTK_LABEL (priv->label), GTK_JUSTIFY_LEFT);
-  xfburn_progress_dialog_label_set_text (obj, _("Initializing..."));
-  gtk_widget_show (priv->label);
-  gtk_box_pack_start (box, priv->label, FALSE, TRUE, BORDER);
+  priv->label_action = gtk_label_new ("Initializing ...");
+  gtk_misc_set_alignment (GTK_MISC (priv->label_action), 0.0, 0.0);
+  gtk_label_set_justify (GTK_LABEL (priv->label_action), GTK_JUSTIFY_LEFT);
+  xfburn_progress_dialog_label_action_set_text (obj, _("Initializing..."));
+  gtk_widget_show (priv->label_action);
+  gtk_box_pack_start (box, priv->label_action, FALSE, TRUE, BORDER);
 
   /* progress bar */
   priv->progress_bar = gtk_progress_bar_new ();
@@ -158,11 +172,53 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
     gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), " ");
     break;
   case XFBURN_PROGRESS_DIALOG_BURN_ISO:
-    gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), "O%");
+    gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), "0%");
     break;
   }
   gtk_widget_show (priv->progress_bar);
   gtk_box_pack_start (box, priv->progress_bar, FALSE, FALSE, BORDER);
+
+  hbox = gtk_hbox_new (FALSE, BORDER);
+
+  frame = gtk_frame_new (_("Estimated writing speed:"));
+  gtk_widget_show (frame);
+  gtk_box_pack_start (GTK_BOX (hbox), frame, FALSE, FALSE, 0);
+  priv->label_speed = gtk_label_new (_("no info"));
+  xfburn_progress_dialog_label_speed_set_text (obj, _("no info"));
+  gtk_widget_show (priv->label_speed);
+  gtk_container_add (GTK_CONTAINER (frame), priv->label_speed);
+
+  table = gtk_table_new (2, 2, FALSE);
+  gtk_table_set_row_spacings (GTK_TABLE (table), BORDER);
+  gtk_table_set_col_spacings (GTK_TABLE (table), BORDER * 2);
+  gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
+  gtk_widget_show (table);
+
+  label = gtk_label_new (_("FIFO buffer:"));
+  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_widget_show (label);
+  priv->fifo_bar = gtk_progress_bar_new ();
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), _("no info"));
+  gtk_table_attach (GTK_TABLE (table), priv->fifo_bar, 1, 2, 0, 1, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+  gtk_widget_show (priv->fifo_bar);
+
+  label = gtk_label_new (_("Device buffer:"));
+  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_widget_show (label);
+  priv->buffer_bar = gtk_progress_bar_new ();
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), _("no info"));
+  gtk_table_attach (GTK_TABLE (table), priv->buffer_bar, 1, 2, 1, 2, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+  gtk_widget_show (priv->buffer_bar);
+
+
+  if (priv->dialog_type != XFBURN_PROGRESS_DIALOG_BLANK_CD) {
+    gtk_widget_show (hbox);
+    gtk_box_pack_start (box, hbox, TRUE, TRUE, BORDER);
+  }
 
   /* output */
   expander = gtk_expander_new_with_mnemonic (_("View _output"));
@@ -205,7 +261,6 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   g_signal_connect (G_OBJECT (obj), "delete-event", G_CALLBACK (xfburn_progress_dialog_delete_cb), priv);
 }
 
-/* internals */
 static void
 xfburn_progress_dialog_finalize (GObject * object)
 {
@@ -306,7 +361,7 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
       gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), 1.0);
     }
 
-    xfburn_progress_dialog_label_set_text (dialog, _("Operation finished"));
+    xfburn_progress_dialog_label_action_set_text (dialog, _("Operation finished"));
 
     switch (dialog->priv->status) {
     case PROGRESS_STATUS_CANCELLED:
@@ -316,7 +371,7 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
     case PROGRESS_STATUS_COMPLETED:
       gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), _("Completed"));
       gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), 1.0);
-    
+
       switch (dialog->priv->dialog_type) {
       case XFBURN_PROGRESS_DIALOG_BLANK_CD:
         xfce_info (_("Blanking process exited with success"));
@@ -330,7 +385,7 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
     default:
       gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), _("Failed"));
       gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), 1.0);
-    
+
       switch (dialog->priv->dialog_type) {
       case XFBURN_PROGRESS_DIALOG_BLANK_CD:
         xfce_err (_("An error occured while trying to blank the disc (see output for more details)"));
@@ -365,10 +420,10 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
       dialog->priv->status = PROGRESS_STATUS_COMPLETED;
     }
     else if (strstr (converted_buffer, CDRECORD_BLANKING)) {
-      xfburn_progress_dialog_label_set_text (dialog, _("Blanking..."));
+      xfburn_progress_dialog_label_action_set_text (dialog, _("Blanking..."));
     }
     else if (strstr (converted_buffer, CDRECORD_OPC)) {
-      xfburn_progress_dialog_label_set_text (dialog, _("Performing OPC..."));
+      xfburn_progress_dialog_label_action_set_text (dialog, _("Performing OPC..."));
     }
     break;
   case XFBURN_PROGRESS_DIALOG_BURN_ISO:
@@ -376,14 +431,20 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
       dialog->priv->status = PROGRESS_STATUS_COMPLETED;
     }
     else if (strstr (converted_buffer, CDRECORD_FIXATING)) {
-      xfburn_progress_dialog_label_set_text (dialog, _("Fixating..."));
+      xfburn_progress_dialog_label_action_set_text (dialog, _("Fixating..."));
     }
     else if (strstr (converted_buffer, CDRECORD_COPY)) {
       gfloat current = 0, total = 0;
+      gint fifo = 0, buf = 0, speed = 0, speed_decimal = 0;
 
-      if (sscanf (converted_buffer, "%*s %*d %*s %f %*s %f", &current, &total) == 2 && total > 0) {
+      if (sscanf
+          (converted_buffer, "%*s %*d %*s %f %*s %f %*s %*s %*s %d %*s %*s %d %*s %d.%d", &current, &total, &fifo, &buf,
+           &speed, &speed_decimal) == 6 && total > 0) {
         gdouble fraction;
+        gfloat reformated_speed;
         gchar *text;
+
+        xfburn_progress_dialog_label_action_set_text (dialog, _("Writing ISO..."));
 
         fraction = (gdouble) (current / total);
         if (fraction < 0.0)
@@ -395,7 +456,21 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
         text = g_strdup_printf ("%d%%", (int) (fraction * 100));
         gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), text);
         g_free (text);
-        xfburn_progress_dialog_label_set_text (dialog, _("Writing ISO..."));
+
+        reformated_speed = speed + (0.1 * speed_decimal);
+        text = g_strdup_printf ("%.1f x", reformated_speed);
+        xfburn_progress_dialog_label_speed_set_text (dialog, text);
+        g_free (text);
+
+        gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->fifo_bar), (gdouble) ((gfloat) fifo / 100));
+        text = g_strdup_printf ("%d%%", fifo);
+        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->fifo_bar), text);
+        g_free (text);
+
+        gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->buffer_bar), (gdouble) ((gfloat) buf / 100));
+        text = g_strdup_printf ("%d%%", buf);
+        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->buffer_bar), text);
+        g_free (text);
       }
     }
     break;
@@ -406,12 +481,23 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
 }
 
 static void
-xfburn_progress_dialog_label_set_text (XfburnProgressDialog * dialog, const gchar * text)
+xfburn_progress_dialog_label_action_set_text (XfburnProgressDialog * dialog, const gchar * text)
 {
   gchar *temp;
 
   temp = g_strdup_printf ("<b>%s</b>", text);
-  gtk_label_set_markup (GTK_LABEL (dialog->priv->label), temp);
+  gtk_label_set_markup (GTK_LABEL (dialog->priv->label_action), temp);
+
+  g_free (temp);
+}
+
+static void
+xfburn_progress_dialog_label_speed_set_text (XfburnProgressDialog * dialog, const gchar * text)
+{
+  gchar *temp;
+
+  temp = g_strdup_printf ("<b><i>%s</i></b>", text);
+  gtk_label_set_markup (GTK_LABEL (dialog->priv->label_speed), temp);
 
   g_free (temp);
 }
@@ -456,7 +542,7 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
         priv->status = PROGRESS_STATUS_CANCELLED;
         gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), _("Cancelled"));
         gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), 1.0);
-        xfburn_progress_dialog_label_set_text (dialog, _("Operation finished"));
+        xfburn_progress_dialog_label_action_set_text (dialog, _("Operation finished"));
         return;
       }
     }
@@ -514,6 +600,8 @@ xfburn_progress_dialog_new (XfburnProgressDialogType type, XfburnDevice * device
   priv->command = g_strdup (command);
   priv->device = device;
   priv->dialog_type = type;
+
+  xfburn_progress_dialog_create (obj);
 
   return GTK_WIDGET (obj);
 }

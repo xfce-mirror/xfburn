@@ -81,7 +81,7 @@ static GtkToggleActionEntry toggle_action_entries[] = {
 static const gchar *toolbar_actions[] = {
   "blank-cd",
   //"format-dvd",
-  //"copy-data",
+  "copy-data",
   //"copy-audio",
   "burn-cd",
   "refresh",
