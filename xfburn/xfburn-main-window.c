@@ -34,6 +34,7 @@
 #include "xfburn-copy-cd-dialog.h"
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-progress-dialog.h"
+#include "xfburn-settings.h"
 
 /* prototypes */
 static void xfburn_main_window_class_init (XfburnMainWindowClass *);
@@ -435,8 +436,10 @@ xfburn_window_action_preferences (GtkAction * action, XfburnMainWindow * window)
 static void
 xfburn_window_action_show_filebrowser (GtkToggleAction * action, XfburnMainWindow * window)
 {
+  xfburn_settings_set_boolean ("show-filebrowser", gtk_toggle_action_get_active (action));
+  
   if (gtk_toggle_action_get_active (action)) {
-    gtk_widget_show (window->file_browser);
+    gtk_widget_show (window->file_browser);  
   }
   else {
     gtk_widget_hide (window->file_browser);
@@ -446,6 +449,8 @@ xfburn_window_action_show_filebrowser (GtkToggleAction * action, XfburnMainWindo
 static void
 xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window)
 {
+  xfburn_settings_set_boolean ("show-toolbar", gtk_toggle_action_get_active (action));
+  
   if (gtk_toggle_action_get_active (action)) {
     gtk_widget_show (window->toolbars);
   }
@@ -457,6 +462,8 @@ xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * 
 static void
 xfburn_window_action_show_content_toolbar (GtkToggleAction * action, XfburnMainWindow * window)
 {
+  xfburn_settings_set_boolean ("show-content-toolbar", gtk_toggle_action_get_active (action));
+  
   if (gtk_toggle_action_get_active (action)) {
     xfburn_disc_content_show_toolbar (XFBURN_DISC_CONTENT (window->disc_content));
   }
@@ -469,5 +476,20 @@ xfburn_window_action_show_content_toolbar (GtkToggleAction * action, XfburnMainW
 GtkWidget *
 xfburn_main_window_new (void)
 {
-  return g_object_new (xfburn_main_window_get_type (), NULL);
+  GtkWidget *obj;
+  XfburnMainWindow *win;
+  GtkAction *action;
+  
+  obj = g_object_new (xfburn_main_window_get_type (), NULL);
+  win = XFBURN_MAIN_WINDOW (obj);
+  
+  /* load settings */
+  action = gtk_action_group_get_action (win->action_group, "show-filebrowser");
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-filebrowser", TRUE));
+  action = gtk_action_group_get_action (win->action_group, "show-toolbar");
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-toolbar", TRUE));
+  action = gtk_action_group_get_action (win->action_group, "show-content-toolbar");
+  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-content-toolbar", TRUE));
+  
+  return obj;
 }

@@ -157,11 +157,11 @@ main (int argc, char **argv)
     exit (EXIT_SUCCESS);
   }
 
+  xfburn_settings_init ();
   gtk_init (&argc, &argv);
 
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-  xfburn_settings_init ();
   xfburn_setup_icons ();
   xfburn_scan_devices ();
   mainwin = xfburn_main_window_new ();

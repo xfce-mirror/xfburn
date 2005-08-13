@@ -113,12 +113,6 @@ save_settings ()
 }
 
 /* loading functions */
-struct SettingsFileParserState
-{
-  gboolean started;
-  GQueue *parents;
-};
-
 static gint
 _find_attribute (const gchar ** attribute_names, const gchar * attr)
 {
@@ -137,11 +131,11 @@ load_settings_start (GMarkupParseContext * context, const gchar * element_name,
                      const gchar ** attribute_names, const gchar ** attribute_values,
                      gpointer user_data, GError ** error)
 {
-  struct SettingsFileParserState *state = user_data;
-
-  if (!state->started && !strcmp (element_name, "xfburn-settings"))
-    state->started = TRUE;
-  else if (!state->started)
+  gboolean *started = (gboolean *) user_data;
+  
+  if (!(*started) && !strcmp (element_name, "xfburn-settings"))
+    *started = TRUE;
+  else if (!(*started)) 
     return;
 
   if (!strcmp (element_name, "setting")) {
@@ -168,10 +162,10 @@ load_settings_start (GMarkupParseContext * context, const gchar * element_name,
 static void
 load_settings_end (GMarkupParseContext * context, const gchar * element_name, gpointer user_data, GError ** error)
 {
-  struct SettingsFileParserState *state = user_data;
-
+  gboolean *started = (gboolean *) user_data;
+  
   if (!strcmp (element_name, "xfburn-settings"))
-    state->started = FALSE;
+    *started = FALSE;
 }
 
 static void
@@ -180,7 +174,7 @@ load_settings (const gchar * filename)
   gchar *file_contents = NULL;
   GMarkupParseContext *gpcontext = NULL;
   struct stat st;
-  struct SettingsFileParserState state = { FALSE, NULL };
+  gboolean started = FALSE;
   GMarkupParser gmparser = { load_settings_start, load_settings_end, NULL, NULL, NULL };
   GError *err = NULL;
 #ifdef HAVE_MMAP
@@ -213,10 +207,7 @@ load_settings (const gchar * filename)
     goto cleanup;
   }
 
-  state.started = FALSE;
-  state.parents = g_queue_new ();
-
-  gpcontext = g_markup_parse_context_new (&gmparser, 0, &state, NULL);
+  gpcontext = g_markup_parse_context_new (&gmparser, 0, &started, NULL);
 
   if (!g_markup_parse_context_parse (gpcontext, file_contents, st.st_size, &err)) {
     g_warning ("Error parsing settings (%d): %s", err->code, err->message);
@@ -241,10 +232,6 @@ cleanup:
 #endif
   if (file_contents)
     g_free (file_contents);
-  if (state.parents) {
-    g_queue_foreach (state.parents, (GFunc) g_free, NULL);
-    g_queue_free (state.parents);
-  }
 }
 
 static void
@@ -255,12 +242,12 @@ value_destroy (Setting * val)
 }
 
 /* public */
-gboolean
+void
 xfburn_settings_init ()
 {
   gchar *path;
 
-  settings = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, (GDestroyNotify) value_destroy);
+  settings = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, (GDestroyNotify) value_destroy);
 
   path = xfce_resource_lookup (XFCE_RESOURCE_CONFIG, "xfburn/");
 
@@ -269,22 +256,19 @@ xfburn_settings_init ()
 
     full_path = g_build_filename (path, "settings.xml", NULL);
     load_settings (full_path);
-
+DBG ("%s", full_path);
     g_free (full_path);
     g_free (path);
   }
   else {
     g_message ("no settings file found, using defaults");
   }
-
-  return TRUE;
 }
 
-gboolean
+void
 xfburn_settings_flush ()
 {
   save_settings ();
-  return TRUE;
 }
 
 void

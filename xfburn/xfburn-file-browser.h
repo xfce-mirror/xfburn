@@ -49,9 +49,8 @@ struct _XfburnFileBrowserClass
 };
 
 GtkType
-xfburn_file_browser_get_type (void)
-  G_GNUC_CONST;
-     GtkWidget *xfburn_file_browser_new (void);
+xfburn_file_browser_get_type (void);
+GtkWidget *xfburn_file_browser_new (void);
 
 G_END_DECLS
 #endif

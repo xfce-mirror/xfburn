@@ -23,8 +23,8 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
-gboolean xfburn_settings_init ();
-gboolean xfburn_settings_flush ();
+void xfburn_settings_init ();
+void xfburn_settings_flush ();
 void xfburn_settings_free ();
 
 gint xfburn_settings_get_boolean (const gchar *key, gboolean fallback);

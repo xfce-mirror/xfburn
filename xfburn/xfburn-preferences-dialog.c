@@ -25,13 +25,15 @@
 #include "xfburn-preferences-dialog.h"
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
+#include "xfburn-settings.h"
 
 static void xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass);
 static void xfburn_preferences_dialog_init (XfburnPreferencesDialog * sp);
 static void xfburn_preferences_dialog_finalize (GObject * object);
 
 static void refresh_devices_list (XfburnPreferencesDialog * dialog);
-static void cb_scan_button_clicked (GtkWidget * button, gpointer user_data);
+static void scan_button_clicked_cb (GtkWidget * button, gpointer user_data);
+static void xfburn_preferences_dialog_response_cb (XfburnPreferencesDialog * dialog, guint response_id, XfburnPreferencesDialogPrivate * priv);
 
 struct XfburnPreferencesDialogPrivate
 {
@@ -227,7 +229,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
 
   priv->button_scan = xfce_create_mixed_button (GTK_STOCK_CDROM, _("Sc_an for devices"));
   gtk_box_pack_end (GTK_BOX (hbox), priv->button_scan, FALSE, FALSE, BORDER);
-  g_signal_connect (G_OBJECT (priv->button_scan), "clicked", G_CALLBACK (cb_scan_button_clicked), obj);
+  g_signal_connect (G_OBJECT (priv->button_scan), "clicked", G_CALLBACK (scan_button_clicked_cb), obj);
   gtk_widget_show (priv->button_scan);
 
   /* action buttons */
@@ -238,10 +240,46 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_widget_grab_focus (button_close);
   gtk_widget_grab_default (button_close);
 
+  g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_preferences_dialog_response_cb), priv);
+  
   refresh_devices_list (obj);
 }
 
 /* internals */
+static void
+xfburn_preferences_dialog_load_settings (XfburnPreferencesDialog * dialog) 
+{
+  gchar *temp_dir;
+  
+  temp_dir = xfburn_settings_get_string ("temporary-dir", "/tmp");
+  gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (dialog->priv->chooser_button), temp_dir);
+  g_free (temp_dir);
+  
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->check_clean_tmpdir),
+                                xfburn_settings_get_boolean ("clean-temporary-dir", TRUE));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->check_show_hidden),
+                                xfburn_settings_get_boolean ("show-hidden-files", FALSE));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->check_show_human_readable),
+                                xfburn_settings_get_boolean ("human-readable-units", TRUE));
+}
+
+static void
+xfburn_preferences_dialog_save_settings (XfburnPreferencesDialog *dialog)
+{
+  gchar *temp_dir;
+  
+  temp_dir = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog->priv->chooser_button));
+  xfburn_settings_set_string ("temporary-dir", temp_dir);
+  g_free (temp_dir);
+  
+  xfburn_settings_set_boolean ("clean-temporary-dir", 
+                               gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->priv->check_clean_tmpdir)));
+  xfburn_settings_set_boolean ("show-hidden-files", 
+                               gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->priv->check_show_hidden)));
+  xfburn_settings_set_boolean ("human-readable-units", 
+                               gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->priv->check_show_human_readable)));
+}
+
 static void
 refresh_devices_list (XfburnPreferencesDialog * dialog)
 {
@@ -275,7 +313,15 @@ refresh_devices_list (XfburnPreferencesDialog * dialog)
 }
 
 static void
-cb_scan_button_clicked (GtkWidget * button, gpointer user_data)
+xfburn_preferences_dialog_response_cb (XfburnPreferencesDialog * dialog, guint response_id, XfburnPreferencesDialogPrivate * priv)
+{
+  if (response_id == GTK_RESPONSE_CLOSE) {
+    xfburn_preferences_dialog_save_settings (dialog);
+  }
+}
+
+static void
+scan_button_clicked_cb (GtkWidget * button, gpointer user_data)
 {
   xfburn_scan_devices ();
   refresh_devices_list (user_data);
@@ -301,5 +347,6 @@ xfburn_preferences_dialog_new ()
 
   obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_PREFERENCES_DIALOG, NULL));
 
+  xfburn_preferences_dialog_load_settings (XFBURN_PREFERENCES_DIALOG (obj));
   return obj;
 }
