@@ -20,7 +20,7 @@
 #include <config.h>
 #endif
 
-#ifdef HAVE_STRINGS_H
+#ifdef HAVE_STRING_H
 #include <string.h>
 #endif
 
@@ -33,6 +33,7 @@
 
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
+#include "xfburn-settings.h"
 #include "xfburn-main-window.h"
 
 /* globals */
@@ -160,6 +161,7 @@ main (int argc, char **argv)
 
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
+  xfburn_settings_init ();
   xfburn_setup_icons ();
   xfburn_scan_devices ();
   mainwin = xfburn_main_window_new ();
@@ -167,7 +169,10 @@ main (int argc, char **argv)
   gtk_widget_show (mainwin);
 
   gtk_main ();
-
+  
+  xfburn_settings_flush ();
+  xfburn_settings_free ();
+  
   g_list_foreach (list_devices, (GFunc) xfburn_device_content_free, NULL);
   g_list_free (list_devices);
   return EXIT_SUCCESS;

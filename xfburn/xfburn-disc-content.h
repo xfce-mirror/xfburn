@@ -68,10 +68,11 @@ enum
   DISC_CONTENT_DND_TARGETS
 };
 
-GtkType
-xfburn_disc_content_get_type (void)
-  G_GNUC_CONST;
-     GtkWidget *xfburn_disc_content_new (void);
+GtkType xfburn_disc_content_get_type (void);
+
+GtkWidget *xfburn_disc_content_new (void);
+void xfburn_disc_content_hide_toolbar (XfburnDiscContent *content);
+void xfburn_disc_content_show_toolbar (XfburnDiscContent *content);
 
 G_END_DECLS
 #endif

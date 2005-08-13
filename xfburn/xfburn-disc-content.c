@@ -20,7 +20,7 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
-#ifdef HAVE_STRINGS_H
+#ifdef HAVE_STRING_H
 #include <string.h>
 #endif
 
@@ -288,4 +288,16 @@ GtkWidget *
 xfburn_disc_content_new (void)
 {
   return g_object_new (xfburn_disc_content_get_type (), NULL);
+}
+
+void
+xfburn_disc_content_hide_toolbar (XfburnDiscContent *content)
+{
+  gtk_widget_hide (content->toolbar);
+}
+
+void
+xfburn_disc_content_show_toolbar (XfburnDiscContent *content)
+{
+  gtk_widget_show (content->toolbar);
 }

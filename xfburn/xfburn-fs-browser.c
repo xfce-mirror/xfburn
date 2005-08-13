@@ -20,7 +20,7 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
-#ifdef HAVE_STRINGS_H
+#ifdef HAVE_STRING_H
 #include <string.h>
 #endif
 

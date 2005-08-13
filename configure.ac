@@ -18,15 +18,13 @@ AC_PROG_CC()
 AC_PROG_INSTALL()
 AC_PROG_LIBTOOL()
 
-dnl check for libexo-0.3
-XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.0])
-
 dnl check for i18n support
 XDT_I18N([fr])
 
 dnl check for required packages
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
+XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.0])
 
 dnl check for debugging support
 BM_DEBUG_SUPPORT()

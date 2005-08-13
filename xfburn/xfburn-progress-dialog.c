@@ -20,7 +20,7 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
-#ifdef HAVE_STRINGS_H
+#ifdef HAVE_STRING_H
 #include <string.h>
 #endif
 
@@ -428,6 +428,9 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
     break;
   case XFBURN_PROGRESS_DIALOG_BURN_ISO:
     if (strstr (converted_buffer, CDRECORD_FIXATING_TIME)) {
+      xfburn_progress_dialog_label_speed_set_text (dialog, _("no info"));
+      gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->fifo_bar), _("no info"));
+      gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->buffer_bar), _("no info"));
       dialog->priv->status = PROGRESS_STATUS_COMPLETED;
     }
     else if (strstr (converted_buffer, CDRECORD_FIXATING)) {
@@ -437,9 +440,8 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
       gfloat current = 0, total = 0;
       gint fifo = 0, buf = 0, speed = 0, speed_decimal = 0;
 
-      if (sscanf
-          (converted_buffer, "%*s %*d %*s %f %*s %f %*s %*s %*s %d %*s %*s %d %*s %d.%d", &current, &total, &fifo, &buf,
-           &speed, &speed_decimal) == 6 && total > 0) {
+      if (sscanf (converted_buffer, "%*s %*d %*s %f %*s %f %*s %*s %*s %d %*s %*s %d %*s %d.%d", &current, &total, &fifo, 
+                  &buf, &speed, &speed_decimal) == 6 && total > 0) {
         gdouble fraction;
         gfloat reformated_speed;
         gchar *text;

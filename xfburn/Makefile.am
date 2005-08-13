@@ -11,6 +11,8 @@ xfburn_headers = 							\
 	xfburn-global.h							\
 	xfburn-blank-cd-dialog.h					\
 	xfburn-burn-image-dialog.h					\
+	xfburn-settings.h						\
+	xfburn-copy-cd-dialog.h						\
 	xfburn-progress-dialog.h					\
 	xfburn-main-window.h						\
 	xfburn-file-browser.h						\
@@ -25,6 +27,8 @@ xfburn_SOURCES =							\
 	$(xfburn_headers)						\
 	xfburn-blank-cd-dialog.c					\
 	xfburn-burn-image-dialog.c					\
+	xfburn-settings.c						\
+	xfburn-copy-cd-dialog.c						\
 	xfburn-progress-dialog.c					\
 	xfburn-main.c 							\
 	xfburn-main-window.c 						\

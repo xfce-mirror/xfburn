@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn dev version\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-11 20:18+0200\n"
+"POT-Creation-Date: 2005-08-13 13:12+0200\n"
 "PO-Revision-Date: 2005-08-03 19:33+0100\n"
 "Last-Translator: Jean-François Wauthy <pollux@xfce.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,16 +15,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: xfburn/xfburn-blank-cd-dialog.c:102 xfburn/xfburn-blank-cd-dialog.c:105
-#: xfburn/xfburn-main-window.c:67
+#: xfburn/xfburn-main-window.c:71
 msgid "Blank CD-RW"
 msgstr ""
 
 #. devices list
-#: xfburn/xfburn-blank-cd-dialog.c:109 xfburn/xfburn-burn-image-dialog.c:113
+#: xfburn/xfburn-blank-cd-dialog.c:109 xfburn/xfburn-burn-image-dialog.c:123
 msgid "Burning device"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:137 xfburn/xfburn-burn-image-dialog.c:140
+#: xfburn/xfburn-blank-cd-dialog.c:137 xfburn/xfburn-burn-image-dialog.c:150
 msgid "_Speed :"
 msgstr ""
 
@@ -50,7 +50,7 @@ msgid "Erase last session"
 msgstr ""
 
 #. options
-#: xfburn/xfburn-blank-cd-dialog.c:176 xfburn/xfburn-burn-image-dialog.c:184
+#: xfburn/xfburn-blank-cd-dialog.c:176 xfburn/xfburn-burn-image-dialog.c:194
 msgid "Options"
 msgstr ""
 
@@ -66,36 +66,36 @@ msgstr ""
 msgid "_Blank"
 msgstr ""
 
-#: xfburn/xfburn-burn-image-dialog.c:96 xfburn/xfburn-burn-image-dialog.c:99
+#: xfburn/xfburn-burn-image-dialog.c:106 xfburn/xfburn-burn-image-dialog.c:109
 msgid "Burn CD image"
 msgstr ""
 
 #. file
-#: xfburn/xfburn-burn-image-dialog.c:104 xfburn/xfburn-burn-image-dialog.c:108
+#: xfburn/xfburn-burn-image-dialog.c:114 xfburn/xfburn-burn-image-dialog.c:118
 msgid "Image to burn"
 msgstr ""
 
-#: xfburn/xfburn-burn-image-dialog.c:169
+#: xfburn/xfburn-burn-image-dialog.c:179
 msgid "Write _mode :"
 msgstr ""
 
-#: xfburn/xfburn-burn-image-dialog.c:174
+#: xfburn/xfburn-burn-image-dialog.c:184
 msgid "default"
 msgstr ""
 
-#: xfburn/xfburn-burn-image-dialog.c:192
+#: xfburn/xfburn-burn-image-dialog.c:202
 msgid "Eject disk"
 msgstr ""
 
-#: xfburn/xfburn-burn-image-dialog.c:197
+#: xfburn/xfburn-burn-image-dialog.c:207
 msgid "Dummy write"
 msgstr ""
 
-#: xfburn/xfburn-burn-image-dialog.c:201
+#: xfburn/xfburn-burn-image-dialog.c:211
 msgid "BurnFree"
 msgstr ""
 
-#: xfburn/xfburn-burn-image-dialog.c:211
+#: xfburn/xfburn-burn-image-dialog.c:221
 msgid "_Burn image"
 msgstr ""
 
@@ -169,108 +169,124 @@ msgstr "Système de fichier"
 msgid "%s's home"
 msgstr "Dossier personnel de %s"
 
-#: xfburn/xfburn-main-window.c:56
+#: xfburn/xfburn-main-window.c:60
 msgid "_File"
 msgstr "_Fichier"
 
-#: xfburn/xfburn-main-window.c:57 xfburn/xfburn-main-window.c:326
+#: xfburn/xfburn-main-window.c:61 xfburn/xfburn-main-window.c:376
 #, fuzzy
 msgid "_Quit"
 msgstr "Quitter"
 
-#: xfburn/xfburn-main-window.c:57
+#: xfburn/xfburn-main-window.c:61
 msgid "Quit Xfburn"
 msgstr "Quitter Xfburn"
 
-#: xfburn/xfburn-main-window.c:58
+#: xfburn/xfburn-main-window.c:62
 msgid "_Edit"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:59
+#: xfburn/xfburn-main-window.c:63
 msgid "Prefere_nces"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:59
+#: xfburn/xfburn-main-window.c:63
 msgid "Show preferences dialog"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:61
+#: xfburn/xfburn-main-window.c:65
 msgid "_Actions"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:62
+#: xfburn/xfburn-main-window.c:66
 #, fuzzy
 msgid "_View"
 msgstr "_Fichier"
 
-#: xfburn/xfburn-main-window.c:63
+#: xfburn/xfburn-main-window.c:67
 msgid "Refresh"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:63
+#: xfburn/xfburn-main-window.c:67
 msgid "Refresh file list"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:64
+#: xfburn/xfburn-main-window.c:68
 msgid "_Help"
 msgstr "_Aide"
 
-#: xfburn/xfburn-main-window.c:65
+#: xfburn/xfburn-main-window.c:69
 msgid "_About"
 msgstr "_A propos de Xfburn"
 
-#: xfburn/xfburn-main-window.c:65
+#: xfburn/xfburn-main-window.c:69
 msgid "Display information about Xfburn"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:69
+#: xfburn/xfburn-main-window.c:73
 msgid "Format DVD-RW"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:70
+#: xfburn/xfburn-main-window.c:74
 msgid "Copy Data CD"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:71
+#: xfburn/xfburn-main-window.c:76
 msgid "Copy Audio CD"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:72
+#: xfburn/xfburn-main-window.c:77
 msgid "Burn CD Image"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:77
+#: xfburn/xfburn-main-window.c:82
 msgid "Show file browser"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:77
+#: xfburn/xfburn-main-window.c:82
 msgid "Show/hide the file browser"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:255
+#: xfburn/xfburn-main-window.c:84
+msgid "Show toolbar"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:84
+msgid "Show/hide the toolbar"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:86
+msgid "Show disc content toolbar"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:86
+msgid "Show/hide the disc content toolbar"
+msgstr ""
+
+#: xfburn/xfburn-main-window.c:264
 msgid "Toolbar Editor"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:326
+#: xfburn/xfburn-main-window.c:376
 msgid "Are sure you want to quit?"
 msgstr ""
 
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: xfburn/xfburn-main-window.c:349
+#: xfburn/xfburn-main-window.c:399
 msgid "Another cd burning tool"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:352
+#: xfburn/xfburn-main-window.c:402
 msgid "Maintainer"
 msgstr "Mainteneur"
 
-#: xfburn/xfburn-main-window.c:358
+#: xfburn/xfburn-main-window.c:408
 #, c-format
 msgid "Translator (%s)"
 msgstr "Traducteur (%s)"
 
-#: xfburn/xfburn-main.c:149
+#: xfburn/xfburn-main.c:150
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -344,41 +360,86 @@ msgstr ""
 msgid "Sc_an for devices"
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:141
+#: xfburn/xfburn-progress-dialog.c:164
 msgid "Initializing..."
 msgstr ""
 
+#: xfburn/xfburn-progress-dialog.c:183
+msgid "Estimated writing speed:"
+msgstr ""
+
+#: xfburn/xfburn-progress-dialog.c:186 xfburn/xfburn-progress-dialog.c:187
+#: xfburn/xfburn-progress-dialog.c:203 xfburn/xfburn-progress-dialog.c:213
+#: xfburn/xfburn-progress-dialog.c:431 xfburn/xfburn-progress-dialog.c:432
+#: xfburn/xfburn-progress-dialog.c:433
+msgid "no info"
+msgstr ""
+
+#: xfburn/xfburn-progress-dialog.c:197
+msgid "FIFO buffer:"
+msgstr ""
+
+#: xfburn/xfburn-progress-dialog.c:207
+msgid "Device buffer:"
+msgstr ""
+
 #. output
-#: xfburn/xfburn-progress-dialog.c:152
+#: xfburn/xfburn-progress-dialog.c:224
 msgid "View _output"
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:290
-msgid "Operation terminated"
+#: xfburn/xfburn-progress-dialog.c:364 xfburn/xfburn-progress-dialog.c:547
+msgid "Operation finished"
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:294
+#: xfburn/xfburn-progress-dialog.c:368 xfburn/xfburn-progress-dialog.c:545
 msgid "Cancelled"
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:297
+#: xfburn/xfburn-progress-dialog.c:372
 msgid "Completed"
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:301
+#: xfburn/xfburn-progress-dialog.c:377
+msgid "Blanking process exited with success"
+msgstr ""
+
+#: xfburn/xfburn-progress-dialog.c:380
+msgid "Burning process exited with success"
+msgstr ""
+
+#: xfburn/xfburn-progress-dialog.c:386
 #, fuzzy
 msgid "Failed"
 msgstr "Fichier"
 
-#: xfburn/xfburn-progress-dialog.c:327
+#: xfburn/xfburn-progress-dialog.c:391
+msgid ""
+"An error occured while trying to blank the disc (see output for more details)"
+msgstr ""
+
+#: xfburn/xfburn-progress-dialog.c:394
+msgid ""
+"An error occured while trying to burn the disc (see output for more details)"
+msgstr ""
+
+#: xfburn/xfburn-progress-dialog.c:423
 msgid "Blanking..."
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:329
+#: xfburn/xfburn-progress-dialog.c:426
 msgid "Performing OPC..."
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:368
+#: xfburn/xfburn-progress-dialog.c:437
+msgid "Fixating..."
+msgstr ""
+
+#: xfburn/xfburn-progress-dialog.c:449
+msgid "Writing ISO..."
+msgstr ""
+
+#: xfburn/xfburn-progress-dialog.c:526
 msgid "No disc in the cdrom drive"
 msgstr ""
 

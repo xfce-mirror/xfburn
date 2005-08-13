@@ -31,6 +31,7 @@
 #include "xfburn-file-browser.h"
 #include "xfburn-disc-content.h"
 #include "xfburn-blank-cd-dialog.h"
+#include "xfburn-copy-cd-dialog.h"
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-progress-dialog.h"
 
@@ -46,9 +47,12 @@ static void xfburn_window_action_preferences (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
 
 static void xfburn_window_action_blank_cd (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_copy_cd (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_burn_image (GtkAction *, XfburnMainWindow *);
 
 static void xfburn_window_action_show_filebrowser (GtkToggleAction *, XfburnMainWindow *);
+static void xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window);
+static void xfburn_window_action_show_content_toolbar (GtkToggleAction * action, XfburnMainWindow * window);
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
@@ -67,7 +71,8 @@ static GtkActionEntry action_entries[] = {
   {"blank-cd", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),
    G_CALLBACK (xfburn_window_action_blank_cd),},
   {"format-dvd", "xfburn-blank-dvdrw", N_("Format DVD-RW"), NULL, N_("Format DVD-RW"),},
-  {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),},
+  {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),
+   G_CALLBACK (xfburn_window_action_copy_cd),},
   {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
   {"burn-cd", "xfburn-burn-cd", N_("Burn CD Image"), NULL, N_("Burn CD Image"),
    G_CALLBACK (xfburn_window_action_burn_image),},
@@ -76,6 +81,10 @@ static GtkActionEntry action_entries[] = {
 static GtkToggleActionEntry toggle_action_entries[] = {
   {"show-filebrowser", NULL, N_("Show file browser"), NULL, N_("Show/hide the file browser"),
    G_CALLBACK (xfburn_window_action_show_filebrowser), TRUE,},
+  {"show-toolbar", NULL, N_("Show toolbar"), NULL, N_("Show/hide the toolbar"),
+   G_CALLBACK (xfburn_window_action_show_toolbar), TRUE,},
+  {"show-content-toolbar", NULL, N_("Show disc content toolbar"), NULL, N_("Show/hide the disc content toolbar"),
+   G_CALLBACK (xfburn_window_action_show_content_toolbar), TRUE,},
 };
 
 static const gchar *toolbar_actions[] = {
@@ -299,6 +308,37 @@ xfburn_window_action_blank_cd (GtkAction * action, XfburnMainWindow * window)
   gtk_widget_destroy (dialog);
 }
 
+static void xfburn_window_action_copy_cd (GtkAction *action, XfburnMainWindow *window)
+{
+  GtkWidget *dialog;
+  gint ret;
+  
+  dialog = xfburn_copy_cd_dialog_new ();
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+  ret = gtk_dialog_run (GTK_DIALOG (dialog));
+    
+  gtk_widget_hide (dialog);
+  
+  if (ret == GTK_RESPONSE_OK) {
+    gchar *command;
+    XfburnDevice *device;
+    GtkWidget *dialog_progress;
+    
+    //command = xfburn_burn_image_dialog_get_command (XFBURN_BURN_IMAGE_DIALOG (dialog));
+    //device = xfburn_burn_image_dialog_get_device (XFBURN_BURN_IMAGE_DIALOG (dialog));
+    
+    //dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BURN_ISO, device, command);
+    //gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), GTK_WINDOW (window));
+    //gtk_widget_show (dialog_progress);
+    //xfburn_progress_dialog_start (XFBURN_PROGRESS_DIALOG (dialog_progress));
+    
+    //g_free (command);
+  }
+  
+  gtk_widget_destroy (dialog);
+
+}
+
 static void
 xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
 {
@@ -308,7 +348,7 @@ xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
   dialog = xfburn_burn_image_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
   ret = gtk_dialog_run (GTK_DIALOG (dialog));
-  
+    
   gtk_widget_hide (dialog);
   
   if (ret == GTK_RESPONSE_OK) {
@@ -400,6 +440,28 @@ xfburn_window_action_show_filebrowser (GtkToggleAction * action, XfburnMainWindo
   }
   else {
     gtk_widget_hide (window->file_browser);
+  }
+}
+
+static void
+xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window)
+{
+  if (gtk_toggle_action_get_active (action)) {
+    gtk_widget_show (window->toolbars);
+  }
+  else {
+    gtk_widget_hide (window->toolbars);
+  }
+}
+
+static void
+xfburn_window_action_show_content_toolbar (GtkToggleAction * action, XfburnMainWindow * window)
+{
+  if (gtk_toggle_action_get_active (action)) {
+    xfburn_disc_content_show_toolbar (XFBURN_DISC_CONTENT (window->disc_content));
+  }
+  else {
+    xfburn_disc_content_hide_toolbar (XFBURN_DISC_CONTENT (window->disc_content));
   }
 }
 
