@@ -241,29 +241,29 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
 
     if (dir_entry[0] != '.' && (stat (full_path, &s) == 0)) {
       GtkTreeIter iter;
-
+      gchar *humansize;
+      
+      humansize = xfburn_humanreadable_filesize (s.st_size);
+      
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
 
       if ((s.st_mode & S_IFDIR)) {
         gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_directory,
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
-                            DIRECTORY_BROWSER_COLUMN_HUMANSIZE, "4 B",
-                            DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) 0,
+                            DIRECTORY_BROWSER_COLUMN_HUMANSIZE, humansize,
+                            DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) s.st_size,
                             DIRECTORY_BROWSER_COLUMN_TYPE, _(DIRECTORY), DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
       }
       else if ((s.st_mode & S_IFREG)) {
-        gchar *humansize;
-
-        humansize = xfburn_humanreadable_filesize (s.st_size);
         gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_file,
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
                             DIRECTORY_BROWSER_COLUMN_HUMANSIZE, humansize,
                             DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) s.st_size,
                             DIRECTORY_BROWSER_COLUMN_TYPE, _("File"), DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
-        g_free (humansize);
       }
+      g_free (humansize);
     }
     g_free (full_path);
   }

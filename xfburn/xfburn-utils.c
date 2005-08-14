@@ -35,6 +35,7 @@
 #include <gtk/gtk.h>
 
 #include "xfburn-utils.h"
+#include "xfburn-settings.h"
 
 /**************/
 /* cd-burning */
@@ -354,6 +355,9 @@ xfburn_default_cursor (GtkWidget * widget)
 gchar *
 xfburn_humanreadable_filesize (guint64 size)
 {
+  if (!xfburn_settings_get_boolean ("human-readable-units", TRUE))
+    return g_strdup_printf ("%lu B", (long unsigned int) size);
+  
   /* copied from GnomeBaker */
 
   gchar *ret = NULL;
@@ -390,7 +394,7 @@ xfburn_calc_dirsize (const gchar * dirname)
       if (stat (fullname, &s) == 0) {
         /* see if the name is actually a directory or a regular file */
         if (s.st_mode & S_IFDIR)
-          size += xfburn_calc_dirsize (fullname);
+          size += (guint64) s.st_size + xfburn_calc_dirsize (fullname);
         else if (s.st_mode & S_IFREG)
           size += (guint64) s.st_size;
       }
