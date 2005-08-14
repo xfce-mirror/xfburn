@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn dev version\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-13 13:12+0200\n"
+"POT-Creation-Date: 2005-08-14 20:49+0200\n"
 "PO-Revision-Date: 2005-08-03 19:33+0100\n"
 "Last-Translator: Jean-François Wauthy <pollux@xfce.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: xfburn/xfburn-blank-cd-dialog.c:102 xfburn/xfburn-blank-cd-dialog.c:105
-#: xfburn/xfburn-main-window.c:71
+#: xfburn/xfburn-main-window.c:72
 msgid "Blank CD-RW"
 msgstr ""
 
@@ -103,11 +103,11 @@ msgstr ""
 msgid "Folder"
 msgstr "Répertoire"
 
-#: xfburn/xfburn-directory-browser.c:103 xfburn/xfburn-directory-browser.c:264
+#: xfburn/xfburn-directory-browser.c:103 xfburn/xfburn-directory-browser.c:261
 msgid "File"
 msgstr "Fichier"
 
-#: xfburn/xfburn-directory-browser.c:116 xfburn/xfburn-disc-content.c:168
+#: xfburn/xfburn-directory-browser.c:116 xfburn/xfburn-disc-content.c:220
 msgid "Size"
 msgstr "Taille"
 
@@ -115,173 +115,182 @@ msgstr "Taille"
 msgid "Type"
 msgstr "Type"
 
-#: xfburn/xfburn-disc-content.c:53
-msgid "Add file(s)"
+#: xfburn/xfburn-disc-content.c:83
+msgid "Add"
 msgstr ""
 
-#: xfburn/xfburn-disc-content.c:53
-msgid "Add the selected files to the CD"
+#: xfburn/xfburn-disc-content.c:83
+msgid "Add the selected file(s) to the CD"
 msgstr ""
 
-#: xfburn/xfburn-disc-content.c:54
-msgid "Remove selected"
+#: xfburn/xfburn-disc-content.c:84
+msgid "Remove"
 msgstr ""
 
-#: xfburn/xfburn-disc-content.c:54
-msgid "Remove the selected files from the CD"
+#: xfburn/xfburn-disc-content.c:84
+msgid "Remove the selected file(s) from the CD"
 msgstr ""
 
-#: xfburn/xfburn-disc-content.c:55
+#: xfburn/xfburn-disc-content.c:86
 msgid "Clear"
 msgstr ""
 
-#: xfburn/xfburn-disc-content.c:55
-msgid "Clear the contents of the CD"
+#: xfburn/xfburn-disc-content.c:86
+msgid "Clear the content of the CD"
 msgstr ""
 
-#: xfburn/xfburn-disc-content.c:57
+#: xfburn/xfburn-disc-content.c:88
 msgid "Import"
 msgstr ""
 
-#: xfburn/xfburn-disc-content.c:57
+#: xfburn/xfburn-disc-content.c:88
 msgid "Import existing session"
 msgstr ""
 
-#: xfburn/xfburn-disc-content.c:155
+#: xfburn/xfburn-disc-content.c:89
+msgid "Rename"
+msgstr ""
+
+#: xfburn/xfburn-disc-content.c:89
+msgid "Rename the selected file"
+msgstr ""
+
+#: xfburn/xfburn-disc-content.c:205
 msgid "Contents"
 msgstr "Contenu"
 
-#: xfburn/xfburn-disc-content.c:171
-msgid "Full Path"
+#: xfburn/xfburn-disc-content.c:223
+#, fuzzy
+msgid "Local Path"
 msgstr "Chemin complet"
 
 #: xfburn/xfburn-disc-usage.c:109
 msgid "Burn Data CD"
 msgstr ""
 
-#: xfburn/xfburn-fs-browser.c:93 xfburn/xfburn-fs-browser.c:270
+#: xfburn/xfburn-fs-browser.c:93 xfburn/xfburn-fs-browser.c:264
 msgid "Filesystem"
 msgstr "Système de fichier"
 
 #. load the user's home dir
-#: xfburn/xfburn-fs-browser.c:253
+#: xfburn/xfburn-fs-browser.c:247
 #, c-format
 msgid "%s's home"
 msgstr "Dossier personnel de %s"
 
-#: xfburn/xfburn-main-window.c:60
+#: xfburn/xfburn-main-window.c:61
 msgid "_File"
 msgstr "_Fichier"
 
-#: xfburn/xfburn-main-window.c:61 xfburn/xfburn-main-window.c:376
+#: xfburn/xfburn-main-window.c:62 xfburn/xfburn-main-window.c:377
 #, fuzzy
 msgid "_Quit"
 msgstr "Quitter"
 
-#: xfburn/xfburn-main-window.c:61
+#: xfburn/xfburn-main-window.c:62
 msgid "Quit Xfburn"
 msgstr "Quitter Xfburn"
 
-#: xfburn/xfburn-main-window.c:62
+#: xfburn/xfburn-main-window.c:63
 msgid "_Edit"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:63
+#: xfburn/xfburn-main-window.c:64
 msgid "Prefere_nces"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:63
+#: xfburn/xfburn-main-window.c:64
 msgid "Show preferences dialog"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:65
+#: xfburn/xfburn-main-window.c:66
 msgid "_Actions"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:66
+#: xfburn/xfburn-main-window.c:67
 #, fuzzy
 msgid "_View"
 msgstr "_Fichier"
 
-#: xfburn/xfburn-main-window.c:67
+#: xfburn/xfburn-main-window.c:68
 msgid "Refresh"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:67
+#: xfburn/xfburn-main-window.c:68
 msgid "Refresh file list"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:68
+#: xfburn/xfburn-main-window.c:69
 msgid "_Help"
 msgstr "_Aide"
 
-#: xfburn/xfburn-main-window.c:69
+#: xfburn/xfburn-main-window.c:70
 msgid "_About"
 msgstr "_A propos de Xfburn"
 
-#: xfburn/xfburn-main-window.c:69
+#: xfburn/xfburn-main-window.c:70
 msgid "Display information about Xfburn"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:73
+#: xfburn/xfburn-main-window.c:74
 msgid "Format DVD-RW"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:74
+#: xfburn/xfburn-main-window.c:75
 msgid "Copy Data CD"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:76
+#: xfburn/xfburn-main-window.c:77
 msgid "Copy Audio CD"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:77
+#: xfburn/xfburn-main-window.c:78
 msgid "Burn CD Image"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:82
+#: xfburn/xfburn-main-window.c:83
 msgid "Show file browser"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:82
+#: xfburn/xfburn-main-window.c:83
 msgid "Show/hide the file browser"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:84
+#: xfburn/xfburn-main-window.c:85
 msgid "Show toolbar"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:84
+#: xfburn/xfburn-main-window.c:85
 msgid "Show/hide the toolbar"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:86
+#: xfburn/xfburn-main-window.c:87
 msgid "Show disc content toolbar"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:86
+#: xfburn/xfburn-main-window.c:87
 msgid "Show/hide the disc content toolbar"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:264
+#: xfburn/xfburn-main-window.c:265
 msgid "Toolbar Editor"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:376
+#: xfburn/xfburn-main-window.c:377
 msgid "Are sure you want to quit?"
 msgstr ""
 
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: xfburn/xfburn-main-window.c:399
+#: xfburn/xfburn-main-window.c:400
 msgid "Another cd burning tool"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:402
+#: xfburn/xfburn-main-window.c:403
 msgid "Maintainer"
 msgstr "Mainteneur"
 
-#: xfburn/xfburn-main-window.c:408
+#: xfburn/xfburn-main-window.c:409
 #, c-format
 msgid "Translator (%s)"
 msgstr "Traducteur (%s)"
@@ -290,73 +299,73 @@ msgstr "Traducteur (%s)"
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: xfburn/xfburn-preferences-dialog.c:108
+#: xfburn/xfburn-preferences-dialog.c:110
 msgid "Xfburn preferences"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:121
+#: xfburn/xfburn-preferences-dialog.c:123
 msgid "General"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:127
-#: xfburn/xfburn-preferences-dialog.c:135
+#: xfburn/xfburn-preferences-dialog.c:129
+#: xfburn/xfburn-preferences-dialog.c:137
 msgid "Temporary directory"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:139
+#: xfburn/xfburn-preferences-dialog.c:141
 msgid "_Clean temporary directory on exit"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:143
+#: xfburn/xfburn-preferences-dialog.c:145
 msgid "File browser"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:151
+#: xfburn/xfburn-preferences-dialog.c:153
 msgid "Show _hidden files"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:155
+#: xfburn/xfburn-preferences-dialog.c:157
 msgid "Show human_readable filesizes"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:165
+#: xfburn/xfburn-preferences-dialog.c:167
 msgid "Devices"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:171
+#: xfburn/xfburn-preferences-dialog.c:173
 msgid "Detected devices"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:195
+#: xfburn/xfburn-preferences-dialog.c:197
 msgid "Name"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:208
+#: xfburn/xfburn-preferences-dialog.c:210
 msgid "Id"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:210
+#: xfburn/xfburn-preferences-dialog.c:212
 #, fuzzy
 msgid "Node"
 msgstr "Répertoire"
 
-#: xfburn/xfburn-preferences-dialog.c:212
+#: xfburn/xfburn-preferences-dialog.c:214
 msgid "Write CD-R"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:214
+#: xfburn/xfburn-preferences-dialog.c:216
 msgid "Write CD-RW"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:217
+#: xfburn/xfburn-preferences-dialog.c:219
 msgid "Write DVD-R"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:220
+#: xfburn/xfburn-preferences-dialog.c:222
 msgid "Write DVD-RAM"
 msgstr ""
 
-#: xfburn/xfburn-preferences-dialog.c:228
+#: xfburn/xfburn-preferences-dialog.c:230
 msgid "Sc_an for devices"
 msgstr ""
 
@@ -443,14 +452,14 @@ msgstr ""
 msgid "No disc in the cdrom drive"
 msgstr ""
 
-#: xfburn/xfburn-utils.c:173
+#: xfburn/xfburn-utils.c:174
 msgid "Failed to open /proc/scsi/sg/devices"
 msgstr ""
 
-#: xfburn/xfburn-utils.c:176
+#: xfburn/xfburn-utils.c:177
 msgid "Failed to open /proc/scsi/sg/device_strs"
 msgstr ""
 
-#: xfburn/xfburn-utils.c:187
+#: xfburn/xfburn-utils.c:188
 msgid "Error reading scsi information from /proc/scsi/sg/devices"
 msgstr ""

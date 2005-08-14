@@ -45,8 +45,11 @@ static void xfburn_disc_content_finalize (GObject * object);
 
 static gint directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data);
 
-static void xfburn_disc_content_action_clear (GtkAction *, XfburnDiscContent *);
+static void disc_content_action_clear (GtkAction *, XfburnDiscContent *);
+static void disc_content_action_remove_selection (GtkAction *, XfburnDiscContent *);
+static void disc_content_action_rename_selection (GtkAction *action, XfburnDiscContent *dc);
 
+static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDiscContent * dc);
 static void cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDiscContent * dc);
 
 static void content_drag_data_rcv_cb (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint,
@@ -72,23 +75,19 @@ struct XfburnDiscContentPrivate
   GtkWidget *toolbar;
   GtkWidget *content;
   GtkWidget *disc_usage;
-
-  GtkWidget *popup_menu;
-  GtkWidget *menuitem_remove;
-  GtkWidget *menuitem_rename;
-  GtkWidget *menuitem_newdir;
 };
 
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
 static GtkActionEntry action_entries[] = {
-  {"add-file", GTK_STOCK_ADD, N_("Add file(s)"), NULL, N_("Add the selected files to the CD"),},
-  {"remove-file", GTK_STOCK_REMOVE, N_("Remove"), NULL, N_("Remove the selected files from the CD"),},
-  {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the contents of the CD"),
-   G_CALLBACK (xfburn_disc_content_action_clear),},
+  {"add-file", GTK_STOCK_ADD, N_("Add"), NULL, N_("Add the selected file(s) to the CD"),},
+  {"remove-file", GTK_STOCK_REMOVE, N_("Remove"), NULL, N_("Remove the selected file(s) from the CD"),
+   G_CALLBACK (disc_content_action_remove_selection),},
+  {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the content of the CD"),
+   G_CALLBACK (disc_content_action_clear),},
   {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-  {"rename-file", GTK_STOCK_EDIT, N_("Rename"), NULL, N_("Rename the selected file"),},
-  {"create-dir", GTK_STOCK_DIRECTORY, N_("New directory..."), NULL, N_("Create a new directory"),},
+  {"rename-file", GTK_STOCK_EDIT, N_("Rename"), NULL, N_("Rename the selected file"),
+   G_CALLBACK (disc_content_action_rename_selection),},
 };
 static const gchar *toolbar_actions[] = {
   "add-file",
@@ -146,7 +145,7 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
 
   const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
     "<menuitem action=\"rename-file\"/>"
-    "<menuitem action=\"remove-file\"/>" "<menuitem action=\"create-dir\"/>" "</popup></ui>";
+    "<menuitem action=\"remove-file\"/>" "</popup></ui>";
 
   GtkTargetEntry gte_src[] = { {"XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DISC_CONTENT_DND_TARGET_INSIDE} };
   GtkTargetEntry gte_dest[] = { {"XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DISC_CONTENT_DND_TARGET_INSIDE},
@@ -224,7 +223,9 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->priv->content), -1, _("Local Path"),
                                                gtk_cell_renderer_text_new (), "text", DISC_CONTENT_COLUMN_PATH, NULL);
 
-  
+  g_signal_connect (G_OBJECT (disc_content->priv->content), "button-press-event",
+                    G_CALLBACK (cb_treeview_button_pressed), disc_content);
+
   /* disc usage */
   disc_content->priv->disc_usage = xfburn_disc_usage_new ();
   gtk_box_pack_start (GTK_BOX (disc_content), disc_content->priv->disc_usage, FALSE, FALSE, 5);
@@ -252,6 +253,44 @@ xfburn_disc_content_finalize (GObject * object)
 }
 
 /* internals */
+static gboolean
+cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDiscContent * dc)
+{
+  if ((event->button == 3) && (event->type == GDK_BUTTON_PRESS)) {
+    GtkTreeSelection *selection;
+    GtkTreePath *path;
+    GtkWidget *menu_popup;
+    GtkWidget *menuitem_remove;
+    GtkWidget *menuitem_rename;
+
+    selection = gtk_tree_view_get_selection (treeview);
+
+    if (gtk_tree_view_get_path_at_pos (treeview, event->x, event->y, &path, NULL, NULL, NULL)) {
+      gtk_tree_selection_unselect_all (selection);
+      gtk_tree_selection_select_path (selection, path);
+    }
+    gtk_tree_path_free (path);
+
+    menu_popup = gtk_ui_manager_get_widget (dc->priv->ui_manager, "/popup-menu");
+    menuitem_remove = gtk_ui_manager_get_widget (dc->priv->ui_manager, "/popup-menu/remove-file");
+    menuitem_rename = gtk_ui_manager_get_widget (dc->priv->ui_manager, "/popup-menu/rename-file");
+
+    if (gtk_tree_selection_count_selected_rows (selection) >= 1)
+      gtk_widget_set_sensitive (menuitem_remove, TRUE);
+    else
+      gtk_widget_set_sensitive (menuitem_remove, FALSE);
+    if (gtk_tree_selection_count_selected_rows (selection) == 1)
+      gtk_widget_set_sensitive (menuitem_rename, TRUE);
+    else
+      gtk_widget_set_sensitive (menuitem_rename, FALSE);
+
+    gtk_menu_popup (GTK_MENU (menu_popup), NULL, NULL, NULL, NULL, event->button, gtk_get_current_event_time ());
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
 static gint
 directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data)
 {
@@ -299,8 +338,61 @@ cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
   gtk_tree_path_free (real_path);
 }
 
+static void 
+disc_content_action_rename_selection (GtkAction *action, XfburnDiscContent *dc)
+{
+  GtkTreeSelection *selection;
+  GtkTreeModel *model;
+  GList *list;
+  GtkTreePath *path;
+  GtkTreeViewColumn *column;
+  
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dc->priv->content));
+  list = gtk_tree_selection_get_selected_rows (selection, &model);
+    
+  path = (GtkTreePath *) list->data;
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW (dc->priv->content), DISC_CONTENT_COLUMN_CONTENT - 1);
+                                                                         /* -1 because of COLUMN_ICON */
+  
+  gtk_tree_view_set_cursor (GTK_TREE_VIEW (dc->priv->content), path, column, TRUE); 
+  
+  gtk_tree_path_free (path);
+  g_list_free (list);
+}
+
+static void 
+disc_content_action_remove_selection (GtkAction *action, XfburnDiscContent *dc)
+{
+  GtkTreeSelection *selection;
+  GtkTreeModel *model;
+  GList *list, *el;
+  
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dc->priv->content));
+  list = gtk_tree_selection_get_selected_rows (selection, &model);
+  
+  el = list;
+  while (el) {
+    GtkTreePath *path;
+    GtkTreeIter iter;
+    guint64 size;
+    
+    path = (GtkTreePath *) el->data;
+    gtk_tree_model_get_iter (model, &iter, path);
+    
+    gtk_tree_model_get (model, &iter, DISC_CONTENT_COLUMN_SIZE, &size, -1);
+    xfburn_disc_usage_sub_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), size);
+    
+    gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+    
+    gtk_tree_path_free (path);
+    el = g_list_next (el);
+  }
+  
+  g_list_free (list);
+}
+
 static void
-xfburn_disc_content_action_clear (GtkAction * action, XfburnDiscContent * content)
+disc_content_action_clear (GtkAction * action, XfburnDiscContent * content)
 {
   GtkTreeModel *model;
 

@@ -57,6 +57,7 @@ GtkWidget *xfburn_disc_usage_new (void);
 gdouble xfburn_disc_usage_get_size (XfburnDiscUsage *);
 void xfburn_disc_usage_set_size (XfburnDiscUsage *, gdouble);
 void xfburn_disc_usage_add_size (XfburnDiscUsage *, gdouble);
+void xfburn_disc_usage_sub_size (XfburnDiscUsage *, gdouble);
 
 G_END_DECLS
 #endif

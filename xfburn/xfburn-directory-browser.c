@@ -177,7 +177,7 @@ cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
       GtkTreeIter iter;
       gchar *current_path;
       gchar *temp;
-
+      
       gtk_tree_model_get_iter (model, &iter, (GtkTreePath *) selected_rows->data);
       gtk_tree_model_get (model, &iter, DIRECTORY_BROWSER_COLUMN_PATH, &current_path, -1);
 

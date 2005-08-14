@@ -157,6 +157,13 @@ xfburn_disc_usage_add_size (XfburnDiscUsage * disc_usage, gdouble size)
   xfburn_disc_usage_update_size (disc_usage);
 }
 
+void
+xfburn_disc_usage_sub_size (XfburnDiscUsage * disc_usage, gdouble size)
+{
+  disc_usage->size = disc_usage->size - size;
+  xfburn_disc_usage_update_size (disc_usage);
+}
+
 GtkWidget *
 xfburn_disc_usage_new (void)
 {
