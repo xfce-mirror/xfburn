@@ -41,11 +41,38 @@
 /* prototypes */
 static void xfburn_disc_content_class_init (XfburnDiscContentClass *);
 static void xfburn_disc_content_init (XfburnDiscContent *);
+static void xfburn_disc_content_finalize (GObject * object);
+
+static gint directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data);
 
 static void xfburn_disc_content_action_clear (GtkAction *, XfburnDiscContent *);
 
-static void cb_content_drag_data_rcv (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint,
+static void cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDiscContent * dc);
+
+static void content_drag_data_rcv_cb (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint,
                                       XfburnDiscContent *);
+static void content_drag_data_get_cb (GtkWidget * widget, GdkDragContext * dc, GtkSelectionData * data, guint info,
+                                      guint time, XfburnDiscContent * content);
+
+enum
+{
+  DISC_CONTENT_COLUMN_ICON,
+  DISC_CONTENT_COLUMN_CONTENT,
+  DISC_CONTENT_COLUMN_HUMANSIZE,
+  DISC_CONTENT_COLUMN_SIZE,
+  DISC_CONTENT_COLUMN_PATH,
+  DISC_CONTENT_N_COLUMNS
+};
+
+struct XfburnDiscContentPrivate
+{
+  GtkActionGroup *action_group;
+  GtkUIManager *ui_manager;
+
+  GtkWidget *toolbar;
+  GtkWidget *content;
+  GtkWidget *disc_usage;
+};
 
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
@@ -93,7 +120,10 @@ xfburn_disc_content_get_type (void)
 static void
 xfburn_disc_content_class_init (XfburnDiscContentClass * klass)
 {
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
   parent_class = g_type_class_peek_parent (klass);
+  object_class->finalize = xfburn_disc_content_finalize;
 }
 
 static void
@@ -102,21 +132,26 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   ExoToolbarsModel *model_toolbar;
   gint toolbar_position;
   GtkWidget *scrolled_window;
-  GtkListStore *model;
+  GtkTreeStore *model;
   GtkTreeViewColumn *column_file;
   GtkCellRenderer *cell_icon, *cell_file;
   GtkTreeSelection *selection;
 
-  GtkTargetEntry gte[] = { {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN} };
+  GtkTargetEntry gte_src[] = { {"XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DISC_CONTENT_DND_TARGET_INSIDE} };
+  GtkTargetEntry gte_dest[] = { {"XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DISC_CONTENT_DND_TARGET_INSIDE},
+  {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN}
+  };
+
+  disc_content->priv = g_new0 (XfburnDiscContentPrivate, 1);
 
   /* create ui manager */
-  disc_content->action_group = gtk_action_group_new ("xfburn-main-window");
-  gtk_action_group_set_translation_domain (disc_content->action_group, GETTEXT_PACKAGE);
-  gtk_action_group_add_actions (disc_content->action_group, action_entries, G_N_ELEMENTS (action_entries),
+  disc_content->priv->action_group = gtk_action_group_new ("xfburn-main-window");
+  gtk_action_group_set_translation_domain (disc_content->priv->action_group, GETTEXT_PACKAGE);
+  gtk_action_group_add_actions (disc_content->priv->action_group, action_entries, G_N_ELEMENTS (action_entries),
                                 GTK_WIDGET (disc_content));
 
-  disc_content->ui_manager = gtk_ui_manager_new ();
-  gtk_ui_manager_insert_action_group (disc_content->ui_manager, disc_content->action_group, 0);
+  disc_content->priv->ui_manager = gtk_ui_manager_new ();
+  gtk_ui_manager_insert_action_group (disc_content->priv->ui_manager, disc_content->priv->action_group, 0);
 
   /* toolbar */
   model_toolbar = exo_toolbars_model_new ();
@@ -131,9 +166,9 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "import-session", EXO_TOOLBARS_ITEM_TYPE);
 
 
-  disc_content->toolbar = exo_toolbars_view_new_with_model (disc_content->ui_manager, model_toolbar);
-  gtk_box_pack_start (GTK_BOX (disc_content), disc_content->toolbar, FALSE, FALSE, 0);
-  gtk_widget_show (disc_content->toolbar);
+  disc_content->priv->toolbar = exo_toolbars_view_new_with_model (disc_content->priv->ui_manager, model_toolbar);
+  gtk_box_pack_start (GTK_BOX (disc_content), disc_content->priv->toolbar, FALSE, FALSE, 0);
+  gtk_widget_show (disc_content->priv->toolbar);
 
   /* content treeview */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -142,14 +177,18 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   gtk_widget_show (scrolled_window);
   gtk_box_pack_start (GTK_BOX (disc_content), scrolled_window, TRUE, TRUE, 0);
 
-  disc_content->content = gtk_tree_view_new ();
-  model = gtk_list_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
+  disc_content->priv->content = gtk_tree_view_new ();
+  model = gtk_tree_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING);
+  gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DISC_CONTENT_COLUMN_CONTENT,
+                                   directory_tree_sortfunc, NULL, NULL);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DISC_CONTENT_COLUMN_CONTENT, GTK_SORT_ASCENDING);
-  gtk_tree_view_set_model (GTK_TREE_VIEW (disc_content->content), GTK_TREE_MODEL (model));
-  gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (disc_content->content), TRUE);
-  gtk_widget_show (disc_content->content);
-  gtk_container_add (GTK_CONTAINER (scrolled_window), disc_content->content);
+  gtk_tree_view_set_model (GTK_TREE_VIEW (disc_content->priv->content), GTK_TREE_MODEL (model));
+  gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (disc_content->priv->content), TRUE);
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (disc_content->priv->content));
+  gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
+  gtk_widget_show (disc_content->priv->content);
+  gtk_container_add (GTK_CONTAINER (scrolled_window), disc_content->priv->content);
 
   column_file = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column_file, _("Contents"));
@@ -160,46 +199,146 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   g_object_set (cell_icon, "xalign", 0.0, "ypad", 0, NULL);
 
   cell_file = gtk_cell_renderer_text_new ();
+  g_object_set (G_OBJECT (cell_file), "editable", TRUE);
   gtk_tree_view_column_pack_start (column_file, cell_file, TRUE);
   gtk_tree_view_column_set_attributes (column_file, cell_file, "text", DISC_CONTENT_COLUMN_CONTENT, NULL);
+  g_signal_connect (G_OBJECT (cell_file), "edited", G_CALLBACK (cell_file_edited_cb), disc_content);
 
-  gtk_tree_view_append_column (GTK_TREE_VIEW (disc_content->content), column_file);
+  gtk_tree_view_append_column (GTK_TREE_VIEW (disc_content->priv->content), column_file);
 
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->content), -1, _("Size"),
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->priv->content), -1, _("Size"),
                                                gtk_cell_renderer_text_new (), "text", DISC_CONTENT_COLUMN_HUMANSIZE,
                                                NULL);
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->content), -1, _("Full Path"),
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (disc_content->priv->content), -1, _("Full Path"),
                                                gtk_cell_renderer_text_new (), "text", DISC_CONTENT_COLUMN_PATH, NULL);
 
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (disc_content->content));
-  gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
-
   /* disc usage */
-  disc_content->disc_usage = xfburn_disc_usage_new ();
-  gtk_box_pack_start (GTK_BOX (disc_content), disc_content->disc_usage, FALSE, FALSE, 5);
-  gtk_widget_show (disc_content->disc_usage);
+  disc_content->priv->disc_usage = xfburn_disc_usage_new ();
+  gtk_box_pack_start (GTK_BOX (disc_content), disc_content->priv->disc_usage, FALSE, FALSE, 5);
+  gtk_widget_show (disc_content->priv->disc_usage);
 
   /* set up DnD */
-  gtk_tree_view_enable_model_drag_dest (GTK_TREE_VIEW (disc_content->content), gte, DISC_CONTENT_DND_TARGETS,
-                                        GDK_ACTION_COPY);
-  g_signal_connect (G_OBJECT (disc_content->content), "drag-data-received", G_CALLBACK (cb_content_drag_data_rcv),
+  gtk_tree_view_enable_model_drag_source (GTK_TREE_VIEW (disc_content->priv->content), GDK_BUTTON1_MASK, gte_src,
+                                          G_N_ELEMENTS (gte_src), GDK_ACTION_MOVE);
+  g_signal_connect (G_OBJECT (disc_content->priv->content), "drag-data-get", G_CALLBACK (content_drag_data_get_cb),
+                    disc_content);
+  gtk_tree_view_enable_model_drag_dest (GTK_TREE_VIEW (disc_content->priv->content), gte_dest, G_N_ELEMENTS (gte_dest),
+                                        GDK_ACTION_COPY | GDK_ACTION_MOVE);
+  g_signal_connect (G_OBJECT (disc_content->priv->content), "drag-data-received", G_CALLBACK (content_drag_data_rcv_cb),
                     disc_content);
 }
 
+static void
+xfburn_disc_content_finalize (GObject * object)
+{
+  XfburnDiscContent *cobj;
+  cobj = XFBURN_DISC_CONTENT (object);
+
+  g_free (cobj->priv);
+  G_OBJECT_CLASS (parent_class)->finalize (object);
+}
+
 /* internals */
+static gint
+directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data)
+{
+  /* adapted from gnomebaker */
+  gchar *aname, *bname, *apath, *bpath;
+  gboolean aisdir = FALSE;
+  gboolean bisdir = FALSE;
+  gint result = 0;
+
+  gtk_tree_model_get (model, a, DISC_CONTENT_COLUMN_CONTENT, &aname, DISC_CONTENT_COLUMN_PATH, &apath, -1);
+  gtk_tree_model_get (model, b, DISC_CONTENT_COLUMN_CONTENT, &bname, DISC_CONTENT_COLUMN_PATH, &bpath, -1);
+
+  aisdir = g_file_test (apath, G_FILE_TEST_IS_DIR);
+  bisdir = g_file_test (bpath, G_FILE_TEST_IS_DIR);
+
+  if (aisdir && !bisdir)
+    result = -1;
+  else if (!aisdir && bisdir)
+    result = 1;
+  else
+    result = g_ascii_strcasecmp (aname, bname);
+
+  g_free (aname);
+  g_free (apath);
+  g_free (bname);
+  g_free (bpath);
+
+  return result;
+}
+
+static void
+cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDiscContent * dc)
+{
+  GtkTreeIter iter;
+  GtkTreeModel *model;
+  GtkTreePath *real_path;
+
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (dc->priv->content));
+  real_path = gtk_tree_path_new_from_string (path);
+
+  if (gtk_tree_model_get_iter (model, &iter, real_path)) {
+    gtk_tree_store_set (GTK_TREE_STORE (model), &iter, DISC_CONTENT_COLUMN_CONTENT, newtext, -1);
+  }
+
+  gtk_tree_path_free (real_path);
+}
+
 static void
 xfburn_disc_content_action_clear (GtkAction * action, XfburnDiscContent * content)
 {
   GtkTreeModel *model;
 
-  model = gtk_tree_view_get_model (GTK_TREE_VIEW (content->content));
-  gtk_list_store_clear (GTK_LIST_STORE (model));
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (content->priv->content));
+  gtk_tree_store_clear (GTK_TREE_STORE (model));
 
-  xfburn_disc_usage_set_size (XFBURN_DISC_USAGE (content->disc_usage), 0);
+  xfburn_disc_usage_set_size (XFBURN_DISC_USAGE (content->priv->disc_usage), 0);
 }
 
 static void
-cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
+content_drag_data_get_cb (GtkWidget * widget, GdkDragContext * dc,
+                          GtkSelectionData * data, guint info, guint time, XfburnDiscContent * content)
+{
+  if (info == DISC_CONTENT_DND_TARGET_INSIDE) {
+    GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
+    GtkTreeModel *model;
+    GList *selected_rows;
+    gchar *all_paths;
+
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
+
+    all_paths = g_strdup ("");
+    selected_rows = gtk_tree_selection_get_selected_rows (selection, &model);
+    selected_rows = g_list_last (selected_rows);
+
+    while (selected_rows) {
+      gchar *current_path;
+      gchar *temp;
+
+      current_path = gtk_tree_path_to_string ((GtkTreePath *) selected_rows->data);
+
+      temp = g_strconcat (current_path, "\n", all_paths, NULL);
+      g_free (current_path);
+      g_free (all_paths);
+      all_paths = temp;
+
+      selected_rows = g_list_previous (selected_rows);
+    }
+
+    selected_rows = g_list_first (selected_rows);
+    g_list_foreach (selected_rows, (GFunc) gtk_tree_path_free, NULL);
+    g_list_free (selected_rows);
+
+    gtk_selection_data_set (data, gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE), 8, all_paths, sizeof (all_paths));
+
+    g_free (all_paths);
+  }
+}
+
+static void
+content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                           guint info, guint t, XfburnDiscContent * content)
 {
   GtkTreeModel *model;
@@ -209,7 +348,18 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
 
-  if (sd->target == gdk_atom_intern ("text/plain", FALSE)) {
+  if (sd->target == gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE)) {
+    const gchar *str_path;
+
+    str_path = strtok ((gchar *) sd->data, "\n");
+    while (str_path) {
+
+      str_path = strtok (NULL, "\n");
+    }
+
+    gtk_drag_finish (dc, TRUE, FALSE, t);
+  }
+  else if (sd->target == gdk_atom_intern ("text/plain", FALSE)) {
     const gchar *file;
     GdkPixbuf *icon_directory, *icon_file;
     gint x, y;
@@ -240,30 +390,30 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       if ((stat (full_path, &s) == 0)) {
         gchar *humansize = NULL;
 
-        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+        gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
 
         if ((s.st_mode & S_IFDIR)) {
           guint64 dirsize;
 
           dirsize = xfburn_calc_dirsize (full_path);
           humansize = xfburn_humanreadable_filesize (dirsize);
-          gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+          gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
                               DISC_CONTENT_COLUMN_ICON, icon_directory,
                               DISC_CONTENT_COLUMN_CONTENT, basename,
                               DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
                               DISC_CONTENT_COLUMN_SIZE, dirsize, DISC_CONTENT_COLUMN_PATH, full_path, -1);
 
-          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (content->disc_usage), dirsize);
+          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (content->priv->disc_usage), dirsize);
         }
         else if ((s.st_mode & S_IFREG)) {
           humansize = xfburn_humanreadable_filesize (s.st_size);
-          gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+          gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
                               DISC_CONTENT_COLUMN_ICON, icon_file,
                               DISC_CONTENT_COLUMN_CONTENT, basename,
                               DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
                               DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size, DISC_CONTENT_COLUMN_PATH, full_path, -1);
 
-          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (content->disc_usage), s.st_size);
+          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (content->priv->disc_usage), s.st_size);
         }
         g_free (humansize);
       }
@@ -279,7 +429,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     if (icon_file)
       g_object_unref (icon_file);
 
-    gtk_drag_finish (dc, FALSE, (dc->action == GDK_ACTION_COPY), t);
+    gtk_drag_finish (dc, TRUE, (dc->action == GDK_ACTION_MOVE), t);
   }
 }
 
@@ -291,13 +441,13 @@ xfburn_disc_content_new (void)
 }
 
 void
-xfburn_disc_content_hide_toolbar (XfburnDiscContent *content)
+xfburn_disc_content_hide_toolbar (XfburnDiscContent * content)
 {
-  gtk_widget_hide (content->toolbar);
+  gtk_widget_hide (content->priv->toolbar);
 }
 
 void
-xfburn_disc_content_show_toolbar (XfburnDiscContent *content)
+xfburn_disc_content_show_toolbar (XfburnDiscContent * content)
 {
-  gtk_widget_show (content->toolbar);
+  gtk_widget_show (content->priv->toolbar);
 }

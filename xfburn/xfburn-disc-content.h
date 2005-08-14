@@ -34,17 +34,13 @@ G_BEGIN_DECLS
 #define XFBURN_DISC_CONTENT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DISC_CONTENT, XfburnDiscContentClass))
 typedef struct _XfburnDiscContent XfburnDiscContent;
 typedef struct _XfburnDiscContentClass XfburnDiscContentClass;
-
+typedef struct XfburnDiscContentPrivate XfburnDiscContentPrivate;
+  
 struct _XfburnDiscContent
 {
   GtkVBox vbox;
 
-  GtkActionGroup *action_group;
-  GtkUIManager *ui_manager;
-
-  GtkWidget *toolbar;
-  GtkWidget *content;
-  GtkWidget *disc_usage;
+  XfburnDiscContentPrivate *priv;
 };
 
 struct _XfburnDiscContentClass
@@ -54,18 +50,8 @@ struct _XfburnDiscContentClass
 
 enum
 {
-  DISC_CONTENT_COLUMN_ICON,
-  DISC_CONTENT_COLUMN_CONTENT,
-  DISC_CONTENT_COLUMN_HUMANSIZE,
-  DISC_CONTENT_COLUMN_SIZE,
-  DISC_CONTENT_COLUMN_PATH,
-  DISC_CONTENT_N_COLUMNS
-};
-
-enum
-{
+  DISC_CONTENT_DND_TARGET_INSIDE,
   DISC_CONTENT_DND_TARGET_TEXT_PLAIN,
-  DISC_CONTENT_DND_TARGETS
 };
 
 GtkType xfburn_disc_content_get_type (void);

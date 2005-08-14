@@ -114,7 +114,7 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
 
   /* set up DnD */
   gtk_tree_view_enable_model_drag_source (GTK_TREE_VIEW (browser), GDK_BUTTON1_MASK, gte,
-                                          DISC_CONTENT_DND_TARGETS, GDK_ACTION_COPY);
+                                          G_N_ELEMENTS (gte), GDK_ACTION_COPY);
   g_signal_connect (G_OBJECT (browser), "drag-data-get", G_CALLBACK (cb_browser_drag_data_get), browser);
 }
 
