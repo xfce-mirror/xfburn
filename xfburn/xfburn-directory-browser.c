@@ -216,9 +216,6 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   const gchar *dir_entry;
   int x, y;
 
-  if (GTK_WIDGET (browser)->parent)
-    xfburn_busy_cursor (GTK_WIDGET (browser));
-
   dir = g_dir_open (path, 0, &error);
   if (!dir) {
     g_warning ("unable to open the %s directory : %s", path, error->message);
@@ -274,7 +271,4 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
     g_object_unref (icon_file);
 
   g_dir_close (dir);
-
-  if (GTK_WIDGET (browser)->parent)
-    xfburn_default_cursor (GTK_WIDGET (browser));
 }

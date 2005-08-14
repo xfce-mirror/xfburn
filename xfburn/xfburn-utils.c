@@ -330,23 +330,21 @@ xfburn_device_query_cdstatus (XfburnDevice * device)
 void
 xfburn_busy_cursor (GtkWidget * widget)
 {
-/*   GdkCursor *cursor;
- * 
- *   g_return_if_fail (widget != NULL);
- *   cursor = gdk_cursor_new (GDK_WATCH);
- *   gdk_window_set_cursor (gtk_widget_get_parent_window (widget), cursor);
- *   gdk_cursor_destroy (cursor);
- *   gdk_flush ();
- */
+  GdkCursor *cursor;
+
+  g_return_if_fail (widget != NULL);
+  cursor = gdk_cursor_new (GDK_WATCH);
+  gdk_window_set_cursor (gtk_widget_get_parent_window (widget), cursor);
+  gdk_cursor_destroy (cursor);
+  gdk_flush ();
 }
 
 void
 xfburn_default_cursor (GtkWidget * widget)
 {
-/*   g_return_if_fail (widget != NULL);
- *   gdk_window_set_cursor (gtk_widget_get_parent_window (widget), NULL);
- *   gdk_flush ();
- */
+  g_return_if_fail (widget != NULL);
+  gdk_window_set_cursor (gtk_widget_get_parent_window (widget), NULL);
+  gdk_flush ();
 }
 
 /*******************/
