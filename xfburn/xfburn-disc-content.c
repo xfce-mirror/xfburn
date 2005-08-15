@@ -557,3 +557,20 @@ xfburn_disc_content_show_toolbar (XfburnDiscContent * content)
 {
   gtk_widget_show (content->priv->toolbar);
 }
+
+/****************/
+/* loading code */
+/****************/
+void
+xfburn_disc_content_load_from_file (const gchar *filename)
+{
+}
+
+/***************/
+/* saving code */
+/***************/
+void
+xfburn_disc_content_save_to_file (const gchar *filename)
+{
+}
+

@@ -1,5 +1,119 @@
+2005-08-14  pollux
+
+	* po/POTFILES.in, po/fr.po, po/xfburn.pot,
+	  xfburn/xfburn-directory-browser.c, xfburn/xfburn-disc-content.c,
+	  xfburn/xfburn-disc-usage.c, xfburn/xfburn-disc-usage.h: add disc
+	  content popup menu
+	* xfburn/xfburn-directory-browser.c, xfburn/xfburn-disc-content.c,
+	  xfburn/xfburn-fs-browser.c, xfburn/xfburn-utils.c: first release
+	  won't have a treestore that's all (gtktreeview sucks)
+	* xfburn/xfburn-directory-browser.c, xfburn/xfburn-disc-content.c,
+	  xfburn/xfburn-utils.c: disc content is now a treeview accepting
+	  DnD
+	* xfburn/xfburn-copy-cd-dialog.c,
+	  xfburn/xfburn-directory-browser.c, xfburn/xfburn-disc-content.c,
+	  xfburn/xfburn-disc-content.h, xfburn/xfburn-fs-browser.c: commit
+	  before messing with the content treestore
+
+2005-08-13  pollux
+
+	* xfburn/xfburn-file-browser.h, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-main.c, xfburn/xfburn-preferences-dialog.c,
+	  xfburn/xfburn-settings.c, xfburn/xfburn-settings.h: some
+	  settings stuff
+	* ., configure.ac, po/fr.po, po/xfburn.pot, xfburn.ui,
+	  xfburn/Makefile.am, xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.h,
+	  xfburn/xfburn-copy-cd-dialog.c, xfburn/xfburn-copy-cd-dialog.h,
+	  xfburn/xfburn-disc-content.c, xfburn/xfburn-disc-content.h,
+	  xfburn/xfburn-fs-browser.c, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-main.c, xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-settings.c, xfburn/xfburn-settings.h,
+	  xfburn/xfburn-utils.c: add settings load/save support
+
+2005-08-12  pollux
+
+	* xfburn/xfburn-main-window.c, xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h: improve burning dialog
+	* xfburn/xfburn-progress-dialog.c: burn ISO working in no error
+	  use case
+
+2005-08-11  pollux
+
+	* TODO, po/fr.po, po/xfburn.pot,
+	  xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.h, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-progress-dialog.c: can burn iso but without
+	  feedback
+	* xfburn/xfburn-blank-cd-dialog.c, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h: complete cdrw blanking support
+	* po/POTFILES.in, po/fr.po, po/xfburn.pot: update po
+	* xfburn/xfburn-progress-dialog.c: gtk uses UTF-8 internally not
+	  the current charset
+	* xfburn/xfburn-progress-dialog.c: cdrecord is written in
+	  ISO-8859-1, so we need to convert to the current locale before
+	  inserting it int the textview
+
+2005-08-10  pollux
+
+	* xfburn/xfburn-progress-dialog.c: improve progress dialog
+	* TODO, po/POTFILES.in, po/fr.po, po/xfburn.pot,
+	  xfburn/xfburn-progress-dialog.c: should be able to blank cdrw
+	* xfburn/xfburn-blank-cd-dialog.c,
+	  xfburn/xfburn-progress-dialog.c: commit before messing things up
+	* xfburn/xfburn-blank-cd-dialog.c, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h: fix compilation
+
+2005-08-09  pollux
+
+	* xfburn/Makefile.am, xfburn/xfburn-blank-cd-dialog.c,
+	  xfburn/xfburn-blank-cd-dialog.h,
+	  xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-burning-dialog.c, xfburn/xfburn-burning-dialog.h,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h, xfburn/xfburn-utils.c,
+	  xfburn/xfburn-utils.h: draft of progress dialog
+
+2005-08-07  pollux
+
+	* po/POTFILES.in, po/fr.po, po/xfburn.pot, xfburn/Makefile.am,
+	  xfburn/xfburn-burn-image-dialog.h,
+	  xfburn/xfburn-burning-dialog.c, xfburn/xfburn-burning-dialog.h,
+	  xfburn/xfburn-main-window.c: add burning dialog
+	* xfburn/Makefile.am, xfburn/xfburn-blank-cd-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.h, xfburn/xfburn-main-window.c:
+	  add burn image dialog
+	* po/POTFILES.in: add burn image dialog
+	* po/ChangeLog, po/POTFILES.in, xfburn/Makefile.am,
+	  xfburn/xfburn-blank-cd-dialog.c,
+	  xfburn/xfburn-blank-cd-dialog.h,
+	  xfburn/xfburn-directory-browser.c,
+	  xfburn/xfburn-directory-browser.h, xfburn/xfburn-disc-content.c,
+	  xfburn/xfburn-disc-content.h, xfburn/xfburn-disc-usage.c,
+	  xfburn/xfburn-disc-usage.h, xfburn/xfburn-file-browser.c,
+	  xfburn/xfburn-file-browser.h, xfburn/xfburn-fs-browser.c,
+	  xfburn/xfburn-fs-browser.h, xfburn/xfburn-global.h,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-main.c,
+	  xfburn/xfburn-preferences-dialog.c,
+	  xfburn/xfburn-preferences-dialog.h, xfburn/xfburn-utils.c,
+	  xfburn/xfburn-utils.h: add blank cdrw dialog
+	* xfburn/xfburn-preferences-dialog.c, xfburn/xfburn-utils.c: add
+	  drive capabilities dectection
+	* po/POTFILES.in, po/fr.po, po/xfburn.pot: update po
+
 2005-08-06  pollux
 
+	* xfburn/xfburn-global.h, xfburn/xfburn-main.c,
+	  xfburn/xfburn-preferences-dialog.c, xfburn/xfburn-utils.c,
+	  xfburn/xfburn-utils.h: probe for cdrom devices
+	* xfburn/Makefile.am, xfburn/xfburn-main.c,
+	  xfburn/xfburn-preferences-dialog.c,
+	  xfburn/xfburn-preferences-dialog.h, xfburn/xfburn-utils.c: fix
+	  icon loading when prefix in set to an unusual location
+	* ChangeLog, po/ChangeLog: more ChangeLog
 	* ChangeLog, ChangeLog, po/ChangeLog: ChangeLog script working
 	* ChangeLog, ChangeLog, configure.ac, po/ChangeLog, po/fr.po,
 	  po/xfburn.pot, xfburn.ui: update Changelogs
