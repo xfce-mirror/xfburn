@@ -32,19 +32,19 @@ G_BEGIN_DECLS
 #define XFBURN_IS_DIRECTORY_BROWSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DIRECTORY_BROWSER))
 #define XFBURN_IS_DIRECTORY_BROWSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DIRECTORY_BROWSER))
 #define XFBURN_DIRECTORY_BROWSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DIRECTORY_BROWSER, XfburnDirectoryBrowserClass))
-typedef struct _XfburnDirectoryBrowser XfburnDirectoryBrowser;
-typedef struct _XfburnDirectoryBrowserClass XfburnDirectoryBrowserClass;
+typedef struct XfburnDirectoryBrowserPrivate XfburnDirectoryBrowserPrivate;
 
-struct _XfburnDirectoryBrowser
+typedef struct
 {
   GtkTreeView treeview;
 
-};
+  XfburnDirectoryBrowserPrivate *priv;
+} XfburnDirectoryBrowser;
 
-struct _XfburnDirectoryBrowserClass
+typedef struct
 {
   GtkTreeViewClass parent_class;
-};
+} XfburnDirectoryBrowserClass;
 
 enum
 {
@@ -58,11 +58,10 @@ enum
 };
 
 
-GtkType
-xfburn_directory_browser_get_type (void)
-  G_GNUC_CONST;
-     GtkWidget *xfburn_directory_browser_new (void);
-     void xfburn_directory_browser_load_path (XfburnDirectoryBrowser *, const gchar *);
+GtkType xfburn_directory_browser_get_type (void);
+GtkWidget *xfburn_directory_browser_new (void);
+void xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gchar * path);
+void xfburn_directory_browser_refresh (XfburnDirectoryBrowser * browser);
 
 G_END_DECLS
 #endif

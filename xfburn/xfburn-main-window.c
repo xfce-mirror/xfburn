@@ -32,6 +32,7 @@
 #include "xfburn-disc-content.h"
 #include "xfburn-blank-cd-dialog.h"
 #include "xfburn-copy-cd-dialog.h"
+#include "xfburn-burn-composition-dialog.h"
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-settings.h"
@@ -42,6 +43,7 @@ static void xfburn_main_window_init (XfburnMainWindow *);
 
 static gboolean cb_delete_main_window (GtkWidget *, GdkEvent *, gpointer);
 static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
+static void cb_burn_composition (XfburnDiscContent *dc, XfburnMainWindow * window);
 
 static void xfburn_window_action_about (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_preferences (GtkAction *, XfburnMainWindow *);
@@ -54,6 +56,7 @@ static void xfburn_window_action_blank_cd (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_copy_cd (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_burn_image (GtkAction *, XfburnMainWindow *);
 
+static void xfburn_window_action_refresh_directorybrowser (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_show_filebrowser (GtkToggleAction *, XfburnMainWindow *);
 static void xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window);
 static void xfburn_window_action_show_content_toolbar (GtkToggleAction * action, XfburnMainWindow * window);
@@ -72,7 +75,8 @@ static GtkActionEntry action_entries[] = {
    G_CALLBACK (xfburn_window_action_preferences),},
   {"action-menu", NULL, N_("_Actions"), NULL,},
   {"view-menu", NULL, N_("_View"), NULL,},
-  {"refresh", GTK_STOCK_REFRESH, N_("Refresh"), NULL, N_("Refresh file list"),},
+  {"refresh", GTK_STOCK_REFRESH, N_("Refresh"), NULL, N_("Refresh file list"),
+   G_CALLBACK (xfburn_window_action_refresh_directorybrowser),},
   {"help-menu", NULL, N_("_Help"), NULL,},
   {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
    G_CALLBACK (xfburn_window_action_about),},
@@ -238,7 +242,8 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   mainwin->disc_content = xfburn_disc_content_new ();
   gtk_paned_add2 (GTK_PANED (vpaned), mainwin->disc_content);
   gtk_widget_show (mainwin->disc_content);
-
+  g_signal_connect (G_OBJECT (mainwin->disc_content), "begin-burn", G_CALLBACK (cb_burn_composition), mainwin);
+  
   xfce_resource_pop_path (XFCE_RESOURCE_DATA);
 }
 
@@ -348,6 +353,38 @@ static void xfburn_window_action_copy_cd (GtkAction *action, XfburnMainWindow *w
 }
 
 static void
+cb_burn_composition (XfburnDiscContent *dc, XfburnMainWindow * window)
+{
+  GtkWidget *dialog;
+  gint ret;
+  
+  dialog = xfburn_burn_composition_dialog_new ();
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+  ret = gtk_dialog_run (GTK_DIALOG (dialog));
+    
+  gtk_widget_hide (dialog);
+  
+  if (ret == GTK_RESPONSE_OK) {
+/*     gchar *command;
+ *     XfburnDevice *device;
+ *     GtkWidget *dialog_progress;
+ *     
+ *     command = xfburn_burn_image_dialog_get_command (XFBURN_BURN_IMAGE_DIALOG (dialog));
+ *     device = xfburn_burn_image_dialog_get_device (XFBURN_BURN_IMAGE_DIALOG (dialog));
+ *     
+ *     dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BURN_ISO, device, command);
+ *     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), GTK_WINDOW (window));
+ *     gtk_widget_show (dialog_progress);
+ *     xfburn_progress_dialog_start (XFBURN_PROGRESS_DIALOG (dialog_progress));
+ *     
+ *     g_free (command);
+ */
+  }
+  
+  gtk_widget_destroy (dialog);
+}
+
+static void
 xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
@@ -450,6 +487,12 @@ xfburn_window_action_preferences (GtkAction * action, XfburnMainWindow * window)
   
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
+}
+
+static void
+xfburn_window_action_refresh_directorybrowser (GtkAction * action, XfburnMainWindow * window)
+{
+  xfburn_file_browser_refresh (XFBURN_FILE_BROWSER (window->file_browser));
 }
 
 static void

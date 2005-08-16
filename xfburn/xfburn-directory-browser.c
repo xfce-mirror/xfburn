@@ -32,6 +32,12 @@
 #include "xfburn-disc-content.h"
 #include "xfburn-utils.h"
 
+/* structs */
+struct XfburnDirectoryBrowserPrivate
+{
+  gchar *current_path;
+};
+
 /* prototypes */
 static void xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass *);
 static void xfburn_directory_browser_init (XfburnDirectoryBrowser *);
@@ -72,12 +78,25 @@ xfburn_directory_browser_get_type (void)
 }
 
 static void
+xfburn_directory_browser_finalize (GObject * object)
+{
+  XfburnDirectoryBrowser *cobj;
+  cobj = XFBURN_DIRECTORY_BROWSER (object);
+
+  g_free (cobj->priv->current_path);
+  g_free (cobj->priv);
+  
+  G_OBJECT_CLASS (parent_class)->finalize (object);
+}
+
+static void
 xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass * klass)
 {
   GObjectClass *gobject_class;
 
   gobject_class = G_OBJECT_CLASS (klass);
-
+  gobject_class->finalize = xfburn_directory_browser_finalize;
+  
   parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -91,6 +110,8 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
 
   GtkTargetEntry gte[] = { {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN} };
 
+  browser->priv = g_new0 (XfburnDirectoryBrowserPrivate, 1);
+    
   model = gtk_list_store_new (DIRECTORY_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DIRECTORY_BROWSER_COLUMN_FILE,
@@ -215,14 +236,19 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   GdkPixbuf *icon_directory, *icon_file;
   const gchar *dir_entry;
   int x, y;
-
+  gchar *temp;
+  
   dir = g_dir_open (path, 0, &error);
   if (!dir) {
     g_warning ("unable to open the %s directory : %s", path, error->message);
     g_error_free (error);
     return;
   }
-
+  
+  temp = g_strdup (path);
+  g_free (browser->priv->current_path);
+  browser->priv->current_path = temp;
+ 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -237,14 +263,14 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
     full_path = g_build_filename (path, dir_entry, NULL);
 
     if (dir_entry[0] != '.' && (stat (full_path, &s) == 0)) {
-      GtkTreeIter iter;
       gchar *humansize;
       
       humansize = xfburn_humanreadable_filesize (s.st_size);
       
-      gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-
       if ((s.st_mode & S_IFDIR)) {
+        GtkTreeIter iter;
+        
+        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
         gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_directory,
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
@@ -253,6 +279,9 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
                             DIRECTORY_BROWSER_COLUMN_TYPE, _(DIRECTORY), DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
       }
       else if ((s.st_mode & S_IFREG)) {
+        GtkTreeIter iter;
+        
+        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
         gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_file,
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
@@ -271,4 +300,14 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
     g_object_unref (icon_file);
 
   g_dir_close (dir);
+}
+
+void
+xfburn_directory_browser_refresh (XfburnDirectoryBrowser * browser) 
+{
+  gchar *temp;
+  
+  temp = g_strdup (browser->priv->current_path);
+  xfburn_directory_browser_load_path (browser, (const gchar*) temp);
+  g_free (temp);
 }

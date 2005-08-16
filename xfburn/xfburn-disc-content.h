@@ -46,6 +46,8 @@ struct _XfburnDiscContent
 struct _XfburnDiscContentClass
 {
   GtkVBoxClass parent_class;
+  
+  void (*begin_burn) (XfburnDiscContent *dc);
 };
 
 enum

@@ -49,6 +49,8 @@ struct _XfburnDiscUsage
 struct _XfburnDiscUsageClass
 {
   GtkHBoxClass parent_class;
+  
+  void (*begin_burn) (XfburnDiscUsage *du);
 };
 
 GtkType xfburn_disc_usage_get_type (void);

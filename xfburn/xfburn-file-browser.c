@@ -181,3 +181,10 @@ xfburn_file_browser_new (void)
 {
   return g_object_new (xfburn_file_browser_get_type (), NULL);
 }
+
+void
+xfburn_file_browser_refresh (XfburnFileBrowser *browser)
+{
+  // TODO refresh fs browser
+  xfburn_directory_browser_refresh (XFBURN_DIRECTORY_BROWSER (browser->directory_browser));
+}

@@ -48,9 +48,9 @@ struct _XfburnFileBrowserClass
   GtkHPanedClass parent_class;
 };
 
-GtkType
-xfburn_file_browser_get_type (void);
+GtkType xfburn_file_browser_get_type (void);
 GtkWidget *xfburn_file_browser_new (void);
+void xfburn_file_browser_refresh (XfburnFileBrowser *browser);
 
 G_END_DECLS
 #endif

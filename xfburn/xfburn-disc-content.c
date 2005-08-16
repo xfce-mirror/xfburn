@@ -54,6 +54,8 @@ static void disc_content_action_remove_selection (GtkAction *, XfburnDiscContent
 static void disc_content_action_rename_selection (GtkAction * action, XfburnDiscContent * dc);
 
 static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDiscContent * dc);
+static void cb_begin_burn (XfburnDiscUsage *du, XfburnDiscContent *dc);
+
 static void cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDiscContent * dc);
 
 static void content_drag_data_rcv_cb (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint,
@@ -69,6 +71,11 @@ enum
   DISC_CONTENT_COLUMN_SIZE,
   DISC_CONTENT_COLUMN_PATH,
   DISC_CONTENT_N_COLUMNS
+};
+
+enum {
+  BEGIN_BURN,
+  LAST_SIGNAL,
 };
 
 struct XfburnDiscContentPrivate
@@ -99,6 +106,8 @@ static const gchar *toolbar_actions[] = {
   "clear",
   "import-session",
 };
+
+static guint signals [LAST_SIGNAL];
 
 /***************************/
 /* XfburnDiscContent class */
@@ -134,6 +143,10 @@ xfburn_disc_content_class_init (XfburnDiscContentClass * klass)
 
   parent_class = g_type_class_peek_parent (klass);
   object_class->finalize = xfburn_disc_content_finalize;
+   
+  signals[BEGIN_BURN] = g_signal_new ("begin-burn", G_TYPE_FROM_CLASS (object_class), G_SIGNAL_ACTION,
+                                      G_STRUCT_OFFSET (XfburnDiscContentClass, begin_burn),
+                                      NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
 }
 
 static void
@@ -233,7 +246,8 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   disc_content->priv->disc_usage = xfburn_disc_usage_new ();
   gtk_box_pack_start (GTK_BOX (disc_content), disc_content->priv->disc_usage, FALSE, FALSE, 5);
   gtk_widget_show (disc_content->priv->disc_usage);
-
+  g_signal_connect (G_OBJECT (disc_content->priv->disc_usage), "begin-burn", G_CALLBACK (cb_begin_burn), disc_content);
+  
   /* set up DnD */
   gtk_tree_view_enable_model_drag_source (GTK_TREE_VIEW (disc_content->priv->content), GDK_BUTTON1_MASK, gte_src,
                                           G_N_ELEMENTS (gte_src), GDK_ACTION_MOVE);
@@ -256,6 +270,12 @@ xfburn_disc_content_finalize (GObject * object)
 }
 
 /* internals */
+static void 
+cb_begin_burn (XfburnDiscUsage *du, XfburnDiscContent *dc)
+{
+  g_signal_emit (G_OBJECT (dc), signals[BEGIN_BURN], 0);
+}
+
 static gboolean
 cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDiscContent * dc)
 {

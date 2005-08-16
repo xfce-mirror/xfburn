@@ -26,12 +26,14 @@
 
 #include "xfburn-disc-usage.h"
 #include "xfburn-global.h"
+#include "xfburn-settings.h"
 #include "xfburn-utils.h"
 
 /* prototypes */
 static void xfburn_disc_usage_class_init (XfburnDiscUsageClass *);
 static void xfburn_disc_usage_init (XfburnDiscUsage *);
 
+static void cb_button_clicked (GtkButton *, XfburnDiscUsage *);
 static void cb_combo_changed (GtkComboBox *, XfburnDiscUsage *);
 
 /* globals */
@@ -53,6 +55,14 @@ struct
   4.7 *1000 * 1000 * 1000, "4.7GB DVD"},
   {
 8.5 *1000 * 1000 * 1000, "8.5GB DVD"},};
+
+enum
+{
+  BEGIN_BURN,
+  LAST_SIGNAL,
+};
+
+static guint signals[LAST_SIGNAL];
 
 /***************************/
 /* XfburnDiscContent class */
@@ -84,7 +94,15 @@ xfburn_disc_usage_get_type (void)
 static void
 xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass)
 {
+  GObjectClass *gobject_class;
+
   parent_class = g_type_class_peek_parent (klass);
+
+  gobject_class = G_OBJECT_CLASS (klass);
+
+  signals[BEGIN_BURN] = g_signal_new ("begin-burn", G_TYPE_FROM_CLASS (gobject_class), G_SIGNAL_ACTION,
+                                      G_STRUCT_OFFSET (XfburnDiscUsageClass, begin_burn),
+                                      NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
 }
 
 static void
@@ -110,7 +128,8 @@ xfburn_disc_usage_init (XfburnDiscUsage * disc_usage)
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->button, FALSE, FALSE, BORDER);
   gtk_widget_set_sensitive (disc_usage->button, FALSE);
   gtk_widget_show (disc_usage->button);
-
+  g_signal_connect (G_OBJECT (disc_usage->button), "clicked", G_CALLBACK (cb_button_clicked), disc_usage);
+  
   g_signal_connect (G_OBJECT (disc_usage->combo), "changed", G_CALLBACK (cb_combo_changed), disc_usage);
 }
 
@@ -119,15 +138,31 @@ static void
 xfburn_disc_usage_update_size (XfburnDiscUsage * disc_usage)
 {
   gfloat fraction;
-  gchar *human_size;
+  gchar *size;
 
   fraction = disc_usage->size / datadisksizes[gtk_combo_box_get_active (GTK_COMBO_BOX (disc_usage->combo))].size;
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (disc_usage->progress_bar), fraction > 1.0 ? 1.0 : fraction);
 
-  human_size = xfburn_humanreadable_filesize ((guint64) disc_usage->size);
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), human_size);
+  if (xfburn_settings_get_boolean ("human-readable-units", TRUE))
+    size = xfburn_humanreadable_filesize ((guint64) disc_usage->size);
+  else
+    size = g_strdup_printf ("%lu B", (long unsigned int) disc_usage->size);
 
-  g_free (human_size);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), size);
+
+  if (disc_usage->size == 0)
+    gtk_widget_set_sensitive (disc_usage->button, FALSE);
+  else
+    gtk_widget_set_sensitive (disc_usage->button, TRUE);
+ 
+  
+  g_free (size);
+}
+
+static void 
+cb_button_clicked (GtkButton *button, XfburnDiscUsage *du)
+{
+  g_signal_emit (G_OBJECT (du), signals[BEGIN_BURN], 0);
 }
 
 static void
