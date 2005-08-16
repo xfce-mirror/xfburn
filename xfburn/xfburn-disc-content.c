@@ -20,6 +20,10 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
+
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
@@ -47,7 +51,7 @@ static gint directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkT
 
 static void disc_content_action_clear (GtkAction *, XfburnDiscContent *);
 static void disc_content_action_remove_selection (GtkAction *, XfburnDiscContent *);
-static void disc_content_action_rename_selection (GtkAction *action, XfburnDiscContent *dc);
+static void disc_content_action_rename_selection (GtkAction * action, XfburnDiscContent * dc);
 
 static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDiscContent * dc);
 static void cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDiscContent * dc);
@@ -144,8 +148,7 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   GtkTreeSelection *selection;
 
   const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
-    "<menuitem action=\"rename-file\"/>"
-    "<menuitem action=\"remove-file\"/>" "</popup></ui>";
+    "<menuitem action=\"rename-file\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
 
   GtkTargetEntry gte_src[] = { {"XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DISC_CONTENT_DND_TARGET_INSIDE} };
   GtkTargetEntry gte_dest[] = { {"XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DISC_CONTENT_DND_TARGET_INSIDE},
@@ -303,8 +306,8 @@ directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b,
   gtk_tree_model_get (model, a, DISC_CONTENT_COLUMN_CONTENT, &aname, DISC_CONTENT_COLUMN_PATH, &apath, -1);
   gtk_tree_model_get (model, b, DISC_CONTENT_COLUMN_CONTENT, &bname, DISC_CONTENT_COLUMN_PATH, &bpath, -1);
 
-  aisdir = (apath == NULL);
-  bisdir = (bpath == NULL);
+  aisdir = g_file_test (apath, G_FILE_TEST_IS_DIR);
+  bisdir = g_file_test (bpath, G_FILE_TEST_IS_DIR);
 
   if (aisdir && !bisdir)
     result = -1;
@@ -338,56 +341,56 @@ cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
   gtk_tree_path_free (real_path);
 }
 
-static void 
-disc_content_action_rename_selection (GtkAction *action, XfburnDiscContent *dc)
+static void
+disc_content_action_rename_selection (GtkAction * action, XfburnDiscContent * dc)
 {
   GtkTreeSelection *selection;
   GtkTreeModel *model;
   GList *list;
   GtkTreePath *path;
   GtkTreeViewColumn *column;
-  
+
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dc->priv->content));
   list = gtk_tree_selection_get_selected_rows (selection, &model);
-    
+
   path = (GtkTreePath *) list->data;
   column = gtk_tree_view_get_column (GTK_TREE_VIEW (dc->priv->content), DISC_CONTENT_COLUMN_CONTENT - 1);
-                                                                         /* -1 because of COLUMN_ICON */
-  
-  gtk_tree_view_set_cursor (GTK_TREE_VIEW (dc->priv->content), path, column, TRUE); 
-  
+  /* -1 because of COLUMN_ICON */
+
+  gtk_tree_view_set_cursor (GTK_TREE_VIEW (dc->priv->content), path, column, TRUE);
+
   gtk_tree_path_free (path);
   g_list_free (list);
 }
 
-static void 
-disc_content_action_remove_selection (GtkAction *action, XfburnDiscContent *dc)
+static void
+disc_content_action_remove_selection (GtkAction * action, XfburnDiscContent * dc)
 {
   GtkTreeSelection *selection;
   GtkTreeModel *model;
   GList *list, *el;
-  
+
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dc->priv->content));
   list = gtk_tree_selection_get_selected_rows (selection, &model);
-  
+
   el = list;
   while (el) {
     GtkTreePath *path;
     GtkTreeIter iter;
     guint64 size;
-    
+
     path = (GtkTreePath *) el->data;
     gtk_tree_model_get_iter (model, &iter, path);
-    
+
     gtk_tree_model_get (model, &iter, DISC_CONTENT_COLUMN_SIZE, &size, -1);
     xfburn_disc_usage_sub_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), size);
-    
+
     gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
-    
+
     gtk_tree_path_free (path);
     el = g_list_next (el);
   }
-  
+
   g_list_free (list);
 }
 
@@ -443,6 +446,48 @@ content_drag_data_get_cb (GtkWidget * widget, GdkDragContext * dc,
 }
 
 static void
+add_file_to_list (XfburnDiscContent * dc, const gchar * path, GdkPixbuf * icon_file, GdkPixbuf * icon_directory,
+                  GtkTreeIter * iter)
+{
+  struct stat s;
+
+  if ((stat (path, &s) == 0)) {
+    GtkTreeModel *model;
+    gchar *basename;
+    gchar *humansize = NULL;
+
+    basename = g_path_get_basename (path);
+    model = gtk_tree_view_get_model (GTK_TREE_VIEW (dc->priv->content));
+
+    if ((s.st_mode & S_IFDIR)) {
+      guint64 dirsize;
+
+      dirsize = xfburn_calc_dirsize (path);
+      humansize = xfburn_humanreadable_filesize (dirsize);
+      gtk_list_store_set (GTK_LIST_STORE (model), iter,
+                          DISC_CONTENT_COLUMN_ICON, icon_directory,
+                          DISC_CONTENT_COLUMN_CONTENT, basename,
+                          DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
+                          DISC_CONTENT_COLUMN_SIZE, dirsize, DISC_CONTENT_COLUMN_PATH, path, -1);
+
+      xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), dirsize);
+    }
+    else if ((s.st_mode & S_IFREG)) {
+      humansize = xfburn_humanreadable_filesize (s.st_size);
+      gtk_list_store_set (GTK_LIST_STORE (model), iter,
+                          DISC_CONTENT_COLUMN_ICON, icon_file,
+                          DISC_CONTENT_COLUMN_CONTENT, basename,
+                          DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
+                          DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size, DISC_CONTENT_COLUMN_PATH, path, -1);
+
+      xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), s.st_size);
+    }
+    g_free (humansize);
+    g_free (basename);
+  }
+}
+
+static void
 content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                           guint info, guint t, XfburnDiscContent * content)
 {
@@ -476,10 +521,8 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
     file = strtok ((gchar *) sd->data, "\n");
     while (file) {
-      struct stat s;
       GtkTreeIter iter;
       gchar *full_path;
-      gchar *basename;
 
       if (g_str_has_prefix (file, "file://"))
         full_path = g_build_filename (&file[7], NULL);
@@ -491,41 +534,10 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       if (full_path[strlen (full_path) - 1] == '\r')
         full_path[strlen (full_path) - 1] = '\0';
 
-      basename = g_path_get_basename (full_path);
-
-      if ((stat (full_path, &s) == 0)) {
-        gchar *humansize = NULL;
-
-        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-
-        if ((s.st_mode & S_IFDIR)) {
-          guint64 dirsize;
-
-          dirsize = xfburn_calc_dirsize (full_path);
-          humansize = xfburn_humanreadable_filesize (dirsize);
-          gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                              DISC_CONTENT_COLUMN_ICON, icon_directory,
-                              DISC_CONTENT_COLUMN_CONTENT, basename,
-                              DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
-                              DISC_CONTENT_COLUMN_SIZE, dirsize, DISC_CONTENT_COLUMN_PATH, full_path, -1);
-
-          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (content->priv->disc_usage), dirsize);
-        }
-        else if ((s.st_mode & S_IFREG)) {
-          humansize = xfburn_humanreadable_filesize (s.st_size);
-          gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                              DISC_CONTENT_COLUMN_ICON, icon_file,
-                              DISC_CONTENT_COLUMN_CONTENT, basename,
-                              DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
-                              DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size, DISC_CONTENT_COLUMN_PATH, full_path, -1);
-
-          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (content->priv->disc_usage), s.st_size);
-        }
-        g_free (humansize);
-      }
+      gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+      add_file_to_list (content, full_path, icon_file, icon_directory, &iter);
 
       g_free (full_path);
-      g_free (basename);
 
       file = strtok (NULL, "\n");
     }
@@ -561,16 +573,172 @@ xfburn_disc_content_show_toolbar (XfburnDiscContent * content)
 /****************/
 /* loading code */
 /****************/
-void
-xfburn_disc_content_load_from_file (const gchar *filename)
+typedef struct
 {
+  gboolean started;
+  XfburnDiscContent *dc;
+} LoadParserStruct;
+
+static gint
+_find_attribute (const gchar ** attribute_names, const gchar * attr)
+{
+  gint i;
+
+  for (i = 0; attribute_names[i]; i++) {
+    if (!strcmp (attribute_names[i], attr))
+      return i;
+  }
+
+  return -1;
 }
+
+static void
+load_composition_start (GMarkupParseContext * context, const gchar * element_name,
+                        const gchar ** attribute_names, const gchar ** attribute_values,
+                        gpointer user_data, GError ** error)
+{
+  LoadParserStruct *parserinfo = (LoadParserStruct *) user_data;
+
+  if (!(parserinfo->started) && !strcmp (element_name, "xfburn-composition"))
+    parserinfo->started = TRUE;
+  else if (!(parserinfo->started))
+    return;
+
+  if (!strcmp (element_name, "file") || !strcmp (element_name, "directory")) {
+    int i, j;
+
+    if ((i = _find_attribute (attribute_names, "name")) != -1 &&
+        (j = _find_attribute (attribute_names, "source")) != -1) {
+      GtkTreeModel *model;
+      GtkTreeIter iter;
+      GdkPixbuf *icon_directory, *icon_file;
+      int x,y;
+          
+      gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
+      icon_directory = xfce_themed_icon_load ("gnome-fs-directory", x);
+      icon_file = xfce_themed_icon_load ("gnome-fs-regular", x);
+
+      model = gtk_tree_view_get_model (GTK_TREE_VIEW (parserinfo->dc->priv->content));
+      gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+      add_file_to_list (parserinfo->dc, attribute_values[j], icon_file, icon_directory, &iter);
+      gtk_list_store_set (GTK_LIST_STORE (model), &iter, DISC_CONTENT_COLUMN_CONTENT, attribute_values[i], -1);
+          
+      if (icon_directory)
+        g_object_unref (icon_directory);
+      if (icon_file)
+        g_object_unref (icon_file);
+    }
+  }
+}
+
+static void
+load_composition_end (GMarkupParseContext * context, const gchar * element_name, gpointer user_data, GError ** error)
+{
+  LoadParserStruct *parserinfo = (LoadParserStruct *) user_data;
+  if (!strcmp (element_name, "xfburn-composition"))
+    parserinfo->started = FALSE;
+}
+
+void
+xfburn_disc_content_load_from_file (XfburnDiscContent * dc, const gchar * filename)
+{
+  gchar *file_contents = NULL;
+  GMarkupParseContext *gpcontext = NULL;
+  struct stat st;
+  LoadParserStruct parserinfo;
+  GMarkupParser gmparser = {
+    load_composition_start, load_composition_end, NULL, NULL, NULL
+  };
+  GError *err = NULL;
+#ifdef HAVE_MMAP
+  gint fd = -1;
+  void *maddr = NULL;
+#endif
+  g_return_val_if_fail (filename != NULL, NULL);
+  if (stat (filename, &st) < 0) {
+    g_warning ("Unable to open %s", filename);
+    goto cleanup;
+  }
+
+#ifdef HAVE_MMAP
+  fd = open (filename, O_RDONLY, 0);
+  if (fd < 0)
+    goto cleanup;
+  maddr = mmap (NULL, st.st_size, PROT_READ, MAP_FILE | MAP_SHARED, fd, 0);
+  if (maddr)
+    file_contents = maddr;
+#endif
+  if (!file_contents && !g_file_get_contents (filename, &file_contents, NULL, &err)) {
+    if (err) {
+      g_warning ("Unable to read file '%s' (%d): %s", filename, err->code, err->message);
+      g_error_free (err);
+    }
+    goto cleanup;
+  }
+
+  parserinfo.started = FALSE;
+  parserinfo.dc = dc;
+  gpcontext = g_markup_parse_context_new (&gmparser, 0, &parserinfo, NULL);
+  if (!g_markup_parse_context_parse (gpcontext, file_contents, st.st_size, &err)) {
+    g_warning ("Error parsing composition (%d): %s", err->code, err->message);
+    g_error_free (err);
+    goto cleanup;
+  }
+
+  if (g_markup_parse_context_end_parse (gpcontext, NULL)) {
+    DBG ("parsed");
+  }
+
+cleanup:
+  if (gpcontext)
+    g_markup_parse_context_free (gpcontext);
+#ifdef HAVE_MMAP
+  if (maddr) {
+    munmap (maddr, st.st_size);
+    file_contents = NULL;
+  }
+  if (fd > -1)
+    close (fd);
+#endif
+  if (file_contents)
+    g_free (file_contents);
+}
+
 
 /***************/
 /* saving code */
 /***************/
-void
-xfburn_disc_content_save_to_file (const gchar *filename)
+static gboolean
+foreach_save (GtkTreeModel * model, GtkTreePath * path, GtkTreeIter * iter, FILE * file_content)
 {
+  gchar *type;
+  gchar *name;
+  gchar *source_path;
+  guint64 size;
+  gtk_tree_model_get (model, iter, DISC_CONTENT_COLUMN_CONTENT, &name,
+                      DISC_CONTENT_COLUMN_PATH, &source_path, DISC_CONTENT_COLUMN_SIZE, &size, -1);
+  if (g_file_test (source_path, G_FILE_TEST_IS_DIR))
+    type = g_strdup ("directory");
+  else
+    type = g_strdup ("file");
+  fprintf (file_content, "\t<%s name=\"%s\" source=\"%s\" size=\"%lu\"/>\n", type, name,
+           source_path, (long unsigned int) size);
+  g_free (type);
+  g_free (name);
+  g_free (source_path);
+  return FALSE;
 }
 
+void
+xfburn_disc_content_save_to_file (XfburnDiscContent * dc, const gchar * filename)
+{
+  FILE *file_content;
+  GtkTreeModel *model;
+  file_content = fopen (filename, "w+");
+  fprintf (file_content, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n");
+  fprintf (file_content, "<xfburn-composition version=\"0.1\">\n");
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (dc->priv->content));
+  gtk_tree_model_foreach (model, (GtkTreeModelForeachFunc) foreach_save, file_content);
+  fprintf (file_content, "</xfburn-composition>\n");
+  fclose (file_content);
+}

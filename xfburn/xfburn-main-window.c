@@ -45,6 +45,9 @@ static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 
 static void xfburn_window_action_about (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_preferences (GtkAction *, XfburnMainWindow *);
+
+static void xfburn_window_action_load (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_save (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
 
 static void xfburn_window_action_blank_cd (GtkAction *, XfburnMainWindow *);
@@ -59,6 +62,10 @@ static void xfburn_window_action_show_content_toolbar (GtkToggleAction * action,
 static GtkWindowClass *parent_class = NULL;
 static GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL,},
+  {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+   G_CALLBACK (xfburn_window_action_load),},
+  {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"), 
+   G_CALLBACK (xfburn_window_action_save),},
   {"quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (xfburn_window_action_quit),},
   {"edit-menu", NULL, N_("_Edit"), NULL,},
   {"preferences", GTK_STOCK_PREFERENCES, N_("Prefere_nces"), NULL, N_("Show preferences dialog"),
@@ -369,6 +376,18 @@ xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
   }
   
   gtk_widget_destroy (dialog);
+}
+
+static void
+xfburn_window_action_load (GtkAction *action, XfburnMainWindow * window)
+{
+  xfburn_disc_content_load_from_file (XFBURN_DISC_CONTENT (window->disc_content), "/tmp/test.xml");
+}
+
+static void
+xfburn_window_action_save (GtkAction *action, XfburnMainWindow * window)
+{
+  xfburn_disc_content_save_to_file (XFBURN_DISC_CONTENT (window->disc_content), "/tmp/test.xml");
 }
 
 static void
