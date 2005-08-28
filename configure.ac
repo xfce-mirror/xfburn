@@ -1,3 +1,5 @@
+dnl $Id$
+
 dnl Version information
 m4_define([xfburn_version_major], [0])
 m4_define([xfburn_version_minor], [0])

@@ -46,6 +46,6 @@ typedef struct
 } XfburnBurnCompositionDialogClass;
 
 GtkType xfburn_burn_composition_dialog_get_type ();
-GtkWidget *xfburn_burn_composition_dialog_new ();
+GtkWidget *xfburn_burn_composition_dialog_new (const gchar *file_list);
 
 #endif /* XFBURN_BURN_COMPOSITION_DIALOG_H */

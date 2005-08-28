@@ -199,16 +199,16 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_widget_show (vbox);
   xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox);
 
-  priv->check_eject = gtk_check_button_new_with_mnemonic (_("Eject disk"));
+  priv->check_eject = gtk_check_button_new_with_mnemonic (_("E_ject disk"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_eject), TRUE);
   gtk_widget_show (priv->check_eject);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_eject, FALSE, FALSE, BORDER);
 
-  priv->check_dummy = gtk_check_button_new_with_mnemonic (_("Dummy write"));
+  priv->check_dummy = gtk_check_button_new_with_mnemonic (_("_Dummy write"));
   gtk_widget_show (priv->check_dummy);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_dummy, FALSE, FALSE, BORDER);
 
-  priv->check_burnfree = gtk_check_button_new_with_mnemonic (_("BurnFree"));
+  priv->check_burnfree = gtk_check_button_new_with_mnemonic (_("Burn_Free"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_burnfree), TRUE);
   gtk_widget_show (priv->check_burnfree);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);

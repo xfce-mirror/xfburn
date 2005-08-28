@@ -40,4 +40,5 @@ void xfburn_scan_devices ();
 gchar *xfburn_humanreadable_filesize (guint64);
 guint64 xfburn_calc_dirsize (const gchar *);
 
+void xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent);
 #endif

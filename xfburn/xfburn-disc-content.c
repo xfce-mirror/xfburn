@@ -576,6 +576,21 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   }
 }
 
+static gboolean
+foreach_generate_file_list (GtkTreeModel * model, GtkTreePath * path, GtkTreeIter * iter, FILE * file)
+{
+  gchar *name;
+  gchar *src;
+  
+  gtk_tree_model_get (model, iter, DISC_CONTENT_COLUMN_CONTENT, &name, DISC_CONTENT_COLUMN_PATH, &src, -1);
+  
+  fprintf (file, "%s=%s\n", name, src);
+  
+  g_free (name);
+  g_free (src);
+  return FALSE;
+}
+
 /* public methods */
 GtkWidget *
 xfburn_disc_content_new (void)
@@ -593,6 +608,29 @@ void
 xfburn_disc_content_show_toolbar (XfburnDiscContent * content)
 {
   gtk_widget_show (content->priv->toolbar);
+}
+
+gboolean 
+xfburn_disc_content_generate_file_list (XfburnDiscContent *dc, gchar **tmpfile)
+{
+  GError *error = NULL;
+  FILE *file_tmp;
+  int fd_tmpfile;
+  GtkTreeModel *model;
+  
+  fd_tmpfile = g_file_open_tmp ("xfburnXXXXXX", tmpfile, &error);
+  if (error) {
+    g_warning ("Unable to create temporary file: %s", error->message);
+    g_error_free (error);
+    return FALSE;
+  }
+  
+  file_tmp = fdopen (fd_tmpfile, "w+");
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (dc->priv->content));
+  gtk_tree_model_foreach (model, (GtkTreeModelForeachFunc) foreach_generate_file_list, file_tmp);
+  fclose (file_tmp);
+    
+  return TRUE;
 }
 
 /****************/

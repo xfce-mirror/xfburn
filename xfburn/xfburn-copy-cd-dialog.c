@@ -21,6 +21,7 @@
 #endif /* !HAVE_CONFIG_H */
 
 #include "xfburn-global.h"
+#include "xfburn-utils.h"
 
 #include "xfburn-copy-cd-dialog.h"
 
@@ -28,6 +29,9 @@
 static void xfburn_copy_cd_dialog_class_init (XfburnCopyCdDialogClass * klass);
 static void xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * sp);
 static void xfburn_copy_cd_dialog_finalize (GObject * object);
+
+static void cb_check_only_iso_toggled (GtkToggleButton *button, XfburnCopyCdDialog * dialog);
+static void cb_browse_iso (GtkButton *button, XfburnCopyCdDialog *dialog);
 
 /* structures */
 struct XfburnCopyCdDialogPrivate
@@ -40,6 +44,8 @@ struct XfburnCopyCdDialogPrivate
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
   GtkWidget *check_only_iso;
+  GtkWidget *hbox_iso;
+  GtkWidget *entry_path_iso;
   GtkWidget *check_dummy;
 };
 
@@ -209,24 +215,42 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_widget_show (vbox);
   xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox);
 
-  priv->check_eject = gtk_check_button_new_with_mnemonic (_("Eject disk"));
+  priv->check_eject = gtk_check_button_new_with_mnemonic (_("E_ject disk"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_eject), TRUE);
   gtk_widget_show (priv->check_eject);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_eject, FALSE, FALSE, BORDER);
 
-  priv->check_dummy = gtk_check_button_new_with_mnemonic (_("Dummy write"));
+  priv->check_dummy = gtk_check_button_new_with_mnemonic (_("_Dummy write"));
   gtk_widget_show (priv->check_dummy);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_dummy, FALSE, FALSE, BORDER);
 
-  priv->check_burnfree = gtk_check_button_new_with_mnemonic (_("BurnFree"));
+  priv->check_burnfree = gtk_check_button_new_with_mnemonic (_("Burn_Free"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_burnfree), TRUE);
   gtk_widget_show (priv->check_burnfree);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);
   
-  priv->check_only_iso = gtk_check_button_new_with_mnemonic (_("Only create ISO"));
+  priv->check_only_iso = gtk_check_button_new_with_mnemonic (_("Only create _ISO"));
   gtk_widget_show (priv->check_only_iso);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_only_iso, FALSE, FALSE, BORDER);
-
+  g_signal_connect (G_OBJECT (priv->check_only_iso), "toggled", G_CALLBACK (cb_check_only_iso_toggled), obj);
+  
+  priv->hbox_iso = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (priv->hbox_iso);
+  gtk_box_pack_start (GTK_BOX (vbox), priv->hbox_iso, FALSE, FALSE, 0);
+  gtk_widget_set_sensitive (priv->hbox_iso, FALSE);
+      
+  priv->entry_path_iso = gtk_entry_new ();
+  gtk_widget_show (priv->entry_path_iso);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_iso), priv->entry_path_iso, FALSE, FALSE, 0);
+  
+  img = gtk_image_new_from_stock (GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_SMALL_TOOLBAR);
+  gtk_widget_show (img);
+  button = gtk_button_new ();
+  gtk_container_add (GTK_CONTAINER (button), img);
+  gtk_widget_show (button);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_iso), button, FALSE, FALSE, 0);
+  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_browse_iso), obj);
+  
   /* action buttons */
   button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
   gtk_widget_show (button);
@@ -252,6 +276,21 @@ xfburn_copy_cd_dialog_finalize (GObject * object)
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
+/* internals */
+static void cb_check_only_iso_toggled (GtkToggleButton *button, XfburnCopyCdDialog * dialog)
+{
+  XfburnCopyCdDialogPrivate *priv = dialog->priv;
+  
+  gtk_widget_set_sensitive (priv->hbox_iso, gtk_toggle_button_get_active (button));
+}
+
+static void 
+cb_browse_iso (GtkButton *button, XfburnCopyCdDialog *dialog)
+{
+  xfburn_browse_for_file (GTK_ENTRY (dialog->priv->entry_path_iso), GTK_WINDOW (dialog));
+}
+
+/* public */
 GtkWidget *
 xfburn_copy_cd_dialog_new ()
 {

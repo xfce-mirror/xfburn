@@ -349,7 +349,6 @@ static void xfburn_window_action_copy_cd (GtkAction *action, XfburnMainWindow *w
   }
   
   gtk_widget_destroy (dialog);
-
 }
 
 static void
@@ -357,11 +356,15 @@ cb_burn_composition (XfburnDiscContent *dc, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
   gint ret;
+  gchar *tmpfile;
   
-  dialog = xfburn_burn_composition_dialog_new ();
+  xfburn_disc_content_generate_file_list (XFBURN_DISC_CONTENT (window->disc_content), &tmpfile);
+  
+  dialog = xfburn_burn_composition_dialog_new (tmpfile);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
   ret = gtk_dialog_run (GTK_DIALOG (dialog));
-    
+  
+  g_free (tmpfile);
   gtk_widget_hide (dialog);
   
   if (ret == GTK_RESPONSE_OK) {
@@ -445,9 +448,9 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   static const struct
   {
     gchar *name, *email, *language;
-  } translators[] = {
-    {
-  "Jean-François Wauthy", "pollux@xfce.org", "fr",},};
+  } translators[] = {};
+    //{
+  //"Jean-François Wauthy", "pollux@xfce.org", "fr",},};
 
   icon = xfce_themed_icon_load ("xfburn", 48);
   //if (G_UNLIKELY (icon == NULL))
@@ -456,7 +459,7 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   info = xfce_about_info_new ("Xfburn", VERSION, _("Another cd burning tool"),
                               XFCE_COPYRIGHT_TEXT ("2005", "Jean-François Wauthy"), XFCE_LICENSE_GPL);
   xfce_about_info_set_homepage (info, "http://www.xfce.org/");
-  xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Maintainer"));
+  xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Author/Maintainer"));
   //xfce_about_info_add_credit (info, "Francois Le Clainche", "fleclainche@wanadoo.fr", _("Icon Designer"));
 
   for (n = 0; translators[n].name != NULL; ++n) {

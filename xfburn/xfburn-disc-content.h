@@ -63,6 +63,7 @@ void xfburn_disc_content_hide_toolbar (XfburnDiscContent *content);
 void xfburn_disc_content_show_toolbar (XfburnDiscContent *content);
 void xfburn_disc_content_load_from_file (XfburnDiscContent *dc, const gchar *filename);
 void xfburn_disc_content_save_to_file (XfburnDiscContent *dc, const gchar *filename);
+gboolean xfburn_disc_content_generate_file_list (XfburnDiscContent *dc, gchar **tmpfile);
 
 G_END_DECLS
 #endif
