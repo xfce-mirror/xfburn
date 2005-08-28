@@ -4,7 +4,7 @@ dnl Version information
 m4_define([xfburn_version_major], [0])
 m4_define([xfburn_version_minor], [0])
 m4_define([xfburn_version_micro], [2svn])
-m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()])
+m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro() (revision $Revision$)])
 
 dnl Initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2005 Jean-François Wauthy <pollux@xfce.org>])
