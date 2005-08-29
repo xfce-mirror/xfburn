@@ -1,4 +1,4 @@
-$Id$
+/* $Id$ */
 /*
  *  Copyright (c) 2005 Jean-François Wauthy (pollux@xfce.org)
  *
