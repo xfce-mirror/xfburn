@@ -4,7 +4,7 @@ dnl Version information
 m4_define([xfburn_version_major], [0])
 m4_define([xfburn_version_minor], [0])
 m4_define([xfburn_version_micro], [2svn])
-m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro() (revision $Revision$)])
+m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()])
 
 dnl Initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2005 Jean-François Wauthy <pollux@xfce.org>])
@@ -30,6 +30,10 @@ XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.0])
 
 dnl check for debugging support
 BM_DEBUG_SUPPORT()
+
+REVISION=`LC_ALL=C svn info | head -n 4 | tail -n 1 | cut -d " " -f 2`
+AC_DEFINE_UNQUOTED([REVISION], "${REVISION}", [svn revision number])
+AC_SUBST([REVISION])
 
 AC_OUTPUT([
 Makefile
