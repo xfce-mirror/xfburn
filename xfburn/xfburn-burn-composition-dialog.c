@@ -33,10 +33,14 @@ static void xfburn_burn_composition_dialog_finalize (GObject * object);
 
 static void cb_check_only_iso_toggled (GtkToggleButton *button, XfburnBurnCompositionDialog * dialog);
 static void cb_browse_iso (GtkButton *button, XfburnBurnCompositionDialog *dialog);
+static void cb_dialog_response (XfburnBurnCompositionDialog * dialog, gint response_id, XfburnBurnCompositionDialogPrivate *priv);
 
 /* structures */
 struct XfburnBurnCompositionDialogPrivate
 {
+  gchar *command_iso;
+  gchar *command_burn;
+  
   GtkWidget *combo_device;
   GtkWidget *combo_speed;
   GtkWidget *combo_mode;
@@ -106,6 +110,9 @@ xfburn_burn_composition_dialog_init (XfburnBurnCompositionDialog * obj)
   obj->priv = g_new0 (XfburnBurnCompositionDialogPrivate, 1);
   priv = obj->priv;
 
+  priv->command_iso = NULL;
+  priv->command_burn = NULL;
+  
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
 
   img = gtk_image_new_from_stock (GTK_STOCK_CDROM, GTK_ICON_SIZE_LARGE_TOOLBAR);
@@ -242,7 +249,7 @@ xfburn_burn_composition_dialog_init (XfburnBurnCompositionDialog * obj)
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
 
- // g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_burn_image_dialog_response_cb), obj);
+  g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
 }
 
 static void
@@ -252,6 +259,8 @@ xfburn_burn_composition_dialog_finalize (GObject * object)
   cobj = XFBURN_BURN_COMPOSITION_DIALOG (object);
   
   g_free (cobj->priv->file_list);
+  g_free (cobj->priv->command_iso);
+  g_free (cobj->priv->command_burn);
   g_free (cobj->priv);
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -271,7 +280,63 @@ cb_browse_iso (GtkButton *button, XfburnBurnCompositionDialog *dialog)
   xfburn_browse_for_file (GTK_ENTRY (dialog->priv->entry_path_iso), GTK_WINDOW (dialog));
 }
 
+static void
+cb_dialog_response (XfburnBurnCompositionDialog * dialog, gint response_id, XfburnBurnCompositionDialogPrivate *priv)
+{
+/*   if (response_id == GTK_RESPONSE_OK) {
+ *     gchar *device_name, *blank_type, *speed;
+ *     gchar *temp;
+ *     
+ *     priv = dialog->priv;
+ * 
+ *     device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
+ *     priv->device = xfburn_device_lookup_by_name (device_name);
+ * 
+ *     speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
+ * 
+ *     switch (gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combo_type))) {
+ *     case 0:
+ *       blank_type = g_strdup ("fast");
+ *       break;
+ *     case 1:
+ *       blank_type = g_strdup ("all");
+ *       break;
+ *     case 2:
+ *       blank_type = g_strdup ("unclose");
+ *       break;
+ *     case 3:
+ *       blank_type = g_strdup ("session");
+ *       break;
+ *     default:
+ *       blank_type = g_strdup ("fast");
+ *     }
+ * 
+ *     temp = g_strconcat ("cdrecord -v gracetime=2", " dev=", priv->device->node_path, " blank=", blank_type, " speed=", speed,
+ *                         gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
+ *                         gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_force)) ? " -force" : "", NULL);
+ *     g_free (priv->command_burn);
+ *     priv->command_burn = temp;
+ * 
+ *     g_free (device_name);
+ *     g_free (blank_type);
+ *     g_free (speed);
+ *   }
+ */
+}
+
 /* public */
+gchar *
+xfburn_burn_composition_dialog_get_command_iso (XfburnBurnCompositionDialog *dialog)
+{
+  return g_strdup (dialog->priv->command_iso);
+}
+
+gchar *
+xfburn_burn_composition_dialog_get_command_burn (XfburnBurnCompositionDialog *dialog)
+{
+  return g_strdup (dialog->priv->command_burn);
+}
+
 GtkWidget *
 xfburn_burn_composition_dialog_new (const gchar *file_list)
 {

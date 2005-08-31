@@ -56,7 +56,8 @@ typedef enum
 
 GtkType xfburn_progress_dialog_get_type ();
 
-GtkWidget *xfburn_progress_dialog_new (XfburnProgressDialogType type, XfburnDevice * device, const gchar * command);
+GtkWidget *xfburn_progress_dialog_new (XfburnProgressDialogType type, XfburnDevice * device, const gchar * command,
+                                       const gchar * command2);
 void xfburn_progress_dialog_start (XfburnProgressDialog * dialog);
 
 #endif /* XFBURN_PROGRESS_DIALOG_H */

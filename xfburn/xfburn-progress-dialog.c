@@ -78,6 +78,7 @@ struct XfburnProgressDialogPrivate
   XfburnProgressDialogType dialog_type;
   XfburnDevice *device;
   gchar *command;
+  gchar *command2;
   XfburnProgressDialogStatus status;
 
   int pid_command;
@@ -272,7 +273,8 @@ xfburn_progress_dialog_finalize (GObject * object)
   priv = cobj->priv;
 
   g_free (priv->command);
-
+  g_free (priv->command2);
+  
   if (priv->channel_stdout) {
     g_io_channel_shutdown (priv->channel_stdout, FALSE, NULL);
     g_io_channel_unref (priv->channel_stdout);
@@ -593,7 +595,8 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
 }
 
 GtkWidget *
-xfburn_progress_dialog_new (XfburnProgressDialogType type, XfburnDevice * device, const gchar * command)
+xfburn_progress_dialog_new (XfburnProgressDialogType type, XfburnDevice * device, const gchar * command, 
+                            const gchar * command2)
 {
   XfburnProgressDialog *obj;
   XfburnProgressDialogPrivate *priv;
@@ -601,6 +604,7 @@ xfburn_progress_dialog_new (XfburnProgressDialogType type, XfburnDevice * device
   obj = XFBURN_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_PROGRESS_DIALOG, NULL));
   priv = obj->priv;
   priv->command = g_strdup (command);
+  priv->command2 = g_strdup (command2);
   priv->device = device;
   priv->dialog_type = type;
 

@@ -37,6 +37,9 @@ static void cb_browse_iso (GtkButton *button, XfburnCopyCdDialog *dialog);
 /* structures */
 struct XfburnCopyCdDialogPrivate
 {
+  gchar *command_copy;
+  gchar *command_burn;
+  
   GtkWidget *combo_source_device;
   GtkWidget *combo_dest_device;
   GtkWidget *combo_speed;
@@ -105,6 +108,9 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   obj->priv = g_new0 (XfburnCopyCdDialogPrivate, 1);
   priv = obj->priv;
 
+  priv->command_copy = NULL;
+  priv->command_burn = NULL;
+  
   gtk_window_set_title (GTK_WINDOW (obj), _("Copy data CD"));
 
   img = gtk_image_new_from_stock ("xfburn-data-copy", GTK_ICON_SIZE_LARGE_TOOLBAR);
@@ -273,6 +279,8 @@ xfburn_copy_cd_dialog_finalize (GObject * object)
   XfburnCopyCdDialog *cobj;
   cobj = XFBURN_COPY_CD_DIALOG (object);
 
+  g_free (cobj->priv->command_copy);
+  g_free (cobj->priv->command_burn);
   g_free (cobj->priv);
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -292,6 +300,18 @@ cb_browse_iso (GtkButton *button, XfburnCopyCdDialog *dialog)
 }
 
 /* public */
+gchar *
+xfburn_copy_cd_dialog_get_command_copy (XfburnCopyCdDialog *dialog)
+{
+  return g_strdup (dialog->priv->command_copy);
+}
+
+gchar *
+xfburn_copy_cd_dialog_get_command_burn (XfburnCopyCdDialog *dialog)
+{
+  return g_strdup (dialog->priv->command_burn);
+}
+
 GtkWidget *
 xfburn_copy_cd_dialog_new ()
 {

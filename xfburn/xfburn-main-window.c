@@ -311,7 +311,7 @@ xfburn_window_action_blank_cd (GtkAction * action, XfburnMainWindow * window)
     command = xfburn_blank_cd_dialog_get_command (XFBURN_BLANK_CD_DIALOG (dialog));
     device = xfburn_blank_cd_dialog_get_device (XFBURN_BLANK_CD_DIALOG (dialog));
     
-    dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BLANK_CD, device, command);
+    dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BLANK_CD, device, command, NULL);
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), GTK_WINDOW (window));
     gtk_widget_show (dialog_progress);
     xfburn_progress_dialog_start (XFBURN_PROGRESS_DIALOG (dialog_progress));
@@ -408,7 +408,7 @@ xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
     command = xfburn_burn_image_dialog_get_command (XFBURN_BURN_IMAGE_DIALOG (dialog));
     device = xfburn_burn_image_dialog_get_device (XFBURN_BURN_IMAGE_DIALOG (dialog));
     
-    dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BURN_ISO, device, command);
+    dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BURN_ISO, device, command, NULL);
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), GTK_WINDOW (window));
     gtk_widget_show (dialog_progress);
     xfburn_progress_dialog_start (XFBURN_PROGRESS_DIALOG (dialog_progress));
@@ -456,8 +456,8 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   icon = xfce_themed_icon_load ("xfburn", 48);
   //if (G_UNLIKELY (icon == NULL))
   //icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-
-  info = xfce_about_info_new ("Xfburn", VERSION "-r" REVISION, _("Another cd burning tool"),
+  
+  info = xfce_about_info_new ("Xfburn", VERSION " (r" REVISION ")", _("Another cd burning tool"),
                               XFCE_COPYRIGHT_TEXT ("2005", "Jean-François Wauthy"), XFCE_LICENSE_GPL);
   xfce_about_info_set_homepage (info, "http://www.xfce.org/");
   xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Author/Maintainer"));

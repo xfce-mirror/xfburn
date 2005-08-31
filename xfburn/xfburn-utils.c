@@ -416,15 +416,15 @@ xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent)
   
   text = gtk_entry_get_text (entry);
 
-  dialog = xfce_file_chooser_new (_("Select command"), parent, XFCE_FILE_CHOOSER_ACTION_SAVE, GTK_STOCK_CANCEL,
-                                  GTK_RESPONSE_CANCEL, GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL);
+  dialog = gtk_file_chooser_dialog_new (_("Select command"), parent, GTK_FILE_CHOOSER_ACTION_SAVE, GTK_STOCK_CANCEL,
+                                        GTK_RESPONSE_CANCEL, GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL);
   if (strlen (text) > 0)
-    xfce_file_chooser_set_filename (XFCE_FILE_CHOOSER (dialog), text);
+    gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (dialog), text);
   
   if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
     gchar *filename = NULL;
     
-    filename = xfce_file_chooser_get_filename (XFCE_FILE_CHOOSER (dialog));
+    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
     gtk_entry_set_text (entry, filename);
     g_free (filename);
   } 
