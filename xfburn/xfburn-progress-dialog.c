@@ -50,6 +50,9 @@
 #define CDRECORD_CANNOT_BLANK "Cannot blank disk, aborting"
 #define CDRECORD_INCOMPATIBLE_MEDIUM "cannot format medium - incmedium"
 
+#define READCD_CAPACITY "end:"
+#define READCD_PROGRESS "addr:"
+#define READCD_DONE "Time total:"
 
 /* globals */
 static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass);
@@ -76,7 +79,9 @@ typedef enum
 struct XfburnProgressDialogPrivate
 {
   XfburnProgressDialogType dialog_type;
-  XfburnDevice *device;
+  XfburnDevice *device_burn;
+  XfburnDevice *device_read;
+
   gchar *command;
   gchar *command2;
   XfburnProgressDialogStatus status;
@@ -176,6 +181,8 @@ xfburn_progress_dialog_create (XfburnProgressDialog * obj)
   case XFBURN_PROGRESS_DIALOG_BURN_ISO:
     gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), "0%");
     break;
+  case XFBURN_PROGRESS_DIALOG_COPY_CD:
+    break;
   }
   gtk_widget_show (priv->progress_bar);
   gtk_box_pack_start (box, priv->progress_bar, FALSE, FALSE, BORDER);
@@ -217,7 +224,8 @@ xfburn_progress_dialog_create (XfburnProgressDialog * obj)
   gtk_widget_show (priv->buffer_bar);
 
 
-  if (priv->dialog_type != XFBURN_PROGRESS_DIALOG_BLANK_CD) {
+  if (priv->dialog_type != XFBURN_PROGRESS_DIALOG_BLANK_CD &&
+      (priv->dialog_type != XFBURN_PROGRESS_DIALOG_COPY_CD && !(priv->device_burn))) {
     gtk_widget_show (hbox);
     gtk_box_pack_start (box, hbox, TRUE, TRUE, BORDER);
   }
@@ -274,7 +282,7 @@ xfburn_progress_dialog_finalize (GObject * object)
 
   g_free (priv->command);
   g_free (priv->command2);
-  
+
   if (priv->channel_stdout) {
     g_io_channel_shutdown (priv->channel_stdout, FALSE, NULL);
     g_io_channel_unref (priv->channel_stdout);
@@ -296,6 +304,9 @@ xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar
   XfburnProgressDialogPrivate *priv = dialog->priv;
   GtkTextBuffer *buffer;
   GtkTextIter iter;
+
+  if (!output)
+    return;
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->textview_output));
 
@@ -343,6 +354,7 @@ xfburn_progress_dialog_response_cb (XfburnProgressDialog * dialog, gint response
 static gboolean
 xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition condition, XfburnProgressDialog * dialog)
 {
+  static gint readcd_end = -1;
   gchar buffer[1024] = "";
   gchar *converted_buffer = NULL;
   gsize bytes_read = 0, bytes_written = 0;
@@ -382,6 +394,9 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
       case XFBURN_PROGRESS_DIALOG_BURN_ISO:
         xfce_info (_("Burning process exited with success"));
         break;
+      case XFBURN_PROGRESS_DIALOG_COPY_CD:
+        xfce_info (_("Copying process exited with success"));
+        break;
       }
       break;
     case PROGRESS_STATUS_FAILED:
@@ -396,6 +411,9 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
       case XFBURN_PROGRESS_DIALOG_BURN_ISO:
         xfce_err (_("An error occured while trying to burn the disc (see output for more details)"));
         break;
+      case XFBURN_PROGRESS_DIALOG_COPY_CD:
+        xfce_err (_("An error occured while trying to copy the disc (see output for more details)"));
+        break;
       }
     }
 
@@ -409,15 +427,52 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
 
   buffer[bytes_read] = '\0';
 
-  if (!(converted_buffer = g_convert (buffer, bytes_read, "UTF-8", "ISO-8859-1", &bytes_read, &bytes_written, &error))) {
-    g_warning ("Conversion error : %s", error->message);
-    g_error_free (error);
-    return TRUE;
+  /* Some distro (at least Gentoo) force the cdrecord output to be in UTF8 if the environment */
+  /* is in unicode, we check that to avoid a wrong conversion */
+  if (!g_utf8_validate (buffer, -1, NULL)) {
+    if (!(converted_buffer =
+          g_convert (buffer, bytes_read, "UTF-8", "ISO-8859-1", &bytes_read, &bytes_written, &error))) {
+      g_warning ("Conversion error : %s", error->message);
+      g_error_free (error);
+      return TRUE;
+    }
   }
+  else
+    converted_buffer = g_strdup (buffer);
 
   xfburn_progress_dialog_append_output (dialog, converted_buffer, (source == dialog->priv->channel_stderr));
 
   switch (dialog->priv->dialog_type) {
+  case XFBURN_PROGRESS_DIALOG_COPY_CD:
+    if (!dialog->priv->device_burn) {
+      /* only create iso is set */
+      if (strstr (converted_buffer, READCD_DONE)) {
+        dialog->priv->status = PROGRESS_STATUS_COMPLETED;
+      }
+      else if (strstr (converted_buffer, READCD_PROGRESS)) {
+        gint readcd_done = -1;
+        gdouble fraction;
+        gchar *text;
+
+        sscanf (converted_buffer, "%*s %d", &readcd_done);
+
+        fraction = (gdouble) ((gfloat) readcd_done / readcd_end);
+        if (fraction < 0.0)
+          fraction = 0.0;
+        else if (fraction > 1.0)
+          fraction = 1.0;
+
+        gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), fraction);
+        text = g_strdup_printf ("%d%%", (int) (fraction * 100));
+        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), text);
+        g_free (text);
+      }
+      else if (strstr (converted_buffer, READCD_CAPACITY)) {
+        xfburn_progress_dialog_label_action_set_text (dialog, _("Reading CD..."));
+        sscanf (converted_buffer, "%*s %d", &readcd_end);
+      }
+    }
+    break;
   case XFBURN_PROGRESS_DIALOG_BLANK_CD:
     if (strstr (converted_buffer, CDRECORD_BLANKING_TIME)) {
       dialog->priv->status = PROGRESS_STATUS_COMPLETED;
@@ -443,8 +498,9 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
       gfloat current = 0, total = 0;
       gint fifo = 0, buf = 0, speed = 0, speed_decimal = 0;
 
-      if (sscanf (converted_buffer, "%*s %*d %*s %f %*s %f %*s %*s %*s %d %*s %*s %d %*s %d.%d", &current, &total, &fifo, 
-                  &buf, &speed, &speed_decimal) == 6 && total > 0) {
+      if (sscanf
+          (converted_buffer, "%*s %*d %*s %f %*s %f %*s %*s %*s %d %*s %*s %d %*s %d.%d", &current, &total, &fifo, &buf,
+           &speed, &speed_decimal) == 6 && total > 0) {
         gdouble fraction;
         gfloat reformated_speed;
         gchar *text;
@@ -513,9 +569,8 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
 {
   XfburnProgressDialogPrivate *priv = dialog->priv;
   gboolean ready = FALSE;
+  gint status;
   gchar *message = NULL;
-  GtkWidget *dialog_message;
-  gint ret;
   int argc;
   gchar **argvp;
   int fd_stdout;
@@ -523,17 +578,42 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
   GError *error = NULL;
 
   DBG ("command : %s", priv->command);
+
+  /* check if ready to start operation */
   while (!ready) {
-    switch (xfburn_device_query_cdstatus (priv->device)) {
-    case CDS_NO_DISC:
-      message = g_strdup (_("No disc in the cdrom drive"));
+    switch (priv->dialog_type) {
+    case XFBURN_PROGRESS_DIALOG_COPY_CD:
+      status = xfburn_device_query_cdstatus (priv->device_read);
+      if (status != CDS_DISC_OK) {
+        message = xfburn_device_cdstatus_to_string (status);
+        break;
+      }
+      if (priv->device_burn) {
+        status = xfburn_device_query_cdstatus (priv->device_burn);
+        if (status == CDS_DISC_OK)
+          ready = TRUE;
+        else
+          message = xfburn_device_cdstatus_to_string (status);
+      }
+      else
+        ready = TRUE;
       break;
-    case CDS_DISC_OK:
+    case XFBURN_PROGRESS_DIALOG_BLANK_CD:
+    case XFBURN_PROGRESS_DIALOG_BURN_ISO:
+      status = xfburn_device_query_cdstatus (priv->device_burn);
+      if (status == CDS_DISC_OK)
+        ready = TRUE;
+      else
+        message = xfburn_device_cdstatus_to_string (status);
+      break;
     default:
-      ready = TRUE;
+      break;
     }
 
     if (!ready) {
+      GtkWidget *dialog_message;
+      gint ret;
+
       xfburn_progress_dialog_append_output (dialog, message, TRUE);
       xfburn_progress_dialog_append_output (dialog, "\n", FALSE);
       dialog_message = gtk_message_dialog_new (GTK_WINDOW (dialog), GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -553,60 +633,83 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
     }
   }
 
-  if (!g_shell_parse_argv (priv->command, &argc, &argvp, &error)) {
-    g_warning ("Unable to parse command : %s", error->message);
-    g_error_free (error);
-    return;
-  }
+  /* launch command */
+  switch (priv->dialog_type) {
+  case XFBURN_PROGRESS_DIALOG_BLANK_CD:
+  case XFBURN_PROGRESS_DIALOG_BURN_ISO:
+  case XFBURN_PROGRESS_DIALOG_COPY_CD:
+    if (!g_shell_parse_argv (priv->command, &argc, &argvp, &error)) {
+      g_warning ("Unable to parse command : %s", error->message);
+      g_error_free (error);
+      return;
+    }
 
-  if (!g_spawn_async_with_pipes (NULL, argvp, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, &(priv->pid_command),
-                                 NULL, &fd_stdout, &fd_stderr, &error)) {
-    g_warning ("Unable to spawn process : %s", error->message);
-    g_error_free (error);
+    if (!g_spawn_async_with_pipes (NULL, argvp, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, &(priv->pid_command),
+                                   NULL, &fd_stdout, &fd_stderr, &error)) {
+      g_warning ("Unable to spawn process : %s", error->message);
+      g_error_free (error);
+      g_strfreev (argvp);
+      return;
+    }
     g_strfreev (argvp);
-    return;
+
+    priv->channel_stdout = g_io_channel_unix_new (fd_stdout);
+    g_io_channel_set_encoding (priv->channel_stdout, NULL, NULL);
+    g_io_channel_set_buffered (priv->channel_stdout, FALSE);
+    g_io_channel_set_flags (priv->channel_stdout, G_IO_FLAG_NONBLOCK, NULL);
+
+    priv->channel_stderr = g_io_channel_unix_new (fd_stderr);
+    g_io_channel_set_encoding (priv->channel_stderr, NULL, NULL);
+    g_io_channel_set_buffered (priv->channel_stderr, FALSE);
+    g_io_channel_set_flags (priv->channel_stderr, G_IO_FLAG_NONBLOCK, NULL);
+
+    priv->id_refresh_stdout = g_io_add_watch (priv->channel_stdout, G_IO_IN | G_IO_HUP | G_IO_ERR,
+                                              (GIOFunc) xfburn_progress_dialog_update_stdout, dialog);
+    priv->id_refresh_stderr = g_io_add_watch (priv->channel_stderr, G_IO_IN | G_IO_HUP | G_IO_ERR,
+                                              (GIOFunc) xfburn_progress_dialog_update_stdout, dialog);
+    break;
+  default:
+    break;
   }
-  g_strfreev (argvp);
 
-  priv->channel_stdout = g_io_channel_unix_new (fd_stdout);
-  g_io_channel_set_encoding (priv->channel_stdout, NULL, NULL);
-  g_io_channel_set_buffered (priv->channel_stdout, FALSE);
-  g_io_channel_set_flags (priv->channel_stdout, G_IO_FLAG_NONBLOCK, NULL);
-
-  priv->channel_stderr = g_io_channel_unix_new (fd_stderr);
-  g_io_channel_set_encoding (priv->channel_stderr, NULL, NULL);
-  g_io_channel_set_buffered (priv->channel_stderr, FALSE);
-  g_io_channel_set_flags (priv->channel_stderr, G_IO_FLAG_NONBLOCK, NULL);
-
-  priv->id_refresh_stdout = g_io_add_watch (priv->channel_stdout, G_IO_IN | G_IO_HUP | G_IO_ERR,
-                                            (GIOFunc) xfburn_progress_dialog_update_stdout, dialog);
-  priv->id_refresh_stderr = g_io_add_watch (priv->channel_stderr, G_IO_IN | G_IO_HUP | G_IO_ERR,
-                                            (GIOFunc) xfburn_progress_dialog_update_stdout, dialog);
-
+  /* finalize operation */
   switch (priv->dialog_type) {
   case XFBURN_PROGRESS_DIALOG_BLANK_CD:
     gtk_progress_bar_set_pulse_step (GTK_PROGRESS_BAR (priv->progress_bar), 0.05);
     priv->id_pulse = g_timeout_add (250, (GSourceFunc) gtk_progress_bar_pulse, GTK_PROGRESS_BAR (priv->progress_bar));
     break;
-  case XFBURN_PROGRESS_DIALOG_BURN_ISO:
+  default:
     break;
   }
-
 }
 
 GtkWidget *
-xfburn_progress_dialog_new (XfburnProgressDialogType type, XfburnDevice * device, const gchar * command, 
-                            const gchar * command2)
+xfburn_progress_dialog_new (XfburnProgressDialogType type, ...)
 {
   XfburnProgressDialog *obj;
   XfburnProgressDialogPrivate *priv;
+  va_list args;
 
   obj = XFBURN_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_PROGRESS_DIALOG, NULL));
   priv = obj->priv;
-  priv->command = g_strdup (command);
-  priv->command2 = g_strdup (command2);
-  priv->device = device;
   priv->dialog_type = type;
+
+  va_start (args, type);
+  switch (type) {
+  case XFBURN_PROGRESS_DIALOG_BLANK_CD:
+  case XFBURN_PROGRESS_DIALOG_BURN_ISO:
+    /* device, command */
+    priv->device_burn = va_arg (args, XfburnDevice *);
+    priv->command = g_strdup (va_arg (args, const gchar *));
+    break;
+  case XFBURN_PROGRESS_DIALOG_COPY_CD:
+    /* device_read, device_burn, command */
+    priv->device_read = va_arg (args, XfburnDevice *);
+    priv->device_burn = va_arg (args, XfburnDevice *);
+    priv->command = g_strdup (va_arg (args, const gchar *));
+    break;
+  }
+  va_end (args);
 
   xfburn_progress_dialog_create (obj);
 

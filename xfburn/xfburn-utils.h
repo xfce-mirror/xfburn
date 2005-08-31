@@ -35,6 +35,7 @@ void xfburn_device_content_free (XfburnDevice * device, gpointer user_data);
 void xfburn_device_free (XfburnDevice * device);
 XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
 gint xfburn_device_query_cdstatus (XfburnDevice * device);
+gchar * xfburn_device_cdstatus_to_string (gint status);
 
 void xfburn_scan_devices ();
 

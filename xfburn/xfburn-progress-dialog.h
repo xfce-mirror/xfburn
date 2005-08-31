@@ -52,12 +52,12 @@ typedef enum
 {
   XFBURN_PROGRESS_DIALOG_BLANK_CD,
   XFBURN_PROGRESS_DIALOG_BURN_ISO,
+  XFBURN_PROGRESS_DIALOG_COPY_CD,
 }  XfburnProgressDialogType;
 
 GtkType xfburn_progress_dialog_get_type ();
 
-GtkWidget *xfburn_progress_dialog_new (XfburnProgressDialogType type, XfburnDevice * device, const gchar * command,
-                                       const gchar * command2);
+GtkWidget *xfburn_progress_dialog_new (XfburnProgressDialogType type, ...);
 void xfburn_progress_dialog_start (XfburnProgressDialog * dialog);
 
 #endif /* XFBURN_PROGRESS_DIALOG_H */

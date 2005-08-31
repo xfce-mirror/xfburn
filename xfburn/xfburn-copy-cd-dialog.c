@@ -23,6 +23,7 @@
 
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
+#include "xfburn-settings.h"
 
 #include "xfburn-copy-cd-dialog.h"
 
@@ -31,22 +32,24 @@ static void xfburn_copy_cd_dialog_class_init (XfburnCopyCdDialogClass * klass);
 static void xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * sp);
 static void xfburn_copy_cd_dialog_finalize (GObject * object);
 
-static void cb_check_only_iso_toggled (GtkToggleButton *button, XfburnCopyCdDialog * dialog);
-static void cb_browse_iso (GtkButton *button, XfburnCopyCdDialog *dialog);
+static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyCdDialog * dialog);
+static void cb_browse_iso (GtkButton * button, XfburnCopyCdDialog * dialog);
+static void cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdDialogPrivate * priv);
 
 /* structures */
 struct XfburnCopyCdDialogPrivate
 {
-  gchar *command_copy;
-  gchar *command_burn;
-  
+  gchar *command;
+  XfburnDevice *device_burn;
+  XfburnDevice *device_read;
+
   GtkWidget *combo_source_device;
+  GtkWidget *frame_burn;
   GtkWidget *combo_dest_device;
   GtkWidget *combo_speed;
-  GtkWidget *combo_mode;
 
   GtkWidget *check_eject;
-  GtkWidget *check_burnfree;
+  GtkWidget *check_onthefly;
   GtkWidget *check_only_iso;
   GtkWidget *hbox_iso;
   GtkWidget *entry_path_iso;
@@ -103,14 +106,12 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   GtkWidget *hbox;
   GtkWidget *label;
   GtkWidget *button;
+  gchar *default_path, *tmp_dir;
   int i;
-  
+
   obj->priv = g_new0 (XfburnCopyCdDialogPrivate, 1);
   priv = obj->priv;
 
-  priv->command_copy = NULL;
-  priv->command_burn = NULL;
-  
   gtk_window_set_title (GTK_WINDOW (obj), _("Copy data CD"));
 
   img = gtk_image_new_from_stock ("xfburn-data-copy", GTK_ICON_SIZE_LARGE_TOOLBAR);
@@ -141,15 +142,15 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_source_device), 0);
 
-  
+
   /* burning devices list */
-  frame = xfce_framebox_new (_("Burning device"), TRUE);
-  gtk_widget_show (frame);
-  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
+  priv->frame_burn = xfce_framebox_new (_("Burning device"), TRUE);
+  gtk_widget_show (priv->frame_burn);
+  gtk_box_pack_start (box, priv->frame_burn, FALSE, FALSE, BORDER);
 
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox);
+  xfce_framebox_add (XFCE_FRAMEBOX (priv->frame_burn), vbox);
 
   priv->combo_dest_device = gtk_combo_box_new_text ();
   gtk_widget_show (priv->combo_dest_device);
@@ -193,25 +194,6 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_container_add (GTK_CONTAINER (button), img);
   gtk_widget_show (button);
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
-
-  /* mode */
-  hbox = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox);
-  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, BORDER);
-
-  label = gtk_label_new_with_mnemonic (_("Write _mode :"));
-  gtk_widget_show (label);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, BORDER);
-
-  priv->combo_mode = gtk_combo_box_new_text ();
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), _("default"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), "tao");
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), "dao");
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), "raw96p");
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), "raw16");
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_mode), 0);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->combo_mode, TRUE, TRUE, BORDER);
-  gtk_widget_show (priv->combo_mode);
   
   /* options */
   frame = xfce_framebox_new (_("Options"), TRUE);
@@ -231,25 +213,30 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_widget_show (priv->check_dummy);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_dummy, FALSE, FALSE, BORDER);
 
-  priv->check_burnfree = gtk_check_button_new_with_mnemonic (_("Burn_Free"));
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_burnfree), TRUE);
-  gtk_widget_show (priv->check_burnfree);
-  gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);
-  
+  priv->check_onthefly = gtk_check_button_new_with_mnemonic (_("On the _fly"));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_onthefly), TRUE);
+  gtk_widget_show (priv->check_onthefly);
+  gtk_box_pack_start (GTK_BOX (vbox), priv->check_onthefly, FALSE, FALSE, BORDER);
+
   priv->check_only_iso = gtk_check_button_new_with_mnemonic (_("Only create _ISO"));
   gtk_widget_show (priv->check_only_iso);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_only_iso, FALSE, FALSE, BORDER);
   g_signal_connect (G_OBJECT (priv->check_only_iso), "toggled", G_CALLBACK (cb_check_only_iso_toggled), obj);
-  
+
   priv->hbox_iso = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (priv->hbox_iso);
   gtk_box_pack_start (GTK_BOX (vbox), priv->hbox_iso, FALSE, FALSE, 0);
   gtk_widget_set_sensitive (priv->hbox_iso, FALSE);
-      
+
   priv->entry_path_iso = gtk_entry_new ();
   gtk_widget_show (priv->entry_path_iso);
+  tmp_dir = xfburn_settings_get_string ("temporary-dir", "/tmp");
+  default_path = g_build_filename (tmp_dir, "xfburn.iso", NULL);
+  gtk_entry_set_text (GTK_ENTRY (priv->entry_path_iso), default_path);
+  g_free (default_path);
+  g_free (tmp_dir);
   gtk_box_pack_start (GTK_BOX (priv->hbox_iso), priv->entry_path_iso, FALSE, FALSE, 0);
-  
+
   img = gtk_image_new_from_stock (GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_SMALL_TOOLBAR);
   gtk_widget_show (img);
   button = gtk_button_new ();
@@ -257,7 +244,7 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_widget_show (button);
   gtk_box_pack_start (GTK_BOX (priv->hbox_iso), button, FALSE, FALSE, 0);
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_browse_iso), obj);
-  
+
   /* action buttons */
   button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
   gtk_widget_show (button);
@@ -270,7 +257,7 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
 
- // g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_burn_image_dialog_response_cb), obj);
+  g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
 }
 
 static void
@@ -279,37 +266,87 @@ xfburn_copy_cd_dialog_finalize (GObject * object)
   XfburnCopyCdDialog *cobj;
   cobj = XFBURN_COPY_CD_DIALOG (object);
 
-  g_free (cobj->priv->command_copy);
-  g_free (cobj->priv->command_burn);
+  g_free (cobj->priv->command);
   g_free (cobj->priv);
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
 /* internals */
-static void cb_check_only_iso_toggled (GtkToggleButton *button, XfburnCopyCdDialog * dialog)
+static void
+cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyCdDialog * dialog)
 {
   XfburnCopyCdDialogPrivate *priv = dialog->priv;
+  gboolean sensitive = gtk_toggle_button_get_active (button);
   
-  gtk_widget_set_sensitive (priv->hbox_iso, gtk_toggle_button_get_active (button));
+  gtk_widget_set_sensitive (priv->hbox_iso, sensitive);
+  
+  gtk_widget_set_sensitive (priv->frame_burn, !sensitive);
+  
+  gtk_widget_set_sensitive (priv->check_eject, !sensitive);
+  gtk_widget_set_sensitive (priv->check_dummy, !sensitive);
+  gtk_widget_set_sensitive (priv->check_onthefly, !sensitive);
 }
 
-static void 
-cb_browse_iso (GtkButton *button, XfburnCopyCdDialog *dialog)
+static void
+cb_browse_iso (GtkButton * button, XfburnCopyCdDialog * dialog)
 {
   xfburn_browse_for_file (GTK_ENTRY (dialog->priv->entry_path_iso), GTK_WINDOW (dialog));
 }
 
-/* public */
-gchar *
-xfburn_copy_cd_dialog_get_command_copy (XfburnCopyCdDialog *dialog)
+static void
+cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdDialogPrivate * priv)
 {
-  return g_strdup (dialog->priv->command_copy);
+  if (response_id == GTK_RESPONSE_OK) {
+    gchar *source_device_name;
+    gchar *temp;
+    
+    source_device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_source_device));
+    priv->device_read = xfburn_device_lookup_by_name (source_device_name);
+        
+    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
+      temp = g_strconcat ("readcd dev=", priv->device_read->node_path, 
+                          " f=/tmp/xfburn.iso", NULL);
+    } else {
+      gchar *dest_device_name, *speed;
+      
+      dest_device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_dest_device));
+      priv->device_burn = xfburn_device_lookup_by_name (dest_device_name);
+      speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
+      
+      temp = g_strconcat ("cdrdao copy -n -v 2 --source-device ", priv->device_read->node_path, 
+                          " --device ", priv->device_burn->node_path, " --speed ", speed, 
+                          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " --eject" : "",
+                          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " --simulate" : "",
+                          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_onthefly)) ? " --on-the-fly" : "",
+                          " --datafile /tmp/xfburn.bin", NULL);
+      
+      g_free (speed);
+      g_free (dest_device_name);
+    }
+    g_free (priv->command);
+    priv->command = temp;
+    
+    g_free (source_device_name);
+  }
 }
 
+/* public */
 gchar *
-xfburn_copy_cd_dialog_get_command_burn (XfburnCopyCdDialog *dialog)
+xfburn_copy_cd_dialog_get_command (XfburnCopyCdDialog * dialog)
 {
-  return g_strdup (dialog->priv->command_burn);
+  return g_strdup (dialog->priv->command);
+}
+
+XfburnDevice *
+xfburn_copy_cd_dialog_get_device_read (XfburnCopyCdDialog * dialog)
+{
+  return dialog->priv->device_read;
+}
+
+XfburnDevice *
+xfburn_copy_cd_dialog_get_device_burn (XfburnCopyCdDialog * dialog)
+{
+  return dialog->priv->device_burn;
 }
 
 GtkWidget *

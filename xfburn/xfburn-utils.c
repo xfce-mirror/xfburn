@@ -325,6 +325,22 @@ xfburn_device_query_cdstatus (XfburnDevice * device)
   return ret;
 }
 
+gchar *
+xfburn_device_cdstatus_to_string (gint status)
+{
+  gchar *message = NULL;
+  
+  switch (status) {
+    case CDS_NO_DISC:
+      message = g_strdup (_("No disc in the cdrom drive"));
+    break;
+    default:
+      message = g_strdup (_("No message..."));
+  }
+  
+  return message;
+}
+
 /***********/
 /* cursors */
 /***********/

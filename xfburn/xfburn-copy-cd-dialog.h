@@ -49,4 +49,8 @@ typedef struct
 GtkType xfburn_copy_cd_dialog_get_type ();
 GtkWidget *xfburn_copy_cd_dialog_new ();
 
+gchar * xfburn_copy_cd_dialog_get_command (XfburnCopyCdDialog *dialog);
+XfburnDevice * xfburn_copy_cd_dialog_get_device_read (XfburnCopyCdDialog *dialog);
+XfburnDevice * xfburn_copy_cd_dialog_get_device_burn (XfburnCopyCdDialog *dialog);
+
 #endif /* XFBURN_COPY_CD_DIALOG_H */

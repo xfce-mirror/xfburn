@@ -311,7 +311,7 @@ xfburn_window_action_blank_cd (GtkAction * action, XfburnMainWindow * window)
     command = xfburn_blank_cd_dialog_get_command (XFBURN_BLANK_CD_DIALOG (dialog));
     device = xfburn_blank_cd_dialog_get_device (XFBURN_BLANK_CD_DIALOG (dialog));
     
-    dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BLANK_CD, device, command, NULL);
+    dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BLANK_CD, device, command);
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), GTK_WINDOW (window));
     gtk_widget_show (dialog_progress);
     xfburn_progress_dialog_start (XFBURN_PROGRESS_DIALOG (dialog_progress));
@@ -335,18 +335,19 @@ static void xfburn_window_action_copy_cd (GtkAction *action, XfburnMainWindow *w
   
   if (ret == GTK_RESPONSE_OK) {
     gchar *command;
-    XfburnDevice *device;
+    XfburnDevice *device_read, *device_burn;
     GtkWidget *dialog_progress;
     
-    //command = xfburn_burn_image_dialog_get_command (XFBURN_BURN_IMAGE_DIALOG (dialog));
-    //device = xfburn_burn_image_dialog_get_device (XFBURN_BURN_IMAGE_DIALOG (dialog));
+    command = xfburn_copy_cd_dialog_get_command (XFBURN_COPY_CD_DIALOG (dialog));
+    device_burn = xfburn_copy_cd_dialog_get_device_burn (XFBURN_COPY_CD_DIALOG (dialog));
+    device_read = xfburn_copy_cd_dialog_get_device_read (XFBURN_COPY_CD_DIALOG (dialog));
     
-    //dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BURN_ISO, device, command);
-    //gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), GTK_WINDOW (window));
-    //gtk_widget_show (dialog_progress);
-    //xfburn_progress_dialog_start (XFBURN_PROGRESS_DIALOG (dialog_progress));
+    dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_COPY_CD, device_read, device_burn, command);
+    gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), GTK_WINDOW (window));
+    gtk_widget_show (dialog_progress);
+    xfburn_progress_dialog_start (XFBURN_PROGRESS_DIALOG (dialog_progress));
     
-    //g_free (command);
+    g_free (command);
   }
   
   gtk_widget_destroy (dialog);
@@ -408,7 +409,7 @@ xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
     command = xfburn_burn_image_dialog_get_command (XFBURN_BURN_IMAGE_DIALOG (dialog));
     device = xfburn_burn_image_dialog_get_device (XFBURN_BURN_IMAGE_DIALOG (dialog));
     
-    dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BURN_ISO, device, command, NULL);
+    dialog_progress = xfburn_progress_dialog_new (XFBURN_PROGRESS_DIALOG_BURN_ISO, device, command);
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), GTK_WINDOW (window));
     gtk_widget_show (dialog_progress);
     xfburn_progress_dialog_start (XFBURN_PROGRESS_DIALOG (dialog_progress));
