@@ -54,6 +54,12 @@
 #define READCD_PROGRESS "addr:"
 #define READCD_DONE "Time total:"
 
+#define CDRDAO_LENGTH "length"
+#define CDRDAO_FLUSHING "Flushing cache..."
+#define CDRDAO_INSERT "Please insert a recordable medium and hit enter"
+#define CDRDAO_INSERT_AGAIN "Cannot determine disk status - hit enter to try again."
+#define CDRDAO_DONE "CD copying finished successfully."
+
 /* globals */
 static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass);
 static void xfburn_progress_dialog_init (XfburnProgressDialog * sp);
@@ -87,6 +93,7 @@ struct XfburnProgressDialogPrivate
   XfburnProgressDialogStatus status;
 
   int pid_command;
+  int fd_stdin;
   GIOChannel *channel_stdout;
   GIOChannel *channel_stderr;
 
@@ -225,7 +232,7 @@ xfburn_progress_dialog_create (XfburnProgressDialog * obj)
 
 
   if (priv->dialog_type != XFBURN_PROGRESS_DIALOG_BLANK_CD &&
-      (priv->dialog_type != XFBURN_PROGRESS_DIALOG_COPY_CD && !(priv->device_burn))) {
+      (priv->dialog_type == XFBURN_PROGRESS_DIALOG_COPY_CD && priv->device_burn)) {
     gtk_widget_show (hbox);
     gtk_box_pack_start (box, hbox, TRUE, TRUE, BORDER);
   }
@@ -471,6 +478,81 @@ xfburn_progress_dialog_update_stdout (GIOChannel * source, GIOCondition conditio
         xfburn_progress_dialog_label_action_set_text (dialog, _("Reading CD..."));
         sscanf (converted_buffer, "%*s %d", &readcd_end);
       }
+    } else {
+      if (strstr (converted_buffer, CDRDAO_DONE)) {
+        dialog->priv->status = PROGRESS_STATUS_COMPLETED;
+      }
+      else if (strstr (converted_buffer, CDRDAO_FLUSHING)) {
+        xfburn_progress_dialog_label_action_set_text (dialog, _("Flushing cache..."));
+      }
+      else if (strstr (converted_buffer, CDRDAO_LENGTH)) {
+        gint min, sec, cent;
+          
+        sscanf (converted_buffer, "%*s %d:%d:%d", &min, &sec, &cent);
+        readcd_end = cent + 100*sec + 60*100*min;
+      }
+      else if (strstr (converted_buffer, CDRDAO_INSERT) ||
+               strstr (converted_buffer, CDRDAO_INSERT_AGAIN)) {
+        GtkWidget *dialog_confirm;
+        
+        dialog_confirm = gtk_message_dialog_new (GTK_WINDOW (dialog), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                 GTK_MESSAGE_INFO, GTK_BUTTONS_OK, 
+                                                 _("Please insert a recordable medium in %s."), dialog->priv->device_burn->name);
+        gtk_dialog_run (GTK_DIALOG (dialog_confirm));
+        gtk_widget_destroy (dialog_confirm);
+        write (dialog->priv->fd_stdin, "\n", strlen ("\n") * sizeof (char));
+      }
+      else {
+        gint done, total, buffer1, buffer2;
+        gint min, sec, cent;
+        gdouble fraction = gtk_progress_bar_get_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar));
+        gchar *text;
+        
+        if (sscanf (converted_buffer, "Wrote %d %*s %d %*s %*s %d%% %d%%", &done, &total, &buffer1, &buffer2) == 4) {
+          gdouble cur_fraction;
+          static gboolean onthefly = FALSE;
+                    
+          if ( onthefly || (cur_fraction = gtk_progress_bar_get_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar))) <= 0.0) {
+            fraction = (gdouble) ((gfloat) done / total);
+          } else {
+            onthefly = TRUE;
+            fraction = (gdouble) ((gfloat) done / total);
+            fraction = cur_fraction + (fraction / 2);
+          }
+          
+          xfburn_progress_dialog_label_action_set_text (dialog, _("Writing CD..."));
+          
+          gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->fifo_bar), (gdouble) ((gfloat) buffer1 / 100));
+          text = g_strdup_printf ("%d%%", buffer1);
+          gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->fifo_bar), text);
+          g_free (text);
+          
+          gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->buffer_bar), (gdouble) ((gfloat) buffer2 / 100));
+          text = g_strdup_printf ("%d%%", buffer2);
+          gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->buffer_bar), text);
+          g_free (text);
+          
+        } else if (sscanf (converted_buffer, "%d:%d:%d", &min, &sec, &cent) == 3) {
+          gint readcd_done = -1;
+          
+          readcd_done = cent + 100*sec + 60*100*min;
+          
+          fraction = (gdouble) ((gfloat) readcd_done / readcd_end);
+          fraction = fraction / 2;
+          
+          xfburn_progress_dialog_label_action_set_text (dialog, _("Reading CD..."));
+        }
+               
+        if (fraction < 0.0)
+          fraction = 0.0;
+        else if (fraction > 1.0)
+          fraction = 1.0;
+
+        gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), fraction);
+        text = g_strdup_printf ("%d%%", (int) (fraction * 100));
+        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), text);
+        g_free (text);
+      }
     }
     break;
   case XFBURN_PROGRESS_DIALOG_BLANK_CD:
@@ -645,7 +727,7 @@ xfburn_progress_dialog_start (XfburnProgressDialog * dialog)
     }
 
     if (!g_spawn_async_with_pipes (NULL, argvp, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, &(priv->pid_command),
-                                   NULL, &fd_stdout, &fd_stderr, &error)) {
+                                   &(priv->fd_stdin), &fd_stdout, &fd_stderr, &error)) {
       g_warning ("Unable to spawn process : %s", error->message);
       g_error_free (error);
       g_strfreev (argvp);

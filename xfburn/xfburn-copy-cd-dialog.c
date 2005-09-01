@@ -21,6 +21,10 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
@@ -32,6 +36,7 @@ static void xfburn_copy_cd_dialog_class_init (XfburnCopyCdDialogClass * klass);
 static void xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * sp);
 static void xfburn_copy_cd_dialog_finalize (GObject * object);
 
+static void cb_combo_device_changed (GtkComboBox *combo, XfburnCopyCdDialogPrivate *priv);
 static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyCdDialog * dialog);
 static void cb_browse_iso (GtkButton * button, XfburnCopyCdDialog * dialog);
 static void cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdDialogPrivate * priv);
@@ -131,17 +136,7 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   priv->combo_source_device = gtk_combo_box_new_text ();
   gtk_widget_show (priv->combo_source_device);
   gtk_box_pack_start (GTK_BOX (vbox), priv->combo_source_device, FALSE, FALSE, BORDER);
-
-  device = list_devices;
-  while (device) {
-    XfburnDevice *device_data = (XfburnDevice *) device->data;
-
-    gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_source_device), device_data->name);
-
-    device = g_list_next (device);
-  }
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_source_device), 0);
-
+  g_signal_connect (G_OBJECT (priv->combo_source_device), "changed", G_CALLBACK (cb_combo_device_changed), priv);
 
   /* burning devices list */
   priv->frame_burn = xfce_framebox_new (_("Burning device"), TRUE);
@@ -155,17 +150,8 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   priv->combo_dest_device = gtk_combo_box_new_text ();
   gtk_widget_show (priv->combo_dest_device);
   gtk_box_pack_start (GTK_BOX (vbox), priv->combo_dest_device, FALSE, FALSE, BORDER);
-
-  device = list_devices;
-  while (device) {
-    XfburnDevice *device_data = (XfburnDevice *) device->data;
-
-    gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_dest_device), device_data->name);
-
-    device = g_list_next (device);
-  }
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_dest_device), 0);
-
+  g_signal_connect (G_OBJECT (priv->combo_dest_device), "changed", G_CALLBACK (cb_combo_device_changed), priv);
+  
   /* speed */
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox);
@@ -258,6 +244,19 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_widget_grab_default (button);
 
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
+  
+  /* load devices in combos */
+  device = list_devices;
+  while (device) {
+    XfburnDevice *device_data = (XfburnDevice *) device->data;
+
+    gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_source_device), device_data->name);
+    gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_dest_device), device_data->name);
+    device = g_list_next (device);
+  }
+  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_source_device), 0);
+  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_dest_device), 0);
+
 }
 
 static void
@@ -288,6 +287,21 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyCdDialog * dialog
 }
 
 static void
+cb_combo_device_changed (GtkComboBox *combo, XfburnCopyCdDialogPrivate *priv)
+{
+  gchar *source_device_name, *dest_device_name;
+  
+  source_device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_source_device));
+  dest_device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_dest_device));
+  
+  if (source_device_name && dest_device_name && !strcmp (source_device_name, dest_device_name)) {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_onthefly), FALSE);
+    gtk_widget_set_sensitive (priv->check_onthefly, FALSE);
+  } else
+    gtk_widget_set_sensitive (priv->check_onthefly, TRUE);
+}
+
+static void
 cb_browse_iso (GtkButton * button, XfburnCopyCdDialog * dialog)
 {
   xfburn_browse_for_file (GTK_ENTRY (dialog->priv->entry_path_iso), GTK_WINDOW (dialog));
@@ -308,18 +322,25 @@ cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdD
                           " f=/tmp/xfburn.iso", NULL);
     } else {
       gchar *dest_device_name, *speed;
+      gchar *source_device = NULL;
       
       dest_device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_dest_device));
       priv->device_burn = xfburn_device_lookup_by_name (dest_device_name);
       speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
       
-      temp = g_strconcat ("cdrdao copy -n -v 2 --source-device ", priv->device_read->node_path, 
+      if (priv->device_burn != priv->device_read)
+        source_device = g_strconcat (" --source-device ", priv->device_read->node_path, NULL);
+      else
+        source_device = g_strdup ("");
+      
+      temp = g_strconcat ("cdrdao copy -n -v 2", source_device, 
                           " --device ", priv->device_burn->node_path, " --speed ", speed, 
                           gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " --eject" : "",
                           gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " --simulate" : "",
-                          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_onthefly)) ? " --on-the-fly" : "",
+                          priv->device_burn != priv->device_read && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_onthefly)) ? " --on-the-fly" : "",
                           " --datafile /tmp/xfburn.bin", NULL);
       
+      g_free (source_device);
       g_free (speed);
       g_free (dest_device_name);
     }
