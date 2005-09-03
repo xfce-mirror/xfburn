@@ -21,9 +21,12 @@
 
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "xfburn-blank-cd-dialog.h"
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
+#include "xfburn-blank-cd-progress-dialog.h"
+
+#include "xfburn-blank-cd-dialog.h"
+
 
 static void xfburn_blank_cd_dialog_class_init (XfburnBlankCdDialogClass * klass);
 static void xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * sp);
@@ -259,6 +262,13 @@ xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_
     g_free (device_name);
     g_free (blank_type);
     g_free (speed);
+    
+    GtkWidget *dialog_progress;
+        
+    dialog_progress = xfburn_blank_cd_progress_dialog_new ();
+    gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
+    gtk_widget_hide (GTK_WIDGET (dialog));
+    gtk_dialog_run (GTK_DIALOG (dialog_progress));
   }
 }
 

@@ -23,9 +23,12 @@
 
 #include <gtk/gtk.h>
 
-#include "xfburn-burn-image-dialog.h"
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
+#include "xfburn-burn-image-progress-dialog.h"
+
+#include "xfburn-burn-image-dialog.h"
+
 
 static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass);
 static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
@@ -287,6 +290,13 @@ xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint respo
     g_free (write_mode);
     g_free (speed);
     g_free (iso_path);
+    
+    GtkWidget *dialog_progress;
+        
+    dialog_progress = xfburn_burn_image_progress_dialog_new ();
+    gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
+    gtk_widget_hide (GTK_WIDGET (dialog));
+    gtk_dialog_run (GTK_DIALOG (dialog_progress));
   }
 }
 

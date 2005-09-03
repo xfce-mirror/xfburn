@@ -10,10 +10,14 @@ bin_PROGRAMS = 								\
 xfburn_headers = 							\
 	xfburn-global.h							\
 	xfburn-blank-cd-dialog.h					\
+	xfburn-blank-cd-progress-dialog.h				\
 	xfburn-burn-composition-dialog.h				\
+	xfburn-burn-composition-progress-dialog.h			\
 	xfburn-burn-image-dialog.h					\
+	xfburn-burn-image-progress-dialog.h				\
 	xfburn-settings.h						\
 	xfburn-copy-cd-dialog.h						\
+	xfburn-copy-cd-progress-dialog.h				\
 	xfburn-progress-dialog.h					\
 	xfburn-main-window.h						\
 	xfburn-file-browser.h						\
@@ -27,10 +31,14 @@ xfburn_headers = 							\
 xfburn_SOURCES =							\
 	$(xfburn_headers)						\
 	xfburn-blank-cd-dialog.c					\
+	xfburn-blank-cd-progress-dialog.c				\
 	xfburn-burn-composition-dialog.c				\
+	xfburn-burn-composition-progress-dialog.c			\
 	xfburn-burn-image-dialog.c					\
+	xfburn-burn-image-progress-dialog.c				\
 	xfburn-settings.c						\
 	xfburn-copy-cd-dialog.c						\
+	xfburn-copy-cd-progress-dialog.c				\
 	xfburn-progress-dialog.c					\
 	xfburn-main.c 							\
 	xfburn-main-window.c 						\

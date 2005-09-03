@@ -28,6 +28,7 @@
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
+#include "xfburn-copy-cd-progress-dialog.h"
 
 #include "xfburn-copy-cd-dialog.h"
 
@@ -348,6 +349,13 @@ cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdD
     priv->command = temp;
     
     g_free (source_device_name);
+    
+    GtkWidget *dialog_progress;
+        
+    dialog_progress = xfburn_copy_cd_progress_dialog_new ();
+    gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
+    gtk_widget_hide (GTK_WIDGET (dialog));
+    gtk_dialog_run (GTK_DIALOG (dialog_progress));
   }
 }
 

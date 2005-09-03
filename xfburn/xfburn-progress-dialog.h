@@ -48,16 +48,11 @@ typedef struct
   GtkDialogClass parent_class;
 } XfburnProgressDialogClass;
 
-typedef enum
-{
-  XFBURN_PROGRESS_DIALOG_BLANK_CD,
-  XFBURN_PROGRESS_DIALOG_BURN_ISO,
-  XFBURN_PROGRESS_DIALOG_COPY_CD,
-}  XfburnProgressDialogType;
-
 GtkType xfburn_progress_dialog_get_type ();
 
-GtkWidget *xfburn_progress_dialog_new (XfburnProgressDialogType type, ...);
-void xfburn_progress_dialog_start (XfburnProgressDialog * dialog);
+GtkWidget *xfburn_progress_dialog_new (void);
+void xfburn_progress_dialog_set_action_text (XfburnProgressDialog * dialog, const gchar * text);
+void xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gfloat speed);
+void xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar * output, gboolean is_error);
 
 #endif /* XFBURN_PROGRESS_DIALOG_H */

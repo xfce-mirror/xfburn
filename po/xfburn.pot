@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-31 18:23+0200\n"
+"POT-Creation-Date: 2005-09-03 15:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,61 +16,101 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: xfburn/xfburn-blank-cd-dialog.c:103 xfburn/xfburn-blank-cd-dialog.c:106
+#: xfburn/xfburn-blank-cd-dialog.c:106 xfburn/xfburn-blank-cd-dialog.c:109
 #: xfburn/xfburn-main-window.c:84
 msgid "Blank CD-RW"
 msgstr ""
 
+#. burning devices list
 #. devices list
 #. burning devices list
-#: xfburn/xfburn-blank-cd-dialog.c:110 xfburn/xfburn-burn-image-dialog.c:124
-#: xfburn/xfburn-copy-cd-dialog.c:147
+#: xfburn/xfburn-blank-cd-dialog.c:113
+#: xfburn/xfburn-burn-composition-dialog.c:124
+#: xfburn/xfburn-burn-image-dialog.c:124 xfburn/xfburn-copy-cd-dialog.c:143
 msgid "Burning device"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:138 xfburn/xfburn-burn-image-dialog.c:151
-#: xfburn/xfburn-copy-cd-dialog.c:174
+#: xfburn/xfburn-blank-cd-dialog.c:141
+#: xfburn/xfburn-burn-composition-dialog.c:151
+#: xfburn/xfburn-burn-image-dialog.c:151 xfburn/xfburn-copy-cd-dialog.c:161
 msgid "_Speed :"
 msgstr ""
 
 #. blank type
-#: xfburn/xfburn-blank-cd-dialog.c:163
+#: xfburn/xfburn-blank-cd-dialog.c:166
 msgid "Blank type"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:168
+#: xfburn/xfburn-blank-cd-dialog.c:171
 msgid "Fast"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:169
+#: xfburn/xfburn-blank-cd-dialog.c:172
 msgid "Complete"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:170
+#: xfburn/xfburn-blank-cd-dialog.c:173
 msgid "Reopen last session"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:171
+#: xfburn/xfburn-blank-cd-dialog.c:174
 msgid "Erase last session"
 msgstr ""
 
 #. options
-#: xfburn/xfburn-blank-cd-dialog.c:177 xfburn/xfburn-burn-image-dialog.c:195
-#: xfburn/xfburn-copy-cd-dialog.c:199
+#: xfburn/xfburn-blank-cd-dialog.c:180
+#: xfburn/xfburn-burn-composition-dialog.c:195
+#: xfburn/xfburn-burn-image-dialog.c:195 xfburn/xfburn-copy-cd-dialog.c:186
 msgid "Options"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:185
+#: xfburn/xfburn-blank-cd-dialog.c:188
 msgid "_Force"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:189 xfburn/xfburn-burn-image-dialog.c:203
-#: xfburn/xfburn-copy-cd-dialog.c:207
+#: xfburn/xfburn-blank-cd-dialog.c:192
+#: xfburn/xfburn-burn-composition-dialog.c:203
+#: xfburn/xfburn-burn-image-dialog.c:203 xfburn/xfburn-copy-cd-dialog.c:194
 msgid "E_ject disk"
 msgstr ""
 
-#: xfburn/xfburn-blank-cd-dialog.c:199
+#: xfburn/xfburn-blank-cd-dialog.c:202
 msgid "_Blank"
+msgstr ""
+
+#: xfburn/xfburn-burn-composition-dialog.c:116
+#: xfburn/xfburn-burn-composition-dialog.c:119
+msgid "Burn Composition"
+msgstr ""
+
+#: xfburn/xfburn-burn-composition-dialog.c:180
+#: xfburn/xfburn-burn-image-dialog.c:180
+msgid "Write _mode :"
+msgstr ""
+
+#: xfburn/xfburn-burn-composition-dialog.c:185
+#: xfburn/xfburn-burn-image-dialog.c:185
+msgid "default"
+msgstr ""
+
+#: xfburn/xfburn-burn-composition-dialog.c:208
+#: xfburn/xfburn-burn-image-dialog.c:208 xfburn/xfburn-copy-cd-dialog.c:199
+msgid "_Dummy write"
+msgstr ""
+
+#: xfburn/xfburn-burn-composition-dialog.c:212
+#: xfburn/xfburn-burn-image-dialog.c:212
+msgid "Burn_Free"
+msgstr ""
+
+#. create ISO ?
+#: xfburn/xfburn-burn-composition-dialog.c:218
+#: xfburn/xfburn-copy-cd-dialog.c:208
+msgid "Only create _ISO"
+msgstr ""
+
+#: xfburn/xfburn-burn-composition-dialog.c:245
+msgid "_Burn Composition"
 msgstr ""
 
 #: xfburn/xfburn-burn-image-dialog.c:107 xfburn/xfburn-burn-image-dialog.c:110
@@ -82,44 +122,24 @@ msgstr ""
 msgid "Image to burn"
 msgstr ""
 
-#: xfburn/xfburn-burn-image-dialog.c:180
-msgid "Write _mode :"
-msgstr ""
-
-#: xfburn/xfburn-burn-image-dialog.c:185
-msgid "default"
-msgstr ""
-
-#: xfburn/xfburn-burn-image-dialog.c:208 xfburn/xfburn-copy-cd-dialog.c:212
-msgid "_Dummy write"
-msgstr ""
-
-#: xfburn/xfburn-burn-image-dialog.c:212
-msgid "Burn_Free"
-msgstr ""
-
 #: xfburn/xfburn-burn-image-dialog.c:222
 msgid "_Burn image"
 msgstr ""
 
-#: xfburn/xfburn-copy-cd-dialog.c:115 xfburn/xfburn-copy-cd-dialog.c:118
+#: xfburn/xfburn-copy-cd-dialog.c:121 xfburn/xfburn-copy-cd-dialog.c:124
 msgid "Copy data CD"
 msgstr ""
 
 #. reader devices list
-#: xfburn/xfburn-copy-cd-dialog.c:123
+#: xfburn/xfburn-copy-cd-dialog.c:129
 msgid "CD Reader device"
 msgstr ""
 
-#: xfburn/xfburn-copy-cd-dialog.c:216
+#: xfburn/xfburn-copy-cd-dialog.c:203
 msgid "On the _fly"
 msgstr ""
 
-#: xfburn/xfburn-copy-cd-dialog.c:221
-msgid "Only create _ISO"
-msgstr ""
-
-#: xfburn/xfburn-copy-cd-dialog.c:253
+#: xfburn/xfburn-copy-cd-dialog.c:240
 msgid "_Copy CD"
 msgstr ""
 
@@ -213,7 +233,7 @@ msgstr ""
 msgid "Save composition"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:73 xfburn/xfburn-main-window.c:438
+#: xfburn/xfburn-main-window.c:73 xfburn/xfburn-main-window.c:355
 msgid "_Quit"
 msgstr ""
 
@@ -305,21 +325,21 @@ msgstr ""
 msgid "Toolbar Editor"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:438
+#: xfburn/xfburn-main-window.c:355
 msgid "Are sure you want to quit?"
 msgstr ""
 
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: xfburn/xfburn-main-window.c:461
+#: xfburn/xfburn-main-window.c:378
 msgid "Another cd burning tool"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:464
+#: xfburn/xfburn-main-window.c:381
 msgid "Author/Maintainer"
 msgstr ""
 
-#: xfburn/xfburn-main-window.c:470
+#: xfburn/xfburn-main-window.c:387
 #, c-format
 msgid "Translator (%s)"
 msgstr ""
@@ -397,95 +417,30 @@ msgstr ""
 msgid "Sc_an for devices"
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:171
+#: xfburn/xfburn-progress-dialog.c:128
 msgid "Initializing..."
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:192
+#: xfburn/xfburn-progress-dialog.c:139
 msgid "Estimated writing speed:"
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:195 xfburn/xfburn-progress-dialog.c:196
-#: xfburn/xfburn-progress-dialog.c:212 xfburn/xfburn-progress-dialog.c:222
-#: xfburn/xfburn-progress-dialog.c:486 xfburn/xfburn-progress-dialog.c:487
-#: xfburn/xfburn-progress-dialog.c:488
+#: xfburn/xfburn-progress-dialog.c:142 xfburn/xfburn-progress-dialog.c:159
+#: xfburn/xfburn-progress-dialog.c:169 xfburn/xfburn-progress-dialog.c:308
 msgid "no info"
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:206
+#: xfburn/xfburn-progress-dialog.c:153
 msgid "FIFO buffer:"
 msgstr ""
 
-#: xfburn/xfburn-progress-dialog.c:216
+#: xfburn/xfburn-progress-dialog.c:163
 msgid "Device buffer:"
 msgstr ""
 
 #. output
-#: xfburn/xfburn-progress-dialog.c:234
+#: xfburn/xfburn-progress-dialog.c:176
 msgid "View _output"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:379 xfburn/xfburn-progress-dialog.c:627
-msgid "Operation finished"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:383 xfburn/xfburn-progress-dialog.c:625
-msgid "Cancelled"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:387
-msgid "Completed"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:392
-msgid "Blanking process exited with success"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:395
-msgid "Burning process exited with success"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:398
-msgid "Copying process exited with success"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:404
-msgid "Failed"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:409
-msgid ""
-"An error occured while trying to blank the disc (see output for more details)"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:412
-msgid ""
-"An error occured while trying to burn the disc (see output for more details)"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:415
-msgid ""
-"An error occured while trying to copy the disc (see output for more details)"
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:469
-msgid "Reading CD..."
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:478
-msgid "Blanking..."
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:481
-msgid "Performing OPC..."
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:492
-msgid "Fixating..."
-msgstr ""
-
-#: xfburn/xfburn-progress-dialog.c:505
-msgid "Writing ISO..."
 msgstr ""
 
 #: xfburn/xfburn-utils.c:175

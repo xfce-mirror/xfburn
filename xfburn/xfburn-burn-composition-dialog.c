@@ -23,6 +23,7 @@
 
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
+#include "xfburn-burn-composition-progress-dialog.h"
 
 #include "xfburn-burn-composition-dialog.h"
 
@@ -283,8 +284,15 @@ cb_browse_iso (GtkButton *button, XfburnBurnCompositionDialog *dialog)
 static void
 cb_dialog_response (XfburnBurnCompositionDialog * dialog, gint response_id, XfburnBurnCompositionDialogPrivate *priv)
 {
-/*   if (response_id == GTK_RESPONSE_OK) {
- *     gchar *device_name, *blank_type, *speed;
+  if (response_id == GTK_RESPONSE_OK) {
+    GtkWidget *dialog_progress;
+        
+    dialog_progress = xfburn_burn_composition_progress_dialog_new ();
+    gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
+    gtk_widget_hide (GTK_WIDGET (dialog));
+    gtk_dialog_run (GTK_DIALOG (dialog_progress));
+  }
+/*     gchar *device_name, *blank_type, *speed;
  *     gchar *temp;
  *     
  *     priv = dialog->priv;
