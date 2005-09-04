@@ -21,6 +21,11 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
+#include "xfburn-global.h"
 #include "xfburn-progress-dialog.h"
 
 #include "xfburn-burn-image-progress-dialog.h"
@@ -28,6 +33,9 @@
 static void xfburn_burn_image_progress_dialog_class_init (XfburnBurnImageProgressDialogClass * klass);
 static void xfburn_burn_image_progress_dialog_init (XfburnBurnImageProgressDialog * sp);
 static void xfburn_burn_image_progress_dialog_finalize (GObject * object);
+
+static void cb_new_output (XfburnBurnImageProgressDialog * dialog, const gchar * output,
+                           XfburnBurnImageProgressDialogPrivate * priv);
 
 struct XfburnBurnImageProgressDialogPrivate
 {
@@ -75,6 +83,8 @@ xfburn_burn_image_progress_dialog_init (XfburnBurnImageProgressDialog * obj)
 {
   obj->priv = g_new0 (XfburnBurnImageProgressDialogPrivate, 1);
   /* Initialize private members, etc. */
+
+  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), obj->priv);
 }
 
 static void
@@ -92,6 +102,38 @@ xfburn_burn_image_progress_dialog_finalize (GObject * object)
 /*           */
 /* internals */
 /*           */
+static void
+cb_new_output (XfburnBurnImageProgressDialog * dialog, const gchar * output,
+               XfburnBurnImageProgressDialogPrivate * priv)
+{
+  if (strstr (output, CDRECORD_FIXATING_TIME)) {
+    xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("no info"));
+    xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), -1);
+    xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), -1);
+    xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED);
+  }
+  else if (strstr (output, CDRECORD_FIXATING)) {
+    xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Fixating..."));
+  }
+  else if (strstr (output, CDRECORD_COPY)) {
+    gfloat current = 0, total = 0;
+    gint fifo = 0, buf = 0, speed = 0, speed_decimal = 0;
+
+    if (sscanf
+        (output, "%*s %*d %*s %f %*s %f %*s %*s %*s %d %*s %*s %d %*s %d.%d", &current, &total, &fifo, &buf,
+         &speed, &speed_decimal) == 6 && total > 0) {
+      gdouble fraction;
+
+      fraction = (gdouble) (current / total);
+
+      xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Writing ISO..."));
+      xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), fraction);
+      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog), speed + (0.1 * speed_decimal));
+      xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), ((gdouble) fifo) / 100);
+      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), ((gdouble) buf) / 100);
+    }
+  }
+}
 
 /*        */
 /* public */
@@ -102,7 +144,8 @@ xfburn_burn_image_progress_dialog_new ()
 {
   XfburnBurnImageProgressDialog *obj;
 
-  obj = XFBURN_BURN_IMAGE_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_BURN_IMAGE_PROGRESS_DIALOG, NULL));
+  obj = XFBURN_BURN_IMAGE_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_BURN_IMAGE_PROGRESS_DIALOG,
+                                                         "title", _("Burn CD image"), NULL));
 
   return GTK_WIDGET (obj);
 }

@@ -25,15 +25,10 @@
 #include <string.h>
 #endif
 
+#include "xfburn-global.h"
 #include "xfburn-progress-dialog.h"
 
 #include "xfburn-blank-cd-progress-dialog.h"
-
-#define CDRECORD_OPC "Performing OPC..."
-#define CDRECORD_BLANKING "Blanking "
-#define CDRECORD_BLANKING_TIME "Blanking time:"
-
-#define CDRECORD_NO_DISK_WRONG_DISK "No disk / Wrong disk!"
 
 static void xfburn_blank_cd_progress_dialog_class_init (XfburnBlankCdProgressDialogClass * klass);
 static void xfburn_blank_cd_progress_dialog_init (XfburnBlankCdProgressDialog * sp);
@@ -123,8 +118,6 @@ cb_finished (XfburnBlankCdProgressDialog * dialog, XfburnBlankCdProgressDialogPr
 static void
 cb_new_output (XfburnBlankCdProgressDialog * dialog, const gchar * output, XfburnBlankCdProgressDialogPrivate * priv)
 {
-  DBG ("%s", output);
-    
   if (priv->id_pulse == 0)
     priv->id_pulse = g_timeout_add (250, (GSourceFunc) xfburn_progress_dialog_pulse_progress_bar, dialog);
   

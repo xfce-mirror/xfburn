@@ -403,7 +403,6 @@ cb_expander_activate (GtkExpander * expander, XfburnProgressDialog * dialog)
 static void
 cb_dialog_show (XfburnProgressDialog * dialog, XfburnProgressDialogPrivate * priv)
 {
-  DBG ("beuah");
   gchar *command;
   int argc;
   gchar **argvp;
@@ -556,6 +555,46 @@ xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gfloat 
 }
 
 void
+xfburn_progress_dialog_set_buffer_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction)
+{
+  gchar *text = NULL;
+
+  if (fraction > 1.0) {
+    fraction = 1.0;
+    text = g_strdup ("100%");
+  } else if (fraction < 0.0) {
+    fraction = 0.0;
+    text = g_strdup (_("no info"));
+  } else {
+    text = g_strdup_printf ("%d%%", (int) (fraction * 100));
+  }
+  
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->buffer_bar), fraction);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->buffer_bar), text);
+  g_free (text);
+}
+
+void
+xfburn_progress_dialog_set_fifo_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction)
+{
+  gchar *text = NULL;
+
+  if (fraction > 1.0) {
+    fraction = 1.0;
+    text = g_strdup ("100%");
+  } else if (fraction < 0.0) {
+    fraction = 0.0;
+    text = g_strdup (_("no info"));
+  } else {
+    text = g_strdup_printf ("%d%%", (int) (fraction * 100));
+  }
+  
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->fifo_bar), fraction);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->fifo_bar), text);
+  g_free (text);
+}
+
+void
 xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction)
 {
   gchar *text = NULL;
@@ -603,5 +642,6 @@ xfburn_progress_dialog_new ()
 {
   XfburnProgressDialog *obj;
   obj = XFBURN_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_PROGRESS_DIALOG, NULL));
+    
   return GTK_WIDGET (obj);
 }

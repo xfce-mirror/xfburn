@@ -51,7 +51,4 @@ typedef struct
 GtkType xfburn_burn_image_dialog_get_type ();
 GtkWidget *xfburn_burn_image_dialog_new ();
 
-gchar *xfburn_burn_image_dialog_get_command (XfburnBurnImageDialog *dialog);
-XfburnDevice *xfburn_burn_image_dialog_get_device (XfburnBurnImageDialog *dialog);
-
 #endif /* XFBURN_BURN_IMAGE_DIALOG_H */

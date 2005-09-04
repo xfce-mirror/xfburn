@@ -38,9 +38,6 @@ static void xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog
 
 struct XfburnBurnImageDialogPrivate
 {
-  gchar *command;
-  XfburnDevice *device;
-
   GtkWidget *chooser_image;
 
   GtkWidget *combo_device;
@@ -239,8 +236,6 @@ xfburn_burn_image_dialog_finalize (GObject * object)
   XfburnBurnImageDialog *cobj;
   cobj = XFBURN_BURN_IMAGE_DIALOG (object);
 
-  g_free (cobj->priv->command);
-
   g_free (cobj->priv);
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -250,15 +245,17 @@ xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint respo
 {
   if (response_id == GTK_RESPONSE_OK) {
     XfburnBurnImageDialogPrivate *priv;
+    XfburnDevice *device;
     gchar *iso_path, *device_name, *speed, *write_mode;
-    gchar *temp;
-
+    gchar *command;
+    GtkWidget *dialog_progress;
+    
     priv = dialog->priv;
 
     iso_path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
 
     device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
-    priv->device = xfburn_device_lookup_by_name (device_name);
+    device = xfburn_device_lookup_by_name (device_name);
 
     speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
 
@@ -278,41 +275,28 @@ xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint respo
       write_mode = g_strdup (" -tao");
     }
 
-    temp = g_strconcat ("cdrecord -v gracetime=2", " dev=", priv->device->node_path, write_mode, " speed=", speed,
-                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
-                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " -dummy" : "",
-                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree)) ? " driveropts=burnfree"
-                        : "", " ", iso_path, NULL);
-    g_free (priv->command);
-    priv->command = temp;
-
+    command = g_strconcat ("cdrecord -v gracetime=2", " dev=", device->node_path, write_mode, " speed=", speed,
+                           gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
+                           gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " -dummy" : "",
+                           gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree)) ? " driveropts=burnfree"
+                           : "", " ", iso_path, NULL);
     g_free (device_name);
     g_free (write_mode);
     g_free (speed);
     g_free (iso_path);
-    
-    GtkWidget *dialog_progress;
-        
-    dialog_progress = xfburn_burn_image_progress_dialog_new ();
+       
+    dialog_progress = xfburn_burn_image_progress_dialog_new (GTK_WINDOW (dialog));
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
     gtk_widget_hide (GTK_WIDGET (dialog));
+    
+    g_object_set_data (G_OBJECT (dialog_progress), "command", command);
     gtk_dialog_run (GTK_DIALOG (dialog_progress));
+    
+    g_free (command);
   }
 }
 
 /* public */
-XfburnDevice *
-xfburn_burn_image_dialog_get_device (XfburnBurnImageDialog * dialog)
-{
-  return dialog->priv->device;
-}
-
-gchar *
-xfburn_burn_image_dialog_get_command (XfburnBurnImageDialog * dialog)
-{
-  return g_strdup (dialog->priv->command);
-}
-
 GtkWidget *
 xfburn_burn_image_dialog_new ()
 {
