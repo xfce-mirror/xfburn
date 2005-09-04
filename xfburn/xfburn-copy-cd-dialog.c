@@ -45,10 +45,6 @@ static void cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, X
 /* structures */
 struct XfburnCopyCdDialogPrivate
 {
-  gchar *command;
-  XfburnDevice *device_burn;
-  XfburnDevice *device_read;
-
   GtkWidget *combo_source_device;
   GtkWidget *frame_burn;
   GtkWidget *combo_dest_device;
@@ -265,8 +261,7 @@ xfburn_copy_cd_dialog_finalize (GObject * object)
 {
   XfburnCopyCdDialog *cobj;
   cobj = XFBURN_COPY_CD_DIALOG (object);
-
-  g_free (cobj->priv->command);
+  
   g_free (cobj->priv);
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -313,41 +308,39 @@ cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdD
 {
   if (response_id == GTK_RESPONSE_OK) {
     gchar *source_device_name;
-    gchar *temp;
-    
+    gchar *command;
+    XfburnDevice *device_burn;
+    XfburnDevice *device_read;
+  
     source_device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_source_device));
-    priv->device_read = xfburn_device_lookup_by_name (source_device_name);
+    device_read = xfburn_device_lookup_by_name (source_device_name);
         
     if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
-      temp = g_strconcat ("readcd dev=", priv->device_read->node_path, 
-                          " f=/tmp/xfburn.iso", NULL);
+      command = g_strconcat ("readcd dev=", device_read->node_path, " f=/tmp/xfburn.iso", NULL);
     } else {
       gchar *dest_device_name, *speed;
       gchar *source_device = NULL;
       
       dest_device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_dest_device));
-      priv->device_burn = xfburn_device_lookup_by_name (dest_device_name);
+      device_burn = xfburn_device_lookup_by_name (dest_device_name);
       speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
       
-      if (priv->device_burn != priv->device_read)
-        source_device = g_strconcat (" --source-device ", priv->device_read->node_path, NULL);
+      if (device_burn != device_read)
+        source_device = g_strconcat (" --source-device ", device_read->node_path, NULL);
       else
         source_device = g_strdup ("");
       
-      temp = g_strconcat ("cdrdao copy -n -v 2", source_device, 
-                          " --device ", priv->device_burn->node_path, " --speed ", speed, 
-                          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " --eject" : "",
-                          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " --simulate" : "",
-                          priv->device_burn != priv->device_read && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_onthefly)) ? " --on-the-fly" : "",
-                          " --datafile /tmp/xfburn.bin", NULL);
+      command = g_strconcat ("cdrdao copy -n -v 2", source_device, 
+                             " --device ", device_burn->node_path, " --speed ", speed, 
+                             gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " --eject" : "",
+                             gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " --simulate" : "",
+                             device_burn != device_read && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_onthefly)) ? " --on-the-fly" : "",
+                             " --datafile /tmp/xfburn.bin", NULL);
       
       g_free (source_device);
       g_free (speed);
       g_free (dest_device_name);
     }
-    g_free (priv->command);
-    priv->command = temp;
-    
     g_free (source_device_name);
     
     GtkWidget *dialog_progress;
@@ -355,29 +348,15 @@ cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdD
     dialog_progress = xfburn_copy_cd_progress_dialog_new ();
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
     gtk_widget_hide (GTK_WIDGET (dialog));
+        
+    g_object_set_data (G_OBJECT (dialog_progress), "command", command);
     gtk_dialog_run (GTK_DIALOG (dialog_progress));
+   
+    g_free (command);
   }
 }
 
 /* public */
-gchar *
-xfburn_copy_cd_dialog_get_command (XfburnCopyCdDialog * dialog)
-{
-  return g_strdup (dialog->priv->command);
-}
-
-XfburnDevice *
-xfburn_copy_cd_dialog_get_device_read (XfburnCopyCdDialog * dialog)
-{
-  return dialog->priv->device_read;
-}
-
-XfburnDevice *
-xfburn_copy_cd_dialog_get_device_burn (XfburnCopyCdDialog * dialog)
-{
-  return dialog->priv->device_burn;
-}
-
 GtkWidget *
 xfburn_copy_cd_dialog_new ()
 {

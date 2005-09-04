@@ -29,6 +29,20 @@
 #include "xfburn-global.h"
 
 G_BEGIN_DECLS
+/* */
+#define XFBURN_TYPE_PROGRESS_DIALOG_STATUS (xfburn_progress_dialog_status_get_type ())
+  typedef enum
+{
+  XFBURN_PROGRESS_DIALOG_STATUS_RUNNING,
+  XFBURN_PROGRESS_DIALOG_STATUS_FAILED,
+  XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED,
+  XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED
+} XfburnProgressDialogStatus;
+
+GType xfburn_progress_dialog_status_get_type (void);
+
+
+/* */
 #define XFBURN_TYPE_PROGRESS_DIALOG         (xfburn_progress_dialog_get_type ())
 #define XFBURN_PROGRESS_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_PROGRESS_DIALOG, XfburnProgressDialog))
 #define XFBURN_PROGRESS_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_PROGRESS_DIALOG, XfburnProgressDialogClass))
@@ -46,13 +60,26 @@ typedef struct
 typedef struct
 {
   GtkDialogClass parent_class;
+  
+  void (*output) (XfburnProgressDialog *dialog, const gchar *output);
+  void (*finished) (XfburnProgressDialog *dialog);
 } XfburnProgressDialogClass;
+
 
 GtkType xfburn_progress_dialog_get_type ();
 
-GtkWidget *xfburn_progress_dialog_new (void);
+void xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar * output);
+void xfburn_progress_dialog_show_buffers (XfburnProgressDialog * dialog, gboolean show);
+void xfburn_progress_dialog_pulse_progress_bar (XfburnProgressDialog * dialog);
+
+XfburnProgressDialogStatus xfburn_progress_dialog_get_status (XfburnProgressDialog * dialog);
+gdouble xfburn_progress_dialog_get_progress_bar_fraction (XfburnProgressDialog * dialog);
+
+void xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction);
 void xfburn_progress_dialog_set_action_text (XfburnProgressDialog * dialog, const gchar * text);
 void xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gfloat speed);
-void xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar * output, gboolean is_error);
+void xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status);
+
+GtkWidget *xfburn_progress_dialog_new ();
 
 #endif /* XFBURN_PROGRESS_DIALOG_H */

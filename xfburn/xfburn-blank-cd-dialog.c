@@ -36,9 +36,6 @@ static void xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gi
 
 struct XfburnBlankCdDialogPrivate
 {
-  gchar *command;
-  XfburnDevice *device;
-  
   GtkWidget *combo_device;
   GtkWidget *combo_type;
   GtkWidget *combo_speed;
@@ -100,8 +97,6 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   obj->priv = g_new0 (XfburnBlankCdDialogPrivate, 1);
 
   priv = obj->priv;
-  priv->command = NULL;
-  priv->device = NULL;
   
   gtk_window_set_title (GTK_WINDOW (obj), _("Blank CD-RW"));
 
@@ -214,8 +209,6 @@ xfburn_blank_cd_dialog_finalize (GObject * object)
 {
   XfburnBlankCdDialog *cobj;
   cobj = XFBURN_BLANK_CD_DIALOG (object);
-
-  g_free (cobj->priv->command);
   
   g_free (cobj->priv);
   G_OBJECT_CLASS (parent_class)->finalize (object);
@@ -226,13 +219,14 @@ xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_
 {
   if (response_id == GTK_RESPONSE_OK) {
     XfburnBlankCdDialogPrivate *priv;
+    gchar *command;
+    XfburnDevice *device;
     gchar *device_name, *blank_type, *speed;
-    gchar *temp;
     
     priv = dialog->priv;
 
     device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
-    priv->device = xfburn_device_lookup_by_name (device_name);
+    device = xfburn_device_lookup_by_name (device_name);
 
     speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
 
@@ -253,12 +247,10 @@ xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_
       blank_type = g_strdup ("fast");
     }
 
-    temp = g_strconcat ("cdrecord -v gracetime=2", " dev=", priv->device->node_path, " blank=", blank_type, " speed=", speed,
+    command = g_strconcat ("cdrecord -v gracetime=2", " dev=", device->node_path, " blank=", blank_type, " speed=", speed,
                         gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
                         gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_force)) ? " -force" : "", NULL);
-    g_free (priv->command);
-    priv->command = temp;
-
+    
     g_free (device_name);
     g_free (blank_type);
     g_free (speed);
@@ -268,23 +260,15 @@ xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_
     dialog_progress = xfburn_blank_cd_progress_dialog_new ();
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
     gtk_widget_hide (GTK_WIDGET (dialog));
+    
+    g_object_set_data (G_OBJECT (dialog_progress), "command", command);
     gtk_dialog_run (GTK_DIALOG (dialog_progress));
+    
+    g_free (command);
   }
 }
 
 /* public */
-XfburnDevice *
-xfburn_blank_cd_dialog_get_device (XfburnBlankCdDialog *dialog)
-{
-  return dialog->priv->device;
-}
-
-gchar *
-xfburn_blank_cd_dialog_get_command (XfburnBlankCdDialog *dialog)
-{
-  return g_strdup (dialog->priv->command);
-}
-
 GtkWidget *
 xfburn_blank_cd_dialog_new ()
 {

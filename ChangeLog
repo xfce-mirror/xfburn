@@ -1,3 +1,118 @@
+2005-09-03  pollux
+
+	* class diagram.zuml, po/POTFILES.in, po/fr.po, po/xfburn.pot,
+	  xfburn/Makefile.am, xfburn/xfburn-blank-cd-dialog.c,
+	  xfburn/xfburn-blank-cd-progress-dialog.c,
+	  xfburn/xfburn-blank-cd-progress-dialog.h,
+	  xfburn/xfburn-burn-composition-dialog.c,
+	  xfburn/xfburn-burn-composition-progress-dialog.c,
+	  xfburn/xfburn-burn-composition-progress-dialog.h,
+	  xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-burn-image-progress-dialog.c,
+	  xfburn/xfburn-burn-image-progress-dialog.h,
+	  xfburn/xfburn-copy-cd-dialog.c,
+	  xfburn/xfburn-copy-cd-progress-dialog.c,
+	  xfburn/xfburn-copy-cd-progress-dialog.h,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h: creates *ProgressDialog classes
+	  deriving XfburnProgressDialog
+
+2005-09-01  pollux
+
+	* xfburn/xfburn-copy-cd-dialog.c, xfburn/xfburn-progress-dialog.c:
+	  add support for copying data cd
+
+2005-08-31  pollux
+
+	* po/fr.po, po/xfburn.pot, xfburn/xfburn-copy-cd-dialog.c,
+	  xfburn/xfburn-copy-cd-dialog.h, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h, xfburn/xfburn-utils.c,
+	  xfburn/xfburn-utils.h: add support for creating iso from a CD
+	* xfburn/xfburn-burn-composition-dialog.c,
+	  xfburn/xfburn-burn-composition-dialog.h,
+	  xfburn/xfburn-copy-cd-dialog.c, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h, xfburn/xfburn-utils.c: ;
+
+2005-08-29  pollux
+
+	* xfburn/xfburn-blank-cd-dialog.c,
+	  xfburn/xfburn-blank-cd-dialog.h,
+	  xfburn/xfburn-burn-composition-dialog.c,
+	  xfburn/xfburn-burn-composition-dialog.h,
+	  xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.h,
+	  xfburn/xfburn-copy-cd-dialog.c, xfburn/xfburn-copy-cd-dialog.h,
+	  xfburn/xfburn-directory-browser.c,
+	  xfburn/xfburn-directory-browser.h, xfburn/xfburn-disc-content.c,
+	  xfburn/xfburn-disc-content.h, xfburn/xfburn-disc-usage.c,
+	  xfburn/xfburn-disc-usage.h, xfburn/xfburn-file-browser.c,
+	  xfburn/xfburn-file-browser.h, xfburn/xfburn-fs-browser.c,
+	  xfburn/xfburn-fs-browser.h, xfburn/xfburn-global.h,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-main-window.h,
+	  xfburn/xfburn-main.c, xfburn/xfburn-preferences-dialog.c,
+	  xfburn/xfburn-preferences-dialog.h,
+	  xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h, xfburn/xfburn-settings.c,
+	  xfburn/xfburn-settings.h, xfburn/xfburn-utils.c,
+	  xfburn/xfburn-utils.h: damn i forgot to comment the keyword :(
+	* xfburn/xfburn-blank-cd-dialog.c,
+	  xfburn/xfburn-blank-cd-dialog.h,
+	  xfburn/xfburn-burn-composition-dialog.c,
+	  xfburn/xfburn-burn-composition-dialog.h,
+	  xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.h,
+	  xfburn/xfburn-copy-cd-dialog.c, xfburn/xfburn-copy-cd-dialog.h,
+	  xfburn/xfburn-directory-browser.c,
+	  xfburn/xfburn-directory-browser.h, xfburn/xfburn-disc-content.c,
+	  xfburn/xfburn-disc-content.h, xfburn/xfburn-disc-usage.c,
+	  xfburn/xfburn-disc-usage.h, xfburn/xfburn-file-browser.c,
+	  xfburn/xfburn-file-browser.h, xfburn/xfburn-fs-browser.c,
+	  xfburn/xfburn-fs-browser.h, xfburn/xfburn-global.h,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-main-window.h,
+	  xfburn/xfburn-main.c, xfburn/xfburn-preferences-dialog.c,
+	  xfburn/xfburn-preferences-dialog.h,
+	  xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h, xfburn/xfburn-settings.c,
+	  xfburn/xfburn-settings.h, xfburn/xfburn-utils.c,
+	  xfburn/xfburn-utils.h: add $ in each source file
+	* configure.ac, xfburn/xfburn-main-window.c: add revision in about
+	  dialog
+
+2005-08-28  pollux
+
+	* configure.ac: keywords
+	* configure.ac: fix property
+	* TODO, configure.ac, po/fr.po, po/xfburn.pot,
+	  xfburn/xfburn-burn-composition-dialog.c,
+	  xfburn/xfburn-burn-composition-dialog.h,
+	  xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-copy-cd-dialog.c, xfburn/xfburn-disc-content.c,
+	  xfburn/xfburn-disc-content.h, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-utils.c, xfburn/xfburn-utils.h: fix memomnics
+
+2005-08-16  pollux
+
+	* xfburn/Makefile.am, xfburn/xfburn-burn-composition-dialog.c,
+	  xfburn/xfburn-burn-composition-dialog.h,
+	  xfburn/xfburn-directory-browser.c,
+	  xfburn/xfburn-directory-browser.h, xfburn/xfburn-disc-content.c,
+	  xfburn/xfburn-disc-content.h, xfburn/xfburn-disc-usage.c,
+	  xfburn/xfburn-disc-usage.h, xfburn/xfburn-file-browser.c,
+	  xfburn/xfburn-file-browser.h, xfburn/xfburn-main-window.c: *
+	  implement refresh * add burn composition dialog
+	* xfburn/xfburn-disc-content.c: don't load file that doesn't exist
+	* xfburn.ui, xfburn/xfburn-disc-content.c,
+	  xfburn/xfburn-disc-content.h, xfburn/xfburn-main-window.c: add
+	  load/save composition
+
+2005-08-15  pollux
+
+	* ChangeLog, ChangeLog, po/ChangeLog,
+	  xfburn/xfburn-disc-content.c, xfburn/xfburn-disc-content.h:
+	  update ChangeLog
+
 2005-08-14  pollux
 
 	* po/POTFILES.in, po/fr.po, po/xfburn.pot,
