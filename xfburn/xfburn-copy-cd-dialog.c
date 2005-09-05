@@ -323,7 +323,8 @@ cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdD
     device_read = xfburn_device_lookup_by_name (source_device_name);
         
     if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
-      command = g_strconcat ("readcd dev=", device_read->node_path, " f=/tmp/xfburn.iso", NULL);
+      command = g_strconcat ("readcd dev=", device_read->node_path, " f=", 
+                             gtk_entry_get_text (GTK_ENTRY (priv->entry_path_iso)), NULL);
       
       dialog_progress = xfburn_create_iso_progress_dialog_new ();
     } else {

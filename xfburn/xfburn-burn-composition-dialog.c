@@ -304,27 +304,51 @@ static void
 cb_dialog_response (XfburnBurnCompositionDialog * dialog, gint response_id, XfburnBurnCompositionDialogPrivate * priv)
 {
   if (response_id == GTK_RESPONSE_OK) {
-    gchar *device_name;
     gchar *command = NULL;
-    XfburnDevice *device;
     GtkWidget *dialog_progress = NULL;
-
-    device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
-    device = xfburn_device_lookup_by_name (device_name);
-
+    
     if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
       command = g_strconcat ("sh -c \"mkisofs -gui -graft-points -joliet -full-iso9660-filenames -iso-level 2 -path-list ",
-                             priv->file_list, " > /tmp/xfburn.iso\"", NULL);
+                             priv->file_list, " > ", gtk_entry_get_text (GTK_ENTRY (priv->entry_path_iso)), "\"", NULL);
 
       dialog_progress = xfburn_create_iso_from_composition_progress_dialog_new ();
     }
     else {
       gchar *speed;
+      gchar *write_mode;
+      gchar *device_name;
+      XfburnDevice *device;
+      
+      device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
+      device = xfburn_device_lookup_by_name (device_name);
       
       speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
 
-      
+      switch (gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combo_mode))) {
+      case 2:
+        write_mode = g_strdup (" -dao");
+        break;
+      case 3:
+        write_mode = g_strdup (" -raw96p");
+        break;
+      case 4:
+        write_mode = g_strdup (" -raw16");
+        break;
+      case 0:
+      case 1:
+      default:
+        write_mode = g_strdup (" -tao");
+      }
+
+      command = g_strconcat ("sh -c \"mkisofs -gui -graft-points -joliet -full-iso9660-filenames -iso-level 2 -path-list ",
+                             priv->file_list, " | cdrecord -v gracetime=2", " dev=", device->node_path, write_mode, " speed=", speed,
+                             gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
+                             gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " -dummy" : "",
+                             gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree)) ? " driveropts=burnfree" : "",
+                             " - \"", NULL);
+      g_free (device_name);
       g_free (speed);
+      g_free (write_mode);
       dialog_progress = xfburn_burn_composition_progress_dialog_new ();
     }
 
@@ -335,7 +359,6 @@ cb_dialog_response (XfburnBurnCompositionDialog * dialog, gint response_id, Xfbu
     gtk_dialog_run (GTK_DIALOG (dialog_progress));
 
     unlink (priv->file_list);
-    g_free (device_name);
     g_free (command);
   }
 }

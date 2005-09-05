@@ -106,10 +106,7 @@ static void
 cb_new_output (XfburnCreateIsoFromCompositionProgressDialog * dialog, const gchar * output,
                XfburnCreateIsoFromCompositionProgressDialogPrivate * priv)
 {
-  if (strstr (output, MKISOFS_ABORTING)) {
-    xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog), XFBURN_PROGRESS_DIALOG_STATUS_FAILED);
-  }
-  else if (strstr (output, MKISOFS_DONE)) {
+  if (strstr (output, MKISOFS_DONE)) {
     xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED);
   }
   else if (strstr (output, MKISOFS_RUNNING)) {
