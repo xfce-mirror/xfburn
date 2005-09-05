@@ -21,6 +21,11 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
+#include "xfburn-global.h"
 #include "xfburn-progress-dialog.h"
 
 #include "xfburn-copy-cd-progress-dialog.h"
@@ -28,6 +33,9 @@
 static void xfburn_copy_cd_progress_dialog_class_init (XfburnCopyCdProgressDialogClass * klass);
 static void xfburn_copy_cd_progress_dialog_init (XfburnCopyCdProgressDialog * sp);
 static void xfburn_copy_cd_progress_dialog_finalize (GObject * object);
+
+static void cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output,
+                           XfburnCopyCdProgressDialogPrivate * priv);
 
 struct XfburnCopyCdProgressDialogPrivate
 {
@@ -75,6 +83,7 @@ xfburn_copy_cd_progress_dialog_init (XfburnCopyCdProgressDialog * obj)
 {
   obj->priv = g_new0 (XfburnCopyCdProgressDialogPrivate, 1);
   /* Initialize private members, etc. */
+  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), obj->priv);
 }
 
 static void
@@ -92,6 +101,67 @@ xfburn_copy_cd_progress_dialog_finalize (GObject * object)
 /*           */
 /* internals */
 /*           */
+static void
+cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output, XfburnCopyCdProgressDialogPrivate * priv)
+{
+  static gint readcd_end = -1;
+  
+  if (strstr (output, CDRDAO_DONE)) {
+    xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED);
+  }
+  else if (strstr (output, CDRDAO_FLUSHING)) {
+    xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Flushing cache..."));
+  }
+  else if (strstr (output, CDRDAO_LENGTH)) {
+    gint min, sec, cent;
+
+    sscanf (output, "%*s %d:%d:%d", &min, &sec, &cent);
+    readcd_end = cent + 100 * sec + 60 * 100 * min;
+  }
+  else if (strstr (output, CDRDAO_INSERT) || strstr (output, CDRDAO_INSERT_AGAIN)) {
+    GtkWidget *dialog_confirm;
+
+    dialog_confirm = gtk_message_dialog_new (GTK_WINDOW (dialog), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                             GTK_MESSAGE_INFO, GTK_BUTTONS_OK, _("Please insert a recordable medium."));
+    gtk_dialog_run (GTK_DIALOG (dialog_confirm));
+    gtk_widget_destroy (dialog_confirm);
+    xfburn_progress_dialog_write_input (XFBURN_PROGRESS_DIALOG (dialog), "\n");
+  }
+  else {
+    gint done, total, buffer1, buffer2;
+    gint min, sec, cent;
+    gdouble fraction;
+    
+    if (sscanf (output, "Wrote %d %*s %d %*s %*s %d%% %d%%", &done, &total, &buffer1, &buffer2) == 4) {
+      gchar *command;
+            
+      command = g_object_get_data (G_OBJECT (dialog), "command");
+      if (strstr (command, "on-the-fly")) {
+        fraction = ((gdouble) done) / total;
+      }
+      else {
+        fraction = ((gdouble) done) / total;
+        fraction = 0.5 + (fraction / 2);
+      }
+
+      xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Writing CD..."));
+      xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), fraction);
+      xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), ((gdouble) buffer1) / 100);
+      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), ((gdouble) buffer2) / 100);
+    }
+    else if (sscanf (output, "%d:%d:%d", &min, &sec, &cent) == 3) {
+      gint readcd_done = -1;
+
+      readcd_done = cent + 100 * sec + 60 * 100 * min;
+
+      fraction = ((gdouble) readcd_done) / readcd_end;
+      fraction = fraction / 2;
+
+      xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Reading CD..."));
+      xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), fraction);
+    }
+  }
+}
 
 /*        */
 /* public */
@@ -102,7 +172,8 @@ xfburn_copy_cd_progress_dialog_new ()
 {
   XfburnCopyCdProgressDialog *obj;
 
-  obj = XFBURN_COPY_CD_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG, NULL));
+  obj = XFBURN_COPY_CD_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG,
+                                                      "title", _("Copy data CD"), NULL));
 
   return GTK_WIDGET (obj);
 }

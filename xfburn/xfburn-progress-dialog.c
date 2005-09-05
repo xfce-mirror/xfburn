@@ -54,7 +54,8 @@ static void cb_dialog_response (XfburnProgressDialog * dialog, gint response_id,
 struct XfburnProgressDialogPrivate
 {
   XfburnProgressDialogStatus status;
-
+  int fd_stdin;
+  
   GtkWidget *label_action;
   GtkWidget *progress_bar;
   GtkWidget *hbox_buffers;
@@ -429,7 +430,7 @@ cb_dialog_show (XfburnProgressDialog * dialog, XfburnProgressDialogPrivate * pri
   }
 
   if (!g_spawn_async_with_pipes (NULL, argvp, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, &pid_command,
-                                 NULL, &fd_stdout, &fd_stderr, &error)) {
+                                 &(priv->fd_stdin), &fd_stdout, &fd_stderr, &error)) {
     g_warning ("Unable to spawn process : %s", error->message);
     g_error_free (error);
     g_strfreev (argvp);
@@ -512,6 +513,12 @@ void
 xfburn_progress_dialog_pulse_progress_bar (XfburnProgressDialog * dialog)
 {
   gtk_progress_bar_pulse (GTK_PROGRESS_BAR (dialog->priv->progress_bar));
+}
+
+void
+xfburn_progress_dialog_write_input (XfburnProgressDialog * dialog, const gchar * input)
+{
+  write (dialog->priv->fd_stdin, input, strlen (input) * sizeof (gchar));
 }
 
 /* getters */
@@ -604,7 +611,6 @@ xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog,
     switch (dialog->priv->status) {
     case XFBURN_PROGRESS_DIALOG_STATUS_RUNNING:
       text = g_strdup ("100%");
-      g_warning ("fraction should be <= 1.0 if process is still RUNNING");
       break;
     case XFBURN_PROGRESS_DIALOG_STATUS_FAILED:
       text = g_strdup (_("Failed"));

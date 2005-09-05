@@ -71,6 +71,7 @@ GtkType xfburn_progress_dialog_get_type ();
 void xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar * output);
 void xfburn_progress_dialog_show_buffers (XfburnProgressDialog * dialog, gboolean show);
 void xfburn_progress_dialog_pulse_progress_bar (XfburnProgressDialog * dialog);
+void xfburn_progress_dialog_write_input (XfburnProgressDialog * dialog, const gchar * input);
 
 XfburnProgressDialogStatus xfburn_progress_dialog_get_status (XfburnProgressDialog * dialog);
 gdouble xfburn_progress_dialog_get_progress_bar_fraction (XfburnProgressDialog * dialog);

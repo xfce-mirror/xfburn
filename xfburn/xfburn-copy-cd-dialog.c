@@ -29,6 +29,7 @@
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
 #include "xfburn-copy-cd-progress-dialog.h"
+#include "xfburn-create-iso-progress-dialog.h"
 
 #include "xfburn-copy-cd-dialog.h"
 
@@ -311,12 +312,15 @@ cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdD
     gchar *command;
     XfburnDevice *device_burn;
     XfburnDevice *device_read;
+    GtkWidget *dialog_progress = NULL;
   
     source_device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_source_device));
     device_read = xfburn_device_lookup_by_name (source_device_name);
         
     if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
       command = g_strconcat ("readcd dev=", device_read->node_path, " f=/tmp/xfburn.iso", NULL);
+      
+      dialog_progress = xfburn_create_iso_progress_dialog_new ();
     } else {
       gchar *dest_device_name, *speed;
       gchar *source_device = NULL;
@@ -336,22 +340,20 @@ cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdD
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " --simulate" : "",
                              device_burn != device_read && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_onthefly)) ? " --on-the-fly" : "",
                              " --datafile /tmp/xfburn.bin", NULL);
-      
       g_free (source_device);
       g_free (speed);
       g_free (dest_device_name);
+      
+      dialog_progress = xfburn_copy_cd_progress_dialog_new ();
     }
-    g_free (source_device_name);
     
-    GtkWidget *dialog_progress;
-        
-    dialog_progress = xfburn_copy_cd_progress_dialog_new ();
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
     gtk_widget_hide (GTK_WIDGET (dialog));
         
     g_object_set_data (G_OBJECT (dialog_progress), "command", command);
     gtk_dialog_run (GTK_DIALOG (dialog_progress));
    
+    g_free (source_device_name);
     g_free (command);
   }
 }
