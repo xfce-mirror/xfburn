@@ -438,6 +438,8 @@ cb_dialog_show (XfburnProgressDialog * dialog, XfburnProgressDialogPrivate * pri
   }
   g_strfreev (argvp);
 
+  g_object_set_data (G_OBJECT (dialog), "pid-command", (gpointer) pid_command);
+  
   channel_stdout = g_io_channel_unix_new (fd_stdout);
   g_io_channel_set_encoding (channel_stdout, NULL, NULL);
   g_io_channel_set_buffered (channel_stdout, FALSE);
@@ -462,19 +464,25 @@ cb_dialog_delete (XfburnProgressDialog * dialog, GdkEvent * event, XfburnProgres
   if (!GTK_WIDGET_SENSITIVE (priv->button_close)) {
     cb_dialog_response (dialog, GTK_RESPONSE_CANCEL, priv);
     return TRUE;
+  } else {
+    cb_dialog_response (dialog, GTK_RESPONSE_CLOSE, priv);
+    return FALSE;
   }
-
-  return FALSE;
 }
 
 static void
 cb_dialog_response (XfburnProgressDialog * dialog, gint response_id, XfburnProgressDialogPrivate * priv)
 {
   if (response_id == GTK_RESPONSE_CANCEL) {
+    GPid pid_command;
+
+    pid_command = (GPid) g_object_get_data (G_OBJECT (dialog), "pid-command");
+    if (pid_command > 0)
+      kill (pid_command, SIGTERM);
+    
     gtk_widget_set_sensitive (priv->button_stop, FALSE);
     priv->status = XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED;
-  }
-  else
+  } else if (response_id == GTK_RESPONSE_CLOSE)
     gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
