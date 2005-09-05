@@ -19,6 +19,7 @@ xfburn_headers = 							\
 	xfburn-copy-cd-dialog.h						\
 	xfburn-copy-cd-progress-dialog.h				\
 	xfburn-create-iso-progress-dialog.h				\
+	xfburn-create-iso-from-composition-progress-dialog.h		\
 	xfburn-progress-dialog.h					\
 	xfburn-main-window.h						\
 	xfburn-file-browser.h						\
@@ -38,6 +39,7 @@ xfburn_SOURCES =							\
 	xfburn-burn-image-dialog.c					\
 	xfburn-burn-image-progress-dialog.c				\
 	xfburn-create-iso-progress-dialog.c				\
+	xfburn-create-iso-from-composition-progress-dialog.c		\
 	xfburn-settings.c						\
 	xfburn-copy-cd-dialog.c						\
 	xfburn-copy-cd-progress-dialog.c				\

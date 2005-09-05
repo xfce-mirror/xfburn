@@ -107,6 +107,7 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *hbox;
+  GtkWidget *align;
   GtkWidget *label;
   GtkWidget *button;
   gchar *default_path, *tmp_dir;
@@ -207,9 +208,13 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_only_iso, FALSE, FALSE, BORDER);
   g_signal_connect (G_OBJECT (priv->check_only_iso), "toggled", G_CALLBACK (cb_check_only_iso_toggled), obj);
 
+  align = gtk_alignment_new (0, 0, 0, 0);
+  gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
+  gtk_widget_show (align);
+  gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
   priv->hbox_iso = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (priv->hbox_iso);
-  gtk_box_pack_start (GTK_BOX (vbox), priv->hbox_iso, FALSE, FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (align), priv->hbox_iso);
   gtk_widget_set_sensitive (priv->hbox_iso, FALSE);
 
   priv->entry_path_iso = gtk_entry_new ();

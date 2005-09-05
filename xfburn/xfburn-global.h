@@ -55,6 +55,9 @@
 #define CDRDAO_INSERT_AGAIN "Cannot determine disk status - hit enter to try again."
 #define CDRDAO_DONE "CD copying finished successfully."
 
+#define MKISOFS_ABORTING "Aborting."
+#define MKISOFS_RUNNING " done, estimate"
+#define MKISOFS_DONE "extents written"
 typedef struct
 {
   gchar *name;
