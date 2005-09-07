@@ -1,3 +1,47 @@
+2005-09-07  pollux
+
+	* ChangeLog, class diagram.zuml, configure.ac, po/fr.po,
+	  po/xfburn.pot: update ChangeLog
+
+2005-09-05  pollux
+
+	* xfburn/xfburn-burn-composition-dialog.c,
+	  xfburn/xfburn-copy-cd-dialog.c,
+	  xfburn/xfburn-create-iso-from-composition-progress-dialog.c: can
+	  burn compositions
+	* xfburn/Makefile.am, xfburn/xfburn-burn-composition-dialog.c,
+	  xfburn/xfburn-copy-cd-dialog.c,
+	  xfburn/xfburn-create-iso-from-composition-progress-dialog.c,
+	  xfburn/xfburn-create-iso-from-composition-progress-dialog.h,
+	  xfburn/xfburn-global.h: create iso from composition implemented
+	* xfburn/xfburn-progress-dialog.c: closing ProgressDialog cancels
+	  current command
+	* xfburn/Makefile.am, xfburn/xfburn-copy-cd-dialog.c,
+	  xfburn/xfburn-copy-cd-progress-dialog.c,
+	  xfburn/xfburn-create-iso-progress-dialog.c,
+	  xfburn/xfburn-create-iso-progress-dialog.h,
+	  xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h: copy cd dialog uses new
+	  ProgressDialog framework
+
+2005-09-04  pollux
+
+	* xfburn/xfburn-blank-cd-progress-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.h,
+	  xfburn/xfburn-burn-image-progress-dialog.c,
+	  xfburn/xfburn-global.h, xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h: add support for writing ISO
+	  with new ProgressDialog framework
+	* ChangeLog, ChangeLog, class diagram.zuml, po/ChangeLog,
+	  xfburn/xfburn-blank-cd-dialog.c,
+	  xfburn/xfburn-blank-cd-dialog.h,
+	  xfburn/xfburn-blank-cd-progress-dialog.c,
+	  xfburn/xfburn-copy-cd-dialog.c, xfburn/xfburn-copy-cd-dialog.h,
+	  xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h: * blank cd works again using
+	  new XfburnProgressDialog framework * update ChangeLog
+
 2005-09-03  pollux
 
 	* class diagram.zuml, po/POTFILES.in, po/fr.po, po/xfburn.pot,
