@@ -3,7 +3,7 @@ dnl $Id$
 dnl Version information
 m4_define([xfburn_version_major], [0])
 m4_define([xfburn_version_minor], [0])
-m4_define([xfburn_version_micro], [2svn])
+m4_define([xfburn_version_micro], [3svn])
 m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()])
 
 dnl Initialize autoconf
@@ -19,6 +19,24 @@ dnl check for basic programs
 AC_PROG_CC()
 AC_PROG_INSTALL()
 AC_PROG_LIBTOOL()
+
+dnl check for needed programs
+AC_CHECK_PROG(cdrecord_found, [cdrecord], yes, no)
+if test x"$cdrecord_found" = x"no"; then
+  AC_MSG_ERROR([You need cdrecord to be able to write CDs with xfburn])
+fi
+AC_CHECK_PROG(readcd_found, [readcd], yes, no)
+if test x"$readcd_found" = x"no"; then
+  AC_MSG_ERROR([You need readcd to be able to create ISOs with xfburn])
+fi
+AC_CHECK_PROG(cdrdao_found, [cdrdao], yes, no)
+if test x"$cdrdao_found" = x"no"; then
+  AC_MSG_ERROR([You need cdrdao to be able to copy CDs with xfburn])
+fi
+AC_CHECK_PROG(mkisofs_found, [mkisofs], yes, no)
+if test x"$mkisofs_found" = x"no"; then
+  AC_MSG_ERROR([You need mkisofs to be able to create ISOs with xfburn])
+fi
 
 dnl check for i18n support
 XDT_I18N([fr])
