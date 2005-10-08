@@ -367,9 +367,8 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   static const struct
   {
     gchar *name, *email, *language;
-  } translators[] = {};
-    //{
-  //"Jean-François Wauthy", "pollux@xfce.org", "fr",},};
+  } translators[] = {
+    {"Etienne Collet", "xanaxlnx@gmail.com", "fr",},};
 
   icon = xfce_themed_icon_load ("xfburn", 48);
   //if (G_UNLIKELY (icon == NULL))
