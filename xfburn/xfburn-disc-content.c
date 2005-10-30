@@ -227,10 +227,10 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   g_object_set (cell_icon, "xalign", 0.0, "ypad", 0, NULL);
 
   cell_file = gtk_cell_renderer_text_new ();
-  g_object_set (G_OBJECT (cell_file), "editable", TRUE);
   gtk_tree_view_column_pack_start (column_file, cell_file, TRUE);
   gtk_tree_view_column_set_attributes (column_file, cell_file, "text", DISC_CONTENT_COLUMN_CONTENT, NULL);
   g_signal_connect (G_OBJECT (cell_file), "edited", G_CALLBACK (cell_file_edited_cb), disc_content);
+  g_object_set (G_OBJECT (cell_file), "editable", TRUE, NULL);
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (disc_content->priv->content), column_file);
 
