@@ -14,7 +14,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:101
 #: ../xfburn/xfburn-blank-cd-dialog.c:104
@@ -71,7 +70,7 @@ msgstr "Настройки"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:183
 msgid "_Force"
-msgstr ""
+msgstr "Принудительно"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:187
 #: ../xfburn/xfburn-burn-composition-dialog.c:210
@@ -121,7 +120,6 @@ msgstr "Burn_Free"
 #. create ISO ?
 #: ../xfburn/xfburn-burn-composition-dialog.c:225
 #: ../xfburn/xfburn-copy-cd-dialog.c:206
-#, fuzzy
 msgid "Only create _ISO"
 msgstr "Только создать _ISO"
 
@@ -183,10 +181,9 @@ msgstr "_Копировать диск"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:113
 msgid "Flushing cache..."
-msgstr ""
+msgstr "Заполнение кэша..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:125
-#, fuzzy
 msgid "Please insert a recordable medium."
 msgstr "Вставьте записываемый носитель."
 
@@ -441,7 +438,7 @@ msgstr "Показывать _скрытые файлы"
 
 #: ../xfburn/xfburn-preferences-dialog.c:158
 msgid "Show human_readable filesizes"
-msgstr ""
+msgstr "Отображать размер сокращенно"
 
 #: ../xfburn/xfburn-preferences-dialog.c:168
 msgid "Devices"
@@ -457,11 +454,11 @@ msgstr "Имя"
 
 #: ../xfburn/xfburn-preferences-dialog.c:211
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ../xfburn/xfburn-preferences-dialog.c:213
 msgid "Node"
-msgstr ""
+msgstr "Узел"
 
 #: ../xfburn/xfburn-preferences-dialog.c:215
 msgid "Write CD-R"
@@ -488,9 +485,8 @@ msgid "Initializing..."
 msgstr "Инициализация..."
 
 #: ../xfburn/xfburn-progress-dialog.c:197
-#, fuzzy
 msgid "Estimated writing speed:"
-msgstr "Приблизительная скорость записи:"
+msgstr "Предположительная скорость записи:"
 
 #: ../xfburn/xfburn-progress-dialog.c:211
 msgid "FIFO buffer:"
@@ -498,12 +494,12 @@ msgstr "Буфер FIFO:"
 
 #: ../xfburn/xfburn-progress-dialog.c:221
 msgid "Device buffer:"
-msgstr ""
+msgstr "Буфер устройства:"
 
 #. output
 #: ../xfburn/xfburn-progress-dialog.c:232
 msgid "View _output"
-msgstr ""
+msgstr "Просмотреть вывод"
 
 #: ../xfburn/xfburn-progress-dialog.c:364
 msgid "Operation finished"
@@ -511,7 +507,7 @@ msgstr "Операция завершена"
 
 #: ../xfburn/xfburn-progress-dialog.c:624
 msgid "Failed"
-msgstr ""
+msgstr "Завершена неудачно"
 
 #: ../xfburn/xfburn-progress-dialog.c:627
 msgid "Cancelled"
@@ -519,7 +515,7 @@ msgstr "Отменена"
 
 #: ../xfburn/xfburn-progress-dialog.c:630
 msgid "Completed"
-msgstr "Завершено"
+msgstr "Завершена успешно"
 
 #: ../xfburn/xfburn-utils.c:175
 msgid "Failed to open /proc/scsi/sg/devices"
