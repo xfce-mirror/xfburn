@@ -40,7 +40,7 @@ if test x"$mkisofs_found" = x"no"; then
 fi
 
 dnl check for i18n support
-XDT_I18N([ca eu fr ja ru])
+XDT_I18N([ca eu fr he ja ru])
 
 dnl check for required packages
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])
