@@ -11,6 +11,10 @@ ui_DATA =  	                                                        \
 	xfburn-toolbars.ui
 		
 EXTRA_DIST = 								\
+	$(apps_in_files)						\
+	intltool-extract.in						\
+	intltool-merge.in						\
+	intltool-update.in						\
 	$(ui_DATA)
 
 appsdir = $(datadir)/applications
