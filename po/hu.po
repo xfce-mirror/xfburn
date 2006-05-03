@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2006-05-02 23:01+0100\n"
+"PO-Revision-Date: 2006-05-03 20:46+0100\n"
 "Last-Translator: SZERVÑC Attila <sas@321.hu>\n"
 "Language-Team: hu\n"
 "MIME-Version: 1.0\n"
@@ -17,8 +17,10 @@ msgstr ""
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:146
 #: ../xfburn/xfburn-main-window.c:84
 msgid "Blank CD-RW"
-msgstr "Üres CD-RW"
+msgstr "CD-RW törlése"
 
+# [mayday]: Az íróeszköz ugyancsak félreérthető lenne. :-)
+# [sas]: Az író eszköz már nem, de nem az igazi, ezzel az a baj, hogy DVD is lehet
 #. burning devices list
 #. devices list
 #. burning devices list
@@ -27,7 +29,7 @@ msgstr "Üres CD-RW"
 #: ../xfburn/xfburn-burn-image-dialog.c:124
 #: ../xfburn/xfburn-copy-cd-dialog.c:141
 msgid "Burning device"
-msgstr ""
+msgstr "CD-író eszköz:"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:136
 #: ../xfburn/xfburn-burn-composition-dialog.c:158
@@ -39,15 +41,17 @@ msgstr "_Sebesség :"
 #. blank type
 #: ../xfburn/xfburn-blank-cd-dialog.c:161
 msgid "Blank type"
-msgstr ""
+msgstr "Törlés módja"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:166
 msgid "Fast"
 msgstr "Gyors"
 
+# [mayday]: Mármint teljes törlés.
+# [sas]: nekem még nem volt időm belenézni a forrásba, kösz :-)
 #: ../xfburn/xfburn-blank-cd-dialog.c:167
 msgid "Complete"
-msgstr "Kész"
+msgstr "Teljes"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:168
 msgid "Reopen last session"
@@ -63,11 +67,11 @@ msgstr "Utolsó szakasz törlése"
 #: ../xfburn/xfburn-burn-image-dialog.c:195
 #: ../xfburn/xfburn-copy-cd-dialog.c:184
 msgid "Options"
-msgstr "Lehetőségek"
+msgstr "Beállítások"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:183
 msgid "_Force"
-msgstr ""
+msgstr "_Kényszerítés"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:187
 #: ../xfburn/xfburn-burn-composition-dialog.c:210
@@ -78,11 +82,11 @@ msgstr "Lemez kiadása"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:197
 msgid "_Blank"
-msgstr "Üres"
+msgstr "_Törlés"
 
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:128
 msgid "Blanking..."
-msgstr ""
+msgstr "Törlés..."
 
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:131
 msgid "Performing OPC..."
@@ -91,7 +95,7 @@ msgstr "OPC végrehajtása..."
 #: ../xfburn/xfburn-burn-composition-dialog.c:123
 #: ../xfburn/xfburn-burn-composition-dialog.c:126
 msgid "Burn Composition"
-msgstr ""
+msgstr "Összeállítás írása"
 
 #: ../xfburn/xfburn-burn-composition-dialog.c:187
 #: ../xfburn/xfburn-burn-image-dialog.c:180
@@ -101,18 +105,19 @@ msgstr "Írási _mód :"
 #: ../xfburn/xfburn-burn-composition-dialog.c:192
 #: ../xfburn/xfburn-burn-image-dialog.c:185
 msgid "default"
-msgstr "alap"
+msgstr "alapértelmezett"
 
 #: ../xfburn/xfburn-burn-composition-dialog.c:215
 #: ../xfburn/xfburn-burn-image-dialog.c:208
 #: ../xfburn/xfburn-copy-cd-dialog.c:197
 msgid "_Dummy write"
-msgstr ""
+msgstr "S_zimulált írás"
 
 #: ../xfburn/xfburn-burn-composition-dialog.c:219
 #: ../xfburn/xfburn-burn-image-dialog.c:212
+#, fuzzy
 msgid "Burn_Free"
-msgstr ""
+msgstr "Burn_Free"
 
 #. create ISO ?
 #: ../xfburn/xfburn-burn-composition-dialog.c:225
@@ -122,13 +127,13 @@ msgstr "Csak _ISO létrehozása"
 
 #: ../xfburn/xfburn-burn-composition-dialog.c:262
 msgid "_Burn Composition"
-msgstr ""
+msgstr "Összeállítás írása"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:107
 #: ../xfburn/xfburn-burn-image-dialog.c:110
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:148
 msgid "Burn CD image"
-msgstr "CD kép írása"
+msgstr "CD-kép írása"
 
 #. file
 #: ../xfburn/xfburn-burn-image-dialog.c:115
@@ -156,43 +161,44 @@ msgstr "Rögzítés..."
 
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:129
 msgid "Writing ISO..."
-msgstr "ISO írás..."
+msgstr "ISO írása..."
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:119
 #: ../xfburn/xfburn-copy-cd-dialog.c:122
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:176
 msgid "Copy data CD"
-msgstr "Adat CD másolás"
+msgstr "Adat CD másolása"
 
 #. reader devices list
 #: ../xfburn/xfburn-copy-cd-dialog.c:127
 msgid "CD Reader device"
-msgstr "CD olvasó eszköz"
+msgstr "CD-olvasó eszköz"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:201
 msgid "On the _fly"
-msgstr "Röptében"
+msgstr "_Röptében"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:242
 msgid "_Copy CD"
-msgstr "CD másolás"
+msgstr "_CD másolása"
 
+# [sas]: opsz, félrefordítottam? :-)
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:113
 msgid "Flushing cache..."
-msgstr "Gyorstár feltöltése..."
+msgstr "Gyorstár kiürítése..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:125
 msgid "Please insert a recordable medium."
-msgstr "Tégy be egy írható lemezt"
+msgstr "Tégy be egy írható lemezt."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:147
 msgid "Writing CD..."
-msgstr "CD írás..."
+msgstr "CD írása..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:160
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:123
 msgid "Reading CD..."
-msgstr "CD olvasás..."
+msgstr "CD olvasása..."
 
 #: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:136
 msgid "Create ISO from composition"
@@ -222,7 +228,7 @@ msgstr "Típus"
 
 #: ../xfburn/xfburn-disc-content.c:95
 msgid "Add"
-msgstr "Hozzáad"
+msgstr "Hozzáadás"
 
 #: ../xfburn/xfburn-disc-content.c:95
 msgid "Add the selected file(s) to the CD"
@@ -230,7 +236,7 @@ msgstr "Kijelölt fájlok hozzáadása a CD-hez"
 
 #: ../xfburn/xfburn-disc-content.c:96
 msgid "Remove"
-msgstr "Eltávolít"
+msgstr "Eltávolítás"
 
 #: ../xfburn/xfburn-disc-content.c:96
 msgid "Remove the selected file(s) from the CD"
@@ -238,7 +244,7 @@ msgstr "Kijelölt fájlok eltávolítása a CD-ről"
 
 #: ../xfburn/xfburn-disc-content.c:98
 msgid "Clear"
-msgstr "Töröl"
+msgstr "Törlés"
 
 #: ../xfburn/xfburn-disc-content.c:98
 msgid "Clear the content of the CD"
@@ -298,11 +304,11 @@ msgstr "Összeállítás mentése"
 #: ../xfburn/xfburn-main-window.c:73
 #: ../xfburn/xfburn-main-window.c:355
 msgid "_Quit"
-msgstr "_Kilép"
+msgstr "_Kilépés"
 
 #: ../xfburn/xfburn-main-window.c:73
 msgid "Quit Xfburn"
-msgstr ""
+msgstr "Kilépés az Xfburn-ből"
 
 #: ../xfburn/xfburn-main-window.c:74
 msgid "_Edit"
@@ -310,15 +316,15 @@ msgstr "Sz_erkesztés"
 
 #: ../xfburn/xfburn-main-window.c:75
 msgid "Prefere_nces"
-msgstr "Tulajdo_nságok"
+msgstr "_Beállítások"
 
 #: ../xfburn/xfburn-main-window.c:75
 msgid "Show preferences dialog"
-msgstr "Tulajdonságok párbeszéd mutatása"
+msgstr "A beállítóablak mutatása"
 
 #: ../xfburn/xfburn-main-window.c:77
 msgid "_Actions"
-msgstr "Műveletek"
+msgstr "_Műveletek"
 
 #: ../xfburn/xfburn-main-window.c:78
 msgid "_View"
@@ -326,11 +332,11 @@ msgstr "_Nézet"
 
 #: ../xfburn/xfburn-main-window.c:79
 msgid "Refresh"
-msgstr "Frissít"
+msgstr "Frissítés"
 
 #: ../xfburn/xfburn-main-window.c:79
 msgid "Refresh file list"
-msgstr "Fájl lista frissítése"
+msgstr "Fájllista frissítése"
 
 #: ../xfburn/xfburn-main-window.c:81
 msgid "_Help"
@@ -350,23 +356,23 @@ msgstr "DVD-RW formázása"
 
 #: ../xfburn/xfburn-main-window.c:87
 msgid "Copy Data CD"
-msgstr "Adat CD másolás"
+msgstr "Adat CD másolása"
 
 #: ../xfburn/xfburn-main-window.c:89
 msgid "Copy Audio CD"
-msgstr "Hang CD másolás"
+msgstr "Hang CD másolása"
 
 #: ../xfburn/xfburn-main-window.c:90
 msgid "Burn CD Image"
-msgstr "CD kép írása"
+msgstr "CD-kép írása"
 
 #: ../xfburn/xfburn-main-window.c:95
 msgid "Show file browser"
-msgstr "Fájl böngésző mutatása"
+msgstr "Fájlböngésző mutatása"
 
 #: ../xfburn/xfburn-main-window.c:95
 msgid "Show/hide the file browser"
-msgstr "Fájl böngésző mutatása/rejtése"
+msgstr "Fájlböngésző mutatása/rejtése"
 
 #: ../xfburn/xfburn-main-window.c:97
 msgid "Show toolbar"
@@ -378,15 +384,15 @@ msgstr "Eszközsáv mutatása/rejtése"
 
 #: ../xfburn/xfburn-main-window.c:99
 msgid "Show disc content toolbar"
-msgstr "Lemez tartalom eszközsáv"
+msgstr "Lemeztartalom eszközsáv"
 
 #: ../xfburn/xfburn-main-window.c:99
 msgid "Show/hide the disc content toolbar"
-msgstr "Lemez tartalom eszközsáv mutatása/rejtése"
+msgstr "Lemeztartalom eszközsáv mutatása/rejtése"
 
 #: ../xfburn/xfburn-main-window.c:278
 msgid "Toolbar Editor"
-msgstr "Eszközsáv Szerkesztő"
+msgstr "Eszközsáv szerkesztő"
 
 #: ../xfburn/xfburn-main-window.c:355
 msgid "Are sure you want to quit?"
@@ -396,7 +402,7 @@ msgstr "Tényleg kilépsz?"
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
 #: ../xfburn/xfburn-main-window.c:377
 msgid "Another cd burning tool"
-msgstr "Más cd író eszköz"
+msgstr "Egy újabb CD-író program"
 
 #: ../xfburn/xfburn-main-window.c:380
 msgid "Author/Maintainer"
@@ -414,7 +420,7 @@ msgstr "Xfburn"
 
 #: ../xfburn/xfburn-preferences-dialog.c:111
 msgid "Xfburn preferences"
-msgstr "Xfburn tulajdonságok"
+msgstr "Az Xfburn beállításai"
 
 #: ../xfburn/xfburn-preferences-dialog.c:124
 msgid "General"
@@ -431,7 +437,7 @@ msgstr "Átmeneti könyvtár törlése kilépéskor"
 
 #: ../xfburn/xfburn-preferences-dialog.c:146
 msgid "File browser"
-msgstr "Fájl böngésző"
+msgstr "Fájlböngésző"
 
 #: ../xfburn/xfburn-preferences-dialog.c:154
 msgid "Show _hidden files"
@@ -439,7 +445,7 @@ msgstr "Rejtett fájlok mutatása"
 
 #: ../xfburn/xfburn-preferences-dialog.c:158
 msgid "Show human_readable filesizes"
-msgstr ""
+msgstr "Könnyen olvasható fájlméretek"
 
 #: ../xfburn/xfburn-preferences-dialog.c:168
 msgid "Devices"
@@ -455,7 +461,7 @@ msgstr "Név"
 
 #: ../xfburn/xfburn-preferences-dialog.c:211
 msgid "Id"
-msgstr "Id"
+msgstr "Azonosító"
 
 #: ../xfburn/xfburn-preferences-dialog.c:213
 msgid "Node"
@@ -495,7 +501,7 @@ msgstr "FIFO puffer:"
 
 #: ../xfburn/xfburn-progress-dialog.c:221
 msgid "Device buffer:"
-msgstr "Eszköz puffer:"
+msgstr "Eszközpuffer:"
 
 #. output
 #: ../xfburn/xfburn-progress-dialog.c:232
@@ -504,7 +510,7 @@ msgstr "_Kimenet mutatása"
 
 #: ../xfburn/xfburn-progress-dialog.c:364
 msgid "Operation finished"
-msgstr "Művelet befejezve"
+msgstr "A művelet befejeződött"
 
 #: ../xfburn/xfburn-progress-dialog.c:624
 msgid "Failed"
@@ -528,11 +534,11 @@ msgstr "A /proc/scsi/sg/device_strs megnyitása sikertelen"
 
 #: ../xfburn/xfburn-utils.c:189
 msgid "Error reading scsi information from /proc/scsi/sg/devices"
-msgstr "Hiba a scsi adatok olvasásakor a /proc/scsi/sg/devices-ból"
+msgstr "Hiba a SCSI-adatok olvasásakor a /proc/scsi/sg/devices-ból"
 
 #: ../xfburn/xfburn-utils.c:335
 msgid "No disc in the cdrom drive"
-msgstr "Nincs lemez a cdrom eszközben"
+msgstr "Nincs lemez a CD-ROM meghajtóban"
 
 #: ../xfburn/xfburn-utils.c:338
 msgid "No message..."
@@ -544,5 +550,5 @@ msgstr "Válassz parancsot"
 
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
-msgstr "CD és DVD készítő alkalmazás"
+msgstr "CD- és DVD-író alkalmazás"
 
