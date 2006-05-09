@@ -380,7 +380,7 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Author/Maintainer"));
   //xfce_about_info_add_credit (info, "Francois Le Clainche", "fleclainche@wanadoo.fr", _("Icon Designer"));
 
-  for (n = 0; translators[n].name != NULL; ++n) {
+  for (n = 0; n < G_N_ELEMENTS (translators); ++n) {
     gchar *s;
 
     s = g_strdup_printf (_("Translator (%s)"), translators[n].language);
