@@ -1,5 +1,5 @@
 SUBDIRS = 								\
-	pixmaps								\
+	icons								\
 	po 								\
     	xfburn
 

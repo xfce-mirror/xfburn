@@ -3,8 +3,10 @@ dnl $Id$
 dnl Version information
 m4_define([xfburn_version_major], [0])
 m4_define([xfburn_version_minor], [0])
-m4_define([xfburn_version_micro], [3svn])
-m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()])
+m4_define([xfburn_version_micro], [3])
+m4_define([xfburn_version_build], [@REVISION@])
+m4_define([xfburn_version_tag], [svn])
+m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()ifelse(xfburn_version_tag(), [svn], [xfburn_version_tag()-xfburn_version_build()], [xfburn_version_tag()])])
 
 dnl Initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2005 Jean-François Wauthy <pollux@xfce.org>])
@@ -40,7 +42,7 @@ if test x"$mkisofs_found" = x"no"; then
 fi
 
 dnl check for i18n support
-XDT_I18N([ca cs de el eu fr he hu ja pl ru uk zh_TW])
+XDT_I18N([@LINGUAS@])
 
 dnl check for required packages
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])
@@ -50,13 +52,10 @@ XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.0])
 dnl check for debugging support
 BM_DEBUG_SUPPORT()
 
-REVISION=`LC_ALL=C svn info | head -n 4 | tail -n 1 | cut -d " " -f 2`
-AC_DEFINE_UNQUOTED([REVISION], "${REVISION}", [svn revision number])
-AC_SUBST([REVISION])
-
 AC_OUTPUT([
 Makefile
-pixmaps/Makefile
+icons/Makefile
+icons/24x24/Makefile
 po/Makefile.in
 xfburn/Makefile
 ])

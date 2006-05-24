@@ -35,112 +35,11 @@
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
+#include "xfburn-stock.h"
 #include "xfburn-main-window.h"
 
 /* globals */
-static GtkIconFactory *icon_factory = NULL;
-
 GList *list_devices = NULL;
-
-/* internals */
-static void
-xfburn_setup_icons (void)
-{
-  GtkIconSource *source = NULL;
-  GtkIconSet *set = NULL;
-  GdkPixbuf *icon = NULL;
-
-  if (icon_factory)
-    return;
-
-  icon_factory = gtk_icon_factory_new ();
-
-  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-audio-copy.png", 24, 24, NULL);
-  if (icon) {
-    set = gtk_icon_set_new ();
-    source = gtk_icon_source_new ();
-    gtk_icon_source_set_pixbuf (source, icon);
-    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
-    gtk_icon_set_add_source (set, source);
-    g_object_unref (G_OBJECT (icon));
-    gtk_icon_factory_add (icon_factory, "xfburn-audio-copy", set);
-    gtk_icon_set_unref (set);
-  }
-
-  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-blank-cdrw.png", 24, 24, NULL);
-  if (icon) {
-    set = gtk_icon_set_new ();
-    source = gtk_icon_source_new ();
-    gtk_icon_source_set_pixbuf (source, icon);
-    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
-    gtk_icon_set_add_source (set, source);
-    g_object_unref (G_OBJECT (icon));
-    gtk_icon_factory_add (icon_factory, "xfburn-blank-cdrw", set);
-    gtk_icon_set_unref (set);
-  }
-
-  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-blank-dvdrw.png", 24, 24, NULL);
-  if (icon) {
-    set = gtk_icon_set_new ();
-    source = gtk_icon_source_new ();
-    gtk_icon_source_set_pixbuf (source, icon);
-    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
-    gtk_icon_set_add_source (set, source);
-    g_object_unref (G_OBJECT (icon));
-    gtk_icon_factory_add (icon_factory, "xfburn-blank-dvdrw", set);
-    gtk_icon_set_unref (set);
-  }
-
-  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-burn-cd.png", 24, 24, NULL);
-  if (icon) {
-    set = gtk_icon_set_new ();
-    source = gtk_icon_source_new ();
-    gtk_icon_source_set_pixbuf (source, icon);
-    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
-    gtk_icon_set_add_source (set, source);
-    g_object_unref (G_OBJECT (icon));
-    gtk_icon_factory_add (icon_factory, "xfburn-burn-cd", set);
-    gtk_icon_set_unref (set);
-  }
-
-  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-cd.png", 24, 24, NULL);
-  if (icon) {
-    set = gtk_icon_set_new ();
-    source = gtk_icon_source_new ();
-    gtk_icon_source_set_pixbuf (source, icon);
-    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
-    gtk_icon_set_add_source (set, source);
-    g_object_unref (G_OBJECT (icon));
-    gtk_icon_factory_add (icon_factory, "xfburn-cd", set);
-    gtk_icon_set_unref (set);
-  }
-
-  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-data-copy.png", 24, 24, NULL);
-  if (icon) {
-    set = gtk_icon_set_new ();
-    source = gtk_icon_source_new ();
-    gtk_icon_source_set_pixbuf (source, icon);
-    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
-    gtk_icon_set_add_source (set, source);
-    g_object_unref (G_OBJECT (icon));
-    gtk_icon_factory_add (icon_factory, "xfburn-data-copy", set);
-    gtk_icon_set_unref (set);
-  }
-
-  icon = xfce_pixbuf_new_from_file_at_size (DATADIR "/pixmaps/baker-import-session.png", 24, 24, NULL);
-  if (icon) {
-    set = gtk_icon_set_new ();
-    source = gtk_icon_source_new ();
-    gtk_icon_source_set_pixbuf (source, icon);
-    gtk_icon_source_set_size (source, GTK_ICON_SIZE_DIALOG);
-    gtk_icon_set_add_source (set, source);
-    g_object_unref (G_OBJECT (icon));
-    gtk_icon_factory_add (icon_factory, "xfburn-import-session", set);
-    gtk_icon_set_unref (set);
-  }
-
-  gtk_icon_factory_add_default (icon_factory);
-}
 
 /* entry point */
 int
@@ -163,7 +62,7 @@ main (int argc, char **argv)
 
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-  xfburn_setup_icons ();
+  xfburn_stock_init ();
   xfburn_scan_devices ();
   mainwin = xfburn_main_window_new ();
 

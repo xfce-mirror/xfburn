@@ -183,7 +183,7 @@ load_settings (const gchar * filename)
   void *maddr = NULL;
 #endif
 
-  g_return_val_if_fail (filename != NULL, NULL);
+  g_return_if_fail (filename != NULL);
 
   if (stat (filename, &st) < 0) {
     g_warning ("Unable to open the settings file");

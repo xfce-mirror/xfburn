@@ -105,13 +105,13 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   gtk_widget_show (header);
   gtk_box_pack_start (box, header, FALSE, FALSE, 0);
 
-  frame = xfce_framebox_new (_("Burning device"), TRUE);
+  frame = gtk_frame_new (_("Burning device"));
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox);
+  gtk_container_add (GTK_CONTAINER (frame), vbox);
 
   /* devices list */
   priv->combo_device = gtk_combo_box_new_text ();
@@ -158,7 +158,7 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
 
   /* blank type */
-  frame = xfce_framebox_new (_("Blank type"), TRUE);
+  frame = gtk_frame_new (_("Blank type"));
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -168,17 +168,17 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_type), _("Reopen last session"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_type), _("Erase last session"));
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_type), 0);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), priv->combo_type);
+  gtk_container_add (GTK_CONTAINER (frame), priv->combo_type);
   gtk_widget_show (priv->combo_type);
 
   /* options */
-  frame = xfce_framebox_new (_("Options"), TRUE);
+  frame = gtk_frame_new (_("Options"));
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox);
+  gtk_container_add (GTK_CONTAINER (frame), vbox);
 
   priv->check_force = gtk_check_button_new_with_mnemonic (_("_Force"));
   gtk_widget_show (priv->check_force);

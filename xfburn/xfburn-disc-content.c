@@ -719,7 +719,7 @@ xfburn_disc_content_load_from_file (XfburnDiscContent * dc, const gchar * filena
   gint fd = -1;
   void *maddr = NULL;
 #endif
-  g_return_val_if_fail (filename != NULL, NULL);
+  g_return_if_fail (filename != NULL);
   if (stat (filename, &st) < 0) {
     g_warning ("Unable to open %s", filename);
     goto cleanup;

@@ -374,7 +374,7 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   //if (G_UNLIKELY (icon == NULL))
   //icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
   
-  info = xfce_about_info_new ("Xfburn", VERSION " (r" REVISION ")", _("Another cd burning tool"),
+  info = xfce_about_info_new ("Xfburn", VERSION, _("Another cd burning tool"),
                               XFCE_COPYRIGHT_TEXT ("2005", "Jean-François Wauthy"), XFCE_LICENSE_GPL);
   xfce_about_info_set_homepage (info, "http://www.xfce.org/");
   xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Author/Maintainer"));
@@ -388,7 +388,7 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
     g_free (s);
   }
 
-  dialog = xfce_about_dialog_new (GTK_WINDOW (window), info, icon);
+  dialog = xfce_about_dialog_new_with_values (GTK_WINDOW (window), info, icon);
   gtk_widget_set_size_request (GTK_WIDGET (dialog), 400, 300);
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);

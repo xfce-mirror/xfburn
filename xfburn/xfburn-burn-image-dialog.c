@@ -112,22 +112,22 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_box_pack_start (box, header, FALSE, FALSE, 0);
 
   /* file */
-  frame = xfce_framebox_new (_("Image to burn"), TRUE);
+  frame = gtk_frame_new (_("Image to burn"));
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   priv->chooser_image = gtk_file_chooser_button_new (_("Image to burn"), GTK_FILE_CHOOSER_ACTION_OPEN);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), priv->chooser_image);
+  gtk_container_add (GTK_CONTAINER (frame), priv->chooser_image);
   gtk_widget_show (priv->chooser_image);
 
   /* devices list */
-  frame = xfce_framebox_new (_("Burning device"), TRUE);
+  frame = gtk_frame_new (_("Burning device"));
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox);
+  gtk_container_add (GTK_CONTAINER (frame), vbox);
 
   priv->combo_device = gtk_combo_box_new_text ();
   gtk_widget_show (priv->combo_device);
@@ -192,13 +192,13 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_widget_show (priv->combo_mode);
 
   /* options */
-  frame = xfce_framebox_new (_("Options"), TRUE);
+  frame = gtk_frame_new (_("Options"));
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox);
+  gtk_container_add (GTK_CONTAINER (frame), vbox);
 
   priv->check_eject = gtk_check_button_new_with_mnemonic (_("E_ject disk"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_eject), TRUE);

@@ -127,12 +127,12 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
                               gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), 0), label);
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
 
-  frame = xfce_framebox_new (_("Temporary directory"), TRUE);
+  frame = gtk_frame_new (_("Temporary directory"));
   gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, BORDER);
   gtk_widget_show (frame);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox2);
+  gtk_container_add (GTK_CONTAINER (frame), vbox2);
   gtk_widget_show (vbox2);
 
   priv->chooser_button = gtk_file_chooser_button_new (_("Temporary directory"), GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER);
@@ -143,12 +143,12 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_clean_tmpdir, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->check_clean_tmpdir);
 
-  frame = xfce_framebox_new (_("File browser"), TRUE);
+  frame = gtk_frame_new (_("File browser"));
   gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, BORDER);
   gtk_widget_show (frame);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox2);
+  gtk_container_add (GTK_CONTAINER (frame), vbox2);
   gtk_widget_show (vbox2);
 
   priv->check_show_hidden = gtk_check_button_new_with_mnemonic (_("Show _hidden files"));
@@ -171,12 +171,12 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
                               gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), 1), label);
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
 
-  frame = xfce_framebox_new (_("Detected devices"), TRUE);
+  frame = gtk_frame_new (_("Detected devices"));
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, BORDER);
   gtk_widget_show (frame);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
-  xfce_framebox_add (XFCE_FRAMEBOX (frame), vbox2);
+  gtk_container_add (GTK_CONTAINER (frame), vbox2);
   gtk_widget_show (vbox2);
 
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
