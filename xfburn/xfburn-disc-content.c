@@ -460,7 +460,7 @@ content_drag_data_get_cb (GtkWidget * widget, GdkDragContext * dc,
     g_list_foreach (selected_rows, (GFunc) gtk_tree_path_free, NULL);
     g_list_free (selected_rows);
 
-    gtk_selection_data_set (data, gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE), 8, all_paths, sizeof (all_paths));
+    gtk_selection_data_set (data, gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE), 8, (const guchar *) all_paths, sizeof (all_paths));
 
     g_free (all_paths);
   }
@@ -553,7 +553,7 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
       if (g_str_has_prefix (file, "file://"))
         full_path = g_build_filename (&file[7], NULL);
-      else if (g_str_has_prefix (sd->data, "file:"))
+      else if (g_str_has_prefix ((gchar *) sd->data, "file:"))
         full_path = g_build_filename (&file[5], NULL);
       else
         full_path = g_build_filename (file, NULL);
