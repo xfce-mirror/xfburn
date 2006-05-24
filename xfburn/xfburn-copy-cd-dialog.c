@@ -124,13 +124,12 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_box_pack_start (box, header, FALSE, FALSE, 0);
 
   /* reader devices list */
-  frame = gtk_frame_new (_("CD Reader device"));
-  gtk_widget_show (frame);
-  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
-  gtk_container_add (GTK_CONTAINER (frame), vbox);
+
+  frame = xfce_create_framebox_with_content (_("CD Reader device"), vbox);
+  gtk_widget_show (frame);
+  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   priv->combo_source_device = gtk_combo_box_new_text ();
   gtk_widget_show (priv->combo_source_device);
@@ -138,13 +137,12 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   g_signal_connect (G_OBJECT (priv->combo_source_device), "changed", G_CALLBACK (cb_combo_device_changed), priv);
 
   /* burning devices list */
-  priv->frame_burn = gtk_frame_new (_("Burning device"));
-  gtk_widget_show (priv->frame_burn);
-  gtk_box_pack_start (box, priv->frame_burn, FALSE, FALSE, BORDER);
-
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
-  gtk_container_add (GTK_CONTAINER (priv->frame_burn), vbox);
+
+  priv->frame_burn = xfce_create_framebox_with_content (_("Burning device"), vbox);
+  gtk_widget_show (priv->frame_burn);
+  gtk_box_pack_start (box, priv->frame_burn, FALSE, FALSE, BORDER);
 
   priv->combo_dest_device = gtk_combo_box_new_text ();
   gtk_widget_show (priv->combo_dest_device);
@@ -181,13 +179,12 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
   
   /* options */
-  frame = gtk_frame_new (_("Options"));
-  gtk_widget_show (frame);
-  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
-  gtk_container_add (GTK_CONTAINER (frame), vbox);
+
+  frame = xfce_create_framebox_with_content (_("Options"), vbox);
+  gtk_widget_show (frame);
+  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   priv->check_eject = gtk_check_button_new_with_mnemonic (_("E_ject disk"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_eject), TRUE);

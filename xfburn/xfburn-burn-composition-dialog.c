@@ -128,13 +128,12 @@ xfburn_burn_composition_dialog_init (XfburnBurnCompositionDialog * obj)
   gtk_box_pack_start (box, header, FALSE, FALSE, 0);
 
   /* burning devices list */
-  frame = gtk_frame_new (_("Burning device"));
-  gtk_widget_show (frame);
-  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
-  gtk_container_add (GTK_CONTAINER (frame), vbox);
+
+  frame = xfce_create_framebox_with_content (_("Burning device"), vbox);
+  gtk_widget_show (frame);
+  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   priv->combo_device = gtk_combo_box_new_text ();
   gtk_widget_show (priv->combo_device);
@@ -199,13 +198,12 @@ xfburn_burn_composition_dialog_init (XfburnBurnCompositionDialog * obj)
   gtk_widget_show (priv->combo_mode);
 
   /* options */
-  frame = gtk_frame_new (_("Options"));
-  gtk_widget_show (frame);
-  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
-  gtk_container_add (GTK_CONTAINER (frame), vbox);
+
+  frame = xfce_create_framebox_with_content (_("Options"), vbox);
+  gtk_widget_show (frame);
+  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   priv->check_eject = gtk_check_button_new_with_mnemonic (_("E_ject disk"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_eject), TRUE);
