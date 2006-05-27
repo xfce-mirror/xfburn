@@ -1,6 +1,6 @@
 /* $Id$ */
 /*
- * Copyright (c) 2005 Jean-François Wauthy (pollux@xfce.org)
+ * Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
