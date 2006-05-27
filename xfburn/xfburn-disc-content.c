@@ -389,30 +389,45 @@ disc_content_action_remove_selection (GtkAction * action, XfburnDiscContent * dc
 {
   GtkTreeSelection *selection;
   GtkTreeModel *model;
-  GList *list, *el;
+  GList *list_paths = NULL, *list_iters = NULL, *el;
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dc->priv->content));
-  list = gtk_tree_selection_get_selected_rows (selection, &model);
+  list_paths = gtk_tree_selection_get_selected_rows (selection, &model);
 
-  el = list;
+  /* recompute new disc usage */
+  el = list_paths;
   while (el) {
-    GtkTreePath *path;
-    GtkTreeIter iter;
+    GtkTreePath *path = NULL;
+    GtkTreeIter *iter = NULL;
     guint64 size;
 
     path = (GtkTreePath *) el->data;
-    gtk_tree_model_get_iter (model, &iter, path);
-
-    gtk_tree_model_get (model, &iter, DISC_CONTENT_COLUMN_SIZE, &size, -1);
+    iter = g_new0 (GtkTreeIter, 1);
+    
+    gtk_tree_model_get_iter (model, iter, path);
+    list_iters = g_list_append (list_iters, iter);
+    
+    gtk_tree_model_get (model, iter, DISC_CONTENT_COLUMN_SIZE, &size, -1);
     xfburn_disc_usage_sub_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), size);
-
-    gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
 
     gtk_tree_path_free (path);
     el = g_list_next (el);
   }
-
-  g_list_free (list);
+  g_list_free (list_paths);
+  
+  /* remove rows from the list */
+  el = list_iters;
+  while (el) {
+    GtkTreeIter *iter = NULL;
+    
+    iter = (GtkTreeIter *) el->data;
+    gtk_list_store_remove (GTK_LIST_STORE (model), iter);
+   
+    g_free (iter);
+    el = g_list_next (el);
+  }
+  g_list_free (list_iters);
+  
 }
 
 static void
