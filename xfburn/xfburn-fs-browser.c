@@ -1,6 +1,6 @@
 /* $Id$ */
 /*
- * Copyright (c) 2005 Jean-François Wauthy (pollux@xfce.org)
+ * Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -83,7 +83,7 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
 
   GtkTargetEntry gte[] = { {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN} };
 
-  gtk_widget_set_size_request (GTK_WIDGET (browser), 200, 300);
+  //  gtk_widget_set_size_request (GTK_WIDGET (browser), 200, 300);
 
   model = gtk_tree_store_new (FS_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), FS_BROWSER_COLUMN_DIRECTORY, GTK_SORT_ASCENDING);

@@ -1,6 +1,6 @@
 /* $Id$ */
 /*
- * Copyright (c) 2005 Jean-François Wauthy (pollux@xfce.org)
+ * Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,11 +38,18 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-settings.h"
 
+#define XFBURN_MAIN_WINDOW_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowPrivate))
+
+/* private struct */
+typedef struct {
+  GtkWidget *vpaned;
+} XfburnMainWindowPrivate;
+
 /* prototypes */
 static void xfburn_main_window_class_init (XfburnMainWindowClass *);
 static void xfburn_main_window_init (XfburnMainWindow *);
 
-static gboolean cb_delete_main_window (GtkWidget *, GdkEvent *, gpointer);
+static gboolean cb_delete_main_window (XfburnMainWindow *, GdkEvent *, XfburnMainWindowPrivate *);
 static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 static void cb_burn_composition (XfburnDiscContent *dc, XfburnMainWindow * window);
 
@@ -141,24 +148,28 @@ xfburn_main_window_get_type (void)
 static void
 xfburn_main_window_class_init (XfburnMainWindowClass * klass)
 {
+  g_type_class_add_private (klass, sizeof (XfburnMainWindowPrivate));
+
   parent_class = g_type_class_peek_parent (klass);
 }
 
 static void
 xfburn_main_window_init (XfburnMainWindow * mainwin)
 {
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (mainwin);
+
   GtkAccelGroup *accel_group;
   gchar *file;
 
   GtkWidget *vbox;
-  GtkWidget *vpaned;
 
   /* the window itself */
   gtk_window_set_position (GTK_WINDOW (mainwin), GTK_WIN_POS_CENTER_ON_PARENT);
   gtk_window_set_title (GTK_WINDOW (mainwin), "Xfburn");
-  gtk_widget_set_size_request (GTK_WIDGET (mainwin), 850, 700);
+  gtk_window_resize (GTK_WINDOW (mainwin), xfburn_settings_get_int ("main-window-width", 850),
+		     xfburn_settings_get_int ("main-window-height", 700));
 
-  g_signal_connect (G_OBJECT (mainwin), "delete-event", G_CALLBACK (cb_delete_main_window), mainwin);
+  g_signal_connect (G_OBJECT (mainwin), "delete-event", G_CALLBACK (cb_delete_main_window), priv);
 
   /* create ui manager */
   mainwin->action_group = gtk_action_group_new ("xfburn-main-window");
@@ -230,21 +241,25 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   }
 
   /* vpaned */
-  vpaned = gtk_vpaned_new ();
-  gtk_container_add (GTK_CONTAINER (vbox), vpaned);
-  gtk_widget_show (vpaned);
+  priv->vpaned = gtk_vpaned_new ();
+  gtk_container_add (GTK_CONTAINER (vbox), priv->vpaned);
+  gtk_widget_show (priv->vpaned);
 
   /* filebrowser */
   mainwin->file_browser = xfburn_file_browser_new ();
-  gtk_paned_add1 (GTK_PANED (vpaned), mainwin->file_browser);
+  gtk_paned_add1 (GTK_PANED (priv->vpaned), mainwin->file_browser);
   gtk_widget_show (mainwin->file_browser);
+
+  gtk_paned_set_position (GTK_PANED (mainwin->file_browser), xfburn_settings_get_int ("hpaned-position", 250));
 
   /* disc content */
   mainwin->disc_content = xfburn_disc_content_new ();
-  gtk_paned_add2 (GTK_PANED (vpaned), mainwin->disc_content);
+  gtk_paned_add2 (GTK_PANED (priv->vpaned), mainwin->disc_content);
   gtk_widget_show (mainwin->disc_content);
   g_signal_connect (G_OBJECT (mainwin->disc_content), "begin-burn", G_CALLBACK (cb_burn_composition), mainwin);
   
+  gtk_paned_set_position (GTK_PANED (priv->vpaned), xfburn_settings_get_int ("vpaned-position", 200));
+
   xfce_resource_pop_path (XFCE_RESOURCE_DATA);
 }
 
@@ -283,8 +298,16 @@ cb_edit_toolbars_view (ExoToolbarsView * toolbar, gpointer user_data)
 }
 
 static gboolean
-cb_delete_main_window (GtkWidget * widget, GdkEvent * event, gpointer data)
+cb_delete_main_window (XfburnMainWindow * mainwin, GdkEvent * event, XfburnMainWindowPrivate *priv)
 {
+  gint x, y;
+
+  gtk_window_get_size (GTK_WINDOW (mainwin), &x, &y); 
+  xfburn_settings_set_int ("main-window-width", x);
+  xfburn_settings_set_int ("main-window-height", y);
+
+  xfburn_settings_set_int ("vpaned-position", gtk_paned_get_position (GTK_PANED (priv->vpaned)));
+  xfburn_settings_set_int ("hpaned-position", gtk_paned_get_position (GTK_PANED (mainwin->file_browser)));
   gtk_main_quit ();
 
   return FALSE;
@@ -368,14 +391,28 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   {
     gchar *name, *email, *language;
   } translators[] = {
-    {"Etienne Collet", "xanaxlnx@gmail.com", "fr",},};
+    {"Pau Rul lan Ferragut", "paurullan@bulma.net", "ca",},
+    {"Michal Várady", "miko.vaji@gmail.com", "cs",},
+    {"Enrico Troeger", "enrico.troeger@uvena.de", "de",},
+    {"Stavros Giannouris", "stavrosg2002@freemail.gr", "el",},
+    {"Piarres Beobide", "pi@beobide.net", "eu",},
+    {"Jari Rahkonen", "jari.rahkonen@pp2.inet.fi", "fi",},
+    {"Etienne Collet", "xanaxlnx@gmail.com", "fr",},
+    {"Attila SZERVÑC", "sas@321.hu", "hu",},
+    {"Daichi Kawahata", "daichi@xfce.org", "ja",},
+    {"Mantas", "mantaz@users.sourceforge.net", "lt",},
+    {"Szymon Kalasz", "szymon_maestro@gazeta.pl", "pl",},
+    {"Sergey Fedoseev", "fedoseev.sergey@gmail.com", "ru",},
+    {"Maxim V. Dziumanenko", "mvd@mylinux.com.ua", "uk",},
+    {"Cosmo Chene", "cosmolax@gmail.com", "zh_TW",},
+  };
 
   icon = xfce_themed_icon_load ("xfburn", 48);
   //if (G_UNLIKELY (icon == NULL))
   //icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
   
   info = xfce_about_info_new ("Xfburn", VERSION, _("Another cd burning tool"),
-                              XFCE_COPYRIGHT_TEXT ("2005", "Jean-François Wauthy"), XFCE_LICENSE_GPL);
+                              XFCE_COPYRIGHT_TEXT ("2005-2006", "Jean-François Wauthy"), XFCE_LICENSE_GPL);
   xfce_about_info_set_homepage (info, "http://www.xfce.org/");
   xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Author/Maintainer"));
   //xfce_about_info_add_credit (info, "Francois Le Clainche", "fleclainche@wanadoo.fr", _("Icon Designer"));
