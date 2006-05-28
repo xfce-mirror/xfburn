@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-24 20:28+0300\n"
-"PO-Revision-Date: 2006-05-24 21:17+0300\n"
+"POT-Creation-Date: 2006-05-28 19:55+0300\n"
+"PO-Revision-Date: 2006-05-28 19:57+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp2.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: ../xfburn/xfburn-blank-cd-dialog.c:101
 #: ../xfburn/xfburn-blank-cd-dialog.c:104
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:146
-#: ../xfburn/xfburn-main-window.c:84
+#: ../xfburn/xfburn-main-window.c:91
 msgid "Blank CD-RW"
 msgstr "Tyhjennä CD-RW"
 
@@ -208,7 +208,7 @@ msgid "File"
 msgstr "Tiedosto"
 
 #: ../xfburn/xfburn-directory-browser.c:138
-#: ../xfburn/xfburn-disc-content.c:237
+#: ../xfburn/xfburn-disc-content.c:244
 msgid "Size"
 msgstr "Koko"
 
@@ -216,53 +216,57 @@ msgstr "Koko"
 msgid "Type"
 msgstr "Tyyppi"
 
-#: ../xfburn/xfburn-disc-content.c:95
+#: ../xfburn/xfburn-disc-content.c:102
 msgid "Add"
 msgstr "Lisää"
 
-#: ../xfburn/xfburn-disc-content.c:95
+#: ../xfburn/xfburn-disc-content.c:102
 msgid "Add the selected file(s) to the CD"
 msgstr "Lisää valitut tiedostot CD-levylle"
 
-#: ../xfburn/xfburn-disc-content.c:96
+#: ../xfburn/xfburn-disc-content.c:103
 msgid "Remove"
 msgstr "Poista"
 
-#: ../xfburn/xfburn-disc-content.c:96
+#: ../xfburn/xfburn-disc-content.c:103
 msgid "Remove the selected file(s) from the CD"
 msgstr "Poista valitut tiedostot CD-levyltä"
 
-#: ../xfburn/xfburn-disc-content.c:98
+#: ../xfburn/xfburn-disc-content.c:105
 msgid "Clear"
 msgstr "Tyhjennä"
 
-#: ../xfburn/xfburn-disc-content.c:98
+#: ../xfburn/xfburn-disc-content.c:105
 msgid "Clear the content of the CD"
 msgstr "Tyhjennä CD-levyn sisältö"
 
-#: ../xfburn/xfburn-disc-content.c:100
+#: ../xfburn/xfburn-disc-content.c:107
 msgid "Import"
 msgstr "Tuo"
 
-#: ../xfburn/xfburn-disc-content.c:100
+#: ../xfburn/xfburn-disc-content.c:107
 msgid "Import existing session"
 msgstr "Tuo olemassaoleva istunto"
 
-#: ../xfburn/xfburn-disc-content.c:101
+#: ../xfburn/xfburn-disc-content.c:108
 msgid "Rename"
 msgstr "Nimeä uudelleen"
 
-#: ../xfburn/xfburn-disc-content.c:101
+#: ../xfburn/xfburn-disc-content.c:108
 msgid "Rename the selected file"
 msgstr "Nimeä valittu tiedosto uudelleen"
 
-#: ../xfburn/xfburn-disc-content.c:222
+#: ../xfburn/xfburn-disc-content.c:229
 msgid "Contents"
 msgstr "Sisältö"
 
-#: ../xfburn/xfburn-disc-content.c:240
+#: ../xfburn/xfburn-disc-content.c:247
 msgid "Local Path"
 msgstr "Paikallinen polku"
+
+#: ../xfburn/xfburn-disc-content.c:389 ../xfburn/xfburn-disc-content.c:537
+msgid "A file with the same name is already present in the compilation"
+msgstr "Kokoelmassa on jo tiedosto tällä nimellä"
 
 #: ../xfburn/xfburn-disc-usage.c:128
 msgid "Burn Data CD"
@@ -278,125 +282,125 @@ msgstr "Tiedostojärjestelmä"
 msgid "%s's home"
 msgstr "Käyttäjän %s koti"
 
-#: ../xfburn/xfburn-main-window.c:68
+#: ../xfburn/xfburn-main-window.c:75
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: ../xfburn/xfburn-main-window.c:69
+#: ../xfburn/xfburn-main-window.c:76
 msgid "Load composition"
 msgstr "Lataa kokoelma"
 
-#: ../xfburn/xfburn-main-window.c:71
+#: ../xfburn/xfburn-main-window.c:78
 msgid "Save composition"
 msgstr "Tallenna kokoelma"
 
-#: ../xfburn/xfburn-main-window.c:73 ../xfburn/xfburn-main-window.c:355
+#: ../xfburn/xfburn-main-window.c:80 ../xfburn/xfburn-main-window.c:378
 msgid "_Quit"
 msgstr "_Lopeta"
 
-#: ../xfburn/xfburn-main-window.c:73
+#: ../xfburn/xfburn-main-window.c:80
 msgid "Quit Xfburn"
 msgstr "_Lopeta Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:74
+#: ../xfburn/xfburn-main-window.c:81
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../xfburn/xfburn-main-window.c:75
+#: ../xfburn/xfburn-main-window.c:82
 msgid "Prefere_nces"
 msgstr "_Asetukset"
 
-#: ../xfburn/xfburn-main-window.c:75
+#: ../xfburn/xfburn-main-window.c:82
 msgid "Show preferences dialog"
 msgstr "Näytä asetusdialogi"
 
-#: ../xfburn/xfburn-main-window.c:77
+#: ../xfburn/xfburn-main-window.c:84
 msgid "_Actions"
 msgstr "T_oiminnot"
 
-#: ../xfburn/xfburn-main-window.c:78
+#: ../xfburn/xfburn-main-window.c:85
 msgid "_View"
 msgstr "_Näytä"
 
-#: ../xfburn/xfburn-main-window.c:79
+#: ../xfburn/xfburn-main-window.c:86
 msgid "Refresh"
 msgstr "Virkistä"
 
-#: ../xfburn/xfburn-main-window.c:79
+#: ../xfburn/xfburn-main-window.c:86
 msgid "Refresh file list"
 msgstr "Virkistä tiedostolista"
 
-#: ../xfburn/xfburn-main-window.c:81
+#: ../xfburn/xfburn-main-window.c:88
 msgid "_Help"
 msgstr "O_hje"
 
-#: ../xfburn/xfburn-main-window.c:82
+#: ../xfburn/xfburn-main-window.c:89
 msgid "_About"
 msgstr "_Tietoja"
 
-#: ../xfburn/xfburn-main-window.c:82
+#: ../xfburn/xfburn-main-window.c:89
 msgid "Display information about Xfburn"
 msgstr "Näytä tietoja Xfburnista"
 
-#: ../xfburn/xfburn-main-window.c:86
+#: ../xfburn/xfburn-main-window.c:93
 msgid "Format DVD-RW"
 msgstr "Alusta DVD-RW"
 
-#: ../xfburn/xfburn-main-window.c:87
+#: ../xfburn/xfburn-main-window.c:94
 msgid "Copy Data CD"
 msgstr "Kopioi data-CD"
 
-#: ../xfburn/xfburn-main-window.c:89
+#: ../xfburn/xfburn-main-window.c:96
 msgid "Copy Audio CD"
 msgstr "Kopioi ääni-CD"
 
-#: ../xfburn/xfburn-main-window.c:90
+#: ../xfburn/xfburn-main-window.c:97
 msgid "Burn CD Image"
 msgstr "Polta CD-levykuva"
 
-#: ../xfburn/xfburn-main-window.c:95
+#: ../xfburn/xfburn-main-window.c:102
 msgid "Show file browser"
 msgstr "Näytä tiedostoselain"
 
-#: ../xfburn/xfburn-main-window.c:95
+#: ../xfburn/xfburn-main-window.c:102
 msgid "Show/hide the file browser"
 msgstr "Näytä tai piilota tiedostoselain"
 
-#: ../xfburn/xfburn-main-window.c:97
+#: ../xfburn/xfburn-main-window.c:104
 msgid "Show toolbar"
 msgstr "Näytä työkalupalkki"
 
-#: ../xfburn/xfburn-main-window.c:97
+#: ../xfburn/xfburn-main-window.c:104
 msgid "Show/hide the toolbar"
 msgstr "Näytä tai piilota työkalupalkki"
 
-#: ../xfburn/xfburn-main-window.c:99
+#: ../xfburn/xfburn-main-window.c:106
 msgid "Show disc content toolbar"
 msgstr "Näytä levyn sisältötyökalut"
 
-#: ../xfburn/xfburn-main-window.c:99
+#: ../xfburn/xfburn-main-window.c:106
 msgid "Show/hide the disc content toolbar"
 msgstr "Näytä tai piilota levyn sisältötyökalut"
 
-#: ../xfburn/xfburn-main-window.c:278
+#: ../xfburn/xfburn-main-window.c:293
 msgid "Toolbar Editor"
 msgstr "Työkalupalkin muokkain"
 
-#: ../xfburn/xfburn-main-window.c:355
+#: ../xfburn/xfburn-main-window.c:378
 msgid "Are sure you want to quit?"
 msgstr "Haluatko varmasti lopettaa?"
 
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: ../xfburn/xfburn-main-window.c:377
+#: ../xfburn/xfburn-main-window.c:414
 msgid "Another cd burning tool"
 msgstr "CD-levyn polttotyökalu"
 
-#: ../xfburn/xfburn-main-window.c:380
+#: ../xfburn/xfburn-main-window.c:417
 msgid "Author/Maintainer"
 msgstr "Kirjoittaja/Ylläpitäjä"
 
-#: ../xfburn/xfburn-main-window.c:386
+#: ../xfburn/xfburn-main-window.c:423
 #, c-format
 msgid "Translator (%s)"
 msgstr "Kääntäjä (%s)"
