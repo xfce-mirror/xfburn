@@ -71,7 +71,14 @@ enum
   DISC_CONTENT_COLUMN_HUMANSIZE,
   DISC_CONTENT_COLUMN_SIZE,
   DISC_CONTENT_COLUMN_PATH,
+  DISC_CONTENT_COLUMN_TYPE,
   DISC_CONTENT_N_COLUMNS
+};
+
+enum
+{
+  DISC_CONTENT_TYPE_FILE,
+  DISC_CONTENT_TYPE_DIRECTORY
 };
 
 enum {
@@ -108,6 +115,7 @@ static GtkActionEntry action_entries[] = {
   {"rename-file", GTK_STOCK_EDIT, N_("Rename"), NULL, N_("Rename the selected file"),
    G_CALLBACK (disc_content_action_rename_selection),},
 };
+
 static const gchar *toolbar_actions[] = {
   "add-file",
   "remove-file",
@@ -116,6 +124,7 @@ static const gchar *toolbar_actions[] = {
 };
 
 static guint signals [LAST_SIGNAL];
+static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
 
 /***************************/
 /* XfburnDiscContent class */
@@ -148,7 +157,7 @@ static void
 xfburn_disc_content_class_init (XfburnDiscContentClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
+  
   parent_class = g_type_class_peek_parent (klass);
   object_class->finalize = xfburn_disc_content_finalize;
    
@@ -160,10 +169,11 @@ xfburn_disc_content_class_init (XfburnDiscContentClass * klass)
 static void
 xfburn_disc_content_init (XfburnDiscContent * disc_content)
 {
+  gint x,y;
   ExoToolbarsModel *model_toolbar;
   gint toolbar_position;
   GtkWidget *scrolled_window;
-  GtkListStore *model;
+  GtkTreeStore *model;
   GtkTreeViewColumn *column_file;
   GtkCellRenderer *cell_icon, *cell_file;
   GtkTreeSelection *selection;
@@ -176,6 +186,13 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN}
   };
 
+  /* initialize static members */
+  gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
+  if (!icon_directory)
+    icon_directory = xfce_themed_icon_load ("gnome-fs-directory", x);
+  if (!icon_file)
+    icon_file = xfce_themed_icon_load ("gnome-fs-regular", x);
+  
   disc_content->priv = g_new0 (XfburnDiscContentPrivate, 1);
 
   /* create ui manager */
@@ -213,8 +230,8 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   gtk_box_pack_start (GTK_BOX (disc_content), scrolled_window, TRUE, TRUE, 0);
 
   disc_content->priv->content = gtk_tree_view_new ();
-  model = gtk_list_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
-                              G_TYPE_UINT64, G_TYPE_STRING);
+  model = gtk_tree_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
+                              G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT);
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DISC_CONTENT_COLUMN_CONTENT,
                                    directory_tree_sortfunc, NULL, NULL);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DISC_CONTENT_COLUMN_CONTENT, GTK_SORT_ASCENDING);
@@ -274,6 +291,16 @@ xfburn_disc_content_finalize (GObject * object)
   cobj = XFBURN_DISC_CONTENT (object);
 
   g_free (cobj->priv);
+  
+  if (icon_directory) {
+    g_object_unref (icon_directory);
+    icon_directory = NULL;
+  }
+  if (icon_file) {
+    g_object_unref (icon_file);  
+    icon_file = NULL;
+  }
+  
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -388,7 +415,7 @@ cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
     if (foreach_find_filename_args.found) {
       xfce_err (_("A file with the same name is already present in the compilation"));
     } else {
-      gtk_list_store_set (GTK_LIST_STORE (model), &iter, DISC_CONTENT_COLUMN_CONTENT, newtext, -1);
+      gtk_tree_store_set (GTK_TREE_STORE (model), &iter, DISC_CONTENT_COLUMN_CONTENT, newtext, -1);
     }
   }
 
@@ -454,7 +481,7 @@ disc_content_action_remove_selection (GtkAction * action, XfburnDiscContent * dc
     GtkTreeIter *iter = NULL;
     
     iter = (GtkTreeIter *) el->data;
-    gtk_list_store_remove (GTK_LIST_STORE (model), iter);
+    gtk_tree_store_remove (GTK_TREE_STORE (model), iter);
    
     g_free (iter);
     el = g_list_next (el);
@@ -469,7 +496,7 @@ disc_content_action_clear (GtkAction * action, XfburnDiscContent * content)
   GtkTreeModel *model;
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (content->priv->content));
-  gtk_list_store_clear (GTK_LIST_STORE (model));
+  gtk_tree_store_clear (GTK_TREE_STORE (model));
 
   xfburn_disc_usage_set_size (XFBURN_DISC_USAGE (content->priv->disc_usage), 0);
 }
@@ -515,8 +542,7 @@ content_drag_data_get_cb (GtkWidget * widget, GdkDragContext * dc,
 }
 
 static gboolean
-add_file_to_list (XfburnDiscContent * dc, const gchar * path, GdkPixbuf * icon_file, GdkPixbuf * icon_directory,
-                  GtkTreeIter * iter)
+add_file_to_list (XfburnDiscContent * dc, const gchar * path, GtkTreeIter * iter, GtkTreeIter * parent)
 {
   struct stat s;
        
@@ -539,29 +565,33 @@ add_file_to_list (XfburnDiscContent * dc, const gchar * path, GdkPixbuf * icon_f
       
       return FALSE;
     }
-    
-    gtk_list_store_append (GTK_LIST_STORE (model), iter);
-    
+
     if ((s.st_mode & S_IFDIR)) {
       guint64 dirsize;
 
+      gtk_tree_store_append (GTK_TREE_STORE (model), iter, NULL);
+      
       dirsize = xfburn_calc_dirsize (path);
       humansize = xfburn_humanreadable_filesize (dirsize);
-      gtk_list_store_set (GTK_LIST_STORE (model), iter,
+      gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                           DISC_CONTENT_COLUMN_ICON, icon_directory,
                           DISC_CONTENT_COLUMN_CONTENT, basename,
                           DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
-                          DISC_CONTENT_COLUMN_SIZE, dirsize, DISC_CONTENT_COLUMN_PATH, path, -1);
+                          DISC_CONTENT_COLUMN_SIZE, dirsize, DISC_CONTENT_COLUMN_PATH, path, 
+                          DISC_CONTENT_COLUMN_TYPE, DISC_CONTENT_TYPE_DIRECTORY, -1);
 
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), dirsize);
     }
     else if ((s.st_mode & S_IFREG)) {
+      gtk_tree_store_append (GTK_TREE_STORE (model), iter, NULL);
+      
       humansize = xfburn_humanreadable_filesize (s.st_size);
-      gtk_list_store_set (GTK_LIST_STORE (model), iter,
+      gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                           DISC_CONTENT_COLUMN_ICON, icon_file,
                           DISC_CONTENT_COLUMN_CONTENT, basename,
                           DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
-                          DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size, DISC_CONTENT_COLUMN_PATH, path, -1);
+                          DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size, DISC_CONTENT_COLUMN_PATH, path,
+                          DISC_CONTENT_COLUMN_TYPE, DISC_CONTENT_TYPE_FILE, -1);
 
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), s.st_size);
     }
@@ -598,14 +628,8 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     gtk_drag_finish (dc, TRUE, FALSE, t);
   }
   else if (sd->target == gdk_atom_intern ("text/plain", FALSE)) {
-    const gchar *file;
-    GdkPixbuf *icon_directory, *icon_file;
-    gint x, y;
-
-    gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
-    icon_directory = xfce_themed_icon_load ("gnome-fs-directory", x);
-    icon_file = xfce_themed_icon_load ("gnome-fs-regular", x);
-
+    const gchar *file = NULL;
+    
     file = strtok ((gchar *) sd->data, "\n");
     while (file) {
       GtkTreeIter iter;
@@ -621,17 +645,12 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       if (full_path[strlen (full_path) - 1] == '\r')
         full_path[strlen (full_path) - 1] = '\0';
 
-      add_file_to_list (content, full_path, icon_file, icon_directory, &iter);
+      add_file_to_list (content, full_path, &iter, NULL);
 
       g_free (full_path);
 
       file = strtok (NULL, "\n");
     }
-
-    if (icon_directory)
-      g_object_unref (icon_directory);
-    if (icon_file)
-      g_object_unref (icon_file);
 
     gtk_drag_finish (dc, FALSE, (dc->action == GDK_ACTION_COPY), t);
   }
@@ -734,24 +753,13 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
     if ((i = _find_attribute (attribute_names, "name")) != -1 &&
         (j = _find_attribute (attribute_names, "source")) != -1) {
       GtkTreeIter iter;
-      GdkPixbuf *icon_directory, *icon_file;
-      int x,y;
-          
-      gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
-      icon_directory = xfce_themed_icon_load ("gnome-fs-directory", x);
-      icon_file = xfce_themed_icon_load ("gnome-fs-regular", x);
       
-      if (add_file_to_list (parserinfo->dc, attribute_values[j], icon_file, icon_directory, &iter)) {
+      if (add_file_to_list (parserinfo->dc, attribute_values[j], &iter, NULL)) {
         GtkTreeModel *model;
         
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (parserinfo->dc->priv->content));
-        gtk_list_store_set (GTK_LIST_STORE (model), &iter, DISC_CONTENT_COLUMN_CONTENT, attribute_values[i], -1);
+        gtk_tree_store_set (GTK_TREE_STORE (model), &iter, DISC_CONTENT_COLUMN_CONTENT, attribute_values[i], -1);
       }
-          
-      if (icon_directory)
-        g_object_unref (icon_directory);
-      if (icon_file)
-        g_object_unref (icon_file);
     }
   }
 }
