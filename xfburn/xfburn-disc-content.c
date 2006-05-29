@@ -106,7 +106,7 @@ typedef struct
 
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
-static GtkActionEntry action_entries[] = {
+static const GtkActionEntry action_entries[] = {
   {"add-file", GTK_STOCK_ADD, N_("Add"), NULL, N_("Add the selected file(s) to the CD"),},
   {"remove-file", GTK_STOCK_REMOVE, N_("Remove"), NULL, N_("Remove the selected file(s) from the CD"),
    G_CALLBACK (disc_content_action_remove_selection),},

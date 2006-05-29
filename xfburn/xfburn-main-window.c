@@ -71,7 +71,7 @@ static void xfburn_window_action_show_content_toolbar (GtkToggleAction * action,
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
-static GtkActionEntry action_entries[] = {
+static const GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL,},
   {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
    G_CALLBACK (xfburn_window_action_load),},
@@ -98,7 +98,7 @@ static GtkActionEntry action_entries[] = {
    G_CALLBACK (xfburn_window_action_burn_image),},
 };
 
-static GtkToggleActionEntry toggle_action_entries[] = {
+static const GtkToggleActionEntry toggle_action_entries[] = {
   {"show-filebrowser", NULL, N_("Show file browser"), NULL, N_("Show/hide the file browser"),
    G_CALLBACK (xfburn_window_action_show_filebrowser), TRUE,},
   {"show-toolbar", NULL, N_("Show toolbar"), NULL, N_("Show/hide the toolbar"),
