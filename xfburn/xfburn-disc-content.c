@@ -97,13 +97,6 @@ struct XfburnDiscContentPrivate
   GtkWidget *disc_usage;
 };
 
-typedef struct
-{
-  gchar *filename;
-  GtkTreePath *path;
-  gboolean found;
-} FindFilenameArgs;
-
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
 static const GtkActionEntry action_entries[] = {
@@ -381,19 +374,38 @@ directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b,
 }
 
 static gboolean
-foreach_find_filename_func (GtkTreeModel * model, GtkTreePath * path, GtkTreeIter * iter, FindFilenameArgs * args)
+file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean skip_path, const gchar *filename)
 {
-  gchar *current_filename = NULL;
-
-  if (args->path && gtk_tree_path_compare (path, args->path) == 0)
+  GtkTreePath *current_path = NULL;
+  GtkTreeIter current_iter;
+  
+  current_path = gtk_tree_path_copy (path);
+  for (;gtk_tree_path_prev (current_path););
+   
+  if (!gtk_tree_model_get_iter (model, &current_iter, current_path)) {
     return FALSE;
+  }
+  
+  do {
+    gchar *current_filename = NULL;
+    
+    if (skip_path && gtk_tree_path_compare (path, current_path) == 0) {
+      gtk_tree_path_next (current_path);
+      continue;
+    }
 
-  gtk_tree_model_get (model, iter, DISC_CONTENT_COLUMN_CONTENT, &current_filename, -1);
-
-  args->found = (g_ascii_strcasecmp (current_filename, args->filename) == 0);
-  g_free (current_filename);
-
-  return args->found;
+    gtk_tree_model_get (model, &current_iter, DISC_CONTENT_COLUMN_CONTENT, &current_filename, -1);
+    if (g_ascii_strcasecmp (current_filename, filename) == 0) {
+      g_free (current_filename);
+      gtk_tree_path_free (current_path);
+      return TRUE;
+    }
+    
+    gtk_tree_path_next (current_path);
+  } while (gtk_tree_model_iter_next (model, &current_iter));
+  
+  gtk_tree_path_free (current_path);
+  return FALSE;
 }
 
 static void
@@ -407,13 +419,7 @@ cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
   real_path = gtk_tree_path_new_from_string (path);
 
   if (gtk_tree_model_get_iter (model, &iter, real_path)) {
-    FindFilenameArgs foreach_find_filename_args;
-
-    foreach_find_filename_args.filename = newtext;
-    foreach_find_filename_args.path = real_path;
-    foreach_find_filename_args.found = FALSE;
-    gtk_tree_model_foreach (model, (GtkTreeModelForeachFunc) foreach_find_filename_func, &foreach_find_filename_args);
-    if (foreach_find_filename_args.found) {
+    if (file_exists_on_same_level (model, real_path, TRUE, newtext)) {
       xfce_err (_("A file with the same name is already present in the compilation"));
     }
     else {
@@ -546,29 +552,57 @@ content_drag_data_get_cb (GtkWidget * widget, GdkDragContext * dc,
 
 static gboolean
 add_file_to_list (XfburnDiscContent * dc, GtkTreeModel * model, const gchar * path, GtkTreeIter * iter,
-                  GtkTreeIter * parent)
+                  GtkTreeIter * insertion, GtkTreeViewDropPosition position)
 {
   struct stat s;
 
   if ((stat (path, &s) == 0)) {
     gchar *basename = NULL;
     gchar *humansize = NULL;
-    //FindFilenameArgs foreach_find_filename_args;
-
+    GtkTreeIter *parent = NULL;
+    GtkTreePath *tree_path = NULL;
+    
     basename = g_path_get_basename (path);
+    
+    /* find parent */
+    switch (position){
+      case GTK_TREE_VIEW_DROP_BEFORE:
+      case GTK_TREE_VIEW_DROP_AFTER:
+        if (insertion) {
+          GtkTreeIter iter_parent;
+          
+          if (gtk_tree_model_iter_parent (model, &iter_parent, insertion)) {
+            parent = g_new0 (GtkTreeIter, 1);
+            memcpy (parent, &iter_parent, sizeof (GtkTreeIter));
+          }
+        }
+        break;
+      case GTK_TREE_VIEW_DROP_INTO_OR_BEFORE:
+      case GTK_TREE_VIEW_DROP_INTO_OR_AFTER:
+        parent = g_new0 (GtkTreeIter, 1);
+        memcpy (parent, insertion, sizeof (GtkTreeIter));
+        break;
+    }
+  
+    /* check if the filename is valid */
+    if (parent) {
+      tree_path = gtk_tree_model_get_path (model, parent);
+      gtk_tree_path_down (tree_path);
+    } else {
+      tree_path = gtk_tree_path_new_first ();
+    }
+    
+    if (file_exists_on_same_level (model, tree_path, FALSE, basename)) {
+      xfce_err (_("A file with the same name is already present in the compilation"));
 
-    /*
-       foreach_find_filename_args.filename = basename;
-       foreach_find_filename_args.found = FALSE;
-       gtk_tree_model_foreach (model, (GtkTreeModelForeachFunc) foreach_find_filename_func, &foreach_find_filename_args);
-       if (foreach_find_filename_args.found) {
-       xfce_err (_("A file with the same name is already present in the compilation"));
-       g_free (basename);
-
-       return FALSE;
-       }
-     */
-
+      g_free (basename);
+      gtk_tree_path_free (tree_path);
+      g_free (parent);
+      return FALSE;
+    }
+    gtk_tree_path_free (tree_path);
+    
+    /* new directory */
     if ((s.st_mode & S_IFDIR)) {
       GDir *dir = NULL;
       GError *error = NULL;
@@ -581,7 +615,8 @@ add_file_to_list (XfburnDiscContent * dc, GtkTreeModel * model, const gchar * pa
 
         g_error_free (error);
         g_free (basename);
-
+        g_free (parent);
+        
         return FALSE;
       }
 
@@ -601,7 +636,7 @@ add_file_to_list (XfburnDiscContent * dc, GtkTreeModel * model, const gchar * pa
         if (new_path) {
           guint64 size;
 
-          add_file_to_list (dc, model, new_path, &new_iter, iter);
+          add_file_to_list (dc, model, new_path, &new_iter, iter, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
 
           gtk_tree_model_get (model, &new_iter, DISC_CONTENT_COLUMN_SIZE, &size, -1);
           total_size += size;
@@ -616,6 +651,7 @@ add_file_to_list (XfburnDiscContent * dc, GtkTreeModel * model, const gchar * pa
 
       g_dir_close (dir);
     }
+    /* new file */
     else if ((s.st_mode & S_IFREG)) {
       gtk_tree_store_append (GTK_TREE_STORE (model), iter, parent);
 
@@ -629,9 +665,10 @@ add_file_to_list (XfburnDiscContent * dc, GtkTreeModel * model, const gchar * pa
 
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), s.st_size);
     }
+    
     g_free (humansize);
     g_free (basename);
-
+    g_free (parent);
     return TRUE;
   }
 
@@ -643,12 +680,17 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
                           guint info, guint t, XfburnDiscContent * content)
 {
   GtkTreeModel *model;
-
+  GtkTreePath *path_where_insert = NULL;
+  GtkTreeViewDropPosition position;
+  GtkTreeIter iter_where_insert;
+  
   g_return_if_fail (sd);
   g_return_if_fail (sd->data);
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
-
+  
+  gtk_tree_view_get_dest_row_at_pos (GTK_TREE_VIEW (widget), x, y, &path_where_insert, &position);
+  
   if (sd->target == gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE)) {
     const gchar *str_path;
 
@@ -679,13 +721,20 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       if (full_path[strlen (full_path) - 1] == '\r')
         full_path[strlen (full_path) - 1] = '\0';
 
-      /* add files to the disc content (disconnecting the model to speed things up) */
-      g_object_ref (model); 
-      gtk_tree_view_set_model (GTK_TREE_VIEW (widget), NULL);
-      add_file_to_list (content, model, full_path, &iter, NULL);
-      gtk_tree_view_set_model (GTK_TREE_VIEW (widget), model);
-      g_object_unref (model);
-
+      /* add files to the disc content */
+      if (path_where_insert) {
+        gtk_tree_model_get_iter (model, &iter_where_insert, path_where_insert);
+        add_file_to_list (content, model, full_path, &iter, &iter_where_insert, position);
+        
+        if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE 
+            || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER)
+          gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), path_where_insert, FALSE);
+        
+        gtk_tree_path_free (path_where_insert);
+      } else  {
+        add_file_to_list (content, model, full_path, &iter, NULL, position);
+      }
+     
       g_free (full_path);
 
       file = strtok (NULL, "\n");
@@ -796,7 +845,7 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
 
       model = gtk_tree_view_get_model (GTK_TREE_VIEW (parserinfo->dc->priv->content));
 
-      if (add_file_to_list (parserinfo->dc, model, attribute_values[j], &iter, NULL)) {
+      if (add_file_to_list (parserinfo->dc, model, attribute_values[j], &iter, NULL, GTK_TREE_VIEW_DROP_AFTER)) {
         gtk_tree_store_set (GTK_TREE_STORE (model), &iter, DISC_CONTENT_COLUMN_CONTENT, attribute_values[i], -1);
       }
     }
