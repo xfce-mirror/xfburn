@@ -302,7 +302,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
 		
 #ifdef HAVE_THUNAR_VFS
 		mime_database = thunar_vfs_mime_database_get_default ();
-		mime_info = thunar_vfs_mime_database_get_info_for_file (mime_database, full_path, path);
+		mime_info = thunar_vfs_mime_database_get_info_for_file (mime_database, full_path, NULL);
 		
 		mime_icon_name = thunar_vfs_mime_info_lookup_icon_name (mime_info, icon_theme);
 		mime_icon = gtk_icon_theme_load_icon (icon_theme, mime_icon_name, x, 0, NULL);
