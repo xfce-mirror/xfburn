@@ -30,6 +30,7 @@
 #include "xfburn-settings.h"
 #include "xfburn-copy-cd-progress-dialog.h"
 #include "xfburn-create-iso-progress-dialog.h"
+#include "xfburn-stock.h"
 
 #include "xfburn-copy-cd-dialog.h"
 
@@ -103,7 +104,8 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   GList *device;
   GtkWidget *img;
-  GtkWidget *header;
+  GtkWidget *heading;
+  GdkPixbuf *icon = NULL;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *hbox;
@@ -118,10 +120,13 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Copy data CD"));
 
-  img = gtk_image_new_from_stock ("xfburn-data-copy", GTK_ICON_SIZE_LARGE_TOOLBAR);
-  header = xfce_create_header_with_image (img, _("Copy data CD"));
-  gtk_widget_show (header);
-  gtk_box_pack_start (box, header, FALSE, FALSE, 0);
+  heading = xfce_heading_new ();
+  xfce_heading_set_title (XFCE_HEADING (heading), _("Burn CD image"));
+  icon = gtk_widget_render_icon (heading, XFBURN_STOCK_DATA_COPY, GTK_ICON_SIZE_DIALOG, NULL);
+  xfce_heading_set_icon (XFCE_HEADING (heading), icon);
+  g_object_unref (icon);
+  gtk_widget_show (heading);
+  gtk_box_pack_start (box, heading, FALSE, FALSE, 0);
 
   /* reader devices list */
   vbox = gtk_vbox_new (FALSE, 0);

@@ -24,6 +24,7 @@
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
 #include "xfburn-blank-cd-progress-dialog.h"
+#include "xfburn-stock.h"
 
 #include "xfburn-blank-cd-dialog.h"
 
@@ -86,7 +87,8 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   XfburnBlankCdDialogPrivate *priv;
   GList *device;
   GtkWidget *img;
-  GtkWidget *header;
+  GdkPixbuf *icon = NULL;
+  GtkWidget *heading;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *hbox;
@@ -99,11 +101,15 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   priv = obj->priv;
   
   gtk_window_set_title (GTK_WINDOW (obj), _("Blank CD-RW"));
-
-  img = gtk_image_new_from_stock ("xfburn-blank-cdrw", GTK_ICON_SIZE_LARGE_TOOLBAR);
-  header = xfce_create_header_with_image (img, _("Blank CD-RW"));
-  gtk_widget_show (header);
-  gtk_box_pack_start (box, header, FALSE, FALSE, 0);
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
+  
+  heading = xfce_heading_new ();
+  xfce_heading_set_title (XFCE_HEADING (heading), _("Blank CD-RW"));
+  icon = gtk_widget_render_icon (heading, XFBURN_STOCK_BLANK_CDRW, GTK_ICON_SIZE_DIALOG, NULL);
+  xfce_heading_set_icon (XFCE_HEADING (heading), icon);
+  g_object_unref (icon);
+  gtk_widget_show (heading);
+  gtk_box_pack_start (box, heading, FALSE, FALSE, 0);
 
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);

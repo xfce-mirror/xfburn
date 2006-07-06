@@ -103,7 +103,7 @@ xfburn_burn_composition_dialog_init (XfburnBurnCompositionDialog * obj)
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   GList *device;
   GtkWidget *img;
-  GtkWidget *header;
+  GtkWidget *heading;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *hbox;
@@ -121,11 +121,13 @@ xfburn_burn_composition_dialog_init (XfburnBurnCompositionDialog * obj)
   priv->command_burn = NULL;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
-
-  img = gtk_image_new_from_stock (GTK_STOCK_CDROM, GTK_ICON_SIZE_LARGE_TOOLBAR);
-  header = xfce_create_header_with_image (img, _("Burn Composition"));
-  gtk_widget_show (header);
-  gtk_box_pack_start (box, header, FALSE, FALSE, 0);
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
+  
+  heading = xfce_heading_new ();
+  xfce_heading_set_title (XFCE_HEADING (heading), _("Burn Composition"));
+  xfce_heading_set_icon_name (XFCE_HEADING (heading), GTK_STOCK_CDROM);
+  gtk_widget_show (heading);
+  gtk_box_pack_start (box, heading, FALSE, FALSE, 0);
 
   /* burning devices list */
   vbox = gtk_vbox_new (FALSE, 0);

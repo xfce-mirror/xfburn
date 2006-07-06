@@ -26,6 +26,7 @@
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
 #include "xfburn-burn-image-progress-dialog.h"
+#include "xfburn-stock.h"
 
 #include "xfburn-burn-image-dialog.h"
 
@@ -92,7 +93,8 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   XfburnBurnImageDialogPrivate *priv;
   GList *device;
   GtkWidget *img;
-  GtkWidget *header;
+  GtkWidget *heading;
+  GdkPixbuf *icon = NULL;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *hbox;
@@ -106,10 +108,13 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn CD image"));
 
-  img = gtk_image_new_from_stock ("xfburn-burn-cd", GTK_ICON_SIZE_LARGE_TOOLBAR);
-  header = xfce_create_header_with_image (img, _("Burn CD image"));
-  gtk_widget_show (header);
-  gtk_box_pack_start (box, header, FALSE, FALSE, 0);
+  heading = xfce_heading_new ();
+  xfce_heading_set_title (XFCE_HEADING (heading), _("Burn CD image"));
+  icon = gtk_widget_render_icon (heading, XFBURN_STOCK_BURN_CD, GTK_ICON_SIZE_DIALOG, NULL);
+  xfce_heading_set_icon (XFCE_HEADING (heading), icon);
+  g_object_unref (icon);
+  gtk_widget_show (heading);
+  gtk_box_pack_start (box, heading, FALSE, FALSE, 0);
 
   /* file */
   priv->chooser_image = gtk_file_chooser_button_new (_("Image to burn"), GTK_FILE_CHOOSER_ACTION_OPEN);
