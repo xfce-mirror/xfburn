@@ -22,6 +22,7 @@
 #endif /* !HAVE_CONFIG_H */
 
 #include <libxfcegui4/libxfcegui4.h>
+#include <exo/exo.h>
 
 #include "xfburn-preferences-dialog.h"
 #include "xfburn-global.h"
@@ -36,10 +37,18 @@ static void refresh_devices_list (XfburnPreferencesDialog * dialog);
 static void scan_button_clicked_cb (GtkWidget * button, gpointer user_data);
 static void xfburn_preferences_dialog_response_cb (XfburnPreferencesDialog * dialog, guint response_id, XfburnPreferencesDialogPrivate * priv);
 
+enum {
+  SETTINGS_LIST_PIXBUF_COLUMN,
+  SETTINGS_LIST_TEXT_COLUMN,
+  SETTINGS_LIST_INDEX_COLUMN,
+  SETTINGS_LIST_N_COLUMNS,
+};
+
 struct XfburnPreferencesDialogPrivate
 {
   GtkWidget *notebook;
-
+  GtkWidget *icon_bar;
+  
   GtkWidget *chooser_button;
   GtkWidget *check_clean_tmpdir;
   GtkWidget *check_show_hidden;
@@ -99,33 +108,57 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   GtkWidget *label;
   GtkWidget *frame;
   GtkWidget *scrolled_window;
-  GtkListStore *model;
+  GtkListStore *icon_store, *store;
+  GdkPixbuf *icon = NULL;
+  GtkTreeIter iter;
   GtkTreeViewColumn *column_name;
   GtkCellRenderer *cell_icon, *cell_name;
   GtkWidget *button_close;
-
+  gint index;
+  
   obj->priv = g_new0 (XfburnPreferencesDialogPrivate, 1);
   priv = obj->priv;
 
-  gtk_widget_set_size_request (GTK_WIDGET (obj), 450, 300);
   gtk_window_set_title (GTK_WINDOW (obj), _("Xfburn preferences"));
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
+  gtk_dialog_set_has_separator (GTK_DIALOG (obj), FALSE);
   
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (box, hbox, TRUE, TRUE, 0);
+  gtk_widget_show (hbox);
+
+  scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+  g_object_set (G_OBJECT (scrolled_window),
+                "hscrollbar-policy", GTK_POLICY_NEVER,
+                "shadow-type", GTK_SHADOW_IN,
+                "vscrollbar-policy", GTK_POLICY_NEVER,
+                NULL);
+  gtk_box_pack_start (GTK_BOX (hbox), scrolled_window, FALSE, FALSE, 0);
+  gtk_widget_show (scrolled_window);
+
+  /* icon bar */
+  icon_store = gtk_list_store_new (SETTINGS_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_INT);
+  priv->icon_bar = exo_icon_bar_new_with_model (GTK_TREE_MODEL (icon_store));
+  exo_icon_bar_set_pixbuf_column (EXO_ICON_BAR (priv->icon_bar), SETTINGS_LIST_PIXBUF_COLUMN);
+  exo_icon_bar_set_text_column (EXO_ICON_BAR (priv->icon_bar), SETTINGS_LIST_TEXT_COLUMN);
+  gtk_container_add (GTK_CONTAINER (scrolled_window), priv->icon_bar);
+  gtk_widget_show (priv->icon_bar);
+  
+  /* notebook */
   priv->notebook = gtk_notebook_new ();
   gtk_container_set_border_width (GTK_CONTAINER (priv->notebook), BORDER);
-  gtk_box_pack_start (box, priv->notebook, TRUE, TRUE, BORDER);
+  g_object_set (G_OBJECT (priv->notebook),
+                "show-border", FALSE,
+                "show-tabs", FALSE,
+                NULL);
+  gtk_box_pack_start (GTK_BOX (hbox), priv->notebook, TRUE, TRUE, BORDER);
   gtk_widget_show (priv->notebook);
 
   /* general tab */
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), BORDER);
-  gtk_container_add (GTK_CONTAINER (priv->notebook), vbox);
+  index = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), vbox, NULL);
   gtk_widget_show (vbox);
-
-  label = gtk_label_new (_("General"));
-  gtk_widget_show (label);
-  gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->notebook),
-                              gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), 0), label);
-  gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox2);
@@ -157,10 +190,22 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_show_human_readable, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->check_show_human_readable);
 
+  icon = gtk_widget_render_icon (GTK_WIDGET (priv->icon_bar),
+                                 GTK_STOCK_PROPERTIES,
+                                 GTK_ICON_SIZE_DIALOG,
+                                 NULL);
+  gtk_list_store_append (icon_store, &iter);
+  gtk_list_store_set (icon_store, &iter,
+                      SETTINGS_LIST_PIXBUF_COLUMN, icon,
+                      SETTINGS_LIST_TEXT_COLUMN, _("General"),
+                      SETTINGS_LIST_INDEX_COLUMN, index,
+                      -1);
+  g_object_unref (G_OBJECT (icon));
+  
   /* devices tab */
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), BORDER);
-  gtk_container_add (GTK_CONTAINER (priv->notebook), vbox);
+  index = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), vbox, NULL);
   gtk_widget_show (vbox);
 
   label = gtk_label_new (_("Devices"));
@@ -182,14 +227,15 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_widget_show (scrolled_window);
   gtk_box_pack_start (GTK_BOX (vbox2), scrolled_window, TRUE, TRUE, BORDER);
 
-  model = gtk_list_store_new (DEVICE_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
+  store = gtk_list_store_new (DEVICE_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
-  priv->treeview_devices = gtk_tree_view_new_with_model (GTK_TREE_MODEL (model));
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DEVICE_LIST_COLUMN_NAME, GTK_SORT_ASCENDING);
+  priv->treeview_devices = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), DEVICE_LIST_COLUMN_NAME, GTK_SORT_ASCENDING);
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview_devices), TRUE);
   gtk_widget_show (priv->treeview_devices);
   gtk_container_add (GTK_CONTAINER (scrolled_window), priv->treeview_devices);
-
+  g_object_unref (store);
+  
   /* add columns */
   column_name = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column_name, _("Name"));
@@ -230,6 +276,20 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   g_signal_connect (G_OBJECT (priv->button_scan), "clicked", G_CALLBACK (scan_button_clicked_cb), obj);
   gtk_widget_show (priv->button_scan);
 
+  icon = gtk_widget_render_icon (GTK_WIDGET (priv->icon_bar),
+                                 GTK_STOCK_CDROM,
+                                 GTK_ICON_SIZE_DIALOG,
+                                 NULL);
+  gtk_list_store_append (icon_store, &iter);
+  gtk_list_store_set (icon_store, &iter,
+                      SETTINGS_LIST_PIXBUF_COLUMN, icon,
+                      SETTINGS_LIST_TEXT_COLUMN, _("Devices"),
+                      SETTINGS_LIST_INDEX_COLUMN, index,
+                      -1);
+  g_object_unref (G_OBJECT (icon));
+  
+  exo_mutual_binding_new (G_OBJECT (priv->notebook), "page", G_OBJECT (priv->icon_bar), "active");
+  
   /* action buttons */
   button_close = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (button_close);
@@ -241,6 +301,8 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_preferences_dialog_response_cb), priv);
   
   refresh_devices_list (obj);
+  
+  g_object_unref (icon_store);
 }
 
 /* internals */

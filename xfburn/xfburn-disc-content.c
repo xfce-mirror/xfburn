@@ -167,6 +167,12 @@ xfburn_disc_content_class_init (XfburnDiscContentClass * klass)
 }
 
 static void
+cb_row_deleted (GtkTreeModel *model, GtkTreePath  *path, XfburnDiscContentPrivate *priv)
+{
+  DBG ("%s", gtk_tree_path_to_string (path));
+}
+
+static void
 xfburn_disc_content_init (XfburnDiscContent * disc_content)
 {
   gint x, y;
@@ -232,6 +238,9 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   disc_content->priv->content = gtk_tree_view_new ();
   model = gtk_tree_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT);
+  g_signal_connect (G_OBJECT (model), "row-deleted", G_CALLBACK (cb_row_deleted), disc_content->priv);
+							  
+							  
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DISC_CONTENT_COLUMN_CONTENT,
                                    directory_tree_sortfunc, NULL, NULL);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DISC_CONTENT_COLUMN_CONTENT, GTK_SORT_ASCENDING);
