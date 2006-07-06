@@ -155,8 +155,8 @@ cb_directory_browser_row_actived (GtkWidget * treeview, GtkTreePath * path, GtkT
     } while (gtk_tree_model_iter_next (model_fs, &iter));
 
     /* select the current directory in the FS browser */
-    gtk_tree_selection_select_iter (selection_fs, &iter);
-    gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (browser->fs_browser), path_fs, NULL, FALSE, 0, 0);
+    //gtk_tree_selection_select_iter (selection_fs, &iter);
+    //gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (browser->fs_browser), path_fs, NULL, FALSE, 0, 0);
 
     gtk_tree_path_free (path_fs);
     g_free (directory);

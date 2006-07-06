@@ -37,6 +37,10 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#ifdef HAVE_THUNAR_VFS
+#include <thunar-vfs/thunar-vfs.h>
+#endif
+
 #include <exo/exo.h>
 
 #include "xfburn-disc-content.h"
@@ -663,11 +667,29 @@ add_file_to_list_with_name (const gchar *name, XfburnDiscContent * dc, GtkTreeMo
     }
     /* new file */
     else if ((s.st_mode & S_IFREG)) {
+#ifdef HAVE_THUNAR_VFS
+	  GdkScreen *screen;
+	  GtkIconTheme *icon_theme;
+	  ThunarVfsMimeDatabase *mime_database = NULL;
+	  ThunarVfsMimeInfo *mime_info = NULL;
+	  const gchar *mime_icon_name = NULL;
+	  GdkPixbuf *mime_icon = NULL;
+	  
+	  screen = gtk_widget_get_screen (GTK_WIDGET (dc));
+	  icon_theme = gtk_icon_theme_get_for_screen (screen);
+	  
+	  mime_database = thunar_vfs_mime_database_get_default ();
+	  mime_info = thunar_vfs_mime_database_get_info_for_file (mime_database, path, NULL);
+		
+	  mime_icon_name = thunar_vfs_mime_info_lookup_icon_name (mime_info, icon_theme);
+	  mime_icon = gtk_icon_theme_load_icon (icon_theme, mime_icon_name, 24, 0, NULL);
+#endif
+	
       gtk_tree_store_append (GTK_TREE_STORE (model), iter, parent);
 
       humansize = xfburn_humanreadable_filesize (s.st_size);
       gtk_tree_store_set (GTK_TREE_STORE (model), iter,
-                          DISC_CONTENT_COLUMN_ICON, icon_file,
+                          DISC_CONTENT_COLUMN_ICON, (G_IS_OBJECT (mime_icon) ? mime_icon : icon_file),
                           DISC_CONTENT_COLUMN_CONTENT, name,
                           DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
                           DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size, DISC_CONTENT_COLUMN_PATH, path,

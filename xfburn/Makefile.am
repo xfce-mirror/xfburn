@@ -58,9 +58,11 @@ xfburn_SOURCES =							\
 
 xfburn_CFLAGS =								\
 	$(LIBXFCEGUI4_CFLAGS)						\
-	$(EXO_CFLAGS)
+	$(EXO_CFLAGS)							\
+	$(THUNAR_VFS_CFLAGS)
 
 xfburn_LDFLAGS = 							\
 	$(LIBXFCEGUI4_LIBS)						\
-	 $(EXO_LIBS)
+	$(EXO_LIBS)							\
+	$(THUNAR_VFS_LIBS)
 

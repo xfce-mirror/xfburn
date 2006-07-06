@@ -32,6 +32,10 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#ifdef HAVE_THUNAR_VFS
+#include <thunar-vfs/thunar-vfs.h>
+#endif
+
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
@@ -57,6 +61,10 @@ main (int argc, char **argv)
     exit (EXIT_SUCCESS);
   }
 
+#ifdef HAVE_THUNAR_VFS
+  thunar_vfs_init ();
+#endif
+  
   xfburn_settings_init ();
   gtk_init (&argc, &argv);
 
@@ -69,6 +77,10 @@ main (int argc, char **argv)
   gtk_widget_show (mainwin);
 
   gtk_main ();
+  
+#ifdef HAVE_THUNAR_VFS
+  thunar_vfs_shutdown ();
+#endif
   
   xfburn_settings_flush ();
   xfburn_settings_free ();

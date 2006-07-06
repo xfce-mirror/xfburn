@@ -29,6 +29,10 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#ifdef HAVE_THUNAR_VFS
+#include <thunar-vfs/thunar-vfs.h>
+#endif
+
 #include "xfburn-directory-browser.h"
 #include "xfburn-disc-content.h"
 #include "xfburn-utils.h"
@@ -238,6 +242,8 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   const gchar *dir_entry;
   int x, y;
   gchar *temp;
+  GdkScreen *screen;
+  GtkIconTheme *icon_theme;
   
   dir = g_dir_open (path, 0, &error);
   if (!dir) {
@@ -253,9 +259,12 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
-  gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
-  icon_directory = xfce_themed_icon_load ("gnome-fs-directory", x);
-  icon_file = xfce_themed_icon_load ("gnome-fs-regular", x);
+  screen = gtk_widget_get_screen (GTK_WIDGET (browser));
+  icon_theme = gtk_icon_theme_get_for_screen (screen);
+
+  gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
+  icon_directory = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-directory", x, 0, NULL);
+  icon_file = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-regular", x, 0, NULL);
 
   while ((dir_entry = g_dir_read_name (dir))) {
     gchar *full_path;
@@ -281,14 +290,43 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
       }
       else if ((s.st_mode & S_IFREG)) {
         GtkTreeIter iter;
-        
+#ifdef HAVE_THUNAR_VFS
+		ThunarVfsMimeDatabase *mime_database = NULL;
+		ThunarVfsMimeInfo *mime_info = NULL;
+		const gchar *mime_icon_name = NULL;
+		GdkPixbuf *mime_icon = NULL;
+		const gchar *mime_str = NULL;
+#endif
+		
         gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+		
+#ifdef HAVE_THUNAR_VFS
+		mime_database = thunar_vfs_mime_database_get_default ();
+		mime_info = thunar_vfs_mime_database_get_info_for_file (mime_database, full_path, path);
+		
+		mime_icon_name = thunar_vfs_mime_info_lookup_icon_name (mime_info, icon_theme);
+		mime_icon = gtk_icon_theme_load_icon (icon_theme, mime_icon_name, x, 0, NULL);
+		
+		mime_str = thunar_vfs_mime_info_get_comment (mime_info);
+		
+		gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                            DIRECTORY_BROWSER_COLUMN_ICON, (G_IS_OBJECT (mime_icon) ? mime_icon : icon_file),
+                            DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
+                            DIRECTORY_BROWSER_COLUMN_HUMANSIZE, humansize,
+                            DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) s.st_size,
+                            DIRECTORY_BROWSER_COLUMN_TYPE, mime_str, DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
+		
+		if (G_LIKELY (G_IS_OBJECT (mime_icon)))
+		  g_object_unref (mime_icon);
+		thunar_vfs_mime_info_unref (mime_info);
+#else
         gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_file,
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
                             DIRECTORY_BROWSER_COLUMN_HUMANSIZE, humansize,
                             DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) s.st_size,
                             DIRECTORY_BROWSER_COLUMN_TYPE, _("File"), DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
+#endif
       }
       g_free (humansize);
     }
