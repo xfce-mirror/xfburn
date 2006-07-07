@@ -319,6 +319,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
 		if (G_LIKELY (G_IS_OBJECT (mime_icon)))
 		  g_object_unref (mime_icon);
 		thunar_vfs_mime_info_unref (mime_info);
+		g_object_unref (mime_database);
 #else
         gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_file,

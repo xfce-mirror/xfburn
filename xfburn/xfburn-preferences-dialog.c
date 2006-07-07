@@ -63,7 +63,7 @@ typedef struct
   XfburnPreferencesDialog *object;
 } XfburnPreferencesDialogSignal;
 
-static GtkDialogClass *parent_class = NULL;
+static XfceTitledDialogClass *parent_class = NULL;
 
 GtkType
 xfburn_preferences_dialog_get_type ()
@@ -83,7 +83,7 @@ xfburn_preferences_dialog_get_type ()
       (GInstanceInitFunc) xfburn_preferences_dialog_init,
     };
 
-    type = g_type_register_static (GTK_TYPE_DIALOG, "XfburnPreferencesDialog", &our_info, 0);
+    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnPreferencesDialog", &our_info, 0);
   }
 
   return type;
@@ -119,8 +119,10 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   obj->priv = g_new0 (XfburnPreferencesDialogPrivate, 1);
   priv = obj->priv;
 
-  gtk_window_set_title (GTK_WINDOW (obj), _("Xfburn preferences"));
+  gtk_window_set_title (GTK_WINDOW (obj), _("Preferences"));
+  xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (obj), _("Tune how Xfburn behaves"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
+  gtk_window_set_icon_name (GTK_WINDOW (obj), GTK_STOCK_PREFERENCES);
   gtk_dialog_set_has_separator (GTK_DIALOG (obj), FALSE);
   
   hbox = gtk_hbox_new (FALSE, 0);

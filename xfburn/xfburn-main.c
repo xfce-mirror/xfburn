@@ -61,13 +61,17 @@ main (int argc, char **argv)
     exit (EXIT_SUCCESS);
   }
 
-#ifdef HAVE_THUNAR_VFS
-  thunar_vfs_init ();
-#endif
-  
-  xfburn_settings_init ();
   gtk_init (&argc, &argv);
 
+  xfburn_settings_init ();
+  
+#ifdef HAVE_THUNAR_VFS
+  thunar_vfs_init ();
+  g_message ("Using Thunar-VFS %d.%d.%d", THUNAR_VFS_MAJOR_VERSION, THUNAR_VFS_MINOR_VERSION, THUNAR_VFS_MICRO_VERSION);
+#else
+  g_message ("Thunar-VFS not available, using default implementation");
+#endif
+  
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
   xfburn_stock_init ();

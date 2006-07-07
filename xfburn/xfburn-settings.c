@@ -39,18 +39,34 @@
 
 #include "xfburn-settings.h"
 
+#define XFBURN_SETTINGS_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_SETTINGS, XfburnSettingsPrivate))
+
 /* global */
-static GHashTable *settings = NULL;
+typedef struct _Setting Setting;
+  
+static void xfburn_settings_class_init (XfburnSettingsClass * klass);
+static void xfburn_settings_internal_init (XfburnSettings * settings);
+static void xfburn_settings_finalize (GObject * object);
+
+static void value_destroy (Setting * val);
+static void load_settings (XfburnSettingsPrivate *priv);
+
+/* private */
+struct XfburnSettingsPrivate
+{
+  GHashTable *settings;
+  gchar *full_path;
+};
 
 /* structs */
 typedef enum
 {
   SETTING_TYPE_INT,
   SETTING_TYPE_BOOL,
-  SETTING_TYPE_STRING
+  SETTING_TYPE_STRING,
 } SettingType;
 
-typedef struct
+struct _Setting
 {
   SettingType type;
   union
@@ -59,9 +75,92 @@ typedef struct
     gint integer;
     gboolean boolean;
   } value;
-} Setting;
+};
 
+/**********************/
+/* object declaration */
+/**********************/
+static GObjectClass *parent_class = NULL;
+static XfburnSettings *instance = NULL;
+
+GType
+xfburn_settings_get_type ()
+{
+  static GType type = 0;
+
+  if (type == 0) {
+    static const GTypeInfo our_info = {
+      sizeof (XfburnSettingsClass),
+      NULL,
+      NULL,
+      (GClassInitFunc) xfburn_settings_class_init,
+      NULL,
+      NULL,
+      sizeof (XfburnSettings),
+      0,
+      (GInstanceInitFunc) xfburn_settings_internal_init,
+    };
+
+    type = g_type_register_static (G_TYPE_OBJECT, "XfburnSettings", &our_info, 0);
+  }
+
+  return type;
+}
+
+static void
+xfburn_settings_class_init (XfburnSettingsClass * klass)
+{
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+  g_type_class_add_private (klass, sizeof (XfburnSettingsPrivate));
+  
+  parent_class = g_type_class_peek_parent (klass);
+
+  object_class->finalize = xfburn_settings_finalize;
+}
+
+static void
+xfburn_settings_finalize (GObject * object)
+{
+  XfburnSettings *cobj;
+  XfburnSettingsPrivate *priv;
+
+  cobj = XFBURN_SETTINGS (object);
+
+  priv = XFBURN_SETTINGS_GET_PRIVATE (cobj);
+  
+  if (instance) {
+	instance = NULL;
+  }
+  
+  if (G_LIKELY (priv->settings))
+	g_hash_table_destroy (priv->settings);
+  if (G_LIKELY (priv->full_path))
+	g_free (priv->full_path);
+}
+
+static void
+xfburn_settings_internal_init (XfburnSettings *settings)
+{
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
+  gchar *path = NULL;
+
+  priv->settings = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, (GDestroyNotify) value_destroy);
+
+  path = xfce_resource_lookup (XFCE_RESOURCE_CONFIG, "xfburn/");
+
+  if (path) {
+    priv->full_path = g_build_filename (path, "settings.xml", NULL);
+    g_free (path);
+  }
+  else {
+    g_message ("no settings file found, using defaults");
+  }
+}
+
+/*************/
 /* internals */
+/*************/
 
 /* saving functions */
 static void
@@ -92,22 +191,16 @@ foreach_save (gpointer key, gpointer value, FILE * file_settings)
 }
 
 static void
-save_settings ()
+save_settings (XfburnSettingsPrivate *priv)
 {
   FILE *file_settings;
-  gchar *path;
   
-  path = xfce_resource_save_location (XFCE_RESOURCE_CONFIG, "xfburn/settings.xml", TRUE);
-  if (!path) {
-    g_error ("the settings saving location couldn't be found");
-    return;
-  }
-  file_settings = fopen (path, "w+");
+  file_settings = fopen (priv->full_path, "w+");
 
   fprintf (file_settings, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n");
   fprintf (file_settings, "<xfburn-settings>\n");
 
-  g_hash_table_foreach (settings, (GHFunc) foreach_save, file_settings);
+  g_hash_table_foreach (priv->settings, (GHFunc) foreach_save, file_settings);
 
   fprintf (file_settings, "</xfburn-settings>\n");
   fclose (file_settings);
@@ -170,7 +263,7 @@ load_settings_end (GMarkupParseContext * context, const gchar * element_name, gp
 }
 
 static void
-load_settings (const gchar * filename)
+load_settings (XfburnSettingsPrivate *priv)
 {
   gchar *file_contents = NULL;
   GMarkupParseContext *gpcontext = NULL;
@@ -183,15 +276,13 @@ load_settings (const gchar * filename)
   void *maddr = NULL;
 #endif
 
-  g_return_if_fail (filename != NULL);
-
-  if (stat (filename, &st) < 0) {
+  if (stat (priv->full_path, &st) < 0) {
     g_warning ("Unable to open the settings file");
     goto cleanup;
   }
 
 #ifdef HAVE_MMAP
-  fd = open (filename, O_RDONLY, 0);
+  fd = open (priv->full_path, O_RDONLY, 0);
   if (fd < 0)
     goto cleanup;
 
@@ -200,9 +291,9 @@ load_settings (const gchar * filename)
     file_contents = maddr;
 #endif
 
-  if (!file_contents && !g_file_get_contents (filename, &file_contents, NULL, &err)) {
+  if (!file_contents && !g_file_get_contents (priv->full_path, &file_contents, NULL, &err)) {
     if (err) {
-      g_warning ("Unable to read file '%s' (%d): %s", filename, err->code, err->message);
+      g_warning ("Unable to read file '%s' (%d): %s", priv->full_path, err->code, err->message);
       g_error_free (err);
     }
     goto cleanup;
@@ -242,49 +333,63 @@ value_destroy (Setting * val)
     g_free (val->value.string);
 }
 
-/* public */
+static XfburnSettings*
+get_instance ()
+{
+  if (G_LIKELY (instance))
+	return instance;
+  else
+	g_critical ("XfburnSettings hasn't been initialized");
+  
+  return NULL;
+}
+
+/******************/
+/* public methods */
+/******************/
 void
 xfburn_settings_init ()
 {
-  gchar *path;
-
-  settings = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, (GDestroyNotify) value_destroy);
-
-  path = xfce_resource_lookup (XFCE_RESOURCE_CONFIG, "xfburn/");
-
-  if (path) {
-    gchar *full_path;
-
-    full_path = g_build_filename (path, "settings.xml", NULL);
-    load_settings (full_path);
-DBG ("%s", full_path);
-    g_free (full_path);
-    g_free (path);
-  }
-  else {
-    g_message ("no settings file found, using defaults");
+  if (G_LIKELY (instance == NULL)) {
+	XfburnSettingsPrivate *priv;
+	
+	instance = XFBURN_SETTINGS (g_object_new (XFBURN_TYPE_SETTINGS, NULL));
+	
+	if (instance) {
+	  priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
+	  load_settings (priv);
+	}
+  } else {
+	g_critical ("XfburnSettings is already initialized");
   }
 }
 
 void
 xfburn_settings_flush ()
 {
-  save_settings ();
+  XfburnSettings *instance = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
+  
+  save_settings (priv);
 }
 
 void
 xfburn_settings_free ()
 {
-  g_hash_table_destroy (settings);
+  XfburnSettings *instance = get_instance ();
+ 
+  g_object_unref (instance);
 }
 
 gboolean
 xfburn_settings_get_boolean (const gchar * key, gboolean fallback)
 {
+  XfburnSettings *instance = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
   gpointer orig;
   gpointer value;
 
-  if (g_hash_table_lookup_extended (settings, key, &orig, &value)) {
+  if (g_hash_table_lookup_extended (priv->settings, key, &orig, &value)) {
     Setting *setting = (Setting *) value;
 
     if (setting->type == SETTING_TYPE_BOOL)
@@ -299,10 +404,12 @@ xfburn_settings_get_boolean (const gchar * key, gboolean fallback)
 gint
 xfburn_settings_get_int (const gchar * key, gint fallback)
 {
+  XfburnSettings *instance = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
   gpointer orig;
   gpointer value;
 
-  if (g_hash_table_lookup_extended (settings, key, &orig, &value)) {
+  if (g_hash_table_lookup_extended (priv->settings, key, &orig, &value)) {
     Setting *setting = (Setting *) value;
 
     if (setting->type == SETTING_TYPE_INT)
@@ -317,10 +424,12 @@ xfburn_settings_get_int (const gchar * key, gint fallback)
 gchar *
 xfburn_settings_get_string (const gchar * key, const gchar * fallback)
 {
+  XfburnSettings *instance = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
   gpointer orig;
   gpointer value;
 
-  if (g_hash_table_lookup_extended (settings, key, &orig, &value)) {
+  if (g_hash_table_lookup_extended (priv->settings, key, &orig, &value)) {
     Setting *setting = (Setting *) value;
 
     if (setting->type == SETTING_TYPE_STRING)
@@ -335,35 +444,41 @@ xfburn_settings_get_string (const gchar * key, const gchar * fallback)
 void
 xfburn_settings_set_boolean (const gchar * key, gboolean value)
 {
+  XfburnSettings *instance = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
   Setting *setting;
 
   setting = g_new0 (Setting, 1);
   setting->type = SETTING_TYPE_BOOL;
   setting->value.integer = value;
 
-  g_hash_table_replace (settings, (gpointer) key, (gpointer) setting);
+  g_hash_table_replace (priv->settings, (gpointer) key, (gpointer) setting);
 }
 
 void
 xfburn_settings_set_int (const gchar * key, gint value)
 {
+  XfburnSettings *instance = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
   Setting *setting;
 
   setting = g_new0 (Setting, 1);
   setting->type = SETTING_TYPE_INT;
   setting->value.integer = value;
 
-  g_hash_table_replace (settings, (gpointer) key, (gpointer) setting);
+  g_hash_table_replace (priv->settings, (gpointer) key, (gpointer) setting);
 }
 
 void
 xfburn_settings_set_string (const gchar * key, const gchar * value)
 {
+  XfburnSettings *instance = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
   Setting *setting;
 
   setting = g_new0 (Setting, 1);
   setting->type = SETTING_TYPE_STRING;
   setting->value.string = g_strdup (value);
 
-  g_hash_table_replace (settings, (gpointer) key, (gpointer) setting);
+  g_hash_table_replace (priv->settings, (gpointer) key, (gpointer) setting);
 }

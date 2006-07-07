@@ -33,13 +33,13 @@ typedef struct XfburnPreferencesDialogPrivate XfburnPreferencesDialogPrivate;
 
 typedef struct
 {
-  GtkDialog parent;
+  XfceTitledDialog parent;
   XfburnPreferencesDialogPrivate *priv;
 } XfburnPreferencesDialog;
 
 typedef struct
 {
-  GtkDialogClass parent_class;
+  XfceTitledDialogClass parent_class;
   /* Add Signal Functions Here */
 } XfburnPreferencesDialogClass;
 

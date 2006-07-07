@@ -31,7 +31,7 @@
 G_BEGIN_DECLS
 /* */
 #define XFBURN_TYPE_PROGRESS_DIALOG_STATUS (xfburn_progress_dialog_status_get_type ())
-  typedef enum
+typedef enum
 {
   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING,
   XFBURN_PROGRESS_DIALOG_STATUS_FAILED,
@@ -84,5 +84,7 @@ void xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gf
 void xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status);
 
 GtkWidget *xfburn_progress_dialog_new ();
+
+G_END_DECLS
 
 #endif /* XFBURN_PROGRESS_DIALOG_H */
