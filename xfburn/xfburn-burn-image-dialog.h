@@ -29,6 +29,7 @@
 #include "xfburn-global.h"
 
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_BURN_IMAGE_DIALOG         (xfburn_burn_image_dialog_get_type ())
 #define XFBURN_BURN_IMAGE_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialog))
 #define XFBURN_BURN_IMAGE_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialogClass))
@@ -39,16 +40,18 @@ typedef struct XfburnBurnImageDialogPrivate XfburnBurnImageDialogPrivate;
 
 typedef struct
 {
-  GtkDialog parent;
+  XfceTitledDialog parent;
   XfburnBurnImageDialogPrivate *priv;
 } XfburnBurnImageDialog;
 
 typedef struct
 {
-  GtkDialogClass parent_class;
+  XfceTitledDialogClass parent_class;
 } XfburnBurnImageDialogClass;
 
 GtkType xfburn_burn_image_dialog_get_type ();
 GtkWidget *xfburn_burn_image_dialog_new ();
+
+G_END_DECLS
 
 #endif /* XFBURN_BURN_IMAGE_DIALOG_H */

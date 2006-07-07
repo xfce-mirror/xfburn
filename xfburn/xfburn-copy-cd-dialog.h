@@ -37,13 +37,13 @@ typedef struct XfburnCopyCdDialogPrivate XfburnCopyCdDialogPrivate;
 
 typedef struct
 {
-  GtkDialog parent;
+  XfceTitledDialog parent;
   XfburnCopyCdDialogPrivate *priv;
 } XfburnCopyCdDialog;
 
 typedef struct
 {
-  GtkDialogClass parent_class;
+  XfceTitledDialogClass parent_class;
 } XfburnCopyCdDialogClass;
 
 GtkType xfburn_copy_cd_dialog_get_type ();

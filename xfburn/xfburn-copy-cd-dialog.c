@@ -61,7 +61,7 @@ struct XfburnCopyCdDialogPrivate
 };
 
 /* globals */
-static GtkDialogClass *parent_class = NULL;
+static XfceTitledDialogClass *parent_class = NULL;
 
 GtkType
 xfburn_copy_cd_dialog_get_type ()
@@ -81,7 +81,7 @@ xfburn_copy_cd_dialog_get_type ()
       (GInstanceInitFunc) xfburn_copy_cd_dialog_init,
     };
 
-    type = g_type_register_static (GTK_TYPE_DIALOG, "XfburnCopyCdDialog", &our_info, 0);
+    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnCopyCdDialog", &our_info, 0);
   }
 
   return type;
@@ -104,7 +104,6 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   GList *device;
   GtkWidget *img;
-  GtkWidget *heading;
   GdkPixbuf *icon = NULL;
   GtkWidget *frame;
   GtkWidget *vbox;
@@ -119,14 +118,10 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   priv = obj->priv;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Copy data CD"));
-
-  heading = xfce_heading_new ();
-  xfce_heading_set_title (XFCE_HEADING (heading), _("Burn CD image"));
-  icon = gtk_widget_render_icon (heading, XFBURN_STOCK_DATA_COPY, GTK_ICON_SIZE_DIALOG, NULL);
-  xfce_heading_set_icon (XFCE_HEADING (heading), icon);
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
+  icon = gtk_widget_render_icon (GTK_WIDGET (obj), XFBURN_STOCK_DATA_COPY, GTK_ICON_SIZE_DIALOG, NULL);
+  gtk_window_set_icon (GTK_WINDOW (obj), icon);
   g_object_unref (icon);
-  gtk_widget_show (heading);
-  gtk_box_pack_start (box, heading, FALSE, FALSE, 0);
 
   /* reader devices list */
   vbox = gtk_vbox_new (FALSE, 0);

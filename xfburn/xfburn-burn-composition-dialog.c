@@ -60,7 +60,7 @@ struct XfburnBurnCompositionDialogPrivate
 };
 
 /* globals */
-static GtkDialogClass *parent_class = NULL;
+static XfceTitledDialogClass *parent_class = NULL;
 
 GtkType
 xfburn_burn_composition_dialog_get_type ()
@@ -80,7 +80,7 @@ xfburn_burn_composition_dialog_get_type ()
       (GInstanceInitFunc) xfburn_burn_composition_dialog_init,
     };
 
-    type = g_type_register_static (GTK_TYPE_DIALOG, "XfburnBurnCompositionDialog", &our_info, 0);
+    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBurnCompositionDialog", &our_info, 0);
   }
 
   return type;
@@ -103,7 +103,6 @@ xfburn_burn_composition_dialog_init (XfburnBurnCompositionDialog * obj)
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   GList *device;
   GtkWidget *img;
-  GtkWidget *heading;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *hbox;
@@ -122,12 +121,7 @@ xfburn_burn_composition_dialog_init (XfburnBurnCompositionDialog * obj)
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
-  
-  heading = xfce_heading_new ();
-  xfce_heading_set_title (XFCE_HEADING (heading), _("Burn Composition"));
-  xfce_heading_set_icon_name (XFCE_HEADING (heading), GTK_STOCK_CDROM);
-  gtk_widget_show (heading);
-  gtk_box_pack_start (box, heading, FALSE, FALSE, 0);
+  gtk_window_set_icon_name (GTK_WINDOW (obj), GTK_STOCK_CDROM);
 
   /* burning devices list */
   vbox = gtk_vbox_new (FALSE, 0);

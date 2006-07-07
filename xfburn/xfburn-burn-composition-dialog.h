@@ -27,6 +27,7 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_BURN_COMPOSITION_DIALOG         (xfburn_burn_composition_dialog_get_type ())
 #define XFBURN_BURN_COMPOSITION_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnCompositionDialog))
 #define XFBURN_BURN_COMPOSITION_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnCompositionDialogClass))
@@ -37,13 +38,13 @@ typedef struct XfburnBurnCompositionDialogPrivate XfburnBurnCompositionDialogPri
 
 typedef struct
 {
-  GtkDialog parent;
+  XfceTitledDialog parent;
   XfburnBurnCompositionDialogPrivate *priv;
 } XfburnBurnCompositionDialog;
 
 typedef struct
 {
-  GtkDialogClass parent_class;
+  XfceTitledDialogClass parent_class;
 } XfburnBurnCompositionDialogClass;
 
 GtkType xfburn_burn_composition_dialog_get_type ();
@@ -52,4 +53,5 @@ GtkWidget *xfburn_burn_composition_dialog_new (const gchar *file_list);
 gchar *xfburn_burn_composition_dialog_get_command_iso (XfburnBurnCompositionDialog *dialog);
 gchar *xfburn_burn_composition_dialog_get_command_burn (XfburnBurnCompositionDialog *dialog);
 
+G_END_DECLS
 #endif /* XFBURN_BURN_COMPOSITION_DIALOG_H */

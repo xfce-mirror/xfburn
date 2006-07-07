@@ -50,7 +50,7 @@ struct XfburnBurnImageDialogPrivate
   GtkWidget *check_dummy;
 };
 
-static GtkDialogClass *parent_class = NULL;
+static XfceTitledDialogClass *parent_class = NULL;
 
 GtkType
 xfburn_burn_image_dialog_get_type ()
@@ -70,7 +70,7 @@ xfburn_burn_image_dialog_get_type ()
       (GInstanceInitFunc) xfburn_burn_image_dialog_init,
     };
 
-    type = g_type_register_static (GTK_TYPE_DIALOG, "XfburnBurnImageDialog", &our_info, 0);
+    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBurnImageDialog", &our_info, 0);
   }
 
   return type;
@@ -93,7 +93,6 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   XfburnBurnImageDialogPrivate *priv;
   GList *device;
   GtkWidget *img;
-  GtkWidget *heading;
   GdkPixbuf *icon = NULL;
   GtkWidget *frame;
   GtkWidget *vbox;
@@ -107,15 +106,11 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   priv = obj->priv;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn CD image"));
-
-  heading = xfce_heading_new ();
-  xfce_heading_set_title (XFCE_HEADING (heading), _("Burn CD image"));
-  icon = gtk_widget_render_icon (heading, XFBURN_STOCK_BURN_CD, GTK_ICON_SIZE_DIALOG, NULL);
-  xfce_heading_set_icon (XFCE_HEADING (heading), icon);
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
+  icon = gtk_widget_render_icon (GTK_WIDGET (obj), XFBURN_STOCK_BURN_CD, GTK_ICON_SIZE_DIALOG, NULL);
+  gtk_window_set_icon (GTK_WINDOW (obj), icon);
   g_object_unref (icon);
-  gtk_widget_show (heading);
-  gtk_box_pack_start (box, heading, FALSE, FALSE, 0);
-
+  
   /* file */
   priv->chooser_image = gtk_file_chooser_button_new (_("Image to burn"), GTK_FILE_CHOOSER_ACTION_OPEN);
   gtk_widget_show (priv->chooser_image);

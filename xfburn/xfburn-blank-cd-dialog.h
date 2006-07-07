@@ -27,6 +27,7 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_BLANK_CD_DIALOG         (xfburn_blank_cd_dialog_get_type ())
 #define XFBURN_BLANK_CD_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BLANK_CD_DIALOG, XfburnBlankCdDialog))
 #define XFBURN_BLANK_CD_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BLANK_CD_DIALOG, XfburnBlankCdDialogClass))
@@ -37,16 +38,17 @@ typedef struct XfburnBlankCdDialogPrivate XfburnBlankCdDialogPrivate;
 
 typedef struct
 {
-  GtkDialog parent;
+  XfceTitledDialog parent;
   XfburnBlankCdDialogPrivate *priv;
 } XfburnBlankCdDialog;
 
 typedef struct
 {
-  GtkDialogClass parent_class;
+  XfceTitledDialogClass parent_class;
 } XfburnBlankCdDialogClass;
 
 GtkType xfburn_blank_cd_dialog_get_type ();
 GtkWidget *xfburn_blank_cd_dialog_new ();
 
+G_END_DECLS
 #endif /* XFBURN_BLANK_CD_H */

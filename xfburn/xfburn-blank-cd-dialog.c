@@ -44,7 +44,7 @@ struct XfburnBlankCdDialogPrivate
   GtkWidget *check_eject;
 };
 
-static GtkDialogClass *parent_class = NULL;
+static XfceTitledDialogClass *parent_class = NULL;
 
 GtkType
 xfburn_blank_cd_dialog_get_type ()
@@ -64,7 +64,7 @@ xfburn_blank_cd_dialog_get_type ()
       (GInstanceInitFunc) xfburn_blank_cd_dialog_init,
     };
 
-    type = g_type_register_static (GTK_TYPE_DIALOG, "XfburnBlankCdDialog", &our_info, 0);
+    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBlankCdDialog", &our_info, 0);
   }
 
   return type;
@@ -88,7 +88,6 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   GList *device;
   GtkWidget *img;
   GdkPixbuf *icon = NULL;
-  GtkWidget *heading;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *hbox;
@@ -103,14 +102,10 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   gtk_window_set_title (GTK_WINDOW (obj), _("Blank CD-RW"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
   
-  heading = xfce_heading_new ();
-  xfce_heading_set_title (XFCE_HEADING (heading), _("Blank CD-RW"));
-  icon = gtk_widget_render_icon (heading, XFBURN_STOCK_BLANK_CDRW, GTK_ICON_SIZE_DIALOG, NULL);
-  xfce_heading_set_icon (XFCE_HEADING (heading), icon);
+  icon = gtk_widget_render_icon (GTK_WIDGET (obj), XFBURN_STOCK_BLANK_CDRW, GTK_ICON_SIZE_DIALOG, NULL);
+  gtk_window_set_icon (GTK_WINDOW (obj), icon);
   g_object_unref (icon);
-  gtk_widget_show (heading);
-  gtk_box_pack_start (box, heading, FALSE, FALSE, 0);
-
+  
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
 

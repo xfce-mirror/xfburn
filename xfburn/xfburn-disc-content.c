@@ -197,7 +197,7 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   };
 
   /* initialize static members */
-  gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
+  gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
   if (!icon_directory)
     icon_directory = xfce_themed_icon_load ("gnome-fs-directory", x);
   if (!icon_file)
@@ -674,6 +674,7 @@ add_file_to_list_with_name (const gchar *name, XfburnDiscContent * dc, GtkTreeMo
 	  ThunarVfsMimeInfo *mime_info = NULL;
 	  const gchar *mime_icon_name = NULL;
 	  GdkPixbuf *mime_icon = NULL;
+	  gint x,y;
 	  
 	  screen = gtk_widget_get_screen (GTK_WIDGET (dc));
 	  icon_theme = gtk_icon_theme_get_for_screen (screen);
@@ -681,8 +682,9 @@ add_file_to_list_with_name (const gchar *name, XfburnDiscContent * dc, GtkTreeMo
 	  mime_database = thunar_vfs_mime_database_get_default ();
 	  mime_info = thunar_vfs_mime_database_get_info_for_file (mime_database, path, NULL);
 		
+	  gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
 	  mime_icon_name = thunar_vfs_mime_info_lookup_icon_name (mime_info, icon_theme);
-	  mime_icon = gtk_icon_theme_load_icon (icon_theme, mime_icon_name, 24, 0, NULL);
+	  mime_icon = gtk_icon_theme_load_icon (icon_theme, mime_icon_name, x, 0, NULL);
 #endif
 	
       gtk_tree_store_append (GTK_TREE_STORE (model), iter, parent);
@@ -696,6 +698,12 @@ add_file_to_list_with_name (const gchar *name, XfburnDiscContent * dc, GtkTreeMo
                           DISC_CONTENT_COLUMN_TYPE, DISC_CONTENT_TYPE_FILE, -1);
 
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), s.st_size);
+#ifdef HAVE_THUNAR_VFS
+	  if (G_LIKELY (G_IS_OBJECT (mime_icon)))
+		g_object_unref (mime_icon);
+	  thunar_vfs_mime_info_unref (mime_info);
+	  g_object_unref (mime_database);
+#endif
     }
     g_free (humansize);
     g_free (parent);
