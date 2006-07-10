@@ -690,12 +690,22 @@ add_file_to_list_with_name (const gchar *name, XfburnDiscContent * dc, GtkTreeMo
       gtk_tree_store_append (GTK_TREE_STORE (model), iter, parent);
 
       humansize = xfburn_humanreadable_filesize (s.st_size);
+
+#ifdef HAVE_THUNAR_VFS
       gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                           DISC_CONTENT_COLUMN_ICON, (G_IS_OBJECT (mime_icon) ? mime_icon : icon_file),
                           DISC_CONTENT_COLUMN_CONTENT, name,
                           DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
                           DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size, DISC_CONTENT_COLUMN_PATH, path,
                           DISC_CONTENT_COLUMN_TYPE, DISC_CONTENT_TYPE_FILE, -1);
+#else
+      gtk_tree_store_set (GTK_TREE_STORE (model), iter,
+                          DISC_CONTENT_COLUMN_ICON, icon_file,
+                          DISC_CONTENT_COLUMN_CONTENT, name,
+                          DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
+                          DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size, DISC_CONTENT_COLUMN_PATH, path,
+                          DISC_CONTENT_COLUMN_TYPE, DISC_CONTENT_TYPE_FILE, -1);
+#endif
 
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), s.st_size);
 #ifdef HAVE_THUNAR_VFS
