@@ -33,7 +33,6 @@
 #include "xfburn-disc-content.h"
 #include "xfburn-blank-cd-dialog.h"
 #include "xfburn-copy-cd-dialog.h"
-#include "xfburn-burn-composition-dialog.h"
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-settings.h"
@@ -531,21 +530,5 @@ xfburn_main_window_get_instance ()
     g_warning ("No existing instance of XfburnMainWindow");
 
   return instance;
-}
-
-void
-xfburn_main_window_burn_composition (XfburnMainWindow * window, XfburnDiscContent *dc)
-{
-  GtkWidget *dialog;
-  gchar *tmpfile = NULL;
-  
-  xfburn_disc_content_generate_file_list (XFBURN_DISC_CONTENT (window->disc_content), &tmpfile);
-  
-  dialog = xfburn_burn_composition_dialog_new (tmpfile);
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
-
-  g_free (tmpfile);
 }
 

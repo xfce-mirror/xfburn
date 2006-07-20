@@ -49,6 +49,7 @@
 #include "xfburn-adding-progress.h"
 #endif
 
+#include "xfburn-burn-composition-dialog.h"
 #include "xfburn-disc-usage.h"
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
@@ -78,6 +79,7 @@ static gboolean add_file_to_list_with_name (const gchar *name, XfburnDiscContent
                                             GtkTreeViewDropPosition position);
 static gboolean add_file_to_list (XfburnDiscContent * dc, GtkTreeModel * model, const gchar * path, GtkTreeIter * iter,
                                   GtkTreeIter * insertion, GtkTreeViewDropPosition position);
+static gboolean generate_file_list (XfburnDiscContent * dc, gchar ** tmpfile);
                                   
 enum
 {
@@ -316,8 +318,17 @@ static void
 cb_begin_burn (XfburnDiscUsage * du, XfburnDiscContent * dc)
 {
   XfburnMainWindow *mainwin = xfburn_main_window_get_instance ();
+  GtkWidget *dialog;
+  gchar *tmpfile = NULL;
+  
+  generate_file_list (XFBURN_DISC_CONTENT (dc), &tmpfile);
+  
+  dialog = xfburn_burn_composition_dialog_new (tmpfile);
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (mainwin));
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
 
-  xfburn_main_window_burn_composition (mainwin, dc);
+  g_free (tmpfile);
 }
 
 
@@ -856,27 +867,8 @@ foreach_generate_file_list (GtkTreeModel * model, GtkTreePath * path, GtkTreeIte
   return FALSE;
 }
 
-/* public methods */
-GtkWidget *
-xfburn_disc_content_new (void)
-{
-  return g_object_new (xfburn_disc_content_get_type (), NULL);
-}
-
-void
-xfburn_disc_content_hide_toolbar (XfburnDiscContent * content)
-{
-  gtk_widget_hide (content->priv->toolbar);
-}
-
-void
-xfburn_disc_content_show_toolbar (XfburnDiscContent * content)
-{
-  gtk_widget_show (content->priv->toolbar);
-}
-
-gboolean
-xfburn_disc_content_generate_file_list (XfburnDiscContent * dc, gchar ** tmpfile)
+static gboolean
+generate_file_list (XfburnDiscContent * dc, gchar ** tmpfile)
 {
   GError *error = NULL;
   FILE *file_tmp;
@@ -896,6 +888,27 @@ xfburn_disc_content_generate_file_list (XfburnDiscContent * dc, gchar ** tmpfile
   fclose (file_tmp);
 
   return TRUE;
+}
+
+/******************/
+/* public methods */
+/******************/
+GtkWidget *
+xfburn_disc_content_new (void)
+{
+  return g_object_new (xfburn_disc_content_get_type (), NULL);
+}
+
+void
+xfburn_disc_content_hide_toolbar (XfburnDiscContent * content)
+{
+  gtk_widget_hide (content->priv->toolbar);
+}
+
+void
+xfburn_disc_content_show_toolbar (XfburnDiscContent * content)
+{
+  gtk_widget_show (content->priv->toolbar);
 }
 
 /****************/

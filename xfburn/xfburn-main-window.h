@@ -60,7 +60,6 @@ GtkType xfburn_main_window_get_type (void);
 
 GtkWidget *xfburn_main_window_new (void);
 XfburnMainWindow *xfburn_main_window_get_instance (void);
-void xfburn_main_window_burn_composition (XfburnMainWindow * window, XfburnDiscContent *dc);
 
 G_END_DECLS
 #endif
