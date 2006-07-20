@@ -47,11 +47,11 @@ typedef struct {
 
 /* prototypes */
 static void xfburn_main_window_class_init (XfburnMainWindowClass *);
+static void xfburn_main_window_finalize (GObject *obj);
 static void xfburn_main_window_init (XfburnMainWindow *);
 
 static gboolean cb_delete_main_window (XfburnMainWindow *, GdkEvent *, XfburnMainWindowPrivate *);
 static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
-static void cb_burn_composition (XfburnDiscContent *dc, XfburnMainWindow * window);
 
 static void xfburn_window_action_about (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_preferences (GtkAction *, XfburnMainWindow *);
@@ -118,6 +118,8 @@ static const gchar *toolbar_actions[] = {
   "preferences",
 };
 
+static XfburnMainWindow *instance = NULL;
+
 /**************************/
 /* XfburnMainWindow class */
 /**************************/
@@ -148,9 +150,20 @@ xfburn_main_window_get_type (void)
 static void
 xfburn_main_window_class_init (XfburnMainWindowClass * klass)
 {
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
   g_type_class_add_private (klass, sizeof (XfburnMainWindowPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
+
+  object_class->finalize = xfburn_main_window_finalize;
+}
+
+static void
+xfburn_main_window_finalize (GObject *obj)
+{
+  if (instance)
+    instance = NULL;
 }
 
 static void
@@ -166,6 +179,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   /* the window itself */
   gtk_window_set_position (GTK_WINDOW (mainwin), GTK_WIN_POS_CENTER_ON_PARENT);
   gtk_window_set_title (GTK_WINDOW (mainwin), "Xfburn");
+  gtk_window_set_icon_name (GTK_WINDOW (mainwin), GTK_STOCK_CDROM);
   gtk_window_resize (GTK_WINDOW (mainwin), xfburn_settings_get_int ("main-window-width", 850),
 		     xfburn_settings_get_int ("main-window-height", 700));
 
@@ -256,7 +270,6 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   mainwin->disc_content = xfburn_disc_content_new ();
   gtk_paned_add2 (GTK_PANED (priv->vpaned), mainwin->disc_content);
   gtk_widget_show (mainwin->disc_content);
-  g_signal_connect (G_OBJECT (mainwin->disc_content), "begin-burn", G_CALLBACK (cb_burn_composition), mainwin);
   
   gtk_paned_set_position (GTK_PANED (priv->vpaned), xfburn_settings_get_int ("vpaned-position", 200));
 
@@ -336,20 +349,6 @@ static void xfburn_window_action_copy_cd (GtkAction *action, XfburnMainWindow *w
 }
 
 static void
-cb_burn_composition (XfburnDiscContent *dc, XfburnMainWindow * window)
-{
-  GtkWidget *dialog;
-  gchar *tmpfile;
-  
-  xfburn_disc_content_generate_file_list (XFBURN_DISC_CONTENT (window->disc_content), &tmpfile);
-  
-  dialog = xfburn_burn_composition_dialog_new (tmpfile);
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
-}
-
-static void
 xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
@@ -407,7 +406,7 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
     {"Cosmo Chene", "cosmolax@gmail.com", "zh_TW",},
   };
 
-  icon = xfce_themed_icon_load ("xfburn", 48);
+  icon = xfce_themed_icon_load (GTK_STOCK_CDROM, 48);
   //if (G_UNLIKELY (icon == NULL))
   //icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
   
@@ -492,24 +491,61 @@ xfburn_window_action_show_content_toolbar (GtkToggleAction * action, XfburnMainW
   }
 }
 
+/******************/
 /* public methods */
+/******************/
 GtkWidget *
 xfburn_main_window_new (void)
 {
   GtkWidget *obj;
   XfburnMainWindow *win;
   GtkAction *action;
+
+  if (G_UNLIKELY (instance)) {
+    g_error ("An instance of XfburnMainWindow has already been created");
+    return NULL;
+  }
   
   obj = g_object_new (xfburn_main_window_get_type (), NULL);
-  win = XFBURN_MAIN_WINDOW (obj);
   
-  /* load settings */
-  action = gtk_action_group_get_action (win->action_group, "show-filebrowser");
-  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-filebrowser", TRUE));
-  action = gtk_action_group_get_action (win->action_group, "show-toolbar");
-  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-toolbar", TRUE));
-  action = gtk_action_group_get_action (win->action_group, "show-content-toolbar");
-  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-content-toolbar", TRUE));
+  if (obj) {
+    win = XFBURN_MAIN_WINDOW (obj);
+    instance = win;
+
+    /* load settings */
+    action = gtk_action_group_get_action (win->action_group, "show-filebrowser");
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-filebrowser", TRUE));
+    action = gtk_action_group_get_action (win->action_group, "show-toolbar");
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-toolbar", TRUE));
+    action = gtk_action_group_get_action (win->action_group, "show-content-toolbar");
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-content-toolbar", TRUE));
+  }
   
   return obj;
 }
+
+XfburnMainWindow *
+xfburn_main_window_get_instance ()
+{
+  if (!instance)
+    g_warning ("No existing instance of XfburnMainWindow");
+
+  return instance;
+}
+
+void
+xfburn_main_window_burn_composition (XfburnMainWindow * window, XfburnDiscContent *dc)
+{
+  GtkWidget *dialog;
+  gchar *tmpfile = NULL;
+  
+  xfburn_disc_content_generate_file_list (XFBURN_DISC_CONTENT (window->disc_content), &tmpfile);
+  
+  dialog = xfburn_burn_composition_dialog_new (tmpfile);
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+
+  g_free (tmpfile);
+}
+

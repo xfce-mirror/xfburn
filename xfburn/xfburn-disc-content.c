@@ -44,7 +44,13 @@
 #include <exo/exo.h>
 
 #include "xfburn-disc-content.h"
+
+#if 0
+#include "xfburn-adding-progress.h"
+#endif
+
 #include "xfburn-disc-usage.h"
+#include "xfburn-main-window.h"
 #include "xfburn-utils.h"
 
 /* prototypes */
@@ -60,7 +66,6 @@ static void disc_content_action_rename_selection (GtkAction * action, XfburnDisc
 
 static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDiscContent * dc);
 static void cb_begin_burn (XfburnDiscUsage * du, XfburnDiscContent * dc);
-
 static void cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDiscContent * dc);
 
 static void content_drag_data_rcv_cb (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint,
@@ -91,12 +96,6 @@ typedef enum
   DISC_CONTENT_TYPE_DIRECTORY
 } DiscContentType;
 
-enum
-{
-  BEGIN_BURN,
-  LAST_SIGNAL,
-};
-
 struct XfburnDiscContentPrivate
 {
   GtkActionGroup *action_group;
@@ -105,6 +104,9 @@ struct XfburnDiscContentPrivate
   GtkWidget *toolbar;
   GtkWidget *content;
   GtkWidget *disc_usage;
+#if 0
+  GtkWidget *progress;
+#endif
 };
 
 /* globals */
@@ -127,7 +129,6 @@ static const gchar *toolbar_actions[] = {
   "import-session",
 };
 
-static guint signals[LAST_SIGNAL];
 static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
 
 /***************************/
@@ -164,10 +165,6 @@ xfburn_disc_content_class_init (XfburnDiscContentClass * klass)
 
   parent_class = g_type_class_peek_parent (klass);
   object_class->finalize = xfburn_disc_content_finalize;
-
-  signals[BEGIN_BURN] = g_signal_new ("begin-burn", G_TYPE_FROM_CLASS (object_class), G_SIGNAL_ACTION,
-                                      G_STRUCT_OFFSET (XfburnDiscContentClass, begin_burn),
-                                      NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
 }
 
 static void
@@ -272,6 +269,11 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   g_signal_connect (G_OBJECT (disc_content->priv->content), "button-press-event",
                     G_CALLBACK (cb_treeview_button_pressed), disc_content);
 
+#if 0                    
+  /* adding progress window */
+  disc_content->priv->progress = xfburn_adding_progress_new (); 
+#endif
+  
   /* disc usage */
   disc_content->priv->disc_usage = xfburn_disc_usage_new ();
   gtk_box_pack_start (GTK_BOX (disc_content), disc_content->priv->disc_usage, FALSE, FALSE, 5);
@@ -313,8 +315,11 @@ xfburn_disc_content_finalize (GObject * object)
 static void
 cb_begin_burn (XfburnDiscUsage * du, XfburnDiscContent * dc)
 {
-  g_signal_emit (G_OBJECT (dc), signals[BEGIN_BURN], 0);
+  XfburnMainWindow *mainwin = xfburn_main_window_get_instance ();
+
+  xfburn_main_window_burn_composition (mainwin, dc);
 }
+
 
 static gboolean
 cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDiscContent * dc)
@@ -591,6 +596,10 @@ add_file_to_list_with_name (const gchar *name, XfburnDiscContent * dc, GtkTreeMo
     GtkTreeIter *parent = NULL;
     GtkTreePath *tree_path = NULL;
 
+#if 0
+    xfburn_adding_progress_pulse (XFBURN_ADDING_PROGRESS (dc->priv->progress));
+#endif
+    
     /* find parent */
     switch (position){
       case GTK_TREE_VIEW_DROP_BEFORE:
@@ -741,7 +750,7 @@ add_file_to_list (XfburnDiscContent * dc, GtkTreeModel * model, const gchar * pa
                   GtkTreeIter * insertion, GtkTreeViewDropPosition position)
 {
   struct stat s;
-    gboolean ret = FALSE;
+  gboolean ret = FALSE;
   
   if ((stat (path, &s) == 0)) {
     gchar *basename = NULL;
@@ -787,6 +796,10 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   else if (sd->target == gdk_atom_intern ("text/plain", FALSE)) {
     const gchar *file = NULL;
 
+#if 0
+    gtk_widget_show (content->priv->progress);
+#endif
+    
     file = strtok ((gchar *) sd->data, "\n");
     while (file) {
       GtkTreeIter iter;
@@ -821,6 +834,9 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       file = strtok (NULL, "\n");
     }
 
+#if 0
+    gtk_widget_hide (content->priv->progress);
+#endif
     gtk_drag_finish (dc, FALSE, (dc->action == GDK_ACTION_COPY), t);
   }
 }

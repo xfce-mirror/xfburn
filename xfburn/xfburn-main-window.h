@@ -26,6 +26,8 @@
 
 #include <gtk/gtk.h>
 
+#include "xfburn-disc-content.h"
+
 G_BEGIN_DECLS
 #define XFBURN_TYPE_MAIN_WINDOW            (xfburn_main_window_get_type ())
 #define XFBURN_MAIN_WINDOW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindow))
@@ -55,7 +57,10 @@ struct _XfburnMainWindowClass
 };
 
 GtkType xfburn_main_window_get_type (void);
+
 GtkWidget *xfburn_main_window_new (void);
+XfburnMainWindow *xfburn_main_window_get_instance (void);
+void xfburn_main_window_burn_composition (XfburnMainWindow * window, XfburnDiscContent *dc);
 
 G_END_DECLS
 #endif
