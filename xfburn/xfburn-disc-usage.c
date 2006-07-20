@@ -142,6 +142,11 @@ xfburn_disc_usage_update_size (XfburnDiscUsage * disc_usage)
   gchar *size;
 
   fraction = disc_usage->size / datadisksizes[gtk_combo_box_get_active (GTK_COMBO_BOX (disc_usage->combo))].size;
+  if (fraction > 1.0)
+    fraction = 1.0;
+  if (fraction < 0.0)
+    fraction = 0.0;
+
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (disc_usage->progress_bar), fraction > 1.0 ? 1.0 : fraction);
 
   if (xfburn_settings_get_boolean ("human-readable-units", TRUE))

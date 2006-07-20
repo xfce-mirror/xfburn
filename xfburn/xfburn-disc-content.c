@@ -171,12 +171,6 @@ xfburn_disc_content_class_init (XfburnDiscContentClass * klass)
 }
 
 static void
-cb_row_deleted (GtkTreeModel *model, GtkTreePath  *path, XfburnDiscContentPrivate *priv)
-{
-  DBG ("%s", gtk_tree_path_to_string (path));
-}
-
-static void
 xfburn_disc_content_init (XfburnDiscContent * disc_content)
 {
   gint x, y;
@@ -242,8 +236,6 @@ xfburn_disc_content_init (XfburnDiscContent * disc_content)
   disc_content->priv->content = gtk_tree_view_new ();
   model = gtk_tree_store_new (DISC_CONTENT_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT);
-  g_signal_connect (G_OBJECT (model), "row-deleted", G_CALLBACK (cb_row_deleted), disc_content->priv);
-							  
 							  
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DISC_CONTENT_COLUMN_CONTENT,
                                    directory_tree_sortfunc, NULL, NULL);
@@ -486,7 +478,8 @@ disc_content_action_remove_selection (GtkAction * action, XfburnDiscContent * dc
   while (el) {
     GtkTreePath *path = NULL;
     GtkTreeIter *iter = NULL;
-    guint64 size;
+    GtkTreeIter parent, iter_temp;
+    guint64 size = 0;
 
     path = (GtkTreePath *) el->data;
     iter = g_new0 (GtkTreeIter, 1);
@@ -496,6 +489,24 @@ disc_content_action_remove_selection (GtkAction * action, XfburnDiscContent * dc
 
     gtk_tree_model_get (model, iter, DISC_CONTENT_COLUMN_SIZE, &size, -1);
     xfburn_disc_usage_sub_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), size);
+
+    iter_temp = *iter;
+    while (gtk_tree_model_iter_parent (model, &parent, &iter_temp)) {
+      guint64 old_size;
+      gchar *humansize = NULL;
+
+      /* updates parent directories size */
+      gtk_tree_model_get (model, &parent, DISC_CONTENT_COLUMN_SIZE, &old_size, -1);
+
+      humansize = xfburn_humanreadable_filesize (old_size - size);
+      gtk_tree_store_set (GTK_TREE_STORE (model), &parent, 
+			  DISC_CONTENT_COLUMN_HUMANSIZE, humansize,
+			  DISC_CONTENT_COLUMN_SIZE, old_size - size, -1);
+
+      iter_temp = parent;
+
+      g_free (humansize);
+    }
 
     gtk_tree_path_free (path);
     el = g_list_next (el);
@@ -639,7 +650,8 @@ add_file_to_list_with_name (const gchar *name, XfburnDiscContent * dc, GtkTreeMo
       gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                           DISC_CONTENT_COLUMN_ICON, icon_directory,
                           DISC_CONTENT_COLUMN_CONTENT, name,
-                          DISC_CONTENT_COLUMN_PATH, path, DISC_CONTENT_COLUMN_TYPE, DISC_CONTENT_TYPE_DIRECTORY, -1);
+                          DISC_CONTENT_COLUMN_PATH, path, DISC_CONTENT_COLUMN_TYPE, DISC_CONTENT_TYPE_DIRECTORY, 
+			  DISC_CONTENT_COLUMN_SIZE, (guint64) s.st_size, -1);
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (dc->priv->disc_usage), s.st_size);
 
       while ((filename = g_dir_read_name (dir))) {
