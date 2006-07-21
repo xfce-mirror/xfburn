@@ -30,7 +30,7 @@
 #include "xfburn-main-window.h"
 #include "xfburn-preferences-dialog.h"
 #include "xfburn-file-browser.h"
-#include "xfburn-disc-content.h"
+#include "xfburn-data-composition.h"
 #include "xfburn-blank-cd-dialog.h"
 #include "xfburn-copy-cd-dialog.h"
 #include "xfburn-burn-image-dialog.h"
@@ -40,8 +40,16 @@
 #define XFBURN_MAIN_WINDOW_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowPrivate))
 
 /* private struct */
-typedef struct {
+typedef struct {  
+  GtkActionGroup *action_group;
+  GtkUIManager *ui_manager;
+
   GtkWidget *vpaned;
+  
+  GtkWidget *menubar;
+  GtkWidget *toolbars;
+  GtkWidget *file_browser;
+  GtkWidget *data_composition;
 } XfburnMainWindowPrivate;
 
 /* prototypes */
@@ -59,6 +67,9 @@ static void xfburn_window_action_load (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_save (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
 
+static void xfburn_window_action_new_data_composition (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_new_audio_composition (GtkAction *, XfburnMainWindow *);
+
 static void xfburn_window_action_blank_cd (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_copy_cd (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_burn_image (GtkAction *, XfburnMainWindow *);
@@ -72,6 +83,11 @@ static void xfburn_window_action_show_content_toolbar (GtkToggleAction * action,
 static GtkWindowClass *parent_class = NULL;
 static const GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL,},
+  {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
+  {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), NULL, N_("New data composition"),
+    G_CALLBACK (xfburn_window_action_new_data_composition),},
+  {"new-audio-composition", "audio-x-generic", N_("New audio composition"), NULL, N_("New audio composition"),
+    G_CALLBACK (xfburn_window_action_new_audio_composition),},
   {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
    G_CALLBACK (xfburn_window_action_load),},
   {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"), 
@@ -185,26 +201,26 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   g_signal_connect (G_OBJECT (mainwin), "delete-event", G_CALLBACK (cb_delete_main_window), priv);
 
   /* create ui manager */
-  mainwin->action_group = gtk_action_group_new ("xfburn-main-window");
-  gtk_action_group_set_translation_domain (mainwin->action_group, GETTEXT_PACKAGE);
-  gtk_action_group_add_actions (mainwin->action_group, action_entries, G_N_ELEMENTS (action_entries),
+  priv->action_group = gtk_action_group_new ("xfburn-main-window");
+  gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
+  gtk_action_group_add_actions (priv->action_group, action_entries, G_N_ELEMENTS (action_entries),
                                 GTK_WIDGET (mainwin));
-  gtk_action_group_add_toggle_actions (mainwin->action_group, toggle_action_entries,
+  gtk_action_group_add_toggle_actions (priv->action_group, toggle_action_entries,
                                        G_N_ELEMENTS (toggle_action_entries), GTK_WIDGET (mainwin));
 
-  mainwin->ui_manager = gtk_ui_manager_new ();
-  gtk_ui_manager_insert_action_group (mainwin->ui_manager, mainwin->action_group, 0);
+  priv->ui_manager = gtk_ui_manager_new ();
+  gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
 
   xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
   file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn.ui");
 
   if (G_LIKELY (file != NULL)) {
     GError *error = NULL;
-    if (gtk_ui_manager_add_ui_from_file (mainwin->ui_manager, file, &error) == 0) {
+    if (gtk_ui_manager_add_ui_from_file (priv->ui_manager, file, &error) == 0) {
       g_warning ("Unable to load %s: %s", file, error->message);
       g_error_free (error);
     }
-    gtk_ui_manager_ensure_update (mainwin->ui_manager);
+    gtk_ui_manager_ensure_update (priv->ui_manager);
     g_free (file);
   }
   else {
@@ -212,7 +228,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   }
 
   /* accel group */
-  accel_group = gtk_ui_manager_get_accel_group (mainwin->ui_manager);
+  accel_group = gtk_ui_manager_get_accel_group (priv->ui_manager);
   gtk_window_add_accel_group (GTK_WINDOW (mainwin), accel_group);
 
   vbox = gtk_vbox_new (FALSE, 0);
@@ -220,10 +236,10 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   gtk_widget_show (vbox);
 
   /* menubar */
-  mainwin->menubar = gtk_ui_manager_get_widget (mainwin->ui_manager, "/main-menu");
-  if (G_LIKELY (mainwin->menubar != NULL)) {
-    gtk_box_pack_start (GTK_BOX (vbox), mainwin->menubar, FALSE, FALSE, 0);
-    gtk_widget_show (mainwin->menubar);
+  priv->menubar = gtk_ui_manager_get_widget (priv->ui_manager, "/main-menu");
+  if (G_LIKELY (priv->menubar != NULL)) {
+    gtk_box_pack_start (GTK_BOX (vbox), priv->menubar, FALSE, FALSE, 0);
+    gtk_widget_show (priv->menubar);
   }
 
   /* toolbar */
@@ -236,11 +252,11 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
     model = exo_toolbars_model_new ();
     exo_toolbars_model_set_actions (model, (gchar **) toolbar_actions, G_N_ELEMENTS (toolbar_actions));
     if (exo_toolbars_model_load_from_file (model, file, &error)) {
-      mainwin->toolbars = exo_toolbars_view_new_with_model (mainwin->ui_manager, model);
-      gtk_box_pack_start (GTK_BOX (vbox), mainwin->toolbars, FALSE, FALSE, 0);
-      gtk_widget_show (mainwin->toolbars);
+      priv->toolbars = exo_toolbars_view_new_with_model (priv->ui_manager, model);
+      gtk_box_pack_start (GTK_BOX (vbox), priv->toolbars, FALSE, FALSE, 0);
+      gtk_widget_show (priv->toolbars);
 
-      g_signal_connect (G_OBJECT (mainwin->toolbars), "customize", G_CALLBACK (cb_edit_toolbars_view), mainwin);
+      g_signal_connect (G_OBJECT (priv->toolbars), "customize", G_CALLBACK (cb_edit_toolbars_view), mainwin);
     }
     else {
       g_warning ("Unable to load %s: %s", file, error->message);
@@ -259,16 +275,16 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   gtk_widget_show (priv->vpaned);
 
   /* filebrowser */
-  mainwin->file_browser = xfburn_file_browser_new ();
-  gtk_paned_add1 (GTK_PANED (priv->vpaned), mainwin->file_browser);
-  gtk_widget_show (mainwin->file_browser);
+  priv->file_browser = xfburn_file_browser_new ();
+  gtk_paned_add1 (GTK_PANED (priv->vpaned), priv->file_browser);
+  gtk_widget_show (priv->file_browser);
 
-  gtk_paned_set_position (GTK_PANED (mainwin->file_browser), xfburn_settings_get_int ("hpaned-position", 250));
+  gtk_paned_set_position (GTK_PANED (priv->file_browser), xfburn_settings_get_int ("hpaned-position", 250));
 
   /* disc content */
-  mainwin->disc_content = xfburn_disc_content_new ();
-  gtk_paned_add2 (GTK_PANED (priv->vpaned), mainwin->disc_content);
-  gtk_widget_show (mainwin->disc_content);
+  priv->data_composition = xfburn_data_composition_new ();
+  gtk_paned_add2 (GTK_PANED (priv->vpaned), priv->data_composition);
+  gtk_widget_show (priv->data_composition);
   
   gtk_paned_set_position (GTK_PANED (priv->vpaned), xfburn_settings_get_int ("vpaned-position", 200));
 
@@ -319,7 +335,7 @@ cb_delete_main_window (XfburnMainWindow * mainwin, GdkEvent * event, XfburnMainW
   xfburn_settings_set_int ("main-window-height", y);
 
   xfburn_settings_set_int ("vpaned-position", gtk_paned_get_position (GTK_PANED (priv->vpaned)));
-  xfburn_settings_set_int ("hpaned-position", gtk_paned_get_position (GTK_PANED (mainwin->file_browser)));
+  xfburn_settings_set_int ("hpaned-position", gtk_paned_get_position (GTK_PANED (priv->file_browser)));
   gtk_main_quit ();
 
   return FALSE;
@@ -361,13 +377,31 @@ xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
 static void
 xfburn_window_action_load (GtkAction *action, XfburnMainWindow * window)
 {
-  xfburn_disc_content_load_from_file (XFBURN_DISC_CONTENT (window->disc_content), "/tmp/test.xml");
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  
+  xfburn_data_composition_load_from_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
 }
 
 static void
 xfburn_window_action_save (GtkAction *action, XfburnMainWindow * window)
 {
-  xfburn_disc_content_save_to_file (XFBURN_DISC_CONTENT (window->disc_content), "/tmp/test.xml");
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  
+  xfburn_data_composition_save_to_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
+}
+
+static void
+xfburn_window_action_new_data_composition (GtkAction *action, XfburnMainWindow * window)
+{
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+ 
+}
+
+static void
+xfburn_window_action_new_audio_composition (GtkAction *action, XfburnMainWindow * window)
+{
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+ 
 }
 
 static void
@@ -448,45 +482,53 @@ xfburn_window_action_preferences (GtkAction * action, XfburnMainWindow * window)
 static void
 xfburn_window_action_refresh_directorybrowser (GtkAction * action, XfburnMainWindow * window)
 {
-  xfburn_file_browser_refresh (XFBURN_FILE_BROWSER (window->file_browser));
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  
+  xfburn_file_browser_refresh (XFBURN_FILE_BROWSER (priv->file_browser));
 }
 
 static void
 xfburn_window_action_show_filebrowser (GtkToggleAction * action, XfburnMainWindow * window)
 {
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  
   xfburn_settings_set_boolean ("show-filebrowser", gtk_toggle_action_get_active (action));
   
   if (gtk_toggle_action_get_active (action)) {
-    gtk_widget_show (window->file_browser);  
+    gtk_widget_show (priv->file_browser);  
   }
   else {
-    gtk_widget_hide (window->file_browser);
+    gtk_widget_hide (priv->file_browser);
   }
 }
 
 static void
 xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window)
 {
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  
   xfburn_settings_set_boolean ("show-toolbar", gtk_toggle_action_get_active (action));
   
   if (gtk_toggle_action_get_active (action)) {
-    gtk_widget_show (window->toolbars);
+    gtk_widget_show (priv->toolbars);
   }
   else {
-    gtk_widget_hide (window->toolbars);
+    gtk_widget_hide (priv->toolbars);
   }
 }
 
 static void
 xfburn_window_action_show_content_toolbar (GtkToggleAction * action, XfburnMainWindow * window)
 {
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  
   xfburn_settings_set_boolean ("show-content-toolbar", gtk_toggle_action_get_active (action));
   
   if (gtk_toggle_action_get_active (action)) {
-    xfburn_disc_content_show_toolbar (XFBURN_DISC_CONTENT (window->disc_content));
+    xfburn_data_composition_show_toolbar (XFBURN_DATA_COMPOSITION (priv->data_composition));
   }
   else {
-    xfburn_disc_content_hide_toolbar (XFBURN_DISC_CONTENT (window->disc_content));
+    xfburn_data_composition_hide_toolbar (XFBURN_DATA_COMPOSITION (priv->data_composition));
   }
 }
 
@@ -508,15 +550,17 @@ xfburn_main_window_new (void)
   obj = g_object_new (xfburn_main_window_get_type (), NULL);
   
   if (obj) {
-    win = XFBURN_MAIN_WINDOW (obj);
-    instance = win;
+    XfburnMainWindowPrivate *priv;
+    
+    instance = win = XFBURN_MAIN_WINDOW (obj);
+    priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (win);
 
     /* load settings */
-    action = gtk_action_group_get_action (win->action_group, "show-filebrowser");
+    action = gtk_action_group_get_action (priv->action_group, "show-filebrowser");
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-filebrowser", TRUE));
-    action = gtk_action_group_get_action (win->action_group, "show-toolbar");
+    action = gtk_action_group_get_action (priv->action_group, "show-toolbar");
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-toolbar", TRUE));
-    action = gtk_action_group_get_action (win->action_group, "show-content-toolbar");
+    action = gtk_action_group_get_action (priv->action_group, "show-content-toolbar");
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-content-toolbar", TRUE));
   }
   
@@ -532,3 +576,10 @@ xfburn_main_window_get_instance ()
   return instance;
 }
 
+GtkUIManager *
+xfburn_main_window_get_ui_manager (XfburnMainWindow *window)
+{
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  
+  return priv->ui_manager;
+}

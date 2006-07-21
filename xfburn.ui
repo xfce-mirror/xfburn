@@ -10,6 +10,11 @@
   <!-- The main menu bar -->
   <menubar name="main-menu">
     <menu action="file-menu">
+      <menu action="new-composition">
+        <menuitem action="new-data-composition"/>
+        <menuitem action="new-audio-composition"/>
+      </menu>
+      <separator />
       <menuitem action="load-composition"/>
       <menuitem action="save-composition"/>
       <separator />

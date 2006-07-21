@@ -26,7 +26,7 @@
 
 #include <gtk/gtk.h>
 
-#include "xfburn-disc-content.h"
+#include "xfburn-data-composition.h"
 
 G_BEGIN_DECLS
 #define XFBURN_TYPE_MAIN_WINDOW            (xfburn_main_window_get_type ())
@@ -41,14 +41,6 @@ typedef struct _XfburnMainWindowClass XfburnMainWindowClass;
 struct _XfburnMainWindow
 {
   GtkWindow window;
-
-  GtkActionGroup *action_group;
-  GtkUIManager *ui_manager;
-
-  GtkWidget *menubar;
-  GtkWidget *toolbars;
-  GtkWidget *file_browser;
-  GtkWidget *disc_content;
 };
 
 struct _XfburnMainWindowClass
@@ -60,6 +52,8 @@ GtkType xfburn_main_window_get_type (void);
 
 GtkWidget *xfburn_main_window_new (void);
 XfburnMainWindow *xfburn_main_window_get_instance (void);
+
+GtkUIManager *xfburn_main_window_get_ui_manager (XfburnMainWindow *window);
 
 G_END_DECLS
 #endif

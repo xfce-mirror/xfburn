@@ -17,6 +17,7 @@ xfburn_headers = 							\
 	xfburn-burn-image-dialog.h					\
 	xfburn-burn-image-progress-dialog.h				\
 	xfburn-settings.h						\
+	xfburn-composition.h						\
 	xfburn-copy-cd-dialog.h						\
 	xfburn-copy-cd-progress-dialog.h				\
 	xfburn-create-iso-progress-dialog.h				\
@@ -24,7 +25,7 @@ xfburn_headers = 							\
 	xfburn-progress-dialog.h					\
 	xfburn-main-window.h						\
 	xfburn-file-browser.h						\
-	xfburn-disc-content.h						\
+	xfburn-data-composition.h					\
 	xfburn-disc-usage.h						\
 	xfburn-fs-browser.h						\
 	xfburn-directory-browser.h					\
@@ -41,6 +42,7 @@ xfburn_SOURCES =							\
 	xfburn-burn-composition-progress-dialog.c			\
 	xfburn-burn-image-dialog.c					\
 	xfburn-burn-image-progress-dialog.c				\
+	xfburn-composition.c						\
 	xfburn-create-iso-progress-dialog.c				\
 	xfburn-create-iso-from-composition-progress-dialog.c		\
 	xfburn-settings.c						\
@@ -50,7 +52,7 @@ xfburn_SOURCES =							\
 	xfburn-main.c 							\
 	xfburn-main-window.c 						\
 	xfburn-file-browser.c						\
-	xfburn-disc-content.c    	                             	\
+	xfburn-data-composition.c    	                             	\
 	xfburn-disc-usage.c						\
 	xfburn-fs-browser.c 	                                       	\
 	xfburn-directory-browser.c					\

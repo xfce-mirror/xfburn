@@ -34,7 +34,7 @@
 #endif
 
 #include "xfburn-directory-browser.h"
-#include "xfburn-disc-content.h"
+#include "xfburn-data-composition.h"
 #include "xfburn-utils.h"
 
 /* structs */
@@ -113,7 +113,7 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
   GtkCellRenderer *cell_icon, *cell_file;
   GtkTreeSelection *selection;
 
-  GtkTargetEntry gte[] = { {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN} };
+  GtkTargetEntry gte[] = { {"text/plain", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN} };
 
   browser->priv = g_new0 (XfburnDirectoryBrowserPrivate, 1);
     
@@ -188,7 +188,7 @@ static void
 cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
                           GtkSelectionData * data, guint info, guint time, gpointer user_data)
 {
-  if (info == DISC_CONTENT_DND_TARGET_TEXT_PLAIN) {
+  if (info == DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN) {
     GtkTreeSelection *selection;
     GtkTreeModel *model;
     GList *selected_rows;

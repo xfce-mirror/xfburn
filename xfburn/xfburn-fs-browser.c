@@ -29,7 +29,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "xfburn-fs-browser.h"
-#include "xfburn-disc-content.h"
+#include "xfburn-data-composition.h"
 #include "xfburn-utils.h"
 
 /* prototypes */
@@ -81,7 +81,7 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   GtkCellRenderer *cell_icon, *cell_directory;
   GtkTreeSelection *selection;
 
-  GtkTargetEntry gte[] = { {"text/plain", 0, DISC_CONTENT_DND_TARGET_TEXT_PLAIN} };
+  GtkTargetEntry gte[] = { {"text/plain", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN} };
 
   //  gtk_widget_set_size_request (GTK_WIDGET (browser), 200, 300);
 
@@ -199,7 +199,7 @@ static void
 cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
                           GtkSelectionData * data, guint info, guint time, gpointer user_data)
 {
-  if (info == DISC_CONTENT_DND_TARGET_TEXT_PLAIN) {
+  if (info == DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN) {
     GtkTreeSelection *selection;
     GtkTreeModel *model;
     GtkTreeIter iter;

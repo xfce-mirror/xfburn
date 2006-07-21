@@ -66,7 +66,7 @@ enum
 static guint signals[LAST_SIGNAL];
 
 /***************************/
-/* XfburnDiscContent class */
+/* XfburnDataComposition class */
 /***************************/
 GtkType
 xfburn_disc_usage_get_type (void)
