@@ -40,12 +40,18 @@ typedef struct {
 
   void (*show_custom_controls) (XfburnComposition *composition);
   void (*hide_custom_controls) (XfburnComposition *composition);
+  
+  void (*load) (XfburnComposition *composition, const gchar *file);
+  void (*save) (XfburnComposition *composition);
 } XfburnCompositionInterface;
 
 GType xfburn_composition_get_type (void);
 
 void xfburn_composition_show_custom_controls (XfburnComposition *composition);
 void xfburn_composition_hide_custom_controls (XfburnComposition *composition);
+
+void xfburn_composition_load (XfburnComposition *composition, const gchar *file);
+void xfburn_composition_save (XfburnComposition *composition);
 
 G_END_DECLS
 #endif

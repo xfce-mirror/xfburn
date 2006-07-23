@@ -27,27 +27,23 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_DATA_COMPOSITION            (xfburn_data_composition_get_type ())
 #define XFBURN_DATA_COMPOSITION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataComposition))
 #define XFBURN_DATA_COMPOSITION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataCompositionClass))
 #define XFBURN_IS_DATA_COMPOSITION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DATA_COMPOSITION))
 #define XFBURN_IS_DATA_COMPOSITION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DATA_COMPOSITION))
 #define XFBURN_DATA_COMPOSITION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataCompositionClass))
-typedef struct _XfburnDataComposition XfburnDataComposition;
-typedef struct _XfburnDataCompositionClass XfburnDataCompositionClass;
-typedef struct XfburnDataCompositionPrivate XfburnDataCompositionPrivate;
   
-struct _XfburnDataComposition
+typedef struct
 {
   GtkVBox vbox;
+} XfburnDataComposition;
 
-  XfburnDataCompositionPrivate *priv;
-};
-
-struct _XfburnDataCompositionClass
+typedef struct
 {
   GtkVBoxClass parent_class;
-};
+} XfburnDataCompositionClass;
 
 enum
 {
@@ -60,9 +56,6 @@ GtkType xfburn_data_composition_get_type (void);
 GtkWidget *xfburn_data_composition_new (void);
 void xfburn_data_composition_hide_toolbar (XfburnDataComposition *content);
 void xfburn_data_composition_show_toolbar (XfburnDataComposition *content);
-void xfburn_data_composition_load_from_file (XfburnDataComposition *dc, const gchar *filename);
-void xfburn_data_composition_save_to_file (XfburnDataComposition *dc, const gchar *filename);
-gboolean xfburn_data_composition_generate_file_list (XfburnDataComposition *dc, gchar **tmpfile);
 
 G_END_DECLS
 #endif

@@ -30,7 +30,7 @@
 #include "xfburn-main-window.h"
 #include "xfburn-preferences-dialog.h"
 #include "xfburn-file-browser.h"
-#include "xfburn-data-composition.h"
+#include "xfburn-compositions-notebook.h"
 #include "xfburn-blank-cd-dialog.h"
 #include "xfburn-copy-cd-dialog.h"
 #include "xfburn-burn-image-dialog.h"
@@ -44,12 +44,13 @@ typedef struct {
   GtkActionGroup *action_group;
   GtkUIManager *ui_manager;
 
-  GtkWidget *vpaned;
-  
   GtkWidget *menubar;
   GtkWidget *toolbars;
+  
+  GtkWidget *vpaned;
+  
   GtkWidget *file_browser;
-  GtkWidget *data_composition;
+  GtkWidget *compositions_notebook;
 } XfburnMainWindowPrivate;
 
 /* prototypes */
@@ -77,16 +78,15 @@ static void xfburn_window_action_burn_image (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_refresh_directorybrowser (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_show_filebrowser (GtkToggleAction *, XfburnMainWindow *);
 static void xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window);
-static void xfburn_window_action_show_content_toolbar (GtkToggleAction * action, XfburnMainWindow * window);
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
 static const GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL,},
   {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-  {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), NULL, N_("New data composition"),
+  {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
     G_CALLBACK (xfburn_window_action_new_data_composition),},
-  {"new-audio-composition", "audio-x-generic", N_("New audio composition"), NULL, N_("New audio composition"),
+  {"new-audio-composition", "audio-x-generic", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
     G_CALLBACK (xfburn_window_action_new_audio_composition),},
   {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
    G_CALLBACK (xfburn_window_action_load),},
@@ -118,8 +118,6 @@ static const GtkToggleActionEntry toggle_action_entries[] = {
    G_CALLBACK (xfburn_window_action_show_filebrowser), TRUE,},
   {"show-toolbar", NULL, N_("Show toolbar"), NULL, N_("Show/hide the toolbar"),
    G_CALLBACK (xfburn_window_action_show_toolbar), TRUE,},
-  {"show-content-toolbar", NULL, N_("Show disc content toolbar"), NULL, N_("Show/hide the disc content toolbar"),
-   G_CALLBACK (xfburn_window_action_show_content_toolbar), TRUE,},
 };
 
 static const gchar *toolbar_actions[] = {
@@ -280,11 +278,11 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   gtk_widget_show (priv->file_browser);
 
   gtk_paned_set_position (GTK_PANED (priv->file_browser), xfburn_settings_get_int ("hpaned-position", 250));
-
-  /* disc content */
-  priv->data_composition = xfburn_data_composition_new ();
-  gtk_paned_add2 (GTK_PANED (priv->vpaned), priv->data_composition);
-  gtk_widget_show (priv->data_composition);
+  
+  /* compositions notebook */
+  priv->compositions_notebook = xfburn_compositions_notebook_new ();
+  gtk_widget_show (priv->compositions_notebook);
+  gtk_paned_add2 (GTK_PANED (priv->vpaned), priv->compositions_notebook);
   
   gtk_paned_set_position (GTK_PANED (priv->vpaned), xfburn_settings_get_int ("vpaned-position", 200));
 
@@ -379,7 +377,7 @@ xfburn_window_action_load (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
-  xfburn_data_composition_load_from_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
+  //xfburn_data_composition_load_from_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
 }
 
 static void
@@ -387,7 +385,7 @@ xfburn_window_action_save (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
-  xfburn_data_composition_save_to_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
+  //xfburn_data_composition_save_to_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
 }
 
 static void
@@ -395,6 +393,7 @@ xfburn_window_action_new_data_composition (GtkAction *action, XfburnMainWindow *
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
  
+  xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_DATA_COMPOSITION);
 }
 
 static void
@@ -517,21 +516,6 @@ xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * 
   }
 }
 
-static void
-xfburn_window_action_show_content_toolbar (GtkToggleAction * action, XfburnMainWindow * window)
-{
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  
-  xfburn_settings_set_boolean ("show-content-toolbar", gtk_toggle_action_get_active (action));
-  
-  if (gtk_toggle_action_get_active (action)) {
-    xfburn_data_composition_show_toolbar (XFBURN_DATA_COMPOSITION (priv->data_composition));
-  }
-  else {
-    xfburn_data_composition_hide_toolbar (XFBURN_DATA_COMPOSITION (priv->data_composition));
-  }
-}
-
 /******************/
 /* public methods */
 /******************/
@@ -560,8 +544,6 @@ xfburn_main_window_new (void)
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-filebrowser", TRUE));
     action = gtk_action_group_get_action (priv->action_group, "show-toolbar");
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-toolbar", TRUE));
-    action = gtk_action_group_get_action (priv->action_group, "show-content-toolbar");
-    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-content-toolbar", TRUE));
   }
   
   return obj;

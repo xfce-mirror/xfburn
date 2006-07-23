@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-22 00:10+0900\n"
+"POT-Creation-Date: 2006-07-22 23:49+0200\n"
 "PO-Revision-Date: 2006-05-07 20:09+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -16,71 +16,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:101
-#: ../xfburn/xfburn-blank-cd-dialog.c:104
+#: ../xfburn/xfburn-adding-progress.c:89
+msgid "Adding files to the compilation"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-cd-dialog.c:102
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:146
-#: ../xfburn/xfburn-main-window.c:84
+#: ../xfburn/xfburn-main-window.c:106
 msgid "Blank CD-RW"
 msgstr "Διαγραφή CD-RW"
 
-#. burning devices list
-#. devices list
-#. burning devices list
-#: ../xfburn/xfburn-blank-cd-dialog.c:108
-#: ../xfburn/xfburn-burn-composition-dialog.c:131
-#: ../xfburn/xfburn-burn-image-dialog.c:124
-#: ../xfburn/xfburn-copy-cd-dialog.c:141
+#: ../xfburn/xfburn-blank-cd-dialog.c:112
+#: ../xfburn/xfburn-burn-composition-dialog.c:130
+#: ../xfburn/xfburn-burn-image-dialog.c:126
+#: ../xfburn/xfburn-copy-cd-dialog.c:143
 msgid "Burning device"
 msgstr "Συσκευή εγγραφής"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:136
-#: ../xfburn/xfburn-burn-composition-dialog.c:158
-#: ../xfburn/xfburn-burn-image-dialog.c:151
-#: ../xfburn/xfburn-copy-cd-dialog.c:159
+#: ../xfburn/xfburn-burn-composition-dialog.c:153
+#: ../xfburn/xfburn-burn-image-dialog.c:149
+#: ../xfburn/xfburn-copy-cd-dialog.c:157
 msgid "_Speed :"
 msgstr "_Ταχύτητα :"
 
-#. blank type
-#: ../xfburn/xfburn-blank-cd-dialog.c:161
-msgid "Blank type"
-msgstr "Τύπος διαγραφής"
-
-#: ../xfburn/xfburn-blank-cd-dialog.c:166
+#: ../xfburn/xfburn-blank-cd-dialog.c:162
 msgid "Fast"
 msgstr "Γρήγορη"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:167
+#: ../xfburn/xfburn-blank-cd-dialog.c:163
 msgid "Complete"
 msgstr "Ολοκληρώθηκε"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:168
+#: ../xfburn/xfburn-blank-cd-dialog.c:164
 msgid "Reopen last session"
 msgstr "Άνοιγμα της προηγούμενης συνεδρίας"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:169
+#: ../xfburn/xfburn-blank-cd-dialog.c:165
 msgid "Erase last session"
 msgstr "Διαγραφή της προηγούμενης συνεδρίας"
 
-#. options
-#: ../xfburn/xfburn-blank-cd-dialog.c:175
-#: ../xfburn/xfburn-burn-composition-dialog.c:202
-#: ../xfburn/xfburn-burn-image-dialog.c:195
-#: ../xfburn/xfburn-copy-cd-dialog.c:184
+#: ../xfburn/xfburn-blank-cd-dialog.c:169
+msgid "Blank type"
+msgstr "Τύπος διαγραφής"
+
+#: ../xfburn/xfburn-blank-cd-dialog.c:177
+#: ../xfburn/xfburn-burn-composition-dialog.c:200
+#: ../xfburn/xfburn-burn-image-dialog.c:196
+#: ../xfburn/xfburn-copy-cd-dialog.c:185
 msgid "Options"
 msgstr "Επιλογές"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:183
+#: ../xfburn/xfburn-blank-cd-dialog.c:181
 msgid "_Force"
 msgstr "_Εξαναγκασμός"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:187
-#: ../xfburn/xfburn-burn-composition-dialog.c:210
-#: ../xfburn/xfburn-burn-image-dialog.c:203
-#: ../xfburn/xfburn-copy-cd-dialog.c:192
+#: ../xfburn/xfburn-blank-cd-dialog.c:185
+#: ../xfburn/xfburn-burn-composition-dialog.c:204
+#: ../xfburn/xfburn-burn-image-dialog.c:200
+#: ../xfburn/xfburn-copy-cd-dialog.c:189
 msgid "E_ject disk"
 msgstr "Ε_ξαγωγή δίσκου:"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:197
+#: ../xfburn/xfburn-blank-cd-dialog.c:195
 msgid "_Blank"
 msgstr "_Διαγραφή"
 
@@ -92,55 +90,53 @@ msgstr "Διαγραφή..."
 msgid "Performing OPC..."
 msgstr "Εκτέλεση OPC..."
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:123
-#: ../xfburn/xfburn-burn-composition-dialog.c:126
+#: ../xfburn/xfburn-burn-composition-dialog.c:122
 msgid "Burn Composition"
 msgstr "Εγγραφή σύνθεσης"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:187
-#: ../xfburn/xfburn-burn-image-dialog.c:180
+#: ../xfburn/xfburn-burn-composition-dialog.c:182
+#: ../xfburn/xfburn-burn-image-dialog.c:178
 msgid "Write _mode :"
 msgstr "Λειτουργία _εγγραφής:"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:192
-#: ../xfburn/xfburn-burn-image-dialog.c:185
+#: ../xfburn/xfburn-burn-composition-dialog.c:187
+#: ../xfburn/xfburn-burn-image-dialog.c:183
 msgid "default"
 msgstr "εξ ορισμού"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:215
-#: ../xfburn/xfburn-burn-image-dialog.c:208
-#: ../xfburn/xfburn-copy-cd-dialog.c:197
+#: ../xfburn/xfburn-burn-composition-dialog.c:209
+#: ../xfburn/xfburn-burn-image-dialog.c:205
+#: ../xfburn/xfburn-copy-cd-dialog.c:194
 msgid "_Dummy write"
 msgstr "_Δοκιμαστική εγγραφή"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:219
-#: ../xfburn/xfburn-burn-image-dialog.c:212
+#: ../xfburn/xfburn-burn-composition-dialog.c:213
+#: ../xfburn/xfburn-burn-image-dialog.c:209
 msgid "Burn_Free"
 msgstr ""
 
 #. create ISO ?
-#: ../xfburn/xfburn-burn-composition-dialog.c:225
-#: ../xfburn/xfburn-copy-cd-dialog.c:206
+#: ../xfburn/xfburn-burn-composition-dialog.c:219
+#: ../xfburn/xfburn-copy-cd-dialog.c:203
 msgid "Only create _ISO"
 msgstr "Δημιουργία αρχείου _ISO μόνο"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:262
+#: ../xfburn/xfburn-burn-composition-dialog.c:256
 msgid "_Burn Composition"
 msgstr "_Εγγραφή σύνθεσης"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:107
-#: ../xfburn/xfburn-burn-image-dialog.c:110
+#: ../xfburn/xfburn-burn-image-dialog.c:108
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:148
 msgid "Burn CD image"
 msgstr "Εγγραφή εικόνας CD"
 
 #. file
 #: ../xfburn/xfburn-burn-image-dialog.c:115
-#: ../xfburn/xfburn-burn-image-dialog.c:119
+#: ../xfburn/xfburn-burn-image-dialog.c:118
 msgid "Image to burn"
 msgstr "Εικόνα προς εγγραφή"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:222
+#: ../xfburn/xfburn-burn-image-dialog.c:219
 msgid "_Burn image"
 msgstr "_Εγγραφή εικόνας"
 
@@ -162,22 +158,25 @@ msgstr ""
 msgid "Writing ISO..."
 msgstr "Εγγραφή ISO..."
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:119
-#: ../xfburn/xfburn-copy-cd-dialog.c:122
+#: ../xfburn/xfburn-compositions-notebook.c:117
+#, fuzzy
+msgid "Data compilation"
+msgstr "Άνοιγμα σύνθεσης"
+
+#: ../xfburn/xfburn-copy-cd-dialog.c:120
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:176
 msgid "Copy data CD"
 msgstr "Αντιγραφή CD δεδομένων"
 
-#. reader devices list
-#: ../xfburn/xfburn-copy-cd-dialog.c:127
+#: ../xfburn/xfburn-copy-cd-dialog.c:130
 msgid "CD Reader device"
 msgstr "Συσκευή Ανάγνωσης CD"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:201
+#: ../xfburn/xfburn-copy-cd-dialog.c:198
 msgid "On the _fly"
 msgstr ""
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:242
+#: ../xfburn/xfburn-copy-cd-dialog.c:239
 msgid "_Copy CD"
 msgstr "Α_ντιγραφή CD"
 
@@ -206,78 +205,82 @@ msgstr "Δημιουργία ISO από σύνθεση"
 msgid "Create ISO from CD"
 msgstr "Δημιουργία ISO από CD"
 
-#: ../xfburn/xfburn-directory-browser.c:51
-msgid "Folder"
-msgstr "Φάκελος"
-
-#: ../xfburn/xfburn-directory-browser.c:125
-#: ../xfburn/xfburn-directory-browser.c:291
-msgid "File"
-msgstr "Αρχείο"
-
-#: ../xfburn/xfburn-directory-browser.c:138
-#: ../xfburn/xfburn-disc-content.c:237
-msgid "Size"
-msgstr "Μέγεθος"
-
-#: ../xfburn/xfburn-directory-browser.c:140
-msgid "Type"
-msgstr "Τύπος"
-
-#: ../xfburn/xfburn-disc-content.c:95
+#: ../xfburn/xfburn-data-composition.c:130
 msgid "Add"
 msgstr "Προσθήκη"
 
-#: ../xfburn/xfburn-disc-content.c:95
+#: ../xfburn/xfburn-data-composition.c:130
 msgid "Add the selected file(s) to the CD"
 msgstr "Προσθήκη των επιλεγμένων αρχείων στο CD"
 
-#: ../xfburn/xfburn-disc-content.c:96
+#: ../xfburn/xfburn-data-composition.c:131
 msgid "Remove"
 msgstr "Διαγραφή"
 
-#: ../xfburn/xfburn-disc-content.c:96
+#: ../xfburn/xfburn-data-composition.c:131
 msgid "Remove the selected file(s) from the CD"
 msgstr "Διαγραφή των επιλεγμένων αρχείων από το CD"
 
-#: ../xfburn/xfburn-disc-content.c:98
+#: ../xfburn/xfburn-data-composition.c:133
 msgid "Clear"
 msgstr "Καθάρισμα"
 
-#: ../xfburn/xfburn-disc-content.c:98
+#: ../xfburn/xfburn-data-composition.c:133
 msgid "Clear the content of the CD"
 msgstr "Εκκαθάριση περιεχομένων CD"
 
-#: ../xfburn/xfburn-disc-content.c:100
+#: ../xfburn/xfburn-data-composition.c:135
 msgid "Import"
 msgstr "Εισαγωγή"
 
-#: ../xfburn/xfburn-disc-content.c:100
+#: ../xfburn/xfburn-data-composition.c:135
 msgid "Import existing session"
 msgstr "Εισαγωγή υπάρχουσας συνεδρίας"
 
-#: ../xfburn/xfburn-disc-content.c:101
+#: ../xfburn/xfburn-data-composition.c:136
 msgid "Rename"
 msgstr "Μετονομασία"
 
-#: ../xfburn/xfburn-disc-content.c:101
+#: ../xfburn/xfburn-data-composition.c:136
 msgid "Rename the selected file"
 msgstr "Μετονομασία του επιλεγμένου αρχείου"
 
-#: ../xfburn/xfburn-disc-content.c:222
+#: ../xfburn/xfburn-data-composition.c:285
 msgid "Contents"
 msgstr "Περιεχόμενα"
 
-#: ../xfburn/xfburn-disc-content.c:240
+#: ../xfburn/xfburn-data-composition.c:300
+#: ../xfburn/xfburn-directory-browser.c:142
+msgid "Size"
+msgstr "Μέγεθος"
+
+#: ../xfburn/xfburn-data-composition.c:303
 msgid "Local Path"
 msgstr "Τοπική διαδρομή"
+
+#: ../xfburn/xfburn-data-composition.c:506
+#: ../xfburn/xfburn-data-composition.c:707
+msgid "A file with the same name is already present in the compilation"
+msgstr ""
+
+#: ../xfburn/xfburn-directory-browser.c:55
+msgid "Folder"
+msgstr "Φάκελος"
+
+#: ../xfburn/xfburn-directory-browser.c:129
+#: ../xfburn/xfburn-directory-browser.c:329
+msgid "File"
+msgstr "Αρχείο"
+
+#: ../xfburn/xfburn-directory-browser.c:144
+msgid "Type"
+msgstr "Τύπος"
 
 #: ../xfburn/xfburn-disc-usage.c:128
 msgid "Burn Data CD"
 msgstr "Εγγραφή CD δεδομένων"
 
-#: ../xfburn/xfburn-fs-browser.c:94
-#: ../xfburn/xfburn-fs-browser.c:265
+#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:265
 msgid "Filesystem"
 msgstr "Σύστημα αρχείων"
 
@@ -287,201 +290,217 @@ msgstr "Σύστημα αρχείων"
 msgid "%s's home"
 msgstr "%s"
 
-#: ../xfburn/xfburn-main-window.c:68
+#: ../xfburn/xfburn-main-window.c:85
 msgid "_File"
 msgstr "_Αρχείο"
 
-#: ../xfburn/xfburn-main-window.c:69
+#: ../xfburn/xfburn-main-window.c:86
+#, fuzzy
+msgid "_New composition"
+msgstr "Αποθήκευση σύνθεσης"
+
+#: ../xfburn/xfburn-main-window.c:86
+#, fuzzy
+msgid "Create a new composition"
+msgstr "Δημιουργία ISO από σύνθεση"
+
+#: ../xfburn/xfburn-main-window.c:87
+#, fuzzy
+msgid "New data composition"
+msgstr "Αποθήκευση σύνθεσης"
+
+#: ../xfburn/xfburn-main-window.c:89
+#, fuzzy
+msgid "New audio composition"
+msgstr "Άνοιγμα σύνθεσης"
+
+#: ../xfburn/xfburn-main-window.c:91
 msgid "Load composition"
 msgstr "Άνοιγμα σύνθεσης"
 
-#: ../xfburn/xfburn-main-window.c:71
+#: ../xfburn/xfburn-main-window.c:93
 msgid "Save composition"
 msgstr "Αποθήκευση σύνθεσης"
 
-#: ../xfburn/xfburn-main-window.c:73
-#: ../xfburn/xfburn-main-window.c:355
+#: ../xfburn/xfburn-main-window.c:95 ../xfburn/xfburn-main-window.c:409
 msgid "_Quit"
 msgstr "Έ_ξοδος"
 
-#: ../xfburn/xfburn-main-window.c:73
+#: ../xfburn/xfburn-main-window.c:95
 msgid "Quit Xfburn"
 msgstr "Έξοδος από την εφαρμογή"
 
-#: ../xfburn/xfburn-main-window.c:74
+#: ../xfburn/xfburn-main-window.c:96
 msgid "_Edit"
 msgstr "_Επεξεργασία"
 
-#: ../xfburn/xfburn-main-window.c:75
+#: ../xfburn/xfburn-main-window.c:97
 msgid "Prefere_nces"
 msgstr "Προτι_μήσεις"
 
-#: ../xfburn/xfburn-main-window.c:75
+#: ../xfburn/xfburn-main-window.c:97
 msgid "Show preferences dialog"
 msgstr "Άνοιγμα του διαλόγου προτιμήσεων"
 
-#: ../xfburn/xfburn-main-window.c:77
+#: ../xfburn/xfburn-main-window.c:99
 msgid "_Actions"
 msgstr "Ε_νέργειες"
 
-#: ../xfburn/xfburn-main-window.c:78
+#: ../xfburn/xfburn-main-window.c:100
 msgid "_View"
 msgstr "_Προβολή"
 
-#: ../xfburn/xfburn-main-window.c:79
+#: ../xfburn/xfburn-main-window.c:101
 msgid "Refresh"
 msgstr "Ανανέωση"
 
-#: ../xfburn/xfburn-main-window.c:79
+#: ../xfburn/xfburn-main-window.c:101
 msgid "Refresh file list"
 msgstr "Λήψη της λίστας αρχείων"
 
-#: ../xfburn/xfburn-main-window.c:81
+#: ../xfburn/xfburn-main-window.c:103
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: ../xfburn/xfburn-main-window.c:82
+#: ../xfburn/xfburn-main-window.c:104
 msgid "_About"
 msgstr "_Περί"
 
-#: ../xfburn/xfburn-main-window.c:82
+#: ../xfburn/xfburn-main-window.c:104
 msgid "Display information about Xfburn"
 msgstr "Εμφάνιση πληροφοριών σχετικά με το Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:86
+#: ../xfburn/xfburn-main-window.c:108
 msgid "Format DVD-RW"
 msgstr "Μορφοποίηση DVD-RW"
 
-#: ../xfburn/xfburn-main-window.c:87
+#: ../xfburn/xfburn-main-window.c:109
 msgid "Copy Data CD"
 msgstr "Αντιγραφή CD δεδομένων"
 
-#: ../xfburn/xfburn-main-window.c:89
+#: ../xfburn/xfburn-main-window.c:111
 msgid "Copy Audio CD"
 msgstr "Αντιγραφή CD ήχου"
 
-#: ../xfburn/xfburn-main-window.c:90
+#: ../xfburn/xfburn-main-window.c:112
 msgid "Burn CD Image"
 msgstr "Εγγραφή εικόνας CD"
 
-#: ../xfburn/xfburn-main-window.c:95
+#: ../xfburn/xfburn-main-window.c:117
 msgid "Show file browser"
 msgstr "Προβολή περιηγητή αρχείων"
 
-#: ../xfburn/xfburn-main-window.c:95
+#: ../xfburn/xfburn-main-window.c:117
 msgid "Show/hide the file browser"
 msgstr "Προβολή/απόκρυψη περιηγητή αρχείων"
 
-#: ../xfburn/xfburn-main-window.c:97
+#: ../xfburn/xfburn-main-window.c:119
 msgid "Show toolbar"
 msgstr "Προβολή εργαλειοθήκης"
 
-#: ../xfburn/xfburn-main-window.c:97
+#: ../xfburn/xfburn-main-window.c:119
 msgid "Show/hide the toolbar"
 msgstr "Προβολή/απόκρυψη εργαλειοθήκης"
 
-#: ../xfburn/xfburn-main-window.c:99
-msgid "Show disc content toolbar"
-msgstr "Προβολή εργαλειοθήκης περιεχομένων δίσκου"
-
-#: ../xfburn/xfburn-main-window.c:99
-msgid "Show/hide the disc content toolbar"
-msgstr "Προβολή/απόκρυψη εργαλειοθήκης περιεχομένων δίσκου"
-
-#: ../xfburn/xfburn-main-window.c:278
+#: ../xfburn/xfburn-main-window.c:319
 msgid "Toolbar Editor"
 msgstr "Επεξεργαστής εργαλειοθήκης"
 
-#: ../xfburn/xfburn-main-window.c:355
+#: ../xfburn/xfburn-main-window.c:409
 msgid "Are sure you want to quit?"
 msgstr "Είστε βέβαιοι ότι θέλετε να εξέλθετε;"
 
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: ../xfburn/xfburn-main-window.c:377
+#: ../xfburn/xfburn-main-window.c:445
 msgid "Another cd burning tool"
 msgstr "Ένα ακόμη εργαλείο εγγραφής cd"
 
-#: ../xfburn/xfburn-main-window.c:380
+#: ../xfburn/xfburn-main-window.c:448
 msgid "Author/Maintainer"
 msgstr "Δημιουργός"
 
-#: ../xfburn/xfburn-main-window.c:386
+#: ../xfburn/xfburn-main-window.c:454
 #, c-format
 msgid "Translator (%s)"
 msgstr "Μεταφραστής (%s)"
 
-#: ../xfburn/xfburn-main.c:151
-#: ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:54 ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-preferences-dialog.c:111
-msgid "Xfburn preferences"
-msgstr "Προτιμήσεις Xfburn"
+#: ../xfburn/xfburn-preferences-dialog.c:122
+#, fuzzy
+msgid "Preferences"
+msgstr "Προτι_μήσεις"
 
-#: ../xfburn/xfburn-preferences-dialog.c:124
-msgid "General"
-msgstr "Γενικές"
+#: ../xfburn/xfburn-preferences-dialog.c:123
+msgid "Tune how Xfburn behaves"
+msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:130
-#: ../xfburn/xfburn-preferences-dialog.c:138
+#: ../xfburn/xfburn-preferences-dialog.c:168
+#: ../xfburn/xfburn-preferences-dialog.c:172
 msgid "Temporary directory"
 msgstr "Προσωρινός κατάλογος"
 
-#: ../xfburn/xfburn-preferences-dialog.c:142
+#: ../xfburn/xfburn-preferences-dialog.c:176
 msgid "_Clean temporary directory on exit"
 msgstr "_Καθαρισμός προσωρινού καταλόγου κατά την έξοδο"
 
-#: ../xfburn/xfburn-preferences-dialog.c:146
+#: ../xfburn/xfburn-preferences-dialog.c:183
 msgid "File browser"
 msgstr "Περιηγητής αρχείων"
 
-#: ../xfburn/xfburn-preferences-dialog.c:154
+#: ../xfburn/xfburn-preferences-dialog.c:187
 msgid "Show _hidden files"
 msgstr "Εμφάνιση _κρυφών αρχείων"
 
-#: ../xfburn/xfburn-preferences-dialog.c:158
+#: ../xfburn/xfburn-preferences-dialog.c:191
 msgid "Show human_readable filesizes"
 msgstr "Ανθρωπίνως α_ναγνώσιμα μεγέθη αρχείων"
 
-#: ../xfburn/xfburn-preferences-dialog.c:168
+#: ../xfburn/xfburn-preferences-dialog.c:202
+msgid "General"
+msgstr "Γενικές"
+
+#: ../xfburn/xfburn-preferences-dialog.c:213
+#: ../xfburn/xfburn-preferences-dialog.c:288
 msgid "Devices"
 msgstr "Συσκευές"
 
-#: ../xfburn/xfburn-preferences-dialog.c:174
+#: ../xfburn/xfburn-preferences-dialog.c:222
 msgid "Detected devices"
 msgstr "Εντοπισμένες συσκευές"
 
-#: ../xfburn/xfburn-preferences-dialog.c:198
+#: ../xfburn/xfburn-preferences-dialog.c:243
 msgid "Name"
 msgstr "Όνομα"
 
-#: ../xfburn/xfburn-preferences-dialog.c:211
+#: ../xfburn/xfburn-preferences-dialog.c:256
 msgid "Id"
 msgstr "Id"
 
-#: ../xfburn/xfburn-preferences-dialog.c:213
+#: ../xfburn/xfburn-preferences-dialog.c:258
 msgid "Node"
 msgstr "Κόμβος"
 
-#: ../xfburn/xfburn-preferences-dialog.c:215
+#: ../xfburn/xfburn-preferences-dialog.c:260
 msgid "Write CD-R"
 msgstr "Εγγραφή CD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:217
+#: ../xfburn/xfburn-preferences-dialog.c:262
 msgid "Write CD-RW"
 msgstr "Εγγραφή CD-RW"
 
-#: ../xfburn/xfburn-preferences-dialog.c:220
+#: ../xfburn/xfburn-preferences-dialog.c:265
 msgid "Write DVD-R"
 msgstr "Εγγραφή DVD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:223
+#: ../xfburn/xfburn-preferences-dialog.c:268
 msgid "Write DVD-RAM"
 msgstr "Εγγραφή DVD-RAM"
 
-#: ../xfburn/xfburn-preferences-dialog.c:231
+#: ../xfburn/xfburn-preferences-dialog.c:276
 msgid "Sc_an for devices"
 msgstr "Έρευν_α για συσκευές"
 
@@ -550,3 +569,11 @@ msgstr "Επιλογή εντολής"
 msgid "CD and DVD burning application"
 msgstr "Εφαρμογή εγγραφής CD και DVD"
 
+#~ msgid "Show disc content toolbar"
+#~ msgstr "Προβολή εργαλειοθήκης περιεχομένων δίσκου"
+
+#~ msgid "Show/hide the disc content toolbar"
+#~ msgstr "Προβολή/απόκρυψη εργαλειοθήκης περιεχομένων δίσκου"
+
+#~ msgid "Xfburn preferences"
+#~ msgstr "Προτιμήσεις Xfburn"

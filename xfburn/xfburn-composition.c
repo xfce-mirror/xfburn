@@ -76,3 +76,15 @@ xfburn_composition_hide_custom_controls (XfburnComposition *composition)
 {
   return XFBURN_COMPOSITION_GET_INTERFACE (composition)->hide_custom_controls (composition);
 }
+
+void
+xfburn_composition_load (XfburnComposition *composition, const gchar *file)
+{
+  return XFBURN_COMPOSITION_GET_INTERFACE (composition)->load (composition, file);
+}
+
+void
+xfburn_composition_save (XfburnComposition *composition)
+{
+  return XFBURN_COMPOSITION_GET_INTERFACE (composition)->save (composition);
+}
