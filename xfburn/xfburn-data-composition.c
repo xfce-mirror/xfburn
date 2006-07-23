@@ -110,6 +110,7 @@ typedef enum
 typedef struct
 {
   gchar *filename;
+  gboolean modified;
   
   GtkActionGroup *action_group;
   GtkUIManager *ui_manager;
@@ -175,7 +176,7 @@ xfburn_data_composition_get_type (void)
     
     data_composition_type = g_type_register_static (GTK_TYPE_VBOX, "XfburnDataComposition", &data_composition_info, 0);
     
-    g_type_add_interface_static (data_composition_type, XFBURN_COMPOSITION_TYPE, &composition_info);
+    g_type_add_interface_static (data_composition_type, XFBURN_TYPE_COMPOSITION, &composition_info);
   }
 
   return data_composition_type;
@@ -658,6 +659,27 @@ content_drag_data_get_cb (GtkWidget * widget, GdkDragContext * dc,
   }
 }
 
+static void
+set_modified (XfburnDataCompositionPrivate *priv)
+{
+  if (!(priv->modified)) {
+    XfburnMainWindow *mainwin;
+    GtkUIManager *ui_manager;
+    GtkActionGroup *action_group;
+    GtkAction *action;
+  
+    mainwin = xfburn_main_window_get_instance ();
+    ui_manager = xfburn_main_window_get_ui_manager (mainwin);
+  
+    action_group = (GtkActionGroup *) gtk_ui_manager_get_action_groups (ui_manager)->data;
+    
+    action = gtk_action_group_get_action (action_group, "save-composition");
+    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
+  
+    priv->modified = TRUE;
+  }
+}
+
 static gboolean
 add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTreeModel * model, const gchar * path,
                             GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position)
@@ -814,6 +836,7 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
     g_free (humansize);
     g_free (parent);
 
+    set_modified (priv);
     return TRUE;
   }
   
@@ -1175,6 +1198,12 @@ save_to_file (XfburnComposition * composition)
   CompositionSaveInfo info = {};
   gint i;
     
+  if (!(priv->filename)) {
+    priv->filename = g_strdup ("/tmp/gna");
+    
+    g_signal_emit_by_name (G_OBJECT (composition), "name-changed", priv->filename);
+  }
+  
   file_content = fopen (priv->filename, "w+");
   fprintf (file_content, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n");
   fprintf (file_content, "<xfburn-composition version=\"0.1\">\n");

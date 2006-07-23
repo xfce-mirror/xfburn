@@ -83,11 +83,13 @@ static void xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnM
 static GtkWindowClass *parent_class = NULL;
 static const GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL,},
-  {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-  {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
+  /*{"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},*/
+  {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"), 
+    G_CALLBACK (xfburn_window_action_new_data_composition),},
+  /*{"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
     G_CALLBACK (xfburn_window_action_new_data_composition),},
   {"new-audio-composition", "audio-x-generic", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
-    G_CALLBACK (xfburn_window_action_new_audio_composition),},
+    G_CALLBACK (xfburn_window_action_new_audio_composition),},*/
   {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
    G_CALLBACK (xfburn_window_action_load),},
   {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"), 
@@ -121,6 +123,7 @@ static const GtkToggleActionEntry toggle_action_entries[] = {
 };
 
 static const gchar *toolbar_actions[] = {
+  "new-composition",
   "blank-cd",
   //"format-dvd",
   "copy-data",
@@ -385,7 +388,7 @@ xfburn_window_action_save (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
-  //xfburn_data_composition_save_to_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
+  xfburn_compositions_notebook_save_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook));
 }
 
 static void
@@ -545,6 +548,8 @@ xfburn_main_window_new (void)
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-filebrowser", TRUE));
     action = gtk_action_group_get_action (priv->action_group, "show-toolbar");
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-toolbar", TRUE));
+    action = gtk_action_group_get_action (priv->action_group, "save-composition");
+    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
   }
   
   return obj;

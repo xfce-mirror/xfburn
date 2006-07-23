@@ -28,10 +28,10 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_COMPOSITION_TYPE                (xfburn_composition_get_type ())
-#define XFBURN_COMPOSITION(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_COMPOSITION_TYPE, XfburnComposition))
-#define XFBURN_IS_COMPOSITION(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_COMPOSITION_TYPE))
-#define XFBURN_COMPOSITION_GET_INTERFACE(inst) (G_TYPE_INSTANCE_GET_INTERFACE ((inst), XFBURN_COMPOSITION_TYPE, XfburnCompositionInterface))
+#define XFBURN_TYPE_COMPOSITION                (xfburn_composition_get_type ())
+#define XFBURN_COMPOSITION(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_COMPOSITION, XfburnComposition))
+#define XFBURN_IS_COMPOSITION(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_COMPOSITION))
+#define XFBURN_COMPOSITION_GET_INTERFACE(inst) (G_TYPE_INSTANCE_GET_INTERFACE ((inst), XFBURN_TYPE_COMPOSITION, XfburnCompositionInterface))
 
 typedef struct _XfburnCompositon XfburnComposition; /* dummy object */
   
@@ -43,6 +43,8 @@ typedef struct {
   
   void (*load) (XfburnComposition *composition, const gchar *file);
   void (*save) (XfburnComposition *composition);
+  
+  void (*name_changed) (XfburnComposition *composition, const gchar *name);
 } XfburnCompositionInterface;
 
 GType xfburn_composition_get_type (void);

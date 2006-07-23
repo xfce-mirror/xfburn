@@ -52,10 +52,11 @@ struct
   600 *1000 * 1000, "600MB CD"},
   {
   700 *1000 * 1000, "700MB CD"},
-  {
+/*  {
   4.7 *1000 * 1000 * 1000, "4.7GB DVD"},
   {
-8.5 *1000 * 1000 * 1000, "8.5GB DVD"},};
+8.5 *1000 * 1000 * 1000, "8.5GB DVD"},*/
+};
 
 enum
 {
@@ -65,9 +66,9 @@ enum
 
 static guint signals[LAST_SIGNAL];
 
-/***************************/
+/*******************************/
 /* XfburnDataComposition class */
-/***************************/
+/*******************************/
 GtkType
 xfburn_disc_usage_get_type (void)
 {
@@ -156,7 +157,8 @@ xfburn_disc_usage_update_size (XfburnDiscUsage * disc_usage)
 
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), size);
 
-  if (disc_usage->size == 0)
+  if (disc_usage->size == 0 || 
+      disc_usage->size > datadisksizes[gtk_combo_box_get_active (GTK_COMBO_BOX (disc_usage->combo))].size)
     gtk_widget_set_sensitive (disc_usage->button, FALSE);
   else
     gtk_widget_set_sensitive (disc_usage->button, TRUE);
@@ -168,7 +170,11 @@ xfburn_disc_usage_update_size (XfburnDiscUsage * disc_usage)
 static void 
 cb_button_clicked (GtkButton *button, XfburnDiscUsage *du)
 {
-  g_signal_emit (G_OBJECT (du), signals[BEGIN_BURN], 0);
+  if (du->size <= datadisksizes[gtk_combo_box_get_active (GTK_COMBO_BOX (du->combo))].size) {
+    g_signal_emit (G_OBJECT (du), signals[BEGIN_BURN], 0);
+  } else {
+    xfce_err (_("You are trying to burn more data than the disk can contain !"));
+  }
 }
 
 static void

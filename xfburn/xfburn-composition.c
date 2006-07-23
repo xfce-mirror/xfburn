@@ -31,6 +31,7 @@ enum {
 /*******************************************/
 /* interface definition and initialization */
 /*******************************************/
+static guint composition_signals[LAST_SIGNAL];
 
 static void
 xfburn_composition_base_init (gpointer g_iface)
@@ -38,6 +39,11 @@ xfburn_composition_base_init (gpointer g_iface)
   static gboolean initialized = FALSE;
 
   if (!initialized) {
+    composition_signals[NAME_CHANGED] = g_signal_new ("name-changed", XFBURN_TYPE_COMPOSITION, G_SIGNAL_ACTION,
+                                                      G_STRUCT_OFFSET (XfburnCompositionInterface, name_changed),
+                                                      NULL, NULL, g_cclosure_marshal_VOID__STRING,
+                                                      G_TYPE_NONE, 1, G_TYPE_STRING);
+    
     initialized = TRUE;
   }
 }
