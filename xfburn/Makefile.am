@@ -25,6 +25,7 @@ xfburn_headers = 							\
 	xfburn-create-iso-from-composition-progress-dialog.h		\
 	xfburn-progress-dialog.h					\
 	xfburn-main-window.h						\
+	xfburn-notebook-tab.h						\
 	xfburn-file-browser.h						\
 	xfburn-data-composition.h					\
 	xfburn-disc-usage.h						\
@@ -53,6 +54,7 @@ xfburn_SOURCES =							\
 	xfburn-progress-dialog.c					\
 	xfburn-main.c 							\
 	xfburn-main-window.c 						\
+	xfburn-notebook-tab.c						\
 	xfburn-file-browser.c						\
 	xfburn-data-composition.c    	                             	\
 	xfburn-disc-usage.c						\

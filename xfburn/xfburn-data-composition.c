@@ -503,7 +503,7 @@ cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
 
   if (gtk_tree_model_get_iter (model, &iter, real_path)) {
     if (file_exists_on_same_level (model, real_path, TRUE, newtext)) {
-      xfce_err (_("A file with the same name is already present in the compilation"));
+      xfce_err (_("A file with the same name is already present in the composition"));
     }
     else {
       gtk_tree_store_set (GTK_TREE_STORE (model), &iter, DATA_COMPOSITION_COLUMN_CONTENT, newtext, -1);
@@ -704,7 +704,7 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
     }
     
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
-      xfce_err (_("A file with the same name is already present in the compilation"));
+      xfce_err (_("A file with the same name is already present in the composition"));
 
       gtk_tree_path_free (tree_path);
       g_free (parent);

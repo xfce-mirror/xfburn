@@ -23,6 +23,11 @@
 
 #include "xfburn-composition.h"
 
+enum {
+  NAME_CHANGED,
+  LAST_SIGNAL,
+};
+
 /*******************************************/
 /* interface definition and initialization */
 /*******************************************/

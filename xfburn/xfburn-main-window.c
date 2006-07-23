@@ -429,6 +429,7 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
     {"Piarres Beobide", "pi@beobide.net", "eu",},
     {"Jari Rahkonen", "jari.rahkonen@pp2.inet.fi", "fi",},
     {"Etienne Collet", "xanaxlnx@gmail.com", "fr",},
+    {"Maximilian Schleiss", "maxschleiss@bluewin.ch", "fr",},
     {"Attila SZERVÑC", "sas@321.hu", "hu",},
     {"Daichi Kawahata", "daichi@xfce.org", "ja",},
     {"Mantas", "mantaz@users.sourceforge.net", "lt",},
