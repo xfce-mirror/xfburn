@@ -112,11 +112,6 @@ xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook)
 /*************/
 /* internals */
 /*************/
-typedef struct {
-  GtkNotebook *notebook;
-  GtkWidget *child;
-} CompositionCloseInfo;
-
 static void
 cb_switch_page (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, XfburnCompositionsNotebookPrivate *priv)
 {
@@ -124,14 +119,14 @@ cb_switch_page (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, Xf
 }
 
 static void
-cb_composition_close (GtkButton *button, CompositionCloseInfo *info)
+cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook)
 {
+  GtkWidget *composition;
   guint page_num;
   
-  page_num = gtk_notebook_page_num (info->notebook, info->child);
-  gtk_notebook_remove_page (info->notebook, page_num);
-  
-  g_free (info);
+  composition = g_object_get_data (G_OBJECT (tab), "composition");
+  page_num = gtk_notebook_page_num (notebook, composition);
+  gtk_notebook_remove_page (notebook, page_num);
 }
 
 /**********/
@@ -167,7 +162,6 @@ xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebo
   if (composition) {
     GtkWidget *tab = NULL;
     guint page_num;
-    CompositionCloseInfo *info;
     
     tab = xfburn_notebook_tab_new (label_text);
     gtk_widget_show (tab);
@@ -176,10 +170,8 @@ xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebo
     page_num = gtk_notebook_append_page(GTK_NOTEBOOK (notebook), composition, tab);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), page_num);
 	
-    info = g_new0 (CompositionCloseInfo, 1);
-    info->notebook = GTK_NOTEBOOK (notebook);
-    info->child = composition;
-    g_signal_connect (G_OBJECT (tab), "button-close-clicked", G_CALLBACK (cb_composition_close), info);
+    g_object_set_data (G_OBJECT (tab), "composition", composition);
+    g_signal_connect (G_OBJECT (tab), "button-close-clicked", G_CALLBACK (cb_composition_close), notebook);
   }
   
   g_free (label_text);
