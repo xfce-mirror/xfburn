@@ -109,6 +109,10 @@ xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook)
   g_signal_connect (G_OBJECT (notebook), "move-focus-out", G_CALLBACK (cb_move_focus_out), priv);
 }
 
+/***********/
+/* actions */
+/***********/
+
 /*************/
 /* internals */
 /*************/
@@ -196,6 +200,15 @@ xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebo
   }
   
   g_free (label_text);
+}
+
+void
+xfburn_compositions_notebook_close_composition (XfburnCompositionsNotebook *notebook)
+{
+  gint page_num;
+  
+  page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (notebook));
+  gtk_notebook_remove_page (GTK_NOTEBOOK (notebook), page_num);
 }
 
 void

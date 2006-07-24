@@ -51,6 +51,7 @@ GtkType xfburn_compositions_notebook_get_type ();
 GtkWidget *xfburn_compositions_notebook_new ();
 
 void xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type);
+void xfburn_compositions_notebook_close_composition (XfburnCompositionsNotebook *notebook);
 
 void xfburn_compositions_notebook_load_composition (XfburnCompositionsNotebook *notebook, const gchar *file);
 void xfburn_compositions_notebook_save_composition (XfburnCompositionsNotebook *notebook);

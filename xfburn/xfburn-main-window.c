@@ -64,12 +64,14 @@ static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 static void xfburn_window_action_about (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_preferences (GtkAction *, XfburnMainWindow *);
 
-static void xfburn_window_action_load (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_save (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
-
 static void xfburn_window_action_new_data_composition (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_new_audio_composition (GtkAction *, XfburnMainWindow *);
+
+static void xfburn_window_action_load (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_save (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_save_as (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_close (GtkAction *, XfburnMainWindow *);
+static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
 
 static void xfburn_window_action_blank_cd (GtkAction *, XfburnMainWindow *);
 static void xfburn_window_action_copy_cd (GtkAction *, XfburnMainWindow *);
@@ -94,6 +96,10 @@ static const GtkActionEntry action_entries[] = {
    G_CALLBACK (xfburn_window_action_load),},
   {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"), 
    G_CALLBACK (xfburn_window_action_save),},
+  {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"), 
+   G_CALLBACK (xfburn_window_action_save_as),},
+  {"close-composition", GTK_STOCK_CLOSE, N_("Close composition"), NULL, N_("Close composition"), 
+   G_CALLBACK (xfburn_window_action_close),},
   {"quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (xfburn_window_action_quit),},
   {"edit-menu", NULL, N_("_Edit"), NULL,},
   {"preferences", GTK_STOCK_PREFERENCES, N_("Prefere_nces"), NULL, N_("Show preferences dialog"),
@@ -124,6 +130,9 @@ static const GtkToggleActionEntry toggle_action_entries[] = {
 
 static const gchar *toolbar_actions[] = {
   "new-composition",
+  "load-composition",
+  "save-composition",
+  "close-composition",
   "blank-cd",
   //"format-dvd",
   "copy-data",
@@ -389,6 +398,21 @@ xfburn_window_action_save (GtkAction *action, XfburnMainWindow * window)
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
   xfburn_compositions_notebook_save_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook));
+}
+
+static void
+xfburn_window_action_save_as (GtkAction *action, XfburnMainWindow * window)
+{
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  
+}
+
+static void
+xfburn_window_action_close (GtkAction *action, XfburnMainWindow * window)
+{
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  
+  xfburn_compositions_notebook_close_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook));
 }
 
 static void

@@ -477,12 +477,13 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
     }
 
     gtk_tree_model_get (model, &current_iter, DATA_COMPOSITION_COLUMN_CONTENT, &current_filename, -1);
-    if (g_ascii_strcasecmp (current_filename, filename) == 0) {
+    if (strcmp (current_filename, filename) == 0) {
       g_free (current_filename);
       gtk_tree_path_free (current_path);
       return TRUE;
     }
     
+    g_free (current_filename);
     gtk_tree_path_next (current_path);
   } while (gtk_tree_model_iter_next (model, &current_iter));
   
