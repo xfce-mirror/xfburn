@@ -28,7 +28,7 @@ xfburn_headers = 							\
 	xfburn-notebook-tab.h						\
 	xfburn-file-browser.h						\
 	xfburn-data-composition.h					\
-	xfburn-disc-usage.h						\
+	xfburn-data-disc-usage.h					\
 	xfburn-fs-browser.h						\
 	xfburn-directory-browser.h					\
 	xfburn-preferences-dialog.h					\
@@ -57,7 +57,7 @@ xfburn_SOURCES =							\
 	xfburn-notebook-tab.c						\
 	xfburn-file-browser.c						\
 	xfburn-data-composition.c    	                             	\
-	xfburn-disc-usage.c						\
+	xfburn-data-disc-usage.c					\
 	xfburn-fs-browser.c 	                                       	\
 	xfburn-directory-browser.c					\
 	xfburn-preferences-dialog.c					\

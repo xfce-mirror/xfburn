@@ -51,7 +51,7 @@
 
 #include "xfburn-composition.h"
 #include "xfburn-burn-data-composition-dialog.h"
-#include "xfburn-disc-usage.h"
+#include "xfburn-data-disc-usage.h"
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
 
@@ -75,7 +75,7 @@ static void data_composition_action_remove_selection (GtkAction *, XfburnDataCom
 static void data_composition_action_rename_selection (GtkAction * action, XfburnDataComposition * dc);
 
 static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDataComposition * dc);
-static void cb_begin_burn (XfburnDiscUsage * du, XfburnDataComposition * dc);
+static void cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc);
 static void cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDataComposition * dc);
 
 static void content_drag_data_rcv_cb (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint,
@@ -336,7 +336,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 #endif
   
   /* disc usage */
-  priv->disc_usage = xfburn_disc_usage_new ();
+  priv->disc_usage = xfburn_data_disc_usage_new ();
   gtk_box_pack_start (GTK_BOX (composition), priv->disc_usage, FALSE, FALSE, 5);
   gtk_widget_show (priv->disc_usage);
   g_signal_connect (G_OBJECT (priv->disc_usage), "begin-burn", G_CALLBACK (cb_begin_burn), composition);
@@ -391,7 +391,7 @@ hide_custom_controls (XfburnComposition *composition)
 }
 
 static void
-cb_begin_burn (XfburnDiscUsage * du, XfburnDataComposition * dc)
+cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc)
 {
   XfburnMainWindow *mainwin = xfburn_main_window_get_instance ();
   GtkWidget *dialog;
@@ -589,7 +589,7 @@ data_composition_action_remove_selection (GtkAction * action, XfburnDataComposit
     list_iters = g_list_append (list_iters, iter);
 
     gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
-    xfburn_disc_usage_sub_size (XFBURN_DISC_USAGE (priv->disc_usage), size);
+    xfburn_data_disc_usage_sub_size (XFBURN_DISC_USAGE (priv->disc_usage), size);
 
     iter_temp = *iter;
     while (gtk_tree_model_iter_parent (model, &parent, &iter_temp)) {
@@ -639,7 +639,7 @@ data_composition_action_clear (GtkAction * action, XfburnDataComposition * dc)
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   gtk_tree_store_clear (GTK_TREE_STORE (model));
 
-  xfburn_disc_usage_set_size (XFBURN_DISC_USAGE (priv->disc_usage), 0);
+  xfburn_data_disc_usage_set_size (XFBURN_DISC_USAGE (priv->disc_usage), 0);
 }
 
 static void
@@ -697,9 +697,10 @@ set_modified (XfburnDataCompositionPrivate *priv)
   
     action_group = (GtkActionGroup *) gtk_ui_manager_get_action_groups (ui_manager)->data;
     
+    /*
     action = gtk_action_group_get_action (action_group, "save-composition");
     gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
-  
+  */
     priv->modified = TRUE;
   }
 }
@@ -782,7 +783,7 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
                           DATA_COMPOSITION_COLUMN_CONTENT, name,
                           DATA_COMPOSITION_COLUMN_PATH, path, DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_DIRECTORY, 
 			  DATA_COMPOSITION_COLUMN_SIZE, (guint64) s.st_size, -1);
-      xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
+      xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
 
       while ((filename = g_dir_read_name (dir))) {
         GtkTreeIter new_iter;
@@ -849,7 +850,7 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
                           DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_FILE, -1);
 #endif
 
-      xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
+      xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
 #ifdef HAVE_THUNAR_VFS
 	  if (G_LIKELY (G_IS_OBJECT (mime_icon)))
 		g_object_unref (mime_icon);

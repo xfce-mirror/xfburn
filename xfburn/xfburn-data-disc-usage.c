@@ -25,17 +25,17 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "xfburn-disc-usage.h"
+#include "xfburn-data-disc-usage.h"
 #include "xfburn-global.h"
 #include "xfburn-settings.h"
 #include "xfburn-utils.h"
 
 /* prototypes */
-static void xfburn_disc_usage_class_init (XfburnDiscUsageClass *);
-static void xfburn_disc_usage_init (XfburnDiscUsage *);
+static void xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass *);
+static void xfburn_data_disc_usage_init (XfburnDataDiscUsage *);
 
-static void cb_button_clicked (GtkButton *, XfburnDiscUsage *);
-static void cb_combo_changed (GtkComboBox *, XfburnDiscUsage *);
+static void cb_button_clicked (GtkButton *, XfburnDataDiscUsage *);
+static void cb_combo_changed (GtkComboBox *, XfburnDataDiscUsage *);
 
 /* globals */
 static GtkHBoxClass *parent_class = NULL;
@@ -70,31 +70,31 @@ static guint signals[LAST_SIGNAL];
 /* XfburnDataComposition class */
 /*******************************/
 GtkType
-xfburn_disc_usage_get_type (void)
+xfburn_data_disc_usage_get_type (void)
 {
   static GtkType disc_usage_type = 0;
 
   if (!disc_usage_type) {
     static const GTypeInfo disc_usage_info = {
-      sizeof (XfburnDiscUsageClass),
+      sizeof (XfburnDataDiscUsageClass),
       NULL,
       NULL,
-      (GClassInitFunc) xfburn_disc_usage_class_init,
+      (GClassInitFunc) xfburn_data_disc_usage_class_init,
       NULL,
       NULL,
-      sizeof (XfburnDiscUsage),
+      sizeof (XfburnDataDiscUsage),
       0,
-      (GInstanceInitFunc) xfburn_disc_usage_init
+      (GInstanceInitFunc) xfburn_data_disc_usage_init
     };
 
-    disc_usage_type = g_type_register_static (GTK_TYPE_HBOX, "XfburnDiscUsage", &disc_usage_info, 0);
+    disc_usage_type = g_type_register_static (GTK_TYPE_HBOX, "XfburnDataDiscUsage", &disc_usage_info, 0);
   }
 
   return disc_usage_type;
 }
 
 static void
-xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass)
+xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass * klass)
 {
   GObjectClass *gobject_class;
 
@@ -103,12 +103,12 @@ xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass)
   gobject_class = G_OBJECT_CLASS (klass);
 
   signals[BEGIN_BURN] = g_signal_new ("begin-burn", G_TYPE_FROM_CLASS (gobject_class), G_SIGNAL_ACTION,
-                                      G_STRUCT_OFFSET (XfburnDiscUsageClass, begin_burn),
+                                      G_STRUCT_OFFSET (XfburnDataDiscUsageClass, begin_burn),
                                       NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
 }
 
 static void
-xfburn_disc_usage_init (XfburnDiscUsage * disc_usage)
+xfburn_data_disc_usage_init (XfburnDataDiscUsage * disc_usage)
 {
   int i;
 
@@ -137,7 +137,7 @@ xfburn_disc_usage_init (XfburnDiscUsage * disc_usage)
 
 /* internals */
 static void
-xfburn_disc_usage_update_size (XfburnDiscUsage * disc_usage)
+xfburn_data_disc_usage_update_size (XfburnDataDiscUsage * disc_usage)
 {
   gfloat fraction;
   gchar *size;
@@ -168,7 +168,7 @@ xfburn_disc_usage_update_size (XfburnDiscUsage * disc_usage)
 }
 
 static void 
-cb_button_clicked (GtkButton *button, XfburnDiscUsage *du)
+cb_button_clicked (GtkButton *button, XfburnDataDiscUsage *du)
 {
   if (du->size <= datadisksizes[gtk_combo_box_get_active (GTK_COMBO_BOX (du->combo))].size) {
     g_signal_emit (G_OBJECT (du), signals[BEGIN_BURN], 0);
@@ -178,41 +178,41 @@ cb_button_clicked (GtkButton *button, XfburnDiscUsage *du)
 }
 
 static void
-cb_combo_changed (GtkComboBox * combo, XfburnDiscUsage * usage)
+cb_combo_changed (GtkComboBox * combo, XfburnDataDiscUsage * usage)
 {
-  xfburn_disc_usage_update_size (usage);
+  xfburn_data_disc_usage_update_size (usage);
 }
 
 /* public methods */
 gdouble
-xfburn_disc_usage_get_size (XfburnDiscUsage * disc_usage)
+xfburn_data_disc_usage_get_size (XfburnDataDiscUsage * disc_usage)
 {
   return disc_usage->size;
 }
 
 void
-xfburn_disc_usage_set_size (XfburnDiscUsage * disc_usage, gdouble size)
+xfburn_data_disc_usage_set_size (XfburnDataDiscUsage * disc_usage, gdouble size)
 {
   disc_usage->size = size;
-  xfburn_disc_usage_update_size (disc_usage);
+  xfburn_data_disc_usage_update_size (disc_usage);
 }
 
 void
-xfburn_disc_usage_add_size (XfburnDiscUsage * disc_usage, gdouble size)
+xfburn_data_disc_usage_add_size (XfburnDataDiscUsage * disc_usage, gdouble size)
 {
   disc_usage->size = disc_usage->size + size;
-  xfburn_disc_usage_update_size (disc_usage);
+  xfburn_data_disc_usage_update_size (disc_usage);
 }
 
 void
-xfburn_disc_usage_sub_size (XfburnDiscUsage * disc_usage, gdouble size)
+xfburn_data_disc_usage_sub_size (XfburnDataDiscUsage * disc_usage, gdouble size)
 {
   disc_usage->size = disc_usage->size - size;
-  xfburn_disc_usage_update_size (disc_usage);
+  xfburn_data_disc_usage_update_size (disc_usage);
 }
 
 GtkWidget *
-xfburn_disc_usage_new (void)
+xfburn_data_disc_usage_new (void)
 {
-  return g_object_new (xfburn_disc_usage_get_type (), NULL);
+  return g_object_new (xfburn_data_disc_usage_get_type (), NULL);
 }

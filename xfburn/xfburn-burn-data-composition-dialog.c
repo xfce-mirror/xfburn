@@ -233,7 +233,7 @@ xfburn_burn_data_composition_dialog_init (XfburnBurnDataCompositionDialog * obj)
   gtk_widget_set_sensitive (priv->hbox_iso, FALSE);
 
   priv->entry_path_iso = gtk_entry_new ();
-  tmp_dir = xfburn_settings_get_string ("temporary-dir", "/tmp");
+  tmp_dir = xfburn_settings_get_string ("temporary-dir", g_get_tmp_dir ());
   default_path = g_build_filename (tmp_dir, "xfburn.iso", NULL);
   gtk_entry_set_text (GTK_ENTRY (priv->entry_path_iso), default_path);
   g_free (default_path);

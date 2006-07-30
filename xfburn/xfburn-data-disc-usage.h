@@ -27,16 +27,16 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-#define XFBURN_TYPE_DISC_USAGE            (xfburn_disc_usage_get_type ())
-#define XFBURN_DISC_USAGE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DISC_USAGE, XfburnDiscUsage))
-#define XFBURN_DISC_USAGE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DISC_USAGE, XfburnDiscUsageClass))
+#define XFBURN_TYPE_DISC_USAGE            (xfburn_data_disc_usage_get_type ())
+#define XFBURN_DISC_USAGE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DISC_USAGE, XfburnDataDiscUsage))
+#define XFBURN_DISC_USAGE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DISC_USAGE, XfburnDataDiscUsageClass))
 #define XFBURN_IS_DISC_USAGE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DISC_USAGE))
 #define XFBURN_IS_DISC_USAGE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DISC_USAGE))
-#define XFBURN_DISC_USAGE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DISC_USAGE, XfburnDiscUsageClass))
-typedef struct _XfburnDiscUsage XfburnDiscUsage;
-typedef struct _XfburnDiscUsageClass XfburnDiscUsageClass;
+#define XFBURN_DISC_USAGE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DISC_USAGE, XfburnDataDiscUsageClass))
+typedef struct _XfburnDataDiscUsage XfburnDataDiscUsage;
+typedef struct _XfburnDataDiscUsageClass XfburnDataDiscUsageClass;
 
-struct _XfburnDiscUsage
+struct _XfburnDataDiscUsage
 {
   GtkVBox hbox;
 
@@ -47,20 +47,20 @@ struct _XfburnDiscUsage
   gdouble size;
 };
 
-struct _XfburnDiscUsageClass
+struct _XfburnDataDiscUsageClass
 {
   GtkHBoxClass parent_class;
   
-  void (*begin_burn) (XfburnDiscUsage *du);
+  void (*begin_burn) (XfburnDataDiscUsage *du);
 };
 
-GtkType xfburn_disc_usage_get_type (void);
-GtkWidget *xfburn_disc_usage_new (void);
+GtkType xfburn_data_disc_usage_get_type (void);
+GtkWidget *xfburn_data_disc_usage_new (void);
 
-gdouble xfburn_disc_usage_get_size (XfburnDiscUsage *);
-void xfburn_disc_usage_set_size (XfburnDiscUsage *, gdouble);
-void xfburn_disc_usage_add_size (XfburnDiscUsage *, gdouble);
-void xfburn_disc_usage_sub_size (XfburnDiscUsage *, gdouble);
+gdouble xfburn_data_disc_usage_get_size (XfburnDataDiscUsage *);
+void xfburn_data_disc_usage_set_size (XfburnDataDiscUsage *, gdouble);
+void xfburn_data_disc_usage_add_size (XfburnDataDiscUsage *, gdouble);
+void xfburn_data_disc_usage_sub_size (XfburnDataDiscUsage *, gdouble);
 
 G_END_DECLS
 #endif
