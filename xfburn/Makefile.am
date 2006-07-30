@@ -1,6 +1,7 @@
 INCLUDES = 								\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\" 				\
 	-DEXO_API_SUBJECT_TO_CHANGE					\
+	-DEXO_DISABLE_DEPRECATED					\
 	-DDATADIR=\"$(datadir)\"					\
 	-I$(top_srcdir)
 

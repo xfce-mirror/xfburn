@@ -29,3 +29,9 @@ dist-bz2: dist
 distcheck-bz2: distcheck
 	zcat $(PACKAGE)-$(VERSION).tar.gz | \
             bzip2 --best -c > $(PACKAGE)-$(VERSION).tar.bz2
+
+DISTCLEANFILES =							\
+	intltool-extract						\
+	intltool-merge							\
+	intltool-update							\
+	$(apps_DATA)
