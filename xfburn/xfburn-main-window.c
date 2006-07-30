@@ -92,12 +92,12 @@ static const GtkActionEntry action_entries[] = {
     G_CALLBACK (xfburn_window_action_new_data_composition),},
   {"new-audio-composition", "audio-x-generic", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
     G_CALLBACK (xfburn_window_action_new_audio_composition),},*/
-  {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+  /*{"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
    G_CALLBACK (xfburn_window_action_load),},
   {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"), 
    G_CALLBACK (xfburn_window_action_save),},
   {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"), 
-   G_CALLBACK (xfburn_window_action_save_as),},
+   G_CALLBACK (xfburn_window_action_save_as),},*/
   {"close-composition", GTK_STOCK_CLOSE, N_("Close composition"), NULL, N_("Close composition"), 
    G_CALLBACK (xfburn_window_action_close),},
   {"quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (xfburn_window_action_quit),},
@@ -130,9 +130,9 @@ static const GtkToggleActionEntry toggle_action_entries[] = {
 
 static const gchar *toolbar_actions[] = {
   "new-composition",
-  "load-composition",
+/*  "load-composition",
   "save-composition",
-  "close-composition",
+  "close-composition",*/
   "blank-cd",
   //"format-dvd",
   "copy-data",
@@ -572,8 +572,8 @@ xfburn_main_window_new (void)
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-filebrowser", TRUE));
     action = gtk_action_group_get_action (priv->action_group, "show-toolbar");
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-toolbar", TRUE));
-    action = gtk_action_group_get_action (priv->action_group, "save-composition");
-    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
+   /* action = gtk_action_group_get_action (priv->action_group, "save-composition");
+    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);*/
   }
   
   return obj;

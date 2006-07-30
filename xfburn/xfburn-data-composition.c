@@ -116,6 +116,7 @@ typedef struct
   GtkUIManager *ui_manager;
 
   GtkWidget *toolbar;
+  GtkWidget *entry_volume_name;
   GtkWidget *content;
   GtkWidget *disc_usage;
 #if 0
@@ -211,6 +212,8 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   gint x, y;
   ExoToolbarsModel *model_toolbar;
   gint toolbar_position;
+  GtkWidget *hbox_toolbar;
+  GtkWidget *hbox, *label;
   GtkWidget *scrolled_window;
   GtkTreeStore *model;
   GtkTreeViewColumn *column_file;
@@ -245,6 +248,10 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 
   gtk_ui_manager_add_ui_from_string (priv->ui_manager, ui_string, -1, NULL);
 
+  hbox_toolbar = gtk_hbox_new (FALSE, 5);
+  gtk_box_pack_start (GTK_BOX (composition), hbox_toolbar, FALSE, TRUE, 0);
+  gtk_widget_show (hbox_toolbar);
+  
   /* toolbar */
   model_toolbar = exo_toolbars_model_new ();
   exo_toolbars_model_set_actions (model_toolbar, (gchar **) toolbar_actions, G_N_ELEMENTS (toolbar_actions));
@@ -258,9 +265,25 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   //exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "import-session", EXO_TOOLBARS_ITEM_TYPE);
 
   priv->toolbar = exo_toolbars_view_new_with_model (priv->ui_manager, model_toolbar);
-  gtk_box_pack_start (GTK_BOX (composition), priv->toolbar, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox_toolbar), priv->toolbar, TRUE, TRUE, 0);
   gtk_widget_show (priv->toolbar);
 
+    
+  /* volume name */
+  hbox = gtk_hbox_new (FALSE, 5);
+  gtk_container_set_border_width (GTK_CONTAINER (hbox), 10);
+  gtk_box_pack_start (GTK_BOX (hbox_toolbar), hbox, FALSE, FALSE, 0);
+  gtk_widget_show (hbox);
+  
+  label = gtk_label_new (_("Volume name :"));
+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+  gtk_widget_show (label);
+  
+  priv->entry_volume_name = gtk_entry_new ();
+  gtk_entry_set_text (GTK_ENTRY (priv->entry_volume_name), _("Data composition"));
+  gtk_box_pack_start (GTK_BOX (hbox), priv->entry_volume_name, FALSE, FALSE, 0);
+  gtk_widget_show (priv->entry_volume_name);
+  
   /* content treeview */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -306,7 +329,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 
   g_signal_connect (G_OBJECT (priv->content), "button-press-event",
                     G_CALLBACK (cb_treeview_button_pressed), composition);
-
+                    
 #if 0                    
   /* adding progress window */
   priv->progress = xfburn_adding_progress_new (); 
@@ -376,7 +399,7 @@ cb_begin_burn (XfburnDiscUsage * du, XfburnDataComposition * dc)
   
   generate_file_list (XFBURN_DATA_COMPOSITION (dc), &tmpfile);
   
-  dialog = xfburn_burn_data_composition_dialog_new (tmpfile);
+  dialog = xfburn_burn_data_composition_dialog_new (dc, tmpfile);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (mainwin));
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
@@ -1297,4 +1320,23 @@ xfburn_data_composition_show_toolbar (XfburnDataComposition * composition)
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
   
   gtk_widget_show (priv->toolbar);
+}
+
+gchar *
+xfburn_data_composition_get_dummy_dir (XfburnDataComposition * composition)
+{
+  XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
+  GtkTreeModel *model;
+  
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
+  
+  return g_object_get_data (G_OBJECT (model), "dummy-dir");
+}
+
+gchar *
+xfburn_data_composition_get_volume_id (XfburnDataComposition * composition)
+{
+  XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
+  
+  return g_strdup (gtk_entry_get_text (GTK_ENTRY (priv->entry_volume_name)));
 }

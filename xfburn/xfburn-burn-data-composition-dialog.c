@@ -57,6 +57,7 @@ struct XfburnBurnDataCompositionDialogPrivate
   GtkWidget *check_dummy;
 
   gchar *file_list;
+  XfburnDataComposition *composition;
 };
 
 /* globals */
@@ -297,6 +298,8 @@ cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionDialog * dialog)
 static void
 cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, XfburnBurnDataCompositionDialogPrivate * priv)
 {
+  gchar *dummy_dir = NULL;
+  
   if (response_id == GTK_RESPONSE_OK) {
     gchar *command = NULL;
     GtkWidget *dialog_progress = NULL;
@@ -308,9 +311,10 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
       dialog_progress = xfburn_create_iso_from_composition_progress_dialog_new ();
     }
     else {
-      gchar *speed;
-      gchar *write_mode;
-      gchar *device_name;
+      gchar *speed = NULL;
+      gchar *write_mode = NULL;
+      gchar *device_name = NULL;
+      gchar *volid = NULL;
       XfburnDevice *device;
       
       device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
@@ -334,8 +338,10 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
         write_mode = g_strdup (" -tao");
       }
 
+      volid = xfburn_data_composition_get_volume_id (priv->composition);
+      
       command = g_strconcat ("sh -c \"mkisofs -gui -graft-points -joliet -full-iso9660-filenames -iso-level 2 -path-list ",
-                             priv->file_list, " | cdrecord -v gracetime=2", " dev=", device->node_path, write_mode, " speed=", speed,
+                             priv->file_list, " -volid ", volid, " | cdrecord -v gracetime=2", " dev=", device->node_path, write_mode, " speed=", speed,
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " -dummy" : "",
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree)) ? " driveropts=burnfree" : "",
@@ -343,6 +349,8 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
       g_free (device_name);
       g_free (speed);
       g_free (write_mode);
+      g_free (volid);
+      
       dialog_progress = xfburn_burn_data_composition_progress_dialog_new ();
     }
 
@@ -351,9 +359,14 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
 
     g_object_set_data (G_OBJECT (dialog_progress), "command", command);
     gtk_dialog_run (GTK_DIALOG (dialog_progress));
-
-    unlink (priv->file_list);
+    
     g_free (command);
+  }
+  
+  unlink (priv->file_list);
+  dummy_dir = xfburn_data_composition_get_dummy_dir (priv->composition);
+  if (dummy_dir) {
+    rmdir (dummy_dir);
   }
 }
 
@@ -371,13 +384,14 @@ xfburn_burn_data_composition_dialog_get_command_burn (XfburnBurnDataCompositionD
 }
 
 GtkWidget *
-xfburn_burn_data_composition_dialog_new (const gchar * file_list)
+xfburn_burn_data_composition_dialog_new (XfburnDataComposition *composition, const gchar * file_list)
 {
   XfburnBurnDataCompositionDialog *obj;
 
   obj = XFBURN_BURN_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_COMPOSITION_DIALOG, NULL));
 
   obj->priv->file_list = g_strdup (file_list);
-
+  obj->priv->composition = composition;
+  
   return GTK_WIDGET (obj);
 }

@@ -57,5 +57,8 @@ GtkWidget *xfburn_data_composition_new (void);
 void xfburn_data_composition_hide_toolbar (XfburnDataComposition *content);
 void xfburn_data_composition_show_toolbar (XfburnDataComposition *content);
 
+gchar * xfburn_data_composition_get_dummy_dir (XfburnDataComposition * composition);
+gchar * xfburn_data_composition_get_volume_id (XfburnDataComposition * composition);
+
 G_END_DECLS
 #endif
