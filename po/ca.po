@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-22 23:49+0200\n"
+"POT-Creation-Date: 2006-07-30 17:48+0200\n"
 "PO-Revision-Date: 2006-05-13 21:53+0200\n"
 "Last-Translator: Pau Rul·lan Ferragut <paurullan@bulma.net>\n"
 "Language-Team: Catalan\n"
@@ -18,25 +18,25 @@ msgstr ""
 "X-Generator: KBabel 1.11.2\n"
 
 #: ../xfburn/xfburn-adding-progress.c:89
-msgid "Adding files to the compilation"
+msgid "Adding files to the composition"
 msgstr ""
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:102
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:146
-#: ../xfburn/xfburn-main-window.c:106
+#: ../xfburn/xfburn-main-window.c:114
 #, fuzzy
 msgid "Blank CD-RW"
 msgstr "En blanc"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:112
-#: ../xfburn/xfburn-burn-composition-dialog.c:130
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:131
 #: ../xfburn/xfburn-burn-image-dialog.c:126
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
 msgid "Burning device"
 msgstr "Dispositiu de gravació"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:136
-#: ../xfburn/xfburn-burn-composition-dialog.c:153
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:154
 #: ../xfburn/xfburn-burn-image-dialog.c:149
 #: ../xfburn/xfburn-copy-cd-dialog.c:157
 #, fuzzy
@@ -69,7 +69,7 @@ msgid "Blank type"
 msgstr "En blanc tipus"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:177
-#: ../xfburn/xfburn-burn-composition-dialog.c:200
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:201
 #: ../xfburn/xfburn-burn-image-dialog.c:196
 #: ../xfburn/xfburn-copy-cd-dialog.c:185
 #, fuzzy
@@ -81,7 +81,7 @@ msgid "_Force"
 msgstr "_Força"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:185
-#: ../xfburn/xfburn-burn-composition-dialog.c:204
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:205
 #: ../xfburn/xfburn-burn-image-dialog.c:200
 #: ../xfburn/xfburn-copy-cd-dialog.c:189
 #, fuzzy
@@ -101,47 +101,68 @@ msgstr "S'està esborrant..."
 msgid "Performing OPC..."
 msgstr "S'està creant OPC..."
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:122
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:123
 #, fuzzy
 msgid "Burn Composition"
 msgstr "Redacció"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:182
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:183
 #: ../xfburn/xfburn-burn-image-dialog.c:178
 #, fuzzy
 msgid "Write _mode :"
 msgstr "Escriu mode:"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:187
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:188
 #: ../xfburn/xfburn-burn-image-dialog.c:183
 #, fuzzy
 msgid "default"
 msgstr "per defecte"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:209
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:210
 #: ../xfburn/xfburn-burn-image-dialog.c:205
 #: ../xfburn/xfburn-copy-cd-dialog.c:194
 #, fuzzy
 msgid "_Dummy write"
 msgstr "Escriptura simula_da"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:213
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:214
 #: ../xfburn/xfburn-burn-image-dialog.c:209
 #, fuzzy
 msgid "Burn_Free"
 msgstr "Lliure"
 
 #. create ISO ?
-#: ../xfburn/xfburn-burn-composition-dialog.c:219
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:220
 #: ../xfburn/xfburn-copy-cd-dialog.c:203
 #, fuzzy
 msgid "Only create _ISO"
 msgstr "Només"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:256
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:257
 #, fuzzy
 msgid "_Burn Composition"
 msgstr "Redacció"
+
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:110
+msgid "Finishing"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:116
+msgid "Fixating..."
+msgstr "S'està acabant..."
+
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
+#, fuzzy
+msgid "Writing composition..."
+msgstr "Redacció"
+
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
+#, fuzzy
+msgid "Burn data composition"
+msgstr "Desa"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:108
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:148
@@ -161,28 +182,14 @@ msgstr "Imatge a "
 msgid "_Burn image"
 msgstr "imatge"
 
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:110
-#: ../xfburn/xfburn-progress-dialog.c:200
-#: ../xfburn/xfburn-progress-dialog.c:217
-#: ../xfburn/xfburn-progress-dialog.c:227
-#: ../xfburn/xfburn-progress-dialog.c:563
-#: ../xfburn/xfburn-progress-dialog.c:582
-#: ../xfburn/xfburn-progress-dialog.c:602
-#, fuzzy
-msgid "no info"
-msgstr "no"
-
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:116
-msgid "Fixating..."
-msgstr "S'està acabant..."
-
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:129
 msgid "Writing ISO..."
 msgstr "S'està escrivint la ISO..."
 
-#: ../xfburn/xfburn-compositions-notebook.c:117
+#: ../xfburn/xfburn-compositions-notebook.c:173
+#: ../xfburn/xfburn-data-composition.c:283
 #, fuzzy
-msgid "Data compilation"
+msgid "Data composition"
 msgstr "Carrega"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:120
@@ -232,75 +239,88 @@ msgstr "Crea de"
 msgid "Create ISO from CD"
 msgstr "Crea de"
 
-#: ../xfburn/xfburn-data-composition.c:130
+#: ../xfburn/xfburn-data-composition.c:132
 #, fuzzy
 msgid "Add"
 msgstr "Afegeix"
 
-#: ../xfburn/xfburn-data-composition.c:130
+#: ../xfburn/xfburn-data-composition.c:132
 #, fuzzy
 msgid "Add the selected file(s) to the CD"
 msgstr "Afegeix   seleccionat fitxer a   "
 
-#: ../xfburn/xfburn-data-composition.c:131
+#: ../xfburn/xfburn-data-composition.c:133
 #, fuzzy
 msgid "Remove"
 msgstr "Suprimeix"
 
-#: ../xfburn/xfburn-data-composition.c:131
+#: ../xfburn/xfburn-data-composition.c:133
 #, fuzzy
 msgid "Remove the selected file(s) from the CD"
 msgstr "Suprimeix   seleccionat fitxer de  "
 
-#: ../xfburn/xfburn-data-composition.c:133
+#: ../xfburn/xfburn-data-composition.c:135
 #, fuzzy
 msgid "Clear"
 msgstr "Buida"
 
-#: ../xfburn/xfburn-data-composition.c:133
+#: ../xfburn/xfburn-data-composition.c:135
 #, fuzzy
 msgid "Clear the content of the CD"
 msgstr "Buida   de  "
 
-#: ../xfburn/xfburn-data-composition.c:135
+#: ../xfburn/xfburn-data-composition.c:137
 #, fuzzy
 msgid "Import"
 msgstr "Importa"
 
-#: ../xfburn/xfburn-data-composition.c:135
+#: ../xfburn/xfburn-data-composition.c:137
 #, fuzzy
 msgid "Import existing session"
 msgstr "Importa Sessió"
 
-#: ../xfburn/xfburn-data-composition.c:136
+#: ../xfburn/xfburn-data-composition.c:138
 #, fuzzy
 msgid "Rename"
 msgstr "Reanomena"
 
-#: ../xfburn/xfburn-data-composition.c:136
+#: ../xfburn/xfburn-data-composition.c:138
 #, fuzzy
 msgid "Rename the selected file"
 msgstr "Reanomena   seleccionat fitxer"
 
-#: ../xfburn/xfburn-data-composition.c:285
+#: ../xfburn/xfburn-data-composition.c:278
+msgid "Volume name :"
+msgstr ""
+
+#: ../xfburn/xfburn-data-composition.c:309
 #, fuzzy
 msgid "Contents"
 msgstr "Contingut"
 
-#: ../xfburn/xfburn-data-composition.c:300
+#: ../xfburn/xfburn-data-composition.c:324
 #: ../xfburn/xfburn-directory-browser.c:142
 #, fuzzy
 msgid "Size"
 msgstr "Mida"
 
-#: ../xfburn/xfburn-data-composition.c:303
+#: ../xfburn/xfburn-data-composition.c:327
 #, fuzzy
 msgid "Local Path"
 msgstr "Local Camí"
 
-#: ../xfburn/xfburn-data-composition.c:506
-#: ../xfburn/xfburn-data-composition.c:707
-msgid "A file with the same name is already present in the compilation"
+#: ../xfburn/xfburn-data-composition.c:531
+#: ../xfburn/xfburn-data-composition.c:754
+msgid "A file with the same name is already present in the composition"
+msgstr ""
+
+#: ../xfburn/xfburn-data-disc-usage.c:129
+#, fuzzy
+msgid "Burn Data CD"
+msgstr "Dades"
+
+#: ../xfburn/xfburn-data-disc-usage.c:176
+msgid "You are trying to burn more data than the disk can contain !"
 msgstr ""
 
 #: ../xfburn/xfburn-directory-browser.c:55
@@ -319,11 +339,6 @@ msgstr "Fitxer"
 msgid "Type"
 msgstr "Tipus"
 
-#: ../xfburn/xfburn-disc-usage.c:128
-#, fuzzy
-msgid "Burn Data CD"
-msgstr "Dades"
-
 #: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:265
 #, fuzzy
 msgid "Filesystem"
@@ -335,171 +350,175 @@ msgstr "Sistema de fitxers"
 msgid "%s's home"
 msgstr "inici"
 
-#: ../xfburn/xfburn-main-window.c:85
+#: ../xfburn/xfburn-main.c:54 ../xfburn.desktop.in.h:2
+msgid "Xfburn"
+msgstr "Xfburn"
+
+#: ../xfburn/xfburn-main-window.c:87
 #, fuzzy
 msgid "_File"
 msgstr "_Fitxer"
 
-#: ../xfburn/xfburn-main-window.c:86
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
+#: ../xfburn/xfburn-main-window.c:89
 #, fuzzy
 msgid "_New composition"
 msgstr "Desa"
 
-#: ../xfburn/xfburn-main-window.c:86
+#: ../xfburn/xfburn-main-window.c:89
 #, fuzzy
 msgid "Create a new composition"
 msgstr "Crea de"
 
-#: ../xfburn/xfburn-main-window.c:87
+#. {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
+#. G_CALLBACK (xfburn_window_action_new_data_composition),},
+#. {"new-audio-composition", "audio-x-generic", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
+#. G_CALLBACK (xfburn_window_action_new_audio_composition),},
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. G_CALLBACK (xfburn_window_action_load),},
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. G_CALLBACK (xfburn_window_action_save),},
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. G_CALLBACK (xfburn_window_action_save_as),},
+#: ../xfburn/xfburn-main-window.c:101
 #, fuzzy
-msgid "New data composition"
+msgid "Close composition"
 msgstr "Desa"
 
-#: ../xfburn/xfburn-main-window.c:89
-#, fuzzy
-msgid "New audio composition"
-msgstr "Carrega"
-
-#: ../xfburn/xfburn-main-window.c:91
-#, fuzzy
-msgid "Load composition"
-msgstr "Carrega"
-
-#: ../xfburn/xfburn-main-window.c:93
-#, fuzzy
-msgid "Save composition"
-msgstr "Desa"
-
-#: ../xfburn/xfburn-main-window.c:95 ../xfburn/xfburn-main-window.c:409
+#: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
 #, fuzzy
 msgid "_Quit"
 msgstr "_Surt"
 
-#: ../xfburn/xfburn-main-window.c:95
+#: ../xfburn/xfburn-main-window.c:103
 #, fuzzy
 msgid "Quit Xfburn"
 msgstr "Surt"
 
-#: ../xfburn/xfburn-main-window.c:96
+#: ../xfburn/xfburn-main-window.c:104
 #, fuzzy
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../xfburn/xfburn-main-window.c:97
+#: ../xfburn/xfburn-main-window.c:105
 #, fuzzy
 msgid "Prefere_nces"
 msgstr "Preferè_ncies"
 
-#: ../xfburn/xfburn-main-window.c:97
+#: ../xfburn/xfburn-main-window.c:105
 #, fuzzy
 msgid "Show preferences dialog"
 msgstr "Mostra preferències diàleg"
 
-#: ../xfburn/xfburn-main-window.c:99
+#: ../xfburn/xfburn-main-window.c:107
 #, fuzzy
 msgid "_Actions"
 msgstr "_Accions"
 
-#: ../xfburn/xfburn-main-window.c:100
+#: ../xfburn/xfburn-main-window.c:108
 #, fuzzy
 msgid "_View"
 msgstr "_Visualitza"
 
-#: ../xfburn/xfburn-main-window.c:101
+#: ../xfburn/xfburn-main-window.c:109
 #, fuzzy
 msgid "Refresh"
 msgstr "Refresca"
 
-#: ../xfburn/xfburn-main-window.c:101
+#: ../xfburn/xfburn-main-window.c:109
 #, fuzzy
 msgid "Refresh file list"
 msgstr "Refresca fitxer llista"
 
-#: ../xfburn/xfburn-main-window.c:103
+#: ../xfburn/xfburn-main-window.c:111
 #, fuzzy
 msgid "_Help"
 msgstr "A_juda"
 
-#: ../xfburn/xfburn-main-window.c:104
+#: ../xfburn/xfburn-main-window.c:112
 #, fuzzy
 msgid "_About"
 msgstr "_Quant a"
 
-#: ../xfburn/xfburn-main-window.c:104
+#: ../xfburn/xfburn-main-window.c:112
 #, fuzzy
 msgid "Display information about Xfburn"
 msgstr "Visualització quant a"
 
-#: ../xfburn/xfburn-main-window.c:108
+#: ../xfburn/xfburn-main-window.c:116
 #, fuzzy
 msgid "Format DVD-RW"
 msgstr "Format DVD"
 
-#: ../xfburn/xfburn-main-window.c:109
+#: ../xfburn/xfburn-main-window.c:117
 #, fuzzy
 msgid "Copy Data CD"
 msgstr "Copia Dades"
 
-#: ../xfburn/xfburn-main-window.c:111
+#: ../xfburn/xfburn-main-window.c:119
 #, fuzzy
 msgid "Copy Audio CD"
 msgstr "Copia Àudio"
 
-#: ../xfburn/xfburn-main-window.c:112
+#: ../xfburn/xfburn-main-window.c:120
 #, fuzzy
 msgid "Burn CD Image"
 msgstr "Imatge"
 
-#: ../xfburn/xfburn-main-window.c:117
+#: ../xfburn/xfburn-main-window.c:125
 #, fuzzy
 msgid "Show file browser"
 msgstr "Mostra fitxer browser"
 
-#: ../xfburn/xfburn-main-window.c:117
+#: ../xfburn/xfburn-main-window.c:125
 #, fuzzy
 msgid "Show/hide the file browser"
 msgstr "Mostra   fitxer browser"
 
-#: ../xfburn/xfburn-main-window.c:119
+#: ../xfburn/xfburn-main-window.c:127
 #, fuzzy
 msgid "Show toolbar"
 msgstr "Mostra la barra d'eines"
 
-#: ../xfburn/xfburn-main-window.c:119
+#: ../xfburn/xfburn-main-window.c:127
 #, fuzzy
 msgid "Show/hide the toolbar"
 msgstr "Mostra/amaga la barra d'eines"
 
-#: ../xfburn/xfburn-main-window.c:319
+#: ../xfburn/xfburn-main-window.c:331
 #, fuzzy
 msgid "Toolbar Editor"
 msgstr "Editor de barres d'eines"
 
-#: ../xfburn/xfburn-main-window.c:409
+#: ../xfburn/xfburn-main-window.c:436
 #, fuzzy
 msgid "Are sure you want to quit?"
 msgstr "tu a  surt?"
 
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: ../xfburn/xfburn-main-window.c:445
+#: ../xfburn/xfburn-main-window.c:473
 #, fuzzy
 msgid "Another cd burning tool"
 msgstr "cd"
 
-#: ../xfburn/xfburn-main-window.c:448
+#: ../xfburn/xfburn-main-window.c:476
 #, fuzzy
 msgid "Author/Maintainer"
 msgstr "Autor"
 
-#: ../xfburn/xfburn-main-window.c:454
+#: ../xfburn/xfburn-main-window.c:482
 #, c-format
 msgid "Translator (%s)"
 msgstr "Traductur (%s)"
 
-#: ../xfburn/xfburn-main.c:54 ../xfburn.desktop.in.h:2
-msgid "Xfburn"
-msgstr "Xfburn"
+#: ../xfburn/xfburn-notebook-tab.c:107
+msgid "Label"
+msgstr ""
+
+#: ../xfburn/xfburn-notebook-tab.c:107
+msgid "The text of the label"
+msgstr ""
 
 #: ../xfburn/xfburn-preferences-dialog.c:122
 #, fuzzy
@@ -600,6 +619,16 @@ msgstr "S'està inicialitzant..."
 msgid "Estimated writing speed:"
 msgstr "Velocitat estimada de gravació:"
 
+#: ../xfburn/xfburn-progress-dialog.c:200
+#: ../xfburn/xfburn-progress-dialog.c:217
+#: ../xfburn/xfburn-progress-dialog.c:227
+#: ../xfburn/xfburn-progress-dialog.c:563
+#: ../xfburn/xfburn-progress-dialog.c:582
+#: ../xfburn/xfburn-progress-dialog.c:602
+#, fuzzy
+msgid "no info"
+msgstr "no"
+
 #: ../xfburn/xfburn-progress-dialog.c:211
 msgid "FIFO buffer:"
 msgstr "Cau de memòria FIFO:"
@@ -669,6 +698,14 @@ msgstr "Comanda de selecció"
 #, fuzzy
 msgid "CD and DVD burning application"
 msgstr "i DVD aplicació"
+
+#, fuzzy
+#~ msgid "New audio composition"
+#~ msgstr "Carrega"
+
+#, fuzzy
+#~ msgid "Load composition"
+#~ msgstr "Carrega"
 
 #, fuzzy
 #~ msgid "Show disc content toolbar"
