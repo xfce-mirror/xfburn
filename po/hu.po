@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-07-30 17:48+0200\n"
-"PO-Revision-Date: 2006-07-23 23:22+0100\n"
+"PO-Revision-Date: 2006-07-30 20:54+0100\n"
 "Last-Translator: SZERVÑC Attila <sas@321.hu>\n"
 "Language-Team: hu\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,6 @@ msgstr ""
 "X-Poedit-Country: HUNGARY\n"
 
 #: ../xfburn/xfburn-adding-progress.c:89
-#, fuzzy
 msgid "Adding files to the composition"
 msgstr "Fájlok hozzáadása az összeállításhoz"
 
@@ -131,7 +130,7 @@ msgstr "Összeállítás írása"
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:110
 msgid "Finishing"
-msgstr ""
+msgstr "Lezárás"
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:116
@@ -140,14 +139,12 @@ msgstr "Rögzítés..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
-#, fuzzy
 msgid "Writing composition..."
-msgstr "Összeállítás írása"
+msgstr "Összeállítás írása..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
-#, fuzzy
 msgid "Burn data composition"
-msgstr "Új adat összeállítás"
+msgstr "Adat összeállítás írása"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:108
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:148
@@ -170,7 +167,6 @@ msgstr "ISO írása..."
 
 #: ../xfburn/xfburn-compositions-notebook.c:173
 #: ../xfburn/xfburn-data-composition.c:283
-#, fuzzy
 msgid "Data composition"
 msgstr "Adat összeállítás"
 
@@ -259,7 +255,7 @@ msgstr "Kijelölt fájl átnevezése"
 
 #: ../xfburn/xfburn-data-composition.c:278
 msgid "Volume name :"
-msgstr ""
+msgstr "Kötet név:"
 
 #: ../xfburn/xfburn-data-composition.c:309
 msgid "Contents"
@@ -276,7 +272,6 @@ msgstr "Helyi útvonal"
 
 #: ../xfburn/xfburn-data-composition.c:531
 #: ../xfburn/xfburn-data-composition.c:754
-#, fuzzy
 msgid "A file with the same name is already present in the composition"
 msgstr "Már van egy ilyen nevű fájl az összeállításban"
 
@@ -286,7 +281,7 @@ msgstr "Adat CD írása"
 
 #: ../xfburn/xfburn-data-disc-usage.c:176
 msgid "You are trying to burn more data than the disk can contain !"
-msgstr ""
+msgstr "Több adatot írnál, mint amennyi a lemezre fér !"
 
 #: ../xfburn/xfburn-directory-browser.c:55
 msgid "Folder"
@@ -301,7 +296,8 @@ msgstr "Fájl"
 msgid "Type"
 msgstr "Típus"
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:265
+#: ../xfburn/xfburn-fs-browser.c:94
+#: ../xfburn/xfburn-fs-browser.c:265
 msgid "Filesystem"
 msgstr "Fájlrendszer"
 
@@ -311,7 +307,8 @@ msgstr "Fájlrendszer"
 msgid "%s's home"
 msgstr "%s saját könyvtára"
 
-#: ../xfburn/xfburn-main.c:54 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:54
+#: ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -339,11 +336,11 @@ msgstr "Új összeállítás készítése"
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (xfburn_window_action_save_as),},
 #: ../xfburn/xfburn-main-window.c:101
-#, fuzzy
 msgid "Close composition"
-msgstr "Összeállítás mentése"
+msgstr "Összeállítás bezárása"
 
-#: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
+#: ../xfburn/xfburn-main-window.c:103
+#: ../xfburn/xfburn-main-window.c:436
 msgid "_Quit"
 msgstr "_Kilépés"
 
@@ -448,11 +445,11 @@ msgstr "Fordító (%s)"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "Label"
-msgstr ""
+msgstr "Címke"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "The text of the label"
-msgstr ""
+msgstr "A címke szövege"
 
 #: ../xfburn/xfburn-preferences-dialog.c:122
 msgid "Preferences"
@@ -604,15 +601,12 @@ msgstr "CD- és DVD-író alkalmazás"
 
 #~ msgid "New audio composition"
 #~ msgstr "Új hang összeállítás"
-
 #~ msgid "Load composition"
 #~ msgstr "Összeállítás betöltése"
-
 #~ msgid "Show disc content toolbar"
 #~ msgstr "Lemeztartalom eszközsáv"
-
 #~ msgid "Show/hide the disc content toolbar"
 #~ msgstr "Lemeztartalom eszközsáv mutatása/rejtése"
-
 #~ msgid "Xfburn preferences"
 #~ msgstr "Az Xfburn beállításai"
+
