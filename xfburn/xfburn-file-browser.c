@@ -21,6 +21,10 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
@@ -120,16 +124,17 @@ cb_directory_browser_row_actived (GtkWidget * treeview, GtkTreePath * path, GtkT
 {
   GtkTreeSelection *selection_dir, *selection_fs;
   GtkTreeModel *model_dir, *model_fs;
-  GtkTreeIter iter_dir, iter_fs, iter;
+  GtkTreeIter iter_dir, iter_fs;
 
   selection_dir = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
   selection_fs = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser->fs_browser));
   if (gtk_tree_selection_count_selected_rows (selection_dir) == 1 &&
-      gtk_tree_selection_get_selected (selection_fs, &model_fs, &iter_fs) &&
-      gtk_tree_model_iter_children (model_fs, &iter, &iter_fs)) {
+      gtk_tree_selection_get_selected (selection_fs, &model_fs, &iter_fs)) {
     GtkTreePath *path_fs, *path_dir;
-    GList *selected_row;
-    gchar *directory;
+    GList *selected_row = NULL;
+    GtkTreeIter iter;
+    gchar *directory = NULL;
+    gboolean found = FALSE;
 
     selected_row = gtk_tree_selection_get_selected_rows (selection_dir, &model_dir);
     path_dir = (GtkTreePath *) selected_row->data;
@@ -143,20 +148,27 @@ cb_directory_browser_row_actived (GtkWidget * treeview, GtkTreePath * path, GtkT
     path_fs = gtk_tree_model_get_path (model_fs, &iter_fs);
     gtk_tree_view_expand_row (GTK_TREE_VIEW (browser->fs_browser), path_fs, FALSE);
 
-    do {
-      gchar *temp;
+    if (gtk_tree_model_iter_children (model_fs, &iter, &iter_fs)) {
+      do {
+        gchar *temp = NULL;
 
-      gtk_tree_model_get (model_fs, &iter, FS_BROWSER_COLUMN_DIRECTORY, &temp, -1);
-
-      if (!g_ascii_strcasecmp (temp, directory))
-        break;
-
-      g_free (temp);
-    } while (gtk_tree_model_iter_next (model_fs, &iter));
-
+        gtk_tree_model_get (model_fs, &iter, FS_BROWSER_COLUMN_DIRECTORY, &temp, -1);
+        
+        if (temp && !strcmp (temp, directory)) {
+          found = TRUE;
+          g_free (temp);
+          break;
+        }
+      
+        g_free (temp);
+      } while (gtk_tree_model_iter_next (model_fs, &iter));
+    }
+        
     /* select the current directory in the FS browser */
-    //gtk_tree_selection_select_iter (selection_fs, &iter);
-    //gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (browser->fs_browser), path_fs, NULL, FALSE, 0, 0);
+    if (found) {
+      gtk_tree_selection_select_iter (selection_fs, &iter);
+      gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (browser->fs_browser), path_fs, NULL, FALSE, 0, 0);
+    }
 
     gtk_tree_path_free (path_fs);
     g_free (directory);

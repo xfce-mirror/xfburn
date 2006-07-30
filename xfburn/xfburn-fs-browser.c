@@ -37,6 +37,7 @@ static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass);
 static void xfburn_fs_browser_init (XfburnFsBrowser * sp);
 
 static void cb_browser_row_expanded (GtkTreeView *, GtkTreeIter *, GtkTreePath *, gpointer);
+static void cb_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectionData *, guint, guint, gpointer);
 
 /* globals */
@@ -83,8 +84,6 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
 
   GtkTargetEntry gte[] = { {"text/plain", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN} };
 
-  //  gtk_widget_set_size_request (GTK_WIDGET (browser), 200, 300);
-
   model = gtk_tree_store_new (FS_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), FS_BROWSER_COLUMN_DIRECTORY, GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (browser), GTK_TREE_MODEL (model));
@@ -109,7 +108,8 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 
   g_signal_connect (G_OBJECT (browser), "row-expanded", G_CALLBACK (cb_browser_row_expanded), browser);
-
+  g_signal_connect (G_OBJECT (browser), "row-activated", G_CALLBACK (cb_browser_row_activated), browser);
+  
   /* load the directory list */
   xfburn_fs_browser_refresh (browser);
 
@@ -193,6 +193,12 @@ cb_browser_row_expanded (GtkTreeView * treeview, GtkTreeIter * iter, GtkTreePath
   }
 
   g_free (value);
+}
+
+static void
+cb_browser_row_activated (GtkTreeView *treeview, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data)
+{
+  gtk_tree_view_expand_row (treeview, path, FALSE);
 }
 
 static void
