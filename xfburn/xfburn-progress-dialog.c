@@ -192,7 +192,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   /* buffers */
   priv->hbox_buffers = gtk_hbox_new (FALSE, BORDER);
   gtk_widget_show (priv->hbox_buffers);
-  gtk_box_pack_start (box, priv->hbox_buffers, TRUE, TRUE, BORDER);
+  gtk_box_pack_start (box, priv->hbox_buffers, FALSE, TRUE, BORDER);
 
   frame = gtk_frame_new (_("Estimated writing speed:"));
   gtk_widget_show (frame);

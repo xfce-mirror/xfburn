@@ -301,12 +301,15 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
   gchar *dummy_dir = NULL;
   
   if (response_id == GTK_RESPONSE_OK) {
+    gchar *volid = NULL;
     gchar *command = NULL;
     GtkWidget *dialog_progress = NULL;
+  
+    volid = xfburn_data_composition_get_volume_id (priv->composition);
     
     if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
-      command = g_strconcat ("sh -c \"mkisofs -gui -graft-points -joliet -full-iso9660-filenames -iso-level 2 -path-list ",
-                             priv->file_list, " > ", gtk_entry_get_text (GTK_ENTRY (priv->entry_path_iso)), "\"", NULL);
+      command = g_strconcat ("sh -c \"mkisofs -gui -graft-points -joliet -full-iso9660-filenames -iso-level 2 -volid '",
+                             volid, "' -path-list ", priv->file_list, " > ", gtk_entry_get_text (GTK_ENTRY (priv->entry_path_iso)), "\"", NULL);
 
       dialog_progress = xfburn_create_iso_from_composition_progress_dialog_new ();
     }
@@ -314,7 +317,6 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
       gchar *speed = NULL;
       gchar *write_mode = NULL;
       gchar *device_name = NULL;
-      gchar *volid = NULL;
       XfburnDevice *device;
       
       device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
@@ -338,10 +340,8 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
         write_mode = g_strdup (" -tao");
       }
 
-      volid = xfburn_data_composition_get_volume_id (priv->composition);
-      
-      command = g_strconcat ("sh -c \"mkisofs -gui -graft-points -joliet -full-iso9660-filenames -iso-level 2 -path-list ",
-                             priv->file_list, " -volid ", volid, " | cdrecord -v gracetime=2", " dev=", device->node_path, write_mode, " speed=", speed,
+      command = g_strconcat ("sh -c \"mkisofs -gui -graft-points -joliet -full-iso9660-filenames -iso-level 2 -volid '", volid,
+                             "' -path-list ", priv->file_list, " | cdrecord -v gracetime=2", " dev=", device->node_path, write_mode, " speed=", speed,
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " -dummy" : "",
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree)) ? " driveropts=burnfree" : "",
@@ -349,7 +349,6 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
       g_free (device_name);
       g_free (speed);
       g_free (write_mode);
-      g_free (volid);
       
       dialog_progress = xfburn_burn_data_composition_progress_dialog_new ();
     }
@@ -361,6 +360,7 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
     gtk_dialog_run (GTK_DIALOG (dialog_progress));
     
     g_free (command);
+    g_free (volid);
   }
   
   unlink (priv->file_list);

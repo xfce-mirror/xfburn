@@ -107,7 +107,7 @@ cb_new_output (XfburnBurnImageProgressDialog * dialog, const gchar * output,
                XfburnBurnImageProgressDialogPrivate * priv)
 {
   if (strstr (output, CDRECORD_FIXATING_TIME)) {
-    xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("no info"));
+    xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Finishing"));
     xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), -1);
     xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), -1);
     xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED);

@@ -21,18 +21,18 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
 #include "xfburn-progress-dialog.h"
 
 #include "xfburn-burn-data-composition-progress-dialog.h"
 
 static void xfburn_burn_data_composition_progress_dialog_class_init (XfburnBurnDataCompositionProgressDialogClass * klass);
 static void xfburn_burn_data_composition_progress_dialog_init (XfburnBurnDataCompositionProgressDialog * sp);
-static void xfburn_burn_data_composition_progress_dialog_finalize (GObject * object);
 
-struct XfburnBurnDataCompositionProgressDialogPrivate
-{
-  /* Place Private Members Here */
-};
+static void cb_new_output (XfburnBurnDataCompositionProgressDialog * dialog, const gchar * output, gpointer data);
 
 static XfburnProgressDialogClass *parent_class = NULL;
 
@@ -63,35 +63,53 @@ xfburn_burn_data_composition_progress_dialog_get_type ()
 static void
 xfburn_burn_data_composition_progress_dialog_class_init (XfburnBurnDataCompositionProgressDialogClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_burn_data_composition_progress_dialog_finalize;
-
 }
 
 static void
 xfburn_burn_data_composition_progress_dialog_init (XfburnBurnDataCompositionProgressDialog * obj)
 {
-  obj->priv = g_new0 (XfburnBurnDataCompositionProgressDialogPrivate, 1);
-  /* Initialize private members, etc. */
-}
-
-static void
-xfburn_burn_data_composition_progress_dialog_finalize (GObject * object)
-{
-  XfburnBurnDataCompositionProgressDialog *cobj;
-  cobj = XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG (object);
-
-  /* Free private members, etc. */
-
-  g_free (cobj->priv);
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), NULL);
 }
 
 /*           */
 /* internals */
 /*           */
+static void
+cb_new_output (XfburnBurnDataCompositionProgressDialog * dialog, const gchar * output, gpointer data)
+{
+  if (strstr (output, CDRECORD_FIXATING_TIME)) {
+    xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Finishing"));
+    xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), -1);
+    xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), -1);
+    xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED);
+  }
+  else if (strstr (output, CDRECORD_FIXATING)) {
+    xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Fixating..."));
+  }
+  else if (strstr (output, CDRECORD_COPY)) {
+    gint current = 0, fifo = 0, buf = 0;
+    gfloat speed = 0;
+
+    if (sscanf (output, "%*s %*d: %d %*s %*s (%*s %d%%) [%*s %d%%] %fx.", &current, &fifo, &buf, &speed) == 4) {
+
+      xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Writing composition..."));
+      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog), speed);
+      xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), ((gdouble) fifo) / 100);
+      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), ((gdouble) buf) / 100);
+    }
+  } else if (strstr (output, MKISOFS_RUNNING)) {
+    gfloat percent = 0;
+    if (sscanf (output, "%f%% done", &percent) == 1) {
+      gdouble fraction;
+
+      fraction = (gdouble) (percent / 100);
+
+      xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Writing composition..."));
+      xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), fraction);
+    }
+  }
+}
 
 /*        */
 /* public */
@@ -102,7 +120,8 @@ xfburn_burn_data_composition_progress_dialog_new ()
 {
   XfburnBurnDataCompositionProgressDialog *obj;
 
-  obj = XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG, NULL));
+  obj = XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG, 
+                                                               "title", _("Burn data composition"), NULL));
 
   return GTK_WIDGET (obj);
 }
