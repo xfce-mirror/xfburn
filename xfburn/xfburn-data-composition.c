@@ -50,7 +50,7 @@
 #endif
 
 #include "xfburn-composition.h"
-#include "xfburn-burn-composition-dialog.h"
+#include "xfburn-burn-data-composition-dialog.h"
 #include "xfburn-disc-usage.h"
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
@@ -105,7 +105,7 @@ typedef enum
 {
   DATA_COMPOSITION_TYPE_FILE,
   DATA_COMPOSITION_TYPE_DIRECTORY
-} DataCompositionype;
+} DataCompositionType;
 
 typedef struct
 {
@@ -376,7 +376,7 @@ cb_begin_burn (XfburnDiscUsage * du, XfburnDataComposition * dc)
   
   generate_file_list (XFBURN_DATA_COMPOSITION (dc), &tmpfile);
   
-  dialog = xfburn_burn_composition_dialog_new (tmpfile);
+  dialog = xfburn_burn_data_composition_dialog_new (tmpfile);
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (mainwin));
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
@@ -940,16 +940,56 @@ content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   }
 }
 
+static gchar *
+get_composition_path (GtkTreeModel *model, GtkTreeIter *iter)
+{
+  GtkTreeIter parent;
+  GtkTreeIter current = *iter;
+  gchar *path = g_strdup ("");
+  gchar *temp = NULL;
+  
+  while (gtk_tree_model_iter_parent (model, &parent, &current)) {
+    gchar *name = NULL;
+    
+    gtk_tree_model_get (model, &parent, DATA_COMPOSITION_COLUMN_CONTENT, &name, -1);
+    
+    temp = g_strdup_printf ("%s/%s", name, path);
+    g_free (path);
+    path = temp;
+    
+    g_free (name);
+    
+    current = parent;
+  } 
+  
+  return path;
+}
+
 static gboolean
 foreach_generate_file_list (GtkTreeModel * model, GtkTreePath * path, GtkTreeIter * iter, FILE * file)
 {
-  gchar *name;
-  gchar *src;
+  DataCompositionType type;
+  gchar *dir_path = NULL;
+  gchar *name = NULL;
+  gchar *src = NULL;
+  
+  gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_TYPE, &type,
+                      DATA_COMPOSITION_COLUMN_CONTENT, &name, DATA_COMPOSITION_COLUMN_PATH, &src, -1);
 
-  gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_CONTENT, &name, DATA_COMPOSITION_COLUMN_PATH, &src, -1);
+  dir_path = get_composition_path (model, iter);
+  
+  fprintf (file, "%s%s=", dir_path, name);
+  
+  if (type == DATA_COMPOSITION_TYPE_DIRECTORY) {
+    gchar *dummy_dir = NULL;
+    
+    dummy_dir = g_object_get_data (G_OBJECT (model), "dummy-dir");    
+    fprintf (file, "%s\n", dummy_dir);
+  } else {
+    fprintf (file, "%s\n", src);
+  }
 
-  fprintf (file, "%s=%s\n", name, src);
-
+  g_free (dir_path);
   g_free (name);
   g_free (src);
   return FALSE;
@@ -964,7 +1004,9 @@ generate_file_list (XfburnDataComposition * dc, gchar ** tmpfile)
   FILE *file_tmp;
   int fd_tmpfile;
   GtkTreeModel *model;
-
+  gchar *dummy_dir = NULL;
+  gchar template[] = "/tmp/xfburnXXXXXX";
+  
   fd_tmpfile = g_file_open_tmp ("xfburnXXXXXX", tmpfile, &error);
   if (error) {
     g_warning ("Unable to create temporary file: %s", error->message);
@@ -974,9 +1016,14 @@ generate_file_list (XfburnDataComposition * dc, gchar ** tmpfile)
 
   file_tmp = fdopen (fd_tmpfile, "w+");
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
+  
+  
+  dummy_dir = mkdtemp (template);
+  g_object_set_data (G_OBJECT (model), "dummy-dir", dummy_dir);
+  
   gtk_tree_model_foreach (model, (GtkTreeModelForeachFunc) foreach_generate_file_list, file_tmp);
   fclose (file_tmp);
-
+  
   return TRUE;
 }
 
@@ -1147,7 +1194,7 @@ foreach_save (GtkTreeModel * model, GtkTreePath * path, GtkTreeIter * iter, Comp
   gint i;
   gchar *name = NULL;
   gchar *source_path = NULL;
-  DataCompositionype type;
+  DataCompositionType type;
 
   space = g_strnfill (gtk_tree_path_get_depth (path), '\t');
   

@@ -79,7 +79,7 @@ main (int argc, char **argv)
   mainwin = xfburn_main_window_new ();
 
   gtk_widget_show (mainwin);
-
+  
   gtk_main ();
   
 #ifdef HAVE_THUNAR_VFS

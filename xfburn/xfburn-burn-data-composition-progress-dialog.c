@@ -23,13 +23,13 @@
 
 #include "xfburn-progress-dialog.h"
 
-#include "xfburn-burn-composition-progress-dialog.h"
+#include "xfburn-burn-data-composition-progress-dialog.h"
 
-static void xfburn_burn_composition_progress_dialog_class_init (XfburnBurnCompositionProgressDialogClass * klass);
-static void xfburn_burn_composition_progress_dialog_init (XfburnBurnCompositionProgressDialog * sp);
-static void xfburn_burn_composition_progress_dialog_finalize (GObject * object);
+static void xfburn_burn_data_composition_progress_dialog_class_init (XfburnBurnDataCompositionProgressDialogClass * klass);
+static void xfburn_burn_data_composition_progress_dialog_init (XfburnBurnDataCompositionProgressDialog * sp);
+static void xfburn_burn_data_composition_progress_dialog_finalize (GObject * object);
 
-struct XfburnBurnCompositionProgressDialogPrivate
+struct XfburnBurnDataCompositionProgressDialogPrivate
 {
   /* Place Private Members Here */
 };
@@ -37,50 +37,50 @@ struct XfburnBurnCompositionProgressDialogPrivate
 static XfburnProgressDialogClass *parent_class = NULL;
 
 GtkType
-xfburn_burn_composition_progress_dialog_get_type ()
+xfburn_burn_data_composition_progress_dialog_get_type ()
 {
   static GtkType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {
-      sizeof (XfburnBurnCompositionProgressDialogClass),
+      sizeof (XfburnBurnDataCompositionProgressDialogClass),
       NULL,
       NULL,
-      (GClassInitFunc) xfburn_burn_composition_progress_dialog_class_init,
+      (GClassInitFunc) xfburn_burn_data_composition_progress_dialog_class_init,
       NULL,
       NULL,
-      sizeof (XfburnBurnCompositionProgressDialog),
+      sizeof (XfburnBurnDataCompositionProgressDialog),
       0,
-      (GInstanceInitFunc) xfburn_burn_composition_progress_dialog_init,
+      (GInstanceInitFunc) xfburn_burn_data_composition_progress_dialog_init,
     };
 
-    type = g_type_register_static (XFBURN_TYPE_PROGRESS_DIALOG, "XfburnBurnCompositionProgressDialog", &our_info, 0);
+    type = g_type_register_static (XFBURN_TYPE_PROGRESS_DIALOG, "XfburnBurnDataCompositionProgressDialog", &our_info, 0);
   }
 
   return type;
 }
 
 static void
-xfburn_burn_composition_progress_dialog_class_init (XfburnBurnCompositionProgressDialogClass * klass)
+xfburn_burn_data_composition_progress_dialog_class_init (XfburnBurnDataCompositionProgressDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_burn_composition_progress_dialog_finalize;
+  object_class->finalize = xfburn_burn_data_composition_progress_dialog_finalize;
 
 }
 
 static void
-xfburn_burn_composition_progress_dialog_init (XfburnBurnCompositionProgressDialog * obj)
+xfburn_burn_data_composition_progress_dialog_init (XfburnBurnDataCompositionProgressDialog * obj)
 {
-  obj->priv = g_new0 (XfburnBurnCompositionProgressDialogPrivate, 1);
+  obj->priv = g_new0 (XfburnBurnDataCompositionProgressDialogPrivate, 1);
   /* Initialize private members, etc. */
 }
 
 static void
-xfburn_burn_composition_progress_dialog_finalize (GObject * object)
+xfburn_burn_data_composition_progress_dialog_finalize (GObject * object)
 {
-  XfburnBurnCompositionProgressDialog *cobj;
+  XfburnBurnDataCompositionProgressDialog *cobj;
   cobj = XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG (object);
 
   /* Free private members, etc. */
@@ -98,9 +98,9 @@ xfburn_burn_composition_progress_dialog_finalize (GObject * object)
 /*        */
 
 GtkWidget *
-xfburn_burn_composition_progress_dialog_new ()
+xfburn_burn_data_composition_progress_dialog_new ()
 {
-  XfburnBurnCompositionProgressDialog *obj;
+  XfburnBurnDataCompositionProgressDialog *obj;
 
   obj = XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG, NULL));
 

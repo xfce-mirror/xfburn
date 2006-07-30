@@ -28,30 +28,30 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_BURN_COMPOSITION_DIALOG         (xfburn_burn_composition_dialog_get_type ())
-#define XFBURN_BURN_COMPOSITION_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnCompositionDialog))
-#define XFBURN_BURN_COMPOSITION_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnCompositionDialogClass))
+#define XFBURN_TYPE_BURN_COMPOSITION_DIALOG         (xfburn_burn_data_composition_dialog_get_type ())
+#define XFBURN_BURN_COMPOSITION_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnDataCompositionDialog))
+#define XFBURN_BURN_COMPOSITION_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnDataCompositionDialogClass))
 #define XFBURN_IS_BURN_COMPOSITION_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_COMPOSITION_DIALOG))
 #define XFBURN_IS_BURN_COMPOSITION_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_COMPOSITION_DIALOG))
-#define XFBURN_BURN_COMPOSITION_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnCompositionDialogClass))
-typedef struct XfburnBurnCompositionDialogPrivate XfburnBurnCompositionDialogPrivate;
+#define XFBURN_BURN_COMPOSITION_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnDataCompositionDialogClass))
+typedef struct XfburnBurnDataCompositionDialogPrivate XfburnBurnDataCompositionDialogPrivate;
 
 typedef struct
 {
   XfceTitledDialog parent;
-  XfburnBurnCompositionDialogPrivate *priv;
-} XfburnBurnCompositionDialog;
+  XfburnBurnDataCompositionDialogPrivate *priv;
+} XfburnBurnDataCompositionDialog;
 
 typedef struct
 {
   XfceTitledDialogClass parent_class;
-} XfburnBurnCompositionDialogClass;
+} XfburnBurnDataCompositionDialogClass;
 
-GtkType xfburn_burn_composition_dialog_get_type ();
-GtkWidget *xfburn_burn_composition_dialog_new (const gchar *file_list);
+GtkType xfburn_burn_data_composition_dialog_get_type ();
+GtkWidget *xfburn_burn_data_composition_dialog_new (const gchar *file_list);
 
-gchar *xfburn_burn_composition_dialog_get_command_iso (XfburnBurnCompositionDialog *dialog);
-gchar *xfburn_burn_composition_dialog_get_command_burn (XfburnBurnCompositionDialog *dialog);
+gchar *xfburn_burn_data_composition_dialog_get_command_iso (XfburnBurnDataCompositionDialog *dialog);
+gchar *xfburn_burn_data_composition_dialog_get_command_burn (XfburnBurnDataCompositionDialog *dialog);
 
 G_END_DECLS
 #endif /* XFBURN_BURN_COMPOSITION_DIALOG_H */

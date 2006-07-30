@@ -30,26 +30,26 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG         (xfburn_burn_composition_progress_dialog_get_type ())
-#define XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG, XfburnBurnCompositionProgressDialog))
-#define XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG, XfburnBurnCompositionProgressDialogClass))
+#define XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG         (xfburn_burn_data_composition_progress_dialog_get_type ())
+#define XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG, XfburnBurnDataCompositionProgressDialog))
+#define XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG, XfburnBurnDataCompositionProgressDialogClass))
 #define XFBURN_IS_BURN_COMPOSITION_PROGRESS_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG))
 #define XFBURN_IS_BURN_COMPOSITION_PROGRESS_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG))
-#define XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG, XfburnBurnCompositionProgressDialogClass))
+#define XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_COMPOSITION_PROGRESS_DIALOG, XfburnBurnDataCompositionProgressDialogClass))
 
-typedef struct XfburnBurnCompositionProgressDialogPrivate XfburnBurnCompositionProgressDialogPrivate;
+typedef struct XfburnBurnDataCompositionProgressDialogPrivate XfburnBurnDataCompositionProgressDialogPrivate;
 
 typedef struct {
 	XfburnProgressDialog parent;
-	XfburnBurnCompositionProgressDialogPrivate *priv;
-} XfburnBurnCompositionProgressDialog;
+	XfburnBurnDataCompositionProgressDialogPrivate *priv;
+} XfburnBurnDataCompositionProgressDialog;
 
 typedef struct {
 	XfburnProgressDialogClass parent_class;
 	/* Add Signal Functions Here */
-} XfburnBurnCompositionProgressDialogClass;
+} XfburnBurnDataCompositionProgressDialogClass;
 
-GtkType xfburn_burn_composition_progress_dialog_get_type ();
-GtkWidget *xfburn_burn_composition_progress_dialog_new ();
+GtkType xfburn_burn_data_composition_progress_dialog_get_type ();
+GtkWidget *xfburn_burn_data_composition_progress_dialog_new ();
 
 #endif /* XFBURN_BURN_COMPOSITION_PROGRESS_DIALOG_H */
