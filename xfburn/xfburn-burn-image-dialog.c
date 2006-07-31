@@ -276,7 +276,7 @@ xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint respo
                            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
                            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " -dummy" : "",
                            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree)) ? " driveropts=burnfree"
-                           : "", " ", iso_path, NULL);
+                           : "", " '", iso_path, "'", NULL);
     g_free (device_name);
     g_free (write_mode);
     g_free (speed);
