@@ -3,7 +3,7 @@ dnl $Id$
 dnl Version information
 m4_define([xfburn_version_major], [0])
 m4_define([xfburn_version_minor], [1])
-m4_define([xfburn_version_micro], [0])
+m4_define([xfburn_version_micro], [1])
 m4_define([xfburn_version_build], [@REVISION@])
 m4_define([xfburn_version_tag], [svn])
 m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()ifelse(xfburn_version_tag(), [svn], [xfburn_version_tag()-xfburn_version_build()], [xfburn_version_tag()])])
@@ -46,7 +46,7 @@ XDT_I18N([@LINGUAS@])
 
 dnl check for required packages
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])
-XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
+XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.3.90])
 XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.0])
 XDT_CHECK_OPTIONAL_PACKAGE([THUNAR_VFS], [thunar-vfs-1], [0.3.0], [thunar-vfs],
 	AC_HELP_STRING([--disable-thunar-vfs],

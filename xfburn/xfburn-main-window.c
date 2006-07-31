@@ -451,7 +451,7 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
   } translators[] = {
     {"Pau Rul lan Ferragut", "paurullan@bulma.net", "ca",},
     {"Michal Várady", "miko.vaji@gmail.com", "cs",},
-    {"Enrico Troeger", "enrico.troeger@uvena.de", "de",},
+    {"Enrico Tröger", "enrico.troeger@uvena.de", "de",},
     {"Stavros Giannouris", "stavrosg2002@freemail.gr", "el",},
     {"Piarres Beobide", "pi@beobide.net", "eu",},
     {"Jari Rahkonen", "jari.rahkonen@pp2.inet.fi", "fi",},
@@ -460,7 +460,7 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
     {"Attila SZERVÑC", "sas@321.hu", "hu",},
     {"Daichi Kawahata", "daichi@xfce.org", "ja",},
     {"Mantas", "mantaz@users.sourceforge.net", "lt",},
-    {"Szymon Kalasz", "szymon_maestro@gazeta.pl", "pl",},
+    {"Szymon Kałasz", "szymon_maestro@gazeta.pl", "pl",},
     {"Sergey Fedoseev", "fedoseev.sergey@gmail.com", "ru",},
     {"Maxim V. Dziumanenko", "mvd@mylinux.com.ua", "uk",},
     {"Cosmo Chene", "cosmolax@gmail.com", "zh_TW",},

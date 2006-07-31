@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-07-30 17:48+0200\n"
-"PO-Revision-Date: 2006-07-23 13:40+0100\n"
+"PO-Revision-Date: 2006-07-31 10:43+0100\n"
 "Last-Translator: Enrico Troeger <enrico.troeger@uvena.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11,7 +11,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../xfburn/xfburn-adding-progress.c:89
-#, fuzzy
 msgid "Adding files to the composition"
 msgstr "Dateien zur Zusammenstellung hinzufügen"
 
@@ -123,7 +122,7 @@ msgstr "_Zusammenstellung brennen"
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:110
 msgid "Finishing"
-msgstr ""
+msgstr "Beende"
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:116
@@ -132,14 +131,12 @@ msgstr "Fixiere..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
-#, fuzzy
 msgid "Writing composition..."
-msgstr "Zusammenstellung brennen"
+msgstr "Schreibe Zusammenstellung..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
-#, fuzzy
 msgid "Burn data composition"
-msgstr "Neue Datenzusammenstellung"
+msgstr "Daten-Zusammenstellung brennen"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:108
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:148
@@ -162,7 +159,6 @@ msgstr "Schreibe ISO..."
 
 #: ../xfburn/xfburn-compositions-notebook.c:173
 #: ../xfburn/xfburn-data-composition.c:283
-#, fuzzy
 msgid "Data composition"
 msgstr "Daten-Zusammenstellung"
 
@@ -250,7 +246,7 @@ msgstr "Ausgewählte Datei umbennen"
 
 #: ../xfburn/xfburn-data-composition.c:278
 msgid "Volume name :"
-msgstr ""
+msgstr "Bezeichnung:"
 
 #: ../xfburn/xfburn-data-composition.c:309
 msgid "Contents"
@@ -267,11 +263,8 @@ msgstr "Lokaler Pfad"
 
 #: ../xfburn/xfburn-data-composition.c:531
 #: ../xfburn/xfburn-data-composition.c:754
-#, fuzzy
 msgid "A file with the same name is already present in the composition"
-msgstr ""
-"Eine Datei mit dem selben Dateinamen ist in der Zusammenstellung bereits "
-"vorhanden."
+msgstr "Eine Datei mit dem selben Dateinamen ist in der Zusammenstellung bereits vorhanden."
 
 #: ../xfburn/xfburn-data-disc-usage.c:129
 msgid "Burn Data CD"
@@ -279,7 +272,7 @@ msgstr "Daten-CD brennen"
 
 #: ../xfburn/xfburn-data-disc-usage.c:176
 msgid "You are trying to burn more data than the disk can contain !"
-msgstr ""
+msgstr "Sie versuchen mehr Daten zu brennen als auf eine CD passen."
 
 #: ../xfburn/xfburn-directory-browser.c:55
 msgid "Folder"
@@ -294,7 +287,8 @@ msgstr "Datei"
 msgid "Type"
 msgstr "Typ"
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:265
+#: ../xfburn/xfburn-fs-browser.c:94
+#: ../xfburn/xfburn-fs-browser.c:265
 msgid "Filesystem"
 msgstr "Dateisystem"
 
@@ -304,7 +298,8 @@ msgstr "Dateisystem"
 msgid "%s's home"
 msgstr "%s' Home"
 
-#: ../xfburn/xfburn-main.c:54 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:54
+#: ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -332,11 +327,11 @@ msgstr "Erstellt eine neue Zusammenstellung."
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (xfburn_window_action_save_as),},
 #: ../xfburn/xfburn-main-window.c:101
-#, fuzzy
 msgid "Close composition"
-msgstr "Zusammenstellung speichern"
+msgstr "Zusammenstellung schließen"
 
-#: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
+#: ../xfburn/xfburn-main-window.c:103
+#: ../xfburn/xfburn-main-window.c:436
 msgid "_Quit"
 msgstr "_Beenden"
 
@@ -441,11 +436,11 @@ msgstr "Übersetzer (%s)"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "Label"
-msgstr ""
+msgstr "Label"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "The text of the label"
-msgstr ""
+msgstr "Der Text des Labels"
 
 #: ../xfburn/xfburn-preferences-dialog.c:122
 msgid "Preferences"
@@ -599,15 +594,12 @@ msgstr "CD und DVD Brennprogramm"
 
 #~ msgid "New audio composition"
 #~ msgstr "Neue Audiozusammenstellung"
-
 #~ msgid "Load composition"
 #~ msgstr "Zusammenstellung laden"
-
 #~ msgid "Show disc content toolbar"
 #~ msgstr "Zeige CD-Inhaltswerzeugleiste"
-
 #~ msgid "Show/hide the disc content toolbar"
 #~ msgstr "Zeigt oder verbirgt die CD-Inhaltswerzeugleiste"
-
 #~ msgid "Xfburn preferences"
 #~ msgstr "Xfburn Einstellungen"
+
