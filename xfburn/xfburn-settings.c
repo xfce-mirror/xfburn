@@ -147,15 +147,7 @@ xfburn_settings_internal_init (XfburnSettings *settings)
 
   priv->settings = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, (GDestroyNotify) value_destroy);
 
-  path = xfce_resource_lookup (XFCE_RESOURCE_CONFIG, "xfburn/");
-
-  if (path) {
-    priv->full_path = g_build_filename (path, "settings.xml", NULL);
-    g_free (path);
-  }
-  else {
-    g_message ("no settings file found, using defaults");
-  }
+  priv->full_path = xfce_resource_save_location (XFCE_RESOURCE_CONFIG, "xfburn/settings.xml", TRUE);
 }
 
 /*************/
@@ -277,7 +269,7 @@ load_settings (XfburnSettingsPrivate *priv)
 #endif
 
   if (stat (priv->full_path, &st) < 0) {
-    g_warning ("Unable to open the settings file");
+    g_message ("No existing settings file, using default settings");
     goto cleanup;
   }
 
