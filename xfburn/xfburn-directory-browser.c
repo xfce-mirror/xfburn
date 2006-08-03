@@ -189,38 +189,10 @@ cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
                           GtkSelectionData * data, guint info, guint time, gpointer user_data)
 {
   if (info == DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN) {
-    GtkTreeSelection *selection;
-    GtkTreeModel *model;
-    GList *selected_rows;
-    gchar *full_paths;
+    gchar *full_paths = NULL;
 
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
-
-    full_paths = g_strdup ("");
-    selected_rows = gtk_tree_selection_get_selected_rows (selection, &model);
-    selected_rows = g_list_last (selected_rows);
-    while (selected_rows) {
-      GtkTreeIter iter;
-      gchar *current_path;
-      gchar *temp;
-      
-      gtk_tree_model_get_iter (model, &iter, (GtkTreePath *) selected_rows->data);
-      gtk_tree_model_get (model, &iter, DIRECTORY_BROWSER_COLUMN_PATH, &current_path, -1);
-
-      temp = g_strdup_printf ("file://%s\n%s", current_path, full_paths);
-      g_free (current_path);
-      g_free (full_paths);
-      full_paths = temp;
-
-      selected_rows = g_list_previous (selected_rows);
-    }
-
-    selected_rows = g_list_first (selected_rows);
-    g_list_foreach (selected_rows, (GFunc) gtk_tree_path_free, NULL);
-    g_list_free (selected_rows);
-
+    full_paths = xfburn_directory_browser_get_selection (XFBURN_DIRECTORY_BROWSER (widget));
     gtk_selection_data_set_text (data, full_paths, -1);
-
     g_free (full_paths);
   }
 }
@@ -350,4 +322,39 @@ xfburn_directory_browser_refresh (XfburnDirectoryBrowser * browser)
   temp = g_strdup (browser->priv->current_path);
   xfburn_directory_browser_load_path (browser, (const gchar*) temp);
   g_free (temp);
+}
+
+gchar *
+xfburn_directory_browser_get_selection (XfburnDirectoryBrowser * browser)
+{
+  GtkTreeSelection *selection;
+  GtkTreeModel *model;
+  GList *selected_rows;
+  gchar *full_paths = NULL;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
+
+  selected_rows = gtk_tree_selection_get_selected_rows (selection, &model);
+  selected_rows = g_list_last (selected_rows);
+  while (selected_rows) {
+    GtkTreeIter iter;
+    gchar *current_path = NULL;
+    gchar *temp = NULL;
+    
+    gtk_tree_model_get_iter (model, &iter, (GtkTreePath *) selected_rows->data);
+    gtk_tree_model_get (model, &iter, DIRECTORY_BROWSER_COLUMN_PATH, &current_path, -1);
+
+    temp = g_strdup_printf ("file://%s\n%s", current_path, full_paths ? full_paths : "");
+    g_free (current_path);
+    g_free (full_paths);
+    full_paths = temp;
+
+    selected_rows = g_list_previous (selected_rows);
+  }
+
+  selected_rows = g_list_first (selected_rows);
+  g_list_foreach (selected_rows, (GFunc) gtk_tree_path_free, NULL);
+  g_list_free (selected_rows);
+
+  return full_paths;
 }

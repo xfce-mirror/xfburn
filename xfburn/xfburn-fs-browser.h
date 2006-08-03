@@ -52,8 +52,11 @@ enum
 };
 
 GType xfburn_fs_browser_get_type ();
+
 GtkWidget *xfburn_fs_browser_new ();
-void xfburn_fs_browser_refresh (XfburnFsBrowser *);
+
+void xfburn_fs_browser_refresh (XfburnFsBrowser *browser);
+gchar * xfburn_fs_browser_get_selection (XfburnFsBrowser *browser);
 
 G_END_DECLS
 #endif /* __XFBURN_FS_BROWSER_H__ */

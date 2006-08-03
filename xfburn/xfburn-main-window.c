@@ -595,3 +595,11 @@ xfburn_main_window_get_ui_manager (XfburnMainWindow *window)
   
   return priv->ui_manager;
 }
+
+XfburnFileBrowser *
+xfburn_main_window_get_file_browser (XfburnMainWindow *window)
+{
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  
+  return XFBURN_FILE_BROWSER (priv->file_browser);
+}

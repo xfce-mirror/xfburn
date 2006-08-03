@@ -38,7 +38,7 @@ static void xfburn_fs_browser_init (XfburnFsBrowser * sp);
 
 static void cb_browser_row_expanded (GtkTreeView *, GtkTreeIter *, GtkTreePath *, gpointer);
 static void cb_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
-static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectionData *, guint, guint, gpointer);
+static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectionData *, guint, guint, XfburnFsBrowser *);
 
 /* globals */
 static GtkTreeViewClass *parent_class = NULL;
@@ -203,25 +203,13 @@ cb_browser_row_activated (GtkTreeView *treeview, GtkTreePath *path, GtkTreeViewC
 
 static void
 cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
-                          GtkSelectionData * data, guint info, guint time, gpointer user_data)
+                          GtkSelectionData * data, guint info, guint time, XfburnFsBrowser *browser)
 {
   if (info == DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN) {
-    GtkTreeSelection *selection;
-    GtkTreeModel *model;
-    GtkTreeIter iter;
-    gchar *path;
-    gchar *full_path;
-
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
-    gtk_tree_selection_get_selected (selection, &model, &iter);
-
-    gtk_tree_model_get (model, &iter, FS_BROWSER_COLUMN_PATH, &path, -1);
-
-    full_path = g_strdup_printf ("file://%s", path);
-    g_free (path);
-
+    gchar *full_path = NULL;
+    
+    full_path = xfburn_fs_browser_get_selection (browser);
     gtk_selection_data_set_text (data, full_path, -1);
-
     g_free (full_path);
   }
 }
@@ -282,4 +270,26 @@ xfburn_fs_browser_refresh (XfburnFsBrowser * browser)
   path = gtk_tree_model_get_path (model, &iter_home);
   gtk_tree_view_expand_row (GTK_TREE_VIEW (browser), path, FALSE);
   gtk_tree_path_free (path);
+}
+
+gchar *
+xfburn_fs_browser_get_selection (XfburnFsBrowser *browser)
+{
+  GtkTreeSelection *selection;
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+
+  gchar *full_path = NULL;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
+  if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
+    gchar *path = NULL;
+   
+    gtk_tree_model_get (model, &iter, FS_BROWSER_COLUMN_PATH, &path, -1);
+
+    full_path = g_strdup_printf ("file://%s", path);
+    g_free (path);
+  }
+  
+  return full_path;
 }

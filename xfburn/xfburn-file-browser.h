@@ -50,8 +50,11 @@ struct _XfburnFileBrowserClass
 };
 
 GtkType xfburn_file_browser_get_type (void);
+
 GtkWidget *xfburn_file_browser_new (void);
+
 void xfburn_file_browser_refresh (XfburnFileBrowser *browser);
+gchar *xfburn_file_browser_get_selection (XfburnFileBrowser *browser);
 
 G_END_DECLS
 #endif

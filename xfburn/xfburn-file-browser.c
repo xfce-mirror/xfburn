@@ -111,6 +111,7 @@ xfburn_file_browser_init (XfburnFileBrowser * file_browser)
   xfburn_directory_browser_load_path (XFBURN_DIRECTORY_BROWSER (file_browser->directory_browser), xfce_get_homedir ());
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (file_browser->fs_browser));
+  
   g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_fs_browser_selection_changed), file_browser);
 
   g_signal_connect (G_OBJECT (file_browser->directory_browser), "row-activated",
@@ -200,4 +201,15 @@ xfburn_file_browser_refresh (XfburnFileBrowser *browser)
 {
   // TODO refresh fs browser
   xfburn_directory_browser_refresh (XFBURN_DIRECTORY_BROWSER (browser->directory_browser));
+}
+
+gchar *
+xfburn_file_browser_get_selection (XfburnFileBrowser *browser)
+{
+  if (GTK_WIDGET_HAS_FOCUS (browser->fs_browser))
+    return xfburn_fs_browser_get_selection (browser->fs_browser);
+  else if (GTK_WIDGET_HAS_FOCUS (browser->directory_browser))
+    return xfburn_directory_browser_get_selection (browser->directory_browser);
+  
+  return NULL;
 }

@@ -27,6 +27,7 @@
 #include <gtk/gtk.h>
 
 #include "xfburn-data-composition.h"
+#include "xfburn-file-browser.h"
 
 G_BEGIN_DECLS
 #define XFBURN_TYPE_MAIN_WINDOW            (xfburn_main_window_get_type ())
@@ -54,6 +55,7 @@ GtkWidget *xfburn_main_window_new (void);
 XfburnMainWindow *xfburn_main_window_get_instance (void);
 
 GtkUIManager *xfburn_main_window_get_ui_manager (XfburnMainWindow *window);
+XfburnFileBrowser *xfburn_main_window_get_file_browser (XfburnMainWindow *window);
 
 G_END_DECLS
 #endif
