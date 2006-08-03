@@ -33,12 +33,25 @@
 #include "xfburn-fs-browser.h"
 #include "xfburn-directory-browser.h"
 
+#define XFBURN_FILE_BROWSER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_FILE_BROWSER, XfburnFileBrowserPrivate))
+
+typedef enum {
+  FS_BROWSER,
+  DIRECTORY_BROWSER,
+} HasFocusWidgetType;
+
+/* private struct */
+typedef struct {  
+  HasFocusWidgetType has_focus;
+} XfburnFileBrowserPrivate;
+
 /* prototypes */
 static void xfburn_file_browser_class_init (XfburnFileBrowserClass *);
 static void xfburn_file_browser_init (XfburnFileBrowser *);
 
 static void cb_fs_browser_selection_changed (GtkTreeSelection *, XfburnFileBrowser *);
-static void cb_directory_browser_row_actived (GtkWidget *, GtkTreePath *, GtkTreeViewColumn *, XfburnFileBrowser *);
+static void cb_directory_browser_row_activated (GtkWidget *, GtkTreePath *, GtkTreeViewColumn *, XfburnFileBrowser *);
+static gboolean cb_focus_in_event (GtkWidget *widget, GdkEventFocus *event, XfburnFileBrowser *file_browser);
 
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
@@ -77,6 +90,8 @@ xfburn_file_browser_class_init (XfburnFileBrowserClass * klass)
 
   gobject_class = G_OBJECT_CLASS (klass);
 
+  g_type_class_add_private (klass, sizeof (XfburnFileBrowserPrivate));
+  
   parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -115,12 +130,17 @@ xfburn_file_browser_init (XfburnFileBrowser * file_browser)
   g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_fs_browser_selection_changed), file_browser);
 
   g_signal_connect (G_OBJECT (file_browser->directory_browser), "row-activated",
-                    G_CALLBACK (cb_directory_browser_row_actived), file_browser);
+                    G_CALLBACK (cb_directory_browser_row_activated), file_browser);
+                    
+  g_signal_connect (G_OBJECT (file_browser->fs_browser), "focus-in-event", G_CALLBACK (cb_focus_in_event), file_browser);
+  g_signal_connect (G_OBJECT (file_browser->directory_browser), "focus-in-event", G_CALLBACK (cb_focus_in_event), file_browser);
 }
 
+/*************/
 /* internals */
+/*************/
 static void
-cb_directory_browser_row_actived (GtkWidget * treeview, GtkTreePath * path, GtkTreeViewColumn * column,
+cb_directory_browser_row_activated (GtkWidget * treeview, GtkTreePath * path, GtkTreeViewColumn * column,
                                   XfburnFileBrowser * browser)
 {
   GtkTreeSelection *selection_dir, *selection_fs;
@@ -189,7 +209,23 @@ cb_fs_browser_selection_changed (GtkTreeSelection * selection, XfburnFileBrowser
   }
 }
 
+static gboolean 
+cb_focus_in_event (GtkWidget *widget, GdkEventFocus *event, XfburnFileBrowser *file_browser)
+{
+  XfburnFileBrowserPrivate *priv = XFBURN_FILE_BROWSER_GET_PRIVATE (file_browser);
+  
+  if (widget == file_browser->fs_browser) {
+    priv->has_focus = FS_BROWSER;
+  } else if (widget == file_browser->directory_browser) {
+    priv->has_focus = DIRECTORY_BROWSER;
+  }
+  
+  return FALSE;
+}
+
+/******************/
 /* public methods */
+/******************/
 GtkWidget *
 xfburn_file_browser_new (void)
 {
@@ -206,10 +242,12 @@ xfburn_file_browser_refresh (XfburnFileBrowser *browser)
 gchar *
 xfburn_file_browser_get_selection (XfburnFileBrowser *browser)
 {
-  if (GTK_WIDGET_HAS_FOCUS (browser->fs_browser))
-    return xfburn_fs_browser_get_selection (browser->fs_browser);
-  else if (GTK_WIDGET_HAS_FOCUS (browser->directory_browser))
-    return xfburn_directory_browser_get_selection (browser->directory_browser);
+  XfburnFileBrowserPrivate *priv = XFBURN_FILE_BROWSER_GET_PRIVATE (browser);
+  
+  if (priv->has_focus == FS_BROWSER)
+    return xfburn_fs_browser_get_selection (XFBURN_FS_BROWSER (browser->fs_browser));
+  else if (priv->has_focus == DIRECTORY_BROWSER)
+    return xfburn_directory_browser_get_selection (XFBURN_DIRECTORY_BROWSER (browser->directory_browser));
   
   return NULL;
 }

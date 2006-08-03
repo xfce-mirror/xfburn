@@ -76,13 +76,14 @@ static void data_composition_action_rename_selection (GtkAction *, XfburnDataCom
 static void data_composition_action_add_selected_files (GtkAction *, XfburnDataComposition *);
 
 static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDataComposition * dc);
+static void cb_treeview_row_activated (GtkTreeView * treeview, GtkTreePath * path, GtkTreeViewColumn * column, XfburnDataComposition * composition);
 static void cb_selection_changed (GtkTreeSelection *selection, XfburnDataComposition * dc);
 static void cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc);
-static void cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDataComposition * dc);
+static void cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDataComposition * dc);
 
-static void content_drag_data_rcv_cb (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint,
+static void cb_content_drag_data_rcv (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint,
                                       XfburnDataComposition *);
-static void content_drag_data_get_cb (GtkWidget * widget, GdkDragContext * dc, GtkSelectionData * data, guint info,
+static void cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc, GtkSelectionData * data, guint info,
                                       guint time, XfburnDataComposition * content);
 
 static gboolean add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTreeModel * model,
@@ -320,7 +321,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   cell_file = gtk_cell_renderer_text_new ();
   gtk_tree_view_column_pack_start (column_file, cell_file, TRUE);
   gtk_tree_view_column_set_attributes (column_file, cell_file, "text", DATA_COMPOSITION_COLUMN_CONTENT, NULL);
-  g_signal_connect (G_OBJECT (cell_file), "edited", G_CALLBACK (cell_file_edited_cb), composition);
+  g_signal_connect (G_OBJECT (cell_file), "edited", G_CALLBACK (cb_cell_file_edited), composition);
   g_object_set (G_OBJECT (cell_file), "editable", TRUE, NULL);
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (priv->content), column_file);
@@ -331,6 +332,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Local Path"),
                                                gtk_cell_renderer_text_new (), "text", DATA_COMPOSITION_COLUMN_PATH, NULL);
 
+  g_signal_connect (G_OBJECT (priv->content), "row-activated", G_CALLBACK (cb_treeview_row_activated), composition);
   g_signal_connect (G_OBJECT (priv->content), "button-press-event",
                     G_CALLBACK (cb_treeview_button_pressed), composition);
   g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_selection_changed), composition);
@@ -349,11 +351,11 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   /* set up DnD */
   gtk_tree_view_enable_model_drag_source (GTK_TREE_VIEW (priv->content), GDK_BUTTON1_MASK, gte_src,
                                           G_N_ELEMENTS (gte_src), GDK_ACTION_MOVE);
-  g_signal_connect (G_OBJECT (priv->content), "drag-data-get", G_CALLBACK (content_drag_data_get_cb),
+  g_signal_connect (G_OBJECT (priv->content), "drag-data-get", G_CALLBACK (cb_content_drag_data_get),
                     composition);
   gtk_tree_view_enable_model_drag_dest (GTK_TREE_VIEW (priv->content), gte_dest, G_N_ELEMENTS (gte_dest),
                                         GDK_ACTION_COPY | GDK_ACTION_MOVE);
-  g_signal_connect (G_OBJECT (priv->content), "drag-data-received", G_CALLBACK (content_drag_data_rcv_cb),
+  g_signal_connect (G_OBJECT (priv->content), "drag-data-received", G_CALLBACK (cb_content_drag_data_rcv),
                     composition);
                     
   action = gtk_action_group_get_action (priv->action_group, "remove-file");
@@ -418,6 +420,13 @@ cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc)
 }
 
 static void
+cb_treeview_row_activated (GtkTreeView * treeview, GtkTreePath * path, GtkTreeViewColumn * column,
+                         XfburnDataComposition * composition)
+{
+  gtk_tree_view_expand_row (treeview, path, FALSE);
+}
+
+static void
 cb_selection_changed (GtkTreeSelection *selection, XfburnDataComposition * dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
@@ -455,6 +464,23 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   
+  if ((event->button == 1) && (event->type == GDK_BUTTON_PRESS)) {
+    GtkTreePath *path;
+    
+    if (gtk_tree_view_get_path_at_pos (treeview, event->x, event->y, &path, NULL, NULL, NULL)) {
+      gtk_tree_path_free (path);
+      
+      return FALSE;
+    } else {
+      GtkTreeSelection *selection;
+
+      selection = gtk_tree_view_get_selection (treeview);
+      gtk_tree_selection_unselect_all (selection);
+      
+      return TRUE;
+    }
+  }
+  
   if ((event->button == 3) && (event->type == GDK_BUTTON_PRESS)) {
     GtkTreeSelection *selection;
     GtkTreePath *path;
@@ -467,8 +493,8 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     if (gtk_tree_view_get_path_at_pos (treeview, event->x, event->y, &path, NULL, NULL, NULL)) {
       gtk_tree_selection_unselect_all (selection);
       gtk_tree_selection_select_path (selection, path);
+      gtk_tree_path_free (path);
     }
-    gtk_tree_path_free (path);
 
     menu_popup = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu");
     menuitem_remove = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/remove-file");
@@ -557,7 +583,7 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
 }
 
 static void
-cell_file_edited_cb (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDataComposition * dc)
+cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDataComposition * dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   
@@ -751,7 +777,7 @@ data_composition_action_clear (GtkAction * action, XfburnDataComposition * dc)
 }
 
 static void
-content_drag_data_get_cb (GtkWidget * widget, GdkDragContext * dc,
+cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
                           GtkSelectionData * data, guint info, guint time, XfburnDataComposition * content)
 {
   if (info == DATA_COMPOSITION_DND_TARGET_INSIDE) {
@@ -997,7 +1023,7 @@ add_file_to_list (XfburnDataComposition * dc, GtkTreeModel * model, const gchar 
 }
 
 static void
-content_drag_data_rcv_cb (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
+cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                           guint info, guint t, XfburnDataComposition * composition)
 {  
   GtkTreeModel *model;
