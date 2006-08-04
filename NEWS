@@ -1,6 +1,10 @@
 xfburn 0.x
 ==========
 
+- Add create directory action in data composition
+- Prevent usage of empty filename in data composition
+- Fix xfburn.desktop Categories entry as suggested by Charles A Edwards <eslrahc@bellsouth.net>
+- Implement the add button in the data composition toolbar (bug #2097)
 - Avoid segfault on exit when ~/.config/xfburn doesn't exist (bug #2095)
 - Prevent cdrecord failure if there is a space in the path to an iso (bug #1198)
 
