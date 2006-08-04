@@ -51,6 +51,10 @@ main (int argc, char **argv)
 {
   GtkWidget *mainwin;
 
+#if DEBUG > 0
+  g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
+#endif
+  
   g_set_application_name (_("Xfburn"));
 
   if (argc > 1 && (!strcmp (argv[1], "--version") || !strcmp (argv[1], "-V"))) {

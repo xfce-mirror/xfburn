@@ -70,10 +70,11 @@ static void save_to_file (XfburnComposition *composition);
 
 static gint directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data);
 
-static void data_composition_action_clear (GtkAction *, XfburnDataComposition *);
-static void data_composition_action_remove_selection (GtkAction *, XfburnDataComposition *);
-static void data_composition_action_rename_selection (GtkAction *, XfburnDataComposition *);
-static void data_composition_action_add_selected_files (GtkAction *, XfburnDataComposition *);
+static void action_create_directory (GtkAction *, XfburnDataComposition *);
+static void action_clear (GtkAction *, XfburnDataComposition *);
+static void action_remove_selection (GtkAction *, XfburnDataComposition *);
+static void action_rename_selection (GtkAction *, XfburnDataComposition *);
+static void action_add_selected_files (GtkAction *, XfburnDataComposition *);
 
 static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDataComposition * dc);
 static void cb_treeview_row_activated (GtkTreeView * treeview, GtkTreePath * path, GtkTreeViewColumn * column, XfburnDataComposition * composition);
@@ -132,20 +133,23 @@ static GtkHPanedClass *parent_class = NULL;
 static guint instances = 0;
 
 static const GtkActionEntry action_entries[] = {
-  {"add-file", GTK_STOCK_ADD, N_("Add"), NULL, N_("Add the selected file(s) to the CD"),
-   G_CALLBACK (data_composition_action_add_selected_files),},
-  {"remove-file", GTK_STOCK_REMOVE, N_("Remove"), NULL, N_("Remove the selected file(s) from the CD"),
-   G_CALLBACK (data_composition_action_remove_selection),},
-  {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the content of the CD"),
-   G_CALLBACK (data_composition_action_clear),},
+  {"add-file", GTK_STOCK_ADD, N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
+   G_CALLBACK (action_add_selected_files),},
+  {"create-dir", GTK_STOCK_NEW, N_("Create directory"), NULL, N_("Add a new directory to the composition"),
+   G_CALLBACK (action_create_directory),},
+  {"remove-file", GTK_STOCK_REMOVE, N_("Remove"), NULL, N_("Remove the selected file(s) from the composition"),
+   G_CALLBACK (action_remove_selection),},
+  {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the content of the composition"),
+   G_CALLBACK (action_clear),},
   {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
   {"rename-file", GTK_STOCK_EDIT, N_("Rename"), NULL, N_("Rename the selected file"),
-   G_CALLBACK (data_composition_action_rename_selection),},
+   G_CALLBACK (action_rename_selection),},
 };
 
 static const gchar *toolbar_actions[] = {
   "add-file",
   "remove-file",
+  "create-dir",
   "clear",
   "import-session",
 };
@@ -226,6 +230,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   GtkAction *action = NULL;
   
   const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
+    "<menuitem action=\"create-dir\"/>" "<separator/>"
     "<menuitem action=\"rename-file\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
 
   GtkTargetEntry gte_src[] = { {"XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE} };
@@ -264,6 +269,8 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   exo_toolbars_model_set_style (model_toolbar, GTK_TOOLBAR_BOTH, toolbar_position);
 
   exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "add-file", EXO_TOOLBARS_ITEM_TYPE);
+  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "create-dir", EXO_TOOLBARS_ITEM_TYPE);
+  exo_toolbars_model_add_separator (model_toolbar, toolbar_position, -1);
   exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "remove-file", EXO_TOOLBARS_ITEM_TYPE);
   exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "clear", EXO_TOOLBARS_ITEM_TYPE);
   //exo_toolbars_model_add_separator (model_toolbar, toolbar_position, -1);
@@ -360,8 +367,6 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
                     
   action = gtk_action_group_get_action (priv->action_group, "remove-file");
   gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
-  action = gtk_action_group_get_action (priv->action_group, "clear");
-  gtk_action_set_sensitive (GTK_ACTION (action), FALSE);  
 }
 
 static void
@@ -438,24 +443,24 @@ cb_selection_changed (GtkTreeSelection *selection, XfburnDataComposition * dc)
   if (n_selected_rows == 0) {
     action = gtk_action_group_get_action (priv->action_group, "add-file");
     gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
+    action = gtk_action_group_get_action (priv->action_group, "create-dir");
+    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);  
     action = gtk_action_group_get_action (priv->action_group, "remove-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
-    action = gtk_action_group_get_action (priv->action_group, "clear");
     gtk_action_set_sensitive (GTK_ACTION (action), FALSE);  
   } else if (n_selected_rows == 1) {
     action = gtk_action_group_get_action (priv->action_group, "add-file");
     gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
+    action = gtk_action_group_get_action (priv->action_group, "create-dir");
+    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);  
     action = gtk_action_group_get_action (priv->action_group, "remove-file");
     gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
-    action = gtk_action_group_get_action (priv->action_group, "clear");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);  
   } else {
     action = gtk_action_group_get_action (priv->action_group, "add-file");
     gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
+    action = gtk_action_group_get_action (priv->action_group, "create-dir");
+    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);  
     action = gtk_action_group_get_action (priv->action_group, "remove-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
-    action = gtk_action_group_get_action (priv->action_group, "clear");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);      
+    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);     
   }
 }
 
@@ -469,16 +474,14 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     
     if (gtk_tree_view_get_path_at_pos (treeview, event->x, event->y, &path, NULL, NULL, NULL)) {
       gtk_tree_path_free (path);
-      
-      return FALSE;
     } else {
       GtkTreeSelection *selection;
 
       selection = gtk_tree_view_get_selection (treeview);
       gtk_tree_selection_unselect_all (selection);
-      
-      return TRUE;
     }
+    
+    return FALSE;
   }
   
   if ((event->button == 3) && (event->type == GDK_BUTTON_PRESS)) {
@@ -591,6 +594,11 @@ cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
   GtkTreeModel *model;
   GtkTreePath *real_path;
 
+  if (strlen (newtext) == 0) {
+    xfce_err (_("You must give a name to the file"));
+    return;
+  }
+    
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   real_path = gtk_tree_path_new_from_string (path);
 
@@ -607,7 +615,7 @@ cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
 }
 
 static void
-data_composition_action_rename_selection (GtkAction * action, XfburnDataComposition * dc)
+action_rename_selection (GtkAction * action, XfburnDataComposition * dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   
@@ -631,7 +639,70 @@ data_composition_action_rename_selection (GtkAction * action, XfburnDataComposit
 }
 
 static void
-data_composition_action_remove_selection (GtkAction * action, XfburnDataComposition * dc)
+action_create_directory (GtkAction * action, XfburnDataComposition * dc)
+{
+  XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
+  
+  GtkTreeModel *model;
+  GtkTreeSelection *selection;
+  GList *selected_paths = NULL;
+  GtkTreePath *path_where_insert = NULL;
+  GtkTreeIter iter_where_insert, iter_directory;
+  DataCompositionType type = -1;
+  gchar *humansize = NULL;
+  
+  GtkTreeViewColumn *column;
+  GtkTreePath *path = NULL;
+  
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->content));
+  selected_paths = gtk_tree_selection_get_selected_rows (selection, NULL);
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
+    
+  if (selected_paths) {
+    path_where_insert = (GtkTreePath *) (selected_paths->data);
+
+    gtk_tree_model_get_iter (model, &iter_where_insert, path_where_insert);
+    gtk_tree_model_get (model, &iter_where_insert, DATA_COMPOSITION_COLUMN_TYPE, &type, -1);
+  }
+  
+  if (type == DATA_COMPOSITION_TYPE_DIRECTORY) {
+    gtk_tree_store_append (GTK_TREE_STORE (model), &iter_directory, &iter_where_insert);
+    gtk_tree_view_expand_row (GTK_TREE_VIEW (priv->content), path_where_insert, FALSE);
+  } else if (type == DATA_COMPOSITION_TYPE_FILE) {
+    GtkTreeIter parent;
+        
+    if (gtk_tree_model_iter_parent (model, &parent, &iter_where_insert))
+      gtk_tree_store_append (GTK_TREE_STORE (model), &iter_directory, &parent);
+    else
+      gtk_tree_store_append (GTK_TREE_STORE (model), &iter_directory, NULL);
+  } else {
+    gtk_tree_store_append (GTK_TREE_STORE (model), &iter_directory, NULL);
+  }
+  
+  humansize = xfburn_humanreadable_filesize (4);
+  
+  gtk_tree_store_set (GTK_TREE_STORE (model), &iter_directory,
+                      DATA_COMPOSITION_COLUMN_ICON, icon_directory,                     
+                      DATA_COMPOSITION_COLUMN_CONTENT, _("New directory"),
+                      DATA_COMPOSITION_COLUMN_HUMANSIZE, humansize,
+                      DATA_COMPOSITION_COLUMN_SIZE, (guint64) 4,
+                      DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_DIRECTORY, -1);
+                      
+  g_free (humansize);
+  
+  gtk_widget_realize (priv->content);
+  
+  /* put the cell renderer in edition mode */
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), DATA_COMPOSITION_COLUMN_CONTENT - 1);
+  /* -1 because of COLUMN_ICON */
+  path = gtk_tree_model_get_path (model, &iter_directory);
+  
+  gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->content), path, column, TRUE);
+  gtk_tree_path_free (path);
+}
+
+static void
+action_remove_selection (GtkAction * action, XfburnDataComposition * dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   
@@ -698,7 +769,7 @@ data_composition_action_remove_selection (GtkAction * action, XfburnDataComposit
 }
 
 static void
-data_composition_action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
+action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   XfburnFileBrowser *browser = xfburn_main_window_get_file_browser (xfburn_main_window_get_instance ());
@@ -714,7 +785,7 @@ data_composition_action_add_selected_files (GtkAction *action, XfburnDataComposi
     GList *selected_paths = NULL;
     GtkTreePath *path_where_insert = NULL;
     GtkTreeIter iter_where_insert;
-    DataCompositionType type = DATA_COMPOSITION_TYPE_FILE;
+    DataCompositionType type = -1;
     
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->content));
     selected_paths = gtk_tree_selection_get_selected_rows (selection, NULL);
@@ -746,6 +817,13 @@ data_composition_action_add_selected_files (GtkAction *action, XfburnDataComposi
       if (type == DATA_COMPOSITION_TYPE_DIRECTORY) {
         add_file_to_list (dc, model, full_path, &iter, &iter_where_insert, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
         gtk_tree_view_expand_row (GTK_TREE_VIEW (priv->content), path_where_insert, FALSE);
+      } else if (type == DATA_COMPOSITION_TYPE_FILE) {
+        GtkTreeIter parent;
+        
+        if (gtk_tree_model_iter_parent (model, &parent, &iter_where_insert))
+          add_file_to_list (dc, model, full_path, &iter, &parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);  
+        else 
+          add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
       } else {
         add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
       }
@@ -764,7 +842,7 @@ data_composition_action_add_selected_files (GtkAction *action, XfburnDataComposi
 }
 
 static void
-data_composition_action_clear (GtkAction * action, XfburnDataComposition * dc)
+action_clear (GtkAction * action, XfburnDataComposition * dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   
@@ -898,7 +976,7 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
       GDir *dir = NULL;
       GError *error = NULL;
       const gchar *filename = NULL;
-      guint64 total_size = s.st_size;
+      guint64 total_size = 4;
 
       dir = g_dir_open (path, 0, &error);
       if (!dir) {
@@ -916,8 +994,8 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
                           DATA_COMPOSITION_COLUMN_ICON, icon_directory,
                           DATA_COMPOSITION_COLUMN_CONTENT, name,
                           DATA_COMPOSITION_COLUMN_PATH, path, DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_DIRECTORY, 
-			  DATA_COMPOSITION_COLUMN_SIZE, (guint64) s.st_size, -1);
-      xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
+			  DATA_COMPOSITION_COLUMN_SIZE, (guint64) 4, -1);
+      xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), (guint64) 4);
 
       while ((filename = g_dir_read_name (dir))) {
         GtkTreeIter new_iter;
