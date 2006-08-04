@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-07-30 17:48+0200\n"
-"PO-Revision-Date: 2006-05-07 20:09+0200\n"
+"PO-Revision-Date: 2006-08-04 20:07+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-adding-progress.c:89
 msgid "Adding files to the composition"
-msgstr ""
+msgstr "Προσθήκη αρχείων στη σύνθεση"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:102
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:146
@@ -128,7 +128,7 @@ msgstr "_Εγγραφή σύνθεσης"
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:110
 msgid "Finishing"
-msgstr ""
+msgstr "Ολοκλήρωση"
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:116
@@ -137,14 +137,12 @@ msgstr ""
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
-#, fuzzy
 msgid "Writing composition..."
-msgstr "Εγγραφή σύνθεσης"
+msgstr "Εγγραφή σύνθεσης..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
-#, fuzzy
 msgid "Burn data composition"
-msgstr "Αποθήκευση σύνθεσης"
+msgstr "Εγγραφή σύνθεσης"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:108
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:148
@@ -167,9 +165,8 @@ msgstr "Εγγραφή ISO..."
 
 #: ../xfburn/xfburn-compositions-notebook.c:173
 #: ../xfburn/xfburn-data-composition.c:283
-#, fuzzy
 msgid "Data composition"
-msgstr "Άνοιγμα σύνθεσης"
+msgstr "Σύνθεση"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:120
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:176
@@ -255,7 +252,7 @@ msgstr "Μετονομασία του επιλεγμένου αρχείου"
 
 #: ../xfburn/xfburn-data-composition.c:278
 msgid "Volume name :"
-msgstr ""
+msgstr "Όνομα τόμου:"
 
 #: ../xfburn/xfburn-data-composition.c:309
 msgid "Contents"
@@ -273,7 +270,7 @@ msgstr "Τοπική διαδρομή"
 #: ../xfburn/xfburn-data-composition.c:531
 #: ../xfburn/xfburn-data-composition.c:754
 msgid "A file with the same name is already present in the composition"
-msgstr ""
+msgstr "Υπάρχει ήδη ένα αρχείο με αυτό το όνομα στη σύνθεση"
 
 #: ../xfburn/xfburn-data-disc-usage.c:129
 msgid "Burn Data CD"
@@ -296,7 +293,8 @@ msgstr "Αρχείο"
 msgid "Type"
 msgstr "Τύπος"
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:265
+#: ../xfburn/xfburn-fs-browser.c:94
+#: ../xfburn/xfburn-fs-browser.c:265
 msgid "Filesystem"
 msgstr "Σύστημα αρχείων"
 
@@ -306,7 +304,8 @@ msgstr "Σύστημα αρχείων"
 msgid "%s's home"
 msgstr "%s"
 
-#: ../xfburn/xfburn-main.c:54 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:54
+#: ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -316,14 +315,12 @@ msgstr "_Αρχείο"
 
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
 #: ../xfburn/xfburn-main-window.c:89
-#, fuzzy
 msgid "_New composition"
-msgstr "Αποθήκευση σύνθεσης"
+msgstr "_Νέα σύνθεση"
 
 #: ../xfburn/xfburn-main-window.c:89
-#, fuzzy
 msgid "Create a new composition"
-msgstr "Δημιουργία ISO από σύνθεση"
+msgstr "Δημιουργία νέας σύνθεσης"
 
 #. {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
 #. G_CALLBACK (xfburn_window_action_new_data_composition),},
@@ -336,11 +333,11 @@ msgstr "Δημιουργία ISO από σύνθεση"
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (xfburn_window_action_save_as),},
 #: ../xfburn/xfburn-main-window.c:101
-#, fuzzy
 msgid "Close composition"
-msgstr "Αποθήκευση σύνθεσης"
+msgstr "Οριστικοποίηση σύνθεσης"
 
-#: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
+#: ../xfburn/xfburn-main-window.c:103
+#: ../xfburn/xfburn-main-window.c:436
 msgid "_Quit"
 msgstr "Έ_ξοδος"
 
@@ -445,20 +442,19 @@ msgstr "Μεταφραστής (%s)"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "Label"
-msgstr ""
+msgstr "Ετικέττα"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "The text of the label"
-msgstr ""
+msgstr "Το κείμενο της ετικέττας"
 
 #: ../xfburn/xfburn-preferences-dialog.c:122
-#, fuzzy
 msgid "Preferences"
-msgstr "Προτι_μήσεις"
+msgstr "Προτιμήσεις"
 
 #: ../xfburn/xfburn-preferences-dialog.c:123
 msgid "Tune how Xfburn behaves"
-msgstr ""
+msgstr "Αλλάξτε τη συμπεριφορά του Xfburn"
 
 #: ../xfburn/xfburn-preferences-dialog.c:168
 #: ../xfburn/xfburn-preferences-dialog.c:172
@@ -603,15 +599,12 @@ msgstr "Εφαρμογή εγγραφής CD και DVD"
 #, fuzzy
 #~ msgid "New audio composition"
 #~ msgstr "Άνοιγμα σύνθεσης"
-
 #~ msgid "Load composition"
 #~ msgstr "Άνοιγμα σύνθεσης"
-
 #~ msgid "Show disc content toolbar"
 #~ msgstr "Προβολή εργαλειοθήκης περιεχομένων δίσκου"
-
 #~ msgid "Show/hide the disc content toolbar"
 #~ msgstr "Προβολή/απόκρυψη εργαλειοθήκης περιεχομένων δίσκου"
-
 #~ msgid "Xfburn preferences"
 #~ msgstr "Προτιμήσεις Xfburn"
+
