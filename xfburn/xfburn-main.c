@@ -85,7 +85,7 @@ main (int argc, char **argv)
   gtk_widget_show (mainwin);
   
   gtk_main ();
-  
+
 #ifdef HAVE_THUNAR_VFS
   thunar_vfs_shutdown ();
 #endif
@@ -95,5 +95,6 @@ main (int argc, char **argv)
   
   g_list_foreach (list_devices, (GFunc) xfburn_device_free, NULL);
   g_list_free (list_devices);
+
   return EXIT_SUCCESS;
 }

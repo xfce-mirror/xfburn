@@ -143,9 +143,8 @@ static void
 xfburn_settings_internal_init (XfburnSettings *settings)
 {
   XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
-  gchar *path = NULL;
 
-  priv->settings = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, (GDestroyNotify) value_destroy);
+  priv->settings = g_hash_table_new_full (g_str_hash, g_str_equal, (GDestroyNotify) g_free, (GDestroyNotify) value_destroy);
 
   priv->full_path = xfce_resource_save_location (XFCE_RESOURCE_CONFIG, "xfburn/settings.xml", TRUE);
 }
@@ -323,6 +322,8 @@ value_destroy (Setting * val)
 {
   if (val->type == SETTING_TYPE_STRING)
     g_free (val->value.string);
+
+  g_free (val);
 }
 
 static XfburnSettings*
@@ -444,7 +445,7 @@ xfburn_settings_set_boolean (const gchar * key, gboolean value)
   setting->type = SETTING_TYPE_BOOL;
   setting->value.integer = value;
 
-  g_hash_table_replace (priv->settings, (gpointer) key, (gpointer) setting);
+  g_hash_table_replace (priv->settings, (gpointer) g_strdup (key), (gpointer) setting);
 }
 
 void
@@ -458,7 +459,7 @@ xfburn_settings_set_int (const gchar * key, gint value)
   setting->type = SETTING_TYPE_INT;
   setting->value.integer = value;
 
-  g_hash_table_replace (priv->settings, (gpointer) key, (gpointer) setting);
+  g_hash_table_replace (priv->settings, (gpointer) g_strdup (key), (gpointer) setting);
 }
 
 void
@@ -472,5 +473,5 @@ xfburn_settings_set_string (const gchar * key, const gchar * value)
   setting->type = SETTING_TYPE_STRING;
   setting->value.string = g_strdup (value);
 
-  g_hash_table_replace (priv->settings, (gpointer) key, (gpointer) setting);
+  g_hash_table_replace (priv->settings, (gpointer) g_strdup (key), (gpointer) setting);
 }

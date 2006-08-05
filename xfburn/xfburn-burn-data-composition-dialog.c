@@ -46,6 +46,7 @@ struct XfburnBurnDataCompositionDialogPrivate
   gchar *command_iso;
   gchar *command_burn;
 
+  GtkWidget *frame_device;
   GtkWidget *combo_device;
   GtkWidget *combo_speed;
   GtkWidget *combo_mode;
@@ -129,10 +130,10 @@ xfburn_burn_data_composition_dialog_init (XfburnBurnDataCompositionDialog * obj)
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
 
-  frame = xfce_create_framebox_with_content (_("Burning device"), vbox);
-  gtk_widget_show (frame);
-  gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-
+  priv->frame_device = xfce_create_framebox_with_content (_("Burning device"), vbox);
+  gtk_widget_show (priv->frame_device);
+  gtk_box_pack_start (box, priv->frame_device, FALSE, FALSE, BORDER);
+    
   priv->combo_device = gtk_combo_box_new_text ();
   gtk_widget_show (priv->combo_device);
   gtk_box_pack_start (GTK_BOX (vbox), priv->combo_device, FALSE, FALSE, BORDER);
@@ -278,6 +279,8 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionDi
 {
   XfburnBurnDataCompositionDialogPrivate *priv = dialog->priv;
 
+  gtk_widget_set_sensitive (priv->frame_device, !gtk_toggle_button_get_active (button));
+  
   gtk_widget_set_sensitive (priv->hbox_iso, gtk_toggle_button_get_active (button));
   gtk_widget_set_sensitive (priv->check_eject, !gtk_toggle_button_get_active (button));
   gtk_widget_set_sensitive (priv->check_burnfree, !gtk_toggle_button_get_active (button));
