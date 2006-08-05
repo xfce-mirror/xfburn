@@ -1,15 +1,15 @@
 # Translation of xfburn into Finnish.
 # Copyright (C) 2005-2006 Jean-François Wauthy.
 # This file is distributed under the same license as the xfburn package.
-# Jari Rahkonen <jari.rahkonen@pp2.inet.fi>, 2006.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-30 17:48+0200\n"
-"PO-Revision-Date: 2006-06-09 11:31+0300\n"
-"Last-Translator: Jari Rahkonen <jari.rahkonen@pp2.inet.fi>\n"
+"POT-Creation-Date: 2006-08-05 11:28+0300\n"
+"PO-Revision-Date: 2006-06-09 11:35+0300\n"
+"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-adding-progress.c:89
 msgid "Adding files to the composition"
-msgstr ""
+msgstr "Lisätään tiedostoja kokoelmaan"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:102
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:146
@@ -127,7 +127,7 @@ msgstr "P_olta kokoelma"
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:110
 msgid "Finishing"
-msgstr ""
+msgstr "Lopetellaan"
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:116
@@ -136,14 +136,12 @@ msgstr "Viimeistellään..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
-#, fuzzy
 msgid "Writing composition..."
-msgstr "Polta kokoelma"
+msgstr "Kirjoitetaan kokoelmaa..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
-#, fuzzy
 msgid "Burn data composition"
-msgstr "Tallenna kokoelma"
+msgstr "Polta tiedostokokoelma"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:108
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:148
@@ -165,10 +163,9 @@ msgid "Writing ISO..."
 msgstr "Kirjoitetaan ISOa..."
 
 #: ../xfburn/xfburn-compositions-notebook.c:173
-#: ../xfburn/xfburn-data-composition.c:283
-#, fuzzy
+#: ../xfburn/xfburn-data-composition.c:295
 msgid "Data composition"
-msgstr "Lataa kokoelma"
+msgstr "Tiedostokokoelma"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:120
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:176
@@ -212,83 +209,98 @@ msgstr "Luo ISO kokoelmasta"
 msgid "Create ISO from CD"
 msgstr "Luo ISO CD:stä"
 
-#: ../xfburn/xfburn-data-composition.c:132
+#: ../xfburn/xfburn-data-composition.c:136
 msgid "Add"
 msgstr "Lisää"
 
-#: ../xfburn/xfburn-data-composition.c:132
-msgid "Add the selected file(s) to the CD"
-msgstr "Lisää valitut tiedostot CD-levylle"
+#: ../xfburn/xfburn-data-composition.c:136
+msgid "Add the selected file(s) to the composition"
+msgstr "Lisää valitut tiedostot kokoelmaan"
 
-#: ../xfburn/xfburn-data-composition.c:133
+#: ../xfburn/xfburn-data-composition.c:138
+msgid "Create directory"
+msgstr "Luo hakemisto"
+
+#: ../xfburn/xfburn-data-composition.c:138
+msgid "Add a new directory to the composition"
+msgstr "Lisää uusi hakemisto kokoelmaan"
+
+#: ../xfburn/xfburn-data-composition.c:140
 msgid "Remove"
 msgstr "Poista"
 
-#: ../xfburn/xfburn-data-composition.c:133
-msgid "Remove the selected file(s) from the CD"
-msgstr "Poista valitut tiedostot CD-levyltä"
+#: ../xfburn/xfburn-data-composition.c:140
+msgid "Remove the selected file(s) from the composition"
+msgstr "Poista valitut tiedostot kokoelmasta"
 
-#: ../xfburn/xfburn-data-composition.c:135
+#: ../xfburn/xfburn-data-composition.c:142
 msgid "Clear"
 msgstr "Tyhjennä"
 
-#: ../xfburn/xfburn-data-composition.c:135
-msgid "Clear the content of the CD"
-msgstr "Tyhjennä CD-levyn sisältö"
+#: ../xfburn/xfburn-data-composition.c:142
+msgid "Clear the content of the composition"
+msgstr "Tyhjennä kokoelman sisältö"
 
-#: ../xfburn/xfburn-data-composition.c:137
+#: ../xfburn/xfburn-data-composition.c:144
 msgid "Import"
 msgstr "Tuo"
 
-#: ../xfburn/xfburn-data-composition.c:137
+#: ../xfburn/xfburn-data-composition.c:144
 msgid "Import existing session"
 msgstr "Tuo olemassaoleva istunto"
 
-#: ../xfburn/xfburn-data-composition.c:138
+#: ../xfburn/xfburn-data-composition.c:145
 msgid "Rename"
 msgstr "Nimeä uudelleen"
 
-#: ../xfburn/xfburn-data-composition.c:138
+#: ../xfburn/xfburn-data-composition.c:145
 msgid "Rename the selected file"
 msgstr "Nimeä valittu tiedosto uudelleen"
 
-#: ../xfburn/xfburn-data-composition.c:278
+#: ../xfburn/xfburn-data-composition.c:290
 msgid "Volume name :"
-msgstr ""
+msgstr "Levyn nimi:"
 
-#: ../xfburn/xfburn-data-composition.c:309
+#: ../xfburn/xfburn-data-composition.c:321
 msgid "Contents"
 msgstr "Sisältö"
 
-#: ../xfburn/xfburn-data-composition.c:324
+#: ../xfburn/xfburn-data-composition.c:336
 #: ../xfburn/xfburn-directory-browser.c:142
 msgid "Size"
 msgstr "Koko"
 
-#: ../xfburn/xfburn-data-composition.c:327
+#: ../xfburn/xfburn-data-composition.c:339
 msgid "Local Path"
 msgstr "Paikallinen polku"
 
-#: ../xfburn/xfburn-data-composition.c:531
-#: ../xfburn/xfburn-data-composition.c:754
-#, fuzzy
+#: ../xfburn/xfburn-data-composition.c:598
+msgid "You must give a name to the file"
+msgstr "Tiedostolle täytyy antaa nimi"
+
+#: ../xfburn/xfburn-data-composition.c:607
+#: ../xfburn/xfburn-data-composition.c:966
 msgid "A file with the same name is already present in the composition"
 msgstr "Kokoelmassa on jo tiedosto tällä nimellä"
 
+#: ../xfburn/xfburn-data-composition.c:686
+msgid "New directory"
+msgstr "Uusi hakemisto"
+
 #: ../xfburn/xfburn-data-disc-usage.c:129
-msgid "Burn Data CD"
-msgstr "Polta data-CD"
+msgid "Burn composition"
+msgstr "Polta kokoelma"
 
 #: ../xfburn/xfburn-data-disc-usage.c:176
 msgid "You are trying to burn more data than the disk can contain !"
-msgstr ""
+msgstr "Yrität polttaa levylle enemmän, kuin sille mahtuu!"
 
 #: ../xfburn/xfburn-directory-browser.c:55
 msgid "Folder"
 msgstr "Hakemisto"
 
 #: ../xfburn/xfburn-directory-browser.c:129
-#: ../xfburn/xfburn-directory-browser.c:329
+#: ../xfburn/xfburn-directory-browser.c:301
 msgid "File"
 msgstr "Tiedosto"
 
@@ -296,17 +308,17 @@ msgstr "Tiedosto"
 msgid "Type"
 msgstr "Tyyppi"
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:265
+#: ../xfburn/xfburn-fs-browser.c:93 ../xfburn/xfburn-fs-browser.c:259
 msgid "Filesystem"
 msgstr "Tiedostojärjestelmä"
 
 #. load the user's home dir
-#: ../xfburn/xfburn-fs-browser.c:248
+#: ../xfburn/xfburn-fs-browser.c:242
 #, c-format
 msgid "%s's home"
 msgstr "Käyttäjän %s koti"
 
-#: ../xfburn/xfburn-main.c:54 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:58 ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -316,14 +328,12 @@ msgstr "_Tiedosto"
 
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
 #: ../xfburn/xfburn-main-window.c:89
-#, fuzzy
 msgid "_New composition"
-msgstr "Tallenna kokoelma"
+msgstr "_Uusi kokoelma"
 
 #: ../xfburn/xfburn-main-window.c:89
-#, fuzzy
 msgid "Create a new composition"
-msgstr "Luo ISO kokoelmasta"
+msgstr "Luo uusi kokoelma"
 
 #. {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
 #. G_CALLBACK (xfburn_window_action_new_data_composition),},
@@ -336,9 +346,8 @@ msgstr "Luo ISO kokoelmasta"
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (xfburn_window_action_save_as),},
 #: ../xfburn/xfburn-main-window.c:101
-#, fuzzy
 msgid "Close composition"
-msgstr "Tallenna kokoelma"
+msgstr "Sulje kokoelma"
 
 #: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
 msgid "_Quit"
@@ -346,7 +355,7 @@ msgstr "_Lopeta"
 
 #: ../xfburn/xfburn-main-window.c:103
 msgid "Quit Xfburn"
-msgstr "_Lopeta Xfburn"
+msgstr "Lopeta Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:104
 msgid "_Edit"
@@ -445,20 +454,19 @@ msgstr "Kääntäjä (%s)"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "Label"
-msgstr ""
+msgstr "Nimike"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "The text of the label"
-msgstr ""
+msgstr "Nimikkeen teksti"
 
 #: ../xfburn/xfburn-preferences-dialog.c:122
-#, fuzzy
 msgid "Preferences"
-msgstr "_Asetukset"
+msgstr "Asetukset"
 
 #: ../xfburn/xfburn-preferences-dialog.c:123
 msgid "Tune how Xfburn behaves"
-msgstr ""
+msgstr "Säädä Xfburnin toimintaa"
 
 #: ../xfburn/xfburn-preferences-dialog.c:168
 #: ../xfburn/xfburn-preferences-dialog.c:172
@@ -600,9 +608,8 @@ msgstr "Valitse komento"
 msgid "CD and DVD burning application"
 msgstr "CD- ja DVD-polttosovellus"
 
-#, fuzzy
-#~ msgid "New audio composition"
-#~ msgstr "Lataa kokoelma"
+#~ msgid "Burn Data CD"
+#~ msgstr "Polta data-CD"
 
 #~ msgid "Load composition"
 #~ msgstr "Lataa kokoelma"
