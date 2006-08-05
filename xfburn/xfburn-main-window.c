@@ -61,25 +61,25 @@ static void xfburn_main_window_init (XfburnMainWindow *);
 static gboolean cb_delete_main_window (XfburnMainWindow *, GdkEvent *, XfburnMainWindowPrivate *);
 static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 
-static void xfburn_window_action_about (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_preferences (GtkAction *, XfburnMainWindow *);
+static void action_about (GtkAction *, XfburnMainWindow *);
+static void action_preferences (GtkAction *, XfburnMainWindow *);
 
-static void xfburn_window_action_new_data_composition (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_new_audio_composition (GtkAction *, XfburnMainWindow *);
+static void action_new_data_composition (GtkAction *, XfburnMainWindow *);
+static void action_new_audio_composition (GtkAction *, XfburnMainWindow *);
 
-static void xfburn_window_action_load (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_save (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_save_as (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_close (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_quit (GtkAction *, XfburnMainWindow *);
+static void action_load (GtkAction *, XfburnMainWindow *);
+static void action_save (GtkAction *, XfburnMainWindow *);
+static void action_save_as (GtkAction *, XfburnMainWindow *);
+static void action_close (GtkAction *, XfburnMainWindow *);
+static void action_quit (GtkAction *, XfburnMainWindow *);
 
-static void xfburn_window_action_blank_cd (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_copy_cd (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_burn_image (GtkAction *, XfburnMainWindow *);
+static void action_blank_cd (GtkAction *, XfburnMainWindow *);
+static void action_copy_cd (GtkAction *, XfburnMainWindow *);
+static void action_burn_image (GtkAction *, XfburnMainWindow *);
 
-static void xfburn_window_action_refresh_directorybrowser (GtkAction *, XfburnMainWindow *);
-static void xfburn_window_action_show_filebrowser (GtkToggleAction *, XfburnMainWindow *);
-static void xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window);
+static void action_refresh_directorybrowser (GtkAction *, XfburnMainWindow *);
+static void action_show_filebrowser (GtkToggleAction *, XfburnMainWindow *);
+static void action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window);
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
@@ -87,45 +87,45 @@ static const GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL,},
   /*{"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},*/
   {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"), 
-    G_CALLBACK (xfburn_window_action_new_data_composition),},
+    G_CALLBACK (action_new_data_composition),},
   /*{"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
-    G_CALLBACK (xfburn_window_action_new_data_composition),},
+    G_CALLBACK (action_new_data_composition),},
   {"new-audio-composition", "audio-x-generic", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
-    G_CALLBACK (xfburn_window_action_new_audio_composition),},*/
+    G_CALLBACK (action_new_audio_composition),},*/
   /*{"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
-   G_CALLBACK (xfburn_window_action_load),},
+   G_CALLBACK (action_load),},
   {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"), 
-   G_CALLBACK (xfburn_window_action_save),},
+   G_CALLBACK (action_save),},
   {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"), 
-   G_CALLBACK (xfburn_window_action_save_as),},*/
+   G_CALLBACK (action_save_as),},*/
   {"close-composition", GTK_STOCK_CLOSE, N_("Close composition"), NULL, N_("Close composition"), 
-   G_CALLBACK (xfburn_window_action_close),},
-  {"quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (xfburn_window_action_quit),},
+   G_CALLBACK (action_close),},
+  {"quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (action_quit),},
   {"edit-menu", NULL, N_("_Edit"), NULL,},
   {"preferences", GTK_STOCK_PREFERENCES, N_("Prefere_nces"), NULL, N_("Show preferences dialog"),
-   G_CALLBACK (xfburn_window_action_preferences),},
+   G_CALLBACK (action_preferences),},
   {"action-menu", NULL, N_("_Actions"), NULL,},
   {"view-menu", NULL, N_("_View"), NULL,},
   {"refresh", GTK_STOCK_REFRESH, N_("Refresh"), NULL, N_("Refresh file list"),
-   G_CALLBACK (xfburn_window_action_refresh_directorybrowser),},
+   G_CALLBACK (action_refresh_directorybrowser),},
   {"help-menu", NULL, N_("_Help"), NULL,},
   {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
-   G_CALLBACK (xfburn_window_action_about),},
+   G_CALLBACK (action_about),},
   {"blank-cd", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),
-   G_CALLBACK (xfburn_window_action_blank_cd),},
+   G_CALLBACK (action_blank_cd),},
   {"format-dvd", "xfburn-blank-dvdrw", N_("Format DVD-RW"), NULL, N_("Format DVD-RW"),},
   {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),
-   G_CALLBACK (xfburn_window_action_copy_cd),},
+   G_CALLBACK (action_copy_cd),},
   {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
   {"burn-cd", "xfburn-burn-cd", N_("Burn CD Image"), NULL, N_("Burn CD Image"),
-   G_CALLBACK (xfburn_window_action_burn_image),},
+   G_CALLBACK (action_burn_image),},
 };
 
 static const GtkToggleActionEntry toggle_action_entries[] = {
   {"show-filebrowser", NULL, N_("Show file browser"), NULL, N_("Show/hide the file browser"),
-   G_CALLBACK (xfburn_window_action_show_filebrowser), TRUE,},
+   G_CALLBACK (action_show_filebrowser), TRUE,},
   {"show-toolbar", NULL, N_("Show toolbar"), NULL, N_("Show/hide the toolbar"),
-   G_CALLBACK (xfburn_window_action_show_toolbar), TRUE,},
+   G_CALLBACK (action_show_toolbar), TRUE,},
 };
 
 static const gchar *toolbar_actions[] = {
@@ -353,7 +353,7 @@ cb_delete_main_window (XfburnMainWindow * mainwin, GdkEvent * event, XfburnMainW
 
 /* actions */
 static void
-xfburn_window_action_blank_cd (GtkAction * action, XfburnMainWindow * window)
+action_blank_cd (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
   
@@ -363,7 +363,7 @@ xfburn_window_action_blank_cd (GtkAction * action, XfburnMainWindow * window)
   gtk_widget_destroy (dialog);
 }
 
-static void xfburn_window_action_copy_cd (GtkAction *action, XfburnMainWindow *window)
+static void action_copy_cd (GtkAction *action, XfburnMainWindow *window)
 {
   GtkWidget *dialog;
   
@@ -374,7 +374,7 @@ static void xfburn_window_action_copy_cd (GtkAction *action, XfburnMainWindow *w
 }
 
 static void
-xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
+action_burn_image (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
   
@@ -385,7 +385,7 @@ xfburn_window_action_burn_image (GtkAction * action, XfburnMainWindow * window)
 }
 
 static void
-xfburn_window_action_load (GtkAction *action, XfburnMainWindow * window)
+action_load (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
@@ -393,7 +393,7 @@ xfburn_window_action_load (GtkAction *action, XfburnMainWindow * window)
 }
 
 static void
-xfburn_window_action_save (GtkAction *action, XfburnMainWindow * window)
+action_save (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
@@ -401,14 +401,14 @@ xfburn_window_action_save (GtkAction *action, XfburnMainWindow * window)
 }
 
 static void
-xfburn_window_action_save_as (GtkAction *action, XfburnMainWindow * window)
+action_save_as (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
 }
 
 static void
-xfburn_window_action_close (GtkAction *action, XfburnMainWindow * window)
+action_close (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
@@ -416,7 +416,7 @@ xfburn_window_action_close (GtkAction *action, XfburnMainWindow * window)
 }
 
 static void
-xfburn_window_action_new_data_composition (GtkAction *action, XfburnMainWindow * window)
+action_new_data_composition (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
  
@@ -424,21 +424,21 @@ xfburn_window_action_new_data_composition (GtkAction *action, XfburnMainWindow *
 }
 
 static void
-xfburn_window_action_new_audio_composition (GtkAction *action, XfburnMainWindow * window)
+action_new_audio_composition (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
  
 }
 
 static void
-xfburn_window_action_quit (GtkAction * action, XfburnMainWindow * window)
+action_quit (GtkAction * action, XfburnMainWindow * window)
 {
   if (xfce_confirm (_("Are sure you want to quit?"), GTK_STOCK_QUIT, _("_Quit")))
     gtk_main_quit ();
 }
 
 static void
-xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
+action_about (GtkAction * action, XfburnMainWindow * window)
 {
   XfceAboutInfo *info;
   GtkWidget *dialog;
@@ -495,7 +495,7 @@ xfburn_window_action_about (GtkAction * action, XfburnMainWindow * window)
 }
 
 static void
-xfburn_window_action_preferences (GtkAction * action, XfburnMainWindow * window)
+action_preferences (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
 
@@ -507,7 +507,7 @@ xfburn_window_action_preferences (GtkAction * action, XfburnMainWindow * window)
 }
 
 static void
-xfburn_window_action_refresh_directorybrowser (GtkAction * action, XfburnMainWindow * window)
+action_refresh_directorybrowser (GtkAction * action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
@@ -515,7 +515,7 @@ xfburn_window_action_refresh_directorybrowser (GtkAction * action, XfburnMainWin
 }
 
 static void
-xfburn_window_action_show_filebrowser (GtkToggleAction * action, XfburnMainWindow * window)
+action_show_filebrowser (GtkToggleAction * action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
@@ -530,7 +530,7 @@ xfburn_window_action_show_filebrowser (GtkToggleAction * action, XfburnMainWindo
 }
 
 static void
-xfburn_window_action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window)
+action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   

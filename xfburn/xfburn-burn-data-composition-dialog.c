@@ -26,6 +26,7 @@
 #include "xfburn-settings.h"
 #include "xfburn-burn-data-composition-progress-dialog.h"
 #include "xfburn-create-iso-from-composition-progress-dialog.h"
+#include "xfburn-write-mode-combo-box.h"
 
 #include "xfburn-burn-data-composition-dialog.h"
 
@@ -184,13 +185,7 @@ xfburn_burn_data_composition_dialog_init (XfburnBurnDataCompositionDialog * obj)
   gtk_widget_show (label);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, BORDER);
 
-  priv->combo_mode = gtk_combo_box_new_text ();
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), _("default"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), "tao");
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), "dao");
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), "raw96p");
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_mode), "raw16");
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_mode), 0);
+  priv->combo_mode = xfburn_write_mode_combo_box_new ();
   gtk_box_pack_start (GTK_BOX (hbox), priv->combo_mode, TRUE, TRUE, BORDER);
   gtk_widget_show (priv->combo_mode);
 
@@ -324,24 +319,11 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
       
       speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
 
-      switch (gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combo_mode))) {
-      case 2:
-        write_mode = g_strdup (" -dao");
-        break;
-      case 3:
-        write_mode = g_strdup (" -raw96p");
-        break;
-      case 4:
-        write_mode = g_strdup (" -raw16");
-        break;
-      case 0:
-      case 1:
-      default:
-        write_mode = g_strdup (" -tao");
-      }
+      write_mode = xfburn_write_mode_combo_box_get_cdrecord_param (XFBURN_WRITE_MODE_COMBO_BOX (priv->combo_mode));
 
       command = g_strconcat ("sh -c \"mkisofs -gui -graft-points -joliet -full-iso9660-filenames -iso-level 2 -volid '", volid,
-                             "' -path-list ", priv->file_list, " | cdrecord -v gracetime=2", " dev=", device->node_path, write_mode, " speed=", speed,
+                             "' -path-list ", priv->file_list, " | cdrecord -v gracetime=2", " dev=", device->node_path, 
+                             " ", write_mode, " speed=", speed,
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " -dummy" : "",
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree)) ? " driveropts=burnfree" : "",

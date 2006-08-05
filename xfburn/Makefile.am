@@ -34,7 +34,8 @@ xfburn_headers = 							\
 	xfburn-directory-browser.h					\
 	xfburn-preferences-dialog.h					\
 	xfburn-stock.h							\
-	xfburn-utils.h
+	xfburn-utils.h							\
+	xfburn-write-mode-combo-box.h
 	
 xfburn_SOURCES =							\
 	$(xfburn_headers)						\
@@ -63,7 +64,8 @@ xfburn_SOURCES =							\
 	xfburn-directory-browser.c					\
 	xfburn-preferences-dialog.c					\
 	xfburn-stock.c							\
-	xfburn-utils.c
+	xfburn-utils.c							\
+	xfburn-write-mode-combo-box.c				
 
 xfburn_CFLAGS =								\
 	$(LIBXFCEGUI4_CFLAGS)						\
