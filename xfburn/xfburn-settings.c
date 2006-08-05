@@ -232,15 +232,15 @@ load_settings_start (GMarkupParseContext * context, const gchar * element_name,
         (k = _find_attribute (attribute_names, "value")) != -1) {
 
       if (!strcmp (attribute_values[j], "int"))
-        xfburn_settings_set_int (g_strdup (attribute_values[i]), atoi (attribute_values[k]));
+        xfburn_settings_set_int (attribute_values[i], atoi (attribute_values[k]));
       else if (!strcmp (attribute_values[j], "boolean")) {
         if (!strcmp (attribute_values[k], "true"))
-          xfburn_settings_set_boolean (g_strdup (attribute_values[i]), TRUE);
+          xfburn_settings_set_boolean (attribute_values[i], TRUE);
         else
-          xfburn_settings_set_boolean (g_strdup (attribute_values[i]), FALSE);
+          xfburn_settings_set_boolean (attribute_values[i], FALSE);
       }
       else if (!strcmp (attribute_values[j], "string"))
-        xfburn_settings_set_string (g_strdup (attribute_values[i]), attribute_values[k]);
+        xfburn_settings_set_string (attribute_values[i], attribute_values[k]);
     }
   }
 }

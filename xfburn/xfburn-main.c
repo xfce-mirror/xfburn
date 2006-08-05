@@ -93,7 +93,7 @@ main (int argc, char **argv)
   xfburn_settings_flush ();
   xfburn_settings_free ();
   
-  g_list_foreach (list_devices, (GFunc) xfburn_device_content_free, NULL);
+  g_list_foreach (list_devices, (GFunc) xfburn_device_free, NULL);
   g_list_free (list_devices);
   return EXIT_SUCCESS;
 }

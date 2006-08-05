@@ -993,8 +993,8 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
       gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                           DATA_COMPOSITION_COLUMN_ICON, icon_directory,
                           DATA_COMPOSITION_COLUMN_CONTENT, name,
-                          DATA_COMPOSITION_COLUMN_PATH, path, DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_DIRECTORY, 
-			  DATA_COMPOSITION_COLUMN_SIZE, (guint64) 4, -1);
+                          DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_DIRECTORY, 
+                          DATA_COMPOSITION_COLUMN_SIZE, (guint64) 4, -1);
       xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), (guint64) 4);
 
       while ((filename = g_dir_read_name (dir))) {

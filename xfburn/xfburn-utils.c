@@ -123,6 +123,8 @@ get_cdrominfo (gchar ** proccdrominfo, gint deviceindex)
           g_message ("Requested device index [%d] is out of bounds. " "All devices have been read.", deviceindex);
           g_hash_table_destroy (ret);
           ret = NULL;
+
+	  g_strfreev (columns);
           break;
         }
 
