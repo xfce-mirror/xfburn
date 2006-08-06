@@ -115,6 +115,8 @@ typedef struct
 {
   gchar *filename;
   gboolean modified;
+ 
+  guint n_new_directory;
   
   GtkActionGroup *action_group;
   GtkUIManager *ui_manager;
@@ -631,7 +633,7 @@ action_rename_selection (GtkAction * action, XfburnDataComposition * dc)
   path = (GtkTreePath *) list->data;
   column = gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), DATA_COMPOSITION_COLUMN_CONTENT - 1);
   /* -1 because of COLUMN_ICON */
-
+  
   gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->content), path, column, TRUE);
 
   gtk_tree_path_free (path);
@@ -650,6 +652,9 @@ action_create_directory (GtkAction * action, XfburnDataComposition * dc)
   GtkTreeIter iter_where_insert, iter_directory;
   DataCompositionType type = -1;
   gchar *humansize = NULL;
+  
+  GtkTreePath *inserted_path = NULL;
+  gchar *directory_text = NULL;
   
   GtkTreeViewColumn *column;
   GtkTreePath *path = NULL;
@@ -681,14 +686,23 @@ action_create_directory (GtkAction * action, XfburnDataComposition * dc)
   
   humansize = xfburn_humanreadable_filesize (4);
   
+  inserted_path = gtk_tree_model_get_path (model, &iter_directory);
+  if (file_exists_on_same_level (model, inserted_path, TRUE, _("New directory")))
+    directory_text = g_strdup_printf ("%s %d", _("New directory"), ++(priv->n_new_directory));
+  else
+    directory_text = g_strdup (_("New directory"));
+  gtk_tree_path_free (inserted_path);
+  
   gtk_tree_store_set (GTK_TREE_STORE (model), &iter_directory,
                       DATA_COMPOSITION_COLUMN_ICON, icon_directory,                     
-                      DATA_COMPOSITION_COLUMN_CONTENT, _("New directory"),
+                      DATA_COMPOSITION_COLUMN_CONTENT, directory_text,
                       DATA_COMPOSITION_COLUMN_HUMANSIZE, humansize,
                       DATA_COMPOSITION_COLUMN_SIZE, (guint64) 4,
                       DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_DIRECTORY, -1);
-                      
+  g_free (directory_text);
   g_free (humansize);
+  
+  xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), 4);
   
   gtk_widget_realize (priv->content);
   
@@ -862,7 +876,7 @@ cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
     GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
     GtkTreeModel *model;
     GList *selected_rows;
-    gchar *all_paths;
+    gchar *all_paths = NULL;
 
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
 
@@ -1101,6 +1115,11 @@ add_file_to_list (XfburnDataComposition * dc, GtkTreeModel * model, const gchar 
 }
 
 static void
+copy_entry_to (XfburnDataComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, GtkTreeViewDropPosition position)
+{
+}
+
+static void
 cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                           guint info, guint t, XfburnDataComposition * composition)
 {  
@@ -1123,6 +1142,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     str_path = strtok ((gchar *) sd->data, "\n");
     while (str_path) {
 
+      DBG ("%s", str_path);
       str_path = strtok (NULL, "\n");
     }
 
