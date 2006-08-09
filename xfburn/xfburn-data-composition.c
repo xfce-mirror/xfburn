@@ -305,7 +305,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   gtk_widget_show (scrolled_window);
   gtk_box_pack_start (GTK_BOX (composition), scrolled_window, TRUE, TRUE, 0);
 
-  priv->content = gtk_tree_view_new ();
+  priv->content = exo_tree_view_new ();
   model = gtk_tree_store_new (DATA_COMPOSITION_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT);
 							  
@@ -829,8 +829,23 @@ action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
 
       /* add files to the disc content */
       if (type == DATA_COMPOSITION_TYPE_DIRECTORY) {
+        guint64 old_size, size;
+        gchar *humansize = NULL;
+        
         add_file_to_list (dc, model, full_path, &iter, &iter_where_insert, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
         gtk_tree_view_expand_row (GTK_TREE_VIEW (priv->content), path_where_insert, FALSE);
+        
+        /* update parent directory size */
+        gtk_tree_model_get (model, &iter_where_insert, DATA_COMPOSITION_COLUMN_SIZE, &old_size, -1);
+        gtk_tree_model_get (model, &iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
+        
+        humansize = xfburn_humanreadable_filesize (old_size + size);
+        
+        gtk_tree_store_set (GTK_TREE_STORE (model), &iter_where_insert, 
+                            DATA_COMPOSITION_COLUMN_HUMANSIZE, humansize,
+                            DATA_COMPOSITION_COLUMN_SIZE, old_size + size, -1);
+        
+        g_free (humansize);
       } else if (type == DATA_COMPOSITION_TYPE_FILE) {
         GtkTreeIter parent;
         
