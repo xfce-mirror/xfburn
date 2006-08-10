@@ -359,7 +359,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 
   /* set up DnD */
   gtk_tree_view_enable_model_drag_source (GTK_TREE_VIEW (priv->content), GDK_BUTTON1_MASK, gte_src,
-                                          G_N_ELEMENTS (gte_src), GDK_ACTION_MOVE);
+                                          G_N_ELEMENTS (gte_src), GDK_ACTION_COPY | GDK_ACTION_MOVE);
   g_signal_connect (G_OBJECT (priv->content), "drag-data-get", G_CALLBACK (cb_content_drag_data_get),
                     composition);
   gtk_tree_view_enable_model_drag_dest (GTK_TREE_VIEW (priv->content), gte_dest, G_N_ELEMENTS (gte_dest),
@@ -1166,7 +1166,7 @@ copy_entry_to (XfburnDataComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, G
       }
     
       if (file_exists_on_same_level (model, path_level, FALSE, name)) {
-        xfce_warn (_("A file named \"%s\" already exists in this directory, the file hasn't been moved"), name);
+        xfce_warn (_("A file named \"%s\" already exists in this directory, the file hasn't been added"), name);
         goto cleanup;
       }
       
@@ -1218,6 +1218,8 @@ static void
 cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                           guint info, guint t, XfburnDataComposition * composition)
 {    
+  XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
+  
   GtkTreeModel *model;
   GtkTreePath *path_where_insert = NULL;
   GtkTreeViewDropPosition position;
@@ -1295,7 +1297,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         
         /* update new parent size */
         if (iter && (position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER 
-                     || position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE)) {
+                   || position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE)) {
           guint64 old_size = 0;
           gchar *parent_humansize = NULL;
 
@@ -1307,28 +1309,32 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         
           g_free (parent_humansize);
         }
-        
-        /* remove source entry */
-        if (gtk_tree_path_up (path_parent) && path_where_insert && 
-            !gtk_tree_path_is_descendant (path_where_insert, path_parent)) {
-          /* update parent size and humansize */
-          GtkTreeIter iter_parent;          
-          guint64 old_size;
-          gchar *parent_humansize = NULL;
+          
+        if (dc->action == GDK_ACTION_MOVE) {       
+          /* remove source entry */
+          if (gtk_tree_path_up (path_parent) && path_where_insert && 
+              !gtk_tree_path_is_descendant (path_where_insert, path_parent)) {
+            /* update parent size and humansize */
+            GtkTreeIter iter_parent;          
+            guint64 old_size;
+            gchar *parent_humansize = NULL;
             
-          gtk_tree_model_iter_parent (model, &iter_parent, &iter_src);                
-          gtk_tree_model_get (model, &iter_parent, DATA_COMPOSITION_COLUMN_SIZE, &old_size, -1);
+            gtk_tree_model_iter_parent (model, &iter_parent, &iter_src);                
+            gtk_tree_model_get (model, &iter_parent, DATA_COMPOSITION_COLUMN_SIZE, &old_size, -1);
          
-          parent_humansize = xfburn_humanreadable_filesize (old_size - size);
-          gtk_tree_store_set (GTK_TREE_STORE (model), &iter_parent, 
-                              DATA_COMPOSITION_COLUMN_HUMANSIZE, parent_humansize,
-                              DATA_COMPOSITION_COLUMN_SIZE, old_size - size, -1);
-          g_free (parent_humansize);
+            parent_humansize = xfburn_humanreadable_filesize (old_size - size);
+            gtk_tree_store_set (GTK_TREE_STORE (model), &iter_parent, 
+                                DATA_COMPOSITION_COLUMN_HUMANSIZE, parent_humansize,
+                                DATA_COMPOSITION_COLUMN_SIZE, old_size - size, -1);
+            g_free (parent_humansize);
+          }
+        
+          gtk_tree_store_remove (GTK_TREE_STORE (model), &iter_src);
+        } else {
+          xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), size);
         }
         
         gtk_tree_path_free (path_parent);
-          
-        gtk_tree_store_remove (GTK_TREE_STORE (model), &iter_src);
       }
 
       gtk_tree_path_free (path_src);
