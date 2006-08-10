@@ -26,6 +26,7 @@
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
 #include "xfburn-burn-image-progress-dialog.h"
+#include "xfburn-device-box.h"
 #include "xfburn-stock.h"
 #include "xfburn-write-mode-combo-box.h"
 
@@ -41,8 +42,8 @@ static void xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog
 struct XfburnBurnImageDialogPrivate
 {
   GtkWidget *chooser_image;
-
-  GtkWidget *combo_device;
+  
+  GtkWidget *device_box;
   GtkWidget *combo_speed;
   GtkWidget *combo_mode;
 
@@ -92,15 +93,12 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 {
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   XfburnBurnImageDialogPrivate *priv;
-  GList *device;
-  GtkWidget *img;
   GdkPixbuf *icon = NULL;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *hbox;
   GtkWidget *label;
   GtkWidget *button;
-  int i;
 
   obj->priv = g_new0 (XfburnBurnImageDialogPrivate, 1);
 
@@ -121,60 +119,17 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   /* devices list */
-  vbox = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (vbox);
-
-  frame = xfce_create_framebox_with_content (_("Burning device"), vbox);
+  priv->device_box = xfburn_device_box_new (TRUE, TRUE);
+  gtk_widget_show (priv->device_box);
+  
+  frame = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-
-  priv->combo_device = gtk_combo_box_new_text ();
-  gtk_widget_show (priv->combo_device);
-  gtk_box_pack_start (GTK_BOX (vbox), priv->combo_device, FALSE, FALSE, BORDER);
-
-  device = list_devices;
-  while (device) {
-    XfburnDevice *device_data = (XfburnDevice *) device->data;
-
-    gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_device), device_data->name);
-
-    device = g_list_next (device);
-  }
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_device), 0);
-
-  /* speed */
-  hbox = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox);
-  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, BORDER);
-
-  label = gtk_label_new_with_mnemonic (_("_Speed :"));
-  gtk_widget_show (label);
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, BORDER);
-
-  priv->combo_speed = gtk_combo_box_new_text ();
-  gtk_widget_show (priv->combo_speed);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->combo_speed, TRUE, TRUE, BORDER);
-
-  for (i = 2; i <= 52; i += 2) {
-    gchar *str;
-
-    str = g_strdup_printf ("%d", i);
-    gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_speed), str);
-    g_free (str);
-  }
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_speed), 19);
-
-  img = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  gtk_widget_show (img);
-  button = gtk_button_new ();
-  gtk_container_add (GTK_CONTAINER (button), img);
-  gtk_widget_show (button);
-  gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
 
   /* mode */
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox);
-  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, BORDER);
+  gtk_box_pack_start (GTK_BOX (priv->device_box), hbox, FALSE, FALSE, BORDER);
 
   label = gtk_label_new_with_mnemonic (_("Write _mode :"));
   gtk_widget_show (label);
@@ -238,7 +193,7 @@ xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint respo
   if (response_id == GTK_RESPONSE_OK) {
     XfburnBurnImageDialogPrivate *priv;
     XfburnDevice *device;
-    gchar *iso_path, *device_name, *speed, *write_mode;
+    gchar *iso_path, *speed, *write_mode;
     gchar *command;
     GtkWidget *dialog_progress;
     
@@ -246,8 +201,7 @@ xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint respo
 
     iso_path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
 
-    device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
-    device = xfburn_device_lookup_by_name (device_name);
+    device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
 
     speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
 
@@ -258,7 +212,6 @@ xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint respo
                            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " -dummy" : "",
                            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree)) ? " driveropts=burnfree"
                            : "", " '", iso_path, "'", NULL);
-    g_free (device_name);
     g_free (write_mode);
     g_free (speed);
     g_free (iso_path);
