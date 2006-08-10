@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-10 16:57+0200\n"
-"PO-Revision-Date: 2006-07-30 21:24+0100\n"
+"PO-Revision-Date: 2006-08-10 18:44+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -203,37 +203,32 @@ msgid "Add"
 msgstr "Přidat"
 
 #: ../xfburn/xfburn-data-composition.c:138
-#, fuzzy
 msgid "Add the selected file(s) to the composition"
-msgstr "Přidá vybrané soubory na CD"
+msgstr "Přidat vybrané soubory do kompozice"
 
 #: ../xfburn/xfburn-data-composition.c:140
-#, fuzzy
 msgid "Create directory"
-msgstr "Adresář pro dočasné soubory"
+msgstr "Vytvořit adresář"
 
 #: ../xfburn/xfburn-data-composition.c:140
-#, fuzzy
 msgid "Add a new directory to the composition"
-msgstr "Přidání souborů do kompozice"
+msgstr "Přidat nový adresář do kompozice"
 
 #: ../xfburn/xfburn-data-composition.c:142
 msgid "Remove"
 msgstr "Odebrat"
 
 #: ../xfburn/xfburn-data-composition.c:142
-#, fuzzy
 msgid "Remove the selected file(s) from the composition"
-msgstr "Odstraní vybrané soubory z CD"
+msgstr "Odebrat vybrané soubory z kompozice"
 
 #: ../xfburn/xfburn-data-composition.c:144
 msgid "Clear"
 msgstr "Vyčistit"
 
 #: ../xfburn/xfburn-data-composition.c:144
-#, fuzzy
 msgid "Clear the content of the composition"
-msgstr "Smaže obsah CD"
+msgstr "Vymazat obsah kompozice"
 
 #: ../xfburn/xfburn-data-composition.c:146
 msgid "Import"
@@ -270,7 +265,7 @@ msgstr "Místní cesta"
 
 #: ../xfburn/xfburn-data-composition.c:600
 msgid "You must give a name to the file"
-msgstr ""
+msgstr "Musíte vložit název souboru"
 
 #: ../xfburn/xfburn-data-composition.c:609
 #: ../xfburn/xfburn-data-composition.c:988
@@ -280,19 +275,15 @@ msgstr "V kompozici již existuje soubor se stejným názvem"
 #: ../xfburn/xfburn-data-composition.c:690
 #: ../xfburn/xfburn-data-composition.c:691
 #: ../xfburn/xfburn-data-composition.c:693
-#, fuzzy
 msgid "New directory"
-msgstr "Adresář pro dočasné soubory"
+msgstr "Nový adresář"
 
 #: ../xfburn/xfburn-data-composition.c:1169
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"moved"
-msgstr ""
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been moved"
+msgstr "Soubor s názvem \"%s\" již v tomto adresáři existuje, proto nebyl přesunut"
 
 #: ../xfburn/xfburn-data-disc-usage.c:129
-#, fuzzy
 msgid "Burn composition"
 msgstr "Vypálit kompozici"
 
@@ -300,17 +291,18 @@ msgstr "Vypálit kompozici"
 msgid "You are trying to burn more data than the disk can contain !"
 msgstr "Pokoušíte se vypálit na disk více dat, než je možné!"
 
-#: ../xfburn/xfburn-device-box.c:115 ../xfburn/xfburn-device-box.c:116
+#: ../xfburn/xfburn-device-box.c:115
+#: ../xfburn/xfburn-device-box.c:116
 msgid "Show writers only"
-msgstr ""
+msgstr "Zobrazovat pouze vypalovací mechaniky"
 
 #: ../xfburn/xfburn-device-box.c:118
 msgid "Show speed selection"
-msgstr ""
+msgstr "Zobrazit výběr rychlosti"
 
 #: ../xfburn/xfburn-device-box.c:119
 msgid "Show speed selection list and refresh button"
-msgstr ""
+msgstr "Zobrazit seznam pro výběr rychlosti a tlačítko aktualizovat"
 
 #: ../xfburn/xfburn-device-box.c:154
 msgid "_Speed :"
@@ -329,7 +321,8 @@ msgstr "Soubor"
 msgid "Type"
 msgstr "Typ"
 
-#: ../xfburn/xfburn-fs-browser.c:93 ../xfburn/xfburn-fs-browser.c:259
+#: ../xfburn/xfburn-fs-browser.c:93
+#: ../xfburn/xfburn-fs-browser.c:259
 msgid "Filesystem"
 msgstr "Systém souborů"
 
@@ -339,7 +332,8 @@ msgstr "Systém souborů"
 msgid "%s's home"
 msgstr "Domovský adresář uživatele %s"
 
-#: ../xfburn/xfburn-main.c:58 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:58
+#: ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -370,7 +364,8 @@ msgstr "Vytvořit novou kompozici"
 msgid "Close composition"
 msgstr "Zavřít kompozici"
 
-#: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
+#: ../xfburn/xfburn-main-window.c:103
+#: ../xfburn/xfburn-main-window.c:436
 msgid "_Quit"
 msgstr "_Ukončit"
 
@@ -626,7 +621,6 @@ msgid "Select command"
 msgstr "Vyberte příkaz"
 
 #: ../xfburn/xfburn-write-mode-combo-box.c:41
-#, fuzzy
 msgid "Default"
 msgstr "výchozí"
 
@@ -640,15 +634,12 @@ msgstr "Aplikace pro vypalování CD a DVD"
 #, fuzzy
 #~ msgid "New audio composition"
 #~ msgstr "Načíst kompozici"
-
 #~ msgid "Load composition"
 #~ msgstr "Načíst kompozici"
-
 #~ msgid "Show disc content toolbar"
 #~ msgstr "Zobrazit kontextový panel nástrojů disku"
-
 #~ msgid "Show/hide the disc content toolbar"
 #~ msgstr "Zobrazí/skryje kontextový panel nástrojů disku"
-
 #~ msgid "Xfburn preferences"
 #~ msgstr "Nastavení Xfburn"
+
