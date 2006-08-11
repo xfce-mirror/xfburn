@@ -32,14 +32,9 @@
 
 #include "xfburn-burn-image-dialog.h"
 
+#define XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialogPrivate))
 
-static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass);
-static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
-static void xfburn_burn_image_dialog_finalize (GObject * object);
-
-static void xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data);
-
-struct XfburnBurnImageDialogPrivate
+typedef struct
 {
   GtkWidget *chooser_image;
   
@@ -50,8 +45,17 @@ struct XfburnBurnImageDialogPrivate
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
   GtkWidget *check_dummy;
-};
+} XfburnBurnImageDialogPrivate;
 
+/* prototypes */
+static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass);
+static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
+
+static void xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data);
+
+/*********************/
+/* class declaration */
+/*********************/
 static XfceTitledDialogClass *parent_class = NULL;
 
 GtkType
@@ -81,28 +85,22 @@ xfburn_burn_image_dialog_get_type ()
 static void
 xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
+  g_type_class_add_private (klass, sizeof (XfburnBurnImageDialogPrivate));
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_burn_image_dialog_finalize;
-
 }
 
 static void
 xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 {
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
-  XfburnBurnImageDialogPrivate *priv;
+  XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (obj);
+  
   GdkPixbuf *icon = NULL;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *hbox;
   GtkWidget *label;
   GtkWidget *button;
-
-  obj->priv = g_new0 (XfburnBurnImageDialogPrivate, 1);
-
-  priv = obj->priv;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn CD image"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
@@ -176,29 +174,19 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_burn_image_dialog_response_cb), obj);
 }
 
+/*************/
 /* internals */
-static void
-xfburn_burn_image_dialog_finalize (GObject * object)
-{
-  XfburnBurnImageDialog *cobj;
-  cobj = XFBURN_BURN_IMAGE_DIALOG (object);
-
-  g_free (cobj->priv);
-  G_OBJECT_CLASS (parent_class)->finalize (object);
-}
-
+/*************/
 static void
 xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data)
 {
   if (response_id == GTK_RESPONSE_OK) {
-    XfburnBurnImageDialogPrivate *priv;
+    XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
     XfburnDevice *device;
     gchar *iso_path, *speed, *write_mode;
     gchar *command;
     GtkWidget *dialog_progress;
     
-    priv = dialog->priv;
-
     iso_path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
 
     device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));

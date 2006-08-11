@@ -17,8 +17,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFBURN_BURN_COMPOSITION_DIALOG_H__
-#define __XFBURN_BURN_COMPOSITION_DIALOG_H__
+#ifndef __XFBURN_BURN_DATA_COMPOSITION_DIALOG_H__
+#define __XFBURN_BURN_DATA_COMPOSITION_DIALOG_H__
 
 #ifdef	HAVE_CONFIG_H
 #include <config.h>
@@ -30,18 +30,16 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_BURN_COMPOSITION_DIALOG         (xfburn_burn_data_composition_dialog_get_type ())
-#define XFBURN_BURN_COMPOSITION_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnDataCompositionDialog))
-#define XFBURN_BURN_COMPOSITION_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnDataCompositionDialogClass))
-#define XFBURN_IS_BURN_COMPOSITION_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_COMPOSITION_DIALOG))
-#define XFBURN_IS_BURN_COMPOSITION_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_COMPOSITION_DIALOG))
-#define XFBURN_BURN_COMPOSITION_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_COMPOSITION_DIALOG, XfburnBurnDataCompositionDialogClass))
-typedef struct XfburnBurnDataCompositionDialogPrivate XfburnBurnDataCompositionDialogPrivate;
+#define XFBURN_TYPE_BURN_DATA_COMPOSITION_DIALOG         (xfburn_burn_data_composition_dialog_get_type ())
+#define XFBURN_BURN_DATA_COMPOSITION_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_DATA_COMPOSITION_DIALOG, XfburnBurnDataCompositionDialog))
+#define XFBURN_BURN_DATA_COMPOSITION_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_DATA_COMPOSITION_DIALOG, XfburnBurnDataCompositionDialogClass))
+#define XFBURN_IS_BURN_DATA_COMPOSITION_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_DATA_COMPOSITION_DIALOG))
+#define XFBURN_IS_BURN_DATA_COMPOSITION_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_DATA_COMPOSITION_DIALOG))
+#define XFBURN_BURN_DATA_COMPOSITION_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_DATA_COMPOSITION_DIALOG, XfburnBurnDataCompositionDialogClass))
 
 typedef struct
 {
   XfceTitledDialog parent;
-  XfburnBurnDataCompositionDialogPrivate *priv;
 } XfburnBurnDataCompositionDialog;
 
 typedef struct
@@ -56,4 +54,4 @@ gchar *xfburn_burn_data_composition_dialog_get_command_iso (XfburnBurnDataCompos
 gchar *xfburn_burn_data_composition_dialog_get_command_burn (XfburnBurnDataCompositionDialog *dialog);
 
 G_END_DECLS
-#endif /* XFBURN_BURN_COMPOSITION_DIALOG_H */
+#endif /* XFBURN_BURN_DATA_COMPOSITION_DIALOG_H */

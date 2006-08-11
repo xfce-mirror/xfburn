@@ -17,8 +17,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFBURN_DISC_USAGE_H__
-#define __XFBURN_DISC_USAGE_H__
+#ifndef __XFBURN_DATA_DISC_USAGE_H__
+#define __XFBURN_DATA_DISC_USAGE_H__
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -27,16 +27,15 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-#define XFBURN_TYPE_DISC_USAGE            (xfburn_data_disc_usage_get_type ())
-#define XFBURN_DISC_USAGE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DISC_USAGE, XfburnDataDiscUsage))
-#define XFBURN_DISC_USAGE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DISC_USAGE, XfburnDataDiscUsageClass))
-#define XFBURN_IS_DISC_USAGE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DISC_USAGE))
-#define XFBURN_IS_DISC_USAGE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DISC_USAGE))
-#define XFBURN_DISC_USAGE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DISC_USAGE, XfburnDataDiscUsageClass))
-typedef struct _XfburnDataDiscUsage XfburnDataDiscUsage;
-typedef struct _XfburnDataDiscUsageClass XfburnDataDiscUsageClass;
 
-struct _XfburnDataDiscUsage
+#define XFBURN_TYPE_DATA_DISC_USAGE            (xfburn_data_disc_usage_get_type ())
+#define XFBURN_DATA_DISC_USAGE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DATA_DISC_USAGE, XfburnDataDiscUsage))
+#define XFBURN_DATA_DISC_USAGE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DATA_DISC_USAGE, XfburnDataDiscUsageClass))
+#define XFBURN_IS_DATA_DISC_USAGE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DATA_DISC_USAGE))
+#define XFBURN_IS_DATA_DISC_USAGE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DATA_DISC_USAGE))
+#define XFBURN_DATA_DISC_USAGE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DATA_DISC_USAGE, XfburnDataDiscUsageClass))
+
+typedef struct
 {
   GtkVBox hbox;
 
@@ -45,14 +44,14 @@ struct _XfburnDataDiscUsage
   GtkWidget *button;
 
   gdouble size;
-};
+} XfburnDataDiscUsage;
 
-struct _XfburnDataDiscUsageClass
+typedef struct
 {
   GtkHBoxClass parent_class;
   
   void (*begin_burn) (XfburnDataDiscUsage *du);
-};
+} XfburnDataDiscUsageClass;
 
 GtkType xfburn_data_disc_usage_get_type (void);
 GtkWidget *xfburn_data_disc_usage_new (void);
@@ -63,4 +62,5 @@ void xfburn_data_disc_usage_add_size (XfburnDataDiscUsage *, gdouble);
 void xfburn_data_disc_usage_sub_size (XfburnDataDiscUsage *, gdouble);
 
 G_END_DECLS
+
 #endif

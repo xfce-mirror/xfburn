@@ -36,22 +36,10 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-global.h"
 
-/* globals */
-static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass);
-static void xfburn_progress_dialog_init (XfburnProgressDialog * sp);
+#define XFBURN_PROGRESS_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_PROGRESS_DIALOG, XfburnProgressDialogPrivate))
 
-static void xfburn_progress_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
-static void xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GValue * value,
-                                                 GParamSpec * pspec);
-static void xfburn_progress_dialog_finalize (GObject * object);
-
-static void cb_expander_activate (GtkExpander * expander, XfburnProgressDialog * dialog);
-static void cb_dialog_show (XfburnProgressDialog * dialog, XfburnProgressDialogPrivate * priv);
-static gboolean cb_dialog_delete (XfburnProgressDialog * dialog, GdkEvent * event, XfburnProgressDialogPrivate * priv);
-static void cb_dialog_response (XfburnProgressDialog * dialog, gint response_id, XfburnProgressDialogPrivate * priv);
-
-/* structs */
-struct XfburnProgressDialogPrivate
+/* struct */
+typedef struct
 {
   XfburnProgressDialogStatus status;
   int fd_stdin;
@@ -66,7 +54,21 @@ struct XfburnProgressDialogPrivate
 
   GtkWidget *button_stop;
   GtkWidget *button_close;
-};
+} XfburnProgressDialogPrivate;
+
+/* globals */
+static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass);
+static void xfburn_progress_dialog_init (XfburnProgressDialog * sp);
+
+static void xfburn_progress_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
+static void xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GValue * value,
+                                                 GParamSpec * pspec);
+static void xfburn_progress_dialog_finalize (GObject * object);
+
+static void cb_expander_activate (GtkExpander * expander, XfburnProgressDialog * dialog);
+static void cb_dialog_show (XfburnProgressDialog * dialog, XfburnProgressDialogPrivate * priv);
+static gboolean cb_dialog_delete (XfburnProgressDialog * dialog, GdkEvent * event, XfburnProgressDialogPrivate * priv);
+static void cb_dialog_response (XfburnProgressDialog * dialog, gint response_id, XfburnProgressDialogPrivate * priv);
 
 enum
 {
@@ -139,6 +141,8 @@ xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
 
   parent_class = g_type_class_peek_parent (klass);
 
+  g_type_class_add_private (klass, sizeof (XfburnProgressDialogPrivate));
+  
   object_class->finalize = xfburn_progress_dialog_finalize;
   object_class->get_property = xfburn_progress_dialog_get_property;
   object_class->set_property = xfburn_progress_dialog_set_property;
@@ -162,16 +166,13 @@ xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
 static void
 xfburn_progress_dialog_init (XfburnProgressDialog * obj)
 {
-  XfburnProgressDialogPrivate *priv;
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (obj);
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   GtkWidget *expander;
   GtkWidget *frame;
   GtkWidget *table;
   GtkWidget *label;
   GtkWidget *scrolled_window;
-
-  obj->priv = g_new0 (XfburnProgressDialogPrivate, 1);
-  priv = obj->priv;
 
   gtk_window_set_default_size (GTK_WINDOW (obj), 575, 200);
 
@@ -268,15 +269,15 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
 static void
 xfburn_progress_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec)
 {
-  XfburnProgressDialog *dialog = XFBURN_PROGRESS_DIALOG (object);
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (object);
   gboolean show_buffers = TRUE;
 
   switch (prop_id) {
   case PROP_STATUS:
-    g_value_set_enum (value, dialog->priv->status);
+    g_value_set_enum (value, priv->status);
     break;
   case PROP_SHOW_BUFFERS:
-    g_object_get (G_OBJECT (dialog->priv->hbox_buffers), "visible", &show_buffers, NULL);
+    g_object_get (G_OBJECT (priv->hbox_buffers), "visible", &show_buffers, NULL);
     g_value_set_boolean (value, show_buffers);
     break;
   default:
@@ -306,17 +307,9 @@ xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GVal
 static void
 xfburn_progress_dialog_finalize (GObject * object)
 {
-  XfburnProgressDialog *cobj;
-  XfburnProgressDialogPrivate *priv;
-
   GIOChannel *channel_stdout;
   GIOChannel *channel_stderr;
   GPid pid_command;
-
-  cobj = XFBURN_PROGRESS_DIALOG (object);
-
-  priv = cobj->priv;
-  g_free (priv);
 
   if ((channel_stdout = g_object_get_data (object, "channel-stdout"))) {
     g_io_channel_shutdown (channel_stdout, FALSE, NULL);
@@ -338,6 +331,8 @@ xfburn_progress_dialog_finalize (GObject * object)
 static gboolean
 watch_output (GIOChannel * source, GIOCondition condition, XfburnProgressDialog * dialog)
 {
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+  
   gchar buffer[1024] = "";
   gchar *converted_buffer = NULL;
   gsize bytes_read = 0, bytes_written = 0;
@@ -348,8 +343,8 @@ watch_output (GIOChannel * source, GIOCondition condition, XfburnProgressDialog 
     guint id_refresh_stdout = -1;
     guint id_refresh_stderr = -1;
 
-    gtk_widget_set_sensitive (dialog->priv->button_close, TRUE);
-    gtk_widget_set_sensitive (dialog->priv->button_stop, FALSE);
+    gtk_widget_set_sensitive (priv->button_close, TRUE);
+    gtk_widget_set_sensitive (priv->button_stop, FALSE);
 
     id_refresh_stdout = (guint) g_object_get_data (G_OBJECT (dialog), "id-refresh-stdout");
     id_refresh_stderr = (guint) g_object_get_data (G_OBJECT (dialog), "id-refresh-stderr");
@@ -493,16 +488,18 @@ cb_dialog_response (XfburnProgressDialog * dialog, gint response_id, XfburnProgr
 void
 xfburn_progress_dialog_show_buffers (XfburnProgressDialog * dialog, gboolean show)
 {
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+  
   if (show)
-    gtk_widget_show (dialog->priv->hbox_buffers);
+    gtk_widget_show (priv->hbox_buffers);
   else
-    gtk_widget_hide (dialog->priv->hbox_buffers);
+    gtk_widget_hide (priv->hbox_buffers);
 }
 
 void
 xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar * output)
 {
-  XfburnProgressDialogPrivate *priv = dialog->priv;
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
   GtkTextBuffer *buffer;
   GtkTextIter iter;
 
@@ -520,36 +517,45 @@ xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar
 void
 xfburn_progress_dialog_pulse_progress_bar (XfburnProgressDialog * dialog)
 {
-  gtk_progress_bar_pulse (GTK_PROGRESS_BAR (dialog->priv->progress_bar));
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+  
+  gtk_progress_bar_pulse (GTK_PROGRESS_BAR (priv->progress_bar));
 }
 
 void
 xfburn_progress_dialog_write_input (XfburnProgressDialog * dialog, const gchar * input)
 {
-  write (dialog->priv->fd_stdin, input, strlen (input) * sizeof (gchar));
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+  
+  write (priv->fd_stdin, input, strlen (input) * sizeof (gchar));
 }
 
 /* getters */
 gdouble
 xfburn_progress_dialog_get_progress_bar_fraction (XfburnProgressDialog * dialog)
 {
-  return gtk_progress_bar_get_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar));
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+  
+  return gtk_progress_bar_get_fraction (GTK_PROGRESS_BAR (priv->progress_bar));
 }
 
 XfburnProgressDialogStatus
 xfburn_progress_dialog_get_status (XfburnProgressDialog * dialog)
 {
-  return dialog->priv->status;
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+  
+  return priv->status;
 }
 
 /* setters */
 void
 xfburn_progress_dialog_set_action_text (XfburnProgressDialog * dialog, const gchar * text)
 {
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
   gchar *temp;
 
   temp = g_strdup_printf ("<b>%s</b>", text);
-  gtk_label_set_markup (GTK_LABEL (dialog->priv->label_action), temp);
+  gtk_label_set_markup (GTK_LABEL (priv->label_action), temp);
 
   g_free (temp);
 }
@@ -557,6 +563,7 @@ xfburn_progress_dialog_set_action_text (XfburnProgressDialog * dialog, const gch
 void
 xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gfloat speed)
 {
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
   gchar *temp;
 
   if (speed < 0)
@@ -564,7 +571,7 @@ xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gfloat 
   else
     temp = g_strdup_printf ("<b><i>%.1f x</i></b>", speed);
 
-  gtk_label_set_markup (GTK_LABEL (dialog->priv->label_speed), temp);
+  gtk_label_set_markup (GTK_LABEL (priv->label_speed), temp);
 
   g_free (temp);
 }
@@ -572,6 +579,7 @@ xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gfloat 
 void
 xfburn_progress_dialog_set_buffer_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction)
 {
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
   gchar *text = NULL;
 
   if (fraction > 1.0) {
@@ -584,14 +592,15 @@ xfburn_progress_dialog_set_buffer_bar_fraction (XfburnProgressDialog * dialog, g
     text = g_strdup_printf ("%d%%", (int) (fraction * 100));
   }
   
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->buffer_bar), fraction);
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->buffer_bar), text);
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->buffer_bar), fraction);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), text);
   g_free (text);
 }
 
 void
 xfburn_progress_dialog_set_fifo_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction)
 {
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
   gchar *text = NULL;
 
   if (fraction > 1.0) {
@@ -604,19 +613,20 @@ xfburn_progress_dialog_set_fifo_bar_fraction (XfburnProgressDialog * dialog, gdo
     text = g_strdup_printf ("%d%%", (int) (fraction * 100));
   }
   
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->fifo_bar), fraction);
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->fifo_bar), text);
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->fifo_bar), fraction);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), text);
   g_free (text);
 }
 
 void
 xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction)
 {
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
   gchar *text = NULL;
 
   if (fraction >= 1.0) {
     fraction = 1.0;
-    switch (dialog->priv->status) {
+    switch (priv->status) {
     case XFBURN_PROGRESS_DIALOG_STATUS_RUNNING:
       text = g_strdup ("100%");
       break;
@@ -635,19 +645,21 @@ xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog,
     fraction = 0.0;
     text = g_strdup ("0%");
   }
-  else if (dialog->priv->status == XFBURN_PROGRESS_DIALOG_STATUS_RUNNING) {
+  else if (priv->status == XFBURN_PROGRESS_DIALOG_STATUS_RUNNING) {
     text = g_strdup_printf ("%d%%", (int) (fraction * 100));
   }
     
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (dialog->priv->progress_bar), fraction);
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dialog->priv->progress_bar), text);
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->progress_bar), fraction);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), text);
   g_free (text);
 }
 
 void
 xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status)
 {
-  dialog->priv->status = status;
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+  
+  priv->status = status;
 }
 
 /* constructor */

@@ -1,5 +1,7 @@
 /* $Id$ */
 /*
+ * Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -29,21 +31,21 @@
 
 #include "xfburn-blank-cd-dialog.h"
 
+#define XFBURN_BLANK_CD_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BLANK_CD_DIALOG, XfburnBlankCdDialogPrivate))
 
-static void xfburn_blank_cd_dialog_class_init (XfburnBlankCdDialogClass * klass);
-static void xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * sp);
-static void xfburn_blank_cd_dialog_finalize (GObject * object);
-
-static void xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_id, gpointer user_data);
-
-struct XfburnBlankCdDialogPrivate
+typedef struct
 {
   GtkWidget *device_box;
   GtkWidget *combo_type;
   
   GtkWidget *check_force;
   GtkWidget *check_eject;
-};
+} XfburnBlankCdDialogPrivate;
+
+static void xfburn_blank_cd_dialog_class_init (XfburnBlankCdDialogClass * klass);
+static void xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * sp);
+
+static void xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_id, gpointer user_data);
 
 static XfceTitledDialogClass *parent_class = NULL;
 
@@ -74,26 +76,20 @@ xfburn_blank_cd_dialog_get_type ()
 static void
 xfburn_blank_cd_dialog_class_init (XfburnBlankCdDialogClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_blank_cd_dialog_finalize;
-
+  
+  g_type_class_add_private (klass, sizeof (XfburnBlankCdDialogPrivate));
 }
 
 static void
 xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
 {
+  XfburnBlankCdDialogPrivate *priv = XFBURN_BLANK_CD_DIALOG_GET_PRIVATE (obj);
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
-  XfburnBlankCdDialogPrivate *priv;
   GdkPixbuf *icon = NULL;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *button;
-
-  obj->priv = g_new0 (XfburnBlankCdDialogPrivate, 1);
-
-  priv = obj->priv;
   
   gtk_window_set_title (GTK_WINDOW (obj), _("Blank CD-RW"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
@@ -156,25 +152,13 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
 }
 
 static void
-xfburn_blank_cd_dialog_finalize (GObject * object)
-{
-  XfburnBlankCdDialog *cobj;
-  cobj = XFBURN_BLANK_CD_DIALOG (object);
-  
-  g_free (cobj->priv);
-  G_OBJECT_CLASS (parent_class)->finalize (object);
-}
-
-static void
 xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_id, gpointer user_data)
 {
   if (response_id == GTK_RESPONSE_OK) {
-    XfburnBlankCdDialogPrivate *priv;
+    XfburnBlankCdDialogPrivate *priv = XFBURN_BLANK_CD_DIALOG_GET_PRIVATE (dialog);
     gchar *command;
     XfburnDevice *device;
     gchar *blank_type, *speed;
-    
-    priv = dialog->priv;
 
     device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
     speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));

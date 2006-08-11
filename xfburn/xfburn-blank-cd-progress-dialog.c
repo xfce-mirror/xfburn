@@ -30,6 +30,15 @@
 
 #include "xfburn-blank-cd-progress-dialog.h"
 
+#define XFBURN_BLANK_CD_PROGRESS_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_PROGRESS_DIALOG, XfburnBlankCdProgressDialogPrivate))
+
+typedef struct
+{
+  guint id_pulse;
+} XfburnBlankCdProgressDialogPrivate;
+
+
+/* prototypes */
 static void xfburn_blank_cd_progress_dialog_class_init (XfburnBlankCdProgressDialogClass * klass);
 static void xfburn_blank_cd_progress_dialog_init (XfburnBlankCdProgressDialog * sp);
 static void xfburn_blank_cd_progress_dialog_finalize (GObject * object);
@@ -37,11 +46,6 @@ static void xfburn_blank_cd_progress_dialog_finalize (GObject * object);
 static void cb_finished (XfburnBlankCdProgressDialog * dialog, XfburnBlankCdProgressDialogPrivate * priv);
 static void cb_new_output (XfburnBlankCdProgressDialog * dialog, const gchar * output,
                            XfburnBlankCdProgressDialogPrivate * priv);
-
-struct XfburnBlankCdProgressDialogPrivate
-{
-  guint id_pulse;
-};
 
 static XfburnProgressDialogClass *parent_class = NULL;
 
@@ -74,6 +78,8 @@ xfburn_blank_cd_progress_dialog_class_init (XfburnBlankCdProgressDialogClass * k
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+  g_type_class_add_private (klass, sizeof (XfburnBlankCdProgressDialogPrivate));
+  
   parent_class = g_type_class_peek_parent (klass);
   object_class->finalize = xfburn_blank_cd_progress_dialog_finalize;
 
@@ -82,24 +88,21 @@ xfburn_blank_cd_progress_dialog_class_init (XfburnBlankCdProgressDialogClass * k
 static void
 xfburn_blank_cd_progress_dialog_init (XfburnBlankCdProgressDialog * obj)
 {
-  obj->priv = g_new0 (XfburnBlankCdProgressDialogPrivate, 1);
-  /* Initialize private members, etc. */
+  XfburnBlankCdProgressDialogPrivate *priv = XFBURN_BLANK_CD_PROGRESS_DIALOG_GET_PRIVATE (obj);
 
-  g_signal_connect (G_OBJECT (obj), "finished", G_CALLBACK (cb_finished), obj->priv);
-  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), obj->priv);
+  g_signal_connect (G_OBJECT (obj), "finished", G_CALLBACK (cb_finished), priv);
+  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), priv);
 }
 
 static void
 xfburn_blank_cd_progress_dialog_finalize (GObject * object)
 {
-  XfburnBlankCdProgressDialog *cobj;
-  cobj = XFBURN_BLANK_CD_PROGRESS_DIALOG (object);
-
+  XfburnBlankCdProgressDialogPrivate *priv = XFBURN_BLANK_CD_PROGRESS_DIALOG_GET_PRIVATE (object);
+  
   /* Free private members, etc. */
-  if (cobj->priv->id_pulse > 0)
-    g_source_remove (cobj->priv->id_pulse);
+  if (priv->id_pulse > 0)
+    g_source_remove (priv->id_pulse);
     
-  g_free (cobj->priv);
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 

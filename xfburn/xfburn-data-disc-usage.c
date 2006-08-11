@@ -153,7 +153,7 @@ xfburn_data_disc_usage_update_size (XfburnDataDiscUsage * disc_usage)
   if (xfburn_settings_get_boolean ("human-readable-units", TRUE))
     size = xfburn_humanreadable_filesize ((guint64) disc_usage->size);
   else
-    size = g_strdup_printf ("%lu B", (long unsigned int) disc_usage->size);
+    size = g_strdup_printf ("%.0lf B", disc_usage->size);
 
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), size);
 

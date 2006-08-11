@@ -26,25 +26,25 @@
 
 #include <gtk/gtk.h>
 
+#include <exo/exo.h>
+
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_DIRECTORY_BROWSER            (xfburn_directory_browser_get_type ())
 #define XFBURN_DIRECTORY_BROWSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DIRECTORY_BROWSER, XfburnDirectoryBrowser))
 #define XFBURN_DIRECTORY_BROWSER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DIRECTORY_BROWSER, XfburnDirectoryBrowserClass))
 #define XFBURN_IS_DIRECTORY_BROWSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DIRECTORY_BROWSER))
 #define XFBURN_IS_DIRECTORY_BROWSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DIRECTORY_BROWSER))
 #define XFBURN_DIRECTORY_BROWSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DIRECTORY_BROWSER, XfburnDirectoryBrowserClass))
-typedef struct XfburnDirectoryBrowserPrivate XfburnDirectoryBrowserPrivate;
 
 typedef struct
 {
-  GtkTreeView treeview;
-
-  XfburnDirectoryBrowserPrivate *priv;
+  ExoTreeView treeview;
 } XfburnDirectoryBrowser;
 
 typedef struct
 {
-  GtkTreeViewClass parent_class;
+  ExoTreeViewClass parent_class;
 } XfburnDirectoryBrowserClass;
 
 enum
@@ -69,4 +69,5 @@ void xfburn_directory_browser_refresh (XfburnDirectoryBrowser * browser);
 gchar *xfburn_directory_browser_get_selection (XfburnDirectoryBrowser * browser);
 
 G_END_DECLS
+
 #endif

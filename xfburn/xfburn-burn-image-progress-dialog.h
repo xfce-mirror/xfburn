@@ -37,11 +37,8 @@ G_BEGIN_DECLS
 #define XFBURN_IS_BURN_IMAGE_PROGRESS_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_IMAGE_PROGRESS_DIALOG))
 #define XFBURN_BURN_IMAGE_PROGRESS_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_IMAGE_PROGRESS_DIALOG, XfburnBurnImageProgressDialogClass))
 
-typedef struct XfburnBurnImageProgressDialogPrivate XfburnBurnImageProgressDialogPrivate;
-
 typedef struct {
 	XfburnProgressDialog parent;
-	XfburnBurnImageProgressDialogPrivate *priv;
 } XfburnBurnImageProgressDialog;
 
 typedef struct {
@@ -52,4 +49,5 @@ typedef struct {
 GtkType xfburn_burn_image_progress_dialog_get_type ();
 GtkWidget *xfburn_burn_image_progress_dialog_new ();
 
+G_END_DECLS
 #endif /* XFBURN_BURN_IMAGE_PROGRESS_DIALOG_H */

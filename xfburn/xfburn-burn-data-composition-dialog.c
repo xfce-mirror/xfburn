@@ -31,18 +31,9 @@
 
 #include "xfburn-burn-data-composition-dialog.h"
 
-/* prototypes */
-static void xfburn_burn_data_composition_dialog_class_init (XfburnBurnDataCompositionDialogClass * klass);
-static void xfburn_burn_data_composition_dialog_init (XfburnBurnDataCompositionDialog * obj);
-static void xfburn_burn_data_composition_dialog_finalize (GObject * object);
+#define XFBURN_BURN_DATA_COMPOSITION_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_DATA_COMPOSITION_DIALOG, XfburnBurnDataCompositionDialogPrivate))
 
-static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionDialog * dialog);
-static void cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionDialog * dialog);
-static void cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id,
-                                XfburnBurnDataCompositionDialogPrivate * priv);
-
-/* structures */
-struct XfburnBurnDataCompositionDialogPrivate
+typedef struct
 {
   gchar *command_iso;
   gchar *command_burn;
@@ -60,7 +51,17 @@ struct XfburnBurnDataCompositionDialogPrivate
 
   gchar *file_list;
   XfburnDataComposition *composition;
-};
+} XfburnBurnDataCompositionDialogPrivate;
+
+/* prototypes */
+static void xfburn_burn_data_composition_dialog_class_init (XfburnBurnDataCompositionDialogClass * klass);
+static void xfburn_burn_data_composition_dialog_init (XfburnBurnDataCompositionDialog * obj);
+static void xfburn_burn_data_composition_dialog_finalize (GObject * object);
+
+static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionDialog * dialog);
+static void cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionDialog * dialog);
+static void cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id,
+                                XfburnBurnDataCompositionDialogPrivate * priv);
 
 /* globals */
 static XfceTitledDialogClass *parent_class = NULL;
@@ -95,14 +96,16 @@ xfburn_burn_data_composition_dialog_class_init (XfburnBurnDataCompositionDialogC
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
+  g_type_class_add_private (klass, sizeof (XfburnBurnDataCompositionDialogPrivate));
+  
   object_class->finalize = xfburn_burn_data_composition_dialog_finalize;
-
 }
 
 static void
 xfburn_burn_data_composition_dialog_init (XfburnBurnDataCompositionDialog * obj)
 {
-  XfburnBurnDataCompositionDialogPrivate *priv;
+  XfburnBurnDataCompositionDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_DIALOG_GET_PRIVATE (obj);
+  
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   GtkWidget *img;
   GtkWidget *frame;
@@ -113,9 +116,6 @@ xfburn_burn_data_composition_dialog_init (XfburnBurnDataCompositionDialog * obj)
   GtkWidget *button;
   gchar *default_path;
   gchar *tmp_dir;
-
-  obj->priv = g_new0 (XfburnBurnDataCompositionDialogPrivate, 1);
-  priv = obj->priv;
 
   priv->command_iso = NULL;
   priv->command_burn = NULL;
@@ -218,13 +218,12 @@ xfburn_burn_data_composition_dialog_init (XfburnBurnDataCompositionDialog * obj)
 static void
 xfburn_burn_data_composition_dialog_finalize (GObject * object)
 {
-  XfburnBurnDataCompositionDialog *cobj;
-  cobj = XFBURN_BURN_COMPOSITION_DIALOG (object);
+  XfburnBurnDataCompositionDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_DIALOG_GET_PRIVATE (object);
 
-  g_free (cobj->priv->file_list);
-  g_free (cobj->priv->command_iso);
-  g_free (cobj->priv->command_burn);
-  g_free (cobj->priv);
+  g_free (priv->file_list);
+  g_free (priv->command_iso);
+  g_free (priv->command_burn);
+
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -232,7 +231,7 @@ xfburn_burn_data_composition_dialog_finalize (GObject * object)
 static void
 cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionDialog * dialog)
 {
-  XfburnBurnDataCompositionDialogPrivate *priv = dialog->priv;
+  XfburnBurnDataCompositionDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
 
   gtk_widget_set_sensitive (priv->frame_device, !gtk_toggle_button_get_active (button));
   
@@ -245,7 +244,9 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionDi
 static void
 cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionDialog * dialog)
 {
-  xfburn_browse_for_file (GTK_ENTRY (dialog->priv->entry_path_iso), GTK_WINDOW (dialog));
+  XfburnBurnDataCompositionDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
+  
+  xfburn_browse_for_file (GTK_ENTRY (priv->entry_path_iso), GTK_WINDOW (dialog));
 }
 
 static void
@@ -310,13 +311,17 @@ cb_dialog_response (XfburnBurnDataCompositionDialog * dialog, gint response_id, 
 gchar *
 xfburn_burn_data_composition_dialog_get_command_iso (XfburnBurnDataCompositionDialog * dialog)
 {
-  return g_strdup (dialog->priv->command_iso);
+  XfburnBurnDataCompositionDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
+  
+  return g_strdup (priv->command_iso);
 }
 
 gchar *
 xfburn_burn_data_composition_dialog_get_command_burn (XfburnBurnDataCompositionDialog * dialog)
 {
-  return g_strdup (dialog->priv->command_burn);
+  XfburnBurnDataCompositionDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
+  
+  return g_strdup (priv->command_burn);
 }
 
 GtkWidget *
@@ -324,10 +329,14 @@ xfburn_burn_data_composition_dialog_new (XfburnDataComposition *composition, con
 {
   XfburnBurnDataCompositionDialog *obj;
 
-  obj = XFBURN_BURN_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_COMPOSITION_DIALOG, NULL));
+  obj = XFBURN_BURN_DATA_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_DATA_COMPOSITION_DIALOG, NULL));
 
-  obj->priv->file_list = g_strdup (file_list);
-  obj->priv->composition = composition;
+  if (obj) {
+    XfburnBurnDataCompositionDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_DIALOG_GET_PRIVATE (obj);
+    
+    priv->file_list = g_strdup (file_list);
+    priv->composition = composition;
+  }
   
   return GTK_WIDGET (obj);
 }

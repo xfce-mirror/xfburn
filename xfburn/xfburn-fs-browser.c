@@ -40,8 +40,10 @@ static void cb_browser_row_expanded (GtkTreeView *, GtkTreeIter *, GtkTreePath *
 static void cb_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectionData *, guint, guint, XfburnFsBrowser *);
 
-/* globals */
-static GtkTreeViewClass *parent_class = NULL;
+/*************************/
+/* XfburnFsBrowser class */
+/*************************/
+static ExoTreeViewClass *parent_class = NULL;
 
 GType
 xfburn_fs_browser_get_type ()
@@ -61,7 +63,7 @@ xfburn_fs_browser_get_type ()
       (GInstanceInitFunc) xfburn_fs_browser_init,
     };
 
-    type = g_type_register_static (GTK_TYPE_TREE_VIEW, "XfburnFsBrowser", &our_info, 0);
+    type = g_type_register_static (EXO_TYPE_TREE_VIEW, "XfburnFsBrowser", &our_info, 0);
   }
 
   return type;
@@ -71,7 +73,6 @@ static void
 xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass)
 {
   parent_class = g_type_class_peek_parent (klass);
-
 }
 
 static void

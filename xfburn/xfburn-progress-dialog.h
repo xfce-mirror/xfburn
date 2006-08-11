@@ -49,12 +49,10 @@ GType xfburn_progress_dialog_status_get_type (void);
 #define XFBURN_IS_PROGRESS_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_PROGRESS_DIALOG))
 #define XFBURN_IS_PROGRESS_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_PROGRESS_DIALOG))
 #define XFBURN_PROGRESS_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_PROGRESS_DIALOG, XfburnProgressDialogClass))
-typedef struct XfburnProgressDialogPrivate XfburnProgressDialogPrivate;
 
 typedef struct
 {
   GtkDialog parent;
-  XfburnProgressDialogPrivate *priv;
 } XfburnProgressDialog;
 
 typedef struct

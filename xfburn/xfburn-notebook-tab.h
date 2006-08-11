@@ -23,6 +23,7 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_NOTEBOOK_TAB         (xfburn_notebook_tab_get_type ())
 #define XFBURN_NOTEBOOK_TAB(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_NOTEBOOK_TAB, XfburnNotebookTab))
 #define XFBURN_NOTEBOOK_TAB_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_NOTEBOOK_TAB, XfburnNotebookTabClass))
@@ -48,4 +49,5 @@ GtkWidget *xfburn_notebook_tab_new (const gchar *label);
 
 void xfburn_notebook_tab_set_label (XfburnNotebookTab *tab, const gchar *label);
 
+G_END_DECLS
 #endif /* XFBURN_NOTEBOOK_TAB_H */

@@ -53,12 +53,11 @@ static void cb_fs_browser_selection_changed (GtkTreeSelection *, XfburnFileBrows
 static void cb_directory_browser_row_activated (GtkWidget *, GtkTreePath *, GtkTreeViewColumn *, XfburnFileBrowser *);
 static gboolean cb_focus_in_event (GtkWidget *widget, GdkEventFocus *event, XfburnFileBrowser *file_browser);
 
-/* globals */
-static GtkHPanedClass *parent_class = NULL;
-
 /***************************/
 /* XfburnFileBrowser class */
 /***************************/
+static GtkHPanedClass *parent_class = NULL;
+
 GtkType
 xfburn_file_browser_get_type (void)
 {
@@ -86,10 +85,6 @@ xfburn_file_browser_get_type (void)
 static void
 xfburn_file_browser_class_init (XfburnFileBrowserClass * klass)
 {
-  GObjectClass *gobject_class;
-
-  gobject_class = G_OBJECT_CLASS (klass);
-
   g_type_class_add_private (klass, sizeof (XfburnFileBrowserPrivate));
   
   parent_class = g_type_class_peek_parent (klass);
