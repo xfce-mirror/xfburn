@@ -716,70 +716,82 @@ action_create_directory (GtkAction * action, XfburnDataComposition * dc)
 }
 
 static void
+remove_row_reference (GtkTreeRowReference *reference, XfburnDataCompositionPrivate *priv)
+{
+  GtkTreePath *path = NULL;
+  GtkTreeModel *model;
+  
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
+  
+  path = gtk_tree_row_reference_get_path (reference);
+  if (path) {
+    GtkTreeIter iter;
+    
+    if (gtk_tree_model_get_iter (model, &iter, path)) {
+      GtkTreeIter parent, iter_temp;
+      guint64 size = 0;
+      
+      gtk_tree_model_get (model, &iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
+      xfburn_data_disc_usage_sub_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), size);
+
+      iter_temp = iter;
+      while (gtk_tree_model_iter_parent (model, &parent, &iter_temp)) {
+        guint64 old_size;
+        gchar *humansize = NULL;
+
+        /* updates parent directories size */
+        gtk_tree_model_get (model, &parent, DATA_COMPOSITION_COLUMN_SIZE, &old_size, -1);
+
+        humansize = xfburn_humanreadable_filesize (old_size - size);
+        gtk_tree_store_set (GTK_TREE_STORE (model), &parent, 
+                            DATA_COMPOSITION_COLUMN_HUMANSIZE, humansize,
+                            DATA_COMPOSITION_COLUMN_SIZE, old_size - size, -1);
+
+        iter_temp = parent;
+
+        g_free (humansize);
+      }
+      
+      gtk_tree_store_remove (GTK_TREE_STORE (model), &iter);
+    }
+    
+    gtk_tree_path_free (path);
+  }
+  
+  gtk_tree_row_reference_free (reference);
+}
+
+static void
 action_remove_selection (GtkAction * action, XfburnDataComposition * dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   
   GtkTreeSelection *selection;
   GtkTreeModel *model;
-  GList *list_paths = NULL, *list_iters = NULL, *el;
-
+  GList *list_paths = NULL, *el;
+  GList *references = NULL;
+  
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->content));
   list_paths = gtk_tree_selection_get_selected_rows (selection, &model);
 
-  /* recompute new disc usage */
   el = list_paths;
   while (el) {
     GtkTreePath *path = NULL;
-    GtkTreeIter *iter = NULL;
-    GtkTreeIter parent, iter_temp;
-    guint64 size = 0;
-
+    GtkTreeRowReference *reference = NULL;
+  
     path = (GtkTreePath *) el->data;
-    iter = g_new0 (GtkTreeIter, 1);
-
-    gtk_tree_model_get_iter (model, iter, path);
-    list_iters = g_list_append (list_iters, iter);
-
-    gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
-    xfburn_data_disc_usage_sub_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), size);
-
-    iter_temp = *iter;
-    while (gtk_tree_model_iter_parent (model, &parent, &iter_temp)) {
-      guint64 old_size;
-      gchar *humansize = NULL;
-
-      /* updates parent directories size */
-      gtk_tree_model_get (model, &parent, DATA_COMPOSITION_COLUMN_SIZE, &old_size, -1);
-
-      humansize = xfburn_humanreadable_filesize (old_size - size);
-      gtk_tree_store_set (GTK_TREE_STORE (model), &parent, 
-			  DATA_COMPOSITION_COLUMN_HUMANSIZE, humansize,
-			  DATA_COMPOSITION_COLUMN_SIZE, old_size - size, -1);
-
-      iter_temp = parent;
-
-      g_free (humansize);
-    }
-
+    reference = gtk_tree_row_reference_new (model, path);
     gtk_tree_path_free (path);
+  
+    if (reference)
+      references = g_list_prepend (references, reference);
+    
     el = g_list_next (el);
-  }
+  } 
   g_list_free (list_paths);
-
-  /* remove rows from the list */
-  el = list_iters;
-  while (el) {
-    GtkTreeIter *iter = NULL;
-
-    iter = (GtkTreeIter *) el->data;
-    gtk_tree_store_remove (GTK_TREE_STORE (model), iter);
-
-    g_free (iter);
-    el = g_list_next (el);
-  }
-  g_list_free (list_iters);
-
+  
+  g_list_foreach (references, (GFunc) remove_row_reference, priv);
+  g_list_free (references);
 }
 
 static void
@@ -905,7 +917,7 @@ cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
       reference = gtk_tree_row_reference_new (model, temp);
       gtk_tree_path_free (temp);
 
-      references = g_list_append (references, reference);
+      references = g_list_prepend (references, reference);
       
       row = g_list_next (row);
     }
@@ -1266,6 +1278,12 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       reference = (GtkTreeRowReference *) row->data;
     
       path_src = gtk_tree_row_reference_get_path (reference);
+      if (!path_src) {
+        gtk_tree_row_reference_free (reference);
+        
+        row = g_list_next (row);
+        continue;
+      }
       
       if (path_where_insert && (position == GTK_TREE_VIEW_DROP_AFTER || position == GTK_TREE_VIEW_DROP_BEFORE) 
           && (gtk_tree_path_get_depth (path_where_insert) == gtk_tree_path_get_depth (path_src))) {
