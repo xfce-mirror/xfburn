@@ -130,13 +130,13 @@ xfburn_settings_finalize (GObject * object)
   priv = XFBURN_SETTINGS_GET_PRIVATE (cobj);
   
   if (instance) {
-	instance = NULL;
+    instance = NULL;
   }
   
   if (G_LIKELY (priv->settings))
-	g_hash_table_destroy (priv->settings);
+    g_hash_table_destroy (priv->settings);
   if (G_LIKELY (priv->full_path))
-	g_free (priv->full_path);
+    g_free (priv->full_path);
 }
 
 static void

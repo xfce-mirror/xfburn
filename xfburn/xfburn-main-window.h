@@ -30,24 +30,23 @@
 #include "xfburn-file-browser.h"
 
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_MAIN_WINDOW            (xfburn_main_window_get_type ())
 #define XFBURN_MAIN_WINDOW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindow))
 #define XFBURN_MAIN_WINDOW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
 #define XFBURN_IS_MAIN_WINDOW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_MAIN_WINDOW))
 #define XFBURN_IS_MAIN_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_MAIN_WINDOW))
 #define XFBURN_MAIN_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
-typedef struct _XfburnMainWindow XfburnMainWindow;
-typedef struct _XfburnMainWindowClass XfburnMainWindowClass;
 
-struct _XfburnMainWindow
+typedef struct 
 {
   GtkWindow window;
-};
+} XfburnMainWindow;
 
-struct _XfburnMainWindowClass
+typedef struct 
 {
   GtkWindowClass parent_class;
-};
+} XfburnMainWindowClass;
 
 GtkType xfburn_main_window_get_type (void);
 

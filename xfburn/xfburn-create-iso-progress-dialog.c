@@ -32,16 +32,12 @@
 
 static void xfburn_create_iso_progress_dialog_class_init (XfburnCreateIsoProgressDialogClass * klass);
 static void xfburn_create_iso_progress_dialog_init (XfburnCreateIsoProgressDialog * sp);
-static void xfburn_create_iso_progress_dialog_finalize (GObject * object);
 
-static void cb_new_output (XfburnCreateIsoProgressDialog * dialog, const gchar * output,
-                           XfburnCreateIsoProgressDialogPrivate * priv);
+static void cb_new_output (XfburnCreateIsoProgressDialog * dialog, const gchar * output, gpointer data);
 
-struct XfburnCreateIsoProgressDialogPrivate
-{
-  /* Place Private Members Here */
-};
-
+/*********************/
+/* class declaration */
+/*********************/
 static XfburnProgressDialogClass *parent_class = NULL;
 
 GtkType
@@ -71,39 +67,20 @@ xfburn_create_iso_progress_dialog_get_type ()
 static void
 xfburn_create_iso_progress_dialog_class_init (XfburnCreateIsoProgressDialogClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_create_iso_progress_dialog_finalize;
-
 }
 
 static void
 xfburn_create_iso_progress_dialog_init (XfburnCreateIsoProgressDialog * obj)
 {
-  obj->priv = g_new0 (XfburnCreateIsoProgressDialogPrivate, 1);
-  /* Initialize private members, etc. */
-  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), obj->priv);
-}
-
-static void
-xfburn_create_iso_progress_dialog_finalize (GObject * object)
-{
-  XfburnCreateIsoProgressDialog *cobj;
-  cobj = XFBURN_CREATE_ISO_PROGRESS_DIALOG (object);
-
-  /* Free private members, etc. */
-
-  g_free (cobj->priv);
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), NULL);
 }
 
 /*           */
 /* internals */
 /*           */
 static void
-cb_new_output (XfburnCreateIsoProgressDialog * dialog, const gchar * output,
-               XfburnCreateIsoProgressDialogPrivate * priv)
+cb_new_output (XfburnCreateIsoProgressDialog * dialog, const gchar * output, gpointer data)
 {
   static gint readcd_end = -1;
   

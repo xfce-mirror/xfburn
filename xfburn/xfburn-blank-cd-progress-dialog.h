@@ -37,11 +37,8 @@ G_BEGIN_DECLS
 #define XFBURN_IS_BLANK_CD_PROGRESS_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BLANK_CD_PROGRESS_DIALOG))
 #define XFBURN_BLANK_CD_PROGRESS_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BLANK_CD_PROGRESS_DIALOG, XfburnBlankCdProgressDialogClass))
 
-typedef struct XfburnBlankCdProgressDialogPrivate XfburnBlankCdProgressDialogPrivate;
-
 typedef struct {
 	XfburnProgressDialog parent;
-	XfburnBlankCdProgressDialogPrivate *priv;
 } XfburnBlankCdProgressDialog;
 
 typedef struct {

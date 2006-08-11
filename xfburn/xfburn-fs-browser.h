@@ -26,21 +26,25 @@
 
 #include <gtk/gtk.h>
 
+#include <exo/exo.h>
+
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_FS_BROWSER         (xfburn_fs_browser_get_type ())
 #define XFBURN_FS_BROWSER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_FS_BROWSER, XfburnFsBrowser))
 #define XFBURN_FS_BROWSER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_FS_BROWSER, XfburnFsBrowserClass))
 #define XFBURN_IS_FS_BROWSER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_FS_BROWSER))
 #define XFBURN_IS_FS_BROWSER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_FS_BROWSER))
 #define XFBURN_FS_BROWSER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_FS_BROWSER, XfburnFsBrowserClass))
-  typedef struct
+
+typedef struct
 {
-  GtkTreeView parent;
+  ExoTreeView parent;
 } XfburnFsBrowser;
 
 typedef struct
 {
-  GtkTreeViewClass parent_class;
+  ExoTreeViewClass parent_class;
 } XfburnFsBrowserClass;
 
 enum
@@ -59,4 +63,5 @@ void xfburn_fs_browser_refresh (XfburnFsBrowser *browser);
 gchar * xfburn_fs_browser_get_selection (XfburnFsBrowser *browser);
 
 G_END_DECLS
+
 #endif /* __XFBURN_FS_BROWSER_H__ */

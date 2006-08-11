@@ -27,27 +27,26 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_FILE_BROWSER            (xfburn_file_browser_get_type ())
 #define XFBURN_FILE_BROWSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_FILE_BROWSER, XfburnFileBrowser))
 #define XFBURN_FILE_BROWSER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_FILE_BROWSER, XfburnFileBrowserClass))
 #define XFBURN_IS_FILE_BROWSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_FILE_BROWSER))
 #define XFBURN_IS_FILE_BROWSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_FILE_BROWSER))
 #define XFBURN_FILE_BROWSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_FILE_BROWSER, XfburnFileBrowserClass))
-typedef struct _XfburnFileBrowser XfburnFileBrowser;
-typedef struct _XfburnFileBrowserClass XfburnFileBrowserClass;
 
-struct _XfburnFileBrowser
+typedef struct 
 {
   GtkHPaned hpaned;
 
   GtkWidget *fs_browser;
   GtkWidget *directory_browser;
-};
+} XfburnFileBrowser;
 
-struct _XfburnFileBrowserClass
+typedef struct
 {
   GtkHPanedClass parent_class;
-};
+} XfburnFileBrowserClass; 
 
 GtkType xfburn_file_browser_get_type (void);
 
@@ -57,4 +56,5 @@ void xfburn_file_browser_refresh (XfburnFileBrowser *browser);
 gchar *xfburn_file_browser_get_selection (XfburnFileBrowser *browser);
 
 G_END_DECLS
+
 #endif

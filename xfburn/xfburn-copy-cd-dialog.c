@@ -35,18 +35,9 @@
 
 #include "xfburn-copy-cd-dialog.h"
 
-/* prototypes */
-static void xfburn_copy_cd_dialog_class_init (XfburnCopyCdDialogClass * klass);
-static void xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * sp);
-static void xfburn_copy_cd_dialog_finalize (GObject * object);
+#define XFBURN_COPY_CD_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_COPY_CD_DIALOG, XfburnCopyCdDialogPrivate))
 
-static void cb_device_changed (XfburnDeviceBox *box, const gchar *device_name, XfburnCopyCdDialogPrivate *priv);
-static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyCdDialog * dialog);
-static void cb_browse_iso (GtkButton * button, XfburnCopyCdDialog * dialog);
-static void cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdDialogPrivate * priv);
-
-/* structures */
-struct XfburnCopyCdDialogPrivate
+typedef struct
 {
   GtkWidget *device_box_src;
   GtkWidget *frame_burn;
@@ -58,9 +49,20 @@ struct XfburnCopyCdDialogPrivate
   GtkWidget *hbox_iso;
   GtkWidget *entry_path_iso;
   GtkWidget *check_dummy;
-};
+} XfburnCopyCdDialogPrivate;
 
-/* globals */
+/* prototypes */
+static void xfburn_copy_cd_dialog_class_init (XfburnCopyCdDialogClass * klass);
+static void xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * sp);
+
+static void cb_device_changed (XfburnDeviceBox *box, const gchar *device_name, XfburnCopyCdDialogPrivate *priv);
+static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyCdDialog * dialog);
+static void cb_browse_iso (GtkButton * button, XfburnCopyCdDialog * dialog);
+static void cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdDialogPrivate * priv);
+
+/*********************/
+/* class declaration */
+/*********************/
 static XfceTitledDialogClass *parent_class = NULL;
 
 GtkType
@@ -90,17 +92,15 @@ xfburn_copy_cd_dialog_get_type ()
 static void
 xfburn_copy_cd_dialog_class_init (XfburnCopyCdDialogClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
+  g_type_class_add_private (klass, sizeof (XfburnCopyCdDialogPrivate));
+  
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_copy_cd_dialog_finalize;
-
 }
 
 static void
 xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
 {
-  XfburnCopyCdDialogPrivate *priv;
+  XfburnCopyCdDialogPrivate *priv = XFBURN_COPY_CD_DIALOG_GET_PRIVATE (obj);
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   GtkWidget *img;
   GdkPixbuf *icon = NULL;
@@ -109,9 +109,6 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   GtkWidget *align;
   GtkWidget *button;
   gchar *default_path, *tmp_dir;
-
-  obj->priv = g_new0 (XfburnCopyCdDialogPrivate, 1);
-  priv = obj->priv;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Copy data CD"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
@@ -209,21 +206,11 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
 }
 
-static void
-xfburn_copy_cd_dialog_finalize (GObject * object)
-{
-  XfburnCopyCdDialog *cobj;
-  cobj = XFBURN_COPY_CD_DIALOG (object);
-  
-  g_free (cobj->priv);
-  G_OBJECT_CLASS (parent_class)->finalize (object);
-}
-
 /* internals */
 static void
 cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyCdDialog * dialog)
 {
-  XfburnCopyCdDialogPrivate *priv = dialog->priv;
+  XfburnCopyCdDialogPrivate *priv = XFBURN_COPY_CD_DIALOG_GET_PRIVATE (dialog);
   gboolean sensitive = gtk_toggle_button_get_active (button);
   
   gtk_widget_set_sensitive (priv->hbox_iso, sensitive);
@@ -256,7 +243,9 @@ cb_device_changed (XfburnDeviceBox *box, const gchar *device_name, XfburnCopyCdD
 static void
 cb_browse_iso (GtkButton * button, XfburnCopyCdDialog * dialog)
 {
-  xfburn_browse_for_file (GTK_ENTRY (dialog->priv->entry_path_iso), GTK_WINDOW (dialog));
+  XfburnCopyCdDialogPrivate *priv = XFBURN_COPY_CD_DIALOG_GET_PRIVATE (dialog);
+  
+  xfburn_browse_for_file (GTK_ENTRY (priv->entry_path_iso), GTK_WINDOW (dialog));
 }
 
 static void

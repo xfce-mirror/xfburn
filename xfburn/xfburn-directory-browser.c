@@ -33,15 +33,18 @@
 #include <thunar-vfs/thunar-vfs.h>
 #endif
 
+#include <exo/exo.h>
+
 #include "xfburn-directory-browser.h"
 #include "xfburn-data-composition.h"
 #include "xfburn-utils.h"
 
-/* structs */
-struct XfburnDirectoryBrowserPrivate
+#define XFBURN_DIRECTORY_BROWSER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DIRECTORY_BROWSER, XfburnDirectoryBrowserPrivate))
+
+typedef struct
 {
   gchar *current_path;
-};
+} XfburnDirectoryBrowserPrivate;
 
 /* prototypes */
 static void xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass *);
@@ -51,12 +54,13 @@ static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectio
 static gint directory_tree_sortfunc (GtkTreeModel *, GtkTreeIter *, GtkTreeIter *, gpointer);
 
 /* globals */
-static GtkTreeViewClass *parent_class = NULL;
 static const gchar *DIRECTORY = N_("Folder");
 
 /********************************/
 /* XfburnDirectoryBrowser class */
 /********************************/
+static ExoTreeViewClass *parent_class = NULL;
+
 GtkType
 xfburn_directory_browser_get_type (void)
 {
@@ -76,7 +80,7 @@ xfburn_directory_browser_get_type (void)
     };
 
     directory_browser_type =
-      g_type_register_static (GTK_TYPE_TREE_VIEW, "XfburnDirectoryBrowser", &directory_browser_info, 0);
+      g_type_register_static (EXO_TYPE_TREE_VIEW, "XfburnDirectoryBrowser", &directory_browser_info, 0);
   }
 
   return directory_browser_type;
@@ -85,11 +89,9 @@ xfburn_directory_browser_get_type (void)
 static void
 xfburn_directory_browser_finalize (GObject * object)
 {
-  XfburnDirectoryBrowser *cobj;
-  cobj = XFBURN_DIRECTORY_BROWSER (object);
+  XfburnDirectoryBrowserPrivate *priv = XFBURN_DIRECTORY_BROWSER_GET_PRIVATE (object);
 
-  g_free (cobj->priv->current_path);
-  g_free (cobj->priv);
+  g_free (priv->current_path);
   
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -97,12 +99,12 @@ xfburn_directory_browser_finalize (GObject * object)
 static void
 xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass * klass)
 {
-  GObjectClass *gobject_class;
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
-  gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = xfburn_directory_browser_finalize;
-  
+  g_type_class_add_private (klass, sizeof (XfburnDirectoryBrowserPrivate));
   parent_class = g_type_class_peek_parent (klass);
+  
+  gobject_class->finalize = xfburn_directory_browser_finalize;
 }
 
 static void
@@ -114,8 +116,6 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
   GtkTreeSelection *selection;
 
   GtkTargetEntry gte[] = { {"text/plain", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN} };
-
-  browser->priv = g_new0 (XfburnDirectoryBrowserPrivate, 1);
     
   model = gtk_list_store_new (DIRECTORY_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING);
@@ -207,6 +207,8 @@ xfburn_directory_browser_new (void)
 void
 xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gchar * path)
 {
+  XfburnDirectoryBrowserPrivate *priv = XFBURN_DIRECTORY_BROWSER_GET_PRIVATE (browser);
+  
   GtkTreeModel *model;
   GDir *dir;
   GError *error = NULL;
@@ -225,8 +227,8 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   }
   
   temp = g_strdup (path);
-  g_free (browser->priv->current_path);
-  browser->priv->current_path = temp;
+  g_free (priv->current_path);
+  priv->current_path = temp;
  
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
   gtk_list_store_clear (GTK_LIST_STORE (model));
@@ -317,9 +319,10 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
 void
 xfburn_directory_browser_refresh (XfburnDirectoryBrowser * browser) 
 {
+  XfburnDirectoryBrowserPrivate *priv = XFBURN_DIRECTORY_BROWSER_GET_PRIVATE (browser);
   gchar *temp;
   
-  temp = g_strdup (browser->priv->current_path);
+  temp = g_strdup (priv->current_path);
   xfburn_directory_browser_load_path (browser, (const gchar*) temp);
   g_free (temp);
 }

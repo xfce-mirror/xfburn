@@ -29,9 +29,25 @@
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
 
+#define XFBURN_PREFERENCES_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_PREFERENCES_DIALOG, XfburnPreferencesDialogPrivate))
+
+typedef struct
+{
+  GtkWidget *notebook;
+  GtkWidget *icon_bar;
+  
+  GtkWidget *chooser_button;
+  GtkWidget *check_clean_tmpdir;
+  GtkWidget *check_show_hidden;
+  GtkWidget *check_show_human_readable;
+
+  GtkWidget *treeview_devices;
+  GtkWidget *button_scan;
+} XfburnPreferencesDialogPrivate;
+
+/* prototypes */
 static void xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass);
 static void xfburn_preferences_dialog_init (XfburnPreferencesDialog * sp);
-static void xfburn_preferences_dialog_finalize (GObject * object);
 
 static void refresh_devices_list (XfburnPreferencesDialog * dialog);
 static void scan_button_clicked_cb (GtkWidget * button, gpointer user_data);
@@ -44,25 +60,14 @@ enum {
   SETTINGS_LIST_N_COLUMNS,
 };
 
-struct XfburnPreferencesDialogPrivate
-{
-  GtkWidget *notebook;
-  GtkWidget *icon_bar;
-  
-  GtkWidget *chooser_button;
-  GtkWidget *check_clean_tmpdir;
-  GtkWidget *check_show_hidden;
-  GtkWidget *check_show_human_readable;
-
-  GtkWidget *treeview_devices;
-  GtkWidget *button_scan;
-};
-
 typedef struct
 {
   XfburnPreferencesDialog *object;
 } XfburnPreferencesDialogSignal;
 
+/*********************************/
+/* XfburnPreferencesDialog class */
+/*********************************/
 static XfceTitledDialogClass *parent_class = NULL;
 
 GtkType
@@ -92,18 +97,17 @@ xfburn_preferences_dialog_get_type ()
 static void
 xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
+  g_type_class_add_private (klass, sizeof (XfburnPreferencesDialogPrivate));
+  
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_preferences_dialog_finalize;
-
 }
 
 static void
 xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
 {
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
-  XfburnPreferencesDialogPrivate *priv;
+  XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (obj);
+  
   GtkWidget *vbox, *vbox2, *hbox;
   GtkWidget *label;
   GtkWidget *frame;
@@ -116,9 +120,6 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   GtkWidget *button_close;
   gint index;
   
-  obj->priv = g_new0 (XfburnPreferencesDialogPrivate, 1);
-  priv = obj->priv;
-
   gtk_window_set_title (GTK_WINDOW (obj), _("Preferences"));
   xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (obj), _("Tune how Xfburn behaves"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
@@ -311,45 +312,47 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
 static void
 xfburn_preferences_dialog_load_settings (XfburnPreferencesDialog * dialog) 
 {
+  XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (dialog);
+  
   gchar *temp_dir;
   
   temp_dir = xfburn_settings_get_string ("temporary-dir", "/tmp");
-  gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (dialog->priv->chooser_button), temp_dir);
+  gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (priv->chooser_button), temp_dir);
   g_free (temp_dir);
   
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->check_clean_tmpdir),
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_clean_tmpdir),
                                 xfburn_settings_get_boolean ("clean-temporary-dir", TRUE));
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->check_show_hidden),
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_show_hidden),
                                 xfburn_settings_get_boolean ("show-hidden-files", FALSE));
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->check_show_human_readable),
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_show_human_readable),
                                 xfburn_settings_get_boolean ("human-readable-units", TRUE));
 }
 
 static void
 xfburn_preferences_dialog_save_settings (XfburnPreferencesDialog *dialog)
 {
+  XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (dialog);
   gchar *temp_dir;
   
-  temp_dir = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog->priv->chooser_button));
+  temp_dir = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_button));
   xfburn_settings_set_string ("temporary-dir", temp_dir);
   g_free (temp_dir);
   
   xfburn_settings_set_boolean ("clean-temporary-dir", 
-                               gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->priv->check_clean_tmpdir)));
+                               gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_clean_tmpdir)));
   xfburn_settings_set_boolean ("show-hidden-files", 
-                               gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->priv->check_show_hidden)));
+                               gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_show_hidden)));
   xfburn_settings_set_boolean ("human-readable-units", 
-                               gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->priv->check_show_human_readable)));
+                               gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_show_human_readable)));
 }
 
 static void
 refresh_devices_list (XfburnPreferencesDialog * dialog)
 {
+  XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (dialog);
   GtkTreeModel *model;
-  XfburnPreferencesDialogPrivate *priv;
   GList *device;
 
-  priv = dialog->priv;
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->treeview_devices));
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
@@ -387,18 +390,6 @@ scan_button_clicked_cb (GtkWidget * button, gpointer user_data)
 {
   xfburn_scan_devices ();
   refresh_devices_list (user_data);
-}
-
-static void
-xfburn_preferences_dialog_finalize (GObject * object)
-{
-  XfburnPreferencesDialog *cobj;
-  cobj = XFBURN_PREFERENCES_DIALOG (object);
-
-  /* Free private members, etc. */
-
-  g_free (cobj->priv);
-  G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
 /* public */

@@ -37,11 +37,8 @@ G_BEGIN_DECLS
 #define XFBURN_IS_COPY_CD_PROGRESS_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG))
 #define XFBURN_COPY_CD_PROGRESS_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG, XfburnCopyCdProgressDialogClass))
 
-typedef struct XfburnCopyCdProgressDialogPrivate XfburnCopyCdProgressDialogPrivate;
-
 typedef struct {
 	XfburnProgressDialog parent;
-	XfburnCopyCdProgressDialogPrivate *priv;
 } XfburnCopyCdProgressDialog;
 
 typedef struct {
@@ -51,5 +48,7 @@ typedef struct {
 
 GtkType xfburn_copy_cd_progress_dialog_get_type ();
 GtkWidget *xfburn_copy_cd_progress_dialog_new ();
+
+G_END_DECLS
 
 #endif /* XFBURN_COPY_CD_PROGRESS_DIALOG_H */

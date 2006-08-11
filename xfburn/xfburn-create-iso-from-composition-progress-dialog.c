@@ -33,16 +33,12 @@
 static void
 xfburn_create_iso_from_composition_progress_dialog_class_init (XfburnCreateIsoFromCompositionProgressDialogClass * klass);
 static void xfburn_create_iso_from_composition_progress_dialog_init (XfburnCreateIsoFromCompositionProgressDialog * sp);
-static void xfburn_create_iso_from_composition_progress_dialog_finalize (GObject * object);
 
-static void cb_new_output (XfburnCreateIsoFromCompositionProgressDialog * dialog, const gchar * output,
-                           XfburnCreateIsoFromCompositionProgressDialogPrivate * priv);
+static void cb_new_output (XfburnCreateIsoFromCompositionProgressDialog * dialog, const gchar * output, gpointer data);
 
-struct XfburnCreateIsoFromCompositionProgressDialogPrivate
-{
-  /* Place Private Members Here */
-};
-
+/**********************/
+/* class declaration */
+/**********************/
 static XfburnProgressDialogClass *parent_class = NULL;
 
 GtkType
@@ -72,39 +68,20 @@ xfburn_create_iso_from_composition_progress_dialog_get_type ()
 static void
 xfburn_create_iso_from_composition_progress_dialog_class_init (XfburnCreateIsoFromCompositionProgressDialogClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_create_iso_from_composition_progress_dialog_finalize;
-
 }
 
 static void
 xfburn_create_iso_from_composition_progress_dialog_init (XfburnCreateIsoFromCompositionProgressDialog * obj)
 {
-  obj->priv = g_new0 (XfburnCreateIsoFromCompositionProgressDialogPrivate, 1);
-  /* Initialize private members, etc. */
-  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), obj->priv);
-}
-
-static void
-xfburn_create_iso_from_composition_progress_dialog_finalize (GObject * object)
-{
-  XfburnCreateIsoFromCompositionProgressDialog *cobj;
-  cobj = XFBURN_CREATE_ISO_FROM_COMPOSITION_PROGRESS_DIALOG (object);
-
-  /* Free private members, etc. */
-
-  g_free (cobj->priv);
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), NULL);
 }
 
 /*           */
 /* internals */
 /*           */
 static void
-cb_new_output (XfburnCreateIsoFromCompositionProgressDialog * dialog, const gchar * output,
-               XfburnCreateIsoFromCompositionProgressDialogPrivate * priv)
+cb_new_output (XfburnCreateIsoFromCompositionProgressDialog * dialog, const gchar * output, gpointer data)
 {
   if (strstr (output, MKISOFS_DONE)) {
     xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED);

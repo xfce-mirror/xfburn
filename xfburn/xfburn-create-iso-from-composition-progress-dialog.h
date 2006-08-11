@@ -35,12 +35,10 @@ G_BEGIN_DECLS
 #define XFBURN_IS_CREATE_ISO_FROM_COMPOSITION_PROGRESS_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_CREATE_ISO_FROM_COMPOSITION_PROGRESS_DIALOG))
 #define XFBURN_IS_CREATE_ISO_FROM_COMPOSITION_PROGRESS_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_CREATE_ISO_FROM_COMPOSITION_PROGRESS_DIALOG))
 #define XFBURN_CREATE_ISO_FROM_COMPOSITION_PROGRESS_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_CREATE_ISO_FROM_COMPOSITION_PROGRESS_DIALOG, XfburnCreateIsoFromCompositionProgressDialogClass))
-typedef struct XfburnCreateIsoFromCompositionProgressDialogPrivate XfburnCreateIsoFromCompositionProgressDialogPrivate;
 
 typedef struct
 {
   XfburnProgressDialog parent;
-  XfburnCreateIsoFromCompositionProgressDialogPrivate *priv;
 } XfburnCreateIsoFromCompositionProgressDialog;
 
 typedef struct
@@ -51,5 +49,7 @@ typedef struct
 
 GtkType xfburn_create_iso_from_composition_progress_dialog_get_type ();
 GtkWidget *xfburn_create_iso_from_composition_progress_dialog_new ();
+
+G_END_DECLS
 
 #endif /* XFBURN_CREATE_ISO_FROM_COMPOSITION_PROGRESS_DIALOG_H */

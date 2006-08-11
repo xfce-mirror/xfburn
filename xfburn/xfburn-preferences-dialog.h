@@ -23,18 +23,17 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_PREFERENCES_DIALOG         (xfburn_preferences_dialog_get_type ())
 #define XFBURN_PREFERENCES_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_PREFERENCES_DIALOG, XfburnPreferencesDialog))
 #define XFBURN_PREFERENCES_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_PREFERENCES_DIALOG, XfburnPreferencesDialogClass))
 #define XFBURN_IS_PREFERENCES_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_PREFERENCES_DIALOG))
 #define XFBURN_IS_PREFERENCES_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_PREFERENCES_DIALOG))
 #define XFBURN_PREFERENCES_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_PREFERENCES_DIALOG, XfburnPreferencesDialogClass))
-typedef struct XfburnPreferencesDialogPrivate XfburnPreferencesDialogPrivate;
 
 typedef struct
 {
   XfceTitledDialog parent;
-  XfburnPreferencesDialogPrivate *priv;
 } XfburnPreferencesDialog;
 
 typedef struct
@@ -58,5 +57,7 @@ enum
 
 GtkType xfburn_preferences_dialog_get_type ();
 GtkWidget *xfburn_preferences_dialog_new ();
+
+G_END_DECLS
 
 #endif /* XFBURN_PREFERENCES_DIALOG_H */

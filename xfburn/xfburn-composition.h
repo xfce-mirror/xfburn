@@ -22,7 +22,7 @@
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#endif /* !HAVE_CONFIG_H */
 
 #include <gtk/gtk.h>
 
@@ -56,4 +56,4 @@ void xfburn_composition_load (XfburnComposition *composition, const gchar *file)
 void xfburn_composition_save (XfburnComposition *composition);
 
 G_END_DECLS
-#endif
+#endif /* __XFBURN_COMPOSITION_H__ */

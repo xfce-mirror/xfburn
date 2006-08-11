@@ -702,7 +702,7 @@ action_create_directory (GtkAction * action, XfburnDataComposition * dc)
   g_free (directory_text);
   g_free (humansize);
   
-  xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), 4);
+  xfburn_data_disc_usage_add_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), 4);
   
   gtk_widget_realize (priv->content);
   
@@ -742,7 +742,7 @@ action_remove_selection (GtkAction * action, XfburnDataComposition * dc)
     list_iters = g_list_append (list_iters, iter);
 
     gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
-    xfburn_data_disc_usage_sub_size (XFBURN_DISC_USAGE (priv->disc_usage), size);
+    xfburn_data_disc_usage_sub_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), size);
 
     iter_temp = *iter;
     while (gtk_tree_model_iter_parent (model, &parent, &iter_temp)) {
@@ -880,7 +880,7 @@ action_clear (GtkAction * action, XfburnDataComposition * dc)
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   gtk_tree_store_clear (GTK_TREE_STORE (model));
 
-  xfburn_data_disc_usage_set_size (XFBURN_DISC_USAGE (priv->disc_usage), 0);
+  xfburn_data_disc_usage_set_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), 0);
 }
 
 static void
@@ -1017,7 +1017,7 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
                           DATA_COMPOSITION_COLUMN_CONTENT, name,
                           DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_DIRECTORY, 
                           DATA_COMPOSITION_COLUMN_SIZE, (guint64) 4, -1);
-      xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), (guint64) 4);
+      xfburn_data_disc_usage_add_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), (guint64) 4);
 
       while ((filename = g_dir_read_name (dir))) {
         GtkTreeIter new_iter;
@@ -1084,7 +1084,7 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
                           DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_FILE, -1);
 #endif
 
-      xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
+      xfburn_data_disc_usage_add_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), s.st_size);
 #ifdef HAVE_THUNAR_VFS
 	  if (G_LIKELY (G_IS_OBJECT (mime_icon)))
 		g_object_unref (mime_icon);
@@ -1331,7 +1331,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         
           gtk_tree_store_remove (GTK_TREE_STORE (model), &iter_src);
         } else {
-          xfburn_data_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), size);
+          xfburn_data_disc_usage_add_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), size);
         }
         
         gtk_tree_path_free (path_parent);

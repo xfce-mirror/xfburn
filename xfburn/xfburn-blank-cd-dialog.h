@@ -1,5 +1,7 @@
 /* $Id$ */
 /*
+ * Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -34,12 +36,10 @@ G_BEGIN_DECLS
 #define XFBURN_IS_BLANK_CD_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BLANK_CD_DIALOG))
 #define XFBURN_IS_BLANK_CD_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BLANK_CD_DIALOG))
 #define XFBURN_BLANK_CD_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BLANK_CD_DIALOG, XfburnBlankCdDialogClass))
-typedef struct XfburnBlankCdDialogPrivate XfburnBlankCdDialogPrivate;
 
 typedef struct
 {
   XfceTitledDialog parent;
-  XfburnBlankCdDialogPrivate *priv;
 } XfburnBlankCdDialog;
 
 typedef struct

@@ -32,16 +32,12 @@
 
 static void xfburn_copy_cd_progress_dialog_class_init (XfburnCopyCdProgressDialogClass * klass);
 static void xfburn_copy_cd_progress_dialog_init (XfburnCopyCdProgressDialog * sp);
-static void xfburn_copy_cd_progress_dialog_finalize (GObject * object);
 
-static void cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output,
-                           XfburnCopyCdProgressDialogPrivate * priv);
+static void cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output, gpointer data);
 
-struct XfburnCopyCdProgressDialogPrivate
-{
-  /* Place Private Members Here */
-};
-
+/*********************/
+/* class declaration */
+/*********************/
 static XfburnProgressDialogClass *parent_class = NULL;
 
 GtkType
@@ -71,38 +67,20 @@ xfburn_copy_cd_progress_dialog_get_type ()
 static void
 xfburn_copy_cd_progress_dialog_class_init (XfburnCopyCdProgressDialogClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_copy_cd_progress_dialog_finalize;
-
 }
 
 static void
 xfburn_copy_cd_progress_dialog_init (XfburnCopyCdProgressDialog * obj)
 {
-  obj->priv = g_new0 (XfburnCopyCdProgressDialogPrivate, 1);
-  /* Initialize private members, etc. */
-  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), obj->priv);
-}
-
-static void
-xfburn_copy_cd_progress_dialog_finalize (GObject * object)
-{
-  XfburnCopyCdProgressDialog *cobj;
-  cobj = XFBURN_COPY_CD_PROGRESS_DIALOG (object);
-
-  /* Free private members, etc. */
-
-  g_free (cobj->priv);
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), NULL);
 }
 
 /*           */
 /* internals */
 /*           */
 static void
-cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output, XfburnCopyCdProgressDialogPrivate * priv)
+cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output, gpointer data)
 {
   static gint readcd_end = -1;
   

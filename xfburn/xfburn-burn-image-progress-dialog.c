@@ -30,18 +30,15 @@
 
 #include "xfburn-burn-image-progress-dialog.h"
 
+/* prototypes */
 static void xfburn_burn_image_progress_dialog_class_init (XfburnBurnImageProgressDialogClass * klass);
 static void xfburn_burn_image_progress_dialog_init (XfburnBurnImageProgressDialog * sp);
-static void xfburn_burn_image_progress_dialog_finalize (GObject * object);
 
-static void cb_new_output (XfburnBurnImageProgressDialog * dialog, const gchar * output,
-                           XfburnBurnImageProgressDialogPrivate * priv);
+static void cb_new_output (XfburnBurnImageProgressDialog * dialog, const gchar * output, gpointer data);
 
-struct XfburnBurnImageProgressDialogPrivate
-{
-  /* Place Private Members Here */
-};
-
+/*********************/
+/* class declaration */
+/*********************/
 static XfburnProgressDialogClass *parent_class = NULL;
 
 GtkType
@@ -74,29 +71,12 @@ xfburn_burn_image_progress_dialog_class_init (XfburnBurnImageProgressDialogClass
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_burn_image_progress_dialog_finalize;
-
 }
 
 static void
 xfburn_burn_image_progress_dialog_init (XfburnBurnImageProgressDialog * obj)
 {
-  obj->priv = g_new0 (XfburnBurnImageProgressDialogPrivate, 1);
-  /* Initialize private members, etc. */
-
-  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), obj->priv);
-}
-
-static void
-xfburn_burn_image_progress_dialog_finalize (GObject * object)
-{
-  XfburnBurnImageProgressDialog *cobj;
-  cobj = XFBURN_BURN_IMAGE_PROGRESS_DIALOG (object);
-
-  /* Free private members, etc. */
-
-  g_free (cobj->priv);
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), obj);
 }
 
 /*           */
@@ -104,7 +84,7 @@ xfburn_burn_image_progress_dialog_finalize (GObject * object)
 /*           */
 static void
 cb_new_output (XfburnBurnImageProgressDialog * dialog, const gchar * output,
-               XfburnBurnImageProgressDialogPrivate * priv)
+               gpointer data)
 {
   if (strstr (output, CDRECORD_FIXATING_TIME)) {
     xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Finishing"));
