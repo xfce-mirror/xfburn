@@ -39,7 +39,6 @@ typedef struct
   GtkWidget *chooser_image;
   
   GtkWidget *device_box;
-  GtkWidget *combo_speed;
   GtkWidget *combo_mode;
 
   GtkWidget *check_eject;
@@ -190,8 +189,7 @@ xfburn_burn_image_dialog_response_cb (XfburnBurnImageDialog * dialog, gint respo
     iso_path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
 
     device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
-
-    speed = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
+    speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
 
     write_mode = xfburn_write_mode_combo_box_get_cdrecord_param (XFBURN_WRITE_MODE_COMBO_BOX (priv->combo_mode));
 

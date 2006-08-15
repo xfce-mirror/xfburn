@@ -525,28 +525,22 @@ static gint
 directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data)
 {
   /* adapted from gnomebaker */
-  gchar *aname, *bname, *apath, *bpath;
-  gboolean aisdir = FALSE;
-  gboolean bisdir = FALSE;
+  gchar *aname, *bname;
+  DataCompositionEntryType atype = -1, btype = -1;
   gint result = 0;
 
-  gtk_tree_model_get (model, a, DATA_COMPOSITION_COLUMN_CONTENT, &aname, DATA_COMPOSITION_COLUMN_PATH, &apath, -1);
-  gtk_tree_model_get (model, b, DATA_COMPOSITION_COLUMN_CONTENT, &bname, DATA_COMPOSITION_COLUMN_PATH, &bpath, -1);
+  gtk_tree_model_get (model, a, DATA_COMPOSITION_COLUMN_CONTENT, &aname, DATA_COMPOSITION_COLUMN_TYPE, &atype, -1);
+  gtk_tree_model_get (model, b, DATA_COMPOSITION_COLUMN_CONTENT, &bname, DATA_COMPOSITION_COLUMN_TYPE, &btype, -1);
 
-  aisdir = g_file_test (apath, G_FILE_TEST_IS_DIR);
-  bisdir = g_file_test (bpath, G_FILE_TEST_IS_DIR);
-
-  if (aisdir && !bisdir)
+  if ( (atype == DATA_COMPOSITION_TYPE_DIRECTORY) && (btype != DATA_COMPOSITION_TYPE_DIRECTORY) )
     result = -1;
-  else if (!aisdir && bisdir)
+  else if ( (atype != DATA_COMPOSITION_TYPE_DIRECTORY) && (btype == DATA_COMPOSITION_TYPE_DIRECTORY) )
     result = 1;
   else
     result = g_ascii_strcasecmp (aname, bname);
 
   g_free (aname);
-  g_free (apath);
   g_free (bname);
-  g_free (bpath);
 
   return result;
 }
