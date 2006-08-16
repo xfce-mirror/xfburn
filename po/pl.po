@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-11 19:04+0200\n"
-"PO-Revision-Date: 2006-07-29 12:14+0200\n"
+"PO-Revision-Date: 2006-08-16 18:50+0200\n"
 "Last-Translator: Szymon Kałasz <szymon_maestro@gazeta.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,8 @@ msgstr ""
 "100<10 || n%100>=20)) ? 1 : 2));\n"
 
 #: ../xfburn/xfburn-adding-progress.c:89
-#, fuzzy
 msgid "Adding files to the composition"
-msgstr "Dodawanie plików do projektu"
+msgstr "Dodaję pliki do projektu"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:94
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:149
@@ -91,7 +90,7 @@ msgstr "Nagraj projekt"
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:140
 #: ../xfburn/xfburn-burn-image-dialog.c:132
 msgid "Write _mode :"
-msgstr "Tryb _zapisu :"
+msgstr "Tryb _zapisu:"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:161
 #: ../xfburn/xfburn-burn-image-dialog.c:153
@@ -117,7 +116,7 @@ msgstr "_Nagraj projekt"
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:90
 msgid "Finishing"
-msgstr ""
+msgstr "Kończenie"
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:96
@@ -126,14 +125,12 @@ msgstr "Sprawdzanie..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
-#, fuzzy
 msgid "Writing composition..."
-msgstr "Nagraj projekt"
+msgstr "Nagrywanie projektu..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
-#, fuzzy
 msgid "Burn data composition"
-msgstr "Nowy projekt z danymi"
+msgstr "Nagraj projekt z danymi"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:105
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:128
@@ -156,7 +153,6 @@ msgstr "Wypalanie obrazu ISO..."
 
 #: ../xfburn/xfburn-compositions-notebook.c:173
 #: ../xfburn/xfburn-data-composition.c:297
-#, fuzzy
 msgid "Data composition"
 msgstr "Projekt z danymi"
 
@@ -207,37 +203,32 @@ msgid "Add"
 msgstr "Dodaj"
 
 #: ../xfburn/xfburn-data-composition.c:138
-#, fuzzy
 msgid "Add the selected file(s) to the composition"
-msgstr "Dodaj zaznaczone pliki do CD"
+msgstr "Dodaj zaznaczone plik(i) do projektu"
 
 #: ../xfburn/xfburn-data-composition.c:140
-#, fuzzy
 msgid "Create directory"
-msgstr "Katalog tymczasowy"
+msgstr "Utwórz katalog"
 
 #: ../xfburn/xfburn-data-composition.c:140
-#, fuzzy
 msgid "Add a new directory to the composition"
-msgstr "Dodawanie plików do projektu"
+msgstr "Dodaj nowy katalog do projektu"
 
 #: ../xfburn/xfburn-data-composition.c:142
 msgid "Remove"
 msgstr "Usuń"
 
 #: ../xfburn/xfburn-data-composition.c:142
-#, fuzzy
 msgid "Remove the selected file(s) from the composition"
-msgstr "Usuń zaznaczone pliki z płyty CD"
+msgstr "Usuń zaznaczone plik(i) z projektu"
 
 #: ../xfburn/xfburn-data-composition.c:144
 msgid "Clear"
 msgstr "Wyczyść"
 
 #: ../xfburn/xfburn-data-composition.c:144
-#, fuzzy
 msgid "Clear the content of the composition"
-msgstr "Wyczyść zawartość płyty CD"
+msgstr "Wyczyść zawartość projektu"
 
 #: ../xfburn/xfburn-data-composition.c:146
 msgid "Import"
@@ -257,7 +248,7 @@ msgstr "Zmień nazwę zaznaczonego pliku"
 
 #: ../xfburn/xfburn-data-composition.c:292
 msgid "Volume name :"
-msgstr ""
+msgstr "Etykieta wolumenu:"
 
 #: ../xfburn/xfburn-data-composition.c:323
 msgid "Contents"
@@ -274,20 +265,18 @@ msgstr "Ścieżka lokalna"
 
 #: ../xfburn/xfburn-data-composition.c:600
 msgid "You must give a name to the file"
-msgstr ""
+msgstr "Musisz podać nazwę pliku"
 
 #: ../xfburn/xfburn-data-composition.c:609
 #: ../xfburn/xfburn-data-composition.c:988
-#, fuzzy
 msgid "A file with the same name is already present in the composition"
-msgstr "Plik z taką samą nazwą jest już obecny w projekcie"
+msgstr "Plik z taką samą nazwą jest już obecny w projekcie."
 
 #: ../xfburn/xfburn-data-composition.c:690
 #: ../xfburn/xfburn-data-composition.c:691
 #: ../xfburn/xfburn-data-composition.c:693
-#, fuzzy
 msgid "New directory"
-msgstr "Katalog tymczasowy"
+msgstr "Nowy katalog"
 
 #: ../xfburn/xfburn-data-composition.c:1169
 #, c-format
@@ -295,31 +284,32 @@ msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added"
 msgstr ""
+"Plik o nazwie \"%s\" już istnieje w tym katalogu. Plik nie został dodany."
 
 #: ../xfburn/xfburn-data-disc-usage.c:129
-#, fuzzy
 msgid "Burn composition"
 msgstr "Nagraj projekt"
 
 #: ../xfburn/xfburn-data-disc-usage.c:176
 msgid "You are trying to burn more data than the disk can contain !"
-msgstr ""
+msgstr "Próbujesz nagrać więcej danych, niż wynosi pojemność nośnika!"
 
 #: ../xfburn/xfburn-device-box.c:115 ../xfburn/xfburn-device-box.c:116
 msgid "Show writers only"
-msgstr ""
+msgstr "Pokaż tylko nagrywarki"
 
 #: ../xfburn/xfburn-device-box.c:118
 msgid "Show speed selection"
-msgstr ""
+msgstr "Pokaż listę prędkości"
 
 #: ../xfburn/xfburn-device-box.c:119
 msgid "Show speed selection list and refresh button"
 msgstr ""
+"Pokaż listę wyboru dostępnych prędkości nagrywania oraz przycisk odświeżania"
 
 #: ../xfburn/xfburn-device-box.c:154
 msgid "_Speed :"
-msgstr "_Prędkość :"
+msgstr "_Prędkość:"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:57
@@ -373,9 +363,8 @@ msgstr "Utwórz nowy projekt"
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:101
-#, fuzzy
 msgid "Close composition"
-msgstr "Zapisz projekt"
+msgstr "Zamknij projekt"
 
 #: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
 msgid "_Quit"
@@ -482,15 +471,15 @@ msgstr "Tłumacz (%s)"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "Label"
-msgstr ""
+msgstr "Etykieta"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "The text of the label"
-msgstr ""
+msgstr "Tekst etykiety"
 
 #: ../xfburn/xfburn-preferences-dialog.c:123
 msgid "Preferences"
-msgstr "_Preferencje"
+msgstr "Preferencje"
 
 #: ../xfburn/xfburn-preferences-dialog.c:124
 msgid "Tune how Xfburn behaves"
@@ -618,7 +607,7 @@ msgstr "Nie udało się otworzyć /proc/scsi/sg/device_strs"
 
 #: ../xfburn/xfburn-utils.c:191
 msgid "Error reading scsi information from /proc/scsi/sg/devices"
-msgstr "Błąd podczas pobierania informacji o scsi z  /proc/scsi/sg/devices"
+msgstr "Błąd podczas pobierania informacji o scsi z /proc/scsi/sg/devices"
 
 #: ../xfburn/xfburn-utils.c:337
 msgid "No disc in the cdrom drive"
@@ -633,9 +622,8 @@ msgid "Select command"
 msgstr "Wybierz polecenie"
 
 #: ../xfburn/xfburn-write-mode-combo-box.c:41
-#, fuzzy
 msgid "Default"
-msgstr "domyślny"
+msgstr "Domyślny"
 
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
