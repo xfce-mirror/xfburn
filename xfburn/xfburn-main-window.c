@@ -433,7 +433,7 @@ action_new_audio_composition (GtkAction *action, XfburnMainWindow * window)
 static void
 action_quit (GtkAction * action, XfburnMainWindow * window)
 {
-  if (xfce_confirm (_("Are sure you want to quit?"), GTK_STOCK_QUIT, _("_Quit")))
+  // if (xfce_confirm (_("Are sure you want to quit?"), GTK_STOCK_QUIT, _("_Quit")))
     gtk_main_quit ();
 }
 
