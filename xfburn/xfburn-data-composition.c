@@ -954,10 +954,24 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
   struct stat s;
 
   if ((stat (path, &s) == 0)) {
+    gchar *basename = NULL;
     gchar *humansize = NULL;
     GtkTreeIter *parent = NULL;
     GtkTreePath *tree_path = NULL;
 
+    if (!S_ISDIR (s.st_mode) && !S_ISREG (s.st_mode)) {
+      return FALSE;
+    }
+    
+    basename = g_path_get_basename (path);
+    if ( (strlen (basename) > 1) && (basename[0] == '.') ) {
+      /* don't add hidden files/directories */
+
+      g_free (basename);  
+      return FALSE;
+    }
+    g_free (basename);
+    
 #if 0
     xfburn_adding_progress_pulse (XFBURN_ADDING_PROGRESS (priv->progress));
 #endif
@@ -1000,7 +1014,7 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
     gtk_tree_path_free (tree_path);
     
     /* new directory */
-    if ((s.st_mode & S_IFDIR)) {
+    if (S_ISDIR (s.st_mode)) {
       GDir *dir = NULL;
       GError *error = NULL;
       const gchar *filename = NULL;
@@ -1029,15 +1043,15 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
         GtkTreeIter new_iter;
         gchar *new_path = NULL;
 
-        new_path = g_build_filename (path, filename, NULL);
+        new_path = g_build_filename (path, filename, NULL);      
         if (new_path) {
           guint64 size;
 
-          add_file_to_list (dc, model, new_path, &new_iter, iter, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
-
-          gtk_tree_model_get (model, &new_iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
-          total_size += size;
-
+          if (add_file_to_list (dc, model, new_path, &new_iter, iter, GTK_TREE_VIEW_DROP_INTO_OR_AFTER)) {
+            gtk_tree_model_get (model, &new_iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
+            total_size += size; 
+          }
+          
           g_free (new_path);
         }
       }
@@ -1049,25 +1063,25 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
       g_dir_close (dir);
     }
     /* new file */
-    else if ((s.st_mode & S_IFREG)) {
+    else if (S_ISREG (s.st_mode)) {
 #ifdef HAVE_THUNAR_VFS
-	  GdkScreen *screen;
-	  GtkIconTheme *icon_theme;
-	  ThunarVfsMimeDatabase *mime_database = NULL;
-	  ThunarVfsMimeInfo *mime_info = NULL;
-	  const gchar *mime_icon_name = NULL;
-	  GdkPixbuf *mime_icon = NULL;
-	  gint x,y;
+  	  GdkScreen *screen;
+	    GtkIconTheme *icon_theme;
+	    ThunarVfsMimeDatabase *mime_database = NULL;
+	    ThunarVfsMimeInfo *mime_info = NULL;
+	    const gchar *mime_icon_name = NULL;
+	    GdkPixbuf *mime_icon = NULL;
+	    gint x,y;
 	  
-	  screen = gtk_widget_get_screen (GTK_WIDGET (dc));
-	  icon_theme = gtk_icon_theme_get_for_screen (screen);
+	    screen = gtk_widget_get_screen (GTK_WIDGET (dc));
+	    icon_theme = gtk_icon_theme_get_for_screen (screen);
 	  
-	  mime_database = thunar_vfs_mime_database_get_default ();
-	  mime_info = thunar_vfs_mime_database_get_info_for_file (mime_database, path, NULL);
+	    mime_database = thunar_vfs_mime_database_get_default ();
+	    mime_info = thunar_vfs_mime_database_get_info_for_file (mime_database, path, NULL);
 		
-	  gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
-	  mime_icon_name = thunar_vfs_mime_info_lookup_icon_name (mime_info, icon_theme);
-	  mime_icon = gtk_icon_theme_load_icon (icon_theme, mime_icon_name, x, 0, NULL);
+	    gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
+	    mime_icon_name = thunar_vfs_mime_info_lookup_icon_name (mime_info, icon_theme);
+	    mime_icon = gtk_icon_theme_load_icon (icon_theme, mime_icon_name, x, 0, NULL);
 #endif
 	
       gtk_tree_store_append (GTK_TREE_STORE (model), iter, parent);
@@ -1092,10 +1106,10 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
 
       xfburn_data_disc_usage_add_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), s.st_size);
 #ifdef HAVE_THUNAR_VFS
-	  if (G_LIKELY (G_IS_OBJECT (mime_icon)))
-		g_object_unref (mime_icon);
-	  thunar_vfs_mime_info_unref (mime_info);
-	  g_object_unref (mime_database);
+	    if (G_LIKELY (G_IS_OBJECT (mime_icon)))
+  		  g_object_unref (mime_icon);
+  	  thunar_vfs_mime_info_unref (mime_info);
+	    g_object_unref (mime_database);
 #endif
     }
     g_free (humansize);
@@ -1386,11 +1400,12 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       /* add files to the disc content */
       if (path_where_insert) {
         gtk_tree_model_get_iter (model, &iter_where_insert, path_where_insert);
-        add_file_to_list (composition, model, full_path, &iter, &iter_where_insert, position);
         
-        if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE 
-            || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER)
-          gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), path_where_insert, FALSE);
+        if (add_file_to_list (composition, model, full_path, &iter, &iter_where_insert, position)) {
+          if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE 
+              || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER)
+            gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), path_where_insert, FALSE);
+        }
         
         gtk_tree_path_free (path_where_insert);  
       } else  {
