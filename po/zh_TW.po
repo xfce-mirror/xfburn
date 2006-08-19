@@ -1,4 +1,4 @@
-# Traditional Chinese translation of Xfburn.
+# Traditional Chinese translation for Xfburn.
 # Copyright (C) 2006 THE XfBurn'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Xfburn package.
 # Cosmo Chene <cosmolax@gmail.com>, 2006.
@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: Xfburn 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-11 19:04+0200\n"
-"PO-Revision-Date: 2006-05-17 03:37+0800\n"
+"PO-Revision-Date: 2006-08-20 01:09+0800\n"
 "Last-Translator: Cosmo Chene <cosmolax@gmail.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../xfburn/xfburn-adding-progress.c:89
 msgid "Adding files to the composition"
-msgstr ""
+msgstr "將檔案加入燒錄流程中"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:94
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:149
@@ -115,7 +116,7 @@ msgstr "燒錄所選的內容(_B)"
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:90
 msgid "Finishing"
-msgstr ""
+msgstr "結束燒錄中"
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:96
@@ -124,14 +125,12 @@ msgstr "關閉區段中"
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
-#, fuzzy
 msgid "Writing composition..."
-msgstr "燒錄所選的資料內容"
+msgstr "燒錄所選的燒錄流程"
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
-#, fuzzy
 msgid "Burn data composition"
-msgstr "儲存燒錄內容"
+msgstr "燒錄資料光碟"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:105
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:128
@@ -154,9 +153,8 @@ msgstr "正在寫入映像檔"
 
 #: ../xfburn/xfburn-compositions-notebook.c:173
 #: ../xfburn/xfburn-data-composition.c:297
-#, fuzzy
 msgid "Data composition"
-msgstr "載入燒錄內容"
+msgstr "燒錄資料"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:154
@@ -205,37 +203,32 @@ msgid "Add"
 msgstr "加入"
 
 #: ../xfburn/xfburn-data-composition.c:138
-#, fuzzy
 msgid "Add the selected file(s) to the composition"
-msgstr "加入所選取的檔案"
+msgstr "將所選取的檔案加入燒錄流程"
 
 #: ../xfburn/xfburn-data-composition.c:140
-#, fuzzy
 msgid "Create directory"
-msgstr "燒錄暫存資料夾"
+msgstr "建立資料夾"
 
 #: ../xfburn/xfburn-data-composition.c:140
-#, fuzzy
 msgid "Add a new directory to the composition"
-msgstr "載入燒錄內容"
+msgstr "在此燒錄流程中新增一個資料夾"
 
 #: ../xfburn/xfburn-data-composition.c:142
 msgid "Remove"
 msgstr "移除"
 
 #: ../xfburn/xfburn-data-composition.c:142
-#, fuzzy
 msgid "Remove the selected file(s) from the composition"
-msgstr "將所選取的檔案移出光碟"
+msgstr "將所選取的檔案從燒錄流程中刪除"
 
 #: ../xfburn/xfburn-data-composition.c:144
 msgid "Clear"
 msgstr "清除"
 
 #: ../xfburn/xfburn-data-composition.c:144
-#, fuzzy
 msgid "Clear the content of the composition"
-msgstr "清除光碟內容"
+msgstr "清除燒錄流程中的內容"
 
 #: ../xfburn/xfburn-data-composition.c:146
 msgid "Import"
@@ -255,7 +248,7 @@ msgstr "重新命名所選的檔案"
 
 #: ../xfburn/xfburn-data-composition.c:292
 msgid "Volume name :"
-msgstr ""
+msgstr "卷冊名稱 :"
 
 #: ../xfburn/xfburn-data-composition.c:323
 msgid "Contents"
@@ -272,19 +265,18 @@ msgstr "本地路徑"
 
 #: ../xfburn/xfburn-data-composition.c:600
 msgid "You must give a name to the file"
-msgstr ""
+msgstr "您必須賦予檔案一個可用的名稱"
 
 #: ../xfburn/xfburn-data-composition.c:609
 #: ../xfburn/xfburn-data-composition.c:988
 msgid "A file with the same name is already present in the composition"
-msgstr ""
+msgstr "相同名稱的檔案已存在於本次燒錄流程中"
 
 #: ../xfburn/xfburn-data-composition.c:690
 #: ../xfburn/xfburn-data-composition.c:691
 #: ../xfburn/xfburn-data-composition.c:693
-#, fuzzy
 msgid "New directory"
-msgstr "燒錄暫存資料夾"
+msgstr "新增資料夾"
 
 #: ../xfburn/xfburn-data-composition.c:1169
 #, c-format
@@ -292,27 +284,28 @@ msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added"
 msgstr ""
+"名稱為 \"%s\" 的檔案已在此資料夾中，您無法再次加入這個檔案。"
+""
 
 #: ../xfburn/xfburn-data-disc-usage.c:129
-#, fuzzy
 msgid "Burn composition"
-msgstr "燒錄所選的資料內容"
+msgstr "燒錄這個燒錄流程"
 
 #: ../xfburn/xfburn-data-disc-usage.c:176
 msgid "You are trying to burn more data than the disk can contain !"
-msgstr ""
+msgstr "您想燒錄的資料大小超過光碟本身的容量!"
 
 #: ../xfburn/xfburn-device-box.c:115 ../xfburn/xfburn-device-box.c:116
 msgid "Show writers only"
-msgstr ""
+msgstr "只顯示燒錄機"
 
 #: ../xfburn/xfburn-device-box.c:118
 msgid "Show speed selection"
-msgstr ""
+msgstr "顯示可選的燒錄速度"
 
 #: ../xfburn/xfburn-device-box.c:119
 msgid "Show speed selection list and refresh button"
-msgstr ""
+msgstr "顯示選擇燒錄速度及重新整理的按鈕"
 
 #: ../xfburn/xfburn-device-box.c:154
 msgid "_Speed :"
@@ -352,14 +345,12 @@ msgstr "檔案(_F)"
 
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
 #: ../xfburn/xfburn-main-window.c:89
-#, fuzzy
 msgid "_New composition"
-msgstr "儲存燒錄內容"
+msgstr "新建燒錄流程(_N)"
 
 #: ../xfburn/xfburn-main-window.c:89
-#, fuzzy
 msgid "Create a new composition"
-msgstr "從選取的燒錄內容建立映像檔"
+msgstr "建立新的燒錄流程"
 
 #. {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
 #. G_CALLBACK (action_new_data_composition),},
@@ -372,9 +363,8 @@ msgstr "從選取的燒錄內容建立映像檔"
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:101
-#, fuzzy
 msgid "Close composition"
-msgstr "儲存燒錄內容"
+msgstr "結束燒錄流程"
 
 #: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
 msgid "_Quit"
@@ -481,20 +471,19 @@ msgstr "翻譯人員 (%s)"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "Label"
-msgstr ""
+msgstr "標籤"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "The text of the label"
-msgstr ""
+msgstr "標籤文字"
 
 #: ../xfburn/xfburn-preferences-dialog.c:123
-#, fuzzy
 msgid "Preferences"
-msgstr "功能設定(_N)"
+msgstr "功能設定"
 
 #: ../xfburn/xfburn-preferences-dialog.c:124
 msgid "Tune how Xfburn behaves"
-msgstr ""
+msgstr "調整 Xfburn 的操作方式"
 
 #: ../xfburn/xfburn-preferences-dialog.c:169
 #: ../xfburn/xfburn-preferences-dialog.c:173
@@ -633,7 +622,6 @@ msgid "Select command"
 msgstr "選取指令"
 
 #: ../xfburn/xfburn-write-mode-combo-box.c:41
-#, fuzzy
 msgid "Default"
 msgstr "預設"
 
