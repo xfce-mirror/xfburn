@@ -24,6 +24,7 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
+#include <libxfce4util/libxfce4util.h>
 
 #include "xfburn-global.h"
 #include "xfburn-progress-dialog.h"
@@ -68,8 +69,6 @@ xfburn_burn_image_progress_dialog_get_type ()
 static void
 xfburn_burn_image_progress_dialog_class_init (XfburnBurnImageProgressDialogClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
   parent_class = g_type_class_peek_parent (klass);
 }
 

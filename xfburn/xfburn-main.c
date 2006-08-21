@@ -37,13 +37,11 @@
 #endif
 
 #include "xfburn-global.h"
+#include "xfburn-device-list.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
 #include "xfburn-stock.h"
 #include "xfburn-main-window.h"
-
-/* globals */
-GList *list_devices = NULL;
 
 /* entry point */
 int
@@ -79,7 +77,7 @@ main (int argc, char **argv)
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
   xfburn_stock_init ();
-  xfburn_scan_devices ();
+  xfburn_device_list_init ();
   mainwin = xfburn_main_window_new ();
 
   gtk_widget_show (mainwin);
@@ -93,8 +91,7 @@ main (int argc, char **argv)
   xfburn_settings_flush ();
   xfburn_settings_free ();
   
-  g_list_foreach (list_devices, (GFunc) xfburn_device_free, NULL);
-  g_list_free (list_devices);
+  xfburn_device_list_free ();
 
   return EXIT_SUCCESS;
 }

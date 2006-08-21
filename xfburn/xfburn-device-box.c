@@ -24,8 +24,7 @@
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
 
-#include "xfburn-utils.h"
-
+#include "xfburn-device-list.h"
 #include "xfburn-device-box.h"
 
 #define XFBURN_DEVICE_BOX_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBoxPrivate))
@@ -134,7 +133,7 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_widget_show (priv->combo_device);
   gtk_box_pack_start (GTK_BOX (box), priv->combo_device, FALSE, FALSE, BORDER);
 
-  device = list_devices;
+  device = xfburn_device_list_get_list ();
   while (device) {
     XfburnDevice *device_data = (XfburnDevice *) device->data;
 

@@ -27,6 +27,7 @@
 #include <gtk/gtk.h>
 
 #include "xfburn-global.h"
+#include "xfburn-device-list.h"
 
 G_BEGIN_DECLS
 #define XFBURN_TYPE_DEVICE_BOX            (xfburn_device_box_get_type ())

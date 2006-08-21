@@ -25,7 +25,7 @@
 #include <exo/exo.h>
 
 #include "xfburn-preferences-dialog.h"
-#include "xfburn-global.h"
+#include "xfburn-device-list.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
 
@@ -357,7 +357,7 @@ refresh_devices_list (XfburnPreferencesDialog * dialog)
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
-  device = list_devices;
+  device = xfburn_device_list_get_list ();
   while (device) {
     GtkTreeIter iter;
     XfburnDevice *device_data;
@@ -388,7 +388,7 @@ xfburn_preferences_dialog_response_cb (XfburnPreferencesDialog * dialog, guint r
 static void
 scan_button_clicked_cb (GtkWidget * button, gpointer user_data)
 {
-  xfburn_scan_devices ();
+  xfburn_device_list_init ();
   refresh_devices_list (user_data);
 }
 

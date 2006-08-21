@@ -17,22 +17,32 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFBURN_UTILS_H__
-#define __XFBURN_UTILS_H__
+#ifndef __XFBURN_DEVICE_LIST_H__
+#define __XFBURN_DEVICE_LIST_H__
 
-#ifdef	HAVE_CONFIG_H
+#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif /* !HAVE_CONFIG_H */
-
-#include <gtk/gtk.h>
-
-#include "xfburn-global.h"
-
-void xfburn_busy_cursor (GtkWidget *);
-void xfburn_default_cursor (GtkWidget *);
-
-gchar *xfburn_humanreadable_filesize (guint64);
-guint64 xfburn_calc_dirsize (const gchar *);
-
-void xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent);
 #endif
+
+typedef struct
+{
+  gchar *name;
+  gchar *id;
+  gchar *node_path;
+  gboolean cdr;
+  gboolean cdrw;
+  gboolean dvdr;
+  gboolean dvdram;
+} XfburnDevice;
+
+void xfburn_device_list_init ();
+XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
+GList * xfburn_device_list_get_list ();
+void xfburn_device_list_free ();
+
+gint xfburn_device_query_cdstatus (XfburnDevice * device);
+gchar * xfburn_device_cdstatus_to_string (gint status);
+
+void xfburn_device_free (XfburnDevice * device);
+
+#endif /* __XFBURN_DEVICE_LIST_H__ */

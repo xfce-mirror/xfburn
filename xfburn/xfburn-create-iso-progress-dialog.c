@@ -25,6 +25,8 @@
 #include <string.h>
 #endif
 
+#include <libxfce4util/libxfce4util.h>
+
 #include "xfburn-global.h"
 #include "xfburn-progress-dialog.h"
 

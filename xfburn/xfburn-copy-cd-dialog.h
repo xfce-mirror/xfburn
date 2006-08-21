@@ -26,6 +26,8 @@
 
 #include <gtk/gtk.h>
 
+#include <libxfcegui4/libxfcegui4.h>
+
 G_BEGIN_DECLS
 
 #define XFBURN_TYPE_COPY_CD_DIALOG         (xfburn_copy_cd_dialog_get_type ())

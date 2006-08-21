@@ -24,11 +24,6 @@
 #include <config.h>
 #endif
 
-#include <gtk/gtk.h>
-
-#include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
-
 #define BORDER 5
 
 #define CDRECORD_OPC "Performing OPC..."
@@ -58,17 +53,5 @@
 #define MKISOFS_ABORTING "Aborting."
 #define MKISOFS_RUNNING " done, estimate"
 #define MKISOFS_DONE "extents written"
-typedef struct
-{
-  gchar *name;
-  gchar *id;
-  gchar *node_path;
-  gboolean cdr;
-  gboolean cdrw;
-  gboolean dvdr;
-  gboolean dvdram;
-} XfburnDevice;
-
-extern GList *list_devices;
 
 #endif

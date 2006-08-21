@@ -25,6 +25,7 @@ xfburn_headers = 							\
 	xfburn-create-iso-progress-dialog.h				\
 	xfburn-create-iso-from-composition-progress-dialog.h		\
 	xfburn-device-box.h						\
+	xfburn-device-list.h						\
 	xfburn-progress-dialog.h					\
 	xfburn-main-window.h						\
 	xfburn-notebook-tab.h						\
@@ -55,6 +56,7 @@ xfburn_SOURCES =							\
 	xfburn-copy-cd-dialog.c						\
 	xfburn-copy-cd-progress-dialog.c				\
 	xfburn-device-box.c						\
+	xfburn-device-list.c						\
 	xfburn-progress-dialog.c					\
 	xfburn-main.c 							\
 	xfburn-main-window.c 						\
