@@ -460,6 +460,7 @@ action_about (GtkAction * action, XfburnMainWindow * window)
     {"Attila SZERVÑC", "sas@321.hu", "hu",},
     {"Daichi Kawahata", "daichi@xfce.org", "ja",},
     {"Mantas", "mantaz@users.sourceforge.net", "lt",},
+    {"Stephan Arts", "psybsd@gmail.com", "nl",},
     {"Szymon Kałasz", "szymon_maestro@gazeta.pl", "pl",},
     {"Sergey Fedoseev", "fedoseev.sergey@gmail.com", "ru",},
     {"Maxim V. Dziumanenko", "mvd@mylinux.com.ua", "uk",},
