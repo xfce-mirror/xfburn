@@ -2,13 +2,14 @@
 # Copyright (C) 2005-2006 Jean-François Wauthy
 # This file is distributed under the same license as the xfburn package.
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
+# Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-11 19:04+0200\n"
-"PO-Revision-Date: 2006-04-20 18:58+0600\n"
+"PO-Revision-Date: 2006-09-24 20:10+0600\n"
 "Last-Translator: Sergey Fedoseev <fedoseev.sergey@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +18,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-adding-progress.c:89
 msgid "Adding files to the composition"
-msgstr ""
+msgstr "Добавление файлов к проекту"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:94
 #: ../xfburn/xfburn-blank-cd-progress-dialog.c:149
@@ -84,7 +85,7 @@ msgstr "Выполняется OPC..."
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:123
 msgid "Burn Composition"
-msgstr "Запись композиции"
+msgstr "Запись проекта"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:140
 #: ../xfburn/xfburn-burn-image-dialog.c:132
@@ -110,12 +111,12 @@ msgstr "Только создать _ISO"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:208
 msgid "_Burn Composition"
-msgstr "_Записать композицию"
+msgstr "_Записать проект"
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:90
 msgid "Finishing"
-msgstr ""
+msgstr "Завершение"
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:96
@@ -124,14 +125,12 @@ msgstr "Фиксация..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
-#, fuzzy
 msgid "Writing composition..."
-msgstr "Запись композиции"
+msgstr "Запись проекта..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
-#, fuzzy
 msgid "Burn data composition"
-msgstr "Сохранить композицию"
+msgstr "Запись проекта с данными"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:105
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:128
@@ -154,9 +153,8 @@ msgstr "Запись ISO..."
 
 #: ../xfburn/xfburn-compositions-notebook.c:173
 #: ../xfburn/xfburn-data-composition.c:297
-#, fuzzy
 msgid "Data composition"
-msgstr "Открыть композицию"
+msgstr "Проект с данными"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:154
@@ -194,48 +192,43 @@ msgstr "Чтение CD..."
 
 #: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:113
 msgid "Create ISO from composition"
-msgstr "Создание образа из композиции"
+msgstr "Создание ISO-образа по проекту"
 
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:115
 msgid "Create ISO from CD"
-msgstr "Создать ISO из компакт-диска"
+msgstr "Создать ISO-образ с компакт-диска"
 
 #: ../xfburn/xfburn-data-composition.c:138
 msgid "Add"
 msgstr "Добавить"
 
 #: ../xfburn/xfburn-data-composition.c:138
-#, fuzzy
 msgid "Add the selected file(s) to the composition"
-msgstr "Добавить выбранный файл(ы) на компакт-диск"
+msgstr "Добавить выбранный файл(ы) в проект"
 
 #: ../xfburn/xfburn-data-composition.c:140
-#, fuzzy
 msgid "Create directory"
-msgstr "Временная папка"
+msgstr "Создать каталог"
 
 #: ../xfburn/xfburn-data-composition.c:140
-#, fuzzy
 msgid "Add a new directory to the composition"
-msgstr "Открыть композицию"
+msgstr "Создать в проекте папку"
 
 #: ../xfburn/xfburn-data-composition.c:142
 msgid "Remove"
 msgstr "Удалить"
 
 #: ../xfburn/xfburn-data-composition.c:142
-#, fuzzy
 msgid "Remove the selected file(s) from the composition"
-msgstr "Удалить выбранный файл(ы) с компакт-диска"
+msgstr "Удалить выбранный файл(ы) из проекта"
 
 #: ../xfburn/xfburn-data-composition.c:144
 msgid "Clear"
 msgstr "Очистить"
 
 #: ../xfburn/xfburn-data-composition.c:144
-#, fuzzy
 msgid "Clear the content of the composition"
-msgstr "Очистить содержимое компакт-диска"
+msgstr "Очистить содержимое проекта"
 
 #: ../xfburn/xfburn-data-composition.c:146
 msgid "Import"
@@ -255,7 +248,7 @@ msgstr "Переименовать выбранный файл"
 
 #: ../xfburn/xfburn-data-composition.c:292
 msgid "Volume name :"
-msgstr ""
+msgstr "Имя тома :"
 
 #: ../xfburn/xfburn-data-composition.c:323
 msgid "Contents"
@@ -272,19 +265,18 @@ msgstr "Локальный путь"
 
 #: ../xfburn/xfburn-data-composition.c:600
 msgid "You must give a name to the file"
-msgstr ""
+msgstr "Вы должны дать имя файлу"
 
 #: ../xfburn/xfburn-data-composition.c:609
 #: ../xfburn/xfburn-data-composition.c:988
 msgid "A file with the same name is already present in the composition"
-msgstr ""
+msgstr "В проекте уже есть файл с таким именем"
 
 #: ../xfburn/xfburn-data-composition.c:690
 #: ../xfburn/xfburn-data-composition.c:691
 #: ../xfburn/xfburn-data-composition.c:693
-#, fuzzy
 msgid "New directory"
-msgstr "Временная папка"
+msgstr "Новый каталог"
 
 #: ../xfburn/xfburn-data-composition.c:1169
 #, c-format
@@ -292,19 +284,19 @@ msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added"
 msgstr ""
+"В этом каталоге уже существует файл с именем \"%s\", файл не был добавлен"
 
 #: ../xfburn/xfburn-data-disc-usage.c:129
-#, fuzzy
 msgid "Burn composition"
-msgstr "Запись композиции"
+msgstr "Записать проект"
 
 #: ../xfburn/xfburn-data-disc-usage.c:176
 msgid "You are trying to burn more data than the disk can contain !"
-msgstr ""
+msgstr "Вы пытаетесь записать больше данных, чем может вместить диск!"
 
 #: ../xfburn/xfburn-device-box.c:115 ../xfburn/xfburn-device-box.c:116
 msgid "Show writers only"
-msgstr ""
+msgstr "Показывать только записывающие устройства"
 
 #: ../xfburn/xfburn-device-box.c:118
 msgid "Show speed selection"
@@ -352,14 +344,12 @@ msgstr "_Файл"
 
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
 #: ../xfburn/xfburn-main-window.c:89
-#, fuzzy
 msgid "_New composition"
-msgstr "Сохранить композицию"
+msgstr "_Создать проект"
 
 #: ../xfburn/xfburn-main-window.c:89
-#, fuzzy
 msgid "Create a new composition"
-msgstr "Создание образа из композиции"
+msgstr "Создать проект"
 
 #. {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
 #. G_CALLBACK (action_new_data_composition),},
@@ -372,9 +362,8 @@ msgstr "Создание образа из композиции"
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:101
-#, fuzzy
 msgid "Close composition"
-msgstr "Сохранить композицию"
+msgstr "Закрыть проект"
 
 #: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
 msgid "_Quit"
@@ -481,20 +470,19 @@ msgstr "Переводчик (%s)"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "Label"
-msgstr ""
+msgstr "Метка"
 
 #: ../xfburn/xfburn-notebook-tab.c:107
 msgid "The text of the label"
-msgstr ""
+msgstr "Текст метки"
 
 #: ../xfburn/xfburn-preferences-dialog.c:123
-#, fuzzy
 msgid "Preferences"
-msgstr "_Параметры"
+msgstr "Параметры"
 
 #: ../xfburn/xfburn-preferences-dialog.c:124
 msgid "Tune how Xfburn behaves"
-msgstr ""
+msgstr "Настройка того, как будет себя вести Xfburn"
 
 #: ../xfburn/xfburn-preferences-dialog.c:169
 #: ../xfburn/xfburn-preferences-dialog.c:173
@@ -515,7 +503,7 @@ msgstr "Показывать _скрытые файлы"
 
 #: ../xfburn/xfburn-preferences-dialog.c:192
 msgid "Show human_readable filesizes"
-msgstr "Отображать _размеры файлов сокращённо"
+msgstr "Показывать _размеры файлов сокращённо"
 
 #: ../xfburn/xfburn-preferences-dialog.c:203
 msgid "General"
@@ -633,25 +621,9 @@ msgid "Select command"
 msgstr "Выберите команду"
 
 #: ../xfburn/xfburn-write-mode-combo-box.c:41
-#, fuzzy
 msgid "Default"
-msgstr "по умолчанию"
+msgstr "По умолчанию"
 
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "Приложение для записи CD и DVD"
-
-#~ msgid "Burn Data CD"
-#~ msgstr "Записать диск с данными"
-
-#~ msgid "Load composition"
-#~ msgstr "Открыть композицию"
-
-#~ msgid "Show disc content toolbar"
-#~ msgstr "Содержимое диска"
-
-#~ msgid "Show/hide the disc content toolbar"
-#~ msgstr "Показать/скрыть панель содержимого диска"
-
-#~ msgid "Xfburn preferences"
-#~ msgstr "Настройки Xfburn"
