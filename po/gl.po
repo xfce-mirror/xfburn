@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2006-05-22 23:29+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-11-01 17:37+0100\n"
 "PO-Revision-Date: 2006-08-17 19:26+0000\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <gl@li.org>\n"
@@ -16,524 +16,629 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:101
-#: ../xfburn/xfburn-blank-cd-dialog.c:104
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:146
-#: ../xfburn/xfburn-main-window.c:84
+#: ../xfburn/xfburn-adding-progress.c:89
+msgid "Adding files to the composition"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-cd-dialog.c:94
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:151
+#: ../xfburn/xfburn-main-window.c:120
 #, fuzzy
 msgid "Blank CD-RW"
 msgstr "CD-RW virxe"
 
-#. burning devices list
-#. devices list
-#: ../xfburn/xfburn-blank-cd-dialog.c:108
-#: ../xfburn/xfburn-burn-composition-dialog.c:131
-#: ../xfburn/xfburn-burn-image-dialog.c:124
-#: ../xfburn/xfburn-copy-cd-dialog.c:141
+#: ../xfburn/xfburn-blank-cd-dialog.c:105
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:131
+#: ../xfburn/xfburn-burn-image-dialog.c:122
+#: ../xfburn/xfburn-copy-cd-dialog.c:131
+#: ../xfburn/xfburn-format-dvd-dialog.c:102
 msgid "Burning device"
 msgstr "Dispositivo de gravación"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:136
-#: ../xfburn/xfburn-burn-composition-dialog.c:158
-#: ../xfburn/xfburn-burn-image-dialog.c:151
-#: ../xfburn/xfburn-copy-cd-dialog.c:159
-msgid "_Speed :"
-msgstr ""
-
-#: ../xfburn/xfburn-blank-cd-dialog.c:161
-msgid "Blank type"
-msgstr ""
-
-#: ../xfburn/xfburn-blank-cd-dialog.c:166
+#: ../xfburn/xfburn-blank-cd-dialog.c:111
 msgid "Fast"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:167
+#: ../xfburn/xfburn-blank-cd-dialog.c:112
 msgid "Complete"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:168
+#: ../xfburn/xfburn-blank-cd-dialog.c:113
 msgid "Reopen last session"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:169
+#: ../xfburn/xfburn-blank-cd-dialog.c:114
 msgid "Erase last session"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:175
-#: ../xfburn/xfburn-burn-composition-dialog.c:202
-#: ../xfburn/xfburn-burn-image-dialog.c:195
-#: ../xfburn/xfburn-copy-cd-dialog.c:184
+#: ../xfburn/xfburn-blank-cd-dialog.c:118
+msgid "Blank type"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-cd-dialog.c:126
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:152
+#: ../xfburn/xfburn-burn-image-dialog.c:143
+#: ../xfburn/xfburn-copy-cd-dialog.c:139
+#: ../xfburn/xfburn-format-dvd-dialog.c:110
 msgid "Options"
 msgstr "Opcións"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:183
+#: ../xfburn/xfburn-blank-cd-dialog.c:130
 msgid "_Force"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:187
-#: ../xfburn/xfburn-burn-composition-dialog.c:210
-#: ../xfburn/xfburn-burn-image-dialog.c:203
-#: ../xfburn/xfburn-copy-cd-dialog.c:192
+#: ../xfburn/xfburn-blank-cd-dialog.c:134
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:156
+#: ../xfburn/xfburn-burn-image-dialog.c:147
+#: ../xfburn/xfburn-copy-cd-dialog.c:143
+#: ../xfburn/xfburn-format-dvd-dialog.c:114
 msgid "E_ject disk"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:197
+#: ../xfburn/xfburn-blank-cd-dialog.c:144
 msgid "_Blank"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:128
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:133
 msgid "Blanking..."
 msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:131
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:136
 msgid "Performing OPC..."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:123
-#: ../xfburn/xfburn-burn-composition-dialog.c:126
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:123
 msgid "Burn Composition"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:187
-#: ../xfburn/xfburn-burn-image-dialog.c:180
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:140
+#: ../xfburn/xfburn-burn-image-dialog.c:131
 msgid "Write _mode :"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:192
-#: ../xfburn/xfburn-burn-image-dialog.c:185
-msgid "default"
-msgstr ""
-
-#: ../xfburn/xfburn-burn-composition-dialog.c:215
-#: ../xfburn/xfburn-burn-image-dialog.c:208
-#: ../xfburn/xfburn-copy-cd-dialog.c:197
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:161
+#: ../xfburn/xfburn-burn-image-dialog.c:152
+#: ../xfburn/xfburn-copy-cd-dialog.c:148
 msgid "_Dummy write"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:219
-#: ../xfburn/xfburn-burn-image-dialog.c:212
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:165
+#: ../xfburn/xfburn-burn-image-dialog.c:156
 msgid "Burn_Free"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:225
-#: ../xfburn/xfburn-copy-cd-dialog.c:206
+#. create ISO ?
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:171
+#: ../xfburn/xfburn-copy-cd-dialog.c:157
 msgid "Only create _ISO"
 msgstr "Só crear a imaxe _ISO"
 
-#: ../xfburn/xfburn-burn-composition-dialog.c:262
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:208
 msgid "_Burn Composition"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:107
-#: ../xfburn/xfburn-burn-image-dialog.c:110
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:148
-msgid "Burn CD image"
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:84
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:89
+msgid "Finishing"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:115
-#: ../xfburn/xfburn-burn-image-dialog.c:119
-msgid "Image to burn"
-msgstr ""
-
-#: ../xfburn/xfburn-burn-image-dialog.c:222
-msgid "_Burn image"
-msgstr ""
-
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:110
-#: ../xfburn/xfburn-progress-dialog.c:200
-#: ../xfburn/xfburn-progress-dialog.c:217
-#: ../xfburn/xfburn-progress-dialog.c:227
-#: ../xfburn/xfburn-progress-dialog.c:563
-#: ../xfburn/xfburn-progress-dialog.c:582
-#: ../xfburn/xfburn-progress-dialog.c:602
-msgid "no info"
-msgstr ""
-
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:116
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:90
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:95
 msgid "Fixating..."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:129
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:98
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:110
+msgid "Writing composition..."
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:126
+msgid "Burn data composition"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:104
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:127
+msgid "Burn CD image"
+msgstr ""
+
+#. file
+#: ../xfburn/xfburn-burn-image-dialog.c:111
+#: ../xfburn/xfburn-burn-image-dialog.c:114
+msgid "Image to burn"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:166
+msgid "_Burn image"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:108
 msgid "Writing ISO..."
 msgstr ""
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:119 ../xfburn/xfburn-copy-cd-dialog.c:122
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:176
+#: ../xfburn/xfburn-compositions-notebook.c:173
+#: ../xfburn/xfburn-data-composition.c:297
+msgid "Data composition"
+msgstr ""
+
+#: ../xfburn/xfburn-copy-cd-dialog.c:113
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
 msgstr ""
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:127
+#: ../xfburn/xfburn-copy-cd-dialog.c:123
 msgid "CD Reader device"
 msgstr ""
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:201
+#: ../xfburn/xfburn-copy-cd-dialog.c:152
 msgid "On the _fly"
 msgstr ""
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:242
+#: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
 msgstr "_Copiar CD"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:113
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
 msgstr ""
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:125
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable medium."
 msgstr ""
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:147
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
 msgstr ""
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:160
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:123
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
+#: ../xfburn/xfburn-create-iso-progress-dialog.c:102
 msgid "Reading CD..."
 msgstr ""
 
-#: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:136
+#: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:115
 msgid "Create ISO from composition"
 msgstr ""
 
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:138
+#: ../xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
 msgstr ""
 
-#: ../xfburn/xfburn-directory-browser.c:51
-msgid "Folder"
-msgstr ""
-
-#: ../xfburn/xfburn-directory-browser.c:125
-#: ../xfburn/xfburn-directory-browser.c:291
-msgid "File"
-msgstr "Ficheiro"
-
-#: ../xfburn/xfburn-directory-browser.c:138
-#: ../xfburn/xfburn-disc-content.c:237
-msgid "Size"
-msgstr "Tamaño"
-
-#: ../xfburn/xfburn-directory-browser.c:140
-msgid "Type"
-msgstr "Tipo"
-
-#: ../xfburn/xfburn-disc-content.c:95
+#: ../xfburn/xfburn-data-composition.c:138
 msgid "Add"
 msgstr "Engadir"
 
-#: ../xfburn/xfburn-disc-content.c:95
-msgid "Add the selected file(s) to the CD"
+#: ../xfburn/xfburn-data-composition.c:138
+#, fuzzy
+msgid "Add the selected file(s) to the composition"
 msgstr "Engadir os ficheiros seleccionados ó CD"
 
-#: ../xfburn/xfburn-disc-content.c:96
+#: ../xfburn/xfburn-data-composition.c:140
+#, fuzzy
+msgid "Create directory"
+msgstr "Directorio temporal"
+
+#: ../xfburn/xfburn-data-composition.c:140
+msgid "Add a new directory to the composition"
+msgstr ""
+
+#: ../xfburn/xfburn-data-composition.c:142
 msgid "Remove"
 msgstr ""
 
-#: ../xfburn/xfburn-disc-content.c:96
-msgid "Remove the selected file(s) from the CD"
-msgstr ""
+#: ../xfburn/xfburn-data-composition.c:142
+#, fuzzy
+msgid "Remove the selected file(s) from the composition"
+msgstr "Engadir os ficheiros seleccionados ó CD"
 
-#: ../xfburn/xfburn-disc-content.c:98
+#: ../xfburn/xfburn-data-composition.c:144
 msgid "Clear"
 msgstr ""
 
-#: ../xfburn/xfburn-disc-content.c:98
-msgid "Clear the content of the CD"
+#: ../xfburn/xfburn-data-composition.c:144
+msgid "Clear the content of the composition"
 msgstr ""
 
-#: ../xfburn/xfburn-disc-content.c:100
+#: ../xfburn/xfburn-data-composition.c:146
 msgid "Import"
 msgstr ""
 
-#: ../xfburn/xfburn-disc-content.c:100
+#: ../xfburn/xfburn-data-composition.c:146
 msgid "Import existing session"
 msgstr ""
 
-#: ../xfburn/xfburn-disc-content.c:101
+#: ../xfburn/xfburn-data-composition.c:147
 msgid "Rename"
 msgstr ""
 
-#: ../xfburn/xfburn-disc-content.c:101
+#: ../xfburn/xfburn-data-composition.c:147
 msgid "Rename the selected file"
 msgstr ""
 
-#: ../xfburn/xfburn-disc-content.c:222
+#: ../xfburn/xfburn-data-composition.c:292
+msgid "Volume name :"
+msgstr ""
+
+#: ../xfburn/xfburn-data-composition.c:323
 msgid "Contents"
 msgstr "Contido"
 
-#: ../xfburn/xfburn-disc-content.c:240
+#: ../xfburn/xfburn-data-composition.c:338
+#: ../xfburn/xfburn-directory-browser.c:142
+msgid "Size"
+msgstr "Tamaño"
+
+#: ../xfburn/xfburn-data-composition.c:341
 msgid "Local Path"
 msgstr "Ruta Local"
 
-#: ../xfburn/xfburn-disc-usage.c:128
-msgid "Burn Data CD"
+#: ../xfburn/xfburn-data-composition.c:594
+msgid "You must give a name to the file"
 msgstr ""
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:265
+#: ../xfburn/xfburn-data-composition.c:603
+#: ../xfburn/xfburn-data-composition.c:1008
+msgid "A file with the same name is already present in the composition"
+msgstr ""
+
+#: ../xfburn/xfburn-data-composition.c:684
+#: ../xfburn/xfburn-data-composition.c:685
+#: ../xfburn/xfburn-data-composition.c:687
+#, fuzzy
+msgid "New directory"
+msgstr "Directorio temporal"
+
+#: ../xfburn/xfburn-data-composition.c:1189
+#, c-format
+msgid ""
+"A file named \"%s\" already exists in this directory, the file hasn't been "
+"added"
+msgstr ""
+
+#: ../xfburn/xfburn-data-disc-usage.c:129
+msgid "Burn composition"
+msgstr ""
+
+#: ../xfburn/xfburn-data-disc-usage.c:176
+msgid "You are trying to burn more data than the disk can contain !"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:114 ../xfburn/xfburn-device-box.c:115
+msgid "Show writers only"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:117
+msgid "Show speed selection"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:118
+msgid "Show speed selection list and refresh button"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:153
+msgid "_Speed :"
+msgstr ""
+
+#. globals
+#: ../xfburn/xfburn-directory-browser.c:57
+msgid "Folder"
+msgstr ""
+
+#: ../xfburn/xfburn-directory-browser.c:129
+#: ../xfburn/xfburn-directory-browser.c:303
+msgid "File"
+msgstr "Ficheiro"
+
+#: ../xfburn/xfburn-directory-browser.c:144
+msgid "Type"
+msgstr "Tipo"
+
+#: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:127
+msgid "Format DVD+RW"
+msgstr ""
+
+#. "xfburn-blank-cdrw"
+#: ../xfburn/xfburn-format-dvd-dialog.c:124
+msgid "_Format"
+msgstr ""
+
+#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:260
 msgid "Filesystem"
 msgstr "Sistema de ficheiros"
 
-#: ../xfburn/xfburn-fs-browser.c:248
+#. load the user's home dir
+#: ../xfburn/xfburn-fs-browser.c:243
 #, c-format
 msgid "%s's home"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:68
+#: ../xfburn/xfburn-main.c:56 ../xfburn.desktop.in.h:2
+msgid "Xfburn"
+msgstr "Xfburn"
+
+#: ../xfburn/xfburn-main-window.c:93
 msgid "_File"
 msgstr "_Ficheiro"
 
-#: ../xfburn/xfburn-main-window.c:69
-msgid "Load composition"
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
+#: ../xfburn/xfburn-main-window.c:95
+msgid "_New composition"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:71
-msgid "Save composition"
+#: ../xfburn/xfburn-main-window.c:95
+msgid "Create a new composition"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:73 ../xfburn/xfburn-main-window.c:355
+#. {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
+#. G_CALLBACK (action_new_data_composition),},
+#. {"new-audio-composition", "audio-x-generic", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
+#. G_CALLBACK (action_new_audio_composition),},
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. G_CALLBACK (action_load),},
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. G_CALLBACK (action_save),},
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. G_CALLBACK (action_save_as),},
+#: ../xfburn/xfburn-main-window.c:107
+msgid "Close composition"
+msgstr ""
+
+#: ../xfburn/xfburn-main-window.c:109
 msgid "_Quit"
 msgstr "_Saír"
 
-#: ../xfburn/xfburn-main-window.c:73
+#: ../xfburn/xfburn-main-window.c:109
 msgid "Quit Xfburn"
 msgstr "Saír de Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:74
+#: ../xfburn/xfburn-main-window.c:110
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../xfburn/xfburn-main-window.c:75
+#: ../xfburn/xfburn-main-window.c:111
 msgid "Prefere_nces"
 msgstr "Prefere_ncias"
 
-#: ../xfburn/xfburn-main-window.c:75
+#: ../xfburn/xfburn-main-window.c:111
 msgid "Show preferences dialog"
 msgstr "Amosar o diálogo de preferencias"
 
-#: ../xfburn/xfburn-main-window.c:77
+#: ../xfburn/xfburn-main-window.c:113
 msgid "_Actions"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:78
+#: ../xfburn/xfburn-main-window.c:114
 msgid "_View"
 msgstr "_Ver"
 
-#: ../xfburn/xfburn-main-window.c:79
+#: ../xfburn/xfburn-main-window.c:115
 msgid "Refresh"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:79
+#: ../xfburn/xfburn-main-window.c:115
 msgid "Refresh file list"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:81
+#: ../xfburn/xfburn-main-window.c:117
 msgid "_Help"
 msgstr "A_xuda"
 
-#: ../xfburn/xfburn-main-window.c:82
+#: ../xfburn/xfburn-main-window.c:118
 msgid "_About"
 msgstr "_Acerca de"
 
-#: ../xfburn/xfburn-main-window.c:82
+#: ../xfburn/xfburn-main-window.c:118
 msgid "Display information about Xfburn"
 msgstr "Amosar información acerca de Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:86
-msgid "Format DVD-RW"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:87
+#: ../xfburn/xfburn-main-window.c:122
 msgid "Copy Data CD"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:89
+#: ../xfburn/xfburn-main-window.c:124
 msgid "Copy Audio CD"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:90
+#: ../xfburn/xfburn-main-window.c:125
 msgid "Burn CD Image"
 msgstr "Gravar Imaxe de CD"
 
-#: ../xfburn/xfburn-main-window.c:95
+#: ../xfburn/xfburn-main-window.c:129
+#, fuzzy
+msgid "Copy DVD"
+msgstr "_Copiar CD"
+
+#: ../xfburn/xfburn-main-window.c:131
+#, fuzzy
+msgid "Burn DVD Image"
+msgstr "Gravar Imaxe de CD"
+
+#: ../xfburn/xfburn-main-window.c:136
 msgid "Show file browser"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:95
+#: ../xfburn/xfburn-main-window.c:136
 msgid "Show/hide the file browser"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:97
+#: ../xfburn/xfburn-main-window.c:138
 msgid "Show toolbar"
 msgstr "Amosar a barra de ferramentas"
 
-#: ../xfburn/xfburn-main-window.c:97
+#: ../xfburn/xfburn-main-window.c:138
 msgid "Show/hide the toolbar"
 msgstr "Amosar/agochar a barra de ferramentas"
 
-#: ../xfburn/xfburn-main-window.c:99
-msgid "Show disc content toolbar"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:99
-msgid "Show/hide the disc content toolbar"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:278
+#: ../xfburn/xfburn-main-window.c:344
 msgid "Toolbar Editor"
 msgstr "Editor da Barra de Ferramentas"
 
-#: ../xfburn/xfburn-main-window.c:355
-msgid "Are sure you want to quit?"
-msgstr "Está seguro de que desexa saír?"
-
 #. if (G_UNLIKELY (icon == NULL))
-#: ../xfburn/xfburn-main-window.c:377
-msgid "Another cd burning tool"
+#. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
+#: ../xfburn/xfburn-main-window.c:514
+#, fuzzy
+msgid "Another cd burning GUI"
 msgstr "Outra ferramenta para a gravación de CDs"
 
-#: ../xfburn/xfburn-main-window.c:380
+#: ../xfburn/xfburn-main-window.c:517
 msgid "Author/Maintainer"
 msgstr ""
 
-#: ../xfburn/xfburn-main-window.c:386
+#: ../xfburn/xfburn-main-window.c:522
 #, c-format
 msgid "Translator (%s)"
 msgstr "Tradutor (%s)"
 
-#: ../xfburn/xfburn-main.c:151 ../xfburn.desktop.in.h:2
-msgid "Xfburn"
-msgstr "Xfburn"
+#: ../xfburn/xfburn-notebook-tab.c:107
+msgid "Label"
+msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:111
-msgid "Xfburn preferences"
-msgstr "Preferencias de Xfburn"
+#: ../xfburn/xfburn-notebook-tab.c:107
+msgid "The text of the label"
+msgstr ""
+
+#: ../xfburn/xfburn-preferences-dialog.c:123
+#, fuzzy
+msgid "Preferences"
+msgstr "Prefere_ncias"
 
 #: ../xfburn/xfburn-preferences-dialog.c:124
-msgid "General"
-msgstr "Xeral"
+msgid "Tune how Xfburn behaves"
+msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:130
-#: ../xfburn/xfburn-preferences-dialog.c:138
+#: ../xfburn/xfburn-preferences-dialog.c:169
+#: ../xfburn/xfburn-preferences-dialog.c:173
 msgid "Temporary directory"
 msgstr "Directorio temporal"
 
-#: ../xfburn/xfburn-preferences-dialog.c:142
+#: ../xfburn/xfburn-preferences-dialog.c:177
 msgid "_Clean temporary directory on exit"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:146
+#: ../xfburn/xfburn-preferences-dialog.c:184
 msgid "File browser"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:154
+#: ../xfburn/xfburn-preferences-dialog.c:188
 msgid "Show _hidden files"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:158
+#: ../xfburn/xfburn-preferences-dialog.c:192
 msgid "Show human_readable filesizes"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:168
+#: ../xfburn/xfburn-preferences-dialog.c:203
+msgid "General"
+msgstr "Xeral"
+
+#: ../xfburn/xfburn-preferences-dialog.c:214
+#: ../xfburn/xfburn-preferences-dialog.c:289
 msgid "Devices"
 msgstr "Dispositivos"
 
-#: ../xfburn/xfburn-preferences-dialog.c:174
+#: ../xfburn/xfburn-preferences-dialog.c:223
 msgid "Detected devices"
 msgstr "Dispositivos detectados"
 
-#: ../xfburn/xfburn-preferences-dialog.c:198
+#: ../xfburn/xfburn-preferences-dialog.c:244
 msgid "Name"
 msgstr "Nome"
 
-#: ../xfburn/xfburn-preferences-dialog.c:211
+#: ../xfburn/xfburn-preferences-dialog.c:257
 msgid "Id"
 msgstr "ID"
 
-#: ../xfburn/xfburn-preferences-dialog.c:213
+#: ../xfburn/xfburn-preferences-dialog.c:259
 msgid "Node"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:215
+#: ../xfburn/xfburn-preferences-dialog.c:261
 msgid "Write CD-R"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:217
+#: ../xfburn/xfburn-preferences-dialog.c:263
 msgid "Write CD-RW"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:220
+#: ../xfburn/xfburn-preferences-dialog.c:266
 msgid "Write DVD-R"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:223
+#: ../xfburn/xfburn-preferences-dialog.c:269
 msgid "Write DVD-RAM"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:231
+#: ../xfburn/xfburn-preferences-dialog.c:277
 msgid "Sc_an for devices"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:182
+#: ../xfburn/xfburn-progress-dialog.c:183
 msgid "Initializing..."
 msgstr "Inicializando..."
 
-#: ../xfburn/xfburn-progress-dialog.c:197
+#: ../xfburn/xfburn-progress-dialog.c:198
 msgid "Estimated writing speed:"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:211
+#: ../xfburn/xfburn-progress-dialog.c:201
+#: ../xfburn/xfburn-progress-dialog.c:218
+#: ../xfburn/xfburn-progress-dialog.c:228
+#: ../xfburn/xfburn-progress-dialog.c:570
+#: ../xfburn/xfburn-progress-dialog.c:590
+#: ../xfburn/xfburn-progress-dialog.c:611
+msgid "no info"
+msgstr ""
+
+#: ../xfburn/xfburn-progress-dialog.c:212
 msgid "FIFO buffer:"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:221
+#: ../xfburn/xfburn-progress-dialog.c:222
 msgid "Device buffer:"
 msgstr "Buffer do dispositivo:"
 
-#: ../xfburn/xfburn-progress-dialog.c:232
+#. output
+#: ../xfburn/xfburn-progress-dialog.c:233
 msgid "View _output"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:364
+#: ../xfburn/xfburn-progress-dialog.c:359
 msgid "Operation finished"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:624
+#: ../xfburn/xfburn-progress-dialog.c:634
 msgid "Failed"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:627
+#: ../xfburn/xfburn-progress-dialog.c:637
 msgid "Cancelled"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:630
+#: ../xfburn/xfburn-progress-dialog.c:640
 msgid "Completed"
 msgstr ""
 
-#: ../xfburn/xfburn-utils.c:175
-msgid "Failed to open /proc/scsi/sg/devices"
-msgstr "Fallo ó abrir /proc/scsi/sg/devices"
-
-#: ../xfburn/xfburn-utils.c:178
-msgid "Failed to open /proc/scsi/sg/device_strs"
-msgstr "Fallo ó abrir /proc/scsi/sg/device_strs"
-
-#: ../xfburn/xfburn-utils.c:189
-msgid "Error reading scsi information from /proc/scsi/sg/devices"
-msgstr "Erro ó ler a información scsi dende /proc/scsi/sg/devices"
-
-#: ../xfburn/xfburn-utils.c:335
-msgid "No disc in the cdrom drive"
-msgstr ""
-
-#: ../xfburn/xfburn-utils.c:338
-msgid "No message..."
-msgstr ""
-
-#: ../xfburn/xfburn-utils.c:435
+#: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
+msgstr ""
+
+#: ../xfburn/xfburn-write-mode-combo-box.c:41
+msgid "Default"
 msgstr ""
 
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "Aplicación para a gravación de CDs e DVDs"
+
+#~ msgid "Are sure you want to quit?"
+#~ msgstr "Está seguro de que desexa saír?"
+
+#~ msgid "Xfburn preferences"
+#~ msgstr "Preferencias de Xfburn"
+
+#~ msgid "Failed to open /proc/scsi/sg/devices"
+#~ msgstr "Fallo ó abrir /proc/scsi/sg/devices"
+
+#~ msgid "Failed to open /proc/scsi/sg/device_strs"
+#~ msgstr "Fallo ó abrir /proc/scsi/sg/device_strs"
+
+#~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
+#~ msgstr "Erro ó ler a información scsi dende /proc/scsi/sg/devices"

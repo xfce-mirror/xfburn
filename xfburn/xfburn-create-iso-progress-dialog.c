@@ -85,17 +85,17 @@ static void
 cb_new_output (XfburnCreateIsoProgressDialog * dialog, const gchar * output, gpointer data)
 {
   static gint readcd_end = -1;
-  
+
   if (strstr (output, READCD_DONE)) {
     xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED);
   }
   else if (strstr (output, READCD_PROGRESS)) {
     gint readcd_done = -1;
     gdouble fraction;
-    
-    sscanf (output, "%*s %d", &readcd_done);
 
+    sscanf (output, "%*s %d", &readcd_done);
     fraction = ((gdouble) readcd_done) / readcd_end;
+
     xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), fraction);
   }
   else if (strstr (output, READCD_CAPACITY)) {

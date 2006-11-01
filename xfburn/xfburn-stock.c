@@ -1,6 +1,6 @@
 /* $Id$ */
 /*
- * Copyright (c) 2006 Jean-François Wauthy (pollux@xfce.org)
+ * Copyright (c) 2006 Jean-FranÃ§ois Wauthy (pollux@xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 static const gchar *xfburn_stock_icons[] = {
   XFBURN_STOCK_AUDIO_COPY,
   XFBURN_STOCK_BLANK_CDRW,
-  XFBURN_STOCK_BLANK_DVDRW,
+  XFBURN_STOCK_FORMAT_DVDRW,
   XFBURN_STOCK_BURN_CD,
   XFBURN_STOCK_CD,
   XFBURN_STOCK_DATA_COPY,

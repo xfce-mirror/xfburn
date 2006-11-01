@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-11 19:04+0200\n"
+"POT-Creation-Date: 2006-11-01 17:37+0100\n"
 "PO-Revision-Date: 2006-04-21 18:17+0300\n"
 "Last-Translator: Maxim V. Dziumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <translation-team-uk@lists.sourceforge.net>\n"
@@ -22,15 +22,16 @@ msgid "Adding files to the composition"
 msgstr ""
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:94
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:149
-#: ../xfburn/xfburn-main-window.c:114
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:151
+#: ../xfburn/xfburn-main-window.c:120
 msgid "Blank CD-RW"
 msgstr "Очистити CD-RW"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:105
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:131
-#: ../xfburn/xfburn-burn-image-dialog.c:123
+#: ../xfburn/xfburn-burn-image-dialog.c:122
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
+#: ../xfburn/xfburn-format-dvd-dialog.c:102
 msgid "Burning device"
 msgstr "Пристрій запису"
 
@@ -56,8 +57,9 @@ msgstr "Тип очистки"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:126
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:152
-#: ../xfburn/xfburn-burn-image-dialog.c:144
+#: ../xfburn/xfburn-burn-image-dialog.c:143
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
+#: ../xfburn/xfburn-format-dvd-dialog.c:110
 msgid "Options"
 msgstr "Параметри"
 
@@ -67,8 +69,9 @@ msgstr "_Примусово"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:134
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:156
-#: ../xfburn/xfburn-burn-image-dialog.c:148
+#: ../xfburn/xfburn-burn-image-dialog.c:147
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
+#: ../xfburn/xfburn-format-dvd-dialog.c:114
 msgid "E_ject disk"
 msgstr "Вит_ягнути диск"
 
@@ -76,11 +79,11 @@ msgstr "Вит_ягнути диск"
 msgid "_Blank"
 msgstr "О_чистити"
 
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:131
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:133
 msgid "Blanking..."
 msgstr "Очищення..."
 
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:134
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:136
 msgid "Performing OPC..."
 msgstr "Виконується OPC..."
 
@@ -89,18 +92,18 @@ msgid "Burn Composition"
 msgstr "Записати композицію"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:140
-#: ../xfburn/xfburn-burn-image-dialog.c:132
+#: ../xfburn/xfburn-burn-image-dialog.c:131
 msgid "Write _mode :"
 msgstr "_Режим запису:"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:161
-#: ../xfburn/xfburn-burn-image-dialog.c:153
+#: ../xfburn/xfburn-burn-image-dialog.c:152
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
 msgid "_Dummy write"
 msgstr "_Імітувати запис"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:165
-#: ../xfburn/xfburn-burn-image-dialog.c:157
+#: ../xfburn/xfburn-burn-image-dialog.c:156
 msgid "Burn_Free"
 msgstr "Burn_Free"
 
@@ -114,43 +117,43 @@ msgstr "Лише створити _ISO"
 msgid "_Burn Composition"
 msgstr "_Записати композицію"
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:90
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:84
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:89
 msgid "Finishing"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:96
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:90
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:95
 msgid "Fixating..."
 msgstr "Фіксація..."
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:98
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:110
 #, fuzzy
 msgid "Writing composition..."
 msgstr "Записати композицію"
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:126
 #, fuzzy
 msgid "Burn data composition"
 msgstr "Зберегти композицію"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:105
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:128
+#: ../xfburn/xfburn-burn-image-dialog.c:104
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:127
 msgid "Burn CD image"
 msgstr "Записати образ CD"
 
 #. file
-#: ../xfburn/xfburn-burn-image-dialog.c:112
-#: ../xfburn/xfburn-burn-image-dialog.c:115
+#: ../xfburn/xfburn-burn-image-dialog.c:111
+#: ../xfburn/xfburn-burn-image-dialog.c:114
 msgid "Image to burn"
 msgstr "Образ для запису"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:167
+#: ../xfburn/xfburn-burn-image-dialog.c:166
 msgid "_Burn image"
 msgstr "_Записати образ"
 
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:109
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:108
 msgid "Writing ISO..."
 msgstr "Запис ISO..."
 
@@ -161,7 +164,7 @@ msgid "Data composition"
 msgstr "Відкрити композицію"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:154
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
 msgstr "Копіювати диск з даними"
 
@@ -177,28 +180,28 @@ msgstr "На _ходу"
 msgid "_Copy CD"
 msgstr "_Копіювати диск"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:91
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
 msgstr "заповнення кеша..."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:103
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable medium."
 msgstr "Вставте носій для запису."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:125
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
 msgstr "Запис CD..."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:138
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:100
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
+#: ../xfburn/xfburn-create-iso-progress-dialog.c:102
 msgid "Reading CD..."
 msgstr "Читання CD..."
 
-#: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:113
+#: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:115
 msgid "Create ISO from composition"
 msgstr "Створення образу з композиції"
 
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:115
+#: ../xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
 msgstr "Створити ISO з CD"
 
@@ -272,23 +275,23 @@ msgstr "Розмір"
 msgid "Local Path"
 msgstr "Локальний шлях"
 
-#: ../xfburn/xfburn-data-composition.c:600
+#: ../xfburn/xfburn-data-composition.c:594
 msgid "You must give a name to the file"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:609
-#: ../xfburn/xfburn-data-composition.c:988
+#: ../xfburn/xfburn-data-composition.c:603
+#: ../xfburn/xfburn-data-composition.c:1008
 msgid "A file with the same name is already present in the composition"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:690
-#: ../xfburn/xfburn-data-composition.c:691
-#: ../xfburn/xfburn-data-composition.c:693
+#: ../xfburn/xfburn-data-composition.c:684
+#: ../xfburn/xfburn-data-composition.c:685
+#: ../xfburn/xfburn-data-composition.c:687
 #, fuzzy
 msgid "New directory"
 msgstr "Тимчасова тека"
 
-#: ../xfburn/xfburn-data-composition.c:1169
+#: ../xfburn/xfburn-data-composition.c:1189
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
@@ -304,19 +307,19 @@ msgstr "Записати композицію"
 msgid "You are trying to burn more data than the disk can contain !"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:115 ../xfburn/xfburn-device-box.c:116
+#: ../xfburn/xfburn-device-box.c:114 ../xfburn/xfburn-device-box.c:115
 msgid "Show writers only"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:118
+#: ../xfburn/xfburn-device-box.c:117
 msgid "Show speed selection"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:119
+#: ../xfburn/xfburn-device-box.c:118
 msgid "Show speed selection list and refresh button"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:154
+#: ../xfburn/xfburn-device-box.c:153
 msgid "_Speed :"
 msgstr "_Швидкість:"
 
@@ -334,6 +337,17 @@ msgstr "Файл"
 msgid "Type"
 msgstr "Тип"
 
+#: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:127
+#, fuzzy
+msgid "Format DVD+RW"
+msgstr "Форматувати DVD-RW"
+
+#. "xfburn-blank-cdrw"
+#: ../xfburn/xfburn-format-dvd-dialog.c:124
+#, fuzzy
+msgid "_Format"
+msgstr "_Примусово"
+
 #: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:260
 msgid "Filesystem"
 msgstr "Файлова система"
@@ -344,21 +358,21 @@ msgstr "Файлова система"
 msgid "%s's home"
 msgstr "Домашня тека %s"
 
-#: ../xfburn/xfburn-main.c:58 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:56 ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:87
+#: ../xfburn/xfburn-main-window.c:93
 msgid "_File"
 msgstr "_Файл"
 
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#: ../xfburn/xfburn-main-window.c:89
+#: ../xfburn/xfburn-main-window.c:95
 #, fuzzy
 msgid "_New composition"
 msgstr "Зберегти композицію"
 
-#: ../xfburn/xfburn-main-window.c:89
+#: ../xfburn/xfburn-main-window.c:95
 #, fuzzy
 msgid "Create a new composition"
 msgstr "Створення образу з композиції"
@@ -373,110 +387,113 @@ msgstr "Створення образу з композиції"
 #. G_CALLBACK (action_save),},
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
-#: ../xfburn/xfburn-main-window.c:101
+#: ../xfburn/xfburn-main-window.c:107
 #, fuzzy
 msgid "Close composition"
 msgstr "Зберегти композицію"
 
-#: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
+#: ../xfburn/xfburn-main-window.c:109
 msgid "_Quit"
 msgstr "Ви_йти"
 
-#: ../xfburn/xfburn-main-window.c:103
+#: ../xfburn/xfburn-main-window.c:109
 msgid "Quit Xfburn"
 msgstr "Вийти з Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:104
+#: ../xfburn/xfburn-main-window.c:110
 msgid "_Edit"
 msgstr "_Правка"
 
-#: ../xfburn/xfburn-main-window.c:105
+#: ../xfburn/xfburn-main-window.c:111
 msgid "Prefere_nces"
 msgstr "П_араметри"
 
-#: ../xfburn/xfburn-main-window.c:105
+#: ../xfburn/xfburn-main-window.c:111
 msgid "Show preferences dialog"
 msgstr "Показувати діалог параметрів"
 
-#: ../xfburn/xfburn-main-window.c:107
+#: ../xfburn/xfburn-main-window.c:113
 msgid "_Actions"
 msgstr "Ді_ї"
 
-#: ../xfburn/xfburn-main-window.c:108
+#: ../xfburn/xfburn-main-window.c:114
 msgid "_View"
 msgstr "_Вигляд"
 
-#: ../xfburn/xfburn-main-window.c:109
+#: ../xfburn/xfburn-main-window.c:115
 msgid "Refresh"
 msgstr "Оновити"
 
-#: ../xfburn/xfburn-main-window.c:109
+#: ../xfburn/xfburn-main-window.c:115
 msgid "Refresh file list"
 msgstr "Оновити список файлів"
 
-#: ../xfburn/xfburn-main-window.c:111
+#: ../xfburn/xfburn-main-window.c:117
 msgid "_Help"
 msgstr "_Довідка"
 
-#: ../xfburn/xfburn-main-window.c:112
+#: ../xfburn/xfburn-main-window.c:118
 msgid "_About"
 msgstr "_Про програму"
 
-#: ../xfburn/xfburn-main-window.c:112
+#: ../xfburn/xfburn-main-window.c:118
 msgid "Display information about Xfburn"
 msgstr "Відобразити інформацію про Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:116
-msgid "Format DVD-RW"
-msgstr "Форматувати DVD-RW"
-
-#: ../xfburn/xfburn-main-window.c:117
+#: ../xfburn/xfburn-main-window.c:122
 msgid "Copy Data CD"
 msgstr "Копіювати CD з даними"
 
-#: ../xfburn/xfburn-main-window.c:119
+#: ../xfburn/xfburn-main-window.c:124
 msgid "Copy Audio CD"
 msgstr "Програвач аудіо-диск"
 
-#: ../xfburn/xfburn-main-window.c:120
+#: ../xfburn/xfburn-main-window.c:125
 msgid "Burn CD Image"
 msgstr "Записати образ диску"
 
-#: ../xfburn/xfburn-main-window.c:125
+#: ../xfburn/xfburn-main-window.c:129
+#, fuzzy
+msgid "Copy DVD"
+msgstr "_Копіювати диск"
+
+#: ../xfburn/xfburn-main-window.c:131
+#, fuzzy
+msgid "Burn DVD Image"
+msgstr "Записати образ диску"
+
+#: ../xfburn/xfburn-main-window.c:136
 msgid "Show file browser"
 msgstr "Перегляд файлів"
 
-#: ../xfburn/xfburn-main-window.c:125
+#: ../xfburn/xfburn-main-window.c:136
 msgid "Show/hide the file browser"
 msgstr "Показати/сховати панель перегляду файлів"
 
-#: ../xfburn/xfburn-main-window.c:127
+#: ../xfburn/xfburn-main-window.c:138
 msgid "Show toolbar"
 msgstr "Показати панель інструментів"
 
-#: ../xfburn/xfburn-main-window.c:127
+#: ../xfburn/xfburn-main-window.c:138
 msgid "Show/hide the toolbar"
 msgstr "Показати/сховати панель інструментів"
 
-#: ../xfburn/xfburn-main-window.c:331
+#: ../xfburn/xfburn-main-window.c:344
 msgid "Toolbar Editor"
 msgstr "Редактор панелі інструментів"
 
-#: ../xfburn/xfburn-main-window.c:436
-msgid "Are sure you want to quit?"
-msgstr "Ви дійсно хочете вийти?"
-
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: ../xfburn/xfburn-main-window.c:473
-msgid "Another cd burning tool"
+#: ../xfburn/xfburn-main-window.c:514
+#, fuzzy
+msgid "Another cd burning GUI"
 msgstr "Ще один інструмент для запису CD"
 
-#: ../xfburn/xfburn-main-window.c:476
+#: ../xfburn/xfburn-main-window.c:517
 msgid "Author/Maintainer"
 msgstr "Автор та супровід"
 
-#: ../xfburn/xfburn-main-window.c:482
+#: ../xfburn/xfburn-main-window.c:522
 #, c-format
 msgid "Translator (%s)"
 msgstr "Перекладач (%s)"
@@ -610,27 +627,7 @@ msgstr "Скасовано"
 msgid "Completed"
 msgstr "Завершено"
 
-#: ../xfburn/xfburn-utils.c:177
-msgid "Failed to open /proc/scsi/sg/devices"
-msgstr "Не вдається відкрити /proc/scsi/sg/devices"
-
-#: ../xfburn/xfburn-utils.c:180
-msgid "Failed to open /proc/scsi/sg/device_strs"
-msgstr "Не вдається відкрити /proc/scsi/sg/device_strs"
-
-#: ../xfburn/xfburn-utils.c:191
-msgid "Error reading scsi information from /proc/scsi/sg/devices"
-msgstr "Помилка при читанні scsi інформації з /proc/scsi/sg/devices"
-
-#: ../xfburn/xfburn-utils.c:337
-msgid "No disc in the cdrom drive"
-msgstr "У пристрої відсутній компакт-диск"
-
-#: ../xfburn/xfburn-utils.c:340
-msgid "No message..."
-msgstr "Немає повідомлення..."
-
-#: ../xfburn/xfburn-utils.c:437
+#: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
 msgstr "Виберіть команду"
 
@@ -642,6 +639,24 @@ msgstr "типовий"
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "Програма для запису CD та DVD"
+
+#~ msgid "Are sure you want to quit?"
+#~ msgstr "Ви дійсно хочете вийти?"
+
+#~ msgid "Failed to open /proc/scsi/sg/devices"
+#~ msgstr "Не вдається відкрити /proc/scsi/sg/devices"
+
+#~ msgid "Failed to open /proc/scsi/sg/device_strs"
+#~ msgstr "Не вдається відкрити /proc/scsi/sg/device_strs"
+
+#~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
+#~ msgstr "Помилка при читанні scsi інформації з /proc/scsi/sg/devices"
+
+#~ msgid "No disc in the cdrom drive"
+#~ msgstr "У пристрої відсутній компакт-диск"
+
+#~ msgid "No message..."
+#~ msgstr "Немає повідомлення..."
 
 #~ msgid "Burn Data CD"
 #~ msgstr "Записати диск з даними"

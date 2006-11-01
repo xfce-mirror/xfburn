@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-11 19:04+0200\n"
+"POT-Creation-Date: 2006-11-01 17:37+0100\n"
 "PO-Revision-Date: 2006-08-20 01:08+0800\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
@@ -23,15 +23,16 @@ msgid "Adding files to the composition"
 msgstr ""
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:94
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:149
-#: ../xfburn/xfburn-main-window.c:114
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:151
+#: ../xfburn/xfburn-main-window.c:120
 msgid "Blank CD-RW"
 msgstr "CD-RW を空にする"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:105
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:131
-#: ../xfburn/xfburn-burn-image-dialog.c:123
+#: ../xfburn/xfburn-burn-image-dialog.c:122
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
+#: ../xfburn/xfburn-format-dvd-dialog.c:102
 msgid "Burning device"
 msgstr "焼き付け先のデバイス"
 
@@ -57,8 +58,9 @@ msgstr "ブランクのタイプ"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:126
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:152
-#: ../xfburn/xfburn-burn-image-dialog.c:144
+#: ../xfburn/xfburn-burn-image-dialog.c:143
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
+#: ../xfburn/xfburn-format-dvd-dialog.c:110
 msgid "Options"
 msgstr "オプション"
 
@@ -68,8 +70,9 @@ msgstr "強制的に(_F)"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:134
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:156
-#: ../xfburn/xfburn-burn-image-dialog.c:148
+#: ../xfburn/xfburn-burn-image-dialog.c:147
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
+#: ../xfburn/xfburn-format-dvd-dialog.c:114
 msgid "E_ject disk"
 msgstr "ディスクを取出す(_J)"
 
@@ -77,11 +80,11 @@ msgstr "ディスクを取出す(_J)"
 msgid "_Blank"
 msgstr "空にする(_B)"
 
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:131
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:133
 msgid "Blanking..."
 msgstr "空にしています..."
 
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:134
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:136
 msgid "Performing OPC..."
 msgstr "OPC を実行しています..."
 
@@ -90,18 +93,18 @@ msgid "Burn Composition"
 msgstr "構成内容を焼く"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:140
-#: ../xfburn/xfburn-burn-image-dialog.c:132
+#: ../xfburn/xfburn-burn-image-dialog.c:131
 msgid "Write _mode :"
 msgstr "書き込みモード(_M) :"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:161
-#: ../xfburn/xfburn-burn-image-dialog.c:153
+#: ../xfburn/xfburn-burn-image-dialog.c:152
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
 msgid "_Dummy write"
 msgstr "ダミーを書出す(_D)"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:165
-#: ../xfburn/xfburn-burn-image-dialog.c:157
+#: ../xfburn/xfburn-burn-image-dialog.c:156
 msgid "Burn_Free"
 msgstr "自由に焼く(_F)"
 
@@ -115,43 +118,43 @@ msgstr "ISO のみ作成(_I)"
 msgid "_Burn Composition"
 msgstr "構成内容を焼く(_B)"
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:90
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:84
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:89
 msgid "Finishing"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:96
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:90
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:95
 msgid "Fixating..."
 msgstr "定着させています..."
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:98
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:110
 #, fuzzy
 msgid "Writing composition..."
 msgstr "構成内容を焼く"
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:126
 #, fuzzy
 msgid "Burn data composition"
 msgstr "構成内容を保存"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:105
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:128
+#: ../xfburn/xfburn-burn-image-dialog.c:104
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:127
 msgid "Burn CD image"
 msgstr "CD イメージを焼く"
 
 #. file
-#: ../xfburn/xfburn-burn-image-dialog.c:112
-#: ../xfburn/xfburn-burn-image-dialog.c:115
+#: ../xfburn/xfburn-burn-image-dialog.c:111
+#: ../xfburn/xfburn-burn-image-dialog.c:114
 msgid "Image to burn"
 msgstr "焼き付けるイメージ"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:167
+#: ../xfburn/xfburn-burn-image-dialog.c:166
 msgid "_Burn image"
 msgstr "イメージを焼く(_B)"
 
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:109
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:108
 msgid "Writing ISO..."
 msgstr "ISO を書き込んでいます..."
 
@@ -162,7 +165,7 @@ msgid "Data composition"
 msgstr "構成内容をロード"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:154
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
 msgstr "データ CD をコピー"
 
@@ -178,28 +181,28 @@ msgstr "すぐに(_F)"
 msgid "_Copy CD"
 msgstr "CD をコピー(_C)"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:91
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
 msgstr "キャッシュをフラッシュしています..."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:103
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable medium."
 msgstr "記録可能なメディアを挿入して下さい。"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:125
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
 msgstr "CD を書き込んでいます..."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:138
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:100
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
+#: ../xfburn/xfburn-create-iso-progress-dialog.c:102
 msgid "Reading CD..."
 msgstr "CD を読み込んでいます..."
 
-#: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:113
+#: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:115
 msgid "Create ISO from composition"
 msgstr "構成内容から ISO イメージを作成"
 
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:115
+#: ../xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
 msgstr "CD から ISO イメージを作成"
 
@@ -273,23 +276,23 @@ msgstr "サイズ"
 msgid "Local Path"
 msgstr "ローカルパス"
 
-#: ../xfburn/xfburn-data-composition.c:600
+#: ../xfburn/xfburn-data-composition.c:594
 msgid "You must give a name to the file"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:609
-#: ../xfburn/xfburn-data-composition.c:988
+#: ../xfburn/xfburn-data-composition.c:603
+#: ../xfburn/xfburn-data-composition.c:1008
 msgid "A file with the same name is already present in the composition"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:690
-#: ../xfburn/xfburn-data-composition.c:691
-#: ../xfburn/xfburn-data-composition.c:693
+#: ../xfburn/xfburn-data-composition.c:684
+#: ../xfburn/xfburn-data-composition.c:685
+#: ../xfburn/xfburn-data-composition.c:687
 #, fuzzy
 msgid "New directory"
 msgstr "作業用フォルダ"
 
-#: ../xfburn/xfburn-data-composition.c:1169
+#: ../xfburn/xfburn-data-composition.c:1189
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
@@ -305,19 +308,19 @@ msgstr "構成内容を焼く"
 msgid "You are trying to burn more data than the disk can contain !"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:115 ../xfburn/xfburn-device-box.c:116
+#: ../xfburn/xfburn-device-box.c:114 ../xfburn/xfburn-device-box.c:115
 msgid "Show writers only"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:118
+#: ../xfburn/xfburn-device-box.c:117
 msgid "Show speed selection"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:119
+#: ../xfburn/xfburn-device-box.c:118
 msgid "Show speed selection list and refresh button"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:154
+#: ../xfburn/xfburn-device-box.c:153
 msgid "_Speed :"
 msgstr "速度(_S) :"
 
@@ -335,6 +338,17 @@ msgstr "ファイル"
 msgid "Type"
 msgstr "タイプ"
 
+#: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:127
+#, fuzzy
+msgid "Format DVD+RW"
+msgstr "DVD-RW を初期化"
+
+#. "xfburn-blank-cdrw"
+#: ../xfburn/xfburn-format-dvd-dialog.c:124
+#, fuzzy
+msgid "_Format"
+msgstr "強制的に(_F)"
+
 #: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:260
 msgid "Filesystem"
 msgstr "ファイルシステム"
@@ -345,21 +359,21 @@ msgstr "ファイルシステム"
 msgid "%s's home"
 msgstr "%s のホームフォルダ"
 
-#: ../xfburn/xfburn-main.c:58 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:56 ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:87
+#: ../xfburn/xfburn-main-window.c:93
 msgid "_File"
 msgstr "ファイル(_F)"
 
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#: ../xfburn/xfburn-main-window.c:89
+#: ../xfburn/xfburn-main-window.c:95
 #, fuzzy
 msgid "_New composition"
 msgstr "構成内容を保存"
 
-#: ../xfburn/xfburn-main-window.c:89
+#: ../xfburn/xfburn-main-window.c:95
 #, fuzzy
 msgid "Create a new composition"
 msgstr "構成内容から ISO イメージを作成"
@@ -374,110 +388,113 @@ msgstr "構成内容から ISO イメージを作成"
 #. G_CALLBACK (action_save),},
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
-#: ../xfburn/xfburn-main-window.c:101
+#: ../xfburn/xfburn-main-window.c:107
 #, fuzzy
 msgid "Close composition"
 msgstr "構成内容を保存"
 
-#: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
+#: ../xfburn/xfburn-main-window.c:109
 msgid "_Quit"
 msgstr "終了(_Q)"
 
-#: ../xfburn/xfburn-main-window.c:103
+#: ../xfburn/xfburn-main-window.c:109
 msgid "Quit Xfburn"
 msgstr "Xfburn を終了します"
 
-#: ../xfburn/xfburn-main-window.c:104
+#: ../xfburn/xfburn-main-window.c:110
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../xfburn/xfburn-main-window.c:105
+#: ../xfburn/xfburn-main-window.c:111
 msgid "Prefere_nces"
 msgstr "環境設定(_N)"
 
-#: ../xfburn/xfburn-main-window.c:105
+#: ../xfburn/xfburn-main-window.c:111
 msgid "Show preferences dialog"
 msgstr "環境設定ダイアログを表示します"
 
-#: ../xfburn/xfburn-main-window.c:107
+#: ../xfburn/xfburn-main-window.c:113
 msgid "_Actions"
 msgstr "アクション(_A)"
 
-#: ../xfburn/xfburn-main-window.c:108
+#: ../xfburn/xfburn-main-window.c:114
 msgid "_View"
 msgstr "表示(_V)"
 
-#: ../xfburn/xfburn-main-window.c:109
+#: ../xfburn/xfburn-main-window.c:115
 msgid "Refresh"
 msgstr "更新"
 
-#: ../xfburn/xfburn-main-window.c:109
+#: ../xfburn/xfburn-main-window.c:115
 msgid "Refresh file list"
 msgstr "ファイルのリストを更新します"
 
-#: ../xfburn/xfburn-main-window.c:111
+#: ../xfburn/xfburn-main-window.c:117
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../xfburn/xfburn-main-window.c:112
+#: ../xfburn/xfburn-main-window.c:118
 msgid "_About"
 msgstr "このプログラムについて(_A)"
 
-#: ../xfburn/xfburn-main-window.c:112
+#: ../xfburn/xfburn-main-window.c:118
 msgid "Display information about Xfburn"
 msgstr "Xfburn についての情報を表示します"
 
-#: ../xfburn/xfburn-main-window.c:116
-msgid "Format DVD-RW"
-msgstr "DVD-RW を初期化"
-
-#: ../xfburn/xfburn-main-window.c:117
+#: ../xfburn/xfburn-main-window.c:122
 msgid "Copy Data CD"
 msgstr "データ CD をコピー"
 
-#: ../xfburn/xfburn-main-window.c:119
+#: ../xfburn/xfburn-main-window.c:124
 msgid "Copy Audio CD"
 msgstr "オーディオ CD をコピー"
 
-#: ../xfburn/xfburn-main-window.c:120
+#: ../xfburn/xfburn-main-window.c:125
 msgid "Burn CD Image"
 msgstr "CD イメージを焼く"
 
-#: ../xfburn/xfburn-main-window.c:125
+#: ../xfburn/xfburn-main-window.c:129
+#, fuzzy
+msgid "Copy DVD"
+msgstr "CD をコピー(_C)"
+
+#: ../xfburn/xfburn-main-window.c:131
+#, fuzzy
+msgid "Burn DVD Image"
+msgstr "CD イメージを焼く"
+
+#: ../xfburn/xfburn-main-window.c:136
 msgid "Show file browser"
 msgstr "ファイルブラウザーを表示"
 
-#: ../xfburn/xfburn-main-window.c:125
+#: ../xfburn/xfburn-main-window.c:136
 msgid "Show/hide the file browser"
 msgstr "ファイルブラウザーを表示/隠します"
 
-#: ../xfburn/xfburn-main-window.c:127
+#: ../xfburn/xfburn-main-window.c:138
 msgid "Show toolbar"
 msgstr "ツールバーを表示"
 
-#: ../xfburn/xfburn-main-window.c:127
+#: ../xfburn/xfburn-main-window.c:138
 msgid "Show/hide the toolbar"
 msgstr "ツールバーを表示/隠します"
 
-#: ../xfburn/xfburn-main-window.c:331
+#: ../xfburn/xfburn-main-window.c:344
 msgid "Toolbar Editor"
 msgstr "ツールバーエディター"
 
-#: ../xfburn/xfburn-main-window.c:436
-msgid "Are sure you want to quit?"
-msgstr "終了してもよろしいですか？"
-
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: ../xfburn/xfburn-main-window.c:473
-msgid "Another cd burning tool"
+#: ../xfburn/xfburn-main-window.c:514
+#, fuzzy
+msgid "Another cd burning GUI"
 msgstr "CD 焼き付けツールです"
 
-#: ../xfburn/xfburn-main-window.c:476
+#: ../xfburn/xfburn-main-window.c:517
 msgid "Author/Maintainer"
 msgstr "著作者/メインテナー"
 
-#: ../xfburn/xfburn-main-window.c:482
+#: ../xfburn/xfburn-main-window.c:522
 #, c-format
 msgid "Translator (%s)"
 msgstr "翻訳者 (%s)"
@@ -611,27 +628,7 @@ msgstr "取り消されました"
 msgid "Completed"
 msgstr "完了しました"
 
-#: ../xfburn/xfburn-utils.c:177
-msgid "Failed to open /proc/scsi/sg/devices"
-msgstr "/proc/scsi/sg/devices を開くのに失敗しました"
-
-#: ../xfburn/xfburn-utils.c:180
-msgid "Failed to open /proc/scsi/sg/device_strs"
-msgstr "/proc/scsi/sg/device_strs を開くのに失敗しました"
-
-#: ../xfburn/xfburn-utils.c:191
-msgid "Error reading scsi information from /proc/scsi/sg/devices"
-msgstr "/proc/scsi/sg/devices から SCSI 情報を読み出すのに失敗しました"
-
-#: ../xfburn/xfburn-utils.c:337
-msgid "No disc in the cdrom drive"
-msgstr "CD-ROM ドライブにディスクがありません"
-
-#: ../xfburn/xfburn-utils.c:340
-msgid "No message..."
-msgstr "メッセージがありません..."
-
-#: ../xfburn/xfburn-utils.c:437
+#: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
 msgstr "コマンドを選択して下さい"
 
@@ -643,6 +640,24 @@ msgstr "標準"
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "CD や DVD を焼くアプリケーションです"
+
+#~ msgid "Are sure you want to quit?"
+#~ msgstr "終了してもよろしいですか？"
+
+#~ msgid "Failed to open /proc/scsi/sg/devices"
+#~ msgstr "/proc/scsi/sg/devices を開くのに失敗しました"
+
+#~ msgid "Failed to open /proc/scsi/sg/device_strs"
+#~ msgstr "/proc/scsi/sg/device_strs を開くのに失敗しました"
+
+#~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
+#~ msgstr "/proc/scsi/sg/devices から SCSI 情報を読み出すのに失敗しました"
+
+#~ msgid "No disc in the cdrom drive"
+#~ msgstr "CD-ROM ドライブにディスクがありません"
+
+#~ msgid "No message..."
+#~ msgstr "メッセージがありません..."
 
 #~ msgid "Burn Data CD"
 #~ msgstr "データ CD を焼く"

@@ -32,7 +32,9 @@
 #include "xfburn-file-browser.h"
 #include "xfburn-compositions-notebook.h"
 #include "xfburn-blank-cd-dialog.h"
+#include "xfburn-format-dvd-dialog.h"
 #include "xfburn-copy-cd-dialog.h"
+#include "xfburn-copy-dvd-dialog.h"
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-settings.h"
@@ -77,6 +79,10 @@ static void action_blank_cd (GtkAction *, XfburnMainWindow *);
 static void action_copy_cd (GtkAction *, XfburnMainWindow *);
 static void action_burn_image (GtkAction *, XfburnMainWindow *);
 
+static void action_format_dvd (GtkAction *, XfburnMainWindow *);
+static void action_copy_dvd (GtkAction *, XfburnMainWindow *);
+static void action_burn_dvd_image (GtkAction *, XfburnMainWindow *);
+
 static void action_refresh_directorybrowser (GtkAction *, XfburnMainWindow *);
 static void action_show_filebrowser (GtkToggleAction *, XfburnMainWindow *);
 static void action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window);
@@ -113,12 +119,17 @@ static const GtkActionEntry action_entries[] = {
    G_CALLBACK (action_about),},
   {"blank-cd", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),
    G_CALLBACK (action_blank_cd),},
-  {"format-dvd", "xfburn-blank-dvdrw", N_("Format DVD-RW"), NULL, N_("Format DVD-RW"),},
   {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),
    G_CALLBACK (action_copy_cd),},
   {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
   {"burn-cd", "xfburn-burn-cd", N_("Burn CD Image"), NULL, N_("Burn CD Image"),
    G_CALLBACK (action_burn_image),},
+  {"format-dvd", "xfburn-format-dvdrw", N_("Format DVD+RW"), NULL, N_("Format DVD+RW"),
+   G_CALLBACK (action_format_dvd),},
+  {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
+   G_CALLBACK (action_copy_dvd),},
+  {"burn-dvd", "xfburn-burn-cd", N_("Burn DVD Image"), NULL, N_("Burn DVD Image"),
+   G_CALLBACK (action_burn_dvd_image),},
 };
 
 static const GtkToggleActionEntry toggle_action_entries[] = {
@@ -134,10 +145,12 @@ static const gchar *toolbar_actions[] = {
   "save-composition",
   "close-composition",*/
   "blank-cd",
-  //"format-dvd",
   "copy-data",
   //"copy-audio",
   "burn-cd",
+  "format-dvd",
+  "copy-dvd",
+  "burn-dvd",
   "refresh",
   "about",
   "preferences",
@@ -385,6 +398,33 @@ action_burn_image (GtkAction * action, XfburnMainWindow * window)
 }
 
 static void
+action_format_dvd (GtkAction * action, XfburnMainWindow * window)
+{
+  GtkWidget *dialog;
+  
+  dialog = xfburn_format_dvd_dialog_new ();
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+}
+
+static void
+action_copy_dvd (GtkAction * action, XfburnMainWindow * window)
+{
+  GtkWidget *dialog;
+  
+  dialog = xfburn_copy_dvd_dialog_new ();
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+  gtk_dialog_run (GTK_DIALOG (dialog)); 
+  gtk_widget_destroy (dialog);
+}
+
+static void
+action_burn_dvd_image (GtkAction * action, XfburnMainWindow * window)
+{
+}
+
+static void
 action_load (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
@@ -471,11 +511,10 @@ action_about (GtkAction * action, XfburnMainWindow * window)
   //if (G_UNLIKELY (icon == NULL))
   //icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
   
-  info = xfce_about_info_new ("Xfburn", VERSION, _("Another cd burning tool"),
+  info = xfce_about_info_new ("Xfburn", VERSION, _("Another cd burning GUI"),
                               XFCE_COPYRIGHT_TEXT ("2005-2006", "Jean-François Wauthy"), XFCE_LICENSE_GPL);
   xfce_about_info_set_homepage (info, "http://www.xfce.org/");
   xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Author/Maintainer"));
-  //xfce_about_info_add_credit (info, "Francois Le Clainche", "fleclainche@wanadoo.fr", _("Icon Designer"));
 
   for (n = 0; n < G_N_ELEMENTS (translators); ++n) {
     gchar *s;

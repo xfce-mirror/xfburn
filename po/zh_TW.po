@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfburn 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-11 19:04+0200\n"
+"POT-Creation-Date: 2006-11-01 17:37+0100\n"
 "PO-Revision-Date: 2006-08-20 01:09+0800\n"
 "Last-Translator: Cosmo Chene <cosmolax@gmail.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -21,15 +21,16 @@ msgid "Adding files to the composition"
 msgstr "將檔案加入燒錄流程中"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:94
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:149
-#: ../xfburn/xfburn-main-window.c:114
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:151
+#: ../xfburn/xfburn-main-window.c:120
 msgid "Blank CD-RW"
 msgstr "抹寫 CD-RW"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:105
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:131
-#: ../xfburn/xfburn-burn-image-dialog.c:123
+#: ../xfburn/xfburn-burn-image-dialog.c:122
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
+#: ../xfburn/xfburn-format-dvd-dialog.c:102
 msgid "Burning device"
 msgstr "燒錄裝置"
 
@@ -55,8 +56,9 @@ msgstr "抹寫方式"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:126
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:152
-#: ../xfburn/xfburn-burn-image-dialog.c:144
+#: ../xfburn/xfburn-burn-image-dialog.c:143
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
+#: ../xfburn/xfburn-format-dvd-dialog.c:110
 msgid "Options"
 msgstr "選項"
 
@@ -66,8 +68,9 @@ msgstr "強制執行(_F)"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:134
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:156
-#: ../xfburn/xfburn-burn-image-dialog.c:148
+#: ../xfburn/xfburn-burn-image-dialog.c:147
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
+#: ../xfburn/xfburn-format-dvd-dialog.c:114
 msgid "E_ject disk"
 msgstr "退出光碟片(_J)"
 
@@ -75,11 +78,11 @@ msgstr "退出光碟片(_J)"
 msgid "_Blank"
 msgstr "抹除(_B)"
 
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:131
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:133
 msgid "Blanking..."
 msgstr "資料抹除中."
 
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:134
+#: ../xfburn/xfburn-blank-cd-progress-dialog.c:136
 msgid "Performing OPC..."
 msgstr "執行光碟片燒錄最佳化"
 
@@ -88,18 +91,18 @@ msgid "Burn Composition"
 msgstr "燒錄所選的資料內容"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:140
-#: ../xfburn/xfburn-burn-image-dialog.c:132
+#: ../xfburn/xfburn-burn-image-dialog.c:131
 msgid "Write _mode :"
 msgstr "寫入模式(_M):"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:161
-#: ../xfburn/xfburn-burn-image-dialog.c:153
+#: ../xfburn/xfburn-burn-image-dialog.c:152
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
 msgid "_Dummy write"
 msgstr "模擬燒錄(_D)"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:165
-#: ../xfburn/xfburn-burn-image-dialog.c:157
+#: ../xfburn/xfburn-burn-image-dialog.c:156
 msgid "Burn_Free"
 msgstr "防燒壞功能(_F)"
 
@@ -113,41 +116,41 @@ msgstr "只會建立映像檔(_I)"
 msgid "_Burn Composition"
 msgstr "燒錄所選的內容(_B)"
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:82
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:90
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:84
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:89
 msgid "Finishing"
 msgstr "結束燒錄中"
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:88
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:96
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:90
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:95
 msgid "Fixating..."
 msgstr "關閉區段中"
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:96
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:108
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:98
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:110
 msgid "Writing composition..."
 msgstr "燒錄所選的燒錄流程"
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:124
+#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:126
 msgid "Burn data composition"
 msgstr "燒錄資料光碟"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:105
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:128
+#: ../xfburn/xfburn-burn-image-dialog.c:104
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:127
 msgid "Burn CD image"
 msgstr "燒錄光碟映像檔"
 
 #. file
-#: ../xfburn/xfburn-burn-image-dialog.c:112
-#: ../xfburn/xfburn-burn-image-dialog.c:115
+#: ../xfburn/xfburn-burn-image-dialog.c:111
+#: ../xfburn/xfburn-burn-image-dialog.c:114
 msgid "Image to burn"
 msgstr "欲燒錄的映像檔"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:167
+#: ../xfburn/xfburn-burn-image-dialog.c:166
 msgid "_Burn image"
 msgstr "燒錄映像檔(_B)"
 
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:109
+#: ../xfburn/xfburn-burn-image-progress-dialog.c:108
 msgid "Writing ISO..."
 msgstr "正在寫入映像檔"
 
@@ -157,7 +160,7 @@ msgid "Data composition"
 msgstr "燒錄資料"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:154
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
 msgstr "複製資料光碟"
 
@@ -173,28 +176,28 @@ msgstr "即時燒錄(_F)"
 msgid "_Copy CD"
 msgstr "複製光碟(_C)"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:91
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
 msgstr "正在回存緩衝快取"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:103
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable medium."
 msgstr "請放入可供燒錄的光碟媒體"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:125
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
 msgstr "寫入光碟中..."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:138
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:100
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
+#: ../xfburn/xfburn-create-iso-progress-dialog.c:102
 msgid "Reading CD..."
 msgstr "正在讀取光碟"
 
-#: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:113
+#: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:115
 msgid "Create ISO from composition"
 msgstr "從選取的燒錄內容建立映像檔"
 
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:115
+#: ../xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
 msgstr "從光碟製作映像檔"
 
@@ -263,29 +266,27 @@ msgstr "大小"
 msgid "Local Path"
 msgstr "本地路徑"
 
-#: ../xfburn/xfburn-data-composition.c:600
+#: ../xfburn/xfburn-data-composition.c:594
 msgid "You must give a name to the file"
 msgstr "您必須賦予檔案一個可用的名稱"
 
-#: ../xfburn/xfburn-data-composition.c:609
-#: ../xfburn/xfburn-data-composition.c:988
+#: ../xfburn/xfburn-data-composition.c:603
+#: ../xfburn/xfburn-data-composition.c:1008
 msgid "A file with the same name is already present in the composition"
 msgstr "相同名稱的檔案已存在於本次燒錄流程中"
 
-#: ../xfburn/xfburn-data-composition.c:690
-#: ../xfburn/xfburn-data-composition.c:691
-#: ../xfburn/xfburn-data-composition.c:693
+#: ../xfburn/xfburn-data-composition.c:684
+#: ../xfburn/xfburn-data-composition.c:685
+#: ../xfburn/xfburn-data-composition.c:687
 msgid "New directory"
 msgstr "新增資料夾"
 
-#: ../xfburn/xfburn-data-composition.c:1169
+#: ../xfburn/xfburn-data-composition.c:1189
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added"
-msgstr ""
-"名稱為 \"%s\" 的檔案已在此資料夾中，您無法再次加入這個檔案。"
-""
+msgstr "名稱為 \"%s\" 的檔案已在此資料夾中，您無法再次加入這個檔案。"
 
 #: ../xfburn/xfburn-data-disc-usage.c:129
 msgid "Burn composition"
@@ -295,19 +296,19 @@ msgstr "燒錄這個燒錄流程"
 msgid "You are trying to burn more data than the disk can contain !"
 msgstr "您想燒錄的資料大小超過光碟本身的容量!"
 
-#: ../xfburn/xfburn-device-box.c:115 ../xfburn/xfburn-device-box.c:116
+#: ../xfburn/xfburn-device-box.c:114 ../xfburn/xfburn-device-box.c:115
 msgid "Show writers only"
 msgstr "只顯示燒錄機"
 
-#: ../xfburn/xfburn-device-box.c:118
+#: ../xfburn/xfburn-device-box.c:117
 msgid "Show speed selection"
 msgstr "顯示可選的燒錄速度"
 
-#: ../xfburn/xfburn-device-box.c:119
+#: ../xfburn/xfburn-device-box.c:118
 msgid "Show speed selection list and refresh button"
 msgstr "顯示選擇燒錄速度及重新整理的按鈕"
 
-#: ../xfburn/xfburn-device-box.c:154
+#: ../xfburn/xfburn-device-box.c:153
 msgid "_Speed :"
 msgstr "燒錄速度(_S):"
 
@@ -325,6 +326,17 @@ msgstr "檔案"
 msgid "Type"
 msgstr "類型"
 
+#: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:127
+#, fuzzy
+msgid "Format DVD+RW"
+msgstr "格式化 DVD-RW"
+
+#. "xfburn-blank-cdrw"
+#: ../xfburn/xfburn-format-dvd-dialog.c:124
+#, fuzzy
+msgid "_Format"
+msgstr "強制執行(_F)"
+
 #: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:260
 msgid "Filesystem"
 msgstr "檔案系統"
@@ -335,20 +347,20 @@ msgstr "檔案系統"
 msgid "%s's home"
 msgstr "%s 的家目錄"
 
-#: ../xfburn/xfburn-main.c:58 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:56 ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:87
+#: ../xfburn/xfburn-main-window.c:93
 msgid "_File"
 msgstr "檔案(_F)"
 
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#: ../xfburn/xfburn-main-window.c:89
+#: ../xfburn/xfburn-main-window.c:95
 msgid "_New composition"
 msgstr "新建燒錄流程(_N)"
 
-#: ../xfburn/xfburn-main-window.c:89
+#: ../xfburn/xfburn-main-window.c:95
 msgid "Create a new composition"
 msgstr "建立新的燒錄流程"
 
@@ -362,109 +374,112 @@ msgstr "建立新的燒錄流程"
 #. G_CALLBACK (action_save),},
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
-#: ../xfburn/xfburn-main-window.c:101
+#: ../xfburn/xfburn-main-window.c:107
 msgid "Close composition"
 msgstr "結束燒錄流程"
 
-#: ../xfburn/xfburn-main-window.c:103 ../xfburn/xfburn-main-window.c:436
+#: ../xfburn/xfburn-main-window.c:109
 msgid "_Quit"
 msgstr "離開(_Q)"
 
-#: ../xfburn/xfburn-main-window.c:103
+#: ../xfburn/xfburn-main-window.c:109
 msgid "Quit Xfburn"
 msgstr "離開 Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:104
+#: ../xfburn/xfburn-main-window.c:110
 msgid "_Edit"
 msgstr "編輯(_E)"
 
-#: ../xfburn/xfburn-main-window.c:105
+#: ../xfburn/xfburn-main-window.c:111
 msgid "Prefere_nces"
 msgstr "功能設定(_N)"
 
-#: ../xfburn/xfburn-main-window.c:105
+#: ../xfburn/xfburn-main-window.c:111
 msgid "Show preferences dialog"
 msgstr "顯示功能選項對話框"
 
-#: ../xfburn/xfburn-main-window.c:107
+#: ../xfburn/xfburn-main-window.c:113
 msgid "_Actions"
 msgstr "動作(_A)"
 
-#: ../xfburn/xfburn-main-window.c:108
+#: ../xfburn/xfburn-main-window.c:114
 msgid "_View"
 msgstr "檢視(_V)"
 
-#: ../xfburn/xfburn-main-window.c:109
+#: ../xfburn/xfburn-main-window.c:115
 msgid "Refresh"
 msgstr "重新整理"
 
-#: ../xfburn/xfburn-main-window.c:109
+#: ../xfburn/xfburn-main-window.c:115
 msgid "Refresh file list"
 msgstr "重新整理檔案列表"
 
-#: ../xfburn/xfburn-main-window.c:111
+#: ../xfburn/xfburn-main-window.c:117
 msgid "_Help"
 msgstr "幫助(_H)"
 
-#: ../xfburn/xfburn-main-window.c:112
+#: ../xfburn/xfburn-main-window.c:118
 msgid "_About"
 msgstr "關於(_A)"
 
-#: ../xfburn/xfburn-main-window.c:112
+#: ../xfburn/xfburn-main-window.c:118
 msgid "Display information about Xfburn"
 msgstr "顯示關於 Xfburn 的資訊"
 
-#: ../xfburn/xfburn-main-window.c:116
-msgid "Format DVD-RW"
-msgstr "格式化 DVD-RW"
-
-#: ../xfburn/xfburn-main-window.c:117
+#: ../xfburn/xfburn-main-window.c:122
 msgid "Copy Data CD"
 msgstr "複製資料光碟"
 
-#: ../xfburn/xfburn-main-window.c:119
+#: ../xfburn/xfburn-main-window.c:124
 msgid "Copy Audio CD"
 msgstr "複製音樂光碟"
 
-#: ../xfburn/xfburn-main-window.c:120
+#: ../xfburn/xfburn-main-window.c:125
 msgid "Burn CD Image"
 msgstr "燒錄光碟映像檔"
 
-#: ../xfburn/xfburn-main-window.c:125
+#: ../xfburn/xfburn-main-window.c:129
+#, fuzzy
+msgid "Copy DVD"
+msgstr "複製光碟(_C)"
+
+#: ../xfburn/xfburn-main-window.c:131
+#, fuzzy
+msgid "Burn DVD Image"
+msgstr "燒錄光碟映像檔"
+
+#: ../xfburn/xfburn-main-window.c:136
 msgid "Show file browser"
 msgstr "顯示檔案瀏覽器"
 
-#: ../xfburn/xfburn-main-window.c:125
+#: ../xfburn/xfburn-main-window.c:136
 msgid "Show/hide the file browser"
 msgstr "顯示/隱藏 檔案瀏覽器"
 
-#: ../xfburn/xfburn-main-window.c:127
+#: ../xfburn/xfburn-main-window.c:138
 msgid "Show toolbar"
 msgstr "顯示工具列"
 
-#: ../xfburn/xfburn-main-window.c:127
+#: ../xfburn/xfburn-main-window.c:138
 msgid "Show/hide the toolbar"
 msgstr "顯示/隱藏 工具列"
 
-#: ../xfburn/xfburn-main-window.c:331
+#: ../xfburn/xfburn-main-window.c:344
 msgid "Toolbar Editor"
 msgstr "編輯工具列"
 
-#: ../xfburn/xfburn-main-window.c:436
-msgid "Are sure you want to quit?"
-msgstr "您確定要離開程式嗎?"
-
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: ../xfburn/xfburn-main-window.c:473
-msgid "Another cd burning tool"
+#: ../xfburn/xfburn-main-window.c:514
+#, fuzzy
+msgid "Another cd burning GUI"
 msgstr "啊就一個光碟燒錄程式啦"
 
-#: ../xfburn/xfburn-main-window.c:476
+#: ../xfburn/xfburn-main-window.c:517
 msgid "Author/Maintainer"
 msgstr "程式作者/維護人員"
 
-#: ../xfburn/xfburn-main-window.c:482
+#: ../xfburn/xfburn-main-window.c:522
 #, c-format
 msgid "Translator (%s)"
 msgstr "翻譯人員 (%s)"
@@ -597,27 +612,7 @@ msgstr "已取消"
 msgid "Completed"
 msgstr "已完成"
 
-#: ../xfburn/xfburn-utils.c:177
-msgid "Failed to open /proc/scsi/sg/devices"
-msgstr "無法開啟 /proc/scsi/sg/devices 裝置"
-
-#: ../xfburn/xfburn-utils.c:180
-msgid "Failed to open /proc/scsi/sg/device_strs"
-msgstr "無法開啟 /proc/scsi/sg/device_strs"
-
-#: ../xfburn/xfburn-utils.c:191
-msgid "Error reading scsi information from /proc/scsi/sg/devices"
-msgstr "從 /proc/scsi/sg/devices 中讀取裝置訊息時發生錯誤"
-
-#: ../xfburn/xfburn-utils.c:337
-msgid "No disc in the cdrom drive"
-msgstr "光碟機中未放入光碟"
-
-#: ../xfburn/xfburn-utils.c:340
-msgid "No message..."
-msgstr "沒有訊息..."
-
-#: ../xfburn/xfburn-utils.c:437
+#: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
 msgstr "選取指令"
 
@@ -628,6 +623,24 @@ msgstr "預設"
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "CD 及 DVD 燒錄程式"
+
+#~ msgid "Are sure you want to quit?"
+#~ msgstr "您確定要離開程式嗎?"
+
+#~ msgid "Failed to open /proc/scsi/sg/devices"
+#~ msgstr "無法開啟 /proc/scsi/sg/devices 裝置"
+
+#~ msgid "Failed to open /proc/scsi/sg/device_strs"
+#~ msgstr "無法開啟 /proc/scsi/sg/device_strs"
+
+#~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
+#~ msgstr "從 /proc/scsi/sg/devices 中讀取裝置訊息時發生錯誤"
+
+#~ msgid "No disc in the cdrom drive"
+#~ msgstr "光碟機中未放入光碟"
+
+#~ msgid "No message..."
+#~ msgstr "沒有訊息..."
 
 #~ msgid "Burn Data CD"
 #~ msgstr "燒錄資料光碟"

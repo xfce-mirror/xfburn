@@ -40,7 +40,7 @@
 #define CDRECORD_INCOMPATIBLE_MEDIUM "cannot format medium - incmedium"
 #define CDRECORD_NO_DISK_WRONG_DISK "No disk / Wrong disk!"
 
-#define READCD_CAPACITY "end:"
+#define READCD_CAPACITY "Capacity:"
 #define READCD_PROGRESS "addr:"
 #define READCD_DONE "Time total:"
 
