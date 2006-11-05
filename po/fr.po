@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-11-01 17:37+0100\n"
-"PO-Revision-Date: 2006-08-13 16:19+0100\n"
+"PO-Revision-Date: 2006-11-04 18:41+0100\n"
 "Last-Translator: Gerald Barre <g.barre@free.fr>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgstr "Clôture en cours"
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:90
 #: ../xfburn/xfburn-burn-image-progress-dialog.c:95
 msgid "Fixating..."
-msgstr "Fixage..."
+msgstr "Finalisation..."
 
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:98
 #: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:110
@@ -178,11 +178,11 @@ msgstr "_Copier le CD"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
-msgstr "Nettoyage du cache"
+msgstr "Vidage du cache..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable medium."
-msgstr "Veuillez insérer un support enregistrable"
+msgstr "Veuillez insérer un support enregistrable."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
@@ -268,7 +268,7 @@ msgstr "Chemin complet"
 
 #: ../xfburn/xfburn-data-composition.c:594
 msgid "You must give a name to the file"
-msgstr "vous devez nommer ce fichier"
+msgstr "Vous devez nommer ce fichier"
 
 #: ../xfburn/xfburn-data-composition.c:603
 #: ../xfburn/xfburn-data-composition.c:1008
@@ -283,12 +283,8 @@ msgstr "Nouveau répertoire"
 
 #: ../xfburn/xfburn-data-composition.c:1189
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added"
-msgstr ""
-"Un fichier nommé \"%s\" existe déjà dans ce répertoire, ce fichier n'a pas "
-"été ajouté"
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added"
+msgstr "Un fichier nommé \"%s\" existe déjà dans ce répertoire, ce fichier n'a pas été ajouté"
 
 #: ../xfburn/xfburn-data-disc-usage.c:129
 msgid "Burn composition"
@@ -296,10 +292,10 @@ msgstr "Graver une composition"
 
 #: ../xfburn/xfburn-data-disc-usage.c:176
 msgid "You are trying to burn more data than the disk can contain !"
-msgstr ""
-"Vous essayez de graver plus de données que le disque ne peut en contenir !"
+msgstr "Vous essayez de graver plus de données que le disque ne peut en contenir !"
 
-#: ../xfburn/xfburn-device-box.c:114 ../xfburn/xfburn-device-box.c:115
+#: ../xfburn/xfburn-device-box.c:114
+#: ../xfburn/xfburn-device-box.c:115
 msgid "Show writers only"
 msgstr "Ne montrer que les graveurs"
 
@@ -329,18 +325,18 @@ msgstr "Fichier"
 msgid "Type"
 msgstr "Type"
 
-#: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:127
-#, fuzzy
+#: ../xfburn/xfburn-format-dvd-dialog.c:91
+#: ../xfburn/xfburn-main-window.c:127
 msgid "Format DVD+RW"
-msgstr "Formater un DVD-RW"
+msgstr "Formater un DVD+RW"
 
 #. "xfburn-blank-cdrw"
 #: ../xfburn/xfburn-format-dvd-dialog.c:124
-#, fuzzy
 msgid "_Format"
-msgstr "_Forcer"
+msgstr "_Formater"
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:260
+#: ../xfburn/xfburn-fs-browser.c:94
+#: ../xfburn/xfburn-fs-browser.c:260
 msgid "Filesystem"
 msgstr "Système de fichier"
 
@@ -350,7 +346,8 @@ msgstr "Système de fichier"
 msgid "%s's home"
 msgstr "Dossier personnel de %s"
 
-#: ../xfburn/xfburn-main.c:56 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:56
+#: ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -442,14 +439,12 @@ msgid "Burn CD Image"
 msgstr "Graver une Image CD"
 
 #: ../xfburn/xfburn-main-window.c:129
-#, fuzzy
 msgid "Copy DVD"
-msgstr "_Copier le CD"
+msgstr "_Copier le DVD"
 
 #: ../xfburn/xfburn-main-window.c:131
-#, fuzzy
 msgid "Burn DVD Image"
-msgstr "Graver une Image CD"
+msgstr "Graver une Image DVD"
 
 #: ../xfburn/xfburn-main-window.c:136
 msgid "Show file browser"
@@ -474,9 +469,8 @@ msgstr "Editer la barre d'outils"
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
 #: ../xfburn/xfburn-main-window.c:514
-#, fuzzy
 msgid "Another cd burning GUI"
-msgstr "Un autre outil de gravure de CD"
+msgstr "Une autre interface de gravure de CD"
 
 #: ../xfburn/xfburn-main-window.c:517
 msgid "Author/Maintainer"
@@ -625,40 +619,30 @@ msgstr "Par défaut"
 
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
-msgstr "Application de copie de CD et DVD"
+msgstr "Application de gravure de CD et DVD"
 
 #~ msgid "Are sure you want to quit?"
 #~ msgstr "Êtes-vous sûr de vouloir quitter?"
-
 #~ msgid "Failed to open /proc/scsi/sg/devices"
 #~ msgstr "Échec à l'ouverture de /proc/scsi/sg/devices"
-
 #~ msgid "Failed to open /proc/scsi/sg/device_strs"
 #~ msgstr "Échec à l'ouverture de /proc/scsi/sg/device_strs"
-
 #~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
 #~ msgstr "Erreur à la lecture des informations scsi de /proc/scsi/sg/devices"
-
 #~ msgid "No disc in the cdrom drive"
 #~ msgstr "Pas de disque dans le lecteur de CD"
-
 #~ msgid "No message..."
 #~ msgstr "Pas de message..."
-
 #~ msgid "Burn Data CD"
 #~ msgstr "Graver un CD de données"
-
 #~ msgid "New audio composition"
 #~ msgstr "Nouvelle composition audio"
-
 #~ msgid "Load composition"
 #~ msgstr "Charger une composition"
-
 #~ msgid "Show disc content toolbar"
 #~ msgstr "Afficher le barre du disque"
-
 #~ msgid "Show/hide the disc content toolbar"
 #~ msgstr "Afficher/cacher la barre d'outils du disque"
-
 #~ msgid "Xfburn preferences"
 #~ msgstr "Préférences de Xfburn"
+
