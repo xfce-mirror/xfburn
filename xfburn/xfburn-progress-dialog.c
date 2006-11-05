@@ -54,6 +54,10 @@ typedef struct
 
   GtkWidget *button_stop;
   GtkWidget *button_close;
+
+  gint height_large;
+  gint height_small;
+  gint width;
 } XfburnProgressDialogPrivate;
 
 /* globals */
@@ -261,6 +265,9 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_widget_grab_default (priv->button_close);
   gtk_widget_set_sensitive (priv->button_close, FALSE);
 
+  gtk_window_get_size (GTK_WINDOW (obj), &(priv->width), &(priv->height_small));
+  priv->height_large = -1;
+
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
   g_signal_connect (G_OBJECT (obj), "delete-event", G_CALLBACK (cb_dialog_delete), priv);
   g_signal_connect_after (G_OBJECT (obj), "show", G_CALLBACK (cb_dialog_show), priv);
@@ -393,7 +400,34 @@ watch_output (GIOChannel * source, GIOCondition condition, XfburnProgressDialog 
 static void
 cb_expander_activate (GtkExpander * expander, XfburnProgressDialog * dialog)
 {
-  // TODO
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+  gint h_l, h_s, w;
+  
+  if(gtk_expander_get_expanded (expander)) {
+    DBG ("expanded");
+    gtk_window_get_size (GTK_WINDOW (dialog), &w, &h_s);
+    h_l = priv->height_large;
+    if(h_l == -1) {
+      h_l = h_s * 1.5;
+      priv->height_large = h_l;
+    }
+    priv->height_small = h_s;
+    priv->width = w;
+    
+    gtk_widget_set_size_request (GTK_WIDGET (dialog), -1, -1);
+    gtk_window_resize (GTK_WINDOW (dialog), w, h_l);
+  } else {
+    DBG ("not expanded");
+    gtk_window_get_size (GTK_WINDOW (dialog), &w, &h_l);
+    h_s = priv->height_small;
+    gtk_widget_set_size_request (GTK_WIDGET (expander), -1, -1);
+    gtk_widget_set_size_request (GTK_WIDGET (dialog), -1, h_s);
+    gtk_window_resize (GTK_WINDOW (dialog), w, h_s);
+    gtk_widget_set_size_request (GTK_WIDGET (dialog), -1, 1);
+    
+    priv->height_large = h_l;
+    priv->width = w;
+  }
 }
 
 static void

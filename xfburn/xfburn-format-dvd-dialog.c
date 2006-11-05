@@ -160,6 +160,8 @@ xfburn_format_dvd_dialog_response_cb (XfburnFormatDvdDialog * dialog, gint respo
     gtk_dialog_run (GTK_DIALOG (dialog_progress));
     */
     g_free (command);
+
+    xfce_warn ("Sorry i don't have DVD+RW discs in order to implement and test that function currently");
   }
 }
 
