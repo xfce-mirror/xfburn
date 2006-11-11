@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-11-01 17:37+0100\n"
-"PO-Revision-Date: 2006-08-26 18:47+0100\n"
+"PO-Revision-Date: 2006-11-10 11:34+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -283,11 +283,8 @@ msgstr "Nový adresář"
 
 #: ../xfburn/xfburn-data-composition.c:1189
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added"
-msgstr ""
-"Soubor s názvem \"%s\" již v tomto adresáři existuje, proto nebyl přidán"
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added"
+msgstr "Soubor s názvem \"%s\" již v tomto adresáři existuje, proto nebyl přidán"
 
 #: ../xfburn/xfburn-data-disc-usage.c:129
 msgid "Burn composition"
@@ -297,7 +294,8 @@ msgstr "Vypálit kompozici"
 msgid "You are trying to burn more data than the disk can contain !"
 msgstr "Pokoušíte se vypálit na disk více dat, než je možné!"
 
-#: ../xfburn/xfburn-device-box.c:114 ../xfburn/xfburn-device-box.c:115
+#: ../xfburn/xfburn-device-box.c:114
+#: ../xfburn/xfburn-device-box.c:115
 msgid "Show writers only"
 msgstr "Zobrazovat pouze vypalovací mechaniky"
 
@@ -327,18 +325,18 @@ msgstr "Soubor"
 msgid "Type"
 msgstr "Typ"
 
-#: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:127
-#, fuzzy
+#: ../xfburn/xfburn-format-dvd-dialog.c:91
+#: ../xfburn/xfburn-main-window.c:127
 msgid "Format DVD+RW"
-msgstr "Zformátovat DVD-RW"
+msgstr "Zformátovat DVD+RW"
 
 #. "xfburn-blank-cdrw"
 #: ../xfburn/xfburn-format-dvd-dialog.c:124
-#, fuzzy
 msgid "_Format"
-msgstr "Vy_nutit"
+msgstr "Z_formátovat"
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:260
+#: ../xfburn/xfburn-fs-browser.c:94
+#: ../xfburn/xfburn-fs-browser.c:260
 msgid "Filesystem"
 msgstr "Systém souborů"
 
@@ -348,7 +346,8 @@ msgstr "Systém souborů"
 msgid "%s's home"
 msgstr "Domovský adresář uživatele %s"
 
-#: ../xfburn/xfburn-main.c:56 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:56
+#: ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -440,14 +439,12 @@ msgid "Burn CD Image"
 msgstr "Zkopírovat obraz CD"
 
 #: ../xfburn/xfburn-main-window.c:129
-#, fuzzy
 msgid "Copy DVD"
-msgstr "_Kopírovat CD"
+msgstr "Zkopírovat DVD"
 
 #: ../xfburn/xfburn-main-window.c:131
-#, fuzzy
 msgid "Burn DVD Image"
-msgstr "Zkopírovat obraz CD"
+msgstr "Vypálit obraz DVD"
 
 #: ../xfburn/xfburn-main-window.c:136
 msgid "Show file browser"
@@ -472,9 +469,8 @@ msgstr "Editor Panelu nástrojů"
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
 #: ../xfburn/xfburn-main-window.c:514
-#, fuzzy
 msgid "Another cd burning GUI"
-msgstr "Další nástroj pro vypalování cd"
+msgstr "Další nástroj pro vypalování CD"
 
 #: ../xfburn/xfburn-main-window.c:517
 msgid "Author/Maintainer"
@@ -627,37 +623,28 @@ msgstr "Aplikace pro vypalování CD a DVD"
 
 #~ msgid "Are sure you want to quit?"
 #~ msgstr "Jste si jisti, že chcete program ukončit?"
-
 #~ msgid "Failed to open /proc/scsi/sg/devices"
 #~ msgstr "Nepodařilo se otevřít /proc/scsi/sg/devices"
-
 #~ msgid "Failed to open /proc/scsi/sg/device_strs"
 #~ msgstr "Nepodařilo se otevřít /proc/scsi/sg/device_strs"
-
 #~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
 #~ msgstr "Chyba při čtení informací o rozhraní SCSI z /proc/scsi/sg/devices"
-
 #~ msgid "No disc in the cdrom drive"
 #~ msgstr "V Jednotce CD-ROM není přítomen disk"
-
 #~ msgid "No message..."
 #~ msgstr "Žádná zpráva..."
-
 #~ msgid "Burn Data CD"
 #~ msgstr "Vypálit datové CD"
 
 #, fuzzy
 #~ msgid "New audio composition"
 #~ msgstr "Načíst kompozici"
-
 #~ msgid "Load composition"
 #~ msgstr "Načíst kompozici"
-
 #~ msgid "Show disc content toolbar"
 #~ msgstr "Zobrazit kontextový panel nástrojů disku"
-
 #~ msgid "Show/hide the disc content toolbar"
 #~ msgstr "Zobrazí/skryje kontextový panel nástrojů disku"
-
 #~ msgid "Xfburn preferences"
 #~ msgstr "Nastavení Xfburn"
+
