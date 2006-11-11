@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-11-01 17:37+0100\n"
-"PO-Revision-Date: 2006-10-21 13:56+0200\n"
+"PO-Revision-Date: 2006-11-11 20:24+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -283,12 +283,8 @@ msgstr "Νέος κατάλογος"
 
 #: ../xfburn/xfburn-data-composition.c:1189
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added"
-msgstr ""
-"Υπάρχει ήδη ένα αρχείο με όνομα \"%s\" στον κατάλογο. Το αρχείο δεν "
-"προστέθηκε."
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added"
+msgstr "Υπάρχει ήδη ένα αρχείο με όνομα \"%s\" στον κατάλογο. Το αρχείο δεν προστέθηκε."
 
 #: ../xfburn/xfburn-data-disc-usage.c:129
 msgid "Burn composition"
@@ -298,7 +294,8 @@ msgstr "Εγγραφή σύνθεσης"
 msgid "You are trying to burn more data than the disk can contain !"
 msgstr "Προσπαθείτε να γράψετε περισσότερα από όσα χωράει ο δίσκος !"
 
-#: ../xfburn/xfburn-device-box.c:114 ../xfburn/xfburn-device-box.c:115
+#: ../xfburn/xfburn-device-box.c:114
+#: ../xfburn/xfburn-device-box.c:115
 msgid "Show writers only"
 msgstr "Εμφάνιση μόνο εγγραφέων"
 
@@ -328,18 +325,18 @@ msgstr "Αρχείο"
 msgid "Type"
 msgstr "Τύπος"
 
-#: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:127
-#, fuzzy
+#: ../xfburn/xfburn-format-dvd-dialog.c:91
+#: ../xfburn/xfburn-main-window.c:127
 msgid "Format DVD+RW"
-msgstr "Μορφοποίηση DVD-RW"
+msgstr "Μορφοποίηση DVD+RW"
 
 #. "xfburn-blank-cdrw"
 #: ../xfburn/xfburn-format-dvd-dialog.c:124
-#, fuzzy
 msgid "_Format"
-msgstr "_Εξαναγκασμός"
+msgstr "_Μορφοποίηση"
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:260
+#: ../xfburn/xfburn-fs-browser.c:94
+#: ../xfburn/xfburn-fs-browser.c:260
 msgid "Filesystem"
 msgstr "Σύστημα αρχείων"
 
@@ -349,7 +346,8 @@ msgstr "Σύστημα αρχείων"
 msgid "%s's home"
 msgstr "%s"
 
-#: ../xfburn/xfburn-main.c:56 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:56
+#: ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -441,14 +439,12 @@ msgid "Burn CD Image"
 msgstr "Εγγραφή εικόνας CD"
 
 #: ../xfburn/xfburn-main-window.c:129
-#, fuzzy
 msgid "Copy DVD"
-msgstr "Α_ντιγραφή CD"
+msgstr "Αντιγραφή DVD"
 
 #: ../xfburn/xfburn-main-window.c:131
-#, fuzzy
 msgid "Burn DVD Image"
-msgstr "Εγγραφή εικόνας CD"
+msgstr "Εγγραφή εικόνας DVD"
 
 #: ../xfburn/xfburn-main-window.c:136
 msgid "Show file browser"
@@ -473,7 +469,6 @@ msgstr "Επεξεργαστής εργαλειοθήκης"
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
 #: ../xfburn/xfburn-main-window.c:514
-#, fuzzy
 msgid "Another cd burning GUI"
 msgstr "Ένα ακόμη εργαλείο εγγραφής cd"
 
@@ -628,38 +623,29 @@ msgstr "Εφαρμογή εγγραφής CD και DVD"
 
 #~ msgid "Are sure you want to quit?"
 #~ msgstr "Είστε βέβαιοι ότι θέλετε να κλείσετε;"
-
 #~ msgid "Failed to open /proc/scsi/sg/devices"
 #~ msgstr "Το άνοιγμα του /proc/scsi/sg/devices απέτυχε"
-
 #~ msgid "Failed to open /proc/scsi/sg/device_strs"
 #~ msgstr "Το άνοιγμα του /proc/scsi/sg/device_strs απέτυχε"
-
 #~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
 #~ msgstr ""
 #~ "Σφάλμα κατά την ανάγνωση πληροφοριών scsi από το /proc/scsi/sg/devices"
-
 #~ msgid "No disc in the cdrom drive"
 #~ msgstr "Δεν υπάρχει δίσκος στον οδηγό"
-
 #~ msgid "No message..."
 #~ msgstr "Κανένα μήνυμα..."
-
 #~ msgid "Burn Data CD"
 #~ msgstr "Εγγραφή CD δεδομένων"
 
 #, fuzzy
 #~ msgid "New audio composition"
 #~ msgstr "Άνοιγμα σύνθεσης"
-
 #~ msgid "Load composition"
 #~ msgstr "Άνοιγμα σύνθεσης"
-
 #~ msgid "Show disc content toolbar"
 #~ msgstr "Προβολή εργαλειοθήκης περιεχομένων δίσκου"
-
 #~ msgid "Show/hide the disc content toolbar"
 #~ msgstr "Προβολή/απόκρυψη εργαλειοθήκης περιεχομένων δίσκου"
-
 #~ msgid "Xfburn preferences"
 #~ msgstr "Προτιμήσεις Xfburn"
+
