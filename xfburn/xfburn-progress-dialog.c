@@ -55,6 +55,13 @@ typedef struct
   GtkWidget *button_stop;
   GtkWidget *button_close;
 
+  GIOChannel *channel_stdout;
+  GIOChannel *channel_stderr;
+  GPid pid_command;
+
+  guint id_refresh_stdout;
+  guint id_refresh_stderr;
+
   gint height_large;
   gint height_small;
   gint width;
@@ -179,6 +186,9 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   GtkWidget *scrolled_window;
 
   gtk_window_set_default_size (GTK_WINDOW (obj), 575, 200);
+
+  priv->id_refresh_stdout = -1;
+  priv->id_refresh_stderr = -1;
 
   /* label */
   priv->label_action = gtk_label_new ("Initializing ...");
@@ -314,20 +324,19 @@ xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GVal
 static void
 xfburn_progress_dialog_finalize (GObject * object)
 {
-  GIOChannel *channel_stdout;
-  GIOChannel *channel_stderr;
-  GPid pid_command;
+  XfburnProgressDialog *dialog = XFBURN_PROGRESS_DIALOG (object);
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
 
-  if ((channel_stdout = g_object_get_data (object, "channel-stdout"))) {
-    g_io_channel_shutdown (channel_stdout, FALSE, NULL);
-    g_io_channel_unref (channel_stdout);
+  if (priv->channel_stdout) {
+    g_io_channel_shutdown (priv->channel_stdout, FALSE, NULL);
+    g_io_channel_unref (priv->channel_stdout);
   }
-  if ((channel_stderr = g_object_get_data (object, "channel-stderr"))) {
-    g_io_channel_shutdown (channel_stderr, FALSE, NULL);
-    g_io_channel_unref (channel_stderr);
+  if (priv->channel_stderr) {
+    g_io_channel_shutdown (priv->channel_stderr, FALSE, NULL);
+    g_io_channel_unref (priv->channel_stderr);
   }
-  if ((pid_command = (GPid) g_object_get_data (object, "pid-command")))
-    g_spawn_close_pid (pid_command);
+  if (priv->pid_command)
+    g_spawn_close_pid (priv->pid_command);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -347,20 +356,18 @@ watch_output (GIOChannel * source, GIOCondition condition, XfburnProgressDialog 
   GIOStatus status;
 
   if (condition == G_IO_HUP || condition == G_IO_ERR) {
-    guint id_refresh_stdout = -1;
-    guint id_refresh_stderr = -1;
-
     gtk_widget_set_sensitive (priv->button_close, TRUE);
     gtk_widget_set_sensitive (priv->button_stop, FALSE);
 
-    id_refresh_stdout = (guint) g_object_get_data (G_OBJECT (dialog), "id-refresh-stdout");
-    id_refresh_stderr = (guint) g_object_get_data (G_OBJECT (dialog), "id-refresh-stderr");
+    if (priv->id_refresh_stdout > 0) {
+      g_source_remove (priv->id_refresh_stdout);
+      priv->id_refresh_stdout = -1;
+    }
 
-    if (id_refresh_stdout > 0)
-      g_source_remove (id_refresh_stdout);
-
-    if (id_refresh_stderr > 0)
-      g_source_remove (id_refresh_stderr);
+    if (priv->id_refresh_stderr > 0) {
+      g_source_remove (priv->id_refresh_stderr);
+      priv->id_refresh_stderr = 1;
+    }
 
     xfburn_progress_dialog_set_progress_bar_fraction (dialog, 1.0);
     xfburn_progress_dialog_set_action_text (dialog, _("Operation finished"));
@@ -439,11 +446,6 @@ cb_dialog_show (XfburnProgressDialog * dialog, XfburnProgressDialogPrivate * pri
   int fd_stdout;
   int fd_stderr;
   GError *error = NULL;
-  GPid pid_command;
-  GIOChannel *channel_stdout;
-  GIOChannel *channel_stderr;
-  guint id_refresh_stdout = -1;
-  guint id_refresh_stderr = -1;
 
   command = g_object_get_data (G_OBJECT (dialog), "command");
 
@@ -458,7 +460,7 @@ cb_dialog_show (XfburnProgressDialog * dialog, XfburnProgressDialogPrivate * pri
     return;
   }
 
-  if (!g_spawn_async_with_pipes (NULL, argvp, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, &pid_command,
+  if (!g_spawn_async_with_pipes (NULL, argvp, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, &(priv->pid_command),
                                  &(priv->fd_stdin), &fd_stdout, &fd_stderr, &error)) {
     g_warning ("Unable to spawn process : %s", error->message);
     g_error_free (error);
@@ -467,24 +469,19 @@ cb_dialog_show (XfburnProgressDialog * dialog, XfburnProgressDialogPrivate * pri
   }
   g_strfreev (argvp);
 
-  g_object_set_data (G_OBJECT (dialog), "pid-command", (gpointer) pid_command);
-  
-  channel_stdout = g_io_channel_unix_new (fd_stdout);
-  g_io_channel_set_encoding (channel_stdout, NULL, NULL);
-  g_io_channel_set_buffered (channel_stdout, FALSE);
-  g_io_channel_set_flags (channel_stdout, G_IO_FLAG_NONBLOCK, NULL);
-  g_object_set_data (G_OBJECT (dialog), "channel-stdout", channel_stdout);
 
-  channel_stderr = g_io_channel_unix_new (fd_stderr);
-  g_io_channel_set_encoding (channel_stderr, NULL, NULL);
-  g_io_channel_set_buffered (channel_stderr, FALSE);
-  g_io_channel_set_flags (channel_stderr, G_IO_FLAG_NONBLOCK, NULL);
-  g_object_set_data (G_OBJECT (dialog), "channel-stderr", channel_stderr);
+  priv->channel_stdout = g_io_channel_unix_new (fd_stdout);
+  g_io_channel_set_encoding (priv->channel_stdout, NULL, NULL);
+  g_io_channel_set_buffered (priv->channel_stdout, FALSE);
+  g_io_channel_set_flags (priv->channel_stdout, G_IO_FLAG_NONBLOCK, NULL);
 
-  id_refresh_stdout = g_io_add_watch (channel_stdout, G_IO_IN | G_IO_HUP | G_IO_ERR, (GIOFunc) watch_output, dialog);
-  g_object_set_data (G_OBJECT (dialog), "id-refresh-stdout", (gpointer) id_refresh_stdout);
-  id_refresh_stderr = g_io_add_watch (channel_stderr, G_IO_IN | G_IO_HUP | G_IO_ERR, (GIOFunc) watch_output, dialog);
-  g_object_set_data (G_OBJECT (dialog), "id-refresh-stderr", (gpointer) id_refresh_stderr);
+  priv->channel_stderr = g_io_channel_unix_new (fd_stderr);
+  g_io_channel_set_encoding (priv->channel_stderr, NULL, NULL);
+  g_io_channel_set_buffered (priv->channel_stderr, FALSE);
+  g_io_channel_set_flags (priv->channel_stderr, G_IO_FLAG_NONBLOCK, NULL);
+
+  priv->id_refresh_stdout = g_io_add_watch (priv->channel_stdout, G_IO_IN | G_IO_HUP | G_IO_ERR, (GIOFunc) watch_output, dialog);
+  priv->id_refresh_stderr = g_io_add_watch (priv->channel_stderr, G_IO_IN | G_IO_HUP | G_IO_ERR, (GIOFunc) watch_output, dialog);
 }
 
 static gboolean
@@ -503,11 +500,10 @@ static void
 cb_dialog_response (XfburnProgressDialog * dialog, gint response_id, XfburnProgressDialogPrivate * priv)
 {
   if (response_id == GTK_RESPONSE_CANCEL) {
-    GPid pid_command;
-
-    pid_command = (GPid) g_object_get_data (G_OBJECT (dialog), "pid-command");
-    if (pid_command > 0)
-      kill (pid_command, SIGTERM);
+    if (priv->pid_command > 0) {
+      kill (priv->pid_command, SIGTERM);
+      priv->pid_command = -1;
+    }
     
     gtk_widget_set_sensitive (priv->button_stop, FALSE);
     priv->status = XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED;
