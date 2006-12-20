@@ -162,7 +162,7 @@ msgstr "Проект с данными"
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
-msgstr "Копирование диска с данными"
+msgstr "Копирование CD с данными"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:123
 msgid "CD Reader device"
@@ -174,7 +174,7 @@ msgstr "_На лету"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
-msgstr "_Копировать диск"
+msgstr "_Копировать CD"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
@@ -195,11 +195,11 @@ msgstr "Чтение CD..."
 
 #: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:115
 msgid "Create ISO from composition"
-msgstr "Создание ISO-образа по проекту"
+msgstr "Создание ISO-образа из проекта"
 
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
-msgstr "Создать ISO-образ с компакт-диска"
+msgstr "Создание ISO-образа из CD"
 
 #: ../xfburn/xfburn-data-composition.c:138
 msgid "Add"
@@ -328,15 +328,13 @@ msgid "Type"
 msgstr "Тип"
 
 #: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:127
-#, fuzzy
 msgid "Format DVD+RW"
 msgstr "Форматировать DVD-RW"
 
 #. "xfburn-blank-cdrw"
 #: ../xfburn/xfburn-format-dvd-dialog.c:124
-#, fuzzy
 msgid "_Format"
-msgstr "_Принудительно"
+msgstr "_Форматировать"
 
 #: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:260
 msgid "Filesystem"
@@ -429,25 +427,23 @@ msgstr "Показать информацию о Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:122
 msgid "Copy Data CD"
-msgstr "Копировать диск с данными"
+msgstr "Копировать CD с данными"
 
 #: ../xfburn/xfburn-main-window.c:124
 msgid "Copy Audio CD"
-msgstr "Копировать аудио-диск"
+msgstr "Копировать аудио-CD"
 
 #: ../xfburn/xfburn-main-window.c:125
 msgid "Burn CD Image"
-msgstr "Записать образ диска"
+msgstr "Записать образ CD"
 
 #: ../xfburn/xfburn-main-window.c:129
-#, fuzzy
 msgid "Copy DVD"
-msgstr "_Копировать диск"
+msgstr "Копировать DVD"
 
 #: ../xfburn/xfburn-main-window.c:131
-#, fuzzy
 msgid "Burn DVD Image"
-msgstr "Записать образ диска"
+msgstr "Записать образ DVD"
 
 #: ../xfburn/xfburn-main-window.c:136
 msgid "Show file browser"
@@ -472,7 +468,6 @@ msgstr "Редактор панели инструментов"
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
 #: ../xfburn/xfburn-main-window.c:514
-#, fuzzy
 msgid "Another cd burning GUI"
 msgstr "Ещё один инструмент для записи CD"
 
@@ -624,21 +619,3 @@ msgstr "По умолчанию"
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "Приложение для записи CD и DVD"
-
-#~ msgid "Are sure you want to quit?"
-#~ msgstr "Вы действительно хотите выйти?"
-
-#~ msgid "Failed to open /proc/scsi/sg/devices"
-#~ msgstr "Не удалось открыть /proc/scsi/sg/devices"
-
-#~ msgid "Failed to open /proc/scsi/sg/device_strs"
-#~ msgstr "Не удалось открыть /proc/scsi/sg/device_strs"
-
-#~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
-#~ msgstr "Ошибка чтения scsi информации из /proc/scsi/sg/devices"
-
-#~ msgid "No disc in the cdrom drive"
-#~ msgstr "В приводе нет компакт диска"
-
-#~ msgid "No message..."
-#~ msgstr "Нет сообщения..."
