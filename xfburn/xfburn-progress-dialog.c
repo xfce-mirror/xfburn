@@ -499,12 +499,12 @@ cb_dialog_delete (XfburnProgressDialog * dialog, GdkEvent * event, XfburnProgres
 static void
 cb_dialog_response (XfburnProgressDialog * dialog, gint response_id, XfburnProgressDialogPrivate * priv)
 {
+  g_signal_emit (G_OBJECT (dialog), signals[FINISHED], 0);
   if (response_id == GTK_RESPONSE_CANCEL) {
     if (priv->pid_command > 0) {
       kill (priv->pid_command, SIGTERM);
       priv->pid_command = -1;
     }
-    
     gtk_widget_set_sensitive (priv->button_stop, FALSE);
     priv->status = XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED;
   } else if (response_id == GTK_RESPONSE_CLOSE)
@@ -688,7 +688,9 @@ void
 xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
-  
+
+  if (status == XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED)
+    g_signal_emit (G_OBJECT (dialog), signals[FINISHED], 0);
   priv->status = status;
 }
 
