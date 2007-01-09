@@ -48,7 +48,7 @@ typedef struct
 } XfburnCreateIsoFromCompositionProgressDialogClass;
 
 GtkType xfburn_create_iso_from_composition_progress_dialog_get_type ();
-GtkWidget *xfburn_create_iso_from_composition_progress_dialog_new (GPid pid_command, gint fd_stdout, gint fd_stderr);
+GtkWidget *xfburn_create_iso_from_composition_progress_dialog_new ();
 
 G_END_DECLS
 

@@ -81,6 +81,8 @@ void xfburn_progress_dialog_set_action_text (XfburnProgressDialog * dialog, cons
 void xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gfloat speed);
 void xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status);
 
+GtkWidget *xfburn_progress_dialog_new ();
+
 G_END_DECLS
 
 #endif /* XFBURN_PROGRESS_DIALOG_H */
