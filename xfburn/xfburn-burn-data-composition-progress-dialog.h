@@ -47,7 +47,7 @@ typedef struct {
 
 GtkType xfburn_burn_data_composition_progress_dialog_get_type ();
 
-GtkWidget *xfburn_burn_data_composition_progress_dialog_new ();
+GtkWidget *xfburn_burn_data_composition_progress_dialog_new (GPid pid_command, int fd_stdout, int fd_stderr);
 
 G_END_DECLS 
 
