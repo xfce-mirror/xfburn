@@ -27,7 +27,7 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "xfburn-data-composition.h"
+#include <libisofs.h>
 
 G_BEGIN_DECLS
 
@@ -49,10 +49,8 @@ typedef struct
 } XfburnBurnDataCompositionDialogClass;
 
 GtkType xfburn_burn_data_composition_dialog_get_type ();
-GtkWidget *xfburn_burn_data_composition_dialog_new (XfburnDataComposition *composition, const gchar *file_list);
 
-gchar *xfburn_burn_data_composition_dialog_get_command_iso (XfburnBurnDataCompositionDialog *dialog);
-gchar *xfburn_burn_data_composition_dialog_get_command_burn (XfburnBurnDataCompositionDialog *dialog);
+GtkWidget *xfburn_burn_data_composition_dialog_new (struct iso_volset * volume_set);
 
 G_END_DECLS
 #endif /* XFBURN_BURN_DATA_COMPOSITION_DIALOG_H */

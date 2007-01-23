@@ -42,18 +42,7 @@ typedef struct
   /* Add Signal Functions Here */
 } XfburnPreferencesDialogClass;
 
-enum
-{
-  DEVICE_LIST_COLUMN_ICON,
-  DEVICE_LIST_COLUMN_NAME,
-  DEVICE_LIST_COLUMN_ID,
-  DEVICE_LIST_COLUMN_NODE,
-  DEVICE_LIST_COLUMN_CDR,
-  DEVICE_LIST_COLUMN_CDRW,
-  DEVICE_LIST_COLUMN_DVDR,
-  DEVICE_LIST_COLUMN_DVDRAM,
-  DEVICE_LIST_N_COLUMNS
-};
+
 
 GtkType xfburn_preferences_dialog_get_type ();
 GtkWidget *xfburn_preferences_dialog_new ();

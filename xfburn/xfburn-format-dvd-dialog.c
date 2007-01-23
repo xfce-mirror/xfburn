@@ -96,7 +96,7 @@ xfburn_format_dvd_dialog_init (XfburnFormatDvdDialog * obj)
   g_object_unref (icon);
 
   /* devices list */
-  priv->device_box = xfburn_device_box_new (TRUE, TRUE);
+  priv->device_box = xfburn_device_box_new (TRUE, TRUE, FALSE);
   gtk_widget_show (priv->device_box);
 
   frame = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);

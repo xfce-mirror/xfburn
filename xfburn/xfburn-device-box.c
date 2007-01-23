@@ -38,6 +38,25 @@ enum {
   PROP_0,
   PROP_SHOW_WRITERS_ONLY,
   PROP_SHOW_SPEED_SELECTION,
+  PROP_SHOW_MODE_SELECTION,
+};
+
+enum {
+  DEVICE_NAME_COLUMN,
+  DEVICE_POINTER_COLUMN,
+  DEVICE_N_COLUMNS,
+};
+
+enum {
+  SPEED_TEXT_COLUMN,
+  SPEED_VALUE_COLUMN,
+  SPEED_N_COLUMNS,
+};
+
+enum {
+  MODE_TEXT_COLUMN,
+  MODE_VALUE_COLUMN,
+  MODE_N_COLUMNS,
 };
 
 /* private struct */
@@ -45,11 +64,15 @@ typedef struct
 {
   gboolean show_writers_only;
   gboolean show_speed_selection;
+  gboolean show_mode_selection;
   
   GtkWidget *combo_device;
   
   GtkWidget *hbox_speed_selection;
   GtkWidget *combo_speed;
+
+  GtkWidget *hbox_mode_selection;
+  GtkWidget *combo_mode;
 } XfburnDeviceBoxPrivate;
 
 /* prototypes */
@@ -58,6 +81,7 @@ static void xfburn_device_box_init (XfburnDeviceBox *);
 static void xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
+static void cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box);
 static void cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box);
 
 /* globals */
@@ -115,7 +139,11 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
                                                         _("Show writers only"), FALSE, G_PARAM_READWRITE));
   g_object_class_install_property (object_class, PROP_SHOW_SPEED_SELECTION, 
                                    g_param_spec_boolean ("show-speed-selection", _("Show speed selection"),
-                                                        _("Show speed selection list and refresh button"), 
+                                                        _("Show speed selection combo"), 
+                                                        FALSE, G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_SHOW_MODE_SELECTION, 
+                                   g_param_spec_boolean ("show-mode-selection", _("Show mode selection"),
+                                                        _("Show mode selection combo"), 
                                                         FALSE, G_PARAM_READWRITE));
 }
 
@@ -123,49 +151,53 @@ static void
 xfburn_device_box_init (XfburnDeviceBox * box)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-  
+
   GtkWidget *label, *img, *button;
   GList *device = NULL;
-  gint i;
+  GtkListStore *store = NULL;
+  GtkCellRenderer *cell;
   
   /* devices */
-  priv->combo_device = gtk_combo_box_new_text ();
+  store = gtk_list_store_new (DEVICE_N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER);
+  priv->combo_device = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
+  g_object_unref (store);
+
+  cell = gtk_cell_renderer_text_new ();
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combo_device), cell, TRUE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_device), cell, "text", DEVICE_NAME_COLUMN, NULL);
   gtk_widget_show (priv->combo_device);
   gtk_box_pack_start (GTK_BOX (box), priv->combo_device, FALSE, FALSE, BORDER);
 
   device = xfburn_device_list_get_list ();
+
   while (device) {
     XfburnDevice *device_data = (XfburnDevice *) device->data;
+    GtkTreeIter iter;
 
-    gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_device), device_data->name);
+    gtk_list_store_append (store, &iter);
+    gtk_list_store_set (store, &iter, DEVICE_NAME_COLUMN, device_data->name, DEVICE_POINTER_COLUMN, device_data, -1);
 
     device = g_list_next (device);
   }
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_device), 0);
-  
-  g_signal_connect (G_OBJECT (priv->combo_device), "changed", G_CALLBACK (cb_combo_device_changed), box);
   
   /* speed */
   priv->hbox_speed_selection = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (priv->hbox_speed_selection);
   gtk_box_pack_start (GTK_BOX (box), priv->hbox_speed_selection, FALSE, FALSE, BORDER);
 
-  label = gtk_label_new_with_mnemonic (_("_Speed :"));
+  label = gtk_label_new_with_mnemonic (_("_Speed:"));
   gtk_widget_show (label);
   gtk_box_pack_start (GTK_BOX (priv->hbox_speed_selection), label, FALSE, FALSE, BORDER);
 
-  priv->combo_speed = gtk_combo_box_new_text ();
+  store = gtk_list_store_new (SPEED_N_COLUMNS, G_TYPE_STRING, G_TYPE_INT);
+  priv->combo_speed = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
+  g_object_unref (store);
+
+  cell = gtk_cell_renderer_text_new ();
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combo_speed), cell, TRUE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_speed), cell, "text", SPEED_TEXT_COLUMN, NULL);
   gtk_widget_show (priv->combo_speed);
   gtk_box_pack_start (GTK_BOX (priv->hbox_speed_selection), priv->combo_speed, TRUE, TRUE, BORDER);
-
-  for (i = 2; i <= 52; i += 2) {
-    gchar *str = NULL;
-
-    str = g_strdup_printf ("%d", i);
-    gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_speed), str);
-    g_free (str);
-  }
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_speed), 19);
 
   img = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_SMALL_TOOLBAR);
   gtk_widget_show (img);
@@ -173,6 +205,30 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_container_add (GTK_CONTAINER (button), img);
   gtk_widget_show (button);
   gtk_box_pack_start (GTK_BOX (priv->hbox_speed_selection), button, FALSE, FALSE, 0);
+
+  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_speed_refresh_clicked), box);
+
+  /* mode */
+  priv->hbox_mode_selection = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (priv->hbox_mode_selection);
+  gtk_box_pack_start (GTK_BOX (box), priv->hbox_mode_selection, FALSE, FALSE, BORDER);
+
+  label = gtk_label_new_with_mnemonic (_("Write _mode:"));
+  gtk_widget_show (label);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_mode_selection), label, FALSE, FALSE, BORDER);
+
+  store = gtk_list_store_new (MODE_N_COLUMNS, G_TYPE_STRING, G_TYPE_INT);
+  priv->combo_mode = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
+  g_object_unref (store);
+
+  cell = gtk_cell_renderer_text_new ();
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combo_mode), cell, TRUE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_mode), cell, "text", MODE_TEXT_COLUMN, NULL);
+  gtk_widget_show (priv->combo_mode);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_mode_selection), priv->combo_mode, TRUE, TRUE, BORDER);
+
+  g_signal_connect (G_OBJECT (priv->combo_device), "changed", G_CALLBACK (cb_combo_device_changed), box);
+  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_device), 0);
 }
 
 static void
@@ -186,6 +242,9 @@ xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, G
       break;
     case PROP_SHOW_SPEED_SELECTION:
       g_value_set_boolean (value, priv->show_speed_selection);
+      break;
+    case PROP_SHOW_MODE_SELECTION:
+      g_value_set_boolean (value, priv->show_mode_selection);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -209,6 +268,13 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
       else
         gtk_widget_hide (priv->hbox_speed_selection);
       break;
+  case PROP_SHOW_MODE_SELECTION:
+      priv->show_mode_selection = g_value_get_boolean (value);
+      if (priv->show_mode_selection)
+        gtk_widget_show (priv->hbox_mode_selection);
+      else
+        gtk_widget_hide (priv->hbox_mode_selection);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -219,27 +285,102 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
 /* internals */
 /*************/
 static void
+fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
+{
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+  GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_speed));
+  GSList *el = device->supported_cdr_speeds;
+
+  gtk_list_store_clear (GTK_LIST_STORE (model));
+
+  while (el) {
+    gint speed = GPOINTER_TO_INT (el->data);
+    GtkTreeIter iter;
+    gchar *str = NULL;
+
+    str = g_strdup_printf ("%d", speed);
+
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, SPEED_TEXT_COLUMN, str, SPEED_VALUE_COLUMN, speed, -1);
+    g_free (str);
+
+    el = g_slist_next (el);
+  }
+  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_speed), gtk_tree_model_iter_n_children (model, NULL) - 1);
+}
+
+static void
+fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
+{
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+  GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_mode));
+  GtkTreeIter iter;
+
+  gtk_list_store_clear (GTK_LIST_STORE (model));
+
+  if (device->tao_block_types) {
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "TAO", MODE_VALUE_COLUMN, WRITE_MODE_TAO, -1);
+  }
+  if (device->sao_block_types & BURN_BLOCK_SAO) {
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "SAO", MODE_VALUE_COLUMN, WRITE_MODE_SAO, -1);
+  }
+  if (device->raw_block_types & BURN_BLOCK_RAW16) {
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "RAW16", MODE_VALUE_COLUMN, WRITE_MODE_RAW16, -1);
+  }
+  if (device->raw_block_types & BURN_BLOCK_RAW96P) {
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "RAW96P", MODE_VALUE_COLUMN, WRITE_MODE_RAW96P, -1);
+  }
+  if (device->raw_block_types & BURN_BLOCK_RAW96R) {
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "RAW96R", MODE_VALUE_COLUMN, WRITE_MODE_RAW96R, -1);
+  }
+  if (device->packet_block_types) {
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "packet", MODE_VALUE_COLUMN, WRITE_MODE_PACKET, -1);
+  }
+  
+  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_mode), 0);
+}
+
+static void
+cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
+{
+  XfburnDevice *device = NULL;
+  
+  device = xfburn_device_box_get_selected_device (box);
+  xfburn_device_refresh_supported_speeds (device);
+
+  fill_combo_speed (box, device);
+}
+
+static void
 cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
 {
-  gchar *device_name = NULL;
+  XfburnDevice *device;
   
-  gtk_combo_box_get_active_text (combo);
-  
-  g_signal_emit (G_OBJECT (box), signals[DEVICE_CHANGED], 0, device_name);
-  
-  g_free (device_name);
+  device = xfburn_device_box_get_selected_device (box);
+
+  fill_combo_speed (box, device);
+  fill_combo_mode (box,device);
+
+  g_signal_emit (G_OBJECT (box), signals[DEVICE_CHANGED], 0, device);
 }
 
 /******************/
 /* public methods */
 /******************/
 GtkWidget *
-xfburn_device_box_new (gboolean show_writers_only, gboolean show_speed_selection)
+xfburn_device_box_new (gboolean show_writers_only, gboolean show_speed_selection, gboolean show_mode_selection)
 {
   GtkWidget *obj;
 
   obj = g_object_new (xfburn_device_box_get_type (), "show-writers-only", show_writers_only, 
-                      "show-speed-selection", show_speed_selection, NULL);
+                      "show-speed-selection", show_speed_selection, 
+		      "show-mode-selection", show_mode_selection, NULL);
 
   return obj;
 }
@@ -248,32 +389,64 @@ gchar *
 xfburn_device_box_get_selected (XfburnDeviceBox *box)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-  
-  return gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  gchar *name = NULL;
+
+  model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_device));
+  gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
+  gtk_tree_model_get (model, &iter, DEVICE_NAME_COLUMN, &name, -1);
+
+  return name;
 }
 
 XfburnDevice *
 xfburn_device_box_get_selected_device (XfburnDeviceBox *box)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-  gchar *device_name = NULL;
+  GtkTreeModel *model;
+  GtkTreeIter iter;
   XfburnDevice * device = NULL;
-  
-  device_name = gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_device));
-  device = xfburn_device_lookup_by_name (device_name);
-  g_free (device_name);
-  
+
+  model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_device));
+  gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
+  gtk_tree_model_get (model, &iter, DEVICE_POINTER_COLUMN, &device, -1);
+
   return device;
 }
 
-gchar *
+gint
 xfburn_device_box_get_speed (XfburnDeviceBox *box)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   
-  g_return_val_if_fail (priv->show_speed_selection == TRUE, NULL);
-  if (priv->show_speed_selection)
-    return gtk_combo_box_get_active_text (GTK_COMBO_BOX (priv->combo_speed));
-  else
-    return NULL;
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  gint speed = -1;
+
+  g_return_val_if_fail (priv->show_speed_selection, -1);
+
+  model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_speed));
+  gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_speed), &iter);
+  gtk_tree_model_get (model, &iter, SPEED_VALUE_COLUMN, &speed, -1);
+
+  return speed;
+}
+
+XfburnWriteMode
+xfburn_device_box_get_mode (XfburnDeviceBox *box)
+{
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+  
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  gint mode = -1;
+
+  g_return_val_if_fail (priv->show_mode_selection, -1);
+
+  model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_mode));
+  gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_mode), &iter);
+  gtk_tree_model_get (model, &iter, SPEED_VALUE_COLUMN, &mode, -1);
+
+  return mode;
 }

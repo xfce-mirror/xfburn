@@ -23,9 +23,11 @@
 
 #include <libxfcegui4/libxfcegui4.h>
 
+#include <libburn.h>
+
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
-#include "xfburn-blank-cd-progress-dialog.h"
+#include "xfburn-progress-dialog.h"
 #include "xfburn-device-box.h"
 #include "xfburn-stock.h"
 
@@ -38,7 +40,6 @@ typedef struct
   GtkWidget *device_box;
   GtkWidget *combo_type;
   
-  GtkWidget *check_force;
   GtkWidget *check_eject;
 } XfburnBlankCdDialogPrivate;
 
@@ -99,7 +100,7 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   g_object_unref (icon);
 
   /* devices list */
-  priv->device_box = xfburn_device_box_new (TRUE, TRUE);
+  priv->device_box = xfburn_device_box_new (TRUE, FALSE, FALSE);
   gtk_widget_show (priv->device_box);
 
   frame = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
@@ -110,8 +111,6 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   priv->combo_type = gtk_combo_box_new_text ();
   gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_type), _("Fast"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_type), _("Complete"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_type), _("Reopen last session"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_type), _("Erase last session"));
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_type), 0);
   gtk_widget_show (priv->combo_type);
 
@@ -126,10 +125,6 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   frame = xfce_create_framebox_with_content (_("Options"), vbox);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-
-  priv->check_force = gtk_check_button_new_with_mnemonic (_("_Force"));
-  gtk_widget_show (priv->check_force);
-  gtk_box_pack_start (GTK_BOX (vbox), priv->check_force, FALSE, FALSE, BORDER);
 
   priv->check_eject = gtk_check_button_new_with_mnemonic (_("E_ject disk"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_eject), TRUE);
@@ -151,54 +146,129 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_blank_cd_dialog_response_cb), obj);
 }
 
+typedef struct {
+  GtkWidget *dialog_progress;
+  XfburnDevice *device;
+  gint blank_type;
+  gboolean eject;
+} ThreadBlankParams;
+
+static void
+thread_blank (ThreadBlankParams * params)
+{
+  GtkWidget *dialog_progress = params->dialog_progress;
+
+  struct burn_drive_info *drive_info = NULL;
+  struct burn_drive *drive;
+  enum burn_disc_status disc_state;
+  struct burn_progress progress;
+
+  if (!burn_initialize ()) {
+    g_critical ("Unable to initialize libburn");
+    g_free (params);
+    return;
+  }
+
+  if (!xfburn_device_grab (params->device, &drive_info)) {
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab drive"));
+
+    goto end;
+  }
+
+  drive = drive_info->drive;
+
+  while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE) {
+    usleep (1001);
+  }
+
+  while ( (disc_state = burn_disc_get_status (drive)) == BURN_DISC_UNREADY)
+    usleep (1001);
+
+  switch (disc_state) {
+  case BURN_DISC_BLANK:
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The inserted disc is already blank"));
+    goto cleanup;
+  case BURN_DISC_FULL:
+  case BURN_DISC_APPENDABLE:
+    /* these ones we can blank */
+    xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Ready"));
+    break;
+  case BURN_DISC_EMPTY:
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No disc detected in the drive"));
+    goto cleanup;
+  default:
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize drive and media state"));
+    goto cleanup;
+  }
+
+  if (!burn_disc_erasable (drive)) {
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Media is not erasable"));
+    goto cleanup;
+  }
+
+  burn_disc_erase(drive, params->blank_type);
+  sleep(1);
+
+  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Blanking disc..."));
+
+  while (burn_drive_get_status (drive, &progress) != BURN_DRIVE_IDLE) {
+    if(progress.sectors>0 && progress.sector>=0) {
+      gdouble percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
+      
+      xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent / 100.0);
+    }
+    usleep(500000);
+  }
+
+  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED, _("Done"));
+
+ cleanup:
+  burn_drive_release (drive, params->eject ? 1 : 0);
+ end:
+  burn_finish ();
+  g_free (params);
+}
+
 static void
 xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_id, gpointer user_data)
 {
   if (response_id == GTK_RESPONSE_OK) {
     XfburnBlankCdDialogPrivate *priv = XFBURN_BLANK_CD_DIALOG_GET_PRIVATE (dialog);
-    gchar *command;
     XfburnDevice *device;
-    gchar *blank_type, *speed;
+    gint blank_type;
+
+    GtkWidget *dialog_progress;
+    ThreadBlankParams *params = NULL;
 
     device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
-    speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
 
     switch (gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combo_type))) {
     case 0:
-      blank_type = g_strdup ("fast");
+      /* fast blanking */
+      blank_type = 1;
       break;
     case 1:
-      blank_type = g_strdup ("all");
-      break;
-    case 2:
-      blank_type = g_strdup ("unclose");
-      break;
-    case 3:
-      blank_type = g_strdup ("session");
+      /* normal blanking */
+      blank_type = 0;
       break;
     default:
-      blank_type = g_strdup ("fast");
+      blank_type = 1;
     }
-
-    command = g_strconcat ("cdrecord -v gracetime=2", " dev=", device->node_path, " blank=", blank_type, " speed=", speed,
-                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "",
-                        gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_force)) ? " -force" : "", NULL);
-    
-    g_free (blank_type);
-    g_free (speed);
-    
-    GtkWidget *dialog_progress;
         
-    dialog_progress = xfburn_blank_cd_progress_dialog_new ();
-    gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
+    dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     gtk_widget_hide (GTK_WIDGET (dialog));
-    
-    g_object_set_data (G_OBJECT (dialog_progress), "command", command);
-    gtk_dialog_run (GTK_DIALOG (dialog_progress));
-    
-    g_free (command);
+
+    gtk_widget_show (dialog_progress);
+
+    params = g_new0 (ThreadBlankParams, 1);
+    params->dialog_progress = dialog_progress;
+    params->device = device;
+    params->blank_type = blank_type;
+    params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)); 
+    g_thread_create ((GThreadFunc) thread_blank, params, FALSE, NULL);
   }
 }
+   
 
 /* public */
 GtkWidget *

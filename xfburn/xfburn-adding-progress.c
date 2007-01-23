@@ -123,6 +123,4 @@ xfburn_adding_progress_pulse (XfburnAddingProgress *adding_progress)
   
   DBG ("pulse");
   gtk_progress_bar_pulse (GTK_PROGRESS_BAR (priv->progress_bar));
-  gtk_widget_realize (priv->progress_bar);
-  gtk_widget_queue_draw (priv->progress_bar);
 }

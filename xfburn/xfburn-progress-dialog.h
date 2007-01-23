@@ -58,18 +58,13 @@ typedef struct
 typedef struct
 {
   GtkDialogClass parent_class;
-  
-  void (*output) (XfburnProgressDialog *dialog, const gchar *output);
-  void (*finished) (XfburnProgressDialog *dialog);
 } XfburnProgressDialogClass;
 
 
 GtkType xfburn_progress_dialog_get_type ();
 
-void xfburn_progress_dialog_append_output (XfburnProgressDialog * dialog, const gchar * output);
 void xfburn_progress_dialog_show_buffers (XfburnProgressDialog * dialog, gboolean show);
 void xfburn_progress_dialog_pulse_progress_bar (XfburnProgressDialog * dialog);
-void xfburn_progress_dialog_write_input (XfburnProgressDialog * dialog, const gchar * input);
 
 XfburnProgressDialogStatus xfburn_progress_dialog_get_status (XfburnProgressDialog * dialog);
 gdouble xfburn_progress_dialog_get_progress_bar_fraction (XfburnProgressDialog * dialog);
@@ -77,11 +72,13 @@ gdouble xfburn_progress_dialog_get_progress_bar_fraction (XfburnProgressDialog *
 void xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction);
 void xfburn_progress_dialog_set_fifo_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction);
 void xfburn_progress_dialog_set_buffer_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction);
-void xfburn_progress_dialog_set_action_text (XfburnProgressDialog * dialog, const gchar * text);
 void xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gfloat speed);
 void xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status);
+void xfburn_progress_dialog_set_status_with_text (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status, const gchar * text);
 
-GtkWidget *xfburn_progress_dialog_new ();
+void xfburn_progress_dialog_burning_failed (XfburnProgressDialog * dialog, const gchar * msg_error);
+
+GtkWidget *xfburn_progress_dialog_new (GtkWindow *parent);
 
 G_END_DECLS
 

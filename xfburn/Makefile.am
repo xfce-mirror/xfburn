@@ -12,11 +12,8 @@ xfburn_headers = 							\
 	xfburn-global.h							\
 	xfburn-adding-progress.h					\
 	xfburn-blank-cd-dialog.h					\
-	xfburn-blank-cd-progress-dialog.h				\
 	xfburn-burn-data-composition-dialog.h				\
-	xfburn-burn-data-composition-progress-dialog.h			\
 	xfburn-burn-image-dialog.h					\
-	xfburn-burn-image-progress-dialog.h				\
 	xfburn-settings.h						\
 	xfburn-composition.h						\
 	xfburn-compositions-notebook.h					\
@@ -24,7 +21,6 @@ xfburn_headers = 							\
 	xfburn-copy-cd-progress-dialog.h				\
 	xfburn-copy-dvd-dialog.h					\
 	xfburn-create-iso-progress-dialog.h				\
-	xfburn-create-iso-from-composition-progress-dialog.h		\
 	xfburn-device-box.h						\
 	xfburn-device-list.h						\
 	xfburn-format-dvd-dialog.h					\
@@ -38,25 +34,17 @@ xfburn_headers = 							\
 	xfburn-directory-browser.h					\
 	xfburn-preferences-dialog.h					\
 	xfburn-stock.h							\
-	xfburn-utils.h							\
-	xfburn-write-mode-combo-box.h
+	xfburn-utils.h	
 	
 xfburn_SOURCES =							\
 	$(xfburn_headers)						\
 	xfburn-adding-progress.c					\
 	xfburn-blank-cd-dialog.c					\
-	xfburn-blank-cd-progress-dialog.c				\
 	xfburn-burn-data-composition-dialog.c				\
-	xfburn-burn-data-composition-progress-dialog.c			\
 	xfburn-burn-image-dialog.c					\
-	xfburn-burn-image-progress-dialog.c				\
 	xfburn-composition.c						\
 	xfburn-compositions-notebook.c					\
-	xfburn-create-iso-progress-dialog.c				\
-	xfburn-create-iso-from-composition-progress-dialog.c		\
 	xfburn-settings.c						\
-	xfburn-copy-cd-dialog.c						\
-	xfburn-copy-cd-progress-dialog.c				\
 	xfburn-copy-dvd-dialog.c					\
 	xfburn-device-box.c						\
 	xfburn-device-list.c						\
@@ -72,15 +60,18 @@ xfburn_SOURCES =							\
 	xfburn-directory-browser.c					\
 	xfburn-preferences-dialog.c					\
 	xfburn-stock.c							\
-	xfburn-utils.c							\
-	xfburn-write-mode-combo-box.c				
+	xfburn-utils.c	
 
 xfburn_CFLAGS =								\
+	$(LIBBURN_CFLAGS)						\
+	$(LIBISOFS_CFLAGS)						\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(EXO_CFLAGS)							\
-	$(THUNAR_VFS_CFLAGS)
+	$(THUNAR_VFS_CFLAGS)						
 
-xfburn_LDFLAGS = 							\
+xfburn_LDADD = 							\
+	$(LIBBURN_LIBS)							\
+	$(LIBISOFS_LIBS)						\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(EXO_LIBS)							\
 	$(THUNAR_VFS_LIBS)

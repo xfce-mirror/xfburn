@@ -117,7 +117,7 @@ xfburn_copy_dvd_dialog_init (XfburnCopyDvdDialog * obj)
   g_object_unref (icon);
 
   /* reader devices list */
-  priv->device_box_src = xfburn_device_box_new (FALSE, FALSE);
+  priv->device_box_src = xfburn_device_box_new (FALSE, FALSE, FALSE);
   gtk_widget_show (priv->device_box_src);
   
   frame = xfce_create_framebox_with_content (_("DVD Reader device"), priv->device_box_src);
@@ -125,7 +125,7 @@ xfburn_copy_dvd_dialog_init (XfburnCopyDvdDialog * obj)
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   /* burning devices list */
-  priv->device_box_dest = xfburn_device_box_new (TRUE, TRUE);
+  priv->device_box_dest = xfburn_device_box_new (TRUE, TRUE, FALSE);
   gtk_widget_show (priv->device_box_dest);
 
   priv->frame_burn = xfce_create_framebox_with_content (_("Burning device"), priv->device_box_dest);
@@ -263,7 +263,7 @@ cb_dialog_response (XfburnCopyDvdDialog * dialog, gint response_id, XfburnCopyDv
       command = g_strconcat ("readcd dev=", device_read->node_path, " f=", 
                              gtk_entry_get_text (GTK_ENTRY (priv->entry_path_iso)), NULL);
       
-      dialog_progress = xfburn_create_iso_progress_dialog_new ();
+      //      dialog_progress = xfburn_create_iso_progress_dialog_new ();
     } else {
       gchar *speed;
       gchar *source_device = NULL;
@@ -285,7 +285,7 @@ cb_dialog_response (XfburnCopyDvdDialog * dialog, gint response_id, XfburnCopyDv
       g_free (source_device);
       g_free (speed);
       
-      dialog_progress = xfburn_copy_cd_progress_dialog_new ();
+      //      dialog_progress = xfburn_copy_cd_progress_dialog_new ();
     }
   
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));

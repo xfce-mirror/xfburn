@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-01 17:37+0100\n"
+"POT-Creation-Date: 2007-01-23 15:51+0100\n"
 "PO-Revision-Date: 2006-11-05 04:10+0800\n"
 "Last-Translator: ByungHyun Choi<byunghyun.choi@debianusers.org>\n"
 "Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge."
@@ -21,142 +21,247 @@ msgstr ""
 msgid "Adding files to the composition"
 msgstr "구성 내용에 화일 추가"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:94
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:151
-#: ../xfburn/xfburn-main-window.c:120
+#: ../xfburn/xfburn-blank-cd-dialog.c:95 ../xfburn/xfburn-main-window.c:120
 msgid "Blank CD-RW"
 msgstr "CD-RW를 지웁니다."
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:105
-#: ../xfburn/xfburn-burn-data-composition-dialog.c:131
-#: ../xfburn/xfburn-burn-image-dialog.c:122
+#: ../xfburn/xfburn-blank-cd-dialog.c:106
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:148
+#: ../xfburn/xfburn-burn-image-dialog.c:136
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
+#: ../xfburn/xfburn-copy-dvd-dialog.c:131
 #: ../xfburn/xfburn-format-dvd-dialog.c:102
 msgid "Burning device"
 msgstr "기록 장치"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:111
+#: ../xfburn/xfburn-blank-cd-dialog.c:112
 msgid "Fast"
 msgstr "빠르게"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:112
+#: ../xfburn/xfburn-blank-cd-dialog.c:113
 msgid "Complete"
 msgstr "완료"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:113
-msgid "Reopen last session"
-msgstr "마지막 세션을 다시 열어봅니다."
-
-#: ../xfburn/xfburn-blank-cd-dialog.c:114
-msgid "Erase last session"
-msgstr "마지막 세션을 지웁니다."
-
-#: ../xfburn/xfburn-blank-cd-dialog.c:118
+#: ../xfburn/xfburn-blank-cd-dialog.c:117
 msgid "Blank type"
 msgstr "빈 타입"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:126
-#: ../xfburn/xfburn-burn-data-composition-dialog.c:152
-#: ../xfburn/xfburn-burn-image-dialog.c:143
+#: ../xfburn/xfburn-blank-cd-dialog.c:125
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:156
+#: ../xfburn/xfburn-burn-image-dialog.c:144
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
+#: ../xfburn/xfburn-copy-dvd-dialog.c:139
 #: ../xfburn/xfburn-format-dvd-dialog.c:110
 msgid "Options"
 msgstr "선택사항"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:130
-msgid "_Force"
-msgstr "강제(_F)"
-
-#: ../xfburn/xfburn-blank-cd-dialog.c:134
-#: ../xfburn/xfburn-burn-data-composition-dialog.c:156
-#: ../xfburn/xfburn-burn-image-dialog.c:147
+#: ../xfburn/xfburn-blank-cd-dialog.c:129
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:160
+#: ../xfburn/xfburn-burn-image-dialog.c:148
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
+#: ../xfburn/xfburn-copy-dvd-dialog.c:143
 #: ../xfburn/xfburn-format-dvd-dialog.c:114
 msgid "E_ject disk"
 msgstr "디스크 추출(_J)"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:144
+#: ../xfburn/xfburn-blank-cd-dialog.c:139
 msgid "_Blank"
 msgstr "지웁니다.(_B)"
 
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:133
-msgid "Blanking..."
-msgstr "지우고 있습니다..."
+#: ../xfburn/xfburn-blank-cd-dialog.c:173
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:409
+#: ../xfburn/xfburn-burn-image-dialog.c:264
+msgid "Unable to grab drive"
+msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-progress-dialog.c:136
-msgid "Performing OPC..."
-msgstr "OPC를 진행하고 있습니다..."
+#: ../xfburn/xfburn-blank-cd-dialog.c:189
+msgid "The inserted disc is already blank"
+msgstr ""
 
-#: ../xfburn/xfburn-burn-data-composition-dialog.c:123
+#. these ones we can blank
+#: ../xfburn/xfburn-blank-cd-dialog.c:194
+msgid "Ready"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-cd-dialog.c:197
+msgid "No disc detected in the drive"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-cd-dialog.c:200
+msgid "Cannot recognize drive and media state"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-cd-dialog.c:205
+msgid "Media is not erasable"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-cd-dialog.c:212
+#, fuzzy
+msgid "Blanking disc..."
+msgstr "기록 장치"
+
+#: ../xfburn/xfburn-blank-cd-dialog.c:223
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:344
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:527
+#: ../xfburn/xfburn-burn-image-dialog.c:385
+msgid "Done"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:138
 msgid "Burn Composition"
 msgstr "구성 내용 기록"
 
-#: ../xfburn/xfburn-burn-data-composition-dialog.c:140
-#: ../xfburn/xfburn-burn-image-dialog.c:131
-msgid "Write _mode :"
-msgstr "기록 모드(_M) :"
-
-#: ../xfburn/xfburn-burn-data-composition-dialog.c:161
-#: ../xfburn/xfburn-burn-image-dialog.c:152
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:165
+#: ../xfburn/xfburn-burn-image-dialog.c:153
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
+#: ../xfburn/xfburn-copy-dvd-dialog.c:148
 msgid "_Dummy write"
 msgstr "더미 기록(_D)"
 
-#: ../xfburn/xfburn-burn-data-composition-dialog.c:165
-#: ../xfburn/xfburn-burn-image-dialog.c:156
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:169
+#: ../xfburn/xfburn-burn-image-dialog.c:157
 msgid "Burn_Free"
 msgstr "자유 기록(_F)"
 
 #. create ISO ?
-#: ../xfburn/xfburn-burn-data-composition-dialog.c:171
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:175
 #: ../xfburn/xfburn-copy-cd-dialog.c:157
+#: ../xfburn/xfburn-copy-dvd-dialog.c:157
 msgid "Only create _ISO"
 msgstr "ISO만 작성(_I)"
 
-#: ../xfburn/xfburn-burn-data-composition-dialog.c:208
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:212
 msgid "_Burn Composition"
 msgstr "구성 내용을 기록(_B)"
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:84
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:89
-msgid "Finishing"
-msgstr "정리하고 있습니다."
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:308
+#, c-format
+msgid "Could not create destination ISO file: %s"
+msgstr ""
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:90
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:95
-msgid "Fixating..."
-msgstr "마무리하고 있습니다..."
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:315
+msgid "Writing ISO..."
+msgstr "ISO를 기록하고 있습니다..."
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:98
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:110
-msgid "Writing composition..."
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:326
+#, c-format
+msgid "An error occured while writing ISO: %s"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:397
+#: ../xfburn/xfburn-burn-image-dialog.c:233
+msgid "Unable to create disc object"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:402
+#: ../xfburn/xfburn-burn-image-dialog.c:256
+msgid "Cannot attach source object to track object"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:423
+#: ../xfburn/xfburn-burn-image-dialog.c:278
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:427
+#: ../xfburn/xfburn-burn-image-dialog.c:282
+msgid "Closed media with data detected. Need blank or appendable media"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:429
+#: ../xfburn/xfburn-burn-image-dialog.c:284
+msgid "No media detected in drive"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:431
+#: ../xfburn/xfburn-burn-image-dialog.c:286
+msgid "Cannot recognize state of drive and media"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:456
+#: ../xfburn/xfburn-burn-image-dialog.c:311
+msgid "The write mode is not supported currently"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:477
+#: ../xfburn/xfburn-burn-image-dialog.c:334
+#, fuzzy
+msgid "Burning composition..."
 msgstr "구성 내용을 기록하고 있습니다..."
 
-#: ../xfburn/xfburn-burn-data-composition-progress-dialog.c:126
-msgid "Burn data composition"
-msgstr "데이터 구성을 기록"
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:493
+#: ../xfburn/xfburn-burn-image-dialog.c:350
+#, fuzzy
+msgid "Writing Lead-In..."
+msgstr "ISO를 기록하고 있습니다..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:104
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:127
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:499
+#: ../xfburn/xfburn-burn-image-dialog.c:356
+#, fuzzy
+msgid "Writing Lead-Out..."
+msgstr "ISO를 기록하고 있습니다..."
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:505
+#: ../xfburn/xfburn-burn-image-dialog.c:362
+#, fuzzy
+msgid "Writing pregap..."
+msgstr "CD에 기록하고 있습니다..."
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:368
+#, fuzzy
+msgid "Closing track..."
+msgstr "캐쉬를 지우고 있습니다..."
+
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:517
+#: ../xfburn/xfburn-burn-image-dialog.c:374
+#, fuzzy
+msgid "Closing session..."
+msgstr "기존 세션을 가져옵니다."
+
+#. could not create source
+#: ../xfburn/xfburn-burn-data-composition-dialog.c:552
+msgid "Could not create ISO source structure"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:108
 msgid "Burn CD image"
 msgstr "CD 이미지를 기록"
 
 #. file
-#: ../xfburn/xfburn-burn-image-dialog.c:111
-#: ../xfburn/xfburn-burn-image-dialog.c:114
+#: ../xfburn/xfburn-burn-image-dialog.c:115
+#: ../xfburn/xfburn-burn-image-dialog.c:128
 msgid "Image to burn"
 msgstr "기록하고자 하는 이미지"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:166
+#: ../xfburn/xfburn-burn-image-dialog.c:119
+msgid "All files"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:123
+msgid "ISO images"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:167
 msgid "_Burn image"
 msgstr "이미지를 기록(_B)"
 
-#: ../xfburn/xfburn-burn-image-progress-dialog.c:108
-msgid "Writing ISO..."
-msgstr "ISO를 기록하고 있습니다..."
+#: ../xfburn/xfburn-burn-image-dialog.c:246
+msgid "Unable to determine image size"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:252
+msgid "Cannot open image"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:324
+#, fuzzy
+msgid "Burning image..."
+msgstr "이미지를 기록(_B)"
 
 #: ../xfburn/xfburn-compositions-notebook.c:173
-#: ../xfburn/xfburn-data-composition.c:297
+#: ../xfburn/xfburn-data-composition.c:299
 msgid "Data composition"
 msgstr "데이터 구성"
 
@@ -170,6 +275,7 @@ msgid "CD Reader device"
 msgstr "CD를 읽어들일 장치"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:152
+#: ../xfburn/xfburn-copy-dvd-dialog.c:152
 msgid "On the _fly"
 msgstr "즉시(_f)"
 
@@ -194,76 +300,87 @@ msgstr "CD에 기록하고 있습니다..."
 msgid "Reading CD..."
 msgstr "CD를 읽고 있습니다..."
 
-#: ../xfburn/xfburn-create-iso-from-composition-progress-dialog.c:115
-msgid "Create ISO from composition"
-msgstr "구성내용으로부터 ISO 작성"
+#: ../xfburn/xfburn-copy-dvd-dialog.c:113
+#, fuzzy
+msgid "Copy data DVD"
+msgstr "데이터 CD를 복사"
+
+#: ../xfburn/xfburn-copy-dvd-dialog.c:123
+#, fuzzy
+msgid "DVD Reader device"
+msgstr "CD를 읽어들일 장치"
+
+#: ../xfburn/xfburn-copy-dvd-dialog.c:193
+#, fuzzy
+msgid "_Copy DVD"
+msgstr "DVD 복사"
 
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
 msgstr "CD로부터 ISO 작성"
 
-#: ../xfburn/xfburn-data-composition.c:138
+#: ../xfburn/xfburn-data-composition.c:140
 msgid "Add"
 msgstr "추가"
 
-#: ../xfburn/xfburn-data-composition.c:138
+#: ../xfburn/xfburn-data-composition.c:140
 msgid "Add the selected file(s) to the composition"
 msgstr "선택한 화일을 구성내용에 추가"
 
-#: ../xfburn/xfburn-data-composition.c:140
+#: ../xfburn/xfburn-data-composition.c:142
 msgid "Create directory"
 msgstr "디렉토리 작성"
 
-#: ../xfburn/xfburn-data-composition.c:140
+#: ../xfburn/xfburn-data-composition.c:142
 msgid "Add a new directory to the composition"
 msgstr "구성내용에 새로운 디렉토리 추가"
 
-#: ../xfburn/xfburn-data-composition.c:142
+#: ../xfburn/xfburn-data-composition.c:144
 msgid "Remove"
 msgstr "삭제"
 
-#: ../xfburn/xfburn-data-composition.c:142
+#: ../xfburn/xfburn-data-composition.c:144
 msgid "Remove the selected file(s) from the composition"
 msgstr "선택한 화일을 구성내용에서 삭제"
 
-#: ../xfburn/xfburn-data-composition.c:144
+#: ../xfburn/xfburn-data-composition.c:146
 msgid "Clear"
 msgstr "삭제"
 
-#: ../xfburn/xfburn-data-composition.c:144
+#: ../xfburn/xfburn-data-composition.c:146
 msgid "Clear the content of the composition"
 msgstr "구성내용을 삭제"
 
-#: ../xfburn/xfburn-data-composition.c:146
+#: ../xfburn/xfburn-data-composition.c:148
 msgid "Import"
 msgstr "가져오기"
 
-#: ../xfburn/xfburn-data-composition.c:146
+#: ../xfburn/xfburn-data-composition.c:148
 msgid "Import existing session"
 msgstr "기존 세션을 가져옵니다."
 
-#: ../xfburn/xfburn-data-composition.c:147
+#: ../xfburn/xfburn-data-composition.c:149
 msgid "Rename"
 msgstr "이름변경"
 
-#: ../xfburn/xfburn-data-composition.c:147
+#: ../xfburn/xfburn-data-composition.c:149
 msgid "Rename the selected file"
 msgstr "선택한 화일의 이름을 변경"
 
-#: ../xfburn/xfburn-data-composition.c:292
+#: ../xfburn/xfburn-data-composition.c:294
 msgid "Volume name :"
 msgstr "볼륨 이름 :"
 
-#: ../xfburn/xfburn-data-composition.c:323
+#: ../xfburn/xfburn-data-composition.c:325
 msgid "Contents"
 msgstr "내용"
 
-#: ../xfburn/xfburn-data-composition.c:338
+#: ../xfburn/xfburn-data-composition.c:340
 #: ../xfburn/xfburn-directory-browser.c:142
 msgid "Size"
 msgstr "크기"
 
-#: ../xfburn/xfburn-data-composition.c:341
+#: ../xfburn/xfburn-data-composition.c:343
 msgid "Local Path"
 msgstr "지역 경로"
 
@@ -272,7 +389,7 @@ msgid "You must give a name to the file"
 msgstr "화일 이름을 지어주세요."
 
 #: ../xfburn/xfburn-data-composition.c:603
-#: ../xfburn/xfburn-data-composition.c:1008
+#: ../xfburn/xfburn-data-composition.c:1007
 msgid "A file with the same name is already present in the composition"
 msgstr "같은 이름의 화일 이미 구성내용에 있습니다."
 
@@ -282,36 +399,53 @@ msgstr "같은 이름의 화일 이미 구성내용에 있습니다."
 msgid "New directory"
 msgstr "새로운 디렉토리"
 
-#: ../xfburn/xfburn-data-composition.c:1189
+#: ../xfburn/xfburn-data-composition.c:1188
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added"
 msgstr "\"%s\"라는 화일이 이 디렉토리에 이미 있기 때문에 추가할 수 없습니다."
 
-#: ../xfburn/xfburn-data-disc-usage.c:129
+#: ../xfburn/xfburn-data-disc-usage.c:134
 msgid "Burn composition"
 msgstr "구성내용 기록"
 
-#: ../xfburn/xfburn-data-disc-usage.c:176
+#: ../xfburn/xfburn-data-disc-usage.c:181
 msgid "You are trying to burn more data than the disk can contain !"
 msgstr "디스크 용량을 초과한 데이터를 기록하려고 하고 있습니다!"
 
-#: ../xfburn/xfburn-device-box.c:114 ../xfburn/xfburn-device-box.c:115
+#: ../xfburn/xfburn-device-box.c:138 ../xfburn/xfburn-device-box.c:139
 msgid "Show writers only"
 msgstr "작성자만 표시"
 
-#: ../xfburn/xfburn-device-box.c:117
+#: ../xfburn/xfburn-device-box.c:141
 msgid "Show speed selection"
 msgstr "속도 선택 표시"
 
-#: ../xfburn/xfburn-device-box.c:118
-msgid "Show speed selection list and refresh button"
-msgstr "속도 선택 리스트와 갱신버튼 표시"
+#: ../xfburn/xfburn-device-box.c:142
+#, fuzzy
+msgid "Show speed selection combo"
+msgstr "속도 선택 표시"
 
-#: ../xfburn/xfburn-device-box.c:153
-msgid "_Speed :"
+#: ../xfburn/xfburn-device-box.c:145
+#, fuzzy
+msgid "Show mode selection"
+msgstr "속도 선택 표시"
+
+#: ../xfburn/xfburn-device-box.c:146
+#, fuzzy
+msgid "Show mode selection combo"
+msgstr "속도 선택 표시"
+
+#: ../xfburn/xfburn-device-box.c:188
+#, fuzzy
+msgid "_Speed:"
 msgstr "속도(_S) :"
+
+#: ../xfburn/xfburn-device-box.c:216
+#, fuzzy
+msgid "Write _mode:"
+msgstr "기록 모드(_M) :"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:57
@@ -319,7 +453,7 @@ msgid "Folder"
 msgstr "디렉토리"
 
 #: ../xfburn/xfburn-directory-browser.c:129
-#: ../xfburn/xfburn-directory-browser.c:303
+#: ../xfburn/xfburn-directory-browser.c:307
 msgid "File"
 msgstr "화일"
 
@@ -336,12 +470,12 @@ msgstr "DVD-RW를 포맷합니다."
 msgid "_Format"
 msgstr "포맷(_F)"
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:260
+#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:271
 msgid "Filesystem"
 msgstr "화일시스템"
 
 #. load the user's home dir
-#: ../xfburn/xfburn-fs-browser.c:243
+#: ../xfburn/xfburn-fs-browser.c:250
 #, c-format
 msgid "%s's home"
 msgstr "%s의 홈"
@@ -467,15 +601,15 @@ msgstr "도구바 편집기"
 
 #. if (G_UNLIKELY (icon == NULL))
 #. icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-#: ../xfburn/xfburn-main-window.c:514
+#: ../xfburn/xfburn-main-window.c:515
 msgid "Another cd burning GUI"
 msgstr "또 다른 CD 기록 GUI"
 
-#: ../xfburn/xfburn-main-window.c:517
+#: ../xfburn/xfburn-main-window.c:518
 msgid "Author/Maintainer"
 msgstr "만든이/유지관리인"
 
-#: ../xfburn/xfburn-main-window.c:522
+#: ../xfburn/xfburn-main-window.c:523
 #, c-format
 msgid "Translator (%s)"
 msgstr "번역한 이(%s)"
@@ -488,134 +622,168 @@ msgstr "레이블"
 msgid "The text of the label"
 msgstr "레이블"
 
-#: ../xfburn/xfburn-preferences-dialog.c:123
+#: ../xfburn/xfburn-preferences-dialog.c:136
 msgid "Preferences"
 msgstr "설정"
 
-#: ../xfburn/xfburn-preferences-dialog.c:124
+#: ../xfburn/xfburn-preferences-dialog.c:137
 msgid "Tune how Xfburn behaves"
 msgstr "Xfburn의 성능향상"
 
-#: ../xfburn/xfburn-preferences-dialog.c:169
-#: ../xfburn/xfburn-preferences-dialog.c:173
+#: ../xfburn/xfburn-preferences-dialog.c:182
+#: ../xfburn/xfburn-preferences-dialog.c:186
 msgid "Temporary directory"
 msgstr "작업 디렉토리"
 
-#: ../xfburn/xfburn-preferences-dialog.c:177
+#: ../xfburn/xfburn-preferences-dialog.c:190
 msgid "_Clean temporary directory on exit"
 msgstr "종료하면서 작업디렉토리 삭제(_C)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:184
+#: ../xfburn/xfburn-preferences-dialog.c:197
 msgid "File browser"
 msgstr "화일 브라우져"
 
-#: ../xfburn/xfburn-preferences-dialog.c:188
+#: ../xfburn/xfburn-preferences-dialog.c:201
 msgid "Show _hidden files"
 msgstr "숨겨진 화일 표시(_h)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:192
+#: ../xfburn/xfburn-preferences-dialog.c:205
 msgid "Show human_readable filesizes"
 msgstr "화일 크기를 알기 쉽게 표시(_r)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:203
+#: ../xfburn/xfburn-preferences-dialog.c:216
 msgid "General"
 msgstr "일반"
 
-#: ../xfburn/xfburn-preferences-dialog.c:214
-#: ../xfburn/xfburn-preferences-dialog.c:289
+#: ../xfburn/xfburn-preferences-dialog.c:227
+#: ../xfburn/xfburn-preferences-dialog.c:304
 msgid "Devices"
 msgstr "장치"
 
-#: ../xfburn/xfburn-preferences-dialog.c:223
+#: ../xfburn/xfburn-preferences-dialog.c:236
 msgid "Detected devices"
 msgstr "찾아낸 장치"
 
-#: ../xfburn/xfburn-preferences-dialog.c:244
+#: ../xfburn/xfburn-preferences-dialog.c:257
 msgid "Name"
 msgstr "이름"
 
-#: ../xfburn/xfburn-preferences-dialog.c:257
-msgid "Id"
-msgstr "Id"
-
-#: ../xfburn/xfburn-preferences-dialog.c:259
+#: ../xfburn/xfburn-preferences-dialog.c:270
 msgid "Node"
 msgstr "노드"
 
-#: ../xfburn/xfburn-preferences-dialog.c:261
+#: ../xfburn/xfburn-preferences-dialog.c:272
 msgid "Write CD-R"
 msgstr "CD-R을 작성"
 
-#: ../xfburn/xfburn-preferences-dialog.c:263
+#: ../xfburn/xfburn-preferences-dialog.c:274
 msgid "Write CD-RW"
 msgstr "CD-RW를 작성"
 
-#: ../xfburn/xfburn-preferences-dialog.c:266
+#: ../xfburn/xfburn-preferences-dialog.c:277
 msgid "Write DVD-R"
 msgstr "DVD-R을 작성"
 
-#: ../xfburn/xfburn-preferences-dialog.c:269
+#: ../xfburn/xfburn-preferences-dialog.c:280
 msgid "Write DVD-RAM"
 msgstr "DVD-RAM을 작성"
 
-#: ../xfburn/xfburn-preferences-dialog.c:277
+#: ../xfburn/xfburn-preferences-dialog.c:288
 msgid "Sc_an for devices"
 msgstr "장치 검색(_a)"
 
-#: ../xfburn/xfburn-progress-dialog.c:183
+#: ../xfburn/xfburn-progress-dialog.c:164
 msgid "Initializing..."
 msgstr "초기화하고 있습니다..."
 
-#: ../xfburn/xfburn-progress-dialog.c:198
+#: ../xfburn/xfburn-progress-dialog.c:179
 msgid "Estimated writing speed:"
 msgstr "기록속도를 측정하고 있습니다:"
 
-#: ../xfburn/xfburn-progress-dialog.c:201
-#: ../xfburn/xfburn-progress-dialog.c:218
-#: ../xfburn/xfburn-progress-dialog.c:228
-#: ../xfburn/xfburn-progress-dialog.c:570
-#: ../xfburn/xfburn-progress-dialog.c:590
-#: ../xfburn/xfburn-progress-dialog.c:611
+#: ../xfburn/xfburn-progress-dialog.c:182
+#: ../xfburn/xfburn-progress-dialog.c:199
+#: ../xfburn/xfburn-progress-dialog.c:209
+#: ../xfburn/xfburn-progress-dialog.c:275
+#: ../xfburn/xfburn-progress-dialog.c:384
+#: ../xfburn/xfburn-progress-dialog.c:408
 msgid "no info"
 msgstr "정보 없음"
 
-#: ../xfburn/xfburn-progress-dialog.c:212
+#: ../xfburn/xfburn-progress-dialog.c:193
 msgid "FIFO buffer:"
 msgstr "FIFO 버퍼:"
 
-#: ../xfburn/xfburn-progress-dialog.c:222
+#: ../xfburn/xfburn-progress-dialog.c:203
 msgid "Device buffer:"
 msgstr "장치 버퍼:"
 
-#. output
-#: ../xfburn/xfburn-progress-dialog.c:233
-msgid "View _output"
-msgstr "출력 표시(_o)"
-
-#: ../xfburn/xfburn-progress-dialog.c:359
-msgid "Operation finished"
-msgstr "작업이 끝났습니다."
-
-#: ../xfburn/xfburn-progress-dialog.c:634
+#: ../xfburn/xfburn-progress-dialog.c:437
 msgid "Failed"
 msgstr "실패햇습니다."
 
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: ../xfburn/xfburn-progress-dialog.c:440
 msgid "Cancelled"
 msgstr "취소되었습니다."
 
-#: ../xfburn/xfburn-progress-dialog.c:640
+#: ../xfburn/xfburn-progress-dialog.c:443
 msgid "Completed"
 msgstr "완료했습니다."
+
+#: ../xfburn/xfburn-progress-dialog.c:499
+#, fuzzy
+msgid "Failure"
+msgstr "실패햇습니다."
 
 #: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
 msgstr "명령 선택"
 
-#: ../xfburn/xfburn-write-mode-combo-box.c:41
-msgid "Default"
-msgstr "기본"
-
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "CD/DVD 기록 프로그램"
+
+#, fuzzy
+#~ msgid "Initializing"
+#~ msgstr "초기화하고 있습니다..."
+
+#~ msgid "Show speed selection list and refresh button"
+#~ msgstr "속도 선택 리스트와 갱신버튼 표시"
+
+#~ msgid "Default"
+#~ msgstr "기본"
+
+#~ msgid "Reopen last session"
+#~ msgstr "마지막 세션을 다시 열어봅니다."
+
+#~ msgid "Erase last session"
+#~ msgstr "마지막 세션을 지웁니다."
+
+#~ msgid "_Force"
+#~ msgstr "강제(_F)"
+
+#~ msgid "Blanking..."
+#~ msgstr "지우고 있습니다..."
+
+#~ msgid "Performing OPC..."
+#~ msgstr "OPC를 진행하고 있습니다..."
+
+#~ msgid "Finishing"
+#~ msgstr "정리하고 있습니다."
+
+#~ msgid "Fixating..."
+#~ msgstr "마무리하고 있습니다..."
+
+#~ msgid "Burn data composition"
+#~ msgstr "데이터 구성을 기록"
+
+#~ msgid "Create ISO from composition"
+#~ msgstr "구성내용으로부터 ISO 작성"
+
+#~ msgid "Id"
+#~ msgstr "Id"
+
+#~ msgid "View _output"
+#~ msgstr "출력 표시(_o)"
+
+#~ msgid "Operation finished"
+#~ msgstr "작업이 끝났습니다."

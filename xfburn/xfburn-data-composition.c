@@ -43,6 +43,8 @@
 
 #include <exo/exo.h>
 
+#include <libisofs.h>
+
 #include "xfburn-data-composition.h"
 
 #if 0
@@ -92,7 +94,7 @@ static gboolean add_file_to_list_with_name (const gchar *name, XfburnDataComposi
                                             GtkTreeViewDropPosition position);
 static gboolean add_file_to_list (XfburnDataComposition * dc, GtkTreeModel * model, const gchar * path, GtkTreeIter * iter,
                                   GtkTreeIter * insertion, GtkTreeViewDropPosition position);
-static gboolean generate_file_list (XfburnDataComposition * dc, gchar ** tmpfile);
+static struct iso_volume * generate_iso_volume (XfburnDataComposition * dc);
                                   
 enum
 {
@@ -414,16 +416,14 @@ cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc)
 {
   XfburnMainWindow *mainwin = xfburn_main_window_get_instance ();
   GtkWidget *dialog;
-  gchar *tmpfile = NULL;
+  struct iso_volume *volume = NULL;
+
+  volume = generate_iso_volume (XFBURN_DATA_COMPOSITION (dc));
   
-  generate_file_list (XFBURN_DATA_COMPOSITION (dc), &tmpfile);
-  
-  dialog = xfburn_burn_data_composition_dialog_new (dc, tmpfile);
+  dialog = xfburn_burn_data_composition_dialog_new (iso_volset_new(volume, "VOLSETID"));
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (mainwin));
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
-
-  g_free (tmpfile);
 }
 
 static void
@@ -930,7 +930,6 @@ set_modified (XfburnDataCompositionPrivate *priv)
     XfburnMainWindow *mainwin;
     GtkUIManager *ui_manager;
     GtkActionGroup *action_group;
-    GtkAction *action;
   
     mainwin = xfburn_main_window_get_instance ();
     ui_manager = xfburn_main_window_get_ui_manager (mainwin);
@@ -1426,93 +1425,54 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   }
 }
 
-static gchar *
-get_composition_path (GtkTreeModel *model, GtkTreeIter *iter)
+static void
+fill_volume_with_composition (GtkTreeModel *model, struct iso_tree_node * parent, GtkTreeIter *iter)
 {
-  GtkTreeIter parent;
-  GtkTreeIter current = *iter;
-  gchar *path = g_strdup ("");
-  gchar *temp = NULL;
-  
-  while (gtk_tree_model_iter_parent (model, &parent, &current)) {
-    gchar *name = NULL;
-    
-    gtk_tree_model_get (model, &parent, DATA_COMPOSITION_COLUMN_CONTENT, &name, -1);
-    
-    temp = g_strdup_printf ("%s/%s", name, path);
-    g_free (path);
-    path = temp;
-    
-    g_free (name);
-    
-    current = parent;
-  } 
-  
-  return path;
+  do {
+      DataCompositionEntryType type;
+      gchar *name = NULL;
+      gchar *src = NULL;
+      
+      struct iso_tree_node *node = NULL;
+
+      gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_TYPE, &type,
+			  DATA_COMPOSITION_COLUMN_CONTENT, &name, DATA_COMPOSITION_COLUMN_PATH, &src, -1);
+
+      if (type == DATA_COMPOSITION_TYPE_DIRECTORY) {
+	node = iso_tree_add_new_dir (parent, name);
+      } else {
+	node = iso_tree_add_node (parent, src);
+	iso_tree_node_set_name (node, name);
+      }
+      g_free (name);
+      g_free (src);
+
+      if (type == DATA_COMPOSITION_TYPE_DIRECTORY && gtk_tree_model_iter_has_child (model, iter)) {
+	GtkTreeIter child;
+
+	gtk_tree_model_iter_children (model, &child, iter);
+	fill_volume_with_composition (model, node, &child);
+      }
+  } while (gtk_tree_model_iter_next (model, iter));
 }
 
-static gboolean
-foreach_generate_file_list (GtkTreeModel * model, GtkTreePath * path, GtkTreeIter * iter, FILE * file)
-{
-  DataCompositionEntryType type;
-  gchar *dir_path = NULL;
-  gchar *name = NULL;
-  gchar *src = NULL;
-  
-  gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_TYPE, &type,
-                      DATA_COMPOSITION_COLUMN_CONTENT, &name, DATA_COMPOSITION_COLUMN_PATH, &src, -1);
-
-  dir_path = get_composition_path (model, iter);
-  
-  fprintf (file, "%s%s=", dir_path, name);
-  
-  if (type == DATA_COMPOSITION_TYPE_DIRECTORY) {
-    gchar *dummy_dir = NULL;
-    
-    dummy_dir = g_object_get_data (G_OBJECT (model), "dummy-dir");    
-    fprintf (file, "%s\n", dummy_dir);
-  } else {
-    fprintf (file, "%s\n", src);
-  }
-
-  g_free (dir_path);
-  g_free (name);
-  g_free (src);
-  return FALSE;
-}
-
-static gboolean
-generate_file_list (XfburnDataComposition * dc, gchar ** tmpfile)
+static struct iso_volume *
+generate_iso_volume (XfburnDataComposition * dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
-  
-  GError *error = NULL;
-  FILE *file_tmp;
-  int fd_tmpfile;
+  struct iso_volume *volume = NULL;
   GtkTreeModel *model;
-  gchar *dummy_dir = NULL;
-  gchar template[] = "/tmp/xfburnXXXXXX";
-  
-  fd_tmpfile = g_file_open_tmp ("xfburnXXXXXX", tmpfile, &error);
-  if (error) {
-    g_warning ("Unable to create temporary file: %s", error->message);
-    g_error_free (error);
-    return FALSE;
+  GtkTreeIter iter;
+
+  volume = iso_volume_new (gtk_entry_get_text (GTK_ENTRY (priv->entry_volume_name)), "Xfburn", "Xfburn");
+
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
+  if (gtk_tree_model_get_iter_first (model, &iter)) {
+    fill_volume_with_composition (model, iso_volume_get_root (volume), &iter);
   }
 
-  file_tmp = fdopen (fd_tmpfile, "w+");
-  model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
-  
-  
-  dummy_dir = mkdtemp (template);
-  g_object_set_data (G_OBJECT (model), "dummy-dir", dummy_dir);
-  
-  gtk_tree_model_foreach (model, (GtkTreeModelForeachFunc) foreach_generate_file_list, file_tmp);
-  fclose (file_tmp);
-  
-  return TRUE;
+  return volume;
 }
-
 
 /****************/
 /* loading code */
@@ -1785,21 +1745,3 @@ xfburn_data_composition_show_toolbar (XfburnDataComposition * composition)
   gtk_widget_show (priv->toolbar);
 }
 
-gchar *
-xfburn_data_composition_get_dummy_dir (XfburnDataComposition * composition)
-{
-  XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
-  GtkTreeModel *model;
-  
-  model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
-  
-  return g_object_get_data (G_OBJECT (model), "dummy-dir");
-}
-
-gchar *
-xfburn_data_composition_get_volume_id (XfburnDataComposition * composition)
-{
-  XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
-  
-  return g_strdup (gtk_entry_get_text (GTK_ENTRY (priv->entry_volume_name)));
-}

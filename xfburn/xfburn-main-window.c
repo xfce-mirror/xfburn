@@ -379,18 +379,19 @@ action_blank_cd (GtkAction * action, XfburnMainWindow * window)
 static void action_copy_cd (GtkAction *action, XfburnMainWindow *window)
 {
   GtkWidget *dialog;
-  
+  /*
   dialog = xfburn_copy_cd_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
   gtk_dialog_run (GTK_DIALOG (dialog)); 
   gtk_widget_destroy (dialog);
+  */
 }
 
 static void
 action_burn_image (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
-  
+
   dialog = xfburn_burn_image_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
   gtk_dialog_run (GTK_DIALOG (dialog));

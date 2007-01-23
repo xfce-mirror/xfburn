@@ -127,6 +127,8 @@ load_directory_in_browser (XfburnFsBrowser * browser, const gchar * path, GtkTre
   GError *error = NULL;
   GdkPixbuf *icon;
   GtkTreeModel *model;
+  GdkScreen *screen;
+  GtkIconTheme *icon_theme;
   const gchar *dir_entry;
   int x, y;
 
@@ -139,8 +141,11 @@ load_directory_in_browser (XfburnFsBrowser * browser, const gchar * path, GtkTre
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
 
-  gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
-  icon = xfce_themed_icon_load ("gnome-fs-directory", x);
+  gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (browser));
+  icon_theme = gtk_icon_theme_get_for_screen (screen);
+  icon = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-directory", x, 0, NULL);
 
   while ((dir_entry = g_dir_read_name (dir))) {
     gchar *full_path;
@@ -229,6 +234,8 @@ xfburn_fs_browser_refresh (XfburnFsBrowser * browser)
   GtkTreeIter iter_home, iter_root;
   int x, y;
   gchar *text;
+  GdkScreen *screen;
+  GtkIconTheme *icon_theme;
   GdkPixbuf *icon;
   GtkTreeSelection *selection;
   GtkTreePath *path;
@@ -237,11 +244,15 @@ xfburn_fs_browser_refresh (XfburnFsBrowser * browser)
 
   gtk_tree_store_clear (GTK_TREE_STORE (model));
 
-  gtk_icon_size_lookup (GTK_ICON_SIZE_BUTTON, &x, &y);
+  gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
 
   /* load the user's home dir */
   text = g_strdup_printf (_("%s's home"), g_get_user_name ());
-  icon = xfce_themed_icon_load ("gnome-fs-home", x);
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (browser));
+  icon_theme = gtk_icon_theme_get_for_screen (screen);  
+  icon = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-home", x, 0, NULL);
+
   gtk_tree_store_append (GTK_TREE_STORE (model), &iter_home, NULL);
   gtk_tree_store_set (GTK_TREE_STORE (model), &iter_home,
                       FS_BROWSER_COLUMN_ICON, icon,
@@ -253,7 +264,7 @@ xfburn_fs_browser_refresh (XfburnFsBrowser * browser)
   load_directory_in_browser (browser, xfce_get_homedir (), &iter_home);
 
   /* load the fs root */
-  icon = xfce_themed_icon_load ("gnome-dev-harddisk", x);
+  icon = gtk_icon_theme_load_icon (icon_theme, "gnome-dev-harddisk", x, 0, NULL);
   gtk_tree_store_append (GTK_TREE_STORE (model), &iter_root, NULL);
   gtk_tree_store_set (GTK_TREE_STORE (model), &iter_root,
                       FS_BROWSER_COLUMN_ICON, icon,

@@ -29,15 +29,16 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include <stdlib.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/ioctl.h>
-#include <linux/cdrom.h>
+#include <unistd.h>
+
+#include <libburn.h>
 
 #include "xfburn-device-list.h"
 
+#define CDR_1X_SPEED 150
+
 /* private */
+static gint supported_cdr_speeds[] = {2, 4, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 52, -1};
 static GList *devices = NULL;
 
 /*************/
@@ -47,161 +48,80 @@ static void
 device_content_free (XfburnDevice * device, gpointer user_data)
 {
   g_free (device->name);
-  g_free (device->id);
   g_free (device->node_path);
+
+  g_slist_free (device->supported_cdr_speeds);
 }
 
-static gchar **
-get_file_as_list (const gchar * file)
+static gint
+get_closest_supported_cdr_speed (gint speed)
 {
-  /* from GnomeBaker */
-  gchar **ret = NULL;
-  gchar *contents = NULL;
+  /* TODO: need some fixing */
+  gint i = 0;
+  gint previous = 0;
 
-  g_return_val_if_fail (file != NULL, NULL);
-  if (g_file_get_contents (file, &contents, NULL, NULL))
-    ret = g_strsplit (contents, "\n", 0);
-  else
-    g_critical ("Failed to get contents of file [%s]", file);
-
-  g_free (contents);
-  return ret;
-}
-
-static GHashTable *
-get_cdrominfo (gchar ** proccdrominfo, gint deviceindex)
-{
-  /* from GnomeBaker */
-  GHashTable *ret = NULL;
-  gchar **info = proccdrominfo;
-
-  g_return_val_if_fail (proccdrominfo != NULL, NULL);
-  g_return_val_if_fail (deviceindex >= 1, NULL);
-
-  g_message ("looking for device [%d]", deviceindex);
-
-  while (*info != NULL) {
-    g_strstrip (*info);
-    if (strlen (*info) > 0) {
-      if (strstr (*info, "drive name:") != NULL)
-        ret = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
-
-      if (ret != NULL) {
-        gint columnindex = 0;
-        gchar *key = NULL;
-        gchar **columns = g_strsplit_set (*info, "\t", 0);
-        gchar **column = columns;
-        while (*column != NULL) {
-          g_strstrip (*column);
-          if (strlen (*column) > 0) {
-            if (columnindex == 0)
-              key = *column;
-            else if (columnindex == deviceindex)
-              g_hash_table_insert (ret, g_strdup (key), g_strdup (*column));
-            ++columnindex;
-          }
-          ++column;
-        }
-
-        /* We must check if we found the device index we were
-           looking for */
-        if (columnindex <= deviceindex) {
-          g_message ("Requested device index [%d] is out of bounds. " "All devices have been read.", deviceindex);
-          g_hash_table_destroy (ret);
-          ret = NULL;
-
-	  g_strfreev (columns);
-          break;
-        }
-
-        g_strfreev (columns);
-      }
-    }
-    ++info;
+  while (supported_cdr_speeds[i] != -1) {
+    if (speed < (supported_cdr_speeds[i] * CDR_1X_SPEED)) {
+      return supported_cdr_speeds[previous];
+    } else
+      previous = i;
+    i++;
   }
 
-  return ret;
+  return 0;
+}
+
+static gboolean
+no_speed_duplicate (GSList *speed_list, gint speed)
+{
+  GSList *el = speed_list;
+
+  while (el) {
+    gint el_speed = GPOINTER_TO_INT (el->data);
+
+    if (el_speed == speed)
+      return FALSE;
+
+    el = g_slist_next (el);
+  }
+
+  return TRUE;
 }
 
 static void
-get_ide_device (const gchar * devicenode, const gchar * devicenodepath, gchar ** modelname, gchar ** deviceid)
+refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_info)
 {
-  /* from GnomeBaker */
-  gchar *contents = NULL;
-  gchar *file = g_strdup_printf ("/proc/ide/%s/model", devicenode);
+  struct burn_speed_descriptor *speed_list = NULL;
+  gint ret;
 
-  g_return_if_fail (devicenode != NULL);
-  g_return_if_fail (modelname != NULL);
-  g_return_if_fail (deviceid != NULL);
+  /* empty previous list */
+  g_slist_free (device->supported_cdr_speeds);
+  device->supported_cdr_speeds = NULL;
 
-  if (g_file_get_contents (file, &contents, NULL, NULL)) {
-    g_strstrip (contents);
-    *modelname = g_strdup (contents);
-    *deviceid = g_strdup (devicenodepath);
-    g_free (contents);
-  }
-  else {
-    g_critical ("Failed to open %s", file);
-  }
-  g_free (file);
-}
+  /* fill new list */
+  ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
 
+  if (ret > 0) {
+    struct burn_speed_descriptor *el = speed_list;
 
-static void
-get_scsi_device (const gchar * devicenode, const gchar * devicenodepath, gchar ** modelname, gchar ** deviceid)
-{
-  /* from GnomeBaker */
-  gchar **device_strs = NULL, **devices = NULL;
-
-  g_return_if_fail (devicenode != NULL);
-  g_return_if_fail (modelname != NULL);
-  g_return_if_fail (deviceid != NULL);
-  DBG ("probing [%s]", devicenode);
-
-  if ((devices = get_file_as_list ("/proc/scsi/sg/devices")) == NULL) {
-    g_critical (_("Failed to open /proc/scsi/sg/devices"));
-  }
-  else if ((device_strs = get_file_as_list ("/proc/scsi/sg/device_strs")) == NULL) {
-    g_critical (_("Failed to open /proc/scsi/sg/device_strs"));
-  }
-  else {
-    const gint scsicdromnum = atoi (&devicenode[strlen (devicenode) - 1]);
-    gint cddevice = 0;
-    gchar **device = devices;
-    gchar **device_str = device_strs;
-    while ((*device != NULL) && (*device_str) != NULL) {
-      if ((strcmp (*device, "<no active device>") != 0) && (strlen (*device) > 0)) {
-        gint scsihost, scsiid, scsilun, scsitype;
-        if (sscanf (*device, "%d\t%*d\t%d\t%d\t%d", &scsihost, &scsiid, &scsilun, &scsitype) != 4) {
-          g_critical (_("Error reading scsi information from /proc/scsi/sg/devices"));
-        }
-        /* 5 is the magic number according to lib-nautilus-burn */
-        else if (scsitype == 5) {
-          /* is the device the one we are looking for */
-          if (cddevice == scsicdromnum) {
-            gchar vendor[9], model[17];
-            if (sscanf (*device_str, "%8c\t%16c", vendor, model) == 2) {
-              vendor[8] = '\0';
-              g_strstrip (vendor);
-
-              model[16] = '\0';
-              g_strstrip (model);
-
-              *modelname = g_strdup_printf ("%s %s", vendor, model);
-              *deviceid = g_strdup_printf ("%d,%d,%d", scsihost, scsiid, scsilun);
-              break;
-            }
-          }
-          ++cddevice;
-        }
+    while (el) {
+      gint speed = -1;
+      
+      speed = get_closest_supported_cdr_speed (el->write_speed);
+      if (speed > 0 && no_speed_duplicate (device->supported_cdr_speeds, speed)) {
+	device->supported_cdr_speeds = g_slist_prepend (device->supported_cdr_speeds, GINT_TO_POINTER (speed));
+	DBG ("added speed: %d\n", speed);
       }
-      ++device_str;
-      ++device;
-    }
-  }
 
-  g_strfreev (devices);
-  g_strfreev (device_strs);
+      el = el->next;
+    }
+
+    burn_drive_free_speedlist (&speed_list);  
+  } else if (ret == 0) {
+    g_warning ("reported speed list is empty");
+  } else {
+    g_error ("severe error while retrieving speed list");
+  }
 }
 
 /**************/
@@ -212,69 +132,105 @@ xfburn_device_list_get_list ()
 {
   return devices;
 }
-  
+
+void
+xfburn_device_refresh_supported_speeds (XfburnDevice * device)
+{
+  struct burn_drive_info *drive_info = NULL;
+
+  if (!burn_initialize ()) {
+    g_critical ("Unable to initialize libburn");
+    return;
+  }
+
+  if (!xfburn_device_grab (device, &drive_info)) {
+    g_error ("Couldn't grab drive in order to update speed list.");
+    return;
+  }
+
+  refresh_supported_speeds (device, drive_info);
+
+  burn_drive_release (drive_info->drive, 0);
+
+  burn_finish ();
+}
+
 void
 xfburn_device_list_init ()
 {
-  /* adapted from GnomeBaker */
-  gchar **info = NULL;
+  struct burn_drive_info *drives;
+  gint i;
+  guint n_drives = 0;
 
-  /* clear current devices list */
-  g_list_foreach (devices, (GFunc) xfburn_device_free, NULL);
-  g_list_free (devices);
-  devices = NULL;
-
-#ifdef __linux__
-  if (!(info = get_file_as_list ("/proc/sys/dev/cdrom/info"))) {
-    g_critical ("Failed to open /proc/sys/dev/cdrom/info");
+  if (!burn_initialize ()) {
+    g_critical ("Unable to initialize libburn");
+    return;
   }
-  else {
-    gint devicenum = 1;
-    GHashTable *devinfo = NULL;
-
-    while ((devinfo = get_cdrominfo (info, devicenum)) != NULL) {
-      XfburnDevice *device_entry;
-      const gchar *device = g_hash_table_lookup (devinfo, "drive name:");
-      gchar *devicenodepath = g_strdup_printf ("/dev/%s", device);
-
-      gchar *modelname = NULL, *deviceid = NULL;
-
-      if (device[0] == 'h')
-        get_ide_device (device, devicenodepath, &modelname, &deviceid);
-      else
-        get_scsi_device (device, devicenodepath, &modelname, &deviceid);
-
-      device_entry = g_new0 (XfburnDevice, 1);
-      device_entry->name = modelname;
-      device_entry->id = deviceid;
-      device_entry->node_path = devicenodepath;
-
-      if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write CD-R:"), "1") == 0)
-        device_entry->cdr = TRUE;
-      if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write CD-RW:"), "1") == 0)
-        device_entry->cdrw = TRUE;
-      if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write DVD-R:"), "1") == 0)
-        device_entry->dvdr = TRUE;
-      if (g_ascii_strcasecmp (g_hash_table_lookup (devinfo, "Can write DVD-RAM:"), "1") == 0)
-        device_entry->dvdram = TRUE;
-
-      devices = g_list_prepend (devices, device_entry);
-
-      g_message ("device [%d] found : %s (%s)", devicenum, modelname, devicenodepath);
-      g_message ("device [%d] capabilities :%s%s%s%s", devicenum, device_entry->cdr ? " CD-R" : "",
-                 device_entry->cdrw ? " CD-RW" : "", device_entry->dvdr ? " DVD-R" : "",
-                 device_entry->dvdram ? " DVD-RAM" : "");
-
-      g_hash_table_destroy (devinfo);
-      devinfo = NULL;
-      ++devicenum;
-    }
+    
+  if (devices) {
+    g_list_foreach (devices, (GFunc) device_content_free, NULL);
+    g_list_free (devices);
+    devices = NULL;
   }
 
-  g_strfreev (info);
-#else
-#error this program currently supports only Linux sorry :-(
-#endif
+  while (!burn_drive_scan (&drives, &n_drives))
+    usleep (1002);
+
+  for (i = 0; i < n_drives; i++) {
+    XfburnDevice *device = g_new0 (XfburnDevice, 1);
+    gint ret = 0;
+    
+    device->name = g_strconcat (drives[i].vendor, " ", drives[i].product, NULL);
+    device->node_path = g_strdup (drives[i].location);
+
+    device->cdr = drives[i].write_cdr;
+    device->cdrw = drives[i].write_cdrw;
+
+    device->buffer_size = drives[i].buffer_size;
+    device->dummy_write = drives[i].write_simulate;
+
+    /* write modes */
+    device->tao_block_types = drives[i].tao_block_types;
+    device->sao_block_types = drives[i].sao_block_types;
+    device->raw_block_types = drives[i].raw_block_types;
+    device->packet_block_types = drives[i].packet_block_types;
+
+    device->dvdr = drives[i].write_dvdr;
+    device->dvdram = drives[i].write_dvdram;
+
+    ret = burn_drive_get_adr (&(drives[i]), device->addr);
+    if (ret <= 0)
+      g_error ("Unable to get drive %s address (ret=%d). Please report this problem to libburn-hackers@pykix.org", device->name, ret);
+
+    refresh_supported_speeds (device, &(drives[i]));
+        
+    devices = g_list_append (devices, device);
+
+    burn_drive_info_free (&(drives[i]));
+  }
+
+  burn_finish ();
+}
+
+gboolean
+xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
+{
+  gint ret;
+  gchar drive_addr[BURN_DRIVE_ADR_LEN];
+
+  ret = burn_drive_convert_fs_adr (device->addr, drive_addr);
+  if (ret <= 0) {
+    g_error ("Device address does not lead to a CD burner '%s' (ret=%d).", device->addr, ret);
+    return FALSE;
+  }
+
+  ret = burn_drive_scan_and_grab (drive_info, drive_addr, 1);
+  if (ret <= 0) {
+    g_error ("Unable to grab drive at path '%s' (ret=%d).", device->addr, ret);
+    return FALSE;
+  }
+
+  return TRUE;
 }
 
 void
@@ -302,47 +258,6 @@ xfburn_device_lookup_by_name (const gchar * name)
   }
 
   return NULL;
-}
-
-
-/* CDS_NO_DISC
- * CDS_TRAY_OPEN
- * CDS_DRIVE_NOT_READY
- * CDS_DISC_OK
- */
-gint
-xfburn_device_query_cdstatus (XfburnDevice * device)
-{
-  int fd, ret;
-   
-  /* adapted from GnomeBaker */
-  g_return_val_if_fail (device != NULL, FALSE);
-
-  fd = open (device->node_path, O_RDONLY | O_NONBLOCK);
-
-  ret = ioctl (fd, CDROM_DRIVE_STATUS, CDSL_CURRENT);
-  
-  
-  if (ret == -1)
-    g_critical ("xfburn_device_query_cdstatus - ioctl failed");
-  
-  return ret;
-}
-
-gchar *
-xfburn_device_cdstatus_to_string (gint status)
-{
-  gchar *message = NULL;
-  
-  switch (status) {
-    case CDS_NO_DISC:
-      message = g_strdup (_("No disc in the cdrom drive"));
-    break;
-    default:
-      message = g_strdup (_("No message..."));
-  }
-  
-  return message;
 }
 
 void

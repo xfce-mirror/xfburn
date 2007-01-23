@@ -46,17 +46,29 @@ typedef struct
 {
   GtkVBoxClass parent_class;
   
-  void (*device_changed) (XfburnDeviceBox *box, const gchar *selected_device);
+  void (*device_changed) (XfburnDeviceBox *box, XfburnDevice *device);
 } XfburnDeviceBoxClass;
+
+typedef enum
+{
+  WRITE_MODE_TAO,
+  WRITE_MODE_SAO,
+  WRITE_MODE_RAW16,
+  WRITE_MODE_RAW96P,
+  WRITE_MODE_RAW96R,
+  WRITE_MODE_PACKET,
+} XfburnWriteMode;
 
 GtkType xfburn_device_box_get_type (void);
 
-GtkWidget *xfburn_device_box_new (gboolean show_writers_only, gboolean show_speed_selection);
+GtkWidget *xfburn_device_box_new (gboolean show_writers_only, gboolean show_speed_selection, gboolean show_mode_selection);
 
 gchar *xfburn_device_box_get_selected (XfburnDeviceBox *box);
 XfburnDevice *xfburn_device_box_get_selected_device (XfburnDeviceBox *box);
 
-gchar *xfburn_device_box_get_speed (XfburnDeviceBox *box);
+gint xfburn_device_box_get_speed (XfburnDeviceBox *box);
+
+XfburnWriteMode xfburn_device_box_get_mode (XfburnDeviceBox *box);
 
 G_END_DECLS
 #endif

@@ -1,11 +1,17 @@
 xfburn 0.x
 ==========
 
+- Use libburn (libburnia.pykix.org) instead of cdrecord tools
 - Avoid adding non regular files (bug #2179)
-- Fix wrong get_speed call in burn iso dialog
 - Directory are sort before files in data composition
 - Fix segfault when removing a file and one of its parent directory together
-- Add create ISO from DVD support
+- Try to use media-optical and media-cdrom as themable icon before gtk-cdrom in order to avoid crappy png icon being shown in Preferences dialog
+- Fix icon size in filesystem browser
+- Add icons for actions based on icons from the Tango icontheme
+- Detect supported speeds
+- Add support for writing ISO from a composition using libburn
+- Add support for burning a composition using libburn
+- Use correct cdrom size (bug #2753)
 - Add new icons based on icons from the Tango icontheme
 
 xfburn 0.2.0beta

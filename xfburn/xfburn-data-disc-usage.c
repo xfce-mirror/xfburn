@@ -29,6 +29,7 @@
 #include "xfburn-global.h"
 #include "xfburn-settings.h"
 #include "xfburn-utils.h"
+#include "xfburn-stock.h"
 
 /* prototypes */
 static void xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass *);
@@ -130,7 +131,7 @@ xfburn_data_disc_usage_init (XfburnDataDiscUsage * disc_usage)
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->combo, FALSE, FALSE, BORDER);
   gtk_widget_show (disc_usage->combo);
 
-  disc_usage->button = xfce_create_mixed_button (GTK_STOCK_CDROM, _("Burn composition"));
+  disc_usage->button = xfce_create_mixed_button (XFBURN_STOCK_BURN_CD, _("Burn composition"));
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->button, FALSE, FALSE, BORDER);
   gtk_widget_set_sensitive (disc_usage->button, FALSE);
   gtk_widget_show (disc_usage->button);

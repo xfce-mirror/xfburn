@@ -24,15 +24,28 @@
 #include <config.h>
 #endif
 
+#include <libburn.h>
+
 typedef struct
 {
   gchar *name;
-  gchar *id;
   gchar *node_path;
+  gint buffer_size;
+  gboolean dummy_write;
+  
   gboolean cdr;
   gboolean cdrw;
+  GSList *supported_cdr_speeds;
+
+  gint tao_block_types;
+  gint sao_block_types;
+  gint raw_block_types;
+  gint packet_block_types;
+
   gboolean dvdr;
   gboolean dvdram;
+
+  gchar addr[BURN_DRIVE_ADR_LEN];
 } XfburnDevice;
 
 void xfburn_device_list_init ();
@@ -40,9 +53,8 @@ XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
 GList * xfburn_device_list_get_list ();
 void xfburn_device_list_free ();
 
-gint xfburn_device_query_cdstatus (XfburnDevice * device);
-gchar * xfburn_device_cdstatus_to_string (gint status);
-
+void xfburn_device_refresh_supported_speeds (XfburnDevice * device);
+gboolean xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info);
 void xfburn_device_free (XfburnDevice * device);
 
 #endif /* __XFBURN_DEVICE_LIST_H__ */

@@ -63,6 +63,10 @@ main (int argc, char **argv)
     exit (EXIT_SUCCESS);
   }
 
+  g_thread_init (NULL);
+  gdk_threads_init ();
+  gdk_threads_enter ();
+
   gtk_init (&argc, &argv);
 
   xfburn_settings_init ();
@@ -92,6 +96,8 @@ main (int argc, char **argv)
   xfburn_settings_free ();
   
   xfburn_device_list_free ();
+
+  gdk_threads_leave ();
 
   return EXIT_SUCCESS;
 }

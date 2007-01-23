@@ -60,6 +60,18 @@ enum {
   SETTINGS_LIST_N_COLUMNS,
 };
 
+enum
+{
+  DEVICE_LIST_COLUMN_ICON,
+  DEVICE_LIST_COLUMN_NAME,
+  DEVICE_LIST_COLUMN_NODE,
+  DEVICE_LIST_COLUMN_CDR,
+  DEVICE_LIST_COLUMN_CDRW,
+  DEVICE_LIST_COLUMN_DVDR,
+  DEVICE_LIST_COLUMN_DVDRAM,
+  DEVICE_LIST_N_COLUMNS
+};
+
 typedef struct
 {
   XfburnPreferencesDialog *object;
@@ -113,6 +125,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   GtkWidget *frame;
   GtkWidget *scrolled_window;
   GtkListStore *icon_store, *store;
+  gint x,y;
   GdkPixbuf *icon = NULL;
   GtkTreeIter iter;
   GtkTreeViewColumn *column_name;
@@ -231,7 +244,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox2), scrolled_window, TRUE, TRUE, BORDER);
 
   store = gtk_list_store_new (DEVICE_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
-                              G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
+                              G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
   priv->treeview_devices = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), DEVICE_LIST_COLUMN_NAME, GTK_SORT_ASCENDING);
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview_devices), TRUE);
@@ -254,8 +267,6 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_tree_view_column_set_attributes (column_name, cell_name, "text", DEVICE_LIST_COLUMN_NAME, NULL);
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (priv->treeview_devices), column_name);
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Id"),
-                                               gtk_cell_renderer_text_new (), "text", DEVICE_LIST_COLUMN_ID, NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Node"),
                                                gtk_cell_renderer_text_new (), "text", DEVICE_LIST_COLUMN_NODE, NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Write CD-R"),
@@ -279,17 +290,22 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   g_signal_connect (G_OBJECT (priv->button_scan), "clicked", G_CALLBACK (scan_button_clicked_cb), obj);
   gtk_widget_show (priv->button_scan);
 
-  icon = gtk_widget_render_icon (GTK_WIDGET (priv->icon_bar),
-                                 GTK_STOCK_CDROM,
-                                 GTK_ICON_SIZE_DIALOG,
-                                 NULL);
+  gtk_icon_size_lookup (GTK_ICON_SIZE_DIALOG, &x, &y);
+  icon = xfce_themed_icon_load ("media-optical", x);
+  if (!icon)
+    icon = xfce_themed_icon_load ("media-cdrom", x);
+  if (!icon)
+    icon = xfce_themed_icon_load (GTK_STOCK_CDROM, x);
+
+  
   gtk_list_store_append (icon_store, &iter);
   gtk_list_store_set (icon_store, &iter,
                       SETTINGS_LIST_PIXBUF_COLUMN, icon,
                       SETTINGS_LIST_TEXT_COLUMN, _("Devices"),
                       SETTINGS_LIST_INDEX_COLUMN, index,
                       -1);
-  g_object_unref (G_OBJECT (icon));
+  if (icon)
+    g_object_unref (G_OBJECT (icon));
   
   exo_mutual_binding_new (G_OBJECT (priv->notebook), "page", G_OBJECT (priv->icon_bar), "active");
   
@@ -367,7 +383,6 @@ refresh_devices_list (XfburnPreferencesDialog * dialog)
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                         DEVICE_LIST_COLUMN_NAME, device_data->name,
-                        DEVICE_LIST_COLUMN_ID, device_data->id,
                         DEVICE_LIST_COLUMN_NODE, device_data->node_path,
                         DEVICE_LIST_COLUMN_CDR, device_data->cdr,
                         DEVICE_LIST_COLUMN_CDRW, device_data->cdrw,
