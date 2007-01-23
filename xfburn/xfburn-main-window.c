@@ -483,6 +483,7 @@ action_about (GtkAction * action, XfburnMainWindow * window)
 {
   XfceAboutInfo *info;
   GtkWidget *dialog;
+  gint x, y;
   GdkPixbuf *icon;
   guint n;
 
@@ -508,10 +509,13 @@ action_about (GtkAction * action, XfburnMainWindow * window)
     {"Cosmo Chene", "cosmolax@gmail.com", "zh_TW",},
   };
 
-  icon = xfce_themed_icon_load (GTK_STOCK_CDROM, 48);
-  //if (G_UNLIKELY (icon == NULL))
-  //icon = gdk_pixbuf_new_from_file (DATADIR "/icons/hicolor/48x48/apps/Terminal.png", NULL);
-  
+  gtk_icon_size_lookup (GTK_ICON_SIZE_DIALOG, &x, &y);
+  icon = xfce_themed_icon_load ("media-optical", x);
+  if (!icon)
+    icon = xfce_themed_icon_load ("media-cdrom", x);
+  if (!icon)
+    icon = xfce_themed_icon_load (GTK_STOCK_CDROM, x);
+
   info = xfce_about_info_new ("Xfburn", VERSION, _("Another cd burning GUI"),
                               XFCE_COPYRIGHT_TEXT ("2005-2006", "Jean-François Wauthy"), XFCE_LICENSE_GPL);
   xfce_about_info_set_homepage (info, "http://www.xfce.org/");
