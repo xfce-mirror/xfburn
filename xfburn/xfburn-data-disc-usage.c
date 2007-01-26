@@ -30,6 +30,7 @@
 #include "xfburn-settings.h"
 #include "xfburn-utils.h"
 #include "xfburn-stock.h"
+#include "xfburn-main-window.h"
 
 /* prototypes */
 static void xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass *);
@@ -138,6 +139,8 @@ xfburn_data_disc_usage_init (XfburnDataDiscUsage * disc_usage)
   g_signal_connect (G_OBJECT (disc_usage->button), "clicked", G_CALLBACK (cb_button_clicked), disc_usage);
   
   g_signal_connect (G_OBJECT (disc_usage->combo), "changed", G_CALLBACK (cb_combo_changed), disc_usage);
+
+  gtk_widget_set_sensitive (disc_usage->button, xfburn_main_window_support_cdr (xfburn_main_window_get_instance ()));
 }
 
 /* internals */

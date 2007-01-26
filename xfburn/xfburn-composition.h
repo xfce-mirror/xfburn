@@ -37,7 +37,7 @@ typedef struct _XfburnCompositon XfburnComposition; /* dummy object */
   
 typedef struct {
   GTypeInterface parent;
-
+  
   void (*show_custom_controls) (XfburnComposition *composition);
   void (*hide_custom_controls) (XfburnComposition *composition);
   

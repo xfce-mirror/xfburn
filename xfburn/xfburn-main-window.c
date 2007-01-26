@@ -28,6 +28,7 @@
 #include <exo/exo.h>
 
 #include "xfburn-main-window.h"
+#include "xfburn-device-list.h"
 #include "xfburn-preferences-dialog.h"
 #include "xfburn-file-browser.h"
 #include "xfburn-compositions-notebook.h"
@@ -53,6 +54,9 @@ typedef struct {
   
   GtkWidget *file_browser;
   GtkWidget *compositions_notebook;
+
+  gboolean support_cdr;
+  gboolean support_cdrw;
 } XfburnMainWindowPrivate;
 
 /* prototypes */
@@ -596,8 +600,6 @@ GtkWidget *
 xfburn_main_window_new (void)
 {
   GtkWidget *obj;
-  XfburnMainWindow *win;
-  GtkAction *action;
 
   if (G_UNLIKELY (instance)) {
     g_error ("An instance of XfburnMainWindow has already been created");
@@ -607,7 +609,10 @@ xfburn_main_window_new (void)
   obj = g_object_new (xfburn_main_window_get_type (), NULL);
   
   if (obj) {
+    XfburnMainWindow *win;
     XfburnMainWindowPrivate *priv;
+    GtkAction *action;
+    GList *device = NULL;
     
     instance = win = XFBURN_MAIN_WINDOW (obj);
     priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (win);
@@ -619,6 +624,33 @@ xfburn_main_window_new (void)
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-toolbar", TRUE));
    /* action = gtk_action_group_get_action (priv->action_group, "save-composition");
     gtk_action_set_sensitive (GTK_ACTION (action), FALSE);*/
+
+    /* disable action that cannot be used due to device */
+    device = xfburn_device_list_get_list ();
+
+    while (device != NULL) {
+      XfburnDevice *device_info = (XfburnDevice *) device->data;
+
+      if (device_info->cdr)
+	priv->support_cdr = TRUE;
+      if (device_info->cdrw)
+	priv->support_cdrw = TRUE;
+
+      device = g_list_next (device);
+    }
+
+    if (!priv->support_cdr) {
+      action = gtk_action_group_get_action (priv->action_group, "copy-data");
+      gtk_action_set_sensitive (action, FALSE);
+      action = gtk_action_group_get_action (priv->action_group, "copy-audio");
+      gtk_action_set_sensitive (action, FALSE);
+      action = gtk_action_group_get_action (priv->action_group, "burn-cd");
+      gtk_action_set_sensitive (action, FALSE);
+    }
+    if (!priv->support_cdrw) {
+      action = gtk_action_group_get_action (priv->action_group, "blank-cd");
+      gtk_action_set_sensitive (action, FALSE);
+    }
   }
   
   return obj;
@@ -647,4 +679,20 @@ xfburn_main_window_get_file_browser (XfburnMainWindow *window)
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
   return XFBURN_FILE_BROWSER (priv->file_browser);
+}
+
+gboolean
+xfburn_main_window_support_cdr (XfburnMainWindow *window)
+{
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+
+  return priv->support_cdr;
+}
+
+gboolean
+xfburn_main_window_support_cdrw (XfburnMainWindow *window)
+{
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+
+  return priv->support_cdrw;
 }
