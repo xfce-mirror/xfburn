@@ -205,10 +205,9 @@ xfburn_device_list_init ()
     refresh_supported_speeds (device, &(drives[i]));
         
     devices = g_list_append (devices, device);
-
-    burn_drive_info_free (&(drives[i]));
   }
 
+  burn_drive_info_free (drives);
   burn_finish ();
 }
 
