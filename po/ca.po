@@ -1,17 +1,14 @@
 # translation of ca.po to Catalan
-# Pau Rul-lan Ferragut <paurullan@bulma.net>, 2006.
 # Pau Rul·lan Ferragut <paurullan@bulma.net>, 2006.
 # catalan translation for Xfburn package
-# Copyright (C) 2005-2006 Jean-Fran�is Wauthy.
+# Copyright (C) 2005-2006 Jean-Francis Wauthy.
 # This file is distributed under the same license as the xfburn package.
-# 
-# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-23 15:51+0100\n"
-"PO-Revision-Date: 2006-11-04 14:53+0100\n"
+"PO-Revision-Date: 2007-04-05 14:28+0200\n"
 "Last-Translator: Pau Rul·lan Ferragut <paurullan@bulma.net>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -73,40 +70,39 @@ msgstr "En _blanc"
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:409
 #: ../xfburn/xfburn-burn-image-dialog.c:264
 msgid "Unable to grab drive"
-msgstr ""
+msgstr "No s’ha pogut trobar la unitat"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:189
 msgid "The inserted disc is already blank"
-msgstr ""
+msgstr "El mitjà inserit ja està en blanc"
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-cd-dialog.c:194
 msgid "Ready"
-msgstr ""
+msgstr "Llest"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:197
 msgid "No disc detected in the drive"
-msgstr ""
+msgstr "No s’ha trobat cap disc a la unitat"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:200
 msgid "Cannot recognize drive and media state"
-msgstr ""
+msgstr "No s’ha pogut determinat l’estat del mitjà o la unitat"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:205
 msgid "Media is not erasable"
-msgstr ""
+msgstr "El mitjà no es pot esborrar"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:212
-#, fuzzy
 msgid "Blanking disc..."
-msgstr "Dispositiu de gravació"
+msgstr "S’està esborrant el disc"
 
 #: ../xfburn/xfburn-blank-cd-dialog.c:223
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:344
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:527
 #: ../xfburn/xfburn-burn-image-dialog.c:385
 msgid "Done"
-msgstr ""
+msgstr "Fet"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:138
 msgid "Burn Composition"
@@ -138,7 +134,7 @@ msgstr "Cr_ema la composició"
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:308
 #, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr ""
+msgstr "No s’ha pogut crear el fitxer ISO destí: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:315
 msgid "Writing ISO..."
@@ -147,84 +143,78 @@ msgstr "S'està escrivint la ISO..."
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:326
 #, c-format
 msgid "An error occured while writing ISO: %s"
-msgstr ""
+msgstr "S'ha produit un error mentre s’escrivia una ISO: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:397
 #: ../xfburn/xfburn-burn-image-dialog.c:233
 msgid "Unable to create disc object"
-msgstr ""
+msgstr "No s’ha pogut crear el disc"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:402
 #: ../xfburn/xfburn-burn-image-dialog.c:256
 msgid "Cannot attach source object to track object"
-msgstr ""
+msgstr "No s’ha pogut adjuntar la font a la pista"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:423
 #: ../xfburn/xfburn-burn-image-dialog.c:278
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
+msgstr "No s’han pogut afegir les dades al disc multisessió en aquest mode d’escriptura (useu TAO enlloc)"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:427
 #: ../xfburn/xfburn-burn-image-dialog.c:282
 msgid "Closed media with data detected. Need blank or appendable media"
-msgstr ""
+msgstr "S’ha trobat un mitjà tancat amb dades. El mitjà ha d’estar en blank o s’han de poder afegir dades."
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:429
 #: ../xfburn/xfburn-burn-image-dialog.c:284
 msgid "No media detected in drive"
-msgstr ""
+msgstr "No s’ha trobat cap mitjà a la unitat"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:431
 #: ../xfburn/xfburn-burn-image-dialog.c:286
 msgid "Cannot recognize state of drive and media"
-msgstr ""
+msgstr "No s’ha pogut reconeixer l’estat de la unitat i el mitjà"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:456
 #: ../xfburn/xfburn-burn-image-dialog.c:311
 msgid "The write mode is not supported currently"
-msgstr ""
+msgstr "No es pot usar el mode d’escriptura."
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:477
 #: ../xfburn/xfburn-burn-image-dialog.c:334
-#, fuzzy
 msgid "Burning composition..."
-msgstr "S’està escrivint la composició…"
+msgstr "S’està cremant la composició…"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:493
 #: ../xfburn/xfburn-burn-image-dialog.c:350
-#, fuzzy
 msgid "Writing Lead-In..."
-msgstr "S'està escrivint la ISO..."
+msgstr "S'està escrivint l’inici del disc"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:499
 #: ../xfburn/xfburn-burn-image-dialog.c:356
-#, fuzzy
 msgid "Writing Lead-Out..."
-msgstr "S'està escrivint la ISO..."
+msgstr "S'està escrivint el final del disc"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:505
 #: ../xfburn/xfburn-burn-image-dialog.c:362
-#, fuzzy
 msgid "Writing pregap..."
-msgstr "S'està escrivint el disc..."
+msgstr "S'està escrivint la taula de continguts"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:511
 #: ../xfburn/xfburn-burn-image-dialog.c:368
-#, fuzzy
 msgid "Closing track..."
-msgstr "S'està esborrant la memòria cau..."
+msgstr "S’està tancant la pista"
 
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:517
 #: ../xfburn/xfburn-burn-image-dialog.c:374
-#, fuzzy
 msgid "Closing session..."
-msgstr "Importa d’una sessió existent"
+msgstr "S’està tancant la sessió"
 
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-dialog.c:552
 msgid "Could not create ISO source structure"
-msgstr ""
+msgstr "No s’ha pgut crear l’estructura de la ISO "
 
 #: ../xfburn/xfburn-burn-image-dialog.c:108
 msgid "Burn CD image"
@@ -238,11 +228,11 @@ msgstr "Imatge a cremar"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:119
 msgid "All files"
-msgstr ""
+msgstr "Tots els fitxers"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:123
 msgid "ISO images"
-msgstr ""
+msgstr "imatges ISO"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:167
 msgid "_Burn image"
@@ -250,16 +240,15 @@ msgstr "Crema _imatge"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:246
 msgid "Unable to determine image size"
-msgstr ""
+msgstr "No s’ha pogut determinar el tamany de la imatge"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:252
 msgid "Cannot open image"
-msgstr ""
+msgstr "No s’ha pogut obrir la imatge"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:324
-#, fuzzy
 msgid "Burning image..."
-msgstr "Crema _imatge"
+msgstr "S’està cremant la imatge"
 
 #: ../xfburn/xfburn-compositions-notebook.c:173
 #: ../xfburn/xfburn-data-composition.c:299
@@ -302,19 +291,16 @@ msgid "Reading CD..."
 msgstr "S’està llegint el CD…"
 
 #: ../xfburn/xfburn-copy-dvd-dialog.c:113
-#, fuzzy
 msgid "Copy data DVD"
-msgstr "Copia disc de dades"
+msgstr "Copia un DVD de dades"
 
 #: ../xfburn/xfburn-copy-dvd-dialog.c:123
-#, fuzzy
 msgid "DVD Reader device"
-msgstr "Dispositiu de lectura de disc"
+msgstr "Dispositiu de lectura de DVD"
 
 #: ../xfburn/xfburn-copy-dvd-dialog.c:193
-#, fuzzy
 msgid "_Copy DVD"
-msgstr "Copia DVD"
+msgstr "_Copia DVD"
 
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
@@ -426,27 +412,22 @@ msgid "Show speed selection"
 msgstr "Mostra la selecció de velocitat"
 
 #: ../xfburn/xfburn-device-box.c:142
-#, fuzzy
 msgid "Show speed selection combo"
-msgstr "Mostra la selecció de velocitat"
+msgstr "Mostra la caixa de selecció de velocitat"
 
 #: ../xfburn/xfburn-device-box.c:145
-#, fuzzy
 msgid "Show mode selection"
-msgstr "Mostra la selecció de velocitat"
+msgstr "Mostra la selecció de mode"
 
 #: ../xfburn/xfburn-device-box.c:146
-#, fuzzy
 msgid "Show mode selection combo"
-msgstr "Mostra la selecció de velocitat"
+msgstr "Mostra la caixa de selecció de mode"
 
 #: ../xfburn/xfburn-device-box.c:188
-#, fuzzy
 msgid "_Speed:"
-msgstr "_Velocitat: "
+msgstr "_Velocitat:"
 
 #: ../xfburn/xfburn-device-box.c:216
-#, fuzzy
 msgid "Write _mode:"
 msgstr "_Mode d’escriptura:"
 
@@ -733,7 +714,6 @@ msgid "Completed"
 msgstr "Completat"
 
 #: ../xfburn/xfburn-progress-dialog.c:499
-#, fuzzy
 msgid "Failure"
 msgstr "Fallit"
 
@@ -744,49 +724,3 @@ msgstr "Seleccioni una ordre"
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "Aplicació per cremar CD i DVD"
-
-#, fuzzy
-#~ msgid "Initializing"
-#~ msgstr "S'està inicialitzant…"
-
-#~ msgid "Show speed selection list and refresh button"
-#~ msgstr "Mostra la selecció de velocitat i el botó de refresc"
-
-#~ msgid "Default"
-#~ msgstr "Per defecte"
-
-#~ msgid "Reopen last session"
-#~ msgstr "Reobri l’última sessió"
-
-#~ msgid "Erase last session"
-#~ msgstr "Esborra l’última sessió"
-
-#~ msgid "_Force"
-#~ msgstr "_Força"
-
-#~ msgid "Blanking..."
-#~ msgstr "S'està esborrant..."
-
-#~ msgid "Performing OPC..."
-#~ msgstr "S'està creant OPC..."
-
-#~ msgid "Finishing"
-#~ msgstr "S’està acabant"
-
-#~ msgid "Fixating..."
-#~ msgstr "S'està acabant..."
-
-#~ msgid "Burn data composition"
-#~ msgstr "Crema la composició de dades"
-
-#~ msgid "Create ISO from composition"
-#~ msgstr "Crea una ISO des de la composició"
-
-#~ msgid "Id"
-#~ msgstr "Identificador"
-
-#~ msgid "View _output"
-#~ msgstr "Mostra la s_ortida"
-
-#~ msgid "Operation finished"
-#~ msgstr "S’ha finalitzat l’operació"
