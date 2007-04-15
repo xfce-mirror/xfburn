@@ -117,7 +117,7 @@ xfburn_copy_dvd_dialog_init (XfburnCopyDvdDialog * obj)
   g_object_unref (icon);
 
   /* reader devices list */
-  priv->device_box_src = xfburn_device_box_new (FALSE, FALSE, FALSE);
+  priv->device_box_src = xfburn_device_box_new (SHOW_DVD_READERS);
   gtk_widget_show (priv->device_box_src);
   
   frame = xfce_create_framebox_with_content (_("DVD Reader device"), priv->device_box_src);
@@ -125,7 +125,7 @@ xfburn_copy_dvd_dialog_init (XfburnCopyDvdDialog * obj)
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   /* burning devices list */
-  priv->device_box_dest = xfburn_device_box_new (TRUE, TRUE, FALSE);
+  priv->device_box_dest = xfburn_device_box_new (SHOW_DVD_WRITERS | SHOW_SPEED_SELECTION);
   gtk_widget_show (priv->device_box_dest);
 
   priv->frame_burn = xfce_create_framebox_with_content (_("Burning device"), priv->device_box_dest);

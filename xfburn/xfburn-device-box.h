@@ -51,6 +51,19 @@ typedef struct
 
 typedef enum
 {
+  SHOW_CD_WRITERS = 1 << 0,
+  SHOW_CDRW_WRITERS = 1 << 1,
+  SHOW_DVD_WRITERS = 1 << 2,
+
+  SHOW_CD_READERS = 1 << 4,
+  SHOW_DVD_READERS = 1 << 5,
+
+  SHOW_SPEED_SELECTION = 1 << 7,
+  SHOW_MODE_SELECTION = 1 << 8,
+} XfburnDeviceBoxFlags;
+
+typedef enum
+{
   WRITE_MODE_TAO,
   WRITE_MODE_SAO,
   WRITE_MODE_RAW16,
@@ -61,7 +74,7 @@ typedef enum
 
 GtkType xfburn_device_box_get_type (void);
 
-GtkWidget *xfburn_device_box_new (gboolean show_writers_only, gboolean show_speed_selection, gboolean show_mode_selection);
+GtkWidget *xfburn_device_box_new (XfburnDeviceBoxFlags);
 
 gchar *xfburn_device_box_get_selected (XfburnDeviceBox *box);
 XfburnDevice *xfburn_device_box_get_selected_device (XfburnDeviceBox *box);

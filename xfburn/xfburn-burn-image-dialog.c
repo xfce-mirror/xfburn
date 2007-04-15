@@ -130,7 +130,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   /* devices list */
-  priv->device_box = xfburn_device_box_new (TRUE, TRUE, TRUE);
+  priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_DVD_WRITERS | SHOW_MODE_SELECTION | SHOW_SPEED_SELECTION);
   gtk_widget_show (priv->device_box);
   
   frame = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);

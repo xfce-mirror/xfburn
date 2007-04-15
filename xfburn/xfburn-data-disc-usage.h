@@ -53,6 +53,12 @@ typedef struct
   void (*begin_burn) (XfburnDataDiscUsage *du);
 } XfburnDataDiscUsageClass;
 
+typedef enum
+{
+  CD_DISC,
+  DVD_DISC,
+} XfburnDataDiscType;
+
 GtkType xfburn_data_disc_usage_get_type (void);
 GtkWidget *xfburn_data_disc_usage_new (void);
 
@@ -60,6 +66,8 @@ gdouble xfburn_data_disc_usage_get_size (XfburnDataDiscUsage *);
 void xfburn_data_disc_usage_set_size (XfburnDataDiscUsage *, gdouble);
 void xfburn_data_disc_usage_add_size (XfburnDataDiscUsage *, gdouble);
 void xfburn_data_disc_usage_sub_size (XfburnDataDiscUsage *, gdouble);
+
+XfburnDataDiscType xfburn_data_disc_usage_get_disc_type (XfburnDataDiscUsage *);
 
 G_END_DECLS
 

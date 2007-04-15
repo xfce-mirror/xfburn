@@ -43,9 +43,11 @@ static void cb_combo_changed (GtkComboBox *, XfburnDataDiscUsage *);
 static GtkHBoxClass *parent_class = NULL;
 
 #define DEFAULT_DISK_SIZE_LABEL 2
+#define LAST_CD_LABEL 4
+
 struct
 {
-  gdouble size;
+  guint64 size;
   gchar *label;
 } datadisksizes[] = {
   {
@@ -58,10 +60,10 @@ struct
   829440000, "800MB CD"},
   {
   912384000, "900MB CD"},
-/*  {
-  4.7 *1000 * 1000 * 1000, "4.7GB DVD"},
   {
-8.5 *1000 * 1000 * 1000, "8.5GB DVD"},*/
+  G_GINT64_CONSTANT(0x1182a0000), "4.7GB DVD"}, /* 4 700 372 992 */
+  {
+  G_GINT64_CONSTANT(0x1fd3e0000), "8.5GB DVD"}, /* 8 543 666 176  */
 };
 
 enum
@@ -219,8 +221,18 @@ xfburn_data_disc_usage_sub_size (XfburnDataDiscUsage * disc_usage, gdouble size)
   xfburn_data_disc_usage_update_size (disc_usage);
 }
 
+XfburnDataDiscType
+xfburn_data_disc_usage_get_disc_type (XfburnDataDiscUsage * disc_usage)
+{
+  if (gtk_combo_box_get_active (GTK_COMBO_BOX (disc_usage->combo)) > LAST_CD_LABEL)
+    return DVD_DISC;
+  else
+    return CD_DISC;
+}
+
 GtkWidget *
 xfburn_data_disc_usage_new (void)
 {
   return g_object_new (xfburn_data_disc_usage_get_type (), NULL);
 }
+

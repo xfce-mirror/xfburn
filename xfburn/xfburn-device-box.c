@@ -374,13 +374,14 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
 /* public methods */
 /******************/
 GtkWidget *
-xfburn_device_box_new (gboolean show_writers_only, gboolean show_speed_selection, gboolean show_mode_selection)
+xfburn_device_box_new (XfburnDeviceBoxFlags flags)
 {
   GtkWidget *obj;
 
-  obj = g_object_new (xfburn_device_box_get_type (), "show-writers-only", show_writers_only, 
-                      "show-speed-selection", show_speed_selection, 
-		      "show-mode-selection", show_mode_selection, NULL);
+  obj = g_object_new (xfburn_device_box_get_type (), 
+		      "show-writers-only", ((flags & SHOW_CD_WRITERS) != 0), 
+                      "show-speed-selection", ((flags & SHOW_SPEED_SELECTION) != 0), 
+		      "show-mode-selection", ((flags & SHOW_MODE_SELECTION) != 0), NULL);
 
   return obj;
 }

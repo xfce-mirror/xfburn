@@ -52,7 +52,8 @@
 #endif
 
 #include "xfburn-composition.h"
-#include "xfburn-burn-data-composition-dialog.h"
+#include "xfburn-burn-data-cd-composition-dialog.h"
+#include "xfburn-burn-data-dvd-composition-dialog.h"
 #include "xfburn-data-disc-usage.h"
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
@@ -232,6 +233,8 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   GtkCellRenderer *cell_icon, *cell_file;
   GtkTreeSelection *selection;
   GtkAction *action = NULL;
+  GdkScreen *screen;
+  GtkIconTheme *icon_theme;
   
   const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
     "<menuitem action=\"create-dir\"/>" "<separator/>"
@@ -245,11 +248,14 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   instances++;
   
   /* initialize static members */
+  screen = gtk_widget_get_screen (GTK_WIDGET (composition));
+  icon_theme = gtk_icon_theme_get_for_screen (screen);
+
   gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
   if (!icon_directory)
-    icon_directory = xfce_themed_icon_load ("gnome-fs-directory", x);
+    icon_directory = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-directory", x, 0, NULL);
   if (!icon_file)
-    icon_file = xfce_themed_icon_load ("gnome-fs-regular", x);
+    icon_file = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-regular", x, 0, NULL);
 
   /* create ui manager */
   priv->action_group = gtk_action_group_new ("xfburn-data-composition");
@@ -415,12 +421,20 @@ static void
 cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc)
 {
   XfburnMainWindow *mainwin = xfburn_main_window_get_instance ();
-  GtkWidget *dialog;
+  GtkWidget *dialog = NULL;
   struct iso_volume *volume = NULL;
 
   volume = generate_iso_volume (XFBURN_DATA_COMPOSITION (dc));
   
-  dialog = xfburn_burn_data_composition_dialog_new (iso_volset_new(volume, "VOLSETID"));
+  switch (xfburn_data_disc_usage_get_disc_type (du)) {
+  case CD_DISC:
+    dialog = xfburn_burn_data_cd_composition_dialog_new (iso_volset_new(volume, "VOLSETID"));
+    break;
+  case DVD_DISC:
+    dialog = xfburn_burn_data_dvd_composition_dialog_new (iso_volset_new(volume, "VOLSETID"));
+    break;
+  }
+
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (mainwin));
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
