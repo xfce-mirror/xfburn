@@ -241,13 +241,14 @@ thread_burn_iso (ThreadBurnIsoParams * params)
     if (fstat (fd, &stbuf) != -1)
       if( (stbuf.st_mode & S_IFMT) == S_IFREG)
 	fixed_size = stbuf.st_size;
-  
+
   if (fixed_size == 0) {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to determine image size"));
     goto end;
   }
 
   data_src = burn_fd_source_new(fd, -1, fixed_size);
+
   if (data_src == NULL) {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot open image"));
     goto end;
@@ -313,7 +314,6 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   }
 
   burn_write_opts_set_simulate(burn_options, params->dummy ? 1 : 0);
-  burn_structure_print_disc (disc);
   DBG ("TODO set speed");
   burn_drive_set_speed (drive, 0, 0);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
@@ -376,6 +376,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
       xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
       break;
     default:
+      DBG ("Status not implemented: %d", status);
       break;
     }    
 
