@@ -65,13 +65,15 @@ xfburn_SOURCES =							\
 	xfburn-utils.c	
 
 xfburn_CFLAGS =								\
+	$(GTHREAD_CFLAGS)						\
 	$(LIBBURN_CFLAGS)						\
 	$(LIBISOFS_CFLAGS)						\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(EXO_CFLAGS)							\
 	$(THUNAR_VFS_CFLAGS)						
 
-xfburn_LDADD = 							\
+xfburn_LDADD = 								\
+	$(GTHREAD_LIBS)							\
 	$(LIBBURN_LIBS)							\
 	$(LIBISOFS_LIBS)						\
 	$(LIBXFCEGUI4_LIBS)						\
