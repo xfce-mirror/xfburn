@@ -545,8 +545,13 @@ cb_dialog_response (XfburnBurnDataCdCompositionDialog * dialog, gint response_id
     GtkWidget *dialog_progress;
 
     struct burn_source * src = NULL;
+    struct ecma119_source_opts src_opts = {};
 
-    src = iso_source_new_ecma119 (priv->volume_set, 0, 2, ECMA119_JOLIET);
+    src_opts.volnum = 0;
+    src_opts.level = 2;
+    src_opts.flags = ECMA119_JOLIET;
+
+    src = iso_source_new_ecma119 (priv->volume_set, &src_opts);
     if (src == NULL) {
       /* could not create source */
       xfce_err (_("Could not create ISO source structure"));

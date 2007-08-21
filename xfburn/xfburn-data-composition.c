@@ -1440,21 +1440,23 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 }
 
 static void
-fill_volume_with_composition (GtkTreeModel *model, struct iso_tree_node * parent, GtkTreeIter *iter)
+fill_volume_with_composition (GtkTreeModel *model, struct iso_tree_node_dir * parent, GtkTreeIter *iter)
 {
   do {
       DataCompositionEntryType type;
       gchar *name = NULL;
       gchar *src = NULL;
       
-      struct iso_tree_node *node = NULL;
+      struct iso_tree_node_dir *node_dir = NULL;
 
       gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_TYPE, &type,
 			  DATA_COMPOSITION_COLUMN_CONTENT, &name, DATA_COMPOSITION_COLUMN_PATH, &src, -1);
 
       if (type == DATA_COMPOSITION_TYPE_DIRECTORY) {
-	node = iso_tree_add_new_dir (parent, name);
+	node_dir = iso_tree_add_dir (parent, name);
       } else {
+	struct iso_tree_node *node = NULL;
+
 	node = iso_tree_add_node (parent, src);
 	iso_tree_node_set_name (node, name);
       }
@@ -1465,7 +1467,7 @@ fill_volume_with_composition (GtkTreeModel *model, struct iso_tree_node * parent
 	GtkTreeIter child;
 
 	gtk_tree_model_iter_children (model, &child, iter);
-	fill_volume_with_composition (model, node, &child);
+	fill_volume_with_composition (model, node_dir, &child);
       }
   } while (gtk_tree_model_iter_next (model, iter));
 }
