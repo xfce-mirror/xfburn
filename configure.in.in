@@ -10,7 +10,7 @@ m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfbur
 
 dnl Initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2005-2007 Jean-François Wauthy <pollux@xfce.org>])
-AC_INIT([xfburn], [xfburn_version()], [pollux@xfce.org])
+AC_INIT([xfburn], [xfburn_version], [pollux@xfce.org])
 
 dnl Initialize automake
 AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
