@@ -80,3 +80,11 @@ xfburn_LDADD = 								\
 	$(EXO_LIBS)							\
 	$(THUNAR_VFS_LIBS)
 
+# remove these when they're added to the build; needed
+# for make distcheck (--brian)
+missing_files = \
+	xfburn-copy-cd-dialog.c \
+	xfburn-copy-cd-progress-dialog.c \
+	xfburn-create-iso-progress-dialog.c
+
+EXTRA_DIST = $(missing_files)
