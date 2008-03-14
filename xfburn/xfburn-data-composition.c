@@ -53,7 +53,7 @@
 
 #include "xfburn-composition.h"
 #include "xfburn-burn-data-cd-composition-dialog.h"
-#include "xfburn-burn-data-dvd-composition-dialog.h"
+//#include "xfburn-burn-data-dvd-composition-dialog.h"
 #include "xfburn-data-disc-usage.h"
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
@@ -95,7 +95,7 @@ static gboolean add_file_to_list_with_name (const gchar *name, XfburnDataComposi
                                             GtkTreeViewDropPosition position);
 static gboolean add_file_to_list (XfburnDataComposition * dc, GtkTreeModel * model, const gchar * path, GtkTreeIter * iter,
                                   GtkTreeIter * insertion, GtkTreeViewDropPosition position);
-static struct iso_volume * generate_iso_volume (XfburnDataComposition * dc);
+static IsoImage * generate_iso_image (XfburnDataComposition * dc);
                                   
 enum
 {
@@ -422,16 +422,21 @@ cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc)
 {
   XfburnMainWindow *mainwin = xfburn_main_window_get_instance ();
   GtkWidget *dialog = NULL;
-  struct iso_volume *volume = NULL;
+  IsoImage *image = NULL;
 
-  volume = generate_iso_volume (XFBURN_DATA_COMPOSITION (dc));
+  if (!iso_init()) {
+    g_critical ("Could not initialize libisofs!");
+    return;
+  }
+
+  image = generate_iso_image (XFBURN_DATA_COMPOSITION (dc));
   
   switch (xfburn_data_disc_usage_get_disc_type (du)) {
   case CD_DISC:
-    dialog = xfburn_burn_data_cd_composition_dialog_new (iso_volset_new(volume, "VOLSETID"));
+    dialog = xfburn_burn_data_cd_composition_dialog_new (image);
     break;
   case DVD_DISC:
-    dialog = xfburn_burn_data_dvd_composition_dialog_new (iso_volset_new(volume, "VOLSETID"));
+    //dialog = xfburn_burn_data_dvd_composition_dialog_new (image);
     break;
   }
 
@@ -1440,54 +1445,74 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 }
 
 static void
-fill_volume_with_composition (GtkTreeModel *model, struct iso_tree_node_dir * parent, GtkTreeIter *iter)
+fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * parent, GtkTreeIter *iter)
 {
   do {
       DataCompositionEntryType type;
       gchar *name = NULL;
       gchar *src = NULL;
+      IsoNode *node = NULL;
+      IsoDir *dir = NULL;
+      int r;
       
-      struct iso_tree_node_dir *node_dir = NULL;
-
       gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_TYPE, &type,
 			  DATA_COMPOSITION_COLUMN_CONTENT, &name, DATA_COMPOSITION_COLUMN_PATH, &src, -1);
 
-      if (type == DATA_COMPOSITION_TYPE_DIRECTORY) {
-	node_dir = iso_tree_add_dir (parent, name);
-      } else {
-	struct iso_tree_node *node = NULL;
+      if (type == DATA_COMPOSITION_TYPE_DIRECTORY)
+        r = iso_tree_add_new_dir (parent, name, &dir);
+      else
+        r = iso_tree_add_node (image, parent, src, &node);
 
-	node = iso_tree_add_node (parent, src);
-	iso_tree_node_set_name (node, name);
+      if (r < 0) {
+        if (r == ISO_NULL_POINTER)
+          g_error ("Failed adding %s as a node to the image: null pointer!", src);
+        else if (r == ISO_NODE_NAME_NOT_UNIQUE)
+          g_error ("Failed adding %s as a node to the image: node name not unique!", src);
+        /* else if (r == ISO_MEM_ERROR)
+          g_error ("Failed adding %s as a node to the image: memory error!", src); */
+        else
+          g_error ("Failed adding %s as a node to the image: code %d!", src, r);
       }
+
+      /* FIXME: do we need to call iso_node_ref on node? Probably not... */
+      if (type != DATA_COMPOSITION_TYPE_DIRECTORY)
+        iso_node_set_name (node, name);
+
       g_free (name);
       g_free (src);
 
       if (type == DATA_COMPOSITION_TYPE_DIRECTORY && gtk_tree_model_iter_has_child (model, iter)) {
 	GtkTreeIter child;
 
+        /* FIXME: this should not cause a sigfault... 
+        if (iso_node_get_type(node) != LIBISO_DIR)
+            g_error ("Expected %s to be a directory, but it isn't...\n", src);
+        */
+
 	gtk_tree_model_iter_children (model, &child, iter);
-	fill_volume_with_composition (model, node_dir, &child);
+	fill_image_with_composition (model, image, dir, &child);
       }
   } while (gtk_tree_model_iter_next (model, iter));
 }
 
-static struct iso_volume *
-generate_iso_volume (XfburnDataComposition * dc)
+static IsoImage *
+generate_iso_image (XfburnDataComposition * dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
-  struct iso_volume *volume = NULL;
+  IsoImage *image = NULL;
   GtkTreeModel *model;
   GtkTreeIter iter;
 
-  volume = iso_volume_new (gtk_entry_get_text (GTK_ENTRY (priv->entry_volume_name)), "Xfburn", "Xfburn");
+  iso_image_new (gtk_entry_get_text (GTK_ENTRY (priv->entry_volume_name)), &image);
+  iso_image_set_application_id (image, "Xfburn");
+  iso_image_set_data_preparer_id (image, "Xfburn");
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   if (gtk_tree_model_get_iter_first (model, &iter)) {
-    fill_volume_with_composition (model, iso_volume_get_root (volume), &iter);
+    fill_image_with_composition (model, image, iso_image_get_root (image), &iter);
   }
 
-  return volume;
+  return image;
 }
 
 /****************/

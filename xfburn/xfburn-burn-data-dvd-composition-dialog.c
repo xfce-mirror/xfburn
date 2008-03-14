@@ -17,6 +17,7 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#if 0
 #ifdef	HAVE_CONFIG_H
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
@@ -601,3 +602,4 @@ xfburn_burn_data_dvd_composition_dialog_new (struct iso_volset * volume_set)
   
   return GTK_WIDGET (obj);
 }
+#endif

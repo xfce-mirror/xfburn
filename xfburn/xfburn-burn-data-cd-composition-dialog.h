@@ -50,7 +50,7 @@ typedef struct
 
 GtkType xfburn_burn_data_cd_composition_dialog_get_type ();
 
-GtkWidget *xfburn_burn_data_cd_composition_dialog_new (struct iso_volset * volume_set);
+GtkWidget *xfburn_burn_data_cd_composition_dialog_new (IsoImage *image);
 
 G_END_DECLS
 #endif /* XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_H */

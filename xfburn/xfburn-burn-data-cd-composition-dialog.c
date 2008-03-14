@@ -44,7 +44,7 @@
 
 typedef struct
 {
-  struct iso_volset * volume_set;
+  IsoImage *image;
 
   GtkWidget *frame_device;
   GtkWidget *device_box;
@@ -60,7 +60,7 @@ typedef struct
 
 enum {
   PROP_0,
-  PROP_VOLUME_SET,
+  PROP_IMAGE
 };
 
 /* prototypes */
@@ -116,8 +116,8 @@ xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDi
   object_class->set_property = xfburn_burn_data_cd_composition_dialog_set_property;
 
   /* properties */
-  g_object_class_install_property (object_class, PROP_VOLUME_SET,
-				   g_param_spec_pointer ("volume-set", "Volume Set", "Volume Set", G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_IMAGE,
+				   g_param_spec_pointer ("image", "Image", "Image", G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
 }
 
 static void
@@ -225,8 +225,8 @@ xfburn_burn_data_cd_composition_dialog_get_property (GObject * object, guint pro
   XfburnBurnDataCdCompositionDialogPrivate *priv = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_GET_PRIVATE (object);
 
   switch (prop_id) {
-  case PROP_VOLUME_SET:
-    g_value_set_pointer (value, priv->volume_set);
+  case PROP_IMAGE:
+    g_value_set_pointer (value, priv->image);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -240,8 +240,8 @@ xfburn_burn_data_cd_composition_dialog_set_property (GObject * object, guint pro
   XfburnBurnDataCdCompositionDialogPrivate *priv = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_GET_PRIVATE (object);
 
   switch (prop_id) {
-  case PROP_VOLUME_SET:
-    priv->volume_set = g_value_get_pointer (value);
+  case PROP_IMAGE:
+    priv->image = g_value_get_pointer (value);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -254,7 +254,7 @@ xfburn_burn_data_cd_composition_dialog_finalize (GObject * object)
 {
   XfburnBurnDataCdCompositionDialogPrivate *priv = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_GET_PRIVATE (object);
 
-  iso_volset_free (priv->volume_set);
+  iso_image_unref (priv->image);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -315,7 +315,8 @@ thread_write_iso (ThreadWriteIsoParams * params)
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Writing ISO..."));
 
   size = (glong) params->src->get_size (params->src);
-  while (params->src->read (params->src, buf, 2048) == 2048) {
+  /* FIXME: is size really always 2048? */
+  while (params->src->read_xt (params->src, buf, 2048) == 2048) {
     if (write (fd, buf, 2048) < 2048) {
       /* an error occured while writing */
       gchar err[256];
@@ -545,18 +546,19 @@ cb_dialog_response (XfburnBurnDataCdCompositionDialog * dialog, gint response_id
     GtkWidget *dialog_progress;
 
     struct burn_source * src = NULL;
-    struct ecma119_source_opts src_opts = {};
+    IsoWriteOpts *write_opts;
 
-    src_opts.volnum = 0;
-    src_opts.level = 2;
-    src_opts.flags = ECMA119_JOLIET;
+    /* Sets profile 2 [distribution] */
+    iso_write_opts_new (&write_opts, 2);
 
-    src = iso_source_new_ecma119 (priv->volume_set, &src_opts);
-    if (src == NULL) {
+    if (iso_image_create_burn_source (priv->image, write_opts, &src) < 0) {
       /* could not create source */
       xfce_err (_("Could not create ISO source structure"));
       return;
     }
+
+    /* iso_image_create_burn_source copies the data it needs */
+    iso_write_opts_free (write_opts);
 
     dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
@@ -601,11 +603,11 @@ cb_dialog_response (XfburnBurnDataCdCompositionDialog * dialog, gint response_id
 
 /* public */
 GtkWidget *
-xfburn_burn_data_cd_composition_dialog_new (struct iso_volset * volume_set)
+xfburn_burn_data_cd_composition_dialog_new (IsoImage *image)
 {
   XfburnBurnDataCdCompositionDialog *obj;
 
-  obj = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG, "volume-set", volume_set, NULL));
+  obj = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG, "image", image, NULL));
   
   return GTK_WIDGET (obj);
 }

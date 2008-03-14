@@ -9,7 +9,7 @@ m4_define([xfburn_version_tag], [svn])
 m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()ifelse(xfburn_version_tag(), [svn], [xfburn_version_tag()-xfburn_version_build()], [xfburn_version_tag()])])
 
 dnl Initialize autoconf
-AC_COPYRIGHT([Copyright (c) 2005-2007 Jean-François Wauthy <pollux@xfce.org>])
+AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>])
 AC_INIT([xfburn], [xfburn_version], [pollux@xfce.org])
 
 dnl Initialize automake
@@ -30,7 +30,7 @@ XDT_I18N([@LINGUAS@])
 
 dnl check for required packages
 XDT_CHECK_PACKAGE([LIBBURN], [libburn-1], [0.3.0])
-XDT_CHECK_PACKAGE([LIBISOFS], [libisofs-1], [0.2.8])
+XDT_CHECK_PACKAGE([LIBISOFS], [libisofs-1], [0.6.2])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.6.0])
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
