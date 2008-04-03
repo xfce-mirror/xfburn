@@ -36,10 +36,6 @@
 #define CDRDAO_INSERT_AGAIN "Cannot determine disk status - hit enter to try again."
 #define CDRDAO_DONE "CD copying finished successfully."
 
-#define MKISOFS_ABORTING "Aborting."
-#define MKISOFS_RUNNING " done, estimate"
-#define MKISOFS_DONE "extents written"
-
 /* in reality CDR_1X_SPEED is 176.4 (see libburn.h:1577), but that shouldn't matter */
 #define CDR_1X_SPEED 176
 #define DVD_1X_SPEED 1385
