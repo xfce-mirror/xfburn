@@ -88,9 +88,9 @@ main (int argc, char **argv)
                                     GTK_DIALOG_DESTROY_WITH_PARENT,
                                     GTK_MESSAGE_WARNING,
                                     GTK_BUTTONS_CLOSE,
-                                    "No drives are currently available!");
+                                    _("No drives are currently available!"));
     gtk_message_dialog_format_secondary_text (dialog,
-                                    "Maybe there is a mounted media in the drive?\n\nPlease unmount and restart the application.");
+                                    _("Maybe there is a mounted media in the drive?\n\nPlease unmount and restart the application."));
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
   }

@@ -38,6 +38,17 @@
 
 #define XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialogPrivate))
 
+typedef struct {
+  GtkWidget *dialog_progress;
+  XfburnDevice *device;
+  gchar *iso_path;
+  gint speed;
+  XfburnWriteMode write_mode;
+  gboolean eject;
+  gboolean dummy;
+  gboolean burnfree;
+} ThreadBurnIsoParams;
+
 typedef struct
 {
   GtkWidget *chooser_image;
@@ -47,14 +58,18 @@ typedef struct
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
   GtkWidget *check_dummy;
+  ThreadBurnIsoParams *params;
 } XfburnBurnImageDialogPrivate;
 
 /* prototypes */
 static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass);
 static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
 
+void burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error);
 static void cb_device_changed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog);
 static void cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data);
+static gboolean check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct burn_drive *drive, struct burn_write_opts * burn_options);
+static void cb_clicked_ok (GtkButton * button, gpointer user_data);
 
 /*********************/
 /* class declaration */
@@ -166,7 +181,9 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 
   button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn image"));
   gtk_widget_show (button);
-  gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
+  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_clicked_ok), obj);
+  gtk_container_add (GTK_CONTAINER( GTK_DIALOG(obj)->action_area), button);
+  //gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
   GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
@@ -177,21 +194,48 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
   if (device)
     gtk_widget_set_sensitive (priv->check_dummy, device->dummy_write);
+
 }
 
 /*************/
 /* internals */
 /*************/
-typedef struct {
-  GtkWidget *dialog_progress;
-  XfburnDevice *device;
-  gchar *iso_path;
-  gint speed;
-  XfburnWriteMode write_mode;
-  gboolean eject;
-  gboolean dummy;
-  gboolean burnfree;
-} ThreadBurnIsoParams;
+static struct burn_write_opts * 
+make_burn_options(ThreadBurnIsoParams *params, struct burn_drive *drive) {
+  struct burn_write_opts * burn_options;
+
+  burn_options = burn_write_opts_new (drive);
+  burn_write_opts_set_perform_opc (burn_options, 0);
+  burn_write_opts_set_multi (burn_options, 0);
+
+  switch (params->write_mode) {
+  case WRITE_MODE_TAO:
+    burn_write_opts_set_write_type (burn_options, BURN_WRITE_TAO, BURN_BLOCK_MODE1);
+    break;
+  case WRITE_MODE_SAO:
+    burn_write_opts_set_write_type (burn_options, BURN_WRITE_SAO, BURN_BLOCK_SAO);
+    break;
+  /*
+  case WRITE_MODE_RAW16:
+    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW16);
+    break;
+  case WRITE_MODE_RAW96P:
+    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96P);
+    break;
+  case WRITE_MODE_RAW96R:
+    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96R);
+    break;
+  */
+  default:
+    burn_write_opts_free (burn_options);
+    return NULL;
+  }
+
+  burn_write_opts_set_simulate(burn_options, params->dummy ? 1 : 0);
+  burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
+
+  return burn_options;
+}
 
 static void
 thread_burn_iso (ThreadBurnIsoParams * params)
@@ -207,11 +251,10 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   off_t fixed_size = 0;
   struct burn_source *data_src;
 
-  struct burn_drive_info *drive_info = NULL;
   struct burn_drive *drive;
-
+  struct burn_drive_info *drive_info = NULL;
   struct burn_write_opts * burn_options;
-  enum burn_disc_status disc_state;
+
   enum burn_drive_status status;
   struct burn_progress progress;
   gint ret;
@@ -275,24 +318,8 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
     usleep(100001);
  
-  /* Evaluate drive and media */
-  while ((disc_state = burn_disc_get_status(drive)) == BURN_DISC_UNREADY)
-    usleep(100001);
-  if (disc_state == BURN_DISC_APPENDABLE && params->write_mode != WRITE_MODE_TAO) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot append data to multisession disc in this write mode (use TAO instead)"));
-    goto cleanup;
-  } else if (disc_state != BURN_DISC_BLANK) {
-    if (disc_state == BURN_DISC_FULL)
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Closed media with data detected. Need blank or appendable media"));
-    else if (disc_state == BURN_DISC_EMPTY) 
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No media detected in drive"));
-    else
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize state of drive and media"));
-    goto cleanup;
-  }
-
   /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
-  if (burn_disc_get_profile(drive_info->drive, &media_no, media_name) == 1) {
+  if (burn_disc_get_profile(drive, &media_no, media_name) == 1) {
     /* this will fail if newer disk types get supported */
     if (media_no <= 0x0a)
       factor = CDR_1X_SPEED;
@@ -304,36 +331,14 @@ thread_burn_iso (ThreadBurnIsoParams * params)
     factor = 1;
   }
 
- 
-  burn_options = burn_write_opts_new (drive);
-  burn_write_opts_set_perform_opc (burn_options, 0);
-  burn_write_opts_set_multi (burn_options, 0);
-
-  switch (params->write_mode) {
-  case WRITE_MODE_TAO:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_TAO, BURN_BLOCK_MODE1);
-    break;
-  case WRITE_MODE_SAO:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_SAO, BURN_BLOCK_SAO);
-    break;
-  case WRITE_MODE_RAW16:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW16);
-    break;
-  case WRITE_MODE_RAW96P:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96P);
-    break;
-  case WRITE_MODE_RAW96R:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96R);
-    break;
-  default:
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The write mode is not supported currently"));
+  burn_options = make_burn_options (params, drive);
+  if (burn_options == NULL) {
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Burn mode is not currently implemented"));
     goto cleanup;
   }
 
-  burn_write_opts_set_simulate(burn_options, params->dummy ? 1 : 0);
   DBG ("TODO set speed");
   burn_drive_set_speed (drive, 0, 0);
-  burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
 
   burn_disc_write (burn_options, disc); 
   burn_write_opts_free (burn_options);
@@ -417,6 +422,15 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   g_free (params);
 }
 
+/**
+ * Error message wrapper, so the appearance can be customized later
+ **/
+void
+burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error)
+{
+  xfce_err (msg_error);
+}
+
 static void
 cb_device_changed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog) 
 {
@@ -432,38 +446,141 @@ cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer u
   if (response_id == GTK_RESPONSE_OK) {
     XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
 
-    XfburnDevice *device;
-    gchar *iso_path;
-    gint speed;
-    XfburnWriteMode write_mode;
-
     GtkWidget *dialog_progress;
-    ThreadBurnIsoParams *params = NULL;
 
-    iso_path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
-
-    device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
-    speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
-    write_mode = xfburn_device_box_get_mode (XFBURN_DEVICE_BOX (priv->device_box));
-       
     dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
     gtk_widget_hide (GTK_WIDGET (dialog));
     
+    priv->params->dialog_progress = dialog_progress;
     gtk_widget_show (dialog_progress);
     
-    params = g_new0 (ThreadBurnIsoParams, 1);
-    params->dialog_progress = dialog_progress;
-    params->device = device;
-    params->iso_path = iso_path;
-    params->speed = speed;
-    params->write_mode = write_mode;
-    params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));
-    params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
-    params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
-    g_thread_create ((GThreadFunc) thread_burn_iso, params, FALSE, NULL);
+    g_thread_create ((GThreadFunc) thread_burn_iso, priv->params, FALSE, NULL);
   }
 }
+
+static gboolean 
+check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct burn_drive *drive, struct burn_write_opts * burn_options)
+{
+  enum burn_disc_status disc_state;
+  struct stat st;
+  int ret;
+
+  while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
+    usleep(100001);
+
+  /* Evaluate drive and media */
+  while ((disc_state = burn_disc_get_status(drive)) == BURN_DISC_UNREADY)
+    usleep(100001);
+  if (disc_state == BURN_DISC_APPENDABLE && params->write_mode != WRITE_MODE_TAO) {
+    burn_image_dialog_error (dialog, _("Cannot append data to multisession disc in this write mode (use TAO instead)"));
+    return FALSE;
+  } else if (disc_state != BURN_DISC_BLANK) {
+    if (disc_state == BURN_DISC_FULL)
+      burn_image_dialog_error (dialog, _("Closed media with data detected. Need blank or appendable media"));
+    else if (disc_state == BURN_DISC_EMPTY) 
+      burn_image_dialog_error (dialog, _("No media detected in drive"));
+    else {
+      burn_image_dialog_error (dialog, _("Cannot recognize state of drive and media"));
+      DBG ("disc_state = %d", disc_state);
+    }
+    return FALSE;
+  }
+
+  /* check if the image fits on the inserted media */
+  ret = stat (params->iso_path, &st);
+  if (ret == 0) {
+    off_t disc_size;
+    disc_size = burn_disc_available_space (drive, burn_options);
+    if (st.st_size > disc_size) {
+      burn_image_dialog_error (dialog, _("The selected image does not fit on the inserted disc!"));
+      return FALSE;
+    }
+  } else {
+    burn_image_dialog_error (dialog, _("Failed to get image size!"));
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
+static void 
+cb_clicked_ok (GtkButton *button, gpointer user_data)
+{
+  XfburnBurnImageDialog * dialog = (XfburnBurnImageDialog *) user_data;
+  XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
+  FILE *fp;
+  char *iso_path;
+  gboolean checks_passed = FALSE;
+  XfburnDevice *device;
+  gint speed;
+  XfburnWriteMode write_mode;
+  struct burn_write_opts * burn_options;
+
+  ThreadBurnIsoParams *params = NULL;
+  struct burn_drive_info *drive_info = NULL;
+
+  /* check if the image file really exists and can be opened */
+  iso_path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
+
+  fp = fopen(iso_path, "r");
+  if (fp == NULL) {
+    burn_image_dialog_error (dialog, _("Make sure you selected a valid file and you have the proper permissions to access it."));
+
+    return;
+  }
+  fclose(fp);
+
+  device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
+  speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
+  write_mode = xfburn_device_box_get_mode (XFBURN_DEVICE_BOX (priv->device_box));
+      
+  params = g_new0 (ThreadBurnIsoParams, 1);
+  params->device = device;
+  params->iso_path = iso_path;
+  params->speed = speed;
+  params->write_mode = write_mode;
+  params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));
+  params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
+  params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
+  
+  if (!burn_initialize ()) {
+    g_critical ("Unable to initialize libburn");
+    return;
+  }
+
+  if (!xfburn_device_grab (device, &drive_info)) {
+    burn_image_dialog_error (dialog, _("Unable to grab drive"));
+
+    g_free (params->iso_path);
+    g_free (params);
+    burn_finish ();
+    return;
+  }
+
+  burn_options = make_burn_options (params, drive_info->drive);
+
+  if (burn_options == NULL)
+    burn_image_dialog_error (dialog, _("The write mode is not currently supported"));
+  else {
+    checks_passed = check_media (dialog, params, drive_info->drive, burn_options);
+
+    burn_write_opts_free (burn_options);
+  }
+
+  burn_drive_release (drive_info->drive, 0);
+  burn_finish ();
+
+  priv->params = params;
+
+  if (checks_passed)
+    gtk_dialog_response (GTK_DIALOG(dialog), GTK_RESPONSE_OK);
+  else {
+    g_free (params->iso_path);
+    g_free (params);
+  }
+}
+
 
 /* public */
 GtkWidget *
