@@ -126,13 +126,13 @@ static const GtkActionEntry action_entries[] = {
   {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),
    G_CALLBACK (action_copy_cd),},
   {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
-  {"burn-cd", "xfburn-burn-cd", N_("Burn CD Image"), NULL, N_("Burn CD Image"),
+  {"burn-image", "xfburn-burn-cd", N_("Burn Image"), NULL, N_("Burn Image"),
    G_CALLBACK (action_burn_image),},
   {"format-dvd", "xfburn-format-dvdrw", N_("Format DVD+RW"), NULL, N_("Format DVD+RW"),
    G_CALLBACK (action_format_dvd),},
   {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
    G_CALLBACK (action_copy_dvd),},
-  {"burn-dvd", "xfburn-burn-cd", N_("Burn DVD Image"), NULL, N_("Burn DVD Image"),
+  {"burn-dvd", "xfburn-burn-image", N_("Burn DVD Image"), NULL, N_("Burn DVD Image"),
    G_CALLBACK (action_burn_dvd_image),},
 };
 
@@ -151,7 +151,7 @@ static const gchar *toolbar_actions[] = {
   "blank-cd",
   "copy-data",
   //"copy-audio",
-  "burn-cd",
+  "burn-image",
   "format-dvd",
   "copy-dvd",
   "burn-dvd",
@@ -645,7 +645,7 @@ xfburn_main_window_new (void)
       gtk_action_set_sensitive (action, FALSE);
       action = gtk_action_group_get_action (priv->action_group, "copy-audio");
       gtk_action_set_sensitive (action, FALSE);
-      action = gtk_action_group_get_action (priv->action_group, "burn-cd");
+      action = gtk_action_group_get_action (priv->action_group, "burn-image");
       gtk_action_set_sensitive (action, FALSE);
     }
     if (!priv->support_cdrw) {

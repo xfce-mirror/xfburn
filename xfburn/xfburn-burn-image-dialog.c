@@ -105,7 +105,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   GtkWidget *button;
   XfburnDevice *device;
 
-  gtk_window_set_title (GTK_WINDOW (obj), _("Burn CD image"));
+  gtk_window_set_title (GTK_WINDOW (obj), _("Burn image"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
   icon = gtk_widget_render_icon (GTK_WIDGET (obj), XFBURN_STOCK_BURN_CD, GTK_ICON_SIZE_DIALOG, NULL);
   gtk_window_set_icon (GTK_WINDOW (obj), icon);
@@ -216,6 +216,9 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   struct burn_progress progress;
   gint ret;
   time_t time_start;
+  char media_name[80];
+  int media_no;
+  int factor;
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
@@ -287,6 +290,20 @@ thread_burn_iso (ThreadBurnIsoParams * params)
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize state of drive and media"));
     goto cleanup;
   }
+
+  /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
+  if (burn_disc_get_profile(drive_info->drive, &media_no, media_name) == 1) {
+    /* this will fail if newer disk types get supported */
+    if (media_no <= 0x0a)
+      factor = CDR_1X_SPEED;
+    else
+      /* assume DVD for now */
+      factor = DVD_1X_SPEED;
+  } else {
+    g_warning ("no profile could be retrieved to calculate current burn speed");
+    factor = 1;
+  }
+
  
   burn_options = burn_write_opts_new (drive);
   burn_write_opts_set_perform_opc (burn_options, 0);
@@ -334,6 +351,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
       xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning composition..."));
       if (progress.sectors > 0 && progress.sector >= 0) {
 	gdouble percent = 0.0;
+        gdouble cur_speed = 0.0;
 
 	percent = (gdouble) (progress.buffer_capacity - progress.buffer_available) / (gdouble) progress.buffer_capacity;
 	xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
@@ -341,8 +359,10 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 	percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
 	xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent / 100.0);
 
+        cur_speed = ((gdouble) ((gdouble)(glong)progress.sector * 2048L) / (gdouble) (time_now - time_start)) / ((gdouble) (factor * 1000.0));
+        //DBG ("(%f / %f) / %f = %f\n", (gdouble) ((gdouble)(glong)progress.sector * 2048L), (gdouble) (time_now - time_start), ((gdouble) (factor * 1000.0)), cur_speed);
 	xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), 
-						  ((gdouble) (progress.sector * 2048) / (gdouble) (time_now - time_start)) / (150 * 1024));
+						  cur_speed);
       }
       break;
     case BURN_DRIVE_WRITING_LEADIN:

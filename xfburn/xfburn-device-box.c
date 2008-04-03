@@ -326,6 +326,9 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "SAO", MODE_VALUE_COLUMN, WRITE_MODE_SAO, -1);
   }
+  /*
+   * RAW modes are not supported by libburn yet
+   *
   if (device->raw_block_types & BURN_BLOCK_RAW16) {
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "RAW16", MODE_VALUE_COLUMN, WRITE_MODE_RAW16, -1);
@@ -342,6 +345,7 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "packet", MODE_VALUE_COLUMN, WRITE_MODE_PACKET, -1);
   }
+  */
   
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_mode), 0);
 }

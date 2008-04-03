@@ -54,4 +54,8 @@
 #define MKISOFS_RUNNING " done, estimate"
 #define MKISOFS_DONE "extents written"
 
+/* in reality CDR_1X_SPEED is 176.4 (see libburn.h:1577), but that shouldn't matter */
+#define CDR_1X_SPEED 176
+#define DVD_1X_SPEED 1385
+
 #endif

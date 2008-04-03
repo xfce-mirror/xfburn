@@ -34,11 +34,8 @@
 #include <libburn.h>
 
 #include "xfburn-device-list.h"
+#include "xfburn-global.h"
 
-#define CDR_1X_SPEED 150
-
-/* private */
-static gint supported_cdr_speeds[] = {2, 4, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 52, -1};
 static GList *devices = NULL;
 
 /*************/
@@ -51,24 +48,6 @@ device_content_free (XfburnDevice * device, gpointer user_data)
   g_free (device->node_path);
 
   g_slist_free (device->supported_cdr_speeds);
-}
-
-static gint
-get_closest_supported_cdr_speed (gint speed)
-{
-  /* TODO: need some fixing */
-  gint i = 0;
-  gint previous = 0;
-
-  while (supported_cdr_speeds[i] != -1) {
-    if (speed < (supported_cdr_speeds[i] * CDR_1X_SPEED)) {
-      return supported_cdr_speeds[previous];
-    } else
-      previous = i;
-    i++;
-  }
-
-  return 0;
 }
 
 static gboolean
@@ -92,6 +71,9 @@ static void
 refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_info)
 {
   struct burn_speed_descriptor *speed_list = NULL;
+  char media_name[80];
+  int media_no;
+  int factor;
   gint ret;
 
   /* empty previous list */
@@ -101,17 +83,32 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   /* fill new list */
   ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
 
+  /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
+  if (burn_disc_get_profile(drive_info->drive, &media_no, media_name) == 1) {
+    /* this will fail if newer disk types get supported */
+    if (media_no <= 0x0a)
+      factor = CDR_1X_SPEED;
+    else
+      /* assume DVD for now */
+      factor = DVD_1X_SPEED;
+  } else {
+    g_warning ("no profile could be retrieved to calculate speed");
+    factor = 1;
+  }
+
   if (ret > 0) {
     struct burn_speed_descriptor *el = speed_list;
 
     while (el) {
       gint speed = -1;
       
-      speed = get_closest_supported_cdr_speed (el->write_speed);
+      DBG ("libburn speed in kb/s: %d\n", el->write_speed);
+      speed = el->write_speed / factor;
+      /* FIXME: why do we need no_speed_duplicate? */
       if (speed > 0 && no_speed_duplicate (device->supported_cdr_speeds, speed)) {
 	device->supported_cdr_speeds = g_slist_prepend (device->supported_cdr_speeds, GINT_TO_POINTER (speed));
 	DBG ("added speed: %d\n", speed);
-      }
+      } 
 
       el = el->next;
     }
@@ -164,7 +161,7 @@ xfburn_device_list_init ()
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
-    return;
+    return -1;
   }
     
   if (devices) {
