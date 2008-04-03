@@ -48,7 +48,7 @@ typedef struct
   gchar addr[BURN_DRIVE_ADR_LEN];
 } XfburnDevice;
 
-void xfburn_device_list_init ();
+gint xfburn_device_list_init ();
 XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
 GList * xfburn_device_list_get_list ();
 void xfburn_device_list_free ();

@@ -155,7 +155,7 @@ xfburn_device_refresh_supported_speeds (XfburnDevice * device)
   burn_finish ();
 }
 
-void
+gint
 xfburn_device_list_init ()
 {
   struct burn_drive_info *drives;
@@ -209,6 +209,8 @@ xfburn_device_list_init ()
 
   burn_drive_info_free (drives);
   burn_finish ();
+  
+  return n_drives;
 }
 
 gboolean
