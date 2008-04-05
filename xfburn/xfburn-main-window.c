@@ -71,11 +71,13 @@ static void action_about (GtkAction *, XfburnMainWindow *);
 static void action_preferences (GtkAction *, XfburnMainWindow *);
 
 static void action_new_data_composition (GtkAction *, XfburnMainWindow *);
-static void action_new_audio_composition (GtkAction *, XfburnMainWindow *);
+//static void action_new_audio_composition (GtkAction *, XfburnMainWindow *);
 
+/*
 static void action_load (GtkAction *, XfburnMainWindow *);
 static void action_save (GtkAction *, XfburnMainWindow *);
 static void action_save_as (GtkAction *, XfburnMainWindow *);
+*/
 static void action_close (GtkAction *, XfburnMainWindow *);
 static void action_quit (GtkAction *, XfburnMainWindow *);
 
@@ -382,8 +384,8 @@ action_blank_cd (GtkAction * action, XfburnMainWindow * window)
 
 static void action_copy_cd (GtkAction *action, XfburnMainWindow *window)
 {
-  GtkWidget *dialog;
   /*
+  GtkWidget *dialog;
   dialog = xfburn_copy_cd_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
   gtk_dialog_run (GTK_DIALOG (dialog)); 
@@ -429,10 +431,11 @@ action_burn_dvd_image (GtkAction * action, XfburnMainWindow * window)
 {
 }
 
+/*
 static void
 action_load (GtkAction *action, XfburnMainWindow * window)
 {
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
   //xfburn_data_composition_load_from_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
 }
@@ -448,9 +451,10 @@ action_save (GtkAction *action, XfburnMainWindow * window)
 static void
 action_save_as (GtkAction *action, XfburnMainWindow * window)
 {
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
 }
+*/
 
 static void
 action_close (GtkAction *action, XfburnMainWindow * window)
@@ -468,12 +472,14 @@ action_new_data_composition (GtkAction *action, XfburnMainWindow * window)
   xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_DATA_COMPOSITION);
 }
 
+/*
 static void
 action_new_audio_composition (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
  
 }
+*/
 
 static void
 action_quit (GtkAction * action, XfburnMainWindow * window)

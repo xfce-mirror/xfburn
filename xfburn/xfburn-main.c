@@ -84,15 +84,15 @@ main (int argc, char **argv)
   xfburn_stock_init ();
   n_drives = xfburn_device_list_init ();
   if (n_drives < 1) {
-    GtkMessageDialog *dialog = gtk_message_dialog_new (NULL,
+    GtkMessageDialog *dialog = (GtkMessageDialog *) gtk_message_dialog_new (NULL,
                                     GTK_DIALOG_DESTROY_WITH_PARENT,
                                     GTK_MESSAGE_WARNING,
                                     GTK_BUTTONS_CLOSE,
-                                    _("No drives are currently available!"));
+                                    ((const gchar *) _("No drives are currently available!")));
     gtk_message_dialog_format_secondary_text (dialog,
                                     _("Maybe there is a mounted media in the drive?\n\nPlease unmount and restart the application."));
     gtk_dialog_run (GTK_DIALOG (dialog));
-    gtk_widget_destroy (dialog);
+    gtk_widget_destroy (GTK_WIDGET (dialog));
   }
 
   mainwin = xfburn_main_window_new ();

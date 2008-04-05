@@ -138,8 +138,8 @@ xfburn_format_dvd_dialog_response_cb (XfburnFormatDvdDialog * dialog, gint respo
     XfburnFormatDvdDialogPrivate *priv = XFBURN_FORMAT_DVD_DIALOG_GET_PRIVATE (dialog);
     gchar *command;
     XfburnDevice *device;
-    gchar *speed;
-    GtkWidget *dialog_progress;
+    gint speed;
+    //GtkWidget *dialog_progress;
     
     device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
     speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
@@ -147,7 +147,6 @@ xfburn_format_dvd_dialog_response_cb (XfburnFormatDvdDialog * dialog, gint respo
     command = g_strconcat ("cdrecord -v gracetime=2 -format", " dev=", device->node_path, " speed=", speed,
                            gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " -eject" : "", NULL);
     
-    g_free (speed);
     
     
         
