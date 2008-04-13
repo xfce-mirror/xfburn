@@ -5,3 +5,24 @@ user visible
 - add text/uri-list DnD target support
 - remove temporary files
 - use more thunar-vfs
+
+various fixes and changes
+=========================
+
+- cleanup code
+- implement progress dialog when adding files to composition 
+- adding files to composition should be a new thread
+- fix available writing speeds detection, and sort them
+- allow usage of capable drives
+  - when burning ISO image, only show drives capable of 
+    burning to desired disk, or report that we cannot
+    burn the image if there is no capable drive
+    (say somebody wants to burn DVD image on 
+     a drive not capable of doing so)
+  - when burning composition, only show drives capable of 
+    burning desired composition, or report that we cannot
+    burn the image if no capable drives are found, and
+    leave all the files previously
+    added by the user in composition so he could tweak it
+- welcome tab that cannot be closed
+- make copy disk work
