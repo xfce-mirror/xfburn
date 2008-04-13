@@ -71,6 +71,8 @@ typedef struct
   GtkWidget *hbox_speed_selection;
   GtkWidget *combo_speed;
 
+  GtkWidget *status_label;
+
   GtkWidget *hbox_mode_selection;
   GtkWidget *combo_mode;
 } XfburnDeviceBoxPrivate;
@@ -227,6 +229,12 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_widget_show (priv->combo_mode);
   gtk_box_pack_start (GTK_BOX (priv->hbox_mode_selection), priv->combo_mode, TRUE, TRUE, BORDER);
 
+  /* status label */
+  priv->status_label = gtk_label_new ("");
+  gtk_widget_show (priv->status_label);
+  gtk_box_pack_start (GTK_BOX (box), priv->status_label, FALSE, FALSE, 0);
+
+
   g_signal_connect (G_OBJECT (priv->combo_device), "changed", G_CALLBACK (cb_combo_device_changed), box);
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_device), 0);
 }
@@ -293,6 +301,13 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
+  if (el == NULL) {
+    gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\">No media in drive</span>"));
+    return;
+  } else {
+    gtk_label_set_text (GTK_LABEL(priv->status_label), "");
+  }
+  
   while (el) {
     gint speed = GPOINTER_TO_INT (el->data);
     GtkTreeIter iter;

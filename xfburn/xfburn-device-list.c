@@ -68,7 +68,8 @@ no_speed_duplicate (GSList *speed_list, gint speed)
 }
 
 /* sort the speed list in ascending order */
-static gint cmp_ints (gconstpointer a, gconstpointer b)
+static gint
+cmp_ints (gconstpointer a, gconstpointer b)
 {
   return GPOINTER_TO_INT(a) - GPOINTER_TO_INT(b);
 }
@@ -81,10 +82,31 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   int media_no;
   int factor;
   gint ret;
+  enum burn_disc_status disc_status;
+  //int i;
 
   /* empty previous list */
   g_slist_free (device->supported_cdr_speeds);
   device->supported_cdr_speeds = NULL;
+
+  /* check if there is media in the drive */
+  while ((disc_status = burn_disc_get_status (drive_info->drive)) == BURN_DISC_UNREADY)
+    usleep(100001);
+
+  /* libburn docs say we might need to check more than once,
+   * but that's probably covered by the loop above */
+  /*
+  for (i=0; i<2; i++) {
+    usleep(100001);
+    disc_status = burn_disc_get_status (drive_info->drive);
+  }
+  */
+
+  if (!(disc_status == BURN_DISC_BLANK || disc_status == BURN_DISC_APPENDABLE)) {
+    DBG ("disc_status = %d", disc_status);
+    g_warning ("no suitable disc found in drive");
+    return;
+  }
 
   /* fill new list */
   ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
@@ -123,8 +145,6 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
     device->supported_cdr_speeds = g_slist_sort (device->supported_cdr_speeds, &cmp_ints);
   } else if (ret == 0) {
     g_warning ("reported speed list is empty");
-
-    device->supported_cdr_speeds = g_slist_prepend (device->supported_cdr_speeds, GINT_TO_POINTER (0));
   } else {
     g_error ("severe error while retrieving speed list");
   }
@@ -208,7 +228,11 @@ xfburn_device_list_init ()
     if (ret <= 0)
       g_error ("Unable to get drive %s address (ret=%d). Please report this problem to libburn-hackers@pykix.org", device->name, ret);
 
-    refresh_supported_speeds (device, &(drives[i]));
+    if (burn_drive_grab (drives[i].drive, 1) == 1) {
+      refresh_supported_speeds (device, &(drives[i]));
+      burn_drive_release (drives[i].drive, 0);
+    } else
+      g_warning ("Failed to grab drive %s, did not refresh speed list", device->name);
         
     devices = g_list_append (devices, device);
   }
