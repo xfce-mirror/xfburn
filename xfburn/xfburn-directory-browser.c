@@ -127,6 +127,7 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
 
   column_file = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column_file, _("File"));
+  gtk_tree_view_column_set_resizable (column_file, 1);
 
   cell_icon = gtk_cell_renderer_pixbuf_new ();
   gtk_tree_view_column_pack_start (column_file, cell_icon, FALSE);
@@ -143,6 +144,9 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
                                                "text", DIRECTORY_BROWSER_COLUMN_HUMANSIZE, NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (browser), -1, _("Type"), gtk_cell_renderer_text_new (),
                                                "text", DIRECTORY_BROWSER_COLUMN_TYPE, NULL);
+
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column ( GTK_TREE_VIEW (browser), 1), 1);
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column ( GTK_TREE_VIEW (browser), 2), 1); 
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
