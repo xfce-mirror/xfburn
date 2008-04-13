@@ -67,6 +67,12 @@ no_speed_duplicate (GSList *speed_list, gint speed)
   return TRUE;
 }
 
+/* sort the speed list in ascending order */
+static gint cmp_ints (gconstpointer a, gconstpointer b)
+{
+  return GPOINTER_TO_INT(a) - GPOINTER_TO_INT(b);
+}
+
 static void
 refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_info)
 {
@@ -83,21 +89,21 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   /* fill new list */
   ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
 
-  /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
-  if (burn_disc_get_profile(drive_info->drive, &media_no, media_name) == 1) {
-    /* this will fail if newer disk types get supported */
-    if (media_no <= 0x0a)
-      factor = CDR_1X_SPEED;
-    else
-      /* assume DVD for now */
-      factor = DVD_1X_SPEED;
-  } else {
-    g_warning ("no profile could be retrieved to calculate speed");
-    factor = 1;
-  }
-
   if (ret > 0) {
     struct burn_speed_descriptor *el = speed_list;
+
+    /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
+    if (burn_disc_get_profile(drive_info->drive, &media_no, media_name) == 1) {
+      /* this will fail if newer disk types get supported */
+      if (media_no <= 0x0a)
+        factor = CDR_1X_SPEED;
+      else
+        /* assume DVD for now */
+        factor = DVD_1X_SPEED;
+    } else {
+      g_warning ("no profile could be retrieved to calculate speed");
+      factor = 1;
+    }
 
     while (el) {
       gint speed = -1;
@@ -113,9 +119,12 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
       el = el->next;
     }
 
-    burn_drive_free_speedlist (&speed_list);  
+    burn_drive_free_speedlist (&speed_list); 
+    device->supported_cdr_speeds = g_slist_sort (device->supported_cdr_speeds, &cmp_ints);
   } else if (ret == 0) {
     g_warning ("reported speed list is empty");
+
+    device->supported_cdr_speeds = g_slist_prepend (device->supported_cdr_speeds, GINT_TO_POINTER (0));
   } else {
     g_error ("severe error while retrieving speed list");
   }
