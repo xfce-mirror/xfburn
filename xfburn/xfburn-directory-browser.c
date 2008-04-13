@@ -148,6 +148,27 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
   gtk_tree_view_column_set_resizable (gtk_tree_view_get_column ( GTK_TREE_VIEW (browser), 1), 1);
   gtk_tree_view_column_set_resizable (gtk_tree_view_get_column ( GTK_TREE_VIEW (browser), 2), 1); 
 
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (browser), 
+				      DIRECTORY_BROWSER_COLUMN_FILE), 1);
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (browser), 
+                                      DIRECTORY_BROWSER_COLUMN_HUMANSIZE), 1);
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (browser), 
+                                      DIRECTORY_BROWSER_COLUMN_TYPE), 1);
+  
+  gtk_tree_view_column_set_fixed_width (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
+                                        DIRECTORY_BROWSER_COLUMN_FILE), 500);
+  gtk_tree_view_column_set_fixed_width (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
+                                        DIRECTORY_BROWSER_COLUMN_HUMANSIZE), 100);
+  gtk_tree_view_column_set_fixed_width (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
+                                        DIRECTORY_BROWSER_COLUMN_TYPE), 200);
+  
+  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
+                                      DIRECTORY_BROWSER_COLUMN_FILE), 300); 
+  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
+                                      DIRECTORY_BROWSER_COLUMN_HUMANSIZE), 60); 
+  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
+                                      DIRECTORY_BROWSER_COLUMN_TYPE), 80);
+
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
 
