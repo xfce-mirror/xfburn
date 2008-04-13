@@ -1,6 +1,7 @@
 user visible
 ============
 
+- add data dvd support
 - add audio cd support
 - add text/uri-list DnD target support
 - remove temporary files
@@ -10,10 +11,13 @@ various fixes and changes
 =========================
 
 - cleanup code
+  - remove duplicated code fragments, in particular
+    - the burning backend, and
+    - the burning dialogs
 - implement progress dialog when adding files to composition 
 - adding files to composition should be a new thread
 - fix available writing speeds detection, and sort them
-- allow usage of capable drives
+- only allow usage of drives with matching capabilities
   - when burning ISO image, only show drives capable of 
     burning to desired disk, or report that we cannot
     burn the image if there is no capable drive
@@ -25,4 +29,4 @@ various fixes and changes
     leave all the files previously
     added by the user in composition so he could tweak it
 - welcome tab that cannot be closed
-- make copy disk work
+- recode copy disk with libburn
