@@ -47,6 +47,7 @@ typedef struct
   GtkVBoxClass parent_class;
   
   void (*device_changed) (XfburnDeviceBox *box, XfburnDevice *device);
+  void (*disc_refreshed) (XfburnDeviceBox *box, XfburnDevice *device);
 } XfburnDeviceBoxClass;
 
 typedef enum

@@ -58,6 +58,9 @@ typedef struct
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
   GtkWidget *check_dummy;
+
+  GtkWidget *burn_button;
+
   ThreadBurnIsoParams *params;
 } XfburnBurnImageDialogPrivate;
 
@@ -67,6 +70,7 @@ static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
 
 void burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error);
 static void cb_device_changed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog);
+static void cb_disc_refreshed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog);
 static void cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data);
 static gboolean check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct burn_drive *drive, struct burn_write_opts * burn_options);
 static void cb_clicked_ok (GtkButton * button, gpointer user_data);
@@ -119,6 +123,8 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   GtkWidget *vbox;
   GtkWidget *button;
   XfburnDevice *device;
+
+  gboolean valid_disc;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn image"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
@@ -179,16 +185,19 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn image"));
-  gtk_widget_show (button);
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_clicked_ok), obj);
-  gtk_container_add (GTK_CONTAINER( GTK_DIALOG(obj)->action_area), button);
+  priv->burn_button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn image"));
+  g_object_get (G_OBJECT (priv->device_box), "get-disc-status", &valid_disc, NULL);
+  gtk_widget_set_sensitive (priv->burn_button, valid_disc);
+  gtk_widget_show (priv->burn_button);
+  g_signal_connect (G_OBJECT (priv->burn_button), "clicked", G_CALLBACK (cb_clicked_ok), obj);
+  gtk_container_add (GTK_CONTAINER( GTK_DIALOG(obj)->action_area), priv->burn_button);
   //gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
-  GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
-  gtk_widget_grab_focus (button);
-  gtk_widget_grab_default (button);
+  GTK_WIDGET_SET_FLAGS (priv->burn_button, GTK_CAN_DEFAULT);
+  gtk_widget_grab_focus (priv->burn_button);
+  gtk_widget_grab_default (priv->burn_button);
 
   g_signal_connect (G_OBJECT (priv->device_box), "device-changed", G_CALLBACK (cb_device_changed), obj);
+  g_signal_connect (G_OBJECT (priv->device_box), "disc-refreshed", G_CALLBACK (cb_disc_refreshed), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), obj);
 
   device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
@@ -437,6 +446,16 @@ cb_device_changed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDi
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
 
   gtk_widget_set_sensitive (priv->check_dummy, device->dummy_write);
+}
+
+static void
+cb_disc_refreshed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog) 
+{
+  XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
+  gboolean valid_disc;
+
+  g_object_get (G_OBJECT (priv->device_box), "get-disc-status", &valid_disc, NULL);
+  gtk_widget_set_sensitive (priv->burn_button, valid_disc);
 }
 
 static void

@@ -31,6 +31,7 @@
 
 enum {
   DEVICE_CHANGED,
+  DISC_REFRESHED,
   LAST_SIGNAL,
 };
 
@@ -39,6 +40,7 @@ enum {
   PROP_SHOW_WRITERS_ONLY,
   PROP_SHOW_SPEED_SELECTION,
   PROP_SHOW_MODE_SELECTION,
+  PROP_GET_DISC_STATUS,
 };
 
 enum {
@@ -65,6 +67,7 @@ typedef struct
   gboolean show_writers_only;
   gboolean show_speed_selection;
   gboolean show_mode_selection;
+  gboolean valid_disc;
   
   GtkWidget *combo_device;
   
@@ -135,6 +138,11 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
                                           G_STRUCT_OFFSET (XfburnDeviceBoxClass, device_changed),
                                           NULL, NULL, g_cclosure_marshal_VOID__STRING,
                                           G_TYPE_NONE, 1, G_TYPE_STRING);
+  signals[DISC_REFRESHED] = g_signal_new ("disc-refreshed", XFBURN_TYPE_DEVICE_BOX, G_SIGNAL_ACTION,
+                                          G_STRUCT_OFFSET (XfburnDeviceBoxClass, disc_refreshed),
+                                          NULL, NULL, g_cclosure_marshal_VOID__STRING,
+                                          G_TYPE_NONE, 1, G_TYPE_STRING);
+    
     
   g_object_class_install_property (object_class, PROP_SHOW_WRITERS_ONLY, 
                                    g_param_spec_boolean ("show-writers-only", _("Show writers only"),
@@ -147,6 +155,10 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
                                    g_param_spec_boolean ("show-mode-selection", _("Show mode selection"),
                                                         _("Show mode selection combo"), 
                                                         FALSE, G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_GET_DISC_STATUS,
+                                   g_param_spec_boolean ("get-disc-status", _("Get disc status"),
+                                                        _("Get the status of the disc in the drive"), 
+                                                        FALSE, G_PARAM_READABLE));
 }
 
 static void
@@ -254,6 +266,9 @@ xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, G
     case PROP_SHOW_MODE_SELECTION:
       g_value_set_boolean (value, priv->show_mode_selection);
       break;
+    case PROP_GET_DISC_STATUS:
+      g_value_set_boolean (value, priv->valid_disc);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -301,8 +316,11 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
+  priv->valid_disc = (el != NULL);
+  gtk_widget_set_sensitive (priv->combo_speed, priv->valid_disc);
+
   if (el == NULL) {
-    gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\">No writable disk in drive</span>"));
+    gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please insert a writeable disc!</span>"));
     return;
   } else {
     gtk_label_set_text (GTK_LABEL(priv->status_label), "");
@@ -374,6 +392,7 @@ cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
   xfburn_device_refresh_supported_speeds (device);
 
   fill_combo_speed (box, device);
+  g_signal_emit (G_OBJECT (box), signals[DISC_REFRESHED], 0, device);
 }
 
 static void
