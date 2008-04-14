@@ -302,7 +302,7 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
   if (el == NULL) {
-    gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\">No media in drive</span>"));
+    gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\">No writable disk in drive</span>"));
     return;
   } else {
     gtk_label_set_text (GTK_LABEL(priv->status_label), "");
