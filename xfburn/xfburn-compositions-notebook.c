@@ -192,6 +192,8 @@ xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebo
     gtk_widget_show (composition);
     page_num = gtk_notebook_append_page_menu (GTK_NOTEBOOK (notebook), composition, tab, menu_label);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), page_num);
+
+    gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK (notebook), composition, 1);
 	
     g_object_set_data (G_OBJECT (tab), "composition", composition);
     g_signal_connect (G_OBJECT (tab), "button-close-clicked", G_CALLBACK (cb_composition_close), notebook);
