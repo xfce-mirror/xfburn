@@ -12,6 +12,8 @@ xfburn_headers = 							\
 	xfburn-global.h							\
 	xfburn-adding-progress.h					\
 	xfburn-blank-cd-dialog.h					\
+	xfburn-perform-burn.h						\
+	xfburn-burn-data-composition-base-dialog.h			\
 	xfburn-burn-data-cd-composition-dialog.h			\
 	xfburn-burn-data-dvd-composition-dialog.h			\
 	xfburn-burn-image-dialog.h					\
@@ -41,6 +43,8 @@ xfburn_SOURCES =							\
 	$(xfburn_headers)						\
 	xfburn-adding-progress.c					\
 	xfburn-blank-cd-dialog.c					\
+	xfburn-perform-burn.c						\
+	xfburn-burn-data-composition-base-dialog.c			\
 	xfburn-burn-data-cd-composition-dialog.c			\
 	xfburn-burn-data-dvd-composition-dialog.c			\
 	xfburn-burn-image-dialog.c					\

@@ -1,6 +1,7 @@
 /* $Id$ */
 /*
  *  Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
+ *  Copyright (c) 2008      David Mohr (squisher@xfce.org)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,6 +36,7 @@
 #include "xfburn-stock.h"
 
 #include "xfburn-burn-image-dialog.h"
+#include "xfburn-perform-burn.h"
 
 #define XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialogPrivate))
 
@@ -264,13 +266,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   struct burn_drive_info *drive_info = NULL;
   struct burn_write_opts * burn_options;
 
-  enum burn_drive_status status;
-  struct burn_progress progress;
   gint ret;
-  time_t time_start;
-  char media_name[80];
-  int media_no;
-  int factor;
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
@@ -324,22 +320,6 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 
   drive = drive_info->drive;
 
-  while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
-    usleep(100001);
- 
-  /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
-  if (burn_disc_get_profile(drive, &media_no, media_name) == 1) {
-    /* this will fail if newer disk types get supported */
-    if (media_no <= 0x0a)
-      factor = CDR_1X_SPEED;
-    else
-      /* assume DVD for now */
-      factor = DVD_1X_SPEED;
-  } else {
-    g_warning ("no profile could be retrieved to calculate current burn speed");
-    factor = 1;
-  }
-
   burn_options = make_burn_options (params, drive);
   if (burn_options == NULL) {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Burn mode is not currently implemented"));
@@ -349,75 +329,9 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   DBG ("TODO set speed");
   burn_drive_set_speed (drive, 0, 0);
 
-  burn_disc_write (burn_options, disc); 
-  burn_write_opts_free (burn_options);
-
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning image..."));
-
-  while (burn_drive_get_status (drive, NULL) == BURN_DRIVE_SPAWNING)
-    usleep(1002);
-  time_start = time (NULL);
-  while ((status = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
-    time_t time_now = time (NULL);
-
-    switch (status) {
-    case BURN_DRIVE_WRITING:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning composition..."));
-      if (progress.sectors > 0 && progress.sector >= 0) {
-	gdouble percent = 0.0;
-        gdouble cur_speed = 0.0;
-
-	percent = (gdouble) (progress.buffer_capacity - progress.buffer_available) / (gdouble) progress.buffer_capacity;
-	xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
-
-	percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
-	xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent / 100.0);
-
-        cur_speed = ((gdouble) ((gdouble)(glong)progress.sector * 2048L) / (gdouble) (time_now - time_start)) / ((gdouble) (factor * 1000.0));
-        //DBG ("(%f / %f) / %f = %f\n", (gdouble) ((gdouble)(glong)progress.sector * 2048L), (gdouble) (time_now - time_start), ((gdouble) (factor * 1000.0)), cur_speed);
-	xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), 
-						  cur_speed);
-      }
-      break;
-    case BURN_DRIVE_WRITING_LEADIN:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
-						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Writing Lead-In..."));
-      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
-      break;
-    case BURN_DRIVE_WRITING_LEADOUT:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
-						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Writing Lead-Out..."));
-      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
-      break;
-    case BURN_DRIVE_WRITING_PREGAP:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
-						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Writing pregap..."));
-      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
-      break;
-    case BURN_DRIVE_CLOSING_TRACK:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
-						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Closing track..."));
-      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
-      break;
-    case BURN_DRIVE_CLOSING_SESSION:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
-						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Closing session..."));
-      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
-      break;
-    default:
-      DBG ("Status not implemented: %d", status);
-      break;
-    }    
-
-    usleep (500000);
-  }
-
-  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED, _("Done"));
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc);
+  burn_write_opts_free (burn_options);
 
  cleanup:
   burn_drive_release (drive, params->eject ? 1 : 0);
