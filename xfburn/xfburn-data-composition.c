@@ -53,7 +53,7 @@
 
 #include "xfburn-composition.h"
 #include "xfburn-burn-data-cd-composition-dialog.h"
-//#include "xfburn-burn-data-dvd-composition-dialog.h"
+#include "xfburn-burn-data-dvd-composition-dialog.h"
 #include "xfburn-data-disc-usage.h"
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
@@ -436,7 +436,7 @@ cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc)
     dialog = xfburn_burn_data_cd_composition_dialog_new (image);
     break;
   case DVD_DISC:
-    //dialog = xfburn_burn_data_dvd_composition_dialog_new (image);
+    dialog = xfburn_burn_data_dvd_composition_dialog_new (image);
     break;
   }
 

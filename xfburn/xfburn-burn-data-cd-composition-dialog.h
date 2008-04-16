@@ -28,6 +28,7 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include <libisofs.h>
+#include "xfburn-burn-data-composition-base-dialog.h"
 
 G_BEGIN_DECLS
 
@@ -40,12 +41,12 @@ G_BEGIN_DECLS
 
 typedef struct
 {
-  XfceTitledDialog parent;
+  XfburnBurnDataCompositionBaseDialog parent;
 } XfburnBurnDataCdCompositionDialog;
 
 typedef struct
 {
-  XfceTitledDialogClass parent_class;
+  XfburnBurnDataCompositionBaseDialogClass parent_class;
 } XfburnBurnDataCdCompositionDialogClass;
 
 GtkType xfburn_burn_data_cd_composition_dialog_get_type ();

@@ -17,7 +17,6 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#if 0
 #ifndef __XFBURN_BURN_DATA_DVD_COMPOSITION_DIALOG_H__
 #define __XFBURN_BURN_DATA_DVD_COMPOSITION_DIALOG_H__
 
@@ -29,6 +28,7 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include <libisofs.h>
+#include "xfburn-burn-data-composition-base-dialog.h"
 
 G_BEGIN_DECLS
 
@@ -41,18 +41,17 @@ G_BEGIN_DECLS
 
 typedef struct
 {
-  XfceTitledDialog parent;
+  XfburnBurnDataCompositionBaseDialog parent;
 } XfburnBurnDataDvdCompositionDialog;
 
 typedef struct
 {
-  XfceTitledDialogClass parent_class;
+  XfburnBurnDataCompositionBaseDialogClass parent_class;
 } XfburnBurnDataDvdCompositionDialogClass;
 
 GtkType xfburn_burn_data_dvd_composition_dialog_get_type ();
 
-GtkWidget *xfburn_burn_data_dvd_composition_dialog_new (struct iso_volset * volume_set);
+GtkWidget *xfburn_burn_data_dvd_composition_dialog_new (IsoImage *image);
 
 G_END_DECLS
 #endif /* XFBURN_BURN_DATA_DVD_COMPOSITION_DIALOG_H */
-#endif
