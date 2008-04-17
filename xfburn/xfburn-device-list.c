@@ -185,7 +185,8 @@ gint
 xfburn_device_list_init ()
 {
   struct burn_drive_info *drives;
-  gint i;
+  gint i; 
+  gboolean can_burn;
   guint n_drives = 0;
 
   if (!burn_initialize ()) {
@@ -223,7 +224,18 @@ xfburn_device_list_init ()
 
     device->dvdr = drives[i].write_dvdr;
     device->dvdram = drives[i].write_dvdram;
-
+    
+    DBG ("Can burn cdr: %d", device->cdr);
+    DBG ("Can burn cdrw: %d", device->cdrw);
+    DBG ("Can burn dvd: %d", device->dvdr);
+    DBG ("Can burn dvdram: %d", device->dvdram);
+    
+    if (!(device->cdr || device->cdrw || device->dvdr || device->dvdram))
+      can_burn = FALSE;
+    else can_burn = TRUE;
+    
+    DBG ("Can burn: %d", can_burn);
+    
     ret = burn_drive_get_adr (&(drives[i]), device->addr);
     if (ret <= 0)
       g_error ("Unable to get drive %s address (ret=%d). Please report this problem to libburn-hackers@pykix.org", device->name, ret);
@@ -233,8 +245,9 @@ xfburn_device_list_init ()
       burn_drive_release (drives[i].drive, 0);
     } else
       g_warning ("Failed to grab drive %s, did not refresh speed list", device->name);
-        
-    devices = g_list_append (devices, device);
+    
+    if (can_burn)
+      devices = g_list_append (devices, device);
   }
 
   burn_drive_info_free (drives);
