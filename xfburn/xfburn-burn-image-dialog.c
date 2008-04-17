@@ -69,6 +69,7 @@ typedef struct
 /* prototypes */
 static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass);
 static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
+static void update_image_label (GtkWidget *file_chooser, GtkWidget *image_label);
 
 void burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error);
 static void cb_device_changed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog);
@@ -113,6 +114,19 @@ xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass)
   parent_class = g_type_class_peek_parent (klass);
 }
 
+static void update_image_label (GtkWidget *image_label, GtkWidget *file_chooser)
+{
+  if (gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_chooser)) == NULL)
+  {
+  	gtk_label_set_markup (GTK_LABEL(image_label),
+  	                      _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn!</span>"));   
+  }
+  else
+  {
+    gtk_label_set_text (GTK_LABEL(image_label), "");
+  }
+}
+
 static void
 xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 {
@@ -124,6 +138,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *button;
+  GtkWidget *image_label;
   XfburnDevice *device;
 
   gboolean valid_disc;
@@ -151,7 +166,17 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   frame = xfce_create_framebox_with_content (_("Image to burn"), priv->chooser_image);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-
+  
+  /* red label for image */
+  image_label = gtk_label_new ("");
+  gtk_widget_show (image_label);
+  gtk_box_pack_start (GTK_BOX (box), image_label, FALSE, FALSE, 0);
+  gtk_label_set_markup (GTK_LABEL(image_label),
+  	                      _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn!</span>"));
+  g_signal_connect_swapped (G_OBJECT (priv->chooser_image), "selection-changed", 
+  	                		G_CALLBACK (update_image_label),
+  	                		G_OBJECT (image_label));
+    
   /* devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_DVD_WRITERS | SHOW_MODE_SELECTION | SHOW_SPEED_SELECTION);
   gtk_widget_show (priv->device_box);
