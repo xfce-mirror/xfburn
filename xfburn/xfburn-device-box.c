@@ -431,10 +431,12 @@ xfburn_device_box_get_selected (XfburnDeviceBox *box)
   GtkTreeModel *model;
   GtkTreeIter iter;
   gchar *name = NULL;
+  gboolean ret;
 
   model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_device));
-  gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
-  gtk_tree_model_get (model, &iter, DEVICE_NAME_COLUMN, &name, -1);
+  ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
+  if (ret)
+    gtk_tree_model_get (model, &iter, DEVICE_NAME_COLUMN, &name, -1);
 
   return name;
 }
@@ -446,10 +448,12 @@ xfburn_device_box_get_selected_device (XfburnDeviceBox *box)
   GtkTreeModel *model;
   GtkTreeIter iter;
   XfburnDevice * device = NULL;
+  gboolean ret;
 
   model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_device));
-  gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
-  gtk_tree_model_get (model, &iter, DEVICE_POINTER_COLUMN, &device, -1);
+  ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
+  if (ret)
+    gtk_tree_model_get (model, &iter, DEVICE_POINTER_COLUMN, &device, -1);
 
   return device;
 }
@@ -462,12 +466,14 @@ xfburn_device_box_get_speed (XfburnDeviceBox *box)
   GtkTreeModel *model;
   GtkTreeIter iter;
   gint speed = -1;
+  gboolean ret;
 
   g_return_val_if_fail (priv->show_speed_selection, -1);
 
   model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_speed));
-  gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_speed), &iter);
-  gtk_tree_model_get (model, &iter, SPEED_VALUE_COLUMN, &speed, -1);
+  ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_speed), &iter);
+  if (ret)
+    gtk_tree_model_get (model, &iter, SPEED_VALUE_COLUMN, &speed, -1);
 
   return speed;
 }
@@ -480,12 +486,14 @@ xfburn_device_box_get_mode (XfburnDeviceBox *box)
   GtkTreeModel *model;
   GtkTreeIter iter;
   gint mode = -1;
+  gboolean ret;
 
   g_return_val_if_fail (priv->show_mode_selection, -1);
 
   model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_mode));
-  gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_mode), &iter);
-  gtk_tree_model_get (model, &iter, SPEED_VALUE_COLUMN, &mode, -1);
+  ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_mode), &iter);
+  if (ret)
+    gtk_tree_model_get (model, &iter, SPEED_VALUE_COLUMN, &mode, -1);
 
   return mode;
 }
