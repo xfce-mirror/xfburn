@@ -35,3 +35,9 @@ various fixes and changes
 - update columns resizing by using column enum index
 - disable burn buttons before proper image file is selected
 - take advantage of gvfs instead of thunar-vfs
+- disable device selection before image is selected
+  - once image is selected, populate device selection box
+    only with appropriate devices (i.e. if it's 1200MB image,
+    we can't burn it on cd-writer).
+  - if no suitable writer is found, use that red label thingy
+    to inform the user
