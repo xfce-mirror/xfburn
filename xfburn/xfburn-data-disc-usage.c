@@ -44,6 +44,7 @@ static GtkHBoxClass *parent_class = NULL;
 
 #define DEFAULT_DISK_SIZE_LABEL 2
 #define LAST_CD_LABEL 4
+#define NUM_LABELS 7
 
 struct
 {
@@ -147,10 +148,11 @@ xfburn_data_disc_usage_init (XfburnDataDiscUsage * disc_usage)
 
 /* internals */
 static void
-xfburn_data_disc_usage_update_size (XfburnDataDiscUsage * disc_usage)
+xfburn_data_disc_usage_update_size (XfburnDataDiscUsage * disc_usage, gboolean manual)
 {
   gfloat fraction;
   gchar *size;
+  int i;
 
   fraction = disc_usage->size / datadisksizes[gtk_combo_box_get_active (GTK_COMBO_BOX (disc_usage->combo))].size;
   if (fraction > 1.0)
@@ -166,6 +168,14 @@ xfburn_data_disc_usage_update_size (XfburnDataDiscUsage * disc_usage)
     size = g_strdup_printf ("%.0lf B", disc_usage->size);
 
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), size);
+
+  if (!manual) {
+    i = 0;
+    while (i < NUM_LABELS  &&  disc_usage->size > datadisksizes[i].size) {
+      i++;
+    }
+    gtk_combo_box_set_active (GTK_COMBO_BOX (disc_usage->combo), (i<NUM_LABELS ? i: i-1));
+  }
 
   if (disc_usage->size == 0 || 
       disc_usage->size > datadisksizes[gtk_combo_box_get_active (GTK_COMBO_BOX (disc_usage->combo))].size)
@@ -190,7 +200,7 @@ cb_button_clicked (GtkButton *button, XfburnDataDiscUsage *du)
 static void
 cb_combo_changed (GtkComboBox * combo, XfburnDataDiscUsage * usage)
 {
-  xfburn_data_disc_usage_update_size (usage);
+  xfburn_data_disc_usage_update_size (usage, TRUE);
 }
 
 /* public methods */
@@ -204,21 +214,21 @@ void
 xfburn_data_disc_usage_set_size (XfburnDataDiscUsage * disc_usage, gdouble size)
 {
   disc_usage->size = size;
-  xfburn_data_disc_usage_update_size (disc_usage);
+  xfburn_data_disc_usage_update_size (disc_usage, FALSE);
 }
 
 void
 xfburn_data_disc_usage_add_size (XfburnDataDiscUsage * disc_usage, gdouble size)
 {
   disc_usage->size = disc_usage->size + size;
-  xfburn_data_disc_usage_update_size (disc_usage);
+  xfburn_data_disc_usage_update_size (disc_usage, FALSE);
 }
 
 void
 xfburn_data_disc_usage_sub_size (XfburnDataDiscUsage * disc_usage, gdouble size)
 {
   disc_usage->size = disc_usage->size - size;
-  xfburn_data_disc_usage_update_size (disc_usage);
+  xfburn_data_disc_usage_update_size (disc_usage, FALSE);
 }
 
 XfburnDataDiscType
