@@ -1,7 +1,7 @@
 user visible
 ============
 
-- add data dvd support
+- add data dvd support [DONE]
 - add audio cd support
 - add text/uri-list DnD target support
 - remove temporary files
@@ -12,11 +12,11 @@ various fixes and changes
 
 - cleanup code
   - remove duplicated code fragments, in particular
-    - the burning backend, and
-    - the burning dialogs
+    - the burning backend, and [started]
+    - the burning dialogs      [DONE]
 - implement progress dialog when adding files to composition 
 - adding files to composition should be a new thread
-- fix available writing speeds detection, and sort them [X]
+- fix available writing speeds detection, and sort them [DONE]
 - implement means to calculate available write speeds at the right moment
   (when the disk is inserted) - requires a lot of UI thinking 
 - only allow usage of drives with matching capabilities
@@ -33,8 +33,8 @@ various fixes and changes
 - welcome tab that cannot be closed
 - recode copy disk with libburn
 - update columns resizing by using column enum index
-- disable burn buttons before proper image file is selected
-- take advantage of gvfs instead of thunar-vfs
+- disable burn buttons before proper image file is selected [DONE]
+- take advantage of gvfs in addition to thunar-vfs
 - disable device selection before image is selected
   - once image is selected, populate device selection box
     only with appropriate devices (i.e. if it's 1200MB image,
