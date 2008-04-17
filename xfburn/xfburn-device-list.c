@@ -110,10 +110,10 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
 
   /* fill new list */
   ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
+  DBG ("Debug p0llux: %d", ret);
 
   if (ret > 0) {
     struct burn_speed_descriptor *el = speed_list;
-
     /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
     if (burn_disc_get_profile(drive_info->drive, &media_no, media_name) == 1) {
       /* this will fail if newer disk types get supported */
@@ -123,6 +123,7 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
         /* assume DVD for now */
         factor = DVD_1X_SPEED;
     } else {
+      
       g_warning ("no profile could be retrieved to calculate speed");
       factor = 1;
     }
