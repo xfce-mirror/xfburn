@@ -134,8 +134,8 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
       speed = el->write_speed / factor;
       /* FIXME: why do we need no_speed_duplicate? */
       if (speed > 0 && no_speed_duplicate (device->supported_cdr_speeds, speed)) {
-	device->supported_cdr_speeds = g_slist_prepend (device->supported_cdr_speeds, GINT_TO_POINTER (speed));
-	DBG ("added speed: %d\n", speed);
+	      device->supported_cdr_speeds = g_slist_prepend (device->supported_cdr_speeds, GINT_TO_POINTER (speed));
+	      DBG ("added speed: %d\n", speed);
       } 
 
       el = el->next;
