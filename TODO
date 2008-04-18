@@ -16,7 +16,8 @@ various fixes and changes
     - the burning dialogs      [DONE]
 - implement progress dialog when adding files to composition 
 - adding files to composition should be a new thread
-- fix available writing speeds detection, and sort them [DONE]
+- fix available writing speeds detection
+  - and sort them [DONE]
 - implement means to calculate available write speeds at the right moment
   (when the disk is inserted) - requires a lot of UI thinking 
 - only allow usage of drives with matching capabilities
@@ -33,7 +34,7 @@ various fixes and changes
 - welcome tab that cannot be closed
 - recode copy disk with libburn
 - update columns resizing by using column enum index
-- disable burn buttons before proper image file is selected
+- disable burn buttons before proper image file is selected [DONE]
 - take advantage of gvfs in addition to thunar-vfs
 - disable device selection before image is selected
   - once image is selected, populate device selection box
@@ -41,5 +42,5 @@ various fixes and changes
     we can't burn it on cd-writer).
   - if no suitable writer is found, use that red label thingy
     to inform the user
-- inform user in red label if no image has been selected
+- inform user in red label if no image has been selected [DONE]
 - Erase disc should work for all RW discs
