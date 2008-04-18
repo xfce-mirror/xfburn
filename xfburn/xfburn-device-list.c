@@ -260,7 +260,7 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
   int ret = 0;
   gchar drive_addr[BURN_DRIVE_ADR_LEN];
   int i;
-  const int max_checks = 2;
+  const int max_checks = 4;
 
   ret = burn_drive_convert_fs_adr (device->addr, drive_addr);
   if (ret <= 0) {
@@ -273,7 +273,7 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
     if (ret > 0)
       break;
     else if  (i < (max_checks-1))
-      usleep(100001);
+      usleep((i+1)*100001);
   }
 
   if (ret <= 0) {
