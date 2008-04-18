@@ -51,6 +51,7 @@ typedef struct
 gint xfburn_device_list_init ();
 XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
 GList * xfburn_device_list_get_list ();
+enum burn_disc_status xfburn_device_list_get_disc_status ();
 void xfburn_device_list_free ();
 
 void xfburn_device_refresh_supported_speeds (XfburnDevice * device);

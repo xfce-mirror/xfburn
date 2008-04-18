@@ -40,7 +40,8 @@ enum {
   PROP_SHOW_WRITERS_ONLY,
   PROP_SHOW_SPEED_SELECTION,
   PROP_SHOW_MODE_SELECTION,
-  PROP_GET_DISC_STATUS,
+  PROP_DISC_STATUS,
+  PROP_VALID,
 };
 
 enum {
@@ -155,9 +156,13 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
                                    g_param_spec_boolean ("show-mode-selection", _("Show mode selection"),
                                                         _("Show mode selection combo"), 
                                                         FALSE, G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_GET_DISC_STATUS,
-                                   g_param_spec_boolean ("get-disc-status", _("Get disc status"),
-                                                        _("Get the status of the disc in the drive"), 
+  g_object_class_install_property (object_class, PROP_DISC_STATUS,
+                                   g_param_spec_int ("disc-status", _("Disc status"),
+                                                      _("The status of the disc in the drive"), 
+                                                      0, BURN_DISC_UNSUITABLE, 0, G_PARAM_READABLE));
+  g_object_class_install_property (object_class, PROP_VALID, 
+                                   g_param_spec_boolean ("valid", _("Is it a valid combination"),
+                                                        _("Is the combination of hardware and disc valid to burn the composition?"), 
                                                         FALSE, G_PARAM_READABLE));
 }
 
@@ -266,7 +271,10 @@ xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, G
     case PROP_SHOW_MODE_SELECTION:
       g_value_set_boolean (value, priv->show_mode_selection);
       break;
-    case PROP_GET_DISC_STATUS:
+    case PROP_DISC_STATUS:
+      g_value_set_int (value, xfburn_device_list_get_disc_status());
+      break;
+    case PROP_VALID:
       g_value_set_boolean (value, priv->valid_disc);
       break;
     default:
@@ -313,14 +321,28 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_speed));
   GSList *el = device->supported_cdr_speeds;
+  enum burn_disc_status disc_status = xfburn_device_list_get_disc_status ();
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
-  priv->valid_disc = (el != NULL);
+  priv->valid_disc = (disc_status == BURN_DISC_BLANK) || (disc_status == BURN_DISC_APPENDABLE);
   gtk_widget_set_sensitive (priv->combo_speed, priv->valid_disc);
 
-  if (el == NULL) {
-    gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please insert a writeable disc!</span>"));
+  if (!priv->valid_disc) {
+    switch (disc_status) {
+      case BURN_DISC_EMPTY:
+        gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Drive is empty!</span>"));
+        break;
+      case BURN_DISC_FULL:
+        gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is full!</span>"));
+        break;
+      case BURN_DISC_UNSUITABLE:
+        gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is unsuitable!</span>"));
+        break;
+      default:
+        gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
+        DBG ("weird disc_status = %d", disc_status);
+    }
     return;
   } else {
     gtk_label_set_text (GTK_LABEL(priv->status_label), "");
@@ -392,6 +414,7 @@ cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
   xfburn_device_refresh_supported_speeds (device);
 
   fill_combo_speed (box, device);
+
   g_signal_emit (G_OBJECT (box), signals[DISC_REFRESHED], 0, device);
 }
 

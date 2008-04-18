@@ -141,8 +141,6 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   GtkWidget *image_label;
   XfburnDevice *device;
 
-  gboolean valid_disc;
-
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn image"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
   icon = gtk_widget_render_icon (GTK_WIDGET (obj), XFBURN_STOCK_BURN_CD, GTK_ICON_SIZE_DIALOG, NULL);
@@ -213,8 +211,6 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
   priv->burn_button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn image"));
-  g_object_get (G_OBJECT (priv->device_box), "get-disc-status", &valid_disc, NULL);
-  gtk_widget_set_sensitive (priv->burn_button, valid_disc);
   gtk_widget_show (priv->burn_button);
   g_signal_connect (G_OBJECT (priv->burn_button), "clicked", G_CALLBACK (cb_clicked_ok), obj);
   gtk_container_add (GTK_CONTAINER( GTK_DIALOG(obj)->action_area), priv->burn_button);
@@ -226,6 +222,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   g_signal_connect (G_OBJECT (priv->device_box), "device-changed", G_CALLBACK (cb_device_changed), obj);
   g_signal_connect (G_OBJECT (priv->device_box), "disc-refreshed", G_CALLBACK (cb_disc_refreshed), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), obj);
+  cb_disc_refreshed (XFBURN_DEVICE_BOX (priv->device_box), xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box)), obj);
 
   device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
   if (device)
@@ -393,7 +390,7 @@ cb_disc_refreshed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDi
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
   gboolean valid_disc;
 
-  g_object_get (G_OBJECT (priv->device_box), "get-disc-status", &valid_disc, NULL);
+  g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
   gtk_widget_set_sensitive (priv->burn_button, valid_disc);
 }
 

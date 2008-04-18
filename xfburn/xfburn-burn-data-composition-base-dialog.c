@@ -57,6 +57,7 @@ typedef struct
   GtkWidget *hbox_iso;
   GtkWidget *entry_path_iso;
   GtkWidget *check_dummy;
+  GtkWidget *burn_button;
 } XfburnBurnDataCompositionBaseDialogPrivate;
 
 enum {
@@ -74,6 +75,7 @@ static void xfburn_burn_data_composition_base_dialog_set_property (GObject * obj
 
 static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
+static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_id,
                                 XfburnBurnDataCompositionBaseDialogPrivate * priv);
 
@@ -144,6 +146,7 @@ xfburn_burn_data_composition_base_dialog_init (XfburnBurnDataCompositionBaseDial
 
   /* burning devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_MODE_SELECTION | SHOW_SPEED_SELECTION);
+  g_signal_connect (G_OBJECT (priv->device_box), "disc-refreshed", G_CALLBACK (cb_disc_refreshed), obj);
   gtk_widget_show (priv->device_box);
 
   priv->frame_device = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
@@ -210,13 +213,14 @@ xfburn_burn_data_composition_base_dialog_init (XfburnBurnDataCompositionBaseDial
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn Composition"));
+  priv->burn_button = button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn Composition"));
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
   GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
 
+  cb_disc_refreshed (priv->device_box, xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box)), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
 }
 
@@ -280,6 +284,16 @@ cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
   XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
   
   xfburn_browse_for_file (GTK_ENTRY (priv->entry_path_iso), GTK_WINDOW (dialog));
+}
+
+static void
+cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog)
+{
+  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
+  gboolean valid_disc;
+
+  g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
+  gtk_widget_set_sensitive (priv->burn_button, valid_disc);
 }
 
 typedef struct {

@@ -37,6 +37,7 @@
 #include "xfburn-global.h"
 
 static GList *devices = NULL;
+static enum burn_disc_status disc_status;
 
 /*************/
 /* internals */
@@ -82,7 +83,6 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   int media_no;
   int factor;
   gint ret;
-  enum burn_disc_status disc_status;
   //int i;
 
   /* empty previous list */
@@ -104,7 +104,7 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
 
   if (!(disc_status == BURN_DISC_BLANK || disc_status == BURN_DISC_APPENDABLE)) {
     DBG ("disc_status = %d", disc_status);
-    g_warning ("no suitable disc found in drive");
+    g_warning ("no writable / appendable disc found in drive");
     return;
   }
 
@@ -130,12 +130,11 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
     while (el) {
       gint speed = -1;
       
-      DBG ("libburn speed in kb/s: %d\n", el->write_speed);
       speed = el->write_speed / factor;
       /* FIXME: why do we need no_speed_duplicate? */
       if (speed > 0 && no_speed_duplicate (device->supported_cdr_speeds, speed)) {
-	      device->supported_cdr_speeds = g_slist_prepend (device->supported_cdr_speeds, GINT_TO_POINTER (speed));
-	      DBG ("added speed: %d\n", speed);
+          device->supported_cdr_speeds = g_slist_prepend (device->supported_cdr_speeds, GINT_TO_POINTER (speed));
+        DBG ("added speed: %d kb/s => %d x", el->write_speed, speed);
       } 
 
       el = el->next;
@@ -157,6 +156,12 @@ GList *
 xfburn_device_list_get_list ()
 {
   return devices;
+}
+
+enum burn_disc_status
+xfburn_device_list_get_disc_status ()
+{
+  return disc_status;
 }
 
 void
@@ -213,6 +218,9 @@ xfburn_device_list_init ()
     device->cdr = drives[i].write_cdr;
     device->cdrw = drives[i].write_cdrw;
 
+    device->dvdr = drives[i].write_dvdr;
+    device->dvdram = drives[i].write_dvdram;
+    
     device->buffer_size = drives[i].buffer_size;
     device->dummy_write = drives[i].write_simulate;
 
@@ -222,19 +230,9 @@ xfburn_device_list_init ()
     device->raw_block_types = drives[i].raw_block_types;
     device->packet_block_types = drives[i].packet_block_types;
 
-    device->dvdr = drives[i].write_dvdr;
-    device->dvdram = drives[i].write_dvdram;
+    can_burn = device->cdr || device->cdrw || device->dvdr || device->dvdram;
     
-    DBG ("Can burn cdr: %d", device->cdr);
-    DBG ("Can burn cdrw: %d", device->cdrw);
-    DBG ("Can burn dvd: %d", device->dvdr);
-    DBG ("Can burn dvdram: %d", device->dvdram);
-    
-    if (!(device->cdr || device->cdrw || device->dvdr || device->dvdram))
-      can_burn = FALSE;
-    else can_burn = TRUE;
-    
-    DBG ("Can burn: %d", can_burn);
+    DBG ("%s can burn: %d [cdr: %d, cdrw: %d, dvdr: %d, dvdram: %d]", device->name, can_burn, device->cdr, device->cdrw, device->dvdr, device->dvdram);
     
     ret = burn_drive_get_adr (&(drives[i]), device->addr);
     if (ret <= 0)
@@ -259,8 +257,10 @@ xfburn_device_list_init ()
 gboolean
 xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
 {
-  gint ret;
+  int ret = 0;
   gchar drive_addr[BURN_DRIVE_ADR_LEN];
+  int i;
+  const int max_checks = 2;
 
   ret = burn_drive_convert_fs_adr (device->addr, drive_addr);
   if (ret <= 0) {
@@ -268,7 +268,14 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
     return FALSE;
   }
 
-  ret = burn_drive_scan_and_grab (drive_info, drive_addr, 1);
+  for (i=0; i<max_checks; i++) {
+    ret = burn_drive_scan_and_grab (drive_info, drive_addr, 1);
+    if (ret > 0)
+      break;
+    else if  (i < (max_checks-1))
+      usleep(100001);
+  }
+
   if (ret <= 0) {
     g_error ("Unable to grab drive at path '%s' (ret=%d).", device->addr, ret);
     return FALSE;

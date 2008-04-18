@@ -141,3 +141,4 @@ xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent)
 
   gtk_widget_destroy (dialog);
 }
+
