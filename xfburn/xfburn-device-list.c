@@ -102,8 +102,8 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   }
   */
 
+  DBG ("disc_status = %d", disc_status);
   if (!(disc_status == BURN_DISC_BLANK || disc_status == BURN_DISC_APPENDABLE)) {
-    DBG ("disc_status = %d", disc_status);
     g_warning ("no writable / appendable disc found in drive");
     return;
   }

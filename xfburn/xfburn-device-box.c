@@ -321,10 +321,7 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
       break;
     case PROP_BLANK_MODE:
       priv->blank_mode = g_value_get_boolean (value);
-      if (priv->blank_mode) {
-        priv->show_speed_selection = FALSE;
-        priv->show_mode_selection = FALSE;
-      }
+      check_disc_validity (priv);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -507,7 +504,7 @@ xfburn_device_box_new (XfburnDeviceBoxFlags flags)
 		      "show-writers-only", ((flags & SHOW_CD_WRITERS) != 0), 
                       "show-speed-selection", ((flags & SHOW_SPEED_SELECTION) != 0), 
 		      "show-mode-selection", ((flags & SHOW_MODE_SELECTION) != 0),
-		      "blank_mode", ((flags & BLANK_MODE) != 0),
+		      "blank-mode", ((flags & BLANK_MODE) != 0),
                       NULL);
 
   return obj;
