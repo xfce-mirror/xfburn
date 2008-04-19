@@ -100,7 +100,7 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   g_object_unref (icon);
 
   /* devices list */
-  priv->device_box = xfburn_device_box_new (SHOW_CDRW_WRITERS);
+  priv->device_box = xfburn_device_box_new (SHOW_CDRW_WRITERS | BLANK_MODE);
   gtk_widget_show (priv->device_box);
 
   frame = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);

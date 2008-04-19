@@ -61,6 +61,7 @@ typedef enum
 
   SHOW_SPEED_SELECTION = 1 << 7,
   SHOW_MODE_SELECTION = 1 << 8,
+  BLANK_MODE = 1 << 9,
 } XfburnDeviceBoxFlags;
 
 typedef enum

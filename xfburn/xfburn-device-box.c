@@ -42,6 +42,7 @@ enum {
   PROP_SHOW_MODE_SELECTION,
   PROP_DISC_STATUS,
   PROP_VALID,
+  PROP_BLANK_MODE,
 };
 
 enum {
@@ -69,6 +70,7 @@ typedef struct
   gboolean show_speed_selection;
   gboolean show_mode_selection;
   gboolean valid_disc;
+  gboolean blank_mode;
   
   GtkWidget *combo_device;
   
@@ -87,7 +89,9 @@ static void xfburn_device_box_init (XfburnDeviceBox *);
 static void xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
+static void update_status_label_visibility();
 static void cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box);
+static gboolean check_disc_validity (XfburnDeviceBoxPrivate *priv);
 static void cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box);
 
 /* globals */
@@ -164,6 +168,10 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
                                    g_param_spec_boolean ("valid", _("Is it a valid combination"),
                                                         _("Is the combination of hardware and disc valid to burn the composition?"), 
                                                         FALSE, G_PARAM_READABLE));
+  g_object_class_install_property (object_class, PROP_BLANK_MODE, 
+                                   g_param_spec_boolean ("blank-mode", _("Blank mode"),
+                                                        _("The blank mode shows different disc status messages than regular mode"), 
+                                                        FALSE, G_PARAM_READWRITE));
 }
 
 static void
@@ -277,6 +285,9 @@ xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, G
     case PROP_VALID:
       g_value_set_boolean (value, priv->valid_disc);
       break;
+    case PROP_BLANK_MODE:
+      g_value_set_boolean (value, priv->blank_mode);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -298,13 +309,22 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
         gtk_widget_show (priv->hbox_speed_selection);
       else
         gtk_widget_hide (priv->hbox_speed_selection);
+      update_status_label_visibility (priv);
       break;
-  case PROP_SHOW_MODE_SELECTION:
+    case PROP_SHOW_MODE_SELECTION:
       priv->show_mode_selection = g_value_get_boolean (value);
       if (priv->show_mode_selection)
         gtk_widget_show (priv->hbox_mode_selection);
       else
         gtk_widget_hide (priv->hbox_mode_selection);
+      update_status_label_visibility (priv);
+      break;
+    case PROP_BLANK_MODE:
+      priv->blank_mode = g_value_get_boolean (value);
+      if (priv->blank_mode) {
+        priv->show_speed_selection = FALSE;
+        priv->show_mode_selection = FALSE;
+      }
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -315,39 +335,31 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
 /*************/
 /* internals */
 /*************/
+
+static void
+update_status_label_visibility (XfburnDeviceBoxPrivate *priv)
+{
+  /*
+  if (priv->show_mode_selection || priv->show_speed_selection)
+    gtk_widget_show (priv->status_label);
+  else
+    gtk_widget_hide (priv->status_label);
+  */
+
+}
+
 static void
 fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_speed));
   GSList *el = device->supported_cdr_speeds;
-  enum burn_disc_status disc_status = xfburn_device_list_get_disc_status ();
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
-  priv->valid_disc = (disc_status == BURN_DISC_BLANK) || (disc_status == BURN_DISC_APPENDABLE);
-  gtk_widget_set_sensitive (priv->combo_speed, priv->valid_disc);
-
-  if (!priv->valid_disc) {
-    switch (disc_status) {
-      case BURN_DISC_EMPTY:
-        gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Drive is empty!</span>"));
-        break;
-      case BURN_DISC_FULL:
-        gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is full!</span>"));
-        break;
-      case BURN_DISC_UNSUITABLE:
-        gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is unsuitable!</span>"));
-        break;
-      default:
-        gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
-        DBG ("weird disc_status = %d", disc_status);
-    }
+  if (!check_disc_validity (priv))
     return;
-  } else {
-    gtk_label_set_text (GTK_LABEL(priv->status_label), "");
-  }
-  
+
   while (el) {
     gint speed = GPOINTER_TO_INT (el->data);
     GtkTreeIter iter;
@@ -362,6 +374,57 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
     el = g_slist_next (el);
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_speed), gtk_tree_model_iter_n_children (model, NULL) - 1);
+}
+
+static gboolean
+check_disc_validity (XfburnDeviceBoxPrivate *priv)
+{
+  enum burn_disc_status disc_status = xfburn_device_list_get_disc_status ();
+
+  if (!priv->blank_mode) {
+    priv->valid_disc = (disc_status == BURN_DISC_BLANK) || (disc_status == BURN_DISC_APPENDABLE);
+
+    if (!priv->valid_disc) {
+      switch (disc_status) {
+        case BURN_DISC_EMPTY:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Drive is empty!</span>"));
+          break;
+        case BURN_DISC_FULL:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is full!</span>"));
+          break;
+        case BURN_DISC_UNSUITABLE:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is unsuitable!</span>"));
+          break;
+        default:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
+          DBG ("weird disc_status = %d", disc_status);
+      }
+    }
+  } else {
+    priv->valid_disc = (disc_status == BURN_DISC_FULL) || (disc_status == BURN_DISC_APPENDABLE);
+
+    if (!priv->valid_disc) {
+      switch (disc_status) {
+        case BURN_DISC_EMPTY:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Drive is empty!</span>"));
+          break;
+        case BURN_DISC_BLANK:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is already blank!</span>"));
+          break;
+        case BURN_DISC_UNSUITABLE:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is unsuitable!</span>"));
+          break;
+        default:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
+          DBG ("weird disc_status = %d", disc_status);
+      }
+    }
+  }
+
+  gtk_widget_set_sensitive (priv->combo_speed, priv->valid_disc);
+  if (priv->valid_disc)
+    gtk_label_set_text (GTK_LABEL(priv->status_label), "");
+  return priv->valid_disc;
 }
 
 static void
@@ -424,6 +487,7 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
   XfburnDevice *device;
   
   device = xfburn_device_box_get_selected_device (box);
+  xfburn_device_refresh_supported_speeds (device);
 
   fill_combo_speed (box, device);
   fill_combo_mode (box,device);
