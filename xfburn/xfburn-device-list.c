@@ -27,6 +27,7 @@
 
 #include <glib.h>
 #include <libxfce4util/libxfce4util.h>
+#include <libxfcegui4/libxfcegui4.h>
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -38,6 +39,9 @@
 
 static GList *devices = NULL;
 static enum burn_disc_status disc_status;
+
+#define CAN_BURN_CONDITION device->cdr || device->cdrw || device->dvdr || device->dvdram
+#define DEVICE_INFO_PRINTF "%s can burn: %d [cdr: %d, cdrw: %d, dvdr: %d, dvdram: %d]", device->name, CAN_BURN_CONDITION, device->cdr, device->cdrw, device->dvdr, device->dvdram
 
 /*************/
 /* internals */
@@ -104,14 +108,15 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
 
   DBG ("disc_status = %d", disc_status);
   if (!(disc_status == BURN_DISC_BLANK || disc_status == BURN_DISC_APPENDABLE)) {
-    g_warning ("no writable / appendable disc found in drive");
+    g_warning ("no writable / appendable disc found in drive, speed list not updated");
     return;
   }
 
   /* fill new list */
   ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
+  /* speed_list = NULL; DEBUG */ 
 
-  if (ret > 0) {
+  if (ret > 0 && speed_list != NULL) {
     struct burn_speed_descriptor *el = speed_list;
     /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
     if (burn_disc_get_profile(drive_info->drive, &media_no, media_name) == 1) {
@@ -142,8 +147,10 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
 
     burn_drive_free_speedlist (&speed_list); 
     device->supported_cdr_speeds = g_slist_sort (device->supported_cdr_speeds, &cmp_ints);
-  } else if (ret == 0) {
-    g_warning ("reported speed list is empty");
+  } else if (ret == 0 || speed_list == NULL) {
+    g_warning ("reported speed list is empty for device:");
+    g_warning (DEVICE_INFO_PRINTF);
+    xfce_err (_("Unable to retrieve the speed list for the drive. This is a bug, please report it to xfburn@xfce.org together with the console output.\nBurning should still work, but if there were problems anyways, please let us know.\nThank you!"));
   } else {
     g_error ("severe error while retrieving speed list");
   }
@@ -230,19 +237,22 @@ xfburn_device_list_init ()
     device->raw_block_types = drives[i].raw_block_types;
     device->packet_block_types = drives[i].packet_block_types;
 
-    can_burn = device->cdr || device->cdrw || device->dvdr || device->dvdram;
+    can_burn = CAN_BURN_CONDITION;
     
-    DBG ("%s can burn: %d [cdr: %d, cdrw: %d, dvdr: %d, dvdram: %d]", device->name, can_burn, device->cdr, device->cdrw, device->dvdr, device->dvdram);
+    DBG (DEVICE_INFO_PRINTF);
     
     ret = burn_drive_get_adr (&(drives[i]), device->addr);
     if (ret <= 0)
       g_error ("Unable to get drive %s address (ret=%d). Please report this problem to libburn-hackers@pykix.org", device->name, ret);
 
+    /*
+     * refresh_supported_speeds now gets called when the device box gets initialized
     if (burn_drive_grab (drives[i].drive, 1) == 1) {
       refresh_supported_speeds (device, &(drives[i]));
       burn_drive_release (drives[i].drive, 0);
     } else
       g_warning ("Failed to grab drive %s, did not refresh speed list", device->name);
+    */
     
     if (can_burn)
       devices = g_list_append (devices, device);

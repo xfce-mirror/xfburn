@@ -54,6 +54,7 @@ typedef struct {
 typedef struct
 {
   GtkWidget *chooser_image;
+  GtkWidget *image_label;
   
   GtkWidget *device_box;
 
@@ -69,12 +70,14 @@ typedef struct
 /* prototypes */
 static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass);
 static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
-static void update_image_label (GtkWidget *file_chooser, GtkWidget *image_label);
 
 void burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error);
 static void cb_device_changed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog);
 static void cb_disc_refreshed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog);
 static void cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data);
+
+static void update_image_label (GtkFileChooser *chooser, XfburnBurnImageDialog * dialog);
+static void check_burn_button (XfburnBurnImageDialog * dialog);
 static gboolean check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct burn_drive *drive, struct burn_write_opts * burn_options);
 static void cb_clicked_ok (GtkButton * button, gpointer user_data);
 
@@ -114,19 +117,6 @@ xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass)
   parent_class = g_type_class_peek_parent (klass);
 }
 
-static void update_image_label (GtkWidget *image_label, GtkWidget *file_chooser)
-{
-  if (gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (file_chooser)) == NULL)
-  {
-  	gtk_label_set_markup (GTK_LABEL(image_label),
-  	                      _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn!</span>"));   
-  }
-  else
-  {
-    gtk_label_set_text (GTK_LABEL(image_label), "");
-  }
-}
-
 static void
 xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 {
@@ -138,7 +128,6 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *button;
-  GtkWidget *image_label;
   XfburnDevice *device;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn image"));
@@ -166,14 +155,12 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
   
   /* red label for image */
-  image_label = gtk_label_new ("");
-  gtk_widget_show (image_label);
-  gtk_box_pack_start (GTK_BOX (box), image_label, FALSE, FALSE, 0);
-  gtk_label_set_markup (GTK_LABEL(image_label),
-  	                      _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn!</span>"));
-  g_signal_connect_swapped (G_OBJECT (priv->chooser_image), "selection-changed", 
-  	                		G_CALLBACK (update_image_label),
-  	                		G_OBJECT (image_label));
+  priv->image_label = gtk_label_new ("");
+  gtk_widget_show (priv->image_label);
+  gtk_box_pack_start (GTK_BOX (box), priv->image_label, FALSE, FALSE, 0);
+  gtk_label_set_markup (GTK_LABEL(priv->image_label),
+  	                _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn!</span>"));
+  g_signal_connect (G_OBJECT (priv->chooser_image), "selection-changed", G_CALLBACK (update_image_label), obj);
     
   /* devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_DVD_WRITERS | SHOW_MODE_SELECTION | SHOW_SPEED_SELECTION);
@@ -387,11 +374,7 @@ cb_device_changed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDi
 static void
 cb_disc_refreshed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog) 
 {
-  XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
-  gboolean valid_disc;
-
-  g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
-  gtk_widget_set_sensitive (priv->burn_button, valid_disc);
+  check_burn_button (dialog);
 }
 
 static void
@@ -411,6 +394,37 @@ cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer u
     gtk_widget_show (dialog_progress);
     
     g_thread_create ((GThreadFunc) thread_burn_iso, priv->params, FALSE, NULL);
+  }
+}
+
+static void
+update_image_label (GtkFileChooser *chooser, XfburnBurnImageDialog * dialog)
+{
+  XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
+
+  if (gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser)) == NULL) {
+    gtk_label_set_markup (GTK_LABEL(priv->image_label),
+                          _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn!</span>"));   
+  } else {
+    gtk_label_set_text (GTK_LABEL(priv->image_label), "");
+    check_burn_button (dialog);
+  }
+}
+
+static void
+check_burn_button (XfburnBurnImageDialog * dialog)
+{
+  XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
+  gboolean valid_disc;
+  gchar *filename;
+
+  g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
+  filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
+  if (filename != NULL) {
+    gtk_widget_set_sensitive (priv->burn_button, valid_disc);
+    g_free (filename);
+  } else {
+    gtk_widget_set_sensitive (priv->burn_button, FALSE);
   }
 }
 
