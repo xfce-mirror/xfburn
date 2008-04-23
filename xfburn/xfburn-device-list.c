@@ -279,7 +279,7 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
   }
 
   for (i=0; i<max_checks; i++) {
-    ret = burn_drive_scan_and_grab (drive_info, drive_addr, 1);
+    ret = burn_drive_scan_and_grab (drive_info, drive_addr, 0);
     if (ret > 0)
       break;
     else if  (i < (max_checks-1))

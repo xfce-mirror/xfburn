@@ -24,6 +24,10 @@
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
 
+#ifdef HAVE_THUNAR_VFS
+#include <thunar-vfs/thunar-vfs.h>
+#endif
+
 #include "xfburn-device-list.h"
 #include "xfburn-device-box.h"
 
@@ -81,11 +85,16 @@ typedef struct
 
   GtkWidget *hbox_mode_selection;
   GtkWidget *combo_mode;
+
+#ifdef HAVE_THUNAR_VFS
+  ThunarVfsVolumeManager *thunar_volman;
+#endif
 } XfburnDeviceBoxPrivate;
 
 /* prototypes */
 static void xfburn_device_box_class_init (XfburnDeviceBoxClass *);
 static void xfburn_device_box_init (XfburnDeviceBox *);
+static void xfburn_device_box_finalize (GObject * object);
 static void xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
@@ -93,6 +102,9 @@ static void update_status_label_visibility();
 static void cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box);
 static gboolean check_disc_validity (XfburnDeviceBoxPrivate *priv);
 static void cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box);
+#ifdef HAVE_THUNAR_VFS
+static void cb_volumes_changed (ThunarVfsVolumeManager *volman, gpointer volumes, XfburnDeviceBox *box);
+#endif
 
 /* globals */
 static GtkVBoxClass *parent_class = NULL;
@@ -136,6 +148,7 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
 
   parent_class = g_type_class_peek_parent (klass);
   
+  object_class->finalize = xfburn_device_box_finalize;
   object_class->set_property = xfburn_device_box_set_property;
   object_class->get_property = xfburn_device_box_get_property;
   
@@ -262,6 +275,28 @@ xfburn_device_box_init (XfburnDeviceBox * box)
 
   g_signal_connect (G_OBJECT (priv->combo_device), "changed", G_CALLBACK (cb_combo_device_changed), box);
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_device), 0);
+
+#ifdef HAVE_THUNAR_VFS
+  priv->thunar_volman = thunar_vfs_volume_manager_get_default ();
+  if (priv->thunar_volman != NULL) {
+    g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-added", G_CALLBACK (cb_volumes_changed), box);
+    g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-removed", G_CALLBACK (cb_volumes_changed), box);
+  } else {
+    g_warning ("Error trying to access the thunar-vfs-volume-manager!");
+  }
+#endif
+}
+
+static void
+xfburn_device_box_finalize (GObject * object)
+{
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (object);
+
+#ifdef HAVE_THUNAR_VFS
+  g_object_unref (priv->thunar_volman);
+#endif
+
+  G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
 static void
@@ -491,6 +526,16 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
 
   g_signal_emit (G_OBJECT (box), signals[DEVICE_CHANGED], 0, device);
 }
+
+#ifdef HAVE_THUNAR_VFS
+static void
+cb_volumes_changed (ThunarVfsVolumeManager *volman, gpointer volumes, XfburnDeviceBox *box)
+{
+  DBG ("Volume change!");
+  usleep (1000001);
+  cb_speed_refresh_clicked (NULL, box);
+}
+#endif
 
 /******************/
 /* public methods */
