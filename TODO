@@ -19,7 +19,7 @@ various fixes and changes
 - fix available writing speeds detection
   - and sort them [DONE]
 - implement means to calculate available write speeds at the right moment
-  (when the disk is inserted) - requires a lot of UI thinking 
+  (when the disk is inserted) - requires a lot of UI thinking [DONE]
 - only allow usage of drives with matching capabilities
   - when burning ISO image, only show drives capable of 
     burning to desired disk, or report that we cannot
@@ -35,7 +35,7 @@ various fixes and changes
 - recode copy disk with libburn
 - update columns resizing by using column enum index
 - disable burn buttons before proper image file is selected [DONE]
-- take advantage of gvfs in addition to thunar-vfs
+- take advantage of gvfs in addition to thunar-vfs until thunar-vfs gets deprecated
 - disable device selection before image is selected
   - once image is selected, populate device selection box
     only with appropriate devices (i.e. if it's 1200MB image,
@@ -45,4 +45,6 @@ various fixes and changes
 - inform user in red label if no image has been selected [DONE]
 - Erase disc should work for all RW discs
 - hide disc status in blank dialog
-- refresh disc status after blanking is done
+  - rather, display correct disc status [DONE]
+  - add refresh button and disable blank if invalid disc
+- refresh disc status after blanking is done [DONE]

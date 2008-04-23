@@ -30,6 +30,7 @@
 
 #include "xfburn-device-list.h"
 #include "xfburn-device-box.h"
+#include "xfburn-hal-manager.h"
 
 #define XFBURN_DEVICE_BOX_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBoxPrivate))
 
@@ -89,6 +90,9 @@ typedef struct
 #ifdef HAVE_THUNAR_VFS
   ThunarVfsVolumeManager *thunar_volman;
 #endif
+#ifdef HAVE_HAL
+  GObject *hal_manager;
+#endif
 } XfburnDeviceBoxPrivate;
 
 /* prototypes */
@@ -102,8 +106,8 @@ static void update_status_label_visibility();
 static void cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box);
 static gboolean check_disc_validity (XfburnDeviceBoxPrivate *priv);
 static void cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box);
-#ifdef HAVE_THUNAR_VFS
-static void cb_volumes_changed (ThunarVfsVolumeManager *volman, gpointer volumes, XfburnDeviceBox *box);
+#ifdef HAVE_HAL
+static void cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceBox *box);
 #endif
 
 /* globals */
@@ -276,11 +280,17 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   g_signal_connect (G_OBJECT (priv->combo_device), "changed", G_CALLBACK (cb_combo_device_changed), box);
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_device), 0);
 
+#ifdef HAVE_HAL
+  priv->hal_manager = xfburn_hal_manager_new();
+  g_signal_connect (priv->hal_manager, "volume-changed", G_CALLBACK (cb_volumes_changed), box);
+#endif
 #ifdef HAVE_THUNAR_VFS
   priv->thunar_volman = thunar_vfs_volume_manager_get_default ();
   if (priv->thunar_volman != NULL) {
+    /*
     g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-added", G_CALLBACK (cb_volumes_changed), box);
     g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-removed", G_CALLBACK (cb_volumes_changed), box);
+    */
   } else {
     g_warning ("Error trying to access the thunar-vfs-volume-manager!");
   }
@@ -527,14 +537,18 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
   g_signal_emit (G_OBJECT (box), signals[DEVICE_CHANGED], 0, device);
 }
 
-#ifdef HAVE_THUNAR_VFS
+#ifdef HAVE_HAL
 static void
-cb_volumes_changed (ThunarVfsVolumeManager *volman, gpointer volumes, XfburnDeviceBox *box)
+cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceBox *box)
 {
-  DBG ("Volume change!");
+  //DBG ("Volume change!");
   usleep (1000001);
   cb_speed_refresh_clicked (NULL, box);
 }
+#endif
+
+#ifdef HAVE_THUNAR_VFS
+//(ThunarVfsVolumeManager *volman, gpointer volumes, XfburnDeviceBox *box)
 #endif
 
 /******************/

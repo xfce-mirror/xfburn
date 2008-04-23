@@ -24,6 +24,7 @@ xfburn_headers = 							\
 	xfburn-copy-cd-progress-dialog.h				\
 	xfburn-copy-dvd-dialog.h					\
 	xfburn-create-iso-progress-dialog.h				\
+	xfburn-hal-manager.h						\
 	xfburn-device-box.h						\
 	xfburn-device-list.h						\
 	xfburn-format-dvd-dialog.h					\
@@ -52,6 +53,7 @@ xfburn_SOURCES =							\
 	xfburn-compositions-notebook.c					\
 	xfburn-settings.c						\
 	xfburn-copy-dvd-dialog.c					\
+	xfburn-hal-manager.c						\
 	xfburn-device-box.c						\
 	xfburn-device-list.c						\
 	xfburn-format-dvd-dialog.c					\
@@ -74,7 +76,8 @@ xfburn_CFLAGS =								\
 	$(LIBISOFS_CFLAGS)						\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(EXO_CFLAGS)							\
-	$(THUNAR_VFS_CFLAGS)						
+	$(THUNAR_VFS_CFLAGS)						\
+	$(HAL_CFLAGS)
 
 xfburn_LDADD = 								\
 	$(GTHREAD_LIBS)							\

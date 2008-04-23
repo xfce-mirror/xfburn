@@ -18,8 +18,10 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFBURN_CREATE_HAL_MANAGER_H__
-#define __XFBURN_CREATE_HAL_MANAGER_H__
+#ifndef __XFBURN_HAL_MANAGER_H__
+#define __XFBURN_HAL_MANAGER_H__
+
+#ifdef HAVE_HAL
 
 #ifdef	HAVE_CONFIG_H
 #include <config.h>
@@ -31,27 +33,30 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_CREATE_HAL_MANAGER         (xfburn_hal_manager_get_type ())
-#define XFBURN_CREATE_HAL_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_CREATE_HAL_MANAGER, XfburnHalManager))
-#define XFBURN_CREATE_HAL_MANAGER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_CREATE_HAL_MANAGER, XfburnHalManagerClass))
-#define XFBURN_IS_CREATE_HAL_MANAGER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_CREATE_HAL_MANAGER))
-#define XFBURN_IS_CREATE_HAL_MANAGER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_CREATE_HAL_MANAGER))
-#define XFBURN_CREATE_HAL_MANAGER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_CREATE_HAL_MANAGER, XfburnHalManagerClass))
+#define XFBURN_TYPE_HAL_MANAGER         (xfburn_hal_manager_get_type ())
+#define XFBURN_CREATE_HAL_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_HAL_MANAGER, XfburnHalManager))
+#define XFBURN_CREATE_HAL_MANAGER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_HAL_MANAGER, XfburnHalManagerClass))
+#define XFBURN_IS_CREATE_HAL_MANAGER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_HAL_MANAGER))
+#define XFBURN_IS_CREATE_HAL_MANAGER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_HAL_MANAGER))
+#define XFBURN_CREATE_HAL_MANAGER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_HAL_MANAGER, XfburnHalManagerClass))
 
 typedef struct
 {
-  XfburnProgressDialog parent;
+  GObject parent;
 } XfburnHalManager;
 
 typedef struct
 {
   XfburnProgressDialogClass parent_class;
-  /* Add Signal Functions Here */
+  
+  void (*volume_changed) (XfburnHalManager *halman);
 } XfburnHalManagerClass;
 
 GtkType xfburn_hal_manager_get_type ();
-GtkWidget *xfburn_hal_manager_new ();
+GObject *xfburn_hal_manager_new ();
 
 G_END_DECLS
 
-#endif /* XFBURN_CREATE_HAL_MANAGER_H */
+#endif /* HAVE_HAL */
+
+#endif /* XFBURN_HAL_MANAGER_H */

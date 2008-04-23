@@ -10,7 +10,7 @@ m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfbur
 
 dnl Initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>])
-AC_INIT([xfburn], [xfburn_version], [pollux@xfce.org])
+AC_INIT([xfburn], [xfburn_version], [xfburn@xfce.org])
 
 dnl Initialize automake
 AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
@@ -39,6 +39,13 @@ XDT_CHECK_OPTIONAL_PACKAGE([THUNAR_VFS], [thunar-vfs-1], [0.3.0], [thunar-vfs],
 	AC_HELP_STRING([--disable-thunar-vfs],
 			[Disable the use of Thunar's VFS layer to show mime type and icons in file browser]))
 AM_CONDITIONAL([HAVE_THUNAR_VFS], [test "x$THUNAR_VFS_FOUND" = "xyes"])
+
+dnl **********************************
+dnl *** Optional support for D-BUS ***
+dnl **********************************
+dnl (taken from thunar-0.8.0)
+XDT_CHECK_OPTIONAL_PACKAGE([DBUS], [dbus-glib-1],
+                           [0.34], [dbus], [D-BUS support])
 
 dnl ********************************
 dnl *** Check for HAL (optional) ***

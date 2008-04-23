@@ -108,7 +108,7 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
 
   DBG ("disc_status = %d", disc_status);
   if (!(disc_status == BURN_DISC_BLANK || disc_status == BURN_DISC_APPENDABLE)) {
-    g_warning ("no writable / appendable disc found in drive, speed list not updated");
+    DBG ("no writable / appendable disc found in drive, speed list not updated");
     return;
   }
 

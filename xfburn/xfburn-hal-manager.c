@@ -1,6 +1,7 @@
-/* $Id: xfburn-hal-manager.c 4382 2006-11-01 17:08:37Z pollux $ */
+/* $Id: xfburn-hal-manager.c 4382 2006-11-01 17:08:37Z dmohr $ */
 /*
  *  Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
+ *  Copyright (c) 2008      David Mohr (dmohr@mcbf.net)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,9 +22,15 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
+#ifdef HAVE_HAL
+
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
+
+#include <libhal-storage.h>
+
+#include <errno.h>
 
 #include <libxfce4util/libxfce4util.h>
 
@@ -34,13 +41,33 @@
 
 static void xfburn_hal_manager_class_init (XfburnHalManagerClass * klass);
 static void xfburn_hal_manager_init (XfburnHalManager * sp);
+static void xfburn_hal_manager_finalize (GObject * object);
 
-static void cb_new_output (XfburnHalManager * dialog, const gchar * output, gpointer data);
+static void hal_finalize (LibHalContext  *hal_context);
+static void cb_device_added (LibHalContext *ctx, const char *udi);
+static void cb_device_removed (LibHalContext *ctx, const char *udi);
+static void cb_prop_modified (LibHalContext *ctx, const char *udi, const char *key,
+                              dbus_bool_t is_removed, dbus_bool_t is_added);
+
+#define XFBURN_HAL_MANAGER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_HAL_MANAGER, XfburnHalManagerPrivate))
+
+enum {
+  VOLUME_CHANGED,
+  LAST_SIGNAL,
+}; 
+
+typedef struct {
+  LibHalContext  *hal_context;
+  DBusConnection *dbus_connection;
+} XfburnHalManagerPrivate;
+
+static XfburnHalManager *halman = NULL;
 
 /*********************/
 /* class declaration */
 /*********************/
 static XfburnProgressDialogClass *parent_class = NULL;
+static guint signals[LAST_SIGNAL];
 
 GtkType
 xfburn_hal_manager_get_type ()
@@ -69,52 +96,130 @@ xfburn_hal_manager_get_type ()
 static void
 xfburn_hal_manager_class_init (XfburnHalManagerClass * klass)
 {
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  
+  g_type_class_add_private (klass, sizeof (XfburnHalManagerPrivate));
+  
   parent_class = g_type_class_peek_parent (klass);
+
+  object_class->finalize = xfburn_hal_manager_finalize;
+
+  signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_HAL_MANAGER, G_SIGNAL_ACTION,
+                                          G_STRUCT_OFFSET (XfburnHalManagerClass, volume_changed),
+                                          NULL, NULL, g_cclosure_marshal_VOID__VOID,
+                                          G_TYPE_NONE, 0);
 }
 
 static void
 xfburn_hal_manager_init (XfburnHalManager * obj)
 {
-  g_signal_connect_after (G_OBJECT (obj), "output", G_CALLBACK (cb_new_output), NULL);
+  XfburnHalManagerPrivate *priv = XFBURN_HAL_MANAGER_GET_PRIVATE (obj);
+  LibHalContext  *hal_context = NULL;
+  DBusError derror;
+  //GError *error = NULL;
+
+  DBusConnection *dbus_connection;
+
+  //if (halman != NULL)
+  //  g_error ("The HAL context was already there when trying to create a hal-manager!");
+  
+  /* dbus & hal init code taken from exo */
+  /* initialize D-Bus error */
+  dbus_error_init (&derror);
+
+  /* try to connect to the system bus */
+  dbus_connection = dbus_bus_get (DBUS_BUS_SYSTEM, &derror);
+  if (G_LIKELY (dbus_connection != NULL)) {
+    /* try to allocate a new HAL context */
+    hal_context = libhal_ctx_new ();
+    if (G_LIKELY (hal_context != NULL)) {
+      /* setup the D-Bus connection for the HAL context */
+      libhal_ctx_set_dbus_connection (hal_context, dbus_connection);
+
+      /* try to initialize the HAL context */
+      libhal_ctx_init (hal_context, &derror);
+    } else {
+      /* record the allocation failure of the context */
+      dbus_set_error_const (&derror, DBUS_ERROR_NO_MEMORY, g_strerror (ENOMEM));
+    }
+  }
+
+  /* check if we failed */
+  if (dbus_error_is_set (&derror)) {
+    /* check if a HAL context was allocated */
+    if (G_UNLIKELY (hal_context != NULL)) {
+      /* drop the allocated HAL context */
+      hal_finalize (hal_context);
+      hal_context = NULL;
+    }
+    DBG ("Connection to dbus or hal failed!");
+    dbus_error_free (&derror);
+  } else {
+    libhal_ctx_set_device_added (hal_context, cb_device_added);
+    libhal_ctx_set_device_removed (hal_context, cb_device_removed);
+    libhal_ctx_set_device_property_modified (hal_context, cb_prop_modified);
+  }
+
+  priv->hal_context = hal_context;
+  priv->dbus_connection = dbus_connection;
+}
+
+static void
+xfburn_hal_manager_finalize (GObject * object)
+{
+  XfburnHalManagerPrivate *priv = XFBURN_HAL_MANAGER_GET_PRIVATE (object);
+
+  hal_finalize (priv->hal_context);
+
+  G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
 /*           */
 /* internals */
 /*           */
 static void
-cb_new_output (XfburnHalManager * dialog, const gchar * output, gpointer data)
+hal_finalize (LibHalContext  *hal_context)
 {
-  static gint readcd_end = -1;
+  DBusError derror;
 
-  if (strstr (output, READCD_DONE)) {
-    xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED);
-  }
-  else if (strstr (output, READCD_PROGRESS)) {
-    gint readcd_done = -1;
-    gdouble fraction;
+  libhal_ctx_shutdown (hal_context, &derror);
+  libhal_ctx_free (hal_context);
+}
 
-    sscanf (output, "%*s %d", &readcd_done);
-    fraction = ((gdouble) readcd_done) / readcd_end;
+static void cb_device_added (LibHalContext *ctx, const char *udi)
+{
+  DBG ("HAL: device added");
+  g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
+}
 
-    xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), fraction);
-  }
-  else if (strstr (output, READCD_CAPACITY)) {
-    xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Reading CD..."));
-    sscanf (output, "%*s %d", &readcd_end);
-  }
+static void cb_device_removed (LibHalContext *ctx, const char *udi)
+{
+  DBG ("HAL: device removed");
+  g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
+}
+
+static void cb_prop_modified (LibHalContext *ctx, const char *udi,
+                              const char *key, dbus_bool_t is_removed, dbus_bool_t is_added)
+{
+  /* Lets ignore this for now,
+   * way too many of these get triggered when a disc is
+   * inserted or removed!
+  DBG ("HAL: property modified");
+  g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
+  */
 }
 
 /*        */
 /* public */
 /*        */
 
-GtkWidget *
+GObject *
 xfburn_hal_manager_new ()
 {
-  XfburnHalManager *obj;
 
-  obj = XFBURN_CREATE_HAL_MANAGER (g_object_new (XFBURN_TYPE_CREATE_HAL_MANAGER,
-                                                         "show-buffers", FALSE, "title", _("Create ISO from CD"), NULL));
+  if (halman == NULL)
+    halman = XFBURN_CREATE_HAL_MANAGER (g_object_new (XFBURN_TYPE_HAL_MANAGER, NULL));
 
-  return GTK_WIDGET (obj);
+  return G_OBJECT (halman);
 }
+#endif /* HAVE_HAL */
