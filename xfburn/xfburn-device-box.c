@@ -23,6 +23,7 @@
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
+#include <libxfcegui4/libxfcegui4.h>
 
 #ifdef HAVE_THUNAR_VFS
 #include <thunar-vfs/thunar-vfs.h>
@@ -31,6 +32,7 @@
 #include "xfburn-device-list.h"
 #include "xfburn-device-box.h"
 #include "xfburn-hal-manager.h"
+#include "xfburn-settings.h"
 
 #define XFBURN_DEVICE_BOX_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBoxPrivate))
 
@@ -391,6 +393,49 @@ update_status_label_visibility (XfburnDeviceBoxPrivate *priv)
 }
 
 static void
+empty_speed_list_dialog ()
+{
+  GtkDialog *dialog;
+  GtkWidget *label;
+  GtkWidget *check_show_notice;
+
+  if (!xfburn_settings_get_boolean ("show-empty-speed-list-notice", TRUE))
+    return;
+
+  dialog = (GtkDialog *) gtk_dialog_new_with_buttons (_("Empty speed list"),
+                                  NULL,
+                                  GTK_DIALOG_DESTROY_WITH_PARENT,
+                                  GTK_STOCK_CLOSE,
+                                  GTK_RESPONSE_CLOSE,
+                                  NULL);
+
+  label = gtk_label_new ( _("Unable to retrieve the speed list for the drive. This is a known bug, which occurs with some drives. Please report it to xfburn@xfce.org together with the console output to increase the chances that it will get fixed.\nBurning should still work, but if there are problems anyways, please let us know.\nThank you!")
+                        );
+  gtk_label_set_width_chars (GTK_LABEL (label), 30);
+  gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
+  gtk_container_add (GTK_CONTAINER (dialog->vbox), label);
+  gtk_widget_show (label);
+
+
+  check_show_notice = gtk_check_button_new_with_mnemonic (_("Continue to _show this notice"));
+  //gtk_box_pack_start (GTK_BOX (vbox2), priv->check_empty_speed_list, FALSE, FALSE, BORDER);
+  gtk_container_add (GTK_CONTAINER (dialog->vbox), check_show_notice);
+  gtk_widget_show (check_show_notice);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check_show_notice), TRUE);
+
+  switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
+    case GTK_RESPONSE_CLOSE:
+      xfburn_settings_set_boolean ("show-empty-speed-list-notice", 
+                                   gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (check_show_notice)));
+      break;
+    default:
+      /* do nothing */
+      break;
+  }
+  gtk_widget_destroy (GTK_WIDGET (dialog));
+}
+
+static void
 fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
@@ -401,6 +446,12 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 
   if (!check_disc_validity (priv))
     return;
+
+  if (el == NULL) {
+    /* a valid disc is in the drive, but no speed list is present */
+    empty_speed_list_dialog ();
+    return;
+  }
 
   while (el) {
     gint speed = GPOINTER_TO_INT (el->data);

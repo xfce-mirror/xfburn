@@ -27,7 +27,6 @@
 
 #include <glib.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -115,6 +114,7 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   /* fill new list */
   ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
   /* speed_list = NULL; DEBUG */ 
+  speed_list = NULL; //DEBUG
 
   if (ret > 0 && speed_list != NULL) {
     struct burn_speed_descriptor *el = speed_list;
@@ -150,7 +150,6 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   } else if (ret == 0 || speed_list == NULL) {
     g_warning ("reported speed list is empty for device:");
     g_warning (DEVICE_INFO_PRINTF);
-    xfce_err (_("Unable to retrieve the speed list for the drive. This is a bug, please report it to xfburn@xfce.org together with the console output.\nBurning should still work, but if there were problems anyways, please let us know.\nThank you!"));
   } else {
     g_error ("severe error while retrieving speed list");
   }

@@ -43,6 +43,7 @@ typedef struct
 
   GtkWidget *treeview_devices;
   GtkWidget *button_scan;
+  GtkWidget *check_empty_speed_list;
 } XfburnPreferencesDialogPrivate;
 
 /* prototypes */
@@ -308,6 +309,13 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
     g_object_unref (G_OBJECT (icon));
   
   exo_mutual_binding_new (G_OBJECT (priv->notebook), "page", G_OBJECT (priv->icon_bar), "active");
+
+
+  /* below the device list */
+  priv->check_empty_speed_list = gtk_check_button_new_with_mnemonic (_("Show _empty speed list bug warning"));
+  gtk_box_pack_start (GTK_BOX (vbox2), priv->check_empty_speed_list, FALSE, FALSE, BORDER);
+  gtk_widget_show (priv->check_empty_speed_list);
+
   
   /* action buttons */
   button_close = gtk_button_new_from_stock ("gtk-close");
@@ -342,6 +350,8 @@ xfburn_preferences_dialog_load_settings (XfburnPreferencesDialog * dialog)
                                 xfburn_settings_get_boolean ("show-hidden-files", FALSE));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_show_human_readable),
                                 xfburn_settings_get_boolean ("human-readable-units", TRUE));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_empty_speed_list),
+                                xfburn_settings_get_boolean ("show-empty-speed-list-notice", TRUE));
 }
 
 static void
@@ -360,6 +370,8 @@ xfburn_preferences_dialog_save_settings (XfburnPreferencesDialog *dialog)
                                gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_show_hidden)));
   xfburn_settings_set_boolean ("human-readable-units", 
                                gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_show_human_readable)));
+  xfburn_settings_set_boolean ("show-empty-speed-list-notice", 
+                               gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_empty_speed_list)));
 }
 
 static void
