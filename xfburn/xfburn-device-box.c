@@ -409,19 +409,21 @@ empty_speed_list_dialog ()
                                   GTK_RESPONSE_CLOSE,
                                   NULL);
 
-  label = gtk_label_new ( _("Unable to retrieve the speed list for the drive. This is a known bug, which occurs with some drives. Please report it to xfburn@xfce.org together with the console output to increase the chances that it will get fixed.\nBurning should still work, but if there are problems anyways, please let us know.\nThank you!")
+  label = gtk_label_new (NULL);
+  gtk_label_set_markup (GTK_LABEL (label), _("<b>Unable to retrieve the speed list for the drive.</b>\n\nThis is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n\nBurning should still work, but if there are problems anyways, please let us know.\n\n<i>Thank you!</i>")
                         );
+  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
   gtk_label_set_width_chars (GTK_LABEL (label), 30);
   gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
-  gtk_container_add (GTK_CONTAINER (dialog->vbox), label);
+  gtk_box_pack_start (GTK_BOX (dialog->vbox), label, TRUE, TRUE, BORDER);
   gtk_widget_show (label);
 
 
   check_show_notice = gtk_check_button_new_with_mnemonic (_("Continue to _show this notice"));
-  //gtk_box_pack_start (GTK_BOX (vbox2), priv->check_empty_speed_list, FALSE, FALSE, BORDER);
-  gtk_container_add (GTK_CONTAINER (dialog->vbox), check_show_notice);
+  gtk_box_pack_end (GTK_BOX (dialog->vbox), check_show_notice, TRUE, TRUE, BORDER);
   gtk_widget_show (check_show_notice);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check_show_notice), TRUE);
+
 
   switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
     case GTK_RESPONSE_CLOSE:
