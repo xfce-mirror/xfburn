@@ -114,7 +114,6 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   /* fill new list */
   ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
   /* speed_list = NULL; DEBUG */ 
-  speed_list = NULL; //DEBUG
 
   if (ret > 0 && speed_list != NULL) {
     struct burn_speed_descriptor *el = speed_list;
