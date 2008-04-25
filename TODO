@@ -6,6 +6,7 @@ user visible
 - add text/uri-list DnD target support
 - remove temporary files
 - use more thunar-vfs
+- add verification of written disc
 
 various fixes and changes
 =========================
@@ -15,7 +16,7 @@ various fixes and changes
     - the burning backend, and [started]
     - the burning dialogs      [DONE]
 - implement progress dialog when adding files to composition 
-- adding files to composition should be a new thread
+  - adding files to composition should be a new thread
 - fix available writing speeds detection
   - and sort them [DONE]
 - implement means to calculate available write speeds at the right moment
@@ -31,7 +32,9 @@ various fixes and changes
     burn the image if no capable drives are found, and
     leave all the files previously
     added by the user in composition so he could tweak it
-- welcome tab that cannot be closed
+- welcome tab
+  - that cannot be closed [DONE]
+    - hide close button
 - recode copy disk with libburn
 - update columns resizing by using column enum index
 - disable burn buttons before proper image file is selected [DONE]

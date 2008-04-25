@@ -29,6 +29,7 @@
 
 #include "xfburn-composition.h"
 #include "xfburn-notebook-tab.h"
+#include "xfburn-welcome-tab.h"
 #include "xfburn-data-composition.h"
 
 #define XFBURN_COMPOSITIONS_NOTEBOOK_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, XfburnCompositionsNotebookPrivate))
@@ -168,6 +169,10 @@ xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebo
   static guint i = 0;
   
   switch (type) {
+    case XFBURN_WELCOME_TAB:
+      composition = xfburn_welcome_tab_new ();
+      label_text = g_strdup (_("Welcome"));
+      break;
     case XFBURN_DATA_COMPOSITION:
       composition = xfburn_data_composition_new ();
       label_text = g_strdup_printf ("%s %d", _("Data composition"), ++i);
@@ -196,7 +201,8 @@ xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebo
     gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK (notebook), composition, 1);
 	
     g_object_set_data (G_OBJECT (tab), "composition", composition);
-    g_signal_connect (G_OBJECT (tab), "button-close-clicked", G_CALLBACK (cb_composition_close), notebook);
+    if (type != XFBURN_WELCOME_TAB)
+      g_signal_connect (G_OBJECT (tab), "button-close-clicked", G_CALLBACK (cb_composition_close), notebook);
     
     g_signal_connect (G_OBJECT (composition), "name-changed", G_CALLBACK (cb_composition_name_changed), notebook);
   }

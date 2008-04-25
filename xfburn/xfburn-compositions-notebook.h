@@ -42,6 +42,7 @@ typedef struct
 
 typedef enum
 {
+  XFBURN_WELCOME_TAB,
   XFBURN_DATA_COMPOSITION,
   XFBURN_AUDIO_COMPOSITION,
 } XfburnCompositionType;

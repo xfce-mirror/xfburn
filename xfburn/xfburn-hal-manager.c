@@ -218,7 +218,7 @@ xfburn_hal_manager_new ()
 {
 
   if (halman == NULL)
-    halman = XFBURN_CREATE_HAL_MANAGER (g_object_new (XFBURN_TYPE_HAL_MANAGER, NULL));
+    halman = XFBURN_HAL_MANAGER (g_object_new (XFBURN_TYPE_HAL_MANAGER, NULL));
 
   return G_OBJECT (halman);
 }

@@ -32,6 +32,7 @@ xfburn_headers = 							\
 	xfburn-main-window.h						\
 	xfburn-notebook-tab.h						\
 	xfburn-file-browser.h						\
+	xfburn-welcome-tab.h						\
 	xfburn-data-composition.h					\
 	xfburn-data-disc-usage.h					\
 	xfburn-fs-browser.h						\
@@ -62,6 +63,7 @@ xfburn_SOURCES =							\
 	xfburn-main-window.c 						\
 	xfburn-notebook-tab.c						\
 	xfburn-file-browser.c						\
+	xfburn-welcome-tab.c    	                             	\
 	xfburn-data-composition.c    	                             	\
 	xfburn-data-disc-usage.c					\
 	xfburn-fs-browser.c 	                                       	\

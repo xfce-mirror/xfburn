@@ -314,6 +314,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   priv->compositions_notebook = xfburn_compositions_notebook_new ();
   gtk_widget_show (priv->compositions_notebook);
   gtk_paned_add2 (GTK_PANED (priv->vpaned), priv->compositions_notebook);
+  xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_WELCOME_TAB);
   
   gtk_paned_set_position (GTK_PANED (priv->vpaned), xfburn_settings_get_int ("vpaned-position", 200));
 
