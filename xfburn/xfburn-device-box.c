@@ -496,6 +496,9 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
         case BURN_DISC_UNSUITABLE:
           gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is unsuitable!</span>"));
           break;
+        case BURN_DISC_UNGRABBED:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">No access to drive (mounted?)</span>"));
+          break;
         default:
           gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
           DBG ("weird disc_status = %d", disc_status);
@@ -514,6 +517,9 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
           break;
         case BURN_DISC_UNSUITABLE:
           gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is unsuitable!</span>"));
+          break;
+        case BURN_DISC_UNGRABBED:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">No access to drive (mounted?)</span>"));
           break;
         default:
           gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));

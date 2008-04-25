@@ -169,26 +169,31 @@ xfburn_device_list_get_disc_status ()
   return disc_status;
 }
 
-void
+gboolean
 xfburn_device_refresh_supported_speeds (XfburnDevice * device)
 {
   struct burn_drive_info *drive_info = NULL;
+  gboolean ret;
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
-    return;
+    return FALSE;
   }
 
   if (!xfburn_device_grab (device, &drive_info)) {
-    g_error ("Couldn't grab drive in order to update speed list.");
-    return;
+    ret = FALSE;
+    g_warning ("Couldn't grab drive in order to update speed list.");
+    disc_status = BURN_DISC_UNGRABBED;
+  } else {
+    ret = TRUE;
+    refresh_supported_speeds (device, drive_info);
+
+    burn_drive_release (drive_info->drive, 0);
   }
 
-  refresh_supported_speeds (device, drive_info);
-
-  burn_drive_release (drive_info->drive, 0);
-
   burn_finish ();
+
+  return ret;
 }
 
 gint

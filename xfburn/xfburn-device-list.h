@@ -54,7 +54,7 @@ GList * xfburn_device_list_get_list ();
 enum burn_disc_status xfburn_device_list_get_disc_status ();
 void xfburn_device_list_free ();
 
-void xfburn_device_refresh_supported_speeds (XfburnDevice * device);
+gboolean xfburn_device_refresh_supported_speeds (XfburnDevice * device);
 gboolean xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info);
 void xfburn_device_free (XfburnDevice * device);
 
