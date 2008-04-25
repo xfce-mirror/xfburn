@@ -281,6 +281,8 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
     return FALSE;
   }
 
+  /* we need to try to grab several times, because
+   * the drive might be busy detecting the media */
   for (i=0; i<max_checks; i++) {
     ret = burn_drive_scan_and_grab (drive_info, drive_addr, 0);
     if (ret > 0)
@@ -290,7 +292,7 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
   }
 
   if (ret <= 0) {
-    g_error ("Unable to grab drive at path '%s' (ret=%d).", device->addr, ret);
+    g_warning ("Unable to grab drive at path '%s' (ret=%d).", device->addr, ret);
     return FALSE;
   }
 
