@@ -451,8 +451,14 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 
   if (el == NULL) {
     /* a valid disc is in the drive, but no speed list is present */
+    GtkTreeIter iter;
+    gchar *str;
+
     empty_speed_list_dialog ();
-    return;
+
+    str = _("default");
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, SPEED_TEXT_COLUMN, str, SPEED_VALUE_COLUMN, -1, -1);
   }
 
   while (el) {
