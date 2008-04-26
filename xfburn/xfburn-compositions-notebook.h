@@ -22,6 +22,8 @@
 
 #include <gtk/gtk.h>
 
+#include "xfburn-main-window.h"
+
 G_BEGIN_DECLS
 #define XFBURN_TYPE_COMPOSITIONS_NOTEBOOK         (xfburn_compositions_notebook_get_type ())
 #define XFBURN_COMPOSITIONS_NOTEBOOK(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, XfburnCompositionsNotebook))
@@ -52,6 +54,7 @@ GtkType xfburn_compositions_notebook_get_type ();
 GtkWidget *xfburn_compositions_notebook_new ();
 
 void xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type);
+void xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, XfburnMainWindow *window);
 void xfburn_compositions_notebook_close_composition (XfburnCompositionsNotebook *notebook);
 
 void xfburn_compositions_notebook_load_composition (XfburnCompositionsNotebook *notebook, const gchar *file);

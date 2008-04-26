@@ -33,14 +33,24 @@
 
 #include "xfburn-welcome-tab.h"
 
+#include "xfburn-main-window.h"
+#include "xfburn-compositions-notebook.h"
+#include "xfburn-burn-image-dialog.h"
+#include "xfburn-blank-cd-dialog.h"
+
 /* prototypes */
 static void xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass);
 static void xfburn_welcome_tab_init (XfburnWelcomeTab * sp);
 static void xfburn_welcome_tab_finalize (GObject * object);
 static void composition_interface_init (XfburnCompositionInterface *composition, gpointer iface_data);
+static void xfburn_welcome_tab_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
+static void xfburn_welcome_tab_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
 static void show_custom_controls (XfburnComposition *composition);
 static void hide_custom_controls (XfburnComposition *composition);
+static void burn_image (GtkButton *button, XfburnWelcomeTab *tab);
+static void new_data_composition (GtkButton *button, XfburnWelcomeTab *tab);
+static void blank_disc (GtkButton *button, XfburnWelcomeTab *tab);
 
 #define XFBURN_WELCOME_TAB_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_WELCOME_TAB, XfburnWelcomeTabPrivate))
 
@@ -48,8 +58,15 @@ enum {
   LAST_SIGNAL,
 }; 
 
+enum {
+  PROP_0,
+  PROP_MAIN_WINDOW,
+  PROP_NOTEBOOK,
+};
+
 typedef struct {
-  gboolean dummy;
+  XfburnMainWindow *mainwin;
+  XfburnCompositionsNotebook *notebook;
 } XfburnWelcomeTabPrivate;
 
 /*********************/
@@ -100,6 +117,8 @@ xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass)
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_welcome_tab_finalize;
+  object_class->set_property = xfburn_welcome_tab_set_property;
+  object_class->get_property = xfburn_welcome_tab_get_property;
 
   /*
   signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_WELCOME_TAB, G_SIGNAL_ACTION,
@@ -107,6 +126,13 @@ xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass)
                                           NULL, NULL, g_cclosure_marshal_VOID__VOID,
                                           G_TYPE_NONE, 0);
   */
+
+  g_object_class_install_property (object_class, PROP_MAIN_WINDOW, 
+                                   g_param_spec_object ("main-window", _("The main window"),
+                                                        _("The main window"), XFBURN_TYPE_MAIN_WINDOW, G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_NOTEBOOK, 
+                                   g_param_spec_object ("notebook", _("Notebook"),
+                                                        _("NOTEBOOK"), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, G_PARAM_READWRITE));
 }
 
 static void
@@ -123,13 +149,49 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
 {
   //XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (obj);
 
+  GtkWidget *vbox;
+  GtkWidget *align;
   GtkWidget *label_welcome;
+  GtkWidget *table;
+  GtkWidget *button_image;
+  GtkWidget *button_data_comp;
+  GtkWidget *button_blank;
 
-  label_welcome = gtk_label_new ("Welcome!");
+  gtk_box_set_homogeneous (GTK_BOX (obj), TRUE);
 
-  gtk_box_pack_start (GTK_BOX (obj), label_welcome, TRUE, TRUE, BORDER);
+  align = gtk_alignment_new (0.5, 0.5, 0.5, 0.5);
+  //gtk_container_add (GTK_CONTAINER (obj), align);
+  gtk_box_pack_start (GTK_BOX (obj), align, TRUE, TRUE, BORDER);
+  gtk_widget_show (align);
 
+  vbox = gtk_vbox_new (FALSE, BORDER);
+  gtk_container_add (GTK_CONTAINER (align), vbox);
+  gtk_widget_show (vbox);
+
+  label_welcome = gtk_label_new ("Welcome to xfburn!");
+  gtk_box_pack_start (GTK_BOX (vbox), label_welcome, FALSE, FALSE, BORDER);
   gtk_widget_show (label_welcome);
+
+  table = gtk_table_new (2,2,TRUE);
+  gtk_box_pack_start (GTK_BOX (vbox), table, FALSE, FALSE, BORDER);
+  gtk_table_set_row_spacings (GTK_TABLE (table), BORDER);
+  gtk_table_set_col_spacings (GTK_TABLE (table), BORDER);
+  gtk_widget_show (table);
+
+  button_image = gtk_button_new_with_mnemonic (_("Burn _Image"));
+  gtk_table_attach_defaults (GTK_TABLE (table), button_image, 0, 1, 0, 1);
+  gtk_widget_show (button_image);
+  g_signal_connect (G_OBJECT(button_image), "clicked", G_CALLBACK(burn_image), obj);
+
+  button_data_comp = gtk_button_new_with_mnemonic (_("New _Data Composition"));
+  gtk_table_attach_defaults (GTK_TABLE (table), button_data_comp, 1, 2, 0, 1);
+  gtk_widget_show (button_data_comp);
+  g_signal_connect (G_OBJECT(button_data_comp), "clicked", G_CALLBACK(new_data_composition), obj);
+
+  button_blank = gtk_button_new_with_mnemonic (_("_Blank Disc"));
+  gtk_table_attach_defaults (GTK_TABLE (table), button_blank, 0, 1, 1, 2);
+  gtk_widget_show (button_blank);
+  g_signal_connect (G_OBJECT(button_blank), "clicked", G_CALLBACK(blank_disc), obj);
 }
 
 static void
@@ -138,6 +200,42 @@ xfburn_welcome_tab_finalize (GObject * object)
   //XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (object);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
+}
+
+static void 
+xfburn_welcome_tab_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec)
+{
+  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (object);
+
+  switch (prop_id) {
+    case PROP_MAIN_WINDOW:
+      g_value_set_object (value, priv->mainwin);
+      break;
+    case PROP_NOTEBOOK:
+      g_value_set_object (value, priv->notebook);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void 
+xfburn_welcome_tab_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
+{
+  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (object);
+  
+  switch (prop_id) {
+    case PROP_MAIN_WINDOW:
+      priv->mainwin = g_value_get_object (value);
+      break;
+    case PROP_NOTEBOOK:
+      priv->notebook = g_value_get_object (value);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
 }
 
 /*           */
@@ -155,16 +253,51 @@ hide_custom_controls (XfburnComposition *composition)
   DBG ("hide");
 }
 
+static void
+burn_image (GtkButton *button, XfburnWelcomeTab *tab)
+{
+  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
+  GtkWidget *dialog;
+
+  dialog = xfburn_burn_image_dialog_new ();
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (priv->mainwin));
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+}
+
+static void
+blank_disc (GtkButton *button, XfburnWelcomeTab *tab)
+{
+  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
+  GtkWidget *dialog;
+
+  dialog = xfburn_blank_cd_dialog_new ();
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (priv->mainwin));
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+}
+
+static void
+new_data_composition (GtkButton *button, XfburnWelcomeTab *tab)
+{
+  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
+ 
+  xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->notebook), XFBURN_DATA_COMPOSITION);
+}
+
 /*        */
 /* public */
 /*        */
 
 GtkWidget *
-xfburn_welcome_tab_new ()
+xfburn_welcome_tab_new (XfburnMainWindow *window, XfburnCompositionsNotebook *notebook)
 {
   GtkWidget *obj;
 
-  obj = g_object_new (XFBURN_TYPE_WELCOME_TAB, NULL);
+  obj = g_object_new (XFBURN_TYPE_WELCOME_TAB, 
+                      "main-window", window, 
+                      "notebook", notebook,
+                      NULL);
 
   return obj;
 }

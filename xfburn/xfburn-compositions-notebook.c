@@ -148,21 +148,8 @@ cb_composition_name_changed (XfburnComposition *composition, const gchar * name,
   gtk_label_set_text (GTK_LABEL (menu_label), name);
 }
 
-/**********/
-/* public */
-/**********/
-GtkWidget *
-xfburn_compositions_notebook_new ()
-{
-  GtkWidget *obj;
-
-  obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, "scrollable", TRUE, "enable-popup", TRUE, NULL));
-
-  return obj;
-}
-
-void
-xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type)
+static void
+add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositionType type, XfburnMainWindow *window)
 {
   GtkWidget *composition = NULL;
   gchar *label_text = NULL;
@@ -170,7 +157,7 @@ xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebo
   
   switch (type) {
     case XFBURN_WELCOME_TAB:
-      composition = xfburn_welcome_tab_new ();
+      composition = xfburn_welcome_tab_new (window, notebook);
       label_text = g_strdup (_("Welcome"));
       break;
     case XFBURN_DATA_COMPOSITION:
@@ -208,6 +195,33 @@ xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebo
   }
   
   g_free (label_text);
+}
+
+/**********/
+/* public */
+/**********/
+GtkWidget *
+xfburn_compositions_notebook_new ()
+{
+  GtkWidget *obj;
+
+  obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, "scrollable", TRUE, "enable-popup", TRUE, NULL));
+
+  return obj;
+}
+
+void
+xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type)
+{
+  g_assert (type != XFBURN_WELCOME_TAB);
+
+  add_composition_with_data (notebook, type, NULL);
+}
+
+void 
+xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, XfburnMainWindow *window)
+{
+  add_composition_with_data (notebook, XFBURN_WELCOME_TAB, window);
 }
 
 void
