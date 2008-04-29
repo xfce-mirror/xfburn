@@ -46,6 +46,7 @@
 #include <libisofs.h>
 
 #include "xfburn-data-composition.h"
+#include "xfburn-global.h"
 
 #if 0
 #include "xfburn-adding-progress.h"
@@ -302,7 +303,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   gtk_widget_show (label);
   
   priv->entry_volume_name = gtk_entry_new ();
-  gtk_entry_set_text (GTK_ENTRY (priv->entry_volume_name), _("Data composition"));
+  gtk_entry_set_text (GTK_ENTRY (priv->entry_volume_name), _(DATA_COMPOSITION_DEFAULT_NAME));
   gtk_box_pack_start (GTK_BOX (hbox), priv->entry_volume_name, FALSE, FALSE, 0);
   gtk_widget_show (priv->entry_volume_name);
   

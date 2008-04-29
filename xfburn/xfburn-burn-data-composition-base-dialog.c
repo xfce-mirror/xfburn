@@ -51,6 +51,7 @@ typedef struct
   GtkWidget *device_box;
   GtkWidget *combo_mode;
 
+  GtkWidget *entry;
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
   GtkWidget *check_only_iso;
@@ -67,7 +68,7 @@ enum {
 
 /* prototypes */
 static void xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBaseDialogClass * klass);
-static void xfburn_burn_data_composition_base_dialog_init (XfburnBurnDataCompositionBaseDialog * obj);
+static GObject * xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 static void xfburn_burn_data_composition_base_dialog_finalize (GObject * object);
 
 static void xfburn_burn_data_composition_base_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
@@ -97,7 +98,7 @@ xfburn_burn_data_composition_base_dialog_get_type ()
       NULL,
       sizeof (XfburnBurnDataCompositionBaseDialog),
       0,
-      (GInstanceInitFunc) xfburn_burn_data_composition_base_dialog_init,
+      NULL,
     };
 
     type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBurnDataCompositionBaseDialog", &our_info, 0);
@@ -114,6 +115,7 @@ xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBa
   parent_class = g_type_class_peek_parent (klass);
   g_type_class_add_private (klass, sizeof (XfburnBurnDataCompositionBaseDialogPrivate));
   
+  object_class->constructor = xfburn_burn_data_composition_base_dialog_constructor;
   object_class->finalize = xfburn_burn_data_composition_base_dialog_finalize;
   object_class->get_property = xfburn_burn_data_composition_base_dialog_get_property;
   object_class->set_property = xfburn_burn_data_composition_base_dialog_set_property;
@@ -123,13 +125,15 @@ xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBa
 				   g_param_spec_pointer ("image", "Image", "Image", G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
 }
 
-static void
-xfburn_burn_data_composition_base_dialog_init (XfburnBurnDataCompositionBaseDialog * obj)
+static GObject *
+xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
 {
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (obj);
+  GObject *gobj;
+  XfburnBurnDataCompositionBaseDialog *obj;
+  XfburnBurnDataCompositionBaseDialogPrivate *priv;
   
   GdkPixbuf *icon = NULL;
-  GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
+  GtkBox *box;
   GtkWidget *img;
   GtkWidget *frame;
   GtkWidget *vbox;
@@ -137,6 +141,12 @@ xfburn_burn_data_composition_base_dialog_init (XfburnBurnDataCompositionBaseDial
   GtkWidget *button;
   gchar *default_path;
   gchar *tmp_dir;
+  const char *comp_name;
+
+  gobj = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_properties, construct_properties);
+  obj = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG (gobj);
+  priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (obj);
+  box = GTK_BOX (GTK_DIALOG (obj)->vbox);
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
@@ -152,6 +162,30 @@ xfburn_burn_data_composition_base_dialog_init (XfburnBurnDataCompositionBaseDial
   priv->frame_device = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
   gtk_widget_show (priv->frame_device);
   gtk_box_pack_start (box, priv->frame_device, FALSE, FALSE, BORDER);
+
+  /* composition name */
+  comp_name = iso_image_get_volume_id (priv->image);
+  if (strcmp (comp_name, _(DATA_COMPOSITION_DEFAULT_NAME)) == 0) {
+    GtkWidget *label;
+    vbox = gtk_vbox_new (FALSE, 0);
+    gtk_widget_show (vbox);
+
+    frame = xfce_create_framebox_with_content (_("Composition name"), vbox);
+    gtk_widget_show (frame);
+    gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
+
+    label = gtk_label_new (NULL);
+    gtk_label_set_markup (GTK_LABEL (label), _("<small>Would you like to change the default composition name?</small>"));
+    gtk_widget_show (label);
+    gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, BORDER/2);
+
+    priv->entry = gtk_entry_new ();
+    gtk_entry_set_text (GTK_ENTRY (priv->entry), comp_name);
+    gtk_box_pack_start (GTK_BOX (vbox), priv->entry, FALSE, FALSE, BORDER);
+    gtk_widget_show (priv->entry);
+  } else {
+    priv->entry = NULL;
+  }
 
   /* options */
   vbox = gtk_vbox_new (FALSE, 0);
@@ -222,6 +256,8 @@ xfburn_burn_data_composition_base_dialog_init (XfburnBurnDataCompositionBaseDial
 
   cb_disc_refreshed (priv->device_box, xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box)), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
+
+  return gobj;
 }
 
 static void
@@ -481,6 +517,13 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
 
     struct burn_source * src = NULL;
     IsoWriteOpts *write_opts;
+
+    /* If the name was the default, update the image volume id and volset id */
+    if (priv->entry != NULL) {
+      const gchar * comp_name = gtk_entry_get_text (GTK_ENTRY (priv->entry));
+      iso_image_set_volume_id (priv->image, comp_name);
+      iso_image_set_volset_id (priv->image, comp_name);
+    }
 
     /* Sets profile 2 [distribution] */
     iso_write_opts_new (&write_opts, 2);

@@ -40,4 +40,5 @@
 #define CDR_1X_SPEED 176
 #define DVD_1X_SPEED 1385
 
+#define DATA_COMPOSITION_DEFAULT_NAME "Data composition"
 #endif
