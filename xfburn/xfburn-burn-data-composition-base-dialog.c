@@ -305,6 +305,7 @@ static void
 cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
 {
   XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
+  gboolean valid_disc;
 
   gtk_widget_set_sensitive (priv->frame_device, !gtk_toggle_button_get_active (button));
   
@@ -312,6 +313,12 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBa
   gtk_widget_set_sensitive (priv->check_eject, !gtk_toggle_button_get_active (button));
   gtk_widget_set_sensitive (priv->check_burnfree, !gtk_toggle_button_get_active (button));
   gtk_widget_set_sensitive (priv->check_dummy, !gtk_toggle_button_get_active (button));
+  if (!gtk_toggle_button_get_active (button)) {
+    g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
+    gtk_widget_set_sensitive (priv->burn_button, valid_disc);
+  } else {
+    gtk_widget_set_sensitive (priv->burn_button, TRUE);
+  }
 }
 
 static void
