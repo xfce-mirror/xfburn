@@ -307,6 +307,9 @@ xfburn_device_box_finalize (GObject * object)
 #ifdef HAVE_THUNAR_VFS
   g_object_unref (priv->thunar_volman);
 #endif
+#ifdef HAVE_HAL
+  g_object_unref (priv->hal_manager);
+#endif
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -594,10 +597,12 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
   XfburnDevice *device;
   
   device = xfburn_device_box_get_selected_device (box);
-  xfburn_device_refresh_supported_speeds (device);
+  if (device != NULL) {
+    xfburn_device_refresh_supported_speeds (device);
 
-  fill_combo_speed (box, device);
-  fill_combo_mode (box,device);
+    fill_combo_speed (box, device);
+    fill_combo_mode (box,device);
+  }
 
   g_signal_emit (G_OBJECT (box), signals[DEVICE_CHANGED], 0, device);
 }
@@ -606,9 +611,14 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
 static void
 cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceBox *box)
 {
-  //DBG ("Volume change!");
-  usleep (1000001);
-  cb_speed_refresh_clicked (NULL, box);
+  gboolean visible;
+
+  visible = GTK_WIDGET_VISIBLE (GTK_WIDGET(box));
+  //DBG ("device box visibility: %d", visible);
+  if (visible) {
+    usleep (1000001);
+    cb_speed_refresh_clicked (NULL, box);
+  }
 }
 #endif
 
