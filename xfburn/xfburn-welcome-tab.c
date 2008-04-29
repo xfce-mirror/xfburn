@@ -33,6 +33,7 @@
 
 #include "xfburn-welcome-tab.h"
 
+#include "xfburn-stock.h"
 #include "xfburn-main-window.h"
 #include "xfburn-compositions-notebook.h"
 #include "xfburn-burn-image-dialog.h"
@@ -46,6 +47,7 @@ static void composition_interface_init (XfburnCompositionInterface *composition,
 static void xfburn_welcome_tab_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_welcome_tab_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
+GtkWidget* create_welcome_button (const gchar *stock, const gchar *text, const gchar *secondary);
 static void show_custom_controls (XfburnComposition *composition);
 static void hide_custom_controls (XfburnComposition *composition);
 static void burn_image (GtkButton *button, XfburnWelcomeTab *tab);
@@ -178,17 +180,18 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_table_set_col_spacings (GTK_TABLE (table), BORDER);
   gtk_widget_show (table);
 
-  button_image = gtk_button_new_with_mnemonic (_("Burn _Image"));
+  /* buttons */
+  button_image = create_welcome_button (XFBURN_STOCK_BURN_CD, _("<big>Burn _Image</big>"), _("Burn a prepared compilation, i.e. an .ISO file"));
   gtk_table_attach_defaults (GTK_TABLE (table), button_image, 0, 1, 0, 1);
   gtk_widget_show (button_image);
   g_signal_connect (G_OBJECT(button_image), "clicked", G_CALLBACK(burn_image), obj);
 
-  button_data_comp = gtk_button_new_with_mnemonic (_("New _Data Composition"));
+  button_data_comp = create_welcome_button (GTK_STOCK_NEW, _("<big>New _Data Composition</big>"), _("Create a new data disc with the files of your choosing"));
   gtk_table_attach_defaults (GTK_TABLE (table), button_data_comp, 1, 2, 0, 1);
   gtk_widget_show (button_data_comp);
   g_signal_connect (G_OBJECT(button_data_comp), "clicked", G_CALLBACK(new_data_composition), obj);
 
-  button_blank = gtk_button_new_with_mnemonic (_("_Blank Disc"));
+  button_blank = create_welcome_button (XFBURN_STOCK_BLANK_CDRW, _("<big>_Blank Disc</big>"), _("Prepare the rewriteable disc for a new burn"));
   gtk_table_attach_defaults (GTK_TABLE (table), button_blank, 0, 1, 1, 2);
   gtk_widget_show (button_blank);
   g_signal_connect (G_OBJECT(button_blank), "clicked", G_CALLBACK(blank_disc), obj);
@@ -241,6 +244,40 @@ xfburn_welcome_tab_set_property (GObject *object, guint prop_id, const GValue *v
 /*           */
 /* internals */
 /*           */
+
+/* create_welcome_button was based on xfce_create_mixed_button */
+GtkWidget*
+create_welcome_button (const gchar *stock, const gchar *text, const gchar *secondary)
+{
+  GtkWidget *button, *align, *image, *hbox, *label, *vbox;
+
+  button = gtk_button_new ();
+  label = gtk_label_new (NULL);
+  gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);
+
+  image = gtk_image_new_from_stock (stock, GTK_ICON_SIZE_DIALOG);
+  hbox = gtk_hbox_new (FALSE, 20);
+  vbox = gtk_vbox_new (FALSE, 2);
+
+  align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+
+  gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
+  gtk_box_pack_end (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
+
+  gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
+
+  label = gtk_label_new (NULL);
+  gtk_label_set_text (GTK_LABEL (label), secondary);
+  gtk_box_pack_end (GTK_BOX (vbox), label, FALSE, FALSE, 0);
+
+  gtk_container_add (GTK_CONTAINER (button), align);
+  gtk_container_add (GTK_CONTAINER (align), hbox);
+  gtk_widget_show_all (align);
+
+  return button;
+}
+
 static void
 show_custom_controls (XfburnComposition *composition)
 {
