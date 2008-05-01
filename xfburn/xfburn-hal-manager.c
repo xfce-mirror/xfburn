@@ -153,12 +153,13 @@ xfburn_hal_manager_init (XfburnHalManager * obj)
       hal_context = NULL;
     }
     DBG ("Connection to dbus or hal failed!");
-    dbus_error_free (&derror);
   } else {
     libhal_ctx_set_device_added (hal_context, cb_device_added);
     libhal_ctx_set_device_removed (hal_context, cb_device_removed);
     libhal_ctx_set_device_property_modified (hal_context, cb_prop_modified);
   }
+
+  dbus_error_free (&derror);
 
   priv->hal_context = hal_context;
   priv->dbus_connection = dbus_connection;
@@ -182,7 +183,12 @@ hal_finalize (LibHalContext  *hal_context)
 {
   DBusError derror;
 
+  dbus_error_init (&derror);
   libhal_ctx_shutdown (hal_context, &derror);
+  if (dbus_error_is_set (&derror)) {
+    DBG ("Error shutting hal down!");
+  }
+  dbus_error_free (&derror);
   libhal_ctx_free (hal_context);
 }
 
