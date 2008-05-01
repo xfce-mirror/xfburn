@@ -78,8 +78,7 @@ xfburn_CFLAGS =								\
 	$(LIBISOFS_CFLAGS)						\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(EXO_CFLAGS)							\
-	$(THUNAR_VFS_CFLAGS)						\
-	$(HAL_CFLAGS)
+	$(THUNAR_VFS_CFLAGS)
 
 xfburn_LDADD = 								\
 	$(GTHREAD_LIBS)							\
@@ -88,6 +87,16 @@ xfburn_LDADD = 								\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(EXO_LIBS)							\
 	$(THUNAR_VFS_LIBS)
+
+if HAVE_HAL
+xfburn_CFLAGS +=							\
+	$(HAL_CFLAGS)
+
+xfburn_LDADD += 							\
+	$(HAL_LIBS)
+	$(HAL_DBUS_LIBS)
+
+endif
 
 # remove these when they're added to the build; needed
 # for make distcheck (--brian)
