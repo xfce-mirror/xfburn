@@ -31,9 +31,9 @@
 #include "xfburn-device-box.h"
 #include "xfburn-stock.h"
 
-#include "xfburn-blank-cd-dialog.h"
+#include "xfburn-blank-dialog.h"
 
-#define XFBURN_BLANK_CD_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BLANK_CD_DIALOG, XfburnBlankCdDialogPrivate))
+#define XFBURN_BLANK_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BLANK_DIALOG, XfburnBlankDialogPrivate))
 
 typedef struct
 {
@@ -41,51 +41,51 @@ typedef struct
   GtkWidget *combo_type;
   
   GtkWidget *check_eject;
-} XfburnBlankCdDialogPrivate;
+} XfburnBlankDialogPrivate;
 
-static void xfburn_blank_cd_dialog_class_init (XfburnBlankCdDialogClass * klass);
-static void xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * sp);
+static void xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass);
+static void xfburn_blank_dialog_init (XfburnBlankDialog * sp);
 
-static void xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_id, gpointer user_data);
+static void xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, gpointer user_data);
 
 static XfceTitledDialogClass *parent_class = NULL;
 
 GtkType
-xfburn_blank_cd_dialog_get_type ()
+xfburn_blank_dialog_get_type ()
 {
   static GtkType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {
-      sizeof (XfburnBlankCdDialogClass),
+      sizeof (XfburnBlankDialogClass),
       NULL,
       NULL,
-      (GClassInitFunc) xfburn_blank_cd_dialog_class_init,
+      (GClassInitFunc) xfburn_blank_dialog_class_init,
       NULL,
       NULL,
-      sizeof (XfburnBlankCdDialog),
+      sizeof (XfburnBlankDialog),
       0,
-      (GInstanceInitFunc) xfburn_blank_cd_dialog_init,
+      (GInstanceInitFunc) xfburn_blank_dialog_init,
     };
 
-    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBlankCdDialog", &our_info, 0);
+    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBlankDialog", &our_info, 0);
   }
 
   return type;
 }
 
 static void
-xfburn_blank_cd_dialog_class_init (XfburnBlankCdDialogClass * klass)
+xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass)
 {
   parent_class = g_type_class_peek_parent (klass);
   
-  g_type_class_add_private (klass, sizeof (XfburnBlankCdDialogPrivate));
+  g_type_class_add_private (klass, sizeof (XfburnBlankDialogPrivate));
 }
 
 static void
-xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
+xfburn_blank_dialog_init (XfburnBlankDialog * obj)
 {
-  XfburnBlankCdDialogPrivate *priv = XFBURN_BLANK_CD_DIALOG_GET_PRIVATE (obj);
+  XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (obj);
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   GdkPixbuf *icon = NULL;
   GtkWidget *frame;
@@ -143,7 +143,7 @@ xfburn_blank_cd_dialog_init (XfburnBlankCdDialog * obj)
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
 
-  g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_blank_cd_dialog_response_cb), obj);
+  g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_blank_dialog_response_cb), obj);
 }
 
 typedef struct {
@@ -230,10 +230,10 @@ thread_blank (ThreadBlankParams * params)
 }
 
 static void
-xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_id, gpointer user_data)
+xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, gpointer user_data)
 {
   if (response_id == GTK_RESPONSE_OK) {
-    XfburnBlankCdDialogPrivate *priv = XFBURN_BLANK_CD_DIALOG_GET_PRIVATE (dialog);
+    XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (dialog);
     XfburnDevice *device;
     gint blank_type;
 
@@ -272,11 +272,11 @@ xfburn_blank_cd_dialog_response_cb (XfburnBlankCdDialog * dialog, gint response_
 
 /* public */
 GtkWidget *
-xfburn_blank_cd_dialog_new ()
+xfburn_blank_dialog_new ()
 {
   GtkWidget *obj;
 
-  obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_BLANK_CD_DIALOG, NULL));
+  obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_BLANK_DIALOG, NULL));
 
   return obj;
 }

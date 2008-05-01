@@ -32,7 +32,7 @@
 #include "xfburn-preferences-dialog.h"
 #include "xfburn-file-browser.h"
 #include "xfburn-compositions-notebook.h"
-#include "xfburn-blank-cd-dialog.h"
+#include "xfburn-blank-dialog.h"
 #include "xfburn-format-dvd-dialog.h"
 #include "xfburn-copy-cd-dialog.h"
 #include "xfburn-copy-dvd-dialog.h"
@@ -81,7 +81,7 @@ static void action_save_as (GtkAction *, XfburnMainWindow *);
 static void action_close (GtkAction *, XfburnMainWindow *);
 static void action_quit (GtkAction *, XfburnMainWindow *);
 
-static void action_blank_cd (GtkAction *, XfburnMainWindow *);
+static void action_blank (GtkAction *, XfburnMainWindow *);
 static void action_copy_cd (GtkAction *, XfburnMainWindow *);
 static void action_burn_image (GtkAction *, XfburnMainWindow *);
 
@@ -124,7 +124,7 @@ static const GtkActionEntry action_entries[] = {
   {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
    G_CALLBACK (action_about),},
   {"blank-cd", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),
-   G_CALLBACK (action_blank_cd),},
+   G_CALLBACK (action_blank),},
   {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),
    G_CALLBACK (action_copy_cd),},
   {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
@@ -373,11 +373,11 @@ cb_delete_main_window (XfburnMainWindow * mainwin, GdkEvent * event, XfburnMainW
 
 /* actions */
 static void
-action_blank_cd (GtkAction * action, XfburnMainWindow * window)
+action_blank (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
   
-  dialog = xfburn_blank_cd_dialog_new ();
+  dialog = xfburn_blank_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);

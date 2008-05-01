@@ -37,7 +37,7 @@
 #include "xfburn-main-window.h"
 #include "xfburn-compositions-notebook.h"
 #include "xfburn-burn-image-dialog.h"
-#include "xfburn-blank-cd-dialog.h"
+#include "xfburn-blank-dialog.h"
 
 /* prototypes */
 static void xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass);
@@ -308,7 +308,7 @@ blank_disc (GtkButton *button, XfburnWelcomeTab *tab)
   XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
   GtkWidget *dialog;
 
-  dialog = xfburn_blank_cd_dialog_new ();
+  dialog = xfburn_blank_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (priv->mainwin));
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
