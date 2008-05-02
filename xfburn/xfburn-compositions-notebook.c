@@ -46,8 +46,14 @@ static void xfburn_compositions_notebook_class_init (XfburnCompositionsNotebookC
 static void xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook);
 static void xfburn_compositions_notebook_finalize (GObject * object);
 
+
+/* internals */
 static void cb_switch_page (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, 
                             XfburnCompositionsNotebookPrivate *priv);
+static void cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook);
+static void cb_composition_name_changed (XfburnComposition *composition, const gchar * name, XfburnCompositionsNotebook *notebook);
+static XfburnComposition * add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositionType type, XfburnMainWindow *window);
+
 
 /* static member */
 static GtkNotebookClass *parent_class = NULL;
@@ -148,7 +154,7 @@ cb_composition_name_changed (XfburnComposition *composition, const gchar * name,
   gtk_label_set_text (GTK_LABEL (menu_label), name);
 }
 
-static void
+static XfburnComposition *
 add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositionType type, XfburnMainWindow *window)
 {
   GtkWidget *composition = NULL;
@@ -195,6 +201,8 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
   }
   
   g_free (label_text);
+
+  return XFBURN_COMPOSITION (composition);
 }
 
 /**********/
@@ -218,10 +226,10 @@ xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebo
   add_composition_with_data (notebook, type, NULL);
 }
 
-void 
+XfburnWelcomeTab *
 xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, XfburnMainWindow *window)
 {
-  add_composition_with_data (notebook, XFBURN_WELCOME_TAB, window);
+  return XFBURN_WELCOME_TAB (add_composition_with_data (notebook, XFBURN_WELCOME_TAB, window));
 }
 
 void

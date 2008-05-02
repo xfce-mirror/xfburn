@@ -57,6 +57,7 @@ typedef struct {
 
   gboolean support_cdr;
   gboolean support_cdrw;
+  XfburnWelcomeTab *welcome_tab;
 } XfburnMainWindowPrivate;
 
 /* prototypes */
@@ -123,7 +124,7 @@ static const GtkActionEntry action_entries[] = {
   {"help-menu", NULL, N_("_Help"), NULL,},
   {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
    G_CALLBACK (action_about),},
-  {"blank-cd", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),
+  {"blank-disc", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),
    G_CALLBACK (action_blank),},
   {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),
    G_CALLBACK (action_copy_cd),},
@@ -150,7 +151,7 @@ static const gchar *toolbar_actions[] = {
 /*  "load-composition",
   "save-composition",
   "close-composition",*/
-  "blank-cd",
+  "blank-disc",
   "copy-data",
   //"copy-audio",
   "burn-image",
@@ -314,7 +315,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   priv->compositions_notebook = xfburn_compositions_notebook_new ();
   gtk_widget_show (priv->compositions_notebook);
   gtk_paned_add2 (GTK_PANED (priv->vpaned), priv->compositions_notebook);
-  xfburn_compositions_notebook_add_welcome_tab (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), mainwin);
+  priv->welcome_tab = xfburn_compositions_notebook_add_welcome_tab (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), mainwin);
   
   gtk_paned_set_position (GTK_PANED (priv->vpaned), xfburn_settings_get_int ("vpaned-position", 200));
 
@@ -659,9 +660,11 @@ xfburn_main_window_new (void)
       gtk_action_set_sensitive (action, FALSE);
     }
     if (!priv->support_cdrw) {
-      action = gtk_action_group_get_action (priv->action_group, "blank-cd");
+      action = gtk_action_group_get_action (priv->action_group, "blank-disc");
       gtk_action_set_sensitive (action, FALSE);
     }
+
+    g_object_set (priv->welcome_tab, "action_group", priv->action_group, NULL);
   }
   
   return obj;

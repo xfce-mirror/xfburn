@@ -47,13 +47,6 @@ static void composition_interface_init (XfburnCompositionInterface *composition,
 static void xfburn_welcome_tab_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_welcome_tab_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
-GtkWidget* create_welcome_button (const gchar *stock, const gchar *text, const gchar *secondary);
-static void show_custom_controls (XfburnComposition *composition);
-static void hide_custom_controls (XfburnComposition *composition);
-static void burn_image (GtkButton *button, XfburnWelcomeTab *tab);
-static void new_data_composition (GtkButton *button, XfburnWelcomeTab *tab);
-static void blank_disc (GtkButton *button, XfburnWelcomeTab *tab);
-
 #define XFBURN_WELCOME_TAB_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_WELCOME_TAB, XfburnWelcomeTabPrivate))
 
 enum {
@@ -64,12 +57,27 @@ enum {
   PROP_0,
   PROP_MAIN_WINDOW,
   PROP_NOTEBOOK,
+  PROP_ACTION_GROUP,
 };
 
 typedef struct {
   XfburnMainWindow *mainwin;
   XfburnCompositionsNotebook *notebook;
+  GtkActionGroup *action_group;
+  GtkWidget *button_image;
+  GtkWidget *button_data_comp;
+  GtkWidget *button_blank;
 } XfburnWelcomeTabPrivate;
+
+/* internals */
+static GtkWidget* create_welcome_button (const gchar *stock, const gchar *text, const gchar *secondary);
+static void update_buttons_from_action_group (XfburnWelcomeTabPrivate *priv);
+static void show_custom_controls (XfburnComposition *composition);
+static void hide_custom_controls (XfburnComposition *composition);
+static void burn_image (GtkButton *button, XfburnWelcomeTab *tab);
+static void new_data_composition (GtkButton *button, XfburnWelcomeTab *tab);
+static void blank_disc (GtkButton *button, XfburnWelcomeTab *tab);
+
 
 /*********************/
 /* class declaration */
@@ -135,6 +143,9 @@ xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass)
   g_object_class_install_property (object_class, PROP_NOTEBOOK, 
                                    g_param_spec_object ("notebook", _("Notebook"),
                                                         _("NOTEBOOK"), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_ACTION_GROUP, 
+                                   g_param_spec_object ("action_group", _("Action group"),
+                                                        _("Action group from the main window"), GTK_TYPE_ACTION_GROUP, G_PARAM_READWRITE));
 }
 
 static void
@@ -149,15 +160,12 @@ composition_interface_init (XfburnCompositionInterface *composition, gpointer if
 static void
 xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
 {
-  //XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (obj);
+  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (obj);
 
   GtkWidget *vbox;
   GtkWidget *align;
   GtkWidget *label_welcome;
   GtkWidget *table;
-  GtkWidget *button_image;
-  GtkWidget *button_data_comp;
-  GtkWidget *button_blank;
 
   gtk_box_set_homogeneous (GTK_BOX (obj), TRUE);
 
@@ -181,20 +189,20 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_widget_show (table);
 
   /* buttons */
-  button_image = create_welcome_button (XFBURN_STOCK_BURN_CD, _("<big>Burn _Image</big>"), _("Burn a prepared compilation, i.e. an .ISO file"));
-  gtk_table_attach_defaults (GTK_TABLE (table), button_image, 0, 1, 0, 1);
-  gtk_widget_show (button_image);
-  g_signal_connect (G_OBJECT(button_image), "clicked", G_CALLBACK(burn_image), obj);
+  priv->button_image = create_welcome_button (XFBURN_STOCK_BURN_CD, _("<big>Burn _Image</big>"), _("Burn a prepared compilation, i.e. an .ISO file"));
+  gtk_table_attach_defaults (GTK_TABLE (table), priv->button_image, 0, 1, 0, 1);
+  gtk_widget_show (priv->button_image);
+  g_signal_connect (G_OBJECT(priv->button_image), "clicked", G_CALLBACK(burn_image), obj);
 
-  button_data_comp = create_welcome_button (GTK_STOCK_NEW, _("<big>New _Data Composition</big>"), _("Create a new data disc with the files of your choosing"));
-  gtk_table_attach_defaults (GTK_TABLE (table), button_data_comp, 1, 2, 0, 1);
-  gtk_widget_show (button_data_comp);
-  g_signal_connect (G_OBJECT(button_data_comp), "clicked", G_CALLBACK(new_data_composition), obj);
+  priv->button_data_comp = create_welcome_button (GTK_STOCK_NEW, _("<big>New _Data Composition</big>"), _("Create a new data disc with the files of your choosing"));
+  gtk_table_attach_defaults (GTK_TABLE (table), priv->button_data_comp, 1, 2, 0, 1);
+  gtk_widget_show (priv->button_data_comp);
+  g_signal_connect (G_OBJECT(priv->button_data_comp), "clicked", G_CALLBACK(new_data_composition), obj);
 
-  button_blank = create_welcome_button (XFBURN_STOCK_BLANK_CDRW, _("<big>_Blank Disc</big>"), _("Prepare the rewriteable disc for a new burn"));
-  gtk_table_attach_defaults (GTK_TABLE (table), button_blank, 0, 1, 1, 2);
-  gtk_widget_show (button_blank);
-  g_signal_connect (G_OBJECT(button_blank), "clicked", G_CALLBACK(blank_disc), obj);
+  priv->button_blank = create_welcome_button (XFBURN_STOCK_BLANK_CDRW, _("<big>_Blank Disc</big>"), _("Prepare the rewriteable disc for a new burn"));
+  gtk_table_attach_defaults (GTK_TABLE (table), priv->button_blank, 0, 1, 1, 2);
+  gtk_widget_show (priv->button_blank);
+  g_signal_connect (G_OBJECT(priv->button_blank), "clicked", G_CALLBACK(blank_disc), obj);
 }
 
 static void
@@ -217,6 +225,9 @@ xfburn_welcome_tab_get_property (GObject *object, guint prop_id, GValue *value, 
     case PROP_NOTEBOOK:
       g_value_set_object (value, priv->notebook);
       break;
+    case PROP_ACTION_GROUP:
+      g_value_set_object (value, priv->action_group);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -235,6 +246,10 @@ xfburn_welcome_tab_set_property (GObject *object, guint prop_id, const GValue *v
     case PROP_NOTEBOOK:
       priv->notebook = g_value_get_object (value);
       break;
+    case PROP_ACTION_GROUP:
+      priv->action_group = g_value_get_object (value);
+      update_buttons_from_action_group (priv);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -246,7 +261,7 @@ xfburn_welcome_tab_set_property (GObject *object, guint prop_id, const GValue *v
 /*           */
 
 /* create_welcome_button was based on xfce_create_mixed_button */
-GtkWidget*
+static GtkWidget*
 create_welcome_button (const gchar *stock, const gchar *text, const gchar *secondary)
 {
   GtkWidget *button, *align, *image, *hbox, *label, *vbox;
@@ -276,6 +291,21 @@ create_welcome_button (const gchar *stock, const gchar *text, const gchar *secon
   gtk_widget_show_all (align);
 
   return button;
+}
+
+static void 
+update_buttons_from_action_group (XfburnWelcomeTabPrivate *priv)
+{
+  GtkAction *action;
+
+  action = gtk_action_group_get_action (priv->action_group, "burn-image");
+  gtk_widget_set_sensitive (priv->button_image, gtk_action_is_sensitive (action));
+
+  action = gtk_action_group_get_action (priv->action_group, "new-composition");
+  gtk_widget_set_sensitive (priv->button_data_comp, gtk_action_is_sensitive (action));
+
+  action = gtk_action_group_get_action (priv->action_group, "blank-disc");
+  gtk_widget_set_sensitive (priv->button_blank, gtk_action_is_sensitive (action));
 }
 
 static void
