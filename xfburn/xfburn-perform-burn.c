@@ -54,6 +54,16 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress, struct burn_drive *drive,
   char media_name[80];
   int media_no;
   int factor;
+  int ret;
+
+  gboolean error = FALSE;
+  int error_code;
+  char msg_text[BURN_MSGS_MESSAGE_LEN];
+  int os_errno;
+  char severity[80];
+  const char *final_status_text;
+  XfburnProgressDialogStatus final_status;
+  const char *final_message;
 
   while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
     usleep(100001);
@@ -86,6 +96,12 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress, struct burn_drive *drive,
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize state of drive and media"));
     return;
   }
+
+  /* set us up to receive fatal errors */
+  ret = burn_msgs_set_severities ("ALL", "NEVER", "libburn");
+
+  if (ret <= 0)
+    g_warning ("Failed to set libburn message severities, burn errors might not get detected!");
  
   burn_disc_write (burn_options, disc); 
 
@@ -151,5 +167,27 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress, struct burn_drive *drive,
     usleep (500000);
   }
 
-  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED, _("Done"));
+  /* check the libburn message queue for errors */
+  while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
+    g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
+    error = TRUE;
+  }
+#ifdef DEBUG
+  while ((ret = burn_msgs_obtain ("ALL", &error_code, msg_text, &os_errno, severity)) == 1) {
+    g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
+  }
+#endif
+  if (ret < 0)
+    g_warning ("Fatal error while trying to retrieve libburn message!");
+
+  if (G_LIKELY (!error)) {
+    final_message = _("Done");
+    final_status = XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED;
+  } else {
+    final_status_text  = _("Failure");
+    final_status = XFBURN_PROGRESS_DIALOG_STATUS_FAILED;
+    final_message = g_strdup_printf ("%s: %s", final_status_text, msg_text);
+  }
+
+  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), final_status, final_message);
 }

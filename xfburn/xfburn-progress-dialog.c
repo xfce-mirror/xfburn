@@ -64,7 +64,7 @@ static void xfburn_progress_dialog_set_property (GObject * object, guint prop_id
                                                  GParamSpec * pspec);
 
 static void set_writing_speed (XfburnProgressDialog * dialog, gfloat speed);
-static void set_action_text (XfburnProgressDialog * dialog, const gchar * text);
+static void set_action_text (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status, const gchar * text);
 
 static void cb_button_close_clicked (GtkWidget *button, XfburnProgressDialog * dialog);
 static gboolean cb_dialog_delete (XfburnProgressDialog * dialog, GdkEvent * event, XfburnProgressDialogPrivate * priv);
@@ -159,9 +159,10 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
 
   /* label */
   priv->label_action = gtk_label_new ("Initializing ...");
-  gtk_misc_set_alignment (GTK_MISC (priv->label_action), 0.0, 0.0);
+  gtk_misc_set_alignment (GTK_MISC (priv->label_action), 0.1, 0.0);
   gtk_label_set_justify (GTK_LABEL (priv->label_action), GTK_JUSTIFY_LEFT);
-  set_action_text (obj, _("Initializing..."));
+  gtk_label_set_selectable (GTK_LABEL (priv->label_action), TRUE);
+  set_action_text (obj, XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Initializing..."));
   gtk_widget_show (priv->label_action);
   gtk_box_pack_start (box, priv->label_action, FALSE, TRUE, BORDER);
 
@@ -282,12 +283,16 @@ set_writing_speed (XfburnProgressDialog * dialog, gfloat speed)
 }
 
 static void
-set_action_text (XfburnProgressDialog * dialog, const gchar * text)
+set_action_text (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status, const gchar * text)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
   gchar *temp = NULL;
 
-  temp = g_strdup_printf ("<b>%s</b>", text);
+  if (status == XFBURN_PROGRESS_DIALOG_STATUS_FAILED)
+    temp = g_strdup_printf ("<span size=\"larger\" foreground=\"red\">%s</span>", text);
+  else
+    temp = g_strdup_printf ("<b>%s</b>", text);
+
   gtk_label_set_markup (GTK_LABEL (priv->label_action), temp);
 
   g_free (temp);  
@@ -485,7 +490,7 @@ xfburn_progress_dialog_set_status_with_text (XfburnProgressDialog * dialog, Xfbu
 {
   xfburn_progress_dialog_set_status (dialog, status);
   gdk_threads_enter ();
-  set_action_text (dialog, text);
+  set_action_text (dialog, status, text);
   gdk_threads_leave ();
 }
 
