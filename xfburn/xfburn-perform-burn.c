@@ -54,8 +54,8 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress, struct burn_drive *drive,
   char media_name[80];
   int media_no;
   int factor;
-  int ret;
 
+  int ret;
   gboolean error = FALSE;
   int error_code;
   char msg_text[BURN_MSGS_MESSAGE_LEN];
@@ -160,6 +160,12 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress, struct burn_drive *drive,
       xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
       xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
       break;
+    case BURN_DRIVE_FORMATTING:
+      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
+						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Formatting..."));
+      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
+      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
+      break;
     default:
       DBG ("Status %d not supported", status);
       break;
@@ -168,15 +174,16 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress, struct burn_drive *drive,
   }
 
   /* check the libburn message queue for errors */
-  while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
-    g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
-    error = TRUE;
-  }
 #ifdef DEBUG
   while ((ret = burn_msgs_obtain ("ALL", &error_code, msg_text, &os_errno, severity)) == 1) {
     g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
   }
 #endif
+  while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
+    g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
+    error = TRUE;
+  }
+
   if (ret < 0)
     g_warning ("Fatal error while trying to retrieve libburn message!");
 

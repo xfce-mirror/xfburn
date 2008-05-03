@@ -163,6 +163,16 @@ thread_blank (ThreadBlankParams * params)
   enum burn_disc_status disc_state;
   struct burn_progress progress;
 
+  int ret;
+  gboolean error = FALSE;
+  int error_code;
+  char msg_text[BURN_MSGS_MESSAGE_LEN];
+  int os_errno;
+  char severity[80];
+  const char *final_status_text;
+  XfburnProgressDialogStatus final_status;
+  const char *final_message;
+
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
     g_free (params);
@@ -206,6 +216,12 @@ thread_blank (ThreadBlankParams * params)
     goto cleanup;
   }
 
+  /* set us up to receive fatal errors */
+  ret = burn_msgs_set_severities ("ALL", "NEVER", "libburn");
+
+  if (ret <= 0)
+    g_warning ("Failed to set libburn message severities, burn errors might not get detected!");
+ 
   burn_disc_erase(drive, params->blank_type);
   sleep(1);
 
@@ -220,7 +236,30 @@ thread_blank (ThreadBlankParams * params)
     usleep(500000);
   }
 
-  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED, _("Done"));
+  /* check the libburn message queue for errors */
+#ifdef DEBUG
+  while ((ret = burn_msgs_obtain ("ALL", &error_code, msg_text, &os_errno, severity)) == 1) {
+    g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
+  }
+#endif
+  while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
+    g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
+    error = TRUE;
+  }
+
+  if (ret < 0)
+    g_warning ("Fatal error while trying to retrieve libburn message!");
+
+  if (G_LIKELY (!error)) {
+    final_message = _("Done");
+    final_status = XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED;
+  } else {
+    final_status_text  = _("Failure");
+    final_status = XFBURN_PROGRESS_DIALOG_STATUS_FAILED;
+    final_message = g_strdup_printf ("%s: %s", final_status_text, msg_text);
+  }
+
+  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), final_status, final_message);
 
  cleanup:
   burn_drive_release (drive, params->eject ? 1 : 0);
