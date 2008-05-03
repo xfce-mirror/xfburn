@@ -173,6 +173,7 @@ xfburn_hal_manager_finalize (GObject * object)
   hal_finalize (priv->hal_context);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
+  halman = NULL;
 }
 
 /*           */
@@ -223,14 +224,12 @@ GObject *
 xfburn_hal_manager_new ()
 {
 
-  /*
-   * For this to work we should rather register a central halman in xfburn-main,
-   * but is the connect/disconnect to hal really expensive enough?
-  if (halman == NULL)
-    halman = XFBURN_HAL_MANAGER (g_object_new (XFBURN_TYPE_HAL_MANAGER, NULL));
+  /* register 'global' for halman, because the callback from libhal does not support
+   * user data, and otherwise we can't get the reference to emit the g_signal on */
+  if (G_UNLIKELY (halman != NULL))
+    g_warning ("Existing instance of hal-manager detected! This is a bug, please report this.");
+  halman = XFBURN_HAL_MANAGER (g_object_new (XFBURN_TYPE_HAL_MANAGER, NULL));
 
   return G_OBJECT (halman);
-  */
-  return g_object_new (XFBURN_TYPE_HAL_MANAGER, NULL);
 }
 #endif /* HAVE_HAL */
