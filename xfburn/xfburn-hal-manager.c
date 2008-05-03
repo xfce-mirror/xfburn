@@ -223,9 +223,14 @@ GObject *
 xfburn_hal_manager_new ()
 {
 
+  /*
+   * For this to work we should rather register a central halman in xfburn-main,
+   * but is the connect/disconnect to hal really expensive enough?
   if (halman == NULL)
     halman = XFBURN_HAL_MANAGER (g_object_new (XFBURN_TYPE_HAL_MANAGER, NULL));
 
   return G_OBJECT (halman);
+  */
+  return g_object_new (XFBURN_TYPE_HAL_MANAGER, NULL);
 }
 #endif /* HAVE_HAL */
