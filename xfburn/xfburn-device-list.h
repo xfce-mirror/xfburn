@@ -52,6 +52,7 @@ gint xfburn_device_list_init ();
 XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
 GList * xfburn_device_list_get_list ();
 enum burn_disc_status xfburn_device_list_get_disc_status ();
+int xfburn_device_list_get_media_no ();
 void xfburn_device_list_free ();
 
 gboolean xfburn_device_refresh_supported_speeds (XfburnDevice * device);

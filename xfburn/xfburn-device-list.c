@@ -38,6 +38,7 @@
 
 static GList *devices = NULL;
 static enum burn_disc_status disc_status;
+static int media_no = 0;
 
 #define CAN_BURN_CONDITION device->cdr || device->cdrw || device->dvdr || device->dvdram
 #define DEVICE_INFO_PRINTF "%s can burn: %d [cdr: %d, cdrw: %d, dvdr: %d, dvdram: %d]", device->name, CAN_BURN_CONDITION, device->cdr, device->cdrw, device->dvdr, device->dvdram
@@ -78,12 +79,12 @@ cmp_ints (gconstpointer a, gconstpointer b)
   return GPOINTER_TO_INT(a) - GPOINTER_TO_INT(b);
 }
 
+/* FIXME: rename function, as it is doing more than refresh speed */
 static void
 refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_info)
 {
   struct burn_speed_descriptor *speed_list = NULL;
   char media_name[80];
-  int media_no;
   int factor;
   gint ret;
   //int i;
@@ -104,8 +105,14 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
     disc_status = burn_disc_get_status (drive_info->drive);
   }
   */
-
   DBG ("disc_status = %d", disc_status);
+
+  if ((ret = burn_disc_get_profile(drive_info->drive, &media_no, media_name)) != 1) {
+    g_warning ("no profile could be retrieved");
+    media_no = 0;
+  }
+  DBG ("media_no = %d (%s), %s erasable", media_no, media_name, (burn_disc_erasable (drive_info->drive) ? "" : "NOT"));
+
   if (!(disc_status == BURN_DISC_BLANK || disc_status == BURN_DISC_APPENDABLE)) {
     DBG ("no writable / appendable disc found in drive, speed list not updated");
     return;
@@ -118,7 +125,7 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   if (ret > 0 && speed_list != NULL) {
     struct burn_speed_descriptor *el = speed_list;
     /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
-    if (burn_disc_get_profile(drive_info->drive, &media_no, media_name) == 1) {
+    if (media_no != 0) {
       /* this will fail if newer disk types get supported */
       if (media_no <= 0x0a)
         factor = CDR_1X_SPEED;
@@ -126,8 +133,6 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
         /* assume DVD for now */
         factor = DVD_1X_SPEED;
     } else {
-      
-      g_warning ("no profile could be retrieved to calculate speed");
       factor = 1;
     }
 
@@ -169,11 +174,22 @@ xfburn_device_list_get_disc_status ()
   return disc_status;
 }
 
+int
+xfburn_device_list_get_media_no ()
+{
+  return media_no;
+}
+
 gboolean
 xfburn_device_refresh_supported_speeds (XfburnDevice * device)
 {
   struct burn_drive_info *drive_info = NULL;
   gboolean ret;
+
+  if (G_UNLIKELY (device == NULL)) {
+    DBG ("Hmm, why can we refresh when there is no drive?");
+    return FALSE;
+  }
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
