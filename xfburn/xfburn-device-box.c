@@ -104,7 +104,8 @@ static void xfburn_device_box_finalize (GObject * object);
 static void xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
-static void update_status_label_visibility();
+static void update_status_label_visibility ();
+static XfburnDevice * get_selected_device (XfburnDeviceBoxPrivate *priv);
 static void cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box);
 static gboolean check_disc_validity (XfburnDeviceBoxPrivate *priv);
 static void cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box);
@@ -503,8 +504,11 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
           gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">No access to drive (mounted?)</span>"));
           break;
         default:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
-          DBG ("weird disc_status = %d", disc_status);
+          /* if there is no detected device, then don't print an error message as it is expected to not have a disc status */
+          if (get_selected_device (priv) != NULL) {
+            gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
+            DBG ("weird disc_status = %d", disc_status);
+          }
       }
     }
   } else {
@@ -576,6 +580,23 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
   */
   
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_mode), 0);
+}
+
+static XfburnDevice *
+get_selected_device (XfburnDeviceBoxPrivate *priv)
+{
+
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  XfburnDevice * device = NULL;
+  gboolean ret;
+
+  model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_device));
+  ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
+  if (ret)
+    gtk_tree_model_get (model, &iter, DEVICE_POINTER_COLUMN, &device, -1);
+
+  return device;
 }
 
 static void
@@ -665,17 +686,8 @@ XfburnDevice *
 xfburn_device_box_get_selected_device (XfburnDeviceBox *box)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-  GtkTreeModel *model;
-  GtkTreeIter iter;
-  XfburnDevice * device = NULL;
-  gboolean ret;
 
-  model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_device));
-  ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
-  if (ret)
-    gtk_tree_model_get (model, &iter, DEVICE_POINTER_COLUMN, &device, -1);
-
-  return device;
+  return get_selected_device (priv);
 }
 
 gint
