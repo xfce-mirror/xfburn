@@ -204,6 +204,7 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   GtkListStore *store = NULL;
   GtkCellRenderer *cell;
   GtkWidget *hbox;
+  gboolean have_device;
   
   /* devices */
   store = gtk_list_store_new (DEVICE_N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER);
@@ -217,6 +218,7 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_box_pack_start (GTK_BOX (box), priv->combo_device, FALSE, FALSE, BORDER);
 
   device = xfburn_device_list_get_list ();
+  have_device = (device != NULL);
 
   while (device) {
     XfburnDevice *device_data = (XfburnDevice *) device->data;
@@ -227,7 +229,7 @@ xfburn_device_box_init (XfburnDeviceBox * box)
 
     device = g_list_next (device);
   }
-  gtk_widget_set_sensitive (priv->combo_device, device != NULL);
+  gtk_widget_set_sensitive (priv->combo_device, have_device);
   
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox);
@@ -260,7 +262,7 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_widget_show (button);
   //gtk_box_pack_start (GTK_BOX (priv->hbox_speed_selection), button, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
-  gtk_widget_set_sensitive (button, device != NULL);
+  gtk_widget_set_sensitive (button, have_device);
 
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_speed_refresh_clicked), box);
 
@@ -282,7 +284,7 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_mode), cell, "text", MODE_TEXT_COLUMN, NULL);
   gtk_widget_show (priv->combo_mode);
   gtk_box_pack_start (GTK_BOX (priv->hbox_mode_selection), priv->combo_mode, TRUE, TRUE, BORDER);
-  gtk_widget_set_sensitive (priv->combo_mode, device != NULL);
+  gtk_widget_set_sensitive (priv->combo_mode, have_device);
 
   /* status label */
   priv->status_label = gtk_label_new ("");
