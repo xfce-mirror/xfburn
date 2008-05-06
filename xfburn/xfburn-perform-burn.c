@@ -174,15 +174,15 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress, struct burn_drive *drive,
   }
 
   /* check the libburn message queue for errors */
+  while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
+    g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
+    error = TRUE;
+  }
 #ifdef DEBUG
   while ((ret = burn_msgs_obtain ("ALL", &error_code, msg_text, &os_errno, severity)) == 1) {
     g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
   }
 #endif
-  while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
-    g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
-    error = TRUE;
-  }
 
   if (ret < 0)
     g_warning ("Fatal error while trying to retrieve libburn message!");
