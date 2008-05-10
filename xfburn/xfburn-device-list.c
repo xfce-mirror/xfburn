@@ -38,7 +38,8 @@
 
 static GList *devices = NULL;
 static enum burn_disc_status disc_status;
-static int media_no = 0;
+static int profile_no = 0;
+static int is_erasable = 0;
 
 #define CAN_BURN_CONDITION device->cdr || device->cdrw || device->dvdr || device->dvdram
 #define DEVICE_INFO_PRINTF "%s can burn: %d [cdr: %d, cdrw: %d, dvdr: %d, dvdram: %d]", device->name, CAN_BURN_CONDITION, device->cdr, device->cdrw, device->dvdr, device->dvdram
@@ -84,19 +85,21 @@ static void
 refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_info)
 {
   struct burn_speed_descriptor *speed_list = NULL;
-  char media_name[80];
+  char profile_name[80];
   int factor;
   gint ret;
+  /*
   int status, num_formats;
   off_t size;
   unsigned bl_sas;
   int i;
+  */
 
   /* empty previous list */
   g_slist_free (device->supported_cdr_speeds);
   device->supported_cdr_speeds = NULL;
 
-  /* check if there is media in the drive */
+  /* check if there is a disc in the drive */
   while ((disc_status = burn_disc_get_status (drive_info->drive)) == BURN_DISC_UNREADY)
     usleep(100001);
 
@@ -110,18 +113,28 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   */
   DBG ("disc_status = %d", disc_status);
 
-  if ((ret = burn_disc_get_profile(drive_info->drive, &media_no, media_name)) != 1) {
+  if ((ret = burn_disc_get_profile(drive_info->drive, &profile_no, profile_name)) != 1) {
     g_warning ("no profile could be retrieved");
-    media_no = 0;
+    profile_no = 0;
   }
-  DBG ("media_no = %d (%s), %s erasable", media_no, media_name, (burn_disc_erasable (drive_info->drive) ? "" : "NOT"));
+  is_erasable = burn_disc_erasable (drive_info->drive);
+  DBG ("profile_no = 0x%x (%s), %s erasable", profile_no, profile_name, (is_erasable ? "" : "NOT"));
+
+  if (ret == 1 && profile_no == 0 && is_erasable && disc_status == 6) {
+    DBG ("work around bug in my drive or libburn: disc is a full DVD-RW sequential");
+    profile_no = XFBURN_PROFILE_DVD_MINUS_RW_SEQUENTIAL;
+    disc_status = BURN_DISC_FULL;
+  }
+
+  /*
   ret = burn_disc_get_formats (drive_info->drive, &status, &size, &bl_sas, &num_formats);
-  DBG ("_get_formats (%d) = %d, %lu, %d, %d", ret, status, size, bl_sas, num_formats);
+  DBG ("_get_formats (%d) = %d, %llu, %d, %d", ret, status, size, bl_sas, num_formats);
   for (i=0; i<num_formats; i++) {
     int type;
     ret = burn_disc_get_format_descr (drive_info->drive, i, &type, &size, &bl_sas);
-    DBG ("_get_format_descr (%d) = 0x%x, %lu, %u", ret, type, size, bl_sas);
+    DBG ("_get_format_descr (%d) = 0x%x, %llu, %u", ret, type, size, bl_sas);
   }
+  */
 
 
   if (!(disc_status == BURN_DISC_BLANK || disc_status == BURN_DISC_APPENDABLE)) {
@@ -135,10 +148,10 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
 
   if (ret > 0 && speed_list != NULL) {
     struct burn_speed_descriptor *el = speed_list;
-    /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
-    if (media_no != 0) {
+    /* check profile, so we can convert from 'kb/s' into 'x' rating */
+    if (profile_no != 0) {
       /* this will fail if newer disk types get supported */
-      if (media_no <= 0x0a)
+      if (profile_no <= 0x0a)
         factor = CDR_1X_SPEED;
       else
         /* assume DVD for now */
@@ -186,9 +199,15 @@ xfburn_device_list_get_disc_status ()
 }
 
 int
-xfburn_device_list_get_media_no ()
+xfburn_device_list_get_profile_no ()
 {
-  return media_no;
+  return profile_no;
+}
+
+gboolean
+xfburn_device_list_disc_is_erasable ()
+{
+  return is_erasable != 0;
 }
 
 gboolean

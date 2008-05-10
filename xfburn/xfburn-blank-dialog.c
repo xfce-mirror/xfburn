@@ -43,12 +43,24 @@ typedef struct
   GtkWidget *check_eject;
 } XfburnBlankDialogPrivate;
 
+enum XfburnBlankModes {
+  XFBURN_BLANK_FAST,      /* erase w/ fast flag */
+  XFBURN_BLANK_COMPLETE,  /* erase, no flag */
+  XFBURN_FORMAT_FAST,
+  XFBURN_FORMAT_COMPLETE,
+  XFBURN_DEFORMAT_FAST,
+  XFBURN_DEFORMAT_COMPLETE,
+};
+
+
 static void xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass);
 static void xfburn_blank_dialog_init (XfburnBlankDialog * sp);
 
 static void xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, gpointer user_data);
 
 static XfceTitledDialogClass *parent_class = NULL;
+
+
 
 GtkType
 xfburn_blank_dialog_get_type ()
@@ -237,15 +249,15 @@ thread_blank (ThreadBlankParams * params)
   }
 
   /* check the libburn message queue for errors */
+  while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
+    g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
+    error = TRUE;
+  }
 #ifdef DEBUG
   while ((ret = burn_msgs_obtain ("ALL", &error_code, msg_text, &os_errno, severity)) == 1) {
     g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
   }
 #endif
-  while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
-    g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
-    error = TRUE;
-  }
 
   if (ret < 0)
     g_warning ("Fatal error while trying to retrieve libburn message!");

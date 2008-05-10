@@ -27,7 +27,8 @@
 #include <libburn.h>
 
 /* what kind of recordable discs are there */
-enum XfburnDiscTypes{
+/* usused so far */
+enum XfburnDiscTypes {
   /* record-once types */
   XFBURN_CDR,
   XFBURN_DVD_R, /* we don't need a distinction for record once between + / - */
@@ -36,6 +37,20 @@ enum XfburnDiscTypes{
   XFBURN_DVD_RAM,
   XFBURN_DVD_MINUS_RW,
   XFBURN_DVD_PLUS_RW,
+};
+
+enum XfburnDiscProfiles {
+  XFBURN_PROFILE_CDR = 0x09,
+  XFBURN_PROFILE_CDRW = 0x0a,
+  XFBURN_PROFILE_DVD_MINUS_R = 0x11,
+  XFBURN_PROFILE_DVDRAM = 0x12,
+  XFBURN_PROFILE_DVD_MINUS_RW_OVERWRITE = 0x13,
+  XFBURN_PROFILE_DVD_MINUS_RW_SEQUENTIAL = 0x14,
+  XFBURN_PROFILE_DVD_MINUS_R_DL = 0x15,
+  XFBURN_PROFILE_DVD_PLUS_RW = 0x1a,
+  XFBURN_PROFILE_DVD_PLUS_R = 0x1b,
+  XFBURN_PROFILE_DVD_PLUS_R_DL = 0x2b,
+  XFBURN_PROFILE_BD_RE = 0x43,
 };
 
 typedef struct
@@ -64,7 +79,8 @@ gint xfburn_device_list_init ();
 XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
 GList * xfburn_device_list_get_list ();
 enum burn_disc_status xfburn_device_list_get_disc_status ();
-int xfburn_device_list_get_media_no ();
+int xfburn_device_list_get_profile_no ();
+gboolean xfburn_device_list_disc_is_erasable ();
 void xfburn_device_list_free ();
 
 gboolean xfburn_device_refresh_supported_speeds (XfburnDevice * device);

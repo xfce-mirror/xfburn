@@ -497,7 +497,8 @@ static gboolean
 check_disc_validity (XfburnDeviceBoxPrivate *priv)
 {
   enum burn_disc_status disc_status = xfburn_device_list_get_disc_status ();
-  //int media_no = xfburn_device_list_get_media_no ();
+  int profile_no = xfburn_device_list_get_profile_no ();
+  gboolean is_erasable = xfburn_device_list_disc_is_erasable ();
 
   if (!priv->blank_mode) {
     priv->valid_disc = (disc_status == BURN_DISC_BLANK) || (disc_status == BURN_DISC_APPENDABLE);
@@ -525,25 +526,38 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
       }
     }
   } else {
-    priv->valid_disc = (disc_status == BURN_DISC_FULL) || (disc_status == BURN_DISC_APPENDABLE);
+    priv->valid_disc = is_erasable; // (disc_status == BURN_DISC_FULL) || (disc_status == BURN_DISC_APPENDABLE);
 
     if (!priv->valid_disc) {
-      switch (disc_status) {
-        case BURN_DISC_EMPTY:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Drive is empty!</span>"));
+      switch (profile_no) {
+        case XFBURN_PROFILE_CDR:
+        case XFBURN_PROFILE_DVD_MINUS_R:
+        case XFBURN_PROFILE_DVD_MINUS_R_DL:
+        case XFBURN_PROFILE_DVD_PLUS_R:
+        case XFBURN_PROFILE_DVD_PLUS_R_DL:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Write-once disc, no blanking possible</span>"));
           break;
-        case BURN_DISC_BLANK:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is already blank!</span>"));
-          break;
-        case BURN_DISC_UNSUITABLE:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is unsuitable!</span>"));
-          break;
-        case BURN_DISC_UNGRABBED:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">No access to drive (mounted?)</span>"));
+        case XFBURN_PROFILE_DVD_PLUS_RW:
+          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">DVD+RW does not need blanking</span>"));
           break;
         default:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
-          DBG ("weird disc_status = %d", disc_status);
+          switch (disc_status) {
+            case BURN_DISC_EMPTY:
+              gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Drive is empty!</span>"));
+              break;
+            case BURN_DISC_BLANK:
+              gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is already blank!</span>"));
+              break;
+            case BURN_DISC_UNSUITABLE:
+              gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is unsuitable!</span>"));
+              break;
+            case BURN_DISC_UNGRABBED:
+              gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">No access to drive (mounted?)</span>"));
+              break;
+            default:
+              gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
+              DBG ("weird disc_status = %d", disc_status);
+          }
       }
     }
   }
