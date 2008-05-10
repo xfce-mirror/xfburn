@@ -87,7 +87,10 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   char media_name[80];
   int factor;
   gint ret;
-  //int i;
+  int status, num_formats;
+  off_t size;
+  unsigned bl_sas;
+  int i;
 
   /* empty previous list */
   g_slist_free (device->supported_cdr_speeds);
@@ -112,6 +115,14 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
     media_no = 0;
   }
   DBG ("media_no = %d (%s), %s erasable", media_no, media_name, (burn_disc_erasable (drive_info->drive) ? "" : "NOT"));
+  ret = burn_disc_get_formats (drive_info->drive, &status, &size, &bl_sas, &num_formats);
+  DBG ("_get_formats (%d) = %d, %lu, %d, %d", ret, status, size, bl_sas, num_formats);
+  for (i=0; i<num_formats; i++) {
+    int type;
+    ret = burn_disc_get_format_descr (drive_info->drive, i, &type, &size, &bl_sas);
+    DBG ("_get_format_descr (%d) = 0x%x, %lu, %u", ret, type, size, bl_sas);
+  }
+
 
   if (!(disc_status == BURN_DISC_BLANK || disc_status == BURN_DISC_APPENDABLE)) {
     DBG ("no writable / appendable disc found in drive, speed list not updated");

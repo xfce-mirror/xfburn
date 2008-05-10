@@ -26,6 +26,18 @@
 
 #include <libburn.h>
 
+/* what kind of recordable discs are there */
+enum XfburnDiscTypes{
+  /* record-once types */
+  XFBURN_CDR,
+  XFBURN_DVD_R, /* we don't need a distinction for record once between + / - */
+  XFBURN_REWRITABLE, /* marker, everything after this is rewritable */
+  XFBURN_CDRW,
+  XFBURN_DVD_RAM,
+  XFBURN_DVD_MINUS_RW,
+  XFBURN_DVD_PLUS_RW,
+};
+
 typedef struct
 {
   gchar *name;
