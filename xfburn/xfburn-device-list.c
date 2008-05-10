@@ -39,6 +39,7 @@
 static GList *devices = NULL;
 static enum burn_disc_status disc_status;
 static int profile_no = 0;
+static char profile_name[80];
 static int is_erasable = 0;
 
 #define CAN_BURN_CONDITION device->cdr || device->cdrw || device->dvdr || device->dvdram
@@ -85,7 +86,6 @@ static void
 refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_info)
 {
   struct burn_speed_descriptor *speed_list = NULL;
-  char profile_name[80];
   int factor;
   gint ret;
   /*
@@ -124,6 +124,7 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
     DBG ("work around bug in my drive or libburn: disc is a full DVD-RW sequential");
     profile_no = XFBURN_PROFILE_DVD_MINUS_RW_SEQUENTIAL;
     disc_status = BURN_DISC_FULL;
+    strcpy (profile_name, "(?) DVD-RW sequiential");
   }
 
   /*
@@ -204,6 +205,12 @@ xfburn_device_list_get_profile_no ()
   return profile_no;
 }
 
+const char *
+xfburn_device_list_get_profile_name ()
+{
+  return profile_name;
+}
+
 gboolean
 xfburn_device_list_disc_is_erasable ()
 {
@@ -249,6 +256,8 @@ xfburn_device_list_init ()
   gint i; 
   gboolean can_burn;
   guint n_drives = 0;
+
+  *profile_name = '\0';
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");

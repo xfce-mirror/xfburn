@@ -80,6 +80,9 @@ typedef struct
   gboolean blank_mode;
   
   GtkWidget *combo_device;
+
+  GtkWidget *hbox_refresh;
+  GtkWidget *disc_label;
   
   GtkWidget *hbox_speed_selection;
   GtkWidget *combo_speed;
@@ -203,7 +206,7 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   GList *device = NULL;
   GtkListStore *store = NULL;
   GtkCellRenderer *cell;
-  GtkWidget *hbox;
+  //GtkWidget *hbox;
   gboolean have_device;
   
   /* devices */
@@ -231,14 +234,37 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   }
   gtk_widget_set_sensitive (priv->combo_device, have_device);
   
+  /*
   hbox = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (hbox);
   gtk_box_pack_start (GTK_BOX (box), hbox, FALSE, FALSE, BORDER);
+  */
+
+  /* disc label */
+  priv->hbox_refresh = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (priv->hbox_refresh);
+  gtk_box_pack_start (GTK_BOX (box), priv->hbox_refresh, TRUE, TRUE, BORDER);
+
+  priv->disc_label = gtk_label_new ("");
+  gtk_widget_show (priv->disc_label);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_refresh), priv->disc_label, TRUE, TRUE, BORDER);
+
+  /* refresh */
+  img = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_SMALL_TOOLBAR);
+  gtk_widget_show (img);
+  button = gtk_button_new ();
+  gtk_container_add (GTK_CONTAINER (button), img);
+  gtk_widget_show (button);
+  //gtk_box_pack_start (GTK_BOX (priv->hbox_speed_selection), button, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_refresh), button, FALSE, FALSE, BORDER);
+  gtk_widget_set_sensitive (button, have_device);
+
+  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_speed_refresh_clicked), box);
 
   /* speed */
   priv->hbox_speed_selection = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (priv->hbox_speed_selection);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->hbox_speed_selection, TRUE, TRUE, BORDER);
+  gtk_box_pack_start (GTK_BOX (box), priv->hbox_speed_selection, TRUE, TRUE, BORDER);
 
   label = gtk_label_new_with_mnemonic (_("_Speed:"));
   gtk_widget_show (label);
@@ -253,18 +279,6 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_speed), cell, "text", SPEED_TEXT_COLUMN, NULL);
   gtk_widget_show (priv->combo_speed);
   gtk_box_pack_start (GTK_BOX (priv->hbox_speed_selection), priv->combo_speed, TRUE, TRUE, BORDER);
-
-  /* refresh */
-  img = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  gtk_widget_show (img);
-  button = gtk_button_new ();
-  gtk_container_add (GTK_CONTAINER (button), img);
-  gtk_widget_show (button);
-  //gtk_box_pack_start (GTK_BOX (priv->hbox_speed_selection), button, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
-  gtk_widget_set_sensitive (button, have_device);
-
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_speed_refresh_clicked), box);
 
   /* mode */
   priv->hbox_mode_selection = gtk_hbox_new (FALSE, 0);
@@ -499,6 +513,8 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
   enum burn_disc_status disc_status = xfburn_device_list_get_disc_status ();
   int profile_no = xfburn_device_list_get_profile_no ();
   gboolean is_erasable = xfburn_device_list_disc_is_erasable ();
+  
+  gtk_label_set_text (GTK_LABEL (priv->disc_label), xfburn_device_list_get_profile_name ());
 
   if (!priv->blank_mode) {
     priv->valid_disc = (disc_status == BURN_DISC_BLANK) || (disc_status == BURN_DISC_APPENDABLE);
@@ -629,6 +645,7 @@ get_selected_device (XfburnDeviceBoxPrivate *priv)
 static void
 cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
 {
+  //XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   XfburnDevice *device = NULL;
   
   device = xfburn_device_box_get_selected_device (box);

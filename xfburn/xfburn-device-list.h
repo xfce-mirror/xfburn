@@ -80,6 +80,7 @@ XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
 GList * xfburn_device_list_get_list ();
 enum burn_disc_status xfburn_device_list_get_disc_status ();
 int xfburn_device_list_get_profile_no ();
+const char * xfburn_device_list_get_profile_name ();
 gboolean xfburn_device_list_disc_is_erasable ();
 void xfburn_device_list_free ();
 
