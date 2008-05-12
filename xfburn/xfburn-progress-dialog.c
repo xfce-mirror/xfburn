@@ -43,6 +43,8 @@ typedef struct
 {
   XfburnProgressDialogStatus status;
   int fd_stdin;
+  gboolean animate;
+  int ani_index;
   
   GtkWidget *label_action;
   GtkWidget *progress_bar;
@@ -74,7 +76,10 @@ enum
   PROP_0,
   PROP_STATUS,
   PROP_SHOW_BUFFERS,
+  PROP_ANIMATE,
 };
+
+static gchar animation[] = { '-', '\\', '|', '/' };
 
 /*                                    */
 /* enumeration type for dialog status */
@@ -144,6 +149,9 @@ xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
   g_object_class_install_property (object_class, PROP_SHOW_BUFFERS,
                                    g_param_spec_boolean ("show-buffers", "Show buffers", "Show buffers",
                                                          TRUE, G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_ANIMATE,
+                                   g_param_spec_boolean ("animate", "Show an animation", "Show an animation",
+                                                         FALSE, G_PARAM_READWRITE));
 }
 
 static void
@@ -242,6 +250,9 @@ xfburn_progress_dialog_get_property (GObject * object, guint prop_id, GValue * v
     g_object_get (G_OBJECT (priv->hbox_buffers), "visible", &show_buffers, NULL);
     g_value_set_boolean (value, show_buffers);
     break;
+  case PROP_ANIMATE:
+    g_value_set_boolean (value, priv->animate);
+    break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     break;
@@ -252,6 +263,7 @@ static void
 xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec)
 {
   XfburnProgressDialog *dialog = XFBURN_PROGRESS_DIALOG (object);
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
 
   switch (prop_id) {
   case PROP_STATUS:
@@ -259,6 +271,11 @@ xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GVal
     break;
   case PROP_SHOW_BUFFERS:
     xfburn_progress_dialog_show_buffers (dialog, g_value_get_boolean (value));
+    break;
+  case PROP_ANIMATE:
+    priv->animate = g_value_get_boolean (value);
+    priv->ani_index = 0;
+    DBG ("Set animate to %d", priv->animate);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -454,7 +471,12 @@ xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog,
     text = g_strdup ("0%");
   }
   else if (priv->status == XFBURN_PROGRESS_DIALOG_STATUS_RUNNING && fraction >= cur_fraction) {
-    text = g_strdup_printf ("%d%%", (int) (fraction * 100));
+    if (priv->animate) {
+      text = g_strdup_printf ("%2d%% %c", (int) (fraction * 100), animation[priv->ani_index]);
+      priv->ani_index = (priv->ani_index + 1) % 4;
+    } else {
+      text = g_strdup_printf ("%d%%  ", (int) (fraction * 100));
+    }
   }
   else if (fraction < cur_fraction) {
     return;
