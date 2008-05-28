@@ -308,6 +308,7 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBa
   gboolean valid_disc;
 
   gtk_widget_set_sensitive (priv->frame_device, !gtk_toggle_button_get_active (button));
+  xfburn_device_box_set_sensitive (XFBURN_DEVICE_BOX (priv->device_box), !gtk_toggle_button_get_active (button));
   
   gtk_widget_set_sensitive (priv->hbox_iso, gtk_toggle_button_get_active (button));
   gtk_widget_set_sensitive (priv->check_eject, !gtk_toggle_button_get_active (button));

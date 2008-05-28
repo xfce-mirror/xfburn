@@ -82,8 +82,8 @@ gchar *xfburn_device_box_get_selected (XfburnDeviceBox *box);
 XfburnDevice *xfburn_device_box_get_selected_device (XfburnDeviceBox *box);
 
 gint xfburn_device_box_get_speed (XfburnDeviceBox *box);
-
 XfburnWriteMode xfburn_device_box_get_mode (XfburnDeviceBox *box);
+void xfburn_device_box_set_sensitive (XfburnDeviceBox *box, gboolean sensitivity);
 
 G_END_DECLS
 #endif

@@ -88,6 +88,7 @@ typedef struct
   GtkWidget *combo_speed;
 
   GtkWidget *status_label;
+  gchar *status_text;
 
   GtkWidget *hbox_mode_selection;
   GtkWidget *combo_mode;
@@ -107,6 +108,7 @@ static void xfburn_device_box_finalize (GObject * object);
 static void xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
+static void status_label_update (XfburnDeviceBoxPrivate *priv);
 static void update_status_label_visibility ();
 static XfburnDevice * get_selected_device (XfburnDeviceBoxPrivate *priv);
 static void cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box);
@@ -302,6 +304,7 @@ xfburn_device_box_init (XfburnDeviceBox * box)
 
   /* status label */
   priv->status_label = gtk_label_new ("");
+  priv->status_text = "";
   gtk_widget_show (priv->status_label);
   gtk_box_pack_start (GTK_BOX (box), priv->status_label, FALSE, FALSE, 0);
 
@@ -507,6 +510,25 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_speed), gtk_tree_model_iter_n_children (model, NULL) - 1);
 }
 
+static void
+status_label_update (XfburnDeviceBoxPrivate *priv)
+{
+  gchar * text;
+  gboolean sensitive;
+
+  sensitive = GTK_WIDGET_SENSITIVE (priv->combo_device);
+
+  //DBG ("sensitive = %d", sensitive);
+
+  if (sensitive)
+    text = g_strdup_printf ("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">%s</span>", priv->status_text);
+  else
+    text = g_strdup_printf ("<span weight=\"bold\" foreground=\"gray\" stretch=\"semiexpanded\">%s</span>", priv->status_text);
+
+  gtk_label_set_markup (GTK_LABEL(priv->status_label), text);
+  g_free (text);
+}
+
 static gboolean
 check_disc_validity (XfburnDeviceBoxPrivate *priv)
 {
@@ -522,21 +544,26 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
     if (!priv->valid_disc) {
       switch (disc_status) {
         case BURN_DISC_EMPTY:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Drive is empty!</span>"));
+          priv->status_text = _("Drive is empty!");
+          status_label_update (priv);
           break;
         case BURN_DISC_FULL:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is full!</span>"));
+          priv->status_text = _("Inserted disc is full!");
+          status_label_update (priv);
           break;
         case BURN_DISC_UNSUITABLE:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is unsuitable!</span>"));
+          priv->status_text = _("Inserted disc is unsuitable!");
+          status_label_update (priv);
           break;
         case BURN_DISC_UNGRABBED:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">No access to drive (mounted?)</span>"));
+          priv->status_text = _("No access to drive (mounted?)");
+          status_label_update (priv);
           break;
         default:
           /* if there is no detected device, then don't print an error message as it is expected to not have a disc status */
           if (get_selected_device (priv) != NULL) {
-            gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
+            priv->status_text = _("Error determining disc!");
+            status_label_update (priv);
             DBG ("weird disc_status = %d", disc_status);
           }
       }
@@ -551,27 +578,34 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
         case XFBURN_PROFILE_DVD_MINUS_R_DL:
         case XFBURN_PROFILE_DVD_PLUS_R:
         case XFBURN_PROFILE_DVD_PLUS_R_DL:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Write-once disc, no blanking possible</span>"));
+          priv->status_text = _("Write-once disc, no blanking possible");
+          status_label_update (priv);
           break;
         case XFBURN_PROFILE_DVD_PLUS_RW:
-          gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">DVD+RW does not need blanking</span>"));
+          priv->status_text = _("DVD+RW does not need blanking");
+          status_label_update (priv);
           break;
         default:
           switch (disc_status) {
             case BURN_DISC_EMPTY:
-              gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Drive is empty!</span>"));
+              priv->status_text = _("Drive is empty!");
+              status_label_update (priv);
               break;
             case BURN_DISC_BLANK:
-              gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is already blank!</span>"));
+              priv->status_text = _("Inserted disc is already blank!");
+              status_label_update (priv);
               break;
             case BURN_DISC_UNSUITABLE:
-              gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Inserted disc is unsuitable!</span>"));
+              priv->status_text = _("Inserted disc is unsuitable!");
+              status_label_update (priv);
               break;
             case BURN_DISC_UNGRABBED:
-              gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">No access to drive (mounted?)</span>"));
+              priv->status_text = _("No access to drive (mounted?)");
+              status_label_update (priv);
               break;
             default:
-              gtk_label_set_markup (GTK_LABEL(priv->status_label), _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Error determining disc!</span>"));
+              priv->status_text = _("Error determining disc!");
+              status_label_update (priv);
               DBG ("weird disc_status = %d", disc_status);
           }
       }
@@ -580,7 +614,8 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
 
   gtk_widget_set_sensitive (priv->combo_speed, priv->valid_disc);
   if (priv->valid_disc)
-    gtk_label_set_text (GTK_LABEL(priv->status_label), "");
+    priv->status_text = _("");
+    status_label_update (priv);
   return priv->valid_disc;
 }
 
@@ -751,6 +786,17 @@ xfburn_device_box_get_speed (XfburnDeviceBox *box)
     gtk_tree_model_get (model, &iter, SPEED_VALUE_COLUMN, &speed, -1);
 
   return speed;
+}
+
+void xfburn_device_box_set_sensitive (XfburnDeviceBox *box, gboolean sensitivity)
+{
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+
+  /* why do we need to explicitly set this? It gets grayed out even
+   * without this call! */
+  gtk_widget_set_sensitive (priv->combo_device, sensitivity);
+  //DBG ("sensitive = %d", GTK_WIDGET_SENSITIVE (GTK_WIDGET (box)));
+  status_label_update (priv);
 }
 
 XfburnWriteMode
