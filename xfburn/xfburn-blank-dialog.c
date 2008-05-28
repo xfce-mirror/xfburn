@@ -53,8 +53,8 @@ typedef enum {
   XFBURN_BLANK_MODE_LAST,
 } XfburnBlankMode;
 
-static char * blank_mode_names[] = 
-  { "Blank Fast",
+static char * blank_mode_names[] = { 
+    "Blank Fast",
     "Blank Complete (slow)",
     "Format Fast",
     "Format Complete",
@@ -78,6 +78,7 @@ static void xfburn_blank_dialog_init (XfburnBlankDialog * sp);
 
 static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode);
 //static GList * get_valid_blank_modes (XfburnDevice *device);
+static gboolean thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *drive_info);
 static void thread_blank (ThreadBlankParams * params);
 static void xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, gpointer user_data);
 
@@ -224,12 +225,11 @@ static GList * get_valid_blank_modes (XfburnDevice *device)
 }
 */
 
-static void
-thread_blank (ThreadBlankParams * params)
+static gboolean
+thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *drive_info)
 {
   GtkWidget *dialog_progress = params->dialog_progress;
 
-  struct burn_drive_info *drive_info = NULL;
   struct burn_drive *drive;
   enum burn_disc_status disc_state;
   struct burn_progress progress;
@@ -243,18 +243,6 @@ thread_blank (ThreadBlankParams * params)
   const char *final_status_text;
   XfburnProgressDialogStatus final_status;
   gchar *final_message = NULL;
-
-  if (!burn_initialize ()) {
-    g_critical ("Unable to initialize libburn");
-    g_free (params);
-    return;
-  }
-
-  if (!xfburn_device_grab (params->device, &drive_info)) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab drive"));
-
-    goto end;
-  }
 
   drive = drive_info->drive;
 
@@ -270,7 +258,7 @@ thread_blank (ThreadBlankParams * params)
     if (params->blank_mode <= XFBURN_BLANK_COMPLETE) {
       /* blanking can only be performed on blank discs, format and deformat are allowed to be blank ones */
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The inserted disc is already blank"));
-      goto cleanup;
+      return FALSE;
     }
   case BURN_DISC_FULL:
   case BURN_DISC_APPENDABLE:
@@ -279,16 +267,16 @@ thread_blank (ThreadBlankParams * params)
     break;
   case BURN_DISC_EMPTY:
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No disc detected in the drive"));
-    goto cleanup;
+    return FALSE;
   default:
     //xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize drive and media state"));
-    //goto cleanup;
+    //return FALSE;
     break;
   }
 
   if (!burn_disc_erasable (drive)) {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Media is not erasable"));
-    goto cleanup;
+    return FALSE;
   }
 
   /* set us up to receive fatal errors */
@@ -357,13 +345,31 @@ thread_blank (ThreadBlankParams * params)
   }
 
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), final_status, final_message);
+  g_free (final_message);
 
- cleanup:
-  burn_drive_release (drive, params->eject ? 1 : 0);
- end:
+  return TRUE;
+}
+
+static void
+thread_blank (ThreadBlankParams * params)
+{
+  struct burn_drive_info *drive_info = NULL;
+
+  if (!burn_initialize ()) {
+    g_critical ("Unable to initialize libburn");
+    g_free (params);
+    return;
+  }
+
+  if (!xfburn_device_grab (params->device, &drive_info)) {
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (params->dialog_progress), _("Unable to grab drive"));
+  } else {
+    thread_blank_perform_blank (params, drive_info);
+    burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
+  }
+ 
   burn_finish ();
   g_free (params);
-  g_free (final_message);
 }
 
 static void
