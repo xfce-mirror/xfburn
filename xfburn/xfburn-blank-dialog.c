@@ -43,6 +43,9 @@ typedef struct
   GtkWidget *check_eject;
 } XfburnBlankDialogPrivate;
 
+/* FIXME: the 128MB comes from cdrskin, but why? Is this really complete? */
+#define XFBURN_FORMAT_COMPLETE_SIZE 128*1024*1024
+
 typedef enum {
   XFBURN_BLANK_FAST,        /* erase w/ fast flag */
   XFBURN_BLANK_COMPLETE,    /* erase, no flag */
@@ -62,7 +65,11 @@ static char * blank_mode_names[] = {
     "Deformat Complete",
   };
 
-#define XFBURN_FORMAT_COMPLETE_SIZE 128*1024*1024
+enum {
+  BLANK_COMBO_NAME_COLUMN,
+  BLANK_COMBO_MODE_COLUMN,
+  BLANK_COMBO_N_COLUMNS,
+};
 
 typedef struct {
   GtkWidget *dialog_progress;
@@ -78,6 +85,7 @@ static void xfburn_blank_dialog_init (XfburnBlankDialog * sp);
 
 static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode);
 //static GList * get_valid_blank_modes (XfburnDevice *device);
+static XfburnBlankMode get_selected_mode (XfburnBlankDialogPrivate *priv);
 static gboolean thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *drive_info);
 static void thread_blank (ThreadBlankParams * params);
 static void xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, gpointer user_data);
@@ -129,6 +137,8 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   GtkWidget *button;
 
   XfburnBlankMode mode = XFBURN_BLANK_FAST;
+  GtkListStore *store = NULL;
+  GtkCellRenderer *cell;
   
   gtk_window_set_title (GTK_WINDOW (obj), _("Blank CD-RW"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
@@ -146,10 +156,19 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   /* blank mode */
-  priv->combo_type = gtk_combo_box_new_text ();
+  store = gtk_list_store_new (BLANK_COMBO_N_COLUMNS, G_TYPE_STRING, G_TYPE_INT);
+  priv->combo_type = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
+  g_object_unref (store);
+  cell = gtk_cell_renderer_text_new ();
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combo_type), cell, TRUE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_type), cell, "text", BLANK_COMBO_NAME_COLUMN, NULL);
   while (mode < XFBURN_BLANK_MODE_LAST) {
-    if (is_valid_blank_mode (NULL, mode)) 
-      gtk_combo_box_append_text (GTK_COMBO_BOX (priv->combo_type), _(blank_mode_names[mode]));
+    if (is_valid_blank_mode (NULL, mode)) {
+      GtkTreeIter iter;
+
+      gtk_list_store_append (store, &iter);
+      gtk_list_store_set (store, &iter, BLANK_COMBO_NAME_COLUMN, blank_mode_names[mode], BLANK_COMBO_MODE_COLUMN, mode, -1);
+    }
     mode++;
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_type), 0);
@@ -191,8 +210,9 @@ static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
 {
   int profile_no = xfburn_device_list_get_profile_no ();
   gboolean erasable = xfburn_device_list_disc_is_erasable ();
+  enum burn_disc_status disc_state = xfburn_device_list_get_disc_status ();
   
-  if (profile_no == 0x14) {
+  if (profile_no == 0x13) {
     /* in 0x14 no blanking is needed, we can only deformat */
     if (mode == XFBURN_DEFORMAT_FAST || mode == XFBURN_DEFORMAT_COMPLETE)
       return TRUE;
@@ -200,10 +220,10 @@ static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
       return FALSE;
   }
 
-  if (erasable && (mode == XFBURN_BLANK_FAST || mode == XFBURN_BLANK_COMPLETE))
-    return TRUE;
+  if (profile_no == 0x14 && (mode == XFBURN_FORMAT_FAST || mode == XFBURN_FORMAT_COMPLETE))
+      return TRUE;
 
-  if (profile_no == 0x13 && (mode == XFBURN_FORMAT_FAST || mode == XFBURN_FORMAT_COMPLETE))
+  if (erasable && (disc_state != BURN_DISC_BLANK) && (mode == XFBURN_BLANK_FAST || mode == XFBURN_BLANK_COMPLETE))
     return TRUE;
 
   return FALSE;
@@ -255,7 +275,7 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
 
   switch (disc_state) {
   case BURN_DISC_BLANK:
-    if (params->blank_mode <= XFBURN_BLANK_COMPLETE) {
+    if (params->blank_mode == XFBURN_BLANK_FAST || params->blank_mode == XFBURN_BLANK_COMPLETE) {
       /* blanking can only be performed on blank discs, format and deformat are allowed to be blank ones */
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The inserted disc is already blank"));
       return FALSE;
@@ -287,21 +307,27 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
  
   switch (params->blank_mode) {
     case XFBURN_BLANK_FAST:
+      //DBG ("blank_fast");
       burn_disc_erase(drive, 1);
       break;
     case XFBURN_BLANK_COMPLETE:
+      //DBG ("blank_complete");
       burn_disc_erase(drive, 0);
       break;
     case XFBURN_FORMAT_FAST:
+      //DBG ("format_fast");
       burn_disc_format(drive, 0, 0);
       break;
     case XFBURN_FORMAT_COMPLETE:
+      //DBG ("format_complete");
       burn_disc_format(drive, XFBURN_FORMAT_COMPLETE_SIZE, 1);
       break;
     case XFBURN_DEFORMAT_FAST:
+      //DBG ("deformat_fast");
       burn_disc_erase(drive, 1);
       break;
     case XFBURN_DEFORMAT_COMPLETE:
+      //DBG ("deformat_complete");
       burn_disc_erase(drive, 0);
       break;
     default:
@@ -372,36 +398,34 @@ thread_blank (ThreadBlankParams * params)
   g_free (params);
 }
 
+static XfburnBlankMode
+get_selected_mode (XfburnBlankDialogPrivate *priv)
+{
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  XfburnBlankMode blank_mode;
+  gboolean ret;
+
+  model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_type));
+  ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_type), &iter);
+  if (ret)
+    gtk_tree_model_get (model, &iter, BLANK_COMBO_MODE_COLUMN, &blank_mode, -1);
+
+  return blank_mode;
+}
+
 static void
 xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, gpointer user_data)
 {
   if (response_id == GTK_RESPONSE_OK) {
     XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (dialog);
     XfburnDevice *device;
-    XfburnBlankMode blank_mode;
 
     GtkWidget *dialog_progress;
     ThreadBlankParams *params = NULL;
 
     device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
 
-    switch (gtk_combo_box_get_active (GTK_COMBO_BOX (priv->combo_type))) {
-    case 0:
-      blank_mode = XFBURN_BLANK_FAST;
-      break;
-    case 1:
-      blank_mode = XFBURN_BLANK_COMPLETE;
-      break;
-    case 2:
-      blank_mode = XFBURN_FORMAT_FAST;
-      break;
-    case 3:
-      blank_mode = XFBURN_FORMAT_COMPLETE;
-      break;
-    default:
-      DBG ("Invalid blank mode selected, falling back to complete blank");
-      blank_mode = XFBURN_BLANK_COMPLETE;
-    }
         
     dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     g_object_set (dialog_progress, "animate", TRUE, NULL);
@@ -413,7 +437,7 @@ xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, g
     params = g_new0 (ThreadBlankParams, 1);
     params->dialog_progress = dialog_progress;
     params->device = device;
-    params->blank_mode = blank_mode;
+    params->blank_mode = get_selected_mode (priv);
     params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)); 
     g_thread_create ((GThreadFunc) thread_blank, params, FALSE, NULL);
   }

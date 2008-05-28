@@ -275,7 +275,7 @@ xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GVal
   case PROP_ANIMATE:
     priv->animate = g_value_get_boolean (value);
     priv->ani_index = 0;
-    DBG ("Set animate to %d", priv->animate);
+    //DBG ("Set animate to %d", priv->animate);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
