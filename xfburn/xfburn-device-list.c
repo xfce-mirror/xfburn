@@ -115,7 +115,6 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
 
   if ((ret = burn_disc_get_profile(drive_info->drive, &profile_no, profile_name)) != 1) {
     g_warning ("no profile could be retrieved");
-    profile_no = 0;
   }
   is_erasable = burn_disc_erasable (drive_info->drive);
   DBG ("profile_no = 0x%x (%s), %s erasable", profile_no, profile_name, (is_erasable ? "" : "NOT"));
@@ -227,6 +226,11 @@ xfburn_device_refresh_supported_speeds (XfburnDevice * device)
     DBG ("Hmm, why can we refresh when there is no drive?");
     return FALSE;
   }
+
+  /* reset other internal structures */
+  profile_no = 0;
+  *profile_name = 0;
+  is_erasable = 0;
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
