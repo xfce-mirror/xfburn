@@ -853,6 +853,30 @@ action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
       if (full_path[strlen (full_path) - 1] == '\r')
         full_path[strlen (full_path) - 1] = '\0';
 
+      if (strcmp (full_path, g_getenv ("HOME")) == 0) {
+        GtkMessageDialog *dialog = (GtkMessageDialog *) gtk_message_dialog_new (NULL,
+                                        GTK_DIALOG_DESTROY_WITH_PARENT,
+                                        GTK_MESSAGE_WARNING,
+                                        GTK_BUTTONS_YES_NO,
+                                        ((const gchar *) _("Adding home directory")));
+        gint ret;
+        DBG ("Adding home directory");
+        gtk_message_dialog_format_secondary_text (dialog,
+                                        _("You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n\nAre you sure you want to proceed?"));
+        ret = gtk_dialog_run (GTK_DIALOG (dialog));
+        switch (ret) {
+          case GTK_RESPONSE_YES:
+            break;
+          default:
+            gtk_widget_destroy (GTK_WIDGET (dialog));
+            g_free (full_path);
+            g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
+            g_list_free (selected_paths);
+            return;
+        }
+        gtk_widget_destroy (GTK_WIDGET (dialog));
+      }
+
       /* add files to the disc content */
       if (type == DATA_COMPOSITION_TYPE_DIRECTORY) {
         guint64 old_size, size;
