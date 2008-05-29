@@ -39,6 +39,7 @@ typedef struct
 {
   GtkWidget *device_box;
   GtkWidget *combo_type;
+  GtkWidget *button_blank;
   
   GtkWidget *check_eject;
 } XfburnBlankDialogPrivate;
@@ -84,11 +85,13 @@ static void xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass);
 static void xfburn_blank_dialog_init (XfburnBlankDialog * sp);
 
 static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode);
+static void fill_combo_mode (XfburnBlankDialog *dialog);
 //static GList * get_valid_blank_modes (XfburnDevice *device);
 static XfburnBlankMode get_selected_mode (XfburnBlankDialogPrivate *priv);
 static gboolean thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *drive_info);
 static void thread_blank (ThreadBlankParams * params);
 static void xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, gpointer user_data);
+static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBlankDialog * dialog);
 
 static XfceTitledDialogClass *parent_class = NULL;
 
@@ -136,7 +139,6 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   GtkWidget *vbox;
   GtkWidget *button;
 
-  XfburnBlankMode mode = XFBURN_BLANK_FAST;
   GtkListStore *store = NULL;
   GtkCellRenderer *cell;
   
@@ -149,6 +151,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
 
   /* devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CDRW_WRITERS | BLANK_MODE);
+  g_signal_connect (G_OBJECT (priv->device_box), "disc-refreshed", G_CALLBACK (cb_disc_refreshed), obj);
   gtk_widget_show (priv->device_box);
 
   frame = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
@@ -162,16 +165,6 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   cell = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combo_type), cell, TRUE);
   gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_type), cell, "text", BLANK_COMBO_NAME_COLUMN, NULL);
-  while (mode < XFBURN_BLANK_MODE_LAST) {
-    if (is_valid_blank_mode (NULL, mode)) {
-      GtkTreeIter iter;
-
-      gtk_list_store_append (store, &iter);
-      gtk_list_store_set (store, &iter, BLANK_COMBO_NAME_COLUMN, blank_mode_names[mode], BLANK_COMBO_MODE_COLUMN, mode, -1);
-    }
-    mode++;
-  }
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_type), 0);
   gtk_widget_show (priv->combo_type);
 
   frame = xfce_create_framebox_with_content (_("Blank mode"), priv->combo_type);
@@ -202,8 +195,33 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
+  priv->button_blank = button;
 
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_blank_dialog_response_cb), obj);
+  fill_combo_mode (obj);
+}
+
+static void fill_combo_mode (XfburnBlankDialog *dialog)
+{
+  XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (dialog);
+  XfburnBlankMode mode = XFBURN_BLANK_FAST;
+  GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_type));
+  int n = 0;
+
+  gtk_list_store_clear (GTK_LIST_STORE (model));
+
+  while (mode < XFBURN_BLANK_MODE_LAST) {
+    if (is_valid_blank_mode (NULL, mode)) {
+      GtkTreeIter iter;
+
+      gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+      gtk_list_store_set (GTK_LIST_STORE (model), &iter, BLANK_COMBO_NAME_COLUMN, blank_mode_names[mode], BLANK_COMBO_MODE_COLUMN, mode, -1);
+      n++;
+    }
+    mode++;
+  }
+  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_type), 0);
+  gtk_widget_set_sensitive (priv->button_blank, n > 0);
 }
 
 static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
@@ -443,6 +461,14 @@ xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, g
   }
 }
    
+static void
+cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBlankDialog * dialog)
+{
+  //XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (dialog);
+
+  fill_combo_mode (dialog);
+}
+
 
 /* public */
 GtkWidget *
