@@ -37,7 +37,8 @@ various fixes and changes
     - hide close button
 - recode copy disk with libburn
 - update columns resizing by using column enum index
-- disable burn buttons before proper image file is selected [DONE]
+- disable burn button before proper image file is selected [DONE]
+- disable blank button if disc cannot be blanked
 - take advantage of gvfs in addition to thunar-vfs until thunar-vfs gets deprecated
 - disable device selection before image is selected
   - once image is selected, populate device selection box
@@ -46,7 +47,7 @@ various fixes and changes
   - if no suitable writer is found, use that red label thingy
     to inform the user
 - inform user in red label if no image has been selected [DONE]
-- Erase disc should work for all RW discs
+- Erase disc should work for all RW discs [DONE]
 - hide disc status in blank dialog
   - rather, display correct disc status [DONE]
   - add refresh button and disable blank if invalid disc
