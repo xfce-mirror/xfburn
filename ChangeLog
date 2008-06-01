@@ -1,5 +1,344 @@
+2008-05-28  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-blank-dialog.c, xfburn/xfburn-progress-dialog.c:
+	  Fixing selection of blank mode by putting mode no into the combo
+	  box
+	* xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-device-box.c, xfburn/xfburn-device-box.h:
+	  Cleaning up setting of status label, make label grayed out when
+	  insensitive
+	* xfburn/xfburn-blank-dialog.c:
+	  Removed gotos from blanking code
+	* xfburn/xfburn-blank-dialog.c:
+	  Adding format & deformat options to the blanking dialog
+
+2008-05-12  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-progress-dialog.c:
+	  Adding a simple animation option to the progress dialog
+
+2008-05-10  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c,
+	  xfburn/xfburn-device-list.h:
+	  Showing inserted disc type in the device box
+	* xfburn/xfburn-blank-dialog.c, xfburn/xfburn-device-box.c,
+	  xfburn/xfburn-device-list.c, xfburn/xfburn-device-list.h:
+	  Retrieving profile no, and checking it for blanking
+	* xfburn/xfburn-device-list.c, xfburn/xfburn-device-list.h:
+	  Adding debugging output about disc format
+
+2008-05-06  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-perform-burn.c:
+	  Bugfix: first check message queue for fatal errors before
+	  retrieving other messages
+
+2008-05-05  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c:
+	  Bugfix: correctly check for the presence of a device
+
+2008-05-04  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c,
+	  xfburn/xfburn-device-list.h:
+	  Bugfixes: * Allow refresh of disc when blanking * Don't allow
+	  refresh when there is no detected drive Keep track of disc
+	  profile.
+	* xfburn/xfburn-device-box.c:
+	  Bugfix: don't complain about invalid disc if there is no
+	  available drive
+
+2008-05-03  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-blank-dialog.c, xfburn/xfburn-perform-burn.c:
+	  Adding error catching code to blanking
+	* xfburn/xfburn-perform-burn.c, xfburn/xfburn-progress-dialog.c:
+	  Implement error reporting
+	* xfburn/xfburn-hal-manager.c:
+	  Bugfix: corrected previous bugfix for hal, hal now correctly
+	  registered globally instead of not at all
+	* xfburn/xfburn-hal-manager.c:
+	  Bugfix: hal-manager allocation now done per object creation
+
+2008-05-02  David Mohr <david@mcbf.net>
+
+	* xfburn-toolbars.ui, xfburn.ui,
+	  xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-compositions-notebook.h,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-welcome-tab.c:
+	  Have welcome screen buttons sensitivity set by the main action
+	  group -- better solution would be to overwrite GtkAction
+
+2008-05-01  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-hal-manager.c:
+	  Bugfix: proper shutwdown of HAL
+	* xfburn/Makefile.am, xfburn/xfburn-blank-dialog.c,
+	  xfburn/xfburn-blank-dialog.h, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-welcome-tab.c:
+	  Reflecting the blank-dialog rename in the code
+	* xfburn/xfburn-blank-cd-dialog.c, xfburn/xfburn-blank-cd-dialog.h,
+	  xfburn/xfburn-blank-dialog.c, xfburn/xfburn-blank-dialog.h:
+	  Renaming blank dialog
+	* TODO, xfburn/Makefile.am:
+	  Bugfix: corrected Makefile.am for HAL
+
+2008-04-29  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c:
+	  Bugfix: deallocate HalManager, don't refresh speed list when the
+	  DeviceBox is empty
+	* xfburn/xfburn-burn-data-composition-base-dialog.c:
+	  Bugfix: Enable burn button when target is an iso file, not a
+	  burner
+	* xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-data-composition.c, xfburn/xfburn-global.h:
+	  Ask for compilation name again in the burn dialog if it was left
+	  as the default
+	* xfburn/xfburn-welcome-tab.c:
+	  Adding icons and secondary text to the welcome screen
+
+2008-04-26  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-compositions-notebook.h,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-welcome-tab.c:
+	  Adding basic content to the welcome tab
+
+2008-04-25  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-list.c:
+	  Overlooked a g_error, now last commit works
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c,
+	  xfburn/xfburn-device-list.h:
+	  Adding error message when unable to grab drive (program aborted
+	  before)
+	* xfburn/xfburn-device-box.c:
+	  Adding default entry if no speed list is available
+	* TODO, xfburn/Makefile.am, xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-compositions-notebook.h,
+	  xfburn/xfburn-hal-manager.c, xfburn/xfburn-hal-manager.h,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-welcome-tab.c,
+	  xfburn/xfburn-welcome-tab.h:
+	  Adding basic welcome tab support
+
+2008-04-24  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c:
+	  Adding formating to the empty device list dialog text
+	* xfburn/xfburn-device-list.c:
+	  Forgot to delete debugging statement
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c,
+	  xfburn/xfburn-preferences-dialog.c:
+	  Adding setting and functionality to hide empty speed list dialog
+
+2008-04-23  David Mohr <david@mcbf.net>
+
+	* NEWS, TODO, configure.in.in, xfburn/Makefile.am,
+	  xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c,
+	  xfburn/xfburn-hal-manager.c, xfburn/xfburn-hal-manager.h:
+	  Finished XfburnHalManager, device box now gets updated by hal
+	  when the drive status changes
+	* xfburn/xfburn-hal-manager.c, xfburn/xfburn-hal-manager.h:
+	  Start of XfburnHalManager to handle volume changes
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c:
+	  Querying thunar for volume changes in device box
+
+2008-04-21  David Mohr <david@mcbf.net>
+
+	* configure.in.in:
+	  Adding HAL detection to configure.in.in
+
+2008-04-20  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-device-list.c:
+	  Improving feedback when no speed list can be retrieved
+
+2008-04-19  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c:
+	  Bugfix for blank mode, 2nd try
+	* xfburn/xfburn-device-box.c:
+	  Bugfix: actually parse BLANK_MODE flag in the device box
+	* xfburn/xfburn-blank-cd-dialog.c, xfburn/xfburn-device-box.c,
+	  xfburn/xfburn-device-box.h:
+	  Improving device box: - Adding blank mode for proper disc status
+	  messages - Refreshing speed list also on device change, to get
+	  always fresh info when the object is created
+
+2008-04-18  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-list.c:
+	  Trying to grab the drive a bit more often now
+	* TODO:
+	  Updating TODO
+	* xfburn-toolbars.ui, xfburn.ui:
+	  Disabling copy cd toolbar /menu items
+	* TODO:
+	  Updating TODO
+	* xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-device-box.c,
+	  xfburn/xfburn-device-list.c, xfburn/xfburn-device-list.h,
+	  xfburn/xfburn-utils.c:
+	  Cleaning up debugging statements. Make disc status messages more
+	  precise. Disable burn button in burn compilation dialog if the
+	  disc is not valid. Try one more time to grab drive in the device
+	  list.
+
+2008-04-17  Mario Đanić <mario@libburnia-project.org>
+
+	* xfburn/xfburn-burn-image-dialog.c:
+	  Now user knows he needs to choose image
+	* xfburn/xfburn-device-list.c:
+	  No p0llux anymore
+	* xfburn/xfburn-device-list.c:
+	  Will this debug p0llux?
+	* xfburn/xfburn-device-list.c:
+	  Done minor formatting changes
+
+2008-04-17  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c:
+	  Only access combo box if it has entries
+
+2008-04-17  Mario Đanić <mario@libburnia-project.org>
+
+	* INSTALL, xfburn/xfburn-device-list.c:
+	  Implemented some checks for burning devices
+	* TODO:
+	  Disable isnt done at proper moment yet
+	* TODO:
+	  So again it is todo
+
+2008-04-17  David Mohr <david@mcbf.net>
+
+	* TODO:
+	  Updating TODO
+
+2008-04-17  Mario Đanić <mario@libburnia-project.org>
+
+	* TODO:
+	  Updated TODO for erasing magic
+	* TODO:
+	  Updated TODO again
+	* TODO:
+	  Migration to gvfs added to TODO
+	* TODO:
+	  Sorting available burn speeds works now
+	* TODO:
+	  Added more todo items
+
+2008-04-17  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-disc-usage.c:
+	  Adding automatic switching between data disc types / sizes
+
+2008-04-16  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-burn-data-cd-composition-dialog.h,
+	  xfburn/xfburn-burn-data-dvd-composition-dialog.c,
+	  xfburn/xfburn-burn-data-dvd-composition-dialog.h,
+	  xfburn/xfburn-data-composition.c:
+	  Creating burn data dvd subclass
+
+2008-04-16  Jean-François Wauthy <pollux@xfce.org>
+
+	* configure.in.in:
+	  bump required GTK+ version to 2.10 (fix bug #4024)
+
+2008-04-16  David Mohr <david@mcbf.net>
+
+	* xfburn/Makefile.am,
+	  xfburn/xfburn-burn-data-cd-composition-dialog.c,
+	  xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-burn-data-composition-base-dialog.h,
+	  xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-perform-burn.c,
+	  xfburn/xfburn-perform-burn.h:
+	  Unifying the burn code: - Created base class
+	  XfburnBurnDataCompositionBaseDialog, which both the CD and DVD
+	  burning dialog can use - Factored actual burning and progress
+	  dialog update code out into xfburn_perform_burn_write()
+
+2008-04-14  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-compositions-notebook.c:
+	  Making compositions reorderable in the notebook (patch by
+	  jeromeg)
+	* xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-device-box.c,
+	  xfburn/xfburn-device-box.h:
+	  Adding new signal for a refresh to the device box class to be
+	  able to en/disable the burn botton
+
+2008-04-14  Mario Đanić <mario@libburnia-project.org>
+
+	* NEWS:
+	  Updated news with recent changes
+	* xfburn/xfburn-data-disc-usage.c:
+	  Disable burn composition button when there is nothing in
+	  composition
+	* xfburn/xfburn-device-box.c:
+	  Made message when there is no disk in drive more specific
+
+2008-04-13  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c:
+	  Adding label to notify user that no disc is inserted in the drive
+
 2008-04-13  Mario Đanić <mario@libburnia-project.org>
 
+	* xfburn/xfburn-directory-browser.c:
+	  Hopefully fixed abort now ;))
+	* xfburn/xfburn-directory-browser.c:
+	  Done some resize columns magic
+	* xfburn/xfburn-directory-browser.c:
+	  Temporarily undone last patch
+	* xfburn/xfburn-directory-browser.c:
+	  Done more work on resizable columns magic! Thanks Jerome
+	* NEWS:
+	  Updated news to reflect that we fixed 4012
+
+2008-04-13  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-list.c:
+	  Sort speed list, added fallback value if no list is available
+	  (fixes bug #4012)
+
+2008-04-13  Mario Đanić <mario@libburnia-project.org>
+
+	* TODO:
+	  Updated TODO again
+
+2008-04-13  Jean-François Wauthy <pollux@xfce.org>
+
+	* CONTRIBUTORS:
+	  be more explicit about the contributions in order to keep track
+
+2008-04-13  Mario Đanić <mario@libburnia-project.org>
+
+	* CONTRIBUTORS:
+	  Added Jerome to contributors
+	* NEWS, xfburn/xfburn-directory-browser.c:
+	  Made list columns resizable
+	* TODO:
+	  Once again updated TODO
+	* TODO:
+	  Added popup in todo for proper speed detection
+	* NEWS:
+	  Correct url of libburnia project in news
+	* AUTHORS, xfburn/xfburn-main-window.c:
+	  Updated about dialog
+
+2008-04-13  David Mohr <david@mcbf.net>
+
+	* ChangeLog, TODO, committers.xml, update-changelog.sh:
+	  Updating ChangeLog and its support scripts, and TODO file
+
+2008-04-13  Mario Đanić <mario@libburnia-project.org>
+
+	* AUTHORS:
+	  Added David and myself to authors
 	* TODO:
 	  Updated TODO file with various new tasks
 

@@ -1,5 +1,12 @@
-xfburn 0.x
+xfburn 0.3.0
 ==========
+
+- Use new libisofs API
+- DVD burning
+- Formating and deformating of DVD-RW discs
+- Removed buttons for not yet working functionality
+- Use HAL to update disc status when a disc is inserted / removed
+- Disable "Burn composition" button where there is no files in composition
 
 - Use libburn (libburnia-project.org) instead of cdrecord tools
 - Avoid adding non regular files (bug #2179)
@@ -14,8 +21,6 @@ xfburn 0.x
 - Use correct cdrom size (bug #2753)
 - Add new icons based on icons from the Tango icontheme
 - List columns are resizable now (bug #2930)
-- Disable "Burn composition" button where there is no files in composition
-- Use HAL to update disc status when a disc is inserted / removed
 
 xfburn 0.2.0beta
 ================
