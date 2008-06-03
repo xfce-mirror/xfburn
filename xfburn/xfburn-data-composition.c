@@ -929,6 +929,8 @@ action_clear (GtkAction * action, XfburnDataComposition * dc)
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   gtk_tree_store_clear (GTK_TREE_STORE (model));
+  
+  gtk_entry_set_text (GTK_ENTRY (priv->entry_volume_name), _(DATA_COMPOSITION_DEFAULT_NAME));
 
   xfburn_data_disc_usage_set_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), 0);
 }
