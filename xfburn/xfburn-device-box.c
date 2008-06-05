@@ -705,12 +705,16 @@ get_selected_device (XfburnDeviceBoxPrivate *priv)
 static void
 cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
 {
-  //XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   XfburnDevice *device = NULL;
   
+  xfburn_busy_cursor (priv->combo_device);
+
   device = xfburn_device_box_get_selected_device (box);
   if (xfburn_device_refresh_supported_speeds (device))
     fill_combo_speed (box, device);
+
+  xfburn_default_cursor (priv->combo_device);
 
   g_signal_emit (G_OBJECT (box), signals[DISC_REFRESHED], 0, device);
 }
@@ -720,6 +724,8 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
 {
   XfburnDevice *device;
   
+  xfburn_busy_cursor (combo);
+
   device = xfburn_device_box_get_selected_device (box);
   if (device != NULL) {
     xfburn_device_refresh_supported_speeds (device);
@@ -727,6 +733,8 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
     fill_combo_speed (box, device);
     fill_combo_mode (box,device);
   }
+
+  xfburn_default_cursor (combo);
 
   g_signal_emit (G_OBJECT (box), signals[DEVICE_CHANGED], 0, device);
 }
