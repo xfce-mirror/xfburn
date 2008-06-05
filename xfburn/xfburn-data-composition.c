@@ -350,6 +350,16 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Local Path"),
                                                gtk_cell_renderer_text_new (), "text", DATA_COMPOSITION_COLUMN_PATH, NULL);
 
+  /* Contents column */
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 0), 1);
+  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 0), 200);
+  /* Size (HUMANSIZE) column */
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 1), 1);
+  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 1), 60);
+  /* Local Path (PATH) column */
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 2), 1);
+
+
   g_signal_connect (G_OBJECT (priv->content), "row-activated", G_CALLBACK (cb_treeview_row_activated), composition);
   g_signal_connect (G_OBJECT (priv->content), "button-press-event",
                     G_CALLBACK (cb_treeview_button_pressed), composition);
