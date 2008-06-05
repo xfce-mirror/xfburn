@@ -46,7 +46,7 @@ xfburn_busy_cursor (GtkWidget * widget)
   g_return_if_fail (widget != NULL);
   cursor = gdk_cursor_new (GDK_WATCH);
   gdk_window_set_cursor (gtk_widget_get_parent_window (widget), cursor);
-  gdk_cursor_destroy (cursor);
+  gdk_cursor_unref (cursor);
   gdk_flush ();
 }
 
@@ -74,12 +74,12 @@ xfburn_humanreadable_filesize (guint64 size)
   gint unit = 0;
   gdouble human_size = (gdouble) size;
 
-  while (human_size > 1024) {
+  while (human_size > 1024 && unit < 4) {
     human_size = human_size / 1024;
     unit++;
   }
 
-  if ((human_size - (gulong) human_size) > 0.1)
+  if ((human_size - (gulong) human_size) > 0.05)
     ret = g_strdup_printf ("%.2f %s", human_size, unit_list[unit]);
   else
     ret = g_strdup_printf ("%.0f %s", human_size, unit_list[unit]);
