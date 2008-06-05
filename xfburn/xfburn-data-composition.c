@@ -816,6 +816,7 @@ action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
   
   gchar *selected_files = NULL;
   
+  xfburn_busy_cursor (priv->content);
   selected_files = xfburn_file_browser_get_selection (browser);
   
   if (selected_files) {
@@ -860,6 +861,7 @@ action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
                                         GTK_BUTTONS_YES_NO,
                                         ((const gchar *) _("Adding home directory")));
         gint ret;
+        gboolean quit = FALSE;
         DBG ("Adding home directory");
         gtk_message_dialog_format_secondary_text (dialog,
                                         _("You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n\nAre you sure you want to proceed?"));
@@ -868,13 +870,13 @@ action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
           case GTK_RESPONSE_YES:
             break;
           default:
-            gtk_widget_destroy (GTK_WIDGET (dialog));
             g_free (full_path);
-            g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
-            g_list_free (selected_paths);
-            return;
+            quit = TRUE;
         }
+        xfburn_busy_cursor (GTK_DIALOG (dialog)->vbox);
         gtk_widget_destroy (GTK_WIDGET (dialog));
+        if (quit)
+          break;
       }
 
       /* add files to the disc content */
@@ -918,6 +920,7 @@ action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
     g_free (selected_files);
   }
   
+  xfburn_default_cursor (priv->content);
 }
 
 static void
@@ -1297,6 +1300,8 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   
   gtk_tree_view_get_dest_row_at_pos (GTK_TREE_VIEW (widget), x, y, &path_where_insert, &position);
   
+  xfburn_busy_cursor (priv->content);
+
   if (sd->target == gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE)) {
     GList *row = NULL, *selected_rows = NULL;
     GtkTreeIter *iter = NULL;
@@ -1469,6 +1474,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   } else {
     gtk_drag_finish (dc, FALSE, FALSE, t);
   }
+  xfburn_default_cursor (priv->content);
 }
 
 static void
