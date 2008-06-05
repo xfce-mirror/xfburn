@@ -257,9 +257,10 @@ gint
 xfburn_device_list_init ()
 {
   struct burn_drive_info *drives;
-  gint i; 
+  gint i, ret; 
   gboolean can_burn;
   guint n_drives = 0;
+  guint n_burners = 0;
 
   *profile_name = '\0';
 
@@ -274,8 +275,14 @@ xfburn_device_list_init ()
     devices = NULL;
   }
 
-  while (!burn_drive_scan (&drives, &n_drives))
+  while ((ret = burn_drive_scan (&drives, &n_drives)) == 0)
     usleep (1002);
+
+  if (ret < 0)
+    g_warning ("An error occurred while scanning for available drives!");
+
+  if (n_drives < 1)
+    g_warning ("No drives were found!");
 
   for (i = 0; i < n_drives; i++) {
     XfburnDevice *device = g_new0 (XfburnDevice, 1);
@@ -316,14 +323,19 @@ xfburn_device_list_init ()
       g_warning ("Failed to grab drive %s, did not refresh speed list", device->name);
     */
     
-    if (can_burn)
+    if (can_burn) {
       devices = g_list_append (devices, device);
+      n_burners++;
+    }
   }
 
   burn_drive_info_free (drives);
   burn_finish ();
+
+  if (n_drives > 0 && n_burners < 1)
+    g_warning ("There are %d drives in your system, but none are capable of burning!", n_drives);
   
-  return n_drives;
+  return n_burners;
 }
 
 gboolean
