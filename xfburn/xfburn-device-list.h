@@ -40,6 +40,7 @@ enum XfburnDiscTypes {
 };
 
 enum XfburnDiscProfiles {
+  XFBURN_PROFILE_NONE = 0x0,
   XFBURN_PROFILE_CDR = 0x09,
   XFBURN_PROFILE_CDRW = 0x0a,
   XFBURN_PROFILE_DVD_MINUS_R = 0x11,

@@ -535,37 +535,67 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
   enum burn_disc_status disc_status = xfburn_device_list_get_disc_status ();
   int profile_no = xfburn_device_list_get_profile_no ();
   gboolean is_erasable = xfburn_device_list_disc_is_erasable ();
+  XfburnDevice *device = get_selected_device (priv);
   
   gtk_label_set_text (GTK_LABEL (priv->disc_label), xfburn_device_list_get_profile_name ());
 
   if (!priv->blank_mode) {
-    priv->valid_disc = (disc_status == BURN_DISC_BLANK) || (disc_status == BURN_DISC_APPENDABLE);
+    switch (profile_no) {
+      case XFBURN_PROFILE_NONE:
+        /* empty drive is caught later,
+         * not sure if there would be another reason for 0x0 */
+        priv->valid_disc = TRUE;
+        break;
+      case XFBURN_PROFILE_CDR:
+        priv->valid_disc = device->cdr;
+        break;
+      case XFBURN_PROFILE_CDRW:
+        priv->valid_disc = device->cdrw;
+        break;
+      case XFBURN_PROFILE_DVDRAM:
+        priv->valid_disc = device->dvdram;
+        break;
+      case XFBURN_PROFILE_DVD_MINUS_R:
+      case XFBURN_PROFILE_DVD_MINUS_RW_OVERWRITE:
+      case XFBURN_PROFILE_DVD_MINUS_RW_SEQUENTIAL:
+      case XFBURN_PROFILE_DVD_MINUS_R_DL:
+      case XFBURN_PROFILE_DVD_PLUS_R:
+      case XFBURN_PROFILE_DVD_PLUS_R_DL:
+      case XFBURN_PROFILE_DVD_PLUS_RW:
+        priv->valid_disc = device->dvdr;
+        break;
+      default:
+        g_warning ("Unknown disc profile 0x%x!", profile_no);
+        priv->valid_disc = TRUE;
+        break;
+    }
 
     if (!priv->valid_disc) {
-      switch (disc_status) {
-        case BURN_DISC_EMPTY:
-          priv->status_text = _("Drive is empty!");
-          status_label_update (priv);
-          break;
-        case BURN_DISC_FULL:
-          priv->status_text = _("Inserted disc is full!");
-          status_label_update (priv);
-          break;
-        case BURN_DISC_UNSUITABLE:
-          priv->status_text = _("Inserted disc is unsuitable!");
-          status_label_update (priv);
-          break;
-        case BURN_DISC_UNGRABBED:
-          priv->status_text = _("No access to drive (mounted?)");
-          status_label_update (priv);
-          break;
-        default:
-          /* if there is no detected device, then don't print an error message as it is expected to not have a disc status */
-          if (get_selected_device (priv) != NULL) {
-            priv->status_text = _("Error determining disc!");
-            status_label_update (priv);
-            DBG ("weird disc_status = %d", disc_status);
-          }
+        priv->status_text = _("Drive can't burn the inserted disc!");
+    } else {
+      priv->valid_disc = (disc_status == BURN_DISC_BLANK) || (disc_status == BURN_DISC_APPENDABLE);
+
+      if (!priv->valid_disc) {
+        switch (disc_status) {
+          case BURN_DISC_EMPTY:
+            priv->status_text = _("Drive is empty!");
+            break;
+          case BURN_DISC_FULL:
+            priv->status_text = _("Inserted disc is full!");
+            break;
+          case BURN_DISC_UNSUITABLE:
+            priv->status_text = _("Inserted disc is unsuitable!");
+            break;
+          case BURN_DISC_UNGRABBED:
+            priv->status_text = _("No access to drive (mounted?)");
+            break;
+          default:
+            /* if there is no detected device, then don't print an error message as it is expected to not have a disc status */
+            if (device != NULL) {
+              priv->status_text = _("Error determining disc!");
+              DBG ("weird disc_status = %d", disc_status);
+            }
+        }
       }
     }
   } else {
@@ -579,33 +609,26 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
         case XFBURN_PROFILE_DVD_PLUS_R:
         case XFBURN_PROFILE_DVD_PLUS_R_DL:
           priv->status_text = _("Write-once disc, no blanking possible");
-          status_label_update (priv);
           break;
         case XFBURN_PROFILE_DVD_PLUS_RW:
           priv->status_text = _("DVD+RW does not need blanking");
-          status_label_update (priv);
           break;
         default:
           switch (disc_status) {
             case BURN_DISC_EMPTY:
               priv->status_text = _("Drive is empty!");
-              status_label_update (priv);
               break;
             case BURN_DISC_BLANK:
               priv->status_text = _("Inserted disc is already blank!");
-              status_label_update (priv);
               break;
             case BURN_DISC_UNSUITABLE:
               priv->status_text = _("Inserted disc is unsuitable!");
-              status_label_update (priv);
               break;
             case BURN_DISC_UNGRABBED:
               priv->status_text = _("No access to drive (mounted?)");
-              status_label_update (priv);
               break;
             default:
               priv->status_text = _("Error determining disc!");
-              status_label_update (priv);
               DBG ("weird disc_status = %d", disc_status);
           }
       }
@@ -613,9 +636,11 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
   }
 
   gtk_widget_set_sensitive (priv->combo_speed, priv->valid_disc);
+
   if (priv->valid_disc)
     priv->status_text = _("");
-    status_label_update (priv);
+
+  status_label_update (priv);
   return priv->valid_disc;
 }
 
