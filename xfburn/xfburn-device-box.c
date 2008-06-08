@@ -33,6 +33,7 @@
 #include "xfburn-device-box.h"
 #include "xfburn-hal-manager.h"
 #include "xfburn-settings.h"
+#include "xfburn-utils.h"
 
 #define XFBURN_DEVICE_BOX_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBoxPrivate))
 
