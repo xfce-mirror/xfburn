@@ -51,6 +51,7 @@ typedef struct
 
 GtkType xfburn_burn_image_dialog_get_type ();
 GtkWidget *xfburn_burn_image_dialog_new ();
+void xfburn_burn_image_dialog_set_filechooser_name (GtkWidget * dialog, gchar *name);
 
 G_END_DECLS
 

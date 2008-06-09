@@ -561,3 +561,10 @@ xfburn_burn_image_dialog_new ()
 
   return obj;
 }
+
+void xfburn_burn_image_dialog_set_filechooser_name ( GtkWidget * dialog, gchar *name)
+{
+  XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (XFBURN_BURN_IMAGE_DIALOG (dialog));
+
+  gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (priv->chooser_image), name);
+}

@@ -41,7 +41,45 @@
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
 #include "xfburn-stock.h"
+#include "xfburn-burn-image-dialog.h"
 #include "xfburn-main-window.h"
+
+
+/* internal prototypes */
+static gboolean parse_option (const gchar *option_name, const gchar *value,
+			      gpointer data, GError **error);
+
+/* command line parameters */
+static gchar *image_filename = NULL;
+static gboolean show_version = FALSE;
+static gboolean other_action = FALSE;
+static gboolean show_main = FALSE;
+
+static GOptionEntry optionentries[] = {
+  { "burn-image", 'i', G_OPTION_FLAG_OPTIONAL_ARG /* || G_OPTION_FLAG_FILENAME */, G_OPTION_ARG_CALLBACK, &parse_option, 
+    "Open the burn image dialog. The filename of the image can optionally be specified as a parameter", NULL },
+  { "version", 'V', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_version, 
+    "Display program version and exit", NULL },
+  { "main", 'm', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_main, 
+    "Show main program even when other action is specified on the command line", NULL },
+  { NULL },
+};
+
+static gboolean parse_option (const gchar *option_name, const gchar *value,
+                              gpointer data, GError **error)
+{
+  if (strcmp (option_name, "-i") == 0 || strcmp (option_name, "--burn-image") == 0) {
+    if (value == NULL)
+      image_filename = "";
+    else
+      image_filename = g_strdup(value);
+  } else {
+    g_set_error (error, 0, G_OPTION_ERROR_FAILED, "Invalid command line option. Please report, this is a bug.");
+    return FALSE;
+  }
+
+  return TRUE;
+}
 
 /* entry point */
 int
@@ -49,6 +87,7 @@ main (int argc, char **argv)
 {
   GtkWidget *mainwin;
   gint n_drives;
+  GError *error = NULL;
 
 #if DEBUG > 0
   g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
@@ -56,7 +95,21 @@ main (int argc, char **argv)
   
   g_set_application_name (_("Xfburn"));
 
-  if (argc > 1 && (!strcmp (argv[1], "--version") || !strcmp (argv[1], "-V"))) {
+  g_thread_init (NULL);
+  gdk_threads_init ();
+  gdk_threads_enter ();
+
+  xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+
+  if (!gtk_init_with_args (&argc, &argv, "", optionentries, GETTEXT_PACKAGE, &error)) {
+    if (error != NULL) {
+      g_print (_("%s: %s\nTry %s --help to see a full list of available command line options.\n"), PACKAGE, error->message, PACKAGE_NAME);
+      g_error_free (error);
+      return 1;
+    }
+  }
+
+  if (show_version) {
     g_print ("\tThis is %s version %s for Xfce %s\n", PACKAGE, VERSION, xfce_version_string ());
     g_print ("\tbuilt with GTK+-%d.%d.%d, ", GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
     g_print ("linked with GTK+-%d.%d.%d.\n", gtk_major_version, gtk_minor_version, gtk_micro_version);
@@ -64,11 +117,6 @@ main (int argc, char **argv)
     exit (EXIT_SUCCESS);
   }
 
-  g_thread_init (NULL);
-  gdk_threads_init ();
-  gdk_threads_enter ();
-
-  gtk_init (&argc, &argv);
 
   xfburn_settings_init ();
   
@@ -79,8 +127,6 @@ main (int argc, char **argv)
   g_message ("Thunar-VFS not available, using default implementation");
 #endif
   
-  xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-
   xfburn_stock_init ();
   n_drives = xfburn_device_list_init ();
   if (n_drives < 1) {
@@ -95,11 +141,39 @@ main (int argc, char **argv)
     gtk_widget_destroy (GTK_WIDGET (dialog));
   }
 
-  mainwin = xfburn_main_window_new ();
+  /* evaluate parsed command line options */
 
-  gtk_widget_show (mainwin);
+  if (image_filename != NULL) {
+    GtkWidget *dialog = xfburn_burn_image_dialog_new ();
+
+    other_action = TRUE;
+    DBG ("image_filename = '%s'\n", image_filename);
+
+    if (*image_filename != '\0') {
+      gchar *image_fullname;
+
+      if (!g_path_is_absolute (image_filename))
+	image_fullname  = g_build_filename (g_get_current_dir (), image_filename, NULL);
+      else
+	image_fullname = image_filename;
+
+      if (g_file_test (image_fullname, G_FILE_TEST_EXISTS))
+	xfburn_burn_image_dialog_set_filechooser_name (dialog, image_fullname);
+      else
+	xfce_err ( g_strdup_printf ( _("Image file '%s' does not exist!"), image_fullname));
+    }
+
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    gtk_widget_destroy (dialog);
+  }
+
+  if (!other_action || show_main) {
+    mainwin = xfburn_main_window_new ();
+
+    gtk_widget_show (mainwin);
   
-  gtk_main ();
+    gtk_main ();
+  }
 
 #ifdef HAVE_THUNAR_VFS
   thunar_vfs_shutdown ();
