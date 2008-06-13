@@ -725,17 +725,20 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
 {
   XfburnDevice *device;
   
-  xfburn_busy_cursor (combo);
+  if (GTK_WIDGET_REALIZED (box))
+    xfburn_busy_cursor (GTK_WIDGET (box));
 
   device = xfburn_device_box_get_selected_device (box);
   if (device != NULL) {
+    //DBG ("Device changed to %s", device->name);
     xfburn_device_refresh_supported_speeds (device);
 
     fill_combo_speed (box, device);
     fill_combo_mode (box,device);
   }
 
-  xfburn_default_cursor (combo);
+  if (GTK_WIDGET_REALIZED (box))
+    xfburn_default_cursor (GTK_WIDGET (box));
 
   g_signal_emit (G_OBJECT (box), signals[DEVICE_CHANGED], 0, device);
 }
