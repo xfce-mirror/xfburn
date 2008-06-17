@@ -24,6 +24,7 @@
 
 #include "xfburn-main-window.h"
 #include "xfburn-welcome-tab.h"
+#include "xfburn-composition.h"
 
 G_BEGIN_DECLS
 #define XFBURN_TYPE_COMPOSITIONS_NOTEBOOK         (xfburn_compositions_notebook_get_type ())
@@ -54,7 +55,7 @@ GtkType xfburn_compositions_notebook_get_type ();
 
 GtkWidget *xfburn_compositions_notebook_new ();
 
-void xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type);
+XfburnComposition *xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type);
 XfburnWelcomeTab *xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, XfburnMainWindow *window);
 void xfburn_compositions_notebook_close_composition (XfburnCompositionsNotebook *notebook);
 

@@ -469,9 +469,7 @@ action_close (GtkAction *action, XfburnMainWindow * window)
 static void
 action_new_data_composition (GtkAction *action, XfburnMainWindow * window)
 {
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
- 
-  xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_DATA_COMPOSITION);
+  xfburn_main_window_add_data_composition_with_files (window, 0, NULL);
 }
 
 /*
@@ -693,6 +691,16 @@ xfburn_main_window_get_file_browser (XfburnMainWindow *window)
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   
   return XFBURN_FILE_BROWSER (priv->file_browser);
+}
+
+void 
+xfburn_main_window_add_data_composition_with_files (XfburnMainWindow *window, int filec, char **filenames)
+{
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  XfburnComposition *comp;
+ 
+  comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_DATA_COMPOSITION);
+  xfburn_data_composition_add_files (XFBURN_DATA_COMPOSITION (comp), filec, filenames);
 }
 
 gboolean

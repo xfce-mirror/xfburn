@@ -54,10 +54,13 @@ static gchar *image_filename = NULL;
 static gboolean show_version = FALSE;
 static gboolean other_action = FALSE;
 static gboolean show_main = FALSE;
+static gboolean add_data_composition = FALSE;
 
 static GOptionEntry optionentries[] = {
   { "burn-image", 'i', G_OPTION_FLAG_OPTIONAL_ARG /* || G_OPTION_FLAG_FILENAME */, G_OPTION_ARG_CALLBACK, &parse_option, 
     "Open the burn image dialog. The filename of the image can optionally be specified as a parameter", NULL },
+  { "data-composition", 'd', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option, 
+    "Start a data composition. Optionally followed by files to be added to the composition.", NULL },
   { "version", 'V', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_version, 
     "Display program version and exit", NULL },
   { "main", 'm', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_main, 
@@ -73,6 +76,8 @@ static gboolean parse_option (const gchar *option_name, const gchar *value,
       image_filename = "";
     else
       image_filename = g_strdup(value);
+  } else if (strcmp (option_name, "-d") == 0 || strcmp (option_name, "--data-composition") == 0) {
+    add_data_composition = TRUE;
   } else {
     g_set_error (error, 0, G_OPTION_ERROR_FAILED, "Invalid command line option. Please report, this is a bug.");
     return FALSE;
@@ -172,6 +177,9 @@ main (int argc, char **argv)
 
     gtk_widget_show (mainwin);
   
+    if (add_data_composition)
+      xfburn_main_window_add_data_composition_with_files (XFBURN_MAIN_WINDOW (mainwin), argc-1, argv+1);
+
     gtk_main ();
   }
 

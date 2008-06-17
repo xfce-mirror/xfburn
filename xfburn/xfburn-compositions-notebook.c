@@ -27,7 +27,6 @@
 
 #include "xfburn-compositions-notebook.h"
 
-#include "xfburn-composition.h"
 #include "xfburn-notebook-tab.h"
 #include "xfburn-welcome-tab.h"
 #include "xfburn-data-composition.h"
@@ -218,12 +217,12 @@ xfburn_compositions_notebook_new ()
   return obj;
 }
 
-void
+XfburnComposition *
 xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type)
 {
   g_assert (type != XFBURN_WELCOME_TAB);
 
-  add_composition_with_data (notebook, type, NULL);
+  return add_composition_with_data (notebook, type, NULL);
 }
 
 XfburnWelcomeTab *

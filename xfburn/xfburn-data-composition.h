@@ -54,8 +54,10 @@ enum
 GtkType xfburn_data_composition_get_type (void);
 
 GtkWidget *xfburn_data_composition_new (void);
+void xfburn_data_composition_add_files (XfburnDataComposition *content, int filec, char **filenames);
 void xfburn_data_composition_hide_toolbar (XfburnDataComposition *content);
 void xfburn_data_composition_show_toolbar (XfburnDataComposition *content);
+
 
 G_END_DECLS
 #endif

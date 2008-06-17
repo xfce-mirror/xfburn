@@ -56,6 +56,8 @@ XfburnMainWindow *xfburn_main_window_get_instance (void);
 GtkUIManager *xfburn_main_window_get_ui_manager (XfburnMainWindow *window);
 XfburnFileBrowser *xfburn_main_window_get_file_browser (XfburnMainWindow *window);
 
+void xfburn_main_window_add_data_composition_with_files (XfburnMainWindow *window, int filec, char **filenames);
+
 gboolean xfburn_main_window_support_cdr (XfburnMainWindow *window);
 gboolean xfburn_main_window_support_cdrw (XfburnMainWindow *window);
 

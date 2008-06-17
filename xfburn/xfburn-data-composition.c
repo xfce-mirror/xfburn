@@ -1813,6 +1813,14 @@ xfburn_data_composition_new (void)
   return g_object_new (xfburn_data_composition_get_type (), NULL);
 }
 
+void 
+xfburn_data_composition_add_files (XfburnDataComposition *content, int filec, char **filenames)
+{
+  if (filec > 0) {
+    g_error ("not yet implemented");
+  }
+}
+
 void
 xfburn_data_composition_hide_toolbar (XfburnDataComposition * composition)
 {
