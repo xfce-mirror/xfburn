@@ -417,6 +417,22 @@ xfburn_progress_dialog_set_buffer_bar_fraction (XfburnProgressDialog * dialog, g
 }
 
 void
+xfburn_progress_dialog_set_buffer_bar_min_fill (XfburnProgressDialog * dialog, gdouble fraction)
+{
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+  gchar *text = NULL;
+
+  text = g_strdup_printf (_("Min. fill was %2d%%"), (int) (fraction * 100));
+
+  gdk_threads_enter ();    
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->buffer_bar), fraction);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), text);
+  gdk_threads_leave ();
+
+  g_free (text);
+}
+
+void
 xfburn_progress_dialog_set_fifo_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);

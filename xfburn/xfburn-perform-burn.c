@@ -64,6 +64,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress, struct burn_drive *drive,
   const char *final_status_text;
   XfburnProgressDialogStatus final_status;
   const char *final_message;
+  gdouble percent = 0.0;
 
   while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
     usleep(100001);
@@ -115,7 +116,6 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress, struct burn_drive *drive,
     case BURN_DRIVE_WRITING:
       xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning composition..."));
       if (progress.sectors > 0 && progress.sector >= 0) {
-	gdouble percent = 0.0;
         gdouble cur_speed = 0.0;
 
 	percent = (gdouble) (progress.buffer_capacity - progress.buffer_available) / (gdouble) progress.buffer_capacity;
@@ -186,6 +186,9 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress, struct burn_drive *drive,
 
   if (ret < 0)
     g_warning ("Fatal error while trying to retrieve libburn message!");
+
+  percent = (gdouble) progress.buffer_min_fill / (gdouble) progress.buffer_capacity;
+  xfburn_progress_dialog_set_buffer_bar_min_fill (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 
   if (G_LIKELY (!error)) {
     final_message = _("Done");
