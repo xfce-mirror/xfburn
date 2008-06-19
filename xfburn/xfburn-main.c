@@ -60,7 +60,7 @@ static GOptionEntry optionentries[] = {
   { "burn-image", 'i', G_OPTION_FLAG_OPTIONAL_ARG /* || G_OPTION_FLAG_FILENAME */, G_OPTION_ARG_CALLBACK, &parse_option, 
     "Open the burn image dialog. The filename of the image can optionally be specified as a parameter", NULL },
   { "data-composition", 'd', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option, 
-    "Start a data composition. Optionally followed by files to be added to the composition.", NULL },
+    "Start a data composition. Optionally followed by files/directories to be added to the composition.", NULL },
   { "version", 'V', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_version, 
     "Display program version and exit", NULL },
   { "main", 'm', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_main, 
@@ -172,6 +172,7 @@ main (int argc, char **argv)
     gtk_widget_destroy (dialog);
   }
 
+  /* main window */
   if (!other_action || show_main) {
     mainwin = xfburn_main_window_new ();
 
@@ -183,6 +184,7 @@ main (int argc, char **argv)
     gtk_main ();
   }
 
+  /* shutdown */
 #ifdef HAVE_THUNAR_VFS
   thunar_vfs_shutdown ();
 #endif

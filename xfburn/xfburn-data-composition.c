@@ -1023,6 +1023,7 @@ add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc, GtkTr
     
     basename = g_path_get_basename (path);
     if ( (strlen (basename) > 1) && (basename[0] == '.') ) {
+      /* FIXME: is this really what we want? */
       /* don't add hidden files/directories */
 
       g_free (basename);  
@@ -1814,10 +1815,30 @@ xfburn_data_composition_new (void)
 }
 
 void 
-xfburn_data_composition_add_files (XfburnDataComposition *content, int filec, char **filenames)
+xfburn_data_composition_add_files (XfburnDataComposition *dc, int filec, char **filenames)
 {
   if (filec > 0) {
-    g_error ("not yet implemented");
+    XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
+
+    GtkTreeModel *model;
+    int i;
+    gchar *full_path = NULL;
+
+    model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
+
+    xfburn_busy_cursor (priv->content);
+
+    for (i=0; i<filec; i++) {
+      GtkTreeIter iter;
+      
+      g_message ("Adding %s to the data composition... (might take a while)", filenames[i]);
+
+      full_path = g_build_filename (filenames[i], NULL);
+
+      add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
+    }
+
+    xfburn_default_cursor (priv->content);
   }
 }
 
