@@ -477,6 +477,9 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_speed));
   GSList *el = device->supported_cdr_speeds;
+  int profile_no = xfburn_device_list_get_profile_no ();
+  int factor;
+  GtkTreeIter iter_max;
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -495,20 +498,38 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, SPEED_TEXT_COLUMN, str, SPEED_VALUE_COLUMN, -1, -1);
   }
 
+  /* check profile, so we can convert from 'kb/s' into 'x' rating */
+  if (profile_no != 0) {
+    /* this will fail if newer disk types get supported */
+    if (profile_no <= 0x0a)
+      factor = CDR_1X_SPEED;
+    else
+      /* assume DVD for now */
+      factor = DVD_1X_SPEED;
+  } else {
+    factor = 1;
+  }
+
   while (el) {
-    gint speed = GPOINTER_TO_INT (el->data);
+    gint write_speed = GPOINTER_TO_INT (el->data);
     GtkTreeIter iter;
     gchar *str = NULL;
+    gint speed;
 
+    speed = write_speed / factor;
     str = g_strdup_printf ("%d", speed);
+    //DBG ("added speed: %d kb/s => %d x", el->write_speed, speed);
 
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, SPEED_TEXT_COLUMN, str, SPEED_VALUE_COLUMN, speed, -1);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, SPEED_TEXT_COLUMN, str, SPEED_VALUE_COLUMN, write_speed, -1);
     g_free (str);
 
     el = g_slist_next (el);
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_speed), gtk_tree_model_iter_n_children (model, NULL) - 1);
+
+  gtk_list_store_append (GTK_LIST_STORE (model), &iter_max);
+  gtk_list_store_set (GTK_LIST_STORE (model), &iter_max, SPEED_TEXT_COLUMN, _("Max"), SPEED_VALUE_COLUMN, 0, -1);
 }
 
 static void

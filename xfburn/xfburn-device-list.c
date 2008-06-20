@@ -86,7 +86,6 @@ static void
 refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_info)
 {
   struct burn_speed_descriptor *speed_list = NULL;
-  int factor;
   gint ret;
   /*
   int status, num_formats;
@@ -148,26 +147,13 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
 
   if (ret > 0 && speed_list != NULL) {
     struct burn_speed_descriptor *el = speed_list;
-    /* check profile, so we can convert from 'kb/s' into 'x' rating */
-    if (profile_no != 0) {
-      /* this will fail if newer disk types get supported */
-      if (profile_no <= 0x0a)
-        factor = CDR_1X_SPEED;
-      else
-        /* assume DVD for now */
-        factor = DVD_1X_SPEED;
-    } else {
-      factor = 1;
-    }
 
     while (el) {
-      gint speed = -1;
+      gint speed = el->write_speed;
       
-      speed = el->write_speed / factor;
       /* FIXME: why do we need no_speed_duplicate? */
       if (speed > 0 && no_speed_duplicate (device->supported_cdr_speeds, speed)) {
           device->supported_cdr_speeds = g_slist_prepend (device->supported_cdr_speeds, GINT_TO_POINTER (speed));
-        DBG ("added speed: %d kb/s => %d x", el->write_speed, speed);
       } 
 
       el = el->next;
