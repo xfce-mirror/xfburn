@@ -34,6 +34,7 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-device-box.h"
 #include "xfburn-stock.h"
+#include "xfburn-settings.h"
 
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-perform-burn.h"
@@ -270,6 +271,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   struct stat stbuf;
   off_t fixed_size = 0;
   struct burn_source *data_src;
+  struct burn_source *fifo_src;
 
   struct burn_drive *drive;
   struct burn_drive_info *drive_info = NULL;
@@ -313,13 +315,16 @@ thread_burn_iso (ThreadBurnIsoParams * params)
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot open image"));
     goto end;
   }
-  if (burn_track_set_source (track, data_src) != BURN_SOURCE_OK) {
+
+  fifo_src = burn_fifo_source_new (data_src, 2048, xfburn_settings_get_int ("fifo-size", XFBURN_FIFO_DEFAULT_SIZE) / 2, 0);
+  burn_source_free (data_src);
+
+  if (burn_track_set_source (track, fifo_src) != BURN_SOURCE_OK) {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot attach source object to track object"));
     goto end;
   }
   
   burn_session_add_track (session, track, BURN_POS_END);
-  burn_source_free (data_src);
 
   if (!xfburn_device_grab (params->device, &drive_info)) {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab drive"));
@@ -339,7 +344,8 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   burn_drive_set_speed (drive, 0, 0);
 
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning image..."));
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc);
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, fifo_src);
+  burn_source_free (fifo_src);
   burn_write_opts_free (burn_options);
 
  cleanup:

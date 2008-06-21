@@ -41,4 +41,7 @@
 #define DVD_1X_SPEED 1385
 
 #define DATA_COMPOSITION_DEFAULT_NAME "Data composition"
+
+#define XFBURN_FIFO_DEFAULT_SIZE 4096 /* in kb/s */
+
 #endif

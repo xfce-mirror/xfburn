@@ -457,6 +457,17 @@ xfburn_progress_dialog_set_fifo_bar_fraction (XfburnProgressDialog * dialog, gdo
 }
 
 void
+xfburn_progress_dialog_set_fifo_bar_text (XfburnProgressDialog * dialog, const gchar *text)
+{
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+
+  gdk_threads_enter ();
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->fifo_bar), 0.0);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), text);
+  gdk_threads_leave ();
+}
+
+void
 xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);

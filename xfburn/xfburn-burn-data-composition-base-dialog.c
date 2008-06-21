@@ -35,6 +35,7 @@
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
 #include "xfburn-stock.h"
+#include "xfburn-settings.h"
 
 #include "xfburn-device-box.h"
 #include "xfburn-burn-data-composition-base-dialog.h"
@@ -415,6 +416,7 @@ typedef struct {
   GtkWidget *dialog_progress;
   XfburnDevice *device;
   struct burn_source *src;
+  gboolean is_fifo;
   gint speed;
   XfburnWriteMode write_mode;
   gboolean eject;
@@ -474,7 +476,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_drive_set_speed (drive, 0, params->speed);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
 
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc);
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, (params->is_fifo ? params->src : NULL));
 
   burn_write_opts_free (burn_options);
 }
@@ -566,16 +568,22 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
       XfburnDevice *device;
       gint speed;
       XfburnWriteMode write_mode;
+      struct burn_source * src_fifo = NULL;
 
       device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
       speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
       write_mode = xfburn_device_box_get_mode (XFBURN_DEVICE_BOX (priv->device_box));
 
+      /* FIXME: how much buffer space do we need? Probably should put this into settings */
+      src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", XFBURN_FIFO_DEFAULT_SIZE) / 2, 0);
+      burn_source_free (src);
+
       /* burn composition */
       params = g_new0 (ThreadBurnCompositionParams, 1);
       params->dialog_progress = dialog_progress;
       params->device = device;
-      params->src = src;
+      params->src = src_fifo;
+      params->is_fifo = TRUE;
       params->speed = speed;
       params->write_mode = write_mode;
       params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));

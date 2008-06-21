@@ -44,6 +44,7 @@ typedef struct
   GtkWidget *treeview_devices;
   GtkWidget *button_scan;
   GtkWidget *check_empty_speed_list;
+  GtkWidget *scale_fifo;
 } XfburnPreferencesDialogPrivate;
 
 /* prototypes */
@@ -121,7 +122,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
   XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (obj);
   
-  GtkWidget *vbox, *vbox2, *hbox;
+  GtkWidget *vbox, *vbox2, *vbox3, *hbox;
   GtkWidget *label;
   GtkWidget *frame;
   GtkWidget *scrolled_window;
@@ -316,6 +317,20 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_empty_speed_list, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->check_empty_speed_list);
 
+  /* fifo */
+  vbox3 = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (vbox3);
+
+  frame = xfce_create_framebox_with_content (_("FIFO buffer size (in kb)"), vbox3);
+  gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, BORDER);
+  gtk_widget_show (frame);
+
+  priv->scale_fifo = gtk_hscale_new_with_range (0.0, 8192.0, 32.0);
+  gtk_scale_set_value_pos (GTK_SCALE (priv->scale_fifo), GTK_POS_LEFT);
+  gtk_range_set_value (GTK_RANGE (priv->scale_fifo), 0);
+  gtk_box_pack_start (GTK_BOX (vbox3), priv->scale_fifo, FALSE, FALSE, BORDER/2);
+  gtk_widget_show (priv->scale_fifo);
+
   
   /* action buttons */
   button_close = gtk_button_new_from_stock ("gtk-close");
@@ -352,6 +367,8 @@ xfburn_preferences_dialog_load_settings (XfburnPreferencesDialog * dialog)
                                 xfburn_settings_get_boolean ("human-readable-units", TRUE));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_empty_speed_list),
                                 xfburn_settings_get_boolean ("show-empty-speed-list-notice", TRUE));
+  gtk_range_set_value (GTK_RANGE (priv->scale_fifo),
+                                (double) xfburn_settings_get_int ("fifo-size", XFBURN_FIFO_DEFAULT_SIZE));
 }
 
 static void
@@ -372,6 +389,8 @@ xfburn_preferences_dialog_save_settings (XfburnPreferencesDialog *dialog)
                                gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_show_human_readable)));
   xfburn_settings_set_boolean ("show-empty-speed-list-notice", 
                                gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_empty_speed_list)));
+  xfburn_settings_set_int ("fifo-size", 
+                               ((((int) gtk_range_get_value (GTK_RANGE (priv->scale_fifo)) / 32) * 32))); /* this should round to multiples of 1024 */
 }
 
 static void
