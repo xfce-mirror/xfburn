@@ -158,6 +158,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   /* burning devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_MODE_SELECTION | SHOW_SPEED_SELECTION);
   g_signal_connect (G_OBJECT (priv->device_box), "disc-refreshed", G_CALLBACK (cb_disc_refreshed), obj);
+  g_signal_connect (G_OBJECT (priv->device_box), "device-changed", G_CALLBACK (cb_disc_refreshed), obj);
   gtk_widget_show (priv->device_box);
 
   priv->frame_device = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
