@@ -134,10 +134,13 @@ xfburn_hal_manager_init (XfburnHalManager * obj)
     hal_context = libhal_ctx_new ();
     if (G_LIKELY (hal_context != NULL)) {
       /* setup the D-Bus connection for the HAL context */
-      libhal_ctx_set_dbus_connection (hal_context, dbus_connection);
+      if (libhal_ctx_set_dbus_connection (hal_context, dbus_connection)) {
 
-      /* try to initialize the HAL context */
-      libhal_ctx_init (hal_context, &derror);
+        /* try to initialize the HAL context */
+        libhal_ctx_init (hal_context, &derror);
+      } else {
+        dbus_set_error_const (&derror, DBUS_ERROR_NO_MEMORY, g_strerror (ENOMEM));
+      }
     } else {
       /* record the allocation failure of the context */
       dbus_set_error_const (&derror, DBUS_ERROR_NO_MEMORY, g_strerror (ENOMEM));
