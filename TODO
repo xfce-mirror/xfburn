@@ -6,7 +6,6 @@ user visible
 - remove temporary files
 - use more thunar-vfs
 - add verification of written disc
-- add data dvd support [DONE]
 - add blu-ray support
 
 various fixes and changes
@@ -15,13 +14,9 @@ various fixes and changes
 - cleanup code
   - remove duplicated code fragments, in particular
     - the burning backend, and [started]
-    - the burning dialogs      [DONE]
 - implement progress dialog when adding files to composition 
   - adding files to composition should be a new thread
-- fix available writing speeds detection
-  - and sort them [DONE]
-- implement means to calculate available write speeds at the right moment
-  (when the disk is inserted) - requires a lot of UI thinking [DONE]
+- fix available writing speeds detection (maybe task for libburn?)
 - only allow usage of drives with matching capabilities
   - when burning ISO image, only show drives capable of 
     burning to desired disk, or report that we cannot
@@ -34,12 +29,9 @@ various fixes and changes
     leave all the files previously
     added by the user in composition so he could tweak it
 - welcome tab
-  - that cannot be closed [DONE]
-    - hide close button
+  - hide close button
 - recode copy disk with libburn
 - update columns resizing by using column enum index
-- disable burn button before proper image file is selected [DONE]
-- disable blank button if disc cannot be blanked
 - take advantage of gvfs in addition to thunar-vfs until thunar-vfs gets deprecated
 - disable device selection before image is selected
   - once image is selected, populate device selection box
@@ -47,10 +39,7 @@ various fixes and changes
     we can't burn it on cd-writer).
   - if no suitable writer is found, use that red label thingy
     to inform the user
-- inform user in red label if no image has been selected [DONE]
-- Erase disc should work for all RW discs [DONE]
 - hide disc status in blank dialog
-  - rather, display correct disc status [DONE]
-  - add refresh button and disable blank if invalid disc
-- refresh disc status after blanking is done [DONE]
-- unify code to add files (currently add button and dnd have separate code bases)
+  - add refresh button and disable blank if invalid disc [?]
+- unify code to add files (currently add button and dnd have separate 
+    code bases) [?]
