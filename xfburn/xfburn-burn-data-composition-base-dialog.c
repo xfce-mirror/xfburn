@@ -542,6 +542,10 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
     iso_write_opts_set_iso_level (write_opts, 2);
     iso_write_opts_set_rockridge (write_opts, TRUE);
     iso_write_opts_set_joliet (write_opts, TRUE);
+    iso_write_opts_set_allow_deep_paths (write_opts, TRUE);
+    /* not sure if we want that
+    iso_write_opts_set_omit_version_numbers (write_opts, TRUE);
+    */
 
     if (iso_image_create_burn_source (priv->image, write_opts, &src) < 0) {
       /* could not create source */
