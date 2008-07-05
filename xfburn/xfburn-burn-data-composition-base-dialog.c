@@ -536,8 +536,12 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
       iso_image_set_volset_id (priv->image, comp_name);
     }
 
-    /* Sets profile 2 [distribution] */
-    iso_write_opts_new (&write_opts, 2);
+    /* Sets profile 0 [basic] */
+    iso_write_opts_new (&write_opts, 0);
+
+    iso_write_opts_set_iso_level (write_opts, 2);
+    iso_write_opts_set_rockridge (write_opts, TRUE);
+    iso_write_opts_set_joliet (write_opts, TRUE);
 
     if (iso_image_create_burn_source (priv->image, write_opts, &src) < 0) {
       /* could not create source */
