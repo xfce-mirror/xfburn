@@ -26,6 +26,8 @@
 
 #include <gtk/gtk.h>
 
+#include "xfburn-data-composition.h"
+
 G_BEGIN_DECLS
 #define XFBURN_TYPE_ADDING_PROGRESS            (xfburn_adding_progress_get_type ())
 #define XFBURN_ADDING_PROGRESS(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_ADDING_PROGRESS, XfburnAddingProgress))
@@ -33,23 +35,26 @@ G_BEGIN_DECLS
 #define XFBURN_IS_ADDING_PROGRESS(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_ADDING_PROGRESS))
 #define XFBURN_IS_ADDING_PROGRESS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_ADDING_PROGRESS))
 #define XFBURN_ADDING_PROGRESS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_ADDING_PROGRESS, XfburnAddingProgressClass))
-typedef struct _XfburnAddingProgress XfburnAddingProgress;
-typedef struct _XfburnAddingProgressClass XfburnAddingProgressClass;
 
-struct _XfburnAddingProgress
+typedef struct 
 {
   GtkWindow window;
-};
+} XfburnAddingProgress;
 
-struct _XfburnAddingProgressClass
+typedef struct 
 {
   GtkWindowClass parent_class;
-};
+  void (*adding_done) (XfburnAddingProgress *progress, XfburnDataComposition *dc);
+} XfburnAddingProgressClass;
 
 GtkType xfburn_adding_progress_get_type (void);
 
-GtkWidget *xfburn_adding_progress_new (void);
+XfburnAddingProgress *xfburn_adding_progress_new (void);
 void xfburn_adding_progress_pulse (XfburnAddingProgress *adding_progress);
+void xfburn_adding_progress_wait_until_done (XfburnAddingProgress *adding_progress);
+void xfburn_adding_progress_done (XfburnAddingProgress *adding_progress);
+gboolean xfburn_adding_progress_is_aborted (XfburnAddingProgress *adding_progress);
+void xfburn_adding_progress_show (XfburnAddingProgress *adding_progress);
 
 G_END_DECLS
 #endif
