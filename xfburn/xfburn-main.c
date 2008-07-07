@@ -43,6 +43,7 @@
 #include "xfburn-stock.h"
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-main-window.h"
+#include "xfburn-blank-dialog.h"
 
 
 /* internal prototypes */
@@ -55,16 +56,19 @@ static gboolean show_version = FALSE;
 static gboolean other_action = FALSE;
 static gboolean show_main = FALSE;
 static gboolean add_data_composition = FALSE;
+static gboolean blank = FALSE;
 
 static GOptionEntry optionentries[] = {
   { "burn-image", 'i', G_OPTION_FLAG_OPTIONAL_ARG /* || G_OPTION_FLAG_FILENAME */, G_OPTION_ARG_CALLBACK, &parse_option, 
     "Open the burn image dialog. The filename of the image can optionally be specified as a parameter", NULL },
+  { "blank", 'b', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option, 
+    "Open the blank disc dialog.", NULL },
   { "data-composition", 'd', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option, 
     "Start a data composition. Optionally followed by files/directories to be added to the composition.", NULL },
   { "version", 'V', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_version, 
     "Display program version and exit", NULL },
   { "main", 'm', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_main, 
-    "Show main program even when other action is specified on the command line", NULL },
+    "Show main program even when other action is specified on the command line.", NULL },
   { NULL },
 };
 
@@ -78,6 +82,8 @@ static gboolean parse_option (const gchar *option_name, const gchar *value,
       image_filename = g_strdup(value);
   } else if (strcmp (option_name, "-d") == 0 || strcmp (option_name, "--data-composition") == 0) {
     add_data_composition = TRUE;
+  } else if (strcmp (option_name, "-b") == 0 || strcmp (option_name, "--blank") == 0) {
+    blank = TRUE;
   } else {
     g_set_error (error, 0, G_OPTION_ERROR_FAILED, "Invalid command line option. Please report, this is a bug.");
     return FALSE;
@@ -146,6 +152,7 @@ main (int argc, char **argv)
     gtk_widget_destroy (GTK_WIDGET (dialog));
   }
 
+
   /* evaluate parsed command line options */
 
   if (image_filename != NULL) {
@@ -170,7 +177,14 @@ main (int argc, char **argv)
 
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
+  } else if (blank) {
+    GtkWidget *dialog = xfburn_blank_dialog_new ();
+
+    other_action = TRUE;
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    gtk_widget_destroy (dialog);
   }
+
 
   /* main window */
   if (!other_action || show_main) {

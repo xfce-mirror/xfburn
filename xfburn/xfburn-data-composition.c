@@ -1463,6 +1463,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   
   xfburn_busy_cursor (priv->content);
 
+  /* move a selection inside of the composition window */
   if (sd->target == gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE)) {
     GList *row = NULL, *selected_rows = NULL;
     GtkTreeIter *iter = NULL;
@@ -1590,6 +1591,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     gtk_widget_hide (priv->progress);
     xfburn_default_cursor (priv->content);
   }
+  /* drag from the file selector */
   else if (sd->target == gdk_atom_intern ("text/plain", FALSE)) {
     ThreadAddFilesDragParams *params;
     const gchar *file = NULL;
@@ -1630,6 +1632,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
     gtk_drag_finish (dc, TRUE, FALSE, t);
   } else {
+    g_warning ("Trying to receive an unsupported drag target, this should not happen.");
     gtk_drag_finish (dc, FALSE, FALSE, t);
     xfburn_default_cursor (priv->content);
   }
