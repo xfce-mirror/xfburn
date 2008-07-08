@@ -526,10 +526,11 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 
     el = g_slist_next (el);
   }
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_speed), gtk_tree_model_iter_n_children (model, NULL) - 1);
 
   gtk_list_store_append (GTK_LIST_STORE (model), &iter_max);
+
   gtk_list_store_set (GTK_LIST_STORE (model), &iter_max, SPEED_TEXT_COLUMN, _("Max"), SPEED_VALUE_COLUMN, 0, -1);
+  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_speed), gtk_tree_model_iter_n_children (model, NULL) - 1);
 }
 
 static void
