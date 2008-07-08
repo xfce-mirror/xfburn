@@ -619,34 +619,34 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
   GtkTreePath *current_path = NULL;
   GtkTreeIter current_iter;
   
+  gdk_threads_enter ();
   current_path = gtk_tree_path_copy (path);
   for (;gtk_tree_path_prev (current_path););
    
-  if (!gtk_tree_model_get_iter (model, &current_iter, current_path)) {
-    return FALSE;
+  if (gtk_tree_model_get_iter (model, &current_iter, current_path)) {
+    do {
+      gchar *current_filename = NULL;
+      
+      if (skip_path && gtk_tree_path_compare (path, current_path) == 0) {
+        gtk_tree_path_next (current_path);
+        continue;
+      }
+
+      gtk_tree_model_get (model, &current_iter, DATA_COMPOSITION_COLUMN_CONTENT, &current_filename, -1);
+      if (strcmp (current_filename, filename) == 0) {
+        g_free (current_filename);
+        gtk_tree_path_free (current_path);
+        gdk_threads_leave ();
+        return TRUE;
+      }
+      
+      g_free (current_filename);
+      gtk_tree_path_next (current_path);
+    } while (gtk_tree_model_iter_next (model, &current_iter));
   }
   
-  do {
-    gchar *current_filename = NULL;
-    
-    if (skip_path && gtk_tree_path_compare (path, current_path) == 0) {
-      gtk_tree_path_next (current_path);
-      continue;
-    }
-
-    gtk_tree_model_get (model, &current_iter, DATA_COMPOSITION_COLUMN_CONTENT, &current_filename, -1);
-    if (strcmp (current_filename, filename) == 0) {
-      g_free (current_filename);
-      gtk_tree_path_free (current_path);
-      gdk_threads_leave ();
-      return TRUE;
-    }
-    
-    g_free (current_filename);
-    gtk_tree_path_next (current_path);
-  } while (gtk_tree_model_iter_next (model, &current_iter));
-  
   gtk_tree_path_free (current_path);
+  gdk_threads_leave ();
   return FALSE;
 }
 
