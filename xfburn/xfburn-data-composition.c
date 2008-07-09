@@ -619,7 +619,6 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
   GtkTreePath *current_path = NULL;
   GtkTreeIter current_iter;
   
-  gdk_threads_enter ();
   current_path = gtk_tree_path_copy (path);
   for (;gtk_tree_path_prev (current_path););
    
@@ -636,7 +635,6 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
       if (strcmp (current_filename, filename) == 0) {
         g_free (current_filename);
         gtk_tree_path_free (current_path);
-        gdk_threads_leave ();
         return TRUE;
       }
       
@@ -646,7 +644,6 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
   }
   
   gtk_tree_path_free (current_path);
-  gdk_threads_leave ();
   return FALSE;
 }
 
@@ -1065,6 +1062,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
       xfce_err (_("A file with the same name is already present in the composition"));
 
       gtk_tree_path_free (tree_path);
+      gdk_threads_leave ();
       g_free (parent);
       return FALSE;
     }
