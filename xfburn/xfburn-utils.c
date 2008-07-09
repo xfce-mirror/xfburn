@@ -142,3 +142,29 @@ xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent)
   gtk_widget_destroy (dialog);
 }
 
+
+gboolean
+xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, const gchar *secondary_text)
+{
+  GtkMessageDialog *dialog;
+  gint ret;
+  gboolean ok = TRUE;
+
+  dialog = (GtkMessageDialog *) gtk_message_dialog_new (NULL,
+                                  GTK_DIALOG_DESTROY_WITH_PARENT,
+                                  type,
+                                  GTK_BUTTONS_YES_NO,
+                                  primary_text);
+  gtk_message_dialog_format_secondary_text (dialog, secondary_text);
+  ret = gtk_dialog_run (GTK_DIALOG (dialog));
+  switch (ret) {
+    case GTK_RESPONSE_YES:
+      break;
+    default:
+      ok = FALSE;
+  }
+  xfburn_busy_cursor (GTK_DIALOG (dialog)->vbox);
+  gtk_widget_destroy (GTK_WIDGET (dialog));
+
+  return ok;
+}

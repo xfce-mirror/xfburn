@@ -254,4 +254,12 @@ xfburn_hal_manager_shutdown ()
   halman = NULL;
 }
 
+void
+xfburn_hal_manager_send_volume_changed ()
+{
+  //gdk_threads_enter ();
+  g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
+  //gdk_threads_leave ();
+}
+
 #endif /* HAVE_HAL */

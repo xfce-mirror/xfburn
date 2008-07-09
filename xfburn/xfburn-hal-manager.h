@@ -57,6 +57,7 @@ GObject *xfburn_hal_manager_new ();
 void xfburn_hal_manager_create_global ();
 XfburnHalManager * xfburn_hal_manager_get_instance ();
 void xfburn_hal_manager_shutdown ();
+void xfburn_hal_manager_send_volume_changed ();
 
 G_END_DECLS
 

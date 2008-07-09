@@ -30,10 +30,18 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-device-box.h"
 #include "xfburn-stock.h"
+#include "xfburn-hal-manager.h"
 
 #include "xfburn-blank-dialog.h"
 
 #define XFBURN_BLANK_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BLANK_DIALOG, XfburnBlankDialogPrivate))
+
+#define XFBURN_BLANK_DIALOG_EJECT_DEFAULT TRUE
+
+enum {
+  PROP_0,
+  PROP_EJECT,
+};
 
 typedef struct
 {
@@ -42,6 +50,7 @@ typedef struct
   GtkWidget *button_blank;
   
   GtkWidget *check_eject;
+  gboolean eject;
 } XfburnBlankDialogPrivate;
 
 /* FIXME: the 128MB comes from cdrskin, but why? Is this really complete? */
@@ -83,6 +92,8 @@ typedef struct {
 
 static void xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass);
 static void xfburn_blank_dialog_init (XfburnBlankDialog * sp);
+static void xfburn_blank_dialog_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
+static void xfburn_blank_dialog_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
 static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode);
 static void fill_combo_mode (XfburnBlankDialog *dialog);
@@ -124,9 +135,48 @@ xfburn_blank_dialog_get_type ()
 static void
 xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass)
 {
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
   parent_class = g_type_class_peek_parent (klass);
+  object_class->set_property = xfburn_blank_dialog_set_property;
+  object_class->get_property = xfburn_blank_dialog_get_property;
   
   g_type_class_add_private (klass, sizeof (XfburnBlankDialogPrivate));
+
+  g_object_class_install_property (object_class, PROP_EJECT, 
+                                   g_param_spec_boolean ("eject", _("Eject the disc"),
+                                                        _("Default value for eject checkbox"), XFBURN_BLANK_DIALOG_EJECT_DEFAULT, G_PARAM_READWRITE));
+}
+
+static void
+xfburn_blank_dialog_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec)
+{
+  XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (object);
+
+  switch (prop_id) {
+    case PROP_EJECT:
+      g_value_set_boolean (value, priv->eject);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+xfburn_blank_dialog_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
+{
+  XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (object);
+  
+  switch (prop_id) {
+    case PROP_EJECT:
+      priv->eject = g_value_get_boolean (value);
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_eject), priv->eject);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
 }
 
 static void
@@ -180,7 +230,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   priv->check_eject = gtk_check_button_new_with_mnemonic (_("E_ject disk"));
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_eject), TRUE);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_eject), XFBURN_BLANK_DIALOG_EJECT_DEFAULT);
   gtk_widget_show (priv->check_eject);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_eject, FALSE, FALSE, BORDER);
 
@@ -414,6 +464,10 @@ thread_blank (ThreadBlankParams * params)
  
   burn_finish ();
   g_free (params);
+
+  gdk_threads_enter ();
+  xfburn_hal_manager_send_volume_changed ();
+  gdk_threads_leave ();
 }
 
 static XfburnBlankMode
@@ -477,6 +531,18 @@ xfburn_blank_dialog_new ()
   GtkWidget *obj;
 
   obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_BLANK_DIALOG, NULL));
+
+  return obj;
+}
+
+GtkWidget *
+xfburn_blank_dialog_new_eject (gboolean eject)
+{
+  GtkWidget *obj;
+
+  obj = xfburn_blank_dialog_new ();
+
+  g_object_set (G_OBJECT (obj), "eject", eject, NULL);
 
   return obj;
 }

@@ -1213,28 +1213,15 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
 static gboolean
 show_add_home_question_dialog ()
 {
-  GtkMessageDialog *dialog;
-  gint ret;
   gboolean ok = TRUE;
 
   gdk_threads_enter ();
   DBG ("Adding home directory");
-  dialog = (GtkMessageDialog *) gtk_message_dialog_new (NULL,
-                                  GTK_DIALOG_DESTROY_WITH_PARENT,
-                                  GTK_MESSAGE_WARNING,
-                                  GTK_BUTTONS_YES_NO,
-                                  ((const gchar *) _("Adding home directory")));
-  gtk_message_dialog_format_secondary_text (dialog,
-                                  _("You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n\nAre you sure you want to proceed?"));
-  ret = gtk_dialog_run (GTK_DIALOG (dialog));
-  switch (ret) {
-    case GTK_RESPONSE_YES:
-      break;
-    default:
-      ok = FALSE;
-  }
-  xfburn_busy_cursor (GTK_DIALOG (dialog)->vbox);
-  gtk_widget_destroy (GTK_WIDGET (dialog));
+  ok = xfburn_ask_yes_no (GTK_MESSAGE_WARNING, ((const gchar *) _("Adding home directory")),
+                          _("You are about to add your home directory to the composition. " \
+                            "This is likely to take a very long time, and also to be too big to fit on one disc.\n\n" \
+                            "Are you sure you want to proceed?")
+                         );
 
   gdk_threads_leave ();
 

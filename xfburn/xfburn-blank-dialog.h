@@ -49,6 +49,7 @@ typedef struct
 
 GtkType xfburn_blank_dialog_get_type ();
 GtkWidget *xfburn_blank_dialog_new ();
+GtkWidget * xfburn_blank_dialog_new_eject (gboolean eject);
 
 G_END_DECLS
 #endif /* XFBURN_BLANK_DIALOG_H */

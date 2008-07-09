@@ -35,4 +35,6 @@ gchar *xfburn_humanreadable_filesize (guint64);
 guint64 xfburn_calc_dirsize (const gchar *);
 
 void xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent);
+
+gboolean xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, const gchar *secondary_text);
 #endif

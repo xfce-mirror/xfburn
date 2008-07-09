@@ -34,6 +34,7 @@
 #include "xfburn-hal-manager.h"
 #include "xfburn-settings.h"
 #include "xfburn-utils.h"
+#include "xfburn-blank-dialog.h"
 
 #define XFBURN_DEVICE_BOX_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBoxPrivate))
 
@@ -94,8 +95,13 @@ typedef struct
   GtkWidget *hbox_mode_selection;
   GtkWidget *combo_mode;
 
+  gboolean have_asked_for_blanking;
 #ifdef HAVE_THUNAR_VFS
   ThunarVfsVolumeManager *thunar_volman;
+#endif
+
+#ifdef HAVE_HAL
+  gulong volume_changed_handlerid;
 #endif
 } XfburnDeviceBoxPrivate;
 
@@ -106,6 +112,7 @@ static void xfburn_device_box_finalize (GObject * object);
 static void xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
+static guint ask_for_blanking (XfburnDeviceBoxPrivate *priv);
 static void status_label_update (XfburnDeviceBoxPrivate *priv);
 static void update_status_label_visibility ();
 static XfburnDevice * get_selected_device (XfburnDeviceBoxPrivate *priv);
@@ -306,12 +313,11 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_widget_show (priv->status_label);
   gtk_box_pack_start (GTK_BOX (box), priv->status_label, FALSE, FALSE, 0);
 
-
-  g_signal_connect (G_OBJECT (priv->combo_device), "changed", G_CALLBACK (cb_combo_device_changed), box);
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_device), 0);
+  g_signal_connect (G_OBJECT (priv->combo_device), "changed", G_CALLBACK (cb_combo_device_changed), box);
 
 #ifdef HAVE_HAL
-  g_signal_connect (G_OBJECT (xfburn_hal_manager_get_instance ()), "volume-changed", G_CALLBACK (cb_volumes_changed), box);
+  priv->volume_changed_handlerid = g_signal_connect (G_OBJECT (xfburn_hal_manager_get_instance ()), "volume-changed", G_CALLBACK (cb_volumes_changed), box);
 #endif
 #ifdef HAVE_THUNAR_VFS
   priv->thunar_volman = thunar_vfs_volume_manager_get_default ();
@@ -324,6 +330,8 @@ xfburn_device_box_init (XfburnDeviceBox * box)
     g_warning ("Error trying to access the thunar-vfs-volume-manager!");
   }
 #endif
+
+  priv->have_asked_for_blanking = FALSE;
 }
 
 static void
@@ -334,11 +342,10 @@ xfburn_device_box_finalize (GObject * object)
 #ifdef HAVE_THUNAR_VFS
   g_object_unref (priv->thunar_volman);
 #endif
-/*
 #ifdef HAVE_HAL
-  g_object_unref (priv->hal_manager);
+  //g_object_unref (priv->hal_manager);
+  g_signal_handler_disconnect (xfburn_hal_manager_get_instance (), priv->volume_changed_handlerid);
 #endif
-*/
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -550,6 +557,29 @@ status_label_update (XfburnDeviceBoxPrivate *priv)
   g_free (text);
 }
 
+static guint
+ask_for_blanking (XfburnDeviceBoxPrivate *priv)
+{
+  gboolean do_blank;
+
+  if (priv->have_asked_for_blanking)
+    return FALSE;
+
+  gdk_threads_enter ();
+  priv->have_asked_for_blanking = TRUE;
+  do_blank = xfburn_ask_yes_no (GTK_MESSAGE_QUESTION, "A full, but erasable disc is in the drive",
+                                         "Do you want to blank the disc, so that it can be used for the upcoming burn process?");
+
+  if (do_blank) {
+    GtkDialog *blank_dialog = GTK_DIALOG (xfburn_blank_dialog_new_eject (FALSE));
+    gtk_dialog_run (blank_dialog);
+    gtk_widget_destroy (GTK_WIDGET (blank_dialog));
+  }
+  gdk_threads_leave ();
+  DBG ("done asking to blank");
+  return FALSE;
+}
+
 static gboolean
 check_disc_validity (XfburnDeviceBoxPrivate *priv)
 {
@@ -561,6 +591,7 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
   gtk_label_set_text (GTK_LABEL (priv->disc_label), xfburn_device_list_get_profile_name ());
 
   if (!priv->blank_mode) {
+    /* for burning */
     switch (profile_no) {
       case XFBURN_PROFILE_NONE:
         /* empty drive is caught later,
@@ -619,7 +650,12 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
         }
       }
     }
+
+    if (!priv->valid_disc && disc_status == BURN_DISC_FULL && is_erasable) {
+      g_idle_add ((GSourceFunc) ask_for_blanking, priv);
+    }
   } else {
+    /* for blanking */
     priv->valid_disc = is_erasable; // (disc_status == BURN_DISC_FULL) || (disc_status == BURN_DISC_APPENDABLE);
 
     if (!priv->valid_disc) {
@@ -732,7 +768,7 @@ cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
   xfburn_busy_cursor (priv->combo_device);
 
   device = xfburn_device_box_get_selected_device (box);
-  if (xfburn_device_refresh_supported_speeds (device))
+  if (priv->show_speed_selection && xfburn_device_refresh_supported_speeds (device))
     fill_combo_speed (box, device);
 
   xfburn_default_cursor (priv->combo_device);
@@ -782,6 +818,15 @@ cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceBox *box)
 //(ThunarVfsVolumeManager *volman, gpointer volumes, XfburnDeviceBox *box)
 #endif
 
+static void
+refresh (GtkWidget *widget)
+{
+  XfburnDeviceBox *box = XFBURN_DEVICE_BOX (widget);
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+
+  cb_combo_device_changed (GTK_COMBO_BOX (priv->combo_device), box);
+}
+
 /******************/
 /* public methods */
 /******************/
@@ -796,6 +841,8 @@ xfburn_device_box_new (XfburnDeviceBoxFlags flags)
 		      "show-mode-selection", ((flags & SHOW_MODE_SELECTION) != 0),
 		      "blank-mode", ((flags & BLANK_MODE) != 0),
                       NULL);
+  
+  refresh (obj);
 
   return obj;
 }

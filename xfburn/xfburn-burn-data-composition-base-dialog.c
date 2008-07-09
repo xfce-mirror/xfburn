@@ -96,11 +96,12 @@ static void xfburn_burn_data_composition_base_dialog_get_property (GObject * obj
 static void xfburn_burn_data_composition_base_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec);
 
 /*
+ * Disabled: change button_proceed functionality
 GtkWidget * create_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog, const gchar *stock, const gchar *text);
 void update_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog);
+static void cb_proceed_clicked (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 */
 static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
-static void cb_proceed_clicked (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_id,
@@ -275,12 +276,15 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
   priv->button_proceed = button = xfce_create_mixed_button ("xfburn-burn-cd", _("Burn Composition"));
-  //button = create_proceed_button (obj, "xfburn-burn-cd", "");
+  /*
+   * Disabled: change button_proceed functionality
+  button = create_proceed_button (obj, "xfburn-burn-cd", "");
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_proceed_clicked), obj);
+  */
 
   gtk_widget_show (button);
-  //gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG(obj)->action_area), button, TRUE, TRUE, 0);
+  gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
+  //gtk_box_pack_start (GTK_BOX (GTK_DIALOG(obj)->action_area), button, TRUE, TRUE, 0);
   GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
@@ -390,10 +394,13 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBa
   }
 }
 
+/*
+ * Disabled: change button_proceed functionality
 static void
 cb_proceed_clicked (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
 {
 }
+*/
 
 static void
 cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
