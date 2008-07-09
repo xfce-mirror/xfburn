@@ -2,14 +2,14 @@ dnl $Id$
 
 dnl Version information
 m4_define([xfburn_version_major], [0])
-m4_define([xfburn_version_minor], [4])
-m4_define([xfburn_version_micro], [0])
+m4_define([xfburn_version_minor], [3])
+m4_define([xfburn_version_micro], [1])
 m4_define([xfburn_version_build], [@REVISION@])
 m4_define([xfburn_version_tag], [svn])
 m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()ifelse(xfburn_version_tag(), [svn], [xfburn_version_tag()-xfburn_version_build()], [xfburn_version_tag()])])
 
 dnl Initialize autoconf
-AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>])
+AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>, David Mohr <david@mcbf.net>])
 AC_INIT([xfburn], [xfburn_version], [xfburn@xfce.org])
 
 dnl Initialize automake
