@@ -59,13 +59,33 @@ typedef struct
   GtkWidget *hbox_iso;
   GtkWidget *entry_path_iso;
   GtkWidget *check_dummy;
-  GtkWidget *burn_button;
+  GtkWidget *button_proceed;
+  /*
+   * Disabled: change button_proceed functionality
+  GtkWidget *label_proceed;
+  GtkWidget *image_proceed;
+  */
+
+  gint response;
 } XfburnBurnDataCompositionBaseDialogPrivate;
 
 enum {
   PROP_0,
   PROP_IMAGE
 };
+
+/*
+ * Disabled: change button_proceed functionality
+char *proceed_text[] = {
+  "Burn Composition",
+  "   Blank Disc   ",
+};
+
+char *proceed_image[] = {
+  "xfburn-burn-cd",
+  "xfburn-blank-cdrw",
+};
+*/
 
 /* prototypes */
 static void xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBaseDialogClass * klass);
@@ -75,7 +95,12 @@ static void xfburn_burn_data_composition_base_dialog_finalize (GObject * object)
 static void xfburn_burn_data_composition_base_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
 static void xfburn_burn_data_composition_base_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec);
 
+/*
+GtkWidget * create_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog, const gchar *stock, const gchar *text);
+void update_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog);
+*/
 static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
+static void cb_proceed_clicked (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_id,
@@ -249,9 +274,13 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  priv->burn_button = button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn Composition"));
+  priv->button_proceed = button = xfce_create_mixed_button ("xfburn-burn-cd", _("Burn Composition"));
+  //button = create_proceed_button (obj, "xfburn-burn-cd", "");
+  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_proceed_clicked), obj);
+
   gtk_widget_show (button);
-  gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
+  //gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
+  gtk_box_pack_start (GTK_BOX (GTK_DIALOG(obj)->action_area), button, TRUE, TRUE, 0);
   GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
@@ -303,6 +332,43 @@ xfburn_burn_data_composition_base_dialog_finalize (GObject * object)
 }
 
 /* internals */
+/*
+ * Disabled: change button_proceed functionality
+GtkWidget *
+create_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog, const gchar *stock, const gchar *text)
+{
+  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
+  GtkWidget *button, *align, *image, *hbox, *label;
+
+  priv->button_proceed = button = gtk_button_new ();
+  priv->label_proceed = label = gtk_label_new_with_mnemonic (text);
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);
+
+  priv->image_proceed = image = gtk_image_new_from_stock (stock, GTK_ICON_SIZE_BUTTON);
+  hbox = gtk_hbox_new (FALSE, 2);
+
+  align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+
+  gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
+  gtk_box_pack_end (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+  gtk_container_add (GTK_CONTAINER (button), align);
+  gtk_container_add (GTK_CONTAINER (align), hbox);
+  gtk_widget_show_all (align);
+
+  return button;
+}
+
+void 
+update_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog)
+{
+  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
+
+  gtk_label_set_text (GTK_LABEL (priv->label_proceed), _(proceed_text[priv->response]));
+  gtk_image_set_from_stock (GTK_IMAGE (priv->image_proceed), proceed_image[priv->response], GTK_ICON_SIZE_BUTTON);
+}
+*/
+
 static void
 cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
 {
@@ -318,10 +384,15 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBa
   gtk_widget_set_sensitive (priv->check_dummy, !gtk_toggle_button_get_active (button));
   if (!gtk_toggle_button_get_active (button)) {
     g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
-    gtk_widget_set_sensitive (priv->burn_button, valid_disc);
+    gtk_widget_set_sensitive (priv->button_proceed, valid_disc);
   } else {
-    gtk_widget_set_sensitive (priv->burn_button, TRUE);
+    gtk_widget_set_sensitive (priv->button_proceed, TRUE);
   }
+}
+
+static void
+cb_proceed_clicked (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
+{
 }
 
 static void
@@ -339,7 +410,18 @@ cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnDataCo
   gboolean valid_disc;
 
   g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
-  gtk_widget_set_sensitive (priv->burn_button, valid_disc);
+
+  /*
+   * Disabled: change button_proceed functionality
+  if (!valid_disc && xfburn_device_list_get_disc_status () == BURN_DISC_FULL && xfburn_device_list_disc_is_erasable ()) {
+    priv->response = XFBURN_BURN_DATA_COMPOSITION_DIALOG_BLANK;
+    valid_disc = TRUE;
+  } else {
+    priv->response = XFBURN_BURN_DATA_COMPOSITION_DIALOG_BURN;
+  }
+  update_proceed_button (dialog);
+  */
+  gtk_widget_set_sensitive (priv->button_proceed, valid_disc);
 }
 
 typedef struct {

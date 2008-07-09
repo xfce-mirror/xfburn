@@ -97,9 +97,6 @@ typedef struct
 #ifdef HAVE_THUNAR_VFS
   ThunarVfsVolumeManager *thunar_volman;
 #endif
-#ifdef HAVE_HAL
-  GObject *hal_manager;
-#endif
 } XfburnDeviceBoxPrivate;
 
 /* prototypes */
@@ -314,8 +311,7 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_device), 0);
 
 #ifdef HAVE_HAL
-  priv->hal_manager = xfburn_hal_manager_new();
-  g_signal_connect (priv->hal_manager, "volume-changed", G_CALLBACK (cb_volumes_changed), box);
+  g_signal_connect (G_OBJECT (xfburn_hal_manager_get_instance ()), "volume-changed", G_CALLBACK (cb_volumes_changed), box);
 #endif
 #ifdef HAVE_THUNAR_VFS
   priv->thunar_volman = thunar_vfs_volume_manager_get_default ();
@@ -338,9 +334,11 @@ xfburn_device_box_finalize (GObject * object)
 #ifdef HAVE_THUNAR_VFS
   g_object_unref (priv->thunar_volman);
 #endif
+/*
 #ifdef HAVE_HAL
   g_object_unref (priv->hal_manager);
 #endif
+*/
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }

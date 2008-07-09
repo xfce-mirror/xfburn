@@ -44,6 +44,7 @@
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-main-window.h"
 #include "xfburn-blank-dialog.h"
+#include "xfburn-hal-manager.h"
 
 
 /* internal prototypes */
@@ -138,6 +139,10 @@ main (int argc, char **argv)
   g_message ("Thunar-VFS not available, using default implementation");
 #endif
   
+#ifdef HAVE_HAL
+  xfburn_hal_manager_create_global ();
+#endif
+
   xfburn_stock_init ();
   n_drives = xfburn_device_list_init ();
   if (n_drives < 1) {
@@ -203,6 +208,10 @@ main (int argc, char **argv)
   thunar_vfs_shutdown ();
 #endif
   
+#ifdef HAVE_HAL
+  xfburn_hal_manager_shutdown ();
+#endif
+
   xfburn_settings_flush ();
   xfburn_settings_free ();
   

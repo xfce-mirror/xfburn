@@ -54,6 +54,9 @@ typedef struct
 
 GtkType xfburn_hal_manager_get_type ();
 GObject *xfburn_hal_manager_new ();
+void xfburn_hal_manager_create_global ();
+XfburnHalManager * xfburn_hal_manager_get_instance ();
+void xfburn_hal_manager_shutdown ();
 
 G_END_DECLS
 
