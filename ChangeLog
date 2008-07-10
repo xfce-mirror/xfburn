@@ -1,3 +1,216 @@
+2008-07-09  David Mohr <david@mcbf.net>
+
+	* TODO, configure.in.in:
+	  Updating version number
+	* NEWS, xfburn/xfburn-data-composition.c:
+	  Bugfix: release memory for thread parameters, update README
+	* xfburn/xfburn-blank-dialog.c, xfburn/xfburn-blank-dialog.h,
+	  xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-data-composition.c, xfburn/xfburn-device-box.c,
+	  xfburn/xfburn-hal-manager.c, xfburn/xfburn-hal-manager.h,
+	  xfburn/xfburn-utils.c, xfburn/xfburn-utils.h:
+	  Give option to blank disc if burn dialog comes up and a full but
+	  erasable disc is in the drive
+	* xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-burn-data-composition-base-dialog.h,
+	  xfburn/xfburn-device-box.c, xfburn/xfburn-hal-manager.c,
+	  xfburn/xfburn-hal-manager.h, xfburn/xfburn-main.c:
+	  Creating global instance of hal manager, prepared code for a
+	  switching proceed button's funcitonality
+
+2008-07-09  mvd
+
+	* po/uk.po:
+	  Maxim Dziumanenko <dziumanenko@gmail.com>
+	  
+	  Updated Ukrainian translation
+
+2008-07-09  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-composition.c:
+	  Bugfix for bugfix of rev. 5033
+
+2008-07-08  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-composition.c:
+	  Small bugfix: correctly enter / exit gdk threads
+	* xfburn/xfburn-device-box.c:
+	  Making maximum speed the default
+
+2008-07-07  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-composition.c, xfburn/xfburn-main.c:
+	  Adding cli option to open the blank dialog
+	* NEWS, TODO, xfburn/xfburn-adding-progress.c,
+	  xfburn/xfburn-adding-progress.h,
+	  xfburn/xfburn-data-composition.c:
+	  Using threads for adding files, adding can now get aborted
+
+2008-07-05  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-burn-data-composition-base-dialog.c:
+	  Also allow deep paths
+	* NEWS, TODO, xfburn/xfburn-burn-data-composition-base-dialog.c:
+	  Changing iso_write_opts profile to preserve file attribute
+
+2008-06-28  David Mohr <david@mcbf.net>
+
+	* TODO:
+	  Updating TODO file
+
+2008-06-26  maximilian
+
+	* po/ChangeLog, po/gl.po:
+	  Translations added and updated for most goodies (gl)
+
+2008-06-25  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-hal-manager.c:
+	  Additional hal error check
+
+2008-06-22  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-progress-dialog.c:
+	  Small bugfixes: make sure min. buffer fill is within 0.0-1.0
+	  range; update burn button sensitivity when changing devices
+
+2008-06-21  David Mohr <david@mcbf.net>
+
+	* NEWS:
+	  Updating NEWS
+	* xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-global.h,
+	  xfburn/xfburn-perform-burn.c, xfburn/xfburn-perform-burn.h,
+	  xfburn/xfburn-preferences-dialog.c,
+	  xfburn/xfburn-progress-dialog.c, xfburn/xfburn-progress-dialog.h:
+	  Adding fifo buffering
+
+2008-06-20  David Mohr <david@mcbf.net>
+
+	* NEWS:
+	  Update NEWS
+	* xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c:
+	  Implementing setting of burn speed.
+	  
+	  WARNING: my dvd test burn failed if a speed was set!! CD was ok
+	  though.
+	  
+	  Use "Max" as speed if that is the case for you to get the old
+	  behavior, and _please_ report this as a bug! Please include the
+	  console output if debug is enabled, or otherwise some info on the
+	  burner that was used.
+
+2008-06-19  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-perform-burn.c, xfburn/xfburn-progress-dialog.c,
+	  xfburn/xfburn-progress-dialog.h:
+	  Adding min. buffer fill info after burn is done
+	* xfburn/xfburn-data-composition.c, xfburn/xfburn-main.c:
+	  Implementing adding of files to a data composition from the
+	  command line
+
+2008-06-18  Mario Đanić <mario@libburnia-project.org>
+
+	* NEWS:
+	  Updated NEWS file for 0.3.1
+
+2008-06-17  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-compositions-notebook.h,
+	  xfburn/xfburn-data-composition.c,
+	  xfburn/xfburn-data-composition.h, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-main-window.h, xfburn/xfburn-main.c:
+	  Adding cli option to start with data composition window, adding
+	  of files not implemented yet
+
+2008-06-13  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c:
+	  Bugfix: only show busy cursor when the dialog is already realized
+
+2008-06-09  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.h, xfburn/xfburn-main.c:
+	  Adding infrastructure for command line options, implement burn
+	  image cli option
+
+2008-06-08  Mario Đanić <mario@libburnia-project.org>
+
+	* xfburn/xfburn-device-box.c:
+	  Fixed compilation warnings with regards to xfburn_*_cursor
+
+2008-06-05  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-composition.c:
+	  Make data composition columns resizeable, increase default sizes
+	  of columns (workaround for bug #2151)
+	* xfburn/xfburn-device-box.c:
+	  Busy cursor during device box refreshes
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.h:
+	  Checking inserted disc type against capabilites of the drive
+	* TODO, xfburn/xfburn-data-composition.c:
+	  Adding busy cursors when adding files
+	* xfburn/xfburn-utils.c:
+	  Small bugfixes: make sure xfburn_humanreadable_filesize returns a
+	  sane string
+	* xfburn/xfburn-device-list.c:
+	  Adding additional output while scanning for drives
+
+2008-06-03  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-composition.c:
+	  Applying patch from jeromeg to have clear reset the title (fixes
+	  #4130)
+
+2008-06-02  Jean-François Wauthy <pollux@xfce.org>
+
+	* configure.in.in:
+	  post tag version bump
+	* README, configure.in.in:
+	  get ready for tagging
+
+2008-06-01  Jean-François Wauthy <pollux@xfce.org>
+
+	* po/pt_BR.po:
+	  run make update-po
+
+2008-06-01  David Mohr <david@mcbf.net>
+
+	* po/POTFILES.in:
+	  added another missing source file to POTFILES
+	* po/POTFILES.in, po/de.po:
+	  Updating i18n files
+	* ChangeLog, NEWS, README, TODO:
+	  Updating README and NEWS
+
+2008-05-30  omaciel
+
+	* po/ChangeLog, po/pt_BR.po:
+	  Updated Brazilian Portuguese translation
+
+2008-05-30  David Mohr <david@mcbf.net>
+
+	* TODO, po/ar.po, po/ca.po, po/cs.po, po/de.po, po/dz.po, po/el.po,
+	  po/en_GB.po, po/es.po, po/eu.po, po/fi.po, po/fr.po, po/gl.po,
+	  po/he.po, po/hu.po, po/it.po, po/ja.po, po/ko.po, po/lt.po,
+	  po/lv.po, po/nb_NO.po, po/nl.po, po/pa.po, po/pl.po, po/pt_BR.po,
+	  po/pt_PT.po, po/ru.po, po/sq.po, po/sv.po, po/uk.po, po/ur.po,
+	  po/xfburn.pot, po/zh_CN.po, po/zh_TW.po:
+	  Updating msgstrs and German translation
+
+2008-05-29  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-list.c:
+	  Invalidate stored disc data upon refresh
+	* xfburn/xfburn-data-composition.c:
+	  Adding warning when adding home directory to compilation
+	* xfburn/xfburn-blank-dialog.c:
+	  Connecting blank dialog to device box refresh signal
+
 2008-05-28  David Mohr <david@mcbf.net>
 
 	* xfburn/xfburn-blank-dialog.c, xfburn/xfburn-progress-dialog.c:
