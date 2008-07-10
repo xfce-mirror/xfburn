@@ -4,12 +4,12 @@
 #
 # Maxim V. Dziumanenko <mvd@mylinux.ua>, 2006.
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2007, 2008.
-#: ../xfburn/xfburn-device-box.c:664
+#: ../xfburn/xfburn-device-box.c:698
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-09 13:38+0000\n"
+"POT-Creation-Date: 2008-07-09 16:55-0600\n"
 "PO-Revision-Date: 2008-07-08 16:05+0300\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -24,12 +24,21 @@ msgstr ""
 msgid "Adding files to the composition"
 msgstr "Додавання файлів до проекту"
 
-#: ../xfburn/xfburn-blank-dialog.c:145 ../xfburn/xfburn-main-window.c:127
+#: ../xfburn/xfburn-blank-dialog.c:147
+#, fuzzy
+msgid "Eject the disc"
+msgstr "_Витягнути диск"
+
+#: ../xfburn/xfburn-blank-dialog.c:148
+msgid "Default value for eject checkbox"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-dialog.c:195 ../xfburn/xfburn-main-window.c:127
 msgid "Blank CD-RW"
 msgstr "Очистити CD-RW"
 
-#: ../xfburn/xfburn-blank-dialog.c:157
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:164
+#: ../xfburn/xfburn-blank-dialog.c:207
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:190
 #: ../xfburn/xfburn-burn-image-dialog.c:170
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
 #: ../xfburn/xfburn-copy-dvd-dialog.c:131
@@ -37,12 +46,12 @@ msgstr "Очистити CD-RW"
 msgid "Burning device"
 msgstr "Пристрій запису"
 
-#: ../xfburn/xfburn-blank-dialog.c:170 ../xfburn/xfburn-device-box.c:198
+#: ../xfburn/xfburn-blank-dialog.c:220 ../xfburn/xfburn-device-box.c:202
 msgid "Blank mode"
 msgstr "Режим очищення"
 
-#: ../xfburn/xfburn-blank-dialog.c:178
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:196
+#: ../xfburn/xfburn-blank-dialog.c:228
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:222
 #: ../xfburn/xfburn-burn-image-dialog.c:178
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
 #: ../xfburn/xfburn-copy-dvd-dialog.c:139
@@ -50,8 +59,8 @@ msgstr "Режим очищення"
 msgid "Options"
 msgstr "Параметри"
 
-#: ../xfburn/xfburn-blank-dialog.c:182
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:200
+#: ../xfburn/xfburn-blank-dialog.c:232
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:226
 #: ../xfburn/xfburn-burn-image-dialog.c:182
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
 #: ../xfburn/xfburn-copy-dvd-dialog.c:143
@@ -59,116 +68,113 @@ msgstr "Параметри"
 msgid "E_ject disk"
 msgstr "_Витягнути диск"
 
-#: ../xfburn/xfburn-blank-dialog.c:192
+#: ../xfburn/xfburn-blank-dialog.c:242
 msgid "_Blank"
 msgstr "О_чистити"
 
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
-#: ../xfburn/xfburn-blank-dialog.c:298
+#: ../xfburn/xfburn-blank-dialog.c:348
 msgid "The inserted disc is already blank"
 msgstr "Вставлений диск вже чистий"
 
 #. these ones we can blank
-#: ../xfburn/xfburn-blank-dialog.c:304
+#: ../xfburn/xfburn-blank-dialog.c:354
 msgid "Ready"
 msgstr "Готово"
 
-#: ../xfburn/xfburn-blank-dialog.c:307
+#: ../xfburn/xfburn-blank-dialog.c:357
 msgid "No disc detected in the drive"
 msgstr "У пристрої відсутній компакт-диск"
 
-#: ../xfburn/xfburn-blank-dialog.c:316
+#: ../xfburn/xfburn-blank-dialog.c:366
 msgid "Media is not erasable"
 msgstr "Носій без можливості стирання"
 
-#: ../xfburn/xfburn-blank-dialog.c:356
+#: ../xfburn/xfburn-blank-dialog.c:406
 msgid "Blanking disc..."
 msgstr "Стирання диску..."
 
-#: ../xfburn/xfburn-blank-dialog.c:383
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:406
+#: ../xfburn/xfburn-blank-dialog.c:433
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:495
 #: ../xfburn/xfburn-perform-burn.c:232
 #, c-format
 msgid "Done"
 msgstr "Завершено"
 
-#: ../xfburn/xfburn-blank-dialog.c:386 ../xfburn/xfburn-perform-burn.c:235
+#: ../xfburn/xfburn-blank-dialog.c:436 ../xfburn/xfburn-perform-burn.c:235
 #: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Failure"
 msgstr "Помилка"
 
-#: ../xfburn/xfburn-blank-dialog.c:409
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:508
+#: ../xfburn/xfburn-blank-dialog.c:459
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:597
 #: ../xfburn/xfburn-burn-image-dialog.c:330
 #: ../xfburn/xfburn-burn-image-dialog.c:528
 msgid "Unable to grab drive"
 msgstr "Неможливо захопити накопичувач"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:152
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:178
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:278
 msgid "Burn Composition"
 msgstr "Запис проекту"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:175
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:201
 msgid "Composition name"
 msgstr "Назва проекту"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:180
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
 msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "<small>Змінити типову назву проекту?</small>"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:205
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
 #: ../xfburn/xfburn-burn-image-dialog.c:187
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
 #: ../xfburn/xfburn-copy-dvd-dialog.c:148
 msgid "_Dummy write"
 msgstr "_Імітувати запис"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:209
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:235
 #: ../xfburn/xfburn-burn-image-dialog.c:191
 msgid "Burn_Free"
 msgstr "Захист_буферу"
 
 #. create ISO ?
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:215
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:241
 #: ../xfburn/xfburn-copy-cd-dialog.c:157
 #: ../xfburn/xfburn-copy-dvd-dialog.c:157
 msgid "Only create _ISO"
 msgstr "Лише створити _ISO"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:252
-msgid "_Burn Composition"
-msgstr "_Записати проект"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:369
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:458
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "Не вдається створити цільовий ISO-файл: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:376
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:465
 msgid "Writing ISO..."
 msgstr "Запис ISO..."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:388
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 #, c-format
 msgid "An error occured while writing ISO: %s"
 msgstr "Помилка під час запису ISO: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:439
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:528
 #: ../xfburn/xfburn-burn-image-dialog.c:295
 msgid "Unable to create disc object"
 msgstr "Неможливо створити об'єкт на диску"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:444
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:533
 #: ../xfburn/xfburn-burn-image-dialog.c:323
 msgid "Cannot attach source object to track object"
 msgstr "Неможливо додати цей об'єкт до доріжки"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:471
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:560
 msgid "The write mode is not supported currently"
 msgstr "Поточний режим запису не підтримується"
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:552
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:641
 msgid "Could not create ISO source structure"
 msgstr "Не вдається створити ISO-структуру"
 
@@ -319,91 +325,91 @@ msgstr "_Копіювати DVD диск"
 msgid "Create ISO from CD"
 msgstr "Створити ISO з CD"
 
-#: ../xfburn/xfburn-data-composition.c:177
+#: ../xfburn/xfburn-data-composition.c:179
 msgid "Add"
 msgstr "Додати"
 
-#: ../xfburn/xfburn-data-composition.c:177
+#: ../xfburn/xfburn-data-composition.c:179
 msgid "Add the selected file(s) to the composition"
 msgstr "Додати вибрані файли до проекту"
 
-#: ../xfburn/xfburn-data-composition.c:179
+#: ../xfburn/xfburn-data-composition.c:181
 msgid "Create directory"
 msgstr "Створити теку"
 
-#: ../xfburn/xfburn-data-composition.c:179
+#: ../xfburn/xfburn-data-composition.c:181
 msgid "Add a new directory to the composition"
 msgstr "Додати нову теку до проекту"
 
-#: ../xfburn/xfburn-data-composition.c:181
+#: ../xfburn/xfburn-data-composition.c:183
 msgid "Remove"
 msgstr "Видалити"
 
-#: ../xfburn/xfburn-data-composition.c:181
+#: ../xfburn/xfburn-data-composition.c:183
 msgid "Remove the selected file(s) from the composition"
 msgstr "Видалити вибрані файли з проекту"
 
-#: ../xfburn/xfburn-data-composition.c:183
+#: ../xfburn/xfburn-data-composition.c:185
 msgid "Clear"
 msgstr "Очистити"
 
-#: ../xfburn/xfburn-data-composition.c:183
+#: ../xfburn/xfburn-data-composition.c:185
 msgid "Clear the content of the composition"
 msgstr "Очистити зміст проекту"
 
-#: ../xfburn/xfburn-data-composition.c:185
+#: ../xfburn/xfburn-data-composition.c:187
 msgid "Import"
 msgstr "Імпорт"
 
-#: ../xfburn/xfburn-data-composition.c:185
+#: ../xfburn/xfburn-data-composition.c:187
 msgid "Import existing session"
 msgstr "Імпортувати існуючу сесію"
 
-#: ../xfburn/xfburn-data-composition.c:186
+#: ../xfburn/xfburn-data-composition.c:188
 msgid "Rename"
 msgstr "Перейменувати"
 
-#: ../xfburn/xfburn-data-composition.c:186
+#: ../xfburn/xfburn-data-composition.c:188
 msgid "Rename the selected file"
 msgstr "Перейменувати поточний файл"
 
-#: ../xfburn/xfburn-data-composition.c:338
+#: ../xfburn/xfburn-data-composition.c:340
 msgid "Volume name :"
 msgstr "Назва тому :"
 
-#: ../xfburn/xfburn-data-composition.c:369
+#: ../xfburn/xfburn-data-composition.c:371
 msgid "Contents"
 msgstr "Зміст"
 
-#: ../xfburn/xfburn-data-composition.c:384
+#: ../xfburn/xfburn-data-composition.c:386
 #: ../xfburn/xfburn-directory-browser.c:142
 msgid "Size"
 msgstr "Розмір"
 
-#: ../xfburn/xfburn-data-composition.c:387
+#: ../xfburn/xfburn-data-composition.c:389
 msgid "Local Path"
 msgstr "Локальний шлях"
 
-#: ../xfburn/xfburn-data-composition.c:660
+#: ../xfburn/xfburn-data-composition.c:662
 msgid "You must give a name to the file"
 msgstr "Потрібно дати ім'я файлу"
 
-#: ../xfburn/xfburn-data-composition.c:669
-#: ../xfburn/xfburn-data-composition.c:1062
+#: ../xfburn/xfburn-data-composition.c:671
+#: ../xfburn/xfburn-data-composition.c:1066
 msgid "A file with the same name is already present in the composition"
 msgstr "Файл з такою назвою вже присутній в проекті"
 
-#: ../xfburn/xfburn-data-composition.c:776
-#: ../xfburn/xfburn-data-composition.c:777
 #: ../xfburn/xfburn-data-composition.c:779
+#: ../xfburn/xfburn-data-composition.c:780
+#: ../xfburn/xfburn-data-composition.c:782
 msgid "New directory"
 msgstr "Нова тека"
 
-#: ../xfburn/xfburn-data-composition.c:1226
+#: ../xfburn/xfburn-data-composition.c:1224
 msgid "Adding home directory"
 msgstr "Додати домашню директорію"
 
-#: ../xfburn/xfburn-data-composition.c:1228
+#: ../xfburn/xfburn-data-composition.c:1225
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
 "to take a very long time, and also to be too big to fit on one disc.\n"
@@ -415,7 +421,7 @@ msgstr ""
 "\n"
 "Ви впевнені, що бажаєте продовжити?"
 
-#: ../xfburn/xfburn-data-composition.c:1396
+#: ../xfburn/xfburn-data-composition.c:1387
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
@@ -431,61 +437,61 @@ msgstr "Записати проект"
 msgid "You are trying to burn more data than the disk can contain !"
 msgstr "Ви намагаєтесь записати більше даних ніж може вміщати диск !"
 
-#: ../xfburn/xfburn-device-box.c:179 ../xfburn/xfburn-device-box.c:180
+#: ../xfburn/xfburn-device-box.c:183 ../xfburn/xfburn-device-box.c:184
 msgid "Show writers only"
 msgstr "Показувати тільки пишучі приводи"
 
-#: ../xfburn/xfburn-device-box.c:182
+#: ../xfburn/xfburn-device-box.c:186
 msgid "Show speed selection"
 msgstr "Показати вибрану швидкість"
 
-#: ../xfburn/xfburn-device-box.c:183
+#: ../xfburn/xfburn-device-box.c:187
 msgid "Show speed selection combo"
 msgstr "Показувати вибрану combo швидкість"
 
-#: ../xfburn/xfburn-device-box.c:186
+#: ../xfburn/xfburn-device-box.c:190
 msgid "Show mode selection"
 msgstr "Показувати вибраний режим"
 
-#: ../xfburn/xfburn-device-box.c:187
+#: ../xfburn/xfburn-device-box.c:191
 msgid "Show mode selection combo"
 msgstr "Показувати вибраний combo режим"
 
-#: ../xfburn/xfburn-device-box.c:190
+#: ../xfburn/xfburn-device-box.c:194
 msgid "Disc status"
 msgstr "Стан диску"
 
-#: ../xfburn/xfburn-device-box.c:191
+#: ../xfburn/xfburn-device-box.c:195
 msgid "The status of the disc in the drive"
 msgstr "Стан диску в приводі"
 
-#: ../xfburn/xfburn-device-box.c:194
+#: ../xfburn/xfburn-device-box.c:198
 msgid "Is it a valid combination"
 msgstr "Це правильна комбінація"
 
-#: ../xfburn/xfburn-device-box.c:195
+#: ../xfburn/xfburn-device-box.c:199
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "Чи правильна комбінація обладнання і диску для запису проекту?"
 
-#: ../xfburn/xfburn-device-box.c:199
+#: ../xfburn/xfburn-device-box.c:203
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr ""
 "Режим очищення показує різні повідомлення стану диску на відміну від "
 "звичайного режиму"
 
-#: ../xfburn/xfburn-device-box.c:272
+#: ../xfburn/xfburn-device-box.c:276
 msgid "_Speed:"
 msgstr "_Швидкість:"
 
-#: ../xfburn/xfburn-device-box.c:291
+#: ../xfburn/xfburn-device-box.c:295
 msgid "Write _mode:"
 msgstr "Режим _запису:"
 
-#: ../xfburn/xfburn-device-box.c:439
+#: ../xfburn/xfburn-device-box.c:444
 msgid "Empty speed list"
 msgstr "Список швидкостей пустий"
 
-#: ../xfburn/xfburn-device-box.c:447
+#: ../xfburn/xfburn-device-box.c:452
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -509,51 +515,52 @@ msgstr ""
 "\n"
 "<i>Дякуємо Вам!</i>"
 
-#: ../xfburn/xfburn-device-box.c:456
+#: ../xfburn/xfburn-device-box.c:461
 msgid "Continue to _show this notice"
 msgstr "Продовжувати _показувати це попередження"
 
-#: ../xfburn/xfburn-device-box.c:496
+#: ../xfburn/xfburn-device-box.c:501
 msgid "default"
 msgstr "типово"
 
-#: ../xfburn/xfburn-device-box.c:532
+#: ../xfburn/xfburn-device-box.c:537
 msgid "Max"
 msgstr "Максимум"
 
-#: ../xfburn/xfburn-device-box.c:597
-msgid "Drive can't burn the inserted disc!"
+#: ../xfburn/xfburn-device-box.c:626
+#, fuzzy
+msgid "Drive can't burn on the inserted disc!"
 msgstr "Пристрій не може записувати на вставлений диск!"
 
-#: ../xfburn/xfburn-device-box.c:604 ../xfburn/xfburn-device-box.c:642
+#: ../xfburn/xfburn-device-box.c:633 ../xfburn/xfburn-device-box.c:676
 msgid "Drive is empty!"
 msgstr "Привід пустий!"
 
-#: ../xfburn/xfburn-device-box.c:607
+#: ../xfburn/xfburn-device-box.c:636
 msgid "Inserted disc is full!"
 msgstr "Вставлений диск вже повний!"
 
-#: ../xfburn/xfburn-device-box.c:610 ../xfburn/xfburn-device-box.c:648
+#: ../xfburn/xfburn-device-box.c:639 ../xfburn/xfburn-device-box.c:682
 msgid "Inserted disc is unsuitable!"
 msgstr "Вставлений диск незаписуваний!"
 
-#: ../xfburn/xfburn-device-box.c:613 ../xfburn/xfburn-device-box.c:651
+#: ../xfburn/xfburn-device-box.c:642 ../xfburn/xfburn-device-box.c:685
 msgid "No access to drive (mounted?)"
 msgstr "Немає доступу до приводу (можливо змонтований?)"
 
-#: ../xfburn/xfburn-device-box.c:618 ../xfburn/xfburn-device-box.c:654
+#: ../xfburn/xfburn-device-box.c:647 ../xfburn/xfburn-device-box.c:688
 msgid "Error determining disc!"
 msgstr "Помилка визначення диску!"
 
-#: ../xfburn/xfburn-device-box.c:634
+#: ../xfburn/xfburn-device-box.c:668
 msgid "Write-once disc, no blanking possible"
 msgstr "На диску є записи, неможливо очистити"
 
-#: ../xfburn/xfburn-device-box.c:637
+#: ../xfburn/xfburn-device-box.c:671
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW не потребує очищення"
 
-#: ../xfburn/xfburn-device-box.c:645
+#: ../xfburn/xfburn-device-box.c:679
 msgid "Inserted disc is already blank!"
 msgstr "Вставлений диск вже чистий!"
 
@@ -590,11 +597,11 @@ msgstr "Файлова система"
 msgid "%s's home"
 msgstr "Домашня тека %s"
 
-#: ../xfburn/xfburn-main.c:107 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:108 ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Програма запису Xfburn"
 
-#: ../xfburn/xfburn-main.c:117
+#: ../xfburn/xfburn-main.c:118
 #, c-format
 msgid ""
 "%s: %s\n"
@@ -604,11 +611,11 @@ msgstr ""
 "Спробуйте %s --help для перегляду повного списку доступних параметрів "
 "команди.\n"
 
-#: ../xfburn/xfburn-main.c:148
+#: ../xfburn/xfburn-main.c:153
 msgid "No drives are currently available!"
 msgstr "Зараз немає доступних приводів!"
 
-#: ../xfburn/xfburn-main.c:150
+#: ../xfburn/xfburn-main.c:155
 msgid ""
 "Maybe there is a mounted media in the drive?\n"
 "\n"
@@ -618,7 +625,7 @@ msgstr ""
 "\n"
 "Будь ласка, демонтуйте і перезапустіть програму."
 
-#: ../xfburn/xfburn-main.c:175
+#: ../xfburn/xfburn-main.c:180
 #, c-format
 msgid "Image file '%s' does not exist!"
 msgstr "Файл образу '%s' не існує!"
@@ -994,3 +1001,6 @@ msgstr "Підготувати перезаписуваний диск до за
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "Програма для запису CD та DVD"
+
+#~ msgid "_Burn Composition"
+#~ msgstr "_Записати проект"

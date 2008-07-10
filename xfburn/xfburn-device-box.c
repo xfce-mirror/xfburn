@@ -623,7 +623,7 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
     }
 
     if (!priv->valid_disc) {
-        priv->status_text = _("Drive can't burn the inserted disc!");
+        priv->status_text = _("Drive can't burn on the inserted disc!");
     } else {
       priv->valid_disc = (disc_status == BURN_DISC_BLANK) || (disc_status == BURN_DISC_APPENDABLE);
 

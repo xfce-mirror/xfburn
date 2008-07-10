@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: ../xfburn/xfburn-device-box.c:617
+#: ../xfburn/xfburn-device-box.c:698
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce/xfburn.po\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-29 23:00-0600\n"
+"POT-Creation-Date: 2008-07-09 16:55-0600\n"
 "PO-Revision-Date: 2006-10-24 16:36+0530\n"
 "Last-Translator: sonam rinchen <somindruk@druknet.bt>\n"
 "Language-Team: dzongkha <pgeyleg@dit.gov.bt>\n"
@@ -20,197 +20,257 @@ msgstr ""
 "X-Poedit-Country: bhutan\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../xfburn/xfburn-adding-progress.c:89
+#: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
 msgstr "རྩོམ་བྲིས་ལུ་ཡིག་སྣོད་ཚུ་ཁ་སྐོང་བརྐྱབ་དོ།"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:95 ../xfburn/xfburn-main-window.c:127
+#: ../xfburn/xfburn-blank-dialog.c:147
+#, fuzzy
+msgid "Eject the disc"
+msgstr "ཌིཀསི་ཕྱིར་བཏོན།(_j)"
+
+#: ../xfburn/xfburn-blank-dialog.c:148
+msgid "Default value for eject checkbox"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-dialog.c:195 ../xfburn/xfburn-main-window.c:127
 msgid "Blank CD-RW"
 msgstr "སི་ཌི་-ཨར་ཌབ་ལུ་སྟོངམ།"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:106
-#: ../xfburn/xfburn-burn-image-dialog.c:169
+#: ../xfburn/xfburn-blank-dialog.c:207
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:190
+#: ../xfburn/xfburn-burn-image-dialog.c:170
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
 #: ../xfburn/xfburn-copy-dvd-dialog.c:131
 #: ../xfburn/xfburn-format-dvd-dialog.c:102
 msgid "Burning device"
 msgstr "ཐབས་འཕྲུལ་བཙུགས་སྤྱོད་འབད་དོ།"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:112
-msgid "Fast"
-msgstr "མགྱོགས་དྲགས།"
-
-#: ../xfburn/xfburn-blank-cd-dialog.c:113
-msgid "Complete"
-msgstr "མཇུག་བསྡུ།"
-
-#: ../xfburn/xfburn-blank-cd-dialog.c:117
-msgid "Blank type"
+#: ../xfburn/xfburn-blank-dialog.c:220 ../xfburn/xfburn-device-box.c:202
+#, fuzzy
+msgid "Blank mode"
 msgstr "ཡིག་དཔར་སྟོངམ།"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:125
-#: ../xfburn/xfburn-burn-image-dialog.c:177
+#: ../xfburn/xfburn-blank-dialog.c:228
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:222
+#: ../xfburn/xfburn-burn-image-dialog.c:178
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
 #: ../xfburn/xfburn-copy-dvd-dialog.c:139
 #: ../xfburn/xfburn-format-dvd-dialog.c:110
 msgid "Options"
 msgstr "གདམ་ཁ་ཚུ།"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:129
-#: ../xfburn/xfburn-burn-image-dialog.c:181
+#: ../xfburn/xfburn-blank-dialog.c:232
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:226
+#: ../xfburn/xfburn-burn-image-dialog.c:182
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
 #: ../xfburn/xfburn-copy-dvd-dialog.c:143
 #: ../xfburn/xfburn-format-dvd-dialog.c:114
 msgid "E_ject disk"
 msgstr "ཌིཀསི་ཕྱིར་བཏོན།(_j)"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:139
+#: ../xfburn/xfburn-blank-dialog.c:242
 msgid "_Blank"
 msgstr "སྟོངམ།(_B)"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:173
-#: ../xfburn/xfburn-burn-image-dialog.c:325
-#: ../xfburn/xfburn-burn-image-dialog.c:522
-msgid "Unable to grab drive"
-msgstr ""
-
-#: ../xfburn/xfburn-blank-cd-dialog.c:189
+#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#: ../xfburn/xfburn-blank-dialog.c:348
 msgid "The inserted disc is already blank"
 msgstr ""
 
 #. these ones we can blank
-#: ../xfburn/xfburn-blank-cd-dialog.c:194
+#: ../xfburn/xfburn-blank-dialog.c:354
 msgid "Ready"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:197
+#: ../xfburn/xfburn-blank-dialog.c:357
 #, fuzzy
 msgid "No disc detected in the drive"
 msgstr "སི་ཌི་རོམ་འདྲེན་འཕྲུལ་ནང་ཌིསིཀ་མིན་འདུག།"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:200
-msgid "Cannot recognize drive and media state"
-msgstr ""
-
-#: ../xfburn/xfburn-blank-cd-dialog.c:205
+#: ../xfburn/xfburn-blank-dialog.c:366
 msgid "Media is not erasable"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:212
+#: ../xfburn/xfburn-blank-dialog.c:406
 #, fuzzy
 msgid "Blanking disc..."
 msgstr "ཐབས་འཕྲུལ་བཙུགས་སྤྱོད་འབད་དོ།"
 
-#: ../xfburn/xfburn-blank-cd-dialog.c:223
+#: ../xfburn/xfburn-blank-dialog.c:433
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:495
+#: ../xfburn/xfburn-perform-burn.c:232
+#, c-format
 msgid "Done"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:133
+#: ../xfburn/xfburn-blank-dialog.c:436 ../xfburn/xfburn-perform-burn.c:235
+#: ../xfburn/xfburn-progress-dialog.c:561
 #, fuzzy
-msgid "Burn image"
-msgstr "གཟུགས་བརྙན་བཙུགས་སྤྱོད་འབད།(_B)"
+msgid "Failure"
+msgstr "འཐུས་ཤོར་བྱུང་ཡོདཔ།"
 
-#. file
-#: ../xfburn/xfburn-burn-image-dialog.c:140
-#: ../xfburn/xfburn-burn-image-dialog.c:153
-msgid "Image to burn"
-msgstr "བཙུགས་སྤྱོད་འབད་ནིའི་གཟུགས་བརྙན།"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:144
-msgid "All files"
+#: ../xfburn/xfburn-blank-dialog.c:459
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:597
+#: ../xfburn/xfburn-burn-image-dialog.c:330
+#: ../xfburn/xfburn-burn-image-dialog.c:528
+msgid "Unable to grab drive"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:148
-msgid "ISO images"
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:178
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:278
+msgid "Burn Composition"
+msgstr "རྩོམ་བྲིས་བཙུགས་སྤྱོད་འབད།"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:201
+#, fuzzy
+msgid "Composition name"
+msgstr "རྩོམ་བྲིས་བཙུགས་སྤྱོད་འབད།"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
+msgid "<small>Would you like to change the default composition name?</small>"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:162
-#: ../xfburn/xfburn-burn-image-dialog.c:407
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn!</span>"
-msgstr ""
-
-#: ../xfburn/xfburn-burn-image-dialog.c:186
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
+#: ../xfburn/xfburn-burn-image-dialog.c:187
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
 #: ../xfburn/xfburn-copy-dvd-dialog.c:148
 msgid "_Dummy write"
 msgstr "དཔེ་གཟུགས་འབྲི།(_D)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:190
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:235
+#: ../xfburn/xfburn-burn-image-dialog.c:191
 msgid "Burn_Free"
 msgstr "བཙུགས་སྤྱོད་ཆོག་པ།(_F)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:200
-msgid "_Burn image"
-msgstr "གཟུགས་བརྙན་བཙུགས་སྤྱོད་འབད།(_B)"
+#. create ISO ?
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:241
+#: ../xfburn/xfburn-copy-cd-dialog.c:157
+#: ../xfburn/xfburn-copy-dvd-dialog.c:157
+msgid "Only create _ISO"
+msgstr "ཨའི་ཨེསི་ཨོ་རྐྱངམ་གཅིག་གསར་བསྐྲུན་འབད།(_I)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:293
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:458
+#, c-format
+msgid "Could not create destination ISO file: %s"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:465
+msgid "Writing ISO..."
+msgstr "ཨའི་ཨེསི་ཨོ་འབྲི་དོ་..."
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
+#, c-format
+msgid "An error occured while writing ISO: %s"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:528
+#: ../xfburn/xfburn-burn-image-dialog.c:295
 msgid "Unable to create disc object"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:306
-msgid "Unable to determine image size"
-msgstr ""
-
-#: ../xfburn/xfburn-burn-image-dialog.c:313
-msgid "Cannot open image"
-msgstr ""
-
-#: ../xfburn/xfburn-burn-image-dialog.c:317
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:533
+#: ../xfburn/xfburn-burn-image-dialog.c:323
 msgid "Cannot attach source object to track object"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:334
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:560
+msgid "The write mode is not supported currently"
+msgstr ""
+
+#. could not create source
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:641
+msgid "Could not create ISO source structure"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:134
+#, fuzzy
+msgid "Burn image"
+msgstr "གཟུགས་བརྙན་བཙུགས་སྤྱོད་འབད།(_B)"
+
+#. file
+#: ../xfburn/xfburn-burn-image-dialog.c:141
+#: ../xfburn/xfburn-burn-image-dialog.c:154
+msgid "Image to burn"
+msgstr "བཙུགས་སྤྱོད་འབད་ནིའི་གཟུགས་བརྙན།"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:145
+msgid "All files"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:149
+msgid "ISO images"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:163
+#: ../xfburn/xfburn-burn-image-dialog.c:413
+msgid ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
+"select an image to burn!</span>"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:201
+msgid "_Burn image"
+msgstr "གཟུགས་བརྙན་བཙུགས་སྤྱོད་འབད།(_B)"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:308
+msgid "Unable to determine image size"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:315
+msgid "Cannot open image"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:339
 msgid "Burn mode is not currently implemented"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:341
+#: ../xfburn/xfburn-burn-image-dialog.c:346
 #, fuzzy
 msgid "Burning image..."
 msgstr "གཟུགས་བརྙན་བཙུགས་སྤྱོད་འབད།(_B)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:445
+#: ../xfburn/xfburn-burn-image-dialog.c:451 ../xfburn/xfburn-perform-burn.c:91
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:449
+#: ../xfburn/xfburn-burn-image-dialog.c:455 ../xfburn/xfburn-perform-burn.c:95
 msgid "Closed media with data detected. Need blank or appendable media"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:451
+#: ../xfburn/xfburn-burn-image-dialog.c:457 ../xfburn/xfburn-perform-burn.c:97
 #, fuzzy
 msgid "No media detected in drive"
 msgstr "སི་ཌི་རོམ་འདྲེན་འཕྲུལ་ནང་ཌིསིཀ་མིན་འདུག།"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:453
+#: ../xfburn/xfburn-burn-image-dialog.c:459 ../xfburn/xfburn-perform-burn.c:99
 msgid "Cannot recognize state of drive and media"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:465
+#: ../xfburn/xfburn-burn-image-dialog.c:471
 msgid "The selected image does not fit on the inserted disc!"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:469
+#: ../xfburn/xfburn-burn-image-dialog.c:475
 msgid "Failed to get image size!"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:497
+#: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:533
+#: ../xfburn/xfburn-burn-image-dialog.c:539
 msgid "The write mode is not currently supported"
 msgstr ""
 
-#: ../xfburn/xfburn-compositions-notebook.c:167
+#: ../xfburn/xfburn-compositions-notebook.c:166
 msgid "Welcome"
 msgstr ""
 
-#: ../xfburn/xfburn-compositions-notebook.c:171
+#: ../xfburn/xfburn-compositions-notebook.c:170
 msgid "Data composition"
 msgstr "གནད་སྡུད་རྩོམ་བྲིས།"
 
@@ -227,11 +287,6 @@ msgstr "སི་ཌི་ལྷག་བྱེད་ཐབས་འཕྲུལ
 #: ../xfburn/xfburn-copy-dvd-dialog.c:152
 msgid "On the _fly"
 msgstr "བར་བྱུང་།(_f)"
-
-#: ../xfburn/xfburn-copy-cd-dialog.c:157
-#: ../xfburn/xfburn-copy-dvd-dialog.c:157
-msgid "Only create _ISO"
-msgstr "ཨའི་ཨེསི་ཨོ་རྐྱངམ་གཅིག་གསར་བསྐྲུན་འབད།(_I)"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
@@ -273,92 +328,92 @@ msgstr "སི་ཌི་འདྲ་བཤུས་རྐྱབས།(_C)"
 msgid "Create ISO from CD"
 msgstr "སི་ཌི་ལས་ཨའི་ཨེསི་ཨོ་གསར་བསྐྲུན་འབད།"
 
-#: ../xfburn/xfburn-data-composition.c:142
+#: ../xfburn/xfburn-data-composition.c:179
 msgid "Add"
 msgstr "ཁ་སྐོང་།"
 
-#: ../xfburn/xfburn-data-composition.c:142
+#: ../xfburn/xfburn-data-composition.c:179
 msgid "Add the selected file(s) to the composition"
 msgstr "རྩོམ་བྲིས་ལུ་སེལ་འཐུ་འབད་ཡོད་པའི་ཡིག་སྣོད་(ཚུ་)ཁ་སྐོང་རྐྱབས།"
 
-#: ../xfburn/xfburn-data-composition.c:144
+#: ../xfburn/xfburn-data-composition.c:181
 msgid "Create directory"
 msgstr "སྣོད་ཐོ་གསར་བསྐྲུན་འབད།"
 
-#: ../xfburn/xfburn-data-composition.c:144
+#: ../xfburn/xfburn-data-composition.c:181
 msgid "Add a new directory to the composition"
 msgstr "རྩོམ་བྲིས་ལུ་སྣོད་ཐོ་གསརཔ་ཁ་སྐོང་རྐྱབས།"
 
-#: ../xfburn/xfburn-data-composition.c:146
+#: ../xfburn/xfburn-data-composition.c:183
 msgid "Remove"
 msgstr "རྩ་བསྐྲད།"
 
-#: ../xfburn/xfburn-data-composition.c:146
+#: ../xfburn/xfburn-data-composition.c:183
 msgid "Remove the selected file(s) from the composition"
 msgstr "རྩོམ་བྲིས་ལས་སེལ་འཐུ་འབད་ཡོད་པའི་ཡིག་སྣོད་(ཚུ་)རྩ་བསྐྲད་གཏང་།"
 
-#: ../xfburn/xfburn-data-composition.c:148
+#: ../xfburn/xfburn-data-composition.c:185
 msgid "Clear"
 msgstr "བསལ།"
 
-#: ../xfburn/xfburn-data-composition.c:148
+#: ../xfburn/xfburn-data-composition.c:185
 msgid "Clear the content of the composition"
 msgstr "རྩོམ་བྲིས་ཀྱི་ནང་དོན་བསལ།"
 
-#: ../xfburn/xfburn-data-composition.c:150
+#: ../xfburn/xfburn-data-composition.c:187
 msgid "Import"
 msgstr "ནང་འདྲེན།"
 
-#: ../xfburn/xfburn-data-composition.c:150
+#: ../xfburn/xfburn-data-composition.c:187
 msgid "Import existing session"
 msgstr "ཡོད་བཞིན་པའི་ལཱ་ཡུན་ནང་འདྲེན་འབད།"
 
-#: ../xfburn/xfburn-data-composition.c:151
+#: ../xfburn/xfburn-data-composition.c:188
 msgid "Rename"
 msgstr "བསྐྱར་མིང་བཏགས།"
 
-#: ../xfburn/xfburn-data-composition.c:151
+#: ../xfburn/xfburn-data-composition.c:188
 msgid "Rename the selected file"
 msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་ཡིག་སྣོད་འདི་བསྐྱར་མིང་བཏགས།"
 
-#: ../xfburn/xfburn-data-composition.c:301
+#: ../xfburn/xfburn-data-composition.c:340
 msgid "Volume name :"
 msgstr "སྐད་ཤུགས་ཀྱི་མིང་:"
 
-#: ../xfburn/xfburn-data-composition.c:332
+#: ../xfburn/xfburn-data-composition.c:371
 msgid "Contents"
 msgstr "ནང་དོན་ཚུ།"
 
-#: ../xfburn/xfburn-data-composition.c:347
+#: ../xfburn/xfburn-data-composition.c:386
 #: ../xfburn/xfburn-directory-browser.c:142
 msgid "Size"
 msgstr "ཚད།"
 
-#: ../xfburn/xfburn-data-composition.c:350
+#: ../xfburn/xfburn-data-composition.c:389
 msgid "Local Path"
 msgstr "ཉེ་གནས་འགྲུལ་ལམ།"
 
-#: ../xfburn/xfburn-data-composition.c:614
+#: ../xfburn/xfburn-data-composition.c:662
 msgid "You must give a name to the file"
 msgstr "ཁྱོད་ཀྱིས་ཡིག་སྣོད་ལུ་མིང་ངེས་པར་བཏགས་དགོ།"
 
-#: ../xfburn/xfburn-data-composition.c:623
-#: ../xfburn/xfburn-data-composition.c:1051
+#: ../xfburn/xfburn-data-composition.c:671
+#: ../xfburn/xfburn-data-composition.c:1066
 msgid "A file with the same name is already present in the composition"
 msgstr "མིང་གཅིག་པ་ཡོད་མི་ཡིག་སྣོད་འདི་ཧེ་མ་ལས་རང་རྩོམ་བྲིས་ནང་འདུག།"
 
-#: ../xfburn/xfburn-data-composition.c:704
-#: ../xfburn/xfburn-data-composition.c:705
-#: ../xfburn/xfburn-data-composition.c:707
+#: ../xfburn/xfburn-data-composition.c:779
+#: ../xfburn/xfburn-data-composition.c:780
+#: ../xfburn/xfburn-data-composition.c:782
 msgid "New directory"
 msgstr "སྣོད་ཐོ་གསརཔ།"
 
-#: ../xfburn/xfburn-data-composition.c:861
+#: ../xfburn/xfburn-data-composition.c:1224
 #, fuzzy
 msgid "Adding home directory"
 msgstr "སྣོད་ཐོ་གསརཔ།"
 
-#: ../xfburn/xfburn-data-composition.c:865
+#: ../xfburn/xfburn-data-composition.c:1225
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
 "to take a very long time, and also to be too big to fit on one disc.\n"
@@ -366,7 +421,7 @@ msgid ""
 "Are you sure you want to proceed?"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:1232
+#: ../xfburn/xfburn-data-composition.c:1387
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
@@ -383,69 +438,64 @@ msgid "You are trying to burn more data than the disk can contain !"
 msgstr ""
 "ཁྱོད་ཀྱིས་ཌིཀསི་ནང་ཤོམ་ཚུགས་ནི་ལས་ལྷག་སྟེ་གནད་སྡུད་ལེ་ཤ་བཙུགས་སྤྱོད་འབད་ནི་ལུ་འབད་རྩོལ་བསྐྱེདཔ་མས་!"
 
-#: ../xfburn/xfburn-device-box.c:178 ../xfburn/xfburn-device-box.c:179
+#: ../xfburn/xfburn-device-box.c:183 ../xfburn/xfburn-device-box.c:184
 msgid "Show writers only"
 msgstr "རྩོམ་འབྲི་པ་ཚུ་རྐྱངམ་གཅིག་སྟོན།"
 
-#: ../xfburn/xfburn-device-box.c:181
+#: ../xfburn/xfburn-device-box.c:186
 msgid "Show speed selection"
 msgstr "མགྱོགས་ཚད་ཀྱི་སེལ་འཐུ་སྟོན།"
 
-#: ../xfburn/xfburn-device-box.c:182
+#: ../xfburn/xfburn-device-box.c:187
 #, fuzzy
 msgid "Show speed selection combo"
 msgstr "མགྱོགས་ཚད་ཀྱི་སེལ་འཐུ་སྟོན།"
 
-#: ../xfburn/xfburn-device-box.c:185
+#: ../xfburn/xfburn-device-box.c:190
 #, fuzzy
 msgid "Show mode selection"
 msgstr "མགྱོགས་ཚད་ཀྱི་སེལ་འཐུ་སྟོན།"
 
-#: ../xfburn/xfburn-device-box.c:186
+#: ../xfburn/xfburn-device-box.c:191
 #, fuzzy
 msgid "Show mode selection combo"
 msgstr "མགྱོགས་ཚད་ཀྱི་སེལ་འཐུ་སྟོན།"
 
-#: ../xfburn/xfburn-device-box.c:189
+#: ../xfburn/xfburn-device-box.c:194
 msgid "Disc status"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:190
+#: ../xfburn/xfburn-device-box.c:195
 msgid "The status of the disc in the drive"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:193
+#: ../xfburn/xfburn-device-box.c:198
 msgid "Is it a valid combination"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:194
+#: ../xfburn/xfburn-device-box.c:199
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:197
-#, fuzzy
-msgid "Blank mode"
-msgstr "ཡིག་དཔར་སྟོངམ།"
-
-#: ../xfburn/xfburn-device-box.c:198
+#: ../xfburn/xfburn-device-box.c:203
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:271
+#: ../xfburn/xfburn-device-box.c:276
 #, fuzzy
 msgid "_Speed:"
 msgstr "མགྱོགས་ཚད་:(_S)"
 
-#: ../xfburn/xfburn-device-box.c:290
+#: ../xfburn/xfburn-device-box.c:295
 #, fuzzy
 msgid "Write _mode:"
 msgstr "ཐབས་ལམ་འབྲི: (_m)"
 
-#: ../xfburn/xfburn-device-box.c:438
+#: ../xfburn/xfburn-device-box.c:444
 msgid "Empty speed list"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:446
+#: ../xfburn/xfburn-device-box.c:452
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -459,44 +509,52 @@ msgid ""
 "<i>Thank you!</i>"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:455
+#: ../xfburn/xfburn-device-box.c:461
 msgid "Continue to _show this notice"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:492
+#: ../xfburn/xfburn-device-box.c:501
 #, fuzzy
 msgid "default"
 msgstr "སྔོན་སྒྲིག།"
 
-#: ../xfburn/xfburn-device-box.c:547 ../xfburn/xfburn-device-box.c:591
+#: ../xfburn/xfburn-device-box.c:537
+msgid "Max"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:626
+msgid "Drive can't burn on the inserted disc!"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:633 ../xfburn/xfburn-device-box.c:676
 msgid "Drive is empty!"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:551
+#: ../xfburn/xfburn-device-box.c:636
 msgid "Inserted disc is full!"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:555 ../xfburn/xfburn-device-box.c:599
+#: ../xfburn/xfburn-device-box.c:639 ../xfburn/xfburn-device-box.c:682
 msgid "Inserted disc is unsuitable!"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:559 ../xfburn/xfburn-device-box.c:603
+#: ../xfburn/xfburn-device-box.c:642 ../xfburn/xfburn-device-box.c:685
 msgid "No access to drive (mounted?)"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:565 ../xfburn/xfburn-device-box.c:607
+#: ../xfburn/xfburn-device-box.c:647 ../xfburn/xfburn-device-box.c:688
 msgid "Error determining disc!"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:581
+#: ../xfburn/xfburn-device-box.c:668
 msgid "Write-once disc, no blanking possible"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:585
+#: ../xfburn/xfburn-device-box.c:671
 msgid "DVD+RW does not need blanking"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:595
+#: ../xfburn/xfburn-device-box.c:679
 msgid "Inserted disc is already blank!"
 msgstr ""
 
@@ -535,19 +593,31 @@ msgstr "ཡིག་སྣོད་རིམ་ལུགས།"
 msgid "%s's home"
 msgstr "%s' གི་ཁྱིམ།"
 
-#: ../xfburn/xfburn-main.c:57 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:108 ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "ཨེཀསི་ཨེཕ་བཱརན།"
 
-#: ../xfburn/xfburn-main.c:91
+#: ../xfburn/xfburn-main.c:118
+#, c-format
+msgid ""
+"%s: %s\n"
+"Try %s --help to see a full list of available command line options.\n"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:153
 msgid "No drives are currently available!"
 msgstr ""
 
-#: ../xfburn/xfburn-main.c:93
+#: ../xfburn/xfburn-main.c:155
 msgid ""
 "Maybe there is a mounted media in the drive?\n"
 "\n"
 "Please unmount and restart the application."
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:180
+#, c-format
+msgid "Image file '%s' does not exist!"
 msgstr ""
 
 #: ../xfburn/xfburn-main-window.c:100
@@ -668,17 +738,17 @@ msgstr "ལག་ཆས་ཕྲ་རིང་སྟོན་/སྦ་བཞ�
 msgid "Toolbar Editor"
 msgstr "ལག་ཆས་ཕྲ་རིང་ཞུན་དགཔ།"
 
-#: ../xfburn/xfburn-main-window.c:532
+#: ../xfburn/xfburn-main-window.c:530
 #, fuzzy
 msgid "Another cd burning GUI"
 msgstr "སི་ཌི་བཙུགས་སྤྱོད་འབད་ནིའི་ལག་ཆས་གཞན།"
 
-#: ../xfburn/xfburn-main-window.c:535 ../xfburn/xfburn-main-window.c:536
-#: ../xfburn/xfburn-main-window.c:537
+#: ../xfburn/xfburn-main-window.c:533 ../xfburn/xfburn-main-window.c:534
+#: ../xfburn/xfburn-main-window.c:535
 msgid "Author/Maintainer"
 msgstr "རྩོམ་པ་པོ་/རྒྱུན་སྐྱོང་པ།"
 
-#: ../xfburn/xfburn-main-window.c:543
+#: ../xfburn/xfburn-main-window.c:541
 #, c-format
 msgid "Translator (%s)"
 msgstr "སྐད་བསྒྱུར་པ་ (%s)"
@@ -691,80 +761,152 @@ msgstr "ཁ་ཡིག།"
 msgid "The text of the label"
 msgstr "ཁ་ཡིག་གི་ཚིག་ཡིག།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:137
+#: ../xfburn/xfburn-perform-burn.c:119
+#, fuzzy
+msgid "Burning composition..."
+msgstr "རྩོམ་བྲིས་འབྲི་དོ་..."
+
+#: ../xfburn/xfburn-perform-burn.c:140
+msgid "standby"
+msgstr ""
+
+#: ../xfburn/xfburn-perform-burn.c:147
+msgid "active"
+msgstr ""
+
+#: ../xfburn/xfburn-perform-burn.c:150
+msgid "ending"
+msgstr ""
+
+#: ../xfburn/xfburn-perform-burn.c:153
+msgid "failing"
+msgstr ""
+
+#: ../xfburn/xfburn-perform-burn.c:156
+msgid "unused"
+msgstr ""
+
+#: ../xfburn/xfburn-perform-burn.c:159
+msgid "abandoned"
+msgstr ""
+
+#: ../xfburn/xfburn-perform-burn.c:162
+msgid "ended"
+msgstr ""
+
+#: ../xfburn/xfburn-perform-burn.c:165
+msgid "aborted"
+msgstr ""
+
+#: ../xfburn/xfburn-perform-burn.c:173
+#, fuzzy
+msgid "Writing Lead-In..."
+msgstr "ཨའི་ཨེསི་ཨོ་འབྲི་དོ་..."
+
+#: ../xfburn/xfburn-perform-burn.c:179
+#, fuzzy
+msgid "Writing Lead-Out..."
+msgstr "ཨའི་ཨེསི་ཨོ་འབྲི་དོ་..."
+
+#: ../xfburn/xfburn-perform-burn.c:185
+#, fuzzy
+msgid "Writing pregap..."
+msgstr "སི་ཌི་འབྲི་དོ་..."
+
+#: ../xfburn/xfburn-perform-burn.c:191
+#, fuzzy
+msgid "Closing track..."
+msgstr "འདྲ་མཛོད་བཤལ་བཏང་དོ་..."
+
+#: ../xfburn/xfburn-perform-burn.c:197
+#, fuzzy
+msgid "Closing session..."
+msgstr "ཡོད་བཞིན་པའི་ལཱ་ཡུན་ནང་འདྲེན་འབད།"
+
+#: ../xfburn/xfburn-perform-burn.c:203
+#, fuzzy
+msgid "Formatting..."
+msgstr "གཏན་པར་བཟོ་བ་..."
+
+#: ../xfburn/xfburn-preferences-dialog.c:138
 msgid "Preferences"
 msgstr "དགའ་གདམ་ཚུ།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:138
+#: ../xfburn/xfburn-preferences-dialog.c:139
 msgid "Tune how Xfburn behaves"
 msgstr "ཨེཀསི་ཨེཕ་བཱརན་གྱིས་བྱ་སྒྲིག་ག་དེ་འབད་འབདཝ་ཨིན་ན་སྙོམས་བསྒྲིག་འབད།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:183
-#: ../xfburn/xfburn-preferences-dialog.c:187
+#: ../xfburn/xfburn-preferences-dialog.c:184
+#: ../xfburn/xfburn-preferences-dialog.c:188
 msgid "Temporary directory"
 msgstr "གནས་སྐབས་ཀྱི་སྣོད་ཐོ།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:191
+#: ../xfburn/xfburn-preferences-dialog.c:192
 msgid "_Clean temporary directory on exit"
 msgstr "ཕྱིར་ཐོན་གུ་གནས་སྐབས་ཀྱི་སྣོད་ཐོ་གཙང་དག་བཟོ།(_C)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:198
+#: ../xfburn/xfburn-preferences-dialog.c:199
 msgid "File browser"
 msgstr "ཡིག་སྣོད་བརའུ་ཟར།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:202
+#: ../xfburn/xfburn-preferences-dialog.c:203
 msgid "Show _hidden files"
 msgstr "གསང་བའི་ཡོག་སྣོད་ཚུ་སྟོན།(_h)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:206
+#: ../xfburn/xfburn-preferences-dialog.c:207
 msgid "Show human_readable filesizes"
 msgstr "འགྲོ་བ་མི་ལྷག་བཏུབ་མི་ཡིག་སྣོད་ཀྱི་ཚད་ཚུ་སྟོན།(_r)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:217
+#: ../xfburn/xfburn-preferences-dialog.c:218
 msgid "General"
 msgstr "ཡོངས་ཁྱབ།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:228
-#: ../xfburn/xfburn-preferences-dialog.c:305
+#: ../xfburn/xfburn-preferences-dialog.c:229
+#: ../xfburn/xfburn-preferences-dialog.c:306
 msgid "Devices"
 msgstr "ཐབས་འཕྲུལ་ཚུ།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:237
+#: ../xfburn/xfburn-preferences-dialog.c:238
 msgid "Detected devices"
 msgstr "བཏོན་གཏང་ཡོད་པའི་ཐབས་འཕྲུལ་ཚུ།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:258
+#: ../xfburn/xfburn-preferences-dialog.c:259
 msgid "Name"
 msgstr "མིང་།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:271
+#: ../xfburn/xfburn-preferences-dialog.c:272
 msgid "Node"
 msgstr "མཐུད་མཚམས།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:273
+#: ../xfburn/xfburn-preferences-dialog.c:274
 msgid "Write CD-R"
 msgstr "སི་ཌི་-ཨར་འབྲི།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:275
+#: ../xfburn/xfburn-preferences-dialog.c:276
 msgid "Write CD-RW"
 msgstr "སི་ཌི་-ཨར་ཌབ་ལུ་འབྲི།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:278
+#: ../xfburn/xfburn-preferences-dialog.c:279
 msgid "Write DVD-R"
 msgstr "ཌི་ཝི་ཌི་-ཨར་འབྲི།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:281
+#: ../xfburn/xfburn-preferences-dialog.c:282
 msgid "Write DVD-RAM"
 msgstr "ཌི་ཝི་ཌི་-ཨར་ཨེ་ཨེམ་འབྲི།"
 
-#: ../xfburn/xfburn-preferences-dialog.c:289
+#: ../xfburn/xfburn-preferences-dialog.c:290
 msgid "Sc_an for devices"
 msgstr "ཐབས་འཕྲུལ་ཚུའི་དོན་ལས་ཞིབ་ལྟ་འབད།(_a)"
 
 #. below the device list
-#: ../xfburn/xfburn-preferences-dialog.c:315
+#: ../xfburn/xfburn-preferences-dialog.c:316
 msgid "Show _empty speed list bug warning"
 msgstr ""
+
+#: ../xfburn/xfburn-preferences-dialog.c:324
+#, fuzzy
+msgid "FIFO buffer size (in kb)"
+msgstr "ཕི་ཕོ་གནད་ཁོངས་:"
 
 #: ../xfburn/xfburn-progress-dialog.c:173
 msgid "Initializing..."
@@ -780,6 +922,7 @@ msgstr "ཕོག་ཚོད་ཀྱི་འབྲི་ནིའི་མག
 #: ../xfburn/xfburn-progress-dialog.c:293
 #: ../xfburn/xfburn-progress-dialog.c:406
 #: ../xfburn/xfburn-progress-dialog.c:430
+#: ../xfburn/xfburn-progress-dialog.c:454
 msgid "no info"
 msgstr "བརྡ་དོན་མིན་འདུག།"
 
@@ -791,63 +934,90 @@ msgstr "ཕི་ཕོ་གནད་ཁོངས་:"
 msgid "Device buffer:"
 msgstr "ཐབས་འཕྲུལ་གནད་ཁོངས་:"
 
-#: ../xfburn/xfburn-progress-dialog.c:459
+#: ../xfburn/xfburn-progress-dialog.c:432
+#, c-format
+msgid "Min. fill was %2d%%"
+msgstr ""
+
+#: ../xfburn/xfburn-progress-dialog.c:494
 msgid "Failed"
 msgstr "འཐུས་ཤོར་བྱུང་ཡོདཔ།"
 
-#: ../xfburn/xfburn-progress-dialog.c:462
+#: ../xfburn/xfburn-progress-dialog.c:497
 msgid "Cancelled"
 msgstr "ཆ་མེད་བཏང་གྲུབ།"
 
-#: ../xfburn/xfburn-progress-dialog.c:465
+#: ../xfburn/xfburn-progress-dialog.c:500
 msgid "Completed"
 msgstr "མཇུག་བསྡུ་ཡོདཔ།"
-
-#: ../xfburn/xfburn-progress-dialog.c:526
-#, fuzzy
-msgid "Failure"
-msgstr "འཐུས་ཤོར་བྱུང་ཡོདཔ།"
 
 #: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
 msgstr "བརྡ་བཀོད་སེལ་འཐུ་འབད།"
 
+#: ../xfburn/xfburn-welcome-tab.c:141 ../xfburn/xfburn-welcome-tab.c:142
+msgid "The main window"
+msgstr ""
+
+#: ../xfburn/xfburn-welcome-tab.c:144
+msgid "Notebook"
+msgstr ""
+
+#: ../xfburn/xfburn-welcome-tab.c:145
+msgid "NOTEBOOK"
+msgstr ""
+
+#: ../xfburn/xfburn-welcome-tab.c:147
+#, fuzzy
+msgid "Action group"
+msgstr "བྱ་བ་ཚུ།(_A)"
+
+#: ../xfburn/xfburn-welcome-tab.c:148
+msgid "Action group from the main window"
+msgstr ""
+
+#. buttons
+#: ../xfburn/xfburn-welcome-tab.c:192
+#, fuzzy
+msgid "<big>Burn _Image</big>"
+msgstr "སི་ཌི་གཟུགས་བརྙན་བཙུགས་སྤྱོད་འབད།"
+
+#: ../xfburn/xfburn-welcome-tab.c:192
+msgid "Burn a prepared compilation, i.e. an .ISO file"
+msgstr ""
+
+#: ../xfburn/xfburn-welcome-tab.c:197
+#, fuzzy
+msgid "<big>New _Data Composition</big>"
+msgstr "གནད་སྡུད་རྩོམ་བྲིས།"
+
+#: ../xfburn/xfburn-welcome-tab.c:197
+msgid "Create a new data disc with the files of your choosing"
+msgstr ""
+
+#: ../xfburn/xfburn-welcome-tab.c:202
+msgid "<big>_Blank Disc</big>"
+msgstr ""
+
+#: ../xfburn/xfburn-welcome-tab.c:202
+msgid "Prepare the rewriteable disc for a new burn"
+msgstr ""
+
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "སི་ཌི་ དང་ ཌི་ཝི་ཌི་བཙུགས་སྤྱོད་འབད་ནིའི་གློག་རིམ།"
 
-#~ msgid "Burn Composition"
-#~ msgstr "རྩོམ་བྲིས་བཙུགས་སྤྱོད་འབད།"
+#~ msgid "Fast"
+#~ msgstr "མགྱོགས་དྲགས།"
+
+#~ msgid "Complete"
+#~ msgstr "མཇུག་བསྡུ།"
+
+#~ msgid "Blank type"
+#~ msgstr "ཡིག་དཔར་སྟོངམ།"
 
 #~ msgid "_Burn Composition"
 #~ msgstr "རྩོམ་བྲིས་བཙུགས་སྤྱོད་འབད།(_B)"
-
-#~ msgid "Writing ISO..."
-#~ msgstr "ཨའི་ཨེསི་ཨོ་འབྲི་དོ་..."
-
-#, fuzzy
-#~ msgid "Burning composition..."
-#~ msgstr "རྩོམ་བྲིས་འབྲི་དོ་..."
-
-#, fuzzy
-#~ msgid "Writing Lead-In..."
-#~ msgstr "ཨའི་ཨེསི་ཨོ་འབྲི་དོ་..."
-
-#, fuzzy
-#~ msgid "Writing Lead-Out..."
-#~ msgstr "ཨའི་ཨེསི་ཨོ་འབྲི་དོ་..."
-
-#, fuzzy
-#~ msgid "Writing pregap..."
-#~ msgstr "སི་ཌི་འབྲི་དོ་..."
-
-#, fuzzy
-#~ msgid "Closing track..."
-#~ msgstr "འདྲ་མཛོད་བཤལ་བཏང་དོ་..."
-
-#, fuzzy
-#~ msgid "Closing session..."
-#~ msgstr "ཡོད་བཞིན་པའི་ལཱ་ཡུན་ནང་འདྲེན་འབད།"
 
 #~ msgid "Burn CD image"
 #~ msgstr "སི་ཌི་གཟུགས་བརྙན་བཙུགས་སྤྱོད་འབད།"
@@ -876,9 +1046,6 @@ msgstr "སི་ཌི་ དང་ ཌི་ཝི་ཌི་བཙུགས�
 
 #~ msgid "Finishing"
 #~ msgstr "མཇུག་བསྡུ་དོ།"
-
-#~ msgid "Fixating..."
-#~ msgstr "གཏན་པར་བཟོ་བ་..."
 
 #~ msgid "Burn data composition"
 #~ msgstr "གནད་སྡུད་རྩོམ་བྲིས་བཙུགས་སྤྱོད་འབད།"
