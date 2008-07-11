@@ -340,8 +340,8 @@ thread_burn_iso (ThreadBurnIsoParams * params)
     goto cleanup;
   }
 
-  DBG ("TODO set speed");
-  burn_drive_set_speed (drive, 0, 0);
+  DBG ("Set speed to %d kb/s", params->speed);
+  burn_drive_set_speed (drive, 0, params->speed);
 
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning image..."));
   xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, fifo_src);
