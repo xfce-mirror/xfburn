@@ -178,7 +178,7 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_container_add (GTK_CONTAINER (align), vbox);
   gtk_widget_show (vbox);
 
-  label_welcome = gtk_label_new ("Welcome to xfburn!");
+  label_welcome = gtk_label_new (_("Welcome to xfburn!"));
   gtk_box_pack_start (GTK_BOX (vbox), label_welcome, FALSE, FALSE, BORDER);
   gtk_widget_show (label_welcome);
 
