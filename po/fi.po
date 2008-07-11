@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-09 16:55-0600\n"
-"PO-Revision-Date: 2008-04-09 15:15+0300\n"
+"POT-Creation-Date: 2008-07-11 12:32+0300\n"
+"PO-Revision-Date: 2008-07-11 12:50+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,13 +21,12 @@ msgid "Adding files to the composition"
 msgstr "Lisätään tiedostoja kokoelmaan"
 
 #: ../xfburn/xfburn-blank-dialog.c:147
-#, fuzzy
 msgid "Eject the disc"
-msgstr "Poi_sta levy"
+msgstr "Poista levy"
 
 #: ../xfburn/xfburn-blank-dialog.c:148
 msgid "Default value for eject checkbox"
-msgstr ""
+msgstr "Oletusarvo levyn poistovalinnalle"
 
 #: ../xfburn/xfburn-blank-dialog.c:195 ../xfburn/xfburn-main-window.c:127
 msgid "Blank CD-RW"
@@ -43,7 +42,6 @@ msgid "Burning device"
 msgstr "Polttava asema"
 
 #: ../xfburn/xfburn-blank-dialog.c:220 ../xfburn/xfburn-device-box.c:202
-#, fuzzy
 msgid "Blank mode"
 msgstr "Tyhjennystyyppi"
 
@@ -116,13 +114,12 @@ msgid "Burn Composition"
 msgstr "Polta kokoelma"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:201
-#, fuzzy
 msgid "Composition name"
-msgstr "Polta kokoelma"
+msgstr "Kokoelman nimi"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
 msgid "<small>Would you like to change the default composition name?</small>"
-msgstr ""
+msgstr "<small>Haluatko muuttaa oletusarvoista kokoelman nimeä?</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
 #: ../xfburn/xfburn-burn-image-dialog.c:187
@@ -200,6 +197,8 @@ msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
 "select an image to burn!</span>"
 msgstr ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">"
+"Valitse poltettava levykuva!</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:201
 msgid "_Burn image"
@@ -261,7 +260,7 @@ msgstr "Kirjoitustilaa ei tueta tällä hetkellä"
 
 #: ../xfburn/xfburn-compositions-notebook.c:166
 msgid "Welcome"
-msgstr ""
+msgstr "Tervetuloa"
 
 #: ../xfburn/xfburn-compositions-notebook.c:170
 msgid "Data composition"
@@ -328,11 +327,11 @@ msgstr "Lisää valitut tiedostot kokoelmaan"
 
 #: ../xfburn/xfburn-data-composition.c:181
 msgid "Create directory"
-msgstr "Luo hakemisto"
+msgstr "Luo kansio"
 
 #: ../xfburn/xfburn-data-composition.c:181
 msgid "Add a new directory to the composition"
-msgstr "Lisää uusi hakemisto kokoelmaan"
+msgstr "Lisää uusi kansio kokoelmaan"
 
 #: ../xfburn/xfburn-data-composition.c:183
 msgid "Remove"
@@ -396,12 +395,11 @@ msgstr "Kokoelmassa on jo tiedosto tällä nimellä"
 #: ../xfburn/xfburn-data-composition.c:780
 #: ../xfburn/xfburn-data-composition.c:782
 msgid "New directory"
-msgstr "Uusi hakemisto"
+msgstr "Uusi kansio"
 
 #: ../xfburn/xfburn-data-composition.c:1224
-#, fuzzy
 msgid "Adding home directory"
-msgstr "Uusi hakemisto"
+msgstr "Lisätään kotikansio"
 
 #: ../xfburn/xfburn-data-composition.c:1225
 msgid ""
@@ -410,6 +408,10 @@ msgid ""
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
+"Olet lisäämässä kotikansiosi sisällön kokoelmaan. Toimenpide voi kestää "
+"pitkään eikä kaikki tieto ehkä mahdu yhdelle levylle.\n"
+"\n"
+"Oletko varma, että haluat jatkaa?"
 
 #: ../xfburn/xfburn-data-composition.c:1387
 #, c-format
@@ -448,23 +450,23 @@ msgstr "Näytä tilavalintalaatikko"
 
 #: ../xfburn/xfburn-device-box.c:194
 msgid "Disc status"
-msgstr ""
+msgstr "Levyn tila"
 
 #: ../xfburn/xfburn-device-box.c:195
 msgid "The status of the disc in the drive"
-msgstr ""
+msgstr "Asemassa olevan levyn tila"
 
 #: ../xfburn/xfburn-device-box.c:198
 msgid "Is it a valid combination"
-msgstr ""
+msgstr "Kelpaako yhdistelmä"
 
 #: ../xfburn/xfburn-device-box.c:199
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
+msgstr "Soveltuvatko sekä laite että levy kokoelman polttamiseen?"
 
 #: ../xfburn/xfburn-device-box.c:203
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
+msgstr "Tyhjennystila raportoi levyn tilasta eri tavoin kuin polttotila"
 
 #: ../xfburn/xfburn-device-box.c:276
 msgid "_Speed:"
@@ -476,7 +478,7 @@ msgstr "Poltto_tapa:"
 
 #: ../xfburn/xfburn-device-box.c:444
 msgid "Empty speed list"
-msgstr ""
+msgstr "Nopeuslista on tyhjä"
 
 #: ../xfburn/xfburn-device-box.c:452
 msgid ""
@@ -491,58 +493,64 @@ msgid ""
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
+"<b>Aseman nopeuslistaa ei voi noutaa.</b>\n"
+"\n"
+"Tämä on tunnettu vika, joka ilmenee joidenkin asemien yhteydessä. Vian "
+"korjaaminen helpottuu, jos lähetät päätteeseen tulostuvan tiedon meille "
+"osoitteeseen <i>xfburn@xfce.org</i>.\n"
+"\n"
+"Polttamisen pitäisi toimia tästä huolimatta. Jos ongelmia kuitenkin "
+"esiintyy, ole hyvä ja ilmoita niistä meille.\n"
+"\n"
+"<i>Kiitos!</i>"
 
 #: ../xfburn/xfburn-device-box.c:461
 msgid "Continue to _show this notice"
-msgstr ""
+msgstr "_Näytä ilmoitus jatkossa"
 
 #: ../xfburn/xfburn-device-box.c:501
 msgid "default"
-msgstr ""
+msgstr "oletus"
 
 #: ../xfburn/xfburn-device-box.c:537
 msgid "Max"
-msgstr ""
+msgstr "Maksimi"
 
 #: ../xfburn/xfburn-device-box.c:626
-#, fuzzy
 msgid "Drive can't burn on the inserted disc!"
-msgstr "Valittu levykuva ei mahdu levylle!"
+msgstr "Asema ei osaa polttaa tälle levylle!"
 
 #: ../xfburn/xfburn-device-box.c:633 ../xfburn/xfburn-device-box.c:676
 msgid "Drive is empty!"
-msgstr ""
+msgstr "Asema on tyhjä!"
 
 #: ../xfburn/xfburn-device-box.c:636
-#, fuzzy
 msgid "Inserted disc is full!"
-msgstr "Levy on jo tyhjä"
+msgstr "Levy on täynnä!"
 
 #: ../xfburn/xfburn-device-box.c:639 ../xfburn/xfburn-device-box.c:682
-#, fuzzy
 msgid "Inserted disc is unsuitable!"
-msgstr "Levy on jo tyhjä"
+msgstr "Vääränlainen levy!"
 
 #: ../xfburn/xfburn-device-box.c:642 ../xfburn/xfburn-device-box.c:685
 msgid "No access to drive (mounted?)"
-msgstr ""
+msgstr "Asema ei käytettävissä (onko levy liitetty?)"
 
 #: ../xfburn/xfburn-device-box.c:647 ../xfburn/xfburn-device-box.c:688
 msgid "Error determining disc!"
-msgstr ""
+msgstr "Levyn tunnistaminen ei onnistu!"
 
 #: ../xfburn/xfburn-device-box.c:668
 msgid "Write-once disc, no blanking possible"
-msgstr ""
+msgstr "Kertapolttoista levyä ei voi tyhjentää"
 
 #: ../xfburn/xfburn-device-box.c:671
 msgid "DVD+RW does not need blanking"
-msgstr ""
+msgstr "DVD+RW-levyä ei tarvitse tyhjentää"
 
 #: ../xfburn/xfburn-device-box.c:679
-#, fuzzy
 msgid "Inserted disc is already blank!"
-msgstr "Levy on jo tyhjä"
+msgstr "Levy on jo tyhjä!"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:57
@@ -587,6 +595,8 @@ msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
+"%s: %s\n"
+"Komento %s --help näyttää listan kaikista komentorivin valitsimista.\n"
 
 #: ../xfburn/xfburn-main.c:153
 msgid "No drives are currently available!"
@@ -605,7 +615,7 @@ msgstr ""
 #: ../xfburn/xfburn-main.c:180
 #, c-format
 msgid "Image file '%s' does not exist!"
-msgstr ""
+msgstr "Levykuvaa \"%s\" ei ole olemassa!"
 
 #: ../xfburn/xfburn-main-window.c:100
 msgid "_File"
@@ -724,7 +734,7 @@ msgstr "Työkalupalkin muokkain"
 
 #: ../xfburn/xfburn-main-window.c:530
 msgid "Another cd burning GUI"
-msgstr "CD-levyn polttokäyttöliittymä"
+msgstr "CD-levyn polttosovellus"
 
 #: ../xfburn/xfburn-main-window.c:533 ../xfburn/xfburn-main-window.c:534
 #: ../xfburn/xfburn-main-window.c:535
@@ -750,35 +760,35 @@ msgstr "Poltetaan kokoelmaa..."
 
 #: ../xfburn/xfburn-perform-burn.c:140
 msgid "standby"
-msgstr ""
+msgstr "valmiustila"
 
 #: ../xfburn/xfburn-perform-burn.c:147
 msgid "active"
-msgstr ""
+msgstr "aktiviinen"
 
 #: ../xfburn/xfburn-perform-burn.c:150
 msgid "ending"
-msgstr ""
+msgstr "lopettaa"
 
 #: ../xfburn/xfburn-perform-burn.c:153
 msgid "failing"
-msgstr ""
+msgstr "virhe"
 
 #: ../xfburn/xfburn-perform-burn.c:156
 msgid "unused"
-msgstr ""
+msgstr "ei käytössä"
 
 #: ../xfburn/xfburn-perform-burn.c:159
 msgid "abandoned"
-msgstr ""
+msgstr "hylätty"
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "ended"
-msgstr ""
+msgstr "lopetettu"
 
 #: ../xfburn/xfburn-perform-burn.c:165
 msgid "aborted"
-msgstr ""
+msgstr "keskeytetty"
 
 #: ../xfburn/xfburn-perform-burn.c:173
 msgid "Writing Lead-In..."
@@ -801,9 +811,8 @@ msgid "Closing session..."
 msgstr "Suljetaan istuntoa..."
 
 #: ../xfburn/xfburn-perform-burn.c:203
-#, fuzzy
 msgid "Formatting..."
-msgstr "Kirjoitetaan CD-levyä..."
+msgstr "Alustetaan..."
 
 #: ../xfburn/xfburn-preferences-dialog.c:138
 msgid "Preferences"
@@ -816,11 +825,11 @@ msgstr "Säädä Xfburnin käytöstä"
 #: ../xfburn/xfburn-preferences-dialog.c:184
 #: ../xfburn/xfburn-preferences-dialog.c:188
 msgid "Temporary directory"
-msgstr "Väliaikaishakemisto"
+msgstr "Väliaikaiskansio"
 
 #: ../xfburn/xfburn-preferences-dialog.c:192
 msgid "_Clean temporary directory on exit"
-msgstr "_Tyhjennä väliaikaishakemisto poistuttaessa"
+msgstr "_Tyhjennä väliaikaiskansio poistuttaessa"
 
 #: ../xfburn/xfburn-preferences-dialog.c:199
 msgid "File browser"
@@ -878,12 +887,11 @@ msgstr "_Etsi laitteita"
 #. below the device list
 #: ../xfburn/xfburn-preferences-dialog.c:316
 msgid "Show _empty speed list bug warning"
-msgstr ""
+msgstr "_Varoita tyhjästä nopeuslistasta"
 
 #: ../xfburn/xfburn-preferences-dialog.c:324
-#, fuzzy
 msgid "FIFO buffer size (in kb)"
-msgstr "FIFO-välimuisti:"
+msgstr "FIFO-välimuistin koko (kb):"
 
 #: ../xfburn/xfburn-progress-dialog.c:173
 msgid "Initializing..."
@@ -914,7 +922,7 @@ msgstr "Laitteen välimuisti:"
 #: ../xfburn/xfburn-progress-dialog.c:432
 #, c-format
 msgid "Min. fill was %2d%%"
-msgstr ""
+msgstr "Alin täyttöaste %2d%%"
 
 #: ../xfburn/xfburn-progress-dialog.c:494
 msgid "Failed"
@@ -934,70 +942,49 @@ msgstr "Valitse komento"
 
 #: ../xfburn/xfburn-welcome-tab.c:141 ../xfburn/xfburn-welcome-tab.c:142
 msgid "The main window"
-msgstr ""
+msgstr "Pääikkuna"
 
 #: ../xfburn/xfburn-welcome-tab.c:144
 msgid "Notebook"
-msgstr ""
+msgstr "Muistio"
 
 #: ../xfburn/xfburn-welcome-tab.c:145
 msgid "NOTEBOOK"
-msgstr ""
+msgstr "MUISTIO"
 
 #: ../xfburn/xfburn-welcome-tab.c:147
-#, fuzzy
 msgid "Action group"
-msgstr "T_oiminnot"
+msgstr "Toimintoryhmä"
 
 #: ../xfburn/xfburn-welcome-tab.c:148
 msgid "Action group from the main window"
-msgstr ""
+msgstr "Pääikkunan toimintoryhmä"
 
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:192
-#, fuzzy
 msgid "<big>Burn _Image</big>"
-msgstr "Polta levykuva"
+msgstr "<big>Polta levy_kuva</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:192
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr ""
+msgstr "Polta valmis kokoelma eli .ISO-tiedosto"
 
 #: ../xfburn/xfburn-welcome-tab.c:197
-#, fuzzy
 msgid "<big>New _Data Composition</big>"
-msgstr "Tiedostokokoelma"
+msgstr "<big>_Uusi tiedostokokoelma</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:197
 msgid "Create a new data disc with the files of your choosing"
-msgstr ""
+msgstr "Tallenna haluamasi tiedostot levylle"
 
 #: ../xfburn/xfburn-welcome-tab.c:202
 msgid "<big>_Blank Disc</big>"
-msgstr ""
+msgstr "<big>_Tyhjennä levy</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:202
 msgid "Prepare the rewriteable disc for a new burn"
-msgstr ""
+msgstr "Tyhjennä uudelleenpoltettava levy"
 
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "CD- ja DVD-polttosovellus"
-
-#~ msgid "Fast"
-#~ msgstr "Nopea"
-
-#~ msgid "Complete"
-#~ msgstr "Täydellinen"
-
-#~ msgid "Blank type"
-#~ msgstr "Tyhjennystyyppi"
-
-#~ msgid "Cannot recognize drive and media state"
-#~ msgstr "Aseman ja levyn tilan tunnistus ei onnistu"
-
-#~ msgid "_Burn Composition"
-#~ msgstr "P_olta kokoelma"
-
-#~ msgid "This write mode is not supported"
-#~ msgstr "Tätä kirjoitustilaa ei tueta"
