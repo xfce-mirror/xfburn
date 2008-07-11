@@ -779,6 +779,7 @@ cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
 static void
 cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
 {
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   XfburnDevice *device;
   
   if (GTK_WIDGET_REALIZED (box))
@@ -789,8 +790,11 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
     //DBG ("Device changed to %s", device->name);
     xfburn_device_refresh_supported_speeds (device);
 
-    fill_combo_speed (box, device);
-    fill_combo_mode (box,device);
+    if (priv->show_speed_selection)
+      fill_combo_speed (box, device);
+
+    if (priv->show_mode_selection)
+      fill_combo_mode (box,device);
   }
 
   if (GTK_WIDGET_REALIZED (box))
