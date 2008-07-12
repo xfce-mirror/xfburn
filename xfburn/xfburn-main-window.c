@@ -512,7 +512,7 @@ action_about (GtkAction * action, XfburnMainWindow * window)
     {"Jeff Bailes", "thepizzaking@gmail.com", "en_GB",},
     {"Diego Rodriguez", "dieymir@yahoo.es", "es",},
     {"Piarres Beobide", "pi@beobide.net", "eu",},
-    {"Jari Rahkonen", "jari.rahkonen@pp2.inet.fi", "fi",},
+    {"Jari Rahkonen", "jari.rahkonen@pp1.inet.fi", "fi",},
     {"Etienne Collet", "xanaxlnx@gmail.com", "fr",},
     {"Maximilian Schleiss", "maxschleiss@bluewin.ch", "fr",},
     {"Attila SZERVÑC", "sas@321.hu", "hu",},
