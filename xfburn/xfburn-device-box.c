@@ -407,7 +407,6 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
       break;
     case PROP_BLANK_MODE:
       priv->blank_mode = g_value_get_boolean (value);
-      check_disc_validity (priv);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -489,6 +488,9 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
   if (!check_disc_validity (priv))
+    return;
+
+  if (!priv->show_speed_selection)
     return;
 
   if (el == NULL) {
@@ -656,7 +658,7 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
     }
   } else {
     /* for blanking */
-    priv->valid_disc = is_erasable; // (disc_status == BURN_DISC_FULL) || (disc_status == BURN_DISC_APPENDABLE);
+    priv->valid_disc = is_erasable && (disc_status != BURN_DISC_BLANK);
 
     if (!priv->valid_disc) {
       switch (profile_no) {
@@ -768,7 +770,7 @@ cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
   xfburn_busy_cursor (priv->combo_device);
 
   device = xfburn_device_box_get_selected_device (box);
-  if (priv->show_speed_selection && xfburn_device_refresh_supported_speeds (device))
+  if (xfburn_device_refresh_supported_speeds (device))
     fill_combo_speed (box, device);
 
   xfburn_default_cursor (priv->combo_device);
@@ -790,8 +792,7 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
     //DBG ("Device changed to %s", device->name);
     xfburn_device_refresh_supported_speeds (device);
 
-    if (priv->show_speed_selection)
-      fill_combo_speed (box, device);
+    fill_combo_speed (box, device);
 
     if (priv->show_mode_selection)
       fill_combo_mode (box,device);

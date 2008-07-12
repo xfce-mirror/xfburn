@@ -93,6 +93,37 @@ static gboolean parse_option (const gchar *option_name, const gchar *value,
   return TRUE;
 }
 
+/* globals */
+static int window_counter = 0;
+
+void
+xfburn_main_enter_window ()
+{
+  /* if a main window is present, then it is in control */
+  if (window_counter != -42)
+    window_counter++;
+}
+
+void 
+xfburn_main_leave_window ()
+{
+  /* if a main window is present, then it is in control */
+  if (window_counter == -42)
+    return;
+
+  window_counter--;
+  if (window_counter <= 0)
+    g_idle_add ((GSourceFunc) gtk_main_quit, NULL );
+}
+
+void
+xfburn_main_enter_main_window ()
+{
+  /* mark the window_counter as having a main window */
+  window_counter = -42;
+}
+
+
 /* entry point */
 int
 main (int argc, char **argv)
@@ -160,10 +191,14 @@ main (int argc, char **argv)
 
   /* evaluate parsed command line options */
 
+  if (show_main) {
+    xfburn_main_enter_main_window ();
+  }
+
   if (image_filename != NULL) {
     GtkWidget *dialog = xfburn_burn_image_dialog_new ();
-
     other_action = TRUE;
+
     DBG ("image_filename = '%s'\n", image_filename);
 
     if (*image_filename != '\0') {
@@ -193,15 +228,16 @@ main (int argc, char **argv)
 
   /* main window */
   if (!other_action || show_main) {
+    xfburn_main_enter_main_window ();
     mainwin = xfburn_main_window_new ();
 
     gtk_widget_show (mainwin);
   
     if (add_data_composition)
       xfburn_main_window_add_data_composition_with_files (XFBURN_MAIN_WINDOW (mainwin), argc-1, argv+1);
-
-    gtk_main ();
   }
+
+  gtk_main ();
 
   /* shutdown */
 #ifdef HAVE_THUNAR_VFS

@@ -39,6 +39,7 @@
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-settings.h"
+#include "xfburn-main.h"
 
 #define XFBURN_MAIN_WINDOW_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowPrivate))
 
@@ -485,7 +486,7 @@ static void
 action_quit (GtkAction * action, XfburnMainWindow * window)
 {
   // if (xfce_confirm (_("Are sure you want to quit?"), GTK_STOCK_QUIT, _("_Quit")))
-    gtk_main_quit ();
+  gtk_main_quit ();
 }
 
 static void
@@ -664,7 +665,7 @@ xfburn_main_window_new (void)
 
     g_object_set (priv->welcome_tab, "action_group", priv->action_group, NULL);
   }
-  
+
   return obj;
 }
 

@@ -39,7 +39,8 @@ xfburn_headers = 							\
 	xfburn-directory-browser.h					\
 	xfburn-preferences-dialog.h					\
 	xfburn-stock.h							\
-	xfburn-utils.h	
+	xfburn-utils.h							\
+	xfburn-main.h
 	
 xfburn_SOURCES =							\
 	$(xfburn_headers)						\

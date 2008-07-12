@@ -35,6 +35,7 @@
 
 #include "xfburn-progress-dialog.h"
 #include "xfburn-global.h"
+#include "xfburn-main.h"
 
 #define XFBURN_PROGRESS_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_PROGRESS_DIALOG, XfburnProgressDialogPrivate))
 
@@ -320,11 +321,13 @@ static void
 cb_button_close_clicked (GtkWidget *button, XfburnProgressDialog *dialog)
 {
   gtk_widget_destroy (GTK_WIDGET (dialog));
+  xfburn_main_leave_window ();
 }
 
 static gboolean
 cb_dialog_delete (XfburnProgressDialog * dialog, GdkEvent * event, XfburnProgressDialogPrivate * priv)
 {
+  xfburn_main_leave_window ();
   if (!GTK_WIDGET_SENSITIVE (priv->button_close)) {
     gtk_dialog_response (GTK_DIALOG (dialog), GTK_RESPONSE_CANCEL);
     return TRUE;

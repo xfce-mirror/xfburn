@@ -35,6 +35,7 @@
 #include "xfburn-device-box.h"
 #include "xfburn-stock.h"
 #include "xfburn-settings.h"
+#include "xfburn-main.h"
 
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-perform-burn.h"
@@ -400,6 +401,8 @@ cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer u
     gtk_widget_show (dialog_progress);
     
     g_thread_create ((GThreadFunc) thread_burn_iso, priv->params, FALSE, NULL);
+  } else {
+    xfburn_main_leave_window ();
   }
 }
 
@@ -564,6 +567,8 @@ xfburn_burn_image_dialog_new ()
   GtkWidget *obj;
 
   obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_BURN_IMAGE_DIALOG, NULL));
+
+  xfburn_main_enter_window ();
 
   return obj;
 }

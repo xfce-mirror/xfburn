@@ -45,3 +45,7 @@ various fixes and changes
   toggle rockridge and joliet extensions / iso_write_opts profiles
 - check for memory leaks while adding files
 - check if all the enter/leaving of gdk threads slows adding down
+- aborting the adding process can lead to invalid an composition size,
+  or invalid size of a composition item
+- rework refresh_speed_list, to make it more easily understandable when the 
+  disc status should get refreshed

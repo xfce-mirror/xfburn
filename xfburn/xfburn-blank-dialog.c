@@ -31,6 +31,7 @@
 #include "xfburn-device-box.h"
 #include "xfburn-stock.h"
 #include "xfburn-hal-manager.h"
+#include "xfburn-main.h"
 
 #include "xfburn-blank-dialog.h"
 
@@ -441,6 +442,13 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), final_status, final_message);
   g_free (final_message);
 
+#ifdef HAVE_HAL
+  gdk_threads_enter ();
+  DBG ("blanking done!");
+  xfburn_hal_manager_send_volume_changed ();
+  gdk_threads_leave ();
+#endif 
+
   return TRUE;
 }
 
@@ -512,6 +520,8 @@ xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, g
     params->blank_mode = get_selected_mode (priv);
     params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)); 
     g_thread_create ((GThreadFunc) thread_blank, params, FALSE, NULL);
+  } else {
+    xfburn_main_leave_window ();
   }
 }
    
@@ -531,6 +541,9 @@ xfburn_blank_dialog_new ()
   GtkWidget *obj;
 
   obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_BLANK_DIALOG, NULL));
+  cb_disc_refreshed (NULL, NULL, XFBURN_BLANK_DIALOG (obj));
+
+  xfburn_main_enter_window ();
 
   return obj;
 }
