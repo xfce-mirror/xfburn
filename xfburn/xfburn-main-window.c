@@ -524,12 +524,14 @@ action_about (GtkAction * action, XfburnMainWindow * window)
     {"Stephan Arts", "psybsd@gmail.com", "nl",},
     {"Szymon Kałasz", "szymon_maestro@gazeta.pl", "pl",},
     {"Fábio Nogueira", "deb-user-ba@ubuntu.com", "pt_BR",},
+    {"Og Maciel", "omaciel@xfce.org", "pt_BR",},
     {"Nuno Miguel", "nunis@netcabo.pt", "pt_PT",},
     {"Sergey Fedoseev", "fedoseev.sergey@gmail.com", "ru",},
     {"Besnik Bleta", "besnik@programeshqip.org", "sq",},
     {"Maxim V. Dziumanenko", "mvd@mylinux.com.ua", "uk",},
     {"Dmitry Nikitin", "", "uk",},
     {"ﻢﺤﻣﺩ ﻊﻠﻳ ﺎﻠﻤﻜﻳ", "makki.ma@gmail.com", "ur",},
+    {"正龙 赵", "zzl6612@yahoo.com.cn", "zh_CN",},
     {"Cosmo Chene", "cosmolax@gmail.com", "zh_TW",},
   };
 
