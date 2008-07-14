@@ -68,12 +68,12 @@ typedef enum {
 } XfburnBlankMode;
 
 static char * blank_mode_names[] = { 
-    "Blank Fast",
-    "Blank Complete (slow)",
-    "Format Fast",
-    "Format Complete",
-    "Deformat Fast",
-    "Deformat Complete",
+    N_("Blank Fast"),
+    N_("Blank Complete (slow)"),
+    N_("Format Fast"),
+    N_("Format Complete"),
+    N_("Deformat Fast"),
+    N_("Deformat Complete"),
   };
 
 enum {
@@ -266,7 +266,7 @@ static void fill_combo_mode (XfburnBlankDialog *dialog)
       GtkTreeIter iter;
 
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-      gtk_list_store_set (GTK_LIST_STORE (model), &iter, BLANK_COMBO_NAME_COLUMN, blank_mode_names[mode], BLANK_COMBO_MODE_COLUMN, mode, -1);
+      gtk_list_store_set (GTK_LIST_STORE (model), &iter, BLANK_COMBO_NAME_COLUMN, _(blank_mode_names[mode]), BLANK_COMBO_MODE_COLUMN, mode, -1);
       n++;
     }
     mode++;
