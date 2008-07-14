@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-12 03:40+0200\n"
-"PO-Revision-Date: 2008-07-11 12:50+0300\n"
+"POT-Creation-Date: 2008-07-14 11:38+0300\n"
+"PO-Revision-Date: 2008-07-14 12:35+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -732,16 +732,16 @@ msgstr "Näytä tai piilota työkalupalkki"
 msgid "Toolbar Editor"
 msgstr "Työkalupalkin muokkain"
 
-#: ../xfburn/xfburn-main-window.c:543
+#: ../xfburn/xfburn-main-window.c:545
 msgid "Another cd burning GUI"
 msgstr "CD-levyn polttosovellus"
 
-#: ../xfburn/xfburn-main-window.c:546 ../xfburn/xfburn-main-window.c:547
-#: ../xfburn/xfburn-main-window.c:548
+#: ../xfburn/xfburn-main-window.c:548 ../xfburn/xfburn-main-window.c:549
+#: ../xfburn/xfburn-main-window.c:550
 msgid "Author/Maintainer"
 msgstr "Kirjoittaja/Ylläpitäjä"
 
-#: ../xfburn/xfburn-main-window.c:554
+#: ../xfburn/xfburn-main-window.c:556
 #, c-format
 msgid "Translator (%s)"
 msgstr "Kääntäjä (%s)"
@@ -820,7 +820,7 @@ msgstr "Asetukset"
 
 #: ../xfburn/xfburn-preferences-dialog.c:139
 msgid "Tune how Xfburn behaves"
-msgstr "Säädä Xfburnin käytöstä"
+msgstr "Säädä Xfburnin käyttäytymistä"
 
 #: ../xfburn/xfburn-preferences-dialog.c:184
 #: ../xfburn/xfburn-preferences-dialog.c:188
@@ -829,7 +829,7 @@ msgstr "Väliaikaiskansio"
 
 #: ../xfburn/xfburn-preferences-dialog.c:192
 msgid "_Clean temporary directory on exit"
-msgstr "_Tyhjennä väliaikaiskansio poistuttaessa"
+msgstr "_Tyhjennä kansio, kun sovellus suljetaan"
 
 #: ../xfburn/xfburn-preferences-dialog.c:199
 msgid "File browser"
@@ -862,7 +862,7 @@ msgstr "Nimi"
 
 #: ../xfburn/xfburn-preferences-dialog.c:272
 msgid "Node"
-msgstr "Noodi"
+msgstr "Laite"
 
 #: ../xfburn/xfburn-preferences-dialog.c:274
 msgid "Write CD-R"
@@ -961,18 +961,17 @@ msgid "Action group from the main window"
 msgstr "Pääikkunan toimintoryhmä"
 
 #: ../xfburn/xfburn-welcome-tab.c:181
-#, fuzzy
 msgid "Welcome to xfburn!"
-msgstr "Poltettava levykuva"
+msgstr "Tervetuloa xfburn-polttosovellukseen!"
 
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:192
 msgid "<big>Burn _Image</big>"
-msgstr "<big>Polta levy_kuva</big>"
+msgstr "<big>_Polta levykuva</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:192
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr "Polta valmis kokoelma eli .ISO-tiedosto"
+msgstr "Polta kokoelma .ISO-tiedostosta"
 
 #: ../xfburn/xfburn-welcome-tab.c:197
 msgid "<big>New _Data Composition</big>"
@@ -984,7 +983,7 @@ msgstr "Tallenna haluamasi tiedostot levylle"
 
 #: ../xfburn/xfburn-welcome-tab.c:202
 msgid "<big>_Blank Disc</big>"
-msgstr "<big>_Tyhjennä levy</big>"
+msgstr "<big>Tyhj_ennä levy</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:202
 msgid "Prepare the rewriteable disc for a new burn"
