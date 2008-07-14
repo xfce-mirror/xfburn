@@ -5,33 +5,33 @@
 # Etienne Collet <xanaxlnx@gmail.com>, 2005.
 # Maximilian Schleiss <maximilian@xfce.org>, 2007.
 #
-#: ../xfburn/xfburn-device-box.c:700
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn 0.0.3svn\n"
+"Project-Id-Version: xfburn 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-12 03:40+0200\n"
-"PO-Revision-Date: 2007-01-24 17:22+0100\n"
+"PO-Revision-Date: 2008-07-14 14:36+0100\n"
 "Last-Translator: Maximilian Schleiss <maximilian@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
 msgstr "Ajout de fichiers à la composition"
 
 #: ../xfburn/xfburn-blank-dialog.c:148
-#, fuzzy
 msgid "Eject the disc"
-msgstr "É_jecter le disque"
+msgstr "Éjecter le disque"
 
 #: ../xfburn/xfburn-blank-dialog.c:149
 msgid "Default value for eject checkbox"
-msgstr ""
+msgstr "Valeur par défaut pour la case à cocher d'éjection"
 
-#: ../xfburn/xfburn-blank-dialog.c:196 ../xfburn/xfburn-main-window.c:128
+#: ../xfburn/xfburn-blank-dialog.c:196
+#: ../xfburn/xfburn-main-window.c:128
 msgid "Blank CD-RW"
 msgstr "Formater le CD-RW"
 
@@ -44,10 +44,10 @@ msgstr "Formater le CD-RW"
 msgid "Burning device"
 msgstr "Périphérique de gravure"
 
-#: ../xfburn/xfburn-blank-dialog.c:221 ../xfburn/xfburn-device-box.c:202
-#, fuzzy
+#: ../xfburn/xfburn-blank-dialog.c:221
+#: ../xfburn/xfburn-device-box.c:202
 msgid "Blank mode"
-msgstr "Type d'effacement"
+msgstr "Mode vierge"
 
 #: ../xfburn/xfburn-blank-dialog.c:229
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:222
@@ -65,7 +65,7 @@ msgstr "Options"
 #: ../xfburn/xfburn-copy-dvd-dialog.c:143
 #: ../xfburn/xfburn-format-dvd-dialog.c:114
 msgid "E_ject disk"
-msgstr "É_jecter le disque"
+msgstr "E_jecter le disque"
 
 #: ../xfburn/xfburn-blank-dialog.c:243
 msgid "_Blank"
@@ -100,7 +100,8 @@ msgstr "Effacement du disque..."
 msgid "Done"
 msgstr "Terminé"
 
-#: ../xfburn/xfburn-blank-dialog.c:437 ../xfburn/xfburn-perform-burn.c:235
+#: ../xfburn/xfburn-blank-dialog.c:437
+#: ../xfburn/xfburn-perform-burn.c:235
 #: ../xfburn/xfburn-progress-dialog.c:564
 msgid "Failure"
 msgstr "Échec"
@@ -118,13 +119,12 @@ msgid "Burn Composition"
 msgstr "Graver la Composition"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:201
-#, fuzzy
 msgid "Composition name"
-msgstr "Graver la Composition"
+msgstr "Nom de la composition"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
 msgid "<small>Would you like to change the default composition name?</small>"
-msgstr ""
+msgstr "<small>Voulez-vous changer le nom par défaut de la composition ?</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
 #: ../xfburn/xfburn-burn-image-dialog.c:188
@@ -170,7 +170,6 @@ msgid "Cannot attach source object to track object"
 msgstr "Ne peux pas joindre le fichier source au fichier objet"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:560
-#, fuzzy
 msgid "The write mode is not supported currently"
 msgstr "Le mode écriture n'est pas encore supporté"
 
@@ -180,9 +179,8 @@ msgid "Could not create ISO source structure"
 msgstr "Échec à la création du fichier ISO source"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:135
-#, fuzzy
 msgid "Burn image"
-msgstr "_Graver l'image"
+msgstr "Graver l'image"
 
 #. file
 #: ../xfburn/xfburn-burn-image-dialog.c:142
@@ -200,10 +198,8 @@ msgstr "Images ISO"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:164
 #: ../xfburn/xfburn-burn-image-dialog.c:416
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn!</span>"
-msgstr ""
+msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn!</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Veuillez sélectionner une image à graver !</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:202
 msgid "_Burn image"
@@ -219,54 +215,51 @@ msgstr "Échec à l'ouverture de l'image"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:340
 msgid "Burn mode is not currently implemented"
-msgstr ""
+msgstr "Le mode de gravure n'est pas encore implémenté"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 msgid "Burning image..."
 msgstr "Gravure de l'image..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:454 ../xfburn/xfburn-perform-burn.c:91
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"L'ajout de données au disque multisessions n'est pas possible dans ce mode "
-"d'écriture (utilisez le mode TAO)"
+#: ../xfburn/xfburn-burn-image-dialog.c:454
+#: ../xfburn/xfburn-perform-burn.c:91
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr "L'ajout de données au disque multisessions n'est pas possible dans ce mode d'écriture (utilisez le mode TAO)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:458 ../xfburn/xfburn-perform-burn.c:95
+#: ../xfburn/xfburn-burn-image-dialog.c:458
+#: ../xfburn/xfburn-perform-burn.c:95
 msgid "Closed media with data detected. Need blank or appendable media"
 msgstr "Disque avec données détecté. Disque vierge ou multisession requis"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:460 ../xfburn/xfburn-perform-burn.c:97
+#: ../xfburn/xfburn-burn-image-dialog.c:460
+#: ../xfburn/xfburn-perform-burn.c:97
 msgid "No media detected in drive"
 msgstr "Pas de support détecté dans le lecteur"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:462 ../xfburn/xfburn-perform-burn.c:99
+#: ../xfburn/xfburn-burn-image-dialog.c:462
+#: ../xfburn/xfburn-perform-burn.c:99
 msgid "Cannot recognize state of drive and media"
 msgstr "Échec à la détection de l'état du lecteur et média"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:474
 msgid "The selected image does not fit on the inserted disc!"
-msgstr ""
+msgstr "L'image sélectionnée n'a pas assez de place pour le disque inséré !"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:478
-#, fuzzy
 msgid "Failed to get image size!"
-msgstr "Échec à la détermination de la taille de l'image"
+msgstr "Échec à la détermination de la taille de l'image !"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:506
-msgid ""
-"Make sure you selected a valid file and you have the proper permissions to "
-"access it."
-msgstr ""
+msgid "Make sure you selected a valid file and you have the proper permissions to access it."
+msgstr "Assurez-vous que le fichier est valide et que vous avez les permissions nécessaires."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:542
-#, fuzzy
 msgid "The write mode is not currently supported"
 msgstr "Le mode écriture n'est pas encore supporté"
 
 #: ../xfburn/xfburn-compositions-notebook.c:166
 msgid "Welcome"
-msgstr ""
+msgstr "Bienvenue"
 
 #: ../xfburn/xfburn-compositions-notebook.c:170
 msgid "Data composition"
@@ -406,24 +399,22 @@ msgstr "Nouveau répertoire"
 #: ../xfburn/xfburn-data-composition.c:1224
 #, fuzzy
 msgid "Adding home directory"
-msgstr "Nouveau répertoire"
+msgstr "Ajout du dossier personnel"
 
 #: ../xfburn/xfburn-data-composition.c:1225
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
+"Vous êtes sur le point d'ajouter votre dossier personnel à la composition, ceci pourrait prendre beaucoup de temps et de place.\n"
+"\n"
+"Êtes-vous sûr de vouloir continuer ?"
 
 #: ../xfburn/xfburn-data-composition.c:1387
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added"
-msgstr ""
-"Un fichier nommé \"%s\" existe déjà dans ce répertoire, ce fichier n'a pas "
-"été ajouté"
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added"
+msgstr "Un fichier nommé \"%s\" existe déjà dans ce répertoire, ce fichier n'a pas été ajouté"
 
 #: ../xfburn/xfburn-data-disc-usage.c:138
 msgid "Burn composition"
@@ -431,10 +422,10 @@ msgstr "Graver une composition"
 
 #: ../xfburn/xfburn-data-disc-usage.c:196
 msgid "You are trying to burn more data than the disk can contain !"
-msgstr ""
-"Vous essayez de graver plus de données que le disque ne peut en contenir !"
+msgstr "Vous essayez de graver plus de données que le disque ne peut en contenir !"
 
-#: ../xfburn/xfburn-device-box.c:183 ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-device-box.c:183
+#: ../xfburn/xfburn-device-box.c:184
 msgid "Show writers only"
 msgstr "Ne montrer que les graveurs"
 
@@ -456,23 +447,23 @@ msgstr "Montrer la sélection de mode combo"
 
 #: ../xfburn/xfburn-device-box.c:194
 msgid "Disc status"
-msgstr ""
+msgstr "État du disque"
 
 #: ../xfburn/xfburn-device-box.c:195
 msgid "The status of the disc in the drive"
-msgstr ""
+msgstr "L'état du disque dans le lecteur"
 
 #: ../xfburn/xfburn-device-box.c:198
 msgid "Is it a valid combination"
-msgstr ""
+msgstr "Est-ce une combinaison valide"
 
 #: ../xfburn/xfburn-device-box.c:199
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
+msgstr "La combinaison du matériel et du disque est-elle valide pour graver la composition ?"
 
 #: ../xfburn/xfburn-device-box.c:203
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
+msgstr "Le mode vierge affiche des messages d'état du disque différents du mode régulier"
 
 #: ../xfburn/xfburn-device-box.c:276
 msgid "_Speed:"
@@ -484,73 +475,78 @@ msgstr "Mode d'é_criture :"
 
 #: ../xfburn/xfburn-device-box.c:443
 msgid "Empty speed list"
-msgstr ""
+msgstr "Liste de vitesse vide"
 
 #: ../xfburn/xfburn-device-box.c:451
+#, fuzzy
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to "
-"<i>xfburn@xfce.org</i> together with the console output to increase the "
-"chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
+"<b>Unable to retrieve the speed list for the drive.</b>\n"
+"\n"
+"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
+"\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
+"\n"
+"<i>Thank you!</i>"
 
 #: ../xfburn/xfburn-device-box.c:460
 msgid "Continue to _show this notice"
-msgstr ""
+msgstr "Toujours afficher ce mes_sage"
 
 #: ../xfburn/xfburn-device-box.c:503
-#, fuzzy
 msgid "default"
 msgstr "Par défaut"
 
 #: ../xfburn/xfburn-device-box.c:539
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 #: ../xfburn/xfburn-device-box.c:628
 msgid "Drive can't burn on the inserted disc!"
-msgstr ""
+msgstr "Le périphérique ne parvient pas à graver le disque inséré !"
 
-#: ../xfburn/xfburn-device-box.c:635 ../xfburn/xfburn-device-box.c:678
+#: ../xfburn/xfburn-device-box.c:635
+#: ../xfburn/xfburn-device-box.c:678
 msgid "Drive is empty!"
-msgstr ""
+msgstr "Le périphérique est vide !"
 
 #: ../xfburn/xfburn-device-box.c:638
-#, fuzzy
 msgid "Inserted disc is full!"
-msgstr "Le disque inséré est déjà vierge"
+msgstr "Le disque inséré est déjà plein !"
 
-#: ../xfburn/xfburn-device-box.c:641 ../xfburn/xfburn-device-box.c:684
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:641
+#: ../xfburn/xfburn-device-box.c:684
 msgid "Inserted disc is unsuitable!"
-msgstr "Le disque inséré est déjà vierge"
+msgstr "Le disque inséré n'est pas utilisable !"
 
-#: ../xfburn/xfburn-device-box.c:644 ../xfburn/xfburn-device-box.c:687
+#: ../xfburn/xfburn-device-box.c:644
+#: ../xfburn/xfburn-device-box.c:687
 msgid "No access to drive (mounted?)"
-msgstr ""
+msgstr "Pas d'accès au lecteur (monté?)"
 
-#: ../xfburn/xfburn-device-box.c:649 ../xfburn/xfburn-device-box.c:690
+#: ../xfburn/xfburn-device-box.c:649
+#: ../xfburn/xfburn-device-box.c:690
 msgid "Error determining disc!"
-msgstr ""
+msgstr "Erreur à l'évaluation du disque !"
 
 #: ../xfburn/xfburn-device-box.c:670
 msgid "Write-once disc, no blanking possible"
-msgstr ""
+msgstr "Disque écriture unique, pas d'effacement possible"
 
 #: ../xfburn/xfburn-device-box.c:673
 msgid "DVD+RW does not need blanking"
-msgstr ""
+msgstr "Un DVD+RW n'a pas besoin d'être effacé"
 
 #: ../xfburn/xfburn-device-box.c:681
-#, fuzzy
 msgid "Inserted disc is already blank!"
-msgstr "Le disque inséré est déjà vierge"
+msgstr "Le disque inséré est déjà vierge !"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:57
@@ -566,7 +562,8 @@ msgstr "Fichier"
 msgid "Type"
 msgstr "Type"
 
-#: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:135
+#: ../xfburn/xfburn-format-dvd-dialog.c:91
+#: ../xfburn/xfburn-main-window.c:135
 msgid "Format DVD+RW"
 msgstr "Formater un DVD+RW"
 
@@ -575,7 +572,8 @@ msgstr "Formater un DVD+RW"
 msgid "_Format"
 msgstr "_Formater"
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:271
+#: ../xfburn/xfburn-fs-browser.c:94
+#: ../xfburn/xfburn-fs-browser.c:271
 msgid "Filesystem"
 msgstr "Système de fichier"
 
@@ -585,7 +583,8 @@ msgstr "Système de fichier"
 msgid "%s's home"
 msgstr "Dossier personnel de %s"
 
-#: ../xfburn/xfburn-main.c:139 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:139
+#: ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -595,10 +594,12 @@ msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
+"%s: %s\n"
+"Essayez %s --help pour afficher une liste complète des options de ligne de commande.\n"
 
 #: ../xfburn/xfburn-main.c:184
 msgid "No drives are currently available!"
-msgstr ""
+msgstr "Aucun lecteur disponible !"
 
 #: ../xfburn/xfburn-main.c:186
 msgid ""
@@ -606,11 +607,14 @@ msgid ""
 "\n"
 "Please unmount and restart the application."
 msgstr ""
+"Peut-être qu'un disque se trouve être monté dans le lecteur ?\n"
+"\n"
+"Veuillez le démonter et relancer l'application."
 
 #: ../xfburn/xfburn-main.c:215
 #, c-format
 msgid "Image file '%s' does not exist!"
-msgstr ""
+msgstr "L'image '%s' n'existe pas !"
 
 #: ../xfburn/xfburn-main-window.c:101
 msgid "_File"
@@ -696,9 +700,8 @@ msgid "Copy Audio CD"
 msgstr "Copier un CD audio"
 
 #: ../xfburn/xfburn-main-window.c:133
-#, fuzzy
 msgid "Burn Image"
-msgstr "Graver une Image CD"
+msgstr "Graver l'image"
 
 #: ../xfburn/xfburn-main-window.c:137
 msgid "Copy DVD"
@@ -732,7 +735,8 @@ msgstr "Editer la barre d'outils"
 msgid "Another cd burning GUI"
 msgstr "Une autre interface de gravure de CD"
 
-#: ../xfburn/xfburn-main-window.c:546 ../xfburn/xfburn-main-window.c:547
+#: ../xfburn/xfburn-main-window.c:546
+#: ../xfburn/xfburn-main-window.c:547
 #: ../xfburn/xfburn-main-window.c:548
 msgid "Author/Maintainer"
 msgstr "Auteur/Mainteneur"
@@ -756,35 +760,35 @@ msgstr "Gravure de la composition..."
 
 #: ../xfburn/xfburn-perform-burn.c:140
 msgid "standby"
-msgstr ""
+msgstr "mise en veille"
 
 #: ../xfburn/xfburn-perform-burn.c:147
 msgid "active"
-msgstr ""
+msgstr "actif"
 
 #: ../xfburn/xfburn-perform-burn.c:150
 msgid "ending"
-msgstr ""
+msgstr "terminaison"
 
 #: ../xfburn/xfburn-perform-burn.c:153
 msgid "failing"
-msgstr ""
+msgstr "échec"
 
 #: ../xfburn/xfburn-perform-burn.c:156
 msgid "unused"
-msgstr ""
+msgstr "inutilisé"
 
 #: ../xfburn/xfburn-perform-burn.c:159
 msgid "abandoned"
-msgstr ""
+msgstr "abandonné"
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "ended"
-msgstr ""
+msgstr "terminé"
 
 #: ../xfburn/xfburn-perform-burn.c:165
 msgid "aborted"
-msgstr ""
+msgstr "stoppé"
 
 #: ../xfburn/xfburn-perform-burn.c:173
 msgid "Writing Lead-In..."
@@ -807,9 +811,8 @@ msgid "Closing session..."
 msgstr "Fermeture de la session..."
 
 #: ../xfburn/xfburn-perform-burn.c:203
-#, fuzzy
 msgid "Formatting..."
-msgstr "Finalisation..."
+msgstr "Formatage..."
 
 #: ../xfburn/xfburn-preferences-dialog.c:138
 msgid "Preferences"
@@ -884,12 +887,11 @@ msgstr "Re_cherche des périphériques"
 #. below the device list
 #: ../xfburn/xfburn-preferences-dialog.c:316
 msgid "Show _empty speed list bug warning"
-msgstr ""
+msgstr "Affich_er une liste rapide de bogues d'avertissement vide"
 
 #: ../xfburn/xfburn-preferences-dialog.c:324
-#, fuzzy
 msgid "FIFO buffer size (in kb)"
-msgstr "Tampon FIFO:"
+msgstr "Tampon FIFO (en ko)"
 
 #: ../xfburn/xfburn-progress-dialog.c:174
 msgid "Initializing..."
@@ -920,7 +922,7 @@ msgstr "Tampon du périphérique:"
 #: ../xfburn/xfburn-progress-dialog.c:435
 #, c-format
 msgid "Min. fill was %2d%%"
-msgstr ""
+msgstr "Remplissage Min. était %2d%%"
 
 #: ../xfburn/xfburn-progress-dialog.c:497
 msgid "Failed"
@@ -938,58 +940,57 @@ msgstr "Terminé"
 msgid "Select command"
 msgstr "Sélectionner une commande"
 
-#: ../xfburn/xfburn-welcome-tab.c:141 ../xfburn/xfburn-welcome-tab.c:142
+#: ../xfburn/xfburn-welcome-tab.c:141
+#: ../xfburn/xfburn-welcome-tab.c:142
 msgid "The main window"
-msgstr ""
+msgstr "La fenêtre principale"
 
 #: ../xfburn/xfburn-welcome-tab.c:144
+#, fuzzy
 msgid "Notebook"
-msgstr ""
+msgstr "Notebook"
 
 #: ../xfburn/xfburn-welcome-tab.c:145
+#, fuzzy
 msgid "NOTEBOOK"
-msgstr ""
+msgstr "NOTEBOOK"
 
 #: ../xfburn/xfburn-welcome-tab.c:147
-#, fuzzy
 msgid "Action group"
-msgstr "_Actions"
+msgstr "Groupe action"
 
 #: ../xfburn/xfburn-welcome-tab.c:148
 msgid "Action group from the main window"
-msgstr ""
+msgstr "Groupe action pour la fenêtre principale"
 
 #: ../xfburn/xfburn-welcome-tab.c:181
-#, fuzzy
 msgid "Welcome to xfburn!"
-msgstr "Image à graver"
+msgstr "Bienvenue dans Xfburn !"
 
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:192
-#, fuzzy
 msgid "<big>Burn _Image</big>"
-msgstr "Graver une Image CD"
+msgstr "<big>Graver l'_image</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:192
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr ""
+msgstr "Graver une compilation prête, par exemple un fichier .ISO"
 
 #: ../xfburn/xfburn-welcome-tab.c:197
-#, fuzzy
 msgid "<big>New _Data Composition</big>"
-msgstr "Composition de données"
+msgstr "<big>Nouvelle composition _données</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:197
 msgid "Create a new data disc with the files of your choosing"
-msgstr ""
+msgstr "Créer un nouveau disque de données avec les fichiers de votre choix"
 
 #: ../xfburn/xfburn-welcome-tab.c:202
 msgid "<big>_Blank Disc</big>"
-msgstr ""
+msgstr "<big>_Disque vierge</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:202
 msgid "Prepare the rewriteable disc for a new burn"
-msgstr ""
+msgstr "Préparer le disque réinscriptible pour une nouvelle gravure"
 
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
@@ -997,91 +998,64 @@ msgstr "Application de gravure de CD et DVD"
 
 #~ msgid "Fast"
 #~ msgstr "Rapide"
-
 #~ msgid "Complete"
 #~ msgstr "Complète"
-
 #~ msgid "Blank type"
 #~ msgstr "Type d'effacement"
-
 #~ msgid "Cannot recognize drive and media state"
 #~ msgstr "Échec à la détection du lecteur et média"
-
 #~ msgid "_Burn Composition"
 #~ msgstr "_Graver une Composition"
-
 #~ msgid "Burn CD image"
 #~ msgstr "Graver une image CD"
 
 #, fuzzy
 #~ msgid "Initializing"
 #~ msgstr "Initialisation..."
-
 #~ msgid "Show speed selection list and refresh button"
 #~ msgstr "Montrer la liste des vitesses et le bouton de rafraîchissement"
-
 #~ msgid "Reopen last session"
 #~ msgstr "Réouvrir la dernière session"
-
 #~ msgid "Erase last session"
 #~ msgstr "Effacer la dernière session"
-
 #~ msgid "_Force"
 #~ msgstr "_Forcer"
-
 #~ msgid "Blanking..."
 #~ msgstr "Effacement..."
-
 #~ msgid "Performing OPC..."
 #~ msgstr "OPC en cours..."
-
 #~ msgid "Finishing"
 #~ msgstr "Clôture en cours"
-
 #~ msgid "Burn data composition"
 #~ msgstr "Graver la composition de données"
-
 #~ msgid "Create ISO from composition"
 #~ msgstr "Créer une image ISO d'une composition"
-
 #~ msgid "Id"
 #~ msgstr "Id"
-
 #~ msgid "View _output"
 #~ msgstr "V_oir le résultat"
-
 #~ msgid "Operation finished"
 #~ msgstr "Opération terminée"
-
 #~ msgid "Are sure you want to quit?"
 #~ msgstr "Êtes-vous sûr de vouloir quitter?"
-
 #~ msgid "Failed to open /proc/scsi/sg/devices"
 #~ msgstr "Échec à l'ouverture de /proc/scsi/sg/devices"
-
 #~ msgid "Failed to open /proc/scsi/sg/device_strs"
 #~ msgstr "Échec à l'ouverture de /proc/scsi/sg/device_strs"
-
 #~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
 #~ msgstr "Erreur à la lecture des informations scsi de /proc/scsi/sg/devices"
-
 #~ msgid "No message..."
 #~ msgstr "Pas de message..."
-
 #~ msgid "Burn Data CD"
 #~ msgstr "Graver un CD de données"
-
 #~ msgid "New audio composition"
 #~ msgstr "Nouvelle composition audio"
-
 #~ msgid "Load composition"
 #~ msgstr "Charger une composition"
-
 #~ msgid "Show disc content toolbar"
 #~ msgstr "Afficher le barre du disque"
-
 #~ msgid "Show/hide the disc content toolbar"
 #~ msgstr "Afficher/cacher la barre d'outils du disque"
-
 #~ msgid "Xfburn preferences"
 #~ msgstr "Préférences de Xfburn"
+
