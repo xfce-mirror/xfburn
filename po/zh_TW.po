@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfburn 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-12 03:40+0200\n"
+"POT-Creation-Date: 2008-07-14 07:49-0600\n"
 "PO-Revision-Date: 2006-08-20 01:09+0800\n"
 "Last-Translator: Cosmo Chene <cosmolax@gmail.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -20,6 +20,34 @@ msgstr ""
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
 msgstr "將檔案加入燒錄流程中"
+
+#: ../xfburn/xfburn-blank-dialog.c:71
+#, fuzzy
+msgid "Blank Fast"
+msgstr "抹寫方式"
+
+#: ../xfburn/xfburn-blank-dialog.c:72
+msgid "Blank Complete (slow)"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-dialog.c:73
+#, fuzzy
+msgid "Format Fast"
+msgstr "強制執行(_F)"
+
+#: ../xfburn/xfburn-blank-dialog.c:74
+#, fuzzy
+msgid "Format Complete"
+msgstr "完整抹寫"
+
+#: ../xfburn/xfburn-blank-dialog.c:75
+msgid "Deformat Fast"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-dialog.c:76
+#, fuzzy
+msgid "Deformat Complete"
+msgstr "完整抹寫"
 
 #: ../xfburn/xfburn-blank-dialog.c:148
 #, fuzzy
@@ -733,17 +761,17 @@ msgstr "顯示/隱藏 工具列"
 msgid "Toolbar Editor"
 msgstr "編輯工具列"
 
-#: ../xfburn/xfburn-main-window.c:543
+#: ../xfburn/xfburn-main-window.c:545
 #, fuzzy
 msgid "Another cd burning GUI"
 msgstr "啊就一個光碟燒錄程式啦"
 
-#: ../xfburn/xfburn-main-window.c:546 ../xfburn/xfburn-main-window.c:547
-#: ../xfburn/xfburn-main-window.c:548
+#: ../xfburn/xfburn-main-window.c:548 ../xfburn/xfburn-main-window.c:549
+#: ../xfburn/xfburn-main-window.c:550
 msgid "Author/Maintainer"
 msgstr "程式作者/維護人員"
 
-#: ../xfburn/xfburn-main-window.c:554
+#: ../xfburn/xfburn-main-window.c:556
 #, c-format
 msgid "Translator (%s)"
 msgstr "翻譯人員 (%s)"
@@ -1009,12 +1037,6 @@ msgstr "CD 及 DVD 燒錄程式"
 
 #~ msgid "Fast"
 #~ msgstr "快速抹寫"
-
-#~ msgid "Complete"
-#~ msgstr "完整抹寫"
-
-#~ msgid "Blank type"
-#~ msgstr "抹寫方式"
 
 #~ msgid "_Burn Composition"
 #~ msgstr "燒錄所選的內容(_B)"

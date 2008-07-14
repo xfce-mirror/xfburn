@@ -514,7 +514,7 @@ action_about (GtkAction * action, XfburnMainWindow * window)
     {"Piarres Beobide", "pi@beobide.net", "eu",},
     {"Jari Rahkonen", "jari.rahkonen@pp1.inet.fi", "fi",},
     {"Etienne Collet", "xanaxlnx@gmail.com", "fr",},
-    {"Maximilian Schleiss", "maxschleiss@bluewin.ch", "fr",},
+    {"Maximilian Schleiss", "maximilian@xfce.org", "fr",},
     {"Attila Szervác", "sas@321.hu", "hu",},
     {"Daichi Kawahata", "daichi@xfce.org", "ja",},
     {"ByungHyun Choi", "byunghyun.choi@debianusers.org", "kr",},

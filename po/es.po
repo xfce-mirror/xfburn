@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-12 03:40+0200\n"
+"POT-Creation-Date: 2008-07-14 07:49-0600\n"
 "PO-Revision-Date: 2007-12-09 09:53+100\n"
 "Last-Translator: Diego Rodríguez <dieymir@yahoo.es>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -19,6 +19,34 @@ msgstr ""
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
 msgstr "Añadiendo ficheros a la composición"
+
+#: ../xfburn/xfburn-blank-dialog.c:71
+#, fuzzy
+msgid "Blank Fast"
+msgstr "Tipo de borrado"
+
+#: ../xfburn/xfburn-blank-dialog.c:72
+msgid "Blank Complete (slow)"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-dialog.c:73
+#, fuzzy
+msgid "Format Fast"
+msgstr "_Formatear"
+
+#: ../xfburn/xfburn-blank-dialog.c:74
+#, fuzzy
+msgid "Format Complete"
+msgstr "Completa"
+
+#: ../xfburn/xfburn-blank-dialog.c:75
+msgid "Deformat Fast"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-dialog.c:76
+#, fuzzy
+msgid "Deformat Complete"
+msgstr "Completa"
 
 #: ../xfburn/xfburn-blank-dialog.c:148
 #, fuzzy
@@ -726,16 +754,16 @@ msgstr "Mostrar/ocultar la barra de herramientas"
 msgid "Toolbar Editor"
 msgstr "Editor de la barra de herramientas"
 
-#: ../xfburn/xfburn-main-window.c:543
+#: ../xfburn/xfburn-main-window.c:545
 msgid "Another cd burning GUI"
 msgstr "Otra aplicación gráfica para grabar CDs"
 
-#: ../xfburn/xfburn-main-window.c:546 ../xfburn/xfburn-main-window.c:547
-#: ../xfburn/xfburn-main-window.c:548
+#: ../xfburn/xfburn-main-window.c:548 ../xfburn/xfburn-main-window.c:549
+#: ../xfburn/xfburn-main-window.c:550
 msgid "Author/Maintainer"
 msgstr "Autor/Conservador"
 
-#: ../xfburn/xfburn-main-window.c:554
+#: ../xfburn/xfburn-main-window.c:556
 #, c-format
 msgid "Translator (%s)"
 msgstr "Traductor (%s)"
@@ -995,12 +1023,6 @@ msgstr "Aplicación para grabar CDs y DVDs"
 
 #~ msgid "Fast"
 #~ msgstr "Rápida"
-
-#~ msgid "Complete"
-#~ msgstr "Completa"
-
-#~ msgid "Blank type"
-#~ msgstr "Tipo de borrado"
 
 #~ msgid "Cannot recognize drive and media state"
 #~ msgstr "No se ha podido determinar el estado del medio y del dispositivo"

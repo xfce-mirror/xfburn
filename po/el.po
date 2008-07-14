@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the xfburn package.
 # Stavros Giannouris <stavrosg@serverhive.com>, 2006.
 #
+#: ../xfburn/xfburn-device-box.c:700
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-12 03:40+0200\n"
+"POT-Creation-Date: 2008-07-14 07:49-0600\n"
 "PO-Revision-Date: 2008-07-13 19:06+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -22,6 +23,34 @@ msgstr ""
 msgid "Adding files to the composition"
 msgstr "Προσθήκη αρχείων στη σύνθεση"
 
+#: ../xfburn/xfburn-blank-dialog.c:71
+#, fuzzy
+msgid "Blank Fast"
+msgstr "Τύπος διαγραφής"
+
+#: ../xfburn/xfburn-blank-dialog.c:72
+msgid "Blank Complete (slow)"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-dialog.c:73
+#, fuzzy
+msgid "Format Fast"
+msgstr "_Μορφοποίηση"
+
+#: ../xfburn/xfburn-blank-dialog.c:74
+#, fuzzy
+msgid "Format Complete"
+msgstr "Ολοκληρώθηκε"
+
+#: ../xfburn/xfburn-blank-dialog.c:75
+msgid "Deformat Fast"
+msgstr ""
+
+#: ../xfburn/xfburn-blank-dialog.c:76
+#, fuzzy
+msgid "Deformat Complete"
+msgstr "Ολοκληρώθηκε"
+
 #: ../xfburn/xfburn-blank-dialog.c:148
 msgid "Eject the disc"
 msgstr "Εξαγωγή δίσκου"
@@ -30,8 +59,7 @@ msgstr "Εξαγωγή δίσκου"
 msgid "Default value for eject checkbox"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-dialog.c:196
-#: ../xfburn/xfburn-main-window.c:128
+#: ../xfburn/xfburn-blank-dialog.c:196 ../xfburn/xfburn-main-window.c:128
 msgid "Blank CD-RW"
 msgstr "Διαγραφή CD-RW"
 
@@ -44,8 +72,7 @@ msgstr "Διαγραφή CD-RW"
 msgid "Burning device"
 msgstr "Συσκευή εγγραφής"
 
-#: ../xfburn/xfburn-blank-dialog.c:221
-#: ../xfburn/xfburn-device-box.c:202
+#: ../xfburn/xfburn-blank-dialog.c:221 ../xfburn/xfburn-device-box.c:202
 msgid "Blank mode"
 msgstr "Τύπος διαγραφής"
 
@@ -100,8 +127,7 @@ msgstr "Διαγραφή δίσκου..."
 msgid "Done"
 msgstr "Ολοκληρώθηκε"
 
-#: ../xfburn/xfburn-blank-dialog.c:437
-#: ../xfburn/xfburn-perform-burn.c:235
+#: ../xfburn/xfburn-blank-dialog.c:437 ../xfburn/xfburn-perform-burn.c:235
 #: ../xfburn/xfburn-progress-dialog.c:564
 msgid "Failure"
 msgstr "Απέτυχε"
@@ -198,7 +224,9 @@ msgstr "Εικόνες ISO"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:164
 #: ../xfburn/xfburn-burn-image-dialog.c:416
-msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn!</span>"
+msgid ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
+"select an image to burn!</span>"
 msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:202
@@ -221,23 +249,20 @@ msgstr "Η λειτουργία εγγραφής δεν έχει ακόμα υλ
 msgid "Burning image..."
 msgstr "Εγγραφή εικόνας..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:454
-#: ../xfburn/xfburn-perform-burn.c:91
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
+#: ../xfburn/xfburn-burn-image-dialog.c:454 ../xfburn/xfburn-perform-burn.c:91
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:458
-#: ../xfburn/xfburn-perform-burn.c:95
+#: ../xfburn/xfburn-burn-image-dialog.c:458 ../xfburn/xfburn-perform-burn.c:95
 msgid "Closed media with data detected. Need blank or appendable media"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:460
-#: ../xfburn/xfburn-perform-burn.c:97
+#: ../xfburn/xfburn-burn-image-dialog.c:460 ../xfburn/xfburn-perform-burn.c:97
 msgid "No media detected in drive"
 msgstr "Δεν εντοπίστηκε δίσκος στον οδηγό"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:462
-#: ../xfburn/xfburn-perform-burn.c:99
+#: ../xfburn/xfburn-burn-image-dialog.c:462 ../xfburn/xfburn-perform-burn.c:99
 msgid "Cannot recognize state of drive and media"
 msgstr ""
 
@@ -250,7 +275,9 @@ msgid "Failed to get image size!"
 msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:506
-msgid "Make sure you selected a valid file and you have the proper permissions to access it."
+msgid ""
+"Make sure you selected a valid file and you have the proper permissions to "
+"access it."
 msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:542
@@ -402,15 +429,20 @@ msgstr "Προσθήκη καταλόγου χρήστη"
 
 #: ../xfburn/xfburn-data-composition.c:1225
 msgid ""
-"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely "
+"to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
 
 #: ../xfburn/xfburn-data-composition.c:1387
 #, c-format
-msgid "A file named \"%s\" already exists in this directory, the file hasn't been added"
-msgstr "Υπάρχει ήδη ένα αρχείο με όνομα \"%s\" στον κατάλογο. Το αρχείο δεν προστέθηκε."
+msgid ""
+"A file named \"%s\" already exists in this directory, the file hasn't been "
+"added"
+msgstr ""
+"Υπάρχει ήδη ένα αρχείο με όνομα \"%s\" στον κατάλογο. Το αρχείο δεν "
+"προστέθηκε."
 
 #: ../xfburn/xfburn-data-disc-usage.c:138
 msgid "Burn composition"
@@ -420,8 +452,7 @@ msgstr "Εγγραφή σύνθεσης"
 msgid "You are trying to burn more data than the disk can contain !"
 msgstr "Προσπαθείτε να γράψετε περισσότερα από όσα χωράει ο δίσκος !"
 
-#: ../xfburn/xfburn-device-box.c:183
-#: ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-device-box.c:183 ../xfburn/xfburn-device-box.c:184
 msgid "Show writers only"
 msgstr "Εμφάνιση μόνο εγγραφέων"
 
@@ -481,9 +512,12 @@ msgstr ""
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to "
+"<i>xfburn@xfce.org</i> together with the console output to increase the "
+"chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us know.\n"
+"Burning should still work, but if there are problems anyways, please let us "
+"know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
@@ -504,8 +538,7 @@ msgstr "Μέγιστο"
 msgid "Drive can't burn on the inserted disc!"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:635
-#: ../xfburn/xfburn-device-box.c:678
+#: ../xfburn/xfburn-device-box.c:635 ../xfburn/xfburn-device-box.c:678
 msgid "Drive is empty!"
 msgstr "Ο δίσκος είναι άδειος!"
 
@@ -513,18 +546,15 @@ msgstr "Ο δίσκος είναι άδειος!"
 msgid "Inserted disc is full!"
 msgstr "Ο δίσκος που εισάγατε είναι γεμάτος!"
 
-#: ../xfburn/xfburn-device-box.c:641
-#: ../xfburn/xfburn-device-box.c:684
+#: ../xfburn/xfburn-device-box.c:641 ../xfburn/xfburn-device-box.c:684
 msgid "Inserted disc is unsuitable!"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:644
-#: ../xfburn/xfburn-device-box.c:687
+#: ../xfburn/xfburn-device-box.c:644 ../xfburn/xfburn-device-box.c:687
 msgid "No access to drive (mounted?)"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:649
-#: ../xfburn/xfburn-device-box.c:690
+#: ../xfburn/xfburn-device-box.c:649 ../xfburn/xfburn-device-box.c:690
 msgid "Error determining disc!"
 msgstr ""
 
@@ -554,8 +584,7 @@ msgstr "Αρχείο"
 msgid "Type"
 msgstr "Τύπος"
 
-#: ../xfburn/xfburn-format-dvd-dialog.c:91
-#: ../xfburn/xfburn-main-window.c:135
+#: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:135
 msgid "Format DVD+RW"
 msgstr "Μορφοποίηση DVD+RW"
 
@@ -564,8 +593,7 @@ msgstr "Μορφοποίηση DVD+RW"
 msgid "_Format"
 msgstr "_Μορφοποίηση"
 
-#: ../xfburn/xfburn-fs-browser.c:94
-#: ../xfburn/xfburn-fs-browser.c:271
+#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:271
 msgid "Filesystem"
 msgstr "Σύστημα αρχείων"
 
@@ -575,8 +603,7 @@ msgstr "Σύστημα αρχείων"
 msgid "%s's home"
 msgstr "%s"
 
-#: ../xfburn/xfburn-main.c:139
-#: ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:139 ../xfburn.desktop.in.h:2
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -718,17 +745,16 @@ msgstr "Προβολή/απόκρυψη εργαλειοθήκης"
 msgid "Toolbar Editor"
 msgstr "Επεξεργαστής εργαλειοθήκης"
 
-#: ../xfburn/xfburn-main-window.c:543
+#: ../xfburn/xfburn-main-window.c:545
 msgid "Another cd burning GUI"
 msgstr "Ένα ακόμη εργαλείο εγγραφής cd"
 
-#: ../xfburn/xfburn-main-window.c:546
-#: ../xfburn/xfburn-main-window.c:547
-#: ../xfburn/xfburn-main-window.c:548
+#: ../xfburn/xfburn-main-window.c:548 ../xfburn/xfburn-main-window.c:549
+#: ../xfburn/xfburn-main-window.c:550
 msgid "Author/Maintainer"
 msgstr "Δημιουργός"
 
-#: ../xfburn/xfburn-main-window.c:554
+#: ../xfburn/xfburn-main-window.c:556
 #, c-format
 msgid "Translator (%s)"
 msgstr "Μεταφραστής (%s)"
@@ -929,8 +955,7 @@ msgstr "Ολοκληρώθηκε"
 msgid "Select command"
 msgstr "Επιλέξτε εντολή"
 
-#: ../xfburn/xfburn-welcome-tab.c:141
-#: ../xfburn/xfburn-welcome-tab.c:142
+#: ../xfburn/xfburn-welcome-tab.c:141 ../xfburn/xfburn-welcome-tab.c:142
 msgid "The main window"
 msgstr "Το κυρίως παράθυρο"
 
@@ -987,65 +1012,84 @@ msgstr "Εφαρμογή εγγραφής CD και DVD"
 
 #~ msgid "Fast"
 #~ msgstr "Γρήγορη"
-#~ msgid "Complete"
-#~ msgstr "Ολοκληρώθηκε"
-#~ msgid "Blank type"
-#~ msgstr "Τύπος διαγραφής"
+
 #~ msgid "_Burn Composition"
 #~ msgstr "_Εγγραφή σύνθεσης"
+
 #~ msgid "Burn CD image"
 #~ msgstr "Εγγραφή εικόνας CD"
 
 #, fuzzy
 #~ msgid "Initializing"
 #~ msgstr "Αρχικοποίηση..."
+
 #~ msgid "Show speed selection list and refresh button"
 #~ msgstr "Εμφάνιση επιλογής ταχύτητας και κουμπιού ανανέωσης"
+
 #~ msgid "Reopen last session"
 #~ msgstr "Άνοιγμα της προηγούμενης συνεδρίας"
+
 #~ msgid "Erase last session"
 #~ msgstr "Διαγραφή της προηγούμενης συνεδρίας"
+
 #~ msgid "_Force"
 #~ msgstr "_Εξαναγκασμός"
+
 #~ msgid "Blanking..."
 #~ msgstr "Διαγραφή..."
+
 #~ msgid "Performing OPC..."
 #~ msgstr "Εκτέλεση OPC..."
+
 #~ msgid "Finishing"
 #~ msgstr "Ολοκλήρωση"
+
 #~ msgid "Burn data composition"
 #~ msgstr "Εγγραφή σύνθεσης"
+
 #~ msgid "Create ISO from composition"
 #~ msgstr "Δημιουργία ISO από σύνθεση"
+
 #~ msgid "Id"
 #~ msgstr "Id"
+
 #~ msgid "View _output"
 #~ msgstr "Προβολή _αποτελέσματος"
+
 #~ msgid "Operation finished"
 #~ msgstr "Η λειτουργία ολοκληρώθηκε"
+
 #~ msgid "Are sure you want to quit?"
 #~ msgstr "Είστε βέβαιοι ότι θέλετε να κλείσετε;"
+
 #~ msgid "Failed to open /proc/scsi/sg/devices"
 #~ msgstr "Το άνοιγμα του /proc/scsi/sg/devices απέτυχε"
+
 #~ msgid "Failed to open /proc/scsi/sg/device_strs"
 #~ msgstr "Το άνοιγμα του /proc/scsi/sg/device_strs απέτυχε"
+
 #~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
 #~ msgstr ""
 #~ "Σφάλμα κατά την ανάγνωση πληροφοριών scsi από το /proc/scsi/sg/devices"
+
 #~ msgid "No message..."
 #~ msgstr "Κανένα μήνυμα..."
+
 #~ msgid "Burn Data CD"
 #~ msgstr "Εγγραφή CD δεδομένων"
 
 #, fuzzy
 #~ msgid "New audio composition"
 #~ msgstr "Άνοιγμα σύνθεσης"
+
 #~ msgid "Load composition"
 #~ msgstr "Άνοιγμα σύνθεσης"
+
 #~ msgid "Show disc content toolbar"
 #~ msgstr "Προβολή εργαλειοθήκης περιεχομένων δίσκου"
+
 #~ msgid "Show/hide the disc content toolbar"
 #~ msgstr "Προβολή/απόκρυψη εργαλειοθήκης περιεχομένων δίσκου"
+
 #~ msgid "Xfburn preferences"
 #~ msgstr "Προτιμήσεις Xfburn"
-
