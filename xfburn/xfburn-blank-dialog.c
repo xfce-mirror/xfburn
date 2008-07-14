@@ -68,12 +68,12 @@ typedef enum {
 } XfburnBlankMode;
 
 static char * blank_mode_names[] = { 
-    N_("Blank Fast"),
-    N_("Blank Complete (slow)"),
-    N_("Format Fast"),
-    N_("Format Complete"),
-    N_("Deformat Fast"),
-    N_("Deformat Complete"),
+    N_("Quick Blank"),
+    N_("Full Blank (slow)"),
+    N_("Quick Format"),
+    N_("Full Format"),
+    N_("Quick Deformat"),
+    N_("Full Deformat (slow)"),
   };
 
 enum {
