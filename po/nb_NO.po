@@ -19,42 +19,39 @@ msgstr ""
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
-msgstr "Legger til filer til komposisjon"
+msgstr "Legger til filer i komposisjonen"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
-msgstr ""
+msgstr "Hurtigsletting"
 
 #: ../xfburn/xfburn-blank-dialog.c:72
 msgid "Full Blank (slow)"
-msgstr ""
+msgstr "Full sletting (tidkrevende)"
 
 #: ../xfburn/xfburn-blank-dialog.c:73
-#, fuzzy
 msgid "Quick Format"
-msgstr "_Formater"
+msgstr "Hurtigformater"
 
 #: ../xfburn/xfburn-blank-dialog.c:74
-#, fuzzy
 msgid "Full Format"
-msgstr "_Formater"
+msgstr "Full formatering"
 
 #: ../xfburn/xfburn-blank-dialog.c:75
 msgid "Quick Deformat"
-msgstr ""
+msgstr "Hurtig deformatering"
 
 #: ../xfburn/xfburn-blank-dialog.c:76
 msgid "Full Deformat (slow)"
-msgstr ""
+msgstr "Full deformatering (tidkrevende)"
 
 #: ../xfburn/xfburn-blank-dialog.c:148
-#, fuzzy
 msgid "Eject the disc"
-msgstr "_Løs ut disk"
+msgstr "Løs ut disk"
 
 #: ../xfburn/xfburn-blank-dialog.c:149
 msgid "Default value for eject checkbox"
-msgstr ""
+msgstr "Forvalgt verdi for valget løs ut"
 
 #: ../xfburn/xfburn-blank-dialog.c:196 ../xfburn/xfburn-main-window.c:128
 msgid "Blank CD-RW"
@@ -67,12 +64,11 @@ msgstr "Slett CD-RW"
 #: ../xfburn/xfburn-copy-dvd-dialog.c:131
 #: ../xfburn/xfburn-format-dvd-dialog.c:102
 msgid "Burning device"
-msgstr "Brenneenhet"
+msgstr "Enhet"
 
 #: ../xfburn/xfburn-blank-dialog.c:221 ../xfburn/xfburn-device-box.c:202
-#, fuzzy
 msgid "Blank mode"
-msgstr "Slettetype"
+msgstr "Slettemodus"
 
 #: ../xfburn/xfburn-blank-dialog.c:229
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:222
@@ -134,7 +130,7 @@ msgstr "Feil"
 #: ../xfburn/xfburn-burn-image-dialog.c:331
 #: ../xfburn/xfburn-burn-image-dialog.c:531
 msgid "Unable to grab drive"
-msgstr "Klarte ikke å gripe enheten"
+msgstr "Klarte ikke å benytte enheten"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:178
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:278
@@ -142,13 +138,12 @@ msgid "Burn Composition"
 msgstr "Brenn komposisjon"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:201
-#, fuzzy
 msgid "Composition name"
-msgstr "Brenn komposisjon"
+msgstr "Navn på komposisjon"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
 msgid "<small>Would you like to change the default composition name?</small>"
-msgstr ""
+msgstr "<small>Ønsker du å endre forvalgt navn på komposisjonen?</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
 #: ../xfburn/xfburn-burn-image-dialog.c:188
@@ -172,7 +167,7 @@ msgstr "Bare lag _ISO"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:458
 #, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr "Klarte ikke opprette målfil iso: %s"
+msgstr "Klarte ikke opprette målfil isofil: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:465
 msgid "Writing ISO..."
@@ -194,9 +189,8 @@ msgid "Cannot attach source object to track object"
 msgstr "Klarte ikke legge ved kildeobjekt til sporobjekt."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:560
-#, fuzzy
 msgid "The write mode is not supported currently"
-msgstr "Den valgte skrivemodus er ikke støttet"
+msgstr "Valgt skrivemodus er ikke støttet"
 
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:641
@@ -204,9 +198,8 @@ msgid "Could not create ISO source structure"
 msgstr "Klarte ikke lage ISO kildestruktur"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:135
-#, fuzzy
 msgid "Burn image"
-msgstr "_Brenn avtrykk"
+msgstr "Brenn avtrykk"
 
 #. file
 #: ../xfburn/xfburn-burn-image-dialog.c:142
@@ -228,6 +221,8 @@ msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
 "select an image to burn!</span>"
 msgstr ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Velg "
+"et avtrykk som skal brennes!</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:202
 msgid "_Burn image"
@@ -243,7 +238,7 @@ msgstr "Klarte ikke åpne avtrykk"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:340
 msgid "Burn mode is not currently implemented"
-msgstr ""
+msgstr "Brennemodus er ikke implementert"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 msgid "Burning image..."
@@ -253,7 +248,7 @@ msgstr "Brenner avtrykk..."
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
-"Klarte ikke tilføye data til multiøkt disk med valgte modus (bruk TAO modus)"
+"Klarte ikke tilføye data til multiøkt disk med valgt modus (bruk TAO modus)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:458 ../xfburn/xfburn-perform-burn.c:95
 msgid "Closed media with data detected. Need blank or appendable media"
@@ -269,10 +264,9 @@ msgstr "Klarte ikke å gjenkjenne status til enhet og media"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:474
 msgid "The selected image does not fit on the inserted disc!"
-msgstr ""
+msgstr "Valgte avtrykk passer ikke på gjeldende disk!"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:478
-#, fuzzy
 msgid "Failed to get image size!"
 msgstr "Klarte ikke å bestemme avtrykksstørrelse"
 
@@ -281,15 +275,15 @@ msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
 msgstr ""
+"Sørg for å velge en gyldig fil og at du har rettigheter til å lese den."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:542
-#, fuzzy
 msgid "The write mode is not currently supported"
 msgstr "Den valgte skrivemodus er ikke støttet"
 
 #: ../xfburn/xfburn-compositions-notebook.c:166
 msgid "Welcome"
-msgstr ""
+msgstr "Velkommen"
 
 #: ../xfburn/xfburn-compositions-notebook.c:170
 msgid "Data composition"
@@ -302,7 +296,7 @@ msgstr "Kopier data CD"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:123
 msgid "CD Reader device"
-msgstr "CDleserenhet"
+msgstr "CD leserenhet"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:152
 #: ../xfburn/xfburn-copy-dvd-dialog.c:152
@@ -352,7 +346,7 @@ msgstr "Legg til"
 
 #: ../xfburn/xfburn-data-composition.c:179
 msgid "Add the selected file(s) to the composition"
-msgstr "Legg til valge fil(er) i komposisjonen"
+msgstr "Legg til valgte fil(er) i komposisjonen"
 
 #: ../xfburn/xfburn-data-composition.c:181
 msgid "Create directory"
@@ -368,7 +362,7 @@ msgstr "Fjern"
 
 #: ../xfburn/xfburn-data-composition.c:183
 msgid "Remove the selected file(s) from the composition"
-msgstr "Fjern valge fil(er) fra komposisjonen"
+msgstr "Fjern valgte fil(er) fra komposisjonen"
 
 #: ../xfburn/xfburn-data-composition.c:185
 msgid "Clear"
@@ -396,7 +390,7 @@ msgstr "Gi nytt navn til valgt fil"
 
 #: ../xfburn/xfburn-data-composition.c:340
 msgid "Volume name :"
-msgstr "Dataområdenavn"
+msgstr "Volumnavn :"
 
 #: ../xfburn/xfburn-data-composition.c:371
 msgid "Contents"
@@ -427,9 +421,8 @@ msgid "New directory"
 msgstr "Ny mappe"
 
 #: ../xfburn/xfburn-data-composition.c:1224
-#, fuzzy
 msgid "Adding home directory"
-msgstr "Ny mappe"
+msgstr "Legger til hjemmemappe"
 
 #: ../xfburn/xfburn-data-composition.c:1225
 msgid ""
@@ -438,6 +431,10 @@ msgid ""
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
+"Du er i ferd med å legge til hjemmemappen din i komposisjonen. Dette vil "
+"sannsynligvis ta lang tid, og vil ikke få plass på en disk.\n"
+"\n"
+"Er du sikker på at du vil fortsette?"
 
 #: ../xfburn/xfburn-data-composition.c:1387
 #, c-format
@@ -477,23 +474,25 @@ msgstr "Vis modus valgliste"
 
 #: ../xfburn/xfburn-device-box.c:194
 msgid "Disc status"
-msgstr ""
+msgstr "Diskstatus"
 
 #: ../xfburn/xfburn-device-box.c:195
 msgid "The status of the disc in the drive"
-msgstr ""
+msgstr "Status til disken i diskenheten"
 
 #: ../xfburn/xfburn-device-box.c:198
 msgid "Is it a valid combination"
-msgstr ""
+msgstr "Er det en gyldig kombinasjon"
 
 #: ../xfburn/xfburn-device-box.c:199
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr ""
+"Er kombinasjonen av maskinvare og disk gyldig for å brenne "
+"komposisjonen?"
 
 #: ../xfburn/xfburn-device-box.c:203
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
+msgstr "Slettemodus viser forskjellige statusmeldinger enn standardmodus"
 
 #: ../xfburn/xfburn-device-box.c:276
 msgid "_Speed:"
@@ -505,7 +504,7 @@ msgstr "Skrive_modus:"
 
 #: ../xfburn/xfburn-device-box.c:443
 msgid "Empty speed list"
-msgstr ""
+msgstr "Tøn hastighetsliste"
 
 #: ../xfburn/xfburn-device-box.c:451
 msgid ""
@@ -520,55 +519,62 @@ msgid ""
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
+"<b>Klarte ikke hente list med hastigheter for diskenheten.</b>\n"
+"\n"
+"Dette er en kjent feil som oppstår med enkelte enheter. Vennligst "
+"rapporter til <i>xfburn@xfce.org</i> sammen med konsollteksten."
+"Dette øker sjansene for at feilen blir fikset.\n"
+"\n"
+"Brenning burde fortsatt fungere, men hvis det oppstår problemer - gi oss "
+"beskjed.\n"
+"\n"
+"<i>Takk!</i>"
 
 #: ../xfburn/xfburn-device-box.c:460
 msgid "Continue to _show this notice"
-msgstr ""
+msgstr "Fortsett å _vise denne meldingen"
 
 #: ../xfburn/xfburn-device-box.c:503
 msgid "default"
-msgstr ""
+msgstr "forvalgt"
 
 #: ../xfburn/xfburn-device-box.c:539
 msgid "Max"
-msgstr ""
+msgstr "Maks"
 
 #: ../xfburn/xfburn-device-box.c:628
 msgid "Drive can't burn on the inserted disc!"
-msgstr ""
+msgstr "Diskenheten kan ikke brenne på gjeldense disk!"
 
 #: ../xfburn/xfburn-device-box.c:635 ../xfburn/xfburn-device-box.c:678
 msgid "Drive is empty!"
-msgstr ""
+msgstr "Diskenheten er tom!"
 
 #: ../xfburn/xfburn-device-box.c:638
-#, fuzzy
 msgid "Inserted disc is full!"
-msgstr "Gjeldende disk er allerede slettet"
+msgstr "Gjeldende disk er allerede full"
 
 #: ../xfburn/xfburn-device-box.c:641 ../xfburn/xfburn-device-box.c:684
-#, fuzzy
 msgid "Inserted disc is unsuitable!"
-msgstr "Gjeldende disk er allerede slettet"
+msgstr "Gjeldende disk kan ikke benyttes"
 
 #: ../xfburn/xfburn-device-box.c:644 ../xfburn/xfburn-device-box.c:687
 msgid "No access to drive (mounted?)"
-msgstr ""
+msgstr "Ikke tilgang til diskenhet (montert?)"
 
 #: ../xfburn/xfburn-device-box.c:649 ../xfburn/xfburn-device-box.c:690
 msgid "Error determining disc!"
-msgstr ""
+msgstr "Klarte ikke avgjøre type disk!"
 
 #: ../xfburn/xfburn-device-box.c:670
 msgid "Write-once disc, no blanking possible"
-msgstr ""
+msgstr "En-gangs disk, sletting er ikke mulig"
 
 #: ../xfburn/xfburn-device-box.c:673
 msgid "DVD+RW does not need blanking"
-msgstr ""
+msgstr "DVD+RW trenger ikke slettes"
 
 #: ../xfburn/xfburn-device-box.c:681
-#, fuzzy
 msgid "Inserted disc is already blank!"
 msgstr "Gjeldende disk er allerede slettet"
 
@@ -615,10 +621,12 @@ msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
+"%s: %s\n"
+"Prøv %s --help for å se alle kommandolinjeopsjoner.\n"
 
 #: ../xfburn/xfburn-main.c:184
 msgid "No drives are currently available!"
-msgstr ""
+msgstr "Ingen enheter er tilgjengelig"
 
 #: ../xfburn/xfburn-main.c:186
 msgid ""
@@ -626,11 +634,14 @@ msgid ""
 "\n"
 "Please unmount and restart the application."
 msgstr ""
+"Det kan være media montert i brenneren?\n"
+"\n"
+"Vennligst demonter og restart applikasjonen."
 
 #: ../xfburn/xfburn-main.c:215
 #, c-format
 msgid "Image file '%s' does not exist!"
-msgstr ""
+msgstr "Filen '%s' finnes ikke!"
 
 #: ../xfburn/xfburn-main-window.c:101
 msgid "_File"
@@ -716,7 +727,6 @@ msgid "Copy Audio CD"
 msgstr "Kopier lydcd"
 
 #: ../xfburn/xfburn-main-window.c:133
-#, fuzzy
 msgid "Burn Image"
 msgstr "Brenn CD avtrykk"
 
@@ -776,35 +786,35 @@ msgstr "Brenner komposisjon..."
 
 #: ../xfburn/xfburn-perform-burn.c:140
 msgid "standby"
-msgstr ""
+msgstr "venter"
 
 #: ../xfburn/xfburn-perform-burn.c:147
 msgid "active"
-msgstr ""
+msgstr "aktiv"
 
 #: ../xfburn/xfburn-perform-burn.c:150
 msgid "ending"
-msgstr ""
+msgstr "avslutter"
 
 #: ../xfburn/xfburn-perform-burn.c:153
 msgid "failing"
-msgstr ""
+msgstr "feiler"
 
 #: ../xfburn/xfburn-perform-burn.c:156
 msgid "unused"
-msgstr ""
+msgstr "ikke brukt"
 
 #: ../xfburn/xfburn-perform-burn.c:159
 msgid "abandoned"
-msgstr ""
+msgstr "forlatt"
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "ended"
-msgstr ""
+msgstr "avsluttet"
 
 #: ../xfburn/xfburn-perform-burn.c:165
 msgid "aborted"
-msgstr ""
+msgstr "avbrutt"
 
 #: ../xfburn/xfburn-perform-burn.c:173
 msgid "Writing Lead-In..."
@@ -827,9 +837,8 @@ msgid "Closing session..."
 msgstr "Lukker økt..."
 
 #: ../xfburn/xfburn-perform-burn.c:203
-#, fuzzy
 msgid "Formatting..."
-msgstr "Skriver cd..."
+msgstr "Formaterer..."
 
 #: ../xfburn/xfburn-preferences-dialog.c:138
 msgid "Preferences"
@@ -871,7 +880,7 @@ msgstr "Enheter"
 
 #: ../xfburn/xfburn-preferences-dialog.c:238
 msgid "Detected devices"
-msgstr "Fant enhetene"
+msgstr "Enheter funnet"
 
 #: ../xfburn/xfburn-preferences-dialog.c:259
 msgid "Name"
@@ -907,9 +916,8 @@ msgid "Show _empty speed list bug warning"
 msgstr ""
 
 #: ../xfburn/xfburn-preferences-dialog.c:324
-#, fuzzy
 msgid "FIFO buffer size (in kb)"
-msgstr "FIFO mellomlager"
+msgstr "FIFO mellomlager størrelse (i kb)"
 
 #: ../xfburn/xfburn-progress-dialog.c:174
 msgid "Initializing..."
@@ -940,7 +948,7 @@ msgstr "Enhetsmellomlager:"
 #: ../xfburn/xfburn-progress-dialog.c:435
 #, c-format
 msgid "Min. fill was %2d%%"
-msgstr ""
+msgstr "Min. fill var %2d%%"
 
 #: ../xfburn/xfburn-progress-dialog.c:497
 msgid "Failed"
@@ -960,85 +968,54 @@ msgstr "Velg kommando"
 
 #: ../xfburn/xfburn-welcome-tab.c:141 ../xfburn/xfburn-welcome-tab.c:142
 msgid "The main window"
-msgstr ""
+msgstr "Hovedvindu"
 
 #: ../xfburn/xfburn-welcome-tab.c:144
 msgid "Notebook"
-msgstr ""
+msgstr "Notisblokk"
 
 #: ../xfburn/xfburn-welcome-tab.c:145
 msgid "NOTEBOOK"
-msgstr ""
+msgstr "NOTISBLOKK"
 
 #: ../xfburn/xfburn-welcome-tab.c:147
-#, fuzzy
 msgid "Action group"
-msgstr "_Aksjoner"
+msgstr "Aksjonsgruppe"
 
 #: ../xfburn/xfburn-welcome-tab.c:148
 msgid "Action group from the main window"
-msgstr ""
+msgstr "Aksjonsgruppe fra hovedvindu"
 
 #: ../xfburn/xfburn-welcome-tab.c:181
-#, fuzzy
 msgid "Welcome to xfburn!"
-msgstr "Avtrykk som skal brennes"
+msgstr "Velkommen til xfburn"
 
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:192
-#, fuzzy
 msgid "<big>Burn _Image</big>"
-msgstr "Brenn CD avtrykk"
+msgstr "<big>Brenn CD _avtrykk</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:192
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr ""
+msgstr "Brenn en forhåndslaget komposisjon, f.eks en ISO-fil"
 
 #: ../xfburn/xfburn-welcome-tab.c:197
-#, fuzzy
 msgid "<big>New _Data Composition</big>"
-msgstr "Datakomposisjon"
+msgstr "<big>Ny _datakomposisjon</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:197
 msgid "Create a new data disc with the files of your choosing"
-msgstr ""
+msgstr "Lag en ny datadisk med filene du ønsker"
 
 #: ../xfburn/xfburn-welcome-tab.c:202
 msgid "<big>_Blank Disc</big>"
-msgstr ""
+msgstr "<big>_Slett disk</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:202
 msgid "Prepare the rewriteable disc for a new burn"
-msgstr ""
+msgstr "Klargjør en overskrivbar disk for ny brenning"
 
 #: ../xfburn.desktop.in.h:1
 msgid "CD and DVD burning application"
 msgstr "CD og DVD brenneprogram"
 
-#, fuzzy
-#~ msgid "Blank Fast"
-#~ msgstr "Slettetype"
-
-#, fuzzy
-#~ msgid "Format Fast"
-#~ msgstr "_Formater"
-
-#, fuzzy
-#~ msgid "Format Complete"
-#~ msgstr "Komplett"
-
-#, fuzzy
-#~ msgid "Deformat Complete"
-#~ msgstr "Komplett"
-
-#~ msgid "Fast"
-#~ msgstr "Rask"
-
-#~ msgid "Cannot recognize drive and media state"
-#~ msgstr "Klarte ikke gjenkjenne enhet og mediastatus"
-
-#~ msgid "_Burn Composition"
-#~ msgstr "_Brenn komposisjon"
-
-#~ msgid "Burn CD image"
-#~ msgstr "Brenn CD avtrykk"
