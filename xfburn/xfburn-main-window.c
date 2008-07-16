@@ -511,6 +511,7 @@ action_about (GtkAction * action, XfburnMainWindow * window)
     {"Stavros Giannouris", "stavrosg2002@freemail.gr", "el",},
     {"Jeff Bailes", "thepizzaking@gmail.com", "en_GB",},
     {"Diego Rodriguez", "dieymir@yahoo.es", "es",},
+    {"Kristjan Siimson", "kristjan.siimson@gmail.com", "et",},
     {"Piarres Beobide", "pi@beobide.net", "eu",},
     {"Jari Rahkonen", "jari.rahkonen@pp1.inet.fi", "fi",},
     {"Etienne Collet", "xanaxlnx@gmail.com", "fr",},
@@ -531,7 +532,7 @@ action_about (GtkAction * action, XfburnMainWindow * window)
     {"Maxim V. Dziumanenko", "mvd@mylinux.com.ua", "uk",},
     {"Dmitry Nikitin", "", "uk",},
     {"ﻢﺤﻣﺩ ﻊﻠﻳ ﺎﻠﻤﻜﻳ", "makki.ma@gmail.com", "ur",},
-    {"正龙 赵", "zzl6612@yahoo.com.cn", "zh_CN",},
+    {"正龙 赵", "longer.zhao@gmail.com", "zh_CN",},
     {"Cosmo Chene", "cosmolax@gmail.com", "zh_TW",},
   };
 
