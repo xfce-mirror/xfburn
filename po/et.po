@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-14 19:42+0300\n"
-"PO-Revision-Date: 2008-07-16 01:28+0300\n"
+"PO-Revision-Date: 2008-07-16 18:14+0300\n"
 "Last-Translator: Kristjan Siimson <kristjan.siimson@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
-msgstr "Failide lisamine kogumisse"
+msgstr "Failide lisamine kogumiku"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
@@ -54,7 +54,7 @@ msgstr "Avamise märkeruudu vaikeväärtus"
 #: ../xfburn/xfburn-blank-dialog.c:196
 #: ../xfburn/xfburn-main-window.c:128
 msgid "Blank CD-RW"
-msgstr "Tühi CD-RW"
+msgstr "Tühjenda CD-RW"
 
 #: ../xfburn/xfburn-blank-dialog.c:208
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:190
@@ -68,7 +68,7 @@ msgstr "Kirjutusseade"
 #: ../xfburn/xfburn-blank-dialog.c:221
 #: ../xfburn/xfburn-device-box.c:202
 msgid "Blank mode"
-msgstr "Tühirežiim"
+msgstr "Tühjendamisrežiim"
 
 #: ../xfburn/xfburn-blank-dialog.c:229
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:222
@@ -90,12 +90,12 @@ msgstr "Plaat välja_statakse"
 
 #: ../xfburn/xfburn-blank-dialog.c:243
 msgid "_Blank"
-msgstr "_Tühi"
+msgstr "_Tühjenda"
 
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:349
 msgid "The inserted disc is already blank"
-msgstr "Sisestatud disk on juba tühi"
+msgstr "Sisestatud plaat on juba tühi"
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:355
@@ -137,15 +137,15 @@ msgstr "Seadme haaramine ei õnnestu"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:178
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:278
 msgid "Burn Composition"
-msgstr "Kogumi kirjutamine"
+msgstr "Kogumiku kirjutamine"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:201
 msgid "Composition name"
-msgstr "Kogumi nimi"
+msgstr "Kogumiku nimi"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
 msgid "<small>Would you like to change the default composition name?</small>"
-msgstr "<small>Kas muuta vaikimisi kogumi nime?</small>"
+msgstr "<small>Kas muuta vaikimisi kogumiku nime?</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
 #: ../xfburn/xfburn-burn-image-dialog.c:188
@@ -284,7 +284,7 @@ msgstr "Tere tulemast"
 
 #: ../xfburn/xfburn-compositions-notebook.c:170
 msgid "Data composition"
-msgstr "Andmekogum"
+msgstr "Andmekogumik"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
@@ -343,7 +343,7 @@ msgstr "Lisa"
 
 #: ../xfburn/xfburn-data-composition.c:179
 msgid "Add the selected file(s) to the composition"
-msgstr "Lisa valitud failid kogumisse"
+msgstr "Lisa valitud failid kogumiku"
 
 #: ../xfburn/xfburn-data-composition.c:181
 msgid "Create directory"
@@ -351,7 +351,7 @@ msgstr "Loo kataloog"
 
 #: ../xfburn/xfburn-data-composition.c:181
 msgid "Add a new directory to the composition"
-msgstr "Lisa uus kataloog kogumisse"
+msgstr "Lisa uus kataloog kogumiku"
 
 #: ../xfburn/xfburn-data-composition.c:183
 msgid "Remove"
@@ -359,7 +359,7 @@ msgstr "Eemalda"
 
 #: ../xfburn/xfburn-data-composition.c:183
 msgid "Remove the selected file(s) from the composition"
-msgstr "Eemalda valitud failid kogumist"
+msgstr "Eemalda valitud failid kogumikust"
 
 #: ../xfburn/xfburn-data-composition.c:185
 msgid "Clear"
@@ -367,7 +367,7 @@ msgstr "Puhasta"
 
 #: ../xfburn/xfburn-data-composition.c:185
 msgid "Clear the content of the composition"
-msgstr "Puhasta kogumi sisu"
+msgstr "Puhasta kogumiku sisu"
 
 #: ../xfburn/xfburn-data-composition.c:187
 msgid "Import"
@@ -409,7 +409,7 @@ msgstr "Sa pead failile nime andma"
 #: ../xfburn/xfburn-data-composition.c:671
 #: ../xfburn/xfburn-data-composition.c:1066
 msgid "A file with the same name is already present in the composition"
-msgstr "Kogumis on sama nimega fail juba olemas"
+msgstr "Kogumikus on sama nimega fail juba olemas"
 
 #: ../xfburn/xfburn-data-composition.c:779
 #: ../xfburn/xfburn-data-composition.c:780
@@ -427,7 +427,7 @@ msgid ""
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Oled lisamas kogumisse oma kodukataloogi. See võtab tõenäoliselt väga kaua aega, ning see võib ühele plaadile mahtumiseks liiga palju ruumi võtta.\n"
+"Oled lisamas kogumiku oma kodukataloogi. See võtab tõenäoliselt väga kaua aega, ning see võib ühele plaadile mahtumiseks liiga palju ruumi võtta.\n"
 "\n"
 "Oled kindel, et jätkata?"
 
@@ -438,7 +438,7 @@ msgstr "Fail nimega \"%s\" on juba selles kataloogis olemas, faili ei lisatud"
 
 #: ../xfburn/xfburn-data-disc-usage.c:138
 msgid "Burn composition"
-msgstr "Kirjuta kogum"
+msgstr "Kirjuta kogumik"
 
 #: ../xfburn/xfburn-data-disc-usage.c:196
 msgid "You are trying to burn more data than the disk can contain !"
@@ -483,7 +483,7 @@ msgstr "Kas riistvara ja plaadi kombinatsioon on kompositsiooni kirjutamiseks so
 
 #: ../xfburn/xfburn-device-box.c:203
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "Tühirežiimis on plaatide kohta teistsugused olekuteated, kui tavarežiimis"
+msgstr "Tühjendamisrežiimis on plaatide kohta teistsugused olekuteated, kui tavarežiimis"
 
 #: ../xfburn/xfburn-device-box.c:276
 msgid "_Speed:"
@@ -561,7 +561,7 @@ msgstr "Ühekordset plaati ei saa tühjendada"
 
 #: ../xfburn/xfburn-device-box.c:673
 msgid "DVD+RW does not need blanking"
-msgstr "DVD+RW-plaati ei pea tühendama"
+msgstr "DVD+RW-plaati ei pea tühjendama"
 
 #: ../xfburn/xfburn-device-box.c:681
 msgid "Inserted disc is already blank!"
@@ -642,11 +642,11 @@ msgstr "_Fail"
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
 #: ../xfburn/xfburn-main-window.c:103
 msgid "_New composition"
-msgstr "_Uus kogum"
+msgstr "_Uus kogumik"
 
 #: ../xfburn/xfburn-main-window.c:103
 msgid "Create a new composition"
-msgstr "Loo uus kogum"
+msgstr "Loo uus kogumik"
 
 #. {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
 #. G_CALLBACK (action_new_data_composition),},
@@ -660,7 +660,7 @@ msgstr "Loo uus kogum"
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:115
 msgid "Close composition"
-msgstr "Sulge kogum"
+msgstr "Sulge kogumik"
 
 #: ../xfburn/xfburn-main-window.c:117
 msgid "_Quit"
@@ -775,7 +775,7 @@ msgstr "Pealdise kiri"
 
 #: ../xfburn/xfburn-perform-burn.c:119
 msgid "Burning composition..."
-msgstr "Kogumi kirjutamine..."
+msgstr "Kogumiku kirjutamine..."
 
 #: ../xfburn/xfburn-perform-burn.c:140
 msgid "standby"
@@ -991,11 +991,11 @@ msgstr "<big>_Kirjuta tõmmis</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:192
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr "Kirjuta ettevalmistatud kompilatsioon, nt. .ISO fail"
+msgstr "Kirjuta ettevalmistatud kogumik, nt. .ISO fail"
 
 #: ../xfburn/xfburn-welcome-tab.c:197
 msgid "<big>New _Data Composition</big>"
-msgstr "<big>_Uus andmekogum</big>"
+msgstr "<big>_Uus andmekogumik</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:197
 msgid "Create a new data disc with the files of your choosing"
