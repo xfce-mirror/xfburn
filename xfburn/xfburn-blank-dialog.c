@@ -473,9 +473,11 @@ thread_blank (ThreadBlankParams * params)
   burn_finish ();
   g_free (params);
 
+#ifdef HAVE_HAL
   gdk_threads_enter ();
   xfburn_hal_manager_send_volume_changed ();
   gdk_threads_leave ();
+#endif
 }
 
 static XfburnBlankMode
