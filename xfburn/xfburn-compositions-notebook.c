@@ -137,6 +137,8 @@ cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook)
   composition = g_object_get_data (G_OBJECT (tab), "composition");
   page_num = gtk_notebook_page_num (notebook, composition);
   gtk_notebook_remove_page (notebook, page_num);
+
+  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)) > 1);
 }
 
 static void
@@ -188,6 +190,8 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
 
     gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK (notebook), composition, 1);
 	
+    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)) > 1);
+
     g_object_set_data (G_OBJECT (tab), "composition", composition);
     g_signal_connect (G_OBJECT (tab), "button-close-clicked", G_CALLBACK (cb_composition_close), notebook);
     
@@ -229,6 +233,8 @@ xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebo
 
   gtk_widget_show (welcome_tab);
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), welcome_tab, label);
+
+  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)) > 1);
 }
 
 void
