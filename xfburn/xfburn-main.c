@@ -183,7 +183,7 @@ main (int argc, char **argv)
                                     GTK_BUTTONS_CLOSE,
                                     ((const gchar *) _("No drives are currently available!")));
     gtk_message_dialog_format_secondary_text (dialog,
-                                    _("Maybe there is a mounted media in the drive?\n\nPlease unmount and restart the application."));
+                                    _("Maybe there is a mounted media in the drive?\n\nPlease unmount and restart the application.\n\nIf no media is inserted, check that you have r/w access to the drive with the current user."));
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (GTK_WIDGET (dialog));
   }

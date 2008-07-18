@@ -268,8 +268,7 @@ xfburn_device_list_init ()
     g_warning ("An error occurred while scanning for available drives!");
 
   if (n_drives < 1) {
-    g_warning ("No drives were found!");
-    DBG ("Check if you have r/w permissions to optical drives!");
+    g_warning ("No drives were found! If this is in error, check the permissions.");
   }
 
   for (i = 0; i < n_drives; i++) {
