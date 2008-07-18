@@ -697,7 +697,7 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
   gtk_widget_set_sensitive (priv->combo_speed, priv->valid_disc);
 
   if (priv->valid_disc)
-    priv->status_text = _("");
+    priv->status_text = "";
 
   status_label_update (priv);
   return priv->valid_disc;
