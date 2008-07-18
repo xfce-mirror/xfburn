@@ -45,9 +45,12 @@ typedef struct
 
 GtkType xfburn_notebook_tab_get_type ();
 
-GtkWidget *xfburn_notebook_tab_new (const gchar *label);
+GtkWidget *xfburn_notebook_tab_new (const gchar *label, gboolean show_button_close);
 
 void xfburn_notebook_tab_set_label (XfburnNotebookTab *tab, const gchar *label);
+
+void xfburn_notebook_tab_show_button_close (XfburnNotebookTab *tab);
+void xfburn_notebook_tab_show_button_hide (XfburnNotebookTab *tab);
 
 G_END_DECLS
 #endif /* XFBURN_NOTEBOOK_TAB_H */

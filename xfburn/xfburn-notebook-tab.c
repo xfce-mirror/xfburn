@@ -37,6 +37,7 @@ enum {
 enum {
   PROP_0,
   PROP_LABEL,
+  PROP_SHOW_BUTTON_CLOSE,
 };
 
 /* private members */
@@ -105,7 +106,10 @@ xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass)
   
   g_object_class_install_property (object_class, PROP_LABEL, 
                                    g_param_spec_string ("label", _("Label"), _("The text of the label"), 
-                                                        NULL, G_PARAM_READWRITE));
+                                                        NULL, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+  g_object_class_install_property (object_class, PROP_SHOW_BUTTON_CLOSE, 
+                                   g_param_spec_boolean ("show-button-close", _("Show close button"), _("Determine whether the close button is visible"), 
+                                                        TRUE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
 
 static void
@@ -137,13 +141,15 @@ xfburn_notebook_tab_get_property (GObject *object, guint prop_id, GValue *value,
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (object);
 
   switch (prop_id) {
-    case PROP_LABEL:
-      g_value_set_string (value, gtk_label_get_text (GTK_LABEL (priv->label)));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
+  case PROP_LABEL:
+    g_value_set_string (value, gtk_label_get_text (GTK_LABEL (priv->label)));
+    break;
+  case PROP_SHOW_BUTTON_CLOSE:
+    g_object_get_property (G_OBJECT (priv->button_close), "visible", value);
+    break;
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    break;
   }
 }
 
@@ -153,13 +159,19 @@ xfburn_notebook_tab_set_property (GObject *object, guint prop_id, const GValue *
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (object);
   
   switch (prop_id) {
-    case PROP_LABEL:
-      gtk_label_set_text (GTK_LABEL (priv->label), g_value_get_string (value));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
+  case PROP_LABEL:
+    gtk_label_set_text (GTK_LABEL (priv->label), g_value_get_string (value));
+    break;
+  case PROP_SHOW_BUTTON_CLOSE:
+    if (g_value_get_boolean (value))
+      gtk_widget_show (priv->button_close);
+    else
+      gtk_widget_hide (priv->button_close);
+	
+    break;
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    break;
   }
 }
                                           
@@ -176,11 +188,12 @@ cb_composition_close (GtkButton *button, XfburnNotebookTab *tab)
 /* public */
 /**********/
 GtkWidget *
-xfburn_notebook_tab_new (const gchar *label)
+xfburn_notebook_tab_new (const gchar *label, gboolean show_button_close)
 {
   GtkWidget *obj;
 
-  obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_NOTEBOOK_TAB, "homogeneous", FALSE, "label", label, NULL));
+  obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_NOTEBOOK_TAB, "homogeneous", FALSE, 
+				  "label", label, "show-button-close", show_button_close, NULL));
 
   return obj;
 }
@@ -191,4 +204,20 @@ xfburn_notebook_tab_set_label (XfburnNotebookTab *tab, const gchar *label)
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (tab);
   
   gtk_label_set_text (GTK_LABEL (priv->label), label);
+}
+
+void
+xfburn_notebook_tab_show_button_close (XfburnNotebookTab *tab)
+{
+  XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (tab);
+  
+  gtk_widget_show (priv->button_close);
+}
+
+void
+xfburn_notebook_tab_show_button_hide (XfburnNotebookTab *tab)
+{
+  XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (tab);
+  
+  gtk_widget_hide (priv->button_close);
 }

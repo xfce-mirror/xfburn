@@ -180,7 +180,7 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
     
     guint page_num;
     
-    tab = xfburn_notebook_tab_new (label_text);
+    tab = xfburn_notebook_tab_new (label_text, TRUE);
     gtk_widget_show (tab);
 	
     menu_label = gtk_label_new (label_text);

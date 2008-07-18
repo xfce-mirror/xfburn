@@ -160,7 +160,7 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
     }
 
     burn_drive_free_speedlist (&speed_list); 
-    device->supported_cdr_speeds    g_warning ("no profile could be retrieved"); = g_slist_sort (device->supported_cdr_speeds, &cmp_ints);
+    device->supported_cdr_speeds = g_slist_sort (device->supported_cdr_speeds, &cmp_ints);
   } else if (ret == 0 || speed_list == NULL) {
     g_warning ("reported speed list is empty for device:");
     g_warning (DEVICE_INFO_PRINTF);
