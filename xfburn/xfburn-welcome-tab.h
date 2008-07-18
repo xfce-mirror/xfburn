@@ -27,6 +27,8 @@
 
 #include <gtk/gtk.h>
 
+#include "xfburn-compositions-notebook.h"
+
 G_BEGIN_DECLS
 
 #define XFBURN_TYPE_WELCOME_TAB         (xfburn_welcome_tab_get_type ())
@@ -47,7 +49,7 @@ typedef struct
 } XfburnWelcomeTabClass;
 
 GtkType xfburn_welcome_tab_get_type ();
-GtkWidget *xfburn_welcome_tab_new ();
+GtkWidget *xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GtkActionGroup *action_group);
 
 G_END_DECLS
 

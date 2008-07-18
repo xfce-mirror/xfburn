@@ -43,15 +43,12 @@
 static void xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass);
 static void xfburn_welcome_tab_init (XfburnWelcomeTab * sp);
 static void xfburn_welcome_tab_finalize (GObject * object);
-static void composition_interface_init (XfburnCompositionInterface *composition, gpointer iface_data);
 
 #define XFBURN_WELCOME_TAB_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_WELCOME_TAB, XfburnWelcomeTabPrivate))
 
 typedef struct {
-  XfburnMainWindow *mainwin;
   XfburnCompositionsNotebook *notebook;
 
-  GtkActionGroup *action_group;
   GtkWidget *button_image;
   GtkWidget *button_data_comp;
   GtkWidget *button_blank;
@@ -59,9 +56,7 @@ typedef struct {
 
 /* internals */
 static GtkWidget* create_welcome_button (const gchar *stock, const gchar *text, const gchar *secondary);
-static void update_buttons_from_action_group (XfburnWelcomeTabPrivate *priv);
-static void show_custom_controls (XfburnComposition *composition);
-static void hide_custom_controls (XfburnComposition *composition);
+
 static void burn_image (GtkButton *button, XfburnWelcomeTab *tab);
 static void new_data_composition (GtkButton *button, XfburnWelcomeTab *tab);
 static void blank_disc (GtkButton *button, XfburnWelcomeTab *tab);
@@ -90,15 +85,7 @@ xfburn_welcome_tab_get_type ()
       (GInstanceInitFunc) xfburn_welcome_tab_init,
     };
 
-    static const GInterfaceInfo composition_info = {
-      (GInterfaceInitFunc) composition_interface_init,    /* interface_init */
-      NULL,                                               /* interface_finalize */
-      NULL                                                /* interface_data */
-    };
-    
     type = g_type_register_static (GTK_TYPE_VBOX, "XfburnWelcomeTab", &our_info, 0);
-
-    g_type_add_interface_static (type, XFBURN_TYPE_COMPOSITION, &composition_info);
   }
 
   return type;
@@ -114,15 +101,6 @@ xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass)
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_welcome_tab_finalize;
-}
-
-static void
-composition_interface_init (XfburnCompositionInterface *composition, gpointer iface_data)
-{
-  composition->show_custom_controls = show_custom_controls;
-  composition->hide_custom_controls = hide_custom_controls;
-  composition->load = NULL;
-  composition->save = NULL;
 }
 
 static void
@@ -218,41 +196,13 @@ create_welcome_button (const gchar *stock, const gchar *text, const gchar *secon
   return button;
 }
 
-static void 
-update_buttons_from_action_group (XfburnWelcomeTabPrivate *priv)
-{
-  GtkAction *action;
-
-  action = gtk_action_group_get_action (priv->action_group, "burn-image");
-  gtk_widget_set_sensitive (priv->button_image, gtk_action_is_sensitive (action));
-
-  action = gtk_action_group_get_action (priv->action_group, "new-composition");
-  gtk_widget_set_sensitive (priv->button_data_comp, gtk_action_is_sensitive (action));
-
-  action = gtk_action_group_get_action (priv->action_group, "blank-disc");
-  gtk_widget_set_sensitive (priv->button_blank, gtk_action_is_sensitive (action));
-}
-
-static void
-show_custom_controls (XfburnComposition *composition)
-{
-  DBG ("show");
-}
-
-static void
-hide_custom_controls (XfburnComposition *composition)
-{
-  DBG ("hide");
-}
-
 static void
 burn_image (GtkButton *button, XfburnWelcomeTab *tab)
 {
-  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
   GtkWidget *dialog;
 
   dialog = xfburn_burn_image_dialog_new ();
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (priv->mainwin));
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (xfburn_main_window_get_instance ()));
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 }
@@ -260,11 +210,10 @@ burn_image (GtkButton *button, XfburnWelcomeTab *tab)
 static void
 blank_disc (GtkButton *button, XfburnWelcomeTab *tab)
 {
-  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
   GtkWidget *dialog;
 
   dialog = xfburn_blank_dialog_new ();
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (priv->mainwin));
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (xfburn_main_window_get_instance ()));
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 }
@@ -282,16 +231,26 @@ new_data_composition (GtkButton *button, XfburnWelcomeTab *tab)
 /*        */
 
 GtkWidget *
-xfburn_welcome_tab_new (XfburnMainWindow *window, XfburnCompositionsNotebook *notebook)
+xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GtkActionGroup *action_group)
 {
   GtkWidget *obj;
 
   obj = g_object_new (XFBURN_TYPE_WELCOME_TAB, NULL);
   if (obj) {
     XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (obj);
+    GtkAction *action;
 
-    priv->mainwin = window;
     priv->notebook = notebook;
+
+    /* FIXME retrieve action group from UI Manager */
+    action = gtk_action_group_get_action (action_group, "burn-image");
+    gtk_widget_set_sensitive (priv->button_image, gtk_action_is_sensitive (action));
+    
+    action = gtk_action_group_get_action (action_group, "new-composition");
+    gtk_widget_set_sensitive (priv->button_data_comp, gtk_action_is_sensitive (action));
+    
+    action = gtk_action_group_get_action (action_group, "blank-disc");
+    gtk_widget_set_sensitive (priv->button_blank, gtk_action_is_sensitive (action));
   }
 
   return obj;

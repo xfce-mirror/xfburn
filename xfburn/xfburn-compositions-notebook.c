@@ -36,7 +36,7 @@
 /* private members */
 typedef struct
 {
-  gpointer gna;
+  gpointer dummy;
 } XfburnCompositionsNotebookPrivate;
 
 
@@ -160,11 +160,7 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
   gchar *label_text = NULL;
   static guint i = 0;
   
-  switch (type) {
-    case XFBURN_WELCOME_TAB:
-      composition = xfburn_welcome_tab_new (window, notebook);
-      label_text = g_strdup (_("Welcome"));
-      break;
+  switch (type) {   
     case XFBURN_DATA_COMPOSITION:
       composition = xfburn_data_composition_new ();
       label_text = g_strdup_printf ("%s %d", _("Data composition"), ++i);
@@ -193,8 +189,7 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
     gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK (notebook), composition, 1);
 	
     g_object_set_data (G_OBJECT (tab), "composition", composition);
-    if (type != XFBURN_WELCOME_TAB)
-      g_signal_connect (G_OBJECT (tab), "button-close-clicked", G_CALLBACK (cb_composition_close), notebook);
+    g_signal_connect (G_OBJECT (tab), "button-close-clicked", G_CALLBACK (cb_composition_close), notebook);
     
     g_signal_connect (G_OBJECT (composition), "name-changed", G_CALLBACK (cb_composition_name_changed), notebook);
   }
@@ -220,15 +215,20 @@ xfburn_compositions_notebook_new ()
 XfburnComposition *
 xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type)
 {
-  g_assert (type != XFBURN_WELCOME_TAB);
-
   return add_composition_with_data (notebook, type, NULL);
 }
 
-XfburnWelcomeTab *
-xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, XfburnMainWindow *window)
+void
+xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, GtkActionGroup *action_group)
 {
-  return XFBURN_WELCOME_TAB (add_composition_with_data (notebook, XFBURN_WELCOME_TAB, window));
+  GtkWidget *welcome_tab = NULL;
+  GtkWidget *label;
+
+  welcome_tab = xfburn_welcome_tab_new (notebook, action_group);
+  label = gtk_label_new (_("Welcome"));
+
+  gtk_widget_show (welcome_tab);
+  gtk_notebook_append_page (GTK_NOTEBOOK (notebook), welcome_tab, label);
 }
 
 void

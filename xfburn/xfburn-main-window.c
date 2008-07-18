@@ -58,7 +58,6 @@ typedef struct {
 
   gboolean support_cdr;
   gboolean support_cdrw;
-  XfburnWelcomeTab *welcome_tab;
 } XfburnMainWindowPrivate;
 
 /* prototypes */
@@ -316,7 +315,6 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   priv->compositions_notebook = xfburn_compositions_notebook_new ();
   gtk_widget_show (priv->compositions_notebook);
   gtk_paned_add2 (GTK_PANED (priv->vpaned), priv->compositions_notebook);
-  priv->welcome_tab = xfburn_compositions_notebook_add_welcome_tab (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), mainwin);
   
   gtk_paned_set_position (GTK_PANED (priv->vpaned), xfburn_settings_get_int ("vpaned-position", 200));
 
@@ -678,7 +676,8 @@ xfburn_main_window_new (void)
       gtk_action_set_sensitive (action, FALSE);
     }
 
-    g_object_set (priv->welcome_tab, "action_group", priv->action_group, NULL);
+    /* show welcome tab */
+    xfburn_compositions_notebook_add_welcome_tab (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), priv->action_group);
   }
 
   return obj;

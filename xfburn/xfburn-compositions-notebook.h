@@ -23,7 +23,6 @@
 #include <gtk/gtk.h>
 
 #include "xfburn-main-window.h"
-#include "xfburn-welcome-tab.h"
 #include "xfburn-composition.h"
 
 G_BEGIN_DECLS
@@ -46,7 +45,6 @@ typedef struct
 
 typedef enum
 {
-  XFBURN_WELCOME_TAB,
   XFBURN_DATA_COMPOSITION,
   XFBURN_AUDIO_COMPOSITION,
 } XfburnCompositionType;
@@ -56,7 +54,8 @@ GtkType xfburn_compositions_notebook_get_type ();
 GtkWidget *xfburn_compositions_notebook_new ();
 
 XfburnComposition *xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type);
-XfburnWelcomeTab *xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, XfburnMainWindow *window);
+void xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, GtkActionGroup *action_group);
+
 void xfburn_compositions_notebook_close_composition (XfburnCompositionsNotebook *notebook);
 
 void xfburn_compositions_notebook_load_composition (XfburnCompositionsNotebook *notebook, const gchar *file);
