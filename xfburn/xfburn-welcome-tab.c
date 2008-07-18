@@ -44,25 +44,13 @@ static void xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass);
 static void xfburn_welcome_tab_init (XfburnWelcomeTab * sp);
 static void xfburn_welcome_tab_finalize (GObject * object);
 static void composition_interface_init (XfburnCompositionInterface *composition, gpointer iface_data);
-static void xfburn_welcome_tab_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
-static void xfburn_welcome_tab_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
 #define XFBURN_WELCOME_TAB_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_WELCOME_TAB, XfburnWelcomeTabPrivate))
-
-enum {
-  LAST_SIGNAL,
-}; 
-
-enum {
-  PROP_0,
-  PROP_MAIN_WINDOW,
-  PROP_NOTEBOOK,
-  PROP_ACTION_GROUP,
-};
 
 typedef struct {
   XfburnMainWindow *mainwin;
   XfburnCompositionsNotebook *notebook;
+
   GtkActionGroup *action_group;
   GtkWidget *button_image;
   GtkWidget *button_data_comp;
@@ -83,7 +71,6 @@ static void blank_disc (GtkButton *button, XfburnWelcomeTab *tab);
 /* class declaration */
 /*********************/
 static GtkWidget *parent_class = NULL;
-//static guint signals[LAST_SIGNAL];
 
 GtkType
 xfburn_welcome_tab_get_type ()
@@ -127,25 +114,6 @@ xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass)
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_welcome_tab_finalize;
-  object_class->set_property = xfburn_welcome_tab_set_property;
-  object_class->get_property = xfburn_welcome_tab_get_property;
-
-  /*
-  signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_WELCOME_TAB, G_SIGNAL_ACTION,
-                                          G_STRUCT_OFFSET (XfburnWelcomeTabClass, volume_changed),
-                                          NULL, NULL, g_cclosure_marshal_VOID__VOID,
-                                          G_TYPE_NONE, 0);
-  */
-
-  g_object_class_install_property (object_class, PROP_MAIN_WINDOW, 
-                                   g_param_spec_object ("main-window", _("The main window"),
-                                                        _("The main window"), XFBURN_TYPE_MAIN_WINDOW, G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_NOTEBOOK, 
-                                   g_param_spec_object ("notebook", _("Notebook"),
-                                                        _("NOTEBOOK"), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_ACTION_GROUP, 
-                                   g_param_spec_object ("action_group", _("Action group"),
-                                                        _("Action group from the main window"), GTK_TYPE_ACTION_GROUP, G_PARAM_READWRITE));
 }
 
 static void
@@ -211,49 +179,6 @@ xfburn_welcome_tab_finalize (GObject * object)
   //XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (object);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
-}
-
-static void 
-xfburn_welcome_tab_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec)
-{
-  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (object);
-
-  switch (prop_id) {
-    case PROP_MAIN_WINDOW:
-      g_value_set_object (value, priv->mainwin);
-      break;
-    case PROP_NOTEBOOK:
-      g_value_set_object (value, priv->notebook);
-      break;
-    case PROP_ACTION_GROUP:
-      g_value_set_object (value, priv->action_group);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
-}
-
-static void 
-xfburn_welcome_tab_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
-{
-  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (object);
-  
-  switch (prop_id) {
-    case PROP_MAIN_WINDOW:
-      priv->mainwin = g_value_get_object (value);
-      break;
-    case PROP_NOTEBOOK:
-      priv->notebook = g_value_get_object (value);
-      break;
-    case PROP_ACTION_GROUP:
-      priv->action_group = g_value_get_object (value);
-      update_buttons_from_action_group (priv);
-      break;
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
 }
 
 /*           */
@@ -361,10 +286,13 @@ xfburn_welcome_tab_new (XfburnMainWindow *window, XfburnCompositionsNotebook *no
 {
   GtkWidget *obj;
 
-  obj = g_object_new (XFBURN_TYPE_WELCOME_TAB, 
-                      "main-window", window, 
-                      "notebook", notebook,
-                      NULL);
+  obj = g_object_new (XFBURN_TYPE_WELCOME_TAB, NULL);
+  if (obj) {
+    XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (obj);
+
+    priv->mainwin = window;
+    priv->notebook = notebook;
+  }
 
   return obj;
 }
