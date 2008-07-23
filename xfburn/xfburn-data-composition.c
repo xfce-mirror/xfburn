@@ -123,8 +123,8 @@ static void cb_selection_changed (GtkTreeSelection *selection, XfburnDataComposi
 static void cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc);
 static void cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnDataComposition * dc);
 
-static void cb_content_drag_data_rcv (GtkWidget *, GdkDragContext *, guint, guint, GtkSelectionData *, guint, guint,
-                                      XfburnDataComposition *);
+static void cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
+                                      guint info, guint t, XfburnDataComposition * composition);
 static void cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc, GtkSelectionData * data, guint info,
                                       guint time, XfburnDataComposition * content);
 static void cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc);
@@ -149,7 +149,7 @@ typedef struct
  
   guint n_new_directory;
 
-  GSList *full_paths_to_add;
+  GList *full_paths_to_add;
   gchar *selected_files;
   GtkTreePath *path_where_insert;
 
@@ -278,10 +278,11 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
     "<menuitem action=\"create-dir\"/>" "<separator/>"
     "<menuitem action=\"rename-file\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
 
-  GtkTargetEntry gte_src[] = { {"XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE} };
-  GtkTargetEntry gte_dest[] = { {"XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE},
-  {"text/plain", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN}
-  };
+  GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE } };
+  GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE },
+                                { "text/plain", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN },
+                                { "text/uri-list", 0, DATA_COMPOSITION_DND_TARGET_TEXT_URI_LIST },
+                              };
 
   priv->full_paths_to_add = NULL;
 
@@ -696,8 +697,8 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc)
   }
 
   if (priv->full_paths_to_add) {
-    g_slist_foreach (priv->full_paths_to_add, (GFunc) g_free, NULL);
-    g_slist_free (priv->full_paths_to_add);
+    g_list_foreach (priv->full_paths_to_add, (GFunc) g_free, NULL);
+    g_list_free (priv->full_paths_to_add);
     priv->full_paths_to_add = NULL;
   }
 
@@ -1602,12 +1603,13 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         full_path[strlen (full_path) - 1] = '\0';
 
       /* remember path to add it later in another thread */
-      priv->full_paths_to_add = g_slist_append (priv->full_paths_to_add, full_path);
+      priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
 
       file = strtok (NULL, "\n");
     }
 
-    priv->full_paths_to_add = g_slist_reverse (priv->full_paths_to_add);
+    priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
+    priv->path_where_insert = path_where_insert;
 
     params = g_new (ThreadAddFilesDragParams, 1);
     params->composition = composition;
@@ -1621,7 +1623,59 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     g_thread_create ((GThreadFunc) thread_add_files_drag, params, FALSE, NULL);
 
     gtk_drag_finish (dc, TRUE, FALSE, t);
-  } else {
+  } 
+  else if (sd->target == gdk_atom_intern ("text/uri-list", FALSE)) {
+#ifdef HAVE_THUNAR_VFS
+    GList *vfs_paths = NULL;
+    GList *vfs_path;
+    GError *error = NULL;
+    gchar *full_path;
+
+    vfs_paths = thunar_vfs_path_list_from_string ((gchar *) sd->data, &error);
+
+    if (G_LIKELY (vfs_paths != NULL)) {
+      ThreadAddFilesDragParams *params;
+      priv->full_paths_to_add = NULL;
+      for (vfs_path = vfs_paths; vfs_path != NULL; vfs_path = g_list_next (vfs_path)) {
+        ThunarVfsPath *path = THUNAR_VFS_PATH (vfs_path->data);
+        if (thunar_vfs_path_get_scheme (path) != THUNAR_VFS_PATH_SCHEME_FILE)
+          continue;
+        full_path = thunar_vfs_path_dup_string (path);
+        g_debug ("adding uri path: %s", full_path);
+        priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
+      }
+      thunar_vfs_path_list_free (vfs_paths);
+
+      priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
+      priv->path_where_insert = path_where_insert;
+
+      params = g_new (ThreadAddFilesDragParams, 1);
+      params->composition = composition;
+      params->position = position;
+      params->widget = widget;
+
+      /* append a dummy row so that gtk doesn't freak out */
+      gtk_tree_store_append (GTK_TREE_STORE (model), &params->iter_dummy, NULL);
+
+      priv->thread_params = params;
+      g_thread_create ((GThreadFunc) thread_add_files_drag, params, FALSE, NULL);
+
+      gtk_drag_finish (dc, TRUE, FALSE, t);
+    } else {
+      if (G_UNLIKELY (error != NULL))
+        g_warning ("text/uri-list drag failed because '%s'", error->message);
+      else
+        g_warning("There were no files in the uri list!");
+      gtk_drag_finish (dc, FALSE, FALSE, t);
+      xfburn_default_cursor (priv->content);
+    }
+#else
+    g_warning ("Receiving this type of drag and drop requires thunar-vfs support, sorry!");
+    gtk_drag_finish (dc, FALSE, FALSE, t);
+    xfburn_default_cursor (priv->content);
+#endif
+  } 
+  else {
     g_warning ("Trying to receive an unsupported drag target, this should not happen.");
     gtk_drag_finish (dc, FALSE, FALSE, t);
     xfburn_default_cursor (priv->content);
@@ -1640,7 +1694,7 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
 
   GtkTreeModel *model;
   GtkTreeIter iter_where_insert;
-  GSList *files = priv->full_paths_to_add;
+  GList *files = priv->full_paths_to_add;
 
   gdk_threads_enter ();
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
@@ -1649,7 +1703,7 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
   gtk_tree_store_remove (GTK_TREE_STORE (model), &params->iter_dummy);
   gdk_threads_leave ();
 
-  for (; files; files = g_slist_next (files)) {
+  for (; files; files = g_list_next (files)) {
     gchar *full_path = (gchar *) files->data;
     GtkTreeIter iter;
 
