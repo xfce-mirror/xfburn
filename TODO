@@ -2,7 +2,6 @@ user visible
 ============
 
 - add audio cd support
-- add text/uri-list DnD target support
 - remove temporary files
 - use more thunar-vfs
 - add verification of written disc
@@ -14,8 +13,6 @@ various fixes and changes
 - cleanup code
   - remove duplicated code fragments, in particular
     - the burning backend, and [started]
-- implement progress dialog when adding files to composition 
-  - adding files to composition should be a new thread
 - fix available writing speeds detection (maybe task for libburn?)
 - only allow usage of drives with matching capabilities
   - when burning ISO image, only show drives capable of 
@@ -28,8 +25,6 @@ various fixes and changes
     burn the image if no capable drives are found, and
     leave all the files previously
     added by the user in composition so he could tweak it
-- welcome tab
-  - hide close button
 - recode copy disk with libburn
 - update columns resizing by using column enum index
 - take advantage of gvfs in addition to thunar-vfs until thunar-vfs gets deprecated
@@ -39,8 +34,6 @@ various fixes and changes
     we can't burn it on cd-writer).
   - if no suitable writer is found, use that red label thingy
     to inform the user
-- hide disc status in blank dialog
-  - add refresh button and disable blank if invalid disc [?]
 - determine if it's worth it to add advanced burn options dialog to 
   toggle rockridge and joliet extensions / iso_write_opts profiles
 - check for memory leaks while adding files
