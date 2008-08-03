@@ -176,6 +176,61 @@ main (int argc, char **argv)
 
   xfburn_stock_init ();
   n_drives = xfburn_device_list_init ();
+#if 0
+#ifdef HAVE_THUNAR_VFS
+  if (n_drives < 3) {
+    //XfburnHalManager *halman = xfburn_hal_manager_get_instance();
+    ThunarVfsVolumeManager *volman;
+    GList *volume_list;
+    gboolean unmounted = FALSE;
+    gchar *mp_name;
+
+    volman = thunar_vfs_volume_manager_get_default();
+    volume_list = thunar_vfs_volume_manager_get_volumes (volman);
+
+    while (volume_list) {
+      ThunarVfsVolume *vol = THUNAR_VFS_VOLUME (volume_list->data);
+      ThunarVfsPath *mp;
+
+      switch (thunar_vfs_volume_get_kind (vol)) {
+        case THUNAR_VFS_VOLUME_KIND_CDROM:
+        case THUNAR_VFS_VOLUME_KIND_CDR:
+        case THUNAR_VFS_VOLUME_KIND_DVDROM:
+        case THUNAR_VFS_VOLUME_KIND_DVDRAM:
+        case THUNAR_VFS_VOLUME_KIND_DVDR:
+        case THUNAR_VFS_VOLUME_KIND_DVDRW:
+        case THUNAR_VFS_VOLUME_KIND_DVDPLUSR:
+        case THUNAR_VFS_VOLUME_KIND_DVDPLUSRW:
+        case THUNAR_VFS_VOLUME_KIND_AUDIO_CD:
+          if (thunar_vfs_volume_is_mounted (vol)) {
+            mp = thunar_vfs_volume_get_mount_point (vol);
+            mp_name = thunar_vfs_path_dup_string (mp);
+            if (thunar_vfs_volume_unmount (vol, NULL, NULL)) {
+              unmounted = TRUE;
+              g_message ("Unmounted drive %s", mp_name);
+            } else {
+              g_message ("Failed to unmounted drive %s", mp_name);
+            }
+            g_free (mp_name);
+          }
+          break;
+        default:
+          break;
+      }
+
+      volume_list = g_list_next (volume_list);
+    }
+
+    g_object_unref (volman);
+
+    if (unmounted)
+      n_drives = xfburn_device_list_init ();
+    else
+      g_debug ("Could not umount any optical drives.");
+  }
+#endif
+#endif
+
   if (n_drives < 1) {
     GtkMessageDialog *dialog = (GtkMessageDialog *) gtk_message_dialog_new (NULL,
                                     GTK_DIALOG_DESTROY_WITH_PARENT,

@@ -320,15 +320,15 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   priv->volume_changed_handlerid = g_signal_connect (G_OBJECT (xfburn_hal_manager_get_instance ()), "volume-changed", G_CALLBACK (cb_volumes_changed), box);
 #endif
 #ifdef HAVE_THUNAR_VFS
+  /*
   priv->thunar_volman = thunar_vfs_volume_manager_get_default ();
   if (priv->thunar_volman != NULL) {
-    /*
-    g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-added", G_CALLBACK (cb_volumes_changed), box);
-    g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-removed", G_CALLBACK (cb_volumes_changed), box);
-    */
+    //g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-added", G_CALLBACK (cb_volumes_changed), box);
+    //g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-removed", G_CALLBACK (cb_volumes_changed), box);
   } else {
     g_warning ("Error trying to access the thunar-vfs-volume-manager!");
   }
+  */
 #endif
 
   priv->have_asked_for_blanking = FALSE;
@@ -340,7 +340,7 @@ xfburn_device_box_finalize (GObject * object)
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (object);
 
 #ifdef HAVE_THUNAR_VFS
-  g_object_unref (priv->thunar_volman);
+  //g_object_unref (priv->thunar_volman);
 #endif
 #ifdef HAVE_HAL
   //g_object_unref (priv->hal_manager);
