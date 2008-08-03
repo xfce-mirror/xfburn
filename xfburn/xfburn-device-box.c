@@ -627,7 +627,9 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
     if (!priv->valid_disc) {
         priv->status_text = _("Drive can't burn on the inserted disc!");
     } else {
-      priv->valid_disc = (disc_status == BURN_DISC_BLANK) || (disc_status == BURN_DISC_APPENDABLE);
+      priv->valid_disc = (disc_status == BURN_DISC_BLANK); 
+      /* Not sure if we support appending yet, so let's disable it for the time being
+       * || (disc_status == BURN_DISC_APPENDABLE); */
 
       if (!priv->valid_disc) {
         switch (disc_status) {
@@ -656,8 +658,8 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
     if (!priv->valid_disc && disc_status == BURN_DISC_FULL && is_erasable) {
       g_idle_add ((GSourceFunc) ask_for_blanking, priv);
     }
-  } else {
-    /* for blanking */
+  }
+  else { /* priv->blank_mode == TRUE */
     priv->valid_disc = is_erasable && (disc_status != BURN_DISC_BLANK);
 
     if (!priv->valid_disc) {

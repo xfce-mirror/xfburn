@@ -178,7 +178,7 @@ main (int argc, char **argv)
   n_drives = xfburn_device_list_init ();
 #if 0
 #ifdef HAVE_THUNAR_VFS
-  if (n_drives < 3) {
+  if (n_drives < 1) {
     //XfburnHalManager *halman = xfburn_hal_manager_get_instance();
     ThunarVfsVolumeManager *volman;
     GList *volume_list;

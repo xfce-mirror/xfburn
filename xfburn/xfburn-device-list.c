@@ -81,35 +81,15 @@ cmp_ints (gconstpointer a, gconstpointer b)
   return GPOINTER_TO_INT(a) - GPOINTER_TO_INT(b);
 }
 
-/* FIXME: rename function, as it is doing more than refresh speed */
 static void
-refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_info)
+refresh_disc (XfburnDevice * device, struct burn_drive_info *drive_info)
 {
-  struct burn_speed_descriptor *speed_list = NULL;
   gint ret;
-  /*
-  int status, num_formats;
-  off_t size;
-  unsigned bl_sas;
-  int i;
-  */
-
-  /* empty previous list */
-  g_slist_free (device->supported_cdr_speeds);
-  device->supported_cdr_speeds = NULL;
 
   /* check if there is a disc in the drive */
   while ((disc_status = burn_disc_get_status (drive_info->drive)) == BURN_DISC_UNREADY)
     usleep(100001);
 
-  /* libburn docs say we might need to check more than once,
-   * but that's probably covered by the loop above */
-  /*
-  for (i=0; i<2; i++) {
-    usleep(100001);
-    disc_status = burn_disc_get_status (drive_info->drive);
-  }
-  */
   DBG ("disc_status = %d", disc_status);
 
   if ((ret = burn_disc_get_profile(drive_info->drive, &profile_no, profile_name)) != 1) {
@@ -117,29 +97,13 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
   }
   is_erasable = burn_disc_erasable (drive_info->drive);
   DBG ("profile_no = 0x%x (%s), %s erasable", profile_no, profile_name, (is_erasable ? "" : "NOT"));
+}
 
-  if (ret == 1 && profile_no == 0 && is_erasable && disc_status == 6) {
-    DBG ("work around bug in my drive or libburn: disc is a full DVD-RW sequential");
-    profile_no = XFBURN_PROFILE_DVD_MINUS_RW_SEQUENTIAL;
-    disc_status = BURN_DISC_FULL;
-    strcpy (profile_name, "(?) DVD-RW sequiential");
-  }
-
-  /*
-  ret = burn_disc_get_formats (drive_info->drive, &status, &size, &bl_sas, &num_formats);
-  DBG ("_get_formats (%d) = %d, %llu, %d, %d", ret, status, size, bl_sas, num_formats);
-  for (i=0; i<num_formats; i++) {
-    int type;
-    ret = burn_disc_get_format_descr (drive_info->drive, i, &type, &size, &bl_sas);
-    DBG ("_get_format_descr (%d) = 0x%x, %llu, %u", ret, type, size, bl_sas);
-  }
-  */
-
-
-  if (!(disc_status == BURN_DISC_BLANK || disc_status == BURN_DISC_APPENDABLE)) {
-    DBG ("no writable / appendable disc found in drive, speed list not updated");
-    return;
-  }
+static void
+refresh_speed_list (XfburnDevice * device, struct burn_drive_info *drive_info)
+{
+  struct burn_speed_descriptor *speed_list = NULL;
+  gint ret;
 
   /* fill new list */
   ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
@@ -165,6 +129,7 @@ refresh_supported_speeds (XfburnDevice * device, struct burn_drive_info *drive_i
     g_warning ("reported speed list is empty for device:");
     g_warning (DEVICE_INFO_PRINTF);
   } else {
+    /* ret < 0 */
     g_error ("severe error while retrieving speed list");
   }
 }
@@ -215,8 +180,12 @@ xfburn_device_refresh_supported_speeds (XfburnDevice * device)
 
   /* reset other internal structures */
   profile_no = 0;
-  *profile_name = 0;
+  *profile_name = '\0';
   is_erasable = 0;
+
+  /* empty previous speed list */
+  g_slist_free (device->supported_cdr_speeds);
+  device->supported_cdr_speeds = NULL;
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
@@ -229,7 +198,8 @@ xfburn_device_refresh_supported_speeds (XfburnDevice * device)
     disc_status = BURN_DISC_UNGRABBED;
   } else {
     ret = TRUE;
-    refresh_supported_speeds (device, drive_info);
+    refresh_disc (device, drive_info);
+    refresh_speed_list (device, drive_info);
 
     burn_drive_release (drive_info->drive, 0);
   }
