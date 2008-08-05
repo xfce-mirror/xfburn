@@ -33,7 +33,9 @@
 #include <errno.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <thunar-vfs/thunar-vfs.h>
+#ifdef HAVE_THUNAR_VFS
+# include <thunar-vfs/thunar-vfs.h>
+#endif
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "xfburn-global.h"
@@ -462,7 +464,7 @@ xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *dev
   ThunarVfsVolumeManager *th_volman;
   ThunarVfsVolume *th_vol;
   ThunarVfsPath *th_path;
-  gboolean unmounted;
+  gboolean unmounted = FALSE;
   
   vol = libhal_volume_from_device_file (priv->hal_context, device->addr);
   if (vol == NULL) {
@@ -473,6 +475,7 @@ xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *dev
   if (!libhal_volume_is_mounted (vol))
     return TRUE;
 
+#ifdef HAVE_THUNAR_VFS
   mp = libhal_volume_get_mount_point (vol);
   DBG ("%s is mounted at %s", device->addr, mp);
 
@@ -515,6 +518,7 @@ xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *dev
   }
 
   g_object_unref (th_volman);
+#endif
   return unmounted;
 }
 
