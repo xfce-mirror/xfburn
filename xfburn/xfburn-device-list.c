@@ -33,8 +33,10 @@
 
 #include <libburn.h>
 
-#include "xfburn-device-list.h"
 #include "xfburn-global.h"
+#include "xfburn-hal-manager.h"
+
+#include "xfburn-device-list.h"
 
 static GList *devices = NULL;
 static enum burn_disc_status disc_status;
@@ -52,7 +54,6 @@ static void
 device_content_free (XfburnDevice * device, gpointer user_data)
 {
   g_free (device->name);
-  g_free (device->node_path);
 
   g_slist_free (device->supported_cdr_speeds);
 }
@@ -134,6 +135,85 @@ refresh_speed_list (XfburnDevice * device, struct burn_drive_info *drive_info)
   }
 }
 
+void
+fillin_libburn_device_info (XfburnDevice *device, struct burn_drive_info *drives)
+{
+  device->accessible = TRUE;
+
+  device->cdr = drives->write_cdr;
+  device->cdrw = drives->write_cdrw;
+
+  device->dvdr = drives->write_dvdr;
+  device->dvdram = drives->write_dvdram;
+  
+  device->buffer_size = drives->buffer_size;
+  device->dummy_write = drives->write_simulate;
+
+  /* write modes */
+  device->tao_block_types = drives->tao_block_types;
+  device->sao_block_types = drives->sao_block_types;
+  device->raw_block_types = drives->raw_block_types;
+  device->packet_block_types = drives->packet_block_types;
+
+  DBG (DEVICE_INFO_PRINTF);
+}
+
+gint
+get_libburn_device_list ()
+{
+  struct burn_drive_info *drives;
+  gint i, ret; 
+  gboolean can_burn;
+  guint n_drives = 0;
+  guint n_burners = 0;
+
+  *profile_name = '\0';
+
+  if (!burn_initialize ()) {
+    g_critical ("Unable to initialize libburn");
+    return -1;
+  }
+    
+  while ((ret = burn_drive_scan (&drives, &n_drives)) == 0)
+    usleep (1002);
+
+  if (ret < 0)
+    g_warning ("An error occurred while scanning for available drives!");
+
+  if (n_drives < 1) {
+    g_warning ("No drives were found! If this is in error, check the permissions.");
+  }
+
+  for (i = 0; i < n_drives; i++) {
+    XfburnDevice *device = g_new0 (XfburnDevice, 1);
+    gint ret = 0;
+    
+    device->name = g_strconcat (drives[i].vendor, " ", drives[i].product, NULL);
+
+    fillin_libburn_device_info (device, &drives[i]);
+
+    can_burn = CAN_BURN_CONDITION;
+    
+    ret = burn_drive_get_adr (&(drives[i]), device->addr);
+    if (ret <= 0)
+      g_error ("Unable to get drive %s address (ret=%d). Please report this problem to libburn-hackers@pykix.org", device->name, ret);
+    DBG ("device->addr = %s", device->addr);
+
+    if (can_burn) {
+      devices = g_list_append (devices, device);
+      n_burners++;
+    }
+  }
+
+  burn_drive_info_free (drives);
+  burn_finish ();
+
+  if (n_drives > 0 && n_burners < 1)
+    g_warning ("There are %d drives in your system, but none are capable of burning!", n_drives);
+  
+  return n_burners;
+}
+
 /**************/
 /* public API */
 /**************/
@@ -168,10 +248,13 @@ xfburn_device_list_disc_is_erasable ()
 }
 
 gboolean
-xfburn_device_refresh_supported_speeds (XfburnDevice * device)
+xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info)
 {
   struct burn_drive_info *drive_info = NULL;
   gboolean ret;
+#ifdef HAVE_HAL
+  XfburnHalManager *halman = xfburn_hal_manager_get_instance ();
+#endif
 
   if (G_UNLIKELY (device == NULL)) {
     DBG ("Hmm, why can we refresh when there is no drive?");
@@ -187,6 +270,15 @@ xfburn_device_refresh_supported_speeds (XfburnDevice * device)
   g_slist_free (device->supported_cdr_speeds);
   device->supported_cdr_speeds = NULL;
 
+  if (!device->accessible) {
+#ifdef HAVE_HAL 
+    if (!xfburn_hal_manager_check_ask_umount (halman, device))
+      return FALSE;
+#else
+    return FALSE;
+#endif
+  }
+
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
     return FALSE;
@@ -197,9 +289,12 @@ xfburn_device_refresh_supported_speeds (XfburnDevice * device)
     g_warning ("Couldn't grab drive in order to update speed list.");
     disc_status = BURN_DISC_UNGRABBED;
   } else {
+    if (!device->accessible)
+      fillin_libburn_device_info (device, drive_info);
     ret = TRUE;
     refresh_disc (device, drive_info);
-    refresh_speed_list (device, drive_info);
+    if (get_speed_info)
+      refresh_speed_list (device, drive_info);
 
     burn_drive_release (drive_info->drive, 0);
   }
@@ -212,87 +307,21 @@ xfburn_device_refresh_supported_speeds (XfburnDevice * device)
 gint
 xfburn_device_list_init ()
 {
-  struct burn_drive_info *drives;
-  gint i, ret; 
-  gboolean can_burn;
-  guint n_drives = 0;
-  guint n_burners = 0;
+#ifdef HAVE_HAL
+  XfburnHalManager *halman = xfburn_hal_manager_get_instance ();
+#endif
 
-  *profile_name = '\0';
-
-  if (!burn_initialize ()) {
-    g_critical ("Unable to initialize libburn");
-    return -1;
-  }
-    
   if (devices) {
     g_list_foreach (devices, (GFunc) device_content_free, NULL);
     g_list_free (devices);
     devices = NULL;
   }
 
-  while ((ret = burn_drive_scan (&drives, &n_drives)) == 0)
-    usleep (1002);
-
-  if (ret < 0)
-    g_warning ("An error occurred while scanning for available drives!");
-
-  if (n_drives < 1) {
-    g_warning ("No drives were found! If this is in error, check the permissions.");
-  }
-
-  for (i = 0; i < n_drives; i++) {
-    XfburnDevice *device = g_new0 (XfburnDevice, 1);
-    gint ret = 0;
-    
-    device->name = g_strconcat (drives[i].vendor, " ", drives[i].product, NULL);
-    device->node_path = g_strdup (drives[i].location);
-
-    device->cdr = drives[i].write_cdr;
-    device->cdrw = drives[i].write_cdrw;
-
-    device->dvdr = drives[i].write_dvdr;
-    device->dvdram = drives[i].write_dvdram;
-    
-    device->buffer_size = drives[i].buffer_size;
-    device->dummy_write = drives[i].write_simulate;
-
-    /* write modes */
-    device->tao_block_types = drives[i].tao_block_types;
-    device->sao_block_types = drives[i].sao_block_types;
-    device->raw_block_types = drives[i].raw_block_types;
-    device->packet_block_types = drives[i].packet_block_types;
-
-    can_burn = CAN_BURN_CONDITION;
-    
-    DBG (DEVICE_INFO_PRINTF);
-    
-    ret = burn_drive_get_adr (&(drives[i]), device->addr);
-    if (ret <= 0)
-      g_error ("Unable to get drive %s address (ret=%d). Please report this problem to libburn-hackers@pykix.org", device->name, ret);
-
-    /*
-     * refresh_supported_speeds now gets called when the device box gets initialized
-    if (burn_drive_grab (drives[i].drive, 1) == 1) {
-      refresh_supported_speeds (device, &(drives[i]));
-      burn_drive_release (drives[i].drive, 0);
-    } else
-      g_warning ("Failed to grab drive %s, did not refresh speed list", device->name);
-    */
-    
-    if (can_burn) {
-      devices = g_list_append (devices, device);
-      n_burners++;
-    }
-  }
-
-  burn_drive_info_free (drives);
-  burn_finish ();
-
-  if (n_drives > 0 && n_burners < 1)
-    g_warning ("There are %d drives in your system, but none are capable of burning!", n_drives);
-  
-  return n_burners;
+#ifdef HAVE_HAL
+  return xfburn_hal_manager_get_devices (halman, &devices);
+#else
+  return get_libburn_device_list ();
+#endif
 }
 
 gboolean

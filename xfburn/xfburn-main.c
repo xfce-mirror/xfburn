@@ -131,6 +131,7 @@ main (int argc, char **argv)
   GtkWidget *mainwin;
   gint n_drives;
   GError *error = NULL;
+  gchar *error_msg;
 
 #if DEBUG > 0
   g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
@@ -171,7 +172,13 @@ main (int argc, char **argv)
 #endif
   
 #ifdef HAVE_HAL
-  xfburn_hal_manager_create_global ();
+  error_msg = xfburn_hal_manager_create_global ();
+  if (error_msg) {
+    xfce_err (error_msg);
+    thunar_vfs_shutdown ();
+    gdk_threads_leave ();
+    return EXIT_FAILURE;
+  }
 #endif
 
   xfburn_stock_init ();

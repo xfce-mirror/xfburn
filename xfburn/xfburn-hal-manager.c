@@ -33,14 +33,17 @@
 #include <errno.h>
 
 #include <libxfce4util/libxfce4util.h>
+#include <thunar-vfs/thunar-vfs.h>
+#include <libxfcegui4/libxfcegui4.h>
 
 #include "xfburn-global.h"
 #include "xfburn-progress-dialog.h"
+#include "xfburn-device-list.h"
 
 #include "xfburn-hal-manager.h"
 
 static void xfburn_hal_manager_class_init (XfburnHalManagerClass * klass);
-static void xfburn_hal_manager_init (XfburnHalManager * sp);
+static void xfburn_hal_manager_init (XfburnHalManager * obj);
 static void xfburn_hal_manager_finalize (GObject * object);
 
 static void hal_finalize (LibHalContext  *hal_context);
@@ -59,6 +62,7 @@ enum {
 typedef struct {
   LibHalContext  *hal_context;
   DBusConnection *dbus_connection;
+  gchar *error;
 } XfburnHalManagerPrivate;
 
 static XfburnHalManager *halman = NULL;
@@ -119,6 +123,7 @@ xfburn_hal_manager_init (XfburnHalManager * obj)
   //GError *error = NULL;
 
   DBusConnection *dbus_connection;
+  priv->error = NULL;
 
   //if (halman != NULL)
   //  g_error ("The HAL context was already there when trying to create a hal-manager!");
@@ -154,15 +159,16 @@ xfburn_hal_manager_init (XfburnHalManager * obj)
       /* drop the allocated HAL context */
       hal_finalize (hal_context);
       hal_context = NULL;
+      priv->error = "HAL";
+    } else {
+      priv->error = "DBus";
     }
-    DBG ("Connection to dbus or hal failed!");
+    dbus_error_free (&derror);
   } else {
     libhal_ctx_set_device_added (hal_context, cb_device_added);
     libhal_ctx_set_device_removed (hal_context, cb_device_removed);
     libhal_ctx_set_device_property_modified (hal_context, cb_prop_modified);
   }
-
-  dbus_error_free (&derror);
 
   priv->hal_context = hal_context;
   priv->dbus_connection = dbus_connection;
@@ -219,10 +225,6 @@ static void cb_prop_modified (LibHalContext *ctx, const char *udi,
   */
 }
 
-/*        */
-/* public */
-/*        */
-
 GObject *
 xfburn_hal_manager_new ()
 {
@@ -231,10 +233,24 @@ xfburn_hal_manager_new ()
   return g_object_new (XFBURN_TYPE_HAL_MANAGER, NULL);
 }
 
-void
+/*        */
+/* public */
+/*        */
+
+gchar *
 xfburn_hal_manager_create_global ()
 {
+  XfburnHalManagerPrivate *priv;
+
   halman = XFBURN_HAL_MANAGER (xfburn_hal_manager_new ());
+
+  priv = XFBURN_HAL_MANAGER_GET_PRIVATE (halman);
+
+  if (priv->error) {
+    xfburn_hal_manager_shutdown ();
+    return g_strdup_printf ("Failed to initialize %s!", priv->error);
+  } else
+    return NULL;
 }
 
 XfburnHalManager *
@@ -260,6 +276,241 @@ xfburn_hal_manager_send_volume_changed ()
   //gdk_threads_enter ();
   g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
   //gdk_threads_leave ();
+}
+
+int 
+xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
+{
+  XfburnHalManagerPrivate *priv = XFBURN_HAL_MANAGER_GET_PRIVATE (halman);
+  char **all_devices, **devices;
+  int num;
+  DBusError error;
+  int n_devices = 0;
+
+  dbus_error_init (&error);
+
+  all_devices = libhal_get_all_devices (priv->hal_context, &num, &error);
+
+  if (dbus_error_is_set (&error)) {
+    g_warning ("Could not get list of devices from HAL: %s", error.message);
+    return 0;
+  }
+
+  for (devices = all_devices; *devices != NULL; devices++) {
+    dbus_bool_t exists;
+    char **cap_list, **caps;
+    gboolean writer = FALSE;
+    int write_speed;
+
+    if (dbus_error_is_set (&error)) {
+      g_warning ("Error printing HAL device %s: %s", *devices, error.message);
+      return 0;
+    }
+
+    exists = libhal_device_property_exists (priv->hal_context, *devices, "info.capabilities", &error);
+    if (dbus_error_is_set (&error)) {
+      g_warning ("Error checking HAL property for %s: %s", *devices, error.message);
+      return 0;
+    }
+
+    if (!exists)
+      continue;
+
+    cap_list = libhal_device_get_property_strlist (priv->hal_context, *devices, "info.capabilities", &error);
+    if (dbus_error_is_set (&error)) {
+      g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+      return 0;
+    }
+
+    for (caps = cap_list; *caps != NULL; caps++) {
+      if (strcmp (*caps, "storage.cdrom") == 0) {
+        exists = libhal_device_property_exists (priv->hal_context, *devices, "storage.cdrom.write_speed", &error);
+        if (dbus_error_is_set (&error)) {
+          g_warning ("Error checking HAL property for %s: %s", *devices, error.message);
+          return 0;
+        }
+
+        if (!exists)
+          break;
+
+        write_speed = libhal_device_get_property_int (priv->hal_context, *devices, "storage.cdrom.write_speed", &error);
+        if (dbus_error_is_set (&error)) {
+          g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+          return 0;
+        }
+
+        if (write_speed > 0)
+          writer = TRUE;
+        break;
+      }
+    }
+    libhal_free_string_array (cap_list);
+
+    if (writer) {
+      XfburnDevice *device = g_new0 (XfburnDevice, 1);
+      char *str, *str_vendor;
+      gboolean dvdr = FALSE;
+      /*
+      libhal_device_print (priv->hal_context, *devices, &error);
+      printf ("\n");
+      */
+
+      device->accessible = FALSE;
+      str_vendor = libhal_device_get_property_string (priv->hal_context, *devices, "storage.vendor", &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+        dbus_error_free (&error);
+        g_free (device);
+        continue;
+      }
+
+      str = libhal_device_get_property_string (priv->hal_context, *devices, "storage.model", &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+        dbus_error_free (&error);
+        g_free (device);
+        continue;
+      }
+
+      device->name = g_strconcat (str_vendor, " ", str, NULL);
+      libhal_free_string (str_vendor);
+      libhal_free_string (str);
+
+      str = libhal_device_get_property_string (priv->hal_context, *devices, "block.device", &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+        dbus_error_free (&error);
+        g_free (device);
+        continue;
+      }
+
+      g_strlcpy (device->addr, str, BURN_DRIVE_ADR_LEN);
+      libhal_free_string (str);
+
+      device->cdr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.cdr", &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+        dbus_error_free (&error);
+        g_free (device);
+        continue;
+      }
+
+      device->cdr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.cdr", &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+        dbus_error_free (&error);
+        g_free (device);
+        continue;
+      }
+
+      device->cdrw = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.cdrw", &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+        dbus_error_free (&error);
+        g_free (device);
+        continue;
+      }
+
+      device->dvdr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.dvdr", &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+        dbus_error_free (&error);
+        g_free (device);
+        continue;
+      }
+
+      dvdr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.dvdplusr", &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+        dbus_error_free (&error);
+        g_free (device);
+        continue;
+      }
+      device->dvdr |= dvdr;
+
+      device->dvdram = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.dvdram", &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
+        dbus_error_free (&error);
+        g_free (device);
+        continue;
+      }
+
+      DBG ("Found drive '%s' at '%s'", device->name, device->addr);
+      *device_list = g_list_append (*device_list, device);
+      n_devices++;
+    }
+  }
+
+  libhal_free_string_array (all_devices);
+
+  return n_devices;
+}
+
+gboolean
+xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *device)
+{
+  XfburnHalManagerPrivate *priv = XFBURN_HAL_MANAGER_GET_PRIVATE (halman);
+  LibHalVolume *vol;
+  const char *mp;
+  ThunarVfsInfo *th_info;
+  ThunarVfsVolumeManager *th_volman;
+  ThunarVfsVolume *th_vol;
+  ThunarVfsPath *th_path;
+  gboolean unmounted;
+  
+  vol = libhal_volume_from_device_file (priv->hal_context, device->addr);
+  if (vol == NULL) {
+    g_warning ("Could not get HAL volume for %s!", device->addr);
+    return FALSE;
+  }
+
+  if (!libhal_volume_is_mounted (vol))
+    return TRUE;
+
+  mp = libhal_volume_get_mount_point (vol);
+  DBG ("%s is mounted at %s", device->addr, mp);
+
+
+  th_path = thunar_vfs_path_new (mp, NULL);
+  if (!th_path) {
+    g_warning ("Error getting thunar path for %s!", mp);
+    return FALSE;
+  }
+
+  th_info = thunar_vfs_info_new_for_path (th_path, NULL);
+  thunar_vfs_path_unref (th_path);
+  if (!th_info) {
+    g_warning ("Error getting thunar info for %s!", mp);
+    return FALSE;
+  }
+
+  th_volman = thunar_vfs_volume_manager_get_default ();
+  th_vol = thunar_vfs_volume_manager_get_volume_by_info (th_volman, th_info);
+  thunar_vfs_info_unref (th_info);
+
+  if (!th_vol) {
+    g_warning ("Error getting thunar volume for %s!", mp);
+    g_object_unref (th_volman);
+    return FALSE;
+  }
+
+  if (!thunar_vfs_volume_is_mounted (th_vol)) {
+    g_object_unref (th_volman);
+    return FALSE;
+  }
+
+  /* FIXME: ask if we should unmount? */
+  unmounted = thunar_vfs_volume_unmount (th_vol, NULL, NULL);
+  if (unmounted)
+    g_message ("Unmounted %s", mp);
+  else {
+    xfce_err ("Failed to unmount %s. Drive cannot be used for burning.", mp);
+    DBG ("Failed to unmount %s", mp);
+  }
+
+  g_object_unref (th_volman);
+  return unmounted;
 }
 
 #endif /* HAVE_HAL */

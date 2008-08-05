@@ -414,7 +414,7 @@ refresh_devices_list (XfburnPreferencesDialog * dialog)
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                         DEVICE_LIST_COLUMN_NAME, device_data->name,
-                        DEVICE_LIST_COLUMN_NODE, device_data->node_path,
+                        DEVICE_LIST_COLUMN_NODE, device_data->addr,
                         DEVICE_LIST_COLUMN_CDR, device_data->cdr,
                         DEVICE_LIST_COLUMN_CDRW, device_data->cdrw,
                         DEVICE_LIST_COLUMN_DVDR, device_data->dvdr, DEVICE_LIST_COLUMN_DVDRAM, device_data->dvdram, -1);

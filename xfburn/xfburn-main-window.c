@@ -33,7 +33,7 @@
 #include "xfburn-file-browser.h"
 #include "xfburn-compositions-notebook.h"
 #include "xfburn-blank-dialog.h"
-#include "xfburn-format-dvd-dialog.h"
+//#include "xfburn-format-dvd-dialog.h"
 #include "xfburn-copy-cd-dialog.h"
 #include "xfburn-copy-dvd-dialog.h"
 #include "xfburn-burn-image-dialog.h"
@@ -86,8 +86,8 @@ static void action_blank (GtkAction *, XfburnMainWindow *);
 static void action_copy_cd (GtkAction *, XfburnMainWindow *);
 static void action_burn_image (GtkAction *, XfburnMainWindow *);
 
-static void action_format_dvd (GtkAction *, XfburnMainWindow *);
-static void action_copy_dvd (GtkAction *, XfburnMainWindow *);
+//static void action_format_dvd (GtkAction *, XfburnMainWindow *);
+//static void action_copy_dvd (GtkAction *, XfburnMainWindow *);
 static void action_burn_dvd_image (GtkAction *, XfburnMainWindow *);
 
 static void action_refresh_directorybrowser (GtkAction *, XfburnMainWindow *);
@@ -131,10 +131,10 @@ static const GtkActionEntry action_entries[] = {
   {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
   {"burn-image", "xfburn-burn-cd", N_("Burn Image"), NULL, N_("Burn Image"),
    G_CALLBACK (action_burn_image),},
-  {"format-dvd", "xfburn-format-dvdrw", N_("Format DVD+RW"), NULL, N_("Format DVD+RW"),
+/*  {"format-dvd", "xfburn-format-dvdrw", N_("Format DVD+RW"), NULL, N_("Format DVD+RW"),
    G_CALLBACK (action_format_dvd),},
   {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
-   G_CALLBACK (action_copy_dvd),},
+   G_CALLBACK (action_copy_dvd),}, */
   {"burn-dvd", "xfburn-burn-image", N_("Burn DVD Image"), NULL, N_("Burn DVD Image"),
    G_CALLBACK (action_burn_dvd_image),},
 };
@@ -155,7 +155,7 @@ static const gchar *toolbar_actions[] = {
   "copy-data",
   //"copy-audio",
   "burn-image",
-  "format-dvd",
+  //"format-dvd",
   "copy-dvd",
   "burn-dvd",
   "refresh",
@@ -405,6 +405,7 @@ action_burn_image (GtkAction * action, XfburnMainWindow * window)
   gtk_widget_destroy (dialog);
 }
 
+/*
 static void
 action_format_dvd (GtkAction * action, XfburnMainWindow * window)
 {
@@ -415,7 +416,9 @@ action_format_dvd (GtkAction * action, XfburnMainWindow * window)
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 }
+*/
 
+/*
 static void
 action_copy_dvd (GtkAction * action, XfburnMainWindow * window)
 {
@@ -426,6 +429,7 @@ action_copy_dvd (GtkAction * action, XfburnMainWindow * window)
   gtk_dialog_run (GTK_DIALOG (dialog)); 
   gtk_widget_destroy (dialog);
 }
+*/
 
 static void
 action_burn_dvd_image (GtkAction * action, XfburnMainWindow * window)

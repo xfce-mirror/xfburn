@@ -20,14 +20,10 @@ xfburn_headers = 							\
 	xfburn-settings.h						\
 	xfburn-composition.h						\
 	xfburn-compositions-notebook.h					\
-	xfburn-copy-cd-dialog.h						\
-	xfburn-copy-cd-progress-dialog.h				\
-	xfburn-copy-dvd-dialog.h					\
 	xfburn-create-iso-progress-dialog.h				\
 	xfburn-hal-manager.h						\
 	xfburn-device-box.h						\
 	xfburn-device-list.h						\
-	xfburn-format-dvd-dialog.h					\
 	xfburn-progress-dialog.h					\
 	xfburn-main-window.h						\
 	xfburn-notebook-tab.h						\
@@ -54,11 +50,9 @@ xfburn_SOURCES =							\
 	xfburn-composition.c						\
 	xfburn-compositions-notebook.c					\
 	xfburn-settings.c						\
-	xfburn-copy-dvd-dialog.c					\
 	xfburn-hal-manager.c						\
 	xfburn-device-box.c						\
 	xfburn-device-list.c						\
-	xfburn-format-dvd-dialog.c					\
 	xfburn-progress-dialog.c					\
 	xfburn-main.c 							\
 	xfburn-main-window.c 						\
@@ -104,6 +98,12 @@ endif
 missing_files = \
 	xfburn-copy-cd-dialog.c \
 	xfburn-copy-cd-progress-dialog.c \
+	xfburn-copy-dvd-dialog.c					\
+	xfburn-copy-cd-dialog.h						\
+	xfburn-copy-cd-progress-dialog.h				\
+	xfburn-copy-dvd-dialog.h					\
+	xfburn-format-dvd-dialog.c					\
+	xfburn-format-dvd-dialog.h					\
 	xfburn-create-iso-progress-dialog.c
 
 EXTRA_DIST = $(missing_files)

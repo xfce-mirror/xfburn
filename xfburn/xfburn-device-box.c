@@ -487,12 +487,6 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
-  if (!check_disc_validity (priv))
-    return;
-
-  if (!priv->show_speed_selection)
-    return;
-
   if (el == NULL) {
     /* a valid disc is in the drive, but no speed list is present */
     GtkTreeIter iter;
@@ -763,19 +757,45 @@ get_selected_device (XfburnDeviceBoxPrivate *priv)
   return device;
 }
 
-static void
-cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
+static XfburnDevice *
+refresh_drive_info (XfburnDeviceBox *box)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   XfburnDevice *device = NULL;
   
-  xfburn_busy_cursor (priv->combo_device);
-
   device = xfburn_device_box_get_selected_device (box);
-  if (xfburn_device_refresh_supported_speeds (device))
+  if (G_UNLIKELY (device == NULL))
+    return NULL;
+
+  if (!xfburn_device_refresh_info (device, priv->show_speed_selection))
+    return NULL;
+
+  if (priv->show_speed_selection)
     fill_combo_speed (box, device);
 
+  if (priv->show_mode_selection)
+    fill_combo_mode (box,device);
+
+  if (!check_disc_validity (priv))
+    return NULL;
+
+  return device;
+}
+
+static void
+cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
+{
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+  XfburnDevice *device;
+  
+  xfburn_busy_cursor (priv->combo_device);
+
+  device = refresh_drive_info (box);
+
   xfburn_default_cursor (priv->combo_device);
+
+  if (device == NULL)
+    return;
 
   g_signal_emit (G_OBJECT (box), signals[DISC_REFRESHED], 0, device);
 }
@@ -783,25 +803,19 @@ cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
 static void
 cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
 {
-  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+  //XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   XfburnDevice *device;
   
   if (GTK_WIDGET_REALIZED (box))
     xfburn_busy_cursor (GTK_WIDGET (box));
 
-  device = xfburn_device_box_get_selected_device (box);
-  if (device != NULL) {
-    //DBG ("Device changed to %s", device->name);
-    xfburn_device_refresh_supported_speeds (device);
-
-    fill_combo_speed (box, device);
-
-    if (priv->show_mode_selection)
-      fill_combo_mode (box,device);
-  }
+  device = refresh_drive_info (box);
 
   if (GTK_WIDGET_REALIZED (box))
     xfburn_default_cursor (GTK_WIDGET (box));
+
+  if (device == NULL)
+    return;
 
   g_signal_emit (G_OBJECT (box), signals[DEVICE_CHANGED], 0, device);
 }

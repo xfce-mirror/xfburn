@@ -57,7 +57,9 @@ enum XfburnDiscProfiles {
 typedef struct
 {
   gchar *name;
-  gchar *node_path;
+  gchar addr[BURN_DRIVE_ADR_LEN];
+  gboolean accessible;
+
   gint buffer_size;
   gboolean dummy_write;
   
@@ -73,7 +75,6 @@ typedef struct
   gboolean dvdr;
   gboolean dvdram;
 
-  gchar addr[BURN_DRIVE_ADR_LEN];
 } XfburnDevice;
 
 gint xfburn_device_list_init ();
@@ -85,7 +86,7 @@ const char * xfburn_device_list_get_profile_name ();
 gboolean xfburn_device_list_disc_is_erasable ();
 void xfburn_device_list_free ();
 
-gboolean xfburn_device_refresh_supported_speeds (XfburnDevice * device);
+gboolean xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info);
 gboolean xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info);
 void xfburn_device_free (XfburnDevice * device);
 
