@@ -293,7 +293,7 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
 
   if (dbus_error_is_set (&error)) {
     g_warning ("Could not get list of devices from HAL: %s", error.message);
-    return 0;
+    return -1;
   }
 
   for (devices = all_devices; *devices != NULL; devices++) {
@@ -302,15 +302,11 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
     gboolean writer = FALSE;
     int write_speed;
 
-    if (dbus_error_is_set (&error)) {
-      g_warning ("Error printing HAL device %s: %s", *devices, error.message);
-      return 0;
-    }
-
     exists = libhal_device_property_exists (priv->hal_context, *devices, "info.capabilities", &error);
     if (dbus_error_is_set (&error)) {
       g_warning ("Error checking HAL property for %s: %s", *devices, error.message);
-      return 0;
+      dbus_error_free (error);
+      return -1;
     }
 
     if (!exists)
@@ -319,7 +315,8 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
     cap_list = libhal_device_get_property_strlist (priv->hal_context, *devices, "info.capabilities", &error);
     if (dbus_error_is_set (&error)) {
       g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
-      return 0;
+      dbus_error_free (error);
+      return -1;
     }
 
     for (caps = cap_list; *caps != NULL; caps++) {
@@ -327,7 +324,8 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
         exists = libhal_device_property_exists (priv->hal_context, *devices, "storage.cdrom.write_speed", &error);
         if (dbus_error_is_set (&error)) {
           g_warning ("Error checking HAL property for %s: %s", *devices, error.message);
-          return 0;
+          dbus_error_free (error);
+          return -1;
         }
 
         if (!exists)
@@ -336,7 +334,8 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
         write_speed = libhal_device_get_property_int (priv->hal_context, *devices, "storage.cdrom.write_speed", &error);
         if (dbus_error_is_set (&error)) {
           g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
-          return 0;
+          dbus_error_free (error);
+          return -1;
         }
 
         if (write_speed > 0)
@@ -353,6 +352,12 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
       /*
       libhal_device_print (priv->hal_context, *devices, &error);
       printf ("\n");
+
+      if (dbus_error_is_set (&error)) {
+        g_warning ("Error printing HAL device %s: %s", *devices, error.message);
+        dbus_error_free (error);
+        return -1;
+      }
       */
 
       device->accessible = FALSE;

@@ -310,6 +310,7 @@ xfburn_device_list_init ()
 #ifdef HAVE_HAL
   XfburnHalManager *halman = xfburn_hal_manager_get_instance ();
 #endif
+  int n_drives;
 
   if (devices) {
     g_list_foreach (devices, (GFunc) device_content_free, NULL);
@@ -318,10 +319,16 @@ xfburn_device_list_init ()
   }
 
 #ifdef HAVE_HAL
-  return xfburn_hal_manager_get_devices (halman, &devices);
+  n_drives = xfburn_hal_manager_get_devices (halman, &devices);
+  if (n_drives == -1) {
+    /* some error occurred while checking hal properties, so try libburn instead */
+    n_drives = get_libburn_device_list ();
+  }
 #else
-  return get_libburn_device_list ();
+  n_drives = get_libburn_device_list ();
 #endif
+
+  return n_drives;
 }
 
 gboolean
