@@ -446,6 +446,7 @@ thread_write_iso (ThreadWriteIsoParams * params)
   glong size = 0;
   glong written = 0;
   guint i = 0;
+  int (*read_fn) (struct burn_source *src, unsigned char *buf, int size);
 
   fd = open (params->iso_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
   if (fd == -1) {
@@ -465,8 +466,13 @@ thread_write_iso (ThreadWriteIsoParams * params)
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Writing ISO..."));
 
   size = (glong) params->src->get_size (params->src);
+  if (params->src->read == NULL)
+    read_fn = params->src->read_xt;
+  else
+    read_fn = params->src->read;
+
   /* FIXME: is size really always 2048? */
-  while (params->src->read_xt (params->src, buf, 2048) == 2048) {
+  while (read_fn (params->src, buf, 2048) == 2048) {
     if (write (fd, buf, 2048) < 2048) {
       /* an error occured while writing */
       gchar err[256];
