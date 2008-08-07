@@ -275,7 +275,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  priv->button_proceed = button = xfce_create_mixed_button ("xfburn-burn-cd", _("Burn Composition"));
+  priv->button_proceed = button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn Composition"));
   /*
    * Disabled: change button_proceed functionality
   button = create_proceed_button (obj, "xfburn-burn-cd", "");

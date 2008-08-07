@@ -442,13 +442,6 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), final_status, final_message);
   g_free (final_message);
 
-#ifdef HAVE_HAL
-  gdk_threads_enter ();
-  DBG ("blanking done!");
-  xfburn_hal_manager_send_volume_changed ();
-  gdk_threads_leave ();
-#endif 
-
   return TRUE;
 }
 
@@ -475,6 +468,7 @@ thread_blank (ThreadBlankParams * params)
 
 #ifdef HAVE_HAL
   gdk_threads_enter ();
+  DBG ("blanking done!");
   xfburn_hal_manager_send_volume_changed ();
   gdk_threads_leave ();
 #endif
