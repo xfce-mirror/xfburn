@@ -10,3 +10,11 @@ MimeType=application/x-cd-image
 Terminal=false
 Categories=X-XFCE;GTK;DiscBurning;Archiving;Utility;
 StartupNotify=true
+
+Actions=BurnImage;
+
+[Desktop Action BurnImage]
+MimeType=application/x-cd-image
+Icon=media-cdrom
+Exec=xfburn -i %f
+_Name=Burn Image (xfburn)
