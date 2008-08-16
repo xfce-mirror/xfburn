@@ -30,6 +30,7 @@ xfburn_headers = 							\
 	xfburn-file-browser.h						\
 	xfburn-welcome-tab.h						\
 	xfburn-data-composition.h					\
+	xfburn-disc-usage.h						\
 	xfburn-data-disc-usage.h					\
 	xfburn-fs-browser.h						\
 	xfburn-directory-browser.h					\
@@ -60,6 +61,7 @@ xfburn_SOURCES =							\
 	xfburn-file-browser.c						\
 	xfburn-welcome-tab.c    	                             	\
 	xfburn-data-composition.c    	                             	\
+	xfburn-disc-usage.c						\
 	xfburn-data-disc-usage.c					\
 	xfburn-fs-browser.c 	                                       	\
 	xfburn-directory-browser.c					\
