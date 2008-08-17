@@ -1054,7 +1054,7 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
 
   for (i=0; i<params->filec; i++) {
     full_path = g_build_filename (params->filenames[i], NULL);
-    g_message ("Adding %s to the data composition... (might take a while)", full_path);
+    g_message ("Adding %s to the audio composition... (might take a while)", full_path);
     thread_add_file_to_list (params->dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
     g_free (full_path);
   }
