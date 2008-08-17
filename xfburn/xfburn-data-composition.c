@@ -483,7 +483,7 @@ cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc)
 
   image = generate_iso_image (XFBURN_DATA_COMPOSITION (dc));
   
-  switch (xfburn_data_disc_usage_get_disc_type (du)) {
+  switch (xfburn_disc_usage_get_disc_type (XFBURN_DISC_USAGE (du))) {
   case CD_DISC:
     dialog = xfburn_burn_data_cd_composition_dialog_new (image);
     break;
@@ -792,7 +792,7 @@ action_create_directory (GtkAction * action, XfburnDataComposition * dc)
   g_free (directory_text);
   g_free (humansize);
   
-  xfburn_data_disc_usage_add_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), 4);
+  xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), 4);
   
   gtk_widget_realize (priv->content);
   
@@ -822,7 +822,7 @@ remove_row_reference (GtkTreeRowReference *reference, XfburnDataCompositionPriva
       guint64 size = 0;
       
       gtk_tree_model_get (model, &iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
-      xfburn_data_disc_usage_sub_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), size);
+      xfburn_disc_usage_sub_size (XFBURN_DISC_USAGE (priv->disc_usage), size);
 
       iter_temp = iter;
       while (gtk_tree_model_iter_parent (model, &parent, &iter_temp)) {
@@ -941,7 +941,7 @@ action_clear (GtkAction * action, XfburnDataComposition * dc)
   
   gtk_entry_set_text (GTK_ENTRY (priv->entry_volume_name), _(DATA_COMPOSITION_DEFAULT_NAME));
 
-  xfburn_data_disc_usage_set_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), 0);
+  xfburn_disc_usage_set_size (XFBURN_DISC_USAGE (priv->disc_usage), 0);
 }
 
 static void
@@ -1099,7 +1099,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
                           DATA_COMPOSITION_COLUMN_CONTENT, name,
                           DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_DIRECTORY, 
                           DATA_COMPOSITION_COLUMN_SIZE, (guint64) 4, -1);
-      xfburn_data_disc_usage_add_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), (guint64) 4);
+      xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), (guint64) 4);
       gdk_threads_leave ();
 
       while ((filename = g_dir_read_name (dir))) {
@@ -1172,7 +1172,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
                           DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_FILE, -1);
 #endif
 
-      xfburn_data_disc_usage_add_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), s.st_size);
+      xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
 #ifdef HAVE_THUNAR_VFS
       if (G_LIKELY (G_IS_OBJECT (mime_icon)))
         g_object_unref (mime_icon);
@@ -1561,7 +1561,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         
           gtk_tree_store_remove (GTK_TREE_STORE (model), &iter_src);
         } else {
-          xfburn_data_disc_usage_add_size (XFBURN_DATA_DISC_USAGE (priv->disc_usage), size);
+          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), size);
         }
         
         gtk_tree_path_free (path_parent);

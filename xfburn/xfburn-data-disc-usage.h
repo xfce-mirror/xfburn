@@ -25,6 +25,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include "xfburn-disc-usage.h"
 
 G_BEGIN_DECLS
 
@@ -37,37 +38,16 @@ G_BEGIN_DECLS
 
 typedef struct
 {
-  GtkVBox hbox;
-
-  GtkWidget *progress_bar;
-  GtkWidget *combo;
-  GtkWidget *button;
-
-  gdouble size;
+  XfburnDiscUsage disc_usage;
 } XfburnDataDiscUsage;
 
 typedef struct
 {
-  GtkHBoxClass parent_class;
-  
-  void (*begin_burn) (XfburnDataDiscUsage *du);
+  XfburnDiscUsageClass parent_class;
 } XfburnDataDiscUsageClass;
-
-typedef enum
-{
-  CD_DISC,
-  DVD_DISC,
-} XfburnDataDiscType;
 
 GtkType xfburn_data_disc_usage_get_type (void);
 GtkWidget *xfburn_data_disc_usage_new (void);
-
-gdouble xfburn_data_disc_usage_get_size (XfburnDataDiscUsage *);
-void xfburn_data_disc_usage_set_size (XfburnDataDiscUsage *, gdouble);
-void xfburn_data_disc_usage_add_size (XfburnDataDiscUsage *, gdouble);
-void xfburn_data_disc_usage_sub_size (XfburnDataDiscUsage *, gdouble);
-
-XfburnDataDiscType xfburn_data_disc_usage_get_disc_type (XfburnDataDiscUsage *);
 
 G_END_DECLS
 
