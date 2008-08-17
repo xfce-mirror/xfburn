@@ -132,7 +132,7 @@ xfburn_disc_usage_init (XfburnDiscUsage * disc_usage)
   disc_usage->size = 0;
 
   disc_usage->progress_bar = gtk_progress_bar_new ();
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), "0 B");
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), "0");
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->progress_bar, TRUE, TRUE, BORDER);
   gtk_widget_show (disc_usage->progress_bar);
 

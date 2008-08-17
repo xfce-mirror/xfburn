@@ -37,6 +37,7 @@
 #include "xfburn-copy-cd-dialog.h"
 #include "xfburn-copy-dvd-dialog.h"
 #include "xfburn-burn-image-dialog.h"
+#include "xfburn-audio-composition.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-settings.h"
 #include "xfburn-main.h"
@@ -72,7 +73,7 @@ static void action_about (GtkAction *, XfburnMainWindow *);
 static void action_preferences (GtkAction *, XfburnMainWindow *);
 
 static void action_new_data_composition (GtkAction *, XfburnMainWindow *);
-//static void action_new_audio_composition (GtkAction *, XfburnMainWindow *);
+static void action_new_audio_composition (GtkAction *, XfburnMainWindow *);
 
 /*
 static void action_load (GtkAction *, XfburnMainWindow *);
@@ -99,12 +100,12 @@ static GtkWindowClass *parent_class = NULL;
 static const GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL,},
   /*{"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},*/
-  {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"), 
-    G_CALLBACK (action_new_data_composition),},
-  /*{"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
+  /*{"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"), 
+    G_CALLBACK (action_new_data_composition),}, */
+  {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
     G_CALLBACK (action_new_data_composition),},
   {"new-audio-composition", "audio-x-generic", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
-    G_CALLBACK (action_new_audio_composition),},*/
+    G_CALLBACK (action_new_audio_composition),},
   /*{"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
    G_CALLBACK (action_load),},
   {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"), 
@@ -147,7 +148,8 @@ static const GtkToggleActionEntry toggle_action_entries[] = {
 };
 
 static const gchar *toolbar_actions[] = {
-  "new-composition",
+  "new-data-composition",
+  "new-audio-composition",
 /*  "load-composition",
   "save-composition",
   "close-composition",*/
@@ -475,14 +477,13 @@ action_new_data_composition (GtkAction *action, XfburnMainWindow * window)
   xfburn_main_window_add_data_composition_with_files (window, 0, NULL);
 }
 
-/*
 static void
 action_new_audio_composition (GtkAction *action, XfburnMainWindow * window)
 {
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
  
+  xfburn_main_window_add_data_composition_with_files (window, 0, NULL);
 }
-*/
 
 static void
 action_quit (GtkAction * action, XfburnMainWindow * window)
@@ -720,6 +721,16 @@ xfburn_main_window_add_data_composition_with_files (XfburnMainWindow *window, in
  
   comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_DATA_COMPOSITION);
   xfburn_data_composition_add_files (XFBURN_DATA_COMPOSITION (comp), filec, filenames);
+}
+
+void 
+xfburn_main_window_add_audio_composition_with_files (XfburnMainWindow *window, int filec, char **filenames)
+{
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  XfburnComposition *comp;
+ 
+  comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_AUDIO_COMPOSITION);
+  xfburn_audio_composition_add_files (XFBURN_AUDIO_COMPOSITION (comp), filec, filenames);
 }
 
 gboolean

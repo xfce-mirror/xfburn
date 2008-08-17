@@ -30,6 +30,7 @@
 #include "xfburn-notebook-tab.h"
 #include "xfburn-welcome-tab.h"
 #include "xfburn-data-composition.h"
+#include "xfburn-audio-composition.h"
 
 #define XFBURN_COMPOSITIONS_NOTEBOOK_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, XfburnCompositionsNotebookPrivate))
 
@@ -168,7 +169,8 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
       label_text = g_strdup_printf ("%s %d", _("Data composition"), ++i);
       break;
     case XFBURN_AUDIO_COMPOSITION:
-      DBG ("don't hurry ... it'll be implemented later");
+      composition = xfburn_audio_composition_new ();
+      label_text = g_strdup_printf ("%s %d", _("Audio composition"), ++i);
       break;
   }
   

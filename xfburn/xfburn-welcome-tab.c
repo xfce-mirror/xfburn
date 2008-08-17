@@ -51,6 +51,7 @@ typedef struct {
 
   GtkWidget *button_image;
   GtkWidget *button_data_comp;
+  GtkWidget *button_audio_comp;
   GtkWidget *button_blank;
 } XfburnWelcomeTabPrivate;
 
@@ -59,6 +60,7 @@ static GtkWidget* create_welcome_button (const gchar *stock, const gchar *text, 
 
 static void burn_image (GtkButton *button, XfburnWelcomeTab *tab);
 static void new_data_composition (GtkButton *button, XfburnWelcomeTab *tab);
+static void new_audio_cd (GtkButton *button, XfburnWelcomeTab *tab);
 static void blank_disc (GtkButton *button, XfburnWelcomeTab *tab);
 
 
@@ -149,6 +151,11 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_table_attach_defaults (GTK_TABLE (table), priv->button_blank, 0, 1, 1, 2);
   gtk_widget_show (priv->button_blank);
   g_signal_connect (G_OBJECT(priv->button_blank), "clicked", G_CALLBACK(blank_disc), obj);
+
+  priv->button_audio_comp = create_welcome_button (GTK_STOCK_CDROM, _("<big>_Audio CD</big>"), _("Audio CD playable in regular stereos"));
+  gtk_table_attach_defaults (GTK_TABLE (table), priv->button_audio_comp, 1, 2, 1, 2);
+  gtk_widget_show (priv->button_audio_comp);
+  g_signal_connect (G_OBJECT(priv->button_audio_comp), "clicked", G_CALLBACK(new_audio_cd), obj);
 }
 
 static void
@@ -226,6 +233,14 @@ new_data_composition (GtkButton *button, XfburnWelcomeTab *tab)
   xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->notebook), XFBURN_DATA_COMPOSITION);
 }
 
+static void
+new_audio_cd (GtkButton *button, XfburnWelcomeTab *tab)
+{
+  XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
+ 
+  xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->notebook), XFBURN_AUDIO_COMPOSITION);
+}
+
 /*        */
 /* public */
 /*        */
@@ -246,8 +261,11 @@ xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GtkActionGroup *ac
     action = gtk_action_group_get_action (action_group, "burn-image");
     gtk_widget_set_sensitive (priv->button_image, gtk_action_is_sensitive (action));
     
-    action = gtk_action_group_get_action (action_group, "new-composition");
+    action = gtk_action_group_get_action (action_group, "new-data-composition");
     gtk_widget_set_sensitive (priv->button_data_comp, gtk_action_is_sensitive (action));
+    
+    action = gtk_action_group_get_action (action_group, "new-audio-composition");
+    gtk_widget_set_sensitive (priv->button_audio_comp, gtk_action_is_sensitive (action));
     
     action = gtk_action_group_get_action (action_group, "blank-disc");
     gtk_widget_set_sensitive (priv->button_blank, gtk_action_is_sensitive (action));

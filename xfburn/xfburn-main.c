@@ -57,6 +57,7 @@ static gboolean show_version = FALSE;
 static gboolean other_action = FALSE;
 static gboolean show_main = FALSE;
 static gboolean add_data_composition = FALSE;
+static gboolean add_audio_composition = FALSE;
 static gboolean blank = FALSE;
 
 static GOptionEntry optionentries[] = {
@@ -66,6 +67,8 @@ static GOptionEntry optionentries[] = {
     "Open the blank disc dialog.", NULL },
   { "data-composition", 'd', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option, 
     "Start a data composition. Optionally followed by files/directories to be added to the composition.", NULL },
+  { "audio-composition", 'a', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option, 
+    "Start an audio composition. Optionally followed by files/directories to be added to the composition.", NULL },
   { "version", 'V', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_version, 
     "Display program version and exit", NULL },
   { "main", 'm', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_main, 
@@ -83,6 +86,8 @@ static gboolean parse_option (const gchar *option_name, const gchar *value,
       image_filename = g_strdup(value);
   } else if (strcmp (option_name, "-d") == 0 || strcmp (option_name, "--data-composition") == 0) {
     add_data_composition = TRUE;
+  } else if (strcmp (option_name, "-a") == 0 || strcmp (option_name, "--audio-composition") == 0) {
+    add_audio_composition = TRUE;
   } else if (strcmp (option_name, "-b") == 0 || strcmp (option_name, "--blank") == 0) {
     blank = TRUE;
   } else {
@@ -297,6 +302,9 @@ main (int argc, char **argv)
   
     if (add_data_composition)
       xfburn_main_window_add_data_composition_with_files (XFBURN_MAIN_WINDOW (mainwin), argc-1, argv+1);
+
+    if (add_audio_composition)
+      xfburn_main_window_add_audio_composition_with_files (XFBURN_MAIN_WINDOW (mainwin), argc-1, argv+1);
   }
 
   gtk_main ();

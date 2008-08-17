@@ -17,8 +17,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFBURN_DATA_COMPOSITION_H__
-#define __XFBURN_DATA_COMPOSITION_H__
+#ifndef __XFBURN_AUDIO_COMPOSITION_H__
+#define __XFBURN_AUDIO_COMPOSITION_H__
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -28,36 +28,36 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_DATA_COMPOSITION            (xfburn_data_composition_get_type ())
-#define XFBURN_DATA_COMPOSITION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataComposition))
-#define XFBURN_DATA_COMPOSITION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataCompositionClass))
-#define XFBURN_IS_DATA_COMPOSITION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DATA_COMPOSITION))
-#define XFBURN_IS_DATA_COMPOSITION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DATA_COMPOSITION))
-#define XFBURN_DATA_COMPOSITION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataCompositionClass))
+#define XFBURN_TYPE_AUDIO_COMPOSITION            (xfburn_audio_composition_get_type ())
+#define XFBURN_AUDIO_COMPOSITION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DATA_COMPOSITION, XfburnAudioComposition))
+#define XFBURN_AUDIO_COMPOSITION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DATA_COMPOSITION, XfburnAudioCompositionClass))
+#define XFBURN_IS_AUDIO_COMPOSITION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DATA_COMPOSITION))
+#define XFBURN_IS_AUDIO_COMPOSITION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DATA_COMPOSITION))
+#define XFBURN_AUDIO_COMPOSITION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DATA_COMPOSITION, XfburnAudioCompositionClass))
   
 typedef struct
 {
   GtkVBox vbox;
-} XfburnDataComposition;
+} XfburnAudioComposition;
 
 typedef struct
 {
   GtkVBoxClass parent_class;
-} XfburnDataCompositionClass;
+} XfburnAudioCompositionClass;
 
 enum
 {
-  DATA_COMPOSITION_DND_TARGET_INSIDE,
-  DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN,
-  DATA_COMPOSITION_DND_TARGET_TEXT_URI_LIST,
+  AUDIO_COMPOSITION_DND_TARGET_INSIDE,
+  AUDIO_COMPOSITION_DND_TARGET_TEXT_PLAIN,
+  AUDIO_COMPOSITION_DND_TARGET_TEXT_URI_LIST,
 };
 
-GtkType xfburn_data_composition_get_type (void);
+GtkType xfburn_audio_composition_get_type (void);
 
-GtkWidget *xfburn_data_composition_new (void);
-void xfburn_data_composition_add_files (XfburnDataComposition *content, int filec, char **filenames);
-void xfburn_data_composition_hide_toolbar (XfburnDataComposition *content);
-void xfburn_data_composition_show_toolbar (XfburnDataComposition *content);
+GtkWidget *xfburn_audio_composition_new (void);
+void xfburn_audio_composition_add_files (XfburnAudioComposition *content, int filec, char **filenames);
+void xfburn_audio_composition_hide_toolbar (XfburnAudioComposition *content);
+void xfburn_audio_composition_show_toolbar (XfburnAudioComposition *content);
 
 
 G_END_DECLS

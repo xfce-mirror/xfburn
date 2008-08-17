@@ -112,6 +112,7 @@ xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass * klass)
 static void
 xfburn_data_disc_usage_init (XfburnDataDiscUsage * disc_usage)
 {
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR ( XFBURN_DISC_USAGE (disc_usage)->progress_bar), "0 B");
 }
 
 /* internals */
