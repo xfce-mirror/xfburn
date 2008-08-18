@@ -64,8 +64,8 @@ enum
   AUDIO_COMPOSITION_COLUMN_LENGTH,
   AUDIO_COMPOSITION_COLUMN_HUMANLENGTH,
   AUDIO_COMPOSITION_COLUMN_SIZE,
-  AUDIO_COMPOSITION_COLUMN_SONG,
   AUDIO_COMPOSITION_COLUMN_ARTIST,
+  AUDIO_COMPOSITION_COLUMN_TITLE,
   AUDIO_COMPOSITION_COLUMN_PATH,
   AUDIO_COMPOSITION_COLUMN_TYPE,
   AUDIO_COMPOSITION_N_COLUMNS
@@ -114,14 +114,16 @@ static void save_to_file (XfburnComposition *composition);
 
 static void action_clear (GtkAction *, XfburnAudioComposition *);
 static void action_remove_selection (GtkAction *, XfburnAudioComposition *);
-static void action_rename_selection (GtkAction *, XfburnAudioComposition *);
+static void action_rename_selection_artist (GtkAction *, XfburnAudioComposition *);
+static void action_rename_selection_title (GtkAction *, XfburnAudioComposition *);
 static void action_add_selected_files (GtkAction *, XfburnAudioComposition *);
 
 static void tracks_changed (XfburnAudioComposition *ac);
 static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnAudioComposition * dc);
 static void cb_selection_changed (GtkTreeSelection *selection, XfburnAudioComposition * dc);
 static void cb_begin_burn (XfburnDataDiscUsage * du, XfburnAudioComposition * dc);
-//static void cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc);
+static void cb_cell_artist_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc);
+static void cb_cell_title_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc);
 
 static void cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                                       guint info, guint t, XfburnAudioComposition * composition);
@@ -182,8 +184,10 @@ static const GtkActionEntry action_entries[] = {
   {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the content of the composition"),
    G_CALLBACK (action_clear),},
   {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-  {"rename-file", GTK_STOCK_EDIT, N_("Rename"), NULL, N_("Rename the selected file"),
-   G_CALLBACK (action_rename_selection),},
+  {"rename-artist", GTK_STOCK_EDIT, N_("Rename Artist"), NULL, N_("Rename the artist of the selected file"),
+   G_CALLBACK (action_rename_selection_artist),},
+  {"rename-title", GTK_STOCK_EDIT, N_("Rename Title"), NULL, N_("Rename the title of the selected file"),
+   G_CALLBACK (action_rename_selection_title),},
 };
 
 static const gchar *toolbar_actions[] = {
@@ -263,15 +267,15 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   //GtkWidget *hbox, *label;
   GtkWidget *scrolled_window;
   GtkTreeStore *model;
-  //GtkTreeViewColumn *column_file;
-  //GtkCellRenderer *cell_icon, *cell_file;
+  GtkTreeViewColumn *column_artist, *column_title;
+  GtkCellRenderer *cell_artist, *cell_title;
   GtkTreeSelection *selection;
   GtkAction *action = NULL;
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
   
   const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
-    "<menuitem action=\"rename-file\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
+    "<menuitem action=\"rename-artist\"/>" "<menuitem action=\"rename-title\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE },
@@ -353,10 +357,32 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
                                                gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_POS, NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Length"),
                                                gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, NULL);
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Artist"),
-                                               gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_ARTIST, NULL);
-  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Song Name"),
-                                               gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_SONG, NULL);
+  /*gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Artist"),
+                                               gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_ARTIST, NULL);*/
+  column_artist = gtk_tree_view_column_new ();
+  gtk_tree_view_column_set_title (column_artist, _("Artist"));
+
+  cell_artist = gtk_cell_renderer_text_new ();
+  gtk_tree_view_column_pack_start (column_artist, cell_artist, TRUE);
+  gtk_tree_view_column_set_attributes (column_artist, cell_artist, "text", AUDIO_COMPOSITION_COLUMN_ARTIST, NULL);
+  g_signal_connect (G_OBJECT (cell_artist), "edited", G_CALLBACK (cb_cell_artist_edited), composition);
+  g_object_set (G_OBJECT (cell_artist), "editable", TRUE, NULL);
+
+  gtk_tree_view_append_column (GTK_TREE_VIEW (priv->content), column_artist);
+
+  /*gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Song Name"),
+                                               gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_TITLE, NULL);*/
+  column_title = gtk_tree_view_column_new ();
+  gtk_tree_view_column_set_title (column_title, _("Title"));
+
+  cell_title = gtk_cell_renderer_text_new ();
+  gtk_tree_view_column_pack_start (column_title, cell_title, TRUE);
+  gtk_tree_view_column_set_attributes (column_title, cell_title, "text", AUDIO_COMPOSITION_COLUMN_TITLE, NULL);
+  g_signal_connect (G_OBJECT (cell_title), "edited", G_CALLBACK (cb_cell_title_edited), composition);
+  g_object_set (G_OBJECT (cell_title), "editable", TRUE, NULL);
+
+  gtk_tree_view_append_column (GTK_TREE_VIEW (priv->content), column_title);
+
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Filename"),
                                                gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_PATH, NULL);
 
@@ -526,7 +552,8 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     GtkTreePath *path;
     GtkWidget *menu_popup;
     GtkWidget *menuitem_remove;
-    GtkWidget *menuitem_rename;
+    GtkWidget *menuitem_rename_artist;
+    GtkWidget *menuitem_rename_title;
 
     selection = gtk_tree_view_get_selection (treeview);
 
@@ -538,16 +565,20 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
 
     menu_popup = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu");
     menuitem_remove = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/remove-file");
-    menuitem_rename = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/rename-file");
+    menuitem_rename_artist = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/rename-artist");
+    menuitem_rename_title = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/rename-title");
 
     if (gtk_tree_selection_count_selected_rows (selection) >= 1)
       gtk_widget_set_sensitive (menuitem_remove, TRUE);
     else
       gtk_widget_set_sensitive (menuitem_remove, FALSE);
-    if (gtk_tree_selection_count_selected_rows (selection) == 1)
-      gtk_widget_set_sensitive (menuitem_rename, TRUE);
-    else
-      gtk_widget_set_sensitive (menuitem_rename, FALSE);
+    if (gtk_tree_selection_count_selected_rows (selection) == 1) {
+      gtk_widget_set_sensitive (menuitem_rename_artist, TRUE);
+      gtk_widget_set_sensitive (menuitem_rename_title, TRUE);
+    } else {
+      gtk_widget_set_sensitive (menuitem_rename_artist, FALSE);
+      gtk_widget_set_sensitive (menuitem_rename_title, FALSE);
+    }
 
     gtk_menu_popup (GTK_MENU (menu_popup), NULL, NULL, NULL, NULL, event->button, gtk_get_current_event_time ());
     return TRUE;
@@ -607,9 +638,8 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
   return FALSE;
 }
 
-/*
 static void
-cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc)
+cb_cell_artist_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   
@@ -617,26 +647,34 @@ cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
   GtkTreeModel *model;
   GtkTreePath *real_path;
 
-  if (strlen (newtext) == 0) {
-    xfce_err (_("You must give a name to the file"));
-    return;
-  }
-    
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   real_path = gtk_tree_path_new_from_string (path);
 
   if (gtk_tree_model_get_iter (model, &iter, real_path)) {
-    if (file_exists_on_same_level (model, real_path, TRUE, newtext)) {
-      xfce_err (_("A file with the same name is already present in the composition"));
-    }
-    else {
-      gtk_tree_store_set (GTK_TREE_STORE (model), &iter, AUDIO_COMPOSITION_COLUMN_CONTENT, newtext, -1);
-    }
+    gtk_tree_store_set (GTK_TREE_STORE (model), &iter, AUDIO_COMPOSITION_COLUMN_ARTIST, newtext, -1);
   }
 
   gtk_tree_path_free (real_path);
 }
-*/
+
+static void
+cb_cell_title_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc)
+{
+  XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
+  
+  GtkTreeIter iter;
+  GtkTreeModel *model;
+  GtkTreePath *real_path;
+
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
+  real_path = gtk_tree_path_new_from_string (path);
+
+  if (gtk_tree_model_get_iter (model, &iter, real_path)) {
+    gtk_tree_store_set (GTK_TREE_STORE (model), &iter, AUDIO_COMPOSITION_COLUMN_TITLE, newtext, -1);
+  }
+
+  gtk_tree_path_free (real_path);
+}
 
 static void
 tracks_changed (XfburnAudioComposition *ac)
@@ -686,7 +724,7 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc)
 }
 
 static void
-action_rename_selection (GtkAction * action, XfburnAudioComposition * dc)
+action_rename_selection_artist (GtkAction * action, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   
@@ -700,8 +738,34 @@ action_rename_selection (GtkAction * action, XfburnAudioComposition * dc)
   list = gtk_tree_selection_get_selected_rows (selection, &model);
 
   path = (GtkTreePath *) list->data;
-  column = gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_COLUMN_CONTENT - 1);
-  /* -1 because of COLUMN_ICON */
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 2);
+
+  g_assert (column != NULL);
+  
+  gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->content), path, column, TRUE);
+
+  gtk_tree_path_free (path);
+  g_list_free (list);
+}
+
+static void
+action_rename_selection_title (GtkAction * action, XfburnAudioComposition * dc)
+{
+  XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
+  
+  GtkTreeSelection *selection;
+  GtkTreeModel *model;
+  GList *list;
+  GtkTreePath *path;
+  GtkTreeViewColumn *column;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->content));
+  list = gtk_tree_selection_get_selected_rows (selection, &model);
+
+  path = (GtkTreePath *) list->data;
+  column = gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 3);
+
+  g_assert (column != NULL);
   
   gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->content), path, column, TRUE);
 
@@ -1023,6 +1087,8 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
                           AUDIO_COMPOSITION_COLUMN_CONTENT, name,
                           AUDIO_COMPOSITION_COLUMN_SIZE, (guint64) s.st_size, AUDIO_COMPOSITION_COLUMN_PATH, path,
                           AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, "00:00",
+                          AUDIO_COMPOSITION_COLUMN_ARTIST, "",
+                          AUDIO_COMPOSITION_COLUMN_TITLE, "",
                           AUDIO_COMPOSITION_COLUMN_TYPE, AUDIO_COMPOSITION_TYPE_RAW, -1);
       gdk_threads_leave ();
 
