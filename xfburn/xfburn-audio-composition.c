@@ -473,9 +473,10 @@ hide_custom_controls (XfburnComposition *composition)
 static void
 cb_begin_burn (XfburnDataDiscUsage * du, XfburnAudioComposition * dc)
 {
-  /*
   XfburnMainWindow *mainwin = xfburn_main_window_get_instance ();
   GtkWidget *dialog = NULL;
+  struct burn_source *src;
+  /*
   IsoImage *image = NULL;
 
   if (!iso_init()) {
@@ -484,20 +485,23 @@ cb_begin_burn (XfburnDataDiscUsage * du, XfburnAudioComposition * dc)
   }
 
   image = generate_iso_image (XFBURN_AUDIO_COMPOSITION (dc));
+  */
+
+  src = generate_audio_src (dc);
   
   switch (xfburn_data_disc_usage_get_disc_type (du)) {
   case CD_DISC:
-    dialog = xfburn_burn_data_cd_composition_dialog_new (image);
+    dialog = xfburn_burn_audio_cd_composition_dialog_new (src);
     break;
   case DVD_DISC:
-    dialog = xfburn_burn_data_dvd_composition_dialog_new (image);
+    xfce_err (_("Cannot burn audio onto a DVD"));
+    return;
     break;
   }
 
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (mainwin));
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
-  */
 }
 
 static void
