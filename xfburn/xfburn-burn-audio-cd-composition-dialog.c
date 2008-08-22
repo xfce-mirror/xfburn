@@ -38,15 +38,15 @@
 #include "xfburn-settings.h"
 
 #include "xfburn-device-box.h"
-#include "xfburn-burn-data-composition-base-dialog.h"
+#include "xfburn-burn-audio-cd-composition-dialog.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-perform-burn.h"
 
-#define XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, XfburnBurnDataCompositionBaseDialogPrivate))
+#define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, XfburnBurnAudioCdCompositionDialogPrivate))
 
 typedef struct
 {
-  IsoImage *image;
+  GSList *track_list;
 
   GtkWidget *frame_device;
   GtkWidget *device_box;
@@ -67,11 +67,11 @@ typedef struct
   */
 
   gint response;
-} XfburnBurnDataCompositionBaseDialogPrivate;
+} XfburnBurnAudioCdCompositionDialogPrivate;
 
 enum {
   PROP_0,
-  PROP_IMAGE
+  PROP_TRACK_LIST,
 };
 
 /*
@@ -88,76 +88,76 @@ char *proceed_image[] = {
 */
 
 /* prototypes */
-static void xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBaseDialogClass * klass);
-static GObject * xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
-static void xfburn_burn_data_composition_base_dialog_finalize (GObject * object);
+static void xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass);
+static GObject * xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
+static void xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object);
 
-static void xfburn_burn_data_composition_base_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
-static void xfburn_burn_data_composition_base_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec);
+static void xfburn_burn_audio_cd_composition_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
+static void xfburn_burn_audio_cd_composition_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec);
 
 /*
  * Disabled: change button_proceed functionality
-GtkWidget * create_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog, const gchar *stock, const gchar *text);
-void update_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog);
-static void cb_proceed_clicked (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
+GtkWidget * create_proceed_button (XfburnBurnAudioCdCompositionDialog * dialog, const gchar *stock, const gchar *text);
+void update_proceed_button (XfburnBurnAudioCdCompositionDialog * dialog);
+static void cb_proceed_clicked (GtkButton * button, XfburnBurnAudioCdCompositionDialog * dialog);
 */
-static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
-static void cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
-static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog);
-static void cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_id,
-                                XfburnBurnDataCompositionBaseDialogPrivate * priv);
+static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnAudioCdCompositionDialog * dialog);
+static void cb_browse_iso (GtkButton * button, XfburnBurnAudioCdCompositionDialog * dialog);
+static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog);
+static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_id,
+                                XfburnBurnAudioCdCompositionDialogPrivate * priv);
 
 /* globals */
 static XfceTitledDialogClass *parent_class = NULL;
 
 GtkType
-xfburn_burn_data_composition_base_dialog_get_type ()
+xfburn_burn_audio_cd_composition_dialog_get_type ()
 {
   static GtkType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {
-      sizeof (XfburnBurnDataCompositionBaseDialogClass),
+      sizeof (XfburnBurnAudioCdCompositionDialogClass),
       NULL,
       NULL,
-      (GClassInitFunc) xfburn_burn_data_composition_base_dialog_class_init,
+      (GClassInitFunc) xfburn_burn_audio_cd_composition_dialog_class_init,
       NULL,
       NULL,
-      sizeof (XfburnBurnDataCompositionBaseDialog),
+      sizeof (XfburnBurnAudioCdCompositionDialog),
       0,
       NULL,
     };
 
-    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBurnDataCompositionBaseDialog", &our_info, 0);
+    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBurnAudioCdCompositionDialog", &our_info, 0);
   }
 
   return type;
 }
 
 static void
-xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBaseDialogClass * klass)
+xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  g_type_class_add_private (klass, sizeof (XfburnBurnDataCompositionBaseDialogPrivate));
+  g_type_class_add_private (klass, sizeof (XfburnBurnAudioCdCompositionDialogPrivate));
   
-  object_class->constructor = xfburn_burn_data_composition_base_dialog_constructor;
-  object_class->finalize = xfburn_burn_data_composition_base_dialog_finalize;
-  object_class->get_property = xfburn_burn_data_composition_base_dialog_get_property;
-  object_class->set_property = xfburn_burn_data_composition_base_dialog_set_property;
+  object_class->constructor = xfburn_burn_audio_cd_composition_dialog_constructor;
+  object_class->finalize = xfburn_burn_audio_cd_composition_dialog_finalize;
+  object_class->get_property = xfburn_burn_audio_cd_composition_dialog_get_property;
+  object_class->set_property = xfburn_burn_audio_cd_composition_dialog_set_property;
 
   /* properties */
-  g_object_class_install_property (object_class, PROP_IMAGE,
-				   g_param_spec_pointer ("image", "Image", "Image", G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_TRACK_LIST,
+				   g_param_spec_pointer ("track-list", "Track List", "Track List", G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
 }
 
 static GObject *
-xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
+xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
 {
   GObject *gobj;
-  XfburnBurnDataCompositionBaseDialog *obj;
-  XfburnBurnDataCompositionBaseDialogPrivate *priv;
+  XfburnBurnAudioCdCompositionDialog *obj;
+  XfburnBurnAudioCdCompositionDialogPrivate *priv;
   
   GdkPixbuf *icon = NULL;
   GtkBox *box;
@@ -168,11 +168,11 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   GtkWidget *button;
   gchar *default_path;
   gchar *tmp_dir;
-  const char *comp_name;
+  //const char *comp_name;
 
   gobj = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_properties, construct_properties);
-  obj = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG (gobj);
-  priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (obj);
+  obj = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG (gobj);
+  priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (obj);
   box = GTK_BOX (GTK_DIALOG (obj)->vbox);
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
@@ -192,6 +192,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gtk_box_pack_start (box, priv->frame_device, FALSE, FALSE, BORDER);
 
   /* composition name */
+  /*
   comp_name = iso_image_get_volume_id (priv->image);
   if (strcmp (comp_name, _(DATA_COMPOSITION_DEFAULT_NAME)) == 0) {
     GtkWidget *label;
@@ -214,6 +215,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   } else {
     priv->entry = NULL;
   }
+  */
 
   /* options */
   vbox = gtk_vbox_new (FALSE, 0);
@@ -296,13 +298,13 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
 }
 
 static void
-xfburn_burn_data_composition_base_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec)
+xfburn_burn_audio_cd_composition_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec)
 {
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (object);
+  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (object);
 
   switch (prop_id) {
-  case PROP_IMAGE:
-    g_value_set_pointer (value, priv->image);
+  case PROP_TRACK_LIST:
+    g_value_set_pointer (value, priv->track_list);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -311,13 +313,13 @@ xfburn_burn_data_composition_base_dialog_get_property (GObject * object, guint p
 }
 
 static void
-xfburn_burn_data_composition_base_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec)
+xfburn_burn_audio_cd_composition_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec)
 {
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (object);
+  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (object);
 
   switch (prop_id) {
-  case PROP_IMAGE:
-    priv->image = g_value_get_pointer (value);
+  case PROP_TRACK_LIST:
+    priv->track_list= g_value_get_pointer (value);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -326,11 +328,9 @@ xfburn_burn_data_composition_base_dialog_set_property (GObject * object, guint p
 }
 
 static void
-xfburn_burn_data_composition_base_dialog_finalize (GObject * object)
+xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object)
 {
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (object);
-
-  iso_image_unref (priv->image);
+  //XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (object);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -339,9 +339,9 @@ xfburn_burn_data_composition_base_dialog_finalize (GObject * object)
 /*
  * Disabled: change button_proceed functionality
 GtkWidget *
-create_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog, const gchar *stock, const gchar *text)
+create_proceed_button (XfburnBurnAudioCdCompositionDialog * dialog, const gchar *stock, const gchar *text)
 {
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
+  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
   GtkWidget *button, *align, *image, *hbox, *label;
 
   priv->button_proceed = button = gtk_button_new ();
@@ -364,9 +364,9 @@ create_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog, const gchar
 }
 
 void 
-update_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog)
+update_proceed_button (XfburnBurnAudioCdCompositionDialog * dialog)
 {
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
+  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
 
   gtk_label_set_text (GTK_LABEL (priv->label_proceed), _(proceed_text[priv->response]));
   gtk_image_set_from_stock (GTK_IMAGE (priv->image_proceed), proceed_image[priv->response], GTK_ICON_SIZE_BUTTON);
@@ -374,9 +374,9 @@ update_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog)
 */
 
 static void
-cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
+cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnAudioCdCompositionDialog * dialog)
 {
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
+  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
   gboolean valid_disc;
 
   gtk_widget_set_sensitive (priv->frame_device, !gtk_toggle_button_get_active (button));
@@ -397,23 +397,23 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBa
 /*
  * Disabled: change button_proceed functionality
 static void
-cb_proceed_clicked (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
+cb_proceed_clicked (GtkButton * button, XfburnBurnAudioCdCompositionDialog * dialog)
 {
 }
 */
 
 static void
-cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
+cb_browse_iso (GtkButton * button, XfburnBurnAudioCdCompositionDialog * dialog)
 {
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
+  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
   
   xfburn_browse_for_file (GTK_ENTRY (priv->entry_path_iso), GTK_WINDOW (dialog));
 }
 
 static void
-cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog)
+cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog)
 {
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
+  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
   gboolean valid_disc;
 
   g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
@@ -421,10 +421,10 @@ cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnDataCo
   /*
    * Disabled: change button_proceed functionality
   if (!valid_disc && xfburn_device_list_get_disc_status () == BURN_DISC_FULL && xfburn_device_list_disc_is_erasable ()) {
-    priv->response = XFBURN_BURN_DATA_COMPOSITION_DIALOG_BLANK;
+    priv->response = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_BLANK;
     valid_disc = TRUE;
   } else {
-    priv->response = XFBURN_BURN_DATA_COMPOSITION_DIALOG_BURN;
+    priv->response = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_BURN;
   }
   update_proceed_button (dialog);
   */
@@ -616,40 +616,23 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
 }
 
 static void
-cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_id, XfburnBurnDataCompositionBaseDialogPrivate * priv)
+cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_id, XfburnBurnAudioCdCompositionDialogPrivate * priv)
 {
   if (response_id == GTK_RESPONSE_OK) {
     GtkWidget *dialog_progress;
 
     struct burn_source * src = NULL;
-    IsoWriteOpts *write_opts;
 
     /* If the name was the default, update the image volume id and volset id */
+    /*
     if (priv->entry != NULL) {
       const gchar * comp_name = gtk_entry_get_text (GTK_ENTRY (priv->entry));
       iso_image_set_volume_id (priv->image, comp_name);
       iso_image_set_volset_id (priv->image, comp_name);
     }
-
-    /* Sets profile 0 [basic] */
-    iso_write_opts_new (&write_opts, 0);
-
-    iso_write_opts_set_iso_level (write_opts, 2);
-    iso_write_opts_set_rockridge (write_opts, TRUE);
-    iso_write_opts_set_joliet (write_opts, TRUE);
-    iso_write_opts_set_allow_deep_paths (write_opts, TRUE);
-    /* not sure if we want that
-    iso_write_opts_set_omit_version_numbers (write_opts, TRUE);
     */
 
-    if (iso_image_create_burn_source (priv->image, write_opts, &src) < 0) {
-      /* could not create source */
-      xfce_err (_("Could not create ISO source structure"));
-      return;
-    }
-
-    /* iso_image_create_burn_source copies the data it needs */
-    iso_write_opts_free (write_opts);
+    /* FIXME: create burn source from priv->track_list */
 
     dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
@@ -678,7 +661,6 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
       speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
       write_mode = xfburn_device_box_get_mode (XFBURN_DEVICE_BOX (priv->device_box));
 
-      /* FIXME: how much buffer space do we need? Probably should put this into settings */
       src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", XFBURN_FIFO_DEFAULT_SIZE) / 2, 0);
       burn_source_free (src);
 
@@ -700,11 +682,11 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
 
 /* public */
 GtkWidget *
-xfburn_burn_data_composition_base_dialog_new (IsoImage *image)
+xfburn_burn_audio_cd_composition_dialog_new (GSList *track_list)
 {
-  XfburnBurnDataCompositionBaseDialog *obj;
+  XfburnBurnAudioCdCompositionDialog *obj;
 
-  obj = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG (g_object_new (XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, "image", image, NULL));
+  obj = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, "track-list", track_list, NULL));
   
   return GTK_WIDGET (obj);
 }

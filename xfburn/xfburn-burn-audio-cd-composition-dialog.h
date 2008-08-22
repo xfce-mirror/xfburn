@@ -17,8 +17,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_H__
-#define __XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_H__
+#ifndef __XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_H__
+#define __XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_H__
 
 #ifdef	HAVE_CONFIG_H
 #include <config.h>
@@ -31,32 +31,32 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG         (xfburn_burn_data_composition_base_dialog_get_type ())
-#define XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, XfburnBurnDataCompositionBaseDialog))
-#define XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, XfburnBurnDataCompositionBaseDialogClass))
-#define XFBURN_IS_BURN_DATA_COMPOSITION_BASE_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG))
-#define XFBURN_IS_BURN_DATA_COMPOSITION_BASE_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG))
-#define XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, XfburnBurnDataCompositionBaseDialogClass))
+#define XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG         (xfburn_burn_audio_cd_composition_dialog_get_type ())
+#define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, XfburnBurnAudioCdCompositionDialog))
+#define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, XfburnBurnAudioCdCompositionDialogClass))
+#define XFBURN_IS_BURN_AUDIO_CD_COMPOSITION_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG))
+#define XFBURN_IS_BURN_AUDIO_CD_COMPOSITION_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG))
+#define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, XfburnBurnAudioCdCompositionDialogClass))
 
 enum {
-  XFBURN_BURN_DATA_COMPOSITION_DIALOG_CANCEL = -1,
-  XFBURN_BURN_DATA_COMPOSITION_DIALOG_BURN,
-  XFBURN_BURN_DATA_COMPOSITION_DIALOG_BLANK,
+  XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_CANCEL = -1,
+  XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_BURN,
+  XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_BLANK,
 };
 
 typedef struct
 {
   XfceTitledDialog parent;
-} XfburnBurnDataCompositionBaseDialog;
+} XfburnBurnAudioCdCompositionDialog;
 
 typedef struct
 {
   XfceTitledDialogClass parent_class;
-} XfburnBurnDataCompositionBaseDialogClass;
+} XfburnBurnAudioCdCompositionDialogClass;
 
-GtkType xfburn_burn_data_composition_base_dialog_get_type ();
+GtkType xfburn_burn_audio_cd_composition_dialog_get_type ();
 
-GtkWidget *xfburn_burn_data_composition_base_dialog_new (IsoImage *image);
+GtkWidget *xfburn_burn_audio_cd_composition_dialog_new (GSList *tracklist);
 
 G_END_DECLS
-#endif /* XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_H */
+#endif /* XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_H */

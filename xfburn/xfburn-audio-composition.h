@@ -52,6 +52,14 @@ enum
   AUDIO_COMPOSITION_DND_TARGET_TEXT_URI_LIST,
 };
 
+typedef struct
+{
+  gchar *inputfile;
+  gint pos;
+  gchar *artist;
+  gchar *title;
+} XfburnAudioTrack;
+
 GtkType xfburn_audio_composition_get_type (void);
 
 GtkWidget *xfburn_audio_composition_new (void);

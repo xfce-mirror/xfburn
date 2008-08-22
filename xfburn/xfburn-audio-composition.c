@@ -50,9 +50,10 @@
 
 #include "xfburn-adding-progress.h"
 #include "xfburn-composition.h"
-#include "xfburn-data-disc-usage.h"
+#include "xfburn-disc-usage.h"
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
+#include "xfburn-burn-audio-cd-composition-dialog.h"
 
 #define XFBURN_AUDIO_COMPOSITION_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_AUDIO_COMPOSITION, XfburnAudioCompositionPrivate))
 
@@ -121,7 +122,8 @@ static void action_add_selected_files (GtkAction *, XfburnAudioComposition *);
 static void tracks_changed (XfburnAudioComposition *ac);
 static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnAudioComposition * dc);
 static void cb_selection_changed (GtkTreeSelection *selection, XfburnAudioComposition * dc);
-static void cb_begin_burn (XfburnDataDiscUsage * du, XfburnAudioComposition * dc);
+static GSList * generate_audio_src (XfburnAudioComposition * ac);
+static void cb_begin_burn (XfburnDiscUsage * du, XfburnAudioComposition * dc);
 static void cb_cell_artist_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc);
 static void cb_cell_title_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc);
 
@@ -470,26 +472,42 @@ hide_custom_controls (XfburnComposition *composition)
   DBG ("hide");
 }
 
+static GSList *
+generate_audio_src (XfburnAudioComposition * ac)
+{
+  XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (ac);
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  GSList *list = NULL;
+
+  model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
+  if (gtk_tree_model_get_iter_first (model, &iter)) {
+    do {
+      XfburnAudioTrack *track = g_new0 (XfburnAudioTrack, 1);
+
+      gtk_tree_model_get (model, &iter, 
+                          AUDIO_COMPOSITION_COLUMN_CONTENT, &track->inputfile,
+                          AUDIO_COMPOSITION_COLUMN_POS, &track->pos,
+                          -1);
+
+      list = g_slist_append (list, track);
+
+    } while (gtk_tree_model_iter_next (model, &iter));
+  }
+
+  return list;
+}
+
 static void
-cb_begin_burn (XfburnDataDiscUsage * du, XfburnAudioComposition * dc)
+cb_begin_burn (XfburnDiscUsage * du, XfburnAudioComposition * dc)
 {
   XfburnMainWindow *mainwin = xfburn_main_window_get_instance ();
   GtkWidget *dialog = NULL;
-  struct burn_source *src;
-  /*
-  IsoImage *image = NULL;
-
-  if (!iso_init()) {
-    g_critical ("Could not initialize libisofs!");
-    return;
-  }
-
-  image = generate_iso_image (XFBURN_AUDIO_COMPOSITION (dc));
-  */
+  GSList *src;
 
   src = generate_audio_src (dc);
   
-  switch (xfburn_data_disc_usage_get_disc_type (du)) {
+  switch (xfburn_disc_usage_get_disc_type (du)) {
   case CD_DISC:
     dialog = xfburn_burn_audio_cd_composition_dialog_new (src);
     break;
@@ -1268,7 +1286,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
                       AUDIO_COMPOSITION_COLUMN_TYPE, &type,
                       -1);
   
-  DBG ("dest = %p", dest);
+  //DBG ("dest = %p", dest);
   if (dest == NULL)
     gtk_tree_store_append (GTK_TREE_STORE (model), iter_new, dest);                          
   else switch (position) {
@@ -1288,7 +1306,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
         path_level = gtk_tree_path_new_first ();
       }
     
-    /*
+      /*
       if (file_exists_on_same_level (model, path_level, FALSE, name)) {
         xfce_warn (_("A file named \"%s\" already exists in this directory, the file hasn't been added"), name);
         goto cleanup;
