@@ -136,7 +136,9 @@ main (int argc, char **argv)
   GtkWidget *mainwin;
   gint n_drives;
   GError *error = NULL;
+#ifdef HAVE_HAL
   gchar *error_msg;
+#endif
 
 #if DEBUG > 0
   g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);

@@ -337,7 +337,9 @@ xfburn_device_box_init (XfburnDeviceBox * box)
 static void
 xfburn_device_box_finalize (GObject * object)
 {
+#ifdef HAVE_HAL
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (object);
+#endif
 
 #ifdef HAVE_THUNAR_VFS
   //g_object_unref (priv->thunar_volman);
