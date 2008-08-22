@@ -459,11 +459,13 @@ xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *dev
 {
   XfburnHalManagerPrivate *priv = XFBURN_HAL_MANAGER_GET_PRIVATE (halman);
   LibHalVolume *vol;
+#ifdef HAVE_THUNAR_VFS
   const char *mp;
   ThunarVfsInfo *th_info;
   ThunarVfsVolumeManager *th_volman;
   ThunarVfsVolume *th_vol;
   ThunarVfsPath *th_path;
+#endif
   gboolean unmounted = FALSE;
   
   vol = libhal_volume_from_device_file (priv->hal_context, device->addr);

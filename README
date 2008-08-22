@@ -32,11 +32,16 @@ Requirements
  * libisofs version 0.6.2 or newer
  * libburn version 0.4.2 or newer
 
-Optional:
- * thunar-vfs (highly recommended, required for some drag and drop code,
-               icons and automatic disc unmounting)
+Optional, but highly recommended
+--------------------------------
  * hal        (required for notification of disc eject / insert and
                also for automatic disc unmounting)
+ * thunar-vfs (required for some drag and drop code, icons and automatic disc 
+               unmounting)
+
+The author works with both hal and thunar-vfs enabled, so there might be the
+occasional bug that breaks compilation without these components.  Please
+report a bug, and it will get fixed.
 
 ==============================================================================
 Future Plans

@@ -180,7 +180,9 @@ main (int argc, char **argv)
   error_msg = xfburn_hal_manager_create_global ();
   if (error_msg) {
     xfce_err (error_msg);
+#ifdef HAVE_THUNAR_VFS
     thunar_vfs_shutdown ();
+#endif
     gdk_threads_leave ();
     return EXIT_FAILURE;
   }
