@@ -67,6 +67,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   XfburnProgressDialogStatus final_status;
   const char *final_message;
   gdouble percent = 0.0;
+  int dbg_no;
 
   while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
     usleep(100001);
@@ -112,9 +113,12 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
   while (burn_drive_get_status (drive, NULL) == BURN_DRIVE_SPAWNING)
     usleep(1002);
+
   time_start = time (NULL);
+  dbg_no = 0;
   while ((status = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
     time_t time_now = time (NULL);
+    dbg_no++;
 
     switch (status) {
     case BURN_DRIVE_WRITING:
@@ -124,6 +128,8 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
         int fifo_status, fifo_size, fifo_free;
         char *fifo_text;
 
+        if ((dbg_no % 16) == 0)
+          DBG ("track = %d\tsector %d/%d", progress.track, progress.sector, progress.sectors);
 	percent = (gdouble) (progress.buffer_capacity - progress.buffer_available) / (gdouble) progress.buffer_capacity;
 	xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 

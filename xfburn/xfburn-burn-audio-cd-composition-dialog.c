@@ -41,6 +41,7 @@
 #include "xfburn-burn-audio-cd-composition-dialog.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-perform-burn.h"
+#include "xfburn-audio-composition.h"
 
 #define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, XfburnBurnAudioCdCompositionDialogPrivate))
 
@@ -60,11 +61,6 @@ typedef struct
   GtkWidget *entry_path_iso;
   GtkWidget *check_dummy;
   GtkWidget *button_proceed;
-  /*
-   * Disabled: change button_proceed functionality
-  GtkWidget *label_proceed;
-  GtkWidget *image_proceed;
-  */
 
   gint response;
 } XfburnBurnAudioCdCompositionDialogPrivate;
@@ -74,19 +70,6 @@ enum {
   PROP_TRACK_LIST,
 };
 
-/*
- * Disabled: change button_proceed functionality
-char *proceed_text[] = {
-  "Burn Composition",
-  "   Blank Disc   ",
-};
-
-char *proceed_image[] = {
-  "xfburn-burn-cd",
-  "xfburn-blank-cdrw",
-};
-*/
-
 /* prototypes */
 static void xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass);
 static GObject * xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
@@ -95,12 +78,6 @@ static void xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object);
 static void xfburn_burn_audio_cd_composition_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
 static void xfburn_burn_audio_cd_composition_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec);
 
-/*
- * Disabled: change button_proceed functionality
-GtkWidget * create_proceed_button (XfburnBurnAudioCdCompositionDialog * dialog, const gchar *stock, const gchar *text);
-void update_proceed_button (XfburnBurnAudioCdCompositionDialog * dialog);
-static void cb_proceed_clicked (GtkButton * button, XfburnBurnAudioCdCompositionDialog * dialog);
-*/
 static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnAudioCdCompositionDialog * dialog);
 static void cb_browse_iso (GtkButton * button, XfburnBurnAudioCdCompositionDialog * dialog);
 static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog);
@@ -278,11 +255,6 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
   priv->button_proceed = button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn Composition"));
-  /*
-   * Disabled: change button_proceed functionality
-  button = create_proceed_button (obj, "xfburn-burn-cd", "");
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_proceed_clicked), obj);
-  */
 
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
@@ -336,43 +308,6 @@ xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object)
 }
 
 /* internals */
-/*
- * Disabled: change button_proceed functionality
-GtkWidget *
-create_proceed_button (XfburnBurnAudioCdCompositionDialog * dialog, const gchar *stock, const gchar *text)
-{
-  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
-  GtkWidget *button, *align, *image, *hbox, *label;
-
-  priv->button_proceed = button = gtk_button_new ();
-  priv->label_proceed = label = gtk_label_new_with_mnemonic (text);
-  gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);
-
-  priv->image_proceed = image = gtk_image_new_from_stock (stock, GTK_ICON_SIZE_BUTTON);
-  hbox = gtk_hbox_new (FALSE, 2);
-
-  align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
-
-  gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
-  gtk_box_pack_end (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-
-  gtk_container_add (GTK_CONTAINER (button), align);
-  gtk_container_add (GTK_CONTAINER (align), hbox);
-  gtk_widget_show_all (align);
-
-  return button;
-}
-
-void 
-update_proceed_button (XfburnBurnAudioCdCompositionDialog * dialog)
-{
-  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
-
-  gtk_label_set_text (GTK_LABEL (priv->label_proceed), _(proceed_text[priv->response]));
-  gtk_image_set_from_stock (GTK_IMAGE (priv->image_proceed), proceed_image[priv->response], GTK_ICON_SIZE_BUTTON);
-}
-*/
-
 static void
 cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnAudioCdCompositionDialog * dialog)
 {
@@ -394,14 +329,6 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnAudioCdCompositio
   }
 }
 
-/*
- * Disabled: change button_proceed functionality
-static void
-cb_proceed_clicked (GtkButton * button, XfburnBurnAudioCdCompositionDialog * dialog)
-{
-}
-*/
-
 static void
 cb_browse_iso (GtkButton * button, XfburnBurnAudioCdCompositionDialog * dialog)
 {
@@ -418,16 +345,6 @@ cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioC
 
   g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
 
-  /*
-   * Disabled: change button_proceed functionality
-  if (!valid_disc && xfburn_device_list_get_disc_status () == BURN_DISC_FULL && xfburn_device_list_disc_is_erasable ()) {
-    priv->response = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_BLANK;
-    valid_disc = TRUE;
-  } else {
-    priv->response = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_BURN;
-  }
-  update_proceed_button (dialog);
-  */
   gtk_widget_set_sensitive (priv->button_proceed, valid_disc);
 }
 
@@ -511,8 +428,7 @@ thread_write_iso (ThreadWriteIsoParams * params)
 typedef struct {
   GtkWidget *dialog_progress;
   XfburnDevice *device;
-  struct burn_source *src;
-  gboolean is_fifo;
+  GSList *tracks;
   gint speed;
   XfburnWriteMode write_mode;
   gboolean eject;
@@ -522,12 +438,12 @@ typedef struct {
 
 static void 
 thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_drive *drive,
-                           struct burn_disc *disc, struct burn_session *session, struct burn_track *track)
+                           struct burn_disc *disc, struct burn_session *session, int n_tracks, struct burn_track **tracks)
 {
   GtkWidget *dialog_progress = params->dialog_progress;
 
   struct burn_write_opts * burn_options;
-  gint ret;
+  gint ret,i;
 
   ret = burn_disc_add_session (disc, session, BURN_POS_END);
   if (ret == 0) {
@@ -535,12 +451,9 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
     return;
   }
 
-  if (burn_track_set_source (track, params->src) != BURN_SOURCE_OK) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot attach source object to track object"));
-    return;
+  for (i=0; i<n_tracks; i++) {
+    burn_session_add_track (session, tracks[i], BURN_POS_END);
   }
-  
-  burn_session_add_track (session, track, BURN_POS_END);
 
   burn_options = burn_write_opts_new (drive);
   burn_write_opts_set_perform_opc (burn_options, 0);
@@ -572,7 +485,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_drive_set_speed (drive, 0, params->speed);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
 
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, (params->is_fifo ? params->src : NULL));
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, NULL);
 
   burn_write_opts_free (burn_options);
 }
@@ -584,34 +497,88 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
 
   struct burn_disc *disc;
   struct burn_session *session;
-  struct burn_track *track;
+  struct burn_track **tracks;
+  struct burn_source **srcs;
+  int *fds;
+  int n_tracks;
+  int i;
+  GSList *track_list;
 
   struct burn_drive_info *drive_info = NULL;
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
-    burn_source_free (params->src);
+    /* FIXME: free contents of params! */
     g_free (params);
     return;
   }
 
   disc = burn_disc_create ();
   session = burn_session_create ();
-  track = burn_track_create ();
+
+  n_tracks = g_slist_length (params->tracks);
+  tracks = g_new (struct burn_track *, n_tracks);
+  srcs = g_new (struct burn_source *, n_tracks);
+  fds = g_new (int, n_tracks);
+
+  track_list = params->tracks;
+  for (i=0; i<n_tracks; i++) {
+    char header[44];
+    XfburnAudioTrack *atrack = track_list->data;
+
+    fds[i] = open (atrack->inputfile, 0);
+    if (fds[i] == -1)
+      g_error ("Could not open %s!", atrack->inputfile);
+
+    read (fds[i], header, 44);
+
+    srcs[i] = burn_fd_source_new (fds[i], -1 , 0);
+    if (srcs[i] == NULL)
+      g_error ("Could not create burn_source from %s!", atrack->inputfile);
+
+    tracks[i] = burn_track_create ();
+    
+    if (burn_track_set_source (tracks[i], srcs[i]) != BURN_SOURCE_OK)
+      g_error ("Could not add source to track!");
+
+    /* FIXME: obviously this is a very crude check... */
+    header[4] = '\0';
+    if (strcmp (header, "RIFX") == 0)
+      burn_track_set_byte_swap (tracks[i], TRUE);
+    else if (strcmp (header, "RIFF") != 0)
+      g_error ("%s is not a wave file!", atrack->inputfile);
+
+    burn_track_define_data (tracks[i], 0, 0, 1, BURN_AUDIO);
+
+    track_list = g_slist_next (track_list);
+  }
+
+  /*
+      src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", XFBURN_FIFO_DEFAULT_SIZE) / 2, 0);
+      burn_source_free (src);
+  */
+
 
   if (!xfburn_device_grab (params->device, &drive_info)) {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab drive"));
   } else {
-    thread_burn_prep_and_burn (params, drive_info->drive, disc, session, track);
+    thread_burn_prep_and_burn (params, drive_info->drive, disc, session, n_tracks, tracks);
     burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
   }
 
-  burn_track_free (track);
+  for (i=0; i<n_tracks; i++) {
+    burn_track_free (tracks[i]);
+    burn_source_free (srcs[i]);
+    close (fds[i]);
+  }
+  g_free (srcs);
+  g_free (tracks);
+  g_free (fds);
   burn_session_free (session);
   burn_disc_free (disc);
   burn_finish ();
 
-  burn_source_free (params->src);
+  /* FIXME: free track_list here? */
   g_free (params);
 }
 
@@ -631,8 +598,6 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
       iso_image_set_volset_id (priv->image, comp_name);
     }
     */
-
-    /* FIXME: create burn source from priv->track_list */
 
     dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
@@ -655,21 +620,17 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
       XfburnDevice *device;
       gint speed;
       XfburnWriteMode write_mode;
-      struct burn_source * src_fifo = NULL;
+      //struct burn_source * src_fifo = NULL;
 
       device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
       speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
       write_mode = xfburn_device_box_get_mode (XFBURN_DEVICE_BOX (priv->device_box));
 
-      src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", XFBURN_FIFO_DEFAULT_SIZE) / 2, 0);
-      burn_source_free (src);
-
       /* burn composition */
       params = g_new0 (ThreadBurnCompositionParams, 1);
       params->dialog_progress = dialog_progress;
       params->device = device;
-      params->src = src_fifo;
-      params->is_fifo = TRUE;
+      params->tracks = priv->track_list;
       params->speed = speed;
       params->write_mode = write_mode;
       params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));

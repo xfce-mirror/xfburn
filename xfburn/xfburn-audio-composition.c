@@ -50,7 +50,7 @@
 
 #include "xfburn-adding-progress.h"
 #include "xfburn-composition.h"
-#include "xfburn-disc-usage.h"
+#include "xfburn-audio-disc-usage.h"
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
 #include "xfburn-burn-audio-cd-composition-dialog.h"
@@ -415,7 +415,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   /* FIXME: progress should have a busy cursor */
 
   /* disc usage */
-  priv->disc_usage = xfburn_disc_usage_new ();
+  priv->disc_usage = xfburn_audio_disc_usage_new ();
   gtk_box_pack_start (GTK_BOX (composition), priv->disc_usage, FALSE, FALSE, 5);
   gtk_widget_show (priv->disc_usage);
   g_signal_connect (G_OBJECT (priv->disc_usage), "begin-burn", G_CALLBACK (cb_begin_burn), composition);
@@ -486,14 +486,16 @@ generate_audio_src (XfburnAudioComposition * ac)
       XfburnAudioTrack *track = g_new0 (XfburnAudioTrack, 1);
 
       gtk_tree_model_get (model, &iter, 
-                          AUDIO_COMPOSITION_COLUMN_CONTENT, &track->inputfile,
+                          AUDIO_COMPOSITION_COLUMN_PATH, &track->inputfile,
                           AUDIO_COMPOSITION_COLUMN_POS, &track->pos,
                           -1);
 
-      list = g_slist_append (list, track);
+      list = g_slist_prepend (list, track);
 
     } while (gtk_tree_model_iter_next (model, &iter));
   }
+
+  list = g_slist_reverse (list);
 
   return list;
 }
@@ -1114,7 +1116,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
                           AUDIO_COMPOSITION_COLUMN_TYPE, AUDIO_COMPOSITION_TYPE_RAW, -1);
       gdk_threads_leave ();
 
-      //xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
+      xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
     }
     //g_free (humansize);
 
