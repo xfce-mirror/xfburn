@@ -193,7 +193,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   GtkListStore *store = NULL;
   GtkCellRenderer *cell;
   
-  gtk_window_set_title (GTK_WINDOW (obj), _("Blank CD-RW"));
+  gtk_window_set_title (GTK_WINDOW (obj), _("Blank Disc"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
   
   icon = gtk_widget_render_icon (GTK_WIDGET (obj), XFBURN_STOCK_BLANK_CDRW, GTK_ICON_SIZE_DIALOG, NULL);
