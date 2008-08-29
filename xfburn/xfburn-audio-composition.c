@@ -144,6 +144,7 @@ static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnAudi
                                                    GtkTreeIter * insertion, GtkTreeViewDropPosition position);
 static gboolean thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeModel * model, const gchar * path, 
                                          GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
+static gboolean has_audio_ext (const gchar *path);
                                   
 typedef struct
 {
@@ -155,6 +156,8 @@ typedef struct
   GList *full_paths_to_add;
   gchar *selected_files;
   GtkTreePath *path_where_insert;
+
+  gboolean warned_about_non_audio;
 
   GdkDragContext * dc;
   gboolean success;
@@ -988,6 +991,27 @@ set_modified (XfburnAudioCompositionPrivate *priv)
   }
 }
 
+static gboolean 
+has_audio_ext (const gchar *path)
+{
+  int len = strlen (path);
+  const gchar *ext = path + len - 3;
+
+  return (strcmp (ext, "wav") == 0);
+}
+
+static void
+notify_not_adding_ext (XfburnAudioComposition * dc, const gchar *path)
+{
+  XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
+
+  g_message ("%s is not a .wav file, not adding it!", path);
+  if (!priv->warned_about_non_audio) {
+    priv->warned_about_non_audio = TRUE;
+    xfce_warn (_("At the moment only .wav files can get added to the compilation!"));
+  }
+}
+
 static gboolean
 thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * dc, 
                                    GtkTreeModel * model, const gchar * path,
@@ -1001,6 +1025,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     gchar *basename = NULL;
     //gchar *humansize = NULL;
     GtkTreePath *tree_path = NULL;
+    gboolean ret;
 
     if (!S_ISDIR (s.st_mode) && !S_ISREG (s.st_mode)) {
       return FALSE;
@@ -1054,6 +1079,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       /* FIXME: if insertion != NULL, we will overwrite its contents, is that OK? */
       iter_last = insertion;
 
+      ret = FALSE;
       while ((filename = g_dir_read_name (dir))) {
         GtkTreeIter new_iter;
         gchar *new_path = NULL;
@@ -1071,6 +1097,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
               iter_last = g_new (GtkTreeIter, 1);
             *iter_last = new_iter;
             position = GTK_TREE_VIEW_DROP_AFTER;
+            ret = TRUE;
           }
           
           g_free (new_path);
@@ -1084,6 +1111,13 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     }
     /* new file */
     else if (S_ISREG (s.st_mode)) {
+      if (!has_audio_ext (path)) {
+        gdk_threads_enter ();
+        notify_not_adding_ext (dc, path);
+        gdk_threads_leave ();
+        return FALSE;
+      }
+
       gdk_threads_enter ();
       if (insertion != NULL) {
         if (position == GTK_TREE_VIEW_DROP_AFTER)
@@ -1117,11 +1151,12 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       gdk_threads_leave ();
 
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
+      ret = TRUE;
     }
     //g_free (humansize);
 
     set_modified (priv);
-    return TRUE;
+    return ret;
   }
   
   return FALSE;
@@ -1363,6 +1398,18 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
   return iter_new;
 }
 
+/*
+static GtkTreeModel *mymodel;
+static GtkTreeIter myiter;
+
+static gboolean
+remove_dummy_row ()
+{
+  gtk_tree_store_remove (GTK_TREE_STORE (mymodel), &myiter);
+  return FALSE;
+}
+*/
+
 static void
 cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                           guint info, guint t, XfburnAudioComposition * composition)
@@ -1378,6 +1425,21 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   g_return_if_fail (sd->data);
   
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
+
+  /*
+   * This would be a workaround for the GtkTreeView critical,
+   * except that in this case the memory for the iter would never
+   * be reclaimed.
+   *
+  gtk_drag_finish (dc, FALSE, FALSE, t);
+  iter_where_insert = g_new0 (GtkTreeIter, 1);
+  gtk_tree_store_append (GTK_TREE_STORE (model), iter_where_insert, NULL);
+  mymodel = model;
+  myiter = *iter_where_insert;
+  g_idle_add (remove_dummy_row, NULL);
+  return;
+  */
+
   
   gtk_tree_view_get_dest_row_at_pos (GTK_TREE_VIEW (widget), x, y, &path_where_insert, &position);
   
@@ -1498,6 +1560,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   else if (sd->target == gdk_atom_intern ("text/plain", FALSE)) {
     ThreadAddFilesDragParams *params;
     const gchar *file = NULL;
+    gboolean ret = FALSE;
 
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
     
@@ -1516,7 +1579,12 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         full_path[strlen (full_path) - 1] = '\0';
 
       /* remember path to add it later in another thread */
-      priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
+      if (has_audio_ext (full_path)) {
+        priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
+        ret = TRUE;
+      } else {
+        notify_not_adding_ext (composition, full_path);
+      }
 
       file = strtok (NULL, "\n");
     }
@@ -1524,44 +1592,8 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
     priv->path_where_insert = path_where_insert;
 
-    params = g_new (ThreadAddFilesDragParams, 1);
-    params->composition = composition;
-    params->position = position;
-    params->widget = widget;
-
-    /* append a dummy row so that gtk doesn't freak out */
-    gtk_tree_store_append (GTK_TREE_STORE (model), &params->iter_dummy, NULL);
-
-    priv->thread_params = params;
-    g_thread_create ((GThreadFunc) thread_add_files_drag, params, FALSE, NULL);
-
-    gtk_drag_finish (dc, TRUE, FALSE, t);
-  } 
-  else if (sd->target == gdk_atom_intern ("text/uri-list", FALSE)) {
-#ifdef HAVE_THUNAR_VFS
-    GList *vfs_paths = NULL;
-    GList *vfs_path;
-    GError *error = NULL;
-    gchar *full_path;
-
-    vfs_paths = thunar_vfs_path_list_from_string ((gchar *) sd->data, &error);
-
-    if (G_LIKELY (vfs_paths != NULL)) {
-      ThreadAddFilesDragParams *params;
-      priv->full_paths_to_add = NULL;
-      for (vfs_path = vfs_paths; vfs_path != NULL; vfs_path = g_list_next (vfs_path)) {
-        ThunarVfsPath *path = THUNAR_VFS_PATH (vfs_path->data);
-        if (thunar_vfs_path_get_scheme (path) != THUNAR_VFS_PATH_SCHEME_FILE)
-          continue;
-        full_path = thunar_vfs_path_dup_string (path);
-        g_debug ("adding uri path: %s", full_path);
-        priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
-      }
-      thunar_vfs_path_list_free (vfs_paths);
-
-      priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
-      priv->path_where_insert = path_where_insert;
-
+    if (ret) {
+      /* we at least will add one file */
       params = g_new (ThreadAddFilesDragParams, 1);
       params->composition = composition;
       params->position = position;
@@ -1574,6 +1606,60 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       g_thread_create ((GThreadFunc) thread_add_files_drag, params, FALSE, NULL);
 
       gtk_drag_finish (dc, TRUE, FALSE, t);
+    } else {
+      gtk_drag_finish (dc, FALSE, FALSE, t);
+      cb_adding_done (XFBURN_ADDING_PROGRESS (priv->progress), composition);
+    }
+  } 
+  else if (sd->target == gdk_atom_intern ("text/uri-list", FALSE)) {
+#ifdef HAVE_THUNAR_VFS
+    GList *vfs_paths = NULL;
+    GList *vfs_path;
+    GError *error = NULL;
+    gchar *full_path;
+    gboolean ret = FALSE;
+
+    vfs_paths = thunar_vfs_path_list_from_string ((gchar *) sd->data, &error);
+
+    if (G_LIKELY (vfs_paths != NULL)) {
+      ThreadAddFilesDragParams *params;
+      priv->full_paths_to_add = NULL;
+      for (vfs_path = vfs_paths; vfs_path != NULL; vfs_path = g_list_next (vfs_path)) {
+        ThunarVfsPath *path = THUNAR_VFS_PATH (vfs_path->data);
+        if (thunar_vfs_path_get_scheme (path) != THUNAR_VFS_PATH_SCHEME_FILE)
+          continue;
+        full_path = thunar_vfs_path_dup_string (path);
+        g_debug ("adding uri path: %s", full_path);
+
+        if (has_audio_ext (full_path)) {
+          priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
+          ret = TRUE;
+        } else {
+          notify_not_adding_ext (composition, full_path);
+        }
+      }
+      thunar_vfs_path_list_free (vfs_paths);
+
+      priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
+      priv->path_where_insert = path_where_insert;
+
+      if (ret) {
+        params = g_new (ThreadAddFilesDragParams, 1);
+        params->composition = composition;
+        params->position = position;
+        params->widget = widget;
+
+        /* append a dummy row so that gtk doesn't freak out */
+        gtk_tree_store_append (GTK_TREE_STORE (model), &params->iter_dummy, NULL);
+
+        priv->thread_params = params;
+        g_thread_create ((GThreadFunc) thread_add_files_drag, params, FALSE, NULL);
+
+        gtk_drag_finish (dc, TRUE, FALSE, t);
+      } else {
+        gtk_drag_finish (dc, FALSE, FALSE, t);
+        cb_adding_done (XFBURN_ADDING_PROGRESS (priv->progress), composition);
+      }
     } else {
       if (G_UNLIKELY (error != NULL))
         g_warning ("text/uri-list drag failed because '%s'", error->message);
