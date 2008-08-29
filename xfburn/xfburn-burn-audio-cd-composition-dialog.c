@@ -490,6 +490,60 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_write_opts_free (burn_options);
 }
 
+/*
+ * Simple check of .wav headers, most info from
+ * http://ccrma.stanford.edu/courses/422/projects/WaveFormat/
+ *
+ * This check might very well not be complete, but should catch
+ * the most important pieces.
+ * FIXME: eventually replace this with a proper check.
+ */
+static gboolean
+valid_wav_headers (char header[44], gboolean *swap)
+{
+  *swap = FALSE;
+  /* check if first 4 bytes are RIFF or RIFX */
+  if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F') {
+    if (header[3] == 'X')
+      *swap = TRUE;
+    else if (header[3] != 'F')
+      return FALSE;
+  }
+
+  /* check if bytes 8-11 are WAVE */
+  if (!(header[8] == 'W' && header[9] == 'A' && header[10] == 'V' && header[11] == 'E')) {
+    g_warning ("RIFF file not in WAVE format");
+    return FALSE;
+  }
+
+  /* subchunk starts with 'fmt ' */
+  if (!(header[12] == 'f' && header[13] == 'm' && header[14] == 't' && header[15] == ' ')) {
+    g_warning ("Could not find format subchunk");
+    return FALSE;
+  }
+
+  /* check for PCM format */
+  if (header[16] != 16 || header[20] != 1) {
+    g_warning ("Not in PCM format");
+    return FALSE;
+  }
+
+  /* check for stereo */
+  if (header[22] != 2) {
+    g_warning ("Not in stereo");
+    return FALSE;
+  }
+
+  /* check for 44100 Hz sample rate,
+   * being lazy here and just compare the bytes to what I know they should be */
+  if (header[24] == 0x44 && header[25] == 0xAC && header[26] == 0 && header[27] == 0) {
+    g_warning ("Does not have a sample rate of 44100 Hz");
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
 static void
 thread_burn_composition (ThreadBurnCompositionParams * params)
 {
@@ -524,6 +578,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   track_list = params->tracks;
   for (i=0; i<n_tracks; i++) {
     char header[44];
+    gboolean swap = FALSE;
     XfburnAudioTrack *atrack = track_list->data;
 
     fds[i] = open (atrack->inputfile, 0);
@@ -541,12 +596,13 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
     if (burn_track_set_source (tracks[i], srcs[i]) != BURN_SOURCE_OK)
       g_error ("Could not add source to track!");
 
-    /* FIXME: obviously this is a very crude check... */
-    header[4] = '\0';
-    if (strcmp (header, "RIFX") == 0)
+    /* simple check of wav headers, will hopefully get replaced
+     * later by gstreamer */
+    if (!valid_wav_headers (header, &swap))
+      g_error ("%s is not a .wav file, or has the wrong format!", atrack->inputfile);
+
+    if (swap)
       burn_track_set_byte_swap (tracks[i], TRUE);
-    else if (strcmp (header, "RIFF") != 0)
-      g_error ("%s is not a wave file!", atrack->inputfile);
 
     burn_track_define_data (tracks[i], 0, 0, 1, BURN_AUDIO);
 
