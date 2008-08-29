@@ -496,7 +496,8 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
  *
  * This check might very well not be complete, but should catch
  * the most important pieces.
- * FIXME: eventually replace this with a proper check.
+ * FIXME: eventually replace this with a proper check,
+ * also this works on x86, and does not consider endianness!
  */
 static gboolean
 valid_wav_headers (char header[44], gboolean *swap)
