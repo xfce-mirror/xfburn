@@ -72,6 +72,18 @@ enum
   AUDIO_COMPOSITION_N_COLUMNS
 };
 
+enum
+{
+  AUDIO_COMPOSITION_DISPLAY_COLUMN_POS,
+  AUDIO_COMPOSITION_DISPLAY_COLUMN_LENGTH,
+#if 0 // Needs libburn cd-text suppport
+  AUDIO_COMPOSITION_DISPLAY_COLUMN_ARTIST,
+  AUDIO_COMPOSITION_DISPLAY_COLUMN_TITLE,
+#endif
+  AUDIO_COMPOSITION_DISPLAY_COLUMN_PATH,
+  AUDIO_COMPOSITION_DISPLAY_N_COLUMNS
+};
+
 typedef enum
 {
   AUDIO_COMPOSITION_TYPE_RAW,
@@ -124,8 +136,10 @@ static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButt
 static void cb_selection_changed (GtkTreeSelection *selection, XfburnAudioComposition * dc);
 static GSList * generate_audio_src (XfburnAudioComposition * ac);
 static void cb_begin_burn (XfburnDiscUsage * du, XfburnAudioComposition * dc);
+#if 0 // Needs libburn cd-text suppport
 static void cb_cell_artist_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc);
 static void cb_cell_title_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc);
+#endif
 
 static void cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                                       guint info, guint t, XfburnAudioComposition * composition);
@@ -272,8 +286,10 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   //GtkWidget *hbox, *label;
   GtkWidget *scrolled_window;
   GtkTreeStore *model;
+#if 0 // Needs libburn cd-text suppport
   GtkTreeViewColumn *column_artist, *column_title;
   GtkCellRenderer *cell_artist, *cell_title;
+#endif
   GtkTreeSelection *selection;
   GtkAction *action = NULL;
   GdkScreen *screen;
@@ -358,12 +374,14 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gtk_widget_show (priv->content);
   gtk_container_add (GTK_CONTAINER (scrolled_window), priv->content);
 
+
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Pos"),
                                                gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_POS, NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Length"),
                                                gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, NULL);
   /*gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Artist"),
                                                gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_ARTIST, NULL);*/
+#if 0 // Needs libburn cd-text suppport
   column_artist = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column_artist, _("Artist"));
 
@@ -387,24 +405,27 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   g_object_set (G_OBJECT (cell_title), "editable", TRUE, NULL);
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (priv->content), column_title);
+#endif
 
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Filename"),
                                                gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_PATH, NULL);
 
   /* Position  */
-  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 0), FALSE);
-  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 0), 20);
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_POS), FALSE);
+  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_POS), 20);
   /* Length */
-  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 1), FALSE);
-  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 1), 60);
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_LENGTH), FALSE);
+  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_LENGTH), 60);
+#if 0 // Needs libburn cd-text suppport
   /* Artist */
-  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 2), TRUE);
-  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 2), 80);
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_ARTIST), TRUE);
+  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_ARTIST), 80);
   /* Song Name */
-  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 3), TRUE);
-  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 3), 100);
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_TITLE), TRUE);
+  gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_TITLE), 100);
+#endif
   /* Local Path (PATH) column */
-  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 4), TRUE);
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_PATH), TRUE);
 
 
   g_signal_connect (G_OBJECT (priv->content), "button-press-event",
@@ -665,6 +686,7 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
   return FALSE;
 }
 
+#if 0 // Needs libburn cd-text suppport
 static void
 cb_cell_artist_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc)
 {
@@ -702,6 +724,7 @@ cb_cell_title_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext,
 
   gtk_tree_path_free (real_path);
 }
+#endif
 
 static void
 tracks_changed (XfburnAudioComposition *ac)

@@ -26,6 +26,20 @@ Currently implemented is:
  * Blank discs
  * Format and deformat DVD-RW discs
 
+----------------------
+Experimential Features
+----------------------
+
+ * Audio CD support
+Now included is some very basic audio CD support. Right now only CD-quality, 
+uncompressed (PCM) Wave files can be added to an audio compilation. Use i.e.
+your favority audio player with a disc writer output mode / plugin to
+decompress your existing audio files. If .wav files are added to the
+compilation, their headers get checked to make sure they are of the right
+format. Note that this check is not very well tested (in particular it's not
+likely to work on big-endian machines like PowerPC), since it is likely to
+get replaced in the near future.
+
 ==============================================================================
 Requirements
 ------------
