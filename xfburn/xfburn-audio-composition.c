@@ -32,6 +32,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <fcntl.h>
+
+#include <errno.h>
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
@@ -83,6 +86,12 @@ enum
   AUDIO_COMPOSITION_DISPLAY_COLUMN_PATH,
   AUDIO_COMPOSITION_DISPLAY_N_COLUMNS
 };
+
+typedef enum
+{
+  NOT_ADDING_EXT,
+  NOT_ADDING_FMT,
+} XfburnNotAddingReason;
 
 typedef enum
 {
@@ -159,6 +168,8 @@ static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnAudi
 static gboolean thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeModel * model, const gchar * path, 
                                          GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
 static gboolean has_audio_ext (const gchar *path);
+static gboolean valid_wav_headers (char header[44]);
+static gboolean is_valid_wav (const gchar *path);
                                   
 typedef struct
 {
@@ -171,7 +182,7 @@ typedef struct
   gchar *selected_files;
   GtkTreePath *path_where_insert;
 
-  gboolean warned_about_non_audio;
+  XfburnNotAddingReason warned_about_not_adding;
 
   GdkDragContext * dc;
   gboolean success;
@@ -1023,15 +1034,107 @@ has_audio_ext (const gchar *path)
   return (strcmp (ext, "wav") == 0);
 }
 
+static gboolean 
+is_valid_wav (const gchar *path)
+{
+  int fd;
+  char header[44];
+  gboolean ret;
+
+  fd = open (path, 0);
+
+  if (fd == -1) {
+    xfce_warn (_("Could not open %s!"), path);
+    return FALSE;
+  }
+
+  read (fd, header, 44);
+
+  ret = valid_wav_headers (header);
+
+  close (fd);
+
+  return ret;
+}
+
+/*
+ * Simple check of .wav headers, most info from
+ * http://ccrma.stanford.edu/courses/422/projects/WaveFormat/
+ *
+ * This check might very well not be complete, but should catch
+ * the most important pieces.
+ * FIXME: eventually replace this with a proper check,
+ * also this works on x86, and does not consider endianness!
+ */
+static gboolean
+valid_wav_headers (char header[44])
+{
+  /* check if first 4 bytes are RIFF or RIFX */
+  if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F') {
+    if (!(header[3] == 'X' || header[3] == 'F')) {
+      g_warning ("File not in riff format");
+      return FALSE;
+    }
+  }
+
+  /* check if bytes 8-11 are WAVE */
+  if (!(header[8] == 'W' && header[9] == 'A' && header[10] == 'V' && header[11] == 'E')) {
+    g_warning ("RIFF file not in WAVE format");
+    return FALSE;
+  }
+
+  /* subchunk starts with 'fmt ' */
+  if (!(header[12] == 'f' && header[13] == 'm' && header[14] == 't' && header[15] == ' ')) {
+    g_warning ("Could not find format subchunk");
+    return FALSE;
+  }
+
+  /* check for PCM format */
+  if (header[16] != 16 || header[20] != 1) {
+    g_warning ("Not in PCM format");
+    return FALSE;
+  }
+
+  /* check for stereo */
+  if (header[22] != 2) {
+    g_warning ("Not in stereo");
+    return FALSE;
+  }
+
+  /* check for 44100 Hz sample rate,
+   * being lazy here and just compare the bytes to what I know they should be */
+  if (header[24] == 0x44 && header[25] == 0xAC && header[26] == 0 && header[27] == 0) {
+    g_warning ("Does not have a sample rate of 44100 Hz");
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
 static void
-notify_not_adding_ext (XfburnAudioComposition * dc, const gchar *path)
+notify_not_adding (XfburnAudioComposition * dc, XfburnNotAddingReason r, const gchar *path)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
 
-  g_message ("%s is not a .wav file, not adding it!", path);
-  if (!priv->warned_about_non_audio) {
-    priv->warned_about_non_audio = TRUE;
-    xfce_warn (_("At the moment only .wav files can get added to the compilation!"));
+  if (!(priv->warned_about_not_adding & r)) {
+    const gchar *str;
+
+    priv->warned_about_not_adding |= r;
+
+    switch (r) {
+      case NOT_ADDING_EXT:
+        xfce_warn (_("At the moment only .wav files can get added to the compilation!"));
+        break;
+      case NOT_ADDING_FMT:
+        xfce_warn (_("At the moment only CD quality uncompressed (pcm) .wav files can get added to the compilation!"));
+        break;
+      default:
+        /* This should never happen... */
+        str = _("Unsupported files cannot get added to the compilation!");
+        xfce_warn (str);
+        g_warning (str);
+        break;
+    }
   }
 }
 
@@ -1136,7 +1239,14 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     else if (S_ISREG (s.st_mode)) {
       if (!has_audio_ext (path)) {
         gdk_threads_enter ();
-        notify_not_adding_ext (dc, path);
+        notify_not_adding (dc, NOT_ADDING_EXT, path);
+        gdk_threads_leave ();
+        return FALSE;
+      }
+
+      if (!is_valid_wav (path)) {
+        gdk_threads_enter ();
+        notify_not_adding (dc, NOT_ADDING_FMT, path);
         gdk_threads_leave ();
         return FALSE;
       }
@@ -1606,7 +1716,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
         ret = TRUE;
       } else {
-        notify_not_adding_ext (composition, full_path);
+        notify_not_adding (composition, NOT_ADDING_EXT, full_path);
       }
 
       file = strtok (NULL, "\n");
@@ -1658,7 +1768,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
           priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
           ret = TRUE;
         } else {
-          notify_not_adding_ext (composition, full_path);
+          notify_not_adding (composition, NOT_ADDING_EXT, full_path);
         }
       }
       thunar_vfs_path_list_free (vfs_paths);

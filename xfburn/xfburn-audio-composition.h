@@ -58,6 +58,7 @@ typedef struct
   gint pos;
   gchar *artist;
   gchar *title;
+  gboolean swap;
 } XfburnAudioTrack;
 
 GtkType xfburn_audio_composition_get_type (void);

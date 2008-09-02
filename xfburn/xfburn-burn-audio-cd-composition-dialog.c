@@ -83,6 +83,7 @@ static void cb_browse_iso (GtkButton * button, XfburnBurnAudioCdCompositionDialo
 static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog);
 static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_id,
                                 XfburnBurnAudioCdCompositionDialogPrivate * priv);
+static gboolean needs_swap (char header[44]);
 
 /* globals */
 static XfceTitledDialogClass *parent_class = NULL;
@@ -490,59 +491,13 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_write_opts_free (burn_options);
 }
 
-/*
- * Simple check of .wav headers, most info from
- * http://ccrma.stanford.edu/courses/422/projects/WaveFormat/
- *
- * This check might very well not be complete, but should catch
- * the most important pieces.
- * FIXME: eventually replace this with a proper check,
- * also this works on x86, and does not consider endianness!
- */
 static gboolean
-valid_wav_headers (char header[44], gboolean *swap)
+needs_swap (char header[44])
 {
-  *swap = FALSE;
-  /* check if first 4 bytes are RIFF or RIFX */
-  if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F') {
-    if (header[3] == 'X')
-      *swap = TRUE;
-    else if (header[3] != 'F')
-      return FALSE;
-  }
-
-  /* check if bytes 8-11 are WAVE */
-  if (!(header[8] == 'W' && header[9] == 'A' && header[10] == 'V' && header[11] == 'E')) {
-    g_warning ("RIFF file not in WAVE format");
+  if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F' && header[3] == 'X')
+    return TRUE;
+  else 
     return FALSE;
-  }
-
-  /* subchunk starts with 'fmt ' */
-  if (!(header[12] == 'f' && header[13] == 'm' && header[14] == 't' && header[15] == ' ')) {
-    g_warning ("Could not find format subchunk");
-    return FALSE;
-  }
-
-  /* check for PCM format */
-  if (header[16] != 16 || header[20] != 1) {
-    g_warning ("Not in PCM format");
-    return FALSE;
-  }
-
-  /* check for stereo */
-  if (header[22] != 2) {
-    g_warning ("Not in stereo");
-    return FALSE;
-  }
-
-  /* check for 44100 Hz sample rate,
-   * being lazy here and just compare the bytes to what I know they should be */
-  if (header[24] == 0x44 && header[25] == 0xAC && header[26] == 0 && header[27] == 0) {
-    g_warning ("Does not have a sample rate of 44100 Hz");
-    return FALSE;
-  }
-
-  return TRUE;
 }
 
 static void
@@ -556,8 +511,9 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   struct burn_source **srcs;
   int *fds;
   int n_tracks;
-  int i;
+  int i,j;
   GSList *track_list;
+  gboolean abort = FALSE;
 
   struct burn_drive_info *drive_info = NULL;
 
@@ -579,30 +535,46 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   track_list = params->tracks;
   for (i=0; i<n_tracks; i++) {
     char header[44];
-    gboolean swap = FALSE;
     XfburnAudioTrack *atrack = track_list->data;
 
     fds[i] = open (atrack->inputfile, 0);
-    if (fds[i] == -1)
-      g_error ("Could not open %s!", atrack->inputfile);
+    if (fds[i] == -1) {
+      gchar *str;
+      str = g_strdup_printf (_("Could not open %s!"), atrack->inputfile);
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), str);
+      g_free (str);
+      abort = TRUE;
+      break;
+    }
 
+    /* perform a read so that libburn skips the wav header */
     read (fds[i], header, 44);
 
     srcs[i] = burn_fd_source_new (fds[i], -1 , 0);
-    if (srcs[i] == NULL)
-      g_error ("Could not create burn_source from %s!", atrack->inputfile);
+    if (srcs[i] == NULL) {
+      gchar *str;
+      str = g_strdup_printf (_("Could not create burn_source from %s!"), atrack->inputfile);
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), str);
+      g_free (str);
+      close(fds[i]);
+      abort = TRUE;
+      break;
+    }
 
     tracks[i] = burn_track_create ();
     
-    if (burn_track_set_source (tracks[i], srcs[i]) != BURN_SOURCE_OK)
-      g_error ("Could not add source to track!");
+    if (burn_track_set_source (tracks[i], srcs[i]) != BURN_SOURCE_OK) {
+      gchar *str;
+      str = g_strdup_printf (_("Could not add source to track!"));
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), str);
+      g_free (str);
+      close(fds[i]);
+      burn_source_free (srcs[i]);
+      abort = TRUE;
+      break;
+    }
 
-    /* simple check of wav headers, will hopefully get replaced
-     * later by gstreamer */
-    if (!valid_wav_headers (header, &swap))
-      g_error ("%s is not a .wav file, or has the wrong format!", atrack->inputfile);
-
-    if (swap)
+    if (needs_swap (header))
       burn_track_set_byte_swap (tracks[i], TRUE);
 
     burn_track_define_data (tracks[i], 0, 0, 1, BURN_AUDIO);
@@ -616,17 +588,19 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   */
 
 
-  if (!xfburn_device_grab (params->device, &drive_info)) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab drive"));
-  } else {
-    thread_burn_prep_and_burn (params, drive_info->drive, disc, session, n_tracks, tracks);
-    burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
+  if (!abort) {
+    if (!xfburn_device_grab (params->device, &drive_info)) {
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab drive"));
+    } else {
+      thread_burn_prep_and_burn (params, drive_info->drive, disc, session, n_tracks, tracks);
+      burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
+    }
   }
 
-  for (i=0; i<n_tracks; i++) {
-    burn_track_free (tracks[i]);
-    burn_source_free (srcs[i]);
-    close (fds[i]);
+  for (j=0; j<i; j++) {
+    burn_track_free (tracks[j]);
+    burn_source_free (srcs[j]);
+    close (fds[j]);
   }
   g_free (srcs);
   g_free (tracks);
