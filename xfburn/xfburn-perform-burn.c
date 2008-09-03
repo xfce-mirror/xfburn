@@ -47,7 +47,7 @@ xfburn_perform_burn_init (struct burn_disc **disc, struct burn_session **session
 void
 xfburn_perform_burn_write (GtkWidget *dialog_progress, 
                            struct burn_drive *drive, XfburnWriteMode write_mode, struct burn_write_opts *burn_options, struct burn_disc *disc,
-                           struct burn_source *fifo)
+                           struct burn_source *fifo, int *track_sectors)
 {
   enum burn_disc_status disc_state;
   enum burn_drive_status status;
@@ -68,6 +68,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   const char *final_message;
   gdouble percent = 0.0;
   int dbg_no;
+  int total_sectors, burned_sectors;
 
   while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
     usleep(100001);
@@ -109,6 +110,8 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   if (ret <= 0)
     g_warning ("Failed to set libburn message severities, burn errors might not get detected!");
  
+  total_sectors = burn_disc_get_sectors (disc);
+
   burn_disc_write (burn_options, disc); 
 
   while (burn_drive_get_status (drive, NULL) == BURN_DRIVE_SPAWNING)
@@ -116,24 +119,44 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
   time_start = time (NULL);
   dbg_no = 0;
+  burned_sectors = 0;
   while ((status = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
     time_t time_now = time (NULL);
     dbg_no++;
 
     switch (status) {
     case BURN_DRIVE_WRITING:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning composition..."));
       if (progress.sectors > 0 && progress.sector >= 0) {
         gdouble cur_speed = 0.0;
         int fifo_status, fifo_size, fifo_free;
         char *fifo_text;
 
-        if ((dbg_no % 16) == 0)
-          DBG ("track = %d\tsector %d/%d", progress.track, progress.sector, progress.sectors);
+        if (progress.tracks > 1) {
+          gchar *str;
+
+          str = g_strdup_printf (_("Burning track %2d/%d..."), progress.track+1, progress.tracks);
+          xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, str);
+          g_free (str);
+        } else {
+          xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning composition..."));
+        }
 	percent = (gdouble) (progress.buffer_capacity - progress.buffer_available) / (gdouble) progress.buffer_capacity;
 	xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 
-	percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
+        /* accumulate the sectors that have been burned in the previous track */
+        if (progress.track > 0 && track_sectors[progress.track-1] > 0) {
+          burned_sectors += track_sectors[progress.track-1];
+          track_sectors[progress.track-1] = 0;
+        }
+
+	//percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
+	percent = 1.0 + ((gdouble) progress.sector + burned_sectors + 1.0) / ((gdouble) total_sectors) * 98.0;
+        /*
+        if ((dbg_no % 16) == 0) {
+          DBG ("progress = %f", percent);
+          DBG ("track = %d\tsector %d/%d", progress.track, progress.sector, progress.sectors);
+        }
+        */
 	xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent / 100.0);
 
         cur_speed = ((gdouble) ((gdouble)(glong)progress.sector * 2048L) / (gdouble) (time_now - time_start)) / ((gdouble) (factor * 1000.0));
@@ -174,6 +197,8 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
               break;
           }
         }
+      } else {
+        xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning composition..."));
       }
       break;
     case BURN_DRIVE_WRITING_LEADIN:

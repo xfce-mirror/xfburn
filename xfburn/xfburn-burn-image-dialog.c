@@ -273,6 +273,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   off_t fixed_size = 0;
   struct burn_source *data_src;
   struct burn_source *fifo_src;
+  int sectors[1];
 
   struct burn_drive *drive;
   struct burn_drive_info *drive_info = NULL;
@@ -344,8 +345,11 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   DBG ("Set speed to %d kb/s", params->speed);
   burn_drive_set_speed (drive, 0, params->speed);
 
+  // this assumes that an iso image can only have one track
+  sectors[0] = burn_disc_get_sectors (disc);
+  
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning image..."));
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, fifo_src);
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, fifo_src, sectors);
   burn_source_free (fifo_src);
   burn_write_opts_free (burn_options);
 

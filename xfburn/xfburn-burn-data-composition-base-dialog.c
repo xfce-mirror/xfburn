@@ -528,6 +528,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
 
   struct burn_write_opts * burn_options;
   gint ret;
+  int sectors[1];
 
   ret = burn_disc_add_session (disc, session, BURN_POS_END);
   if (ret == 0) {
@@ -572,7 +573,9 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_drive_set_speed (drive, 0, params->speed);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
 
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, (params->is_fifo ? params->src : NULL));
+  sectors[0] = burn_disc_get_sectors (disc);
+
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, (params->is_fifo ? params->src : NULL), sectors);
 
   burn_write_opts_free (burn_options);
 }

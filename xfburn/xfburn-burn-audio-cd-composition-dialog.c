@@ -445,6 +445,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
 
   struct burn_write_opts * burn_options;
   gint ret,i;
+  int track_sectors[n_tracks];
 
   ret = burn_disc_add_session (disc, session, BURN_POS_END);
   if (ret == 0) {
@@ -454,6 +455,8 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
 
   for (i=0; i<n_tracks; i++) {
     burn_session_add_track (session, tracks[i], BURN_POS_END);
+    //FIXME: not reliable for variable length, so needs to get replaced for gstreamer
+    track_sectors[i] = burn_track_get_sectors (tracks[i]);
   }
 
   burn_options = burn_write_opts_new (drive);
@@ -486,7 +489,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_drive_set_speed (drive, 0, params->speed);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
 
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, NULL);
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, NULL, track_sectors);
 
   burn_write_opts_free (burn_options);
 }
