@@ -160,7 +160,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   g_object_unref (icon);
 
   /* burning devices list */
-  priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_MODE_SELECTION | SHOW_SPEED_SELECTION);
+  priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_SPEED_SELECTION);
   g_signal_connect (G_OBJECT (priv->device_box), "disc-refreshed", G_CALLBACK (cb_disc_refreshed), obj);
   g_signal_connect (G_OBJECT (priv->device_box), "device-changed", G_CALLBACK (cb_disc_refreshed), obj);
   gtk_widget_show (priv->device_box);
@@ -463,6 +463,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_write_opts_set_perform_opc (burn_options, 0);
   burn_write_opts_set_multi (burn_options, 0);
 
+  /* keep all modes here, just in case we want to change the default sometimes */
   switch (params->write_mode) {
   case WRITE_MODE_TAO:
     burn_write_opts_set_write_type (burn_options, BURN_WRITE_TAO, BURN_BLOCK_MODE1);
@@ -658,7 +659,8 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
 
       device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
       speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
-      write_mode = xfburn_device_box_get_mode (XFBURN_DEVICE_BOX (priv->device_box));
+      /* cdrskin burns audio with SAO */
+      write_mode = WRITE_MODE_SAO;
 
       /* burn composition */
       params = g_new0 (ThreadBurnCompositionParams, 1);
