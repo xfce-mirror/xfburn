@@ -49,15 +49,15 @@ static XfburnDiscUsageClass *parent_class = NULL;
 
 XfburnDiscLabels audiodiscsizes[] = {
   {
-  200 *1024 * 1024 / PCM_BYTES_PER_SECS, "200MB / 19min CD"},
+  21*60, "200MB / 21min CD"},
   {
-  681984000 / PCM_BYTES_PER_SECS, "650MB / 69min CD"},
+  74*60, "650MB / 74min CD"},
   {
-  737280000 / PCM_BYTES_PER_SECS, "700MB / 69min CD"},
+  80*60, "700MB / 80min CD"},
   {
-  829440000 / PCM_BYTES_PER_SECS, "800MB / 78min CD"},
+  90*60, "800MB / 90min CD"},
   {
-  912384000 / PCM_BYTES_PER_SECS, "900MB / 86min CD"},
+  99*60, "900MB / 99min CD"},
 };
 
 /*******************************/
