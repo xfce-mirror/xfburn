@@ -847,18 +847,19 @@ remove_row_reference (GtkTreeRowReference *reference, XfburnAudioCompositionPriv
     GtkTreeIter iter;
     
     if (gtk_tree_model_get_iter (model, &iter, path)) {
-      GtkTreeIter parent, iter_temp;
-      guint64 size = 0;
+      //GtkTreeIter parent, iter_temp;
+      int secs = 0;
       
-      gtk_tree_model_get (model, &iter, AUDIO_COMPOSITION_COLUMN_SIZE, &size, -1);
-      xfburn_disc_usage_sub_size (XFBURN_DISC_USAGE (priv->disc_usage), size);
+      gtk_tree_model_get (model, &iter, AUDIO_COMPOSITION_COLUMN_LENGTH, &secs, -1);
+      xfburn_disc_usage_sub_size (XFBURN_DISC_USAGE (priv->disc_usage), secs);
 
+      /*
       iter_temp = iter;
       while (gtk_tree_model_iter_parent (model, &parent, &iter_temp)) {
         guint64 old_size;
         gchar *humansize = NULL;
 
-        /* updates parent directories size */
+        // updates parent directories size
         gtk_tree_model_get (model, &parent, AUDIO_COMPOSITION_COLUMN_SIZE, &old_size, -1);
 
         humansize = xfburn_humanreadable_filesize (old_size - size);
@@ -869,6 +870,7 @@ remove_row_reference (GtkTreeRowReference *reference, XfburnAudioCompositionPriv
 
         g_free (humansize);
       }
+      */
       
       gtk_tree_store_remove (GTK_TREE_STORE (model), &iter);
     }
@@ -1149,7 +1151,8 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
   if ((stat (path, &s) == 0)) {
     gchar *basename = NULL;
-    //gchar *humansize = NULL;
+    gchar *humanlength = NULL;
+    int secs = 0;
     GtkTreePath *tree_path = NULL;
     gboolean ret;
 
@@ -1263,7 +1266,9 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
         gtk_tree_store_append (GTK_TREE_STORE (model), iter, NULL);
       gdk_threads_leave ();
 
-      //humansize = xfburn_humanreadable_filesize (s.st_size);
+      /* (filesize - header_size) / bytes_per_seconds */
+      secs = (s.st_size - 44) / PCM_BYTES_PER_SECS;
+      humanlength = g_strdup_printf ("%2d:%2d", secs / 60, secs % 60);
 
       if (priv->n_tracks == 99) {
         gdk_threads_enter ();
@@ -1276,14 +1281,18 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                           AUDIO_COMPOSITION_COLUMN_POS, ++priv->n_tracks,
                           AUDIO_COMPOSITION_COLUMN_CONTENT, name,
-                          AUDIO_COMPOSITION_COLUMN_SIZE, (guint64) s.st_size, AUDIO_COMPOSITION_COLUMN_PATH, path,
-                          AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, "00:00",
+                          AUDIO_COMPOSITION_COLUMN_SIZE, (guint64) s.st_size,
+                          AUDIO_COMPOSITION_COLUMN_PATH, path,
+                          AUDIO_COMPOSITION_COLUMN_LENGTH, secs,
+                          AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, humanlength,
                           AUDIO_COMPOSITION_COLUMN_ARTIST, "",
                           AUDIO_COMPOSITION_COLUMN_TITLE, "",
                           AUDIO_COMPOSITION_COLUMN_TYPE, AUDIO_COMPOSITION_TYPE_RAW, -1);
       gdk_threads_leave ();
 
-      xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
+      g_free (humanlength);
+
+      xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), secs);
       ret = TRUE;
     }
     //g_free (humansize);
@@ -1614,6 +1623,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       GtkTreeRowReference *reference = NULL;
       AudioCompositionEntryType type;
       guint64 size = 0;
+      int secs = 0;
       
       reference = (GtkTreeRowReference *) row->data;
     
@@ -1639,17 +1649,20 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
       gtk_tree_model_get_iter (model, &iter_src, path_src);
       gtk_tree_model_get (model, &iter_src, AUDIO_COMPOSITION_COLUMN_TYPE, &type,
-                          AUDIO_COMPOSITION_COLUMN_SIZE, &size, -1);
+                                            AUDIO_COMPOSITION_COLUMN_LENGTH, &secs,
+                                            AUDIO_COMPOSITION_COLUMN_SIZE, &size, -1);
       
       /* copy entry */
       if ((iter = copy_entry_to (composition, &iter_src, iter_prev, position)) != NULL) {
         GtkTreePath *path_parent = gtk_tree_path_copy (path_src);
         
-        if (dc->action == GDK_ACTION_MOVE) {       
+        if (dc->action == GDK_ACTION_MOVE) {
           /* remove source entry */
+          /*
+           * This shouldn't be able to happen anymore w/o folders
           if (gtk_tree_path_up (path_parent) && path_where_insert && 
               !gtk_tree_path_is_descendant (path_where_insert, path_parent)) {
-            /* update parent size and humansize */
+            // update parent size and humansize
             GtkTreeIter iter_parent;          
             guint64 old_size;
             
@@ -1659,10 +1672,11 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
             gtk_tree_store_set (GTK_TREE_STORE (model), &iter_parent, 
                                 AUDIO_COMPOSITION_COLUMN_SIZE, old_size - size, -1);
           }
-        
+          */
           gtk_tree_store_remove (GTK_TREE_STORE (model), &iter_src);
+
         } else {
-          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), size);
+          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), secs);
         }
         
         gtk_tree_path_free (path_parent);

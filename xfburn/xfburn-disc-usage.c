@@ -47,23 +47,22 @@ static GtkHBoxClass *parent_class = NULL;
 
 #define DEFAULT_DISK_SIZE_LABEL 2
 #define LAST_CD_LABEL 4
-#define NUM_LABELS 7
 
 XfburnDiscLabels testdiscsizes[] = {
   {
   1, "200MB CD"},
   {
-  10, "650MB CD"},
+  100, "650MB CD"},
   {
-  100, "700MB CD"},
+  10000, "700MB CD"},
   {
-  1000, "800MB CD"},
+  1000000, "800MB CD"},
   {
-  10000, "900MB CD"},
+  100000000, "900MB CD"},
   {
-  100000, "4.3GB DVD"},
+  G_GINT64_CONSTANT (10000000000), "4.3GB DVD"},
   {
-  1000000, "7.9GB DVD"},
+  G_GINT64_CONSTANT (1000000000000), "7.9GB DVD"},
 };
 
 /* signals */
@@ -121,6 +120,7 @@ xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass)
   klass->update_size = update_size_default;
   klass->can_burn = can_burn_default;
   klass->labels = testdiscsizes;
+  klass->num_labels = G_N_ELEMENTS (testdiscsizes);
 }
 
 static void
@@ -137,8 +137,9 @@ xfburn_disc_usage_init (XfburnDiscUsage * disc_usage)
   gtk_widget_show (disc_usage->progress_bar);
 
   disc_usage->combo = gtk_combo_box_new_text ();
-  for (i = 0; i < NUM_LABELS; i++)
+  for (i = 0; i < class->num_labels; i++) {
     gtk_combo_box_append_text (GTK_COMBO_BOX (disc_usage->combo), class->labels[i].label);
+  }
   gtk_combo_box_set_active (GTK_COMBO_BOX (disc_usage->combo), DEFAULT_DISK_SIZE_LABEL);
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->combo, FALSE, FALSE, BORDER);
   gtk_widget_show (disc_usage->combo);
@@ -194,10 +195,10 @@ update_size (XfburnDiscUsage * disc_usage, gboolean manual)
 
   if (!manual) {
     i = 0;
-    while (i < NUM_LABELS  &&  disc_usage->size > class->labels[i].size) {
+    while (i < class->num_labels  &&  disc_usage->size > class->labels[i].size) {
       i++;
     }
-    gtk_combo_box_set_active (GTK_COMBO_BOX (disc_usage->combo), (i<NUM_LABELS ? i: i-1));
+    gtk_combo_box_set_active (GTK_COMBO_BOX (disc_usage->combo), (i<class->num_labels ? i: i-1));
   }
 
   gtk_widget_set_sensitive (disc_usage->button, class->can_burn (disc_usage));

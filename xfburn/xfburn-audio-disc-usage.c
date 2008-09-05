@@ -49,19 +49,15 @@ static XfburnDiscUsageClass *parent_class = NULL;
 
 XfburnDiscLabels audiodiscsizes[] = {
   {
-  200 *1024 * 1024, "200MB CD"},
+  200 *1024 * 1024 / PCM_BYTES_PER_SECS, "200MB / 19min CD"},
   {
-  681984000, "650MB CD"},
+  681984000 / PCM_BYTES_PER_SECS, "650MB / 69min CD"},
   {
-  737280000, "700MB CD"},
+  737280000 / PCM_BYTES_PER_SECS, "700MB / 69min CD"},
   {
-  829440000, "800MB CD"},
+  829440000 / PCM_BYTES_PER_SECS, "800MB / 78min CD"},
   {
-  912384000, "900MB CD"},
-  {
-  G_GINT64_CONSTANT(0x1182a0000), "4.3GB DVD"}, /* 4 700 372 992 */
-  {
-  G_GINT64_CONSTANT(0x1fd3e0000), "7.9GB DVD"}, /* 8 543 666 176 */
+  912384000 / PCM_BYTES_PER_SECS, "900MB / 86min CD"},
 };
 
 /*******************************/
@@ -105,6 +101,9 @@ xfburn_audio_disc_usage_class_init (XfburnAudioDiscUsageClass * klass)
   pklass = XFBURN_DISC_USAGE_CLASS(klass);
   
   pklass->labels = parent_class->labels = audiodiscsizes;
+  pklass->num_labels = parent_class->num_labels = G_N_ELEMENTS (audiodiscsizes);
+  //DBG ("labels @ %p", pklass);
+  //DBG ("num_labels @ %p = %d", &(pklass->num_labels), G_N_ELEMENTS (audiodiscsizes));
   pklass->update_size = parent_class->update_size = xfburn_audio_disc_usage_update_size;
   pklass->can_burn = parent_class->can_burn = can_burn;
 }
@@ -120,7 +119,7 @@ static void
 xfburn_audio_disc_usage_update_size (XfburnDiscUsage * disc_usage)
 {
   gfloat fraction;
-  gchar *size;
+  gchar *len;
 
   fraction = disc_usage->size / audiodiscsizes[gtk_combo_box_get_active (GTK_COMBO_BOX (disc_usage->combo))].size;
   if (fraction > 1.0)
@@ -131,13 +130,13 @@ xfburn_audio_disc_usage_update_size (XfburnDiscUsage * disc_usage)
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (disc_usage->progress_bar), fraction > 1.0 ? 1.0 : fraction);
 
   if (xfburn_settings_get_boolean ("human-readable-units", TRUE))
-    size = xfburn_humanreadable_filesize ((guint64) disc_usage->size);
+    len = g_strdup_printf ("%02llu:%02llus", ((guint64) disc_usage->size) / 60, ((guint64) disc_usage->size) % 60);
   else
-    size = g_strdup_printf ("%.0lf B", disc_usage->size);
+    len = g_strdup_printf ("%.0lf secs", disc_usage->size);
 
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), size);
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (disc_usage->progress_bar), len);
 
-  g_free (size);
+  g_free (len);
 }
 
 static gboolean

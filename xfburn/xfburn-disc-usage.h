@@ -56,6 +56,7 @@ typedef struct
 {
   GtkHBoxClass parent_class;
   XfburnDiscLabels *labels;
+  int num_labels;
   
   /* signals */
   void (*begin_burn) (XfburnDiscUsage *du);

@@ -105,6 +105,7 @@ xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass * klass)
   pklass = XFBURN_DISC_USAGE_CLASS(klass);
   
   pklass->labels = parent_class->labels = datadiscsizes;
+  pklass->num_labels = G_N_ELEMENTS (datadiscsizes);
   pklass->update_size = parent_class->update_size = xfburn_data_disc_usage_update_size;
   pklass->can_burn = parent_class->can_burn = can_burn;
 }

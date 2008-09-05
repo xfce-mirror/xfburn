@@ -44,4 +44,6 @@
 
 #define XFBURN_FIFO_DEFAULT_SIZE 4096 /* in kb/s */
 
+#define PCM_BYTES_PER_SECS 176400
+
 #endif
