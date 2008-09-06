@@ -632,6 +632,9 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
           case BURN_DISC_EMPTY:
             priv->status_text = _("Drive is empty!");
             break;
+          case BURN_DISC_APPENDABLE:
+            priv->status_text = _("Sorry, multisession is not yet supported!");
+            break;
           case BURN_DISC_FULL:
             priv->status_text = _("Inserted disc is full!");
             break;

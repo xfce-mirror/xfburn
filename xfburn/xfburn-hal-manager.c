@@ -219,10 +219,10 @@ static void cb_device_removed (LibHalContext *ctx, const char *udi)
 static void cb_prop_modified (LibHalContext *ctx, const char *udi,
                               const char *key, dbus_bool_t is_removed, dbus_bool_t is_added)
 {
+  DBG ("HAL: property modified");
   /* Lets ignore this for now,
    * way too many of these get triggered when a disc is
    * inserted or removed!
-  DBG ("HAL: property modified");
   g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
   */
 }
@@ -470,8 +470,8 @@ xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *dev
   
   vol = libhal_volume_from_device_file (priv->hal_context, device->addr);
   if (vol == NULL) {
-    g_warning ("Could not get HAL volume for %s!", device->addr);
-    return FALSE;
+    /* if we can't get a volume, then we're assuming that there is no disc in the drive */
+    return TRUE;
   }
 
   if (!libhal_volume_is_mounted (vol))
