@@ -193,7 +193,7 @@ xfburn_hal_manager_init (XfburnHalManager * obj)
     //g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-added", G_CALLBACK (cb_volumes_changed), box);
     //g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-removed", G_CALLBACK (cb_volumes_changed), box);
   } else {
-    g_warning ("Error trying to access the thunar-vfs-volume-manager!");
+    g_warning ("Error trying to access thunar-vfs-volume-manager!");
   }
   /*
   */

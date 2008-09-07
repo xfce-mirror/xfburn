@@ -318,14 +318,14 @@ main (int argc, char **argv)
   gtk_main ();
 
   /* shutdown */
-#ifdef HAVE_THUNAR_VFS
-  thunar_vfs_shutdown ();
-#endif
-  
 #ifdef HAVE_HAL
   xfburn_hal_manager_shutdown ();
 #endif
 
+#ifdef HAVE_THUNAR_VFS
+  thunar_vfs_shutdown ();
+#endif
+  
   xfburn_settings_flush ();
   xfburn_settings_free ();
   
