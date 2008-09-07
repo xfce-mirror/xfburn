@@ -65,6 +65,10 @@ typedef struct {
   LibHalContext  *hal_context;
   DBusConnection *dbus_connection;
   gchar *error;
+
+#ifdef HAVE_THUNAR_VFS
+  ThunarVfsVolumeManager *thunar_volman;
+#endif
 } XfburnHalManagerPrivate;
 
 static XfburnHalManager *halman = NULL;
@@ -167,19 +171,43 @@ xfburn_hal_manager_init (XfburnHalManager * obj)
     }
     dbus_error_free (&derror);
   } else {
-    libhal_ctx_set_device_added (hal_context, cb_device_added);
-    libhal_ctx_set_device_removed (hal_context, cb_device_removed);
-    libhal_ctx_set_device_property_modified (hal_context, cb_prop_modified);
+    if (!libhal_ctx_set_device_added (hal_context, cb_device_added))
+      g_warning ("Could not setup HAL callback for device_added");
+
+    if (!libhal_ctx_set_device_removed (hal_context, cb_device_removed))
+      g_warning ("Could not setup HAL callback for device_removed");
+
+    if (!libhal_ctx_set_device_property_modified (hal_context, cb_prop_modified))
+      g_warning ("Could not setup HAL callback for prop_modified");
   }
 
   priv->hal_context = hal_context;
   priv->dbus_connection = dbus_connection;
+
+#ifdef HAVE_THUNAR_VFS
+  /* FIXME: for some weird reason the hal callbacks don't actually work, 
+   *        unless we also fetch an instance of thunar_vfs_volman. Why??
+   *    Not terrible though, because we'll need to use it eventually anyways */
+  priv->thunar_volman = thunar_vfs_volume_manager_get_default ();
+  if (priv->thunar_volman != NULL) {
+    //g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-added", G_CALLBACK (cb_volumes_changed), box);
+    //g_signal_connect (G_OBJECT (priv->thunar_volman), "volumes-removed", G_CALLBACK (cb_volumes_changed), box);
+  } else {
+    g_warning ("Error trying to access the thunar-vfs-volume-manager!");
+  }
+  /*
+  */
+#endif
 }
 
 static void
 xfburn_hal_manager_finalize (GObject * object)
 {
   XfburnHalManagerPrivate *priv = XFBURN_HAL_MANAGER_GET_PRIVATE (object);
+
+#ifdef HAVE_THUNAR_VFS
+  g_object_unref (priv->thunar_volman);
+#endif
 
   hal_finalize (priv->hal_context);
 
@@ -219,10 +247,10 @@ static void cb_device_removed (LibHalContext *ctx, const char *udi)
 static void cb_prop_modified (LibHalContext *ctx, const char *udi,
                               const char *key, dbus_bool_t is_removed, dbus_bool_t is_added)
 {
-  DBG ("HAL: property modified");
   /* Lets ignore this for now,
    * way too many of these get triggered when a disc is
    * inserted or removed!
+  DBG ("HAL: property modified");
   g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
   */
 }
@@ -462,7 +490,6 @@ xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *dev
 #ifdef HAVE_THUNAR_VFS
   const char *mp;
   ThunarVfsInfo *th_info;
-  ThunarVfsVolumeManager *th_volman;
   ThunarVfsVolume *th_vol;
   ThunarVfsPath *th_path;
 #endif
@@ -495,18 +522,15 @@ xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *dev
     return FALSE;
   }
 
-  th_volman = thunar_vfs_volume_manager_get_default ();
-  th_vol = thunar_vfs_volume_manager_get_volume_by_info (th_volman, th_info);
+  th_vol = thunar_vfs_volume_manager_get_volume_by_info (priv->thunar_volman, th_info);
   thunar_vfs_info_unref (th_info);
 
   if (!th_vol) {
     g_warning ("Error getting thunar volume for %s!", mp);
-    g_object_unref (th_volman);
     return FALSE;
   }
 
   if (!thunar_vfs_volume_is_mounted (th_vol)) {
-    g_object_unref (th_volman);
     return FALSE;
   }
 
@@ -519,7 +543,6 @@ xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *dev
     DBG ("Failed to unmount %s", mp);
   }
 
-  g_object_unref (th_volman);
 #endif
   return unmounted;
 }
