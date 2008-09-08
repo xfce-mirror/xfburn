@@ -4,12 +4,11 @@
 # This file is distributed under the same license as the xfburn package.
 #
 # Piarres Beobide <pi@beobide.net>, 2005, 2006, 2007, 2008.
-#: ../xfburn/xfburn-device-box.c:700
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-14 08:54-0600\n"
+"POT-Creation-Date: 2008-09-08 13:13-0600\n"
 "PO-Revision-Date: 2008-07-11 00:25+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
@@ -57,20 +56,21 @@ msgstr "Atera diskoa"
 msgid "Default value for eject checkbox"
 msgstr "Atera kontrol-laukiaren lehenetsitako balioa"
 
-#: ../xfburn/xfburn-blank-dialog.c:196 ../xfburn/xfburn-main-window.c:128
-msgid "Blank CD-RW"
-msgstr "CD-RW Hutsa"
+#: ../xfburn/xfburn-blank-dialog.c:196
+#, fuzzy
+msgid "Blank Disc"
+msgstr "_Hutsa"
 
 #: ../xfburn/xfburn-blank-dialog.c:208
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:190
 #: ../xfburn/xfburn-burn-image-dialog.c:171
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
 #: ../xfburn/xfburn-copy-dvd-dialog.c:131
-#: ../xfburn/xfburn-format-dvd-dialog.c:102
+#: ../xfburn/xfburn-format-dvd-dialog.c:104
 msgid "Burning device"
 msgstr "Grabatze gailua"
 
-#: ../xfburn/xfburn-blank-dialog.c:221 ../xfburn/xfburn-device-box.c:202
+#: ../xfburn/xfburn-blank-dialog.c:221 ../xfburn/xfburn-device-box.c:199
 msgid "Blank mode"
 msgstr "Garbitze modua"
 
@@ -79,7 +79,7 @@ msgstr "Garbitze modua"
 #: ../xfburn/xfburn-burn-image-dialog.c:179
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
 #: ../xfburn/xfburn-copy-dvd-dialog.c:139
-#: ../xfburn/xfburn-format-dvd-dialog.c:110
+#: ../xfburn/xfburn-format-dvd-dialog.c:112
 msgid "Options"
 msgstr "Aukerak"
 
@@ -88,7 +88,7 @@ msgstr "Aukerak"
 #: ../xfburn/xfburn-burn-image-dialog.c:183
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
 #: ../xfburn/xfburn-copy-dvd-dialog.c:143
-#: ../xfburn/xfburn-format-dvd-dialog.c:114
+#: ../xfburn/xfburn-format-dvd-dialog.c:116
 msgid "E_ject disk"
 msgstr "Diskoa a_tera"
 
@@ -119,25 +119,25 @@ msgid "Blanking disc..."
 msgstr "Diskoa garbitzen..."
 
 #: ../xfburn/xfburn-blank-dialog.c:434
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:495
-#: ../xfburn/xfburn-perform-burn.c:232
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:501
+#: ../xfburn/xfburn-perform-burn.c:265
+#, c-format
 msgid "Done"
 msgstr "Eginda"
 
-#: ../xfburn/xfburn-blank-dialog.c:437 ../xfburn/xfburn-perform-burn.c:235
+#: ../xfburn/xfburn-blank-dialog.c:437 ../xfburn/xfburn-perform-burn.c:268
 #: ../xfburn/xfburn-progress-dialog.c:564
 msgid "Failure"
 msgstr "Huts"
 
-#: ../xfburn/xfburn-blank-dialog.c:467
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:597
-#: ../xfburn/xfburn-burn-image-dialog.c:331
-#: ../xfburn/xfburn-burn-image-dialog.c:531
+#: ../xfburn/xfburn-blank-dialog.c:460
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:606
+#: ../xfburn/xfburn-burn-image-dialog.c:332
+#: ../xfburn/xfburn-burn-image-dialog.c:535
 msgid "Unable to grab drive"
 msgstr "Ezin da gailua eskuratu"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:178
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:278
 msgid "Burn Composition"
 msgstr "Konposizioa grabatu"
 
@@ -168,36 +168,41 @@ msgstr "Grabaketa_Librea"
 msgid "Only create _ISO"
 msgstr "_ISO-a sortu bakarrik"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:458
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:278
+#, fuzzy
+msgid "_Burn Composition"
+msgstr "Konposizioa grabatu"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:459
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "Ezin da helburu ISO fitxategia sortu: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:465
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:466
 msgid "Writing ISO..."
 msgstr "ISO-a idazten..."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:483
 #, c-format
 msgid "An error occured while writing ISO: %s"
 msgstr "Errore bat gertatu da ISO irudia idazterakoan: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:528
-#: ../xfburn/xfburn-burn-image-dialog.c:296
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:535
+#: ../xfburn/xfburn-burn-image-dialog.c:297
 msgid "Unable to create disc object"
 msgstr "Ezinda disko objektua sortu"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:533
-#: ../xfburn/xfburn-burn-image-dialog.c:324
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:540
+#: ../xfburn/xfburn-burn-image-dialog.c:325
 msgid "Cannot attach source object to track object"
 msgstr "Ezin da jatorri objektua pista objektura erantsi"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:560
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:567
 msgid "The write mode is not supported currently"
 msgstr "Idazketa modua ez da onartzen oraingoz"
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:641
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:650
 msgid "Could not create ISO source structure"
 msgstr "Ezin da ISO jatorri egitura sortu"
 
@@ -220,7 +225,7 @@ msgid "ISO images"
 msgstr "ISO irudiak"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:164
-#: ../xfburn/xfburn-burn-image-dialog.c:416
+#: ../xfburn/xfburn-burn-image-dialog.c:420
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
 "select an image to burn!</span>"
@@ -232,51 +237,52 @@ msgstr ""
 msgid "_Burn image"
 msgstr "Irudia _Grabatu"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:309
+#: ../xfburn/xfburn-burn-image-dialog.c:310
 msgid "Unable to determine image size"
 msgstr "Ezin da irudi tamaina zehaztu"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:316
+#: ../xfburn/xfburn-burn-image-dialog.c:317
 msgid "Cannot open image"
 msgstr "Ezin da irudia ireki"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:340
+#: ../xfburn/xfburn-burn-image-dialog.c:341
 msgid "Burn mode is not currently implemented"
 msgstr "Grabatze modua ez dago inplementaturik oraindik"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:347
+#: ../xfburn/xfburn-burn-image-dialog.c:351
 msgid "Burning image..."
 msgstr "Irudia Grabatzen..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:454 ../xfburn/xfburn-perform-burn.c:91
+#: ../xfburn/xfburn-burn-image-dialog.c:458 ../xfburn/xfburn-perform-burn.c:93
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
 "Ezin da daturik erantsi saio anitzeko diskora idazketa modu honetan (TAO "
 "erabili honen ordez)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:458 ../xfburn/xfburn-perform-burn.c:95
+#: ../xfburn/xfburn-burn-image-dialog.c:462 ../xfburn/xfburn-perform-burn.c:97
 msgid "Closed media with data detected. Need blank or appendable media"
 msgstr ""
 "Datuak dituen medio itxia atzemana. Medio huts edo eransgarri bat behar da"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:460 ../xfburn/xfburn-perform-burn.c:97
+#: ../xfburn/xfburn-burn-image-dialog.c:464 ../xfburn/xfburn-perform-burn.c:99
 msgid "No media detected in drive"
 msgstr "Ez da mediorik atzeman gailuan"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:462 ../xfburn/xfburn-perform-burn.c:99
+#: ../xfburn/xfburn-burn-image-dialog.c:466
+#: ../xfburn/xfburn-perform-burn.c:102
 msgid "Cannot recognize state of drive and media"
 msgstr "Ez da gailu eta medio egoera ezagutzen"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:474
+#: ../xfburn/xfburn-burn-image-dialog.c:478
 msgid "The selected image does not fit on the inserted disc!"
 msgstr "Hautatutako irudia ez da sartutako diskoan sartzen!"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:478
+#: ../xfburn/xfburn-burn-image-dialog.c:482
 msgid "Failed to get image size!"
 msgstr "Ezin da irudi tamaina eskuratu!"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:506
+#: ../xfburn/xfburn-burn-image-dialog.c:510
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
@@ -284,17 +290,22 @@ msgstr ""
 "Ziurtatu zaitez baliozko fitxategi bat hautatu duzula eta bera erabiltzeko "
 "baimena duzula."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:542
+#: ../xfburn/xfburn-burn-image-dialog.c:546
 msgid "The write mode is not currently supported"
 msgstr "Idazketa modua ez da onartzen oraingoz"
 
-#: ../xfburn/xfburn-compositions-notebook.c:166
-msgid "Welcome"
-msgstr "Ongietorria"
-
-#: ../xfburn/xfburn-compositions-notebook.c:170
+#: ../xfburn/xfburn-compositions-notebook.c:169
 msgid "Data composition"
 msgstr "Datu konposizioa"
+
+#: ../xfburn/xfburn-compositions-notebook.c:173
+#, fuzzy
+msgid "Audio composition"
+msgstr "Konposizioa grabatu"
+
+#: ../xfburn/xfburn-compositions-notebook.c:234
+msgid "Welcome"
+msgstr "Ongietorria"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
@@ -395,43 +406,43 @@ msgstr "Berrizendatu"
 msgid "Rename the selected file"
 msgstr "Hautatutako fitxategia berrizendatu"
 
-#: ../xfburn/xfburn-data-composition.c:340
+#: ../xfburn/xfburn-data-composition.c:341
 msgid "Volume name :"
 msgstr "Bolumen izena :"
 
-#: ../xfburn/xfburn-data-composition.c:371
+#: ../xfburn/xfburn-data-composition.c:372
 msgid "Contents"
 msgstr "Edukiak"
 
-#: ../xfburn/xfburn-data-composition.c:386
+#: ../xfburn/xfburn-data-composition.c:387
 #: ../xfburn/xfburn-directory-browser.c:142
 msgid "Size"
 msgstr "Tamaina"
 
-#: ../xfburn/xfburn-data-composition.c:389
+#: ../xfburn/xfburn-data-composition.c:390
 msgid "Local Path"
 msgstr "Bide Lokala"
 
-#: ../xfburn/xfburn-data-composition.c:662
+#: ../xfburn/xfburn-data-composition.c:663
 msgid "You must give a name to the file"
 msgstr "Fitxategiarentzat izen bat eman behar duzu"
 
-#: ../xfburn/xfburn-data-composition.c:671
-#: ../xfburn/xfburn-data-composition.c:1066
+#: ../xfburn/xfburn-data-composition.c:672
+#: ../xfburn/xfburn-data-composition.c:1067
 msgid "A file with the same name is already present in the composition"
 msgstr "Izen berdineko fitxategi bat badago dagoeneko konposizioan"
 
-#: ../xfburn/xfburn-data-composition.c:779
 #: ../xfburn/xfburn-data-composition.c:780
-#: ../xfburn/xfburn-data-composition.c:782
+#: ../xfburn/xfburn-data-composition.c:781
+#: ../xfburn/xfburn-data-composition.c:783
 msgid "New directory"
 msgstr "Direktorio berria"
 
-#: ../xfburn/xfburn-data-composition.c:1224
+#: ../xfburn/xfburn-data-composition.c:1225
 msgid "Adding home directory"
 msgstr "Etxe direktorioa gehitzen"
 
-#: ../xfburn/xfburn-data-composition.c:1225
+#: ../xfburn/xfburn-data-composition.c:1226
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
 "to take a very long time, and also to be too big to fit on one disc.\n"
@@ -444,7 +455,7 @@ msgstr ""
 "\n"
 "Ziur aurrera jarraitu nahi duzula?"
 
-#: ../xfburn/xfburn-data-composition.c:1387
+#: ../xfburn/xfburn-data-composition.c:1388
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
@@ -453,69 +464,60 @@ msgstr ""
 "Badago dagoeneko \"%s\" izeneko fitxategi bat direktorio horretan, "
 "fitxategia ez da gehitu"
 
-#: ../xfburn/xfburn-data-disc-usage.c:138
-msgid "Burn composition"
-msgstr "Konposizioa grabatu"
-
-#: ../xfburn/xfburn-data-disc-usage.c:196
-msgid "You are trying to burn more data than the disk can contain !"
-msgstr ""
-"Diskoak eduki dezakeena baino datu gehiago grabatzen saiatzen ari zara !"
-
-#: ../xfburn/xfburn-device-box.c:183 ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-device-box.c:180 ../xfburn/xfburn-device-box.c:181
 msgid "Show writers only"
 msgstr "Grabatzaileak bakarrik bistarazi"
 
-#: ../xfburn/xfburn-device-box.c:186
+#: ../xfburn/xfburn-device-box.c:183
 msgid "Show speed selection"
 msgstr "Abiadura hautapena bistarazi"
 
-#: ../xfburn/xfburn-device-box.c:187
+#: ../xfburn/xfburn-device-box.c:184
 msgid "Show speed selection combo"
 msgstr "Abiadura hautapen hautatzailea bistarazi"
 
-#: ../xfburn/xfburn-device-box.c:190
+#: ../xfburn/xfburn-device-box.c:187
 msgid "Show mode selection"
 msgstr "Modu hautapena bistarazi"
 
-#: ../xfburn/xfburn-device-box.c:191
+#: ../xfburn/xfburn-device-box.c:188
 msgid "Show mode selection combo"
 msgstr "Modu hautapen hautatzailea bistarazi"
 
-#: ../xfburn/xfburn-device-box.c:194
+#: ../xfburn/xfburn-device-box.c:191
 msgid "Disc status"
 msgstr "Disko egoera"
 
-#: ../xfburn/xfburn-device-box.c:195
+#: ../xfburn/xfburn-device-box.c:192
 msgid "The status of the disc in the drive"
 msgstr "Gailuan dagoen diskoaren egoera"
 
-#: ../xfburn/xfburn-device-box.c:198
+#: ../xfburn/xfburn-device-box.c:195
 msgid "Is it a valid combination"
 msgstr "Balioko konbinazio bat da"
 
-#: ../xfburn/xfburn-device-box.c:199
+#: ../xfburn/xfburn-device-box.c:196
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "Hardware eta diska konbinazioa baliozkoa al da konposizioa grabatzeko?"
 
-#: ../xfburn/xfburn-device-box.c:203
+#: ../xfburn/xfburn-device-box.c:200
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr ""
 "Garbitze moduak modu arruntaren disko egoera mezu ezberdinak erakusten ditu"
 
-#: ../xfburn/xfburn-device-box.c:276
+#: ../xfburn/xfburn-device-box.c:273
 msgid "_Speed:"
 msgstr "_Abiadura:"
 
-#: ../xfburn/xfburn-device-box.c:295
+#: ../xfburn/xfburn-device-box.c:292
 msgid "Write _mode:"
 msgstr "Idazte _modua :"
 
-#: ../xfburn/xfburn-device-box.c:443
+#: ../xfburn/xfburn-device-box.c:426
 msgid "Empty speed list"
 msgstr "Abiasura zerrenda hutsa"
 
-#: ../xfburn/xfburn-device-box.c:451
+#: ../xfburn/xfburn-device-box.c:434
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -539,51 +541,55 @@ msgstr ""
 "\n"
 "<i>Milesker!</i>"
 
-#: ../xfburn/xfburn-device-box.c:460
+#: ../xfburn/xfburn-device-box.c:443
 msgid "Continue to _show this notice"
 msgstr "Jarraitu o_har hau ikustera"
 
-#: ../xfburn/xfburn-device-box.c:503
+#: ../xfburn/xfburn-device-box.c:480
 msgid "default"
 msgstr "lehenetsia"
 
-#: ../xfburn/xfburn-device-box.c:539
+#: ../xfburn/xfburn-device-box.c:516
 msgid "Max"
 msgstr "Geh"
 
-#: ../xfburn/xfburn-device-box.c:628
+#: ../xfburn/xfburn-device-box.c:605
 msgid "Drive can't burn on the inserted disc!"
 msgstr "Gailuak ezin du idatzi sartutako diskoan!"
 
-#: ../xfburn/xfburn-device-box.c:635 ../xfburn/xfburn-device-box.c:678
+#: ../xfburn/xfburn-device-box.c:614 ../xfburn/xfburn-device-box.c:660
 msgid "Drive is empty!"
 msgstr "Gailua hutsik dago!"
 
-#: ../xfburn/xfburn-device-box.c:638
+#: ../xfburn/xfburn-device-box.c:617
+msgid "Sorry, multisession is not yet supported!"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:620
 msgid "Inserted disc is full!"
 msgstr "Sartutako diskoa beterik dago!"
 
-#: ../xfburn/xfburn-device-box.c:641 ../xfburn/xfburn-device-box.c:684
+#: ../xfburn/xfburn-device-box.c:623 ../xfburn/xfburn-device-box.c:666
 msgid "Inserted disc is unsuitable!"
 msgstr "Sartutako diskoa ez da erabilgarria!"
 
-#: ../xfburn/xfburn-device-box.c:644 ../xfburn/xfburn-device-box.c:687
+#: ../xfburn/xfburn-device-box.c:626 ../xfburn/xfburn-device-box.c:669
 msgid "No access to drive (mounted?)"
 msgstr "Ezin da gailua atzitu (muntaturik?)"
 
-#: ../xfburn/xfburn-device-box.c:649 ../xfburn/xfburn-device-box.c:690
+#: ../xfburn/xfburn-device-box.c:631 ../xfburn/xfburn-device-box.c:672
 msgid "Error determining disc!"
 msgstr "Errorea diskoa zehaztean!"
 
-#: ../xfburn/xfburn-device-box.c:670
+#: ../xfburn/xfburn-device-box.c:652
 msgid "Write-once disc, no blanking possible"
 msgstr "Idazketa bakarreko diskoa, ezin da garbitu"
 
-#: ../xfburn/xfburn-device-box.c:673
+#: ../xfburn/xfburn-device-box.c:655
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW ez da garbitu behar"
 
-#: ../xfburn/xfburn-device-box.c:681
+#: ../xfburn/xfburn-device-box.c:663
 msgid "Inserted disc is already blank!"
 msgstr "Sartutako diskoa dagoeneko zurian dago!"
 
@@ -601,12 +607,12 @@ msgstr "Fitxategia"
 msgid "Type"
 msgstr "Mota"
 
-#: ../xfburn/xfburn-format-dvd-dialog.c:91 ../xfburn/xfburn-main-window.c:135
+#: ../xfburn/xfburn-format-dvd-dialog.c:93
 msgid "Format DVD+RW"
 msgstr "DVD+RW Formateatu"
 
 #. "xfburn-blank-cdrw"
-#: ../xfburn/xfburn-format-dvd-dialog.c:124
+#: ../xfburn/xfburn-format-dvd-dialog.c:126
 msgid "_Format"
 msgstr "_Formateatu"
 
@@ -620,11 +626,11 @@ msgstr "Fitxategi sistema"
 msgid "%s's home"
 msgstr "%s-ren etxea"
 
-#: ../xfburn/xfburn-main.c:139 ../xfburn.desktop.in.h:2
+#: ../xfburn/xfburn-main.c:151 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main.c:149
+#: ../xfburn/xfburn-main.c:161
 #, c-format
 msgid ""
 "%s: %s\n"
@@ -633,21 +639,25 @@ msgstr ""
 "%s: %s\n"
 "Erabili %s --help komando lerro aukera erabilgarrien zerendarentzat.\n"
 
-#: ../xfburn/xfburn-main.c:184
+#: ../xfburn/xfburn-main.c:259
 msgid "No drives are currently available!"
 msgstr "Ez dago gailu erabilgarririk!"
 
-#: ../xfburn/xfburn-main.c:186
+#: ../xfburn/xfburn-main.c:261
+#, fuzzy
 msgid ""
 "Maybe there is a mounted media in the drive?\n"
 "\n"
-"Please unmount and restart the application."
+"Please unmount and restart the application.\n"
+"\n"
+"If no media is inserted, check that you have r/w access to the drive with "
+"the current user."
 msgstr ""
 "Agian muntaturiko disko bat dago gailuan?\n"
 "\n"
 "Mesedez desmuntatu eta berriz hasi."
 
-#: ../xfburn/xfburn-main.c:215
+#: ../xfburn/xfburn-main.c:290
 #, c-format
 msgid "Image file '%s' does not exist!"
 msgstr "Ez dago '%s' irudi fitxategia!"
@@ -657,18 +667,18 @@ msgid "_File"
 msgstr "_Fitxategia"
 
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#: ../xfburn/xfburn-main-window.c:103
-msgid "_New composition"
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. G_CALLBACK (action_new_data_composition),},
+#: ../xfburn/xfburn-main-window.c:105
+#, fuzzy
+msgid "New data composition"
+msgstr "Datu konposizioa"
+
+#: ../xfburn/xfburn-main-window.c:107
+#, fuzzy
+msgid "New audio composition"
 msgstr "Konposizioa _berria"
 
-#: ../xfburn/xfburn-main-window.c:103
-msgid "Create a new composition"
-msgstr "Konposizioatik berria sortu"
-
-#. {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
-#. G_CALLBACK (action_new_data_composition),},
-#. {"new-audio-composition", "audio-x-generic", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
-#. G_CALLBACK (action_new_audio_composition),},
 #. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
 #. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
@@ -727,6 +737,10 @@ msgstr "_Honi buruz"
 msgid "Display information about Xfburn"
 msgstr "xfburn-i buruz informazioa bistarazi"
 
+#: ../xfburn/xfburn-main-window.c:128
+msgid "Blank CD-RW"
+msgstr "CD-RW Hutsa"
+
 #: ../xfburn/xfburn-main-window.c:130
 msgid "Copy Data CD"
 msgstr "Datu CD-a kopiatu"
@@ -739,10 +753,10 @@ msgstr "Audio CD-a kopiatu"
 msgid "Burn Image"
 msgstr "Grabatu irudia"
 
-#: ../xfburn/xfburn-main-window.c:137
-msgid "Copy DVD"
-msgstr "DVD-a _Kopiatu"
-
+#. {"format-dvd", "xfburn-format-dvdrw", N_("Format DVD+RW"), NULL, N_("Format DVD+RW"),
+#. G_CALLBACK (action_format_dvd),},
+#. {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
+#. G_CALLBACK (action_copy_dvd),},
 #: ../xfburn/xfburn-main-window.c:139
 msgid "Burn DVD Image"
 msgstr "DVD irudia grabatu"
@@ -767,85 +781,99 @@ msgstr "Tresnabarra bistarazi/ezkutatu"
 msgid "Toolbar Editor"
 msgstr "Tresnabarra Editorea"
 
-#: ../xfburn/xfburn-main-window.c:545
+#: ../xfburn/xfburn-main-window.c:549
 msgid "Another cd burning GUI"
 msgstr "Beste cd grabatze interfaze bat"
 
-#: ../xfburn/xfburn-main-window.c:548 ../xfburn/xfburn-main-window.c:549
-#: ../xfburn/xfburn-main-window.c:550
+#: ../xfburn/xfburn-main-window.c:552 ../xfburn/xfburn-main-window.c:553
+#: ../xfburn/xfburn-main-window.c:554
 msgid "Author/Maintainer"
 msgstr "Egilea/Mantentzea"
 
-#: ../xfburn/xfburn-main-window.c:556
+#: ../xfburn/xfburn-main-window.c:560
 #, c-format
 msgid "Translator (%s)"
 msgstr "Itzultzailea (%s)"
 
-#: ../xfburn/xfburn-notebook-tab.c:107
+#: ../xfburn/xfburn-notebook-tab.c:108
 msgid "Label"
 msgstr "Etiketa"
 
-#: ../xfburn/xfburn-notebook-tab.c:107
+#: ../xfburn/xfburn-notebook-tab.c:108
 msgid "The text of the label"
 msgstr "Etiketaren testua"
 
-#: ../xfburn/xfburn-perform-burn.c:119
+#: ../xfburn/xfburn-notebook-tab.c:111
+#, fuzzy
+msgid "Show close button"
+msgstr "Modu hautapena bistarazi"
+
+#: ../xfburn/xfburn-notebook-tab.c:111
+msgid "Determine whether the close button is visible"
+msgstr ""
+
+#: ../xfburn/xfburn-perform-burn.c:137
+#, fuzzy, c-format
+msgid "Burning track %2d/%d..."
+msgstr "Irudia Grabatzen..."
+
+#: ../xfburn/xfburn-perform-burn.c:141 ../xfburn/xfburn-perform-burn.c:201
 msgid "Burning composition..."
 msgstr "Konposizioa grabatzen..."
 
-#: ../xfburn/xfburn-perform-burn.c:140
+#: ../xfburn/xfburn-perform-burn.c:171
 msgid "standby"
 msgstr "itxoiten"
 
-#: ../xfburn/xfburn-perform-burn.c:147
+#: ../xfburn/xfburn-perform-burn.c:178
 msgid "active"
 msgstr "aktibo"
 
-#: ../xfburn/xfburn-perform-burn.c:150
+#: ../xfburn/xfburn-perform-burn.c:181
 msgid "ending"
 msgstr "amaitzen"
 
-#: ../xfburn/xfburn-perform-burn.c:153
+#: ../xfburn/xfburn-perform-burn.c:184
 msgid "failing"
 msgstr "hutsegiten"
 
-#: ../xfburn/xfburn-perform-burn.c:156
+#: ../xfburn/xfburn-perform-burn.c:187
 msgid "unused"
 msgstr "erabili gabe"
 
-#: ../xfburn/xfburn-perform-burn.c:159
+#: ../xfburn/xfburn-perform-burn.c:190
 msgid "abandoned"
 msgstr "utzia"
 
-#: ../xfburn/xfburn-perform-burn.c:162
+#: ../xfburn/xfburn-perform-burn.c:193
 msgid "ended"
 msgstr "amaitua"
 
-#: ../xfburn/xfburn-perform-burn.c:165
+#: ../xfburn/xfburn-perform-burn.c:196
 msgid "aborted"
 msgstr "baztertua"
 
-#: ../xfburn/xfburn-perform-burn.c:173
+#: ../xfburn/xfburn-perform-burn.c:206
 msgid "Writing Lead-In..."
 msgstr "Saio hasiera idazten..."
 
-#: ../xfburn/xfburn-perform-burn.c:179
+#: ../xfburn/xfburn-perform-burn.c:212
 msgid "Writing Lead-Out..."
 msgstr "Saio amaiera idazten..."
 
-#: ../xfburn/xfburn-perform-burn.c:185
+#: ../xfburn/xfburn-perform-burn.c:218
 msgid "Writing pregap..."
 msgstr "Hasierako tartea idazten..."
 
-#: ../xfburn/xfburn-perform-burn.c:191
+#: ../xfburn/xfburn-perform-burn.c:224
 msgid "Closing track..."
 msgstr "Pista ixten..."
 
-#: ../xfburn/xfburn-perform-burn.c:197
+#: ../xfburn/xfburn-perform-burn.c:230
 msgid "Closing session..."
 msgstr "Saioa ixten..."
 
-#: ../xfburn/xfburn-perform-burn.c:203
+#: ../xfburn/xfburn-perform-burn.c:236
 msgid "Formatting..."
 msgstr "Formateatzen..."
 
@@ -975,63 +1003,78 @@ msgstr "Osaturik"
 msgid "Select command"
 msgstr "Komandoa hautatu"
 
-#: ../xfburn/xfburn-welcome-tab.c:141 ../xfburn/xfburn-welcome-tab.c:142
-msgid "The main window"
-msgstr "Leiho nagusia"
-
-#: ../xfburn/xfburn-welcome-tab.c:144
-msgid "Notebook"
-msgstr "Koadernoa"
-
-#: ../xfburn/xfburn-welcome-tab.c:145
-msgid "NOTEBOOK"
-msgstr "KOADERNOA"
-
-#: ../xfburn/xfburn-welcome-tab.c:147
-msgid "Action group"
-msgstr "Ekintza taldea"
-
-#: ../xfburn/xfburn-welcome-tab.c:148
-msgid "Action group from the main window"
-msgstr "Leiho nagusitik ekintza taldea"
-
-#: ../xfburn/xfburn-welcome-tab.c:181
+#: ../xfburn/xfburn-welcome-tab.c:129
 #, fuzzy
 msgid "Welcome to xfburn!"
 msgstr "Grabatzeko irudia"
 
 #. buttons
-#: ../xfburn/xfburn-welcome-tab.c:192
+#: ../xfburn/xfburn-welcome-tab.c:140
 msgid "<big>Burn _Image</big>"
 msgstr "<big>Grabatu _irudia</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:192
+#: ../xfburn/xfburn-welcome-tab.c:140
 msgid "Burn a prepared compilation, i.e. an .ISO file"
 msgstr "Grabatu prestatutako konpilazioa, adib. ISO fitxategi bat"
 
-#: ../xfburn/xfburn-welcome-tab.c:197
+#: ../xfburn/xfburn-welcome-tab.c:145
 msgid "<big>New _Data Composition</big>"
 msgstr "<big>_Datu konposizio berria</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:197
+#: ../xfburn/xfburn-welcome-tab.c:145
 msgid "Create a new data disc with the files of your choosing"
 msgstr "Sortu datu disko berri bat hautatzen dituzun fitxategiekin"
 
-#: ../xfburn/xfburn-welcome-tab.c:202
+#: ../xfburn/xfburn-welcome-tab.c:150
 msgid "<big>_Blank Disc</big>"
 msgstr "<big>Disko _Hutsa</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:202
+#: ../xfburn/xfburn-welcome-tab.c:150
 msgid "Prepare the rewriteable disc for a new burn"
 msgstr "Prestatu disko berridazgarri grabaketa berri batetarako"
 
+#: ../xfburn/xfburn-welcome-tab.c:155
+#, fuzzy
+msgid "<big>_Audio CD</big>"
+msgstr "<big>Disko _Hutsa</big>"
+
+#: ../xfburn/xfburn-welcome-tab.c:155
+msgid "Audio CD playable in regular stereos"
+msgstr ""
+
 #: ../xfburn.desktop.in.h:1
+#, fuzzy
+msgid "Burn Image (xfburn)"
+msgstr "Grabatu irudia"
+
+#: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD eta DVD grabatze aplikazioa"
 
-#, fuzzy
-#~ msgid "Blank Fast"
-#~ msgstr "_Hutsa"
+#~ msgid "You are trying to burn more data than the disk can contain !"
+#~ msgstr ""
+#~ "Diskoak eduki dezakeena baino datu gehiago grabatzen saiatzen ari zara !"
+
+#~ msgid "Create a new composition"
+#~ msgstr "Konposizioatik berria sortu"
+
+#~ msgid "Copy DVD"
+#~ msgstr "DVD-a _Kopiatu"
+
+#~ msgid "The main window"
+#~ msgstr "Leiho nagusia"
+
+#~ msgid "Notebook"
+#~ msgstr "Koadernoa"
+
+#~ msgid "NOTEBOOK"
+#~ msgstr "KOADERNOA"
+
+#~ msgid "Action group"
+#~ msgstr "Ekintza taldea"
+
+#~ msgid "Action group from the main window"
+#~ msgstr "Leiho nagusitik ekintza taldea"
 
 #, fuzzy
 #~ msgid "Format Fast"
