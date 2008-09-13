@@ -168,7 +168,7 @@ static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnAudi
 static gboolean thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeModel * model, const gchar * path, 
                                          GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
 static gboolean has_audio_ext (const gchar *path);
-static gboolean valid_wav_headers (char header[44]);
+static gboolean valid_wav_headers (guchar header[44]);
 static gboolean is_valid_wav (const gchar *path);
                                   
 typedef struct
@@ -1040,7 +1040,7 @@ static gboolean
 is_valid_wav (const gchar *path)
 {
   int fd;
-  char header[44];
+  guchar header[44];
   gboolean ret;
 
   fd = open (path, 0);
@@ -1069,7 +1069,7 @@ is_valid_wav (const gchar *path)
  * also this works on x86, and does not consider endianness!
  */
 static gboolean
-valid_wav_headers (char header[44])
+valid_wav_headers (guchar header[44])
 {
   /* check if first 4 bytes are RIFF or RIFX */
   if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F') {
@@ -1105,7 +1105,7 @@ valid_wav_headers (char header[44])
 
   /* check for 44100 Hz sample rate,
    * being lazy here and just compare the bytes to what I know they should be */
-  if (header[24] == 0x44 && header[25] == 0xAC && header[26] == 0 && header[27] == 0) {
+  if (!(header[24] == 0x44 && header[25] == 0xAC && header[26] == 0 && header[27] == 0)) {
     g_warning ("Does not have a sample rate of 44100 Hz");
     return FALSE;
   }
