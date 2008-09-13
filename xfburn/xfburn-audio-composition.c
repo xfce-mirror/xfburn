@@ -1154,7 +1154,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     gchar *humanlength = NULL;
     int secs = 0;
     GtkTreePath *tree_path = NULL;
-    gboolean ret;
+    gboolean ret = FALSE;
 
     if (!S_ISDIR (s.st_mode) && !S_ISREG (s.st_mode)) {
       return FALSE;
@@ -1208,7 +1208,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       /* FIXME: if insertion != NULL, we will overwrite its contents, is that OK? */
       iter_last = insertion;
 
-      ret = FALSE;
       while ((filename = g_dir_read_name (dir))) {
         GtkTreeIter new_iter;
         gchar *new_path = NULL;
