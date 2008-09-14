@@ -144,7 +144,8 @@ xfburn_device_box_get_type (void)
         NULL,
         sizeof (XfburnDeviceBox),
         0,
-        (GInstanceInitFunc) xfburn_device_box_init
+        (GInstanceInitFunc) xfburn_device_box_init,
+        NULL
       };
 
       device_box_type = g_type_register_static (GTK_TYPE_VBOX, "XfburnDeviceBox", &device_box_info, 0);

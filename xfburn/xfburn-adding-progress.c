@@ -72,7 +72,8 @@ xfburn_adding_progress_get_type (void)
         NULL,
         sizeof (XfburnAddingProgress),
         0,
-        (GInstanceInitFunc) xfburn_adding_progress_init
+        (GInstanceInitFunc) xfburn_adding_progress_init,
+        NULL
       };
 
       adding_progress_type = g_type_register_static (GTK_TYPE_WINDOW, "XfburnAddingProgress", &adding_progress_info, 0);

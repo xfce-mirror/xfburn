@@ -99,6 +99,7 @@ xfburn_settings_get_type ()
       sizeof (XfburnSettings),
       0,
       (GInstanceInitFunc) xfburn_settings_internal_init,
+      NULL
     };
 
     type = g_type_register_static (G_TYPE_OBJECT, "XfburnSettings", &our_info, 0);

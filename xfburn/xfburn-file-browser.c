@@ -73,7 +73,8 @@ xfburn_file_browser_get_type (void)
       NULL,
       sizeof (XfburnFileBrowser),
       0,
-      (GInstanceInitFunc) xfburn_file_browser_init
+      (GInstanceInitFunc) xfburn_file_browser_init,
+      NULL
     };
 
     file_browser_type = g_type_register_static (GTK_TYPE_HPANED, "XfburnFileBrowser", &file_browser_info, 0);

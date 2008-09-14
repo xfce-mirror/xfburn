@@ -100,6 +100,7 @@ xfburn_preferences_dialog_get_type ()
       sizeof (XfburnPreferencesDialog),
       0,
       (GInstanceInitFunc) xfburn_preferences_dialog_init,
+      NULL
     };
 
     type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnPreferencesDialog", &our_info, 0);

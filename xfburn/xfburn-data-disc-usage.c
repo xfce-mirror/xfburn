@@ -82,7 +82,8 @@ xfburn_data_disc_usage_get_type (void)
       NULL,
       sizeof (XfburnDataDiscUsage),
       0,
-      (GInstanceInitFunc) xfburn_data_disc_usage_init
+      (GInstanceInitFunc) xfburn_data_disc_usage_init,
+      NULL
     };
 
     disc_usage_type = g_type_register_static (XFBURN_TYPE_DISC_USAGE, "XfburnDataDiscUsage", &disc_usage_info, 0);

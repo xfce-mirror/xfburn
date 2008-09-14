@@ -98,7 +98,7 @@ static void action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * wi
 /* globals */
 static GtkWindowClass *parent_class = NULL;
 static const GtkActionEntry action_entries[] = {
-  {"file-menu", NULL, N_("_File"), NULL,},
+  {"file-menu", NULL, N_("_File"), NULL, NULL, NULL},
   /*{"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},*/
   /*{"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"), 
     G_CALLBACK (action_new_data_composition),}, */
@@ -115,21 +115,21 @@ static const GtkActionEntry action_entries[] = {
   {"close-composition", GTK_STOCK_CLOSE, N_("Close composition"), NULL, N_("Close composition"), 
    G_CALLBACK (action_close),},
   {"quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (action_quit),},
-  {"edit-menu", NULL, N_("_Edit"), NULL,},
+  {"edit-menu", NULL, N_("_Edit"), NULL, NULL, NULL},
   {"preferences", GTK_STOCK_PREFERENCES, N_("Prefere_nces"), NULL, N_("Show preferences dialog"),
    G_CALLBACK (action_preferences),},
-  {"action-menu", NULL, N_("_Actions"), NULL,},
-  {"view-menu", NULL, N_("_View"), NULL,},
+  {"action-menu", NULL, N_("_Actions"), NULL, NULL, NULL},
+  {"view-menu", NULL, N_("_View"), NULL, NULL, NULL},
   {"refresh", GTK_STOCK_REFRESH, N_("Refresh"), NULL, N_("Refresh file list"),
    G_CALLBACK (action_refresh_directorybrowser),},
-  {"help-menu", NULL, N_("_Help"), NULL,},
+  {"help-menu", NULL, N_("_Help"), NULL, NULL, NULL},
   {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
    G_CALLBACK (action_about),},
   {"blank-disc", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),
    G_CALLBACK (action_blank),},
   {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),
    G_CALLBACK (action_copy_cd),},
-  {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+  /*{"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),}, */
   {"burn-image", "xfburn-burn-cd", N_("Burn Image"), NULL, N_("Burn Image"),
    G_CALLBACK (action_burn_image),},
 /*  {"format-dvd", "xfburn-format-dvdrw", N_("Format DVD+RW"), NULL, N_("Format DVD+RW"),
@@ -185,7 +185,8 @@ xfburn_main_window_get_type (void)
       NULL,
       sizeof (XfburnMainWindow),
       0,
-      (GInstanceInitFunc) xfburn_main_window_init
+      (GInstanceInitFunc) xfburn_main_window_init,
+      NULL
     };
 
     main_window_type = g_type_register_static (GTK_TYPE_WINDOW, "XfburnMainWindow", &main_window_info, 0);

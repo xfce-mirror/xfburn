@@ -64,6 +64,7 @@ xfburn_format_dvd_dialog_get_type ()
       sizeof (XfburnFormatDvdDialog),
       0,
       (GInstanceInitFunc) xfburn_format_dvd_dialog_init,
+      NULL
     };
 
     type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnFormatDvdDialog", &our_info, 0);

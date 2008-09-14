@@ -81,7 +81,8 @@ xfburn_CFLAGS =								\
 	$(LIBISOFS_CFLAGS)						\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(EXO_CFLAGS)							\
-	$(THUNAR_VFS_CFLAGS)
+	$(THUNAR_VFS_CFLAGS)						\
+	$(GSTREAMER_CFLAGS)
 
 xfburn_LDADD = 								\
 	$(GTHREAD_LIBS)							\
@@ -89,7 +90,8 @@ xfburn_LDADD = 								\
 	$(LIBISOFS_LIBS)						\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(EXO_LIBS)							\
-	$(THUNAR_VFS_LIBS)
+	$(THUNAR_VFS_LIBS)						\
+	$(GSTREAMER_LIBS)
 
 if HAVE_HAL
 xfburn_CFLAGS +=							\

@@ -104,6 +104,7 @@ xfburn_burn_audio_cd_composition_dialog_get_type ()
       sizeof (XfburnBurnAudioCdCompositionDialog),
       0,
       NULL,
+      NULL
     };
 
     type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBurnAudioCdCompositionDialog", &our_info, 0);

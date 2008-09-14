@@ -79,6 +79,7 @@ xfburn_notebook_tab_get_type ()
       sizeof (XfburnNotebookTab),
       0,
       (GInstanceInitFunc) xfburn_notebook_tab_init,
+      NULL
     };
 
     type = g_type_register_static (GTK_TYPE_HBOX, "XfburnNotebookTab", &our_info, 0);

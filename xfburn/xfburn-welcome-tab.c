@@ -85,6 +85,7 @@ xfburn_welcome_tab_get_type ()
       sizeof (XfburnWelcomeTab),
       0,
       (GInstanceInitFunc) xfburn_welcome_tab_init,
+      NULL
     };
 
     type = g_type_register_static (GTK_TYPE_VBOX, "XfburnWelcomeTab", &our_info, 0);

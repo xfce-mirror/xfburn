@@ -58,6 +58,7 @@ xfburn_copy_cd_progress_dialog_get_type ()
       sizeof (XfburnCopyCdProgressDialog),
       0,
       (GInstanceInitFunc) xfburn_copy_cd_progress_dialog_init,
+      NULL
     };
 
     type = g_type_register_static (XFBURN_TYPE_PROGRESS_DIALOG, "XfburnCopyCdProgressDialog", &our_info, 0);

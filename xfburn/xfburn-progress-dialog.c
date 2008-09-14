@@ -123,6 +123,7 @@ xfburn_progress_dialog_get_type ()
       sizeof (XfburnProgressDialog),
       0,
       (GInstanceInitFunc) xfburn_progress_dialog_init,
+      NULL
     };
 
     type = g_type_register_static (GTK_TYPE_DIALOG, "XfburnProgressDialog", &our_info, 0);

@@ -125,6 +125,7 @@ xfburn_blank_dialog_get_type ()
       sizeof (XfburnBlankDialog),
       0,
       (GInstanceInitFunc) xfburn_blank_dialog_init,
+      NULL,
     };
 
     type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBlankDialog", &our_info, 0);

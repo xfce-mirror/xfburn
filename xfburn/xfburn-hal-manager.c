@@ -95,6 +95,7 @@ xfburn_hal_manager_get_type ()
       sizeof (XfburnHalManager),
       0,
       (GInstanceInitFunc) xfburn_hal_manager_init,
+      NULL
     };
 
     type = g_type_register_static (G_TYPE_OBJECT, "XfburnHalManager", &our_info, 0);

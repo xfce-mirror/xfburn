@@ -61,6 +61,7 @@ xfburn_fs_browser_get_type ()
       sizeof (XfburnFsBrowser),
       0,
       (GInstanceInitFunc) xfburn_fs_browser_init,
+      NULL
     };
 
     type = g_type_register_static (EXO_TYPE_TREE_VIEW, "XfburnFsBrowser", &our_info, 0);

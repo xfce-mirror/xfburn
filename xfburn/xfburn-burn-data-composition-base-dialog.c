@@ -126,6 +126,7 @@ xfburn_burn_data_composition_base_dialog_get_type ()
       sizeof (XfburnBurnDataCompositionBaseDialog),
       0,
       NULL,
+      NULL
     };
 
     type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBurnDataCompositionBaseDialog", &our_info, 0);

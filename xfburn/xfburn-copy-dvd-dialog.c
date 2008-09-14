@@ -81,6 +81,7 @@ xfburn_copy_dvd_dialog_get_type ()
       sizeof (XfburnCopyDvdDialog),
       0,
       (GInstanceInitFunc) xfburn_copy_dvd_dialog_init,
+      NULL
     };
 
     type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnCopyDvdDialog", &our_info, 0);

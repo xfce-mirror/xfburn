@@ -36,6 +36,10 @@
 #include <thunar-vfs/thunar-vfs.h>
 #endif
 
+#ifdef HAVE_GSTREAMER
+#include <gst/gst.h>
+#endif
+
 #include "xfburn-global.h"
 #include "xfburn-device-list.h"
 #include "xfburn-utils.h"
@@ -73,7 +77,7 @@ static GOptionEntry optionentries[] = {
     "Display program version and exit", NULL },
   { "main", 'm', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_main, 
     "Show main program even when other action is specified on the command line.", NULL },
-  { NULL },
+  { NULL, ' ', 0, 0, NULL, NULL, NULL }
 };
 
 static gboolean parse_option (const gchar *option_name, const gchar *value,
@@ -160,15 +164,43 @@ main (int argc, char **argv)
     if (error != NULL) {
       g_print (_("%s: %s\nTry %s --help to see a full list of available command line options.\n"), PACKAGE, error->message, PACKAGE_NAME);
       g_error_free (error);
-      return 1;
+      return EXIT_FAILURE;
     }
   }
 
+#ifdef HAVE_GSTREAMER
+  if (!gst_init_check (&argc, &argv, &error)) {
+    g_warning ("Failed to initialize gstreamer!");
+    /* later make this a soft failure, and just disable gstreamer functionality */
+    return EXIT_FAILURE;
+  }
+#endif
+
   if (show_version) {
-    g_print ("\tThis is %s version %s for Xfce %s\n", PACKAGE, VERSION, xfce_version_string ());
+#ifdef HAVE_GSTREAMER
+    const char *nano_str;
+    guint gst_major, gst_minor, gst_micro, gst_nano;
+#endif
+
+    g_print ("%s version %s for Xfce %s\n", PACKAGE, VERSION, xfce_version_string ());
     g_print ("\tbuilt with GTK+-%d.%d.%d, ", GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
     g_print ("linked with GTK+-%d.%d.%d.\n", gtk_major_version, gtk_minor_version, gtk_micro_version);
 
+#ifdef HAVE_GSTREAMER
+    gst_version (&gst_major, &gst_minor, &gst_micro, &gst_nano);
+
+    if (gst_nano == 1)
+      nano_str = " (CVS)";
+    else if (gst_nano == 2)
+      nano_str = " (Prerelease)";
+    else
+      nano_str = "";
+
+    g_print ("\tGStreamer support (built with %d.%d.%d, linked against %d.%d.%d%s)\n",
+             GST_VERSION_MAJOR, GST_VERSION_MINOR, GST_VERSION_MICRO,
+             gst_major, gst_minor, gst_micro, nano_str);
+             
+#endif
     exit (EXIT_SUCCESS);
   }
 

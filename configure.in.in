@@ -75,9 +75,20 @@ if test x"$HAL_FOUND" = x"yes"; then
 fi
 AC_SUBST([HAL_STORAGE_DEPENDENCY])
 
+dnl **************************************
+dnl *** Optional support for gstreamer ***
+dnl **************************************
+dnl (based on xfce4-mixer (trunk@27735)
+dnl XDT_CHECK_OPTIONAL_PACKAGE([GST_PLUGINS_BASE], [gstreamer-plugins-base-0.10], [0.10.2])
+XDT_CHECK_OPTIONAL_PACKAGE([GSTREAMER], [gstreamer-0.10], [0.10.2])
+
 
 dnl check for debugging support
 BM_DEBUG_SUPPORT()
+dnl add -Wextra if debug is enabled
+if test x"$enable_debug" != x"no"; then
+  CFLAGS="$CFLAGS -Wextra -Wno-unused-parameter -Wno-sign-compare"
+fi
 
 AC_OUTPUT([
 Makefile

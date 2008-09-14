@@ -81,6 +81,7 @@ xfburn_copy_cd_dialog_get_type ()
       sizeof (XfburnCopyCdDialog),
       0,
       (GInstanceInitFunc) xfburn_copy_cd_dialog_init,
+      NULL
     };
 
     type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnCopyCdDialog", &our_info, 0);

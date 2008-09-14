@@ -162,7 +162,8 @@ gint
 get_libburn_device_list ()
 {
   struct burn_drive_info *drives;
-  gint i, ret; 
+  guint i;
+  gint ret; 
   gboolean can_burn;
   guint n_drives = 0;
   guint n_burners = 0;

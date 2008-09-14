@@ -104,6 +104,7 @@ xfburn_burn_image_dialog_get_type ()
       sizeof (XfburnBurnImageDialog),
       0,
       (GInstanceInitFunc) xfburn_burn_image_dialog_init,
+      NULL
     };
 
     type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBurnImageDialog", &our_info, 0);

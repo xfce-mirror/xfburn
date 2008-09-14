@@ -213,7 +213,7 @@ static const GtkActionEntry action_entries[] = {
    G_CALLBACK (action_remove_selection),},
   {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the content of the composition"),
    G_CALLBACK (action_clear),},
-  {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+  //{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
   {"rename-artist", GTK_STOCK_EDIT, N_("Rename Artist"), NULL, N_("Rename the artist of the selected file"),
    G_CALLBACK (action_rename_selection_artist),},
   {"rename-title", GTK_STOCK_EDIT, N_("Rename Title"), NULL, N_("Rename the title of the selected file"),
@@ -247,7 +247,8 @@ xfburn_audio_composition_get_type (void)
       NULL,
       sizeof (XfburnAudioComposition),
       0,
-      (GInstanceInitFunc) xfburn_audio_composition_init
+      (GInstanceInitFunc) xfburn_audio_composition_init,
+      NULL
     };
 
     static const GInterfaceInfo composition_info = {
@@ -2082,7 +2083,7 @@ save_to_file (XfburnComposition * composition)
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
   FILE *file_content;
   GtkTreeModel *model;
-  CompositionSaveInfo info = {};
+  CompositionSaveInfo info;
   gint i;
     
   if (!(priv->filename)) {

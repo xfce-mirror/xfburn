@@ -76,7 +76,8 @@ xfburn_directory_browser_get_type (void)
       NULL,
       sizeof (XfburnDirectoryBrowser),
       0,
-      (GInstanceInitFunc) xfburn_directory_browser_init
+      (GInstanceInitFunc) xfburn_directory_browser_init,
+      NULL
     };
 
     directory_browser_type =

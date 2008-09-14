@@ -74,6 +74,7 @@ xfburn_compositions_notebook_get_type ()
       sizeof (XfburnCompositionsNotebook),
       0,
       (GInstanceInitFunc) xfburn_compositions_notebook_init,
+      NULL
     };
 
     type = g_type_register_static (GTK_TYPE_NOTEBOOK, "XfburnCompositionsNotebook", &our_info, 0);

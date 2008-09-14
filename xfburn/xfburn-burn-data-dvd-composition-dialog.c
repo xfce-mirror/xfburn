@@ -72,6 +72,7 @@ xfburn_burn_data_dvd_composition_dialog_get_type ()
       sizeof (XfburnBurnDataDvdCompositionDialog),
       0,
       (GInstanceInitFunc) xfburn_burn_data_dvd_composition_dialog_init,
+      NULL
     };
 
     type = g_type_register_static (XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, "XfburnBurnDataDvdCompositionDialog", &our_info, 0);
