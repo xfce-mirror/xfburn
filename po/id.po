@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-08 13:13-0600\n"
-"PO-Revision-Date: 2008-07-23 15:55+0700\n"
+"PO-Revision-Date: 2008-09-10 22:22+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -52,9 +52,8 @@ msgid "Default value for eject checkbox"
 msgstr "Nilai standar untuk mengeluarkan kotak cek"
 
 #: ../xfburn/xfburn-blank-dialog.c:196
-#, fuzzy
 msgid "Blank Disc"
-msgstr "Mengosongkan cakram..."
+msgstr "Cakram Kosong"
 
 #: ../xfburn/xfburn-blank-dialog.c:208
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:190
@@ -164,9 +163,8 @@ msgid "Only create _ISO"
 msgstr "Hanya buat _ISO"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:278
-#, fuzzy
 msgid "_Burn Composition"
-msgstr "Bakar Komposisi"
+msgstr "_Bakar Komposisi"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:459
 #, c-format
@@ -294,9 +292,8 @@ msgid "Data composition"
 msgstr "Komposisi data"
 
 #: ../xfburn/xfburn-compositions-notebook.c:173
-#, fuzzy
 msgid "Audio composition"
-msgstr "Bakar komposisi"
+msgstr "Komposisi audio"
 
 #: ../xfburn/xfburn-compositions-notebook.c:234
 msgid "Welcome"
@@ -559,7 +556,7 @@ msgstr "Penggerak kosong!"
 
 #: ../xfburn/xfburn-device-box.c:617
 msgid "Sorry, multisession is not yet supported!"
-msgstr ""
+msgstr "Maaf, multisesi belum didukung!"
 
 #: ../xfburn/xfburn-device-box.c:620
 msgid "Inserted disc is full!"
@@ -641,7 +638,6 @@ msgid "No drives are currently available!"
 msgstr "Tak ada penggerak yang saat ini tersedia!"
 
 #: ../xfburn/xfburn-main.c:261
-#, fuzzy
 msgid ""
 "Maybe there is a mounted media in the drive?\n"
 "\n"
@@ -650,9 +646,12 @@ msgid ""
 "If no media is inserted, check that you have r/w access to the drive with "
 "the current user."
 msgstr ""
-"Mungkin ada media termount di dalam penggerak?\n"
+"Mungkin ada media terkait di dalam penggerak?\n"
 "\n"
-"Silakan lepas mount dan start ulang aplikasi."
+"Silakan lepas kait dan start ulang aplikasi.\n"
+"\n"
+"Jika tak ada media yang dimasukkan, cek apakah anda memiliki hak baca/tulis "
+"ke penggerak dengan pengguna saat ini."
 
 #: ../xfburn/xfburn-main.c:290
 #, c-format
@@ -667,14 +666,12 @@ msgstr "_Berkas"
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:105
-#, fuzzy
 msgid "New data composition"
-msgstr "Komposisi data"
+msgstr "Komposisi data baru"
 
 #: ../xfburn/xfburn-main-window.c:107
-#, fuzzy
 msgid "New audio composition"
-msgstr "_Kompilasi baru"
+msgstr "Komposisi audio baru"
 
 #. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
@@ -801,18 +798,17 @@ msgid "The text of the label"
 msgstr "Teks dari label"
 
 #: ../xfburn/xfburn-notebook-tab.c:111
-#, fuzzy
 msgid "Show close button"
-msgstr "Tampilkan pilihan mode"
+msgstr "Tampilkan tombol tutup"
 
 #: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Determine whether the close button is visible"
-msgstr ""
+msgstr "Menentukan apakah tombol tutup terlihat"
 
 #: ../xfburn/xfburn-perform-burn.c:137
-#, fuzzy, c-format
+#, c-format
 msgid "Burning track %2d/%d..."
-msgstr "Membakar citra..."
+msgstr "Membakar jalur %2d/%d..."
 
 #: ../xfburn/xfburn-perform-burn.c:141 ../xfburn/xfburn-perform-burn.c:201
 msgid "Burning composition..."
@@ -1030,18 +1026,16 @@ msgid "Prepare the rewriteable disc for a new burn"
 msgstr "Siapkan cakram dapat ditulis ulang untuk pembakaran baru"
 
 #: ../xfburn/xfburn-welcome-tab.c:155
-#, fuzzy
 msgid "<big>_Audio CD</big>"
-msgstr "<big>_Kosongkan Cakram</big>"
+msgstr "<big>_CD Audio</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:155
 msgid "Audio CD playable in regular stereos"
-msgstr ""
+msgstr "CD audio dapat diputar di stereo reguler"
 
 #: ../xfburn.desktop.in.h:1
-#, fuzzy
 msgid "Burn Image (xfburn)"
-msgstr "Bakar Citra"
+msgstr "Bakar Citra (xfburn)"
 
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
