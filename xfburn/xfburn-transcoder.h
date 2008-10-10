@@ -21,8 +21,6 @@
 #ifndef __XFBURN_TRANSCODER_H__
 #define __XFBURN_TRANSCODER_H__
 
-#ifdef HAVE_GSTREAMER
-
 #ifdef	HAVE_CONFIG_H
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
@@ -56,7 +54,5 @@ GtkType xfburn_transcoder_get_type ();
 GObject *xfburn_transcoder_new ();
 
 G_END_DECLS
-
-#endif /* HAVE_GSTREAMER */
 
 #endif /* XFBURN_TRANSCODER_H */

@@ -22,8 +22,6 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
-#ifdef HAVE_GSTREAMER
-
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
@@ -39,38 +37,21 @@ static void xfburn_transcoder_class_init (XfburnTranscoderClass * klass);
 static void xfburn_transcoder_init (XfburnTranscoder * obj);
 static void xfburn_transcoder_finalize (GObject * object);
 
-/*
-static void hal_finalize (LibHalContext  *hal_context);
-static void cb_device_added (LibHalContext *ctx, const char *udi);
-static void cb_device_removed (LibHalContext *ctx, const char *udi);
-static void cb_prop_modified (LibHalContext *ctx, const char *udi, const char *key,
-                              dbus_bool_t is_removed, dbus_bool_t is_added);
-*/
-
 #define XFBURN_TRANSCODER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_TRANSCODER, XfburnTranscoderPrivate))
 
 enum {
-//  VOLUME_CHANGED,
   LAST_SIGNAL,
 }; 
 
 typedef struct {
-/*
-  LibHalContext  *hal_context;
-  DBusConnection *dbus_connection;
-  gchar *error;
-
-#ifdef HAVE_THUNAR_VFS
-  ThunarVfsVolumeManager *thunar_volman;
-#endif
-*/
+  gboolean dummy;
 } XfburnTranscoderPrivate;
 
 /*********************/
 /* class declaration */
 /*********************/
-static XfburnProgressDialogClass *parent_class = NULL;
-//static guint signals[LAST_SIGNAL];
+static GObject *parent_class = NULL;
+static guint signals[LAST_SIGNAL];
 
 GtkType
 xfburn_transcoder_get_type ()
@@ -143,5 +124,3 @@ xfburn_transcoder_new ()
 {
   return g_object_new (XFBURN_TYPE_TRANSCODER, NULL);
 }
-
-#endif /* HAVE_GSTREAMER */

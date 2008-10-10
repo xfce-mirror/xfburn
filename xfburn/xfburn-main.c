@@ -36,7 +36,7 @@
 #include <thunar-vfs/thunar-vfs.h>
 #endif
 
-#ifdef HAVE_GSTREAMER
+#ifdef HAVE_GST
 #include <gst/gst.h>
 #endif
 
@@ -168,7 +168,7 @@ main (int argc, char **argv)
     }
   }
 
-#ifdef HAVE_GSTREAMER
+#ifdef HAVE_GST
   if (!gst_init_check (&argc, &argv, &error)) {
     g_warning ("Failed to initialize gstreamer!");
     /* later make this a soft failure, and just disable gstreamer functionality */
@@ -177,7 +177,7 @@ main (int argc, char **argv)
 #endif
 
   if (show_version) {
-#ifdef HAVE_GSTREAMER
+#ifdef HAVE_GST
     const char *nano_str;
     guint gst_major, gst_minor, gst_micro, gst_nano;
 #endif
@@ -186,7 +186,7 @@ main (int argc, char **argv)
     g_print ("\tbuilt with GTK+-%d.%d.%d, ", GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
     g_print ("linked with GTK+-%d.%d.%d.\n", gtk_major_version, gtk_minor_version, gtk_micro_version);
 
-#ifdef HAVE_GSTREAMER
+#ifdef HAVE_GST
     gst_version (&gst_major, &gst_minor, &gst_micro, &gst_nano);
 
     if (gst_nano == 1)
