@@ -18,8 +18,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFBURN_TRANSCODER_BASIC_BASIC_H__
-#define __XFBURN_TRANSCODER_BASIC_BASIC_H__
+#ifndef __XFBURN_TRANSCODER_BASIC_H__
+#define __XFBURN_TRANSCODER_BASIC_H__
 
 #ifdef	HAVE_CONFIG_H
 #include <config.h>
@@ -27,32 +27,31 @@
 
 #include <gtk/gtk.h>
 
-#include "xfburn-progress-dialog.h"
-#include "xfburn-device-list.h"
+#include "xfburn-transcoder.h"
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_TRANSCODER         (xfburn_transcoder_basic_get_type ())
-#define XFBURN_TRANSCODER_BASIC(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoder))
-#define XFBURN_TRANSCODER_BASIC_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_TRANSCODER, XfburnTranscoderClass))
-#define XFBURN_IS_TRANSCODER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_TRANSCODER))
-#define XFBURN_IS_TRANSCODER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_TRANSCODER))
-#define XFBURN_TRANSCODER_BASIC_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoderClass))
+#define XFBURN_TYPE_TRANSCODER_BASIC         (xfburn_transcoder_basic_get_type ())
+#define XFBURN_TRANSCODER_BASIC(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_TRANSCODER_BASIC, XfburnTranscoderBasic))
+#define XFBURN_TRANSCODER_BASIC_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_TRANSCODER_BASIC, XfburnTranscoderBasicClass))
+#define XFBURN_IS_TRANSCODER_BASIC(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_TRANSCODER_BASIC))
+#define XFBURN_IS_TRANSCODER_BASIC_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_TRANSCODER_BASIC))
+#define XFBURN_TRANSCODER_BASIC_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_TRANSCODER_BASIC, XfburnTranscoderBasicClass))
 
 typedef struct
 {
   GObject parent;
-} XfburnTranscoder;
+} XfburnTranscoderBasic;
 
 typedef struct
 {
-  GObject parent_class;
+  GObjectClass parent_class;
   
-} XfburnTranscoderClass;
+} XfburnTranscoderBasicClass;
 
 GtkType xfburn_transcoder_basic_get_type ();
 GObject *xfburn_transcoder_basic_new ();
 
 G_END_DECLS
 
-#endif /* XFBURN_TRANSCODER_BASIC_BASIC_H */
+#endif /* XFBURN_TRANSCODER_BASIC_H */

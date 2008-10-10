@@ -1,0 +1,115 @@
+/* $Id$ */
+/*
+ *  Copyright (c) 2008      David Mohr (dmohr@mcbf.net)
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Library General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
+
+#ifdef	HAVE_CONFIG_H
+#include <config.h>
+#endif /* !HAVE_CONFIG_H */
+
+#include "xfburn-global.h"
+
+#include "xfburn-transcoder.h"
+
+static void xfburn_transcoder_base_init (XfburnTranscoderInterface * iface);
+
+/*
+enum {
+  LAST_SIGNAL,
+}; 
+*/
+
+XfburnTranscoder *transcoder = NULL;
+
+/*************************/
+/* interface declaration */
+/*************************/
+//static guint signals[LAST_SIGNAL];
+
+GtkType
+xfburn_transcoder_get_type ()
+{
+  static GtkType type = 0;
+
+  if (type == 0) {
+    static const GTypeInfo our_info = {
+      sizeof (XfburnTranscoderInterface),
+      (GBaseInitFunc) xfburn_transcoder_base_init ,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      0,
+      0,
+      NULL,
+      NULL
+    };
+
+    type = g_type_register_static (G_TYPE_INTERFACE, "XfburnTranscoderInterface", &our_info, 0);
+    g_type_interface_add_prerequisite (type, G_TYPE_OBJECT);
+  }
+
+  return type;
+}
+
+static void
+xfburn_transcoder_base_init (XfburnTranscoderInterface * iface)
+{
+  static gboolean initialized = FALSE;
+  
+  if (!initialized) {
+    /*
+    signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_TRANSCODER, G_SIGNAL_ACTION,
+                                            G_STRUCT_OFFSET (XfburnTranscoderClass, volume_changed),
+                                            NULL, NULL, g_cclosure_marshal_VOID__VOID,
+                                            G_TYPE_NONE, 0);
+    */
+    initialized = TRUE;
+  }
+}
+
+/*           */
+/* internals */
+/*           */
+
+/*        */
+/* public */
+/*        */
+
+gboolean
+xfburn_transcoder_is_audio_file (XfburnTranscoder *trans, const gchar *fn)
+{
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  if (iface->is_audio_file)
+    return iface->is_audio_file (trans, fn);
+  
+  g_warning ("Falling back to base implementation for xfburn_transcoder_is_audio_file, which always says false.");
+  return FALSE;
+}
+
+
+void 
+xfburn_set_transcoder (XfburnTranscoder *trans)
+{
+  transcoder = trans;
+}
+
+XfburnTranscoder *
+xfburn_get_transcoder()
+{
+  return transcoder;
+}

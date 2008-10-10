@@ -49,6 +49,7 @@
 #include "xfburn-main-window.h"
 #include "xfburn-blank-dialog.h"
 #include "xfburn-hal-manager.h"
+#include "xfburn-transcoder-basic.h"
 
 
 /* internal prototypes */
@@ -143,6 +144,7 @@ main (int argc, char **argv)
 #ifdef HAVE_HAL
   gchar *error_msg;
 #endif
+  XfburnTranscoder *transcoder;
 
 #if DEBUG > 0
   /* I have to disable this until GtkTreeView gets fixed,
@@ -295,6 +297,8 @@ main (int argc, char **argv)
     gtk_widget_destroy (GTK_WIDGET (dialog));
   }
 
+  transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
+  xfburn_set_transcoder (transcoder);
 
   /* evaluate parsed command line options */
 
@@ -350,6 +354,8 @@ main (int argc, char **argv)
   gtk_main ();
 
   /* shutdown */
+  g_object_unref (transcoder);
+
 #ifdef HAVE_HAL
   xfburn_hal_manager_shutdown ();
 #endif

@@ -17,6 +17,7 @@ xfburn_headers = 							\
 	xfburn-burn-data-cd-composition-dialog.h			\
 	xfburn-burn-data-dvd-composition-dialog.h			\
 	xfburn-burn-audio-cd-composition-dialog.h			\
+        xfburn-transcoder.h                                             \
         xfburn-transcoder-basic.h                                       \
 	xfburn-burn-image-dialog.h					\
 	xfburn-settings.h						\
@@ -52,6 +53,7 @@ xfburn_SOURCES =							\
 	xfburn-burn-data-cd-composition-dialog.c			\
 	xfburn-burn-data-dvd-composition-dialog.c			\
 	xfburn-burn-audio-cd-composition-dialog.c			\
+        xfburn-transcoder.c                                             \
         xfburn-transcoder-basic.c                                       \
 	xfburn-burn-image-dialog.c					\
 	xfburn-composition.c						\

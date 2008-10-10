@@ -33,11 +33,14 @@
 
 #include "xfburn-transcoder-basic.h"
 
-static void xfburn_transcoder_basic_class_init (XfburnTranscoderClass * klass);
-static void xfburn_transcoder_basic_init (XfburnTranscoder * obj);
+static void xfburn_transcoder_basic_class_init (XfburnTranscoderBasicClass * klass);
+static void xfburn_transcoder_basic_init (XfburnTranscoderBasic * obj);
 static void xfburn_transcoder_basic_finalize (GObject * object);
+static void transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data);
 
-#define XFBURN_TRANSCODER_BASIC_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_TRANSCODER, XfburnTranscoderPrivate))
+static gboolean is_audio_file (XfburnTranscoder *trans, const gchar *fn);
+
+#define XFBURN_TRANSCODER_BASIC_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_TRANSCODER_BASIC, XfburnTranscoderBasicPrivate))
 
 enum {
   LAST_SIGNAL,
@@ -45,7 +48,7 @@ enum {
 
 typedef struct {
   gboolean dummy;
-} XfburnTranscoderPrivate;
+} XfburnTranscoderBasicPrivate;
 
 /*********************/
 /* class declaration */
@@ -60,60 +63,79 @@ xfburn_transcoder_basic_get_type ()
 
   if (type == 0) {
     static const GTypeInfo our_info = {
-      sizeof (XfburnTranscoderClass),
+      sizeof (XfburnTranscoderBasicClass),
       NULL,
       NULL,
       (GClassInitFunc) xfburn_transcoder_basic_class_init,
       NULL,
       NULL,
-      sizeof (XfburnTranscoder),
+      sizeof (XfburnTranscoderBasic),
       0,
       (GInstanceInitFunc) xfburn_transcoder_basic_init,
       NULL
     };
+    static const GInterfaceInfo trans_info = {
+      (GInterfaceInitFunc) transcoder_interface_init,
+      NULL,
+      NULL
+    };
 
-    type = g_type_register_static (G_TYPE_OBJECT, "XfburnTranscoder", &our_info, 0);
+    type = g_type_register_static (G_TYPE_OBJECT, "XfburnTranscoderBasic", &our_info, 0);
+
+    g_type_add_interface_static (type, XFBURN_TYPE_TRANSCODER, &trans_info);
   }
 
   return type;
 }
 
 static void
-xfburn_transcoder_basic_class_init (XfburnTranscoderClass * klass)
+xfburn_transcoder_basic_class_init (XfburnTranscoderBasicClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   
-  g_type_class_add_private (klass, sizeof (XfburnTranscoderPrivate));
+  g_type_class_add_private (klass, sizeof (XfburnTranscoderBasicPrivate));
   
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_transcoder_basic_finalize;
 
 /*
-  signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_TRANSCODER, G_SIGNAL_ACTION,
-                                          G_STRUCT_OFFSET (XfburnTranscoderClass, volume_changed),
+  signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_TRANSCODER_BASIC, G_SIGNAL_ACTION,
+                                          G_STRUCT_OFFSET (XfburnTranscoderBasicClass, volume_changed),
                                           NULL, NULL, g_cclosure_marshal_VOID__VOID,
                                           G_TYPE_NONE, 0);
 */
 }
 
 static void
-xfburn_transcoder_basic_init (XfburnTranscoder * obj)
+xfburn_transcoder_basic_init (XfburnTranscoderBasic * obj)
 {
-  //XfburnTranscoderPrivate *priv = XFBURN_TRANSCODER_BASIC_GET_PRIVATE (obj);
+  //XfburnTranscoderBasicPrivate *priv = XFBURN_TRANSCODER_BASIC_GET_PRIVATE (obj);
 }
 
 static void
 xfburn_transcoder_basic_finalize (GObject * object)
 {
-  //XfburnTranscoderPrivate *priv = XFBURN_TRANSCODER_BASIC_GET_PRIVATE (object);
+  //XfburnTranscoderBasicPrivate *priv = XFBURN_TRANSCODER_BASIC_GET_PRIVATE (object);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
+static void
+transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data)
+{
+  iface->is_audio_file = is_audio_file;
+}
 /*           */
 /* internals */
 /*           */
+
+static gboolean
+is_audio_file (XfburnTranscoder *trans, const gchar *fn)
+{
+  g_message ("TranscoderBasic is_audio_file");
+  return FALSE;
+}
 
 /*        */
 /* public */
@@ -122,5 +144,5 @@ xfburn_transcoder_basic_finalize (GObject * object)
 GObject *
 xfburn_transcoder_basic_new ()
 {
-  return g_object_new (XFBURN_TYPE_TRANSCODER, NULL);
+  return g_object_new (XFBURN_TYPE_TRANSCODER_BASIC, NULL);
 }
