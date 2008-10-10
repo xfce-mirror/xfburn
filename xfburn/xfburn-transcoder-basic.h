@@ -18,8 +18,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFBURN_TRANSCODER_H__
-#define __XFBURN_TRANSCODER_H__
+#ifndef __XFBURN_TRANSCODER_BASIC_BASIC_H__
+#define __XFBURN_TRANSCODER_BASIC_BASIC_H__
 
 #ifdef	HAVE_CONFIG_H
 #include <config.h>
@@ -32,12 +32,12 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_TRANSCODER         (xfburn_transcoder_get_type ())
-#define XFBURN_TRANSCODER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoder))
-#define XFBURN_TRANSCODER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_TRANSCODER, XfburnTranscoderClass))
+#define XFBURN_TYPE_TRANSCODER         (xfburn_transcoder_basic_get_type ())
+#define XFBURN_TRANSCODER_BASIC(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoder))
+#define XFBURN_TRANSCODER_BASIC_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_TRANSCODER, XfburnTranscoderClass))
 #define XFBURN_IS_TRANSCODER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_TRANSCODER))
 #define XFBURN_IS_TRANSCODER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_TRANSCODER))
-#define XFBURN_TRANSCODER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoderClass))
+#define XFBURN_TRANSCODER_BASIC_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoderClass))
 
 typedef struct
 {
@@ -46,13 +46,13 @@ typedef struct
 
 typedef struct
 {
-  XfburnProgressDialogClass parent_class;
+  GObject parent_class;
   
 } XfburnTranscoderClass;
 
-GtkType xfburn_transcoder_get_type ();
-GObject *xfburn_transcoder_new ();
+GtkType xfburn_transcoder_basic_get_type ();
+GObject *xfburn_transcoder_basic_new ();
 
 G_END_DECLS
 
-#endif /* XFBURN_TRANSCODER_H */
+#endif /* XFBURN_TRANSCODER_BASIC_BASIC_H */

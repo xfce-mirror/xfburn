@@ -17,7 +17,7 @@ xfburn_headers = 							\
 	xfburn-burn-data-cd-composition-dialog.h			\
 	xfburn-burn-data-dvd-composition-dialog.h			\
 	xfburn-burn-audio-cd-composition-dialog.h			\
-        xfburn-transcoder.h                                             \
+        xfburn-transcoder-basic.h                                       \
 	xfburn-burn-image-dialog.h					\
 	xfburn-settings.h						\
 	xfburn-composition.h						\
@@ -52,7 +52,7 @@ xfburn_SOURCES =							\
 	xfburn-burn-data-cd-composition-dialog.c			\
 	xfburn-burn-data-dvd-composition-dialog.c			\
 	xfburn-burn-audio-cd-composition-dialog.c			\
-        xfburn-transcoder.c                                             \
+        xfburn-transcoder-basic.c                                       \
 	xfburn-burn-image-dialog.c					\
 	xfburn-composition.c						\
 	xfburn-compositions-notebook.c					\
@@ -84,7 +84,7 @@ xfburn_CFLAGS =								\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(EXO_CFLAGS)							\
 	$(THUNAR_VFS_CFLAGS)						\
-	$(GSTREAMER_CFLAGS)
+	$(GST_CFLAGS)
 
 xfburn_LDADD = 								\
 	$(GTHREAD_LIBS)							\
@@ -93,7 +93,7 @@ xfburn_LDADD = 								\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(EXO_LIBS)							\
 	$(THUNAR_VFS_LIBS)						\
-	$(GSTREAMER_LIBS)
+	$(GST_LIBS)
 
 if HAVE_HAL
 xfburn_CFLAGS +=							\
