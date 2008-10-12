@@ -440,13 +440,13 @@ typedef struct {
 
 static void 
 thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_drive *drive,
-                           struct burn_disc *disc, struct burn_session *session, int n_tracks, struct burn_track **tracks)
+                           struct burn_disc *disc, struct burn_session *session, int n_tracks, 
+                           int track_sectors[], struct burn_track **tracks)
 {
   GtkWidget *dialog_progress = params->dialog_progress;
 
   struct burn_write_opts * burn_options;
   gint ret,i;
-  int track_sectors[n_tracks];
 
   ret = burn_disc_add_session (disc, session, BURN_POS_END);
   if (ret == 0) {
@@ -456,8 +456,6 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
 
   for (i=0; i<n_tracks; i++) {
     burn_session_add_track (session, tracks[i], BURN_POS_END);
-    //FIXME: not reliable for variable length, so needs to get replaced for gstreamer
-    track_sectors[i] = burn_track_get_sectors (tracks[i]);
   }
 
   burn_options = burn_write_opts_new (drive);
@@ -507,6 +505,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   int n_tracks;
   int i,j;
   GSList *track_list;
+  int *track_sectors;
   gboolean abort = FALSE;
   XfburnTranscoder *trans;
 
@@ -523,6 +522,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   session = burn_session_create ();
 
   n_tracks = g_slist_length (params->tracks);
+  track_sectors = g_new (int, n_tracks);
   tracks = g_new (struct burn_track *, n_tracks);
   trans = xfburn_transcoder_get_global ();
 
@@ -539,6 +539,8 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
       break;
     }
 
+    track_sectors[i] = atrack->sectors;
+
     track_list = g_slist_next (track_list);
   }
 
@@ -552,7 +554,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
     if (!xfburn_device_grab (params->device, &drive_info)) {
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab drive"));
     } else {
-      thread_burn_prep_and_burn (params, drive_info->drive, disc, session, n_tracks, tracks);
+      thread_burn_prep_and_burn (params, drive_info->drive, disc, session, n_tracks, track_sectors, tracks);
       burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
     }
   }
@@ -561,6 +563,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
     burn_track_free (tracks[j]);
   }
   g_free (tracks);
+  g_free (track_sectors);
 
   for (track_list = params->tracks; track_list; track_list = g_slist_next (track_list))
     xfburn_transcoder_free_burning_resources (trans, (XfburnAudioTrack *) track_list->data, NULL);

@@ -47,6 +47,7 @@ typedef struct
 
   gint length;
 
+  int sectors;
   int fd;
   struct burn_source *src;
 } XfburnAudioTrack;
