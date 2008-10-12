@@ -31,8 +31,12 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#include <errno.h>
+
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
+
+#include <libburn.h>
 
 #include "xfburn-global.h"
 #include "xfburn-error.h"
@@ -52,6 +56,10 @@ static gboolean has_audio_ext (const gchar *path);
 static gboolean is_valid_wav (const gchar *path);
 static gboolean valid_wav_headers (guchar header[44]);
 
+static struct burn_track * create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
+static gboolean needs_swap (char header[44]);
+
+static gboolean clear (XfburnTranscoder *trans, GError **error);
 
 #define XFBURN_TRANSCODER_BASIC_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_TRANSCODER_BASIC, XfburnTranscoderBasicPrivate))
 
@@ -60,7 +68,8 @@ enum {
 }; 
 
 typedef struct {
-  gboolean dummy;
+  GSList *fds;
+  GSList *srcs;
 } XfburnTranscoderBasicPrivate;
 
 /*********************/
@@ -138,6 +147,8 @@ static void
 transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data)
 {
   iface->is_audio_file = is_audio_file;
+  iface->create_burn_track = create_burn_track;
+  iface->clear = clear;
 }
 /*           */
 /* internals */
@@ -240,6 +251,82 @@ valid_wav_headers (guchar header[44])
   if (!(header[24] == 0x44 && header[25] == 0xAC && header[26] == 0 && header[27] == 0)) {
     g_warning ("Does not have a sample rate of 44100 Hz");
     return FALSE;
+  }
+
+  return TRUE;
+}
+
+static struct burn_track *
+create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
+{
+  XfburnTranscoderBasic *basic = XFBURN_TRANSCODER_BASIC (trans);
+  XfburnTranscoderBasicPrivate *priv= XFBURN_TRANSCODER_BASIC_GET_PRIVATE (basic);
+  
+  char header[44];
+  int fd;
+  struct burn_track *track;
+  struct burn_source *src;
+
+  fd = open (atrack->inputfile, 0);
+  if (fd == -1) {
+    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_COULD_NOT_OPEN_FILE,
+                 _("Could not open %s: %s"), atrack->inputfile, g_strerror (errno));
+    return NULL;
+  }
+
+  /* perform a read so that libburn skips the wav header */
+  read (fd, header, 44);
+
+  src = burn_fd_source_new (fd, -1 , 0);
+  if (src == NULL) {
+    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
+                 _("Could not create burn_source from %s!"), atrack->inputfile);
+    return NULL;
+  }
+
+  track = burn_track_create ();
+  
+  if (burn_track_set_source (track, src) != BURN_SOURCE_OK) {
+    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
+                 _("Could not add source to track %s!"), atrack->inputfile);
+    return NULL;
+  }
+
+  if (needs_swap (header))
+    burn_track_set_byte_swap (track, TRUE);
+
+  burn_track_define_data (track, 0, 0, 1, BURN_AUDIO);
+
+  priv->fds = g_slist_prepend (priv->fds, GINT_TO_POINTER (fd));
+  priv->srcs = g_slist_prepend (priv->srcs, src);
+
+  return track;
+}
+
+static gboolean
+needs_swap (char header[44])
+{
+  if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F' && header[3] == 'X')
+    return TRUE;
+  else 
+    return FALSE;
+}
+
+static gboolean
+clear (XfburnTranscoder *trans, GError **error)
+{
+  XfburnTranscoderBasic *basic = XFBURN_TRANSCODER_BASIC (trans);
+  XfburnTranscoderBasicPrivate *priv= XFBURN_TRANSCODER_BASIC_GET_PRIVATE (basic);
+  
+  while (priv->fds) {
+    close (GPOINTER_TO_INT (priv->fds->data));
+
+    priv->fds = g_slist_next (priv->fds);
+  }
+  while (priv->srcs) {
+    burn_source_free ( (struct burn_source *) priv->srcs->data);
+
+    priv->srcs= g_slist_next (priv->srcs);
   }
 
   return TRUE;

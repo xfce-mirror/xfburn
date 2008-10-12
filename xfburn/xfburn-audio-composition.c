@@ -1159,7 +1159,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     else if (S_ISREG (s.st_mode)) {
       GError *error = NULL;
 
-      DBG ("foo1");
       if (!xfburn_transcoder_is_audio_file (priv->trans, path, &error)) {
         XfburnNotAddingReason reason;
 
@@ -1175,7 +1174,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
         gdk_threads_leave ();
         return FALSE;
       }
-      DBG ("bar1");
 
       gdk_threads_enter ();
       if (insertion != NULL) {

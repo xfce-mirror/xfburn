@@ -24,6 +24,7 @@
 #include "xfburn-global.h"
 
 #include "xfburn-transcoder.h"
+#include "xfburn-error.h"
 
 static void xfburn_transcoder_base_init (XfburnTranscoderInterface * iface);
 
@@ -40,7 +41,7 @@ XfburnTranscoder *transcoder = NULL;
 /*************************/
 //static guint signals[LAST_SIGNAL];
 
-GtkType
+GType
 xfburn_transcoder_get_type ()
 {
   static GtkType type = 0;
@@ -98,6 +99,31 @@ xfburn_transcoder_is_audio_file (XfburnTranscoder *trans, const gchar *fn, GErro
     return iface->is_audio_file (trans, fn, error);
   
   g_warning ("Falling back to base implementation for xfburn_transcoder_is_audio_file, which always says false.");
+  g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, "xfburn_transcoder_is_audio_file is not implemented");
+  return FALSE;
+}
+
+struct burn_track *
+xfburn_transcoder_create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
+{
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  if (iface->create_burn_track)
+    return iface->create_burn_track (trans, atrack, error);
+  
+  g_warning ("Falling back to empty base implementation for xfburn_transcoder_create_burn_track.");
+  g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, "xfburn_transcoder_create_burn_track is not implemented");
+  return NULL;
+}
+
+gboolean
+xfburn_transcoder_clear (XfburnTranscoder *trans, GError **error)
+{
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  if (iface->clear)
+    return iface->clear (trans, error);
+  
+  g_warning ("Falling back to empty base implementation for xfburn_transcoder_clear.");
+  g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, "xfburn_transcoder_clear is not implemented");
   return FALSE;
 }
 

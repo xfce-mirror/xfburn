@@ -42,7 +42,8 @@
 
 #define DATA_COMPOSITION_DEFAULT_NAME "Data composition"
 
-#define XFBURN_FIFO_DEFAULT_SIZE 4096 /* in kb/s */
+#define XFBURN_FIFO_DEFAULT_SIZE  4096    /* in kb, as int */
+#define XFBURN_FIFO_MAX_SIZE     16384.0  /* in kb, as float */
 
 #define PCM_BYTES_PER_SECS 176400
 

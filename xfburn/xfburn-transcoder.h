@@ -24,7 +24,11 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
-#include <gtk/gtk.h>
+#include <glib.h>
+#include <glib-object.h>
+#include <libburn.h>
+
+#include "xfburn-audio-composition.h"
 
 G_BEGIN_DECLS
 
@@ -42,14 +46,19 @@ typedef struct
   GTypeInterface parent;
 
   gboolean (*is_audio_file) (XfburnTranscoder *trans, const gchar *fn, GError **error);
+  struct burn_track * (*create_burn_track) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
+  gboolean (*clear) (XfburnTranscoder *trans, GError **error);
   
 } XfburnTranscoderInterface;
 
-GtkType xfburn_transcoder_get_type ();
-gboolean xfburn_transcoder_is_audio_file (XfburnTranscoder *trans, const gchar *fn, GError **error);
+GType xfburn_transcoder_get_type ();
 
 void xfburn_transcoder_set_global (XfburnTranscoder *trans);
 XfburnTranscoder *xfburn_transcoder_get_global ();
+
+gboolean xfburn_transcoder_is_audio_file (XfburnTranscoder *trans, const gchar *fn, GError **error);
+struct burn_track *xfburn_transcoder_create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
+gboolean xfburn_transcoder_clear (XfburnTranscoder *trans, GError **error);
 
 G_END_DECLS
 

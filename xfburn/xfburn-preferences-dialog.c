@@ -326,7 +326,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, BORDER);
   gtk_widget_show (frame);
 
-  priv->scale_fifo = gtk_hscale_new_with_range (0.0, 8192.0, 32.0);
+  priv->scale_fifo = gtk_hscale_new_with_range (0.0, XFBURN_FIFO_MAX_SIZE, 32.0);
   gtk_scale_set_value_pos (GTK_SCALE (priv->scale_fifo), GTK_POS_LEFT);
   gtk_range_set_value (GTK_RANGE (priv->scale_fifo), 0);
   gtk_box_pack_start (GTK_BOX (vbox3), priv->scale_fifo, FALSE, FALSE, BORDER/2);

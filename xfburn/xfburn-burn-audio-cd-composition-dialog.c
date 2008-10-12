@@ -42,6 +42,7 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-perform-burn.h"
 #include "xfburn-audio-composition.h"
+#include "xfburn-transcoder.h"
 
 #define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, XfburnBurnAudioCdCompositionDialogPrivate))
 
@@ -83,7 +84,6 @@ static void cb_browse_iso (GtkButton * button, XfburnBurnAudioCdCompositionDialo
 static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog);
 static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_id,
                                 XfburnBurnAudioCdCompositionDialogPrivate * priv);
-static gboolean needs_swap (char header[44]);
 
 /* globals */
 static XfceTitledDialogClass *parent_class = NULL;
@@ -496,15 +496,6 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_write_opts_free (burn_options);
 }
 
-static gboolean
-needs_swap (char header[44])
-{
-  if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F' && header[3] == 'X')
-    return TRUE;
-  else 
-    return FALSE;
-}
-
 static void
 thread_burn_composition (ThreadBurnCompositionParams * params)
 {
@@ -513,12 +504,11 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   struct burn_disc *disc;
   struct burn_session *session;
   struct burn_track **tracks;
-  struct burn_source **srcs;
-  int *fds;
   int n_tracks;
   int i,j;
   GSList *track_list;
   gboolean abort = FALSE;
+  XfburnTranscoder *trans;
 
   struct burn_drive_info *drive_info = NULL;
 
@@ -534,55 +524,20 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
 
   n_tracks = g_slist_length (params->tracks);
   tracks = g_new (struct burn_track *, n_tracks);
-  srcs = g_new (struct burn_source *, n_tracks);
-  fds = g_new (int, n_tracks);
+  trans = xfburn_transcoder_get_global ();
 
   track_list = params->tracks;
   for (i=0; i<n_tracks; i++) {
-    char header[44];
     XfburnAudioTrack *atrack = track_list->data;
+    GError *error = NULL;
 
-    fds[i] = open (atrack->inputfile, 0);
-    if (fds[i] == -1) {
-      gchar *str;
-      str = g_strdup_printf (_("Could not open %s!"), atrack->inputfile);
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), str);
-      g_free (str);
+    tracks[i] = xfburn_transcoder_create_burn_track (trans, atrack, &error);
+    if (tracks[i] && error) {
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), error->message);
+      g_error_free (error);
       abort = TRUE;
       break;
     }
-
-    /* perform a read so that libburn skips the wav header */
-    read (fds[i], header, 44);
-
-    srcs[i] = burn_fd_source_new (fds[i], -1 , 0);
-    if (srcs[i] == NULL) {
-      gchar *str;
-      str = g_strdup_printf (_("Could not create burn_source from %s!"), atrack->inputfile);
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), str);
-      g_free (str);
-      close(fds[i]);
-      abort = TRUE;
-      break;
-    }
-
-    tracks[i] = burn_track_create ();
-    
-    if (burn_track_set_source (tracks[i], srcs[i]) != BURN_SOURCE_OK) {
-      gchar *str;
-      str = g_strdup_printf (_("Could not add source to track!"));
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), str);
-      g_free (str);
-      close(fds[i]);
-      burn_source_free (srcs[i]);
-      abort = TRUE;
-      break;
-    }
-
-    if (needs_swap (header))
-      burn_track_set_byte_swap (tracks[i], TRUE);
-
-    burn_track_define_data (tracks[i], 0, 0, 1, BURN_AUDIO);
 
     track_list = g_slist_next (track_list);
   }
@@ -604,12 +559,12 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
 
   for (j=0; j<i; j++) {
     burn_track_free (tracks[j]);
-    burn_source_free (srcs[j]);
-    close (fds[j]);
   }
-  g_free (srcs);
   g_free (tracks);
-  g_free (fds);
+
+  xfburn_transcoder_clear (trans, NULL);
+  g_object_unref (trans);
+
   burn_session_free (session);
   burn_disc_free (disc);
   burn_finish ();
