@@ -29,11 +29,6 @@
 #include <string.h>
 #endif
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <fcntl.h>
-
 #include <errno.h>
 
 #include <gtk/gtk.h>
@@ -50,6 +45,7 @@
 
 #include "xfburn-audio-composition.h"
 #include "xfburn-global.h"
+#include "xfburn-error.h"
 
 #include "xfburn-adding-progress.h"
 #include "xfburn-composition.h"
@@ -57,6 +53,7 @@
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
 #include "xfburn-burn-audio-cd-composition-dialog.h"
+#include "xfburn-transcoder.h"
 
 #define XFBURN_AUDIO_COMPOSITION_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_AUDIO_COMPOSITION, XfburnAudioCompositionPrivate))
 
@@ -167,9 +164,6 @@ static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnAudi
                                                    GtkTreeIter * insertion, GtkTreeViewDropPosition position);
 static gboolean thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeModel * model, const gchar * path, 
                                          GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
-static gboolean has_audio_ext (const gchar *path);
-static gboolean valid_wav_headers (guchar header[44]);
-static gboolean is_valid_wav (const gchar *path);
                                   
 typedef struct
 {
@@ -200,6 +194,7 @@ typedef struct
   GtkWidget *disc_usage;
   GtkWidget *progress;
 
+  XfburnTranscoder *trans;
 } XfburnAudioCompositionPrivate;
 
 /* globals */
@@ -468,6 +463,8 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
                     
   action = gtk_action_group_get_action (priv->action_group, "remove-file");
   gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
+
+  priv->trans = xfburn_transcoder_get_global ();
 }
 
 static void
@@ -489,6 +486,9 @@ xfburn_audio_composition_finalize (GObject * object)
       icon_file = NULL;
     }
   }
+
+  g_object_unref (priv->trans);
+  priv->trans = NULL;
   
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -778,7 +778,10 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc)
     priv->full_paths_to_add = NULL;
   }
 
-  g_free (priv->thread_params);
+  if (priv->thread_params) {
+    g_free (priv->thread_params);
+    priv->thread_params = NULL;
+  }
 
   tracks_changed (dc);
 
@@ -1028,92 +1031,6 @@ set_modified (XfburnAudioCompositionPrivate *priv)
   }
 }
 
-static gboolean 
-has_audio_ext (const gchar *path)
-{
-  int len = strlen (path);
-  const gchar *ext = path + len - 3;
-
-  return (strcmp (ext, "wav") == 0);
-}
-
-static gboolean 
-is_valid_wav (const gchar *path)
-{
-  int fd;
-  guchar header[44];
-  gboolean ret;
-
-  fd = open (path, 0);
-
-  if (fd == -1) {
-    xfce_warn (_("Could not open %s!"), path);
-    return FALSE;
-  }
-
-  read (fd, header, 44);
-
-  ret = valid_wav_headers (header);
-
-  close (fd);
-
-  return ret;
-}
-
-/*
- * Simple check of .wav headers, most info from
- * http://ccrma.stanford.edu/courses/422/projects/WaveFormat/
- *
- * This check might very well not be complete, but should catch
- * the most important pieces.
- * FIXME: eventually replace this with a proper check,
- * also this works on x86, and does not consider endianness!
- */
-static gboolean
-valid_wav_headers (guchar header[44])
-{
-  /* check if first 4 bytes are RIFF or RIFX */
-  if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F') {
-    if (!(header[3] == 'X' || header[3] == 'F')) {
-      g_warning ("File not in riff format");
-      return FALSE;
-    }
-  }
-
-  /* check if bytes 8-11 are WAVE */
-  if (!(header[8] == 'W' && header[9] == 'A' && header[10] == 'V' && header[11] == 'E')) {
-    g_warning ("RIFF file not in WAVE format");
-    return FALSE;
-  }
-
-  /* subchunk starts with 'fmt ' */
-  if (!(header[12] == 'f' && header[13] == 'm' && header[14] == 't' && header[15] == ' ')) {
-    g_warning ("Could not find format subchunk");
-    return FALSE;
-  }
-
-  /* check for PCM format */
-  if (header[16] != 16 || header[20] != 1) {
-    g_warning ("Not in PCM format");
-    return FALSE;
-  }
-
-  /* check for stereo */
-  if (header[22] != 2) {
-    g_warning ("Not in stereo");
-    return FALSE;
-  }
-
-  /* check for 44100 Hz sample rate,
-   * being lazy here and just compare the bytes to what I know they should be */
-  if (!(header[24] == 0x44 && header[25] == 0xAC && header[26] == 0 && header[27] == 0)) {
-    g_warning ("Does not have a sample rate of 44100 Hz");
-    return FALSE;
-  }
-
-  return TRUE;
-}
-
 static void
 notify_not_adding (XfburnAudioComposition * dc, XfburnNotAddingReason r, const gchar *path)
 {
@@ -1240,19 +1157,25 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     }
     /* new file */
     else if (S_ISREG (s.st_mode)) {
-      if (!has_audio_ext (path)) {
-        gdk_threads_enter ();
-        notify_not_adding (dc, NOT_ADDING_EXT, path);
-        gdk_threads_leave ();
-        return FALSE;
-      }
+      GError *error = NULL;
 
-      if (!is_valid_wav (path)) {
+      DBG ("foo1");
+      if (!xfburn_transcoder_is_audio_file (priv->trans, path, &error)) {
+        XfburnNotAddingReason reason;
+
+        if (error->code == XFBURN_ERROR_NOT_AUDIO_EXT)
+          reason = NOT_ADDING_EXT;
+        else if (error->code == XFBURN_ERROR_NOT_AUDIO_FORMAT)
+          reason = NOT_ADDING_FMT;
+
+        g_error_free (error);
+
         gdk_threads_enter ();
-        notify_not_adding (dc, NOT_ADDING_FMT, path);
+        notify_not_adding (dc, reason, path);
         gdk_threads_leave ();
         return FALSE;
       }
+      DBG ("bar1");
 
       gdk_threads_enter ();
       if (insertion != NULL) {
@@ -1726,12 +1649,16 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         full_path[strlen (full_path) - 1] = '\0';
 
       /* remember path to add it later in another thread */
-      if (has_audio_ext (full_path)) {
+      priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
+      ret = TRUE;
+      /*
+      if (xfburn_transcoder_is_audio_file (priv->trans, full_path, NULL)) {
         priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
         ret = TRUE;
       } else {
         notify_not_adding (composition, NOT_ADDING_EXT, full_path);
       }
+      */
 
       file = strtok (NULL, "\n");
     }
@@ -1778,12 +1705,17 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         full_path = thunar_vfs_path_dup_string (path);
         g_debug ("adding uri path: %s", full_path);
 
-        if (has_audio_ext (full_path)) {
+        priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
+        ret = TRUE;
+        /*
+        if (xfburn_transcoder_is_audio_file (priv->trans, full_path, NULL)) {
           priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
           ret = TRUE;
         } else {
+          g_error_free (error);
           notify_not_adding (composition, NOT_ADDING_EXT, full_path);
         }
+        */
       }
       thunar_vfs_path_list_free (vfs_paths);
 

@@ -91,11 +91,11 @@ xfburn_transcoder_base_init (XfburnTranscoderInterface * iface)
 /*        */
 
 gboolean
-xfburn_transcoder_is_audio_file (XfburnTranscoder *trans, const gchar *fn)
+xfburn_transcoder_is_audio_file (XfburnTranscoder *trans, const gchar *fn, GError **error)
 {
   XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
   if (iface->is_audio_file)
-    return iface->is_audio_file (trans, fn);
+    return iface->is_audio_file (trans, fn, error);
   
   g_warning ("Falling back to base implementation for xfburn_transcoder_is_audio_file, which always says false.");
   return FALSE;
@@ -103,13 +103,14 @@ xfburn_transcoder_is_audio_file (XfburnTranscoder *trans, const gchar *fn)
 
 
 void 
-xfburn_set_transcoder (XfburnTranscoder *trans)
+xfburn_transcoder_set_global (XfburnTranscoder *trans)
 {
   transcoder = trans;
 }
 
 XfburnTranscoder *
-xfburn_get_transcoder()
+xfburn_transcoder_get_global ()
 {
+  g_object_ref (transcoder);
   return transcoder;
 }

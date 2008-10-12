@@ -10,6 +10,7 @@ bin_PROGRAMS = 								\
 
 xfburn_headers = 							\
 	xfburn-global.h							\
+	xfburn-error.h							\
 	xfburn-adding-progress.h					\
 	xfburn-blank-dialog.h						\
 	xfburn-perform-burn.h						\
@@ -46,6 +47,7 @@ xfburn_headers = 							\
 	
 xfburn_SOURCES =							\
 	$(xfburn_headers)						\
+	xfburn-error.c          					\
 	xfburn-adding-progress.c					\
 	xfburn-blank-dialog.c						\
 	xfburn-perform-burn.c						\

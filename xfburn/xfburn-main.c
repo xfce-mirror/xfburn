@@ -298,7 +298,7 @@ main (int argc, char **argv)
   }
 
   transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
-  xfburn_set_transcoder (transcoder);
+  xfburn_transcoder_set_global (transcoder);
 
   /* evaluate parsed command line options */
 

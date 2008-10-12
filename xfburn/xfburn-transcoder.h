@@ -41,15 +41,15 @@ typedef struct
 {
   GTypeInterface parent;
 
-  gboolean (*is_audio_file) (XfburnTranscoder *trans, const gchar *fn);
+  gboolean (*is_audio_file) (XfburnTranscoder *trans, const gchar *fn, GError **error);
   
 } XfburnTranscoderInterface;
 
 GtkType xfburn_transcoder_get_type ();
-gboolean xfburn_transcode_is_audio_file (XfburnTranscoder *trans);
+gboolean xfburn_transcoder_is_audio_file (XfburnTranscoder *trans, const gchar *fn, GError **error);
 
-void xfburn_set_transcoder (XfburnTranscoder *trans);
-XfburnTranscoder *xfburn_get_transcoder();
+void xfburn_transcoder_set_global (XfburnTranscoder *trans);
+XfburnTranscoder *xfburn_transcoder_get_global ();
 
 G_END_DECLS
 
