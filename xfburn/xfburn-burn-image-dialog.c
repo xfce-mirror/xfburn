@@ -319,7 +319,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
     goto end;
   }
 
-  fifo_src = burn_fifo_source_new (data_src, 2048, xfburn_settings_get_int ("fifo-size", XFBURN_FIFO_DEFAULT_SIZE) / 2, 0);
+  fifo_src = burn_fifo_source_new (data_src, 2048, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
   burn_source_free (data_src);
 
   if (burn_track_set_source (track, fifo_src) != BURN_SOURCE_OK) {

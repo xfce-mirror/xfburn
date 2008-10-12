@@ -682,8 +682,7 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
       speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
       write_mode = xfburn_device_box_get_mode (XFBURN_DEVICE_BOX (priv->device_box));
 
-      /* FIXME: how much buffer space do we need? Probably should put this into settings */
-      src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", XFBURN_FIFO_DEFAULT_SIZE) / 2, 0);
+      src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
       burn_source_free (src);
 
       /* burn composition */

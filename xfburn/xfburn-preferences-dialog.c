@@ -29,6 +29,8 @@
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
 
+#define FIFO_MAX_SIZE     16384.0  /* in kb, as float */
+
 #define XFBURN_PREFERENCES_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_PREFERENCES_DIALOG, XfburnPreferencesDialogPrivate))
 
 typedef struct
@@ -326,7 +328,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, BORDER);
   gtk_widget_show (frame);
 
-  priv->scale_fifo = gtk_hscale_new_with_range (0.0, XFBURN_FIFO_MAX_SIZE, 32.0);
+  priv->scale_fifo = gtk_hscale_new_with_range (0.0, FIFO_MAX_SIZE, 32.0);
   gtk_scale_set_value_pos (GTK_SCALE (priv->scale_fifo), GTK_POS_LEFT);
   gtk_range_set_value (GTK_RANGE (priv->scale_fifo), 0);
   gtk_box_pack_start (GTK_BOX (vbox3), priv->scale_fifo, FALSE, FALSE, BORDER/2);
@@ -369,7 +371,7 @@ xfburn_preferences_dialog_load_settings (XfburnPreferencesDialog * dialog)
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_empty_speed_list),
                                 xfburn_settings_get_boolean ("show-empty-speed-list-notice", TRUE));
   gtk_range_set_value (GTK_RANGE (priv->scale_fifo),
-                                (double) xfburn_settings_get_int ("fifo-size", XFBURN_FIFO_DEFAULT_SIZE));
+                                (double) xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE));
 }
 
 static void

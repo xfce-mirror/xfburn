@@ -543,7 +543,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   }
 
   /*
-      src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", XFBURN_FIFO_DEFAULT_SIZE) / 2, 0);
+      src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
       burn_source_free (src);
   */
 
