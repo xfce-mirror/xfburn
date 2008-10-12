@@ -69,6 +69,7 @@ enum
   AUDIO_COMPOSITION_COLUMN_TITLE,
   AUDIO_COMPOSITION_COLUMN_PATH,
   AUDIO_COMPOSITION_COLUMN_TYPE,
+  AUDIO_COMPOSITION_COLUMN_TRACK,
   AUDIO_COMPOSITION_N_COLUMNS
 };
 
@@ -367,7 +368,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
 
   priv->content = exo_tree_view_new ();
   model = gtk_tree_store_new (AUDIO_COMPOSITION_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING,
-                              G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_UINT);
+                              G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_POINTER);
 							  
   /*
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), AUDIO_COMPOSITION_COLUMN_POS,
@@ -487,6 +488,8 @@ xfburn_audio_composition_finalize (GObject * object)
     }
   }
 
+  /* FIXME: free XfburnAudioTracks */
+
   g_object_unref (priv->trans);
   priv->trans = NULL;
   
@@ -519,14 +522,20 @@ generate_audio_src (XfburnAudioComposition * ac)
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   if (gtk_tree_model_get_iter_first (model, &iter)) {
     do {
-      XfburnAudioTrack *track = g_new0 (XfburnAudioTrack, 1);
+      XfburnAudioTrack *atrack;
+      gint pos;
 
       gtk_tree_model_get (model, &iter, 
-                          AUDIO_COMPOSITION_COLUMN_PATH, &track->inputfile,
-                          AUDIO_COMPOSITION_COLUMN_POS, &track->pos,
+                          AUDIO_COMPOSITION_COLUMN_POS, &pos,
+                          AUDIO_COMPOSITION_COLUMN_TRACK, &atrack,
                           -1);
 
-      list = g_slist_prepend (list, track);
+      g_assert (atrack != NULL);
+
+      /* update the track position, which might have changed */
+      atrack->pos = pos;
+
+      list = g_slist_prepend (list, atrack);
 
     } while (gtk_tree_model_iter_next (model, &iter));
   }
@@ -1164,8 +1173,10 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     /* new file */
     else if (S_ISREG (s.st_mode)) {
       GError *error = NULL;
+      XfburnAudioTrack *atrack = NULL;
 
-      if (!xfburn_transcoder_is_audio_file (priv->trans, path, &error)) {
+      atrack = xfburn_transcoder_get_audio_track (priv->trans, path, &error);
+      if (atrack == NULL) {
         XfburnNotAddingReason reason;
 
         if (error->code == XFBURN_ERROR_NOT_AUDIO_EXT)
@@ -1194,7 +1205,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       gdk_threads_leave ();
 
       /* (filesize - header_size) / bytes_per_seconds */
-      secs = (s.st_size - 44) / PCM_BYTES_PER_SECS;
+      secs = atrack->length;
       humanlength = g_strdup_printf ("%2d:%2d", secs / 60, secs % 60);
 
       if (priv->n_tracks == 99) {
@@ -1204,6 +1215,8 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
         return FALSE;
       }
 
+      /* pos does not yet get recorded into atrack here, because it might
+       * change still and is easier updated inside the model for now */
       gdk_threads_enter ();
       gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                           AUDIO_COMPOSITION_COLUMN_POS, ++priv->n_tracks,
@@ -1214,6 +1227,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
                           AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, humanlength,
                           AUDIO_COMPOSITION_COLUMN_ARTIST, "",
                           AUDIO_COMPOSITION_COLUMN_TITLE, "",
+                          AUDIO_COMPOSITION_COLUMN_TRACK, atrack,
                           AUDIO_COMPOSITION_COLUMN_TYPE, AUDIO_COMPOSITION_TYPE_RAW, -1);
       gdk_threads_leave ();
 
@@ -1374,6 +1388,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
   gchar *path = NULL;
   gchar *humanlength;
   AudioCompositionEntryType type;
+  XfburnAudioTrack *atrack;
 
   GtkTreePath *path_level = NULL;
   
@@ -1389,6 +1404,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
                       AUDIO_COMPOSITION_COLUMN_SIZE, &size,
                       AUDIO_COMPOSITION_COLUMN_PATH, &path, 
                       AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, &humanlength, 
+                      AUDIO_COMPOSITION_COLUMN_TRACK, &atrack,
                       AUDIO_COMPOSITION_COLUMN_TYPE, &type,
                       -1);
   
@@ -1431,6 +1447,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
                       AUDIO_COMPOSITION_COLUMN_SIZE, size,
                       AUDIO_COMPOSITION_COLUMN_PATH, path, 
                       AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, humanlength, 
+                      AUDIO_COMPOSITION_COLUMN_TRACK, atrack,
                       AUDIO_COMPOSITION_COLUMN_TYPE, type,
                       -1);
     

@@ -532,7 +532,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
     GError *error = NULL;
 
     tracks[i] = xfburn_transcoder_create_burn_track (trans, atrack, &error);
-    if (tracks[i] && error) {
+    if (tracks[i] == NULL) {
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), error->message);
       g_error_free (error);
       abort = TRUE;
@@ -562,7 +562,8 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   }
   g_free (tracks);
 
-  xfburn_transcoder_clear (trans, NULL);
+  for (track_list = params->tracks; track_list; track_list = g_slist_next (track_list))
+    xfburn_transcoder_free_burning_resources (trans, (XfburnAudioTrack *) track_list->data, NULL);
   g_object_unref (trans);
 
   burn_session_free (session);

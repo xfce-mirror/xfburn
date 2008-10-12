@@ -26,6 +26,8 @@
 
 #include <gtk/gtk.h>
 
+#include "xfburn-transcoder.h"
+
 G_BEGIN_DECLS
 
 #define XFBURN_TYPE_AUDIO_COMPOSITION            (xfburn_audio_composition_get_type ())
@@ -51,15 +53,6 @@ enum
   AUDIO_COMPOSITION_DND_TARGET_TEXT_PLAIN,
   AUDIO_COMPOSITION_DND_TARGET_TEXT_URI_LIST,
 };
-
-typedef struct
-{
-  gchar *inputfile;
-  gint pos;
-  gchar *artist;
-  gchar *title;
-  gboolean swap;
-} XfburnAudioTrack;
 
 GtkType xfburn_audio_composition_get_type (void);
 

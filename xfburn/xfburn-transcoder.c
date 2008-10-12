@@ -44,7 +44,7 @@ XfburnTranscoder *transcoder = NULL;
 GType
 xfburn_transcoder_get_type ()
 {
-  static GtkType type = 0;
+  static GType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {
@@ -91,16 +91,16 @@ xfburn_transcoder_base_init (XfburnTranscoderInterface * iface)
 /* public */
 /*        */
 
-gboolean
-xfburn_transcoder_is_audio_file (XfburnTranscoder *trans, const gchar *fn, GError **error)
+XfburnAudioTrack *
+xfburn_transcoder_get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 {
   XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
-  if (iface->is_audio_file)
-    return iface->is_audio_file (trans, fn, error);
+  if (iface->get_audio_track)
+    return iface->get_audio_track (trans, fn, error);
   
-  g_warning ("Falling back to base implementation for xfburn_transcoder_is_audio_file, which always says false.");
-  g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, "xfburn_transcoder_is_audio_file is not implemented");
-  return FALSE;
+  g_warning ("Falling back to base implementation for xfburn_transcoder_get_audio_track, which always says false.");
+  g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, "xfburn_transcoder_get_audio_track is not implemented");
+  return NULL;
 }
 
 struct burn_track *
@@ -116,14 +116,14 @@ xfburn_transcoder_create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *
 }
 
 gboolean
-xfburn_transcoder_clear (XfburnTranscoder *trans, GError **error)
+xfburn_transcoder_free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
 {
   XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
-  if (iface->clear)
-    return iface->clear (trans, error);
+  if (iface->free_burning_resources)
+    return iface->free_burning_resources (trans, atrack, error);
   
-  g_warning ("Falling back to empty base implementation for xfburn_transcoder_clear.");
-  g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, "xfburn_transcoder_clear is not implemented");
+  g_warning ("Falling back to empty base implementation for xfburn_transcoder_free_burning_resources.");
+  g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, "xfburn_transcoder_free_burning_resources is not implemented");
   return FALSE;
 }
 

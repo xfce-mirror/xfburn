@@ -28,8 +28,6 @@
 #include <glib-object.h>
 #include <libburn.h>
 
-#include "xfburn-audio-composition.h"
-
 G_BEGIN_DECLS
 
 #define XFBURN_TYPE_TRANSCODER         (xfburn_transcoder_get_type ())
@@ -39,15 +37,29 @@ G_BEGIN_DECLS
 //#define XFBURN_IS_TRANSCODER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_TRANSCODER))
 #define XFBURN_TRANSCODER_GET_INTERFACE(o) (G_TYPE_INSTANCE_GET_INTERFACE ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoderInterface))
 
+typedef struct
+{
+  const gchar *inputfile;
+  gint pos;
+  gchar *artist;
+  gchar *title;
+  gboolean swap;
+
+  gint length;
+
+  int fd;
+  struct burn_source *src;
+} XfburnAudioTrack;
+
 typedef struct {} XfburnTranscoder; /* dummy struct */
 
 typedef struct
 {
   GTypeInterface parent;
 
-  gboolean (*is_audio_file) (XfburnTranscoder *trans, const gchar *fn, GError **error);
+  XfburnAudioTrack * (*get_audio_track) (XfburnTranscoder *trans, const gchar *fn, GError **error);
   struct burn_track * (*create_burn_track) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
-  gboolean (*clear) (XfburnTranscoder *trans, GError **error);
+  gboolean (*free_burning_resources) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
   
 } XfburnTranscoderInterface;
 
@@ -56,9 +68,9 @@ GType xfburn_transcoder_get_type ();
 void xfburn_transcoder_set_global (XfburnTranscoder *trans);
 XfburnTranscoder *xfburn_transcoder_get_global ();
 
-gboolean xfburn_transcoder_is_audio_file (XfburnTranscoder *trans, const gchar *fn, GError **error);
+XfburnAudioTrack * xfburn_transcoder_get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error);
 struct burn_track *xfburn_transcoder_create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
-gboolean xfburn_transcoder_clear (XfburnTranscoder *trans, GError **error);
+gboolean xfburn_transcoder_free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
 G_END_DECLS
 

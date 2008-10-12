@@ -51,7 +51,7 @@ static void xfburn_transcoder_basic_finalize (GObject * object);
 static void transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data);
 
 /* internals */
-static gboolean is_audio_file (XfburnTranscoder *trans, const gchar *fn, GError **error);
+static XfburnAudioTrack * get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error);
 static gboolean has_audio_ext (const gchar *path);
 static gboolean is_valid_wav (const gchar *path);
 static gboolean valid_wav_headers (guchar header[44]);
@@ -59,7 +59,7 @@ static gboolean valid_wav_headers (guchar header[44]);
 static struct burn_track * create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 static gboolean needs_swap (char header[44]);
 
-static gboolean clear (XfburnTranscoder *trans, GError **error);
+static gboolean free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
 #define XFBURN_TRANSCODER_BASIC_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_TRANSCODER_BASIC, XfburnTranscoderBasicPrivate))
 
@@ -68,8 +68,7 @@ enum {
 }; 
 
 typedef struct {
-  GSList *fds;
-  GSList *srcs;
+  gboolean dummy;
 } XfburnTranscoderBasicPrivate;
 
 /*********************/
@@ -146,29 +145,44 @@ xfburn_transcoder_basic_finalize (GObject * object)
 static void
 transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data)
 {
-  iface->is_audio_file = is_audio_file;
+  iface->get_audio_track = get_audio_track;
   iface->create_burn_track = create_burn_track;
-  iface->clear = clear;
+  iface->free_burning_resources = free_burning_resources;
 }
 /*           */
 /* internals */
 /*           */
 
-static gboolean
-is_audio_file (XfburnTranscoder *trans, const gchar *fn, GError **error)
+static XfburnAudioTrack *
+get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 {
+  XfburnAudioTrack *atrack;
+  struct stat s;
+
   if (!has_audio_ext (fn)) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_AUDIO_EXT,
                  "File %s does not have a .wav extension", fn);
-    return FALSE;
+    return NULL;
   }
   if (!is_valid_wav (fn)) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_AUDIO_FORMAT,
                  "File %s does not contain uncompressed PCM wave audio", fn);
-    return FALSE;
+    return NULL;
   }
 
-  return TRUE;
+  if (stat (fn, &s) != 0) {
+    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_STAT,
+                 "Could not stat %s", fn);
+    return NULL;
+  }
+
+  atrack = g_new0 (XfburnAudioTrack, 1);
+  /* FIXME: when do we free inputfile?? */
+  atrack->inputfile = g_strdup (fn);
+  atrack->pos = -1;
+  atrack->length = (s.st_size - 44) / PCM_BYTES_PER_SECS;
+
+  return atrack;
 }
 
 static gboolean 
@@ -256,29 +270,31 @@ valid_wav_headers (guchar header[44])
   return TRUE;
 }
 
+
 static struct burn_track *
 create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
 {
+  /*
   XfburnTranscoderBasic *basic = XFBURN_TRANSCODER_BASIC (trans);
   XfburnTranscoderBasicPrivate *priv= XFBURN_TRANSCODER_BASIC_GET_PRIVATE (basic);
+  */
   
   char header[44];
-  int fd;
   struct burn_track *track;
-  struct burn_source *src;
 
-  fd = open (atrack->inputfile, 0);
-  if (fd == -1) {
+  atrack->fd = open (atrack->inputfile, 0);
+  if (atrack->fd == -1) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_COULD_NOT_OPEN_FILE,
                  _("Could not open %s: %s"), atrack->inputfile, g_strerror (errno));
     return NULL;
   }
 
-  /* perform a read so that libburn skips the wav header */
-  read (fd, header, 44);
+  /* advance the fd so that libburn skips the header,
+   * also allows us to check for byte swapping */
+  read (atrack->fd, header, 44);
 
-  src = burn_fd_source_new (fd, -1 , 0);
-  if (src == NULL) {
+  atrack->src = burn_fd_source_new (atrack->fd, -1 , 0);
+  if (atrack->src == NULL) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
                  _("Could not create burn_source from %s!"), atrack->inputfile);
     return NULL;
@@ -286,7 +302,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 
   track = burn_track_create ();
   
-  if (burn_track_set_source (track, src) != BURN_SOURCE_OK) {
+  if (burn_track_set_source (track, atrack->src) != BURN_SOURCE_OK) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
                  _("Could not add source to track %s!"), atrack->inputfile);
     return NULL;
@@ -296,9 +312,6 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
     burn_track_set_byte_swap (track, TRUE);
 
   burn_track_define_data (track, 0, 0, 1, BURN_AUDIO);
-
-  priv->fds = g_slist_prepend (priv->fds, GINT_TO_POINTER (fd));
-  priv->srcs = g_slist_prepend (priv->srcs, src);
 
   return track;
 }
@@ -313,21 +326,15 @@ needs_swap (char header[44])
 }
 
 static gboolean
-clear (XfburnTranscoder *trans, GError **error)
+free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
 {
+  /*
   XfburnTranscoderBasic *basic = XFBURN_TRANSCODER_BASIC (trans);
   XfburnTranscoderBasicPrivate *priv= XFBURN_TRANSCODER_BASIC_GET_PRIVATE (basic);
+  */
   
-  while (priv->fds) {
-    close (GPOINTER_TO_INT (priv->fds->data));
-
-    priv->fds = g_slist_next (priv->fds);
-  }
-  while (priv->srcs) {
-    burn_source_free ( (struct burn_source *) priv->srcs->data);
-
-    priv->srcs= g_slist_next (priv->srcs);
-  }
+  close (atrack->fd);
+  burn_source_free (atrack->src);
 
   return TRUE;
 }
