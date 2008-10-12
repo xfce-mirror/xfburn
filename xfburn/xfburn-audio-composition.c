@@ -1078,6 +1078,8 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       return FALSE;
     }
     
+    //DBG ("Adding file %s (%s)", name, path);
+
     basename = g_path_get_basename (path);
     if ( (strlen (basename) > 1) && (basename[0] == '.') ) {
       /* FIXME: is this really what we want? */
@@ -1149,6 +1151,10 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
           g_free (new_path);
         }
       }
+
+      /* since we don't add the folder, the next song needs
+       * to get added after the last one from this directory */
+      *iter = *iter_last;
 
       if (insertion == NULL)
         g_free (iter_last);
