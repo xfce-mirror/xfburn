@@ -50,6 +50,7 @@
 #include "xfburn-blank-dialog.h"
 #include "xfburn-hal-manager.h"
 #include "xfburn-transcoder-basic.h"
+#include "xfburn-transcoder-gst.h"
 
 
 /* internal prototypes */
@@ -297,7 +298,11 @@ main (int argc, char **argv)
     gtk_widget_destroy (GTK_WIDGET (dialog));
   }
 
+#ifdef HAVE_GST
+  transcoder = XFBURN_TRANSCODER (xfburn_transcoder_gst_new ());
+#else
   transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
+#endif
   xfburn_transcoder_set_global (transcoder);
 
   /* evaluate parsed command line options */
