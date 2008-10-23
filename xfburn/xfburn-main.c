@@ -220,7 +220,7 @@ main (int argc, char **argv)
     exit (EXIT_SUCCESS);
   }
 
-  if (strcmp (transcoder_selection, "list") == 0) {
+  if (transcoder_selection && strcmp (transcoder_selection, "list") == 0) {
     print_available_transcoders();
     return EXIT_SUCCESS;
   }
