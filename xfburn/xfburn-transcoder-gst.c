@@ -403,7 +403,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       }
 
       secs = priv->duration / 1000000000;
-      DBG ("Length is %lldns = %ds = %lld bytes\n", priv->duration, secs, priv->duration * 176400 /1000000000);
+      //DBG ("Length is %lldns = %ds = %lld bytes\n", priv->duration, secs, priv->duration * 176400 /1000000000);
       if (gst_element_set_state (priv->pipeline, GST_STATE_READY) == GST_STATE_CHANGE_FAILURE) {
         DBG ("Failed to set state!");
       }

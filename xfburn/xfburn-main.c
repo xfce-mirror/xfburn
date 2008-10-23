@@ -65,6 +65,7 @@ static gboolean show_main = FALSE;
 static gboolean add_data_composition = FALSE;
 static gboolean add_audio_composition = FALSE;
 static gboolean blank = FALSE;
+static gchar *transcoder_selection = NULL;
 
 static GOptionEntry optionentries[] = {
   { "burn-image", 'i', G_OPTION_FLAG_OPTIONAL_ARG /* || G_OPTION_FLAG_FILENAME */, G_OPTION_ARG_CALLBACK, &parse_option, 
@@ -75,6 +76,8 @@ static GOptionEntry optionentries[] = {
     "Start a data composition. Optionally followed by files/directories to be added to the composition.", NULL },
   { "audio-composition", 'a', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option, 
     "Start an audio composition. Optionally followed by files/directories to be added to the composition.", NULL },
+  { "transcoder", 't', 0, G_OPTION_ARG_STRING, &transcoder_selection, 
+    "Select the transcoder. Run with --transcoder=list to see the available ones.", NULL },
   { "version", 'V', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_version, 
     "Display program version and exit", NULL },
   { "main", 'm', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_main, 
@@ -134,6 +137,16 @@ xfburn_main_enter_main_window ()
   window_counter = -42;
 }
 
+
+void
+print_available_transcoders ()
+{
+  g_print ("Valid transcoders are:\n");
+  g_print ("\tbasic\tCan only burn uncompressed CD quality .wav files.\n");
+#ifdef HAVE_GST
+  g_print ("\tgst\tUses gstreamer, and can burn all formats supported by it.\n");
+#endif
+}
 
 /* entry point */
 int
@@ -205,6 +218,11 @@ main (int argc, char **argv)
              
 #endif
     exit (EXIT_SUCCESS);
+  }
+
+  if (strcmp (transcoder_selection, "list") == 0) {
+    print_available_transcoders();
+    return EXIT_SUCCESS;
   }
 
 
@@ -298,11 +316,27 @@ main (int argc, char **argv)
     gtk_widget_destroy (GTK_WIDGET (dialog));
   }
 
+  if (!transcoder_selection) {
+    /* select the best available */
 #ifdef HAVE_GST
-  transcoder = XFBURN_TRANSCODER (xfburn_transcoder_gst_new ());
+    transcoder = XFBURN_TRANSCODER (xfburn_transcoder_gst_new ());
 #else
-  transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
+    transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
 #endif
+#ifdef HAVE_GST
+  } else if (strcmp (transcoder_selection, "gst") == 0) {
+    transcoder = XFBURN_TRANSCODER (xfburn_transcoder_gst_new ());
+#endif
+  } else if (strcmp (transcoder_selection, "basic") == 0) {
+    transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
+  } else {
+    g_print ("'%s' is an invalid transcoder selection.\n",
+             transcoder_selection);
+    g_print ("\n");
+    print_available_transcoders();
+    return EXIT_FAILURE;
+  }
+
   if (!xfburn_transcoder_is_initialized (transcoder, &error)) {
     g_warning ("Failed to initialize %s transcoder: %s\n\t(falling back to basic implementation)", xfburn_transcoder_get_name (transcoder), error->message);
     g_error_free (error);
