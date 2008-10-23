@@ -32,14 +32,13 @@ G_BEGIN_DECLS
 
 #define XFBURN_TYPE_TRANSCODER         (xfburn_transcoder_get_type ())
 #define XFBURN_TRANSCODER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoder))
-//#define XFBURN_TRANSCODER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_TRANSCODER, XfburnTranscoderClass))
 #define XFBURN_IS_TRANSCODER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_TRANSCODER))
 //#define XFBURN_IS_TRANSCODER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_TRANSCODER))
 #define XFBURN_TRANSCODER_GET_INTERFACE(o) (G_TYPE_INSTANCE_GET_INTERFACE ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoderInterface))
 
 typedef struct
 {
-  const gchar *inputfile;
+  gchar *inputfile;
   gint pos;
   gchar *artist;
   gchar *title;
@@ -50,7 +49,11 @@ typedef struct
   int sectors;
   int fd;
   struct burn_source *src;
+
+  gpointer data; /* implementations will add extra data here */
 } XfburnAudioTrack;
+
+#define XFBURN_AUDIO_TRACK_DELETE_DATA(atrack) { g_free (atrack->data); atrack->data = NULL; }
 
 typedef struct {} XfburnTranscoder; /* dummy struct */
 
@@ -58,9 +61,15 @@ typedef struct
 {
   GTypeInterface parent;
 
+  /* required functions */
+  const gchar * (*get_name) (XfburnTranscoder *trans);
+  gboolean (*is_initialized) (XfburnTranscoder *trans, GError **error);
   XfburnAudioTrack * (*get_audio_track) (XfburnTranscoder *trans, const gchar *fn, GError **error);
   struct burn_track * (*create_burn_track) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
+
+  /* optional functions */
   gboolean (*free_burning_resources) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
+  gboolean (*prepare) (XfburnTranscoder *trans, GError **error);
   
 } XfburnTranscoderInterface;
 
@@ -69,9 +78,17 @@ GType xfburn_transcoder_get_type ();
 void xfburn_transcoder_set_global (XfburnTranscoder *trans);
 XfburnTranscoder *xfburn_transcoder_get_global ();
 
+const gchar *xfburn_transcoder_get_name (XfburnTranscoder *trans);
+gboolean xfburn_transcoder_is_initialized (XfburnTranscoder *trans, GError **error);
 XfburnAudioTrack * xfburn_transcoder_get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error);
 struct burn_track *xfburn_transcoder_create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
+
+/* optional functions */
 gboolean xfburn_transcoder_free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
+gboolean xfburn_transcoder_prepare (XfburnTranscoder *trans, GError **error);
+
+/* defined purely by the interface */
+void xfburn_transcoder_free_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack);
 
 G_END_DECLS
 

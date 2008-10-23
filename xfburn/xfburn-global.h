@@ -44,6 +44,8 @@
 
 #define FIFO_DEFAULT_SIZE  4096    /* in kb, as int */
 
+#define AUDIO_BYTES_PER_SECTORS 2352
+
 #define PCM_BYTES_PER_SECS 176400
 
 #endif

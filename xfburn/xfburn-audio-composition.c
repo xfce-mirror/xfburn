@@ -87,12 +87,6 @@ enum
 
 typedef enum
 {
-  NOT_ADDING_EXT,
-  NOT_ADDING_FMT,
-} XfburnNotAddingReason;
-
-typedef enum
-{
   AUDIO_COMPOSITION_TYPE_RAW,
 } AudioCompositionEntryType;
 
@@ -177,14 +171,13 @@ typedef struct
   gchar *selected_files;
   GtkTreePath *path_where_insert;
 
-  XfburnNotAddingReason warned_about_not_adding;
-
   GdkDragContext * dc;
   gboolean success;
   gboolean del;
   guint32 time;
 
   void *thread_params;
+  GHashTable *warned_about;
   
   GtkActionGroup *action_group;
   GtkUIManager *ui_manager;
@@ -201,6 +194,7 @@ typedef struct
 /* globals */
 static GtkHPanedClass *parent_class = NULL;
 static guint instances = 0;
+static gchar *did_warn = "Did warn about this already";
 
 static const GtkActionEntry action_entries[] = {
   {"add-file", GTK_STOCK_ADD, N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
@@ -466,6 +460,8 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
 
   priv->trans = xfburn_transcoder_get_global ();
+
+  priv->warned_about = g_hash_table_new (g_direct_hash, g_direct_equal);
 }
 
 static void
@@ -792,6 +788,8 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc)
     priv->thread_params = NULL;
   }
 
+  g_hash_table_remove_all (priv->warned_about);
+
   tracks_changed (dc);
 
   xfburn_default_cursor (priv->content);
@@ -1040,30 +1038,24 @@ set_modified (XfburnAudioCompositionPrivate *priv)
   }
 }
 
+/* This function ensures that the user is only told about once about each
+ * type of error. Useful for dragging folders into the audio composition view. */
 static void
-notify_not_adding (XfburnAudioComposition * dc, XfburnNotAddingReason r, const gchar *path)
+notify_not_adding (XfburnAudioComposition * dc, GError *error)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
 
-  if (!(priv->warned_about_not_adding & r)) {
-    const gchar *str;
+  g_assert (error != NULL);
 
-    priv->warned_about_not_adding |= r;
+  if (error->domain != XFBURN_ERROR) {
+    xfce_warn (error->message);
+    return;
+  }
 
-    switch (r) {
-      case NOT_ADDING_EXT:
-        xfce_warn (_("At the moment only .wav files can get added to the compilation!"));
-        break;
-      case NOT_ADDING_FMT:
-        xfce_warn (_("At the moment only CD quality uncompressed (pcm) .wav files can get added to the compilation!"));
-        break;
-      default:
-        /* This should never happen... */
-        str = _("Unsupported files cannot get added to the compilation!");
-        xfce_warn (str);
-        g_warning (str);
-        break;
-    }
+  if (g_hash_table_lookup (priv->warned_about, GINT_TO_POINTER (error->code)) == NULL) {
+    g_hash_table_insert (priv->warned_about, GINT_TO_POINTER (error->code), did_warn);
+
+    xfce_warn (error->message);
   }
 }
 
@@ -1163,7 +1155,8 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
       /* since we don't add the folder, the next song needs
        * to get added after the last one from this directory */
-      *iter = *iter_last;
+      if (iter_last != NULL) 
+        *iter = *iter_last;
 
       if (insertion == NULL)
         g_free (iter_last);
@@ -1177,18 +1170,11 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
       atrack = xfburn_transcoder_get_audio_track (priv->trans, path, &error);
       if (atrack == NULL) {
-        XfburnNotAddingReason reason;
-
-        if (error->code == XFBURN_ERROR_NOT_AUDIO_EXT)
-          reason = NOT_ADDING_EXT;
-        else if (error->code == XFBURN_ERROR_NOT_AUDIO_FORMAT)
-          reason = NOT_ADDING_FMT;
+        gdk_threads_enter ();
+        notify_not_adding (dc, error);
+        gdk_threads_leave ();
 
         g_error_free (error);
-
-        gdk_threads_enter ();
-        notify_not_adding (dc, reason, path);
-        gdk_threads_leave ();
         return FALSE;
       }
 
@@ -1205,6 +1191,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       gdk_threads_leave ();
 
       /* (filesize - header_size) / bytes_per_seconds */
+      DBG ("length = %d", atrack->length);
       secs = atrack->length;
       humanlength = g_strdup_printf ("%2d:%2d", secs / 60, secs % 60);
 

@@ -508,6 +508,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   int *track_sectors;
   gboolean abort = FALSE;
   XfburnTranscoder *trans;
+  GError *error = NULL;
 
   struct burn_drive_info *drive_info = NULL;
 
@@ -529,7 +530,6 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   track_list = params->tracks;
   for (i=0; i<n_tracks; i++) {
     XfburnAudioTrack *atrack = track_list->data;
-    GError *error = NULL;
 
     tracks[i] = xfburn_transcoder_create_burn_track (trans, atrack, &error);
     if (tracks[i] == NULL) {
@@ -548,7 +548,13 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
       src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
       burn_source_free (src);
   */
-
+  if (!abort) {
+    if (!xfburn_transcoder_prepare (trans, &error)) {
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), error->message);
+      g_error_free (error);
+      abort = TRUE;
+    }
+  }
 
   if (!abort) {
     if (!xfburn_device_grab (params->device, &drive_info)) {

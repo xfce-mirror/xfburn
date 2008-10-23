@@ -303,6 +303,14 @@ main (int argc, char **argv)
 #else
   transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
 #endif
+  if (!xfburn_transcoder_is_initialized (transcoder, &error)) {
+    g_warning ("Failed to initialize %s transcoder: %s\n\t(falling back to basic implementation)", xfburn_transcoder_get_name (transcoder), error->message);
+    g_error_free (error);
+    g_object_unref (transcoder);
+    transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
+  } else {
+    g_message ("Using %s transcoder.", xfburn_transcoder_get_name (transcoder));
+  }
   xfburn_transcoder_set_global (transcoder);
 
   /* evaluate parsed command line options */
