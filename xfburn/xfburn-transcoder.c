@@ -152,6 +152,17 @@ xfburn_transcoder_prepare (XfburnTranscoder *trans, GError **error)
   return TRUE;
 }
 
+void
+xfburn_transcoder_finish (XfburnTranscoder *trans)
+{
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+
+  if (iface->finish)
+    iface->finish (trans);
+  
+  /* this function is not required by the interface */
+}
+
 gboolean
 xfburn_transcoder_free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
 {

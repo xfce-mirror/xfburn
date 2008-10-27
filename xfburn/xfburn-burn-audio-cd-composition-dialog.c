@@ -544,10 +544,6 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
     track_list = g_slist_next (track_list);
   }
 
-  /*
-      src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
-      burn_source_free (src);
-  */
   if (!abort) {
     if (!xfburn_transcoder_prepare (trans, &error)) {
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), error->message);
@@ -564,6 +560,8 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
       burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
     }
   }
+
+  xfburn_transcoder_finish (trans);
 
   for (j=0; j<i; j++) {
     burn_track_free (tracks[j]);

@@ -44,6 +44,7 @@
 
 #include "xfburn-global.h"
 #include "xfburn-error.h"
+#include "xfburn-settings.h"
 
 #include "xfburn-transcoder-gst.h"
 
@@ -65,6 +66,7 @@ static struct burn_track * create_burn_track (XfburnTranscoder *trans, XfburnAud
 
 static gboolean prepare (XfburnTranscoder *trans, GError **error);
 static gboolean transcode_next_track (XfburnTranscoderGst *trans, GError **error);
+static void finish (XfburnTranscoder *trans);
 static gboolean free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
 static gboolean is_initialized (XfburnTranscoder *trans, GError **error);
@@ -79,11 +81,18 @@ enum {
   LAST_SIGNAL,
 }; 
 
+typedef enum {
+  XFBURN_TRANSCODER_GST_STATE_IDLE,
+  XFBURN_TRANSCODER_GST_STATE_IDENTIFYING,
+  XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START,
+  XFBURN_TRANSCODER_GST_STATE_TRANSCODING,
+} XfburnTranscoderGstState;
+
 typedef struct {
   GstElement *pipeline;
   GstElement *source, *decoder, *conv, *sink;
 
-  gboolean is_transcoding;
+  XfburnTranscoderGstState state;
   GCond *gst_cond;
   GMutex *gst_mutex;
   gboolean is_audio;
@@ -98,12 +107,15 @@ typedef struct {
 
 typedef struct {
   int fd_in;
+  off_t size;
 } XfburnAudioTrackGst;
 
 #define SIGNAL_WAIT_TIMEOUT_MICROS 600000
 
 #define SIGNAL_SEND_ITERATIONS 10
 #define SIGNAL_SEND_TIMEOUT_MICROS 400000
+
+#define STATE_CHANGE_TIMEOUT_NANOS 250000000
 
 #define XFBURN_AUDIO_TRACK_GET_GST(atrack) ((XfburnAudioTrackGst *) (atrack)->data)
 
@@ -202,6 +214,7 @@ transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data
   iface->get_audio_track = get_audio_track;
   iface->create_burn_track = create_burn_track;
   iface->free_burning_resources = free_burning_resources;
+  iface->finish = finish;
   iface->prepare = prepare;
 }
 
@@ -218,6 +231,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   GstBus *bus;
   GstCaps *caps;
 
+  priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
 
   priv->pipeline = pipeline = gst_pipeline_new ("transcoder");
 
@@ -341,28 +355,33 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       g_warning ("Gstreamer error: %s\n", error->message);
       g_error_free (error);
 
-      /* if transcoding, quit here, otherwise we're querying about songs */
-      if (priv->is_transcoding) {
-        DBG ("transcoding, not signaling on error");
-        break;
-      }
-
-      priv->is_audio = FALSE;
-      DBG ("Trying to lock mutex (error)");
-      for (i=0; i<SIGNAL_SEND_ITERATIONS; i++) {
-        if (g_mutex_trylock (priv->gst_mutex))
+      switch (priv->state) {
+        case XFBURN_TRANSCODER_GST_STATE_IDLE:
+          DBG ("Ignoring gstreamer error while idling.");
           break;
-        g_usleep (SIGNAL_SEND_TIMEOUT_MICROS / SIGNAL_SEND_ITERATIONS);
-        if (i==9) {
-          recreate_pipeline (trans);
-          g_warning ("Noone was there to listen to the gstreamer error: %s", error->message);
-        }
-      }
-      g_cond_signal (priv->gst_cond);
-      g_mutex_unlock (priv->gst_mutex);
-      DBG ("Releasing mutex (error)");
+        case XFBURN_TRANSCODER_GST_STATE_IDENTIFYING:
+          priv->is_audio = FALSE;
+          DBG ("Trying to lock mutex (error)");
+          for (i=0; i<SIGNAL_SEND_ITERATIONS; i++) {
+            if (g_mutex_trylock (priv->gst_mutex))
+              break;
+            g_usleep (SIGNAL_SEND_TIMEOUT_MICROS / SIGNAL_SEND_ITERATIONS);
+            if (i==9) {
+              recreate_pipeline (trans);
+              g_warning ("Noone was there to listen to the gstreamer error: %s", error->message);
+            }
+          }
+          g_cond_signal (priv->gst_cond);
+          g_mutex_unlock (priv->gst_mutex);
+          DBG ("Releasing mutex (error)");
 
-      recreate_pipeline (trans);
+          recreate_pipeline (trans);
+          break;
+        case XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START:
+        case XFBURN_TRANSCODER_GST_STATE_TRANSCODING:
+          g_error ("Gstreamer error while transcoding!");
+          break;
+      }
       break;
     }
     case GST_MESSAGE_STATE_CHANGED: {
@@ -379,39 +398,60 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       else
         DBG ("New state is %s, old is %s", state_to_str(state), state_to_str(old_state));
 
-      if (state != GST_STATE_PAUSED)
-        break;
-      
-      /* FIXME: just a debugging check, remove later */
-      if (priv->is_transcoding) {
-        DBG ("We should not be here while transcoding!");
-        break;
-      }
+      switch (priv->state) {
+        case XFBURN_TRANSCODER_GST_STATE_IDLE:
+        case XFBURN_TRANSCODER_GST_STATE_TRANSCODING:
+          DBG ("Not identifying, ignoring state change");
+          break;
+        case XFBURN_TRANSCODER_GST_STATE_IDENTIFYING:
 
-      if (!g_mutex_trylock (priv->gst_mutex)) {
-        DBG ("Lock held by another thread, not doing anything");
-        return TRUE;
-      } else {
-        DBG ("Locked mutex");
-      }
+          if (state != GST_STATE_PAUSED)
+            break;
+          
+          if (!g_mutex_trylock (priv->gst_mutex)) {
+            DBG ("Lock held by another thread, not doing anything");
+            return TRUE;
+          } else {
+            DBG ("Locked mutex");
+          }
 
-      fmt = GST_FORMAT_TIME;
-      if (!gst_element_query_duration (priv->pipeline, &fmt, &priv->duration)) {
-        g_mutex_unlock (priv->gst_mutex);
-        DBG ("Could not query stream length!");
-        return TRUE;
-      }
+          fmt = GST_FORMAT_TIME;
+          if (!gst_element_query_duration (priv->pipeline, &fmt, &priv->duration)) {
+            g_mutex_unlock (priv->gst_mutex);
+            DBG ("Could not query stream length!");
+            return TRUE;
+          }
 
-      secs = priv->duration / 1000000000;
-      //DBG ("Length is %lldns = %ds = %lld bytes\n", priv->duration, secs, priv->duration * 176400 /1000000000);
-      if (gst_element_set_state (priv->pipeline, GST_STATE_READY) == GST_STATE_CHANGE_FAILURE) {
-        DBG ("Failed to set state!");
-      }
+          secs = priv->duration / 1000000000;
+          //DBG ("Length is %lldns = %ds = %lld bytes\n", priv->duration, secs, priv->duration * 176400 /1000000000);
+          if (gst_element_set_state (priv->pipeline, GST_STATE_READY) == GST_STATE_CHANGE_FAILURE) {
+            DBG ("Failed to set state!");
+          }
 
-      priv->is_audio = TRUE;
-      g_cond_signal (priv->gst_cond);
-      g_mutex_unlock (priv->gst_mutex);
-      DBG ("Releasing mutex (success)");
+          priv->is_audio = TRUE;
+          g_cond_signal (priv->gst_cond);
+          g_mutex_unlock (priv->gst_mutex);
+          DBG ("Releasing mutex (success)");
+          priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
+
+        case XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START:
+          if (state != GST_STATE_PLAYING)
+            break;
+
+          if (strcmp (GST_OBJECT_NAME (GST_MESSAGE_SRC (msg)), "decoder") != 0)
+            break;
+          
+          if (!g_mutex_trylock (priv->gst_mutex)) {
+            DBG ("Lock held by another thread, can't signal transcoding start!");
+            break;
+          } else {
+            DBG ("Locked mutex");
+          }
+
+          g_cond_signal (priv->gst_cond);
+          g_mutex_unlock (priv->gst_mutex);
+          break;
+      }
 
       break;
     }
@@ -471,12 +511,14 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (tgst);
 
   XfburnAudioTrack *atrack;
+  XfburnAudioTrackGst *gtrack;
   GTimeVal tv;
-  guint size;
+  off_t size;
 
   priv->is_audio = FALSE;
   DBG ("setting filename for gstreamer");
 
+  priv->state = XFBURN_TRANSCODER_GST_STATE_IDENTIFYING;
   g_object_set (G_OBJECT (priv->source), "location", fn, NULL);
   if (gst_element_set_state (priv->pipeline, GST_STATE_PAUSED) == GST_STATE_CHANGE_FAILURE) {
     g_warning ("Supposedly failed to change gstreamer state, ignoring it.");
@@ -513,7 +555,12 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
   atrack->sectors = size / AUDIO_BYTES_PER_SECTORS;
   if (size % AUDIO_BYTES_PER_SECTORS > 0)
     atrack->sectors++;
-  DBG ("Track length = %d secs => size = %u bytes => %d sectors", atrack->length, size, atrack->sectors);
+  DBG ("Track length = %d secs => size = %.0f bytes => %d sectors", atrack->length, (float) size, atrack->sectors);
+
+  gtrack = g_new0 (XfburnAudioTrackGst, 1);
+  atrack->data = (gpointer) gtrack;
+
+  gtrack->size = size;
 
   return atrack;
 }
@@ -528,8 +575,9 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   
   struct burn_track *track;
 
-  XfburnAudioTrackGst *gtrack;
+  XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (atrack);
   int pipe_fd[2];
+  struct burn_source *src_fifo;
 
   if (pipe (pipe_fd) != 0) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_PIPE, g_strerror (errno));
@@ -549,6 +597,13 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
     close (pipe_fd[0]);  close (pipe_fd[1]);
     return NULL;
   }
+  
+  /* install fifo,
+    * its size will be a bit bigger in audio mode but that shouldn't matter */
+  src_fifo = burn_fifo_source_new (atrack->src, AUDIO_BYTES_PER_SECTORS, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
+  burn_source_free (atrack->src);
+  atrack->src = src_fifo;
+
 
   track = burn_track_create ();
   
@@ -562,10 +617,17 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
     return NULL;
   }
 
-  gtrack = g_new0 (XfburnAudioTrackGst, 1);
-  gtrack->fd_in = pipe_fd[1];
+  if (burn_track_set_size (track, gtrack->size) <= 0) {
+    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_TRACK,
+                 _("Could not set track size for %s!"), atrack->inputfile);
+    XFBURN_AUDIO_TRACK_DELETE_DATA (atrack);
+    burn_source_free (atrack->src);
+    atrack->fd = -1;
+    close (pipe_fd[0]);  close (pipe_fd[1]);
+    return NULL;
+  }
 
-  atrack->data = (gpointer) gtrack;
+  gtrack->fd_in = pipe_fd[1];
 
   //burn_track_set_byte_swap (track, TRUE);
 
@@ -582,11 +644,25 @@ prepare (XfburnTranscoder *trans, GError **error)
   XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (gst);
   gboolean ret;
+  GTimeVal tv;
 
   priv->tracks = g_slist_reverse (priv->tracks);
-  priv->is_transcoding = TRUE;
 
+  priv->state = XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START;
   ret = transcode_next_track (gst, error);
+
+  DBG ("Waiting for start signal");
+  g_get_current_time (&tv);
+  g_time_val_add (&tv, SIGNAL_WAIT_TIMEOUT_MICROS);
+  if (!g_cond_timed_wait (priv->gst_cond, priv->gst_mutex, &tv)) {
+    recreate_pipeline (gst);
+    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_TIMEOUT,
+                 _("Gstreamer did not want to start transcoding (timed out)"));
+    return FALSE;
+  }
+  DBG ("Got the start signal");
+
+  priv->state = XFBURN_TRANSCODER_GST_STATE_TRANSCODING;
 
   /* give gstreamer a tiny bit of time.
    * FIXME: what's a good time here?    
@@ -599,8 +675,9 @@ prepare (XfburnTranscoder *trans, GError **error)
 static gboolean
 transcode_next_track (XfburnTranscoderGst *trans, GError **error)
 {
-  XfburnTranscoderGst *basic = XFBURN_TRANSCODER_GST (trans);
-  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (basic);
+  XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
+  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (gst);
+
   XfburnAudioTrack *atrack;
   XfburnAudioTrackGst *gtrack;
 
@@ -626,19 +703,47 @@ transcode_next_track (XfburnTranscoderGst *trans, GError **error)
   return TRUE;
 }
 
+static void 
+finish (XfburnTranscoder *trans)
+{
+  XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
+  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (gst);
+
+  GstState state;
+  GstClock *clock;
+  GstClockTime tv;
+
+  DBG ("Done transcoding!");
+  priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
+
+  clock = gst_element_get_clock (priv->pipeline);
+  tv = gst_clock_get_time (clock);
+  g_object_unref (clock);
+  tv += STATE_CHANGE_TIMEOUT_NANOS;
+
+  if (gst_element_get_state (priv->pipeline, &state, NULL, tv) == GST_STATE_CHANGE_FAILURE) {
+    DBG ("Could not query pipeline state, recreating it");
+    recreate_pipeline (gst);
+    return;
+  }
+  
+  if ((state != GST_STATE_READY) &&
+      (gst_element_set_state (priv->pipeline, GST_STATE_READY) == GST_STATE_CHANGE_FAILURE)) {
+    DBG ("Could not make pipeline ready, recreating it");
+    recreate_pipeline (gst);
+  }
+}
+
 static gboolean
 free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
 {
-  XfburnTranscoderGst *basic = XFBURN_TRANSCODER_GST (trans);
-  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (basic);
+  /*
+  XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
+  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (gst);
+  */
   
   XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (atrack);
   
-  /* is there a better place to put this?
-   * It doesn't hurt that we execute it for every track, but it's just not so pretty */
-  DBG ("Done transcoding!");
-  priv->is_transcoding = FALSE;
-
   close (gtrack->fd_in);
 
   g_free (gtrack);
@@ -651,8 +756,8 @@ free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GErro
 static gboolean 
 is_initialized (XfburnTranscoder *trans, GError **error)
 {
-  XfburnTranscoderGst *basic = XFBURN_TRANSCODER_GST (trans);
-  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (basic);
+  XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
+  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (gst);
 
   if (priv->error) {
     *error = priv->error;

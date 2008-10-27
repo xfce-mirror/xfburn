@@ -187,7 +187,7 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 
   if (stat (fn, &s) != 0) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_STAT,
-                 _("Could not stat %s"), fn);
+                 _("Could not stat %s: %s"), fn, g_strerror (errno));
     return NULL;
   }
 

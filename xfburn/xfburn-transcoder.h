@@ -68,8 +68,9 @@ typedef struct
   struct burn_track * (*create_burn_track) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
   /* optional functions */
-  gboolean (*free_burning_resources) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
   gboolean (*prepare) (XfburnTranscoder *trans, GError **error);
+  void (*finish) (XfburnTranscoder *trans);
+  gboolean (*free_burning_resources) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
   
 } XfburnTranscoderInterface;
 
@@ -84,8 +85,9 @@ XfburnAudioTrack * xfburn_transcoder_get_audio_track (XfburnTranscoder *trans, c
 struct burn_track *xfburn_transcoder_create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
 /* optional functions */
-gboolean xfburn_transcoder_free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 gboolean xfburn_transcoder_prepare (XfburnTranscoder *trans, GError **error);
+void xfburn_transcoder_finish (XfburnTranscoder *trans);
+gboolean xfburn_transcoder_free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
 /* defined purely by the interface */
 void xfburn_transcoder_free_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack);
