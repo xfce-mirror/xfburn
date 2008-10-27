@@ -112,6 +112,10 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
  
   total_sectors = burn_disc_get_sectors (disc);
 
+  /* Install the default libburn abort signal handler.
+   * Hopefully this means the drive won't be left in a burning state if we catch a signal */
+  burn_set_signal_handling ("xfburn", NULL, 0);
+
   burn_disc_write (burn_options, disc); 
 
   while (burn_drive_get_status (drive, NULL) == BURN_DRIVE_SPAWNING)
@@ -269,6 +273,9 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     final_status = XFBURN_PROGRESS_DIALOG_STATUS_FAILED;
     final_message = g_strdup_printf ("%s: %s", final_status_text, msg_text);
   }
+
+  /* restore default signal handlers */
+  burn_set_signal_handling (NULL, NULL, 1);
 
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), final_status, final_message);
 }
