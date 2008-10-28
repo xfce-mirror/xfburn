@@ -631,7 +631,7 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
       device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
       speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
       /* cdrskin burns audio with SAO */
-      write_mode = WRITE_MODE_SAO;
+      write_mode = WRITE_MODE_TAO;
 
       /* burn composition */
       params = g_new0 (ThreadBurnCompositionParams, 1);
