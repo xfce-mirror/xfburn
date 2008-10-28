@@ -32,6 +32,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <math.h>
 
 #include <errno.h>
 
@@ -110,7 +111,7 @@ typedef struct {
   off_t size;
 } XfburnAudioTrackGst;
 
-#define SIGNAL_WAIT_TIMEOUT_MICROS 600000
+#define SIGNAL_WAIT_TIMEOUT_MICROS 1000000
 
 #define SIGNAL_SEND_ITERATIONS 10
 #define SIGNAL_SEND_TIMEOUT_MICROS 400000
@@ -340,6 +341,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       if (!transcode_next_track (trans, &error)) {
         g_warning ("Error while switching track: %s", error->message);
         g_error_free (error);
+        /* FIXME: abort here? */
       }
 
       break;
@@ -551,9 +553,9 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
   atrack->pos = -1;
   atrack->length = priv->duration / 1000000000;
 
-  size = (priv->duration / (float) 1000000000) * (float) PCM_BYTES_PER_SECS;
-  atrack->sectors = size / AUDIO_BYTES_PER_SECTORS;
-  if (size % AUDIO_BYTES_PER_SECTORS > 0)
+  size = (off_t) floorf (priv->duration * (PCM_BYTES_PER_SECS / (float) 1000000000));
+  atrack->sectors = size / AUDIO_BYTES_PER_SECTOR;
+  if (size % AUDIO_BYTES_PER_SECTOR > 0)
     atrack->sectors++;
   DBG ("Track length = %d secs => size = %.0f bytes => %d sectors", atrack->length, (float) size, atrack->sectors);
 
@@ -578,6 +580,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (atrack);
   int pipe_fd[2];
   struct burn_source *src_fifo;
+  int pad;
 
   if (pipe (pipe_fd) != 0) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_PIPE, g_strerror (errno));
@@ -600,7 +603,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   
   /* install fifo,
     * its size will be a bit bigger in audio mode but that shouldn't matter */
-  src_fifo = burn_fifo_source_new (atrack->src, AUDIO_BYTES_PER_SECTORS, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
+  src_fifo = burn_fifo_source_new (atrack->src, AUDIO_BYTES_PER_SECTOR, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
   burn_source_free (atrack->src);
   atrack->src = src_fifo;
 
@@ -631,6 +634,10 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 
   //burn_track_set_byte_swap (track, TRUE);
 
+  pad = atrack->sectors * AUDIO_BYTES_PER_SECTOR - gtrack->size;
+
+  /* FIXME: we try to pad manually, but still set pad just in case? Is that harmful? */
+  //burn_track_define_data (track, 0, pad, 0, BURN_AUDIO);
   burn_track_define_data (track, 0, 0, 1, BURN_AUDIO);
 
   priv->tracks = g_slist_prepend (priv->tracks, atrack);

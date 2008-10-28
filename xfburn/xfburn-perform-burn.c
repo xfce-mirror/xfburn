@@ -155,10 +155,11 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
 	//percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
 	percent = 1.0 + ((gdouble) progress.sector + burned_sectors + 1.0) / ((gdouble) total_sectors) * 98.0;
-        /*
-        if ((dbg_no % 16) == 0) {
-          DBG ("progress = %f", percent);
+
+        //if ((dbg_no % 16) == 0) {
+        //  DBG ("progress = %f", percent);
           DBG ("track = %d\tsector %d/%d", progress.track, progress.sector, progress.sectors);
+        /*
         }
         */
 	xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent / 100.0);
@@ -273,6 +274,8 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     final_status = XFBURN_PROGRESS_DIALOG_STATUS_FAILED;
     final_message = g_strdup_printf ("%s: %s", final_status_text, msg_text);
   }
+
+  DBG ("Final burning status: %s", final_message);
 
   /* restore default signal handlers */
   burn_set_signal_handling (NULL, NULL, 1);

@@ -441,7 +441,7 @@ typedef struct {
 static void 
 thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_drive *drive,
                            struct burn_disc *disc, struct burn_session *session, int n_tracks, 
-                           int track_sectors[], struct burn_track **tracks)
+                           int track_sectors[], struct burn_track **tracks, struct burn_source **srcs)
 {
   GtkWidget *dialog_progress = params->dialog_progress;
 
@@ -489,6 +489,8 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_drive_set_speed (drive, 0, params->speed);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
 
+  // FIXME: perform_burn_write only takes one fifo as an argument right now
+  //xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, srcs, track_sectors);
   xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, NULL, track_sectors);
 
   burn_write_opts_free (burn_options);
@@ -502,6 +504,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   struct burn_disc *disc;
   struct burn_session *session;
   struct burn_track **tracks;
+  struct burn_source **srcs;
   int n_tracks;
   int i,j;
   GSList *track_list;
@@ -525,6 +528,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   n_tracks = g_slist_length (params->tracks);
   track_sectors = g_new (int, n_tracks);
   tracks = g_new (struct burn_track *, n_tracks);
+  srcs = g_new (struct burn_source *, n_tracks);
   trans = xfburn_transcoder_get_global ();
 
   track_list = params->tracks;
@@ -538,6 +542,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
       abort = TRUE;
       break;
     }
+    srcs[i] = atrack->src;
 
     track_sectors[i] = atrack->sectors;
 
@@ -556,7 +561,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
     if (!xfburn_device_grab (params->device, &drive_info)) {
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab drive"));
     } else {
-      thread_burn_prep_and_burn (params, drive_info->drive, disc, session, n_tracks, track_sectors, tracks);
+      thread_burn_prep_and_burn (params, drive_info->drive, disc, session, n_tracks, track_sectors, tracks, srcs);
       burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
     }
   }
@@ -566,6 +571,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   for (j=0; j<i; j++) {
     burn_track_free (tracks[j]);
   }
+  g_free (srcs);
   g_free (tracks);
   g_free (track_sectors);
 

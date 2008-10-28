@@ -93,6 +93,7 @@ xfburn_CFLAGS =								\
 	$(GST_CFLAGS)
 
 xfburn_LDADD = 								\
+        -lm                                                             \
 	$(GTHREAD_LIBS)							\
 	$(LIBBURN_LIBS)							\
 	$(LIBISOFS_LIBS)						\

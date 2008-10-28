@@ -196,8 +196,8 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
   atrack->inputfile = g_strdup (fn);
   atrack->pos = -1;
   atrack->length = (s.st_size - 44) / PCM_BYTES_PER_SECS;
-  atrack->sectors = (s.st_size / AUDIO_BYTES_PER_SECTORS);
-  if (s.st_size % AUDIO_BYTES_PER_SECTORS > 0)
+  atrack->sectors = (s.st_size / AUDIO_BYTES_PER_SECTOR);
+  if (s.st_size % AUDIO_BYTES_PER_SECTOR > 0)
     atrack->sectors++;
 
   return atrack;
