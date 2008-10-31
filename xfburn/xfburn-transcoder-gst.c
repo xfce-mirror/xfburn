@@ -125,12 +125,14 @@ typedef struct {
 
 /* constants */
 
-#define SIGNAL_WAIT_TIMEOUT_MICROS 1000000
+#define SIGNAL_WAIT_TIMEOUT_MICROS 1500000
 
 #define SIGNAL_SEND_ITERATIONS 10
-#define SIGNAL_SEND_TIMEOUT_MICROS 400000
+/* SIGNAL_SEND_TIMEOUT_MICROS is the total time,
+ * which gets divided into SIGNAL_SEND_ITERATIONS probes */
+#define SIGNAL_SEND_TIMEOUT_MICROS 1000000
 
-#define STATE_CHANGE_TIMEOUT_NANOS 250000000
+#define STATE_CHANGE_TIMEOUT_NANOS 750000000
 
 #define XFBURN_AUDIO_TRACK_GET_GST(atrack) ((XfburnAudioTrackGst *) (atrack)->data)
 
@@ -388,6 +390,10 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 #endif
 
       close (gtrack->fd_in);
+
+      if (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE) {
+        g_warning ("Gstreamer did not want to get ready after EOS!");
+      }
 
       if (!transcode_next_track (trans, &error)) {
         g_warning ("Error while switching track: %s", error->message);
