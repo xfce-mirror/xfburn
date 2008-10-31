@@ -49,6 +49,12 @@
 
 #include "xfburn-transcoder-gst.h"
 
+
+/* if this is set, then add in an identity element so
+   that the data can get inspected in cb_handoff */
+//#define DEBUG_GST
+
+
 /** Prototypes **/
 /* class initialization */
 static void xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass);
@@ -76,6 +82,10 @@ static gboolean is_initialized (XfburnTranscoder *trans, GError **error);
 static gboolean bus_call (GstBus *bus, GstMessage *msg, gpointer data);
 static void on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data);
 
+#ifdef DEBUG_GST
+static void cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data);
+#endif
+
 #define XFBURN_TRANSCODER_GST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_TRANSCODER_GST, XfburnTranscoderGstPrivate))
 
 enum {
@@ -102,6 +112,7 @@ typedef struct {
   GError *error;
 
   GSList *tracks;
+  XfburnAudioTrack *curr_track;
 
 } XfburnTranscoderGstPrivate;
 
@@ -111,6 +122,9 @@ typedef struct {
   off_t size;
 } XfburnAudioTrackGst;
 
+
+/* constants */
+
 #define SIGNAL_WAIT_TIMEOUT_MICROS 1000000
 
 #define SIGNAL_SEND_ITERATIONS 10
@@ -119,6 +133,11 @@ typedef struct {
 #define STATE_CHANGE_TIMEOUT_NANOS 250000000
 
 #define XFBURN_AUDIO_TRACK_GET_GST(atrack) ((XfburnAudioTrackGst *) (atrack)->data)
+
+/* globals */
+#ifdef DEBUG_GST
+static guint64 total_size = 0;
+#endif
 
 /*********************/
 /* class declaration */
@@ -229,6 +248,9 @@ create_pipeline (XfburnTranscoderGst *trans)
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
 
   GstElement *pipeline, *source, *decoder, *conv, *sink;
+#ifdef DEBUG_GST
+  GstElement *id;
+#endif
   GstBus *bus;
   GstCaps *caps;
 
@@ -239,6 +261,9 @@ create_pipeline (XfburnTranscoderGst *trans)
   priv->source  = source   = gst_element_factory_make ("filesrc",       "file-source");
   priv->decoder = decoder  = gst_element_factory_make ("decodebin",     "decoder");
   priv->conv    = conv     = gst_element_factory_make ("audioconvert",  "converter");
+#ifdef DEBUG_GST
+                  id       = gst_element_factory_make ("identity",      "debugging-identity");
+#endif
   priv->sink    = sink     = gst_element_factory_make ("fdsink",        "audio-output");
   //priv->sink    = sink     = gst_element_factory_make ("fakesink",        "audio-output");
   //DBG ("\npipeline = %p\nsource = %p\ndecoder = %p\nconv = %p\nsink = %p", pipeline, source, decoder, conv, sink);
@@ -249,6 +274,14 @@ create_pipeline (XfburnTranscoderGst *trans)
     return;
   }
 
+#ifdef DEBUG_GST
+  if (!id) {
+    g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
+                 _("The debug identity element could not be created"));
+    return;
+  }
+#endif
+
 
   /* we add a message handler */
   bus = gst_pipeline_get_bus (GST_PIPELINE (pipeline));
@@ -257,6 +290,9 @@ create_pipeline (XfburnTranscoderGst *trans)
 
   gst_bin_add_many (GST_BIN (pipeline),
                     source, decoder, conv, sink, NULL);
+#ifdef DEBUG_GST
+  gst_bin_add (GST_BIN (pipeline), id);
+#endif
 
   gst_element_link (source, decoder);
 
@@ -270,13 +306,21 @@ create_pipeline (XfburnTranscoderGst *trans)
             "signed", G_TYPE_BOOLEAN, TRUE,
             NULL);
 
+#ifdef DEBUG_GST
+  if (!gst_element_link_filtered (conv, id, caps)) {
+#else
   if (!gst_element_link_filtered (conv, sink, caps)) {
+#endif
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
                  _("Could not setup filtered gstreamer link"));
     gst_caps_unref (caps);
     return;
   }
   gst_caps_unref (caps);
+#ifdef DEBUG_GST
+  gst_element_link (id, sink);
+  g_signal_connect (id, "handoff", G_CALLBACK (cb_handoff), id);
+#endif
 
   g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK (on_pad_added), conv);
 }
@@ -335,8 +379,15 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 
     case GST_MESSAGE_EOS: {
       GError *error = NULL;
+      XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (priv->curr_track);
 
+#ifdef DEBUG_GST
+      DBG ("End of stream, wrote %.0f bytes", (gfloat) total_size);
+#else
       DBG ("End of stream");
+#endif
+
+      close (gtrack->fd_in);
 
       if (!transcode_next_track (trans, &error)) {
         g_warning ("Error while switching track: %s", error->message);
@@ -506,6 +557,21 @@ get_name (XfburnTranscoder *trans)
   return "gstreamer";
 }
 
+#ifdef DEBUG_GST
+
+/* this function can inspect the data just before it is passed on
+   to the fd for processing by libburn */
+static void
+cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data)
+{
+  guint size = GST_BUFFER_SIZE (buffer);
+
+  total_size += size;
+}
+
+#endif
+
+
 static XfburnAudioTrack *
 get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 {
@@ -580,7 +646,6 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (atrack);
   int pipe_fd[2];
   struct burn_source *src_fifo;
-  int pad;
 
   if (pipe (pipe_fd) != 0) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_PIPE, g_strerror (errno));
@@ -591,7 +656,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 
   DBG ("track %d fd = %d", atrack->pos, atrack->fd);
 
-  atrack->src = burn_fd_source_new (atrack->fd, -1 , 0);
+  atrack->src = burn_fd_source_new (atrack->fd, -1 , gtrack->size);
   if (atrack->src == NULL) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
                  _("Could not create burn_source from %s!"), atrack->inputfile);
@@ -620,25 +685,17 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
     return NULL;
   }
 
-  if (burn_track_set_size (track, gtrack->size) <= 0) {
-    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_TRACK,
-                 _("Could not set track size for %s!"), atrack->inputfile);
-    XFBURN_AUDIO_TRACK_DELETE_DATA (atrack);
-    burn_source_free (atrack->src);
-    atrack->fd = -1;
-    close (pipe_fd[0]);  close (pipe_fd[1]);
-    return NULL;
-  }
-
   gtrack->fd_in = pipe_fd[1];
 
+  /* FIXME: I don't think this will be necessary with gstreamer, or will it be? */
   //burn_track_set_byte_swap (track, TRUE);
 
-  pad = atrack->sectors * AUDIO_BYTES_PER_SECTOR - gtrack->size;
-
-  /* FIXME: we try to pad manually, but still set pad just in case? Is that harmful? */
-  //burn_track_define_data (track, 0, pad, 0, BURN_AUDIO);
+#ifdef DEBUG_NULL_DEVICE
+  /* stdio:/dev/null only works with MODE1 */
+  burn_track_define_data (track, 0, 0, 1, BURN_MODE1);
+#else
   burn_track_define_data (track, 0, 0, 1, BURN_AUDIO);
+#endif
 
   priv->tracks = g_slist_prepend (priv->tracks, atrack);
 
@@ -705,6 +762,7 @@ transcode_next_track (XfburnTranscoderGst *trans, GError **error)
     return FALSE;
   }
 
+  priv->curr_track = (XfburnAudioTrack *) priv->tracks->data;
   priv->tracks = g_slist_next (priv->tracks);
 
   return TRUE;
@@ -720,8 +778,10 @@ finish (XfburnTranscoder *trans)
   GstClock *clock;
   GstClockTime tv;
 
-  DBG ("Done transcoding!");
+  DBG ("Done transcoding");
   priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
+
+  priv->curr_track = NULL;
 
   clock = gst_element_get_clock (priv->pipeline);
   tv = gst_clock_get_time (clock);
@@ -751,8 +811,6 @@ free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GErro
   
   XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (atrack);
   
-  close (gtrack->fd_in);
-
   g_free (gtrack);
   atrack->data = NULL;
 

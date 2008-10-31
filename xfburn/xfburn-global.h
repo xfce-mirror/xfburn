@@ -48,4 +48,9 @@
 
 #define PCM_BYTES_PER_SECS 176400
 
+/* DEBUG ONLY */
+
+/* do not use the real device, instead make everything write to /dev/null */
+//#define DEBUG_NULL_DEVICE
+
 #endif

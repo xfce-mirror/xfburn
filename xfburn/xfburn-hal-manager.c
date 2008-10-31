@@ -420,7 +420,11 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
         continue;
       }
 
+#ifdef DEBUG_NULL_DEVICE
+      g_strlcpy (device->addr, "stdio:/dev/null", BURN_DRIVE_ADR_LEN);
+#else
       g_strlcpy (device->addr, str, BURN_DRIVE_ADR_LEN);
+#endif
       libhal_free_string (str);
 
       device->cdr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.cdr", &error);

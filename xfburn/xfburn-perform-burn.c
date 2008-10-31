@@ -144,8 +144,12 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
         } else {
           xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning composition..."));
         }
+
 	percent = (gdouble) (progress.buffer_capacity - progress.buffer_available) / (gdouble) progress.buffer_capacity;
-	xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
+
+        /* assume that we don't have buffer info if the result is outside the sane range */
+        if (percent >= 0 && percent <= 1)
+          xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 
         /* accumulate the sectors that have been burned in the previous track */
         if (progress.track > 0 && track_sectors[progress.track-1] > 0) {
@@ -157,8 +161,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 	percent = 1.0 + ((gdouble) progress.sector + burned_sectors + 1.0) / ((gdouble) total_sectors) * 98.0;
 
         //if ((dbg_no % 16) == 0) {
-        //  DBG ("progress = %f", percent);
-          DBG ("track = %d\tsector %d/%d", progress.track, progress.sector, progress.sectors);
+          DBG ("%.0f ; track = %d\tsector %d/%d", percent, progress.track, progress.sector, progress.sectors);
         /*
         }
         */
