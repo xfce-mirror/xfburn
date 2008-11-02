@@ -454,9 +454,9 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
     return;
   }
 
-  DBG ("Adding %d tracks to the session", n_tracks);
+  //DBG ("Adding %d tracks to the session", n_tracks);
   for (i=0; i<n_tracks; i++) {
-    DBG ("Track %d has %d sectors", i, track_sectors[i]);
+    //DBG ("Track %d has %d sectors", i, track_sectors[i]);
     burn_session_add_track (session, tracks[i], BURN_POS_END);
   }
 

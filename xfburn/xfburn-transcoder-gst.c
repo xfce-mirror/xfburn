@@ -50,10 +50,10 @@
 #include "xfburn-transcoder-gst.h"
 
 
-/* if this is set, then add in an identity element so
-   that the data can get inspected in cb_handoff */
-//#define DEBUG_GST
-
+/* Set DEBUG_GST > 0 to be able to inspect the data just before it gets to the fd,
+                     and to get a lot more gst debugging output.
+   Set DEBUG_GST > 1 to also get a lot of gst state change messages */
+//#define DEBUG_GST 1
 
 /** Prototypes **/
 /* class initialization */
@@ -324,7 +324,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   g_signal_connect (id, "handoff", G_CALLBACK (cb_handoff), id);
 #endif
 
-  g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK (on_pad_added), conv);
+  g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK (on_pad_added), trans);
 }
 
 static void 
@@ -332,11 +332,14 @@ delete_pipeline (XfburnTranscoderGst *trans)
 {
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
 
+#if DEBUG_GST > 0
   DBG ("Deleting pipeline");
+#endif
   if (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE)
     g_warning ("Failed to change state to null, deleting pipeline anyways");
   
-  /* give gstreamer a chance to do something */
+  /* give gstreamer a chance to do something
+   * this might not be necessary, but shouldn't hurt */
   g_thread_yield ();
 
   g_object_unref (priv->pipeline);
@@ -349,6 +352,7 @@ static void recreate_pipeline (XfburnTranscoderGst *trans)
   create_pipeline (trans);
 }
 
+#if DEBUG_GST > 1
 static gchar *
 state_to_str (GstState st)
 {
@@ -366,16 +370,53 @@ state_to_str (GstState st)
   }
   return "invalid";
 }
+#endif
+
+static gboolean
+signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res)
+{
+  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
+
+  int i;
+
+#if DEBUG_GST > 0
+  DBG ("Trying to lock mutex (%s)", dbg_res);
+#endif
+
+  /* There is no g_mutex_lock_timed, so emulate it with a loop.
+    * I have never seen this getting hung here, but one never knows! */
+  for (i=0; i<SIGNAL_SEND_ITERATIONS; i++) {
+    if (g_mutex_trylock (priv->gst_mutex))
+      break;
+    g_usleep (SIGNAL_SEND_TIMEOUT_MICROS / SIGNAL_SEND_ITERATIONS);
+    DBG ("foo");
+    g_thread_yield ();
+    if (i==9) {
+      DBG ("Noone was there to listen to the result of the identification!");
+      /* FIXME: recreate pipeline here? This state is not the fault of gst */
+      if (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE) {
+        DBG ("Oops, could not reset pipeline to null");
+      }
+      return FALSE;
+    }
+  }
+
+  g_cond_signal (priv->gst_cond);
+  g_mutex_unlock (priv->gst_mutex);
+
+#if DEBUG_GST > 0
+  DBG ("Releasing mutex (%s)", dbg_res);
+#endif
+
+  return TRUE;
+}
+
 
 static gboolean
 bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 {
   XfburnTranscoderGst *trans = XFBURN_TRANSCODER_GST (data);
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
-
-  GstFormat fmt;
-  guint secs;
-  //gint64 frames;
 
   switch (GST_MESSAGE_TYPE (msg)) {
 
@@ -406,36 +447,30 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
     case GST_MESSAGE_ERROR: {
       gchar  *debug;
       GError *error;
-      int i;
 
       gst_message_parse_error (msg, &error, &debug);
       g_free (debug);
 
+      /* FIXME: show this all the time? */
       g_warning ("Gstreamer error: %s\n", error->message);
       g_error_free (error);
 
       switch (priv->state) {
         case XFBURN_TRANSCODER_GST_STATE_IDLE:
+#if DEBUG_GST > 0
           DBG ("Ignoring gstreamer error while idling.");
-          break;
-        case XFBURN_TRANSCODER_GST_STATE_IDENTIFYING:
-          priv->is_audio = FALSE;
-          DBG ("Trying to lock mutex (error)");
-          for (i=0; i<SIGNAL_SEND_ITERATIONS; i++) {
-            if (g_mutex_trylock (priv->gst_mutex))
-              break;
-            g_usleep (SIGNAL_SEND_TIMEOUT_MICROS / SIGNAL_SEND_ITERATIONS);
-            if (i==9) {
-              recreate_pipeline (trans);
-              g_warning ("Noone was there to listen to the gstreamer error: %s", error->message);
-            }
-          }
-          g_cond_signal (priv->gst_cond);
-          g_mutex_unlock (priv->gst_mutex);
-          DBG ("Releasing mutex (error)");
-
+#endif
           recreate_pipeline (trans);
           break;
+
+        case XFBURN_TRANSCODER_GST_STATE_IDENTIFYING:
+          recreate_pipeline (trans);
+
+          priv->is_audio = FALSE;
+
+          signal_identification_done (trans, "error");
+          break;
+
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START:
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODING:
           g_error ("Gstreamer error while transcoding!");
@@ -443,55 +478,33 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       }
       break;
     }
-    case GST_MESSAGE_STATE_CHANGED: {
-      GstState state;
-      GstState pending, old_state;
+    case GST_MESSAGE_APPLICATION: {
+      if (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE) {
+        DBG ("Failed to reset GST state.");
+        recreate_pipeline (trans);
+      }
+      signal_identification_done (trans, "no audio");
 
-      //if (GST_MESSAGE_SRC (msg) == GST_OBJECT (priv->sink))
-        //DBG ("RIGHT SOURCE");
-      //DBG ("source is %p", GST_MESSAGE_SRC (msg));
+      break;
+    }
+    case GST_MESSAGE_STATE_CHANGED: {
+      GstState state, pending, old_state;
 
       gst_message_parse_state_changed (msg, &old_state, &state, &pending);
+
+/* this is very verbose */
+#if DEBUG_GST > 1
       if (pending != 0)
-        DBG ("New state is %s, old is %s and pending is %s", state_to_str(state), state_to_str(old_state), state_to_str(pending));
+        DBG ("%-15s\tNew state is %s, old is %s and pending is %s", GST_OBJECT_NAME (GST_MESSAGE_SRC (msg)), state_to_str(state), state_to_str(old_state), state_to_str(pending));
       else
-        DBG ("New state is %s, old is %s", state_to_str(state), state_to_str(old_state));
+        DBG ("%-15s\tNew state is %s, old is %s", GST_OBJECT_NAME (GST_MESSAGE_SRC (msg)), state_to_str(state), state_to_str(old_state));
+#endif
 
       switch (priv->state) {
         case XFBURN_TRANSCODER_GST_STATE_IDLE:
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODING:
-          DBG ("Not identifying, ignoring state change");
-          break;
         case XFBURN_TRANSCODER_GST_STATE_IDENTIFYING:
-
-          if (state != GST_STATE_PAUSED)
-            break;
-          
-          if (!g_mutex_trylock (priv->gst_mutex)) {
-            DBG ("Lock held by another thread, not doing anything");
-            return TRUE;
-          } else {
-            DBG ("Locked mutex");
-          }
-
-          fmt = GST_FORMAT_TIME;
-          if (!gst_element_query_duration (priv->pipeline, &fmt, &priv->duration)) {
-            g_mutex_unlock (priv->gst_mutex);
-            DBG ("Could not query stream length!");
-            return TRUE;
-          }
-
-          secs = priv->duration / 1000000000;
-          //DBG ("Length is %lldns = %ds = %lld bytes\n", priv->duration, secs, priv->duration * 176400 /1000000000);
-          if (gst_element_set_state (priv->pipeline, GST_STATE_READY) == GST_STATE_CHANGE_FAILURE) {
-            DBG ("Failed to set state!");
-          }
-
-          priv->is_audio = TRUE;
-          g_cond_signal (priv->gst_cond);
-          g_mutex_unlock (priv->gst_mutex);
-          DBG ("Releasing mutex (success)");
-          priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
+          break;
 
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START:
           if (state != GST_STATE_PLAYING)
@@ -501,21 +514,59 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
             break;
           
           if (!g_mutex_trylock (priv->gst_mutex)) {
-            DBG ("Lock held by another thread, can't signal transcoding start!");
+            g_warning ("Lock held by another thread, can't signal transcoding start!");
             break;
           } else {
-            DBG ("Locked mutex");
+#if DEBUG_GST > 0
+            DBG ("Locked mutex to signal transcoding start");
+#endif
           }
 
           g_cond_signal (priv->gst_cond);
           g_mutex_unlock (priv->gst_mutex);
           break;
-      }
+      } /* switch of priv->state */
+
+      break;
+    }
+    case GST_MESSAGE_DURATION: {
+      GstFormat fmt;
+      guint secs;
+
+      switch (priv->state) {
+        case XFBURN_TRANSCODER_GST_STATE_IDLE:
+        case XFBURN_TRANSCODER_GST_STATE_TRANSCODING:
+        case XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START:
+          break;
+
+        case XFBURN_TRANSCODER_GST_STATE_IDENTIFYING:
+          fmt = GST_FORMAT_TIME;
+          if (!gst_element_query_duration (priv->pipeline, &fmt, &priv->duration)) {
+#if DEBUG_GST > 0
+            DBG ("Could not query stream length!");
+#endif
+            return TRUE;
+          }
+
+          secs = priv->duration / 1000000000;
+          if (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE) {
+            DBG ("Failed to set state!");
+            recreate_pipeline (trans);
+          }
+
+          priv->is_audio = TRUE;
+          priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
+
+          signal_identification_done (trans, "is audio");
+          break;
+      } /* switch of priv->state */
 
       break;
     }
     default:
+#if DEBUG_GST > 0
       DBG ("bus call: %s (%d) ", GST_MESSAGE_TYPE_NAME (msg), GST_MESSAGE_TYPE (msg));
+#endif
       break;
   }
 
@@ -525,10 +576,13 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 static void
 on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
 {
+  XfburnTranscoderGst *trans = XFBURN_TRANSCODER_GST (data);
+  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
+
   GstCaps *caps;
   GstStructure *str;
   GstPad *audiopad;
-  GstElement *audio = (GstElement *) data;
+  GstElement *audio = (GstElement *) priv->conv;
 
   // only link once
   audiopad = gst_element_get_static_pad (audio, "sink");
@@ -538,16 +592,36 @@ on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
     return;
   }
 
+#if DEBUG_GST > 0
   DBG ("linking pads");
+#endif
 
   // check media type
   caps = gst_pad_get_caps (pad);
   str = gst_caps_get_structure (caps, 0);
   if (!g_strrstr (gst_structure_get_name (str), "audio")) {
-    DBG ("not audio!");
-    /* FIXME: report this as an error? */
+    GstStructure *msg_struct;
+    GstMessage *msg;
+    GstBus *bus;
+
+    DBG ("File content has a decoder but is not audio");
+    
     gst_caps_unref (caps);
     gst_object_unref (audiopad);
+
+    priv->is_audio = FALSE;
+    
+    msg_struct = gst_structure_new ("no-audio-content", NULL);
+
+    msg = gst_message_new_application (GST_OBJECT (element), msg_struct);
+
+    bus = gst_element_get_bus (element);
+    if (!gst_bus_post (bus, msg)) {
+      DBG ("Could not post the message on the gst bus!");
+      g_object_unref (msg);
+    }
+    g_object_unref (bus);
+
     return;
   }
   gst_caps_unref (caps);
@@ -590,7 +664,9 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
   off_t size;
 
   priv->is_audio = FALSE;
-  DBG ("setting filename for gstreamer");
+#if DEBUG_GST > 0
+  DBG ("Querying GST about %s", fn);
+#endif
 
   priv->state = XFBURN_TRANSCODER_GST_STATE_IDENTIFYING;
   g_object_set (G_OBJECT (priv->source), "location", fn, NULL);
@@ -602,20 +678,25 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
     return NULL;
     */
   }
-  DBG ("Waiting for signal");
   g_get_current_time (&tv);
   g_time_val_add (&tv, SIGNAL_WAIT_TIMEOUT_MICROS);
+#if DEBUG_GST > 0
+  DBG ("Now waiting for identification result");
+#endif
   if (!g_cond_timed_wait (priv->gst_cond, priv->gst_mutex, &tv)) {
+    DBG ("gst identification timed out");
     recreate_pipeline (tgst);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_TIMEOUT,
                  _("Gstreamer did not like this file (detection timed out)"));
     return NULL;
   }
-  DBG ("Got a signal");
+#if DEBUG_GST > 0
+  DBG ("Got an identification result ");
+#endif
 
   if (!priv->is_audio) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_AUDIO_FORMAT,
-                 _("This is not an audio file"));
+                 _("%s is not an audio file"), fn);
     return NULL;
   }
 
@@ -629,7 +710,7 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
   atrack->sectors = size / AUDIO_BYTES_PER_SECTOR;
   if (size % AUDIO_BYTES_PER_SECTOR > 0)
     atrack->sectors++;
-  DBG ("Track length = %d secs => size = %.0f bytes => %d sectors", atrack->length, (float) size, atrack->sectors);
+  DBG ("Track length = %4d secs => size = %9.0f bytes => %5d sectors", atrack->length, (float) size, atrack->sectors);
 
   gtrack = g_new0 (XfburnAudioTrackGst, 1);
   atrack->data = (gpointer) gtrack;
@@ -660,7 +741,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 
   atrack->fd = pipe_fd[0];
 
-  DBG ("track %d fd = %d", atrack->pos, atrack->fd);
+  //DBG ("track %d fd = %d", atrack->pos, atrack->fd);
 
   atrack->src = burn_fd_source_new (atrack->fd, -1 , gtrack->size);
   if (atrack->src == NULL) {
@@ -721,7 +802,7 @@ prepare (XfburnTranscoder *trans, GError **error)
   priv->state = XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START;
   ret = transcode_next_track (gst, error);
 
-  DBG ("Waiting for start signal");
+  //DBG ("Waiting for start signal");
   g_get_current_time (&tv);
   g_time_val_add (&tv, SIGNAL_WAIT_TIMEOUT_MICROS);
   if (!g_cond_timed_wait (priv->gst_cond, priv->gst_mutex, &tv)) {
@@ -730,14 +811,9 @@ prepare (XfburnTranscoder *trans, GError **error)
                  _("Gstreamer did not want to start transcoding (timed out)"));
     return FALSE;
   }
-  DBG ("Got the start signal");
+  //DBG ("Got the start signal");
 
   priv->state = XFBURN_TRANSCODER_GST_STATE_TRANSCODING;
-
-  /* give gstreamer a tiny bit of time.
-   * FIXME: what's a good time here?    
-   *  or rather, we should wait for the state change... */
-  g_usleep (100000);
 
   return ret;
 }
@@ -760,7 +836,9 @@ transcode_next_track (XfburnTranscoderGst *trans, GError **error)
 
   g_object_set (G_OBJECT (priv->source), "location", atrack->inputfile, NULL);
   g_object_set (G_OBJECT (priv->sink), "fd", gtrack->fd_in, NULL);
+#if DEBUG_GST > 0
   DBG ("now transcoding %s -> %d", atrack->inputfile, gtrack->fd_in);
+#endif
 
   if (gst_element_set_state (priv->pipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_FAILURE) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_STATE,
@@ -784,7 +862,9 @@ finish (XfburnTranscoder *trans)
   GstClock *clock;
   GstClockTime tv;
 
+#if DEBUG_GST > 0
   DBG ("Done transcoding");
+#endif
   priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
 
   priv->curr_track = NULL;
@@ -801,7 +881,7 @@ finish (XfburnTranscoder *trans)
   }
   
   if ((state != GST_STATE_READY) &&
-      (gst_element_set_state (priv->pipeline, GST_STATE_READY) == GST_STATE_CHANGE_FAILURE)) {
+      (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE)) {
     DBG ("Could not make pipeline ready, recreating it");
     recreate_pipeline (gst);
   }

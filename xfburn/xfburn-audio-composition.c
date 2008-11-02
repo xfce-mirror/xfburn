@@ -1190,8 +1190,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
         gtk_tree_store_append (GTK_TREE_STORE (model), iter, NULL);
       gdk_threads_leave ();
 
-      /* (filesize - header_size) / bytes_per_seconds */
-      DBG ("length = %d", atrack->length);
+      //DBG ("length = %d", atrack->length);
       secs = atrack->length;
       humanlength = g_strdup_printf ("%2d:%2d", secs / 60, secs % 60);
 
