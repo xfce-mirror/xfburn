@@ -22,13 +22,15 @@
 
 G_BEGIN_DECLS;
 
-#define XFBURN_STOCK_AUDIO_COPY     "xfburn-audio-copy"
-#define XFBURN_STOCK_BLANK_CDRW     "xfburn-blank-cdrw"
-#define XFBURN_STOCK_FORMAT_DVDRW   "xfburn-format-dvdrw"
-#define XFBURN_STOCK_BURN_CD        "xfburn-burn-cd"
-#define XFBURN_STOCK_CD             "xfburn-cd"
-#define XFBURN_STOCK_DATA_COPY      "xfburn-data-copy"
-#define XFBURN_STOCK_IMPORT_SESSION "xfburn-import-session"
+#define XFBURN_STOCK_AUDIO_COPY           "xfburn-audio-copy"
+#define XFBURN_STOCK_BLANK_CDRW           "xfburn-blank-cdrw"
+#define XFBURN_STOCK_FORMAT_DVDRW         "xfburn-format-dvdrw"
+#define XFBURN_STOCK_AUDIO_CD             "xfburn-audio-cd"
+#define XFBURN_STOCK_BURN_CD              "xfburn-burn-cd"
+#define XFBURN_STOCK_CD                   "xfburn-cd"
+#define XFBURN_STOCK_DATA_COPY            "xfburn-data-copy"
+#define XFBURN_STOCK_IMPORT_SESSION       "xfburn-import-session"
+#define XFBURN_STOCK_NEW_DATA_COMPOSITION "xfburn-new-data-composition"
 
 void xfburn_stock_init (void);
 

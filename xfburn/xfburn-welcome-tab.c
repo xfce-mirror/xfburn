@@ -143,7 +143,7 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_widget_show (priv->button_image);
   g_signal_connect (G_OBJECT(priv->button_image), "clicked", G_CALLBACK(burn_image), obj);
 
-  priv->button_data_comp = create_welcome_button (GTK_STOCK_NEW, _("<big>New _Data Composition</big>"), _("Create a new data disc with the files of your choosing"));
+  priv->button_data_comp = create_welcome_button (XFBURN_STOCK_NEW_DATA_COMPOSITION, _("<big>New _Data Composition</big>"), _("Create a new data disc with the files of your choosing"));
   gtk_table_attach_defaults (GTK_TABLE (table), priv->button_data_comp, 1, 2, 0, 1);
   gtk_widget_show (priv->button_data_comp);
   g_signal_connect (G_OBJECT(priv->button_data_comp), "clicked", G_CALLBACK(new_data_composition), obj);
@@ -153,7 +153,7 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_widget_show (priv->button_blank);
   g_signal_connect (G_OBJECT(priv->button_blank), "clicked", G_CALLBACK(blank_disc), obj);
 
-  priv->button_audio_comp = create_welcome_button (GTK_STOCK_CDROM, _("<big>_Audio CD</big>"), _("Audio CD playable in regular stereos"));
+  priv->button_audio_comp = create_welcome_button (XFBURN_STOCK_AUDIO_CD, _("<big>_Audio CD</big>"), _("Audio CD playable in regular stereos"));
   gtk_table_attach_defaults (GTK_TABLE (table), priv->button_audio_comp, 1, 2, 1, 2);
   gtk_widget_show (priv->button_audio_comp);
   g_signal_connect (G_OBJECT(priv->button_audio_comp), "clicked", G_CALLBACK(new_audio_cd), obj);

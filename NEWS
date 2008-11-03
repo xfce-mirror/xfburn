@@ -1,7 +1,9 @@
-xfburn 0.3.3 (2008-XX-XX)
+xfburn 0.3.91 (2008-XX-XX)
 ============-------------
 
-- Burn audio CDs from uncompressed CD audio .wav files
+- Use gstreamer to decompress any supported audio files to burn an audio CD ("gst" transcoder)
+  NOTE: support for this is new, and not too unlikely to have some bugs ;-)
+- Burn audio CDs from uncompressed CD audio .wav files ("basic" transcoder)
 - Allow drags and drop from file managers like Thunar (text/uri-list target)
 - Require HAL if compiled with HAL support
 - Try to unmount a drive if it is not accessible (requires thunar-vfs)

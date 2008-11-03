@@ -41,6 +41,7 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-settings.h"
 #include "xfburn-main.h"
+#include "xfburn-stock.h"
 
 #define XFBURN_MAIN_WINDOW_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowPrivate))
 
@@ -102,9 +103,9 @@ static const GtkActionEntry action_entries[] = {
   /*{"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},*/
   /*{"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"), 
     G_CALLBACK (action_new_data_composition),}, */
-  {"new-data-composition", GTK_STOCK_HARDDISK, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
+  {"new-data-composition", XFBURN_STOCK_NEW_DATA_COMPOSITION, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
     G_CALLBACK (action_new_data_composition),},
-  {"new-audio-composition", "audio-x-generic", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
+  {"new-audio-composition", XFBURN_STOCK_AUDIO_CD, N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
     G_CALLBACK (action_new_audio_composition),},
   /*{"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
    G_CALLBACK (action_load),},
@@ -483,7 +484,7 @@ action_new_audio_composition (GtkAction *action, XfburnMainWindow * window)
 {
   //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
  
-  xfburn_main_window_add_data_composition_with_files (window, 0, NULL);
+  xfburn_main_window_add_audio_composition_with_files (window, 0, NULL);
 }
 
 static void
@@ -548,11 +549,11 @@ action_about (GtkAction * action, XfburnMainWindow * window)
     icon = xfce_themed_icon_load (GTK_STOCK_CDROM, x);
 
   info = xfce_about_info_new ("Xfburn", VERSION, _("Another cd burning GUI"),
-                              XFCE_COPYRIGHT_TEXT ("2005-2008", "Jean-François Wauthy, Mario Đanić, David Mohr"), XFCE_LICENSE_GPL);
+                              XFCE_COPYRIGHT_TEXT ("2005-2008", "Jean-François Wauthy, David Mohr, Mario Đanić"), XFCE_LICENSE_GPL);
   xfce_about_info_set_homepage (info, "http://www.xfce.org/projects/xfburn");
+  xfce_about_info_add_credit (info, "David Mohr", "david@mcbf.net", _("Author/Maintainer"));
   xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Author/Maintainer"));
   xfce_about_info_add_credit (info, "Mario Đanić", "mario@libburnia-project.org", _("Author/Maintainer"));
-  xfce_about_info_add_credit (info, "David Mohr", "david@mcbf.net", _("Author/Maintainer"));
   
 
   for (n = 0; n < G_N_ELEMENTS (translators); ++n) {

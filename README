@@ -2,7 +2,7 @@
 xfburn
 ------
 
-Version 0.3.2, 2008-07-xx
+Version 0.3.91, 2008-07-xx
 
 http://www.xfce.org/projects/xfburn/
 
@@ -25,20 +25,34 @@ Currently implemented is:
  * Burn ISO images
  * Blank discs
  * Format and deformat DVD-RW discs
-
-----------------------
-Experimential Features
-----------------------
-
  * Audio CD support
-Now included is some very basic audio CD support. Right now only CD-quality, 
-uncompressed (PCM) Wave files can be added to an audio compilation. Use i.e.
-your favority audio player with a disc writer output mode / plugin to
-decompress your existing audio files. If .wav files are added to the
-compilation, their headers get checked to make sure they are of the right
-format. Note that this check is not very well tested (in particular it's not
-likely to work on big-endian machines like PowerPC), since it is likely to
-get replaced in the near future.
+
+------------------------
+Audio CD support details
+------------------------
+
+Included are two transcoders: basic, which just passes through uncompressed
+wav data, and gst (gstreamer), which can decode any audio file for which a
+gstreamer plugin is present.
+
+The basic transcoder:
+Only CD-quality, uncompressed (PCM) Wave files can be added to an audio
+compilation. Use i.e.  your favority audio player with a disc writer output
+mode / plugin to decompress your existing audio files. If .wav files are added
+to the compilation, their headers get checked to make sure they are of the
+right format. Note that this check is not very well tested (in particular it's
+not likely to work on big-endian machines like PowerPC). It does not require
+any external libraries
+
+The gst transcoder:
+Based on the gstreamer library, it can decode pretty much any audio content,
+as long as you have the appropriate plugins installed. Note that by default
+most distributions do _not_ install these plugins. But a simple search for
+gstreamer plugins in your package manager should quickly allow you to install
+them.
+
+You can at startup switch between the transcoders, see the command line help
+for more information.
 
 ==============================================================================
 Requirements
@@ -52,6 +66,8 @@ Optional, but highly recommended
                also for automatic disc unmounting)
  * thunar-vfs (required for some drag and drop code, icons and automatic disc 
                unmounting)
+ * gstreamer  (0.10+, required for burning audio CDs from compressed music
+               files)
 
 The author works with both hal and thunar-vfs enabled, so there might be the
 occasional bug that breaks compilation without these components. Xfburn should
@@ -66,7 +82,6 @@ Future Plans
 Missing functionality that we plan to add:
  * Save and load compositions
  * Verification
- * Burn audio CDs
  * Copy discs (needs backend support)
  * Automatic checksum creation
  * Blu-ray support

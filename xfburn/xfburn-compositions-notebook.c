@@ -246,7 +246,9 @@ xfburn_compositions_notebook_close_composition (XfburnCompositionsNotebook *note
   gint page_num;
   
   page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (notebook));
-  gtk_notebook_remove_page (GTK_NOTEBOOK (notebook), page_num);
+  if (page_num > 0)
+    /* don't close the welcome page */
+    gtk_notebook_remove_page (GTK_NOTEBOOK (notebook), page_num);
 }
 
 void
