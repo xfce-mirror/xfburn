@@ -453,13 +453,13 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 
       /* FIXME: show this all the time? */
       g_warning ("Gstreamer error: %s\n", error->message);
-      g_error_free (error);
 
       switch (priv->state) {
         case XFBURN_TRANSCODER_GST_STATE_IDLE:
 #if DEBUG_GST > 0
           DBG ("Ignoring gstreamer error while idling.");
 #endif
+          g_error_free (error);
           recreate_pipeline (trans);
           break;
 
@@ -467,12 +467,14 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
           recreate_pipeline (trans);
 
           priv->is_audio = FALSE;
+          priv->error = error;
 
           signal_identification_done (trans, "error");
           break;
 
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START:
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODING:
+          g_error_free (error);
           g_error ("Gstreamer error while transcoding!");
           break;
       }
@@ -604,12 +606,16 @@ on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
     GstMessage *msg;
     GstBus *bus;
 
-    DBG ("File content has a decoder but is not audio");
+    gchar *error_msg = "File content has a decoder but is not audio.";
+
+    DBG (error_msg);
     
     gst_caps_unref (caps);
     gst_object_unref (audiopad);
 
     priv->is_audio = FALSE;
+    g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_NO_AUDIO,
+                 _(error_msg));
     
     msg_struct = gst_structure_new ("no-audio-content", NULL);
 
@@ -678,6 +684,7 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
     return NULL;
     */
   }
+
   g_get_current_time (&tv);
   g_time_val_add (&tv, SIGNAL_WAIT_TIMEOUT_MICROS);
 #if DEBUG_GST > 0
@@ -696,7 +703,9 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 
   if (!priv->is_audio) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_AUDIO_FORMAT,
-                 _("%s is not an audio file"), fn);
+                 _("%s\n\tis not an audio file:\n\n%s"), fn, priv->error->message);
+    g_error_free (priv->error);
+    priv->error = NULL;
     return NULL;
   }
 

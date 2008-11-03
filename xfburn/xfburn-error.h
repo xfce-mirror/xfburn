@@ -40,6 +40,7 @@ typedef enum
   XFBURN_ERROR_GST_STATE,
   XFBURN_ERROR_GST_TIMEOUT,
   XFBURN_ERROR_PIPE,
+  XFBURN_ERROR_GST_NO_AUDIO,
 } XfburnError;
 
 #define XFBURN_ERROR xfburn_error_quark ()
