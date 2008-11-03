@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-09 16:06+0300\n"
+"POT-Creation-Date: 2008-11-03 00:14-0700\n"
 "PO-Revision-Date: 2008-10-09 16:17+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -61,6 +61,7 @@ msgstr "Tyhjennä levy"
 #: ../xfburn/xfburn-copy-cd-dialog.c:132
 #: ../xfburn/xfburn-copy-dvd-dialog.c:132
 #: ../xfburn/xfburn-format-dvd-dialog.c:105
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:169
 msgid "Burning device"
 msgstr "Polttava asema"
 
@@ -74,6 +75,7 @@ msgstr "Tyhjennystyyppi"
 #: ../xfburn/xfburn-copy-cd-dialog.c:140
 #: ../xfburn/xfburn-copy-dvd-dialog.c:140
 #: ../xfburn/xfburn-format-dvd-dialog.c:113
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:203
 msgid "Options"
 msgstr "Asetukset"
 
@@ -83,6 +85,7 @@ msgstr "Asetukset"
 #: ../xfburn/xfburn-copy-cd-dialog.c:144
 #: ../xfburn/xfburn-copy-dvd-dialog.c:144
 #: ../xfburn/xfburn-format-dvd-dialog.c:117
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
 msgid "E_ject disk"
 msgstr "Poi_sta levy"
 
@@ -114,12 +117,13 @@ msgstr "Tyhjennetään levyä..."
 
 #: ../xfburn/xfburn-blank-dialog.c:435
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:502
-#: ../xfburn/xfburn-perform-burn.c:265
+#: ../xfburn/xfburn-perform-burn.c:273
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:420
 #, c-format
 msgid "Done"
 msgstr "Valmis"
 
-#: ../xfburn/xfburn-blank-dialog.c:438 ../xfburn/xfburn-perform-burn.c:268
+#: ../xfburn/xfburn-blank-dialog.c:438 ../xfburn/xfburn-perform-burn.c:276
 #: ../xfburn/xfburn-progress-dialog.c:565
 msgid "Failure"
 msgstr "Epäonnistui"
@@ -128,10 +132,12 @@ msgstr "Epäonnistui"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:607
 #: ../xfburn/xfburn-burn-image-dialog.c:333
 #: ../xfburn/xfburn-burn-image-dialog.c:536
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:565
 msgid "Unable to grab drive"
 msgstr "Aseman kaappaus ei onnistu"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:179
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
 msgid "Burn Composition"
 msgstr "Polta kokoelma"
 
@@ -147,11 +153,13 @@ msgstr "<small>Haluatko muuttaa oletusarvoista kokoelman nimeä?</small>"
 #: ../xfburn/xfburn-burn-image-dialog.c:189
 #: ../xfburn/xfburn-copy-cd-dialog.c:149
 #: ../xfburn/xfburn-copy-dvd-dialog.c:149
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:212
 msgid "_Dummy write"
 msgstr "_Valepoltto"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
 #: ../xfburn/xfburn-burn-image-dialog.c:193
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:216
 msgid "Burn_Free"
 msgstr "Vi_rhesuojaus"
 
@@ -159,29 +167,35 @@ msgstr "Vi_rhesuojaus"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:242
 #: ../xfburn/xfburn-copy-cd-dialog.c:158
 #: ../xfburn/xfburn-copy-dvd-dialog.c:158
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
 msgid "Only create _ISO"
 msgstr "Luo pelkkä _ISO"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:279
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:259
 msgid "_Burn Composition"
 msgstr "_Polta kokoelma"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:460
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:378
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "ISO-kohdetiedostoa ei voi luoda: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:467
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:385
 msgid "Writing ISO..."
 msgstr "Kirjoitetaan ISOa..."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:484
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:402
 #, c-format
 msgid "An error occured while writing ISO: %s"
 msgstr "Virhe kirjoitettaessa ISOa: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:536
 #: ../xfburn/xfburn-burn-image-dialog.c:298
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:453
 msgid "Unable to create disc object"
 msgstr "Levyobjektin luominen epäonnistui"
 
@@ -191,6 +205,7 @@ msgid "Cannot attach source object to track object"
 msgstr "Lähdeobjektin liittäminen raitaobjektiin ei onnistu"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:568
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:485
 msgid "The write mode is not supported currently"
 msgstr "Tätä kirjoitustilaa ei tueta tällä hetkellä"
 
@@ -349,10 +364,12 @@ msgid "Create ISO from CD"
 msgstr "Luo ISO CD-levystä"
 
 #: ../xfburn/xfburn-data-composition.c:179
+#: ../xfburn/xfburn-audio-composition.c:200
 msgid "Add"
 msgstr "Lisää"
 
 #: ../xfburn/xfburn-data-composition.c:179
+#: ../xfburn/xfburn-audio-composition.c:200
 msgid "Add the selected file(s) to the composition"
 msgstr "Lisää valitut tiedostot kokoelmaan"
 
@@ -365,18 +382,22 @@ msgid "Add a new directory to the composition"
 msgstr "Lisää uusi kansio kokoelmaan"
 
 #: ../xfburn/xfburn-data-composition.c:183
+#: ../xfburn/xfburn-audio-composition.c:202
 msgid "Remove"
 msgstr "Poista"
 
 #: ../xfburn/xfburn-data-composition.c:183
+#: ../xfburn/xfburn-audio-composition.c:202
 msgid "Remove the selected file(s) from the composition"
 msgstr "Poista valitut tiedostot kokoelmasta"
 
 #: ../xfburn/xfburn-data-composition.c:185
+#: ../xfburn/xfburn-audio-composition.c:204
 msgid "Clear"
 msgstr "Tyhjennä"
 
 #: ../xfburn/xfburn-data-composition.c:185
+#: ../xfburn/xfburn-audio-composition.c:204
 msgid "Clear the content of the composition"
 msgstr "Tyhjennä kokoelman sisältö"
 
@@ -412,6 +433,7 @@ msgstr "Tiedostolle täytyy antaa nimi"
 
 #: ../xfburn/xfburn-data-composition.c:673
 #: ../xfburn/xfburn-data-composition.c:1068
+#: ../xfburn/xfburn-audio-composition.c:1103
 msgid "A file with the same name is already present in the composition"
 msgstr "Kokoelmassa on jo tiedosto tällä nimellä"
 
@@ -422,10 +444,12 @@ msgid "New directory"
 msgstr "Uusi kansio"
 
 #: ../xfburn/xfburn-data-composition.c:1226
+#: ../xfburn/xfburn-audio-composition.c:1265
 msgid "Adding home directory"
 msgstr "Lisätään kotikansio"
 
 #: ../xfburn/xfburn-data-composition.c:1227
+#: ../xfburn/xfburn-audio-composition.c:1266
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
 "to take a very long time, and also to be too big to fit on one disc.\n"
@@ -605,11 +629,11 @@ msgstr "Tiedostojärjestelmä"
 msgid "%s's home"
 msgstr "Käyttäjän %s koti"
 
-#: ../xfburn/xfburn-main.c:155 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:171 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main.c:165
+#: ../xfburn/xfburn-main.c:181
 #, c-format
 msgid ""
 "%s: %s\n"
@@ -618,11 +642,11 @@ msgstr ""
 "%s: %s\n"
 "Komento %s --help näyttää listan kaikista komentorivin valitsimista.\n"
 
-#: ../xfburn/xfburn-main.c:291
+#: ../xfburn/xfburn-main.c:312
 msgid "No drives are currently available!"
 msgstr "Ei asemia saatavilla!"
 
-#: ../xfburn/xfburn-main.c:293
+#: ../xfburn/xfburn-main.c:314
 msgid ""
 "Maybe there is a mounted media in the drive?\n"
 "\n"
@@ -638,23 +662,23 @@ msgstr ""
 "Jos asemassa ei ole taltiota, varmista että käyttäjälläsi on sekä luku- että "
 "kirjoitusoikeudet asemaan."
 
-#: ../xfburn/xfburn-main.c:322
+#: ../xfburn/xfburn-main.c:373
 #, c-format
 msgid "Image file '%s' does not exist!"
 msgstr "Levykuvaa \"%s\" ei ole olemassa!"
 
-#: ../xfburn/xfburn-main-window.c:101
+#: ../xfburn/xfburn-main-window.c:102
 msgid "_File"
 msgstr "_Tiedosto"
 
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
-#: ../xfburn/xfburn-main-window.c:105
+#: ../xfburn/xfburn-main-window.c:106
 msgid "New data composition"
 msgstr "Uusi tiedostokokoelma"
 
-#: ../xfburn/xfburn-main-window.c:107
+#: ../xfburn/xfburn-main-window.c:108
 msgid "New audio composition"
 msgstr "Uusi äänikokoelma"
 
@@ -664,68 +688,68 @@ msgstr "Uusi äänikokoelma"
 #. G_CALLBACK (action_save),},
 #. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
-#: ../xfburn/xfburn-main-window.c:115
+#: ../xfburn/xfburn-main-window.c:116
 msgid "Close composition"
 msgstr "Sulje kokoelma"
 
-#: ../xfburn/xfburn-main-window.c:117
+#: ../xfburn/xfburn-main-window.c:118
 msgid "_Quit"
 msgstr "_Lopeta"
 
-#: ../xfburn/xfburn-main-window.c:117
+#: ../xfburn/xfburn-main-window.c:118
 msgid "Quit Xfburn"
 msgstr "Lopeta Xfburn"
 
-#: ../xfburn/xfburn-main-window.c:118
+#: ../xfburn/xfburn-main-window.c:119
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../xfburn/xfburn-main-window.c:119
+#: ../xfburn/xfburn-main-window.c:120
 msgid "Prefere_nces"
 msgstr "_Asetukset"
 
-#: ../xfburn/xfburn-main-window.c:119
+#: ../xfburn/xfburn-main-window.c:120
 msgid "Show preferences dialog"
 msgstr "Näytä asetusdialogi"
 
-#: ../xfburn/xfburn-main-window.c:121
+#: ../xfburn/xfburn-main-window.c:122
 msgid "_Actions"
 msgstr "T_oiminnot"
 
-#: ../xfburn/xfburn-main-window.c:122
+#: ../xfburn/xfburn-main-window.c:123
 msgid "_View"
 msgstr "_Näytä"
 
-#: ../xfburn/xfburn-main-window.c:123
+#: ../xfburn/xfburn-main-window.c:124
 msgid "Refresh"
 msgstr "Virkistä"
 
-#: ../xfburn/xfburn-main-window.c:123
+#: ../xfburn/xfburn-main-window.c:124
 msgid "Refresh file list"
 msgstr "Virkistä tiedostolista"
 
-#: ../xfburn/xfburn-main-window.c:125
+#: ../xfburn/xfburn-main-window.c:126
 msgid "_Help"
 msgstr "O_hje"
 
-#: ../xfburn/xfburn-main-window.c:126
+#: ../xfburn/xfburn-main-window.c:127
 msgid "_About"
 msgstr "_Tietoja"
 
-#: ../xfburn/xfburn-main-window.c:126
+#: ../xfburn/xfburn-main-window.c:127
 msgid "Display information about Xfburn"
 msgstr "Näytä tietoja Xfburnista"
 
-#: ../xfburn/xfburn-main-window.c:128
+#: ../xfburn/xfburn-main-window.c:129
 msgid "Blank CD-RW"
 msgstr "Tyhjennä CD-RW"
 
-#: ../xfburn/xfburn-main-window.c:130
+#: ../xfburn/xfburn-main-window.c:131
 msgid "Copy Data CD"
 msgstr "Kopioi data-CD"
 
 #. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
-#: ../xfburn/xfburn-main-window.c:133
+#: ../xfburn/xfburn-main-window.c:134
 msgid "Burn Image"
 msgstr "Polta levykuva"
 
@@ -733,40 +757,40 @@ msgstr "Polta levykuva"
 #. G_CALLBACK (action_format_dvd),},
 #. {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
 #. G_CALLBACK (action_copy_dvd),},
-#: ../xfburn/xfburn-main-window.c:139
+#: ../xfburn/xfburn-main-window.c:140
 msgid "Burn DVD Image"
 msgstr "Polta DVD-levykuva"
 
-#: ../xfburn/xfburn-main-window.c:144
+#: ../xfburn/xfburn-main-window.c:145
 msgid "Show file browser"
 msgstr "Näytä tiedostoselain"
 
-#: ../xfburn/xfburn-main-window.c:144
+#: ../xfburn/xfburn-main-window.c:145
 msgid "Show/hide the file browser"
 msgstr "Näytä tai piilota tiedostoselain"
 
-#: ../xfburn/xfburn-main-window.c:146
+#: ../xfburn/xfburn-main-window.c:147
 msgid "Show toolbar"
 msgstr "Näytä työkalupalkki"
 
-#: ../xfburn/xfburn-main-window.c:146
+#: ../xfburn/xfburn-main-window.c:147
 msgid "Show/hide the toolbar"
 msgstr "Näytä tai piilota työkalupalkki"
 
-#: ../xfburn/xfburn-main-window.c:354
+#: ../xfburn/xfburn-main-window.c:355
 msgid "Toolbar Editor"
 msgstr "Työkalupalkin muokkain"
 
-#: ../xfburn/xfburn-main-window.c:550
+#: ../xfburn/xfburn-main-window.c:551
 msgid "Another cd burning GUI"
 msgstr "CD-levyn polttosovellus"
 
-#: ../xfburn/xfburn-main-window.c:553 ../xfburn/xfburn-main-window.c:554
-#: ../xfburn/xfburn-main-window.c:555
+#: ../xfburn/xfburn-main-window.c:554 ../xfburn/xfburn-main-window.c:555
+#: ../xfburn/xfburn-main-window.c:556
 msgid "Author/Maintainer"
 msgstr "Kirjoittaja/Ylläpitäjä"
 
-#: ../xfburn/xfburn-main-window.c:561
+#: ../xfburn/xfburn-main-window.c:562
 #, c-format
 msgid "Translator (%s)"
 msgstr "Kääntäjä (%s)"
@@ -787,147 +811,147 @@ msgstr "Näytä sulkemispainike"
 msgid "Determine whether the close button is visible"
 msgstr "Määrittää, näytetäänkö sulkemispainike"
 
-#: ../xfburn/xfburn-perform-burn.c:137
+#: ../xfburn/xfburn-perform-burn.c:141
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Kirjoitetaan raitaa %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:141 ../xfburn/xfburn-perform-burn.c:201
+#: ../xfburn/xfburn-perform-burn.c:145 ../xfburn/xfburn-perform-burn.c:209
 msgid "Burning composition..."
 msgstr "Poltetaan kokoelmaa..."
 
-#: ../xfburn/xfburn-perform-burn.c:171
+#: ../xfburn/xfburn-perform-burn.c:179
 msgid "standby"
 msgstr "valmiustila"
 
-#: ../xfburn/xfburn-perform-burn.c:178
+#: ../xfburn/xfburn-perform-burn.c:186
 msgid "active"
 msgstr "aktiviinen"
 
-#: ../xfburn/xfburn-perform-burn.c:181
+#: ../xfburn/xfburn-perform-burn.c:189
 msgid "ending"
 msgstr "lopettaa"
 
-#: ../xfburn/xfburn-perform-burn.c:184
+#: ../xfburn/xfburn-perform-burn.c:192
 msgid "failing"
 msgstr "virhe"
 
-#: ../xfburn/xfburn-perform-burn.c:187
+#: ../xfburn/xfburn-perform-burn.c:195
 msgid "unused"
 msgstr "ei käytössä"
 
-#: ../xfburn/xfburn-perform-burn.c:190
+#: ../xfburn/xfburn-perform-burn.c:198
 msgid "abandoned"
 msgstr "hylätty"
 
-#: ../xfburn/xfburn-perform-burn.c:193
+#: ../xfburn/xfburn-perform-burn.c:201
 msgid "ended"
 msgstr "lopetettu"
 
-#: ../xfburn/xfburn-perform-burn.c:196
+#: ../xfburn/xfburn-perform-burn.c:204
 msgid "aborted"
 msgstr "keskeytetty"
 
-#: ../xfburn/xfburn-perform-burn.c:206
+#: ../xfburn/xfburn-perform-burn.c:214
 msgid "Writing Lead-In..."
 msgstr "Kirjoitetaan aloitusraitaa..."
 
-#: ../xfburn/xfburn-perform-burn.c:212
+#: ../xfburn/xfburn-perform-burn.c:220
 msgid "Writing Lead-Out..."
 msgstr "Kirjoitetaan lopetusraitaa..."
 
-#: ../xfburn/xfburn-perform-burn.c:218
+#: ../xfburn/xfburn-perform-burn.c:226
 msgid "Writing pregap..."
 msgstr "Kirjoitetaan välitilaa..."
 
-#: ../xfburn/xfburn-perform-burn.c:224
+#: ../xfburn/xfburn-perform-burn.c:232
 msgid "Closing track..."
 msgstr "Suljetaan raitaa..."
 
-#: ../xfburn/xfburn-perform-burn.c:230
+#: ../xfburn/xfburn-perform-burn.c:238
 msgid "Closing session..."
 msgstr "Suljetaan istuntoa..."
 
-#: ../xfburn/xfburn-perform-burn.c:236
+#: ../xfburn/xfburn-perform-burn.c:244
 msgid "Formatting..."
 msgstr "Alustetaan..."
 
-#: ../xfburn/xfburn-preferences-dialog.c:139
+#: ../xfburn/xfburn-preferences-dialog.c:141
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: ../xfburn/xfburn-preferences-dialog.c:140
+#: ../xfburn/xfburn-preferences-dialog.c:142
 msgid "Tune how Xfburn behaves"
 msgstr "Säädä Xfburnin käyttäytymistä"
 
-#: ../xfburn/xfburn-preferences-dialog.c:185
-#: ../xfburn/xfburn-preferences-dialog.c:189
+#: ../xfburn/xfburn-preferences-dialog.c:187
+#: ../xfburn/xfburn-preferences-dialog.c:191
 msgid "Temporary directory"
 msgstr "Väliaikaiskansio"
 
-#: ../xfburn/xfburn-preferences-dialog.c:193
+#: ../xfburn/xfburn-preferences-dialog.c:195
 msgid "_Clean temporary directory on exit"
 msgstr "_Tyhjennä kansio, kun sovellus suljetaan"
 
-#: ../xfburn/xfburn-preferences-dialog.c:200
+#: ../xfburn/xfburn-preferences-dialog.c:202
 msgid "File browser"
 msgstr "Tiedostoselain"
 
-#: ../xfburn/xfburn-preferences-dialog.c:204
+#: ../xfburn/xfburn-preferences-dialog.c:206
 msgid "Show _hidden files"
 msgstr "Näytä _piilotiedostot"
 
-#: ../xfburn/xfburn-preferences-dialog.c:208
+#: ../xfburn/xfburn-preferences-dialog.c:210
 msgid "Show human_readable filesizes"
 msgstr "Näytä _helppotajuiset tiedostokoot"
 
-#: ../xfburn/xfburn-preferences-dialog.c:219
+#: ../xfburn/xfburn-preferences-dialog.c:221
 msgid "General"
 msgstr "Yleiset"
 
-#: ../xfburn/xfburn-preferences-dialog.c:230
-#: ../xfburn/xfburn-preferences-dialog.c:307
+#: ../xfburn/xfburn-preferences-dialog.c:232
+#: ../xfburn/xfburn-preferences-dialog.c:309
 msgid "Devices"
 msgstr "Laitteet"
 
-#: ../xfburn/xfburn-preferences-dialog.c:239
+#: ../xfburn/xfburn-preferences-dialog.c:241
 msgid "Detected devices"
 msgstr "Havaitut laitteet"
 
-#: ../xfburn/xfburn-preferences-dialog.c:260
+#: ../xfburn/xfburn-preferences-dialog.c:262
 msgid "Name"
 msgstr "Nimi"
 
-#: ../xfburn/xfburn-preferences-dialog.c:273
+#: ../xfburn/xfburn-preferences-dialog.c:275
 msgid "Node"
 msgstr "Laite"
 
-#: ../xfburn/xfburn-preferences-dialog.c:275
+#: ../xfburn/xfburn-preferences-dialog.c:277
 msgid "Write CD-R"
 msgstr "CD-R -tuki"
 
-#: ../xfburn/xfburn-preferences-dialog.c:277
+#: ../xfburn/xfburn-preferences-dialog.c:279
 msgid "Write CD-RW"
 msgstr "CD-RW -tuki"
 
-#: ../xfburn/xfburn-preferences-dialog.c:280
+#: ../xfburn/xfburn-preferences-dialog.c:282
 msgid "Write DVD-R"
 msgstr "DVD-R -tuki"
 
-#: ../xfburn/xfburn-preferences-dialog.c:283
+#: ../xfburn/xfburn-preferences-dialog.c:285
 msgid "Write DVD-RAM"
 msgstr "DVD-RAM -tuki"
 
-#: ../xfburn/xfburn-preferences-dialog.c:291
+#: ../xfburn/xfburn-preferences-dialog.c:293
 msgid "Sc_an for devices"
 msgstr "_Etsi laitteita"
 
 #. below the device list
-#: ../xfburn/xfburn-preferences-dialog.c:317
+#: ../xfburn/xfburn-preferences-dialog.c:319
 msgid "Show _empty speed list bug warning"
 msgstr "_Varoita tyhjästä nopeuslistasta"
 
-#: ../xfburn/xfburn-preferences-dialog.c:325
+#: ../xfburn/xfburn-preferences-dialog.c:327
 msgid "FIFO buffer size (in kb)"
 msgstr "FIFO-välimuistin koko (kb):"
 
@@ -1015,6 +1039,148 @@ msgstr "<big>_Ääni-CD</big>"
 msgid "Audio CD playable in regular stereos"
 msgstr "Ääni-CD, joka käy tavalliseen cd-soittimeen"
 
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#: ../xfburn/xfburn-audio-composition.c:207
+#, fuzzy
+msgid "Rename Artist"
+msgstr "Nimeä uudelleen"
+
+#: ../xfburn/xfburn-audio-composition.c:207
+#, fuzzy
+msgid "Rename the artist of the selected file"
+msgstr "Nimeä valittu tiedosto uudelleen"
+
+#: ../xfburn/xfburn-audio-composition.c:209
+#, fuzzy
+msgid "Rename Title"
+msgstr "Nimeä uudelleen"
+
+#: ../xfburn/xfburn-audio-composition.c:209
+#, fuzzy
+msgid "Rename the title of the selected file"
+msgstr "Nimeä valittu tiedosto uudelleen"
+
+#: ../xfburn/xfburn-audio-composition.c:380
+msgid "Pos"
+msgstr ""
+
+#: ../xfburn/xfburn-audio-composition.c:382
+msgid "Length"
+msgstr ""
+
+#: ../xfburn/xfburn-audio-composition.c:388
+msgid "Artist"
+msgstr ""
+
+#: ../xfburn/xfburn-audio-composition.c:401
+#, fuzzy
+msgid "Title"
+msgstr "Tiedosto"
+
+#: ../xfburn/xfburn-audio-composition.c:412
+#, fuzzy
+msgid "Filename"
+msgstr "Nimeä uudelleen"
+
+#: ../xfburn/xfburn-audio-composition.c:558
+msgid "Cannot burn audio onto a DVD"
+msgstr ""
+
+#: ../xfburn/xfburn-audio-composition.c:1199
+msgid "You can only have a maximum of 99 tracks!"
+msgstr ""
+
+#: ../xfburn/xfburn-disc-usage.c:148
+msgid "Proceed to Burn"
+msgstr ""
+
+#: ../xfburn/xfburn-disc-usage.c:185
+#, fuzzy
+msgid "You are trying to burn more data than the disc can contain !"
+msgstr "Yrität polttaa levylle enemmän, kuin sille mahtuu!"
+
+#: ../xfburn/xfburn-transcoder-basic.c:179
+#, c-format
+msgid "File %s does not have a .wav extension"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-basic.c:184
+#, c-format
+msgid "File %s does not contain uncompressed PCM wave audio"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-basic.c:190
+#, fuzzy, c-format
+msgid "Could not stat %s: %s"
+msgstr "ISO-kohdetiedostoa ei voi luoda: %s"
+
+#: ../xfburn/xfburn-transcoder-basic.c:225
+#, c-format
+msgid "Could not open %s!"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-basic.c:306
+#, c-format
+msgid "Could not open %s: %s"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-basic.c:317
+#: ../xfburn/xfburn-transcoder-gst.c:758
+#, fuzzy, c-format
+msgid "Could not create burn_source from %s!"
+msgstr "ISOn lähderakenteen luominen epäonnistui"
+
+#: ../xfburn/xfburn-transcoder-basic.c:325
+#: ../xfburn/xfburn-transcoder-gst.c:776
+#, fuzzy, c-format
+msgid "Could not add source to track %s!"
+msgstr "ISOn lähderakenteen luominen epäonnistui"
+
+#: ../xfburn/xfburn-transcoder-gst.c:275
+#, c-format
+msgid "A pipeline element could not be created"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:282
+#, c-format
+msgid "The debug identity element could not be created"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:317
+#, c-format
+msgid "Could not setup filtered gstreamer link"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:697
+#, c-format
+msgid "Gstreamer did not like this file (detection timed out)"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:706
+#, c-format
+msgid ""
+"%s\n"
+"\tis not an audio file:\n"
+"\n"
+"%s"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:820
+#, c-format
+msgid "Gstreamer did not want to start transcoding (timed out)"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:854
+#, c-format
+msgid "Failed to change songs while transcoding"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder.c:115 ../xfburn/xfburn-transcoder.c:127
+#: ../xfburn/xfburn-transcoder.c:139
+#, fuzzy, c-format
+msgid "not implemented"
+msgstr "Valmis"
+
 #: ../xfburn.desktop.in.h:1
 msgid "Burn Image (xfburn)"
 msgstr "Polta levykuva (xfburn)"
@@ -1031,9 +1197,6 @@ msgstr "CD- ja DVD-polttosovellus"
 
 #~ msgid "Copy Audio CD"
 #~ msgstr "Kopioi ääni-CD"
-
-#~ msgid "You are trying to burn more data than the disk can contain !"
-#~ msgstr "Yrität polttaa levylle enemmän, kuin sille mahtuu!"
 
 #~ msgid "Create a new composition"
 #~ msgstr "Luo uusi kokoelma"
