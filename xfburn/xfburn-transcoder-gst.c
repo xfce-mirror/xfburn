@@ -53,7 +53,7 @@
 /* Set DEBUG_GST > 0 to be able to inspect the data just before it gets to the fd,
                      and to get a lot more gst debugging output.
    Set DEBUG_GST > 1 to also get a lot of gst state change messages */
-//#define DEBUG_GST 1
+#define DEBUG_GST 1
 
 /** Prototypes **/
 /* class initialization */
@@ -389,7 +389,6 @@ signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res)
     if (g_mutex_trylock (priv->gst_mutex))
       break;
     g_usleep (SIGNAL_SEND_TIMEOUT_MICROS / SIGNAL_SEND_ITERATIONS);
-    DBG ("foo");
     g_thread_yield ();
     if (i==9) {
       DBG ("Noone was there to listen to the result of the identification!");

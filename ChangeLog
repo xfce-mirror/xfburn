@@ -1,6 +1,547 @@
+2008-11-03  David Mohr <david@mcbf.net>
+
+	* po/POTFILES.in, po/ar.po, po/ca.po, po/cs.po, po/da.po, po/de.po,
+	  po/dz.po, po/el.po, po/en_GB.po, po/es.po, po/et.po, po/eu.po,
+	  po/fi.po, po/fr.po, po/gl.po, po/he.po, po/hu.po, po/id.po,
+	  po/it.po, po/ja.po, po/ko.po, po/lt.po, po/lv.po, po/nb_NO.po,
+	  po/nl.po, po/pa.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ru.po,
+	  po/sq.po, po/sv.po, po/uk.po, po/ur.po, po/xfburn.pot,
+	  po/zh_CN.po, po/zh_TW.po:
+	  Updating i18n
+	* icons/16x16/stock_xfburn-audio-cd.png,
+	  icons/16x16/stock_xfburn-new-data-composition.png,
+	  icons/22x22/stock_xfburn-audio-cd.png,
+	  icons/22x22/stock_xfburn-new-data-composition.png,
+	  icons/24x24/stock_xfburn-audio-cd.png,
+	  icons/24x24/stock_xfburn-new-data-composition.png,
+	  icons/32x32/stock_xfburn-audio-cd.png,
+	  icons/32x32/stock_xfburn-new-data-composition.png,
+	  icons/48x48/stock_xfburn-audio-cd.png,
+	  icons/48x48/stock_xfburn-new-data-composition.png,
+	  icons/scalable/stock_xfburn-audio-cd.svg,
+	  icons/scalable/stock_xfburn-new-data-composition.svg:
+	  Adding new items that I forgot
+	* xfburn/xfburn-error.h, xfburn/xfburn-transcoder-gst.c:
+	  Show gst error to user if not adding
+	* CONTRIBUTORS, NEWS, README, TODO, configure.in.in,
+	  icons/16x16/Makefile.am, icons/22x22/Makefile.am,
+	  icons/24x24/Makefile.am, icons/32x32/Makefile.am,
+	  icons/48x48/Makefile.am, icons/scalable/Makefile.am,
+	  xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-stock.c,
+	  xfburn/xfburn-stock.h, xfburn/xfburn-welcome-tab.c:
+	  * Add some icons * Update README, NEWS * Bump version number
+
+2008-11-02  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-perform-burn.c, xfburn/xfburn-transcoder-gst.c:
+	  Restructuring passing of info from gst to xfburn, better control
+	  over debugging output
+
+2008-10-31  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-transcoder-gst.c:
+	  Increasing timeouts, try to reset gst state after EOS, switch
+	  back to SAO
+	* xfburn/xfburn-global.h, xfburn/xfburn-hal-manager.c,
+	  xfburn/xfburn-perform-burn.c, xfburn/xfburn-transcoder-gst.c:
+	  * add capability to burn to /dev/null instead of physical drive
+	  (see xfburn-global.h) * add debugging of the data stream to
+	  gstreamer pipeline (see DEBUG_GST in xfburn-transcoder-gst.c) *
+	  close pipe input when track changes so that libburn knows it can
+	  continue
+
+2008-10-28  maximilian
+
+	* po/ChangeLog, po/ja.po:
+	  Translations updates
+
+2008-10-28  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c:
+	  Switch burning mode to TAO
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c:
+	  Adding control over buffer behavior
+	* xfburn/Makefile.am,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-global.h, xfburn/xfburn-perform-burn.c,
+	  xfburn/xfburn-transcoder-basic.c, xfburn/xfburn-transcoder-gst.c:
+	  Some basic fixes, more debugging output
+
+2008-10-27  piarres
+
+	* po/ChangeLog, po/eu.po:
+	  xfburn basque translation update
+
+2008-10-27  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-perform-burn.c:
+	  Installing libburn abort signal handler
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-transcoder-basic.c, xfburn/xfburn-transcoder-gst.c,
+	  xfburn/xfburn-transcoder.c, xfburn/xfburn-transcoder.h:
+	  Improving transcoder infrastructure and gst support (still not
+	  100% working)
+
+2008-10-23  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-disc-usage.c, xfburn/xfburn-main.c:
+	  - Fixing compilation on x86_64 - Fixing segfault introduced by
+	  last checkin
+	* xfburn/xfburn-main.c, xfburn/xfburn-transcoder-gst.c:
+	  Adding command line option to switch between transcoders
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-error.h, xfburn/xfburn-global.h,
+	  xfburn/xfburn-main.c, xfburn/xfburn-transcoder-basic.c,
+	  xfburn/xfburn-transcoder-gst.c, xfburn/xfburn-transcoder.c,
+	  xfburn/xfburn-transcoder.h:
+	  Initial checkin for gstreamer code. Does NOT work yet.
+
+2008-10-14  omaciel
+
+	* po/ChangeLog, po/pt_BR.po:
+	  Updated Brazilian Portuguese translation.
+
+2008-10-14  David Mohr <david@mcbf.net>
+
+	* xfburn/Makefile.am, xfburn/xfburn-main.c,
+	  xfburn/xfburn-transcoder-gst.c, xfburn/xfburn-transcoder-gst.h:
+	  Using TranscoderBasic as a template for TranscoderGst
+
+2008-10-12  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-transcoder-basic.c, xfburn/xfburn-transcoder.h:
+	  Move calculation of num. of sectors into Transcoder. Now all
+	  audio handling is in Transcoder and separate from the
+	  presentation and the burning.
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-composition.h,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-error.h, xfburn/xfburn-transcoder-basic.c,
+	  xfburn/xfburn-transcoder.c, xfburn/xfburn-transcoder.h:
+	  Moving creation of XfburnAudioTrack into Transcoder
+
+2008-10-12  lars
+
+	* po/da.po:
+	  Add Danish translation
+	* po/ChangeLog, po/LINGUAS:
+	  * da.po,LINGUAS: Danish translation update
+
+2008-10-12  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-composition.c:
+	  Fixing a bug when adding a folder with subfolders to an audio
+	  composition
+	* xfburn/xfburn-error.c, xfburn/xfburn-error.h:
+	  Oops, forgot to add files to GError!
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-global.h,
+	  xfburn/xfburn-preferences-dialog.c:
+	  Renaming constants, moving FIFO_MAX_SIZE out of the
+	  xfburn-globals.h
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-global.h, xfburn/xfburn-preferences-dialog.c,
+	  xfburn/xfburn-transcoder-basic.c, xfburn/xfburn-transcoder.c,
+	  xfburn/xfburn-transcoder.h:
+	  Moving code to get burn_tracks from wave files into
+	  TranscoderBasic, increasing maximum fifo size
+	* xfburn/Makefile.am, xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-main.c, xfburn/xfburn-transcoder-basic.c,
+	  xfburn/xfburn-transcoder.c, xfburn/xfburn-transcoder.h:
+	  Moving basic audio detection code into transcoder-basic, adding
+	  code for using GError in xfburn
+
+2008-10-10  David Mohr <david@mcbf.net>
+
+	* xfburn/Makefile.am, xfburn/xfburn-main.c,
+	  xfburn/xfburn-transcoder-basic.c,
+	  xfburn/xfburn-transcoder-basic.h, xfburn/xfburn-transcoder.c,
+	  xfburn/xfburn-transcoder.h:
+	  Adding transcoder interface, have the basic one implement it
+	* xfburn/Makefile.am, xfburn/xfburn-transcoder-basic.c,
+	  xfburn/xfburn-transcoder-basic.h, xfburn/xfburn-transcoder.c,
+	  xfburn/xfburn-transcoder.h:
+	  Renaming the transcoder in preparation for using two separate
+	  classes
+	* configure.in.in, xfburn/xfburn-main.c,
+	  xfburn/xfburn-transcoder.c, xfburn/xfburn-transcoder.h:
+	  Cleanup of transcoder base
+
+2008-10-09  jari
+
+	* po/ChangeLog, po/fi.po:
+	  Update Finnish translation.
+
+2008-10-05  maximilian
+
+	* po/ChangeLog, po/id.po:
+	  Updated Indonesian translation for the xfburn and dict modules
+	  Updated Norwegian Bokmal translation for the mailwatch module and
+	  added one for the dict module Added Japanese translation for the
+	  thunar-volman module Updated European Portuguese translation for
+	  the smartbookmark, mpc and dict modules Added Spanish translation
+	  for the mailwatch module
+
+2008-09-19  David Mohr <david@mcbf.net>
+
+	* xfburn/Makefile.am, xfburn/xfburn-transcoder.c,
+	  xfburn/xfburn-transcoder.h:
+	  adding empty transcoder object
+
+2008-09-14  David Mohr <david@mcbf.net>
+
+	* configure.in.in:
+	  Correctly show gstreamer option in configure --help
+	* configure.in.in, xfburn/Makefile.am,
+	  xfburn/xfburn-adding-progress.c,
+	  xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-disc-usage.c, xfburn/xfburn-blank-dialog.c,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-burn-data-cd-composition-dialog.c,
+	  xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-burn-data-dvd-composition-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-composition.c,
+	  xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-copy-cd-dialog.c,
+	  xfburn/xfburn-copy-cd-progress-dialog.c,
+	  xfburn/xfburn-copy-dvd-dialog.c,
+	  xfburn/xfburn-create-iso-progress-dialog.c,
+	  xfburn/xfburn-data-composition.c,
+	  xfburn/xfburn-data-disc-usage.c, xfburn/xfburn-device-box.c,
+	  xfburn/xfburn-device-list.c, xfburn/xfburn-directory-browser.c,
+	  xfburn/xfburn-disc-usage.c, xfburn/xfburn-file-browser.c,
+	  xfburn/xfburn-format-dvd-dialog.c, xfburn/xfburn-fs-browser.c,
+	  xfburn/xfburn-hal-manager.c, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-main.c, xfburn/xfburn-notebook-tab.c,
+	  xfburn/xfburn-preferences-dialog.c,
+	  xfburn/xfburn-progress-dialog.c, xfburn/xfburn-settings.c,
+	  xfburn/xfburn-welcome-tab.c:
+	  * Add gstreamer flags to configure, * initialize gstreamer, *
+	  have gcc report more warnings, and fix 'em
+
+2008-09-13  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-composition.c:
+	  Correctly initialize ret
+	* xfburn/xfburn-audio-composition.c:
+	  Use correct datatype for wav header
+
+2008-09-10  omaciel
+
+	* po/ChangeLog, po/pt_BR.po:
+	  Updated Brazilian Portuguese translation.
+
+2008-09-08  David Mohr <david@mcbf.net>
+
+	* po/ar.po, po/ca.po, po/cs.po, po/de.po, po/dz.po, po/el.po,
+	  po/en_GB.po, po/es.po, po/et.po, po/eu.po, po/fi.po, po/fr.po,
+	  po/gl.po, po/he.po, po/hu.po, po/id.po, po/it.po, po/ja.po,
+	  po/ko.po, po/lt.po, po/lv.po, po/nb_NO.po, po/nl.po, po/pa.po,
+	  po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ru.po, po/sq.po, po/sv.po,
+	  po/uk.po, po/ur.po, po/xfburn.pot, po/zh_CN.po, po/zh_TW.po:
+	  Updating .po files
+
+2008-09-07  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-hal-manager.c, xfburn/xfburn-main.c:
+	  Bugfix: shutdown hal-manager before thunar-vfs, as hal-manager
+	  depends on it now
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-hal-manager.c:
+	  Invoke voodoo magic of thunar_vfs_volume_manager, since otherwise
+	  the hal callbacks don't get invoked
+
+2008-09-06  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-hal-manager.c:
+	  * Handle an empty drive correctly with HAL * Notify the user that
+	  appendable discs can't get used yet for burning
+
+2008-09-05  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-disc-usage.c:
+	  Update audio disc sizes
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-disc-usage.c,
+	  xfburn/xfburn-data-disc-usage.c, xfburn/xfburn-disc-usage.c,
+	  xfburn/xfburn-disc-usage.h, xfburn/xfburn-global.h:
+	  Adding length to audio CDs. NOTE: avail. space displayed is less
+	  than what's really there
+
 2008-09-04  jannis
 
-	* autogen.sh: Add git svn revision versioning support.
+	* ChangeLog, autogen.sh:
+	  * autogen.sh: Add git svn revision versioning support.
+
+2008-09-03  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c:
+	  Don't show mode selection for burning audio
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-perform-burn.c,
+	  xfburn/xfburn-perform-burn.h:
+	  Add support for multiple tracks to the burn progress dialog
+
+2008-09-02  maximilian
+
+	* po/ChangeLog, po/de.po:
+	  Translation update for German xfburn
+
+2008-09-02  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-composition.h,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c:
+	  Improved error handling for audio CDs
+	* NEWS, README, xfburn/xfburn-audio-composition.c:
+	  * Updating README, NEWS * Remove artist and title columns from
+	  audio composition for now
+
+2008-08-29  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c:
+	  Adding remark about endianness
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c:
+	  Checking .wav headers
+	* xfburn/xfburn-audio-composition.c, xfburn/xfburn-main.c:
+	  Make sure only .wav files can get added to an audio composition
+
+2008-08-26  Mario Đanić <mario@libburnia-project.org>
+
+	* xfburn/xfburn-blank-dialog.c:
+	  Tiny little change in Blanking dialog, affects translators
+
+2008-08-25  David Mohr <david@mcbf.net>
+
+	* xfburn/Makefile.am, xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-disc-usage.c,
+	  xfburn/xfburn-audio-disc-usage.h,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-perform-burn.c:
+	  Adding very basic audio cd support: only pcm wav supported so
+	  far, only a rough check for compatible files
+
+2008-08-22  David Mohr <david@mcbf.net>
+
+	* README, xfburn/xfburn-device-box.c, xfburn/xfburn-main.c:
+	  Fixing compilation without hal
+	* README, xfburn/xfburn-hal-manager.c, xfburn/xfburn-main.c:
+	  Fixing compilation without thunar-vfs
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-composition.h,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.h:
+	  Basic structure for burning audio cds, compiles but does not burn
+	  yet
+
+2008-08-20  David Mohr <david@mcbf.net>
+
+	* xfburn/Makefile.am, xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.h:
+	  Adding files for burning audio cds
+
+2008-08-18  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-composition.c:
+	  Make artist and title editable
+
+2008-08-17  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-composition.h:
+	  Forgot to rename some things from data to audio
+	* xfburn-toolbars.ui, xfburn.ui, xfburn/Makefile.am,
+	  xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-composition.h,
+	  xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-data-disc-usage.c, xfburn/xfburn-disc-usage.c,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-main-window.h,
+	  xfburn/xfburn-main.c, xfburn/xfburn-welcome-tab.c:
+	  Adding basic UI for audio CDs
+	* xfburn/xfburn-data-composition.c,
+	  xfburn/xfburn-data-disc-usage.c, xfburn/xfburn-data-disc-usage.h,
+	  xfburn/xfburn-disc-usage.c, xfburn/xfburn-disc-usage.h:
+	  Adding base class for disc sizes, data disc size now subclasses
+	  it
+
+2008-08-16  David Mohr <david@mcbf.net>
+
+	* xfburn/Makefile.am, xfburn/xfburn-disc-usage.c,
+	  xfburn/xfburn-disc-usage.h:
+	  Adding files for disc usage base class
+
+2008-08-13  David Mohr <david@mcbf.net>
+
+	* xfburn.desktop.in:
+	  Adding burn image action to desktop file
+
+2008-08-10  maximilian
+
+	* po/ChangeLog, po/LINGUAS, po/id.po:
+	  Translations updated and added in Indonesian and Polish.
+
+2008-08-09  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-composition.h:
+	  Using data-composition as base for audio-composition
+
+2008-08-07  David Mohr <david@mcbf.net>
+
+	* README:
+	  Updating README
+	* xfburn/xfburn-blank-dialog.c,
+	  xfburn/xfburn-burn-data-composition-base-dialog.c:
+	  Bugfix: removing call to hal_manager_send_volume_changed while
+	  still within burn code
+
+2008-08-06  David Mohr <david@mcbf.net>
+
+	* configure.in.in,
+	  xfburn/xfburn-burn-data-composition-base-dialog.c:
+	  Bumping required libburn version up to 0.4.2
+
+2008-08-05  David Mohr <david@mcbf.net>
+
+	* NEWS:
+	  Updating NEWS
+	* xfburn/xfburn-hal-manager.c:
+	  Fixing compilation without thunar-vfs
+	* xfburn/xfburn-hal-manager.c:
+	  Fixing typo
+	* xfburn/xfburn-device-list.c, xfburn/xfburn-hal-manager.c:
+	  Fall back to libburn if there is a hal error trying to get the
+	  device list
+	* NEWS, TODO, xfburn/Makefile.am, xfburn/xfburn-device-box.c,
+	  xfburn/xfburn-device-list.c, xfburn/xfburn-device-list.h,
+	  xfburn/xfburn-format-dvd-dialog.c,
+	  xfburn/xfburn-format-dvd-dialog.h, xfburn/xfburn-hal-manager.c,
+	  xfburn/xfburn-hal-manager.h, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-main.c, xfburn/xfburn-preferences-dialog.c:
+	  * Get drives initially from HAL * Fill in details during refresh
+	  from libburn * Try to unmount inaccessible drives * Smaller code
+	  cleanups / disabling unused code
+
+2008-08-03  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c,
+	  xfburn/xfburn-main.c, xfburn/xfburn-perform-burn.c:
+	  Little bit of code cleanup
+	* NEWS:
+	  Update NEWS
+	* xfburn/xfburn-device-box.c, xfburn/xfburn-main.c:
+	  Adding (disabled) code to umount mounted drives
+
+2008-08-02  David Mohr <david@mcbf.net>
+
+	* po/ChangeLog, po/de.po:
+	  Updating German translation
+
+2008-07-24  David Mohr <david@mcbf.net>
+
+	* TODO:
+	  Updating TODO
+
+2008-07-23  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-composition.c,
+	  xfburn/xfburn-data-composition.h:
+	  Bugfix: insert drap'n drops at the correct place Accept
+	  text/uri-list dnd targets (i.e. drag from thunar)
+
+2008-07-19  majkl
+
+	* po/cs.po:
+	  Fixed Czech translations
+
+2008-07-18  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-disc-usage.c, xfburn/xfburn-device-box.c:
+	  Small translation bugfix, rename burn button in composition
+	  window (thanks to Enrico Troeger)
+
+2008-07-18  alnokta
+
+	* po/ar.po:
+	  Update Arabic translations
+
+2008-07-18  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-disc-usage.c:
+	  Updating size labels to be base 2, like the rest of xfburn
+	* xfburn/xfburn-device-list.c, xfburn/xfburn-main.c:
+	  Make Mario's message about permissions from r5133 more visible
+
+2008-07-18  Jean-François Wauthy <pollux@xfce.org>
+
+	* xfburn/xfburn-compositions-notebook.c:
+	  does not show Tabs if only the welcome tab is visible
+	* xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-compositions-notebook.h,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-welcome-tab.c,
+	  xfburn/xfburn-welcome-tab.h:
+	  * XfBurnWelcomeTab does not implement XfburnComposition anymore *
+	  cleanup XfBurnWelcomeTab code a bit
+	* xfburn/xfburn-welcome-tab.c:
+	  no need for properties here
+	* xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-device-list.c, xfburn/xfburn-notebook-tab.c,
+	  xfburn/xfburn-notebook-tab.h:
+	  add support for adding/showing close button of a composition tab
+
+2008-07-18  Mario Đanić <mario@libburnia-project.org>
+
+	* xfburn/xfburn-device-list.c:
+	  Write a clue message if no drives detected
+	* xfburn.desktop.in:
+	  Thanks Moe, Xfburn is not attached to ISO
+
+2008-07-17  alnokta
+
+	* po/ar.po:
+	  Update Arabic translations
+
+2008-07-17  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-blank-dialog.c:
+	  Adding missing ifdef HAVE_HAL
+
+2008-07-16  alnokta
+
+	* po/ar.po:
+	  Update Arabic translations
+	* po/ar.po:
+	  Update Arabic translations
+	* po/ar.po:
+	  Update Arabic translations
+	* po/ar.po:
+	  Update Arabic translations
+
+2008-07-16  David Mohr <david@mcbf.net>
+
+	* po/ChangeLog, po/LINGUAS, po/et.po:
+	  Updating et.po
+	* po/ChangeLog, po/zh_CN.po, xfburn/xfburn-main-window.c:
+	  Translation updates
+
+2008-07-16  maximilian
+
+	* po/ChangeLog, po/LINGUAS, po/et.po:
+	  Translation added to the xfburn package (et)
+
+2008-07-15  David Mohr <david@mcbf.net>
+
+	* ChangeLog, NEWS, README, xfburn:
+	  Smaller updates for release
 
 2008-07-15  maximilian
 
