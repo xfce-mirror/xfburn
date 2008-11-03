@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-03 00:14-0700\n"
-"PO-Revision-Date: 2008-10-09 16:17+0300\n"
+"POT-Creation-Date: 2008-11-03 20:11+0200\n"
+"PO-Revision-Date: 2008-11-03 20:27+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1041,122 +1041,115 @@ msgstr "Ääni-CD, joka käy tavalliseen cd-soittimeen"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-audio-composition.c:207
-#, fuzzy
 msgid "Rename Artist"
-msgstr "Nimeä uudelleen"
+msgstr "Vaihda esittäjä"
 
 #: ../xfburn/xfburn-audio-composition.c:207
-#, fuzzy
 msgid "Rename the artist of the selected file"
-msgstr "Nimeä valittu tiedosto uudelleen"
+msgstr "Muokkaa valitun kappaleen esittäjän nimeä"
 
 #: ../xfburn/xfburn-audio-composition.c:209
-#, fuzzy
 msgid "Rename Title"
 msgstr "Nimeä uudelleen"
 
 #: ../xfburn/xfburn-audio-composition.c:209
-#, fuzzy
 msgid "Rename the title of the selected file"
-msgstr "Nimeä valittu tiedosto uudelleen"
+msgstr "Muokkaa valitun kappaleen nimeä"
 
 #: ../xfburn/xfburn-audio-composition.c:380
 msgid "Pos"
-msgstr ""
+msgstr "Nro"
 
 #: ../xfburn/xfburn-audio-composition.c:382
 msgid "Length"
-msgstr ""
+msgstr "Kesto"
 
 #: ../xfburn/xfburn-audio-composition.c:388
 msgid "Artist"
-msgstr ""
+msgstr "Esittäjä"
 
 #: ../xfburn/xfburn-audio-composition.c:401
-#, fuzzy
 msgid "Title"
-msgstr "Tiedosto"
+msgstr "Nimi"
 
 #: ../xfburn/xfburn-audio-composition.c:412
-#, fuzzy
 msgid "Filename"
-msgstr "Nimeä uudelleen"
+msgstr "Tiedostonimi"
 
 #: ../xfburn/xfburn-audio-composition.c:558
 msgid "Cannot burn audio onto a DVD"
-msgstr ""
+msgstr "Musiikkia ei voi polttaa DVD-levylle"
 
 #: ../xfburn/xfburn-audio-composition.c:1199
 msgid "You can only have a maximum of 99 tracks!"
-msgstr ""
+msgstr "Raitoja voi olla enintään 99!"
 
 #: ../xfburn/xfburn-disc-usage.c:148
 msgid "Proceed to Burn"
-msgstr ""
+msgstr "Polta levylle"
 
 #: ../xfburn/xfburn-disc-usage.c:185
-#, fuzzy
 msgid "You are trying to burn more data than the disc can contain !"
 msgstr "Yrität polttaa levylle enemmän, kuin sille mahtuu!"
 
 #: ../xfburn/xfburn-transcoder-basic.c:179
 #, c-format
 msgid "File %s does not have a .wav extension"
-msgstr ""
+msgstr "Tiedoston %s pääte ei ole .wav"
 
 #: ../xfburn/xfburn-transcoder-basic.c:184
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
-msgstr ""
+msgstr "Tiedoston %s sisältö ei ole pakkaamattomassa PCM-muodossa"
 
 #: ../xfburn/xfburn-transcoder-basic.c:190
-#, fuzzy, c-format
+#, c-format
 msgid "Could not stat %s: %s"
-msgstr "ISO-kohdetiedostoa ei voi luoda: %s"
+msgstr "Kohdetta %s ei löydy: %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:225
 #, c-format
 msgid "Could not open %s!"
-msgstr ""
+msgstr "Ei voi avata kohdetta %s!"
 
 #: ../xfburn/xfburn-transcoder-basic.c:306
 #, c-format
 msgid "Could not open %s: %s"
-msgstr ""
+msgstr "Ei voi avata kohdetta %s: %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:317
-#: ../xfburn/xfburn-transcoder-gst.c:758
-#, fuzzy, c-format
+#: ../xfburn/xfburn-transcoder-gst.c:757
+#, c-format
 msgid "Could not create burn_source from %s!"
-msgstr "ISOn lähderakenteen luominen epäonnistui"
+msgstr "Polttolähteen luominen epäonnistui kohteesta %s!"
 
 #: ../xfburn/xfburn-transcoder-basic.c:325
-#: ../xfburn/xfburn-transcoder-gst.c:776
-#, fuzzy, c-format
+#: ../xfburn/xfburn-transcoder-gst.c:775
+#, c-format
 msgid "Could not add source to track %s!"
-msgstr "ISOn lähderakenteen luominen epäonnistui"
+msgstr "Lähteen lisääminen epäonnistui raidalle %s!"
 
 #: ../xfburn/xfburn-transcoder-gst.c:275
 #, c-format
 msgid "A pipeline element could not be created"
-msgstr ""
+msgstr "Putkielementin luominen epäonnistui"
 
 #: ../xfburn/xfburn-transcoder-gst.c:282
 #, c-format
 msgid "The debug identity element could not be created"
-msgstr ""
+msgstr "Vianetsintäelementin luominen epäonnistui"
 
 #: ../xfburn/xfburn-transcoder-gst.c:317
 #, c-format
 msgid "Could not setup filtered gstreamer link"
-msgstr ""
+msgstr "Suodatetun gstreamer-linkin asettaminen epäonnistui"
 
-#: ../xfburn/xfburn-transcoder-gst.c:697
+#: ../xfburn/xfburn-transcoder-gst.c:696
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
-msgstr ""
+msgstr "Tiedosto ei kelvannut Gstreamerille (tunnistuksen aikakatkaisu)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:706
+#: ../xfburn/xfburn-transcoder-gst.c:705
 #, c-format
 msgid ""
 "%s\n"
@@ -1164,22 +1157,26 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"%s\n"
+"\tei ole äänitiedosto:\n"
+"\n"
+"%s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:820
+#: ../xfburn/xfburn-transcoder-gst.c:819
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
-msgstr ""
+msgstr "Gstreamer ei halunnut aloittaa muunnosta (aikakatkaisu)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:854
+#: ../xfburn/xfburn-transcoder-gst.c:853
 #, c-format
 msgid "Failed to change songs while transcoding"
-msgstr ""
+msgstr "Kappaleen vaihto muunnoksen aikana epäonnistui"
 
 #: ../xfburn/xfburn-transcoder.c:115 ../xfburn/xfburn-transcoder.c:127
 #: ../xfburn/xfburn-transcoder.c:139
-#, fuzzy, c-format
+#, c-format
 msgid "not implemented"
-msgstr "Valmis"
+msgstr "toteutus puuttuu"
 
 #: ../xfburn.desktop.in.h:1
 msgid "Burn Image (xfburn)"
@@ -1188,33 +1185,3 @@ msgstr "Polta levykuva (xfburn)"
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD- ja DVD-polttosovellus"
-
-#~ msgid "Import"
-#~ msgstr "Tuo"
-
-#~ msgid "Import existing session"
-#~ msgstr "Tuo olemassaoleva istunto"
-
-#~ msgid "Copy Audio CD"
-#~ msgstr "Kopioi ääni-CD"
-
-#~ msgid "Create a new composition"
-#~ msgstr "Luo uusi kokoelma"
-
-#~ msgid "Copy DVD"
-#~ msgstr "Kopioi DVD"
-
-#~ msgid "The main window"
-#~ msgstr "Pääikkuna"
-
-#~ msgid "Notebook"
-#~ msgstr "Muistio"
-
-#~ msgid "NOTEBOOK"
-#~ msgstr "MUISTIO"
-
-#~ msgid "Action group"
-#~ msgstr "Toimintoryhmä"
-
-#~ msgid "Action group from the main window"
-#~ msgstr "Pääikkunan toimintoryhmä"
