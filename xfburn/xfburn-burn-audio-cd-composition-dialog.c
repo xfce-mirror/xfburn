@@ -492,9 +492,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
   burn_drive_set_buffer_waiting (drive, 1, -1, -1, -1, 75, 95);
 
-  // FIXME: perform_burn_write only takes one fifo as an argument right now
-  //xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, srcs, track_sectors);
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, NULL, track_sectors);
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, srcs, track_sectors);
 
   burn_write_opts_free (burn_options);
 }

@@ -279,6 +279,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   struct burn_drive *drive;
   struct burn_drive_info *drive_info = NULL;
   struct burn_write_opts * burn_options;
+  struct burn_source **fifos = NULL;
 
   gint ret;
 
@@ -350,7 +351,14 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   sectors[0] = burn_disc_get_sectors (disc);
   
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning image..."));
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, fifo_src, sectors);
+
+  fifos = g_new(struct burn_source *,1);
+  fifos[0] = fifo_src;
+
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, fifos, sectors);
+
+  g_free (fifos);
+
   burn_source_free (fifo_src);
   burn_write_opts_free (burn_options);
 

@@ -47,7 +47,7 @@ xfburn_perform_burn_init (struct burn_disc **disc, struct burn_session **session
 void
 xfburn_perform_burn_write (GtkWidget *dialog_progress, 
                            struct burn_drive *drive, XfburnWriteMode write_mode, struct burn_write_opts *burn_options, struct burn_disc *disc,
-                           struct burn_source *fifo, int *track_sectors)
+                           struct burn_source **fifos, int *track_sectors)
 {
   enum burn_disc_status disc_state;
   enum burn_drive_status status;
@@ -172,8 +172,8 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 	xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), 
 						  cur_speed);
 
-        if (fifo != NULL) {
-          fifo_status = burn_fifo_inquire_status (fifo, &fifo_size, &fifo_free, &fifo_text);
+        if (fifos != NULL) {
+          fifo_status = burn_fifo_inquire_status (fifos[progress.track-1], &fifo_size, &fifo_free, &fifo_text);
           switch (fifo_status) {
             case 0:
               xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("standby"));

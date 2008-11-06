@@ -528,6 +528,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   GtkWidget *dialog_progress = params->dialog_progress;
 
   struct burn_write_opts * burn_options;
+  struct burn_source **fifos = NULL;
   gint ret;
   int sectors[1];
 
@@ -576,7 +577,16 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
 
   sectors[0] = burn_disc_get_sectors (disc);
 
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, (params->is_fifo ? params->src : NULL), sectors);
+  if (params->is_fifo) {
+    fifos = g_new(struct burn_source *,1);
+    fifos[0] = params->src;
+  }
+
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, fifos, sectors);
+
+  if (params->is_fifo) {
+    g_free (fifos);
+  }
 
   burn_write_opts_free (burn_options);
 }
