@@ -173,35 +173,36 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 						  cur_speed);
 
         if (fifos != NULL) {
-          fifo_status = burn_fifo_inquire_status (fifos[progress.track-1], &fifo_size, &fifo_free, &fifo_text);
+          fifo_status = burn_fifo_inquire_status (fifos[progress.track], &fifo_size, &fifo_free, &fifo_text);
           switch (fifo_status) {
             case 0:
               xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("standby"));
               break;
             case 1:
+              /* active */
               percent = (gdouble) (fifo_size - fifo_free) / (gdouble) fifo_size;
               xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
               break;
             case 2:
-              xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("active"));
-              break;
-            case 3:
               xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("ending"));
               break;
-            case 4:
+            case 3:
               xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("failing"));
               break;
-            case 5:
+            case 4:
               xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("unused"));
               break;
-            case 6:
+            case 5:
               xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("abandoned"));
               break;
-            case 7:
+            case 6:
               xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("ended"));
               break;
-            default:
+            case 7:
               xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("aborted"));
+              break;
+            default:
+              xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("no info"));
               break;
           }
         }
