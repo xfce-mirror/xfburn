@@ -72,6 +72,10 @@ typedef struct {
   gboolean dummy;
 } XfburnTranscoderBasicPrivate;
 
+/* globals */
+
+static const gchar *errormsg_libburn_setup = "An error occurred while setting the burning backend up";
+
 /*********************/
 /* class declaration */
 /*********************/
@@ -313,16 +317,19 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 
   atrack->src = burn_fd_source_new (atrack->fd, -1 , 0);
   if (atrack->src == NULL) {
+    g_warning ("Could not create burn_source from %s!", atrack->inputfile);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
-                 _("Could not create burn_source from %s!"), atrack->inputfile);
+                 _(errormsg_libburn_setup));
     return NULL;
   }
 
   track = burn_track_create ();
   
   if (burn_track_set_source (track, atrack->src) != BURN_SOURCE_OK) {
+    g_warning ("Could not add source to track %s!", atrack->inputfile);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
-                 _("Could not add source to track %s!"), atrack->inputfile);
+                 _(errormsg_libburn_setup));
+                 
     return NULL;
   }
 

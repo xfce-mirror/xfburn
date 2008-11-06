@@ -182,7 +182,7 @@ cb_button_clicked (GtkButton *button, XfburnDiscUsage *du)
   if (du->size <= class->labels[gtk_combo_box_get_active (GTK_COMBO_BOX (du->combo))].size) {
     g_signal_emit (G_OBJECT (du), signals[BEGIN_BURN], 0);
   } else {
-    xfce_err (_("You are trying to burn more data than the disc can contain !"));
+    xfce_err (_("You are trying to burn more onto the disc than it can hold."));
   }
 }
 

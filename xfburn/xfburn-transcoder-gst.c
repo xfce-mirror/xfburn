@@ -55,6 +55,7 @@
    Set DEBUG_GST > 1 to also get a lot of gst state change messages */
 #define DEBUG_GST 1
 
+
 /** Prototypes **/
 /* class initialization */
 static void xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass);
@@ -140,6 +141,9 @@ typedef struct {
 #ifdef DEBUG_GST
 static guint64 total_size = 0;
 #endif
+
+static const gchar *errormsg_gst_setup = "An error occurred setting gstreamer up for transcoding";
+static const gchar *errormsg_libburn_setup = "An error occurred while setting the burning backend up";
 
 /*********************/
 /* class declaration */
@@ -271,15 +275,17 @@ create_pipeline (XfburnTranscoderGst *trans)
   //DBG ("\npipeline = %p\nsource = %p\ndecoder = %p\nconv = %p\nsink = %p", pipeline, source, decoder, conv, sink);
 
   if (!pipeline || !source || !decoder || !conv || !sink) {
+    g_warning ("A pipeline element could not be created");
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
-                 _("A pipeline element could not be created"));
+                 _(errormsg_gst_setup));
     return;
   }
 
 #ifdef DEBUG_GST
   if (!id) {
+    g_warning ("The debug identity element could not be created");
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
-                 _("The debug identity element could not be created"));
+                 _(errormsg_gst_setup));
     return;
   }
 #endif
@@ -313,8 +319,9 @@ create_pipeline (XfburnTranscoderGst *trans)
 #else
   if (!gst_element_link_filtered (conv, sink, caps)) {
 #endif
+    g_warning ("Could not setup filtered gstreamer link");
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
-                 _("Could not setup filtered gstreamer link"));
+                 _(errormsg_gst_setup));
     gst_caps_unref (caps);
     return;
   }
@@ -676,7 +683,7 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
   priv->state = XFBURN_TRANSCODER_GST_STATE_IDENTIFYING;
   g_object_set (G_OBJECT (priv->source), "location", fn, NULL);
   if (gst_element_set_state (priv->pipeline, GST_STATE_PAUSED) == GST_STATE_CHANGE_FAILURE) {
-    g_warning ("Supposedly failed to change gstreamer state, ignoring it.");
+    g_message ("Supposedly failed to change gstreamer state, ignoring it usually it does it anyways.");
     /*
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_STATE,
                  _("Failed to change state!"));
@@ -753,8 +760,9 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 
   atrack->src = burn_fd_source_new (atrack->fd, -1 , gtrack->size);
   if (atrack->src == NULL) {
+    g_warning ("Could not create burn_source from %s.", atrack->inputfile);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
-                 _("Could not create burn_source from %s!"), atrack->inputfile);
+                 _(errormsg_libburn_setup));
     XFBURN_AUDIO_TRACK_DELETE_DATA (atrack);
     atrack->fd = -1;
     close (pipe_fd[0]);  close (pipe_fd[1]);
@@ -771,8 +779,9 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   track = burn_track_create ();
   
   if (burn_track_set_source (track, atrack->src) != BURN_SOURCE_OK) {
+    g_warning ("Could not add source to track %s.", atrack->inputfile);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
-                 _("Could not add source to track %s!"), atrack->inputfile);
+                 _(errormsg_libburn_setup));
     XFBURN_AUDIO_TRACK_DELETE_DATA (atrack);
     burn_source_free (atrack->src);
     atrack->fd = -1;
@@ -849,6 +858,7 @@ transcode_next_track (XfburnTranscoderGst *trans, GError **error)
 #endif
 
   if (gst_element_set_state (priv->pipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_FAILURE) {
+    g_warning ("Failed to change songs.");
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_STATE,
                  _("Failed to change songs while transcoding"));
     return FALSE;
