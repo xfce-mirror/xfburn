@@ -121,8 +121,6 @@ missing_files = \
 	xfburn-copy-cd-dialog.h						\
 	xfburn-copy-cd-progress-dialog.h				\
 	xfburn-copy-dvd-dialog.h					\
-	xfburn-format-dvd-dialog.c					\
-	xfburn-format-dvd-dialog.h					\
 	xfburn-create-iso-progress-dialog.c
 
 EXTRA_DIST = $(missing_files)
