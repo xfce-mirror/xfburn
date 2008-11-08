@@ -249,69 +249,15 @@ main (int argc, char **argv)
 
   xfburn_stock_init ();
   n_drives = xfburn_device_list_init ();
-#if 0
-#ifdef HAVE_THUNAR_VFS
-  if (n_drives < 1) {
-    //XfburnHalManager *halman = xfburn_hal_manager_get_instance();
-    ThunarVfsVolumeManager *volman;
-    GList *volume_list;
-    gboolean unmounted = FALSE;
-    gchar *mp_name;
-
-    volman = thunar_vfs_volume_manager_get_default();
-    volume_list = thunar_vfs_volume_manager_get_volumes (volman);
-
-    while (volume_list) {
-      ThunarVfsVolume *vol = THUNAR_VFS_VOLUME (volume_list->data);
-      ThunarVfsPath *mp;
-
-      switch (thunar_vfs_volume_get_kind (vol)) {
-        case THUNAR_VFS_VOLUME_KIND_CDROM:
-        case THUNAR_VFS_VOLUME_KIND_CDR:
-        case THUNAR_VFS_VOLUME_KIND_DVDROM:
-        case THUNAR_VFS_VOLUME_KIND_DVDRAM:
-        case THUNAR_VFS_VOLUME_KIND_DVDR:
-        case THUNAR_VFS_VOLUME_KIND_DVDRW:
-        case THUNAR_VFS_VOLUME_KIND_DVDPLUSR:
-        case THUNAR_VFS_VOLUME_KIND_DVDPLUSRW:
-        case THUNAR_VFS_VOLUME_KIND_AUDIO_CD:
-          if (thunar_vfs_volume_is_mounted (vol)) {
-            mp = thunar_vfs_volume_get_mount_point (vol);
-            mp_name = thunar_vfs_path_dup_string (mp);
-            if (thunar_vfs_volume_unmount (vol, NULL, NULL)) {
-              unmounted = TRUE;
-              g_message ("Unmounted drive %s", mp_name);
-            } else {
-              g_message ("Failed to unmounted drive %s", mp_name);
-            }
-            g_free (mp_name);
-          }
-          break;
-        default:
-          break;
-      }
-
-      volume_list = g_list_next (volume_list);
-    }
-
-    g_object_unref (volman);
-
-    if (unmounted)
-      n_drives = xfburn_device_list_init ();
-    else
-      g_debug ("Could not umount any optical drives.");
-  }
-#endif
-#endif
 
   if (n_drives < 1) {
     GtkMessageDialog *dialog = (GtkMessageDialog *) gtk_message_dialog_new (NULL,
                                     GTK_DIALOG_DESTROY_WITH_PARENT,
                                     GTK_MESSAGE_WARNING,
                                     GTK_BUTTONS_CLOSE,
-                                    ((const gchar *) _("No drives are currently available!")));
+                                    ((const gchar *) _("No drives are currently available")));
     gtk_message_dialog_format_secondary_text (dialog,
-                                    _("Maybe there is a mounted media in the drive?\n\nPlease unmount and restart the application.\n\nIf no media is inserted, check that you have r/w access to the drive with the current user."));
+                                    _("Possibly the disc(s) are in use, and cannot get accessed.\n\nPlease unmount and restart the application.\n\nIf no disc is in the drive, check that you have read and write access to the drive with the current user."));
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (GTK_WIDGET (dialog));
   }
@@ -370,7 +316,7 @@ main (int argc, char **argv)
       if (g_file_test (image_fullname, G_FILE_TEST_EXISTS))
 	xfburn_burn_image_dialog_set_filechooser_name (dialog, image_fullname);
       else
-	xfce_err ( g_strdup_printf ( _("Image file '%s' does not exist!"), image_fullname));
+	xfce_err ( g_strdup_printf ( _("Image file '%s' does not exist"), image_fullname));
     }
 
     gtk_dialog_run (GTK_DIALOG (dialog));

@@ -94,12 +94,12 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     return;
   } else if (disc_state != BURN_DISC_BLANK) {
     if (disc_state == BURN_DISC_FULL)
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Closed media with data detected. Need blank or appendable media"));
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Closed disc with data detected. Need blank or appendable media"));
     else if (disc_state == BURN_DISC_EMPTY) 
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No media detected in drive"));
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No disc detected in drive"));
     else {
-      g_warning ("Cannot recognize state of drive and media: disc_state = %d", disc_state);
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize state of drive and media"));
+      g_warning ("Cannot recognize state of drive and disc: disc_state = %d", disc_state);
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize state of drive and disc"));
     }
     return;
   }

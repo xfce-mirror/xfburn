@@ -1196,7 +1196,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
       if (priv->n_tracks == 99) {
         gdk_threads_enter ();
-        xfce_err (_("You can only have a maximum of 99 tracks!"));
+        xfce_err (_("You can only have a maximum of 99 tracks"));
         gdk_threads_leave ();
         return FALSE;
       }

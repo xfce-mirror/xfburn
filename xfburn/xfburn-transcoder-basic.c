@@ -226,7 +226,7 @@ is_valid_wav (const gchar *path)
   fd = open (path, 0);
 
   if (fd == -1) {
-    xfce_warn (_("Could not open %s!"), path);
+    xfce_warn (_("Could not open %s"), path);
     return FALSE;
   }
 

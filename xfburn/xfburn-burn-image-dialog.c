@@ -161,8 +161,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   priv->image_label = gtk_label_new ("");
   gtk_widget_show (priv->image_label);
   gtk_box_pack_start (GTK_BOX (box), priv->image_label, FALSE, FALSE, 0);
-  gtk_label_set_markup (GTK_LABEL(priv->image_label),
-  	                _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn!</span>"));
+  update_image_label (priv->chooser_image, obj);
   g_signal_connect (G_OBJECT (priv->chooser_image), "selection-changed", G_CALLBACK (update_image_label), obj);
     
   /* devices list */
@@ -426,7 +425,7 @@ update_image_label (GtkFileChooser *chooser, XfburnBurnImageDialog * dialog)
 
   if (gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser)) == NULL) {
     gtk_label_set_markup (GTK_LABEL(priv->image_label),
-                          _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn!</span>"));   
+                          _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"));   
   } else {
     gtk_label_set_text (GTK_LABEL(priv->image_label), "");
     check_burn_button (dialog);
@@ -460,7 +459,7 @@ check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct
   while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
     usleep(100001);
 
-  /* Evaluate drive and media */
+  /* Evaluate drive and disc */
   while ((disc_state = burn_disc_get_status(drive)) == BURN_DISC_UNREADY)
     usleep(100001);
   if (disc_state == BURN_DISC_APPENDABLE && params->write_mode != WRITE_MODE_TAO) {
@@ -468,27 +467,27 @@ check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct
     return FALSE;
   } else if (disc_state != BURN_DISC_BLANK) {
     if (disc_state == BURN_DISC_FULL)
-      burn_image_dialog_error (dialog, _("Closed media with data detected. Need blank or appendable media"));
+      burn_image_dialog_error (dialog, _("Closed disc with data detected. Need blank or appendable disc"));
     else if (disc_state == BURN_DISC_EMPTY) 
-      burn_image_dialog_error (dialog, _("No media detected in drive"));
+      burn_image_dialog_error (dialog, _("No disc detected in drive"));
     else {
-      burn_image_dialog_error (dialog, _("Cannot recognize state of drive and media"));
+      burn_image_dialog_error (dialog, _("Cannot recognize state of drive and disc"));
       DBG ("disc_state = %d", disc_state);
     }
     return FALSE;
   }
 
-  /* check if the image fits on the inserted media */
+  /* check if the image fits on the inserted disc */
   ret = stat (params->iso_path, &st);
   if (ret == 0) {
     off_t disc_size;
     disc_size = burn_disc_available_space (drive, burn_options);
     if (st.st_size > disc_size) {
-      burn_image_dialog_error (dialog, _("The selected image does not fit on the inserted disc!"));
+      burn_image_dialog_error (dialog, _("The selected image does not fit on the inserted disc"));
       return FALSE;
     }
   } else {
-    burn_image_dialog_error (dialog, _("Failed to get image size!"));
+    burn_image_dialog_error (dialog, _("Failed to get image size"));
     return FALSE;
   }
 

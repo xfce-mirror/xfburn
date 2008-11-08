@@ -603,7 +603,7 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
     }
 
     if (!priv->valid_disc) {
-        priv->status_text = _("Drive can't burn on the inserted disc!");
+        priv->status_text = _("Drive can't burn on the inserted disc");
     } else {
       priv->valid_disc = (disc_status == BURN_DISC_BLANK); 
       /* Not sure if we support appending yet, so let's disable it for the time being
@@ -612,24 +612,24 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
       if (!priv->valid_disc) {
         switch (disc_status) {
           case BURN_DISC_EMPTY:
-            priv->status_text = _("Drive is empty!");
+            priv->status_text = _("Drive is empty");
             break;
           case BURN_DISC_APPENDABLE:
-            priv->status_text = _("Sorry, multisession is not yet supported!");
+            priv->status_text = _("Sorry, multisession is not yet supported");
             break;
           case BURN_DISC_FULL:
-            priv->status_text = _("Inserted disc is full!");
+            priv->status_text = _("Inserted disc is full");
             break;
           case BURN_DISC_UNSUITABLE:
-            priv->status_text = _("Inserted disc is unsuitable!");
+            priv->status_text = _("Inserted disc is unsuitable");
             break;
           case BURN_DISC_UNGRABBED:
-            priv->status_text = _("No access to drive (mounted?)");
+            priv->status_text = _("Cannot access drive (it might be in use)");
             break;
           default:
             /* if there is no detected device, then don't print an error message as it is expected to not have a disc status */
             if (device != NULL) {
-              priv->status_text = _("Error determining disc!");
+              priv->status_text = _("Error determining disc");
               DBG ("weird disc_status = %d", disc_status);
             }
         }
@@ -658,19 +658,19 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
         default:
           switch (disc_status) {
             case BURN_DISC_EMPTY:
-              priv->status_text = _("Drive is empty!");
+              priv->status_text = _("Drive is empty");
               break;
             case BURN_DISC_BLANK:
-              priv->status_text = _("Inserted disc is already blank!");
+              priv->status_text = _("Inserted disc is already blank");
               break;
             case BURN_DISC_UNSUITABLE:
-              priv->status_text = _("Inserted disc is unsuitable!");
+              priv->status_text = _("Inserted disc is unsuitable");
               break;
             case BURN_DISC_UNGRABBED:
-              priv->status_text = _("No access to drive (mounted?)");
+              priv->status_text = _("Cannot access drive (it might be in use)");
               break;
             default:
-              priv->status_text = _("Error determining disc!");
+              priv->status_text = _("Error determining disc");
               DBG ("weird disc_status = %d", disc_status);
           }
       }

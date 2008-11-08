@@ -604,7 +604,7 @@ on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
   DBG ("linking pads");
 #endif
 
-  // check media type
+  // check disc type
   caps = gst_pad_get_caps (pad);
   str = gst_caps_get_structure (caps, 0);
   if (!g_strrstr (gst_structure_get_name (str), "audio")) {

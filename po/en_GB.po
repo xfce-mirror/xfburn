@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-03 00:14-0700\n"
+"POT-Creation-Date: 2008-11-07 22:03-0700\n"
 "PO-Revision-Date: 2007-03-27 22:02+1000\n"
 "Last-Translator: Jeff Bailes <thepizzaking@gmail.com>\n"
 "Language-Team: English/GB\n"
@@ -63,7 +63,7 @@ msgstr "Blank type"
 
 #: ../xfburn/xfburn-blank-dialog.c:209
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:191
-#: ../xfburn/xfburn-burn-image-dialog.c:172
+#: ../xfburn/xfburn-burn-image-dialog.c:171
 #: ../xfburn/xfburn-copy-cd-dialog.c:132
 #: ../xfburn/xfburn-copy-dvd-dialog.c:132
 #: ../xfburn/xfburn-format-dvd-dialog.c:105
@@ -78,7 +78,7 @@ msgstr "Blank type"
 
 #: ../xfburn/xfburn-blank-dialog.c:230
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:223
-#: ../xfburn/xfburn-burn-image-dialog.c:180
+#: ../xfburn/xfburn-burn-image-dialog.c:179
 #: ../xfburn/xfburn-copy-cd-dialog.c:140
 #: ../xfburn/xfburn-copy-dvd-dialog.c:140
 #: ../xfburn/xfburn-format-dvd-dialog.c:113
@@ -88,7 +88,7 @@ msgstr "Options"
 
 #: ../xfburn/xfburn-blank-dialog.c:234
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
-#: ../xfburn/xfburn-burn-image-dialog.c:184
+#: ../xfburn/xfburn-burn-image-dialog.c:183
 #: ../xfburn/xfburn-copy-cd-dialog.c:144
 #: ../xfburn/xfburn-copy-dvd-dialog.c:144
 #: ../xfburn/xfburn-format-dvd-dialog.c:117
@@ -124,22 +124,22 @@ msgstr "Blanking disc..."
 
 #: ../xfburn/xfburn-blank-dialog.c:435
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:502
-#: ../xfburn/xfburn-perform-burn.c:273
+#: ../xfburn/xfburn-perform-burn.c:274
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:420
 #, c-format
 msgid "Done"
 msgstr "Done"
 
-#: ../xfburn/xfburn-blank-dialog.c:438 ../xfburn/xfburn-perform-burn.c:276
+#: ../xfburn/xfburn-blank-dialog.c:438 ../xfburn/xfburn-perform-burn.c:277
 #: ../xfburn/xfburn-progress-dialog.c:565
 msgid "Failure"
 msgstr "Failure"
 
 #: ../xfburn/xfburn-blank-dialog.c:461
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:607
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:617
 #: ../xfburn/xfburn-burn-image-dialog.c:333
-#: ../xfburn/xfburn-burn-image-dialog.c:536
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:565
+#: ../xfburn/xfburn-burn-image-dialog.c:543
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:563
 msgid "Unable to grab drive"
 msgstr "Unable to grab drive"
 
@@ -158,7 +158,7 @@ msgid "<small>Would you like to change the default composition name?</small>"
 msgstr ""
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:232
-#: ../xfburn/xfburn-burn-image-dialog.c:189
+#: ../xfburn/xfburn-burn-image-dialog.c:188
 #: ../xfburn/xfburn-copy-cd-dialog.c:149
 #: ../xfburn/xfburn-copy-dvd-dialog.c:149
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:212
@@ -166,7 +166,7 @@ msgid "_Dummy write"
 msgstr "_Dummy write"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
-#: ../xfburn/xfburn-burn-image-dialog.c:193
+#: ../xfburn/xfburn-burn-image-dialog.c:192
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:216
 msgid "Burn_Free"
 msgstr "Burn_Free"
@@ -201,25 +201,25 @@ msgstr "Writing ISO..."
 msgid "An error occured while writing ISO: %s"
 msgstr "An error occured while writing ISO: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:536
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:537
 #: ../xfburn/xfburn-burn-image-dialog.c:298
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:453
 msgid "Unable to create disc object"
 msgstr "Unable to create disc object"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:541
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:542
 #: ../xfburn/xfburn-burn-image-dialog.c:326
 msgid "Cannot attach source object to track object"
 msgstr "Cannot attach source object to track object"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:568
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:569
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:485
 #, fuzzy
 msgid "The write mode is not supported currently"
 msgstr "The write mode is not supported currently"
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:651
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:661
 msgid "Could not create ISO source structure"
 msgstr "Could not create ISO source structure"
 
@@ -242,14 +242,7 @@ msgstr "All files"
 msgid "ISO images"
 msgstr "ISO images"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:165
-#: ../xfburn/xfburn-burn-image-dialog.c:421
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn!</span>"
-msgstr ""
-
-#: ../xfburn/xfburn-burn-image-dialog.c:203
+#: ../xfburn/xfburn-burn-image-dialog.c:202
 msgid "_Burn image"
 msgstr "_Burn image"
 
@@ -269,41 +262,50 @@ msgstr ""
 msgid "Burning image..."
 msgstr "Burning image..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:459 ../xfburn/xfburn-perform-burn.c:93
+#: ../xfburn/xfburn-burn-image-dialog.c:428
+msgid ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
+"select an image to burn</span>"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:466 ../xfburn/xfburn-perform-burn.c:93
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:463 ../xfburn/xfburn-perform-burn.c:97
-msgid "Closed media with data detected. Need blank or appendable media"
+#: ../xfburn/xfburn-burn-image-dialog.c:470
+#, fuzzy
+msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "Closed media with data detected. Need blank or appendable media"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:465 ../xfburn/xfburn-perform-burn.c:99
-msgid "No media detected in drive"
-msgstr "No media detected in drive"
+#: ../xfburn/xfburn-burn-image-dialog.c:472 ../xfburn/xfburn-perform-burn.c:99
+#, fuzzy
+msgid "No disc detected in drive"
+msgstr "No disc detected in the drive"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:467
+#: ../xfburn/xfburn-burn-image-dialog.c:474
 #: ../xfburn/xfburn-perform-burn.c:102
-msgid "Cannot recognize state of drive and media"
+#, fuzzy
+msgid "Cannot recognize state of drive and disc"
 msgstr "Cannot recognise state of drive and media"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:479
-msgid "The selected image does not fit on the inserted disc!"
+#: ../xfburn/xfburn-burn-image-dialog.c:486
+msgid "The selected image does not fit on the inserted disc"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:483
+#: ../xfburn/xfburn-burn-image-dialog.c:490
 #, fuzzy
-msgid "Failed to get image size!"
+msgid "Failed to get image size"
 msgstr "Unable to determine image size"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:518
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:547
+#: ../xfburn/xfburn-burn-image-dialog.c:554
 #, fuzzy
 msgid "The write mode is not currently supported"
 msgstr "The write mode is not supported currently"
@@ -344,7 +346,8 @@ msgid "Flushing cache..."
 msgstr "Flushing cache..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:106
-msgid "Please insert a recordable medium."
+#, fuzzy
+msgid "Please insert a recordable disc."
 msgstr "Please insert a recordable medium."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:128
@@ -555,33 +558,33 @@ msgid "Max"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:606
-msgid "Drive can't burn on the inserted disc!"
+msgid "Drive can't burn on the inserted disc"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:615 ../xfburn/xfburn-device-box.c:661
-msgid "Drive is empty!"
+msgid "Drive is empty"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:618
-msgid "Sorry, multisession is not yet supported!"
+msgid "Sorry, multisession is not yet supported"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:621
 #, fuzzy
-msgid "Inserted disc is full!"
+msgid "Inserted disc is full"
 msgstr "The inserted disc is already blank"
 
 #: ../xfburn/xfburn-device-box.c:624 ../xfburn/xfburn-device-box.c:667
 #, fuzzy
-msgid "Inserted disc is unsuitable!"
+msgid "Inserted disc is unsuitable"
 msgstr "The inserted disc is already blank"
 
 #: ../xfburn/xfburn-device-box.c:627 ../xfburn/xfburn-device-box.c:670
-msgid "No access to drive (mounted?)"
+msgid "Cannot access drive (it might be in use)"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:632 ../xfburn/xfburn-device-box.c:673
-msgid "Error determining disc!"
+msgid "Error determining disc"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:653
@@ -594,7 +597,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:664
 #, fuzzy
-msgid "Inserted disc is already blank!"
+msgid "Inserted disc is already blank"
 msgstr "The inserted disc is already blank"
 
 #. globals
@@ -641,23 +644,23 @@ msgid ""
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 
-#: ../xfburn/xfburn-main.c:312
-msgid "No drives are currently available!"
+#: ../xfburn/xfburn-main.c:258
+msgid "No drives are currently available"
 msgstr ""
 
-#: ../xfburn/xfburn-main.c:314
+#: ../xfburn/xfburn-main.c:260
 msgid ""
-"Maybe there is a mounted media in the drive?\n"
+"Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no media is inserted, check that you have r/w access to the drive with "
-"the current user."
+"If no disc is in the drive, check that you have read and write access to the "
+"drive with the current user."
 msgstr ""
 
-#: ../xfburn/xfburn-main.c:373
+#: ../xfburn/xfburn-main.c:319
 #, c-format
-msgid "Image file '%s' does not exist!"
+msgid "Image file '%s' does not exist"
 msgstr ""
 
 #: ../xfburn/xfburn-main-window.c:102
@@ -808,12 +811,17 @@ msgstr "Show mode selection"
 msgid "Determine whether the close button is visible"
 msgstr ""
 
+#: ../xfburn/xfburn-perform-burn.c:97
+#, fuzzy
+msgid "Closed disc with data detected. Need blank or appendable media"
+msgstr "Closed media with data detected. Need blank or appendable media"
+
 #: ../xfburn/xfburn-perform-burn.c:141
 #, fuzzy, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Burning image..."
 
-#: ../xfburn/xfburn-perform-burn.c:145 ../xfburn/xfburn-perform-burn.c:209
+#: ../xfburn/xfburn-perform-burn.c:145 ../xfburn/xfburn-perform-burn.c:210
 msgid "Burning composition..."
 msgstr "Burning composition..."
 
@@ -821,55 +829,61 @@ msgstr "Burning composition..."
 msgid "standby"
 msgstr ""
 
-#: ../xfburn/xfburn-perform-burn.c:186
-msgid "active"
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:189
+#: ../xfburn/xfburn-perform-burn.c:187
 msgid "ending"
 msgstr ""
 
-#: ../xfburn/xfburn-perform-burn.c:192
+#: ../xfburn/xfburn-perform-burn.c:190
 msgid "failing"
 msgstr ""
 
-#: ../xfburn/xfburn-perform-burn.c:195
+#: ../xfburn/xfburn-perform-burn.c:193
 msgid "unused"
 msgstr ""
 
-#: ../xfburn/xfburn-perform-burn.c:198
+#: ../xfburn/xfburn-perform-burn.c:196
 msgid "abandoned"
 msgstr ""
 
-#: ../xfburn/xfburn-perform-burn.c:201
+#: ../xfburn/xfburn-perform-burn.c:199
 msgid "ended"
 msgstr ""
 
-#: ../xfburn/xfburn-perform-burn.c:204
+#: ../xfburn/xfburn-perform-burn.c:202
 msgid "aborted"
 msgstr ""
 
-#: ../xfburn/xfburn-perform-burn.c:214
+#: ../xfburn/xfburn-perform-burn.c:205 ../xfburn/xfburn-progress-dialog.c:193
+#: ../xfburn/xfburn-progress-dialog.c:210
+#: ../xfburn/xfburn-progress-dialog.c:220
+#: ../xfburn/xfburn-progress-dialog.c:295
+#: ../xfburn/xfburn-progress-dialog.c:410
+#: ../xfburn/xfburn-progress-dialog.c:434
+#: ../xfburn/xfburn-progress-dialog.c:458
+msgid "no info"
+msgstr "no info"
+
+#: ../xfburn/xfburn-perform-burn.c:215
 msgid "Writing Lead-In..."
 msgstr "Writing Lead-In..."
 
-#: ../xfburn/xfburn-perform-burn.c:220
+#: ../xfburn/xfburn-perform-burn.c:221
 msgid "Writing Lead-Out..."
 msgstr "Writing Lead-Out..."
 
-#: ../xfburn/xfburn-perform-burn.c:226
+#: ../xfburn/xfburn-perform-burn.c:227
 msgid "Writing pregap..."
 msgstr "Writing pregap..."
 
-#: ../xfburn/xfburn-perform-burn.c:232
+#: ../xfburn/xfburn-perform-burn.c:233
 msgid "Closing track..."
 msgstr "Closing track..."
 
-#: ../xfburn/xfburn-perform-burn.c:238
+#: ../xfburn/xfburn-perform-burn.c:239
 msgid "Closing session..."
 msgstr "Closing session..."
 
-#: ../xfburn/xfburn-perform-burn.c:244
+#: ../xfburn/xfburn-perform-burn.c:245
 #, fuzzy
 msgid "Formatting..."
 msgstr "Writing CD..."
@@ -961,16 +975,6 @@ msgstr "Initialising..."
 #: ../xfburn/xfburn-progress-dialog.c:190
 msgid "Estimated writing speed:"
 msgstr "Estimated writing speed:"
-
-#: ../xfburn/xfburn-progress-dialog.c:193
-#: ../xfburn/xfburn-progress-dialog.c:210
-#: ../xfburn/xfburn-progress-dialog.c:220
-#: ../xfburn/xfburn-progress-dialog.c:295
-#: ../xfburn/xfburn-progress-dialog.c:410
-#: ../xfburn/xfburn-progress-dialog.c:434
-#: ../xfburn/xfburn-progress-dialog.c:458
-msgid "no info"
-msgstr "no info"
 
 #: ../xfburn/xfburn-progress-dialog.c:204
 msgid "FIFO buffer:"
@@ -1090,7 +1094,7 @@ msgid "Cannot burn audio onto a DVD"
 msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:1199
-msgid "You can only have a maximum of 99 tracks!"
+msgid "You can only have a maximum of 99 tracks"
 msgstr ""
 
 #: ../xfburn/xfburn-disc-usage.c:148
@@ -1099,67 +1103,40 @@ msgstr ""
 
 #: ../xfburn/xfburn-disc-usage.c:185
 #, fuzzy
-msgid "You are trying to burn more data than the disc can contain !"
+msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "You are trying to burn more data than the disc can contain !"
 
-#: ../xfburn/xfburn-transcoder-basic.c:179
+#: ../xfburn/xfburn-transcoder-basic.c:183
 #, c-format
 msgid "File %s does not have a .wav extension"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-basic.c:184
+#: ../xfburn/xfburn-transcoder-basic.c:188
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-basic.c:190
+#: ../xfburn/xfburn-transcoder-basic.c:194
 #, fuzzy, c-format
 msgid "Could not stat %s: %s"
 msgstr "Could not create destination ISO file: %s"
 
-#: ../xfburn/xfburn-transcoder-basic.c:225
-#, c-format
-msgid "Could not open %s!"
-msgstr ""
+#: ../xfburn/xfburn-transcoder-basic.c:229
+#, fuzzy, c-format
+msgid "Could not open %s"
+msgstr "Could not create destination ISO file: %s"
 
-#: ../xfburn/xfburn-transcoder-basic.c:306
+#: ../xfburn/xfburn-transcoder-basic.c:310
 #, c-format
 msgid "Could not open %s: %s"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-basic.c:317
-#: ../xfburn/xfburn-transcoder-gst.c:758
-#, fuzzy, c-format
-msgid "Could not create burn_source from %s!"
-msgstr "Could not create ISO source structure"
-
-#: ../xfburn/xfburn-transcoder-basic.c:325
-#: ../xfburn/xfburn-transcoder-gst.c:776
-#, fuzzy, c-format
-msgid "Could not add source to track %s!"
-msgstr "Could not create ISO source structure"
-
-#: ../xfburn/xfburn-transcoder-gst.c:275
-#, c-format
-msgid "A pipeline element could not be created"
-msgstr ""
-
-#: ../xfburn/xfburn-transcoder-gst.c:282
-#, c-format
-msgid "The debug identity element could not be created"
-msgstr ""
-
-#: ../xfburn/xfburn-transcoder-gst.c:317
-#, c-format
-msgid "Could not setup filtered gstreamer link"
-msgstr ""
-
-#: ../xfburn/xfburn-transcoder-gst.c:697
+#: ../xfburn/xfburn-transcoder-gst.c:703
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:706
+#: ../xfburn/xfburn-transcoder-gst.c:712
 #, c-format
 msgid ""
 "%s\n"
@@ -1168,12 +1145,12 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:820
+#: ../xfburn/xfburn-transcoder-gst.c:828
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:854
+#: ../xfburn/xfburn-transcoder-gst.c:863
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr ""
@@ -1192,6 +1169,17 @@ msgstr "Burn CD Image"
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD and DVD burning application"
+
+#~ msgid "No media detected in drive"
+#~ msgstr "No media detected in drive"
+
+#, fuzzy
+#~ msgid "Could not create burn_source from %s!"
+#~ msgstr "Could not create ISO source structure"
+
+#, fuzzy
+#~ msgid "Could not add source to track %s!"
+#~ msgstr "Could not create ISO source structure"
 
 #~ msgid "Import"
 #~ msgstr "Import"

@@ -103,7 +103,7 @@ cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output, gpoint
     GtkWidget *dialog_confirm;
 
     dialog_confirm = gtk_message_dialog_new (GTK_WINDOW (dialog), GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                             GTK_MESSAGE_INFO, GTK_BUTTONS_OK, _("Please insert a recordable medium."));
+                                             GTK_MESSAGE_INFO, GTK_BUTTONS_OK, _("Please insert a recordable disc."));
     gtk_dialog_run (GTK_DIALOG (dialog_confirm));
     gtk_widget_destroy (dialog_confirm);
     xfburn_progress_dialog_write_input (XFBURN_PROGRESS_DIALOG (dialog), "\n");

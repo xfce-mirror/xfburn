@@ -32,8 +32,8 @@
 
 #define CDRDAO_LENGTH "length"
 #define CDRDAO_FLUSHING "Flushing cache..."
-#define CDRDAO_INSERT "Please insert a recordable medium and hit enter"
-#define CDRDAO_INSERT_AGAIN "Cannot determine disk status - hit enter to try again."
+#define CDRDAO_INSERT "Please insert a recordable disc and hit enter"
+#define CDRDAO_INSERT_AGAIN "Cannot determine disc status - hit enter to try again."
 #define CDRDAO_DONE "CD copying finished successfully."
 
 /* in reality CDR_1X_SPEED is 176.4 (see libburn.h:1577), but that shouldn't matter */
@@ -50,7 +50,8 @@
 
 /* DEBUG ONLY */
 
-/* do not use the real device, instead make everything write to /dev/null */
+/* do not use the real device, instead make everything write to /dev/null
+ * Note that this special device only supports one track!  */
 //#define DEBUG_NULL_DEVICE
 
 #endif

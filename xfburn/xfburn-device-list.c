@@ -347,7 +347,7 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
   }
 
   /* we need to try to grab several times, because
-   * the drive might be busy detecting the media */
+   * the drive might be busy detecting the disc */
   for (i=0; i<max_checks; i++) {
     ret = burn_drive_scan_and_grab (drive_info, drive_addr, 0);
     if (ret > 0)
