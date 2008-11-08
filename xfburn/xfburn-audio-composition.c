@@ -555,7 +555,7 @@ cb_begin_burn (XfburnDiscUsage * du, XfburnAudioComposition * dc)
     dialog = xfburn_burn_audio_cd_composition_dialog_new (src);
     break;
   case DVD_DISC:
-    xfce_err (_("Cannot burn audio onto a DVD"));
+    xfce_err (_("Cannot burn audio onto a DVD."));
     return;
     break;
   }
@@ -1100,7 +1100,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     
     gdk_threads_enter ();
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
-      xfce_err (_("A file with the same name is already present in the composition"));
+      xfce_err (_("A file with the same name is already present in the composition."));
 
       gtk_tree_path_free (tree_path);
       gdk_threads_leave ();
@@ -1196,7 +1196,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
       if (priv->n_tracks == 99) {
         gdk_threads_enter ();
-        xfce_err (_("You can only have a maximum of 99 tracks"));
+        xfce_err (_("You can only have a maximum of 99 tracks."));
         gdk_threads_leave ();
         return FALSE;
       }
@@ -1416,7 +1416,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
     
       /*
       if (file_exists_on_same_level (model, path_level, FALSE, name)) {
-        xfce_warn (_("A file named \"%s\" already exists in this directory, the file hasn't been added"), name);
+        xfce_warn (_("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
         goto cleanup;
       }
       */

@@ -357,7 +357,7 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
   }
 
   if (ret <= 0) {
-    g_warning ("Unable to grab drive at path '%s' (ret=%d).", device->addr, ret);
+    g_warning ("Unable to grab the drive at path '%s' (ret=%d).", device->addr, ret);
     return FALSE;
   }
 

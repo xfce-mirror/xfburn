@@ -661,7 +661,7 @@ cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
   GtkTreePath *real_path;
 
   if (strlen (newtext) == 0) {
-    xfce_err (_("You must give a name to the file"));
+    xfce_err (_("You must give a name to the file."));
     return;
   }
     
@@ -670,7 +670,7 @@ cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
 
   if (gtk_tree_model_get_iter (model, &iter, real_path)) {
     if (file_exists_on_same_level (model, real_path, TRUE, newtext)) {
-      xfce_err (_("A file with the same name is already present in the composition"));
+      xfce_err (_("A file with the same name is already present in the composition."));
     }
     else {
       gtk_tree_store_set (GTK_TREE_STORE (model), &iter, DATA_COMPOSITION_COLUMN_CONTENT, newtext, -1);
@@ -1065,7 +1065,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
     
     gdk_threads_enter ();
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
-      xfce_err (_("A file with the same name is already present in the composition"));
+      xfce_err (_("A file with the same name is already present in the composition."));
 
       gtk_tree_path_free (tree_path);
       gdk_threads_leave ();
@@ -1386,7 +1386,7 @@ copy_entry_to (XfburnDataComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, G
       }
     
       if (file_exists_on_same_level (model, path_level, FALSE, name)) {
-        xfce_warn (_("A file named \"%s\" already exists in this directory, the file hasn't been added"), name);
+        xfce_warn (_("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
         goto cleanup;
       }
       

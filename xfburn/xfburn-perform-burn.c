@@ -91,16 +91,16 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   while ((disc_state = burn_disc_get_status(drive)) == BURN_DISC_UNREADY)
     usleep(100001);
   if (disc_state == BURN_DISC_APPENDABLE && write_mode != WRITE_MODE_TAO) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot append data to multisession disc in this write mode (use TAO instead)"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot append data to multisession disc in this write mode (use TAO instead)."));
     return;
   } else if (disc_state != BURN_DISC_BLANK) {
     if (disc_state == BURN_DISC_FULL)
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Closed disc with data detected. Need blank or appendable disc"));
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Closed disc with data detected, a blank or appendable disc is needed."));
     else if (disc_state == BURN_DISC_EMPTY) 
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No disc detected in drive"));
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No disc detected in drive."));
     else {
       g_warning ("Cannot recognize state of drive and disc: disc_state = %d", disc_state);
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize state of drive and disc"));
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize the state of the drive and disc."));
     }
     return;
   }
@@ -109,7 +109,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
   disc_size = burn_disc_available_space (drive, burn_options);
   if (disc_size < ((off_t)total_sectors * sector_size)) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("There is not enough space available on the inserted disc"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("There is not enough space available on the inserted disc."));
     return;
   }
 

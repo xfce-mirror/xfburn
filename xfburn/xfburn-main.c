@@ -316,7 +316,7 @@ main (int argc, char **argv)
       if (g_file_test (image_fullname, G_FILE_TEST_EXISTS))
 	xfburn_burn_image_dialog_set_filechooser_name (dialog, image_fullname);
       else
-	xfce_err ( g_strdup_printf ( _("Image file '%s' does not exist"), image_fullname));
+	xfce_err ( g_strdup_printf ( _("Image file '%s' does not exist."), image_fullname));
     }
 
     gtk_dialog_run (GTK_DIALOG (dialog));

@@ -295,7 +295,8 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 
   ret = burn_disc_add_session (disc, session, BURN_POS_END);
   if (ret == 0) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to create disc object"));
+    g_warning ("Unable to create disc object");
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("An error occurred in the burn backend"));
     goto end;
   }
 
@@ -308,14 +309,14 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 	fixed_size = stbuf.st_size;
 
   if (fixed_size == 0) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to determine image size"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to determine image size."));
     goto end;
   }
 
   data_src = burn_fd_source_new(fd, -1, fixed_size);
 
   if (data_src == NULL) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot open image"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot open image."));
     goto end;
   }
 
@@ -323,14 +324,15 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   burn_source_free (data_src);
 
   if (burn_track_set_source (track, fifo_src) != BURN_SOURCE_OK) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot attach source object to track object"));
+    g_warning ("Cannot attach source object to track object");
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("An error occurred in the burn backend"));
     goto end;
   }
   
   burn_session_add_track (session, track, BURN_POS_END);
 
   if (!xfburn_device_grab (params->device, &drive_info)) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab drive"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab the drive."));
 
     goto end;
   }
@@ -339,7 +341,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 
   burn_options = make_burn_options (params, drive);
   if (burn_options == NULL) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Burn mode is not currently implemented"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Burn mode is not currently implemented."));
     goto cleanup;
   }
 
@@ -540,7 +542,7 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
   }
 
   if (!xfburn_device_grab (device, &drive_info)) {
-    burn_image_dialog_error (dialog, _("Unable to grab drive"));
+    burn_image_dialog_error (dialog, _("Unable to grab the drive."));
 
     g_free (params->iso_path);
     g_free (params);

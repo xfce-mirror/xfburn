@@ -534,12 +534,14 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
 
   ret = burn_disc_add_session (disc, session, BURN_POS_END);
   if (ret == 0) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to create disc object"));
+    g_warning ("Unable to create disc object");
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("An error occurred in the burn backend."));
     return;
   }
 
   if (burn_track_set_source (track, params->src) != BURN_SOURCE_OK) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot attach source object to track object"));
+    g_warning ("Cannot attach source object to track object");
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("An error occurred in the burn backend."));
     return;
   }
   
@@ -566,7 +568,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
     burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96R);
     break;
   default:
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The write mode is not supported currently"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The write mode is not supported currently."));
     return;
   }
 
@@ -614,7 +616,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   track = burn_track_create ();
 
   if (!xfburn_device_grab (params->device, &drive_info)) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab drive"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab the drive."));
   } else {
     thread_burn_prep_and_burn (params, drive_info->drive, disc, session, track);
     burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
@@ -658,7 +660,7 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
 
     if (iso_image_create_burn_source (priv->image, write_opts, &src) < 0) {
       /* could not create source */
-      xfce_err (_("Could not create ISO source structure"));
+      xfce_err (_("Could not create ISO source structure."));
       return;
     }
 

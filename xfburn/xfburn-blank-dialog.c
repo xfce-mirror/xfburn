@@ -347,7 +347,7 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
   case BURN_DISC_BLANK:
     if (params->blank_mode == XFBURN_BLANK_FAST || params->blank_mode == XFBURN_BLANK_COMPLETE) {
       /* blanking can only be performed on blank discs, format and deformat are allowed to be blank ones */
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The inserted disc is already blank"));
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The inserted disc is already blank."));
       return FALSE;
     }
   case BURN_DISC_FULL:
@@ -356,16 +356,16 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
     xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Ready"));
     break;
   case BURN_DISC_EMPTY:
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No disc detected in the drive"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No disc detected in the drive."));
     return FALSE;
   default:
-    //xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize drive and media state"));
+    //xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize drive and disc state."));
     //return FALSE;
     break;
   }
 
   if (!burn_disc_erasable (drive)) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Media is not erasable"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Disc is not erasable."));
     return FALSE;
   }
 
@@ -458,7 +458,7 @@ thread_blank (ThreadBlankParams * params)
   }
 
   if (!xfburn_device_grab (params->device, &drive_info)) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (params->dialog_progress), _("Unable to grab drive"));
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (params->dialog_progress), _("Unable to grab the drive."));
   } else {
     thread_blank_perform_blank (params, drive_info);
     burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
