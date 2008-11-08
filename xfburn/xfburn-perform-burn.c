@@ -46,8 +46,8 @@ xfburn_perform_burn_init (struct burn_disc **disc, struct burn_session **session
 
 void
 xfburn_perform_burn_write (GtkWidget *dialog_progress, 
-                           struct burn_drive *drive, XfburnWriteMode write_mode, struct burn_write_opts *burn_options, struct burn_disc *disc,
-                           struct burn_source **fifos, int *track_sectors)
+                           struct burn_drive *drive, XfburnWriteMode write_mode, struct burn_write_opts *burn_options, int sector_size, 
+                           struct burn_disc *disc, struct burn_source **fifos, int *track_sectors)
 {
   enum burn_disc_status disc_state;
   enum burn_drive_status status;
@@ -69,6 +69,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   gdouble percent = 0.0;
   int dbg_no;
   int total_sectors, burned_sectors;
+  off_t disc_size;
 
   while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
     usleep(100001);
@@ -94,7 +95,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     return;
   } else if (disc_state != BURN_DISC_BLANK) {
     if (disc_state == BURN_DISC_FULL)
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Closed disc with data detected. Need blank or appendable media"));
+      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Closed disc with data detected. Need blank or appendable disc"));
     else if (disc_state == BURN_DISC_EMPTY) 
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No disc detected in drive"));
     else {
@@ -104,14 +105,20 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     return;
   }
 
+  total_sectors = burn_disc_get_sectors (disc);
+
+  disc_size = burn_disc_available_space (drive, burn_options);
+  if (disc_size < ((off_t)total_sectors * sector_size)) {
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("There is not enough space available on the inserted disc"));
+    return;
+  }
+
   /* set us up to receive fatal errors */
   ret = burn_msgs_set_severities ("ALL", "NEVER", "libburn");
 
   if (ret <= 0)
     g_warning ("Failed to set libburn message severities, burn errors might not get detected!");
  
-  total_sectors = burn_disc_get_sectors (disc);
-
   /* Install the default libburn abort signal handler.
    * Hopefully this means the drive won't be left in a burning state if we catch a signal */
   burn_set_signal_handling ("xfburn", NULL, 0);

@@ -582,7 +582,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
     fifos[0] = params->src;
   }
 
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, fifos, sectors);
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, DATA_BYTES_PER_SECTOR, disc, fifos, sectors);
 
   if (params->is_fifo) {
     g_free (fifos);

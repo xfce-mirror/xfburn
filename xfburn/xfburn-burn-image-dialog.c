@@ -161,7 +161,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   priv->image_label = gtk_label_new ("");
   gtk_widget_show (priv->image_label);
   gtk_box_pack_start (GTK_BOX (box), priv->image_label, FALSE, FALSE, 0);
-  update_image_label (priv->chooser_image, obj);
+  update_image_label (GTK_FILE_CHOOSER (priv->chooser_image), obj);
   g_signal_connect (G_OBJECT (priv->chooser_image), "selection-changed", G_CALLBACK (update_image_label), obj);
     
   /* devices list */
@@ -354,7 +354,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   fifos = g_new(struct burn_source *,1);
   fifos[0] = fifo_src;
 
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, disc, fifos, sectors);
+  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, DATA_BYTES_PER_SECTOR, disc, fifos, sectors);
 
   g_free (fifos);
 
