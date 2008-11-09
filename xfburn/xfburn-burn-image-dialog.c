@@ -282,13 +282,6 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 
   gint ret;
 
-  if (!burn_initialize ()) {
-    g_critical ("Unable to initialize libburn");
-    g_free (params->iso_path);
-    g_free (params);
-    return;
-  }
-
   disc = burn_disc_create ();
   session = burn_session_create ();
   track = burn_track_create ();
@@ -369,7 +362,6 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   burn_track_free (track);
   burn_session_free (session);
   burn_disc_free (disc);
-  burn_finish ();
 
   g_free (params->iso_path);
   g_free (params);
@@ -536,17 +528,11 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
   params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
   params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
   
-  if (!burn_initialize ()) {
-    g_critical ("Unable to initialize libburn");
-    return;
-  }
-
   if (!xfburn_device_grab (device, &drive_info)) {
     burn_image_dialog_error (dialog, _("Unable to grab the drive."));
 
     g_free (params->iso_path);
     g_free (params);
-    burn_finish ();
     return;
   }
 
@@ -561,7 +547,6 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
   }
 
   burn_drive_release (drive_info->drive, 0);
-  burn_finish ();
 
   priv->params = params;
 

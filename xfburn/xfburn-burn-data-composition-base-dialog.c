@@ -604,13 +604,6 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
 
   struct burn_drive_info *drive_info = NULL;
 
-  if (!burn_initialize ()) {
-    g_critical ("Unable to initialize libburn");
-    burn_source_free (params->src);
-    g_free (params);
-    return;
-  }
-
   disc = burn_disc_create ();
   session = burn_session_create ();
   track = burn_track_create ();
@@ -626,8 +619,6 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   burn_session_free (session);
   burn_disc_free (disc);
   burn_source_free (params->src);
-
-  burn_finish ();
 
   g_free (params);
 }

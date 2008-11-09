@@ -170,11 +170,6 @@ get_libburn_device_list ()
 
   *profile_name = '\0';
 
-  if (!burn_initialize ()) {
-    g_critical ("Unable to initialize libburn");
-    return -1;
-  }
-    
   while ((ret = burn_drive_scan (&drives, &n_drives)) == 0)
     usleep (1002);
 
@@ -207,7 +202,6 @@ get_libburn_device_list ()
   }
 
   burn_drive_info_free (drives);
-  burn_finish ();
 
   if (n_drives > 0 && n_burners < 1)
     g_warning ("There are %d drives in your system, but none are capable of burning!", n_drives);
@@ -280,11 +274,6 @@ xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info)
 #endif
   }
 
-  if (!burn_initialize ()) {
-    g_critical ("Unable to initialize libburn");
-    return FALSE;
-  }
-
   if (!xfburn_device_grab (device, &drive_info)) {
     ret = FALSE;
     g_warning ("Couldn't grab drive in order to update speed list.");
@@ -299,8 +288,6 @@ xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info)
 
     burn_drive_release (drive_info->drive, 0);
   }
-
-  burn_finish ();
 
   return ret;
 }

@@ -184,10 +184,19 @@ main (int argc, char **argv)
     }
   }
 
+  if (!burn_initialize ()) {
+    g_critical ("Unable to initialize libburn");
+    xfce_err (_("Unable to initialize the burning backend."));
+    gdk_threads_leave ();
+    return EXIT_FAILURE;
+  }
+
 #ifdef HAVE_GST
   if (!gst_init_check (&argc, &argv, &error)) {
-    g_warning ("Failed to initialize gstreamer!");
-    /* later make this a soft failure, and just disable gstreamer functionality */
+    g_critical ("Failed to initialize gstreamer!");
+    /* I'm assuming this pretty much never happens. If it does, we should make this a soft failure and fall back to basic */
+    gdk_threads_leave ();
+    burn_finish ();
     return EXIT_FAILURE;
   }
 #endif
@@ -222,6 +231,8 @@ main (int argc, char **argv)
 
   if (transcoder_selection && strcmp (transcoder_selection, "list") == 0) {
     print_available_transcoders();
+    gdk_threads_leave ();
+    burn_finish ();
     return EXIT_SUCCESS;
   }
 
@@ -243,6 +254,7 @@ main (int argc, char **argv)
     thunar_vfs_shutdown ();
 #endif
     gdk_threads_leave ();
+    burn_finish ();
     return EXIT_FAILURE;
   }
 #endif
@@ -262,6 +274,9 @@ main (int argc, char **argv)
     gtk_widget_destroy (GTK_WIDGET (dialog));
   }
 
+
+  /*----------Transcoder--------------------------------------------------*/
+
   if (!transcoder_selection) {
     /* select the best available */
 #ifdef HAVE_GST
@@ -280,11 +295,13 @@ main (int argc, char **argv)
              transcoder_selection);
     g_print ("\n");
     print_available_transcoders();
+    gdk_threads_leave ();
+    burn_finish ();
     return EXIT_FAILURE;
   }
 
   if (!xfburn_transcoder_is_initialized (transcoder, &error)) {
-    g_warning ("Failed to initialize %s transcoder: %s\n\t(falling back to basic implementation)", xfburn_transcoder_get_name (transcoder), error->message);
+    xfce_warn (_("Failed to initialize %s transcoder: %s\n\t(falling back to basic implementation)"), xfburn_transcoder_get_name (transcoder), error->message);
     g_error_free (error);
     g_object_unref (transcoder);
     transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
@@ -293,7 +310,8 @@ main (int argc, char **argv)
   }
   xfburn_transcoder_set_global (transcoder);
 
-  /* evaluate parsed command line options */
+
+  /*----------evaluate parsed command line action options-------------------------*/
 
   if (show_main) {
     xfburn_main_enter_main_window ();
@@ -330,7 +348,8 @@ main (int argc, char **argv)
   }
 
 
-  /* main window */
+  /*----------main window--------------------------------------------------*/
+
   if (!other_action || show_main) {
     xfburn_main_enter_main_window ();
     mainwin = xfburn_main_window_new ();
@@ -344,9 +363,12 @@ main (int argc, char **argv)
       xfburn_main_window_add_audio_composition_with_files (XFBURN_MAIN_WINDOW (mainwin), argc-1, argv+1);
   }
 
+
   gtk_main ();
 
-  /* shutdown */
+
+  /*----------shutdown--------------------------------------------------*/
+
   g_object_unref (transcoder);
 
 #ifdef HAVE_HAL
@@ -361,6 +383,8 @@ main (int argc, char **argv)
   xfburn_settings_free ();
   
   xfburn_device_list_free ();
+
+  burn_finish ();
 
   gdk_threads_leave ();
 

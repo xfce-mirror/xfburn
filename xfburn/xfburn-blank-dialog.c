@@ -451,12 +451,6 @@ thread_blank (ThreadBlankParams * params)
 {
   struct burn_drive_info *drive_info = NULL;
 
-  if (!burn_initialize ()) {
-    g_critical ("Unable to initialize libburn");
-    g_free (params);
-    return;
-  }
-
   if (!xfburn_device_grab (params->device, &drive_info)) {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (params->dialog_progress), _("Unable to grab the drive."));
   } else {
@@ -464,7 +458,6 @@ thread_blank (ThreadBlankParams * params)
     burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
   }
  
-  burn_finish ();
   g_free (params);
 
 #ifdef HAVE_HAL
