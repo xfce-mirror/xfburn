@@ -625,9 +625,10 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   burn_track_free (track);
   burn_session_free (session);
   burn_disc_free (disc);
+  burn_source_free (params->src);
+
   burn_finish ();
 
-  burn_source_free (params->src);
   g_free (params);
 }
 

@@ -114,7 +114,11 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   }
 
   /* set us up to receive fatal errors */
+#ifdef DEBUG_LIBBURN
+  ret = burn_msgs_set_severities ("NEVER", "DEBUG", "libburn");
+#else
   ret = burn_msgs_set_severities ("ALL", "NEVER", "libburn");
+#endif
 
   if (ret <= 0)
     g_warning ("Failed to set libburn message severities, burn errors might not get detected!");
