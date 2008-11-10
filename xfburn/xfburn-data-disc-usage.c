@@ -35,7 +35,6 @@
 
 /* prototypes */
 static void xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass *);
-static void xfburn_data_disc_usage_init (XfburnDataDiscUsage *);
 
 static gboolean can_burn (XfburnDiscUsage *disc_usage);
 static void xfburn_data_disc_usage_update_size (XfburnDiscUsage * disc_usage);
@@ -82,7 +81,7 @@ xfburn_data_disc_usage_get_type (void)
       NULL,
       sizeof (XfburnDataDiscUsage),
       0,
-      (GInstanceInitFunc) xfburn_data_disc_usage_init,
+      NULL,
       NULL
     };
 
@@ -95,26 +94,17 @@ xfburn_data_disc_usage_get_type (void)
 static void
 xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass * klass)
 {
-  GObjectClass *gobject_class;
   XfburnDiscUsageClass *pklass;
 
   parent_class = g_type_class_peek_parent (klass);
 
-  gobject_class = G_OBJECT_CLASS (klass);
-
   /* override virtual methods */
   pklass = XFBURN_DISC_USAGE_CLASS(klass);
   
-  pklass->labels = parent_class->labels = datadiscsizes;
-  pklass->num_labels = G_N_ELEMENTS (datadiscsizes);
-  pklass->update_size = parent_class->update_size = xfburn_data_disc_usage_update_size;
-  pklass->can_burn = parent_class->can_burn = can_burn;
-}
-
-static void
-xfburn_data_disc_usage_init (XfburnDataDiscUsage * disc_usage)
-{
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR ( XFBURN_DISC_USAGE (disc_usage)->progress_bar), "0 B");
+  pklass->labels      = datadiscsizes;
+  pklass->num_labels  = G_N_ELEMENTS (datadiscsizes);
+  pklass->update_size = xfburn_data_disc_usage_update_size;
+  pklass->can_burn    = can_burn;
 }
 
 /* internals */

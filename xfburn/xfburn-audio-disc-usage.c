@@ -35,7 +35,6 @@
 
 /* prototypes */
 static void xfburn_audio_disc_usage_class_init (XfburnAudioDiscUsageClass *);
-static void xfburn_audio_disc_usage_init (XfburnAudioDiscUsage *);
 
 static gboolean can_burn (XfburnDiscUsage *disc_usage);
 static void xfburn_audio_disc_usage_update_size (XfburnDiscUsage * disc_usage);
@@ -78,7 +77,7 @@ xfburn_audio_disc_usage_get_type (void)
       NULL,
       sizeof (XfburnAudioDiscUsage),
       0,
-      (GInstanceInitFunc) xfburn_audio_disc_usage_init,
+      NULL,
       NULL
     };
 
@@ -91,28 +90,17 @@ xfburn_audio_disc_usage_get_type (void)
 static void
 xfburn_audio_disc_usage_class_init (XfburnAudioDiscUsageClass * klass)
 {
-  GObjectClass *gobject_class;
   XfburnDiscUsageClass *pklass;
 
   parent_class = g_type_class_peek_parent (klass);
 
-  gobject_class = G_OBJECT_CLASS (klass);
-
   /* override virtual methods */
   pklass = XFBURN_DISC_USAGE_CLASS(klass);
   
-  pklass->labels = parent_class->labels = audiodiscsizes;
-  pklass->num_labels = parent_class->num_labels = G_N_ELEMENTS (audiodiscsizes);
-  //DBG ("labels @ %p", pklass);
-  //DBG ("num_labels @ %p = %d", &(pklass->num_labels), G_N_ELEMENTS (audiodiscsizes));
-  pklass->update_size = parent_class->update_size = xfburn_audio_disc_usage_update_size;
-  pklass->can_burn = parent_class->can_burn = can_burn;
-}
-
-static void
-xfburn_audio_disc_usage_init (XfburnAudioDiscUsage * disc_usage)
-{
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR ( XFBURN_DISC_USAGE (disc_usage)->progress_bar), "0 B");
+  pklass->labels      = audiodiscsizes;
+  pklass->num_labels  = G_N_ELEMENTS (audiodiscsizes);
+  pklass->update_size = xfburn_audio_disc_usage_update_size;
+  pklass->can_burn    = can_burn;
 }
 
 /* internals */

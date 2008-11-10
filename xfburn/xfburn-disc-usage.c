@@ -1,6 +1,7 @@
 /* $Id$ */
 /*
  * Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
+ * Copyright (c) 2008      David Mohr <david@mcbf.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,6 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
+
+/* 
+ * This is an instantiable base class for the disc usage.
+ *
+ * Every composition type should extend it, but for testing it can be used
+ * as is.
  */
 
 #ifdef	HAVE_CONFIG_H
@@ -35,7 +43,8 @@
 
 /* prototypes */
 static void xfburn_disc_usage_class_init (XfburnDiscUsageClass *);
-static void xfburn_disc_usage_init (XfburnDiscUsage *);
+//static void xfburn_disc_usage_init (XfburnDiscUsage *);
+static GObject * xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 
 static void update_size_default (XfburnDiscUsage *du);
 static gboolean can_burn_default (XfburnDiscUsage *du);
@@ -48,21 +57,22 @@ static GtkHBoxClass *parent_class = NULL;
 #define DEFAULT_DISK_SIZE_LABEL 2
 #define LAST_CD_LABEL 4
 
+/* the sizes here are pretty arbitrary and are only for testing */
 XfburnDiscLabels testdiscsizes[] = {
   {
-  1, "200MB CD"},
+  1, "size 1"},
   {
-  100, "650MB CD"},
+  100, "size 100"},
   {
-  10000, "700MB CD"},
+  10000, "size 10000"},
   {
-  1000000, "800MB CD"},
+  1000000, "size 1m"},
   {
-  100000000, "900MB CD"},
+  100000000, "size 100m"},
   {
-  G_GINT64_CONSTANT (10000000000), "4.3GB DVD"},
+  G_GINT64_CONSTANT (10000000000), "10^10"},
   {
-  G_GINT64_CONSTANT (1000000000000), "7.9GB DVD"},
+  G_GINT64_CONSTANT (1000000000000), "10^12"},
 };
 
 /* signals */
@@ -94,7 +104,7 @@ xfburn_disc_usage_get_type (void)
       NULL,
       sizeof (XfburnDiscUsage),
       0,
-      (GInstanceInitFunc) xfburn_disc_usage_init,
+      NULL, //(GInstanceInitFunc) xfburn_disc_usage_init,
       NULL
     };
 
@@ -112,6 +122,7 @@ xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass)
   parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
+  gobject_class->constructor = xfburn_disc_usage_constructor;
 
   signals[BEGIN_BURN] = g_signal_new ("begin-burn", G_TYPE_FROM_CLASS (gobject_class), G_SIGNAL_ACTION,
                                       G_STRUCT_OFFSET (XfburnDiscUsageClass, begin_burn),
@@ -124,11 +135,17 @@ xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass)
   klass->num_labels = G_N_ELEMENTS (testdiscsizes);
 }
 
-static void
-xfburn_disc_usage_init (XfburnDiscUsage * disc_usage)
+static GObject *
+xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
 {
-  XfburnDiscUsageClass *class = XFBURN_DISC_USAGE_GET_CLASS (disc_usage);
+  GObject *gobj;
+  XfburnDiscUsage *disc_usage;
+  XfburnDiscUsageClass *class;
   int i;
+
+  gobj = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_properties, construct_properties);
+  disc_usage = XFBURN_DISC_USAGE (gobj);
+  class = XFBURN_DISC_USAGE_GET_CLASS (disc_usage);
 
   disc_usage->size = 0;
 
@@ -153,6 +170,9 @@ xfburn_disc_usage_init (XfburnDiscUsage * disc_usage)
   
   g_signal_connect (G_OBJECT (disc_usage->combo), "changed", G_CALLBACK (cb_combo_changed), disc_usage);
 
+  class->update_size (disc_usage);
+
+  return gobj;
 }
 
 /* internals */
