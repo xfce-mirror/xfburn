@@ -69,6 +69,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   int dbg_no;
   int total_sectors, burned_sectors;
   off_t disc_size;
+  gboolean stopping = FALSE;
 
   while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
     usleep(100001);
@@ -129,16 +130,28 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   burned_sectors = 0;
   while ((status = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
     time_t time_now = time (NULL);
+    gboolean stop;
     dbg_no++;
 
     switch (status) {
     case BURN_DRIVE_WRITING:
+      /* Is this really thread safe? It would seems so, but it's not verified */
+      g_object_get (G_OBJECT (dialog_progress), "stop", &stop, NULL);
+
+      if (stop && !stopping) {
+        DBG ("cancelling...");
+        burn_drive_cancel (drive);
+        stopping = TRUE;
+      }
+
       if (progress.sectors > 0 && progress.sector >= 0) {
         gdouble cur_speed = 0.0;
         int fifo_status, fifo_size, fifo_free;
         char *fifo_text;
 
-        if (progress.tracks > 1) {
+        if (stopping) {
+          xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_STOPPING);
+        } else if (progress.tracks > 1) {
           gchar *str;
 
           str = g_strdup_printf (_("Burning track %2d/%d..."), progress.track+1, progress.tracks);
@@ -256,8 +269,12 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     usleep (500000);
   }
 
-  /* default message in case the burn failed but we didn't get any burn_msgs */
-  strcpy (msg_text, "unknown");
+  /* no error message by default */
+#ifdef DEBUG_LIBBURN
+  strcpy (msg_text, _("see console"));
+#else
+  msg_text[0] = '\0';
+#endif
 
   /* check the libburn message queue for errors */
   while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
@@ -281,9 +298,15 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     final_message = g_strdup (_("Done"));
     final_status = XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED;
   } else {
-    final_status_text  = _("Failure");
+    if (stopping)
+      final_status_text  = _("User Aborted");
+    else
+      final_status_text  = _("Failure");
     final_status = XFBURN_PROGRESS_DIALOG_STATUS_FAILED;
-    final_message = g_strdup_printf ("%s: %s", final_status_text, msg_text);
+    if (msg_text[0] != '\0')
+      final_message = g_strdup_printf ("%s: %s", final_status_text, msg_text);
+    else
+      final_message = g_strdup (final_status_text);
   }
 
   /* output it to console in case the program crashes */

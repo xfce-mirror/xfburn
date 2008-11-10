@@ -55,6 +55,6 @@
  * Note that this special device only supports one track!  */
 //#define DEBUG_NULL_DEVICE
 
-#define DEBUG_LIBBURN 1
+//#define DEBUG_LIBBURN 1
 
 #endif

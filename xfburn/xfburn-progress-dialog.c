@@ -46,6 +46,7 @@ typedef struct
   int fd_stdin;
   gboolean animate;
   int ani_index;
+  gboolean stop;
   
   GtkWidget *label_action;
   GtkWidget *progress_bar;
@@ -68,7 +69,9 @@ static void xfburn_progress_dialog_set_property (GObject * object, guint prop_id
 
 static void set_writing_speed (XfburnProgressDialog * dialog, gfloat speed);
 static void set_action_text (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status, const gchar * text);
+static void stop (XfburnProgressDialog *dialog);
 
+static void cb_button_stop_clicked (GtkWidget *button, XfburnProgressDialog * dialog);
 static void cb_button_close_clicked (GtkWidget *button, XfburnProgressDialog * dialog);
 static gboolean cb_dialog_delete (XfburnProgressDialog * dialog, GdkEvent * event, XfburnProgressDialogPrivate * priv);
 
@@ -78,6 +81,7 @@ enum
   PROP_STATUS,
   PROP_SHOW_BUFFERS,
   PROP_ANIMATE,
+  PROP_STOP,
 };
 
 static gchar animation[] = { '-', '\\', '|', '/' };
@@ -154,6 +158,9 @@ xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
   g_object_class_install_property (object_class, PROP_ANIMATE,
                                    g_param_spec_boolean ("animate", "Show an animation", "Show an animation",
                                                          FALSE, G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_STOP,
+                                   g_param_spec_boolean ("stop", "Stop the burning process", "Stop the burning process",
+                                                         FALSE, G_PARAM_READABLE));
 }
 
 static void
@@ -225,6 +232,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   priv->button_stop = gtk_button_new_from_stock (GTK_STOCK_STOP);
   gtk_widget_show (priv->button_stop);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), priv->button_stop, GTK_RESPONSE_CANCEL);
+  g_signal_connect (G_OBJECT (priv->button_stop), "clicked", G_CALLBACK (cb_button_stop_clicked), obj);
 
   priv->button_close = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
   gtk_widget_show (priv->button_close);
@@ -255,6 +263,9 @@ xfburn_progress_dialog_get_property (GObject * object, guint prop_id, GValue * v
   case PROP_ANIMATE:
     g_value_set_boolean (value, priv->animate);
     break;
+  case PROP_STOP:
+    g_value_set_boolean (value, priv->stop);
+    break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     break;
@@ -278,6 +289,10 @@ xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GVal
     priv->animate = g_value_get_boolean (value);
     priv->ani_index = 0;
     //DBG ("Set animate to %d", priv->animate);
+    break;
+  case PROP_STOP:
+    DBG ("this should not be allowed...");
+    priv->stop = g_value_get_boolean (value);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -317,7 +332,22 @@ set_action_text (XfburnProgressDialog * dialog, XfburnProgressDialogStatus statu
   g_free (temp);  
 }
 
+static void
+stop (XfburnProgressDialog *dialog)
+{
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+
+  //DBG ("setting stop");
+  priv->stop = TRUE;
+}
+
 /* callbacks */
+static void
+cb_button_stop_clicked (GtkWidget *button, XfburnProgressDialog *dialog)
+{
+  stop (dialog);
+}
+
 static void
 cb_button_close_clicked (GtkWidget *button, XfburnProgressDialog *dialog)
 {
@@ -330,6 +360,8 @@ cb_dialog_delete (XfburnProgressDialog * dialog, GdkEvent * event, XfburnProgres
 {
   xfburn_main_leave_window ();
   if (!GTK_WIDGET_SENSITIVE (priv->button_close)) {
+    /* burn process is still ongoing, we need to stop first */
+    stop (dialog);
     gtk_dialog_response (GTK_DIALOG (dialog), GTK_RESPONSE_CANCEL);
     return TRUE;
   } else {
@@ -491,6 +523,9 @@ xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog,
   if (fraction >= 1.0) {
     fraction = 1.0;
     switch (priv->status) {
+    case XFBURN_PROGRESS_DIALOG_STATUS_STOPPING:
+      text = g_strdup (_("Aborted"));
+      break;
     case XFBURN_PROGRESS_DIALOG_STATUS_RUNNING:
       text = g_strdup ("100%");
       break;
@@ -536,7 +571,11 @@ xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgress
 
   priv->status = status;
 
-  if (status != XFBURN_PROGRESS_DIALOG_STATUS_RUNNING) {
+  if (status == XFBURN_PROGRESS_DIALOG_STATUS_STOPPING) {
+    gdk_threads_enter ();
+    set_action_text (dialog, status, _("Aborting..."));
+    gdk_threads_leave ();
+  } else if (status != XFBURN_PROGRESS_DIALOG_STATUS_RUNNING) {
     gdk_threads_enter ();
     gtk_widget_set_sensitive (priv->button_stop, FALSE);
     gtk_widget_set_sensitive (priv->button_close, TRUE);
