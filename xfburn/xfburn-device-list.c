@@ -43,6 +43,7 @@ static enum burn_disc_status disc_status;
 static int profile_no = 0;
 static char profile_name[80];
 static int is_erasable = 0;
+static char * libburn_msg_prefix = "libburn-";
 
 #define CAN_BURN_CONDITION device->cdr || device->cdrw || device->dvdr || device->dvdram
 #define DEVICE_INFO_PRINTF "%s can burn: %d [cdr: %d, cdrw: %d, dvdr: %d, dvdram: %d]", device->name, CAN_BURN_CONDITION, device->cdr, device->cdrw, device->dvdr, device->dvdram
@@ -193,7 +194,7 @@ get_libburn_device_list ()
     ret = burn_drive_get_adr (&(drives[i]), device->addr);
     if (ret <= 0)
       g_error ("Unable to get drive %s address (ret=%d). Please report this problem to libburn-hackers@pykix.org", device->name, ret);
-    DBG ("device->addr = %s", device->addr);
+    //DBG ("device->addr = %s", device->addr);
 
     if (can_burn) {
       devices = g_list_append (devices, device);
@@ -252,7 +253,7 @@ xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info)
 #endif
 
   if (G_UNLIKELY (device == NULL)) {
-    DBG ("Hmm, why can we refresh when there is no drive?");
+    g_warning ("Hmm, why can we refresh when there is no drive?");
     return FALSE;
   }
 
@@ -286,7 +287,7 @@ xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info)
     if (get_speed_info)
       refresh_speed_list (device, drive_info);
 
-    burn_drive_release (drive_info->drive, 0);
+    xfburn_device_release (drive_info, 0);
   }
 
   return ret;
@@ -299,6 +300,8 @@ xfburn_device_list_init ()
   XfburnHalManager *halman = xfburn_hal_manager_get_instance ();
 #endif
   int n_drives;
+
+  xfburn_device_list_console_messages ();
 
   if (devices) {
     g_list_foreach (devices, (GFunc) device_content_free, NULL);
@@ -337,6 +340,7 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
    * the drive might be busy detecting the disc */
   for (i=0; i<max_checks; i++) {
     ret = burn_drive_scan_and_grab (drive_info, drive_addr, 0);
+    //DBG ("grab (%s)-> %d", drive_addr, ret);
     if (ret > 0)
       break;
     else if  (i < (max_checks-1))
@@ -349,6 +353,32 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
   }
 
   return TRUE;
+}
+
+gboolean 
+xfburn_device_release (struct burn_drive_info *drive_info, gboolean eject)
+{
+  int ret;
+
+  burn_drive_release (drive_info->drive, eject);
+
+  ret = burn_drive_info_forget (drive_info, 0);
+
+  if (G_LIKELY (ret == 1))
+    return TRUE;
+  else if (ret == 2) {
+    DBG ("drive_info already forgotten");
+    return TRUE;
+  } else if (ret == 0) {
+    DBG ("could not forget drive_info");
+    return FALSE;
+  } else if (ret < 0) {
+    DBG ("some other failure while forgetting drive_info");
+    return FALSE;
+  }
+
+  /* we should never reach this */
+  return FALSE;
 }
 
 void
@@ -386,4 +416,37 @@ xfburn_device_list_free ()
   
   devices = NULL;
 }
+
+void
+xfburn_device_list_capture_messages ()
+{
+  int ret;
+
+#ifdef DEBUG_LIBBURN 
+  ret = burn_msgs_set_severities ("NEVER", "DEBUG", libburn_msg_prefix);
+#else
+  ret = burn_msgs_set_severities ("ALL", "NEVER", libburn_msg_prefix);
+#endif
+
+  if (ret <= 0)
+    g_warning ("Failed to set libburn message severities, burn errors might not get detected");
+}
+
+void
+xfburn_device_list_console_messages ()
+{
+  int ret;
+
+#ifdef DEBUG_LIBBURN 
+  ret = burn_msgs_set_severities ("NEVER", "DEBUG", libburn_msg_prefix);
+#else
+  ret = burn_msgs_set_severities ("NEVER", "FATAL", libburn_msg_prefix);
+#endif
+
+  if (ret <= 0)
+    g_warning ("Failed to set libburn message severities");
+ 
+}
+
+
 

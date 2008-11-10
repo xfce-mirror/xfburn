@@ -29,6 +29,7 @@
 #include "xfburn-utils.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-device-box.h"
+#include "xfburn-device-list.h"
 #include "xfburn-stock.h"
 #include "xfburn-hal-manager.h"
 #include "xfburn-main.h"
@@ -455,7 +456,7 @@ thread_blank (ThreadBlankParams * params)
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (params->dialog_progress), _("Unable to grab the drive."));
   } else {
     thread_blank_perform_blank (params, drive_info);
-    burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
+    xfburn_device_release (drive_info, params->eject);
   }
  
   g_free (params);

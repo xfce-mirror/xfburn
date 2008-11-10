@@ -64,7 +64,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   char severity[80];
   const char *final_status_text;
   XfburnProgressDialogStatus final_status;
-  const char *final_message;
+  char *final_message;
   gdouble percent = 0.0;
   int dbg_no;
   int total_sectors, burned_sectors;
@@ -112,16 +112,9 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     return;
   }
 
-  /* set us up to receive fatal errors */
-#ifdef DEBUG_LIBBURN
-  ret = burn_msgs_set_severities ("NEVER", "DEBUG", "libburn");
-#else
-  ret = burn_msgs_set_severities ("ALL", "NEVER", "libburn");
-#endif
+  /* set us up to receive libburn errors */
+  xfburn_device_list_capture_messages ();
 
-  if (ret <= 0)
-    g_warning ("Failed to set libburn message severities, burn errors might not get detected!");
- 
   /* Install the default libburn abort signal handler.
    * Hopefully this means the drive won't be left in a burning state if we catch a signal */
   burn_set_signal_handling ("xfburn", NULL, 0);
@@ -278,6 +271,8 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
   if (ret < 0)
     g_warning ("Fatal error while trying to retrieve libburn message!");
+
+  xfburn_device_list_console_messages ();
 
   percent = (gdouble) progress.buffer_min_fill / (gdouble) progress.buffer_capacity;
   xfburn_progress_dialog_set_buffer_bar_min_fill (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);

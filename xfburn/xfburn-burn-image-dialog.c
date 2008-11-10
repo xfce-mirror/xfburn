@@ -357,7 +357,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
   burn_write_opts_free (burn_options);
 
  cleanup:
-  burn_drive_release (drive, params->eject ? 1 : 0);
+  xfburn_device_release (drive_info, params->eject);
  end:
   burn_track_free (track);
   burn_session_free (session);
@@ -546,7 +546,7 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
     burn_write_opts_free (burn_options);
   }
 
-  burn_drive_release (drive_info->drive, 0);
+  xfburn_device_release (drive_info, 0);
 
   priv->params = params;
 

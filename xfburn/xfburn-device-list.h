@@ -88,6 +88,10 @@ void xfburn_device_list_free ();
 
 gboolean xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info);
 gboolean xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info);
+gboolean xfburn_device_release (struct burn_drive_info *drive_info, gboolean eject);
 void xfburn_device_free (XfburnDevice * device);
+
+void xfburn_device_list_capture_messages ();
+void xfburn_device_list_console_messages ();
 
 #endif /* __XFBURN_DEVICE_LIST_H__ */

@@ -612,7 +612,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab the drive."));
   } else {
     thread_burn_prep_and_burn (params, drive_info->drive, disc, session, track);
-    burn_drive_release (drive_info->drive, params->eject ? 1 : 0);
+    xfburn_device_release (drive_info, params->eject);
   }
 
   burn_track_free (track);
