@@ -58,7 +58,6 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   int factor;
 
   int ret;
-  gboolean error = FALSE;
   int error_code;
   char msg_text[BURN_MSGS_MESSAGE_LEN];
   int os_errno;
@@ -267,7 +266,6 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   /* check the libburn message queue for errors */
   while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
     g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
-    error = TRUE;
   }
 #ifdef DEBUG
   while ((ret = burn_msgs_obtain ("ALL", &error_code, msg_text, &os_errno, severity)) == 1) {
@@ -281,7 +279,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   percent = (gdouble) progress.buffer_min_fill / (gdouble) progress.buffer_capacity;
   xfburn_progress_dialog_set_buffer_bar_min_fill (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 
-  if (G_LIKELY (!error)) {
+  if (G_LIKELY (burn_drive_wrote_well (drive))) {
     final_message = _("Done");
     final_status = XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED;
   } else {
