@@ -263,6 +263,9 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     usleep (500000);
   }
 
+  /* default message in case the burn failed but we didn't get any burn_msgs */
+  strcpy (msg_text, "unknown");
+
   /* check the libburn message queue for errors */
   while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
     g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
@@ -280,7 +283,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   xfburn_progress_dialog_set_buffer_bar_min_fill (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 
   if (G_LIKELY (burn_drive_wrote_well (drive))) {
-    final_message = _("Done");
+    final_message = g_strdup (_("Done"));
     final_status = XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED;
   } else {
     final_status_text  = _("Failure");
@@ -295,4 +298,5 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   burn_set_signal_handling (NULL, NULL, 1);
 
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), final_status, final_message);
+  g_free (final_message);
 }
