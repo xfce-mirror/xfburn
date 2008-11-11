@@ -50,10 +50,14 @@
 #include "xfburn-transcoder-gst.h"
 
 
-/* Set DEBUG_GST > 0 to be able to inspect the data just before it gets to the fd,
-                     and to get a lot more gst debugging output.
-   Set DEBUG_GST > 1 to also get a lot of gst state change messages */
-#define DEBUG_GST 1
+/* 
+ * Don't define it for no debugging output (don't set to 0, I was too lazy to clean up).
+ * Set DEBUG_GST >= 1 to be able to inspect the data just before it gets to the fd,
+ *                    and to get a lot more gst debugging output.
+ * Set DEBUG_GST >= 2 to also get notification of all bus messages.
+ * Set DEBUG_GST >= 3 to also get a lot of gst state change messages.
+ */
+#define DEBUG_GST 2
 
 
 /** Prototypes **/
@@ -78,6 +82,9 @@ static void finish (XfburnTranscoder *trans);
 static gboolean free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
 static gboolean is_initialized (XfburnTranscoder *trans, GError **error);
+
+static gboolean signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res);
+static gboolean query_and_signal_duration (XfburnTranscoderGst *trans);
 
 /* gstreamer support functions */
 static gboolean bus_call (GstBus *bus, GstMessage *msg, gpointer data);
@@ -126,12 +133,12 @@ typedef struct {
 
 /* constants */
 
-#define SIGNAL_WAIT_TIMEOUT_MICROS 5000000
+#define SIGNAL_WAIT_TIMEOUT_MICROS 1500000
 
 #define SIGNAL_SEND_ITERATIONS 10
 /* SIGNAL_SEND_TIMEOUT_MICROS is the total time,
  * which gets divided into SIGNAL_SEND_ITERATIONS probes */
-#define SIGNAL_SEND_TIMEOUT_MICROS 5000000
+#define SIGNAL_SEND_TIMEOUT_MICROS 1500000
 
 #define STATE_CHANGE_TIMEOUT_NANOS 750000000
 
@@ -353,13 +360,14 @@ delete_pipeline (XfburnTranscoderGst *trans)
   priv->pipeline = NULL;
 }
 
-static void recreate_pipeline (XfburnTranscoderGst *trans)
+static void 
+recreate_pipeline (XfburnTranscoderGst *trans)
 {
   delete_pipeline (trans);
   create_pipeline (trans);
 }
 
-#if DEBUG_GST > 1
+#if DEBUG_GST > 2
 static gchar *
 state_to_str (GstState st)
 {
@@ -379,6 +387,10 @@ state_to_str (GstState st)
 }
 #endif
 
+/*
+ * this function expects the result to be in priv->is_audio, 
+ * dbg_res is only for debugging output
+ */
 static gboolean
 signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res)
 {
@@ -419,10 +431,41 @@ signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res)
 
 
 static gboolean
+query_and_signal_duration (XfburnTranscoderGst *trans)
+{
+  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
+  GstFormat fmt;
+  //guint secs;
+
+  fmt = GST_FORMAT_TIME;
+  if (!gst_element_query_duration (priv->pipeline, &fmt, &priv->duration)) {
+    return FALSE;
+  }
+
+  //secs = priv->duration / 1000000000;
+  if (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE) {
+    DBG ("Failed to set state!");
+    recreate_pipeline (trans);
+  }
+
+  priv->is_audio = TRUE;
+  priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
+
+  signal_identification_done (trans, "is audio");
+
+  return TRUE;
+}
+
+
+static gboolean
 bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 {
   XfburnTranscoderGst *trans = XFBURN_TRANSCODER_GST (data);
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
+
+#if DEBUG_GST > 1
+  DBG ("msg from %-20s: %s (%d) ", GST_OBJECT_NAME (GST_MESSAGE_SRC (msg)), GST_MESSAGE_TYPE_NAME (msg), GST_MESSAGE_TYPE (msg));
+#endif
 
   switch (GST_MESSAGE_TYPE (msg)) {
 
@@ -450,6 +493,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 
       break;
     }
+
     case GST_MESSAGE_ERROR: {
       gchar  *debug;
       GError *error;
@@ -480,12 +524,13 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START:
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODING:
+          g_error ("Gstreamer error while transcoding: %s", error->message);
           g_error_free (error);
-          g_error ("Gstreamer error while transcoding!");
           break;
       }
       break;
     }
+
     case GST_MESSAGE_APPLICATION: {
       if (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE) {
         DBG ("Failed to reset GST state.");
@@ -495,13 +540,14 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 
       break;
     }
+
     case GST_MESSAGE_STATE_CHANGED: {
       GstState state, pending, old_state;
 
       gst_message_parse_state_changed (msg, &old_state, &state, &pending);
 
 /* this is very verbose */
-#if DEBUG_GST > 1
+#if DEBUG_GST > 2
       if (pending != 0)
         DBG ("%-15s\tNew state is %s, old is %s and pending is %s", GST_OBJECT_NAME (GST_MESSAGE_SRC (msg)), state_to_str(state), state_to_str(old_state), state_to_str(pending));
       else
@@ -512,6 +558,13 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
         case XFBURN_TRANSCODER_GST_STATE_IDLE:
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODING:
         case XFBURN_TRANSCODER_GST_STATE_IDENTIFYING:
+          if (!query_and_signal_duration (trans)) {
+            /* this is expected to fail a couple of times,
+             * so no output unless we're in debug mode */
+#if DEBUG_GST > 1
+            DBG ("could not query stream duration (expected failure)");
+#endif
+          }
           break;
 
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START:
@@ -537,9 +590,8 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 
       break;
     }
+
     case GST_MESSAGE_DURATION: {
-      GstFormat fmt;
-      guint secs;
 
       switch (priv->state) {
         case XFBURN_TRANSCODER_GST_STATE_IDLE:
@@ -548,32 +600,22 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
           break;
 
         case XFBURN_TRANSCODER_GST_STATE_IDENTIFYING:
-          fmt = GST_FORMAT_TIME;
-          if (!gst_element_query_duration (priv->pipeline, &fmt, &priv->duration)) {
+          if (!query_and_signal_duration (trans)) {
+            /* this is expected to work, because we got the duration message on the bus */
 #if DEBUG_GST > 0
             DBG ("Could not query stream length!");
 #endif
             return TRUE;
           }
-
-          secs = priv->duration / 1000000000;
-          if (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE) {
-            DBG ("Failed to set state!");
-            recreate_pipeline (trans);
-          }
-
-          priv->is_audio = TRUE;
-          priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
-
-          signal_identification_done (trans, "is audio");
           break;
       } /* switch of priv->state */
 
       break;
     }
+
     default:
-#if DEBUG_GST > 0
-      DBG ("bus call: %s (%d) ", GST_MESSAGE_TYPE_NAME (msg), GST_MESSAGE_TYPE (msg));
+#if DEBUG_GST == 1
+      DBG ("msg from %-20s: %s (%d) ", GST_OBJECT_NAME (GST_MESSAGE_SRC (msg)), GST_MESSAGE_TYPE_NAME (msg), GST_MESSAGE_TYPE (msg));
 #endif
       break;
   }
