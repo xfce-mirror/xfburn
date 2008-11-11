@@ -57,6 +57,10 @@
 static gboolean parse_option (const gchar *option_name, const gchar *value,
 			      gpointer data, GError **error);
 
+/* globals */
+static int window_counter = 0;
+
+
 /* command line parameters */
 static gchar *image_filename = NULL;
 static gboolean show_version = FALSE;
@@ -66,6 +70,7 @@ static gboolean add_data_composition = FALSE;
 static gboolean add_audio_composition = FALSE;
 static gboolean blank = FALSE;
 static gchar *transcoder_selection = NULL;
+static gchar *initial_dir = NULL;
 
 static GOptionEntry optionentries[] = {
   { "burn-image", 'i', G_OPTION_FLAG_OPTIONAL_ARG /* || G_OPTION_FLAG_FILENAME */, G_OPTION_ARG_CALLBACK, &parse_option, 
@@ -78,6 +83,10 @@ static GOptionEntry optionentries[] = {
     "Start an audio composition. Optionally followed by files/directories to be added to the composition.", NULL },
   { "transcoder", 't', 0, G_OPTION_ARG_STRING, &transcoder_selection, 
     "Select the transcoder. Run with --transcoder=list to see the available ones.", NULL },
+/* not yet implemented 
+  { "directory", 'D', G_OPTION_FLAG_OPTIONAL_ARG , G_OPTION_ARG_CALLBACK, &parse_option, 
+    "Open the burn image dialog. The filename of the image can optionally be specified as a parameter", NULL },
+*/
   { "version", 'V', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_version, 
     "Display program version and exit", NULL },
   { "main", 'm', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_main, 
@@ -85,31 +94,8 @@ static GOptionEntry optionentries[] = {
   { NULL, ' ', 0, 0, NULL, NULL, NULL }
 };
 
-static gboolean parse_option (const gchar *option_name, const gchar *value,
-                              gpointer data, GError **error)
-{
-  if (strcmp (option_name, "-i") == 0 || strcmp (option_name, "--burn-image") == 0) {
-    if (value == NULL)
-      image_filename = "";
-    else
-      image_filename = g_strdup(value);
-  } else if (strcmp (option_name, "-d") == 0 || strcmp (option_name, "--data-composition") == 0) {
-    add_data_composition = TRUE;
-  } else if (strcmp (option_name, "-a") == 0 || strcmp (option_name, "--audio-composition") == 0) {
-    add_audio_composition = TRUE;
-  } else if (strcmp (option_name, "-b") == 0 || strcmp (option_name, "--blank") == 0) {
-    blank = TRUE;
-  } else {
-    g_set_error (error, 0, G_OPTION_ERROR_FAILED, "Invalid command line option. Please report, this is a bug.");
-    return FALSE;
-  }
 
-  return TRUE;
-}
-
-/* globals */
-static int window_counter = 0;
-
+/* public functions */
 void
 xfburn_main_enter_window ()
 {
@@ -135,6 +121,45 @@ xfburn_main_enter_main_window ()
 {
   /* mark the window_counter as having a main window */
   window_counter = -42;
+}
+
+const gchar *
+xfburn_main_get_initial_dir ()
+{
+  if (initial_dir)
+    return initial_dir;
+  else
+    return xfce_get_homedir ();
+}
+
+
+/* private functions */
+
+static gboolean parse_option (const gchar *option_name, const gchar *value,
+                              gpointer data, GError **error)
+{
+  if (strcmp (option_name, "-i") == 0 || strcmp (option_name, "--burn-image") == 0) {
+    if (value == NULL)
+      image_filename = "";
+    else
+      image_filename = g_strdup(value);
+  } else if (strcmp (option_name, "-d") == 0 || strcmp (option_name, "--data-composition") == 0) {
+    add_data_composition = TRUE;
+  } else if (strcmp (option_name, "-a") == 0 || strcmp (option_name, "--audio-composition") == 0) {
+    add_audio_composition = TRUE;
+  } else if (strcmp (option_name, "-b") == 0 || strcmp (option_name, "--blank") == 0) {
+    blank = TRUE;
+  } else if (strcmp (option_name, "-D") == 0 || strcmp (option_name, "--directory") == 0) {
+    if (value == NULL)
+      initial_dir = g_get_current_dir ();
+    else
+      initial_dir = g_strdup(value);
+  } else {
+    g_set_error (error, 0, G_OPTION_ERROR_FAILED, "Invalid command line option. Please report, this is a bug.");
+    return FALSE;
+  }
+
+  return TRUE;
 }
 
 

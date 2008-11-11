@@ -28,6 +28,7 @@ G_BEGIN_DECLS
 
 void xfburn_main_leave_window ();
 void xfburn_main_enter_window ();
+const gchar *xfburn_main_get_initial_dir ();
 
 G_END_DECLS
 #endif /* __XFBURN_MAIN_H__ */

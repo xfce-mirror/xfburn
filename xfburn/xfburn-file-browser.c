@@ -32,6 +32,7 @@
 #include "xfburn-file-browser.h"
 #include "xfburn-fs-browser.h"
 #include "xfburn-directory-browser.h"
+#include "xfburn-main.h"
 
 #define XFBURN_FILE_BROWSER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_FILE_BROWSER, XfburnFileBrowserPrivate))
 
