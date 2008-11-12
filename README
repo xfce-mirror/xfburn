@@ -23,9 +23,9 @@ Currently implemented is:
   - Burn to CD or DVD
   - Create ISO images
  * Burn ISO images
+ * Create and burn audio CDs
  * Blank discs
  * Format and deformat DVD-RW discs
- * Audio CD support
 
 ------------------------
 Audio CD support details
@@ -36,6 +36,7 @@ wav data, and gst (gstreamer), which can decode any audio file for which a
 gstreamer plugin is present.
 
 The basic transcoder:
+- - - - - - - - - - -
 Only CD-quality, uncompressed (PCM) Wave files can be added to an audio
 compilation. Use i.e.  your favority audio player with a disc writer output
 mode / plugin to decompress your existing audio files. If .wav files are added
@@ -45,6 +46,7 @@ not likely to work on big-endian machines like PowerPC). It does not require
 any external libraries
 
 The gst transcoder:
+- - - - - - - - - -
 Based on the gstreamer library, it can decode pretty much any audio content,
 as long as you have the appropriate plugins installed. Note that by default
 most distributions do _not_ install these plugins. But a simple search for
