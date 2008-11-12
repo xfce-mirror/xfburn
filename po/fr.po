@@ -4,14 +4,15 @@
 # Jean-François Wauthy <pollux@xfce.org>, 2005.
 # Etienne Collet <xanaxlnx@gmail.com>, 2005.
 # Maximilian Schleiss <maximilian@xfce.org>, 2007.
+# Mike Massonnet <mmassonnet@xfce.org>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-12 11:31-0700\n"
-"PO-Revision-Date: 2008-07-14 17:40+0100\n"
-"Last-Translator: Maximilian Schleiss <maximilian@xfce.org>\n"
+"PO-Revision-Date: 2008-11-12 22:16+0100\n"
+"Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -55,9 +56,8 @@ msgid "Default value for eject checkbox"
 msgstr "Valeur par défaut pour la case à cocher d'éjection"
 
 #: ../xfburn/xfburn-blank-dialog.c:198
-#, fuzzy
 msgid "Blank Disc"
-msgstr "Effacement du disque..."
+msgstr "Nettoyage de disque"
 
 #: ../xfburn/xfburn-blank-dialog.c:210
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:191
@@ -92,7 +92,7 @@ msgstr "E_jecter le disque"
 
 #: ../xfburn/xfburn-blank-dialog.c:245
 msgid "_Blank"
-msgstr "_Effacer"
+msgstr "_Nettoyer"
 
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:351
@@ -144,7 +144,7 @@ msgstr "Impossible de joindre le lecteur"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:179
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
 msgid "Burn Composition"
-msgstr "Graver la Composition"
+msgstr "Graver la composition"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:202
 msgid "Composition name"
@@ -180,7 +180,7 @@ msgstr "Créer uniquement l'_ISO"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:279
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:259
 msgid "_Burn Composition"
-msgstr "_Graver une Composition"
+msgstr "_Graver la composition"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:460
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:378
@@ -265,13 +265,12 @@ msgid "Burning image..."
 msgstr "Gravure de l'image..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:422
-#, fuzzy
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
 "select an image to burn</span>"
 msgstr ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded"
-"\">Veuillez sélectionner une image à graver !</span>"
+"\">Veuillez sélectionner une image à graver</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:460
 msgid ""
@@ -589,9 +588,8 @@ msgid "Drive can't burn on the inserted disc"
 msgstr "Le périphérique ne parvient pas à graver le disque inséré !"
 
 #: ../xfburn/xfburn-device-box.c:615 ../xfburn/xfburn-device-box.c:661
-#, fuzzy
 msgid "Drive is empty"
-msgstr "Le périphérique est vide !"
+msgstr "Le périphérique est vide"
 
 #: ../xfburn/xfburn-device-box.c:618
 msgid "Sorry, multisession is not yet supported"
@@ -710,13 +708,12 @@ msgstr "_Fichier"
 #. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
-#, fuzzy
 msgid "New data composition"
 msgstr "Composition de données"
 
 #: ../xfburn/xfburn-main-window.c:106
 msgid "New audio composition"
-msgstr "Nouvelle composition audio"
+msgstr "Composition audio"
 
 #. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
@@ -778,7 +775,7 @@ msgstr "Afficher des informations à propos de Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:127
 msgid "Blank CD-RW"
-msgstr "Formater le CD-RW"
+msgstr "Nettoyer un disque"
 
 #: ../xfburn/xfburn-main-window.c:129
 msgid "Copy Data CD"
@@ -787,7 +784,7 @@ msgstr "Copier un CD de données"
 #. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
-msgstr "Graver l'image"
+msgstr "Graver une image"
 
 #. {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
 #. G_CALLBACK (action_copy_dvd),},
@@ -1006,28 +1003,28 @@ msgstr "Noeud"
 
 #: ../xfburn/xfburn-preferences-dialog.c:277
 msgid "Write CD-R"
-msgstr "Graver le CD-R"
+msgstr "CD-R"
 
 #: ../xfburn/xfburn-preferences-dialog.c:279
 msgid "Write CD-RW"
-msgstr "Graver le CD-RW"
+msgstr "CD-RW"
 
 #: ../xfburn/xfburn-preferences-dialog.c:282
 msgid "Write DVD-R"
-msgstr "Graver le DVD-R"
+msgstr "DVD-R"
 
 #: ../xfburn/xfburn-preferences-dialog.c:285
 msgid "Write DVD-RAM"
-msgstr "Graver le DVD-RAM"
+msgstr "DVD-RAM"
 
 #: ../xfburn/xfburn-preferences-dialog.c:293
 msgid "Sc_an for devices"
-msgstr "Re_cherche des périphériques"
+msgstr "Re_chercher les périphériques"
 
 #. below the device list
 #: ../xfburn/xfburn-preferences-dialog.c:319
 msgid "Show _empty speed list bug warning"
-msgstr "Affich_er une liste rapide de bogues d'avertissement vide"
+msgstr "Affich_er une alerte si la liste des vitesses est vide"
 
 #: ../xfburn/xfburn-preferences-dialog.c:327
 msgid "FIFO buffer size (in kb)"
@@ -1087,79 +1084,72 @@ msgstr "Bienvenue dans Xfburn !"
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:141
 msgid "<big>Burn _Image</big>"
-msgstr "<big>Graver l'_image</big>"
+msgstr "<big>_Graver une image</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:141
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr "Graver une compilation prête, par exemple un fichier .ISO"
+msgstr "Graver une compilation prête,\np.e. un fichier .ISO"
 
 #: ../xfburn/xfburn-welcome-tab.c:146
 msgid "<big>New _Data Composition</big>"
-msgstr "<big>Nouvelle composition _données</big>"
+msgstr "<big>_Composition de données</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:146
 msgid "Create a new data disc with the files of your choosing"
-msgstr "Créer un nouveau disque de données avec les fichiers de votre choix"
+msgstr "Créer un nouveau disque de données\navec les fichiers de votre choix"
 
 #: ../xfburn/xfburn-welcome-tab.c:151
 msgid "<big>_Blank Disc</big>"
-msgstr "<big>_Disque vierge</big>"
+msgstr "<big>_Nettoyer un disque</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:151
 msgid "Prepare the rewriteable disc for a new burn"
-msgstr "Préparer le disque réinscriptible pour une nouvelle gravure"
+msgstr "Préparer un disque réinscriptible\npour une nouvelle gravure"
 
 #: ../xfburn/xfburn-welcome-tab.c:156
-#, fuzzy
 msgid "<big>_Audio CD</big>"
-msgstr "<big>_Disque vierge</big>"
+msgstr "<big>_Disque audio</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:156
 msgid "Audio CD playable in regular stereos"
-msgstr ""
+msgstr "Graver une compilation Audio\nlisible par les chaînes Hi-Fi"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-audio-composition.c:207
-#, fuzzy
 msgid "Rename Artist"
-msgstr "Renommer"
+msgstr "Renommer l'artiste"
 
 #: ../xfburn/xfburn-audio-composition.c:207
-#, fuzzy
 msgid "Rename the artist of the selected file"
-msgstr "Renommer le fichier sélectionné"
+msgstr "Renommer l'artiste du fichier sélectionné"
 
 #: ../xfburn/xfburn-audio-composition.c:209
-#, fuzzy
 msgid "Rename Title"
-msgstr "Renommer"
+msgstr "Renommer le titre"
 
 #: ../xfburn/xfburn-audio-composition.c:209
-#, fuzzy
 msgid "Rename the title of the selected file"
-msgstr "Renommer le fichier sélectionné"
+msgstr "Renommer le titre du fichier sélectionné"
 
 #: ../xfburn/xfburn-audio-composition.c:380
 msgid "Pos"
-msgstr ""
+msgstr "Pos"
 
 #: ../xfburn/xfburn-audio-composition.c:382
 msgid "Length"
-msgstr ""
+msgstr "Durée"
 
 #: ../xfburn/xfburn-audio-composition.c:388
 msgid "Artist"
-msgstr ""
+msgstr "Artiste"
 
 #: ../xfburn/xfburn-audio-composition.c:401
-#, fuzzy
 msgid "Title"
-msgstr "Fichier"
+msgstr "Titre"
 
 #: ../xfburn/xfburn-audio-composition.c:412
-#, fuzzy
 msgid "Filename"
-msgstr "Renommer"
+msgstr "Fichier"
 
 #: ../xfburn/xfburn-audio-composition.c:558
 msgid "Cannot burn audio onto a DVD."
@@ -1175,7 +1165,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-disc-usage.c:165
 msgid "Proceed to Burn"
-msgstr ""
+msgstr "Lancer la gravure"
 
 #: ../xfburn/xfburn-disc-usage.c:205
 #, fuzzy
@@ -1221,6 +1211,10 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"%s\n\n"
+"\tn'est pas un fichier audio :\n"
+"\n"
+"%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:870
 #, c-format
