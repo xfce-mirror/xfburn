@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-12 11:31-0700\n"
+"POT-Creation-Date: 2008-11-12 14:57-0700\n"
 "PO-Revision-Date: 2008-11-04 22:26+0100\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
@@ -1024,7 +1024,8 @@ msgstr "Gailuak _atzeman"
 
 #. below the device list
 #: ../xfburn/xfburn-preferences-dialog.c:319
-msgid "Show _empty speed list bug warning"
+#, fuzzy
+msgid "Show warning on_empty speed list"
 msgstr "Ikusi abiadura zerrenda programa-errore abisua"
 
 #: ../xfburn/xfburn-preferences-dialog.c:327
@@ -1207,10 +1208,11 @@ msgid "Gstreamer did not like this file (detection timed out)"
 msgstr "Gstramer-ek ez du gustuko fitxategi hau (antzematea denboraz-kanpo)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:754
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s\n"
-"\tis not an audio file:\n"
+"\n"
+"is not an audio file:\n"
 "\n"
 "%s"
 msgstr ""

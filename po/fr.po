@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-12 11:31-0700\n"
+"POT-Creation-Date: 2008-11-12 14:57-0700\n"
 "PO-Revision-Date: 2008-11-12 22:37+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -828,7 +828,8 @@ msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:98
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr "Disque avec données détecté, un disque vierge ou multisession est requis."
+msgstr ""
+"Disque avec données détecté, un disque vierge ou multisession est requis."
 
 #: ../xfburn/xfburn-perform-burn.c:100
 msgid "No disc detected in drive."
@@ -994,7 +995,8 @@ msgstr "Re_chercher les périphériques"
 
 #. below the device list
 #: ../xfburn/xfburn-preferences-dialog.c:319
-msgid "Show _empty speed list bug warning"
+#, fuzzy
+msgid "Show warning on_empty speed list"
 msgstr "Affich_er une alerte si la liste des vitesses est vide"
 
 #: ../xfburn/xfburn-preferences-dialog.c:327
@@ -1059,7 +1061,9 @@ msgstr "<big>_Graver une image</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:141
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr "Graver une compilation prête,\np.e. un fichier .ISO"
+msgstr ""
+"Graver une compilation prête,\n"
+"p.e. un fichier .ISO"
 
 #: ../xfburn/xfburn-welcome-tab.c:146
 msgid "<big>New _Data Composition</big>"
@@ -1067,7 +1071,9 @@ msgstr "<big>_Composition de données</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:146
 msgid "Create a new data disc with the files of your choosing"
-msgstr "Créer un nouveau disque de données\navec les fichiers de votre choix"
+msgstr ""
+"Créer un nouveau disque de données\n"
+"avec les fichiers de votre choix"
 
 #: ../xfburn/xfburn-welcome-tab.c:151
 msgid "<big>_Blank Disc</big>"
@@ -1075,7 +1081,9 @@ msgstr "<big>_Nettoyer un disque</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:151
 msgid "Prepare the rewriteable disc for a new burn"
-msgstr "Préparer un disque réinscriptible\npour une nouvelle gravure"
+msgstr ""
+"Préparer un disque réinscriptible\n"
+"pour une nouvelle gravure"
 
 #: ../xfburn/xfburn-welcome-tab.c:156
 msgid "<big>_Audio CD</big>"
@@ -1083,7 +1091,9 @@ msgstr "<big>_Disque audio</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:156
 msgid "Audio CD playable in regular stereos"
-msgstr "Graver une compilation Audio\nlisible par les chaînes Hi-Fi"
+msgstr ""
+"Graver une compilation Audio\n"
+"lisible par les chaînes Hi-Fi"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-audio-composition.c:207
@@ -1140,7 +1150,8 @@ msgstr "Lancer la gravure"
 
 #: ../xfburn/xfburn-disc-usage.c:205
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "Vous essayez de graver plus de données que le disque ne peut en contenir."
+msgstr ""
+"Vous essayez de graver plus de données que le disque ne peut en contenir."
 
 #: ../xfburn/xfburn-transcoder-basic.c:183
 #, c-format
@@ -1173,14 +1184,16 @@ msgid "Gstreamer did not like this file (detection timed out)"
 msgstr ""
 
 #: ../xfburn/xfburn-transcoder-gst.c:754
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s\n"
-"\tis not an audio file:\n"
+"\n"
+"is not an audio file:\n"
 "\n"
 "%s"
 msgstr ""
-"%s\n\n"
+"%s\n"
+"\n"
 "\tn'est pas un fichier audio :\n"
 "\n"
 "%s"

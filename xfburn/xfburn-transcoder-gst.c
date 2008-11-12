@@ -751,7 +751,7 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 
   if (!priv->is_audio) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_AUDIO_FORMAT,
-                 _("%s\n\tis not an audio file:\n\n%s"), fn, priv->error->message);
+                 _("%s\n\nis not an audio file:\n\n%s"), fn, priv->error->message);
     g_error_free (priv->error);
     priv->error = NULL;
     return NULL;
