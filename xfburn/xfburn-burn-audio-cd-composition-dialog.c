@@ -57,9 +57,6 @@ typedef struct
   GtkWidget *entry;
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
-  GtkWidget *check_only_iso;
-  GtkWidget *hbox_iso;
-  GtkWidget *entry_path_iso;
   GtkWidget *check_dummy;
   GtkWidget *button_proceed;
 
@@ -79,8 +76,6 @@ static void xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object);
 static void xfburn_burn_audio_cd_composition_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
 static void xfburn_burn_audio_cd_composition_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec);
 
-static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnAudioCdCompositionDialog * dialog);
-static void cb_browse_iso (GtkButton * button, XfburnBurnAudioCdCompositionDialog * dialog);
 static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog);
 static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_id,
                                 XfburnBurnAudioCdCompositionDialogPrivate * priv);
@@ -140,13 +135,10 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   
   GdkPixbuf *icon = NULL;
   GtkBox *box;
-  GtkWidget *img;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *align;
   GtkWidget *button;
-  gchar *default_path;
-  gchar *tmp_dir;
   //const char *comp_name;
 
   gobj = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_properties, construct_properties);
@@ -218,38 +210,10 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   gtk_widget_show (priv->check_burnfree);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);
 
-  /* create ISO ? */
-  priv->check_only_iso = gtk_check_button_new_with_mnemonic (_("Only create _ISO"));
-  gtk_widget_show (priv->check_only_iso);
-  gtk_box_pack_start (GTK_BOX (vbox), priv->check_only_iso, FALSE, FALSE, BORDER);
-  g_signal_connect (G_OBJECT (priv->check_only_iso), "toggled", G_CALLBACK (cb_check_only_iso_toggled), obj);
-
   align = gtk_alignment_new (0, 0, 0, 0);
   gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
   gtk_widget_show (align);
   gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
-
-  priv->hbox_iso = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (priv->hbox_iso);
-  gtk_container_add (GTK_CONTAINER (align), priv->hbox_iso);
-  gtk_widget_set_sensitive (priv->hbox_iso, FALSE);
-
-  priv->entry_path_iso = gtk_entry_new ();
-  tmp_dir = xfburn_settings_get_string ("temporary-dir", g_get_tmp_dir ());
-  default_path = g_build_filename (tmp_dir, "xfburn.iso", NULL);
-  gtk_entry_set_text (GTK_ENTRY (priv->entry_path_iso), default_path);
-  g_free (default_path);
-  g_free (tmp_dir);
-  gtk_widget_show (priv->entry_path_iso);
-  gtk_box_pack_start (GTK_BOX (priv->hbox_iso), priv->entry_path_iso, FALSE, FALSE, 0);
-
-  img = gtk_image_new_from_stock (GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  gtk_widget_show (img);
-  button = gtk_button_new ();
-  gtk_container_add (GTK_CONTAINER (button), img);
-  gtk_widget_show (button);
-  gtk_box_pack_start (GTK_BOX (priv->hbox_iso), button, FALSE, FALSE, 0);
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_browse_iso), obj);
 
   /* action buttons */
   button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
@@ -311,35 +275,6 @@ xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object)
 
 /* internals */
 static void
-cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnAudioCdCompositionDialog * dialog)
-{
-  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
-  gboolean valid_disc;
-
-  gtk_widget_set_sensitive (priv->frame_device, !gtk_toggle_button_get_active (button));
-  xfburn_device_box_set_sensitive (XFBURN_DEVICE_BOX (priv->device_box), !gtk_toggle_button_get_active (button));
-  
-  gtk_widget_set_sensitive (priv->hbox_iso, gtk_toggle_button_get_active (button));
-  gtk_widget_set_sensitive (priv->check_eject, !gtk_toggle_button_get_active (button));
-  gtk_widget_set_sensitive (priv->check_burnfree, !gtk_toggle_button_get_active (button));
-  gtk_widget_set_sensitive (priv->check_dummy, !gtk_toggle_button_get_active (button));
-  if (!gtk_toggle_button_get_active (button)) {
-    g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
-    gtk_widget_set_sensitive (priv->button_proceed, valid_disc);
-  } else {
-    gtk_widget_set_sensitive (priv->button_proceed, TRUE);
-  }
-}
-
-static void
-cb_browse_iso (GtkButton * button, XfburnBurnAudioCdCompositionDialog * dialog)
-{
-  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
-  
-  xfburn_browse_for_file (GTK_ENTRY (priv->entry_path_iso), GTK_WINDOW (dialog));
-}
-
-static void
 cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog)
 {
   XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
@@ -348,83 +283,6 @@ cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioC
   g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
 
   gtk_widget_set_sensitive (priv->button_proceed, valid_disc);
-}
-
-typedef struct {
-  GtkWidget *dialog_progress;
-  struct burn_source *src;
-  gchar *iso_path;
-} ThreadWriteIsoParams;
-
-static void
-thread_write_iso (ThreadWriteIsoParams * params)
-{
-  GtkWidget *dialog_progress = params->dialog_progress;
-  gint fd;
-  guchar buf[2048];
-  glong size = 0;
-  glong written = 0;
-  guint i = 0;
-  int (*read_fn) (struct burn_source *src, unsigned char *buf, int size);
-
-  fd = open (params->iso_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-  if (fd == -1) {
-    /* could not create destination */
-    gchar err[256];
-    gchar *error_msg = NULL;
-
-    strerror_r (errno, err, 256);
-
-    error_msg = g_strdup_printf (_("Could not create destination ISO file: %s"), err);
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), error_msg);
-    g_free (error_msg);
-
-    goto end;
-  }
-
-  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Writing ISO..."));
-
-  size = (glong) params->src->get_size (params->src);
-  if (params->src->read == NULL)
-    read_fn = params->src->read_xt;
-  else
-    read_fn = params->src->read;
-
-  /* FIXME: is size really always 2048? */
-  while (read_fn (params->src, buf, 2048) == 2048) {
-    if (write (fd, buf, 2048) < 2048) {
-      /* an error occured while writing */
-      gchar err[256];
-      gchar *error_msg = NULL;
-      
-      strerror_r (errno, err, 256);
-    
-      error_msg = g_strdup_printf (_("An error occured while writing ISO: %s"), err);
-      xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), error_msg);
-      g_free (error_msg);
-      goto cleanup;
-    } else {
-      written += 2048;
-      i++;
-
-      if (i >= 1000) {
-	i = 0;
-	gdouble percent = 0;
-
-	percent = ((gdouble) written / (gdouble) size);
-
-	xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
-      }
-    }
-  }
-  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED, _("Done"));
-
- cleanup:
-  close (fd);
- end:
-  burn_source_free (params->src);
-  g_free (params->iso_path);
-  g_free (params);
 }
 
 typedef struct {
@@ -587,8 +445,6 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
   if (response_id == GTK_RESPONSE_OK) {
     GtkWidget *dialog_progress;
 
-    struct burn_source * src = NULL;
-
     /* If the name was the default, update the image volume id and volset id */
     /*
     if (priv->entry != NULL) {
@@ -604,40 +460,28 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
     
     gtk_widget_show (dialog_progress);
 
-    if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
-      ThreadWriteIsoParams *params = NULL;
+    ThreadBurnCompositionParams *params = NULL;
+    XfburnDevice *device;
+    gint speed;
+    XfburnWriteMode write_mode;
+    //struct burn_source * src_fifo = NULL;
 
-      /* create a new iso */
-      params = g_new0 (ThreadWriteIsoParams, 1);
-      params->dialog_progress = dialog_progress;
-      params->src = src;
-      params->iso_path = g_strdup (gtk_entry_get_text (GTK_ENTRY (priv->entry_path_iso)));
-      g_thread_create ((GThreadFunc) thread_write_iso, params, FALSE, NULL);
-    }
-    else {
-      ThreadBurnCompositionParams *params = NULL;
-      XfburnDevice *device;
-      gint speed;
-      XfburnWriteMode write_mode;
-      //struct burn_source * src_fifo = NULL;
+    device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
+    speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
+    /* cdrskin burns audio with SAO */
+    write_mode = WRITE_MODE_SAO;
 
-      device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
-      speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
-      /* cdrskin burns audio with SAO */
-      write_mode = WRITE_MODE_SAO;
-
-      /* burn composition */
-      params = g_new0 (ThreadBurnCompositionParams, 1);
-      params->dialog_progress = dialog_progress;
-      params->device = device;
-      params->tracks = priv->track_list;
-      params->speed = speed;
-      params->write_mode = write_mode;
-      params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));
-      params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
-      params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
-      g_thread_create ((GThreadFunc) thread_burn_composition, params, FALSE, NULL);
-    }
+    /* burn composition */
+    params = g_new0 (ThreadBurnCompositionParams, 1);
+    params->dialog_progress = dialog_progress;
+    params->device = device;
+    params->tracks = priv->track_list;
+    params->speed = speed;
+    params->write_mode = write_mode;
+    params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));
+    params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
+    params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
+    g_thread_create ((GThreadFunc) thread_burn_composition, params, FALSE, NULL);
   }
 }
 
