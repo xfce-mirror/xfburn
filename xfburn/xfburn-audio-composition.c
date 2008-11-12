@@ -1192,7 +1192,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
       //DBG ("length = %d", atrack->length);
       secs = atrack->length;
-      humanlength = g_strdup_printf ("%2d:%2d", secs / 60, secs % 60);
+      humanlength = g_strdup_printf ("%2d:%02d", secs / 60, secs % 60);
 
       if (priv->n_tracks == 99) {
         gdk_threads_enter ();
@@ -1670,7 +1670,10 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       file = strtok (NULL, "\n");
     }
 
+    /* paths actually get sent to us in reverse order,
+     * so no reverse is necessary to add them in the same order as selected.
     priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
+     */
     priv->path_where_insert = path_where_insert;
 
     if (ret) {
