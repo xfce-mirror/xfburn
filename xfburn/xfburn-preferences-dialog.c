@@ -316,7 +316,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
 
 
   /* below the device list */
-  priv->check_empty_speed_list = gtk_check_button_new_with_mnemonic (_("Show warning on_empty speed list"));
+  priv->check_empty_speed_list = gtk_check_button_new_with_mnemonic (_("Show warning on _empty speed list"));
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_empty_speed_list, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->check_empty_speed_list);
 
