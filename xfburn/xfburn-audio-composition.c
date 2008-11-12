@@ -77,7 +77,7 @@ enum
 {
   AUDIO_COMPOSITION_DISPLAY_COLUMN_POS,
   AUDIO_COMPOSITION_DISPLAY_COLUMN_LENGTH,
-#if 0 // Needs libburn cd-text suppport
+#if 0 /* CDTEXT */
   AUDIO_COMPOSITION_DISPLAY_COLUMN_ARTIST,
   AUDIO_COMPOSITION_DISPLAY_COLUMN_TITLE,
 #endif
@@ -128,8 +128,10 @@ static void save_to_file (XfburnComposition *composition);
 
 static void action_clear (GtkAction *, XfburnAudioComposition *);
 static void action_remove_selection (GtkAction *, XfburnAudioComposition *);
+#if 0 /* CDTEXT */
 static void action_rename_selection_artist (GtkAction *, XfburnAudioComposition *);
 static void action_rename_selection_title (GtkAction *, XfburnAudioComposition *);
+#endif /* CDTEXT */
 static void action_add_selected_files (GtkAction *, XfburnAudioComposition *);
 
 static void tracks_changed (XfburnAudioComposition *ac);
@@ -137,7 +139,7 @@ static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButt
 static void cb_selection_changed (GtkTreeSelection *selection, XfburnAudioComposition * dc);
 static GSList * generate_audio_src (XfburnAudioComposition * ac);
 static void cb_begin_burn (XfburnDiscUsage * du, XfburnAudioComposition * dc);
-#if 0 // Needs libburn cd-text suppport
+#if 0 /* CDTEXT */
 static void cb_cell_artist_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc);
 static void cb_cell_title_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc);
 #endif
@@ -204,10 +206,12 @@ static const GtkActionEntry action_entries[] = {
   {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the content of the composition"),
    G_CALLBACK (action_clear),},
   //{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#if 0 /* CDTEXT */
   {"rename-artist", GTK_STOCK_EDIT, N_("Rename Artist"), NULL, N_("Rename the artist of the selected file"),
    G_CALLBACK (action_rename_selection_artist),},
   {"rename-title", GTK_STOCK_EDIT, N_("Rename Title"), NULL, N_("Rename the title of the selected file"),
    G_CALLBACK (action_rename_selection_title),},
+#endif /* CDTEXT */
 };
 
 static const gchar *toolbar_actions[] = {
@@ -288,7 +292,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   //GtkWidget *hbox, *label;
   GtkWidget *scrolled_window;
   GtkTreeStore *model;
-#if 0 // Needs libburn cd-text suppport
+#if 0 /* CDTEXT */
   GtkTreeViewColumn *column_artist, *column_title;
   GtkCellRenderer *cell_artist, *cell_title;
 #endif
@@ -297,8 +301,12 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
   
+#if 0 /* CDTEXT */
   const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
     "<menuitem action=\"rename-artist\"/>" "<menuitem action=\"rename-title\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
+#else
+  const gchar ui_string[] = "<ui> <popup name=\"popup-menu\"> <menuitem action=\"remove-file\"/>" "</popup></ui>";
+#endif /* CDTEXT */
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE },
@@ -383,7 +391,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
                                                gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, NULL);
   /*gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->content), -1, _("Artist"),
                                                gtk_cell_renderer_text_new (), "text", AUDIO_COMPOSITION_COLUMN_ARTIST, NULL);*/
-#if 0 // Needs libburn cd-text suppport
+#if 0 /* CDTEXT */
   column_artist = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column_artist, _("Artist"));
 
@@ -418,7 +426,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   /* Length */
   gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_LENGTH), FALSE);
   gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_LENGTH), 60);
-#if 0 // Needs libburn cd-text suppport
+#if 0 /* CDTEXT */
   /* Artist */
   gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_ARTIST), TRUE);
   gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), AUDIO_COMPOSITION_DISPLAY_COLUMN_ARTIST), 80);
@@ -617,8 +625,10 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     GtkTreePath *path;
     GtkWidget *menu_popup;
     GtkWidget *menuitem_remove;
+#if 0 /* CDTEXT */
     GtkWidget *menuitem_rename_artist;
     GtkWidget *menuitem_rename_title;
+#endif /* CDTEXT */
 
     selection = gtk_tree_view_get_selection (treeview);
 
@@ -630,13 +640,16 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
 
     menu_popup = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu");
     menuitem_remove = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/remove-file");
+#if 0 /* CDTEXT */
     menuitem_rename_artist = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/rename-artist");
     menuitem_rename_title = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/rename-title");
+#endif /* CDTEXT */
 
     if (gtk_tree_selection_count_selected_rows (selection) >= 1)
       gtk_widget_set_sensitive (menuitem_remove, TRUE);
     else
       gtk_widget_set_sensitive (menuitem_remove, FALSE);
+#if 0 /* CDTEXT */
     if (gtk_tree_selection_count_selected_rows (selection) == 1) {
       gtk_widget_set_sensitive (menuitem_rename_artist, TRUE);
       gtk_widget_set_sensitive (menuitem_rename_title, TRUE);
@@ -644,6 +657,7 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
       gtk_widget_set_sensitive (menuitem_rename_artist, FALSE);
       gtk_widget_set_sensitive (menuitem_rename_title, FALSE);
     }
+#endif /* CDTEXT */
 
     gtk_menu_popup (GTK_MENU (menu_popup), NULL, NULL, NULL, NULL, event->button, gtk_get_current_event_time ());
     return TRUE;
@@ -703,7 +717,7 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
   return FALSE;
 }
 
-#if 0 // Needs libburn cd-text suppport
+#if 0 /* CDTEXT */
 static void
 cb_cell_artist_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc)
 {
@@ -795,6 +809,7 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc)
   xfburn_default_cursor (priv->content);
 }
 
+#if 0 /* CDTEXT */
 static void
 action_rename_selection_artist (GtkAction * action, XfburnAudioComposition * dc)
 {
@@ -844,6 +859,7 @@ action_rename_selection_title (GtkAction * action, XfburnAudioComposition * dc)
   gtk_tree_path_free (path);
   g_list_free (list);
 }
+#endif /* CDTEXT */
 
 static void
 remove_row_reference (GtkTreeRowReference *reference, XfburnAudioCompositionPrivate *priv)
