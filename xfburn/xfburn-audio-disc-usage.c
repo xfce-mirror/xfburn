@@ -119,7 +119,7 @@ xfburn_audio_disc_usage_update_size (XfburnDiscUsage * disc_usage)
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (disc_usage->progress_bar), fraction > 1.0 ? 1.0 : fraction);
 
   if (xfburn_settings_get_boolean ("human-readable-units", TRUE))
-    len = g_strdup_printf ("%02.0lf:%02.0lfs", disc_usage->size / 60, (gdouble) (((guint64) disc_usage->size) % 60));
+    len = g_strdup_printf ("%2.0lfm %02.0lfs", disc_usage->size / 60, (gdouble) (((guint64) disc_usage->size) % 60));
   else
     len = g_strdup_printf ("%.0lf secs", disc_usage->size);
 
