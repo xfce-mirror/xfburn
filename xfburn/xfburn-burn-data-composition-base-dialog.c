@@ -643,9 +643,9 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
     iso_write_opts_new (&write_opts, 0);
 
     iso_write_opts_set_iso_level (write_opts, 2);
-    iso_write_opts_set_rockridge (write_opts, TRUE);
-    iso_write_opts_set_joliet (write_opts, TRUE);
-    iso_write_opts_set_allow_deep_paths (write_opts, TRUE);
+    iso_write_opts_set_rockridge (write_opts, 1);
+    iso_write_opts_set_joliet (write_opts, 1);
+    iso_write_opts_set_allow_deep_paths (write_opts, 1);
     /* not sure if we want that
     iso_write_opts_set_omit_version_numbers (write_opts, TRUE);
     */
