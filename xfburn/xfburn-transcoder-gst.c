@@ -145,7 +145,7 @@ typedef struct {
 #define XFBURN_AUDIO_TRACK_GET_GST(atrack) ((XfburnAudioTrackGst *) (atrack)->data)
 
 /* globals */
-#ifdef DEBUG_GST
+#if DEBUG_GST > 0 && DEBUG > 0
 static guint64 total_size = 0;
 #endif
 
@@ -261,7 +261,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
 
   GstElement *pipeline, *source, *decoder, *conv, *sink;
-#ifdef DEBUG_GST
+#if DEBUG_GST > 0 && DEBUG > 0
   GstElement *id;
 #endif
   GstBus *bus;
@@ -274,7 +274,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   priv->source  = source   = gst_element_factory_make ("filesrc",       "file-source");
   priv->decoder = decoder  = gst_element_factory_make ("decodebin",     "decoder");
   priv->conv    = conv     = gst_element_factory_make ("audioconvert",  "converter");
-#ifdef DEBUG_GST
+#if DEBUG_GST > 0 && DEBUG > 0
                   id       = gst_element_factory_make ("identity",      "debugging-identity");
 #endif
   priv->sink    = sink     = gst_element_factory_make ("fdsink",        "audio-output");
@@ -288,7 +288,7 @@ create_pipeline (XfburnTranscoderGst *trans)
     return;
   }
 
-#ifdef DEBUG_GST
+#if DEBUG_GST > 0 && DEBUG > 0
   if (!id) {
     g_warning ("The debug identity element could not be created");
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
@@ -305,7 +305,7 @@ create_pipeline (XfburnTranscoderGst *trans)
 
   gst_bin_add_many (GST_BIN (pipeline),
                     source, decoder, conv, sink, NULL);
-#ifdef DEBUG_GST
+#if DEBUG_GST > 0 && DEBUG > 0
   gst_bin_add (GST_BIN (pipeline), id);
 #endif
 
@@ -321,7 +321,7 @@ create_pipeline (XfburnTranscoderGst *trans)
             "signed", G_TYPE_BOOLEAN, TRUE,
             NULL);
 
-#ifdef DEBUG_GST
+#if DEBUG_GST > 0 && DEBUG > 0
   if (!gst_element_link_filtered (conv, id, caps)) {
 #else
   if (!gst_element_link_filtered (conv, sink, caps)) {
@@ -333,7 +333,7 @@ create_pipeline (XfburnTranscoderGst *trans)
     return;
   }
   gst_caps_unref (caps);
-#ifdef DEBUG_GST
+#if DEBUG_GST > 0 && DEBUG > 0
   gst_element_link (id, sink);
   g_signal_connect (id, "handoff", G_CALLBACK (cb_handoff), id);
 #endif
@@ -473,7 +473,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       GError *error = NULL;
       XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (priv->curr_track);
 
-#ifdef DEBUG_GST
+#if DEBUG_GST > 0 && DEBUG > 0
       DBG ("End of stream, wrote %.0f bytes", (gfloat) total_size);
 #else
       DBG ("End of stream");
@@ -691,7 +691,7 @@ get_name (XfburnTranscoder *trans)
   return "gstreamer";
 }
 
-#ifdef DEBUG_GST
+#if DEBUG_GST > 0 && DEBUG > 0
 
 /* this function can inspect the data just before it is passed on
    to the fd for processing by libburn */
