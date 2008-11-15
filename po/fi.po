@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-12 15:09-0700\n"
-"PO-Revision-Date: 2008-11-04 17:03+0200\n"
+"POT-Creation-Date: 2008-11-15 21:32+0200\n"
+"PO-Revision-Date: 2008-11-15 21:56+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Tyhjennä levy"
 #: ../xfburn/xfburn-burn-image-dialog.c:171
 #: ../xfburn/xfburn-copy-cd-dialog.c:132
 #: ../xfburn/xfburn-copy-dvd-dialog.c:132
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:169
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:161
 msgid "Burning device"
 msgstr "Polttava asema"
 
@@ -73,7 +73,7 @@ msgstr "Tyhjennystyyppi"
 #: ../xfburn/xfburn-burn-image-dialog.c:179
 #: ../xfburn/xfburn-copy-cd-dialog.c:140
 #: ../xfburn/xfburn-copy-dvd-dialog.c:140
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:203
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:195
 msgid "Options"
 msgstr "Asetukset"
 
@@ -82,7 +82,7 @@ msgstr "Asetukset"
 #: ../xfburn/xfburn-burn-image-dialog.c:183
 #: ../xfburn/xfburn-copy-cd-dialog.c:144
 #: ../xfburn/xfburn-copy-dvd-dialog.c:144
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:199
 msgid "E_ject disk"
 msgstr "Poi_sta levy"
 
@@ -92,9 +92,8 @@ msgstr "_Tyhjennä"
 
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:351
-#, fuzzy
 msgid "The inserted disc is already blank."
-msgstr "Levy on jo tyhjä"
+msgstr "Levy on jo tyhjä."
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:357
@@ -102,14 +101,12 @@ msgid "Ready"
 msgstr "Valmis"
 
 #: ../xfburn/xfburn-blank-dialog.c:360
-#, fuzzy
 msgid "No disc detected in the drive."
-msgstr "Asemassa ei ole levyä"
+msgstr "Asemassa ei ole levyä."
 
 #: ../xfburn/xfburn-blank-dialog.c:369
-#, fuzzy
 msgid "Disc is not erasable."
-msgstr "Levyä ei voi tyhjentää"
+msgstr "Levyä ei voi tyhjentää."
 
 #: ../xfburn/xfburn-blank-dialog.c:409
 msgid "Blanking disc..."
@@ -118,7 +115,6 @@ msgstr "Tyhjennetään levyä..."
 #: ../xfburn/xfburn-blank-dialog.c:436
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:502
 #: ../xfburn/xfburn-perform-burn.c:298
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:420
 #, c-format
 msgid "Done"
 msgstr "Valmis"
@@ -132,13 +128,12 @@ msgstr "Epäonnistui"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:612
 #: ../xfburn/xfburn-burn-image-dialog.c:328
 #: ../xfburn/xfburn-burn-image-dialog.c:532
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:557
-#, fuzzy
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:415
 msgid "Unable to grab the drive."
-msgstr "Aseman kaappaus ei onnistu"
+msgstr "Aseman kaappaus ei onnistu."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:179
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:149
 msgid "Burn Composition"
 msgstr "Polta kokoelma"
 
@@ -154,13 +149,13 @@ msgstr "<small>Haluatko muuttaa oletusarvoista kokoelman nimeä?</small>"
 #: ../xfburn/xfburn-burn-image-dialog.c:188
 #: ../xfburn/xfburn-copy-cd-dialog.c:149
 #: ../xfburn/xfburn-copy-dvd-dialog.c:149
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:212
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:204
 msgid "_Dummy write"
 msgstr "_Valepoltto"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
 #: ../xfburn/xfburn-burn-image-dialog.c:192
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:216
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:208
 msgid "Burn_Free"
 msgstr "Vi_rhesuojaus"
 
@@ -168,49 +163,42 @@ msgstr "Vi_rhesuojaus"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:242
 #: ../xfburn/xfburn-copy-cd-dialog.c:158
 #: ../xfburn/xfburn-copy-dvd-dialog.c:158
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
 msgid "Only create _ISO"
 msgstr "Luo pelkkä _ISO"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:279
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:259
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:223
 msgid "_Burn Composition"
 msgstr "_Polta kokoelma"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:460
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:378
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "ISO-kohdetiedostoa ei voi luoda: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:467
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:385
 msgid "Writing ISO..."
 msgstr "Kirjoitetaan ISOa..."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:484
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:402
 #, c-format
 msgid "An error occured while writing ISO: %s"
 msgstr "Virhe kirjoitettaessa ISOa: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:538
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:544
-#, fuzzy
 msgid "An error occurred in the burn backend."
-msgstr "Virhe kirjoitettaessa ISOa: %s"
+msgstr "Polttotaustajärjestelmän virhe."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:486
-#, fuzzy
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:344
 msgid "The write mode is not supported currently."
-msgstr "Tätä kirjoitustilaa ei tueta tällä hetkellä"
+msgstr "Tätä kirjoitustilaa ei tueta tällä hetkellä."
 
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:655
-#, fuzzy
 msgid "Could not create ISO source structure."
-msgstr "ISOn lähderakenteen luominen epäonnistui"
+msgstr "ISO-lähderakenteen luominen epäonnistui."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:136
 msgid "Burn image"
@@ -236,37 +224,32 @@ msgstr "P_olta levykuva"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:292
 #: ../xfburn/xfburn-burn-image-dialog.c:321
-#, fuzzy
 msgid "An error occurred in the burn backend"
-msgstr "Virhe kirjoitettaessa ISOa: %s"
+msgstr "Polttotaustajärjestelmän virhe"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:305
-#, fuzzy
 msgid "Unable to determine image size."
-msgstr "Levykuvan koon tunnistus ei onnistu"
+msgstr "Levykuvan koon tunnistus ei onnistu."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:312
-#, fuzzy
 msgid "Cannot open image."
-msgstr "Levykuvan avaaminen ei onnistu"
+msgstr "Levykuvaa ei voi avata."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:337
-#, fuzzy
 msgid "Burn mode is not currently implemented."
-msgstr "Kirjoitustilaa ei vielä tueta"
+msgstr "Kirjoitustilaa ei vielä tueta."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 msgid "Burning image..."
 msgstr "Kirjoitetaan levykuvaa..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:422
-#, fuzzy
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
 "select an image to burn</span>"
 msgstr ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded"
-"\">Valitse poltettava levykuva!</span>"
+"\">Valitse poltettava levykuva</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:460
 msgid ""
@@ -275,29 +258,24 @@ msgstr ""
 "Voit jatkaa tallennusta usean polttokerran levylle ainoastaan TAO-tilassa."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:464
-#, fuzzy
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "Suljettu datalevy tunnistettu. Tarvitaan tyhjä tai avoin levy."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:466
-#, fuzzy
 msgid "No disc detected in drive"
 msgstr "Asemassa ei ole levyä"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:468
-#, fuzzy
 msgid "Cannot recognize state of drive and disc"
 msgstr "Aseman ja levyn tilan tunnistus ei onnistu"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:480
-#, fuzzy
 msgid "The selected image does not fit on the inserted disc"
-msgstr "Valittu levykuva ei mahdu levylle!"
+msgstr "Valittu levykuva ei mahdu asemassa olevalle levylle"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:484
-#, fuzzy
 msgid "Failed to get image size"
-msgstr "Levykuvan koon selvitys epäonnistui!"
+msgstr "Levykuvan koon selvitys epäonnistui"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:512
 msgid ""
@@ -346,9 +324,8 @@ msgid "Flushing cache..."
 msgstr "Tyhjennetään välimuistia..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:106
-#, fuzzy
 msgid "Please insert a recordable disc."
-msgstr "Syötä tyhjä levy."
+msgstr "Syötä levy, jolle voi tallentaa."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:128
 msgid "Writing CD..."
@@ -376,12 +353,12 @@ msgid "Create ISO from CD"
 msgstr "Luo ISO CD-levystä"
 
 #: ../xfburn/xfburn-data-composition.c:179
-#: ../xfburn/xfburn-audio-composition.c:200
+#: ../xfburn/xfburn-audio-composition.c:202
 msgid "Add"
 msgstr "Lisää"
 
 #: ../xfburn/xfburn-data-composition.c:179
-#: ../xfburn/xfburn-audio-composition.c:200
+#: ../xfburn/xfburn-audio-composition.c:202
 msgid "Add the selected file(s) to the composition"
 msgstr "Lisää valitut tiedostot kokoelmaan"
 
@@ -394,22 +371,22 @@ msgid "Add a new directory to the composition"
 msgstr "Lisää uusi kansio kokoelmaan"
 
 #: ../xfburn/xfburn-data-composition.c:183
-#: ../xfburn/xfburn-audio-composition.c:202
+#: ../xfburn/xfburn-audio-composition.c:204
 msgid "Remove"
 msgstr "Poista"
 
 #: ../xfburn/xfburn-data-composition.c:183
-#: ../xfburn/xfburn-audio-composition.c:202
+#: ../xfburn/xfburn-audio-composition.c:204
 msgid "Remove the selected file(s) from the composition"
 msgstr "Poista valitut tiedostot kokoelmasta"
 
 #: ../xfburn/xfburn-data-composition.c:185
-#: ../xfburn/xfburn-audio-composition.c:204
+#: ../xfburn/xfburn-audio-composition.c:206
 msgid "Clear"
 msgstr "Tyhjennä"
 
 #: ../xfburn/xfburn-data-composition.c:185
-#: ../xfburn/xfburn-audio-composition.c:204
+#: ../xfburn/xfburn-audio-composition.c:206
 msgid "Clear the content of the composition"
 msgstr "Tyhjennä kokoelman sisältö"
 
@@ -440,16 +417,14 @@ msgid "Local Path"
 msgstr "Paikallinen polku"
 
 #: ../xfburn/xfburn-data-composition.c:664
-#, fuzzy
 msgid "You must give a name to the file."
-msgstr "Tiedostolle täytyy antaa nimi"
+msgstr "Tiedostolle täytyy antaa nimi."
 
 #: ../xfburn/xfburn-data-composition.c:673
 #: ../xfburn/xfburn-data-composition.c:1068
-#: ../xfburn/xfburn-audio-composition.c:1103
-#, fuzzy
+#: ../xfburn/xfburn-audio-composition.c:1119
 msgid "A file with the same name is already present in the composition."
-msgstr "Kokoelmassa on jo tiedosto tällä nimellä"
+msgstr "Kokoelmassa on jo tiedosto tällä nimellä."
 
 #: ../xfburn/xfburn-data-composition.c:781
 #: ../xfburn/xfburn-data-composition.c:782
@@ -458,12 +433,12 @@ msgid "New directory"
 msgstr "Uusi kansio"
 
 #: ../xfburn/xfburn-data-composition.c:1226
-#: ../xfburn/xfburn-audio-composition.c:1265
+#: ../xfburn/xfburn-audio-composition.c:1281
 msgid "Adding home directory"
 msgstr "Lisätään kotikansio"
 
 #: ../xfburn/xfburn-data-composition.c:1227
-#: ../xfburn/xfburn-audio-composition.c:1266
+#: ../xfburn/xfburn-audio-composition.c:1282
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
 "to take a very long time, and also to be too big to fit on one disc.\n"
@@ -476,11 +451,11 @@ msgstr ""
 "Oletko varma, että haluat jatkaa?"
 
 #: ../xfburn/xfburn-data-composition.c:1389
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr "Kansiossa on jo tiedosto \"%s\", tiedostoa ei lisätty."
+msgstr "Kansiossa on jo tiedosto \"%s\", joten tiedostoa ei lisätty."
 
 #: ../xfburn/xfburn-device-box.c:181 ../xfburn/xfburn-device-box.c:182
 msgid "Show writers only"
@@ -571,38 +546,32 @@ msgid "Max"
 msgstr "Maksimi"
 
 #: ../xfburn/xfburn-device-box.c:606
-#, fuzzy
 msgid "Drive can't burn on the inserted disc"
-msgstr "Asema ei osaa polttaa tälle levylle!"
+msgstr "Asema ei osaa polttaa tälle levylle"
 
 #: ../xfburn/xfburn-device-box.c:615 ../xfburn/xfburn-device-box.c:661
-#, fuzzy
 msgid "Drive is empty"
-msgstr "Asema on tyhjä!"
+msgstr "Asema on tyhjä"
 
 #: ../xfburn/xfburn-device-box.c:618
-#, fuzzy
 msgid "Sorry, multisession is not yet supported"
-msgstr "Useassa erässä polttamista ei vielä tueta!"
+msgstr "Useassa erässä polttamista ei vielä tueta"
 
 #: ../xfburn/xfburn-device-box.c:621
-#, fuzzy
 msgid "Inserted disc is full"
-msgstr "Levy on täynnä!"
+msgstr "Levy on täynnä"
 
 #: ../xfburn/xfburn-device-box.c:624 ../xfburn/xfburn-device-box.c:667
-#, fuzzy
 msgid "Inserted disc is unsuitable"
-msgstr "Vääränlainen levy!"
+msgstr "Vääränlainen levy"
 
 #: ../xfburn/xfburn-device-box.c:627 ../xfburn/xfburn-device-box.c:670
 msgid "Cannot access drive (it might be in use)"
-msgstr ""
+msgstr "Asemaa ei voi käyttää (se voi olla varattu)"
 
 #: ../xfburn/xfburn-device-box.c:632 ../xfburn/xfburn-device-box.c:673
-#, fuzzy
 msgid "Error determining disc"
-msgstr "Levyn tunnistaminen ei onnistu!"
+msgstr "Levyn tunnistus ei onnistu"
 
 #: ../xfburn/xfburn-device-box.c:653
 msgid "Write-once disc, no blanking possible"
@@ -613,9 +582,8 @@ msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW-levyä ei tarvitse tyhjentää"
 
 #: ../xfburn/xfburn-device-box.c:664
-#, fuzzy
 msgid "Inserted disc is already blank"
-msgstr "Levy on jo tyhjä!"
+msgstr "Levy on jo tyhjä"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:57
@@ -656,15 +624,13 @@ msgstr ""
 
 #: ../xfburn/xfburn-main.c:221
 msgid "Unable to initialize the burning backend."
-msgstr ""
+msgstr "Polttotaustajärjestelmää ei voi alustaa."
 
 #: ../xfburn/xfburn-main.c:302
-#, fuzzy
 msgid "No drives are currently available"
-msgstr "Ei asemia saatavilla!"
+msgstr "Ei asemia saatavilla"
 
 #: ../xfburn/xfburn-main.c:304
-#, fuzzy
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
@@ -673,7 +639,7 @@ msgid ""
 "If no disc is in the drive, check that you have read and write access to the "
 "drive with the current user."
 msgstr ""
-"Onko asemassa liitetty tallennusväline?\n"
+"Levy saattaa olla varattu, sillä sitä ei voi käyttää.\n"
 "\n"
 "Irrota taltio ja käynnistä sovellus uudelleen.\n"
 "\n"
@@ -686,11 +652,13 @@ msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr ""
+"Muunninta \"%s\" ei voi alustaa: %s\n"
+"\t(käytetään vaihtoehtoista tapaa)"
 
 #: ../xfburn/xfburn-main.c:369
-#, fuzzy, c-format
+#, c-format
 msgid "Image file '%s' does not exist."
-msgstr "Levykuvaa \"%s\" ei ole olemassa!"
+msgstr "Levykuvaa \"%s\" ei ole olemassa."
 
 #: ../xfburn/xfburn-main-window.c:100
 msgid "_File"
@@ -835,31 +803,26 @@ msgid "Determine whether the close button is visible"
 msgstr "Määrittää, näytetäänkö sulkemispainike"
 
 #: ../xfburn/xfburn-perform-burn.c:94
-#, fuzzy
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)."
 msgstr ""
 "Voit jatkaa tallennusta usean polttokerran levylle ainoastaan TAO-tilassa."
 
 #: ../xfburn/xfburn-perform-burn.c:98
-#, fuzzy
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "Suljettu datalevy tunnistettu. Tarvitaan tyhjä tai avoin levy."
 
 #: ../xfburn/xfburn-perform-burn.c:100
-#, fuzzy
 msgid "No disc detected in drive."
-msgstr "Asemassa ei ole levyä"
+msgstr "Asemassa ei ole levyä."
 
 #: ../xfburn/xfburn-perform-burn.c:103
-#, fuzzy
 msgid "Cannot recognize the state of the drive and disc."
-msgstr "Aseman ja levyn tilan tunnistus ei onnistu"
+msgstr "Aseman ja levyn tilan tunnistus ei onnistu."
 
 #: ../xfburn/xfburn-perform-burn.c:112
-#, fuzzy
 msgid "There is not enough space available on the inserted disc."
-msgstr "Valittu levykuva ei mahdu levylle!"
+msgstr "Asemassa olevalla levyllä ei ole tarpeeksi tilaa."
 
 #: ../xfburn/xfburn-perform-burn.c:157
 #, c-format
@@ -934,12 +897,11 @@ msgstr "Alustetaan..."
 
 #: ../xfburn/xfburn-perform-burn.c:274
 msgid "see console"
-msgstr ""
+msgstr "katso pääte"
 
 #: ../xfburn/xfburn-perform-burn.c:302
-#, fuzzy
 msgid "User Aborted"
-msgstr "keskeytetty"
+msgstr "Käyttäjä keskeytti"
 
 #: ../xfburn/xfburn-preferences-dialog.c:141
 msgid "Preferences"
@@ -947,7 +909,7 @@ msgstr "Asetukset"
 
 #: ../xfburn/xfburn-preferences-dialog.c:142
 msgid "Tune how Xfburn behaves"
-msgstr "Säädä Xfburnin käyttäytymistä"
+msgstr "Säädä Xfburnin käytöstä"
 
 #: ../xfburn/xfburn-preferences-dialog.c:187
 #: ../xfburn/xfburn-preferences-dialog.c:191
@@ -1013,7 +975,6 @@ msgstr "_Etsi laitteita"
 
 #. below the device list
 #: ../xfburn/xfburn-preferences-dialog.c:319
-#, fuzzy
 msgid "Show warning on _empty speed list"
 msgstr "_Varoita tyhjästä nopeuslistasta"
 
@@ -1043,9 +1004,8 @@ msgid "Min. fill was %2d%%"
 msgstr "Alin täyttöaste %2d%%"
 
 #: ../xfburn/xfburn-progress-dialog.c:527
-#, fuzzy
 msgid "Aborted"
-msgstr "keskeytetty"
+msgstr "Keskeytetty"
 
 #: ../xfburn/xfburn-progress-dialog.c:533
 msgid "Failed"
@@ -1060,9 +1020,8 @@ msgid "Completed"
 msgstr "Valmis"
 
 #: ../xfburn/xfburn-progress-dialog.c:576
-#, fuzzy
 msgid "Aborting..."
-msgstr "Alustetaan..."
+msgstr "Keskeytetään..."
 
 #: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
@@ -1105,65 +1064,61 @@ msgstr "<big>_Ääni-CD</big>"
 msgid "Audio CD playable in regular stereos"
 msgstr "Ääni-CD, joka käy tavalliseen cd-soittimeen"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-#: ../xfburn/xfburn-audio-composition.c:207
+#: ../xfburn/xfburn-audio-composition.c:210
 msgid "Rename Artist"
 msgstr "Vaihda esittäjä"
 
-#: ../xfburn/xfburn-audio-composition.c:207
+#: ../xfburn/xfburn-audio-composition.c:210
 msgid "Rename the artist of the selected file"
 msgstr "Muokkaa valitun kappaleen esittäjän nimeä"
 
-#: ../xfburn/xfburn-audio-composition.c:209
+#: ../xfburn/xfburn-audio-composition.c:212
 msgid "Rename Title"
 msgstr "Nimeä uudelleen"
 
-#: ../xfburn/xfburn-audio-composition.c:209
+#: ../xfburn/xfburn-audio-composition.c:212
 msgid "Rename the title of the selected file"
 msgstr "Muokkaa valitun kappaleen nimeä"
 
-#: ../xfburn/xfburn-audio-composition.c:380
+#: ../xfburn/xfburn-audio-composition.c:388
 msgid "Pos"
 msgstr "Nro"
 
-#: ../xfburn/xfburn-audio-composition.c:382
+#: ../xfburn/xfburn-audio-composition.c:390
 msgid "Length"
 msgstr "Kesto"
 
-#: ../xfburn/xfburn-audio-composition.c:388
+#: ../xfburn/xfburn-audio-composition.c:396
 msgid "Artist"
 msgstr "Esittäjä"
 
-#: ../xfburn/xfburn-audio-composition.c:401
+#: ../xfburn/xfburn-audio-composition.c:409
 msgid "Title"
 msgstr "Nimi"
 
-#: ../xfburn/xfburn-audio-composition.c:412
+#: ../xfburn/xfburn-audio-composition.c:420
 msgid "Filename"
 msgstr "Tiedostonimi"
 
-#: ../xfburn/xfburn-audio-composition.c:558
-#, fuzzy
+#: ../xfburn/xfburn-audio-composition.c:566
 msgid "Cannot burn audio onto a DVD."
-msgstr "Musiikkia ei voi polttaa DVD-levylle"
+msgstr "Musiikkia ei voi polttaa DVD-levylle."
 
-#: ../xfburn/xfburn-audio-composition.c:1199
-#, fuzzy
+#: ../xfburn/xfburn-audio-composition.c:1215
 msgid "You can only have a maximum of 99 tracks."
-msgstr "Raitoja voi olla enintään 99!"
+msgstr "Raitoja voi olla enintään 99."
 
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:454
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:312
 msgid "A problem with the burn backend occurred."
-msgstr ""
+msgstr "Polttotaustajärjestelmän virhe."
 
 #: ../xfburn/xfburn-disc-usage.c:165
 msgid "Proceed to Burn"
 msgstr "Polta levylle"
 
 #: ../xfburn/xfburn-disc-usage.c:205
-#, fuzzy
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "Yrität polttaa levylle enemmän, kuin sille mahtuu!"
+msgstr "Yrität polttaa levylle enemmän kuin sille mahtuu."
 
 #: ../xfburn/xfburn-transcoder-basic.c:183
 #, c-format
@@ -1181,9 +1136,9 @@ msgid "Could not stat %s: %s"
 msgstr "Kohdetta %s ei löydy: %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:229
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open %s."
-msgstr "Ei voi avata kohdetta %s!"
+msgstr "Ei voi avata kohdetta %s."
 
 #: ../xfburn/xfburn-transcoder-basic.c:310
 #, c-format
@@ -1196,7 +1151,7 @@ msgid "Gstreamer did not like this file (detection timed out)"
 msgstr "Tiedosto ei kelvannut Gstreamerille (tunnistuksen aikakatkaisu)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:754
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s\n"
 "\n"
@@ -1205,7 +1160,8 @@ msgid ""
 "%s"
 msgstr ""
 "%s\n"
-"\tei ole äänitiedosto:\n"
+"\n"
+"ei ole äänitiedosto:\n"
 "\n"
 "%s"
 
@@ -1232,43 +1188,3 @@ msgstr "Polta levykuva (xfburn)"
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD- ja DVD-polttosovellus"
-
-#~ msgid "Unable to create disc object"
-#~ msgstr "Levyobjektin luominen epäonnistui"
-
-#~ msgid "Cannot attach source object to track object"
-#~ msgstr "Lähdeobjektin liittäminen raitaobjektiin ei onnistu"
-
-#~ msgid "Format DVD+RW"
-#~ msgstr "Alusta DVD+RW"
-
-#~ msgid "_Format"
-#~ msgstr "_Alusta"
-
-#, fuzzy
-#~ msgid "Closed disc with data detected. Need blank or appendable media"
-#~ msgstr "Suljettu datalevy tunnistettu. Tarvitaan tyhjä tai avoin levy."
-
-#~ msgid "No media detected in drive"
-#~ msgstr "Asemassa ei ole levyä"
-
-#~ msgid "No access to drive (mounted?)"
-#~ msgstr "Asema ei käytettävissä (onko levy liitetty?)"
-
-#~ msgid "active"
-#~ msgstr "aktiviinen"
-
-#~ msgid "Could not create burn_source from %s!"
-#~ msgstr "Polttolähteen luominen epäonnistui kohteesta %s!"
-
-#~ msgid "Could not add source to track %s!"
-#~ msgstr "Lähteen lisääminen epäonnistui raidalle %s!"
-
-#~ msgid "A pipeline element could not be created"
-#~ msgstr "Putkielementin luominen epäonnistui"
-
-#~ msgid "The debug identity element could not be created"
-#~ msgstr "Vianetsintäelementin luominen epäonnistui"
-
-#~ msgid "Could not setup filtered gstreamer link"
-#~ msgstr "Suodatetun gstreamer-linkin asettaminen epäonnistui"
