@@ -531,11 +531,11 @@ action_about (GtkAction * action, XfburnMainWindow * window)
     icon = xfce_themed_icon_load (GTK_STOCK_CDROM, x);
 
   info = xfce_about_info_new ("Xfburn", VERSION, _("Another cd burning GUI"),
-                              XFCE_COPYRIGHT_TEXT ("2005-2008", "Jean-François Wauthy, David Mohr, Mario Đanić"), XFCE_LICENSE_GPL);
+                              XFCE_COPYRIGHT_TEXT ("2005-2008", "David Mohr, Mario Đanić, Jean-François Wauthy"), XFCE_LICENSE_GPL);
   xfce_about_info_set_homepage (info, "http://www.xfce.org/projects/xfburn");
   xfce_about_info_add_credit (info, "David Mohr", "david@mcbf.net", _("Author/Maintainer"));
-  xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Author/Maintainer"));
   xfce_about_info_add_credit (info, "Mario Đanić", "mario@libburnia-project.org", _("Author/Maintainer"));
+  xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Retired author/maintainer"));
   
 
   for (n = 0; n < G_N_ELEMENTS (translators); ++n) {
