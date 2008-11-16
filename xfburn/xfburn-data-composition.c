@@ -1009,13 +1009,13 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
   
   struct stat s;
 
-  if ((stat (path, &s) == 0)) {
+  if ((g_lstat (path, &s) == 0)) {
     gchar *basename = NULL;
     gchar *humansize = NULL;
     GtkTreeIter *parent = NULL;
     GtkTreePath *tree_path = NULL;
 
-    if (!S_ISDIR (s.st_mode) && !S_ISREG (s.st_mode)) {
+    if (!(S_ISDIR (s.st_mode) ||S_ISREG (s.st_mode) || S_ISCHR(s.st_mode) || S_ISBLK(s.st_mode) || S_ISLNK (s.st_mode))) {
       return FALSE;
     }
     
@@ -1076,7 +1076,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
     gdk_threads_leave ();
     
     /* new directory */
-    if (S_ISDIR (s.st_mode)) {
+    if (S_ISDIR (s.st_mode) && !S_ISLNK (s.st_mode)) {
       GDir *dir = NULL;
       GError *error = NULL;
       const gchar *filename = NULL;
@@ -1132,7 +1132,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
       g_dir_close (dir);
     }
     /* new file */
-    else if (S_ISREG (s.st_mode)) {
+    else if (S_ISREG (s.st_mode) || S_ISCHR(s.st_mode) || S_ISBLK(s.st_mode) || S_ISLNK (s.st_mode)) {
 #ifdef HAVE_THUNAR_VFS
       GdkScreen *screen;
       GtkIconTheme *icon_theme;
