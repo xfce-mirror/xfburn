@@ -44,6 +44,7 @@
 #include <exo/exo.h>
 
 #include <libisofs.h>
+#include <glib/gstdio.h>
 
 #include "xfburn-data-composition.h"
 #include "xfburn-global.h"
