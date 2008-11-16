@@ -1,4 +1,5 @@
 SUBDIRS = 								\
+	desktop-integration                                             \
 	icons								\
 	po 								\
     	xfburn
