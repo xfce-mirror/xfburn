@@ -1011,7 +1011,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
   struct stat s;
 
   if ((g_lstat (path, &s) == 0)) {
-    gchar *basename = NULL;
+    //gchar *basename = NULL;
     gchar *humansize = NULL;
     GtkTreeIter *parent = NULL;
     GtkTreePath *tree_path = NULL;
@@ -1020,15 +1020,15 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
       return FALSE;
     }
     
+    /* allow hidden files
     basename = g_path_get_basename (path);
     if ( (strlen (basename) > 1) && (basename[0] == '.') ) {
-      /* FIXME: is this really what we want? */
-      /* don't add hidden files/directories */
 
       g_free (basename);  
       return FALSE;
     }
     g_free (basename);
+    */
     
     xfburn_adding_progress_pulse (XFBURN_ADDING_PROGRESS (priv->progress));
     
