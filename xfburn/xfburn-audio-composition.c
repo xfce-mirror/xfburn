@@ -127,6 +127,7 @@ static void save_to_file (XfburnComposition *composition);
 //static gint song_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data);
 
 static void action_clear (GtkAction *, XfburnAudioComposition *);
+static void action_info (GtkAction *, XfburnAudioComposition *);
 static void action_remove_selection (GtkAction *, XfburnAudioComposition *);
 #if 0 /* CDTEXT */
 static void action_rename_selection_artist (GtkAction *, XfburnAudioComposition *);
@@ -194,9 +195,11 @@ typedef struct
 } XfburnAudioCompositionPrivate;
 
 /* globals */
+#define MAX_NAME_LENGTH 80
 static GtkHPanedClass *parent_class = NULL;
 static guint instances = 0;
 static gchar *did_warn = "Did warn about this already";
+static gchar trans_name[MAX_NAME_LENGTH] = {""};
 
 static const GtkActionEntry action_entries[] = {
   {"add-file", GTK_STOCK_ADD, N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
@@ -205,6 +208,8 @@ static const GtkActionEntry action_entries[] = {
    G_CALLBACK (action_remove_selection),},
   {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the content of the composition"),
    G_CALLBACK (action_clear),},
+  {"transcoder-info", GTK_STOCK_INFO, trans_name, NULL, N_("What files can get burned to an audio CD?"),
+   G_CALLBACK (action_info),},
   //{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #if 0 /* CDTEXT */
   {"rename-artist", GTK_STOCK_EDIT, N_("Rename Artist"), NULL, N_("Rename the artist of the selected file"),
@@ -219,6 +224,7 @@ static const gchar *toolbar_actions[] = {
   "remove-file",
   "clear",
   "import-session",
+  "transcoder-info",
 };
 
 static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
@@ -315,6 +321,10 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
                               };
 
   priv->full_paths_to_add = NULL;
+  priv->trans = xfburn_transcoder_get_global ();
+
+  if (trans_name[0] == '\0')
+    strncpy (trans_name, xfburn_transcoder_get_name (priv->trans), MAX_NAME_LENGTH);
 
   instances++;
   
@@ -353,6 +363,8 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   exo_toolbars_model_add_separator (model_toolbar, toolbar_position, -1);
   exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "remove-file", EXO_TOOLBARS_ITEM_TYPE);
   exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "clear", EXO_TOOLBARS_ITEM_TYPE);
+  exo_toolbars_model_add_separator (model_toolbar, toolbar_position, -1);
+  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "transcoder-info", EXO_TOOLBARS_ITEM_TYPE);
   //exo_toolbars_model_add_separator (model_toolbar, toolbar_position, -1);
   //exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "import-session", EXO_TOOLBARS_ITEM_TYPE);
 
@@ -466,8 +478,6 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
                     
   action = gtk_action_group_get_action (priv->action_group, "remove-file");
   gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
-
-  priv->trans = xfburn_transcoder_get_global ();
 
   priv->warned_about = g_hash_table_new (g_direct_hash, g_direct_equal);
 }
@@ -997,6 +1007,14 @@ action_clear (GtkAction * action, XfburnAudioComposition * dc)
   gtk_tree_store_clear (GTK_TREE_STORE (model));
   
   xfburn_disc_usage_set_size (XFBURN_DISC_USAGE (priv->disc_usage), 0);
+}
+
+static void
+action_info (GtkAction * action, XfburnAudioComposition * dc)
+{
+  XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
+  
+  xfce_info (xfburn_transcoder_get_description (priv->trans));
 }
 
 static void

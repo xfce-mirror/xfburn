@@ -52,6 +52,7 @@ static void transcoder_interface_init (XfburnTranscoderInterface *iface, gpointe
 
 /* internals */
 static const gchar * get_name (XfburnTranscoder *trans);
+static const gchar * get_description (XfburnTranscoder *trans);
 static gboolean is_initialized (XfburnTranscoder *trans, GError **error);
 
 static XfburnAudioTrack * get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error);
@@ -151,6 +152,7 @@ static void
 transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data)
 {
   iface->get_name = get_name;
+  iface->get_description = get_description;
   iface->is_initialized = is_initialized;
   iface->get_audio_track = get_audio_track;
   iface->create_burn_track = create_burn_track;
@@ -162,7 +164,20 @@ transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data
 static const gchar * 
 get_name (XfburnTranscoder *trans)
 {
-  return "basic";
+  return _("basic");
+}
+
+static const gchar * 
+get_description (XfburnTranscoder *trans)
+{
+  return _("The basic transcoder is built in,\n"
+           "and does not require any library.\n"
+           "But it can only handle uncompressed\n"
+           ".wav files.\n"
+           "If you would like to create audio\n"
+           "compositions from different types of\n"
+           "audio files, please compile with\n"
+           "gstreamer support.");
 }
 
 static gboolean

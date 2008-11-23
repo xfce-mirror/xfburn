@@ -72,6 +72,7 @@ static void create_pipeline (XfburnTranscoderGst *trans);
 static void delete_pipeline (XfburnTranscoderGst *trans);
 static void recreate_pipeline (XfburnTranscoderGst *trans);
 static const gchar * get_name (XfburnTranscoder *trans);
+static const gchar * get_description (XfburnTranscoder *trans);
 static XfburnAudioTrack * get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error);
 
 static struct burn_track * create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
@@ -243,6 +244,7 @@ static void
 transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data)
 {
   iface->get_name = get_name;
+  iface->get_description = get_description;
   iface->is_initialized = is_initialized;
   iface->get_audio_track = get_audio_track;
   iface->create_burn_track = create_burn_track;
@@ -692,7 +694,23 @@ on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
 static const gchar * 
 get_name (XfburnTranscoder *trans)
 {
-  return "gstreamer";
+  /* Note to translators: you can probably keep this as gstreamer,
+   * unless you have a good reason to call it by another name that
+   * the user would understand better */
+  return _("gstreamer");
+}
+
+static const gchar * 
+get_description (XfburnTranscoder *trans)
+{
+  return _("The gstreamer transcoder uses the gstreamer\n"
+           "library for creating audio compositions.\n"
+           "\n"
+           "Essentially all audio files should be supported\n"
+           "given that the correct plugins are installed.\n"
+           "If an audio file is not recognized, make sure\n"
+           "that you have the 'good','bad', and 'ugly'\n"
+           "gstreamer plugin packages installed.");
 }
 
 #if DEBUG_GST > 0 && DEBUG > 0

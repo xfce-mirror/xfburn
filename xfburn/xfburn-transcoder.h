@@ -63,6 +63,7 @@ typedef struct
 
   /* required functions */
   const gchar * (*get_name) (XfburnTranscoder *trans);
+  const gchar * (*get_description) (XfburnTranscoder *trans);
   gboolean (*is_initialized) (XfburnTranscoder *trans, GError **error);
   XfburnAudioTrack * (*get_audio_track) (XfburnTranscoder *trans, const gchar *fn, GError **error);
   struct burn_track * (*create_burn_track) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
@@ -80,6 +81,7 @@ void xfburn_transcoder_set_global (XfburnTranscoder *trans);
 XfburnTranscoder *xfburn_transcoder_get_global ();
 
 const gchar *xfburn_transcoder_get_name (XfburnTranscoder *trans);
+const gchar *xfburn_transcoder_get_description (XfburnTranscoder *trans);
 gboolean xfburn_transcoder_is_initialized (XfburnTranscoder *trans, GError **error);
 XfburnAudioTrack * xfburn_transcoder_get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error);
 struct burn_track *xfburn_transcoder_create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
