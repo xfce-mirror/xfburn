@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-12 15:09-0700\n"
-"PO-Revision-Date: 2008-09-10 22:22+0700\n"
+"PO-Revision-Date: 2008-11-22 15:01+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,8 @@ msgstr "Cakram Kosong"
 msgid "Burning device"
 msgstr "Divais pembakaran"
 
-#: ../xfburn/xfburn-blank-dialog.c:223 ../xfburn/xfburn-device-box.c:200
+#: ../xfburn/xfburn-blank-dialog.c:223
+#: ../xfburn/xfburn-device-box.c:200
 msgid "Blank mode"
 msgstr "Mode kosong"
 
@@ -92,9 +93,8 @@ msgstr "_Kosongkan"
 
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:351
-#, fuzzy
 msgid "The inserted disc is already blank."
-msgstr "Cakram yang dimasukkan telah kosong"
+msgstr "Cakram yang dimasukkan telah kosong."
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:357
@@ -102,14 +102,12 @@ msgid "Ready"
 msgstr "Siap"
 
 #: ../xfburn/xfburn-blank-dialog.c:360
-#, fuzzy
 msgid "No disc detected in the drive."
-msgstr "Tak ada cakram terdeteksi di penggerak"
+msgstr "Tak ada cakram terdeteksi di penggerak."
 
 #: ../xfburn/xfburn-blank-dialog.c:369
-#, fuzzy
 msgid "Disc is not erasable."
-msgstr "Media tak dapat dihapus"
+msgstr "Cakram tak dapat dihapus."
 
 #: ../xfburn/xfburn-blank-dialog.c:409
 msgid "Blanking disc..."
@@ -123,7 +121,8 @@ msgstr "Mengosongkan cakram..."
 msgid "Done"
 msgstr "Selesai"
 
-#: ../xfburn/xfburn-blank-dialog.c:439 ../xfburn/xfburn-perform-burn.c:304
+#: ../xfburn/xfburn-blank-dialog.c:439
+#: ../xfburn/xfburn-perform-burn.c:304
 #: ../xfburn/xfburn-progress-dialog.c:604
 msgid "Failure"
 msgstr "Kesalahan"
@@ -133,9 +132,8 @@ msgstr "Kesalahan"
 #: ../xfburn/xfburn-burn-image-dialog.c:328
 #: ../xfburn/xfburn-burn-image-dialog.c:532
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:557
-#, fuzzy
 msgid "Unable to grab the drive."
-msgstr "Tak dapat menangkap penggerak"
+msgstr "Tak dapat mengambil penggerak."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:179
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
@@ -196,21 +194,18 @@ msgstr "Galat terjadi ketika menulis ISO: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:538
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:544
-#, fuzzy
 msgid "An error occurred in the burn backend."
-msgstr "Galat terjadi ketika menulis ISO: %s"
+msgstr "Galat terjadi di ujung belakang pembakaran."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:486
-#, fuzzy
 msgid "The write mode is not supported currently."
-msgstr "Mode tulis saat ini tak didukung"
+msgstr "Mode tulis saat ini tak didukung."
 
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:655
-#, fuzzy
 msgid "Could not create ISO source structure."
-msgstr "Tak dapat membuat struktur sumber ISO"
+msgstr "Tak dapat membuat struktur sumber ISO."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:136
 msgid "Burn image"
@@ -236,78 +231,56 @@ msgstr "_Bakar citra"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:292
 #: ../xfburn/xfburn-burn-image-dialog.c:321
-#, fuzzy
 msgid "An error occurred in the burn backend"
-msgstr "Galat terjadi ketika menulis ISO: %s"
+msgstr "Galat terjadi di ujung belakang pembakaran"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:305
-#, fuzzy
 msgid "Unable to determine image size."
-msgstr "Tak dapat menentukan ukuran citra"
+msgstr "Tak dapat menentukan ukuran citra."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:312
-#, fuzzy
 msgid "Cannot open image."
-msgstr "Tak dapat membuka citra"
+msgstr "Tak dapat membuka citra."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:337
-#, fuzzy
 msgid "Burn mode is not currently implemented."
-msgstr "Mode bakar saat ini belum diimplementasikan"
+msgstr "Mode bakar saat ini belum diimplementasikan."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 msgid "Burning image..."
 msgstr "Membakar citra..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:422
-#, fuzzy
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\"> "
-"Silakan pilih citra yang akan dibakar!</span>"
+msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Silakan pilih citra yang akan dibakar</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:460
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Tak dapat menambah data ke cakram multisesi di mode tulis ini (gunakan TAO)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr "Tak dapat menambah data ke cakram multisesi di mode tulis ini (gunakan TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:464
-#, fuzzy
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"Media yang ditutup dengan data terdeteksi. Butuh media kosong atau dapat "
-"ditambah"
+msgstr "Cakram ditutup dengan data terdeteksi. Butuh cakram kosong atau dapat ditambah"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:466
-#, fuzzy
 msgid "No disc detected in drive"
-msgstr "Tak ada cakram terdeteksi di penggerak"
+msgstr "Tak ada cakram yang terdeteksi di penggerak"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:468
-#, fuzzy
 msgid "Cannot recognize state of drive and disc"
-msgstr "Tak dapat mengenali kondisi penggerak dan media"
+msgstr "Tak dapat mengenali kondisi penggerak dan cakram"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:480
-#, fuzzy
 msgid "The selected image does not fit on the inserted disc"
-msgstr "Citra terpilih tidak cocok dengan cakram yang dimasukkan!"
+msgstr "Citra terpilih tidak cocok dengan cakram yang dimasukkan"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:484
-#, fuzzy
 msgid "Failed to get image size"
-msgstr "Gagal mendapatkan ukuran citra!"
+msgstr "Gagal mendapatkan ukuran citra"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:512
-msgid ""
-"Make sure you selected a valid file and you have the proper permissions to "
-"access it."
-msgstr ""
-"Pastikan anda memilih berkas yang sah dan anda memiliki hak akses yang cukup "
-"untuk mengaksesnya."
+msgid "Make sure you selected a valid file and you have the proper permissions to access it."
+msgstr "Pastikan anda memilih berkas yang sah dan anda memiliki hak akses yang cukup untuk mengaksesnya."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:542
 msgid "The write mode is not currently supported"
@@ -348,9 +321,8 @@ msgid "Flushing cache..."
 msgstr "Menghapus tembolok..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:106
-#, fuzzy
 msgid "Please insert a recordable disc."
-msgstr "Silakan masukkan medium dapat direkam."
+msgstr "Silakan masukkan cakram dapat direkam."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:128
 msgid "Writing CD..."
@@ -442,16 +414,14 @@ msgid "Local Path"
 msgstr "Alamat Lokal"
 
 #: ../xfburn/xfburn-data-composition.c:664
-#, fuzzy
 msgid "You must give a name to the file."
-msgstr "Anda harus memberikan nama untuk berkas"
+msgstr "Anda harus memberikan nama untuk berkas."
 
 #: ../xfburn/xfburn-data-composition.c:673
 #: ../xfburn/xfburn-data-composition.c:1068
 #: ../xfburn/xfburn-audio-composition.c:1103
-#, fuzzy
 msgid "A file with the same name is already present in the composition."
-msgstr "Berkas dengan nama yang sama telah ada di komposisi"
+msgstr "Berkas dengan nama yang sama telah ada di komposisi."
 
 #: ../xfburn/xfburn-data-composition.c:781
 #: ../xfburn/xfburn-data-composition.c:782
@@ -467,26 +437,21 @@ msgstr "Menambah direktori home"
 #: ../xfburn/xfburn-data-composition.c:1227
 #: ../xfburn/xfburn-audio-composition.c:1266
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Anda akan menambah direktori home anda ke komposisi. Tampaknya ini akan "
-"memakan waktu yang sangat lama, dan juga terlalu besar untuk muat dalam satu "
-"cakram.\n"
+"Anda akan menambah direktori home anda ke komposisi. Tampaknya ini akan memakan waktu yang sangat lama, dan juga terlalu besar untuk muat dalam satu cakram.\n"
 "\n"
 "Anda yakin ingin melanjutkan?"
 
 #: ../xfburn/xfburn-data-composition.c:1389
-#, fuzzy, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added."
-msgstr ""
-"Berkas bernama \"%s\" telah ada di direktori ini, berkas belum ditambah"
+#, c-format
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
+msgstr "Berkas bernama \"%s\" telah ada di direktori ini, berkas belum ditambah."
 
-#: ../xfburn/xfburn-device-box.c:181 ../xfburn/xfburn-device-box.c:182
+#: ../xfburn/xfburn-device-box.c:181
+#: ../xfburn/xfburn-device-box.c:182
 msgid "Show writers only"
 msgstr "Tampilkan hanya penulis"
 
@@ -520,14 +485,11 @@ msgstr "Apakah itu kombinasi yang sah"
 
 #: ../xfburn/xfburn-device-box.c:197
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
-"Apakah kombinasi peranti keras dan cakram sah untuk membakar komposisi?"
+msgstr "Apakah kombinasi peranti keras dan cakram sah untuk membakar komposisi?"
 
 #: ../xfburn/xfburn-device-box.c:201
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"Mode pengosongan menunjukkan pesan status cakram yang berbeda daripada mode "
-"reguler"
+msgstr "Mode pengosongan menunjukkan pesan status cakram yang berbeda daripada mode reguler"
 
 #: ../xfburn/xfburn-device-box.c:274
 msgid "_Speed:"
@@ -545,23 +507,17 @@ msgstr "Kosongkan senarai kecepatan"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to "
-"<i>xfburn@xfce.org</i> together with the console output to increase the "
-"chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>Tak dapat menerima senarai kecepatan untuk penggerak.</b>\n"
 "\n"
-"Ini adalah kutu yang dikenal, yang terjadi pada beberapa penggerak. Silakan "
-"laporkan ke <i>xfburn@xfce.org</i> bersama dengan keluaran konsol untuk "
-"meningkatkan kesempatan kutu ini bisa diperbaiki.\n"
+"Ini adalah kutu yang dikenal, yang terjadi pada beberapa penggerak. Silakan laporkan ke <i>xfburn@xfce.org</i> bersama dengan keluaran konsol untuk meningkatkan kesempatan kutu ini bisa diperbaiki.\n"
 "\n"
-"Pembakaran masih dapat bekerja, tapi jika tetap ada masalah, tolong beritahu "
-"kami.\n"
+"Pembakaran masih dapat bekerja, tapi jika tetap ada masalah, tolong beritahu kami.\n"
 "\n"
 "<i>Terima kasih!</i>"
 
@@ -578,38 +534,36 @@ msgid "Max"
 msgstr "Maks"
 
 #: ../xfburn/xfburn-device-box.c:606
-#, fuzzy
 msgid "Drive can't burn on the inserted disc"
-msgstr "Penggerak tak dapat membakar cakram yang dimasukkan!"
+msgstr "Penggerak tak dapat membakar cakram yang dimasukkan"
 
-#: ../xfburn/xfburn-device-box.c:615 ../xfburn/xfburn-device-box.c:661
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:615
+#: ../xfburn/xfburn-device-box.c:661
 msgid "Drive is empty"
-msgstr "Penggerak kosong!"
+msgstr "Penggerak kosong"
 
 #: ../xfburn/xfburn-device-box.c:618
-#, fuzzy
 msgid "Sorry, multisession is not yet supported"
-msgstr "Maaf, multisesi belum didukung!"
+msgstr "Maaf, multisesi belum didukung"
 
 #: ../xfburn/xfburn-device-box.c:621
-#, fuzzy
 msgid "Inserted disc is full"
-msgstr "Cakram yang dimasukkan penuh!"
+msgstr "Cakram yang dimasukkan penuh"
 
-#: ../xfburn/xfburn-device-box.c:624 ../xfburn/xfburn-device-box.c:667
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:624
+#: ../xfburn/xfburn-device-box.c:667
 msgid "Inserted disc is unsuitable"
-msgstr "Cakram yang dimasukkan tidak cocok!"
+msgstr "Cakram yang dimasukkan tidak cocok"
 
-#: ../xfburn/xfburn-device-box.c:627 ../xfburn/xfburn-device-box.c:670
+#: ../xfburn/xfburn-device-box.c:627
+#: ../xfburn/xfburn-device-box.c:670
 msgid "Cannot access drive (it might be in use)"
-msgstr ""
+msgstr "Tak dapat mengakses penggerak (penggerak mungkin sedang digunakan)"
 
-#: ../xfburn/xfburn-device-box.c:632 ../xfburn/xfburn-device-box.c:673
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:632
+#: ../xfburn/xfburn-device-box.c:673
 msgid "Error determining disc"
-msgstr "Galat menentukan cakram!"
+msgstr "Galat menentukan cakram"
 
 #: ../xfburn/xfburn-device-box.c:653
 msgid "Write-once disc, no blanking possible"
@@ -620,9 +574,8 @@ msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW tak membutuhkan pengosongan"
 
 #: ../xfburn/xfburn-device-box.c:664
-#, fuzzy
 msgid "Inserted disc is already blank"
-msgstr "Cakram yang dimasukkan telah kosong!"
+msgstr "Cakram yang dimasukkan telah kosong"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:57
@@ -638,7 +591,8 @@ msgstr "Berkas"
 msgid "Type"
 msgstr "Tipe"
 
-#: ../xfburn/xfburn-fs-browser.c:95 ../xfburn/xfburn-fs-browser.c:272
+#: ../xfburn/xfburn-fs-browser.c:95
+#: ../xfburn/xfburn-fs-browser.c:272
 msgid "Filesystem"
 msgstr "Sistem berkas"
 
@@ -648,7 +602,8 @@ msgstr "Sistem berkas"
 msgid "%s's home"
 msgstr "home %s"
 
-#: ../xfburn/xfburn-main.c:203 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:203
+#: ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -659,34 +614,29 @@ msgid ""
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 "%s: %s\n"
-"Coba %s --help untuk melihat senarai penuh opsi baris perintah yang "
-"tersedia.\n"
+"Coba %s --help untuk melihat senarai penuh opsi baris perintah yang tersedia.\n"
 
 #: ../xfburn/xfburn-main.c:221
 msgid "Unable to initialize the burning backend."
-msgstr ""
+msgstr "Tak dapat menginisialisasi ujung belakang pembakaran."
 
 #: ../xfburn/xfburn-main.c:302
-#, fuzzy
 msgid "No drives are currently available"
-msgstr "Tak ada penggerak yang saat ini tersedia!"
+msgstr "Tak ada penggerak yang saat ini tersedia"
 
 #: ../xfburn/xfburn-main.c:304
-#, fuzzy
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
-"Mungkin ada media terkait di dalam penggerak?\n"
+"Mungkin cakram sedang digunakan, dan tak dapat diakses.\n"
 "\n"
 "Silakan lepas kait dan start ulang aplikasi.\n"
 "\n"
-"Jika tak ada media yang dimasukkan, cek apakah anda memiliki hak baca/tulis "
-"ke penggerak dengan pengguna saat ini."
+"Jika tak ada media yang dimasukkan, cek apakah anda memiliki hak baca dan tulis ke penggerak dengan pengguna saat ini."
 
 #: ../xfburn/xfburn-main.c:336
 #, c-format
@@ -694,11 +644,13 @@ msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr ""
+"Gagal menginisialisasi %s transcoder: %s\n"
+"\t(mundur kembali ke implementasi dasar)"
 
 #: ../xfburn/xfburn-main.c:369
-#, fuzzy, c-format
+#, c-format
 msgid "Image file '%s' does not exist."
-msgstr "Berkas citra '%s' tak ada!"
+msgstr "Berkas citra '%s' tak ada."
 
 #: ../xfburn/xfburn-main-window.c:100
 msgid "_File"
@@ -816,7 +768,8 @@ msgstr "Penyunting Batang Alat"
 msgid "Another cd burning GUI"
 msgstr "Pembakar cd GUI lainnya"
 
-#: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
+#: ../xfburn/xfburn-main-window.c:536
+#: ../xfburn/xfburn-main-window.c:537
 #: ../xfburn/xfburn-main-window.c:538
 msgid "Author/Maintainer"
 msgstr "Penulis/Pengelola"
@@ -843,40 +796,32 @@ msgid "Determine whether the close button is visible"
 msgstr "Menentukan apakah tombol tutup terlihat"
 
 #: ../xfburn/xfburn-perform-burn.c:94
-#, fuzzy
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Tak dapat menambah data ke cakram multisesi di mode tulis ini (gunakan TAO)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr "Tak dapat menambah data ke cakram multisesi di mode tulis ini (gunakan TAO)."
 
 #: ../xfburn/xfburn-perform-burn.c:98
-#, fuzzy
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-"Media yang ditutup dengan data terdeteksi. Butuh media kosong atau dapat "
-"ditambah"
+msgstr "Media yang ditutup dengan data terdeteksi. Butuh cakram kosong atau dapat ditambah."
 
 #: ../xfburn/xfburn-perform-burn.c:100
-#, fuzzy
 msgid "No disc detected in drive."
-msgstr "Tak ada cakram terdeteksi di penggerak"
+msgstr "Tak ada cakram yang terdeteksi di penggerak."
 
 #: ../xfburn/xfburn-perform-burn.c:103
-#, fuzzy
 msgid "Cannot recognize the state of the drive and disc."
-msgstr "Tak dapat mengenali kondisi penggerak dan media"
+msgstr "Tak dapat mengenali kondisi penggerak dan cakram."
 
 #: ../xfburn/xfburn-perform-burn.c:112
-#, fuzzy
 msgid "There is not enough space available on the inserted disc."
-msgstr "Citra terpilih tidak cocok dengan cakram yang dimasukkan!"
+msgstr "Tidak cukup ruang yang tersedia pada cakram yang dimasukkan."
 
 #: ../xfburn/xfburn-perform-burn.c:157
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Membakar jalur %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:161 ../xfburn/xfburn-perform-burn.c:226
+#: ../xfburn/xfburn-perform-burn.c:161
+#: ../xfburn/xfburn-perform-burn.c:226
 msgid "Burning composition..."
 msgstr "Membakar komposisi..."
 
@@ -908,7 +853,8 @@ msgstr "diakhiri"
 msgid "aborted"
 msgstr "dibatalkan"
 
-#: ../xfburn/xfburn-perform-burn.c:221 ../xfburn/xfburn-progress-dialog.c:200
+#: ../xfburn/xfburn-perform-burn.c:221
+#: ../xfburn/xfburn-progress-dialog.c:200
 #: ../xfburn/xfburn-progress-dialog.c:217
 #: ../xfburn/xfburn-progress-dialog.c:227
 #: ../xfburn/xfburn-progress-dialog.c:310
@@ -944,12 +890,11 @@ msgstr "Memformat"
 
 #: ../xfburn/xfburn-perform-burn.c:274
 msgid "see console"
-msgstr ""
+msgstr "lihat konsol"
 
 #: ../xfburn/xfburn-perform-burn.c:302
-#, fuzzy
 msgid "User Aborted"
-msgstr "dibatalkan"
+msgstr "Dibatalkan Pengguna"
 
 #: ../xfburn/xfburn-preferences-dialog.c:141
 msgid "Preferences"
@@ -1023,9 +968,8 @@ msgstr "P_indai divais"
 
 #. below the device list
 #: ../xfburn/xfburn-preferences-dialog.c:319
-#, fuzzy
 msgid "Show warning on _empty speed list"
-msgstr "Tampilkan peringatan kutu senarai ke_cepatan kosong"
+msgstr "Tampilkan peringatan pada senarai ke_cepatan kosong"
 
 #: ../xfburn/xfburn-preferences-dialog.c:327
 msgid "FIFO buffer size (in kb)"
@@ -1053,9 +997,8 @@ msgid "Min. fill was %2d%%"
 msgstr "Minimum pengisian adalah %2d%%"
 
 #: ../xfburn/xfburn-progress-dialog.c:527
-#, fuzzy
 msgid "Aborted"
-msgstr "dibatalkan"
+msgstr "Dibatalkan"
 
 #: ../xfburn/xfburn-progress-dialog.c:533
 msgid "Failed"
@@ -1070,9 +1013,8 @@ msgid "Completed"
 msgstr "Selesai"
 
 #: ../xfburn/xfburn-progress-dialog.c:576
-#, fuzzy
 msgid "Aborting..."
-msgstr "Memformat"
+msgstr "Membatalkan..."
 
 #: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
@@ -1117,99 +1059,90 @@ msgstr "CD audio dapat diputar di stereo reguler"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-audio-composition.c:207
-#, fuzzy
 msgid "Rename Artist"
-msgstr "Namai Ulang"
+msgstr "Namai Ulang Artis"
 
 #: ../xfburn/xfburn-audio-composition.c:207
-#, fuzzy
 msgid "Rename the artist of the selected file"
-msgstr "Namai ulang berkas terpilih"
+msgstr "Namai ulang artis dari berkas terpilih"
 
 #: ../xfburn/xfburn-audio-composition.c:209
-#, fuzzy
 msgid "Rename Title"
-msgstr "Namai Ulang"
+msgstr "Namai Ulang Judul"
 
 #: ../xfburn/xfburn-audio-composition.c:209
-#, fuzzy
 msgid "Rename the title of the selected file"
-msgstr "Namai ulang berkas terpilih"
+msgstr "Namai ulang judul dari berkas terpilih"
 
 #: ../xfburn/xfburn-audio-composition.c:380
 msgid "Pos"
-msgstr ""
+msgstr "Posisi"
 
 #: ../xfburn/xfburn-audio-composition.c:382
 msgid "Length"
-msgstr ""
+msgstr "Panjang"
 
 #: ../xfburn/xfburn-audio-composition.c:388
 msgid "Artist"
-msgstr ""
+msgstr "Artis"
 
 #: ../xfburn/xfburn-audio-composition.c:401
-#, fuzzy
 msgid "Title"
-msgstr "Berkas"
+msgstr "Judul"
 
 #: ../xfburn/xfburn-audio-composition.c:412
-#, fuzzy
 msgid "Filename"
-msgstr "Namai Ulang"
+msgstr "Nama Berkas"
 
 #: ../xfburn/xfburn-audio-composition.c:558
 msgid "Cannot burn audio onto a DVD."
-msgstr ""
+msgstr "Tak dapat membakar audio ke DVD."
 
 #: ../xfburn/xfburn-audio-composition.c:1199
 msgid "You can only have a maximum of 99 tracks."
-msgstr ""
+msgstr "Anda hanya dapat memiliki maksimum 99 jalur."
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:454
 msgid "A problem with the burn backend occurred."
-msgstr ""
+msgstr "Masalah dengan ujung belakang pembakaran terjadi."
 
 #: ../xfburn/xfburn-disc-usage.c:165
 msgid "Proceed to Burn"
-msgstr ""
+msgstr "Lanjutkan ke Bakar"
 
 #: ../xfburn/xfburn-disc-usage.c:205
-#, fuzzy
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr ""
-"Anda mencoba untuk membakar data lebih besar daripada yang dapat ditampung "
-"oleh cakram"
+msgstr "Anda mencoba untuk membakar data lebih besar daripada yang dapat ditampung oleh cakram."
 
 #: ../xfburn/xfburn-transcoder-basic.c:183
 #, c-format
 msgid "File %s does not have a .wav extension"
-msgstr ""
+msgstr "Berkas %s tak memiliki ekstensi .wav"
 
 #: ../xfburn/xfburn-transcoder-basic.c:188
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
-msgstr ""
+msgstr "Berkas %s tak berisi audio gelombang PCM tak terkompres"
 
 #: ../xfburn/xfburn-transcoder-basic.c:194
-#, fuzzy, c-format
+#, c-format
 msgid "Could not stat %s: %s"
-msgstr "Tak dapat membuat berkas ISO tujuan: %s"
+msgstr "Tak dapat stat %s: %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:229
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open %s."
-msgstr "Tak dapat membuat berkas ISO tujuan: %s"
+msgstr "Tak dapat membuka %s."
 
 #: ../xfburn/xfburn-transcoder-basic.c:310
 #, c-format
 msgid "Could not open %s: %s"
-msgstr ""
+msgstr "Tak dapat membuka %s: %s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:745
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
-msgstr ""
+msgstr "Gstreamer tidak menyukai berkas ini (waktu deteksi habis)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:754
 #, c-format
@@ -1220,22 +1153,28 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"%s\n"
+"\n"
+"bukan berkas audio:\n"
+"\n"
+"%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:870
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
-msgstr ""
+msgstr "Gstreamer tidak ingin memulai transcoding (waktu habis)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:905
 #, c-format
 msgid "Failed to change songs while transcoding"
-msgstr ""
+msgstr "Gagal mengganti lagu ketika transcoding"
 
-#: ../xfburn/xfburn-transcoder.c:115 ../xfburn/xfburn-transcoder.c:127
+#: ../xfburn/xfburn-transcoder.c:115
+#: ../xfburn/xfburn-transcoder.c:127
 #: ../xfburn/xfburn-transcoder.c:139
-#, fuzzy, c-format
+#, c-format
 msgid "not implemented"
-msgstr "Selesai"
+msgstr "tak diimplementasikan"
 
 #: ../xfburn.desktop.in.h:1
 msgid "Burn Image (xfburn)"
@@ -1247,13 +1186,10 @@ msgstr "Aplikasi pembakaran CD dan DVD"
 
 #~ msgid "Unable to create disc object"
 #~ msgstr "Tak dapat mebuat objek cakram"
-
 #~ msgid "Cannot attach source object to track object"
 #~ msgstr "Tak dapat melampirkan objek sumber ke objek jalur"
-
 #~ msgid "Format DVD+RW"
 #~ msgstr "Format DVD+RW"
-
 #~ msgid "_Format"
 #~ msgstr "_Format"
 
@@ -1262,13 +1198,10 @@ msgstr "Aplikasi pembakaran CD dan DVD"
 #~ msgstr ""
 #~ "Media yang ditutup dengan data terdeteksi. Butuh media kosong atau dapat "
 #~ "ditambah"
-
 #~ msgid "No media detected in drive"
 #~ msgstr "Tak ada media terdeteksi di penggerak"
-
 #~ msgid "No access to drive (mounted?)"
 #~ msgstr "Tak ada akses ke penggerak (termount?)"
-
 #~ msgid "active"
 #~ msgstr "aktif"
 
@@ -1279,33 +1212,24 @@ msgstr "Aplikasi pembakaran CD dan DVD"
 #, fuzzy
 #~ msgid "Could not add source to track %s!"
 #~ msgstr "Tak dapat membuat struktur sumber ISO"
-
 #~ msgid "Import"
 #~ msgstr "Impor"
-
 #~ msgid "Import existing session"
 #~ msgstr "Impor sesi yang telah ada"
-
 #~ msgid "Copy Audio CD"
 #~ msgstr "Salin CD Audio"
-
 #~ msgid "Create a new composition"
 #~ msgstr "Buat komposisi baru"
-
 #~ msgid "Copy DVD"
 #~ msgstr "Salin DVD"
-
 #~ msgid "The main window"
 #~ msgstr "Jendela utama"
-
 #~ msgid "Notebook"
 #~ msgstr "Buku catatan"
-
 #~ msgid "NOTEBOOK"
 #~ msgstr "BUKU CATATAN"
-
 #~ msgid "Action group"
 #~ msgstr "Grup aksi"
-
 #~ msgid "Action group from the main window"
 #~ msgstr "Grup aksi dari jendela utama"
+
