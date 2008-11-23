@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-23 00:57-0700\n"
-"PO-Revision-Date: 2008-11-16 16:04+0100\n"
+"PO-Revision-Date: 2008-11-23 09:57+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr "El disc introduït ja està en blanc."
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:357
 msgid "Ready"
-msgstr "Llest"
+msgstr "Preparat"
 
 #: ../xfburn/xfburn-blank-dialog.c:360
 msgid "No disc detected in the drive."
@@ -220,7 +220,7 @@ msgstr "Tots els fitxers"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:151
 msgid "ISO images"
-msgstr "imatges ISO"
+msgstr "Imatges ISO"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:202
 msgid "_Burn image"
@@ -792,9 +792,8 @@ msgid "Author/Maintainer"
 msgstr "Autor/Mantenidor"
 
 #: ../xfburn/xfburn-main-window.c:538
-#, fuzzy
 msgid "Retired author/maintainer"
-msgstr "Autor/Mantenidor"
+msgstr "Autor/Mantenidor retirat"
 
 #: ../xfburn/xfburn-main-window.c:544
 #, c-format
@@ -1084,7 +1083,7 @@ msgstr "Àudio CD reproduïble en aparells estèreo"
 
 #: ../xfburn/xfburn-audio-composition.c:211
 msgid "What files can get burned to an audio CD?"
-msgstr ""
+msgstr "Quins fitxers es poden cremar en un CD d'àudio?"
 
 #: ../xfburn/xfburn-audio-composition.c:215
 msgid "Rename Artist"
@@ -1144,7 +1143,7 @@ msgstr "Esteu intentant cremar més dades al disc que les que pot emmagatzemar."
 
 #: ../xfburn/xfburn-transcoder-basic.c:167
 msgid "basic"
-msgstr ""
+msgstr "bàsic"
 
 #: ../xfburn/xfburn-transcoder-basic.c:173
 msgid ""
@@ -1157,6 +1156,14 @@ msgid ""
 "audio files, please compile with\n"
 "gstreamer support."
 msgstr ""
+"El transcodificador bàsic és intern\n"
+"i no li cal pas cap llibreria. Però\n"
+"només gestiona fitxers .wav\n"
+"descomprimits.\n"
+"Si voleu crear composicions d'àudio\n"
+"des de tipus de fitxer d'àudio\n"
+"diferents, compileu-lo amb les\n"
+"funcionalitats de gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:198
 #, c-format
@@ -1188,7 +1195,7 @@ msgstr "No es pot obrir «%s»: %s"
 #. * the user would understand better
 #: ../xfburn/xfburn-transcoder-gst.c:700
 msgid "gstreamer"
-msgstr ""
+msgstr "gstreamer"
 
 #: ../xfburn/xfburn-transcoder-gst.c:706
 msgid ""
@@ -1201,6 +1208,14 @@ msgid ""
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
 msgstr ""
+"El transcodificador de gstreamer empra la\n"
+"llibreria gstreamer per crear composicions d'àudio.\n"
+"\n"
+"En principi, qualsevol fitxer d'àudio es podrà\n"
+"emprar ja que s'han instaŀlat els connectors\n"
+"adients. Si el fitxer d'àudio no es reconeix,\n"
+"comproveu que teniu el «bo, el dolent i el lleig»\n"
+"paquet del connector gstreamer instaŀlat."
 
 #: ../xfburn/xfburn-transcoder-gst.c:767
 #, c-format
@@ -1239,7 +1254,6 @@ msgid "not implemented"
 msgstr "no està implementat"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
-#, fuzzy
 msgid "Data Composition"
 msgstr "Composició de dades"
 

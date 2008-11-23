@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.3.0svn-25821\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-23 00:57-0700\n"
+"POT-Creation-Date: 2008-11-23 11:10+0100\n"
 "PO-Revision-Date: 2007-06-18 12:33+0200\n"
 "Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
 "Language-Team: Norwegian Bokmal <i18n-nb@lister.ping.uio.no>\n"
@@ -784,9 +784,8 @@ msgid "Author/Maintainer"
 msgstr "Forfatter/Vedlikeholder"
 
 #: ../xfburn/xfburn-main-window.c:538
-#, fuzzy
 msgid "Retired author/maintainer"
-msgstr "Forfatter/Vedlikeholder"
+msgstr "Tidligere Forfatter/Vedlikeholder"
 
 #: ../xfburn/xfburn-main-window.c:544
 #, c-format
@@ -1073,7 +1072,7 @@ msgstr "Lydcd spillbar i vanlige stereanlegg"
 
 #: ../xfburn/xfburn-audio-composition.c:211
 msgid "What files can get burned to an audio CD?"
-msgstr ""
+msgstr "Hvilke filer kan brennes til en lydcd?"
 
 #: ../xfburn/xfburn-audio-composition.c:215
 msgid "Rename Artist"
@@ -1133,7 +1132,7 @@ msgstr "Do forsøker å brenne mer data enn platen har plass til!"
 
 #: ../xfburn/xfburn-transcoder-basic.c:167
 msgid "basic"
-msgstr ""
+msgstr "grunnleggende"
 
 #: ../xfburn/xfburn-transcoder-basic.c:173
 msgid ""
@@ -1146,6 +1145,14 @@ msgid ""
 "audio files, please compile with\n"
 "gstreamer support."
 msgstr ""
+"Den grunnleggende omkoderen som er\n"
+"innebygget, krever ingen tillegg,\n"
+"men kan bare håndtere ukomprimerte\n"
+"wav-filer.\n"
+"Hvis du ønsker å lage komposisjoner\n"
+"bestående av forskjellige lydfiltyper\n"
+"må du bygge/kompilere xfburn med\n"
+"gstreamer støtte."
 
 #: ../xfburn/xfburn-transcoder-basic.c:198
 #, c-format
@@ -1177,7 +1184,7 @@ msgstr "Klarte ikke åpne %s: %s"
 #. * the user would understand better
 #: ../xfburn/xfburn-transcoder-gst.c:700
 msgid "gstreamer"
-msgstr ""
+msgstr "gestreamer"
 
 #: ../xfburn/xfburn-transcoder-gst.c:706
 msgid ""
@@ -1190,6 +1197,14 @@ msgid ""
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
 msgstr ""
+"Gstreamer omkoderen bruker gstreamer\n"
+"funksjoner for å lage lydkomposisjoner.\n"
+"\n"
+"Nær alle lydformater burde være støttet\n"
+"hvis korrekte lydplugins er installert.\n"
+"Hvis en lydfil ikke kan dekodes, sørg for\n"
+"at du har alle plugins som ligger i gstreamer\n"
+"pluginpakkene 'good','bad', og 'ugly' installert."
 
 #: ../xfburn/xfburn-transcoder-gst.c:767
 #, c-format
@@ -1228,7 +1243,6 @@ msgid "not implemented"
 msgstr "ikke implementert"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
-#, fuzzy
 msgid "Data Composition"
 msgstr "Datakomposisjon"
 
