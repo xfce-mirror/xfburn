@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-23 00:57-0700\n"
-"PO-Revision-Date: 2008-11-15 21:56+0200\n"
+"POT-Creation-Date: 2008-11-23 23:00+0200\n"
+"PO-Revision-Date: 2008-11-23 23:16+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -422,7 +422,7 @@ msgstr "Tiedostolle täytyy antaa nimi."
 
 #: ../xfburn/xfburn-data-composition.c:674
 #: ../xfburn/xfburn-data-composition.c:1069
-#: ../xfburn/xfburn-audio-composition.c:1137
+#: ../xfburn/xfburn-audio-composition.c:1139
 msgid "A file with the same name is already present in the composition."
 msgstr "Kokoelmassa on jo tiedosto tällä nimellä."
 
@@ -433,12 +433,12 @@ msgid "New directory"
 msgstr "Uusi kansio"
 
 #: ../xfburn/xfburn-data-composition.c:1230
-#: ../xfburn/xfburn-audio-composition.c:1299
+#: ../xfburn/xfburn-audio-composition.c:1307
 msgid "Adding home directory"
 msgstr "Lisätään kotikansio"
 
 #: ../xfburn/xfburn-data-composition.c:1231
-#: ../xfburn/xfburn-audio-composition.c:1300
+#: ../xfburn/xfburn-audio-composition.c:1308
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
 "to take a very long time, and also to be too big to fit on one disc.\n"
@@ -778,12 +778,11 @@ msgstr "CD-levyn polttosovellus"
 
 #: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
 msgid "Author/Maintainer"
-msgstr "Kirjoittaja/Ylläpitäjä"
+msgstr "Ohjelmoija/Ylläpitäjä"
 
 #: ../xfburn/xfburn-main-window.c:538
-#, fuzzy
 msgid "Retired author/maintainer"
-msgstr "Kirjoittaja/Ylläpitäjä"
+msgstr "Entinen ohjelmoija/Ylläpitäjä"
 
 #: ../xfburn/xfburn-main-window.c:544
 #, c-format
@@ -1070,7 +1069,7 @@ msgstr "Ääni-CD, joka käy tavalliseen cd-soittimeen"
 
 #: ../xfburn/xfburn-audio-composition.c:211
 msgid "What files can get burned to an audio CD?"
-msgstr ""
+msgstr "Mitä tiedostoja ääni-CD:lle voi polttaa?"
 
 #: ../xfburn/xfburn-audio-composition.c:215
 msgid "Rename Artist"
@@ -1112,7 +1111,7 @@ msgstr "Tiedostonimi"
 msgid "Cannot burn audio onto a DVD."
 msgstr "Musiikkia ei voi polttaa DVD-levylle."
 
-#: ../xfburn/xfburn-audio-composition.c:1233
+#: ../xfburn/xfburn-audio-composition.c:1223
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Raitoja voi olla enintään 99."
 
@@ -1130,7 +1129,7 @@ msgstr "Yrität polttaa levylle enemmän kuin sille mahtuu."
 
 #: ../xfburn/xfburn-transcoder-basic.c:167
 msgid "basic"
-msgstr ""
+msgstr "vakio"
 
 #: ../xfburn/xfburn-transcoder-basic.c:173
 msgid ""
@@ -1143,6 +1142,14 @@ msgid ""
 "audio files, please compile with\n"
 "gstreamer support."
 msgstr ""
+"Sovellus sisältää vakiomuuntimen,\n"
+"joka ei vaadi erillisiä kirjastoja.\n"
+"Se osaa tosin käsitellä ainoastaan\n"
+"pakkaamattomia .wav-tiedostoja.\n"
+"\n"
+"Jos haluat luoda äänikokoelmia jonkin\n"
+"muun tyyppisistä tiedostoista, käännä\n"
+"sovellus gstreamer-tuella."
 
 #: ../xfburn/xfburn-transcoder-basic.c:198
 #, c-format
@@ -1174,7 +1181,7 @@ msgstr "Ei voi avata kohdetta %s: %s"
 #. * the user would understand better
 #: ../xfburn/xfburn-transcoder-gst.c:700
 msgid "gstreamer"
-msgstr ""
+msgstr "gstreamer"
 
 #: ../xfburn/xfburn-transcoder-gst.c:706
 msgid ""
@@ -1187,6 +1194,14 @@ msgid ""
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
 msgstr ""
+"GStreamer-muunnin käyttää gstreamer-kirjastoa\n"
+"äänikokoelmien luomiseen.\n"
+"\n"
+"Periaatteessa kaikkien äänitiedostojen pitäisi\n"
+"kelvata, jos tarvittavat koodekit on asennettu.\n"
+"Jos äänitiedostoa ei tunnisteta, varmista, että\n"
+"olet asentanut gstreamerin liitännäispaketit\n"
+"\"good\", \"bad\" ja \"ugly\"."
 
 #: ../xfburn/xfburn-transcoder-gst.c:767
 #, c-format
@@ -1225,7 +1240,6 @@ msgid "not implemented"
 msgstr "toteutus puuttuu"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
-#, fuzzy
 msgid "Data Composition"
 msgstr "Tiedostokokoelma"
 
