@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-12 15:09-0700\n"
+"POT-Creation-Date: 2008-11-23 00:57-0700\n"
 "PO-Revision-Date: 2008-07-14 18:17+0300\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -65,7 +65,7 @@ msgstr "Стирання диску..."
 #: ../xfburn/xfburn-burn-image-dialog.c:171
 #: ../xfburn/xfburn-copy-cd-dialog.c:132
 #: ../xfburn/xfburn-copy-dvd-dialog.c:132
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:169
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:161
 msgid "Burning device"
 msgstr "Пристрій запису"
 
@@ -78,7 +78,7 @@ msgstr "Режим очищення"
 #: ../xfburn/xfburn-burn-image-dialog.c:179
 #: ../xfburn/xfburn-copy-cd-dialog.c:140
 #: ../xfburn/xfburn-copy-dvd-dialog.c:140
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:203
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:195
 msgid "Options"
 msgstr "Параметри"
 
@@ -87,7 +87,7 @@ msgstr "Параметри"
 #: ../xfburn/xfburn-burn-image-dialog.c:183
 #: ../xfburn/xfburn-copy-cd-dialog.c:144
 #: ../xfburn/xfburn-copy-dvd-dialog.c:144
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:199
 msgid "E_ject disk"
 msgstr "_Витягнути диск"
 
@@ -123,7 +123,6 @@ msgstr "Стирання диску..."
 #: ../xfburn/xfburn-blank-dialog.c:436
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:502
 #: ../xfburn/xfburn-perform-burn.c:298
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:420
 #, c-format
 msgid "Done"
 msgstr "Завершено"
@@ -137,13 +136,13 @@ msgstr "Помилка"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:612
 #: ../xfburn/xfburn-burn-image-dialog.c:328
 #: ../xfburn/xfburn-burn-image-dialog.c:532
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:557
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:415
 #, fuzzy
 msgid "Unable to grab the drive."
 msgstr "Неможливо захопити накопичувач"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:179
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:149
 msgid "Burn Composition"
 msgstr "Запис проекту"
 
@@ -159,13 +158,13 @@ msgstr "<small>Змінити типову назву проекту?</small>"
 #: ../xfburn/xfburn-burn-image-dialog.c:188
 #: ../xfburn/xfburn-copy-cd-dialog.c:149
 #: ../xfburn/xfburn-copy-dvd-dialog.c:149
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:212
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:204
 msgid "_Dummy write"
 msgstr "_Імітувати запис"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
 #: ../xfburn/xfburn-burn-image-dialog.c:192
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:216
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:208
 msgid "Burn_Free"
 msgstr "Захист_буферу"
 
@@ -173,29 +172,25 @@ msgstr "Захист_буферу"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:242
 #: ../xfburn/xfburn-copy-cd-dialog.c:158
 #: ../xfburn/xfburn-copy-dvd-dialog.c:158
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
 msgid "Only create _ISO"
 msgstr "Лише створити _ISO"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:279
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:259
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:223
 #, fuzzy
 msgid "_Burn Composition"
 msgstr "Запис проекту"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:460
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:378
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "Не вдається створити цільовий ISO-файл: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:467
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:385
 msgid "Writing ISO..."
 msgstr "Запис ISO..."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:484
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:402
 #, c-format
 msgid "An error occured while writing ISO: %s"
 msgstr "Помилка під час запису ISO: %s"
@@ -207,7 +202,7 @@ msgid "An error occurred in the burn backend."
 msgstr "Помилка під час запису ISO: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:486
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:344
 #, fuzzy
 msgid "The write mode is not supported currently."
 msgstr "Поточний режим запису не підтримується"
@@ -385,95 +380,95 @@ msgstr "_Копіювати DVD диск"
 msgid "Create ISO from CD"
 msgstr "Створити ISO з CD"
 
-#: ../xfburn/xfburn-data-composition.c:179
-#: ../xfburn/xfburn-audio-composition.c:200
+#: ../xfburn/xfburn-data-composition.c:180
+#: ../xfburn/xfburn-audio-composition.c:205
 msgid "Add"
 msgstr "Додати"
 
-#: ../xfburn/xfburn-data-composition.c:179
-#: ../xfburn/xfburn-audio-composition.c:200
+#: ../xfburn/xfburn-data-composition.c:180
+#: ../xfburn/xfburn-audio-composition.c:205
 msgid "Add the selected file(s) to the composition"
 msgstr "Додати вибрані файли до проекту"
 
-#: ../xfburn/xfburn-data-composition.c:181
+#: ../xfburn/xfburn-data-composition.c:182
 msgid "Create directory"
 msgstr "Створити теку"
 
-#: ../xfburn/xfburn-data-composition.c:181
+#: ../xfburn/xfburn-data-composition.c:182
 msgid "Add a new directory to the composition"
 msgstr "Додати нову теку до проекту"
 
-#: ../xfburn/xfburn-data-composition.c:183
-#: ../xfburn/xfburn-audio-composition.c:202
+#: ../xfburn/xfburn-data-composition.c:184
+#: ../xfburn/xfburn-audio-composition.c:207
 msgid "Remove"
 msgstr "Видалити"
 
-#: ../xfburn/xfburn-data-composition.c:183
-#: ../xfburn/xfburn-audio-composition.c:202
+#: ../xfburn/xfburn-data-composition.c:184
+#: ../xfburn/xfburn-audio-composition.c:207
 msgid "Remove the selected file(s) from the composition"
 msgstr "Видалити вибрані файли з проекту"
 
-#: ../xfburn/xfburn-data-composition.c:185
-#: ../xfburn/xfburn-audio-composition.c:204
+#: ../xfburn/xfburn-data-composition.c:186
+#: ../xfburn/xfburn-audio-composition.c:209
 msgid "Clear"
 msgstr "Очистити"
 
-#: ../xfburn/xfburn-data-composition.c:185
-#: ../xfburn/xfburn-audio-composition.c:204
+#: ../xfburn/xfburn-data-composition.c:186
+#: ../xfburn/xfburn-audio-composition.c:209
 msgid "Clear the content of the composition"
 msgstr "Очистити зміст проекту"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-#: ../xfburn/xfburn-data-composition.c:188
+#: ../xfburn/xfburn-data-composition.c:189
 msgid "Rename"
 msgstr "Перейменувати"
 
-#: ../xfburn/xfburn-data-composition.c:188
+#: ../xfburn/xfburn-data-composition.c:189
 msgid "Rename the selected file"
 msgstr "Перейменувати поточний файл"
 
-#: ../xfburn/xfburn-data-composition.c:342
+#: ../xfburn/xfburn-data-composition.c:343
 msgid "Volume name :"
 msgstr "Назва тому :"
 
-#: ../xfburn/xfburn-data-composition.c:373
+#: ../xfburn/xfburn-data-composition.c:374
 msgid "Contents"
 msgstr "Зміст"
 
-#: ../xfburn/xfburn-data-composition.c:388
+#: ../xfburn/xfburn-data-composition.c:389
 #: ../xfburn/xfburn-directory-browser.c:143
 msgid "Size"
 msgstr "Розмір"
 
-#: ../xfburn/xfburn-data-composition.c:391
+#: ../xfburn/xfburn-data-composition.c:392
 msgid "Local Path"
 msgstr "Локальний шлях"
 
-#: ../xfburn/xfburn-data-composition.c:664
+#: ../xfburn/xfburn-data-composition.c:665
 #, fuzzy
 msgid "You must give a name to the file."
 msgstr "Потрібно дати ім'я файлу"
 
-#: ../xfburn/xfburn-data-composition.c:673
-#: ../xfburn/xfburn-data-composition.c:1068
-#: ../xfburn/xfburn-audio-composition.c:1103
+#: ../xfburn/xfburn-data-composition.c:674
+#: ../xfburn/xfburn-data-composition.c:1069
+#: ../xfburn/xfburn-audio-composition.c:1137
 #, fuzzy
 msgid "A file with the same name is already present in the composition."
 msgstr "Файл з такою назвою вже присутній в проекті"
 
-#: ../xfburn/xfburn-data-composition.c:781
 #: ../xfburn/xfburn-data-composition.c:782
-#: ../xfburn/xfburn-data-composition.c:784
+#: ../xfburn/xfburn-data-composition.c:783
+#: ../xfburn/xfburn-data-composition.c:785
 msgid "New directory"
 msgstr "Нова тека"
 
-#: ../xfburn/xfburn-data-composition.c:1226
-#: ../xfburn/xfburn-audio-composition.c:1265
+#: ../xfburn/xfburn-data-composition.c:1230
+#: ../xfburn/xfburn-audio-composition.c:1299
 msgid "Adding home directory"
 msgstr "Додати домашню директорію"
 
-#: ../xfburn/xfburn-data-composition.c:1227
-#: ../xfburn/xfburn-audio-composition.c:1266
+#: ../xfburn/xfburn-data-composition.c:1231
+#: ../xfburn/xfburn-audio-composition.c:1300
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
 "to take a very long time, and also to be too big to fit on one disc.\n"
@@ -485,7 +480,7 @@ msgstr ""
 "\n"
 "Ви впевнені, що бажаєте продовжити?"
 
-#: ../xfburn/xfburn-data-composition.c:1389
+#: ../xfburn/xfburn-data-composition.c:1393
 #, fuzzy, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
@@ -821,8 +816,12 @@ msgid "Another cd burning GUI"
 msgstr "Інший GUI інструмент для запису CD"
 
 #: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
-#: ../xfburn/xfburn-main-window.c:538
 msgid "Author/Maintainer"
+msgstr "Автор/Розробник"
+
+#: ../xfburn/xfburn-main-window.c:538
+#, fuzzy
+msgid "Retired author/maintainer"
 msgstr "Автор/Розробник"
 
 #: ../xfburn/xfburn-main-window.c:544
@@ -1122,58 +1121,61 @@ msgstr "<big>_Чистий диск</big>"
 msgid "Audio CD playable in regular stereos"
 msgstr ""
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-#: ../xfburn/xfburn-audio-composition.c:207
+#: ../xfburn/xfburn-audio-composition.c:211
+msgid "What files can get burned to an audio CD?"
+msgstr ""
+
+#: ../xfburn/xfburn-audio-composition.c:215
 #, fuzzy
 msgid "Rename Artist"
 msgstr "Перейменувати"
 
-#: ../xfburn/xfburn-audio-composition.c:207
+#: ../xfburn/xfburn-audio-composition.c:215
 #, fuzzy
 msgid "Rename the artist of the selected file"
 msgstr "Перейменувати поточний файл"
 
-#: ../xfburn/xfburn-audio-composition.c:209
+#: ../xfburn/xfburn-audio-composition.c:217
 #, fuzzy
 msgid "Rename Title"
 msgstr "Перейменувати"
 
-#: ../xfburn/xfburn-audio-composition.c:209
+#: ../xfburn/xfburn-audio-composition.c:217
 #, fuzzy
 msgid "Rename the title of the selected file"
 msgstr "Перейменувати поточний файл"
 
-#: ../xfburn/xfburn-audio-composition.c:380
+#: ../xfburn/xfburn-audio-composition.c:400
 msgid "Pos"
 msgstr ""
 
-#: ../xfburn/xfburn-audio-composition.c:382
+#: ../xfburn/xfburn-audio-composition.c:402
 msgid "Length"
 msgstr ""
 
-#: ../xfburn/xfburn-audio-composition.c:388
+#: ../xfburn/xfburn-audio-composition.c:408
 msgid "Artist"
 msgstr ""
 
-#: ../xfburn/xfburn-audio-composition.c:401
+#: ../xfburn/xfburn-audio-composition.c:421
 #, fuzzy
 msgid "Title"
 msgstr "Файл"
 
-#: ../xfburn/xfburn-audio-composition.c:412
+#: ../xfburn/xfburn-audio-composition.c:432
 #, fuzzy
 msgid "Filename"
 msgstr "Перейменувати"
 
-#: ../xfburn/xfburn-audio-composition.c:558
+#: ../xfburn/xfburn-audio-composition.c:576
 msgid "Cannot burn audio onto a DVD."
 msgstr ""
 
-#: ../xfburn/xfburn-audio-composition.c:1199
+#: ../xfburn/xfburn-audio-composition.c:1233
 msgid "You can only have a maximum of 99 tracks."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:454
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:312
 msgid "A problem with the burn backend occurred."
 msgstr ""
 
@@ -1186,37 +1188,72 @@ msgstr ""
 msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "Ви намагаєтесь записати більше даних ніж може вміщати диск !"
 
-#: ../xfburn/xfburn-transcoder-basic.c:183
+#: ../xfburn/xfburn-transcoder-basic.c:167
+msgid "basic"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-basic.c:173
+msgid ""
+"The basic transcoder is built in,\n"
+"and does not require any library.\n"
+"But it can only handle uncompressed\n"
+".wav files.\n"
+"If you would like to create audio\n"
+"compositions from different types of\n"
+"audio files, please compile with\n"
+"gstreamer support."
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-basic.c:198
 #, c-format
 msgid "File %s does not have a .wav extension"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-basic.c:188
+#: ../xfburn/xfburn-transcoder-basic.c:203
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-basic.c:194
+#: ../xfburn/xfburn-transcoder-basic.c:209
 #, fuzzy, c-format
 msgid "Could not stat %s: %s"
 msgstr "Не вдається створити цільовий ISO-файл: %s"
 
-#: ../xfburn/xfburn-transcoder-basic.c:229
+#: ../xfburn/xfburn-transcoder-basic.c:244
 #, fuzzy, c-format
 msgid "Could not open %s."
 msgstr "Не вдається створити цільовий ISO-файл: %s"
 
-#: ../xfburn/xfburn-transcoder-basic.c:310
+#: ../xfburn/xfburn-transcoder-basic.c:325
 #, c-format
 msgid "Could not open %s: %s"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:745
+#. Note to translators: you can probably keep this as gstreamer,
+#. * unless you have a good reason to call it by another name that
+#. * the user would understand better
+#: ../xfburn/xfburn-transcoder-gst.c:700
+msgid "gstreamer"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:706
+msgid ""
+"The gstreamer transcoder uses the gstreamer\n"
+"library for creating audio compositions.\n"
+"\n"
+"Essentially all audio files should be supported\n"
+"given that the correct plugins are installed.\n"
+"If an audio file is not recognized, make sure\n"
+"that you have the 'good','bad', and 'ugly'\n"
+"gstreamer plugin packages installed."
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:767
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:754
+#: ../xfburn/xfburn-transcoder-gst.c:776
 #, c-format
 msgid ""
 "%s\n"
@@ -1226,21 +1263,26 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:870
+#: ../xfburn/xfburn-transcoder-gst.c:892
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:905
+#: ../xfburn/xfburn-transcoder-gst.c:927
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder.c:115 ../xfburn/xfburn-transcoder.c:127
-#: ../xfburn/xfburn-transcoder.c:139
+#: ../xfburn/xfburn-transcoder.c:125 ../xfburn/xfburn-transcoder.c:137
+#: ../xfburn/xfburn-transcoder.c:149
 #, fuzzy, c-format
 msgid "not implemented"
 msgstr "Завершено"
+
+#: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
+#, fuzzy
+msgid "Data Composition"
+msgstr "Дані проекту"
 
 #: ../xfburn.desktop.in.h:1
 #, fuzzy
