@@ -557,7 +557,11 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       switch (priv->state) {
         case XFBURN_TRANSCODER_GST_STATE_IDLE:
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODING:
+          break;
+
         case XFBURN_TRANSCODER_GST_STATE_IDENTIFYING:
+          if (state != GST_STATE_PAUSED)
+            break;
           if (!query_and_signal_duration (trans)) {
             /* this is expected to fail a couple of times,
              * so no output unless we're in debug mode */
