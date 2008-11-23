@@ -712,6 +712,7 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
       }
 
       gtk_tree_model_get (model, &current_iter, AUDIO_COMPOSITION_COLUMN_CONTENT, &current_filename, -1);
+
       if (strcmp (current_filename, filename) == 0) {
         g_free (current_filename);
         gtk_tree_path_free (current_path);
@@ -1007,6 +1008,7 @@ action_clear (GtkAction * action, XfburnAudioComposition * dc)
   gtk_tree_store_clear (GTK_TREE_STORE (model));
   
   xfburn_disc_usage_set_size (XFBURN_DISC_USAGE (priv->disc_usage), 0);
+  priv->n_tracks = 0;
 }
 
 static void
@@ -1212,6 +1214,19 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
         return FALSE;
       }
 
+      if (priv->n_tracks == 99) {
+        XfburnError err_code = XFBURN_ERROR_TOO_MANY_AUDIO_TRACKS;
+
+        if (g_hash_table_lookup (priv->warned_about, GINT_TO_POINTER (err_code)) == NULL) {
+          g_hash_table_insert (priv->warned_about, GINT_TO_POINTER (err_code), did_warn);
+          gdk_threads_enter ();
+          xfce_err (_("You can only have a maximum of 99 tracks."));
+          gdk_threads_leave ();
+        }
+
+        return FALSE;
+      }
+
       gdk_threads_enter ();
       if (insertion != NULL) {
         if (position == GTK_TREE_VIEW_DROP_AFTER)
@@ -1227,13 +1242,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       //DBG ("length = %d", atrack->length);
       secs = atrack->length;
       humanlength = g_strdup_printf ("%2d:%02d", secs / 60, secs % 60);
-
-      if (priv->n_tracks == 99) {
-        gdk_threads_enter ();
-        xfce_err (_("You can only have a maximum of 99 tracks."));
-        gdk_threads_leave ();
-        return FALSE;
-      }
 
       /* pos does not yet get recorded into atrack here, because it might
        * change still and is easier updated inside the model for now */
