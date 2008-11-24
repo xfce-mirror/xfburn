@@ -2,15 +2,16 @@
 # Copyright (C) 2005-2007 Jean-Francis Wauthy.
 # This file is distributed under the same license as the Xfburn package.
 # Diego Rodríguez <dieymir@yahoo.es>, 2007.
+# Abel Martín <abel.martin.ruiz@gmail.com>, 2008
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-23 00:57-0700\n"
-"PO-Revision-Date: 2008-11-20 22:41+0100\n"
+"POT-Creation-Date: 2008-11-24 19:10+0100\n"
+"PO-Revision-Date: 2008-11-24 09:09+0100\n"
 "Last-Translator: Abel Martín <abel.martin.ruiz@gmail.com>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"Language-Team: Spanish <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -426,7 +427,7 @@ msgstr "Debe darle un nombre al fichero"
 
 #: ../xfburn/xfburn-data-composition.c:674
 #: ../xfburn/xfburn-data-composition.c:1069
-#: ../xfburn/xfburn-audio-composition.c:1137
+#: ../xfburn/xfburn-audio-composition.c:1139
 msgid "A file with the same name is already present in the composition."
 msgstr "Ya existe un fichero con el mismo nombre en la composición."
 
@@ -437,12 +438,12 @@ msgid "New directory"
 msgstr "Nuevo directorio"
 
 #: ../xfburn/xfburn-data-composition.c:1230
-#: ../xfburn/xfburn-audio-composition.c:1299
+#: ../xfburn/xfburn-audio-composition.c:1307
 msgid "Adding home directory"
 msgstr "Añadiendo directorio personal"
 
 #: ../xfburn/xfburn-data-composition.c:1231
-#: ../xfburn/xfburn-audio-composition.c:1300
+#: ../xfburn/xfburn-audio-composition.c:1308
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
 "to take a very long time, and also to be too big to fit on one disc.\n"
@@ -792,9 +793,8 @@ msgid "Author/Maintainer"
 msgstr "Autor/Mantenedor"
 
 #: ../xfburn/xfburn-main-window.c:538
-#, fuzzy
 msgid "Retired author/maintainer"
-msgstr "Autor/Mantenedor"
+msgstr "Autor/mantenedor retirado"
 
 #: ../xfburn/xfburn-main-window.c:544
 #, c-format
@@ -1084,7 +1084,7 @@ msgstr "CD de audio reproducible en estéreos convencionales"
 
 #: ../xfburn/xfburn-audio-composition.c:211
 msgid "What files can get burned to an audio CD?"
-msgstr ""
+msgstr "¿Qué archivos pueden ser grabadas en un CD de audio?"
 
 #: ../xfburn/xfburn-audio-composition.c:215
 msgid "Rename Artist"
@@ -1126,7 +1126,7 @@ msgstr "Nombre de archivo"
 msgid "Cannot burn audio onto a DVD."
 msgstr "No se puede grabar audio en un DVD."
 
-#: ../xfburn/xfburn-audio-composition.c:1233
+#: ../xfburn/xfburn-audio-composition.c:1223
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Sólo puede tener un máximo de 99 pistas."
 
@@ -1144,7 +1144,7 @@ msgstr "Está intentando grabar más datos de los que caben en el disco."
 
 #: ../xfburn/xfburn-transcoder-basic.c:167
 msgid "basic"
-msgstr ""
+msgstr "básico"
 
 #: ../xfburn/xfburn-transcoder-basic.c:173
 msgid ""
@@ -1157,6 +1157,14 @@ msgid ""
 "audio files, please compile with\n"
 "gstreamer support."
 msgstr ""
+"El transcodificador básico está incluido\n"
+"y no necesita ninguna biblioteca,\n"
+"pero sólo puede tratar archivos .wav\n"
+"sin comprimir.\n"
+"Si desea crear composiciones de\n"
+"audio de diferentes tipos de archivos\n"
+"de audio, por favor, compile con\n"
+"soporte para gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:198
 #, c-format
@@ -1188,7 +1196,7 @@ msgstr "No se pudo abrir %s: %s"
 #. * the user would understand better
 #: ../xfburn/xfburn-transcoder-gst.c:700
 msgid "gstreamer"
-msgstr ""
+msgstr "gstreamer"
 
 #: ../xfburn/xfburn-transcoder-gst.c:706
 msgid ""
@@ -1201,6 +1209,14 @@ msgid ""
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
 msgstr ""
+"El transcodificador de gstremear usa la biblioteca\n"
+"de gstreamer para crear composicones de audio.\n"
+"\n"
+"Básicamente todos los archivos de audio deberían\n"
+"ser soportados si los complementos necesarios están\n"
+"instalados. Si un archivo de audio no es reconocido,\n"
+"asegúrese de que tiene los paquetes de complementos\n"
+"'good', 'bad' y 'ugly' instalados."
 
 #: ../xfburn/xfburn-transcoder-gst.c:767
 #, c-format
@@ -1241,7 +1257,6 @@ msgid "not implemented"
 msgstr "no implementado"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
-#, fuzzy
 msgid "Data Composition"
 msgstr "Composición de datos"
 

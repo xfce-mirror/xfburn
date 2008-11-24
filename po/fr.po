@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-23 00:57-0700\n"
+"POT-Creation-Date: 2008-11-24 19:10+0100\n"
 "PO-Revision-Date: 2008-11-23 14:44+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -431,7 +431,7 @@ msgstr "Vous devez nommer ce fichier."
 
 #: ../xfburn/xfburn-data-composition.c:674
 #: ../xfburn/xfburn-data-composition.c:1069
-#: ../xfburn/xfburn-audio-composition.c:1137
+#: ../xfburn/xfburn-audio-composition.c:1139
 msgid "A file with the same name is already present in the composition."
 msgstr "Un fichier avec le même nom se trouve déjà dans la composition."
 
@@ -442,12 +442,12 @@ msgid "New directory"
 msgstr "Nouveau répertoire"
 
 #: ../xfburn/xfburn-data-composition.c:1230
-#: ../xfburn/xfburn-audio-composition.c:1299
+#: ../xfburn/xfburn-audio-composition.c:1307
 msgid "Adding home directory"
 msgstr "Ajout du dossier personnel"
 
 #: ../xfburn/xfburn-data-composition.c:1231
-#: ../xfburn/xfburn-audio-composition.c:1300
+#: ../xfburn/xfburn-audio-composition.c:1308
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
 "to take a very long time, and also to be too big to fit on one disc.\n"
@@ -1138,7 +1138,7 @@ msgstr "Fichier"
 msgid "Cannot burn audio onto a DVD."
 msgstr "Impossible de graver sur un DVD."
 
-#: ../xfburn/xfburn-audio-composition.c:1233
+#: ../xfburn/xfburn-audio-composition.c:1223
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Vous pouvez seulement avoir un maximum de 99 pistes."
 
@@ -1170,10 +1170,11 @@ msgid ""
 "audio files, please compile with\n"
 "gstreamer support."
 msgstr ""
-"Le transcodeur de base ne nécessite aucune bibliothèque supplémentaire.\n\n"
-"Néanmoins il est seulement possible de graver des fichiers .wav non-compressés. "
-"Si vous voulez créer des compositions audios depuis différents formats, "
-"veuillez compiler avec le support GStreamer."
+"Le transcodeur de base ne nécessite aucune bibliothèque supplémentaire.\n"
+"\n"
+"Néanmoins il est seulement possible de graver des fichiers .wav non-"
+"compressés. Si vous voulez créer des compositions audios depuis différents "
+"formats, veuillez compiler avec le support GStreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:198
 #, c-format
@@ -1218,15 +1219,18 @@ msgid ""
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
 msgstr ""
-"Le transcodeur utilise le framework multimédia GStreamer.\n\n"
+"Le transcodeur utilise le framework multimédia GStreamer.\n"
+"\n"
 "Tous les formats de fichiers devraient être supportés du moment que les bons "
-"plugins sont installés. Si un fichier audio n'est pas reconnu, vérifiez que les "
-"plugins GStreamer 'good', 'bad', et 'ugly' sont installés."
+"plugins sont installés. Si un fichier audio n'est pas reconnu, vérifiez que "
+"les plugins GStreamer 'good', 'bad', et 'ugly' sont installés."
 
 #: ../xfburn/xfburn-transcoder-gst.c:767
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
-msgstr "GStreamer n'a pas récupéré d'information sur ce fichier (délais de détection dépassé)"
+msgstr ""
+"GStreamer n'a pas récupéré d'information sur ce fichier (délais de détection "
+"dépassé)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:776
 #, c-format
