@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-23 00:57-0700\n"
-"PO-Revision-Date: 2008-11-24 01:16+0100\n"
+"PO-Revision-Date: 2008-11-24 18:41+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "V jednotce nebyl nalezen disk."
 
 #: ../xfburn/xfburn-blank-dialog.c:369
 msgid "Disc is not erasable."
-msgstr "Médium není smazatelné."
+msgstr "Disk není smazatelný."
 
 #: ../xfburn/xfburn-blank-dialog.c:409
 msgid "Blanking disc..."
@@ -251,7 +251,7 @@ msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Zv
 
 #: ../xfburn/xfburn-burn-image-dialog.c:460
 msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "V tomto režimu zápisu nelze přidat další data na multisession disk (použijte místo něj TAO)"
+msgstr "V tomto režimu zápisu nelze přidat další data na disk typu multisession (použijte místo něj TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:464
 msgid "Closed disc with data detected. Need blank or appendable disc"
@@ -263,11 +263,11 @@ msgstr "V jednotce nebyl nalezen disk"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:468
 msgid "Cannot recognize state of drive and disc"
-msgstr "Nelze rozpoznat stav jednotky a média"
+msgstr "Nelze rozpoznat stav jednotky a disku"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:480
 msgid "The selected image does not fit on the inserted disc"
-msgstr "Vybraný obraz neodpovídá vloženému disku"
+msgstr "Vybraný obraz nelze uložit na vložený disk"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:484
 msgid "Failed to get image size"
@@ -317,7 +317,7 @@ msgstr "Vyprazdňování vyrovnávací paměti..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:106
 msgid "Please insert a recordable disc."
-msgstr "Vložte zapisovatelné médium."
+msgstr "Vložte zapisovatelný disk."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:128
 msgid "Writing CD..."
@@ -397,7 +397,7 @@ msgstr "Název svazku:"
 
 #: ../xfburn/xfburn-data-composition.c:374
 msgid "Contents"
-msgstr "Obsahuje"
+msgstr "Obsah"
 
 #: ../xfburn/xfburn-data-composition.c:389
 #: ../xfburn/xfburn-directory-browser.c:143
@@ -484,7 +484,7 @@ msgstr "Umožňuje kombinace hardwaru a disku vypálit kompozici?"
 
 #: ../xfburn/xfburn-device-box.c:201
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "Mazací režim zobrazuje jiná stavová hlášení než běžný režim"
+msgstr "Režim mazání zobrazuje jiná stavová hlášení než běžný režim"
 
 #: ../xfburn/xfburn-device-box.c:274
 msgid "_Speed:"
@@ -566,7 +566,7 @@ msgstr "Toto je disk pouze pro jeden zápis, mazání není možné"
 
 #: ../xfburn/xfburn-device-box.c:656
 msgid "DVD+RW does not need blanking"
-msgstr "Médium DVD-RW není nutné mazat"
+msgstr "Disk DVD-RW není nutné mazat"
 
 #: ../xfburn/xfburn-device-box.c:664
 msgid "Inserted disc is already blank"
@@ -799,7 +799,7 @@ msgstr "V tomto režimu zápisu nelze přidat další data na disk typu multises
 
 #: ../xfburn/xfburn-perform-burn.c:98
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr "Bylo nalezeno uzavřené médium s daty, požaduje se prázdné nebo neuzavřené médium."
+msgstr "Byl nalezen uzavřený disk s daty, požaduje se prázdný nebo neuzavřený disk."
 
 #: ../xfburn/xfburn-perform-burn.c:100
 msgid "No disc detected in drive."
@@ -807,11 +807,11 @@ msgstr "V jednotce nebyl nalezen disk."
 
 #: ../xfburn/xfburn-perform-burn.c:103
 msgid "Cannot recognize the state of the drive and disc."
-msgstr "Nelze rozpoznat stav jednotky a média."
+msgstr "Nelze rozpoznat stav jednotky a disku."
 
 #: ../xfburn/xfburn-perform-burn.c:112
 msgid "There is not enough space available on the inserted disc."
-msgstr "Na vloženému médiu není dostatek místa."
+msgstr "Na vloženému disku není dostatek místa."
 
 #: ../xfburn/xfburn-perform-burn.c:157
 #, c-format
@@ -1053,7 +1053,7 @@ msgstr "<big>_Hudební CD</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:156
 msgid "Audio CD playable in regular stereos"
-msgstr "Hudební CD přehratelné na běžných přehrávačích"
+msgstr "Hudební CD přehratelné v běžných přehrávačích"
 
 #: ../xfburn/xfburn-audio-composition.c:211
 msgid "What files can get burned to an audio CD?"
@@ -1113,7 +1113,7 @@ msgstr "Zahájit vypalování"
 
 #: ../xfburn/xfburn-disc-usage.c:205
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "Pokoušíte se na disk vypálit více dat, než je možné-"
+msgstr "Pokoušíte se na disk vypálit více dat, než je možné."
 
 #: ../xfburn/xfburn-transcoder-basic.c:167
 msgid "basic"
@@ -1188,7 +1188,7 @@ msgstr ""
 "základě instalace odpovídajících zásuvných\n"
 "modulů. Není-li zvukový soubor rozeznán,\n"
 "ujistěte se, že jsou nainstalovány zásuvné\n"
-"moduly 'good','bad' a 'ugly' aplikace gstreamer."
+"moduly 'good', 'bad' a 'ugly' aplikace gstreamer."
 
 #: ../xfburn/xfburn-transcoder-gst.c:767
 #, c-format
