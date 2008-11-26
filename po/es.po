@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-24 19:10+0100\n"
+"POT-Creation-Date: 2008-11-26 16:23-0700\n"
 "PO-Revision-Date: 2008-11-24 09:09+0100\n"
 "Last-Translator: Abel Martín <abel.martin.ruiz@gmail.com>\n"
 "Language-Team: Spanish <xfce-i18n@xfce.org>\n"
@@ -1191,14 +1191,24 @@ msgstr "No se pudo abrir %s"
 msgid "Could not open %s: %s"
 msgstr "No se pudo abrir %s: %s"
 
+#: ../xfburn/xfburn-transcoder-gst.c:629
+#, c-format
+msgid ""
+"%s is missing.\n"
+"\n"
+"You do not have a decoder installed to handle this file.\n"
+"Probably you need to look at the gst-plugins-* packages\n"
+"for the necessary plugins.\n"
+msgstr ""
+
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:700
+#: ../xfburn/xfburn-transcoder-gst.c:717
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:706
+#: ../xfburn/xfburn-transcoder-gst.c:723
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1218,13 +1228,13 @@ msgstr ""
 "asegúrese de que tiene los paquetes de complementos\n"
 "'good', 'bad' y 'ugly' instalados."
 
-#: ../xfburn/xfburn-transcoder-gst.c:767
+#: ../xfburn/xfburn-transcoder-gst.c:784
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr ""
 "A Gstreamer no le ha gustado este archivo (expiró el tiempo de detección)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:776
+#: ../xfburn/xfburn-transcoder-gst.c:793
 #, c-format
 msgid ""
 "%s\n"
@@ -1239,13 +1249,13 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:892
+#: ../xfburn/xfburn-transcoder-gst.c:909
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr ""
 "Gstreamer no quiso comenzar la transcodificación (expiró el tiempo límite)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:927
+#: ../xfburn/xfburn-transcoder-gst.c:944
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "Fallo al cambiar canciones al transcodificar"

@@ -81,6 +81,9 @@ dnl **************************************
 dnl (based on xfce4-mixer (trunk@27735)
 dnl XDT_CHECK_OPTIONAL_PACKAGE([GST_PLUGINS_BASE], [gstreamer-plugins-base-0.10], [0.10.2])
 XDT_CHECK_OPTIONAL_PACKAGE([GST], [gstreamer-0.10], [0.10.2], [gstreamer], [GStreamer support for burning audio])
+if test x"$GST_FOUND" == x"yes"; then
+  XDT_CHECK_PACKAGE([GST], [gstreamer-pbutils-0.10], [0.10.2], [gstreamer-pbutils], [pbutils for GStreamer])
+fi
 
 
 dnl check for debugging support

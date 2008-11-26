@@ -42,6 +42,7 @@
 #include <libburn.h>
 
 #include <gst/gst.h>
+#include <gst/pbutils/missing-plugins.h>
 
 #include "xfburn-global.h"
 #include "xfburn-error.h"
@@ -581,7 +582,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
             break;
           
           if (!g_mutex_trylock (priv->gst_mutex)) {
-            g_warning ("Lock held by another thread, can't signal transcoding start!");
+            g_critical ("Lock held by another thread, can't signal transcoding start!");
             break;
           } else {
 #if DEBUG_GST > 0
@@ -619,6 +620,22 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       break;
     }
 
+    case GST_MESSAGE_ELEMENT: {
+      if (gst_is_missing_plugin_message (msg)) {
+          recreate_pipeline (trans);
+
+          priv->is_audio = FALSE;
+          g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_MISSING_PLUGIN,
+                       _("%s is missing.\n"
+                         "\n"
+                         "You do not have a decoder installed to handle this file.\n"
+                         "Probably you need to look at the gst-plugins-* packages\n"
+                         "for the necessary plugins.\n"),
+                        gst_missing_plugin_message_get_description (msg)); 
+
+          signal_identification_done (trans, "missing-plugin");
+      }
+    }
     default:
 #if DEBUG_GST == 1
       DBG ("msg from %-20s: %s (%d) ", GST_OBJECT_NAME (GST_MESSAGE_SRC (msg)), GST_MESSAGE_TYPE_NAME (msg), GST_MESSAGE_TYPE (msg));

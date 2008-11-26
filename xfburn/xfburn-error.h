@@ -42,6 +42,7 @@ typedef enum
   XFBURN_ERROR_PIPE,
   XFBURN_ERROR_GST_NO_AUDIO,
   XFBURN_ERROR_TOO_MANY_AUDIO_TRACKS,
+  XFBURN_ERROR_MISSING_PLUGIN,
 } XfburnError;
 
 #define XFBURN_ERROR xfburn_error_quark ()

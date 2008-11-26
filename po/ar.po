@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-24 19:10+0100\n"
+"POT-Creation-Date: 2008-11-26 16:23-0700\n"
 "PO-Revision-Date: 2008-07-18 21:28+0200\n"
 "Last-Translator: Mohamed Magdy <mohamedmk@gmail.com>\n"
 "Language-Team: Arabeyes Translation & Documentation <admin@arabeyes.org>\n"
@@ -1181,14 +1181,24 @@ msgstr "غير قادر على إنشاء تركيب مصدر الأيزو"
 msgid "Could not open %s: %s"
 msgstr ""
 
+#: ../xfburn/xfburn-transcoder-gst.c:629
+#, c-format
+msgid ""
+"%s is missing.\n"
+"\n"
+"You do not have a decoder installed to handle this file.\n"
+"Probably you need to look at the gst-plugins-* packages\n"
+"for the necessary plugins.\n"
+msgstr ""
+
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:700
+#: ../xfburn/xfburn-transcoder-gst.c:717
 msgid "gstreamer"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:706
+#: ../xfburn/xfburn-transcoder-gst.c:723
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1200,12 +1210,12 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:767
+#: ../xfburn/xfburn-transcoder-gst.c:784
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:776
+#: ../xfburn/xfburn-transcoder-gst.c:793
 #, c-format
 msgid ""
 "%s\n"
@@ -1215,12 +1225,12 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:892
+#: ../xfburn/xfburn-transcoder-gst.c:909
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:927
+#: ../xfburn/xfburn-transcoder-gst.c:944
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr ""
