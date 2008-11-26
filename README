@@ -70,6 +70,7 @@ Optional, but highly recommended
                unmounting)
  * gstreamer  (0.10+, required for burning audio CDs from compressed music
                files)
+    * gstreamer pbutils (they usually come with gstreamer as far as I know)
     * gstreamer plugins (look for the good, the bad and the ugly plugin pack,
                          most likely you want all of these)
 
@@ -104,6 +105,26 @@ So if you think something could be implemented differently, feel free to speak
 up and it will be considered. Please send all feedbacks to xfburn@xfce.org, or
 use the xfce mailing lists. Bugs are best placed in the xfce bugtracker at
 http://bugzilla.xfce.org/
+
+Debugging
+---------
+
+If xfburn freezes, or somehow makes no progress for you, then you can help
+greatly in debugging the problem. It does require you to build xfburn from the
+sources, and to install gdb. If you can handle that, here are the exact
+instructions:
+
+1) Rebuild xfburn with debugging support (grab the sources, and run:
+   $ ./configure --enable-debug=full && make clean all )
+2) Enable core dumps, then run xfburn until it hangs:
+   $ ulimit -c unlimited; xfburn/xfburn 2>&1 | tee xfburn.output
+3) From another terminal, kill xfburn:
+   $ kill -SEGV `pidof xfburn`
+4) Get a backtrace from the coredump:
+   $ gdb xfburn/xfburn core.32270 --batch -ex 'thread apply all bt' > xfburn.backtrace
+   (Note that sometimes the core.xxxxxx file is just called core)
+5) Open up a bug report at http://bugzilla.xfce.org for xfburn, and add
+   both the xfburn.output and the xfburn.backtrace files to it. Done!
 
 ==============================================================================
 License
