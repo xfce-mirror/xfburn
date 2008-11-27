@@ -90,7 +90,8 @@ xfburn_CFLAGS =								\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(EXO_CFLAGS)							\
 	$(THUNAR_VFS_CFLAGS)						\
-	$(GST_CFLAGS)
+	$(GST_CFLAGS)                                                   \
+	$(GST_PBUTILS_CFLAGS)
 
 xfburn_LDADD = 								\
         -lm                                                             \
@@ -100,7 +101,8 @@ xfburn_LDADD = 								\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(EXO_LIBS)							\
 	$(THUNAR_VFS_LIBS)						\
-	$(GST_LIBS)
+	$(GST_LIBS)                                                     \
+	$(GST_PBUTILS_LIBS)
 
 if HAVE_HAL
 xfburn_CFLAGS +=							\
