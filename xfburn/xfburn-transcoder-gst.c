@@ -764,7 +764,7 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
   priv->state = XFBURN_TRANSCODER_GST_STATE_IDENTIFYING;
   g_object_set (G_OBJECT (priv->source), "location", fn, NULL);
   if (gst_element_set_state (priv->pipeline, GST_STATE_PAUSED) == GST_STATE_CHANGE_FAILURE) {
-    g_message ("Supposedly failed to change gstreamer state, ignoring it usually it does it anyways.");
+    g_message ("Supposedly failed to change gstreamer state, ignoring it as usually it does it anyways.");
     /*
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_STATE,
                  _("Failed to change state!"));

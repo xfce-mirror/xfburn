@@ -1261,7 +1261,10 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
       g_free (humanlength);
 
+      gdk_threads_enter ();
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), secs);
+      gdk_threads_leave ();
+
       ret = TRUE;
     }
     //g_free (humansize);
@@ -1759,15 +1762,6 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
         priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
         ret = TRUE;
-        /*
-        if (xfburn_transcoder_is_audio_file (priv->trans, full_path, NULL)) {
-          priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
-          ret = TRUE;
-        } else {
-          g_error_free (error);
-          notify_not_adding (composition, NOT_ADDING_EXT, full_path);
-        }
-        */
       }
       thunar_vfs_path_list_free (vfs_paths);
 
