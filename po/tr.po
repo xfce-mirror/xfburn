@@ -1,16 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Xfburn Turkish translation.
+# Copyright (C) 2008, Samed Beyribey
+# This file is distributed under the same license as the Xfburn package.
+# Samed Beyribey <ras0ir@eventualis.org>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-26 16:23-0700\n"
-"PO-Revision-Date: 2008-11-06 02:31+0200\n"
-"Last-Translator: Samed Beyribey <archlinux@archlinuxtr.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-11-27 03:49+0200\n"
+"Last-Translator: Samed Beyribey <ras0ir@eventualis.org>\n"
+"Language-Team: Xfce-TR <xfce-tr@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -64,7 +64,8 @@ msgstr "Diski boşalta"
 msgid "Burning device"
 msgstr "Yazma aygıtı"
 
-#: ../xfburn/xfburn-blank-dialog.c:223 ../xfburn/xfburn-device-box.c:200
+#: ../xfburn/xfburn-blank-dialog.c:223
+#: ../xfburn/xfburn-device-box.c:200
 msgid "Blank mode"
 msgstr "Boşaltma Kipi"
 
@@ -92,9 +93,8 @@ msgstr "_Boşalt"
 
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:351
-#, fuzzy
 msgid "The inserted disc is already blank."
-msgstr "Yerleştirmiş olduğunuz disk zaten boş"
+msgstr "Yerleştirmiş olduğunuz disk zaten boş."
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:357
@@ -102,14 +102,12 @@ msgid "Ready"
 msgstr "Hazır"
 
 #: ../xfburn/xfburn-blank-dialog.c:360
-#, fuzzy
 msgid "No disc detected in the drive."
-msgstr "Sürücüde disk bulunmamaktadır"
+msgstr "Sürücüde disk bulunmamaktadır."
 
 #: ../xfburn/xfburn-blank-dialog.c:369
-#, fuzzy
 msgid "Disc is not erasable."
-msgstr "Ortam silinebilir değildir"
+msgstr "Disk silinebilir değil."
 
 #: ../xfburn/xfburn-blank-dialog.c:409
 msgid "Blanking disc..."
@@ -122,7 +120,8 @@ msgstr "Disk boşaltılıyor..."
 msgid "Done"
 msgstr "Tamamlandı"
 
-#: ../xfburn/xfburn-blank-dialog.c:439 ../xfburn/xfburn-perform-burn.c:304
+#: ../xfburn/xfburn-blank-dialog.c:439
+#: ../xfburn/xfburn-perform-burn.c:304
 #: ../xfburn/xfburn-progress-dialog.c:604
 msgid "Failure"
 msgstr "Hata"
@@ -132,9 +131,8 @@ msgstr "Hata"
 #: ../xfburn/xfburn-burn-image-dialog.c:328
 #: ../xfburn/xfburn-burn-image-dialog.c:532
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:415
-#, fuzzy
 msgid "Unable to grab the drive."
-msgstr "Sürücü alınamadı"
+msgstr "Sürücü alınamadı."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:179
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:149
@@ -191,21 +189,18 @@ msgstr "ISO yazılırken bir hata meydana geldi: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:538
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:544
-#, fuzzy
 msgid "An error occurred in the burn backend."
-msgstr "ISO yazılırken bir hata meydana geldi: %s"
+msgstr "Yazma altyapısında bir hata meydana geldi."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:344
-#, fuzzy
 msgid "The write mode is not supported currently."
-msgstr "Yazma kipi henüz desteklenmemektedir"
+msgstr "Yazma kipi henüz desteklenmemektedir."
 
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:655
-#, fuzzy
 msgid "Could not create ISO source structure."
-msgstr "ISO kaynak yapısı oluşturulamadı"
+msgstr "ISO kaynak yapısı oluşturulamadı."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:136
 msgid "Burn image"
@@ -231,76 +226,56 @@ msgstr "İmajı _Yazdır"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:292
 #: ../xfburn/xfburn-burn-image-dialog.c:321
-#, fuzzy
 msgid "An error occurred in the burn backend"
-msgstr "ISO yazılırken bir hata meydana geldi: %s"
+msgstr "Yazma altyapısında bir hata meydana geldi"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:305
-#, fuzzy
 msgid "Unable to determine image size."
-msgstr "İmaj boyutu belirlenemedi"
+msgstr "İmaj boyutu belirlenemedi."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:312
-#, fuzzy
 msgid "Cannot open image."
-msgstr "İmaj açılamadı"
+msgstr "İmaj açılamadı."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:337
-#, fuzzy
 msgid "Burn mode is not currently implemented."
-msgstr "Yazma kipi henüz tamamlanmadı"
+msgstr "Yazma kipi henüz tamamlanmadı."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 msgid "Burning image..."
 msgstr "İmaj yazılıyor..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:422
-#, fuzzy
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded"
-"\">Yazdırmak için lütfen bir imaj dosyası seçiniz!</span>"
+msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Yazdırmak için lütfen bir imaj dosyası seçiniz</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:460
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Bu yazma kipinde çokluoturum diskine veri ilave edilemez (bunun yerine TAO "
-"kullanın)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr "Bu yazma kipinde çokluoturum diskine veri ilave edilemez (bunun yerine TAO kullanın)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:464
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
+msgstr "Veri yazılmış bir disk bulundu. Boş veya uygun bir disk yerleştiriniz"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:466
-#, fuzzy
 msgid "No disc detected in drive"
-msgstr "Sürücüde disk bulunmamaktadır"
+msgstr "Sürücüde disk bulunamadı"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:468
-#, fuzzy
 msgid "Cannot recognize state of drive and disc"
-msgstr "Sürücünün ve ortamın durumu tanımlanamadı"
+msgstr "Sürücünün ve diskin durumu tanımlanamadı"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:480
-#, fuzzy
 msgid "The selected image does not fit on the inserted disc"
-msgstr "Seçilen imaj yerleştirilen diske sığmamaktadır!"
+msgstr "Seçilen imaj yerleştirilen diske sığmamaktadır"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:484
-#, fuzzy
 msgid "Failed to get image size"
-msgstr "İmaj boyutu alınamadı!"
+msgstr "İmaj boyutu alınamadı"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:512
-msgid ""
-"Make sure you selected a valid file and you have the proper permissions to "
-"access it."
-msgstr ""
-"Geçerli bir dosya seçtiğinizden ve o dosyaya erişim için izniniz olduğundan "
-"emin olmalısınız."
+msgid "Make sure you selected a valid file and you have the proper permissions to access it."
+msgstr "Geçerli bir dosya seçtiğinizden ve o dosyaya erişim için izniniz olduğundan emin olmalısınız."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:542
 msgid "The write mode is not currently supported"
@@ -341,9 +316,8 @@ msgid "Flushing cache..."
 msgstr "Önbellek temizleniyor..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:106
-#, fuzzy
 msgid "Please insert a recordable disc."
-msgstr "Lütfen kayıt edilebilir bir ortam yerleştiriniz."
+msgstr "Lütfen kayıt edilebilir bir disk yerleştiriniz."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:128
 msgid "Writing CD..."
@@ -435,16 +409,14 @@ msgid "Local Path"
 msgstr "Yerel Dosya Yolu"
 
 #: ../xfburn/xfburn-data-composition.c:665
-#, fuzzy
 msgid "You must give a name to the file."
-msgstr "Dosyaya bir isim vermelisiniz"
+msgstr "Dosyaya bir isim vermelisiniz."
 
 #: ../xfburn/xfburn-data-composition.c:674
 #: ../xfburn/xfburn-data-composition.c:1069
 #: ../xfburn/xfburn-audio-composition.c:1139
-#, fuzzy
 msgid "A file with the same name is already present in the composition."
-msgstr "Aynı isimdeki dosya  derlemede zaten mevcut"
+msgstr "Aynı isimdeki dosya  derlemede zaten mevcut."
 
 #: ../xfburn/xfburn-data-composition.c:782
 #: ../xfburn/xfburn-data-composition.c:783
@@ -460,24 +432,21 @@ msgstr "Ev dizini ekleniyor"
 #: ../xfburn/xfburn-data-composition.c:1231
 #: ../xfburn/xfburn-audio-composition.c:1308
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Ev dizininizi derlemeye ekliyorsunuz. Bu işlem fazla zaman alabileceği gibi, "
-"tek bir diske de sığmayabilir.\n"
+"Ev dizininizi derlemeye ekliyorsunuz. Bu işlem fazla zaman alabileceği gibi, tek bir diske de sığmayabilir.\n"
 "\n"
 "Devam etmek istediğinizden emin misiniz?"
 
 #: ../xfburn/xfburn-data-composition.c:1393
-#, fuzzy, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added."
-msgstr "\"%s\" isimli dosya zaten bu dizinde var, dosya eklenmedi"
+#, c-format
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
+msgstr "\"%s\" isimli dosya zaten bu dizinde var, dosya eklenmedi."
 
-#: ../xfburn/xfburn-device-box.c:181 ../xfburn/xfburn-device-box.c:182
+#: ../xfburn/xfburn-device-box.c:181
+#: ../xfburn/xfburn-device-box.c:182
 msgid "Show writers only"
 msgstr "Sadece yazıcıları göster"
 
@@ -515,8 +484,7 @@ msgstr "Donanım ve disk kombinasyonu derlemeyi yazmak için geçerli mi? "
 
 #: ../xfburn/xfburn-device-box.c:201
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"Boşaltma kipi düzenli kipten daha farklı disk durumu mesajları göstermektedir"
+msgstr "Boşaltma kipi düzenli kipten daha farklı disk durumu mesajları göstermektedir"
 
 #: ../xfburn/xfburn-device-box.c:274
 msgid "_Speed:"
@@ -534,23 +502,17 @@ msgstr "Hız listesini boşalt"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to "
-"<i>xfburn@xfce.org</i> together with the console output to increase the "
-"chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>Sürücü için hız listesi alınamıyor.</b>\n"
 "\n"
-"Bu bazı sürücüler için bilinen bir hatadır. Bu hatayı konsol çıktıları ile "
-"birlikte <i>xfburn@xfce.org</i> adresine gönderiniz, bu sorunun "
-"giderilmesine yardımcı olabilirsiniz.\n"
+"Bu bazı sürücüler için bilinen bir hatadır. Bu hatayı konsol çıktıları ile birlikte <i>xfburn@xfce.org</i> adresine gönderiniz, bu sorunun giderilmesine yardımcı olabilirsiniz.\n"
 "\n"
-"Yazma işi devam edecektir, eğer yazma konusunda başka sorunlar da "
-"yaşıyorsanız, bizimle irtibata geçiniz.\n"
+"Yazma işi devam edecektir, eğer yazma konusunda başka sorunlar da yaşıyorsanız, bizimle irtibata geçiniz.\n"
 "\n"
 "<i>Teşekkürler!</i>"
 
@@ -567,38 +529,36 @@ msgid "Max"
 msgstr "Maksimum"
 
 #: ../xfburn/xfburn-device-box.c:606
-#, fuzzy
 msgid "Drive can't burn on the inserted disc"
-msgstr "Sürücünüz yerleştirmiş olduğunuz diske veri yazamıyor!"
+msgstr "Sürücünüz yerleştirmiş olduğunuz diske veri yazamıyor"
 
-#: ../xfburn/xfburn-device-box.c:615 ../xfburn/xfburn-device-box.c:661
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:615
+#: ../xfburn/xfburn-device-box.c:661
 msgid "Drive is empty"
-msgstr "Sürücü boş!"
+msgstr "Sürücü boş"
 
 #: ../xfburn/xfburn-device-box.c:618
-#, fuzzy
 msgid "Sorry, multisession is not yet supported"
-msgstr "Üzgünüz, çokluoturum şimdilik desteklenmemektedir."
+msgstr "Üzgünüz, çokluoturum şimdilik desteklenmemektedir"
 
 #: ../xfburn/xfburn-device-box.c:621
-#, fuzzy
 msgid "Inserted disc is full"
-msgstr "Yerleştirdiğiniz disk dolu!"
+msgstr "Yerleştirdiğiniz disk dolu"
 
-#: ../xfburn/xfburn-device-box.c:624 ../xfburn/xfburn-device-box.c:667
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:624
+#: ../xfburn/xfburn-device-box.c:667
 msgid "Inserted disc is unsuitable"
-msgstr "Yerleştirdiğiniz disk uygun değil!"
+msgstr "Yerleştirdiğiniz disk uygun değil"
 
-#: ../xfburn/xfburn-device-box.c:627 ../xfburn/xfburn-device-box.c:670
+#: ../xfburn/xfburn-device-box.c:627
+#: ../xfburn/xfburn-device-box.c:670
 msgid "Cannot access drive (it might be in use)"
-msgstr ""
+msgstr "Sürücüye erişilemiyor (kullanımda olabilir)"
 
-#: ../xfburn/xfburn-device-box.c:632 ../xfburn/xfburn-device-box.c:673
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:632
+#: ../xfburn/xfburn-device-box.c:673
 msgid "Error determining disc"
-msgstr "Disk belirlenirken hata meydana geldi!"
+msgstr "Disk belirlenirken hata meydana geldi"
 
 #: ../xfburn/xfburn-device-box.c:653
 msgid "Write-once disc, no blanking possible"
@@ -609,9 +569,8 @@ msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW'nin boşaltılmaya ihtiyacı yoktur "
 
 #: ../xfburn/xfburn-device-box.c:664
-#, fuzzy
 msgid "Inserted disc is already blank"
-msgstr "Yerleştirdiğiniz disk zaten boş!"
+msgstr "Yerleştirdiğiniz disk zaten boş"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:57
@@ -627,7 +586,8 @@ msgstr "Dosya"
 msgid "Type"
 msgstr "Tür"
 
-#: ../xfburn/xfburn-fs-browser.c:95 ../xfburn/xfburn-fs-browser.c:272
+#: ../xfburn/xfburn-fs-browser.c:95
+#: ../xfburn/xfburn-fs-browser.c:272
 msgid "Filesystem"
 msgstr "Dosya sistemi"
 
@@ -637,7 +597,8 @@ msgstr "Dosya sistemi"
 msgid "%s's home"
 msgstr "%s kullanıcısının ev dizini"
 
-#: ../xfburn/xfburn-main.c:203 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:203
+#: ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -652,29 +613,25 @@ msgstr ""
 
 #: ../xfburn/xfburn-main.c:221
 msgid "Unable to initialize the burning backend."
-msgstr ""
+msgstr "Yazma altyapısı çalıştırılamadı."
 
 #: ../xfburn/xfburn-main.c:302
-#, fuzzy
 msgid "No drives are currently available"
-msgstr "Mevcut bir sürücü bulunmamaktadır!"
+msgstr "Mevcut bir sürücü bulunmamaktadır."
 
 #: ../xfburn/xfburn-main.c:304
-#, fuzzy
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
-"Sürücüde zaten bağlı olan bir ortam bulunabilir mi?\n"
+"Muhtemelen disk(ler) kullanımda ve erişilemiyor \n"
 "\n"
-"Lütfen ayırıp uygulamayı tekrar başlatın.\n"
+"Lütfen diski ayırıp uygulamayı tekrar başlatın.\n"
 "\n"
-"Eğer bağlı bir ortam yok ise, kullanıcınızın yazma ve okuma iznine sahip "
-"olduğundan emin olmalısınız."
+"Eğer bağlı bir disk yok ise, kullanıcınızın yazma ve okuma iznine sahip olduğundan emin olmalısınız."
 
 #: ../xfburn/xfburn-main.c:336
 #, c-format
@@ -682,11 +639,13 @@ msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr ""
+"%s taşıyıcısı başlatılamadı: %s\n"
+"\t(temel uyarlamaya geri dönülüyor)"
 
 #: ../xfburn/xfburn-main.c:369
-#, fuzzy, c-format
+#, c-format
 msgid "Image file '%s' does not exist."
-msgstr "'%s' imaj dosyası bulunmamaktadır!"
+msgstr "'%s' imaj dosyası bulunmamaktadır."
 
 #: ../xfburn/xfburn-main-window.c:100
 msgid "_File"
@@ -701,7 +660,7 @@ msgstr "Yeni veri derlemesi"
 
 #: ../xfburn/xfburn-main-window.c:106
 msgid "New audio composition"
-msgstr ""
+msgstr "Yeni Müzik CD'si"
 
 #. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
@@ -804,14 +763,14 @@ msgstr "Araç Çubuğu Düzenleyici"
 msgid "Another cd burning GUI"
 msgstr "CD Yazma Uygulaması"
 
-#: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
+#: ../xfburn/xfburn-main-window.c:536
+#: ../xfburn/xfburn-main-window.c:537
 msgid "Author/Maintainer"
 msgstr "Yazar/Geliştirici"
 
 #: ../xfburn/xfburn-main-window.c:538
-#, fuzzy
 msgid "Retired author/maintainer"
-msgstr "Yazar/Geliştirici"
+msgstr "Eski Yazar/Geliştirici"
 
 #: ../xfburn/xfburn-main-window.c:544
 #, c-format
@@ -820,11 +779,11 @@ msgstr "Çevirmen (%s)"
 
 #: ../xfburn/xfburn-notebook-tab.c:109
 msgid "Label"
-msgstr ""
+msgstr "Etiket"
 
 #: ../xfburn/xfburn-notebook-tab.c:109
 msgid "The text of the label"
-msgstr ""
+msgstr "Etiket yazısı"
 
 #: ../xfburn/xfburn-notebook-tab.c:112
 msgid "Show close button"
@@ -835,38 +794,32 @@ msgid "Determine whether the close button is visible"
 msgstr "Kapatma düğmesinin görünür olup olmayacağını belirtmenizi sağlar"
 
 #: ../xfburn/xfburn-perform-burn.c:94
-#, fuzzy
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Bu yazma kipinde çokluoturum diskine veri ilave edilemez (bunun yerine TAO "
-"kullanın)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr "Bu yazma kipinde çokluoturum diskine veri ilave edilemez (bunun yerine TAO kullanın)."
 
 #: ../xfburn/xfburn-perform-burn.c:98
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
+msgstr "Veri yazılmış bir disk bulundu. Boş veya uygun bir disk yerleştiriniz."
 
 #: ../xfburn/xfburn-perform-burn.c:100
-#, fuzzy
 msgid "No disc detected in drive."
-msgstr "Sürücüde disk bulunmamaktadır"
+msgstr "Sürücüde disk bulunmamaktadır."
 
 #: ../xfburn/xfburn-perform-burn.c:103
-#, fuzzy
 msgid "Cannot recognize the state of the drive and disc."
-msgstr "Sürücünün ve ortamın durumu tanımlanamadı"
+msgstr "Sürücünün ve diskin durumu tanımlanamadı."
 
 #: ../xfburn/xfburn-perform-burn.c:112
-#, fuzzy
 msgid "There is not enough space available on the inserted disc."
-msgstr "Seçilen imaj yerleştirilen diske sığmamaktadır!"
+msgstr "Seçilen imaj yerleştirilen diske sığmamaktadır."
 
 #: ../xfburn/xfburn-perform-burn.c:157
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "%2d/%d yazılıyor..."
 
-#: ../xfburn/xfburn-perform-burn.c:161 ../xfburn/xfburn-perform-burn.c:226
+#: ../xfburn/xfburn-perform-burn.c:161
+#: ../xfburn/xfburn-perform-burn.c:226
 msgid "Burning composition..."
 msgstr "Derleme yazılıyor..."
 
@@ -898,7 +851,8 @@ msgstr "sonlanmış"
 msgid "aborted"
 msgstr "durdurulmuş"
 
-#: ../xfburn/xfburn-perform-burn.c:221 ../xfburn/xfburn-progress-dialog.c:200
+#: ../xfburn/xfburn-perform-burn.c:221
+#: ../xfburn/xfburn-progress-dialog.c:200
 #: ../xfburn/xfburn-progress-dialog.c:217
 #: ../xfburn/xfburn-progress-dialog.c:227
 #: ../xfburn/xfburn-progress-dialog.c:310
@@ -910,19 +864,19 @@ msgstr "bilgi yok"
 
 #: ../xfburn/xfburn-perform-burn.c:231
 msgid "Writing Lead-In..."
-msgstr ""
+msgstr "Lead-In yazılıyor..."
 
 #: ../xfburn/xfburn-perform-burn.c:237
 msgid "Writing Lead-Out..."
-msgstr ""
+msgstr "Lead-Out yazılıyor..."
 
 #: ../xfburn/xfburn-perform-burn.c:243
 msgid "Writing pregap..."
-msgstr ""
+msgstr "pregap yazılıyor..."
 
 #: ../xfburn/xfburn-perform-burn.c:249
 msgid "Closing track..."
-msgstr ""
+msgstr "Şarkı kapatılıyor..."
 
 #: ../xfburn/xfburn-perform-burn.c:255
 msgid "Closing session..."
@@ -934,12 +888,11 @@ msgstr "Biçimlendiriliyor..."
 
 #: ../xfburn/xfburn-perform-burn.c:274
 msgid "see console"
-msgstr ""
+msgstr "konsolu izle"
 
 #: ../xfburn/xfburn-perform-burn.c:302
-#, fuzzy
 msgid "User Aborted"
-msgstr "durdurulmuş"
+msgstr "Kullanıcı tarafından durduruldu"
 
 #: ../xfburn/xfburn-preferences-dialog.c:141
 msgid "Preferences"
@@ -1013,9 +966,8 @@ msgstr "Aygıtları _araştır"
 
 #. below the device list
 #: ../xfburn/xfburn-preferences-dialog.c:319
-#, fuzzy
 msgid "Show warning on _empty speed list"
-msgstr "Boş hız list_esi hatası uyarısını göster "
+msgstr "Hız list_esi boş olduğunda uyarı göster"
 
 #: ../xfburn/xfburn-preferences-dialog.c:327
 msgid "FIFO buffer size (in kb)"
@@ -1040,12 +992,11 @@ msgstr "Aygıt tamponu:"
 #: ../xfburn/xfburn-progress-dialog.c:468
 #, c-format
 msgid "Min. fill was %2d%%"
-msgstr ""
+msgstr "Min. fill %2d%%"
 
 #: ../xfburn/xfburn-progress-dialog.c:527
-#, fuzzy
 msgid "Aborted"
-msgstr "durdurulmuş"
+msgstr "Durdurulmuş"
 
 #: ../xfburn/xfburn-progress-dialog.c:533
 msgid "Failed"
@@ -1060,9 +1011,8 @@ msgid "Completed"
 msgstr "Tamamlandı"
 
 #: ../xfburn/xfburn-progress-dialog.c:576
-#, fuzzy
 msgid "Aborting..."
-msgstr "Biçimlendiriliyor..."
+msgstr "Durduruluyor..."
 
 #: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
@@ -1079,8 +1029,7 @@ msgstr "<big>Ima_j Yazdır</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:141
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr ""
-"Daha önceden hazırlanmış bir derlemeyi yazdırabilirsiniz, örn. ISO dosyası"
+msgstr "Daha önceden hazırlanmış bir derlemeyi yazdırabilirsiniz, örn. ISO dosyası"
 
 #: ../xfburn/xfburn-welcome-tab.c:146
 msgid "<big>New _Data Composition</big>"
@@ -1088,8 +1037,7 @@ msgstr "<big>Yeni Veri _Derlemesi</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:146
 msgid "Create a new data disc with the files of your choosing"
-msgstr ""
-"Seçeceğiniz dosyaları yazdırabileceğiniz bir veri diski oluşturabilirsiniz"
+msgstr "Seçeceğiniz dosyaları yazdırabileceğiniz bir veri diski oluşturabilirsiniz"
 
 #: ../xfburn/xfburn-welcome-tab.c:151
 msgid "<big>_Blank Disc</big>"
@@ -1097,8 +1045,7 @@ msgstr "<big>Disk _Boşalt</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:151
 msgid "Prepare the rewriteable disc for a new burn"
-msgstr ""
-"Yeniden yazılabilir diskinizi yeni bir yazdırma işi için hazırlayabilirsiniz"
+msgstr "Yeniden yazılabilir diskinizi yeni bir yazdırma işi için hazırlayabilirsiniz"
 
 #: ../xfburn/xfburn-welcome-tab.c:156
 msgid "<big>_Audio CD</big>"
@@ -1110,7 +1057,7 @@ msgstr "Müzik CD'si oluşturabilirsiniz"
 
 #: ../xfburn/xfburn-audio-composition.c:211
 msgid "What files can get burned to an audio CD?"
-msgstr ""
+msgstr "Müzik CD'sine hangi dosyalar yazılacak?"
 
 #: ../xfburn/xfburn-audio-composition.c:215
 msgid "Rename Artist"
@@ -1149,32 +1096,28 @@ msgid "Filename"
 msgstr "Dosya adı"
 
 #: ../xfburn/xfburn-audio-composition.c:576
-#, fuzzy
 msgid "Cannot burn audio onto a DVD."
-msgstr "Ses dosyaları DVD'ye yazılamadı"
+msgstr "Ses dosyaları DVD'ye yazılamadı."
 
 #: ../xfburn/xfburn-audio-composition.c:1223
-#, fuzzy
 msgid "You can only have a maximum of 99 tracks."
-msgstr "En fazla 99 şarkı alabilir"
+msgstr "En fazla 99 şarkı alabilir."
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:312
 msgid "A problem with the burn backend occurred."
-msgstr ""
+msgstr "Yazma altyapısında bir hata meydana geldi."
 
 #: ../xfburn/xfburn-disc-usage.c:165
 msgid "Proceed to Burn"
 msgstr "Yazmaya Başla"
 
 #: ../xfburn/xfburn-disc-usage.c:205
-#, fuzzy
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr ""
-"Bu diskin barındırabileceğinden daha fazla veri yazmaya çalışıyorsunuz!"
+msgstr "Bu diskin barındırabileceğinden daha fazla veri yazmaya çalışıyorsunuz."
 
 #: ../xfburn/xfburn-transcoder-basic.c:167
 msgid "basic"
-msgstr ""
+msgstr "temel"
 
 #: ../xfburn/xfburn-transcoder-basic.c:173
 msgid ""
@@ -1187,6 +1130,13 @@ msgid ""
 "audio files, please compile with\n"
 "gstreamer support."
 msgstr ""
+"Temel taşıyıcı tümleşiktir,\n"
+"ve hiç bir kitaplığa gereksinim duymaz.\n"
+"Fakat sadece sıkıştırılmamış olan\n"
+".wav dosyalarını destekler.\n"
+"Eğer farklı türde müzik derlemesi\n"
+"oluşturmak istiyorsanız lütfen uygulamayı\n"
+"gstreamer desteği ile derleyiniz. "
 
 #: ../xfburn/xfburn-transcoder-basic.c:198
 #, c-format
@@ -1204,9 +1154,9 @@ msgid "Could not stat %s: %s"
 msgstr "%s konumlandırılamadı: %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:244
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open %s."
-msgstr "%s açılamadı!"
+msgstr "%s açılamadı."
 
 #: ../xfburn/xfburn-transcoder-basic.c:325
 #, c-format
@@ -1222,13 +1172,18 @@ msgid ""
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
 msgstr ""
+"%s kayıp.\n"
+"\n"
+"Bu dosyanın kontrolü için gerekli çözücü bulunmamaktadır.\n"
+"Muhtemelen gst-plugins-* paketlerine\n"
+"ihtiyaç duyabilirsiniz.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
 #: ../xfburn/xfburn-transcoder-gst.c:717
 msgid "gstreamer"
-msgstr ""
+msgstr "gstreamer"
 
 #: ../xfburn/xfburn-transcoder-gst.c:723
 msgid ""
@@ -1241,6 +1196,14 @@ msgid ""
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
 msgstr ""
+"gstreamer taşıyıcısı gstreamer kütüphanesini\n"
+"kullanarak müzik derlemesi oluşturur.\n"
+"\n"
+"Eğer doğru eklentiler kurulu ise bütün\n"
+"müzik dosyaları destekleniyor olmalıdır.\n"
+"Eğer müzik dosyası tanınmıyor ise, mutlaka\n"
+"'good','bad' ve 'ugly' eklentilerinin kurulu\n"
+"olduğundan emin olmalısınız."
 
 #: ../xfburn/xfburn-transcoder-gst.c:784
 #, c-format
@@ -1248,7 +1211,7 @@ msgid "Gstreamer did not like this file (detection timed out)"
 msgstr "Gstreamer bu dosyayı kabul etmedi (tanımlama zaman aşımı)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:793
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s\n"
 "\n"
@@ -1257,7 +1220,8 @@ msgid ""
 "%s"
 msgstr ""
 "%s\n"
-"\tses dosyası değil:\n"
+"\n"
+"müzik dosyası değil:\n"
 "\n"
 "%s"
 
@@ -1271,14 +1235,14 @@ msgstr "Gstreamer kod çevrimini başlatamadı (zaman aşımı)"
 msgid "Failed to change songs while transcoding"
 msgstr "Kod çevrimi yapılırken şarkı değiştirilemedi"
 
-#: ../xfburn/xfburn-transcoder.c:125 ../xfburn/xfburn-transcoder.c:137
+#: ../xfburn/xfburn-transcoder.c:125
+#: ../xfburn/xfburn-transcoder.c:137
 #: ../xfburn/xfburn-transcoder.c:149
 #, c-format
 msgid "not implemented"
 msgstr "henüz tamamlanmamış"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
-#, fuzzy
 msgid "Data Composition"
 msgstr "Veri Derlemesi"
 
@@ -1292,36 +1256,26 @@ msgstr "CD ve DVD yazma uygulaması"
 
 #~ msgid "Unable to create disc object"
 #~ msgstr "Disk nesnesi oluşturulamadı"
-
 #~ msgid "Cannot attach source object to track object"
 #~ msgstr "Kaynak nesne eklenemedi"
-
 #~ msgid "No media detected in drive"
 #~ msgstr "Sürücüde ortam bulunamadı"
-
 #~ msgid "No access to drive (mounted?)"
 #~ msgstr "Sürücüye erişilemiyor (bağlandı mı?)"
-
 #~ msgid "Format DVD+RW"
 #~ msgstr "DVD+RW Biçimlendir"
-
 #~ msgid "_Format"
 #~ msgstr "_Biçimlendir"
-
 #~ msgid "active"
 #~ msgstr "etkin"
-
 #~ msgid "Could not create burn_source from %s!"
 #~ msgstr "%s üzerinden yazma kaynağı alınamadı!"
-
 #~ msgid "Could not add source to track %s!"
 #~ msgstr "%s öğesine kaynak eklenemedi"
-
 #~ msgid "A pipeline element could not be created"
 #~ msgstr "Ardışık düzen öğesi oluşturulamadı"
-
 #~ msgid "The debug identity element could not be created"
 #~ msgstr "Hata ayıklama kimliği öğesi oluşturulamadı"
-
 #~ msgid "Could not setup filtered gstreamer link"
 #~ msgstr "Filtrelenmiş gstreamer bağlantısı oluşturulamadı"
+
