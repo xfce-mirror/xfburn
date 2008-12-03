@@ -268,6 +268,7 @@ main (int argc, char **argv)
     return EXIT_SUCCESS;
   }
 
+  DBG ("%s version %s for Xfce %s\n", PACKAGE, VERSION, xfce_version_string ());
 
   xfburn_settings_init ();
   
