@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-03 21:06+0100\n"
-"PO-Revision-Date: 2008-11-23 23:51+0200\n"
+"PO-Revision-Date: 2008-11-30 02:01+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 1.2.0\n"
 
@@ -252,8 +252,8 @@ msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
 "select an image to burn</span>"
 msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded"
-"\">Mesedez hautatu irudi bat grabatzeko</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Mesedez "
+"hautatu irudi bat grabatzeko</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:460
 msgid ""
@@ -463,8 +463,8 @@ msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr ""
-"Badago dagoeneko \"%s\" izeneko fitxategi bat direktorio horretan, "
-"fitxategia ez da gehitu."
+"Badago dagoeneko \"%s\" izeneko fitxategi bat direktorio horretan, fitxategia "
+"ez da gehitu."
 
 #: ../xfburn/xfburn-device-box.c:181 ../xfburn/xfburn-device-box.c:182
 msgid "Show writers only"
@@ -653,8 +653,8 @@ msgstr ""
 "\n"
 "Mesedez desmuntatu eta aplikazioa berrabiarazi.\n"
 "\n"
-"Ez badago diskorik sartuta egiaztatu erabiltzaile honekin gailuan irakurketa/"
-"idazte baimenak dituzula."
+"Ez badago diskorik sartuta egiaztatu erabiltzaile honekin gailuan "
+"irakurketa/idazte baimenak dituzula."
 
 #: ../xfburn/xfburn-main.c:337
 #, c-format
@@ -789,10 +789,6 @@ msgstr "Beste cd grabatze interfaze bat"
 #: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
 msgid "Author/Maintainer"
 msgstr "Egilea/Mantentzea"
-
-#: ../xfburn/xfburn-main-window.c:538
-msgid "Retired author/maintainer"
-msgstr "Erretiratutako egilea/mantentzelaria"
 
 #: ../xfburn/xfburn-main-window.c:544
 #, c-format
@@ -1079,10 +1075,7 @@ msgstr "<big>_Audio CDa</big>"
 msgid "Audio CD playable in regular stereos"
 msgstr "Estereo arruntetan erreproduzitzeko audio CDa"
 
-#: ../xfburn/xfburn-audio-composition.c:211
-msgid "What files can get burned to an audio CD?"
-msgstr "Zein fitxategi grabatu daitezke audio CD batetan?"
-
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-audio-composition.c:215
 msgid "Rename Artist"
 msgstr "Berrizendatu artista"
@@ -1137,32 +1130,7 @@ msgstr "Grabatu"
 
 #: ../xfburn/xfburn-disc-usage.c:205
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr ""
-"Diskoak eduki dezakeena baino datu gehiago grabatzen saiatzen ari zara."
-
-#: ../xfburn/xfburn-transcoder-basic.c:167
-msgid "basic"
-msgstr "oianrrizkoa"
-
-#: ../xfburn/xfburn-transcoder-basic.c:173
-msgid ""
-"The basic transcoder is built in,\n"
-"and does not require any library.\n"
-"But it can only handle uncompressed\n"
-".wav files.\n"
-"If you would like to create audio\n"
-"compositions from different types of\n"
-"audio files, please compile with\n"
-"gstreamer support."
-msgstr ""
-"Transkodetzaile oinarrizkoa barne-eraikirik dago,\n"
-"eta ez du inongo liburutegi beharrik.\n"
-"Baino konprimitu gabeko .wav fitxategiak\n"
-"bakarrik kudeatu ditzake.\n"
-"Audio konposizioak audio fitxategi mota\n"
-"ezberdinetatik sortu nahi badituzu, \n"
-"Mesedez, konpilatu ezazu gstreamer\n"
-"onarpenarekin."
+msgstr "Diskoak eduki dezakeena baino datu gehiago grabatzen saiatzen ari zara."
 
 #: ../xfburn/xfburn-transcoder-basic.c:198
 #, c-format
@@ -1188,43 +1156,6 @@ msgstr "Ezin da %s ireki."
 #, c-format
 msgid "Could not open %s: %s"
 msgstr "Ezin da %s ireki: %s"
-
-#: ../xfburn/xfburn-transcoder-gst.c:629
-#, c-format
-msgid ""
-"%s is missing.\n"
-"\n"
-"You do not have a decoder installed to handle this file.\n"
-"Probably you need to look at the gst-plugins-* packages\n"
-"for the necessary plugins.\n"
-msgstr ""
-
-#. Note to translators: you can probably keep this as gstreamer,
-#. * unless you have a good reason to call it by another name that
-#. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:717
-msgid "gstreamer"
-msgstr "gstreamer"
-
-#: ../xfburn/xfburn-transcoder-gst.c:723
-msgid ""
-"The gstreamer transcoder uses the gstreamer\n"
-"library for creating audio compositions.\n"
-"\n"
-"Essentially all audio files should be supported\n"
-"given that the correct plugins are installed.\n"
-"If an audio file is not recognized, make sure\n"
-"that you have the 'good','bad', and 'ugly'\n"
-"gstreamer plugin packages installed."
-msgstr ""
-"Gstreamer transkodetzaileak gstreamer liburutegia\n"
-"erabiltzen du audio konposizioak sortzeko\n"
-"\n"
-"Nagusiki audio fitxategi guztiak onartzen dira\n"
-"behin dagozkio pluginak instalatzen direnean.\n"
-"Audio fitxategi bat ezagutzen ez bada ziurtatu\n"
-"zaitez gstreamer-en 'good', 'bad' eta 'ugly'\n"
-"pluginak instalaturik dituzula."
 
 #: ../xfburn/xfburn-transcoder-gst.c:784
 #, c-format
@@ -1261,10 +1192,6 @@ msgstr "Huts kantak transkodekatzeailearekin aldatzean"
 #, c-format
 msgid "not implemented"
 msgstr "Inplementatu gabe"
-
-#: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
-msgid "Data Composition"
-msgstr "Datu konposizioa"
 
 #: ../xfburn.desktop.in.h:1
 msgid "Burn Image (xfburn)"
@@ -1314,3 +1241,81 @@ msgstr "CD eta DVD grabatze aplikazioa"
 
 #~ msgid "Could not setup filtered gstreamer link"
 #~ msgstr "Ezin da iragazitako gstreamer lotura konfiguratu"
+
+#: ../xfburn/xfburn-main-window.c:538
+msgid "Retired author/maintainer"
+msgstr "Erretiratutako egilea/mantentzelaria"
+
+#: ../xfburn/xfburn-audio-composition.c:211
+msgid "What files can get burned to an audio CD?"
+msgstr "Zein fitxategi grabatu daitezke audio CD batetan?"
+
+#: ../xfburn/xfburn-transcoder-basic.c:167
+msgid "basic"
+msgstr "oianrrizkoa"
+
+#: ../xfburn/xfburn-transcoder-basic.c:173
+msgid ""
+"The basic transcoder is built in,\n"
+"and does not require any library.\n"
+"But it can only handle uncompressed\n"
+".wav files.\n"
+"If you would like to create audio\n"
+"compositions from different types of\n"
+"audio files, please compile with\n"
+"gstreamer support."
+msgstr ""
+"Transkodetzaile oinarrizkoa barne-eraikirik dago,\n"
+"eta ez du inongo liburutegi beharrik.\n"
+"Baino konprimitu gabeko .wav fitxategiak\n"
+"bakarrik kudeatu ditzake.\n"
+"Audio konposizioak audio fitxategi mota\n"
+"ezberdinetatik sortu nahi badituzu, \n"
+"Mesedez, konpilatu ezazu gstreamer\n"
+"onarpenarekin."
+
+#. Note to translators: you can probably keep this as gstreamer,
+#. * unless you have a good reason to call it by another name that
+#. * the user would understand better
+#: ../xfburn/xfburn-transcoder-gst.c:717
+msgid "gstreamer"
+msgstr "gstreamer"
+
+#: ../xfburn/xfburn-transcoder-gst.c:723
+msgid ""
+"The gstreamer transcoder uses the gstreamer\n"
+"library for creating audio compositions.\n"
+"\n"
+"Essentially all audio files should be supported\n"
+"given that the correct plugins are installed.\n"
+"If an audio file is not recognized, make sure\n"
+"that you have the 'good','bad', and 'ugly'\n"
+"gstreamer plugin packages installed."
+msgstr ""
+"Gstreamer transkodetzaileak gstreamer liburutegia\n"
+"erabiltzen du audio konposizioak sortzeko\n"
+"\n"
+"Nagusiki audio fitxategi guztiak onartzen dira\n"
+"behin dagozkio pluginak instalatzen direnean.\n"
+"Audio fitxategi bat ezagutzen ez bada ziurtatu\n"
+"zaitez gstreamer-en 'good', 'bad' eta 'ugly'\n"
+"pluginak instalaturik dituzula."
+
+#: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
+msgid "Data Composition"
+msgstr "Datu konposizioa"
+
+#: ../xfburn/xfburn-transcoder-gst.c:629
+#, c-format
+msgid ""
+"%s is missing.\n"
+"\n"
+"You do not have a decoder installed to handle this file.\n"
+"Probably you need to look at the gst-plugins-* packages\n"
+"for the necessary plugins.\n"
+msgstr ""
+"%s falta da.\n"
+"\n"
+"Ez duzu fitxategi hau kudeatzeko deskodetzailea.\n"
+"Ziurrenik beharrezko pluginentzat gts-plugins-* paketeak\n"
+" begiratu eta instalatu beharko dituzu.\n"
