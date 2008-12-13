@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-03 21:06+0100\n"
-"PO-Revision-Date: 2008-11-27 23:30+0900\n"
+"PO-Revision-Date: 2008-12-07 17:07+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,8 @@ msgstr "ディスクの中身を消去"
 msgid "Burning device"
 msgstr "焼き込み先のデバイス"
 
-#: ../xfburn/xfburn-blank-dialog.c:223 ../xfburn/xfburn-device-box.c:200
+#: ../xfburn/xfburn-blank-dialog.c:223
+#: ../xfburn/xfburn-device-box.c:200
 msgid "Blank mode"
 msgstr "消去モード"
 
@@ -128,7 +129,8 @@ msgstr "ディスクの中身を消去しています..."
 msgid "Done"
 msgstr "完了しました"
 
-#: ../xfburn/xfburn-blank-dialog.c:439 ../xfburn/xfburn-perform-burn.c:304
+#: ../xfburn/xfburn-blank-dialog.c:439
+#: ../xfburn/xfburn-perform-burn.c:304
 #: ../xfburn/xfburn-progress-dialog.c:604
 msgid "Failure"
 msgstr "失敗しました"
@@ -253,24 +255,16 @@ msgid "Burning image..."
 msgstr "イメージを焼き込んでいます..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:422
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">焼き込"
-"むイメージを選択してください</span>"
+msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">焼き込むイメージを選択してください</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:460
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"この書き込みモードではマルチセッションディスクにデータを追加できません (代わ"
-"りに TAO を使用してください)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr "この書き込みモードではマルチセッションディスクにデータを追加できません (代わりに TAO を使用してください)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:464
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"データが検出されたメディアを閉じました。空か追記可能なディスクが必要です。"
+msgstr "データが検出されたメディアを閉じました。空か追記可能なディスクが必要です。"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:466
 msgid "No disc detected in drive"
@@ -289,12 +283,8 @@ msgid "Failed to get image size"
 msgstr "イメージサイズの取得に失敗しました"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:512
-msgid ""
-"Make sure you selected a valid file and you have the proper permissions to "
-"access it."
-msgstr ""
-"正しいファイルを選択しているか、あなたが適切なアクセス権を与えられているか確"
-"認してください。"
+msgid "Make sure you selected a valid file and you have the proper permissions to access it."
+msgstr "正しいファイルを選択しているか、あなたが適切なアクセス権を与えられているか確認してください。"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:542
 msgid "The write mode is not currently supported"
@@ -414,7 +404,7 @@ msgstr "選択したファイルの名前を変更します"
 
 #: ../xfburn/xfburn-data-composition.c:343
 msgid "Volume name :"
-msgstr "ボリューム名:"
+msgstr "ボリューム名 :"
 
 #: ../xfburn/xfburn-data-composition.c:374
 msgid "Contents"
@@ -453,27 +443,21 @@ msgstr "ホームフォルダを追加しています"
 #: ../xfburn/xfburn-data-composition.c:1231
 #: ../xfburn/xfburn-audio-composition.c:1311
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"ホームディレクトリをコンポジションに追加しようとしています。これはおそらく非"
-"常に長い時間を要し、その上一枚のディスクに収めるにはあまりに大きすぎると思わ"
-"れます。\n"
+"ホームディレクトリをコンポジションに追加しようとしています。これはおそらく非常に長い時間を要し、その上一枚のディスクに収めるにはあまりに大きすぎると思われます。\n"
 "\n"
 "続行してよろしいですか?"
 
 #: ../xfburn/xfburn-data-composition.c:1393
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added."
-msgstr ""
-"ファイル名 \"%s\" はこのフォルダにすでに存在します。ファイルは追加されません"
-"でした。"
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
+msgstr "ファイル名 \"%s\" はこのフォルダにすでに存在します。ファイルは追加されませんでした。"
 
-#: ../xfburn/xfburn-device-box.c:181 ../xfburn/xfburn-device-box.c:182
+#: ../xfburn/xfburn-device-box.c:181
+#: ../xfburn/xfburn-device-box.c:182
 msgid "Show writers only"
 msgstr "書き込み側のみ表示"
 
@@ -507,8 +491,7 @@ msgstr "正しい組み合わせですか"
 
 #: ../xfburn/xfburn-device-box.c:197
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
-"これはコンポジションを焼き込むハードウェアとディスクの正しい組み合わせですか?"
+msgstr "これはコンポジションを焼き込むハードウェアとディスクの正しい組み合わせですか?"
 
 #: ../xfburn/xfburn-device-box.c:201
 msgid "The blank mode shows different disc status messages than regular mode"
@@ -530,22 +513,17 @@ msgstr "空の速度リスト"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to "
-"<i>xfburn@xfce.org</i> together with the console output to increase the "
-"chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>このデバイスの速度リストを取得できません。</b>\n"
 "\n"
-"これは既知のバグで、いくつかのデバイスで発生します。これを修正するためにコン"
-"ソール出力結果とともに <i>xfburn@xfce.org</i> へ報告してください。\n"
+"これは既知のバグで、いくつかのデバイスで発生します。これを修正するためにコンソール出力結果とともに <i>xfburn@xfce.org</i> へ報告してください。\n"
 "\n"
-"焼き込みは引き続き動作しますが、いずれにしろ問題があれば私たちに知らせてくだ"
-"さい。\n"
+"焼き込みは引き続き動作しますが、いずれにしろ問題があれば私たちに知らせてください。\n"
 "\n"
 "<i>よろしくおねがいします!</i>"
 
@@ -565,7 +543,8 @@ msgstr "最大"
 msgid "Drive can't burn on the inserted disc"
 msgstr "デバイスは挿入されたディスクに焼き込むことができません"
 
-#: ../xfburn/xfburn-device-box.c:615 ../xfburn/xfburn-device-box.c:661
+#: ../xfburn/xfburn-device-box.c:615
+#: ../xfburn/xfburn-device-box.c:661
 msgid "Drive is empty"
 msgstr "デバイスが空です"
 
@@ -577,15 +556,18 @@ msgstr "もうしわけありません、マルチセッションはまだサポ
 msgid "Inserted disc is full"
 msgstr "挿入されたディスクがいっぱいです"
 
-#: ../xfburn/xfburn-device-box.c:624 ../xfburn/xfburn-device-box.c:667
+#: ../xfburn/xfburn-device-box.c:624
+#: ../xfburn/xfburn-device-box.c:667
 msgid "Inserted disc is unsuitable"
 msgstr "挿入されたディスクが適切ではありません"
 
-#: ../xfburn/xfburn-device-box.c:627 ../xfburn/xfburn-device-box.c:670
+#: ../xfburn/xfburn-device-box.c:627
+#: ../xfburn/xfburn-device-box.c:670
 msgid "Cannot access drive (it might be in use)"
 msgstr "ドライブにアクセスできません (おそらく使用中です)"
 
-#: ../xfburn/xfburn-device-box.c:632 ../xfburn/xfburn-device-box.c:673
+#: ../xfburn/xfburn-device-box.c:632
+#: ../xfburn/xfburn-device-box.c:673
 msgid "Error determining disc"
 msgstr "ディスクの決定エラー"
 
@@ -615,7 +597,8 @@ msgstr "ファイル"
 msgid "Type"
 msgstr "タイプ"
 
-#: ../xfburn/xfburn-fs-browser.c:95 ../xfburn/xfburn-fs-browser.c:272
+#: ../xfburn/xfburn-fs-browser.c:95
+#: ../xfburn/xfburn-fs-browser.c:272
 msgid "Filesystem"
 msgstr "ファイルシステム"
 
@@ -625,7 +608,8 @@ msgstr "ファイルシステム"
 msgid "%s's home"
 msgstr "%s のホームフォルダ"
 
-#: ../xfburn/xfburn-main.c:203 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:203
+#: ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -636,8 +620,7 @@ msgid ""
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 "%s: %s\n"
-"%s --help と入力すると利用可能な全てのコマンドラインオプションが表示されま"
-"す。\n"
+"%s --help と入力すると利用可能な全てのコマンドラインオプションが表示されます。\n"
 
 #: ../xfburn/xfburn-main.c:221
 msgid "Unable to initialize the burning backend."
@@ -653,15 +636,13 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
 "おそらくディスクは使用中であり、アクセスできません。\n"
 "\n"
 "アンマウントしてアプリケーションを再起動してください。\n"
 "\n"
-"メディアが挿入されていないならば現在のユーザがドライブへの読み込み/書き込み権"
-"を与えられているかどうか確認してください。"
+"メディアが挿入されていないならば現在のユーザがドライブへの読み込み/書き込み権を与えられているかどうか確認してください。"
 
 #: ../xfburn/xfburn-main.c:337
 #, c-format
@@ -793,7 +774,8 @@ msgstr "ツールバーエディタ"
 msgid "Another cd burning GUI"
 msgstr "CD 作成ツール"
 
-#: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
+#: ../xfburn/xfburn-main-window.c:536
+#: ../xfburn/xfburn-main-window.c:537
 msgid "Author/Maintainer"
 msgstr "著作者/メンテナ"
 
@@ -816,23 +798,19 @@ msgstr "ラベルの文字"
 
 #: ../xfburn/xfburn-notebook-tab.c:112
 msgid "Show close button"
-msgstr "\"閉じる\" ボタンを表示する"
+msgstr "「閉じる」ボタンを表示する"
 
 #: ../xfburn/xfburn-notebook-tab.c:112
 msgid "Determine whether the close button is visible"
-msgstr "\"閉じる\" ボタンを表示するかどうか決定してください"
+msgstr "「閉じる」ボタンを表示するかどうか決定してください"
 
 #: ../xfburn/xfburn-perform-burn.c:94
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"この書き込みモードではマルチセッションディスクにデータを追加できません (代わ"
-"りに TAO を使用してください)。"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr "この書き込みモードではマルチセッションディスクにデータを追加できません (代わりに TAO を使用してください)。"
 
 #: ../xfburn/xfburn-perform-burn.c:98
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-"データが検出されたメディアを閉じました。空か追記可能なディスクが必要です。"
+msgstr "データが検出されたメディアを閉じました。空か追記可能なディスクが必要です。"
 
 #: ../xfburn/xfburn-perform-burn.c:100
 msgid "No disc detected in drive."
@@ -851,7 +829,8 @@ msgstr "挿入されたディスクには十分な空き容量がありません
 msgid "Burning track %2d/%d..."
 msgstr "トラック %2d/%d を焼き込んでいます..."
 
-#: ../xfburn/xfburn-perform-burn.c:161 ../xfburn/xfburn-perform-burn.c:226
+#: ../xfburn/xfburn-perform-burn.c:161
+#: ../xfburn/xfburn-perform-burn.c:226
 msgid "Burning composition..."
 msgstr "コンポジションを焼き込んでいます..."
 
@@ -883,7 +862,8 @@ msgstr "終了しました"
 msgid "aborted"
 msgstr "中止しました"
 
-#: ../xfburn/xfburn-perform-burn.c:221 ../xfburn/xfburn-progress-dialog.c:200
+#: ../xfburn/xfburn-perform-burn.c:221
+#: ../xfburn/xfburn-progress-dialog.c:200
 #: ../xfburn/xfburn-progress-dialog.c:217
 #: ../xfburn/xfburn-progress-dialog.c:227
 #: ../xfburn/xfburn-progress-dialog.c:310
@@ -1002,7 +982,7 @@ msgstr "速度リストが空のとき警告を表示する(_E)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:327
 msgid "FIFO buffer size (in kb)"
-msgstr "FIFO バッファ (KB)"
+msgstr "FIFO バッファサイズ (KB)"
 
 #: ../xfburn/xfburn-progress-dialog.c:182
 msgid "Initializing..."
@@ -1056,7 +1036,7 @@ msgstr "ようこそ Xfburn へ!"
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:141
 msgid "<big>Burn _Image</big>"
-msgstr "<big>イメージを焼く</big>(_I)"
+msgstr "<big>イメージを焼く(_I)</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:141
 msgid "Burn a prepared compilation, i.e. an .ISO file"
@@ -1064,7 +1044,7 @@ msgstr "用意された編集物 (ISO ファイルなど) を焼き込みます"
 
 #: ../xfburn/xfburn-welcome-tab.c:146
 msgid "<big>New _Data Composition</big>"
-msgstr "<big>新規データコンポジション</big>(_D)"
+msgstr "<big>新規データコンポジション(_D)</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:146
 msgid "Create a new data disc with the files of your choosing"
@@ -1072,7 +1052,7 @@ msgstr "選択したファイルで新しいデータディスクを作成しま
 
 #: ../xfburn/xfburn-welcome-tab.c:151
 msgid "<big>_Blank Disc</big>"
-msgstr "<big>ディスクの中身を消去</big>(_B)"
+msgstr "<big>ディスクの中身を消去(_B)</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:151
 msgid "Prepare the rewriteable disc for a new burn"
@@ -1080,7 +1060,7 @@ msgstr "リライタブルディスクに新しく焼き込むための準備を
 
 #: ../xfburn/xfburn-welcome-tab.c:156
 msgid "<big>_Audio CD</big>"
-msgstr "<big>オーディオ CD</big>(_A)"
+msgstr "<big>オーディオ CD(_A)</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:156
 msgid "Audio CD playable in regular stereos"
@@ -1088,7 +1068,7 @@ msgstr "一般のステレオで再生可能なオーディオ CD を作成し�
 
 #: ../xfburn/xfburn-audio-composition.c:211
 msgid "What files can get burned to an audio CD?"
-msgstr "どんなファイルがオーディオ CD に焼き込めますか?"
+msgstr "どのようなファイルがオーディオ CD に焼き込めますか?"
 
 #: ../xfburn/xfburn-audio-composition.c:215
 msgid "Rename Artist"
@@ -1232,7 +1212,7 @@ msgstr ""
 "基本的に適切なプラグインがインストールされていれば全ての\n"
 "オーディオファイルはサポートされているはずです。\n"
 "もし認識されないオーディオファイルがある時は、GStreamer\n"
-"の 'good'、'bad'、および 'ubly' プラグインがインストール\n"
+"の 'good'、'bad'、および 'ugly' プラグインがインストール\n"
 "されているかどうか確認してください。"
 
 #: ../xfburn/xfburn-transcoder-gst.c:784
@@ -1265,7 +1245,8 @@ msgstr "GStreamer はコード変換を開始できませんでした (タイム
 msgid "Failed to change songs while transcoding"
 msgstr "コード変換中に楽曲の変更に失敗しました"
 
-#: ../xfburn/xfburn-transcoder.c:125 ../xfburn/xfburn-transcoder.c:137
+#: ../xfburn/xfburn-transcoder.c:125
+#: ../xfburn/xfburn-transcoder.c:137
 #: ../xfburn/xfburn-transcoder.c:149
 #, c-format
 msgid "not implemented"
@@ -1282,4 +1263,5 @@ msgstr "イメージを焼く (Xfburn)"
 
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
-msgstr "CD や DVD を作成するアプリケーションです"
+msgstr "CD や DVD へ焼き込むアプリケーションです"
+
