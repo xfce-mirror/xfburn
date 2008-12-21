@@ -1,6 +1,7 @@
-xfburn 0.4.0 (2008-11-XX)
+xfburn 0.4.0 (2008-12-20)
 ============-------------
 
+- Display an error if gstreamer realizes a plugin is missing to decode a file
 - Jean-François Wauthy officially retired as maintainer. Thank you for all the
   work, p0llux!
 - Add symlink as symlink, and not the referenced files to a data composition
@@ -16,7 +17,7 @@ xfburn 0.4.0 (2008-11-XX)
 - Internal and string improvements
 
 xfburn 0.3.91 (2008-11-03)
-============-------------
+=============------------
 
 - Use gstreamer to decompress any supported audio files to burn an audio CD ("gst" transcoder)
   NOTE: support for this is new, and not too unlikely to have some bugs ;-)
