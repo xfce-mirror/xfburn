@@ -426,9 +426,11 @@ signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res)
   g_mutex_unlock (priv->gst_mutex);
 
 #if DEBUG_GST > 0
+ #if DEBUG > 0
   DBG ("Releasing mutex (%s)", dbg_res);
-#else
+ #else
   g_message ("Signaled identification done: %s", dbg_res);
+ #endif
 #endif
 
   return TRUE;
@@ -481,9 +483,9 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 #if DEBUG_GST > 0
   #if DEBUG > 0
       DBG ("End of stream, wrote %.0f bytes", (gfloat) total_size);
-  #endif
-#else
+  #else
       g_message ("End of stream.");
+  #endif
 #endif
 
       close (gtrack->fd_in);
