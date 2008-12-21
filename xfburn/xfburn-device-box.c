@@ -52,6 +52,7 @@ enum {
   PROP_DISC_STATUS,
   PROP_VALID,
   PROP_BLANK_MODE,
+  PROP_ACCEPT_ONLY_CD,
 };
 
 enum {
@@ -96,6 +97,7 @@ typedef struct
   GtkWidget *combo_mode;
 
   gboolean have_asked_for_blanking;
+  gboolean accept_only_cd;
 
 #ifdef HAVE_HAL
   gulong volume_changed_handlerid;
@@ -199,6 +201,10 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
   g_object_class_install_property (object_class, PROP_BLANK_MODE, 
                                    g_param_spec_boolean ("blank-mode", _("Blank mode"),
                                                         _("The blank mode shows different disc status messages than regular mode"), 
+                                                        FALSE, G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_ACCEPT_ONLY_CD, 
+                                   g_param_spec_boolean ("accept-only-cd", _("Accept only CDs as valid discs"),
+                                                        _("Accept only CDs as valid discs"), 
                                                         FALSE, G_PARAM_READWRITE));
 }
 
@@ -358,6 +364,9 @@ xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, G
     case PROP_BLANK_MODE:
       g_value_set_boolean (value, priv->blank_mode);
       break;
+    case PROP_ACCEPT_ONLY_CD:
+      g_value_set_boolean (value, priv->accept_only_cd);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -391,6 +400,9 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
       break;
     case PROP_BLANK_MODE:
       priv->blank_mode = g_value_get_boolean (value);
+      break;
+    case PROP_ACCEPT_ONLY_CD:
+      priv->accept_only_cd = g_value_get_boolean (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -585,7 +597,8 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
         priv->valid_disc = device->cdrw;
         break;
       case XFBURN_PROFILE_DVDRAM:
-        priv->valid_disc = device->dvdram;
+        if (!priv->accept_only_cd)
+          priv->valid_disc = device->dvdram;
         break;
       case XFBURN_PROFILE_DVD_MINUS_R:
       case XFBURN_PROFILE_DVD_MINUS_RW_OVERWRITE:
@@ -594,7 +607,8 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
       case XFBURN_PROFILE_DVD_PLUS_R:
       case XFBURN_PROFILE_DVD_PLUS_R_DL:
       case XFBURN_PROFILE_DVD_PLUS_RW:
-        priv->valid_disc = device->dvdr;
+        if (!priv->accept_only_cd)
+          priv->valid_disc = device->dvdr;
         break;
       default:
         g_warning ("Unknown disc profile 0x%x!", profile_no);
@@ -844,6 +858,7 @@ xfburn_device_box_new (XfburnDeviceBoxFlags flags)
                       "show-speed-selection", ((flags & SHOW_SPEED_SELECTION) != 0), 
 		      "show-mode-selection", ((flags & SHOW_MODE_SELECTION) != 0),
 		      "blank-mode", ((flags & BLANK_MODE) != 0),
+		      "accept-only-cd", ((flags & ACCEPT_ONLY_CD) != 0),
                       NULL);
   
   refresh (obj);
