@@ -56,7 +56,7 @@
  * Set DEBUG_GST >= 1 to be able to inspect the data just before it gets to the fd,
  *                    and to get a lot more gst debugging output.
  * Set DEBUG_GST >= 2 to also get notification of all bus messages.
- * Set DEBUG_GST >= 3 to also get a lot of gst state change messages.
+ * Set DEBUG_GST >= 3 to also get a lot of gst state change messages, as well as seing how fast data passes through gst
  */
 #define DEBUG_GST 2
 
@@ -478,10 +478,12 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       GError *error = NULL;
       XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (priv->curr_track);
 
-#if DEBUG_GST > 0 && DEBUG > 0
+#if DEBUG_GST > 0
+  #if DEBUG > 0
       DBG ("End of stream, wrote %.0f bytes", (gfloat) total_size);
+  #endif
 #else
-      DBG ("End of stream");
+      g_message ("End of stream.");
 #endif
 
       close (gtrack->fd_in);
@@ -738,12 +740,16 @@ static void
 cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data)
 {
   guint size = GST_BUFFER_SIZE (buffer);
+#if DEBUG_GST > 2
   static int i = 0;
-  const int step = 20;
+  const int step = 30;
+#endif
 
   total_size += size;
+#if DEBUG_GST > 2
   if (++i % step == 0)
-    DBG ("gstreamer just processed ~ %6d bytes (%8.0f bytes total).", size*step, (float)total_size);
+    DBG ("gstreamer just processed ~%6d bytes (%8.0f bytes total).", size*step, (float)total_size);
+#endif
 }
 
 #endif
