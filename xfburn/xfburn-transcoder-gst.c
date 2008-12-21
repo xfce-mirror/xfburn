@@ -413,7 +413,7 @@ signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res)
     g_usleep (SIGNAL_SEND_TIMEOUT_MICROS / SIGNAL_SEND_ITERATIONS);
     g_thread_yield ();
     if (i==9) {
-      DBG ("Noone was there to listen to the result of the identification!");
+      g_warning ("Noone was there to listen to the result of the identification!");
       /* FIXME: recreate pipeline here? This state is not the fault of gst */
       if (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE) {
         DBG ("Oops, could not reset pipeline to null");
@@ -427,6 +427,8 @@ signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res)
 
 #if DEBUG_GST > 0
   DBG ("Releasing mutex (%s)", dbg_res);
+#else
+  g_message ("Signaled identification done: %s", dbg_res);
 #endif
 
   return TRUE;
@@ -504,13 +506,10 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       gst_message_parse_error (msg, &error, &debug);
       g_free (debug);
 
-      /* FIXME: show this all the time? */
-      g_warning ("Gstreamer error: %s\n", error->message);
-
       switch (priv->state) {
         case XFBURN_TRANSCODER_GST_STATE_IDLE:
 #if DEBUG_GST > 0
-          DBG ("Ignoring gstreamer error while idling.");
+          g_warning ("Ignoring gstreamer error while idling: %s", error->message);
 #endif
           g_error_free (error);
           recreate_pipeline (trans);
@@ -519,6 +518,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
         case XFBURN_TRANSCODER_GST_STATE_IDENTIFYING:
           recreate_pipeline (trans);
 
+          g_message ("gstreamer abort: %s\n", error->message);
           priv->is_audio = FALSE;
           priv->error = error;
 
@@ -539,7 +539,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
         DBG ("Failed to reset GST state.");
         recreate_pipeline (trans);
       }
-      signal_identification_done (trans, "no audio");
+      signal_identification_done (trans, "not audio content");
 
       break;
     }
@@ -610,7 +610,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
           if (!query_and_signal_duration (trans)) {
             /* this is expected to work, because we got the duration message on the bus */
 #if DEBUG_GST > 0
-            DBG ("Could not query stream length!");
+            g_warning ("Could not query stream length!");
 #endif
             return TRUE;
           }
@@ -738,8 +738,12 @@ static void
 cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data)
 {
   guint size = GST_BUFFER_SIZE (buffer);
+  static int i = 0;
+  const int step = 20;
 
   total_size += size;
+  if (++i % step == 0)
+    DBG ("gstreamer just processed ~ %6d bytes (%8.0f bytes total).", size*step, (float)total_size);
 }
 
 #endif
@@ -764,12 +768,9 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
   priv->state = XFBURN_TRANSCODER_GST_STATE_IDENTIFYING;
   g_object_set (G_OBJECT (priv->source), "location", fn, NULL);
   if (gst_element_set_state (priv->pipeline, GST_STATE_PAUSED) == GST_STATE_CHANGE_FAILURE) {
+#if DEBUG_GST > 0
     g_message ("Supposedly failed to change gstreamer state, ignoring it as usually it does it anyways.");
-    /*
-    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_STATE,
-                 _("Failed to change state!"));
-    return NULL;
-    */
+#endif
   }
 
   g_get_current_time (&tv);
