@@ -9,14 +9,13 @@ msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-03 21:06+0100\n"
-"PO-Revision-Date: 2008-11-24 11:27+0200\n"
+"PO-Revision-Date: 2008-12-15 13:35+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../xfburn/xfburn-adding-progress.c:112
@@ -256,8 +255,7 @@ msgstr ""
 "ласка виберіть образ для запису</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:460
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
 "Неможливо додати дані до мульти-сесійного диску в цьому режимі запису "
 "(використовувати замість TAO)"
@@ -462,8 +460,7 @@ msgstr ""
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr ""
-"Файл з назвою \"%s\" вже присутній в цій теці, файл не може бути доданий."
+msgstr "Файл з назвою \"%s\" вже присутній в цій теці, файл не може бути доданий."
 
 #: ../xfburn/xfburn-device-box.c:181 ../xfburn/xfburn-device-box.c:182
 msgid "Show writers only"
@@ -817,8 +814,7 @@ msgid "Determine whether the close button is visible"
 msgstr "Визначити чи відображається кнопка закриття"
 
 #: ../xfburn/xfburn-perform-burn.c:94
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
 msgstr ""
 "Неможливо додати дані до мульти-сесійного диску в цьому режимі запису "
 "(використовуйте краще TAO)."
@@ -1199,6 +1195,11 @@ msgid ""
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
 msgstr ""
+"%s відсутній.\n"
+"\n"
+"Ви не встановили декодера для обробки цього файлу.\n"
+"Спробуйте переглянути і встановити пакети gst-plugins-*\n"
+"для відповідних плагінів.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1274,3 +1275,4 @@ msgstr "Записати образ (xfburn)"
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Програма для запису CD та DVD"
+
