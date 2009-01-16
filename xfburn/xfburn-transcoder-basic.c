@@ -334,6 +334,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   if (atrack->src == NULL) {
     g_warning ("Could not create burn_source from %s!", atrack->inputfile);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
+		 "%s",
                  _(errormsg_libburn_setup));
     return NULL;
   }
@@ -343,6 +344,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   if (burn_track_set_source (track, atrack->src) != BURN_SOURCE_OK) {
     g_warning ("Could not add source to track %s!", atrack->inputfile);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
+		 "%s",
                  _(errormsg_libburn_setup));
                  
     return NULL;

@@ -154,8 +154,9 @@ xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, const gchar *
                                   GTK_DIALOG_DESTROY_WITH_PARENT,
                                   type,
                                   GTK_BUTTONS_YES_NO,
+                                  "%s",
                                   primary_text);
-  gtk_message_dialog_format_secondary_text (dialog, secondary_text);
+  gtk_message_dialog_format_secondary_text (dialog, "%s", secondary_text);
   ret = gtk_dialog_run (GTK_DIALOG (dialog));
   switch (ret) {
     case GTK_RESPONSE_YES:

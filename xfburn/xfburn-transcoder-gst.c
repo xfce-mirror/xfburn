@@ -287,6 +287,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   if (!pipeline || !source || !decoder || !conv || !sink) {
     g_warning ("A pipeline element could not be created");
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
+		    "%s",
                  _(errormsg_gst_setup));
     return;
   }
@@ -295,6 +296,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   if (!id) {
     g_warning ("The debug identity element could not be created");
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
+		    "%s",
                  _(errormsg_gst_setup));
     return;
   }
@@ -331,6 +333,7 @@ create_pipeline (XfburnTranscoderGst *trans)
 #endif
     g_warning ("Could not setup filtered gstreamer link");
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
+		    "%s",
                  _(errormsg_gst_setup));
     gst_caps_unref (caps);
     return;
@@ -690,6 +693,7 @@ on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
 
     priv->is_audio = FALSE;
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_NO_AUDIO,
+		    "%s",
                  _(error_msg));
     
     msg_struct = gst_structure_new ("no-audio-content", NULL);
@@ -840,7 +844,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   struct burn_source *src_fifo;
 
   if (pipe (pipe_fd) != 0) {
-    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_PIPE, g_strerror (errno));
+    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_PIPE, "%s", g_strerror (errno));
     return NULL;
   }
 
@@ -852,6 +856,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   if (atrack->src == NULL) {
     g_warning ("Could not create burn_source from %s.", atrack->inputfile);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
+		 "%s",
                  _(errormsg_libburn_setup));
     XFBURN_AUDIO_TRACK_DELETE_DATA (atrack);
     atrack->fd = -1;
@@ -871,6 +876,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   if (burn_track_set_source (track, atrack->src) != BURN_SOURCE_OK) {
     g_warning ("Could not add source to track %s.", atrack->inputfile);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
+		 "%s",
                  _(errormsg_libburn_setup));
     XFBURN_AUDIO_TRACK_DELETE_DATA (atrack);
     burn_source_free (atrack->src);
