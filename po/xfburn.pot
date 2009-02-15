@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-03 21:06+0100\n"
+"POT-Creation-Date: 2009-02-15 00:58-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgstr ""
 msgid "Burning device"
 msgstr ""
 
-#: ../xfburn/xfburn-blank-dialog.c:223 ../xfburn/xfburn-device-box.c:200
+#: ../xfburn/xfburn-blank-dialog.c:223 ../xfburn/xfburn-device-box.c:202
 msgid "Blank mode"
 msgstr ""
 
@@ -449,59 +449,63 @@ msgid ""
 "added."
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:181 ../xfburn/xfburn-device-box.c:182
+#: ../xfburn/xfburn-device-box.c:183 ../xfburn/xfburn-device-box.c:184
 msgid "Show writers only"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-device-box.c:186
 msgid "Show speed selection"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:185
+#: ../xfburn/xfburn-device-box.c:187
 msgid "Show speed selection combo"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:188
+#: ../xfburn/xfburn-device-box.c:190
 msgid "Show mode selection"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:189
+#: ../xfburn/xfburn-device-box.c:191
 msgid "Show mode selection combo"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:192
+#: ../xfburn/xfburn-device-box.c:194
 msgid "Disc status"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:193
+#: ../xfburn/xfburn-device-box.c:195
 msgid "The status of the disc in the drive"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:196
+#: ../xfburn/xfburn-device-box.c:198
 msgid "Is it a valid combination"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:197
+#: ../xfburn/xfburn-device-box.c:199
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:201
+#: ../xfburn/xfburn-device-box.c:203
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:274
+#: ../xfburn/xfburn-device-box.c:206 ../xfburn/xfburn-device-box.c:207
+msgid "Accept only CDs as valid discs"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:280
 msgid "_Speed:"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:293
+#: ../xfburn/xfburn-device-box.c:299
 msgid "Write _mode:"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:427
+#: ../xfburn/xfburn-device-box.c:439
 msgid "Empty speed list"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:435
+#: ../xfburn/xfburn-device-box.c:447
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -515,55 +519,55 @@ msgid ""
 "<i>Thank you!</i>"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:444
+#: ../xfburn/xfburn-device-box.c:456
 msgid "Continue to _show this notice"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:481
+#: ../xfburn/xfburn-device-box.c:493
 msgid "default"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:517
+#: ../xfburn/xfburn-device-box.c:529
 msgid "Max"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:606
+#: ../xfburn/xfburn-device-box.c:620
 msgid "Drive can't burn on the inserted disc"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:615 ../xfburn/xfburn-device-box.c:661
+#: ../xfburn/xfburn-device-box.c:629 ../xfburn/xfburn-device-box.c:675
 msgid "Drive is empty"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:618
+#: ../xfburn/xfburn-device-box.c:632
 msgid "Sorry, multisession is not yet supported"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:621
+#: ../xfburn/xfburn-device-box.c:635
 msgid "Inserted disc is full"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:624 ../xfburn/xfburn-device-box.c:667
+#: ../xfburn/xfburn-device-box.c:638 ../xfburn/xfburn-device-box.c:681
 msgid "Inserted disc is unsuitable"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:627 ../xfburn/xfburn-device-box.c:670
+#: ../xfburn/xfburn-device-box.c:641 ../xfburn/xfburn-device-box.c:684
 msgid "Cannot access drive (it might be in use)"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:632 ../xfburn/xfburn-device-box.c:673
+#: ../xfburn/xfburn-device-box.c:646 ../xfburn/xfburn-device-box.c:687
 msgid "Error determining disc"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:653
+#: ../xfburn/xfburn-device-box.c:667
 msgid "Write-once disc, no blanking possible"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:656
+#: ../xfburn/xfburn-device-box.c:670
 msgid "DVD+RW does not need blanking"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:664
+#: ../xfburn/xfburn-device-box.c:678
 msgid "Inserted disc is already blank"
 msgstr ""
 
@@ -1139,7 +1143,7 @@ msgstr ""
 msgid "Could not open %s: %s"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:629
+#: ../xfburn/xfburn-transcoder-gst.c:636
 #, c-format
 msgid ""
 "%s is missing.\n"
@@ -1152,11 +1156,11 @@ msgstr ""
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:717
+#: ../xfburn/xfburn-transcoder-gst.c:725
 msgid "gstreamer"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:723
+#: ../xfburn/xfburn-transcoder-gst.c:731
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1168,12 +1172,12 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:784
+#: ../xfburn/xfburn-transcoder-gst.c:797
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:793
+#: ../xfburn/xfburn-transcoder-gst.c:806
 #, c-format
 msgid ""
 "%s\n"
@@ -1183,12 +1187,12 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:909
+#: ../xfburn/xfburn-transcoder-gst.c:924
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:944
+#: ../xfburn/xfburn-transcoder-gst.c:959
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr ""
