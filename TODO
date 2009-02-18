@@ -2,9 +2,10 @@ user visible
 ============
 
 - remove temporary files
-- use more thunar-vfs
+- use more thunar-vfs / gio
 - add verification of written disc
 - add blu-ray support
+- add disc info dialog
 
 various fixes and changes
 =========================
@@ -42,3 +43,8 @@ various fixes and changes
   disc status should get refreshed
 - cairo animation for blanking progress
 - allow usage of gtk bookmarks
+- make sure that an error pops up if libburn can't grab the drive
+- make sure there is always content in the media status label
+- find out how to identify a burner from the hal listing, see bug 4957
+- fix crash when the user tries to burn a composition with a directory added
+  from within xfburn
