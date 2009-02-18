@@ -79,10 +79,10 @@ static XfburnHalManager *halman = NULL;
 static XfburnProgressDialogClass *parent_class = NULL;
 static guint signals[LAST_SIGNAL];
 
-GtkType
+GType
 xfburn_hal_manager_get_type ()
 {
-  static GtkType type = 0;
+  static GType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {
@@ -369,9 +369,11 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
           return -1;
         }
 
+        /* disable this check for the moment, assuming that the presence of the storage.cdrom.write_speed
+         * property is enough to detect a writer. This fixes bug 4957 for now.
         if (write_speed > 0)
-          writer = TRUE;
-        break;
+         */
+        writer = TRUE;
       }
     }
     libhal_free_string_array (cap_list);
