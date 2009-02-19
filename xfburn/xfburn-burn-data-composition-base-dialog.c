@@ -572,6 +572,10 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
     return;
   }
 
+  /* enable this when there is some time for testing
+  DBG ("Enabling multisession");
+  burn_write_opts_set_multi(burn_options, 1);
+  */
   burn_write_opts_set_simulate(burn_options, params->dummy ? 1 : 0);
   DBG ("Set speed to %d kb/s", params->speed);
   burn_drive_set_speed (drive, 0, params->speed);
