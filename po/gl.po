@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-03 21:06+0100\n"
-"PO-Revision-Date: 2008-12-06 14:06+0100\n"
+"PO-Revision-Date: 2009-02-11 14:03+0100\n"
 "Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "unha revolución completa"
 #: ../xfburn/xfburn-blank-dialog.c:74
 #, fuzzy
 msgid "Quick Format"
-msgstr "Formato rápido"
+msgstr "Formato actual"
 
 #: ../xfburn/xfburn-blank-dialog.c:75
 #, fuzzy
@@ -109,9 +109,8 @@ msgstr "_Baleiro"
 
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:351
-#, fuzzy
 msgid "The inserted disc is already blank."
-msgstr "O disco inserido está baleiro!"
+msgstr "O disco inserido xa está baleiro."
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:357
@@ -119,9 +118,8 @@ msgid "Ready"
 msgstr "Preparado"
 
 #: ../xfburn/xfburn-blank-dialog.c:360
-#, fuzzy
 msgid "No disc detected in the drive."
-msgstr "Non se detectou ningún disco na unidade"
+msgstr "Non se detectou ningún disco na unidade."
 
 #: ../xfburn/xfburn-blank-dialog.c:369
 #, fuzzy
@@ -204,9 +202,9 @@ msgid "_Burn Composition"
 msgstr "Superexposición/Subexposición"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:460
-#, fuzzy, c-format
+#, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr "Non foi posible crear un ficheiro temporal para %s: %s"
+msgstr "Non foi posible crear o ficheiro ISO destino: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:467
 msgid "Writing ISO..."
@@ -251,9 +249,8 @@ msgid "ISO images"
 msgstr "Imaxes ISO"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:202
-#, fuzzy
 msgid "_Burn image"
-msgstr "Imaxe de Fondo"
+msgstr "_Gravar imaxe"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:292
 #: ../xfburn/xfburn-burn-image-dialog.c:321
@@ -278,7 +275,7 @@ msgstr "Gravando a imaxe..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:422
 msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
-msgstr ""
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Seleccione unha imaxe para gravala</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:460
 msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
@@ -489,18 +486,16 @@ msgid "Show writers only"
 msgstr "Só en memoria"
 
 #: ../xfburn/xfburn-device-box.c:184
-#, fuzzy
 msgid "Show speed selection"
-msgstr "Amosar sinal de selección"
+msgstr "Amosar a selección de velocidade"
 
 #: ../xfburn/xfburn-device-box.c:185
 msgid "Show speed selection combo"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:188
-#, fuzzy
 msgid "Show mode selection"
-msgstr "Amosar sinal de selección"
+msgstr "Amosar a selección de modo"
 
 #: ../xfburn/xfburn-device-box.c:189
 msgid "Show mode selection combo"
@@ -530,9 +525,8 @@ msgid "The blank mode shows different disc status messages than regular mode"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:274
-#, fuzzy
 msgid "_Speed:"
-msgstr "_Velocidade"
+msgstr "_Velocidade:"
 
 #: ../xfburn/xfburn-device-box.c:293
 #, fuzzy
@@ -571,9 +565,8 @@ msgid "Max"
 msgstr "Max (x, -)"
 
 #: ../xfburn/xfburn-device-box.c:606
-#, fuzzy
 msgid "Drive can't burn on the inserted disc"
-msgstr "A imaxe seleccionada non colle no disco inserido!"
+msgstr "A unidade non pode gravar no disco inserido"
 
 #: ../xfburn/xfburn-device-box.c:615
 #: ../xfburn/xfburn-device-box.c:661
@@ -780,14 +773,12 @@ msgid "Burn DVD Image"
 msgstr "Gravar Imaxe de DVD"
 
 #: ../xfburn/xfburn-main-window.c:141
-#, fuzzy
 msgid "Show file browser"
-msgstr "Usar navegador _web"
+msgstr "Mostrar o navegador de ficheiros"
 
 #: ../xfburn/xfburn-main-window.c:141
-#, fuzzy
 msgid "Show/hide the file browser"
-msgstr "Amosar ou agochar as guías"
+msgstr "Amosar/agochar o navegador de ficheiros"
 
 #: ../xfburn/xfburn-main-window.c:143
 msgid "Show toolbar"
@@ -811,9 +802,8 @@ msgid "Author/Maintainer"
 msgstr "Autor/Mantedor"
 
 #: ../xfburn/xfburn-main-window.c:538
-#, fuzzy
 msgid "Retired author/maintainer"
-msgstr "Buscando por autor"
+msgstr "Autor retirado/mantedor"
 
 #: ../xfburn/xfburn-main-window.c:544
 #, c-format
@@ -829,9 +819,8 @@ msgid "The text of the label"
 msgstr "O texto da etiqueta"
 
 #: ../xfburn/xfburn-notebook-tab.c:112
-#, fuzzy
 msgid "Show close button"
-msgstr "Amosar os botóns pechar nos diálogos"
+msgstr "Amosar o botón de pechar"
 
 #: ../xfburn/xfburn-notebook-tab.c:112
 msgid "Determine whether the close button is visible"
@@ -953,7 +942,7 @@ msgstr "Preferencias"
 
 #: ../xfburn/xfburn-preferences-dialog.c:142
 msgid "Tune how Xfburn behaves"
-msgstr ""
+msgstr "Modificar o comportamento de Xfburn"
 
 #: ../xfburn/xfburn-preferences-dialog.c:187
 #: ../xfburn/xfburn-preferences-dialog.c:191
@@ -995,7 +984,6 @@ msgid "Name"
 msgstr "Nome"
 
 #: ../xfburn/xfburn-preferences-dialog.c:275
-#, fuzzy
 msgid "Node"
 msgstr "Nodo"
 
@@ -1027,18 +1015,16 @@ msgid "Show warning on _empty speed list"
 msgstr "Lista plana - colapsada"
 
 #: ../xfburn/xfburn-preferences-dialog.c:327
-#, fuzzy
 msgid "FIFO buffer size (in kb)"
-msgstr "Búfer FIFO:"
+msgstr "Tamaño do búfer FIFO (en kb)"
 
 #: ../xfburn/xfburn-progress-dialog.c:182
 msgid "Initializing..."
 msgstr "Iniciando..."
 
 #: ../xfburn/xfburn-progress-dialog.c:197
-#, fuzzy
 msgid "Estimated writing speed:"
-msgstr "Velocid_ade de liñas móbiles:"
+msgstr "Velocidade de escritura estimada:"
 
 #: ../xfburn/xfburn-progress-dialog.c:211
 msgid "FIFO buffer:"
@@ -1161,11 +1147,11 @@ msgstr "Nome de ficheiro"
 
 #: ../xfburn/xfburn-audio-composition.c:576
 msgid "Cannot burn audio onto a DVD."
-msgstr ""
+msgstr "Non se pode gravar audio nun DVD."
 
 #: ../xfburn/xfburn-audio-composition.c:1223
 msgid "You can only have a maximum of 99 tracks."
-msgstr ""
+msgstr "Só pode ter un máximo de 99 pistas."
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:312
 msgid "A problem with the burn backend occurred."
@@ -1293,9 +1279,8 @@ msgid "Data Composition"
 msgstr "Datos do código de barras:"
 
 #: ../xfburn.desktop.in.h:1
-#, fuzzy
 msgid "Burn Image (xfburn)"
-msgstr "image/svg+xml"
+msgstr "Gravar imaxe (xfburn)"
 
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
