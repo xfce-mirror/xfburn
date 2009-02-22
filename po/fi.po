@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.4.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-03 21:06+0100\n"
+"POT-Creation-Date: 2009-02-21 23:14-0700\n"
 "PO-Revision-Date: 2008-11-27 14:11+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -64,7 +64,7 @@ msgstr "Tyhjennä levy"
 msgid "Burning device"
 msgstr "Polttava asema"
 
-#: ../xfburn/xfburn-blank-dialog.c:223 ../xfburn/xfburn-device-box.c:200
+#: ../xfburn/xfburn-blank-dialog.c:223 ../xfburn/xfburn-device-box.c:202
 msgid "Blank mode"
 msgstr "Tyhjennystyyppi"
 
@@ -125,7 +125,7 @@ msgid "Failure"
 msgstr "Epäonnistui"
 
 #: ../xfburn/xfburn-blank-dialog.c:456
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:612
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:616
 #: ../xfburn/xfburn-burn-image-dialog.c:328
 #: ../xfburn/xfburn-burn-image-dialog.c:532
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:415
@@ -196,7 +196,7 @@ msgid "The write mode is not supported currently."
 msgstr "Tätä kirjoitustilaa ei tueta tällä hetkellä."
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:655
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:659
 msgid "Could not create ISO source structure."
 msgstr "ISO-lähderakenteen luominen epäonnistui."
 
@@ -399,45 +399,45 @@ msgstr "Nimeä uudelleen"
 msgid "Rename the selected file"
 msgstr "Nimeä valittu tiedosto uudelleen"
 
-#: ../xfburn/xfburn-data-composition.c:343
+#: ../xfburn/xfburn-data-composition.c:345
 msgid "Volume name :"
 msgstr "Levyn nimi:"
 
-#: ../xfburn/xfburn-data-composition.c:374
+#: ../xfburn/xfburn-data-composition.c:376
 msgid "Contents"
 msgstr "Sisältö"
 
-#: ../xfburn/xfburn-data-composition.c:389
+#: ../xfburn/xfburn-data-composition.c:391
 #: ../xfburn/xfburn-directory-browser.c:143
 msgid "Size"
 msgstr "Koko"
 
-#: ../xfburn/xfburn-data-composition.c:392
+#: ../xfburn/xfburn-data-composition.c:394
 msgid "Local Path"
 msgstr "Paikallinen polku"
 
-#: ../xfburn/xfburn-data-composition.c:665
+#: ../xfburn/xfburn-data-composition.c:667
 msgid "You must give a name to the file."
 msgstr "Tiedostolle täytyy antaa nimi."
 
-#: ../xfburn/xfburn-data-composition.c:674
-#: ../xfburn/xfburn-data-composition.c:1069
+#: ../xfburn/xfburn-data-composition.c:676
+#: ../xfburn/xfburn-data-composition.c:1071
 #: ../xfburn/xfburn-audio-composition.c:1139
 msgid "A file with the same name is already present in the composition."
 msgstr "Kokoelmassa on jo tiedosto tällä nimellä."
 
-#: ../xfburn/xfburn-data-composition.c:782
-#: ../xfburn/xfburn-data-composition.c:783
+#: ../xfburn/xfburn-data-composition.c:784
 #: ../xfburn/xfburn-data-composition.c:785
+#: ../xfburn/xfburn-data-composition.c:787
 msgid "New directory"
 msgstr "Uusi kansio"
 
-#: ../xfburn/xfburn-data-composition.c:1230
+#: ../xfburn/xfburn-data-composition.c:1232
 #: ../xfburn/xfburn-audio-composition.c:1310
 msgid "Adding home directory"
 msgstr "Lisätään kotikansio"
 
-#: ../xfburn/xfburn-data-composition.c:1231
+#: ../xfburn/xfburn-data-composition.c:1233
 #: ../xfburn/xfburn-audio-composition.c:1311
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
@@ -450,66 +450,70 @@ msgstr ""
 "\n"
 "Oletko varma, että haluat jatkaa?"
 
-#: ../xfburn/xfburn-data-composition.c:1393
+#: ../xfburn/xfburn-data-composition.c:1395
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr "Kansiossa on jo tiedosto \"%s\", joten tiedostoa ei lisätty."
 
-#: ../xfburn/xfburn-device-box.c:181 ../xfburn/xfburn-device-box.c:182
+#: ../xfburn/xfburn-device-box.c:183 ../xfburn/xfburn-device-box.c:184
 msgid "Show writers only"
 msgstr "Näytä vain kirjoittavat"
 
-#: ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-device-box.c:186
 msgid "Show speed selection"
 msgstr "Näytä nopeusvalinta"
 
-#: ../xfburn/xfburn-device-box.c:185
+#: ../xfburn/xfburn-device-box.c:187
 msgid "Show speed selection combo"
 msgstr "Näytä nopeusvalintalaatikko"
 
-#: ../xfburn/xfburn-device-box.c:188
+#: ../xfburn/xfburn-device-box.c:190
 msgid "Show mode selection"
 msgstr "Näytä tilavalinta"
 
-#: ../xfburn/xfburn-device-box.c:189
+#: ../xfburn/xfburn-device-box.c:191
 msgid "Show mode selection combo"
 msgstr "Näytä tilavalintalaatikko"
 
-#: ../xfburn/xfburn-device-box.c:192
+#: ../xfburn/xfburn-device-box.c:194
 msgid "Disc status"
 msgstr "Levyn tila"
 
-#: ../xfburn/xfburn-device-box.c:193
+#: ../xfburn/xfburn-device-box.c:195
 msgid "The status of the disc in the drive"
 msgstr "Asemassa olevan levyn tila"
 
-#: ../xfburn/xfburn-device-box.c:196
+#: ../xfburn/xfburn-device-box.c:198
 msgid "Is it a valid combination"
 msgstr "Kelpaako yhdistelmä"
 
-#: ../xfburn/xfburn-device-box.c:197
+#: ../xfburn/xfburn-device-box.c:199
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "Soveltuvatko sekä laite että levy kokoelman polttamiseen?"
 
-#: ../xfburn/xfburn-device-box.c:201
+#: ../xfburn/xfburn-device-box.c:203
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "Tyhjennystila raportoi levyn tilasta eri tavoin kuin polttotila"
 
-#: ../xfburn/xfburn-device-box.c:274
+#: ../xfburn/xfburn-device-box.c:206 ../xfburn/xfburn-device-box.c:207
+msgid "Accept only CDs as valid discs"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:280
 msgid "_Speed:"
 msgstr "_Nopeus:"
 
-#: ../xfburn/xfburn-device-box.c:293
+#: ../xfburn/xfburn-device-box.c:299
 msgid "Write _mode:"
 msgstr "Poltto_tapa:"
 
-#: ../xfburn/xfburn-device-box.c:427
+#: ../xfburn/xfburn-device-box.c:439
 msgid "Empty speed list"
 msgstr "Nopeuslista on tyhjä"
 
-#: ../xfburn/xfburn-device-box.c:435
+#: ../xfburn/xfburn-device-box.c:447
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -533,55 +537,55 @@ msgstr ""
 "\n"
 "<i>Kiitos!</i>"
 
-#: ../xfburn/xfburn-device-box.c:444
+#: ../xfburn/xfburn-device-box.c:456
 msgid "Continue to _show this notice"
 msgstr "_Näytä ilmoitus jatkossa"
 
-#: ../xfburn/xfburn-device-box.c:481
+#: ../xfburn/xfburn-device-box.c:493
 msgid "default"
 msgstr "oletus"
 
-#: ../xfburn/xfburn-device-box.c:517
+#: ../xfburn/xfburn-device-box.c:529
 msgid "Max"
 msgstr "Maksimi"
 
-#: ../xfburn/xfburn-device-box.c:606
+#: ../xfburn/xfburn-device-box.c:620
 msgid "Drive can't burn on the inserted disc"
 msgstr "Asema ei osaa polttaa tälle levylle"
 
-#: ../xfburn/xfburn-device-box.c:615 ../xfburn/xfburn-device-box.c:661
+#: ../xfburn/xfburn-device-box.c:629 ../xfburn/xfburn-device-box.c:675
 msgid "Drive is empty"
 msgstr "Asema on tyhjä"
 
-#: ../xfburn/xfburn-device-box.c:618
+#: ../xfburn/xfburn-device-box.c:632
 msgid "Sorry, multisession is not yet supported"
 msgstr "Useassa erässä polttamista ei vielä tueta"
 
-#: ../xfburn/xfburn-device-box.c:621
+#: ../xfburn/xfburn-device-box.c:635
 msgid "Inserted disc is full"
 msgstr "Levy on täynnä"
 
-#: ../xfburn/xfburn-device-box.c:624 ../xfburn/xfburn-device-box.c:667
+#: ../xfburn/xfburn-device-box.c:638 ../xfburn/xfburn-device-box.c:681
 msgid "Inserted disc is unsuitable"
 msgstr "Vääränlainen levy"
 
-#: ../xfburn/xfburn-device-box.c:627 ../xfburn/xfburn-device-box.c:670
+#: ../xfburn/xfburn-device-box.c:641 ../xfburn/xfburn-device-box.c:684
 msgid "Cannot access drive (it might be in use)"
 msgstr "Asemaa ei voi käyttää (se voi olla varattu)"
 
-#: ../xfburn/xfburn-device-box.c:632 ../xfburn/xfburn-device-box.c:673
+#: ../xfburn/xfburn-device-box.c:646 ../xfburn/xfburn-device-box.c:687
 msgid "Error determining disc"
 msgstr "Levyn tunnistus ei onnistu"
 
-#: ../xfburn/xfburn-device-box.c:653
+#: ../xfburn/xfburn-device-box.c:667
 msgid "Write-once disc, no blanking possible"
 msgstr "Kertapolttoista levyä ei voi tyhjentää"
 
-#: ../xfburn/xfburn-device-box.c:656
+#: ../xfburn/xfburn-device-box.c:670
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW-levyä ei tarvitse tyhjentää"
 
-#: ../xfburn/xfburn-device-box.c:664
+#: ../xfburn/xfburn-device-box.c:678
 msgid "Inserted disc is already blank"
 msgstr "Levy on jo tyhjä"
 
@@ -1176,7 +1180,7 @@ msgstr "Ei voi avata kohdetta %s."
 msgid "Could not open %s: %s"
 msgstr "Ei voi avata kohdetta %s: %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:629
+#: ../xfburn/xfburn-transcoder-gst.c:636
 #, c-format
 msgid ""
 "%s is missing.\n"
@@ -1194,11 +1198,11 @@ msgstr ""
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:717
+#: ../xfburn/xfburn-transcoder-gst.c:725
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:723
+#: ../xfburn/xfburn-transcoder-gst.c:731
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1218,12 +1222,12 @@ msgstr ""
 "olet asentanut gstreamerin liitännäispaketit\n"
 "\"good\", \"bad\" ja \"ugly\"."
 
-#: ../xfburn/xfburn-transcoder-gst.c:784
+#: ../xfburn/xfburn-transcoder-gst.c:797
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr "Tiedosto ei kelvannut Gstreamerille (tunnistuksen aikakatkaisu)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:793
+#: ../xfburn/xfburn-transcoder-gst.c:806
 #, c-format
 msgid ""
 "%s\n"
@@ -1238,12 +1242,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:909
+#: ../xfburn/xfburn-transcoder-gst.c:924
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "Gstreamer ei halunnut aloittaa muunnosta (aikakatkaisu)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:944
+#: ../xfburn/xfburn-transcoder-gst.c:959
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "Kappaleen vaihto muunnoksen aikana epäonnistui"
