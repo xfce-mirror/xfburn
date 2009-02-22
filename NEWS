@@ -1,13 +1,15 @@
 xfburn 0.4.1 (2009-XX-XX)
 ============-------------
 
-- Completely disable drag and drop from i.e. Thunar when thunar-vfs is not
-  present, as otherwise gtk complains (and potentially causes errors)
-- Adding directories to a composition from within xfburn works again
+- When thunar-vfs is not present, Completely disable drag and drop from 
+  Thunar (and other file managers). Otherwise gtk complains (and potentially
+  causes errors).
+- Adding directories to a composition from within xfburn works again.
 - Bump libburn version requirement to 0.5.6, since earlier versions might
   trigger a crash in libburn's fifo code. Version 0.4.2 or later will work,
   aside from this problem.
 - Correctly detect some burners for which HAL reported unexpected values
+- A man page is now included.
 
 
 xfburn 0.4.0 (2008-12-20)
