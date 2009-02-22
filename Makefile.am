@@ -1,8 +1,9 @@
 SUBDIRS = 								\
 	desktop-integration                                             \
 	icons								\
-	po 								\
-    	xfburn
+	po								\
+	docs								\
+	xfburn
 
 AUTOMAKE_OPTIONS = dist-bzip2
 
@@ -36,3 +37,5 @@ DISTCLEANFILES =							\
 	intltool-merge							\
 	intltool-update							\
 	$(apps_DATA)
+
+# vi:set ts=8 sw=8 noet ai nocindent softtabstop=0 list listchars=tab\:>-:

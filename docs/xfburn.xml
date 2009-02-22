@@ -1,0 +1,174 @@
+<!--
+  $Id: xfburn.xml 22971 2006-08-31 23:14:10Z benny $
+
+  Copyright (c) 2009 David Mohr <squisher@xfce.org>
+  Copyright (c) 2006 Benedikt Meurer <benny@xfce.org>
+-->
+
+<refentry id="xfburn">
+  <refmeta>
+    <refentrytitle>xfburn</refentrytitle>
+    <manvolnum>1</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>xfburn</refname>
+    <refpurpose>An easy to use burning application</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>xfburn</command>
+      <arg choice="plain">--burn-image</arg>
+      <arg choice="opt">IMAGE</arg>
+    </cmdsynopsis>
+    <cmdsynopsis>
+      <command>xfburn</command>
+      <arg choice="opt">options</arg>
+      <group choice="plain">
+        <arg choice="plain">--data-composition</arg>
+        <arg choice="plain">--audio-composition</arg>
+      </group>
+      <arg rep="repeat">
+        <arg>FILE</arg>
+      </arg>
+    </cmdsynopsis>
+    <cmdsynopsis>
+      <command>xfburn</command>
+      <arg choice="plain">--blank</arg>
+    </cmdsynopsis>
+    <cmdsynopsis>
+      <command>xfburn</command>
+      <arg choice="plain">--transcoder</arg>
+      <group choice="plain">
+        <arg choice="plain">list</arg>
+        <arg choice="plain">basic</arg>
+        <arg choice="plain">gst</arg>
+      </group>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Description</title>
+    <para>
+      <command>xfburn</command> is an easy to use burning application based on the libburnia libraries.
+      So far it features burning data and audio CDs, data DVDs, as well as blanking rewritable discs.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Invocation</title>
+    <para>
+      <command>xfburn</command> can be called with <option>--burn-image</option> to immediately show the burn
+      image dialog. Optionally the <replaceable>image file</replaceable> can be preselected adding its file 
+      name to the command line.
+    </para>
+
+    <para>
+      When the <option>--data-composition</option> or the <option>--audio-composition</option> options is specified,
+      then <command>xfburn</command>'s main window will open up with the selected composition type instead of the welcome
+      tab. The <replaceable>filename(s)</replaceable> of the contents of the composition may follow the composition option.
+    </para>
+
+    <refsect2>
+      <title>Options</title>
+      <variablelist>
+        <varlistentry>
+          <term><option>-?</option>, <option>--help</option></term>
+          <listitem>
+            <para>Print brief help and exit.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-V</option>, <option>--version</option></term>
+          <listitem>
+            <para>Print version information and exit.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option>, <option>--burn-image</option> <optional>IMAGE</optional></term>
+          <listitem>
+            <para>
+              Open the burn image dialog. Optionally the image is given as <replaceable>IMAGE</replaceable>.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-b</option>, <option>--blank</option></term>
+          <listitem>
+            <para>
+              Open the blank disc dialog.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-d</option>, <option>--data-composition</option> <optional>FILE(S)</optional></term>
+          <listitem>
+            <para>
+              Opens <command>xfburn</command> with a new data composition. Optionally <replaceable>FILE(S)</replaceable>
+              to be added to the composition follow.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-a</option>, <option>--audio-composition</option> <optional>MUSIC FILE(S)</optional></term>
+          <listitem>
+            <para>
+              Opens <command>xfburn</command> with a new audio composition. Optionally <replaceable>MUSIC FILE(S)</replaceable>
+              to be added to the composition follow.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-t</option>, <option>--transcoder</option> <optional>TRANSCODER</optional></term>
+          <listitem>
+            <para>
+              Selects the transcoder to use when creating audio compositions. Specify <replaceable>list</replaceable> to see
+              all available options. Currently implemented are the gst and the basic transcoder. 
+              <emphasis role="bold">gst</emphasis> uses gstreamer, and can allows the use of any gstreamer-supported media file.
+              <emphasis role="bold">basic</emphasis> only allows using audio files already in CD format: 48khz uncompressed WAV
+              files.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-m</option>, <option>--main</option></term>
+          <listitem>
+            <para>
+              When the <option>--burn-image</option> or the <option>--blank</option> option is selected, xfburn will quit after the
+              dialog exists, unless the <option>--main</option> option is given. In that case the main <command>xfburn</command>
+              window is shown after the dialog has been closed.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>--display=DISPLAY</option></term>
+          <listitem>
+            <para>Use the specified X <option>DISPLAY</option> for the user interface.</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+    </refsect2>
+  </refsect1>
+
+  <refsect1>
+    <title>Author</title>
+    <para>
+      <command>xfburn</command> was written by David Mohr <email>squisher@xfce.org</email> and 
+      Jean-François Wauthy <email>pollux@xfce.org</email>. A great helper was Mario Danic <!-- Đanić -->
+      <email>mario@libburnia-project.org</email>.
+    </para>
+    <para>
+      This manual page was written by David Mohr <email>squisher@xfce.org</email>. It is based on Benedikt Meurer's Thunar man page.
+    </para>
+  </refsect1>
+</refentry>
