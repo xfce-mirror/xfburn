@@ -66,17 +66,22 @@ Requirements
    RECOMMENDED: libburn 0.5.8 or newer, which fixes a fifo bug which xfburn 
                 triggers on some machines.
 
+================================
 Optional, but highly recommended
 --------------------------------
  * hal        (required for notification of disc eject / insert and
                also for automatic disc unmounting)
- * thunar-vfs (required for some drag and drop code, icons and automatic disc 
-               unmounting)
+ * thunar-vfs (required for drag and drop from other applications, icons and 
+               automatic disc unmounting)
  * gstreamer  (0.10+, required for burning audio CDs from compressed music
                files)
     * gstreamer pbutils (they usually come with gstreamer as far as I know)
     * gstreamer plugins (look for the good, the bad and the ugly plugin pack,
                          most likely you want all of these)
+
+Let the ``highly recommended'' part be highlighted once more. Of course
+gstreamer will not matter if you do not plan on burning audio CDs, but the
+other two libraries will come in handy in almost all situations.
 
 The author works with both hal and thunar-vfs enabled, so there might be the
 occasional bug that breaks compilation without these components. Xfburn should

@@ -283,7 +283,9 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE },
                                 { "text/plain", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN },
+#ifdef HAVE_THUNAR_VFS
                                 { "text/uri-list", 0, DATA_COMPOSITION_DND_TARGET_TEXT_URI_LIST },
+#endif
                               };
 
   priv->full_paths_to_add = NULL;
