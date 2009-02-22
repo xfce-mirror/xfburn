@@ -130,10 +130,10 @@ static GtkVBoxClass *parent_class = NULL;
 /*************************/
 static guint signals[LAST_SIGNAL];
 
-GtkType
+GType
 xfburn_device_box_get_type (void)
 {
-  static GtkType device_box_type = 0;
+  static GType device_box_type = 0;
 
   if (!device_box_type)
     {

@@ -175,10 +175,10 @@ get_libburn_device_list ()
     usleep (1002);
 
   if (ret < 0)
-    g_warning ("An error occurred while scanning for available drives!");
+    g_warning ("An error occurred while scanning for available drives");
 
   if (n_drives < 1) {
-    g_warning ("No drives were found! If this is in error, check the permissions.");
+    g_warning ("No drives were found! If this is in error, check the permissions");
   }
 
   for (i = 0; i < n_drives; i++) {
@@ -205,7 +205,7 @@ get_libburn_device_list ()
   burn_drive_info_free (drives);
 
   if (n_drives > 0 && n_burners < 1)
-    g_warning ("There are %d drives in your system, but none are capable of burning!", n_drives);
+    g_warning ("There are %d drives in your system, but none are capable of burning", n_drives);
   
   return n_burners;
 }

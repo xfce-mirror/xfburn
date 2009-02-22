@@ -1750,6 +1750,10 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
         /* a directory which the user added for this composition */
         r = iso_tree_add_new_dir (parent, name, &dir);
         node = (IsoNode *) dir;
+
+        /* if the new directory is part of the root of the iso,
+         * then its owner will be set to root:root. Not sure what a better
+         * default could be, so I'll just leave it like that. */
       } else {
         /* something existing on the filesystem, creating a node
          * will copy its attributes */
