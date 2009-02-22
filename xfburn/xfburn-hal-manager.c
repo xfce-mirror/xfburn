@@ -330,7 +330,7 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
   for (devices = all_devices; *devices != NULL; devices++) {
     dbus_bool_t exists;
     char **cap_list, **caps;
-    gboolean writer = FALSE;
+    gboolean optical_drive = FALSE;
     int write_speed;
 
     exists = libhal_device_property_exists (priv->hal_context, *devices, "info.capabilities", &error);
@@ -369,19 +369,16 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
           return -1;
         }
 
-        /* disable this check for the moment, assuming that the presence of the storage.cdrom.write_speed
-         * property is enough to detect a writer. This fixes bug 4957 for now.
-        if (write_speed > 0)
-         */
-        writer = TRUE;
+        optical_drive = TRUE;
       }
     }
     libhal_free_string_array (cap_list);
 
-    if (writer) {
+    if (optical_drive) {
       XfburnDevice *device = g_new0 (XfburnDevice, 1);
       char *str, *str_vendor;
       gboolean dvdr = FALSE;
+
       /*
       libhal_device_print (priv->hal_context, *devices, &error);
       printf ("\n");
@@ -394,6 +391,7 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
       */
 
       device->accessible = FALSE;
+
       str_vendor = libhal_device_get_property_string (priv->hal_context, *devices, "storage.vendor", &error);
       if (dbus_error_is_set (&error)) {
         g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
@@ -437,14 +435,6 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
         continue;
       }
 
-      device->cdr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.cdr", &error);
-      if (dbus_error_is_set (&error)) {
-        g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
-        dbus_error_free (&error);
-        g_free (device);
-        continue;
-      }
-
       device->cdrw = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.cdrw", &error);
       if (dbus_error_is_set (&error)) {
         g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
@@ -478,7 +468,13 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
         continue;
       }
 
-      DBG ("Found drive '%s' at '%s'", device->name, device->addr);
+      if (!XFBURN_DEVICE_LIST_CAN_BURN_CONDITION (device)) {
+        DBG ("Ignoring reader '%s' at '%s'", device->name, device->addr);
+        g_free (device);
+        continue;
+      }
+
+      DBG ("Found writer '%s' at '%s'", device->name, device->addr);
       *device_list = g_list_append (*device_list, device);
       n_devices++;
     }

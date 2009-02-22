@@ -45,8 +45,7 @@ static char profile_name[80];
 static int is_erasable = 0;
 static char * libburn_msg_prefix = "libburn-";
 
-#define CAN_BURN_CONDITION device->cdr || device->cdrw || device->dvdr || device->dvdram
-#define DEVICE_INFO_PRINTF "%s can burn: %d [cdr: %d, cdrw: %d, dvdr: %d, dvdram: %d]", device->name, CAN_BURN_CONDITION, device->cdr, device->cdrw, device->dvdr, device->dvdram
+#define DEVICE_INFO_PRINTF "%s can burn: %d [cdr: %d, cdrw: %d, dvdr: %d, dvdram: %d]", device->name, XFBURN_DEVICE_LIST_CAN_BURN_CONDITION(device), device->cdr, device->cdrw, device->dvdr, device->dvdram
 
 /*************/
 /* internals */
@@ -189,7 +188,7 @@ get_libburn_device_list ()
 
     fillin_libburn_device_info (device, &drives[i]);
 
-    can_burn = CAN_BURN_CONDITION;
+    can_burn = XFBURN_DEVICE_LIST_CAN_BURN_CONDITION(device);
     
     ret = burn_drive_get_adr (&(drives[i]), device->addr);
     if (ret <= 0)

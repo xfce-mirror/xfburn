@@ -77,6 +77,8 @@ typedef struct
 
 } XfburnDevice;
 
+#define XFBURN_DEVICE_LIST_CAN_BURN_CONDITION(dev) ((dev)->cdr || (dev)->cdrw || (dev)->dvdr || (dev)->dvdram)
+
 gint xfburn_device_list_init ();
 XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
 GList * xfburn_device_list_get_list ();
