@@ -1746,7 +1746,15 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
       gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_TYPE, &type,
 			  DATA_COMPOSITION_COLUMN_CONTENT, &name, DATA_COMPOSITION_COLUMN_PATH, &src, -1);
 
-      r = iso_tree_add_node (image, parent, src, &node);
+      if (type == DATA_COMPOSITION_TYPE_DIRECTORY && src == NULL) {
+        /* a directory which the user added for this composition */
+        r = iso_tree_add_new_dir (parent, name, &dir);
+        node = (IsoNode *) dir;
+      } else {
+        /* something existing on the filesystem, creating a node
+         * will copy its attributes */
+        r = iso_tree_add_node (image, parent, src, &node);
+      }
 
       if (r < 0) {
         if (r == ISO_NULL_POINTER)
@@ -1759,12 +1767,6 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
           g_error ("Failed adding %s as a node to the image: code %d!", src, r);
       }
 
-      /* why was this called again? iso_tree_add_node seems to do
-       * a good job setting the name by itself.
-      if (type != DATA_COMPOSITION_TYPE_DIRECTORY)
-        iso_node_set_name (node, name);
-      */
-
       g_free (name);
       g_free (src);
 
@@ -1773,6 +1775,7 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
 
         if (iso_node_get_type(node) != LIBISO_DIR)
             g_error ("Expected %s to be a directory, but it isn't...\n", src);
+
         dir = (IsoDir *)node;
 
 	gtk_tree_model_iter_children (model, &child, iter);
