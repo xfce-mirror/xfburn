@@ -1,3 +1,153 @@
+2009-02-23  pko
+
+	* po/ChangeLog, po/da.po:
+	  * da.po: Danish translation update (Per Kongstad)
+
+2009-02-22  majkl
+
+	* po/ChangeLog, po/cs.po:
+	  Czech translation updated
+
+2009-02-22  jari
+
+	* po/ChangeLog, po/fi.po:
+	  Update Finnish translation.
+
+2009-02-22  David Mohr <david@mcbf.net>
+
+	* NEWS, docs/xfburn.xml:
+	  Some minor text changes
+	* po/ar.po, po/ca.po, po/cs.po, po/da.po, po/de.po, po/dz.po,
+	  po/el.po, po/en_GB.po, po/es.po, po/et.po, po/eu.po, po/fi.po,
+	  po/fr.po, po/gl.po, po/he.po, po/hu.po, po/id.po, po/it.po,
+	  po/ja.po, po/ko.po, po/lt.po, po/lv.po, po/nb_NO.po, po/nl.po,
+	  po/pa.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ru.po, po/sq.po,
+	  po/sv.po, po/tr.po, po/uk.po, po/ur.po, po/xfburn.pot,
+	  po/zh_CN.po, po/zh_TW.po:
+	  Running update-po, translating one German string
+	* NEWS:
+	  Updating NEWS
+	* xfburn/xfburn-device-list.c, xfburn/xfburn-device-list.h,
+	  xfburn/xfburn-hal-manager.c:
+	  Check devices from hal for being a burner in the same way as
+	  libburn devices. Fixes bug 4957
+	* README:
+	  Forgot to update README about the libburn version bump
+	* NEWS, configure.in.in:
+	  Updating NEWS, bumping libburn version requirement
+	* README, xfburn/xfburn-data-composition.c:
+	  Adding more notes to README; working around gtk issues with DnD
+	  w/o thunar-vfs
+	* Makefile.am, autogen.sh, configure.in.in, docs, docs/Makefile.am,
+	  docs/xfburn.xml:
+	  Adding docbook man page, setup might not quite work yet
+	* xfburn/xfburn-data-composition.c, xfburn/xfburn-device-box.c,
+	  xfburn/xfburn-device-list.c:
+	  Some minor changes
+	* xfburn/xfburn-data-composition.c:
+	  Correctly handle new iso directory in fill_image_with_composition
+
+2009-02-20  maximilian
+
+	* po/ChangeLog, po/ca.po, po/gl.po:
+	  Translations udpates - ca gl id
+
+2009-02-19  David Mohr <david@mcbf.net>
+
+	* README, TODO, xfburn/xfburn-burn-data-composition-base-dialog.c:
+	  Adding notes about multisession support
+
+2009-02-18  David Mohr <david@mcbf.net>
+
+	* README, xfburn/xfburn-hal-manager.c:
+	  Workaround for bug 4957, don't check hal's
+	  storage.cdrom.write_speed > 0
+	* TODO:
+	  Updating TODO
+
+2009-02-17  David Mohr <david@mcbf.net>
+
+	* README:
+	  Updating README
+	* xfburn.desktop.in:
+	  Change menu category from Utility (accessories) to AudioVideo
+	  (multimedia)
+
+2009-02-15  omaciel
+
+	* po/ChangeLog, po/pt_BR.po, po/sv.po, po/xfburn.pot:
+	  Updated Brazilian Portuguese translation.
+
+2009-02-07  eulex
+
+	* po/ChangeLog, po/sv.po:
+	  xfce4-volstatus-icon/trunk/po: * sv.po: Swedish translation
+	  update (Daniel Nylander) xfburn/trunk/po: * sv.po: Swedish
+	  translation update (Daniel Nylander) xfce4-timer-plugin/trunk/po:
+	  * sv.po: Swedish translation update (Daniel Nylander)
+	  xfce4-clipman-plugin/trunk/po: * sv.po: Swedish translation
+	  update (Daniel Nylander) ristretto/trunk/po: * sv.po: Swedish
+	  translation update (Daniel Nylander) xfce4-mount-plugin/trunk/po:
+	  * sv.po: Swedish translation update (Daniel Nylander)
+	  notification-daemon-xfce/trunk/po: * sv.po: Swedish translation
+	  update (Daniel Nylander) xfce4-power-manager/trunk/po: * sv.po:
+	  Swedish translation update (Daniel Nylander)
+	  xfce4-cellmodem-plugin/trunk/po: * sv.po: Swedish translation
+	  update (Daniel Nylander) thunar-shares-plugin/trunk/po: * sv.po:
+	  Swedish translation update (Daniel Nylander)
+	  xfce4-battery-plugin/trunk/po: * sv.po: Swedish translation
+	  update (Daniel Nylander)
+
+2009-01-26  maximilian
+
+	* po/ChangeLog, po/tr.po:
+	  Translations updates - tr uk
+
+2009-01-25  maximilian
+
+	* po/ChangeLog, po/ja.po:
+	  Translations updates - ja
+
+2009-01-18  eulex
+
+	* po/ChangeLog, po/sv.po:
+	  xfburn/trunk/po: * sv.po: Swedish translation update (Daniel
+	  Nylander)
+
+2009-01-16  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-transcoder-basic.c, xfburn/xfburn-transcoder-gst.c,
+	  xfburn/xfburn-utils.c:
+	  Applying -Werror=format-security patch by Tomasz Paweł Gajc
+
+2009-01-04  lars
+
+	* po/ChangeLog, po/da.po:
+	  update-po
+
+2008-12-25  maximilian
+
+	* po/ChangeLog, po/gl.po, po/id.po, po/uk.po:
+	  Translations updates - es gl id ja uk
+
+2008-12-21  David Mohr <david@mcbf.net>
+
+	* NEWS, configure.in.in:
+	  Post-release updates
+	* ChangeLog:
+	  Updating ChangeLog
+	* NEWS, README, configure.in.in:
+	  Preparing for release
+	* xfburn/xfburn-transcoder-gst.c:
+	  Fixing updated debug messages
+	* xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-device-box.c, xfburn/xfburn-device-box.h:
+	  Adding option to only accept cds to the device box
+	* xfburn/xfburn-transcoder-gst.c:
+	  Further refining debug messages
+	* xfburn/xfburn-transcoder-gst.c:
+	  Changing when some debug messages appear
+
 2008-12-20  eulex
 
 	* po/ChangeLog, po/sv.po:
