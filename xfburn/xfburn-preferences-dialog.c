@@ -140,6 +140,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   
   gtk_window_set_title (GTK_WINDOW (obj), _("Preferences"));
   xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (obj), _("Tune how Xfburn behaves"));
+  gtk_window_set_default_size (GTK_WINDOW (obj), 775, 400);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
   gtk_window_set_icon_name (GTK_WINDOW (obj), GTK_STOCK_PREFERENCES);
   gtk_dialog_set_has_separator (GTK_DIALOG (obj), FALSE);
