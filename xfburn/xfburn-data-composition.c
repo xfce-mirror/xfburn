@@ -1144,6 +1144,14 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
       const gchar *mime_icon_name = NULL;
       GdkPixbuf *mime_icon = NULL;
       gint x,y;
+
+      if (s.st_size > MAXIMUM_ISO_FILE_SIZE) {
+        gdk_threads_enter ();
+        xfce_err (_("%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."), path);
+        gdk_threads_leave ();
+
+        return FALSE;
+      }
 	  
       gdk_threads_enter ();
       screen = gtk_widget_get_screen (GTK_WIDGET (dc));

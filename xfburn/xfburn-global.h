@@ -49,6 +49,8 @@
 
 #define PCM_BYTES_PER_SECS 176400
 
+#define MAXIMUM_ISO_FILE_SIZE 0xFFFFFFFF
+
 /* DEBUG ONLY */
 
 /* do not use the real device, instead make everything write to /dev/null
