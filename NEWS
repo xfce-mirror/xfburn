@@ -8,7 +8,8 @@ xfburn 0.4.1 (2009-XX-XX)
 - Bump libburn version requirement to 0.5.6, since earlier versions might
   trigger a crash in libburn's fifo code. Version 0.4.2 or later will work,
   aside from this problem.
-- Correctly detect some burners for which HAL reported unexpected values
+- Correctly detect some burners for which HAL reported unexpected values.
+- Fall back to libburn-based burner detection if HAL does not find any.
 - A man page is now included.
 
 

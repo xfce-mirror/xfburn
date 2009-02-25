@@ -331,7 +331,6 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
     dbus_bool_t exists;
     char **cap_list, **caps;
     gboolean optical_drive = FALSE;
-    int write_speed;
 
     exists = libhal_device_property_exists (priv->hal_context, *devices, "info.capabilities", &error);
     if (dbus_error_is_set (&error)) {
@@ -361,13 +360,6 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
 
         if (!exists)
           break;
-
-        write_speed = libhal_device_get_property_int (priv->hal_context, *devices, "storage.cdrom.write_speed", &error);
-        if (dbus_error_is_set (&error)) {
-          g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
-          dbus_error_free (&error);
-          return -1;
-        }
 
         optical_drive = TRUE;
       }
@@ -469,7 +461,7 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
       }
 
       if (!XFBURN_DEVICE_LIST_CAN_BURN_CONDITION (device)) {
-        DBG ("Ignoring reader '%s' at '%s'", device->name, device->addr);
+        g_message ("Ignoring reader '%s' at '%s'", device->name, device->addr);
         g_free (device);
         continue;
       }

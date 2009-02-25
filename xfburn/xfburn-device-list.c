@@ -198,6 +198,9 @@ get_libburn_device_list ()
     if (can_burn) {
       devices = g_list_append (devices, device);
       n_burners++;
+    } else {
+      g_message ("Ignoring reader '%s' at '%s'", device->name, device->addr);
+      g_free (device);
     }
   }
 
@@ -310,8 +313,12 @@ xfburn_device_list_init ()
 
 #ifdef HAVE_HAL
   n_drives = xfburn_hal_manager_get_devices (halman, &devices);
-  if (n_drives == -1) {
-    /* some error occurred while checking hal properties, so try libburn instead */
+  if (n_drives < 1) {
+    /* if some error occurred while checking hal properties,
+       or hal for some reason did not find a device, then just
+       fall back on libburn */
+    g_message ("HAL said there are %d burners, checking libburn if it can detect any", n_drives);
+
     n_drives = get_libburn_device_list ();
   }
 #else
@@ -337,13 +344,13 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
 
   /* we need to try to grab several times, because
    * the drive might be busy detecting the disc */
-  for (i=0; i<max_checks; i++) {
+  for (i=1; i<=max_checks; i++) {
     ret = burn_drive_scan_and_grab (drive_info, drive_addr, 0);
     //DBG ("grab (%s)-> %d", drive_addr, ret);
     if (ret > 0)
       break;
-    else if  (i < (max_checks-1))
-      usleep((i+1)*100001);
+    else if  (i < max_checks)
+      usleep(i*100001);
   }
 
   if (ret <= 0) {
