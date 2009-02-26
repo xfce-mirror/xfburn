@@ -41,7 +41,10 @@ sed -e "s/@LINGUAS@/${linguas}/g" \
     -e "s/@REVISION@/${revision}/g" \
     < "configure.in.in" > "configure.in"
 
-configureflags="--enable-debug=full"
+if test -f autogen.configureflags; then
+  configureflags=`cat autogen.configureflags`
+fi
+
 exec xdt-autogen $configureflags $@
 
 # vi:set ts=2 sw=2 et ai:
