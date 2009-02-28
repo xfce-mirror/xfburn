@@ -1229,12 +1229,12 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
       gdk_threads_enter ();
       if (insertion != NULL) {
-        if (position == GTK_TREE_VIEW_DROP_AFTER)
+        if (position == GTK_TREE_VIEW_DROP_AFTER || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER)
           gtk_tree_store_insert_after (GTK_TREE_STORE (model), iter, NULL, insertion);
-        else if (position == GTK_TREE_VIEW_DROP_BEFORE)
+        else if (position == GTK_TREE_VIEW_DROP_BEFORE || position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE)
           gtk_tree_store_insert_before (GTK_TREE_STORE (model), iter, NULL, insertion);
         else
-          g_error ("I wasn't expecting this position!");
+          g_error ("Invalid position to drop item in!");
       } else
         gtk_tree_store_append (GTK_TREE_STORE (model), iter, NULL);
       gdk_threads_leave ();
