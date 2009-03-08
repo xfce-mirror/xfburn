@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-15 00:58-0500\n"
-"PO-Revision-Date: 2009-02-20 21:20+0100\n"
+"PO-Revision-Date: 2009-03-07 23:51+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -193,7 +193,7 @@ msgstr "Wystąpił błąd podczas zapisywania obrazu ISO: %s"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:544
 #, fuzzy
 msgid "An error occurred in the burn backend."
-msgstr "Wystąpił błąd w mechaniźmie nagrywania."
+msgstr "Wystąpił błąd w obsłudze nagrywania."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:344
@@ -231,7 +231,7 @@ msgstr "_Nagraj"
 #: ../xfburn/xfburn-burn-image-dialog.c:321
 #, fuzzy
 msgid "An error occurred in the burn backend"
-msgstr "Wystąpił błąd w mechaniźmie nagrywania"
+msgstr "Wystąpił błąd w obsłudze nagrywania"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:305
 msgid "Unable to determine image size."
@@ -446,7 +446,7 @@ msgid ""
 msgstr ""
 
 #: ../xfburn/xfburn-data-composition.c:1393
-#, fuzzy, c-format
+#, c-format
 msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
 msgstr "Plik o nazwie \"%s\" już istnieje w tym katalogu. Plik nie został dodany."
 
@@ -537,7 +537,7 @@ msgstr "Maksymalna"
 
 #: ../xfburn/xfburn-device-box.c:620
 msgid "Drive can't burn on the inserted disc"
-msgstr ""
+msgstr "Nie można nagrać na płycie umieszczonej w napędzie"
 
 #: ../xfburn/xfburn-device-box.c:629
 #: ../xfburn/xfburn-device-box.c:675
@@ -569,8 +569,9 @@ msgid "Error determining disc"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:667
+#, fuzzy
 msgid "Write-once disc, no blanking possible"
-msgstr ""
+msgstr "Płyta jednokrotnego zapisu. Brak możliwości wyczyszczenia."
 
 #: ../xfburn/xfburn-device-box.c:670
 msgid "DVD+RW does not need blanking"
@@ -625,7 +626,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-main.c:303
 msgid "No drives are currently available"
-msgstr ""
+msgstr "Brak dostępnych napędów"
 
 #: ../xfburn/xfburn-main.c:305
 msgid ""
@@ -635,6 +636,11 @@ msgid ""
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
+"Nie można uzyskać dostępu do płyty. Prawdapodobnie jest w użyciu.\n"
+"\n"
+"Proszę odmontować napęd i ponownie uruchomić program.\n"
+"\n"
+"Jeśli płyta nie znajduje się w napędzie, proszę sprawdzić czy bieżący użytkownik posiada prawa do odczytu i zapisu przy użyciu napędu."
 
 #: ../xfburn/xfburn-main.c:337
 #, c-format
@@ -1116,8 +1122,9 @@ msgid "You can only have a maximum of 99 tracks."
 msgstr "Maksymalna ilość ścieżek wynosi 99."
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:312
+#, fuzzy
 msgid "A problem with the burn backend occurred."
-msgstr ""
+msgstr "Wystąpił problem z obsługą nagrywania."
 
 #: ../xfburn/xfburn-disc-usage.c:165
 msgid "Proceed to Burn"
@@ -1129,8 +1136,9 @@ msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "Próbujesz nagrać więcej danych, niż wynosi pojemność nośnika!"
 
 #: ../xfburn/xfburn-transcoder-basic.c:167
+#, fuzzy
 msgid "basic"
-msgstr ""
+msgstr "podstawowy"
 
 #: ../xfburn/xfburn-transcoder-basic.c:173
 msgid ""
