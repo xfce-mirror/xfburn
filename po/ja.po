@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-21 23:14-0700\n"
-"PO-Revision-Date: 2009-01-17 17:40+0900\n"
+"POT-Creation-Date: 2009-03-05 18:12+0900\n"
+"PO-Revision-Date: 2009-03-15 23:16+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -445,12 +445,21 @@ msgstr "同じ名前のファイルがすでにコンポジション内に存在
 msgid "New directory"
 msgstr "新しいフォルダ"
 
-#: ../xfburn/xfburn-data-composition.c:1232
+#: ../xfburn/xfburn-data-composition.c:1150
+#, c-format
+msgid ""
+"%s cannot be added to the composition, because it exceeds the maximum "
+"allowed file size for iso9660."
+msgstr ""
+"%s をコンポジションに追加できません。ISO9660 で許される最大ファイルサイズを超"
+"えています。"
+
+#: ../xfburn/xfburn-data-composition.c:1240
 #: ../xfburn/xfburn-audio-composition.c:1310
 msgid "Adding home directory"
 msgstr "ホームフォルダを追加しています"
 
-#: ../xfburn/xfburn-data-composition.c:1233
+#: ../xfburn/xfburn-data-composition.c:1241
 #: ../xfburn/xfburn-audio-composition.c:1311
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
@@ -464,7 +473,7 @@ msgstr ""
 "\n"
 "続行してよろしいですか?"
 
-#: ../xfburn/xfburn-data-composition.c:1395
+#: ../xfburn/xfburn-data-composition.c:1403
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
@@ -937,74 +946,74 @@ msgstr "設定"
 msgid "Tune how Xfburn behaves"
 msgstr "Xfburn の振る舞いを調整します"
 
-#: ../xfburn/xfburn-preferences-dialog.c:187
-#: ../xfburn/xfburn-preferences-dialog.c:191
+#: ../xfburn/xfburn-preferences-dialog.c:188
+#: ../xfburn/xfburn-preferences-dialog.c:192
 msgid "Temporary directory"
 msgstr "作業用フォルダ"
 
-#: ../xfburn/xfburn-preferences-dialog.c:195
+#: ../xfburn/xfburn-preferences-dialog.c:196
 msgid "_Clean temporary directory on exit"
 msgstr "終了時に作業用フォルダを掃除する(_C)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:202
+#: ../xfburn/xfburn-preferences-dialog.c:203
 msgid "File browser"
 msgstr "ファイルブラウザ"
 
-#: ../xfburn/xfburn-preferences-dialog.c:206
+#: ../xfburn/xfburn-preferences-dialog.c:207
 msgid "Show _hidden files"
 msgstr "隠しファイルを表示する(_H)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:210
+#: ../xfburn/xfburn-preferences-dialog.c:211
 msgid "Show human_readable filesizes"
 msgstr "認識可能なファイルサイズを表示する(_R)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:221
+#: ../xfburn/xfburn-preferences-dialog.c:222
 msgid "General"
 msgstr "一般"
 
-#: ../xfburn/xfburn-preferences-dialog.c:232
-#: ../xfburn/xfburn-preferences-dialog.c:309
+#: ../xfburn/xfburn-preferences-dialog.c:233
+#: ../xfburn/xfburn-preferences-dialog.c:310
 msgid "Devices"
 msgstr "デバイス"
 
-#: ../xfburn/xfburn-preferences-dialog.c:241
+#: ../xfburn/xfburn-preferences-dialog.c:242
 msgid "Detected devices"
 msgstr "検出されたデバイス"
 
-#: ../xfburn/xfburn-preferences-dialog.c:262
+#: ../xfburn/xfburn-preferences-dialog.c:263
 msgid "Name"
 msgstr "名前"
 
-#: ../xfburn/xfburn-preferences-dialog.c:275
+#: ../xfburn/xfburn-preferences-dialog.c:276
 msgid "Node"
 msgstr "ノード"
 
-#: ../xfburn/xfburn-preferences-dialog.c:277
+#: ../xfburn/xfburn-preferences-dialog.c:278
 msgid "Write CD-R"
 msgstr "CD-R に書き出す"
 
-#: ../xfburn/xfburn-preferences-dialog.c:279
+#: ../xfburn/xfburn-preferences-dialog.c:280
 msgid "Write CD-RW"
 msgstr "CD-RW に書き出す"
 
-#: ../xfburn/xfburn-preferences-dialog.c:282
+#: ../xfburn/xfburn-preferences-dialog.c:283
 msgid "Write DVD-R"
 msgstr "DVD-R に書き出す"
 
-#: ../xfburn/xfburn-preferences-dialog.c:285
+#: ../xfburn/xfburn-preferences-dialog.c:286
 msgid "Write DVD-RAM"
 msgstr "DVD-RAM に書き出す"
 
-#: ../xfburn/xfburn-preferences-dialog.c:293
+#: ../xfburn/xfburn-preferences-dialog.c:294
 msgid "Sc_an for devices"
 msgstr "デバイスをスキャン(_A)"
 
 #. below the device list
-#: ../xfburn/xfburn-preferences-dialog.c:319
+#: ../xfburn/xfburn-preferences-dialog.c:320
 msgid "Show warning on _empty speed list"
 msgstr "速度リストが空のとき警告を表示する(_E)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:327
+#: ../xfburn/xfburn-preferences-dialog.c:328
 msgid "FIFO buffer size (in kb)"
 msgstr "FIFO バッファサイズ (KB)"
 
