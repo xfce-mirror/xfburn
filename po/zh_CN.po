@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the xfburn package.
 # longer.zhao@gmail.com, 2008.
 # 赵正龙 <longer.zhao@gmail.com>, 2008.
+# Hunt Xu <huntxu@live.cn>, 2009.
 #
-#
+
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-21 23:14-0700\n"
-"PO-Revision-Date: 2008-12-06 04:23+0800\n"
+"PO-Revision-Date: 2009-05-09 13:41+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -314,7 +315,7 @@ msgstr "CD读取设备"
 #: ../xfburn/xfburn-copy-cd-dialog.c:153
 #: ../xfburn/xfburn-copy-dvd-dialog.c:153
 msgid "On the _fly"
-msgstr "飞速模式"
+msgstr "快速模式(_F)"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:194
 msgid "_Copy CD"
@@ -499,7 +500,7 @@ msgstr "擦除模式和正常模式显示不同的光盘状态信息"
 
 #: ../xfburn/xfburn-device-box.c:206 ../xfburn/xfburn-device-box.c:207
 msgid "Accept only CDs as valid discs"
-msgstr ""
+msgstr "仅接受CD作为合法光盘"
 
 #: ../xfburn/xfburn-device-box.c:280
 msgid "_Speed:"
@@ -651,6 +652,8 @@ msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr ""
+"初始化解码器 %s 失败: %s\n"
+"\t(返回默认操作)"
 
 #: ../xfburn/xfburn-main.c:370
 #, c-format
@@ -927,11 +930,11 @@ msgstr "文件浏览器"
 
 #: ../xfburn/xfburn-preferences-dialog.c:206
 msgid "Show _hidden files"
-msgstr "显示隐藏文件"
+msgstr "显示隐藏文件(_H)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:210
 msgid "Show human_readable filesizes"
-msgstr "文件尺寸显示为易读的格式"
+msgstr "文件尺寸显示为易读的格式(_R)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:221
 msgid "General"
@@ -1203,6 +1206,10 @@ msgid ""
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
 msgstr ""
+"gstreamer 解码器使用 gstreamer 库来创建音频项目。\n"
+"如果对应的插件已安装，那么相应的音频文件将被支持。\n"
+"如果有一个音频文件不被接受，请确认您安装了\n"
+"gstreamer 的 'good','bad', 和 'ugly'插件的软件包。"
 
 #: ../xfburn/xfburn-transcoder-gst.c:797
 #, c-format
