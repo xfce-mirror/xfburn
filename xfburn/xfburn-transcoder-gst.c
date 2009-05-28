@@ -972,9 +972,11 @@ finish (XfburnTranscoder *trans)
   XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (gst);
 
+  /*
   GstState state;
   GstClock *clock;
   GstClockTime tv;
+  */
 
 #if DEBUG_GST > 0
   DBG ("Done transcoding");
@@ -983,6 +985,11 @@ finish (XfburnTranscoder *trans)
 
   priv->curr_track = NULL;
 
+  /*
+   * gstreamer doesn't even want to work with us again after getting back into
+   * the ready state. Lame. So we just recreate the pipeline.
+   * Which doesn't help either. Oh Well.
+   * FIXME: how to get gstreamer to accept state changes again after an aborted burn run?
   clock = gst_element_get_clock (priv->pipeline);
   tv = gst_clock_get_time (clock);
   g_object_unref (clock);
@@ -999,6 +1006,8 @@ finish (XfburnTranscoder *trans)
     DBG ("Could not make pipeline ready, recreating it");
     recreate_pipeline (gst);
   }
+  */
+  recreate_pipeline (gst);
 }
 
 static gboolean
