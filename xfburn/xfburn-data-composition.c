@@ -203,10 +203,10 @@ static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
 /***************************/
 /* XfburnDataComposition class */
 /***************************/
-GtkType
+GType
 xfburn_data_composition_get_type (void)
 {
-  static GtkType data_composition_type = 0;
+  static GType data_composition_type = 0;
 
   if (!data_composition_type) {
     static const GTypeInfo data_composition_info = {
@@ -1013,27 +1013,30 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
   struct stat s;
 
   if ((g_lstat (path, &s) == 0)) {
-    //gchar *basename = NULL;
     gchar *humansize = NULL;
     GtkTreeIter *parent = NULL;
     GtkTreePath *tree_path = NULL;
+    int parent_type = 0;
 
     if (!(S_ISDIR (s.st_mode) ||S_ISREG (s.st_mode) || S_ISCHR(s.st_mode) || S_ISBLK(s.st_mode) || S_ISLNK (s.st_mode))) {
       return FALSE;
     }
     
-    /* allow hidden files
-    basename = g_path_get_basename (path);
-    if ( (strlen (basename) > 1) && (basename[0] == '.') ) {
-
-      g_free (basename);  
-      return FALSE;
-    }
-    g_free (basename);
-    */
-    
     xfburn_adding_progress_pulse (XFBURN_ADDING_PROGRESS (priv->progress));
     
+    /* ensure that we can only drop on top of folders, not files */
+    if (insertion) {
+      gtk_tree_model_get (model, insertion, DATA_COMPOSITION_COLUMN_TYPE, &parent_type, -1);
+
+      if (parent_type == DATA_COMPOSITION_TYPE_FILE) {
+        DBG ("Parent is file, and we're dropping into %d", position);
+        if (position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER)
+          position = GTK_TREE_VIEW_DROP_AFTER;
+        else if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE)
+          position = GTK_TREE_VIEW_DROP_BEFORE;
+      }      
+    }
+
     /* find parent */
     switch (position){
       case GTK_TREE_VIEW_DROP_BEFORE:
