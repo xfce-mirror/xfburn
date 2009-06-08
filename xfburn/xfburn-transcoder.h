@@ -26,7 +26,8 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <libburn.h>
+
+#include "xfburn-audio-track.h"
 
 G_BEGIN_DECLS
 
@@ -35,23 +36,6 @@ G_BEGIN_DECLS
 #define XFBURN_IS_TRANSCODER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_TRANSCODER))
 //#define XFBURN_IS_TRANSCODER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_TRANSCODER))
 #define XFBURN_TRANSCODER_GET_INTERFACE(o) (G_TYPE_INSTANCE_GET_INTERFACE ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoderInterface))
-
-typedef struct
-{
-  gchar *inputfile;
-  gint pos;
-  gchar *artist;
-  gchar *title;
-  gboolean swap;
-
-  gint length;
-
-  int sectors;
-  int fd;
-  struct burn_source *src;
-
-  gpointer data; /* implementations will add extra data here */
-} XfburnAudioTrack;
 
 #define XFBURN_AUDIO_TRACK_DELETE_DATA(atrack) { g_free (atrack->data); atrack->data = NULL; }
 

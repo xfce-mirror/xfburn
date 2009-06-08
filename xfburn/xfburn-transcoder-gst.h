@@ -51,7 +51,7 @@ typedef struct
   
 } XfburnTranscoderGstClass;
 
-GtkType xfburn_transcoder_gst_get_type ();
+GType xfburn_transcoder_gst_get_type ();
 GObject *xfburn_transcoder_gst_new ();
 
 G_END_DECLS

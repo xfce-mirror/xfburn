@@ -1,5 +1,5 @@
 INCLUDES = 								\
-	-DPACKAGE_LOCALE_DIR=\"$(localedir)\" 				\
+	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
 	-DEXO_API_SUBJECT_TO_CHANGE					\
 	-DEXO_DISABLE_DEPRECATED					\
 	-DDATADIR=\"$(datadir)\"					\
@@ -18,9 +18,11 @@ xfburn_headers = 							\
 	xfburn-burn-data-cd-composition-dialog.h			\
 	xfburn-burn-data-dvd-composition-dialog.h			\
 	xfburn-burn-audio-cd-composition-dialog.h			\
-        xfburn-transcoder.h                                             \
-        xfburn-transcoder-basic.h                                       \
-        xfburn-transcoder-gst.h                                         \
+	xfburn-transcoder.h						\
+	xfburn-audio-track.h						\
+	xfburn-transcoder-basic.h					\
+	xfburn-transcoder-gst.h						\
+	xfburn-audio-track-gst.h					\
 	xfburn-burn-image-dialog.h					\
 	xfburn-settings.h						\
 	xfburn-composition.h						\
@@ -45,10 +47,10 @@ xfburn_headers = 							\
 	xfburn-stock.h							\
 	xfburn-utils.h							\
 	xfburn-main.h
-	
+
 xfburn_SOURCES =							\
 	$(xfburn_headers)						\
-	xfburn-error.c          					\
+	xfburn-error.c							\
 	xfburn-adding-progress.c					\
 	xfburn-blank-dialog.c						\
 	xfburn-perform-burn.c						\
@@ -56,9 +58,11 @@ xfburn_SOURCES =							\
 	xfburn-burn-data-cd-composition-dialog.c			\
 	xfburn-burn-data-dvd-composition-dialog.c			\
 	xfburn-burn-audio-cd-composition-dialog.c			\
-        xfburn-transcoder.c                                             \
-        xfburn-transcoder-basic.c                                       \
-        xfburn-transcoder-gst.c                                         \
+	xfburn-transcoder.c						\
+	xfburn-audio-track.c						\
+	xfburn-transcoder-basic.c					\
+	xfburn-transcoder-gst.c						\
+	xfburn-audio-track-gst.c					\
 	xfburn-burn-image-dialog.c					\
 	xfburn-composition.c						\
 	xfburn-compositions-notebook.c					\
@@ -67,21 +71,21 @@ xfburn_SOURCES =							\
 	xfburn-device-box.c						\
 	xfburn-device-list.c						\
 	xfburn-progress-dialog.c					\
-	xfburn-main.c 							\
+	xfburn-main.c							\
 	xfburn-main-window.c 						\
 	xfburn-notebook-tab.c						\
 	xfburn-file-browser.c						\
-	xfburn-welcome-tab.c    	                             	\
-	xfburn-data-composition.c    	                             	\
-	xfburn-audio-composition.c    	                             	\
+	xfburn-welcome-tab.c						\
+	xfburn-data-composition.c					\
+	xfburn-audio-composition.c					\
 	xfburn-disc-usage.c						\
 	xfburn-data-disc-usage.c					\
 	xfburn-audio-disc-usage.c					\
-	xfburn-fs-browser.c 	                                       	\
+	xfburn-fs-browser.c 						\
 	xfburn-directory-browser.c					\
 	xfburn-preferences-dialog.c					\
 	xfburn-stock.c							\
-	xfburn-utils.c	
+	xfburn-utils.c
 
 xfburn_CFLAGS =								\
 	$(GTHREAD_CFLAGS)						\
@@ -90,7 +94,7 @@ xfburn_CFLAGS =								\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(EXO_CFLAGS)							\
 	$(THUNAR_VFS_CFLAGS)						\
-	$(GST_CFLAGS)                                                   \
+	$(GST_CFLAGS)							\
 	$(GST_PBUTILS_CFLAGS)
 
 xfburn_LDADD = 								\
@@ -101,7 +105,7 @@ xfburn_LDADD = 								\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(EXO_LIBS)							\
 	$(THUNAR_VFS_LIBS)						\
-	$(GST_LIBS)                                                     \
+	$(GST_LIBS)							\
 	$(GST_PBUTILS_LIBS)
 
 if HAVE_HAL
@@ -126,3 +130,5 @@ missing_files = \
 	xfburn-create-iso-progress-dialog.c
 
 EXTRA_DIST = $(missing_files)
+
+# vi:set ts=8 sw=8 noet ai nocindent softtabstop=0 list listchars=tab\:>-:

@@ -83,10 +83,10 @@ static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gin
 /* globals */
 static XfceTitledDialogClass *parent_class = NULL;
 
-GtkType
+GType
 xfburn_burn_audio_cd_composition_dialog_get_type ()
 {
-  static GtkType type = 0;
+  static GType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {
@@ -428,8 +428,6 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   g_free (tracks);
   g_free (track_sectors);
 
-  for (track_list = params->tracks; track_list; track_list = g_slist_next (track_list))
-    xfburn_transcoder_free_burning_resources (trans, (XfburnAudioTrack *) track_list->data, NULL);
   g_object_unref (trans);
 
   burn_session_free (session);

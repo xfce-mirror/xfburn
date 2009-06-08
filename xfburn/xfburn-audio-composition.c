@@ -119,6 +119,7 @@ static void composition_interface_init (XfburnCompositionInterface *composition,
 static void xfburn_audio_composition_init (XfburnAudioComposition *dc);
 static void xfburn_audio_composition_finalize (GObject * object);
 
+/* internals */
 static void show_custom_controls (XfburnComposition *composition);
 static void hide_custom_controls (XfburnComposition *composition);
 static void load_from_file (XfburnComposition *composition, const gchar *file);
@@ -382,8 +383,8 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
 
   priv->content = exo_tree_view_new ();
   model = gtk_tree_store_new (AUDIO_COMPOSITION_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING,
-                              G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_POINTER);
-							  
+                              G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_UINT, XFBURN_TYPE_AUDIO_TRACK);
+
   /*
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), AUDIO_COMPOSITION_COLUMN_POS,
                                    song_tree_sortfunc, NULL, NULL);
@@ -501,8 +502,6 @@ xfburn_audio_composition_finalize (GObject * object)
       icon_file = NULL;
     }
   }
-
-  /* FIXME: free XfburnAudioTracks */
 
   g_object_unref (priv->trans);
   priv->trans = NULL;

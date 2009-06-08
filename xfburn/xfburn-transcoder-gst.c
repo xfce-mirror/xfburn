@@ -49,6 +49,8 @@
 #include "xfburn-settings.h"
 
 #include "xfburn-transcoder-gst.h"
+#include "xfburn-audio-track.h"
+#include "xfburn-audio-track-gst.h"
 
 
 /* 
@@ -81,7 +83,6 @@ static struct burn_track * create_burn_track (XfburnTranscoder *trans, XfburnAud
 static gboolean prepare (XfburnTranscoder *trans, GError **error);
 static gboolean transcode_next_track (XfburnTranscoderGst *trans, GError **error);
 static void finish (XfburnTranscoder *trans);
-static gboolean free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
 static gboolean is_initialized (XfburnTranscoder *trans, GError **error);
 
@@ -125,12 +126,6 @@ typedef struct {
   XfburnAudioTrack *curr_track;
 
 } XfburnTranscoderGstPrivate;
-
-
-typedef struct {
-  int fd_in;
-  off_t size;
-} XfburnAudioTrackGst;
 
 
 /* constants */
@@ -249,7 +244,7 @@ transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data
   iface->is_initialized = is_initialized;
   iface->get_audio_track = get_audio_track;
   iface->create_burn_track = create_burn_track;
-  iface->free_burning_resources = free_burning_resources;
+  /* free_burning_resources is not needed */
   iface->finish = finish;
   iface->prepare = prepare;
 }
@@ -823,6 +818,7 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 
   gtrack = g_new0 (XfburnAudioTrackGst, 1);
   atrack->data = (gpointer) gtrack;
+  atrack->type = XFBURN_TYPE_AUDIO_TRACK_GST;
 
   gtrack->size = size;
 
@@ -830,7 +826,7 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 }
 
 
-
+/* initialize the XfburnAudioTrack */
 static struct burn_track *
 create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
 {
@@ -1008,22 +1004,6 @@ finish (XfburnTranscoder *trans)
   }
   */
   recreate_pipeline (gst);
-}
-
-static gboolean
-free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
-{
-  /*
-  XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
-  XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (gst);
-  */
-  
-  XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (atrack);
-  
-  g_free (gtrack);
-  atrack->data = NULL;
-
-  return TRUE;
 }
 
 
