@@ -155,10 +155,10 @@ static const gchar *errormsg_libburn_setup = "An error occurred while setting th
 static GObject *parent_class = NULL;
 //static guint signals[LAST_SIGNAL];
 
-GtkType
+GType
 xfburn_transcoder_gst_get_type ()
 {
-  static GtkType type = 0;
+  static GType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {

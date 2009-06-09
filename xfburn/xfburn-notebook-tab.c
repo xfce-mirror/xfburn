@@ -63,10 +63,10 @@ static guint notebook_tab_signals[LAST_SIGNAL];
 /************************/
 /* class initiliazation */
 /************************/
-GtkType
+GType
 xfburn_notebook_tab_get_type ()
 {
-  static GtkType type = 0;
+  static GType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {

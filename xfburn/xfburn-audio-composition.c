@@ -233,10 +233,10 @@ static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
 /********************************/
 /* XfburnAudioComposition class */
 /********************************/
-GtkType
+GType
 xfburn_audio_composition_get_type (void)
 {
-  static GtkType audio_composition_type = 0;
+  static GType audio_composition_type = 0;
 
   if (!audio_composition_type) {
     static const GTypeInfo audio_composition_info = {

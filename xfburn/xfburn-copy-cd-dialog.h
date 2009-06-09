@@ -47,7 +47,7 @@ typedef struct
   XfceTitledDialogClass parent_class;
 } XfburnCopyCdDialogClass;
 
-GtkType xfburn_copy_cd_dialog_get_type ();
+GType xfburn_copy_cd_dialog_get_type ();
 
 GtkWidget *xfburn_copy_cd_dialog_new ();
 

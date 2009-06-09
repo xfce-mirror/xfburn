@@ -54,7 +54,7 @@ typedef struct
   XfceTitledDialogClass parent_class;
 } XfburnBurnAudioCdCompositionDialogClass;
 
-GtkType xfburn_burn_audio_cd_composition_dialog_get_type ();
+GType xfburn_burn_audio_cd_composition_dialog_get_type ();
 
 GtkWidget *xfburn_burn_audio_cd_composition_dialog_new (GSList *tracklist);
 

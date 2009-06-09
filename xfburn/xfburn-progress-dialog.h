@@ -62,7 +62,7 @@ typedef struct
 } XfburnProgressDialogClass;
 
 
-GtkType xfburn_progress_dialog_get_type ();
+GType xfburn_progress_dialog_get_type ();
 
 void xfburn_progress_dialog_show_buffers (XfburnProgressDialog * dialog, gboolean show);
 void xfburn_progress_dialog_pulse_progress_bar (XfburnProgressDialog * dialog);

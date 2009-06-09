@@ -66,10 +66,10 @@ XfburnDiscLabels datadiscsizes[] = {
 /*******************************/
 /* XfburnDataComposition class */
 /*******************************/
-GtkType
+GType
 xfburn_data_disc_usage_get_type (void)
 {
-  static GtkType disc_usage_type = 0;
+  static GType disc_usage_type = 0;
 
   if (!disc_usage_type) {
     static const GTypeInfo disc_usage_info = {

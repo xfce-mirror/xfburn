@@ -46,7 +46,7 @@ typedef struct
   XfburnDiscUsageClass parent_class;
 } XfburnDataDiscUsageClass;
 
-GtkType xfburn_data_disc_usage_get_type (void);
+GType xfburn_data_disc_usage_get_type (void);
 GtkWidget *xfburn_data_disc_usage_new (void);
 
 G_END_DECLS

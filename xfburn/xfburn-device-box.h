@@ -75,7 +75,7 @@ typedef enum
   WRITE_MODE_PACKET,
 } XfburnWriteMode;
 
-GtkType xfburn_device_box_get_type (void);
+GType xfburn_device_box_get_type (void);
 
 GtkWidget *xfburn_device_box_new (XfburnDeviceBoxFlags);
 

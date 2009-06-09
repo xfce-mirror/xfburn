@@ -49,7 +49,7 @@ typedef struct
   
 } XfburnTranscoderBasicClass;
 
-GtkType xfburn_transcoder_basic_get_type ();
+GType xfburn_transcoder_basic_get_type ();
 GObject *xfburn_transcoder_basic_new ();
 
 G_END_DECLS

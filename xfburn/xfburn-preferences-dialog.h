@@ -44,7 +44,7 @@ typedef struct
 
 
 
-GtkType xfburn_preferences_dialog_get_type ();
+GType xfburn_preferences_dialog_get_type ();
 GtkWidget *xfburn_preferences_dialog_new ();
 
 G_END_DECLS

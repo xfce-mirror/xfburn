@@ -46,7 +46,7 @@ typedef struct
   XfburnDiscUsageClass parent_class;
 } XfburnAudioDiscUsageClass;
 
-GtkType xfburn_audio_disc_usage_get_type (void);
+GType xfburn_audio_disc_usage_get_type (void);
 GtkWidget *xfburn_audio_disc_usage_new (void);
 
 G_END_DECLS

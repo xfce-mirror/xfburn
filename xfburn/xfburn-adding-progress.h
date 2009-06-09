@@ -47,7 +47,7 @@ typedef struct
   void (*adding_done) (XfburnAddingProgress *progress, XfburnDataComposition *dc);
 } XfburnAddingProgressClass;
 
-GtkType xfburn_adding_progress_get_type (void);
+GType xfburn_adding_progress_get_type (void);
 
 XfburnAddingProgress *xfburn_adding_progress_new (void);
 void xfburn_adding_progress_pulse (XfburnAddingProgress *adding_progress);

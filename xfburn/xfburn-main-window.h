@@ -48,7 +48,7 @@ typedef struct
   GtkWindowClass parent_class;
 } XfburnMainWindowClass;
 
-GtkType xfburn_main_window_get_type (void);
+GType xfburn_main_window_get_type (void);
 
 GtkWidget *xfburn_main_window_new (void);
 XfburnMainWindow *xfburn_main_window_get_instance (void);

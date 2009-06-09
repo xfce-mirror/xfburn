@@ -42,10 +42,10 @@ static void cb_new_output (XfburnCreateIsoProgressDialog * dialog, const gchar *
 /*********************/
 static XfburnProgressDialogClass *parent_class = NULL;
 
-GtkType
+GType
 xfburn_create_iso_progress_dialog_get_type ()
 {
-  static GtkType type = 0;
+  static GType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {

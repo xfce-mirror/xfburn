@@ -53,7 +53,7 @@ typedef struct
   void (*volume_changed) (XfburnHalManager *halman);
 } XfburnHalManagerClass;
 
-GtkType xfburn_hal_manager_get_type ();
+GType xfburn_hal_manager_get_type ();
 //GObject *xfburn_hal_manager_new (); /* use _create_global / _get_instance instead */
 gchar *xfburn_hal_manager_create_global ();
 XfburnHalManager * xfburn_hal_manager_get_instance ();

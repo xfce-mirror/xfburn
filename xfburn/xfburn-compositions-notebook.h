@@ -49,7 +49,7 @@ typedef enum
   XFBURN_AUDIO_COMPOSITION,
 } XfburnCompositionType;
 
-GtkType xfburn_compositions_notebook_get_type ();
+GType xfburn_compositions_notebook_get_type ();
 
 GtkWidget *xfburn_compositions_notebook_new ();
 

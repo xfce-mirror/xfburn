@@ -42,10 +42,10 @@ static void cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * ou
 /*********************/
 static XfburnProgressDialogClass *parent_class = NULL;
 
-GtkType
+GType
 xfburn_copy_cd_progress_dialog_get_type ()
 {
-  static GtkType type = 0;
+  static GType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {

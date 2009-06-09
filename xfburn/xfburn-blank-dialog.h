@@ -47,7 +47,7 @@ typedef struct
   XfceTitledDialogClass parent_class;
 } XfburnBlankDialogClass;
 
-GtkType xfburn_blank_dialog_get_type ();
+GType xfburn_blank_dialog_get_type ();
 GtkWidget *xfburn_blank_dialog_new ();
 GtkWidget * xfburn_blank_dialog_new_eject (gboolean eject);
 

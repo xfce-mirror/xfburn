@@ -73,7 +73,7 @@ typedef enum
 } XfburnDiscType;
 
 
-GtkType xfburn_disc_usage_get_type (void);
+GType xfburn_disc_usage_get_type (void);
 GtkWidget *xfburn_disc_usage_new (void);
 
 gdouble xfburn_disc_usage_get_size (XfburnDiscUsage *);

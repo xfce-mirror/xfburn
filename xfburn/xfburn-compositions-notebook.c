@@ -58,10 +58,10 @@ static XfburnComposition * add_composition_with_data (XfburnCompositionsNotebook
 /* static member */
 static GtkNotebookClass *parent_class = NULL;
 
-GtkType
+GType
 xfburn_compositions_notebook_get_type ()
 {
-  static GtkType type = 0;
+  static GType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {

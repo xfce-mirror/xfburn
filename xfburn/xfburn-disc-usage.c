@@ -89,10 +89,10 @@ static guint signals[LAST_SIGNAL];
 /*******************************/
 static guint signals[LAST_SIGNAL];
 
-GtkType
+GType
 xfburn_disc_usage_get_type (void)
 {
-  static GtkType disc_usage_type = 0;
+  static GType disc_usage_type = 0;
 
   if (!disc_usage_type) {
     static const GTypeInfo disc_usage_info = {

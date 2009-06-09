@@ -166,10 +166,10 @@ static XfburnMainWindow *instance = NULL;
 /**************************/
 /* XfburnMainWindow class */
 /**************************/
-GtkType
+GType
 xfburn_main_window_get_type (void)
 {
-  static GtkType main_window_type = 0;
+  static GType main_window_type = 0;
 
   if (!main_window_type) {
     static const GTypeInfo main_window_info = {

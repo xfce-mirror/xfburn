@@ -52,7 +52,7 @@ enum
   DATA_COMPOSITION_DND_TARGET_TEXT_URI_LIST,
 };
 
-GtkType xfburn_data_composition_get_type (void);
+GType xfburn_data_composition_get_type (void);
 
 GtkWidget *xfburn_data_composition_new (void);
 void xfburn_data_composition_add_files (XfburnDataComposition *content, int filec, char **filenames);

@@ -59,7 +59,7 @@ enum
 };
 
 
-GtkType xfburn_directory_browser_get_type (void);
+GType xfburn_directory_browser_get_type (void);
 
 GtkWidget *xfburn_directory_browser_new (void);
 

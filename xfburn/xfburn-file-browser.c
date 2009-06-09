@@ -59,10 +59,10 @@ static gboolean cb_focus_in_event (GtkWidget *widget, GdkEventFocus *event, Xfbu
 /***************************/
 static GtkHPanedClass *parent_class = NULL;
 
-GtkType
+GType
 xfburn_file_browser_get_type (void)
 {
-  static GtkType file_browser_type = 0;
+  static GType file_browser_type = 0;
 
   if (!file_browser_type) {
     static const GTypeInfo file_browser_info = {

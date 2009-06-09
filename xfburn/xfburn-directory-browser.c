@@ -61,10 +61,10 @@ static const gchar *DIRECTORY = N_("Folder");
 /********************************/
 static ExoTreeViewClass *parent_class = NULL;
 
-GtkType
+GType
 xfburn_directory_browser_get_type (void)
 {
-  static GtkType directory_browser_type = 0;
+  static GType directory_browser_type = 0;
 
   if (!directory_browser_type) {
     static const GTypeInfo directory_browser_info = {

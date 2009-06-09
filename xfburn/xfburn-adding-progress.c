@@ -56,10 +56,10 @@ static guint signals[LAST_SIGNAL];
 /* XfburnAddingProgress class */
 /******************************/
 
-GtkType
+GType
 xfburn_adding_progress_get_type (void)
 {
-  static GtkType adding_progress_type = 0;
+  static GType adding_progress_type = 0;
 
   if (!adding_progress_type)
     {

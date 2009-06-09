@@ -54,7 +54,7 @@ typedef struct
   XfceTitledDialogClass parent_class;
 } XfburnBurnDataCompositionBaseDialogClass;
 
-GtkType xfburn_burn_data_composition_base_dialog_get_type ();
+GType xfburn_burn_data_composition_base_dialog_get_type ();
 
 GtkWidget *xfburn_burn_data_composition_base_dialog_new (IsoImage *image);
 

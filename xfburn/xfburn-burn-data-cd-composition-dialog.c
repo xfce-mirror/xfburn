@@ -55,10 +55,10 @@ static void xfburn_burn_data_cd_composition_dialog_finalize (GObject * object);
 /* globals */
 static XfceTitledDialogClass *parent_class = NULL;
 
-GtkType
+GType
 xfburn_burn_data_cd_composition_dialog_get_type ()
 {
-  static GtkType type = 0;
+  static GType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {

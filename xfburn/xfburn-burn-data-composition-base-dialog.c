@@ -110,10 +110,10 @@ static void cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gi
 /* globals */
 static XfceTitledDialogClass *parent_class = NULL;
 
-GtkType
+GType
 xfburn_burn_data_composition_base_dialog_get_type ()
 {
-  static GtkType type = 0;
+  static GType type = 0;
 
   if (type == 0) {
     static const GTypeInfo our_info = {
