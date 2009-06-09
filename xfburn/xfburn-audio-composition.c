@@ -1259,6 +1259,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       gdk_threads_leave ();
 
       g_free (humanlength);
+      g_boxed_free (XFBURN_TYPE_AUDIO_TRACK, atrack);
 
       gdk_threads_enter ();
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), secs);
