@@ -76,7 +76,7 @@ static void delete_pipeline (XfburnTranscoderGst *trans);
 static void recreate_pipeline (XfburnTranscoderGst *trans);
 static const gchar * get_name (XfburnTranscoder *trans);
 static const gchar * get_description (XfburnTranscoder *trans);
-static XfburnAudioTrack * get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error);
+static gboolean get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
 static struct burn_track * create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
@@ -756,24 +756,23 @@ cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data)
 #endif
 
 
-static XfburnAudioTrack *
-get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
+static gboolean
+get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
 {
   XfburnTranscoderGst *tgst = XFBURN_TRANSCODER_GST (trans);
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (tgst);
 
-  XfburnAudioTrack *atrack;
   XfburnAudioTrackGst *gtrack;
   GTimeVal tv;
   off_t size;
 
   priv->is_audio = FALSE;
 #if DEBUG_GST > 0
-  DBG ("Querying GST about %s", fn);
+  DBG ("Querying GST about %s", atrack->inputfile);
 #endif
 
   priv->state = XFBURN_TRANSCODER_GST_STATE_IDENTIFYING;
-  g_object_set (G_OBJECT (priv->source), "location", fn, NULL);
+  g_object_set (G_OBJECT (priv->source), "location", atrack->inputfile, NULL);
   if (gst_element_set_state (priv->pipeline, GST_STATE_PAUSED) == GST_STATE_CHANGE_FAILURE) {
 #if DEBUG_GST > 0
     g_message ("Supposedly failed to change gstreamer state, ignoring it as usually it does it anyways.");
@@ -790,7 +789,7 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
     recreate_pipeline (tgst);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_TIMEOUT,
                  _("Gstreamer did not like this file (detection timed out)"));
-    return NULL;
+    return FALSE;
   }
 #if DEBUG_GST > 0
   DBG ("Got an identification result ");
@@ -798,16 +797,12 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 
   if (!priv->is_audio) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_AUDIO_FORMAT,
-                 _("%s\n\nis not an audio file:\n\n%s"), fn, priv->error->message);
+                 _("%s\n\nis not an audio file:\n\n%s"), atrack->inputfile, priv->error->message);
     g_error_free (priv->error);
     priv->error = NULL;
-    return NULL;
+    return FALSE;
   }
 
-  atrack = g_new0 (XfburnAudioTrack, 1);
-  /* FIXME: when do we free inputfile?? */
-  atrack->inputfile = g_strdup (fn);
-  atrack->pos = -1;
   atrack->length = priv->duration / 1000000000;
 
   size = (off_t) floorf (priv->duration * (PCM_BYTES_PER_SECS / (float) 1000000000));
@@ -822,7 +817,7 @@ get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 
   gtrack->size = size;
 
-  return atrack;
+  return TRUE;
 }
 
 

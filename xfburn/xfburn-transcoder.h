@@ -49,7 +49,7 @@ typedef struct
   const gchar * (*get_name) (XfburnTranscoder *trans);
   const gchar * (*get_description) (XfburnTranscoder *trans);
   gboolean (*is_initialized) (XfburnTranscoder *trans, GError **error);
-  XfburnAudioTrack * (*get_audio_track) (XfburnTranscoder *trans, const gchar *fn, GError **error);
+  gboolean (*get_audio_track) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
   struct burn_track * (*create_burn_track) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
   /* optional functions */

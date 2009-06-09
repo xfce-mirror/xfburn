@@ -130,8 +130,23 @@ XfburnAudioTrack *
 xfburn_transcoder_get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 {
   XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
-  if (iface->get_audio_track)
-    return iface->get_audio_track (trans, fn, error);
+
+  if (iface->get_audio_track) {
+    XfburnAudioTrack *atrack = g_new0 (XfburnAudioTrack, 1);
+    gboolean valid_track;
+
+    atrack->inputfile = g_strdup (fn);
+    atrack->pos = -1;
+
+    valid_track = iface->get_audio_track (trans, atrack, error);
+    
+    if (valid_track)
+      return atrack;
+    
+    /* not a valid track, clean up */
+    g_boxed_free (XFBURN_TYPE_AUDIO_TRACK, atrack);
+    return NULL;
+  }
   
   g_warning ("Falling back to base implementation for xfburn_transcoder_get_audio_track, which always says false.");
   g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, _("not implemented"));

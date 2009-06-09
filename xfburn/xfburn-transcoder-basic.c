@@ -55,7 +55,7 @@ static const gchar * get_name (XfburnTranscoder *trans);
 static const gchar * get_description (XfburnTranscoder *trans);
 static gboolean is_initialized (XfburnTranscoder *trans, GError **error);
 
-static XfburnAudioTrack * get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error);
+static gboolean get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 static gboolean has_audio_ext (const gchar *path);
 static gboolean is_valid_wav (const gchar *path);
 static gboolean valid_wav_headers (guchar header[44]);
@@ -187,39 +187,34 @@ is_initialized (XfburnTranscoder *trans, GError **error)
   return TRUE;
 }
 
-static XfburnAudioTrack *
-get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
+static gboolean
+get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
 {
-  XfburnAudioTrack *atrack;
   struct stat s;
 
-  if (!has_audio_ext (fn)) {
+  if (!has_audio_ext (atrack->inputfile)) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_AUDIO_EXT,
-                 _("File %s does not have a .wav extension"), fn);
-    return NULL;
+                 _("File %s does not have a .wav extension"), atrack->inputfile);
+    return FALSE;
   }
-  if (!is_valid_wav (fn)) {
+  if (!is_valid_wav (atrack->inputfile)) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_AUDIO_FORMAT,
-                 _("File %s does not contain uncompressed PCM wave audio"), fn);
-    return NULL;
+                 _("File %s does not contain uncompressed PCM wave audio"), atrack->inputfile);
+    return FALSE;
   }
 
-  if (stat (fn, &s) != 0) {
+  if (stat (atrack->inputfile, &s) != 0) {
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_STAT,
-                 _("Could not stat %s: %s"), fn, g_strerror (errno));
-    return NULL;
+                 _("Could not stat %s: %s"), atrack->inputfile, g_strerror (errno));
+    return FALSE;
   }
 
-  atrack = g_new0 (XfburnAudioTrack, 1);
-  /* FIXME: when do we free inputfile?? */
-  atrack->inputfile = g_strdup (fn);
-  atrack->pos = -1;
   atrack->length = (s.st_size - 44) / PCM_BYTES_PER_SECS;
   atrack->sectors = (s.st_size / AUDIO_BYTES_PER_SECTOR);
   if (s.st_size % AUDIO_BYTES_PER_SECTOR > 0)
     atrack->sectors++;
 
-  return atrack;
+  return TRUE;
 }
 
 static gboolean 

@@ -47,6 +47,8 @@ audio_track_gst_copy (gpointer boxed)
 {
   XfburnAudioTrackGst *copy;
 
+  DBG ("copying...");
+
   copy = g_new0(XfburnAudioTrackGst, 1);
 
   memcpy (copy, boxed, sizeof (XfburnAudioTrackGst));
