@@ -169,6 +169,7 @@ typedef struct
   GtkWidget *content;
   GtkWidget *disc_usage;
   GtkWidget *progress;
+  GtkTreeStore *model;
 
 } XfburnDataCompositionPrivate;
 
@@ -361,6 +362,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   priv->content = exo_tree_view_new ();
   model = gtk_tree_store_new (DATA_COMPOSITION_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_UINT);
+  priv->model = model;
 							  
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DATA_COMPOSITION_COLUMN_CONTENT,
                                    directory_tree_sortfunc, NULL, NULL);
@@ -454,6 +456,8 @@ xfburn_data_composition_finalize (GObject * object)
       icon_file = NULL;
     }
   }
+
+  g_object_unref (priv->model);
   
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }

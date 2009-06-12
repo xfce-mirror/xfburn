@@ -191,6 +191,7 @@ typedef struct
   GtkWidget *content;
   GtkWidget *disc_usage;
   GtkWidget *progress;
+  GtkTreeStore *model;
 
   XfburnTranscoder *trans;
 } XfburnAudioCompositionPrivate;
@@ -384,6 +385,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   priv->content = exo_tree_view_new ();
   model = gtk_tree_store_new (AUDIO_COMPOSITION_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_UINT, XFBURN_TYPE_AUDIO_TRACK);
+  priv->model = model;
 
   /*
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), AUDIO_COMPOSITION_COLUMN_POS,
@@ -505,6 +507,11 @@ xfburn_audio_composition_finalize (GObject * object)
 
   g_object_unref (priv->trans);
   priv->trans = NULL;
+
+  /* while the content treeview is part of the GUI and is automatically destroyed
+     when this tab is closed, it does not take ownership of the model, which then
+     must be unref'ed manually */
+  g_object_unref (priv->model);
   
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -876,7 +883,7 @@ remove_row_reference (GtkTreeRowReference *reference, XfburnAudioCompositionPriv
 {
   GtkTreePath *path = NULL;
   GtkTreeModel *model;
-  
+
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   
   path = gtk_tree_row_reference_get_path (reference);
@@ -910,6 +917,7 @@ remove_row_reference (GtkTreeRowReference *reference, XfburnAudioCompositionPriv
       */
       
       gtk_tree_store_remove (GTK_TREE_STORE (model), &iter);
+      priv->n_tracks--;
     }
     
     gtk_tree_path_free (path);
@@ -1259,6 +1267,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       gdk_threads_leave ();
 
       g_free (humanlength);
+      /* the tree store makes a copy of the boxed type, so we can free the original */
       g_boxed_free (XFBURN_TYPE_AUDIO_TRACK, atrack);
 
       gdk_threads_enter ();

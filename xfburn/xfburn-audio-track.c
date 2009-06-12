@@ -48,7 +48,7 @@ audio_track_copy (gpointer boxed)
   XfburnAudioTrack *atrack = XFBURN_AUDIO_TRACK (boxed);
   XfburnAudioTrack *copy;
 
-  DBG ("copying...");
+  //DBG ("copying...");
 
   copy = g_new0(XfburnAudioTrack, 1);
   memcpy (copy, boxed, sizeof (XfburnAudioTrack));
@@ -66,7 +66,7 @@ audio_track_free (gpointer boxed)
 {
   XfburnAudioTrack *atrack = XFBURN_AUDIO_TRACK (boxed);
 
-  DBG ("Freeing audio track");
+  //DBG ("Freeing audio track");
 
   g_free (atrack->inputfile);
 
