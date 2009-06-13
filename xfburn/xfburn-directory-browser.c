@@ -261,10 +261,12 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
     struct stat s;
 
     full_path = g_build_filename (path, dir_entry, NULL);
+#if 0
     if (g_file_test (full_path, G_FILE_TEST_IS_SYMLINK)) {
       g_free (full_path);
       continue;
     }
+#endif
 
     if (dir_entry[0] != '.' && (stat (full_path, &s) == 0)) {
       gchar *humansize;

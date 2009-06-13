@@ -152,8 +152,11 @@ load_directory_in_browser (XfburnFsBrowser * browser, const gchar * path, GtkTre
     gchar *full_path;
 
     full_path = g_build_filename (path, dir_entry, NULL);
-    if (dir_entry[0] != '.' && g_file_test (full_path, G_FILE_TEST_IS_DIR) &&
+    if (dir_entry[0] != '.' && g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
+#if 0
+      &&
         !g_file_test (full_path, G_FILE_TEST_IS_SYMLINK)) {
+#endif
       GtkTreeIter iter;
       GtkTreeIter iter_empty;
 
