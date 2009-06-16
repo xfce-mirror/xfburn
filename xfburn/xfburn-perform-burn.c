@@ -110,11 +110,8 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
   disc_size = burn_disc_available_space (drive, burn_options);
 
-  /* available_space assumes data tracks. If we're not doing data, we need to convert */
-  if (sector_size != DATA_BYTES_PER_SECTOR)
-    disc_sectors = disc_size / DATA_BYTES_PER_SECTOR * sector_size;
-  else
-    disc_sectors = disc_size / DATA_BYTES_PER_SECTOR;
+  /* available_space assumes data tracks, so we'll just compare sectors */
+  disc_sectors = disc_size / DATA_BYTES_PER_SECTOR;
 
   if (disc_sectors < total_sectors) {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("There is not enough space available on the inserted disc."));
