@@ -74,8 +74,8 @@ static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * kl
 static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
 
 void burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error);
-static void cb_device_changed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog);
-static void cb_disc_refreshed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog);
+static void cb_device_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnBurnImageDialog * dialog);
+static void cb_volume_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnBurnImageDialog * dialog);
 static void cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data);
 
 static void update_image_label (GtkFileChooser *chooser, XfburnBurnImageDialog * dialog);
@@ -131,6 +131,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *button;
+  XfburnDeviceList *devlist;
   XfburnDevice *device;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn image"));
@@ -208,14 +209,19 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_widget_grab_focus (priv->burn_button);
   gtk_widget_grab_default (priv->burn_button);
 
-  g_signal_connect (G_OBJECT (priv->device_box), "device-changed", G_CALLBACK (cb_device_changed), obj);
-  g_signal_connect (G_OBJECT (priv->device_box), "disc-refreshed", G_CALLBACK (cb_disc_refreshed), obj);
-  g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), obj);
-  cb_disc_refreshed (XFBURN_DEVICE_BOX (priv->device_box), xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box)), obj);
+  devlist = xfburn_device_list_new ();
 
-  device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
+  g_signal_connect (G_OBJECT (devlist), "device-change-end", G_CALLBACK (cb_device_change_end), obj);
+  g_signal_connect (G_OBJECT (devlist), "volume-change-end", G_CALLBACK (cb_volume_change_end), obj);
+  g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), obj);
+  device = xfburn_device_list_get_current_device (devlist);
+
+  cb_volume_change_end (devlist, device, obj);
+
   if (device)
-    gtk_widget_set_sensitive (priv->check_dummy, device->dummy_write);
+    gtk_widget_set_sensitive (priv->check_dummy, xfburn_device_can_dummy_write (device));
+
+  g_object_unref (G_OBJECT (devlist));
 
 }
 
@@ -377,15 +383,15 @@ burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error
 }
 
 static void
-cb_device_changed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog) 
+cb_device_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnBurnImageDialog * dialog)
 {
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
 
-  gtk_widget_set_sensitive (priv->check_dummy, device->dummy_write);
+  gtk_widget_set_sensitive (priv->check_dummy, xfburn_device_can_dummy_write (device));
 }
 
 static void
-cb_disc_refreshed (XfburnDeviceBox *box, XfburnDevice *device, XfburnBurnImageDialog * dialog) 
+cb_volume_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnBurnImageDialog * dialog)
 {
   check_burn_button (dialog);
 }

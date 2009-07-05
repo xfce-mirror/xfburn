@@ -31,7 +31,6 @@
 
 #include "xfburn-device-list.h"
 #include "xfburn-device-box.h"
-#include "xfburn-hal-manager.h"
 #include "xfburn-settings.h"
 #include "xfburn-utils.h"
 #include "xfburn-blank-dialog.h"
@@ -39,26 +38,13 @@
 #define XFBURN_DEVICE_BOX_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBoxPrivate))
 
 enum {
-  DEVICE_CHANGED,
-  DISC_REFRESHED,
-  LAST_SIGNAL,
-};
-
-enum {
   PROP_0,
   PROP_SHOW_WRITERS_ONLY,
   PROP_SHOW_SPEED_SELECTION,
   PROP_SHOW_MODE_SELECTION,
-  PROP_DISC_STATUS,
   PROP_VALID,
   PROP_BLANK_MODE,
   PROP_ACCEPT_ONLY_CD,
-};
-
-enum {
-  DEVICE_NAME_COLUMN,
-  DEVICE_POINTER_COLUMN,
-  DEVICE_N_COLUMNS,
 };
 
 enum {
@@ -82,7 +68,6 @@ typedef struct
   gboolean valid_disc;
   gboolean blank_mode;
   
-  GtkWidget *combo_device;
 
   GtkWidget *hbox_refresh;
   GtkWidget *disc_label;
@@ -94,33 +79,34 @@ typedef struct
   gchar *status_text;
 
   GtkWidget *hbox_mode_selection;
+  GtkWidget *combo_device;
   GtkWidget *combo_mode;
 
   gboolean have_asked_for_blanking;
   gboolean accept_only_cd;
-
-#ifdef HAVE_HAL
-  gulong volume_changed_handlerid;
-#endif
+  
+  XfburnDeviceList *devlist;
 } XfburnDeviceBoxPrivate;
 
 /* prototypes */
 static void xfburn_device_box_class_init (XfburnDeviceBoxClass *);
-static void xfburn_device_box_init (XfburnDeviceBox *);
+static GObject * xfburn_device_box_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 static void xfburn_device_box_finalize (GObject * object);
 static void xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
 static guint ask_for_blanking (XfburnDeviceBoxPrivate *priv);
 static void status_label_update (XfburnDeviceBoxPrivate *priv);
-static void update_status_label_visibility ();
-static XfburnDevice * get_selected_device (XfburnDeviceBoxPrivate *priv);
-static void cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box);
 static gboolean check_disc_validity (XfburnDeviceBoxPrivate *priv);
-static void cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box);
-#ifdef HAVE_HAL
-static void cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceBox *box);
-#endif
+static void refresh_drive_info (XfburnDeviceBox *box, XfburnDevice *device);
+
+static void fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device);
+static void fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device);
+
+static void cb_device_change_start (XfburnDeviceList *devlist, XfburnDeviceBox *box);
+static void cb_device_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box);
+static void cb_volume_change_start (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box);
+static void cb_volume_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box);
 
 /* globals */
 static GtkVBoxClass *parent_class = NULL;
@@ -128,7 +114,6 @@ static GtkVBoxClass *parent_class = NULL;
 /*************************/
 /* XfburnDeviceBox class */
 /*************************/
-static guint signals[LAST_SIGNAL];
 
 GType
 xfburn_device_box_get_type (void)
@@ -146,7 +131,7 @@ xfburn_device_box_get_type (void)
         NULL,
         sizeof (XfburnDeviceBox),
         0,
-        (GInstanceInitFunc) xfburn_device_box_init,
+        NULL,
         NULL
       };
 
@@ -165,19 +150,11 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
 
   parent_class = g_type_class_peek_parent (klass);
   
-  object_class->finalize = xfburn_device_box_finalize;
+  object_class->constructor  = xfburn_device_box_constructor;
+  object_class->finalize     = xfburn_device_box_finalize;
   object_class->set_property = xfburn_device_box_set_property;
   object_class->get_property = xfburn_device_box_get_property;
   
-  signals[DEVICE_CHANGED] = g_signal_new ("device-changed", XFBURN_TYPE_DEVICE_BOX, G_SIGNAL_ACTION,
-                                          G_STRUCT_OFFSET (XfburnDeviceBoxClass, device_changed),
-                                          NULL, NULL, g_cclosure_marshal_VOID__STRING,
-                                          G_TYPE_NONE, 1, G_TYPE_STRING);
-  signals[DISC_REFRESHED] = g_signal_new ("disc-refreshed", XFBURN_TYPE_DEVICE_BOX, G_SIGNAL_ACTION,
-                                          G_STRUCT_OFFSET (XfburnDeviceBoxClass, disc_refreshed),
-                                          NULL, NULL, g_cclosure_marshal_VOID__STRING,
-                                          G_TYPE_NONE, 1, G_TYPE_STRING);
-    
     
   g_object_class_install_property (object_class, PROP_SHOW_WRITERS_ONLY, 
                                    g_param_spec_boolean ("show-writers-only", _("Show writers only"),
@@ -190,10 +167,6 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
                                    g_param_spec_boolean ("show-mode-selection", _("Show mode selection"),
                                                         _("Show mode selection combo"), 
                                                         FALSE, G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_DISC_STATUS,
-                                   g_param_spec_int ("disc-status", _("Disc status"),
-                                                      _("The status of the disc in the drive"), 
-                                                      0, BURN_DISC_UNSUITABLE, 0, G_PARAM_READABLE));
   g_object_class_install_property (object_class, PROP_VALID, 
                                    g_param_spec_boolean ("valid", _("Is it a valid combination"),
                                                         _("Is the combination of hardware and disc valid to burn the composition?"), 
@@ -208,42 +181,33 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
                                                         FALSE, G_PARAM_READWRITE));
 }
 
-static void
-xfburn_device_box_init (XfburnDeviceBox * box)
+static GObject * 
+xfburn_device_box_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
 {
-  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+  GObject *gobj;
+  XfburnDeviceBox *box;
+  XfburnDeviceBoxPrivate *priv;
 
-  GtkWidget *label, *img, *button;
-  GList *device = NULL;
+  GtkWidget *label;
+  //GtkWidget *hbox;
   GtkListStore *store = NULL;
   GtkCellRenderer *cell;
-  //GtkWidget *hbox;
-  gboolean have_device;
+  XfburnDeviceList *devlist;
+  gint n_burners;
   
+  gobj = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_properties, construct_properties);
+  box = XFBURN_DEVICE_BOX (gobj);
+  priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+
+  priv->devlist = devlist = xfburn_device_list_new ();
+  g_signal_connect (G_OBJECT (devlist), "device-change-start", G_CALLBACK (cb_device_change_start), box);
+  g_signal_connect (G_OBJECT (devlist), "device-change-end", G_CALLBACK (cb_device_change_end), box);
+  g_signal_connect (G_OBJECT (devlist), "volume-change-start", G_CALLBACK (cb_volume_change_start), box);
+  g_signal_connect (G_OBJECT (devlist), "volume-change-end", G_CALLBACK (cb_volume_change_end), box);
+
   /* devices */
-  store = gtk_list_store_new (DEVICE_N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER);
-  priv->combo_device = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
-  g_object_unref (store);
-
-  cell = gtk_cell_renderer_text_new ();
-  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->combo_device), cell, TRUE);
-  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_device), cell, "text", DEVICE_NAME_COLUMN, NULL);
-  gtk_widget_show (priv->combo_device);
+  priv->combo_device = xfburn_device_list_get_device_combo (devlist);
   gtk_box_pack_start (GTK_BOX (box), priv->combo_device, FALSE, FALSE, BORDER);
-
-  device = xfburn_device_list_get_list ();
-  have_device = (device != NULL);
-
-  while (device) {
-    XfburnDevice *device_data = (XfburnDevice *) device->data;
-    GtkTreeIter iter;
-
-    gtk_list_store_append (store, &iter);
-    gtk_list_store_set (store, &iter, DEVICE_NAME_COLUMN, device_data->name, DEVICE_POINTER_COLUMN, device_data, -1);
-
-    device = g_list_next (device);
-  }
-  gtk_widget_set_sensitive (priv->combo_device, have_device);
   
   /*
   hbox = gtk_hbox_new (FALSE, 0);
@@ -261,16 +225,7 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_box_pack_start (GTK_BOX (priv->hbox_refresh), priv->disc_label, TRUE, TRUE, BORDER);
 
   /* refresh */
-  img = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_SMALL_TOOLBAR);
-  gtk_widget_show (img);
-  button = gtk_button_new ();
-  gtk_container_add (GTK_CONTAINER (button), img);
-  gtk_widget_show (button);
-  //gtk_box_pack_start (GTK_BOX (priv->hbox_speed_selection), button, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (priv->hbox_refresh), button, FALSE, FALSE, BORDER);
-  gtk_widget_set_sensitive (button, have_device);
-
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_speed_refresh_clicked), box);
+  gtk_box_pack_start (GTK_BOX (priv->hbox_refresh), xfburn_device_list_get_refresh_button (devlist), FALSE, FALSE, BORDER);
 
   /* speed */
   priv->hbox_speed_selection = gtk_hbox_new (FALSE, 0);
@@ -309,7 +264,8 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_mode), cell, "text", MODE_TEXT_COLUMN, NULL);
   gtk_widget_show (priv->combo_mode);
   gtk_box_pack_start (GTK_BOX (priv->hbox_mode_selection), priv->combo_mode, TRUE, TRUE, BORDER);
-  gtk_widget_set_sensitive (priv->combo_mode, have_device);
+  g_object_get (G_OBJECT (devlist), "num-burners", &n_burners, NULL);
+  gtk_widget_set_sensitive (priv->combo_mode, n_burners > 0);
 
   /* status label */
   priv->status_label = gtk_label_new ("");
@@ -317,26 +273,19 @@ xfburn_device_box_init (XfburnDeviceBox * box)
   gtk_widget_show (priv->status_label);
   gtk_box_pack_start (GTK_BOX (box), priv->status_label, FALSE, FALSE, 0);
 
-  gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_device), 0);
-  g_signal_connect (G_OBJECT (priv->combo_device), "changed", G_CALLBACK (cb_combo_device_changed), box);
-
-#ifdef HAVE_HAL
-  priv->volume_changed_handlerid = g_signal_connect (G_OBJECT (xfburn_hal_manager_get_instance ()), "volume-changed", G_CALLBACK (cb_volumes_changed), box);
-#endif
-
   priv->have_asked_for_blanking = FALSE;
+
+  refresh_drive_info (box, xfburn_device_list_get_current_device (priv->devlist));
+
+  return gobj;
 }
 
 static void
 xfburn_device_box_finalize (GObject * object)
 {
-#ifdef HAVE_HAL
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (object);
 
-  //g_object_unref (priv->hal_manager);
-  g_signal_handler_disconnect (xfburn_hal_manager_get_instance (), priv->volume_changed_handlerid);
-#endif
-
+  g_object_unref (G_OBJECT (priv->devlist));
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -354,9 +303,6 @@ xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, G
       break;
     case PROP_SHOW_MODE_SELECTION:
       g_value_set_boolean (value, priv->show_mode_selection);
-      break;
-    case PROP_DISC_STATUS:
-      g_value_set_int (value, xfburn_device_list_get_disc_status());
       break;
     case PROP_VALID:
       g_value_set_boolean (value, priv->valid_disc);
@@ -384,19 +330,19 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
       break;
     case PROP_SHOW_SPEED_SELECTION:
       priv->show_speed_selection = g_value_get_boolean (value);
-      if (priv->show_speed_selection)
+      if (priv->show_speed_selection) {
         gtk_widget_show (priv->hbox_speed_selection);
-      else
+        fill_combo_speed (XFBURN_DEVICE_BOX (object), xfburn_device_list_get_current_device (priv->devlist));
+      } else
         gtk_widget_hide (priv->hbox_speed_selection);
-      update_status_label_visibility (priv);
       break;
     case PROP_SHOW_MODE_SELECTION:
       priv->show_mode_selection = g_value_get_boolean (value);
-      if (priv->show_mode_selection)
+      if (priv->show_mode_selection) {
         gtk_widget_show (priv->hbox_mode_selection);
-      else
+        fill_combo_mode (XFBURN_DEVICE_BOX (object), xfburn_device_list_get_current_device (priv->devlist));
+      } else
         gtk_widget_hide (priv->hbox_mode_selection);
-      update_status_label_visibility (priv);
       break;
     case PROP_BLANK_MODE:
       priv->blank_mode = g_value_get_boolean (value);
@@ -413,18 +359,6 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
 /*************/
 /* internals */
 /*************/
-
-static void
-update_status_label_visibility (XfburnDeviceBoxPrivate *priv)
-{
-  /*
-  if (priv->show_mode_selection || priv->show_speed_selection)
-    gtk_widget_show (priv->status_label);
-  else
-    gtk_widget_hide (priv->status_label);
-  */
-
-}
 
 static void
 empty_speed_list_dialog ()
@@ -476,10 +410,15 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_speed));
-  GSList *el = device->supported_cdr_speeds;
-  int profile_no = xfburn_device_list_get_profile_no ();
+  GSList *el;
+  int profile_no;
   int factor;
   GtkTreeIter iter_max;
+
+  g_object_get (G_OBJECT (xfburn_device_list_get_current_device (priv->devlist)),
+                "profile-no", &profile_no,
+                "supported-speeds", &el,
+                NULL);
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -575,12 +514,20 @@ ask_for_blanking (XfburnDeviceBoxPrivate *priv)
 static gboolean
 check_disc_validity (XfburnDeviceBoxPrivate *priv)
 {
-  enum burn_disc_status disc_status = xfburn_device_list_get_disc_status ();
-  int profile_no = xfburn_device_list_get_profile_no ();
-  gboolean is_erasable = xfburn_device_list_disc_is_erasable ();
-  XfburnDevice *device = get_selected_device (priv);
+  enum burn_disc_status disc_status;
+  int profile_no;
+  gchar *profile_name;
+  gboolean is_erasable;
+  XfburnDevice *device;
+
+  g_object_get (G_OBJECT (priv->devlist), "current-device", &device, NULL);
+
+  g_object_get (G_OBJECT (device), "disc-status", &disc_status, "profile-no", &profile_no, 
+                                   "erasable", &is_erasable, "profile-name", &profile_name,
+                                   NULL);
   
-  gtk_label_set_text (GTK_LABEL (priv->disc_label), xfburn_device_list_get_profile_name ());
+  gtk_label_set_text (GTK_LABEL (priv->disc_label), profile_name);
+  g_free (profile_name);
 
   if (!priv->blank_mode) {
     /* for burning */
@@ -591,14 +538,14 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
         priv->valid_disc = TRUE;
         break;
       case XFBURN_PROFILE_CDR:
-        priv->valid_disc = device->cdr;
+        g_object_get (G_OBJECT (device), "cdr", &priv->valid_disc, NULL);
         break;
       case XFBURN_PROFILE_CDRW:
-        priv->valid_disc = device->cdrw;
+        g_object_get (G_OBJECT (device), "cdrw", &priv->valid_disc, NULL);
         break;
       case XFBURN_PROFILE_DVDRAM:
         if (!priv->accept_only_cd)
-          priv->valid_disc = device->dvdram;
+          g_object_get (G_OBJECT (device), "dvdram", &priv->valid_disc, NULL);
         break;
       case XFBURN_PROFILE_DVD_MINUS_R:
       case XFBURN_PROFILE_DVD_MINUS_RW_OVERWRITE:
@@ -608,7 +555,7 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
       case XFBURN_PROFILE_DVD_PLUS_R_DL:
       case XFBURN_PROFILE_DVD_PLUS_RW:
         if (!priv->accept_only_cd)
-          priv->valid_disc = device->dvdr;
+          g_object_get (G_OBJECT (device), "dvdr", &priv->valid_disc, NULL);
         break;
       default:
         g_warning ("Unknown disc profile 0x%x!", profile_no);
@@ -706,14 +653,18 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_mode));
   GtkTreeIter iter;
+  gint block_types;
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
-  if (device->tao_block_types) {
+  g_object_get (G_OBJECT (device), "tao-block-types", &block_types, NULL);
+  if (block_types) {
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "TAO", MODE_VALUE_COLUMN, WRITE_MODE_TAO, -1);
   }
-  if (device->sao_block_types & BURN_BLOCK_SAO) {
+
+  g_object_get (G_OBJECT (device), "sao-block-types", &block_types, NULL);
+  if (block_types & BURN_BLOCK_SAO) {
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "SAO", MODE_VALUE_COLUMN, WRITE_MODE_SAO, -1);
   }
@@ -741,89 +692,61 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_mode), 0);
 }
 
-static XfburnDevice *
-get_selected_device (XfburnDeviceBoxPrivate *priv)
+static void
+cb_device_change_start (XfburnDeviceList *devlist, XfburnDeviceBox *box)
 {
-
-  GtkTreeModel *model;
-  GtkTreeIter iter;
-  XfburnDevice * device = NULL;
-  gboolean ret;
-
-  model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_device));
-  ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
-  if (ret)
-    gtk_tree_model_get (model, &iter, DEVICE_POINTER_COLUMN, &device, -1);
-
-  return device;
+  if (GTK_WIDGET_REALIZED (box))
+    xfburn_busy_cursor (GTK_WIDGET (box));
 }
 
-static XfburnDevice *
-refresh_drive_info (XfburnDeviceBox *box)
+static void
+cb_device_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box)
+{
+  /* FIXME: adjust selected device?  */
+
+  cb_volume_change_end (devlist, device, box);
+
+  /* not going back to a regular cursor, that'll happen in cb_volume_change_end */
+}
+
+static void
+cb_volume_change_start (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box)
+{
+  if (GTK_WIDGET_REALIZED (box))
+    xfburn_busy_cursor (GTK_WIDGET (box));
+}
+
+static void
+cb_volume_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box)
+{
+  g_return_if_fail (XFBURN_IS_DEVICE_LIST (devlist));
+  g_return_if_fail (XFBURN_IS_DEVICE (device));
+  g_return_if_fail (XFBURN_IS_DEVICE_BOX (box));
+
+  refresh_drive_info (box, device);
+
+  if (GTK_WIDGET_REALIZED (box))
+    xfburn_default_cursor (GTK_WIDGET (box));
+}
+
+static void 
+refresh_drive_info (XfburnDeviceBox *box, XfburnDevice *device)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-  XfburnDevice *device = NULL;
-  
-  device = xfburn_device_box_get_selected_device (box);
-  if (G_UNLIKELY (device == NULL))
-    return NULL;
-
-  if (!xfburn_device_refresh_info (device, priv->show_speed_selection))
-    return NULL;
 
   if (priv->show_speed_selection)
     fill_combo_speed (box, device);
 
   if (priv->show_mode_selection)
-    fill_combo_mode (box,device);
+    fill_combo_mode (box, device);
 
-  if (!check_disc_validity (priv))
-    return NULL;
-
-  return device;
+  /* FIXME: where to put this? */
+  check_disc_validity (priv);
 }
 
+/*
 static void
-cb_speed_refresh_clicked (GtkButton *button, XfburnDeviceBox *box)
-{
-  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-  XfburnDevice *device;
-  
-  xfburn_busy_cursor (priv->combo_device);
-
-  device = refresh_drive_info (box);
-
-  xfburn_default_cursor (priv->combo_device);
-
-  if (device == NULL)
-    return;
-
-  g_signal_emit (G_OBJECT (box), signals[DISC_REFRESHED], 0, device);
-}
-
-static void
-cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceBox *box)
-{
-  //XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-  XfburnDevice *device;
-  
-  if (GTK_WIDGET_REALIZED (box))
-    xfburn_busy_cursor (GTK_WIDGET (box));
-
-  device = refresh_drive_info (box);
-
-  if (GTK_WIDGET_REALIZED (box))
-    xfburn_default_cursor (GTK_WIDGET (box));
-
-  if (device == NULL)
-    return;
-
-  g_signal_emit (G_OBJECT (box), signals[DEVICE_CHANGED], 0, device);
-}
-
-#ifdef HAVE_HAL
-static void
-cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceBox *box)
+cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceList *devlist)
 {
   gboolean visible;
 
@@ -834,16 +757,7 @@ cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceBox *box)
     cb_speed_refresh_clicked (NULL, box);
   }
 }
-#endif
-
-static void
-refresh (GtkWidget *widget)
-{
-  XfburnDeviceBox *box = XFBURN_DEVICE_BOX (widget);
-  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-
-  cb_combo_device_changed (GTK_COMBO_BOX (priv->combo_device), box);
-}
+*/
 
 /******************/
 /* public methods */
@@ -861,34 +775,7 @@ xfburn_device_box_new (XfburnDeviceBoxFlags flags)
 		      "accept-only-cd", ((flags & ACCEPT_ONLY_CD) != 0),
                       NULL);
   
-  refresh (obj);
-
   return obj;
-}
-
-gchar *
-xfburn_device_box_get_selected (XfburnDeviceBox *box)
-{
-  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-  GtkTreeModel *model;
-  GtkTreeIter iter;
-  gchar *name = NULL;
-  gboolean ret;
-
-  model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_device));
-  ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
-  if (ret)
-    gtk_tree_model_get (model, &iter, DEVICE_NAME_COLUMN, &name, -1);
-
-  return name;
-}
-
-XfburnDevice *
-xfburn_device_box_get_selected_device (XfburnDeviceBox *box)
-{
-  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-
-  return get_selected_device (priv);
 }
 
 gint
@@ -940,4 +827,13 @@ xfburn_device_box_get_mode (XfburnDeviceBox *box)
     gtk_tree_model_get (model, &iter, SPEED_VALUE_COLUMN, &mode, -1);
 
   return mode;
+}
+
+
+XfburnDevice *
+xfburn_device_box_get_selected_device (XfburnDeviceBox *box)
+{
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+
+  return xfburn_device_list_get_current_device (priv->devlist);
 }

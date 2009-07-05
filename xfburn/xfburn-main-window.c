@@ -626,6 +626,7 @@ xfburn_main_window_new (void)
     XfburnMainWindowPrivate *priv;
     GtkAction *action;
     GList *device = NULL;
+    XfburnDeviceList *devlist;
     
     instance = win = XFBURN_MAIN_WINDOW (obj);
     priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (win);
@@ -639,14 +640,21 @@ xfburn_main_window_new (void)
     gtk_action_set_sensitive (GTK_ACTION (action), FALSE);*/
 
     /* disable action that cannot be used due to device */
-    device = xfburn_device_list_get_list ();
 
+    devlist = xfburn_device_list_new ();
+    g_object_get (G_OBJECT (devlist), "devices", &device, NULL);
+    g_object_unref (devlist);
+
+    /* FIXME: this is really outdated behavior. Needs to get rewritten */
     while (device != NULL) {
       XfburnDevice *device_info = (XfburnDevice *) device->data;
+      gboolean cdr, cdrw;
 
-      if (device_info->cdr)
+      g_object_get (G_OBJECT (device_info), "cdr", &cdr, "cdrw", &cdrw, NULL);
+
+      if (cdr)
 	priv->support_cdr = TRUE;
-      if (device_info->cdrw)
+      if (cdrw)
 	priv->support_cdrw = TRUE;
 
       device = g_list_next (device);

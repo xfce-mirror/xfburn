@@ -403,25 +403,40 @@ refresh_devices_list (XfburnPreferencesDialog * dialog)
   XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (dialog);
   GtkTreeModel *model;
   GList *device;
+  XfburnDeviceList *devlist;
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->treeview_devices));
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
-  device = xfburn_device_list_get_list ();
+  devlist = xfburn_device_list_new ();
+  g_object_get (G_OBJECT (devlist), "devices", &device, NULL);
+  g_object_unref (devlist);
+
   while (device) {
     GtkTreeIter iter;
     XfburnDevice *device_data;
+    gchar *name, *addr;
+    gboolean cdr, cdrw, dvdr, dvdram;
 
     device_data = (XfburnDevice *) device->data;
 
+    g_object_get (G_OBJECT (device_data), "name", &name, "address", &addr,
+                  "cdr", &cdr, "cdrw", &cdrw, "dvdr", &dvdr, "dvdram", &dvdram,
+                  NULL);
+
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                        DEVICE_LIST_COLUMN_NAME, device_data->name,
-                        DEVICE_LIST_COLUMN_NODE, device_data->addr,
-                        DEVICE_LIST_COLUMN_CDR, device_data->cdr,
-                        DEVICE_LIST_COLUMN_CDRW, device_data->cdrw,
-                        DEVICE_LIST_COLUMN_DVDR, device_data->dvdr, DEVICE_LIST_COLUMN_DVDRAM, device_data->dvdram, -1);
+                        DEVICE_LIST_COLUMN_NAME, name,
+                        DEVICE_LIST_COLUMN_NODE, addr,
+                        DEVICE_LIST_COLUMN_CDR, cdr,
+                        DEVICE_LIST_COLUMN_CDRW, cdrw,
+                        DEVICE_LIST_COLUMN_DVDR, dvdr, 
+                        DEVICE_LIST_COLUMN_DVDRAM, dvdram, 
+                        -1);
+
+    g_free (name);
+    g_free (addr);
 
     device = g_list_next (device);
   }
@@ -438,7 +453,6 @@ xfburn_preferences_dialog_response_cb (XfburnPreferencesDialog * dialog, guint r
 static void
 scan_button_clicked_cb (GtkWidget * button, gpointer user_data)
 {
-  xfburn_device_list_init ();
   refresh_devices_list (user_data);
 }
 

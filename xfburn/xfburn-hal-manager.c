@@ -278,14 +278,19 @@ xfburn_hal_manager_create_global ()
   priv = XFBURN_HAL_MANAGER_GET_PRIVATE (halman);
 
   if (priv->error) {
+    gchar *error_msg, *ret;
+
+    error_msg = g_strdup (priv->error);
     xfburn_hal_manager_shutdown ();
-    return g_strdup_printf ("Failed to initialize %s!", priv->error);
+    ret = g_strdup_printf ("Failed to initialize %s!", error_msg);
+    g_free (error_msg);
+    return ret;
   } else
     return NULL;
 }
 
 XfburnHalManager *
-xfburn_hal_manager_get_instance ()
+xfburn_hal_manager_get_global ()
 {
   if (G_UNLIKELY (halman == NULL))
     g_error ("There is no instance of a hal manager!");
@@ -367,9 +372,13 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
     libhal_free_string_array (cap_list);
 
     if (optical_drive) {
-      XfburnDevice *device = g_new0 (XfburnDevice, 1);
-      char *str, *str_vendor;
-      gboolean dvdr = FALSE;
+      XfburnDevice *device;
+      char *str, *str_vendor; 
+      const gchar *name;
+      gchar *addr = NULL;
+      gboolean dvdr = FALSE, dvdplusr = FALSE;
+
+      device = xfburn_device_new ();
 
       /*
       libhal_device_print (priv->hal_context, *devices, &error);
@@ -382,93 +391,89 @@ xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **device_list)
       }
       */
 
-      device->accessible = FALSE;
+      /* xfburn_device sets accessible = false by default */
 
       str_vendor = libhal_device_get_property_string (priv->hal_context, *devices, "storage.vendor", &error);
       if (dbus_error_is_set (&error)) {
         g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
         dbus_error_free (&error);
-        g_free (device);
-        continue;
+        goto not_a_device;
       }
 
       str = libhal_device_get_property_string (priv->hal_context, *devices, "storage.model", &error);
       if (dbus_error_is_set (&error)) {
         g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
         dbus_error_free (&error);
-        g_free (device);
-        continue;
+        goto not_a_device;
       }
 
-      device->name = g_strconcat (str_vendor, " ", str, NULL);
+      name = xfburn_device_set_name (device, str_vendor, str);
       libhal_free_string (str_vendor);
       libhal_free_string (str);
 
-      str = libhal_device_get_property_string (priv->hal_context, *devices, "block.device", &error);
+      addr = libhal_device_get_property_string (priv->hal_context, *devices, "block.device", &error);
       if (dbus_error_is_set (&error)) {
         g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
         dbus_error_free (&error);
-        g_free (device);
-        continue;
+        goto not_a_device;
       }
 
 #ifdef DEBUG_NULL_DEVICE
-      g_strlcpy (device->addr, "stdio:/dev/null", BURN_DRIVE_ADR_LEN);
+      g_object_set (G_OBJECT (device), "address", "stdio:/dev/null", NULL);
 #else
-      g_strlcpy (device->addr, str, BURN_DRIVE_ADR_LEN);
+      g_object_set (G_OBJECT (device), "address", addr, NULL);
 #endif
-      libhal_free_string (str);
 
-      device->cdr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.cdr", &error);
+      g_object_set (G_OBJECT (device), "cdr", libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.cdr", &error), NULL);
       if (dbus_error_is_set (&error)) {
         g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
         dbus_error_free (&error);
-        g_free (device);
-        continue;
+        goto not_a_device;
       }
 
-      device->cdrw = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.cdrw", &error);
+      g_object_set (G_OBJECT (device), "cdrw", libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.cdrw", &error), NULL);
       if (dbus_error_is_set (&error)) {
         g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
         dbus_error_free (&error);
-        g_free (device);
-        continue;
+        goto not_a_device;
       }
 
-      device->dvdr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.dvdr", &error);
+      dvdr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.dvdr", &error);
       if (dbus_error_is_set (&error)) {
         g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
         dbus_error_free (&error);
-        g_free (device);
-        continue;
+        goto not_a_device;
       }
 
-      dvdr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.dvdplusr", &error);
+      dvdplusr = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.dvdplusr", &error);
       if (dbus_error_is_set (&error)) {
         g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
         dbus_error_free (&error);
-        g_free (device);
-        continue;
+        goto not_a_device;
       }
-      device->dvdr |= dvdr;
+      g_object_set (G_OBJECT (device), "dvdr", dvdr | dvdplusr, NULL);
 
-      device->dvdram = libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.dvdram", &error);
+      g_object_set (G_OBJECT (device), "dvdram", libhal_device_get_property_bool (priv->hal_context, *devices, "storage.cdrom.dvdram", &error), NULL);
       if (dbus_error_is_set (&error)) {
         g_warning ("Error getting HAL property for %s: %s", *devices, error.message);
         dbus_error_free (&error);
-        g_free (device);
-        continue;
+        goto not_a_device;
       }
 
-      if (!XFBURN_DEVICE_LIST_CAN_BURN_CONDITION (device)) {
-        g_message ("Ignoring reader '%s' at '%s'", device->name, device->addr);
-        g_free (device);
-        continue;
+      if (!xfburn_device_can_burn (device)) {
+        g_message ("Ignoring reader '%s' at '%s'", name, addr);
+        goto not_a_device;
       }
 
-      DBG ("Found writer '%s' at '%s'", device->name, device->addr);
+      DBG ("Found writer '%s' at '%s'", name, addr);
       *device_list = g_list_append (*device_list, device);
       n_devices++;
+      goto is_a_device;
+
+not_a_device:
+        g_object_unref (device);
+is_a_device:
+      libhal_free_string (addr);
     }
   }
 
@@ -489,8 +494,10 @@ xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *dev
   ThunarVfsPath *th_path;
 #endif
   gboolean unmounted = FALSE;
+  gchar *addr;
   
-  vol = libhal_volume_from_device_file (priv->hal_context, device->addr);
+  g_object_get (G_OBJECT (device), "address", &addr, NULL);
+  vol = libhal_volume_from_device_file (priv->hal_context, addr);
   if (vol == NULL) {
     /* if we can't get a volume, then we're assuming that there is no disc in the drive */
     return TRUE;
@@ -501,7 +508,7 @@ xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *dev
 
 #ifdef HAVE_THUNAR_VFS
   mp = libhal_volume_get_mount_point (vol);
-  DBG ("%s is mounted at %s", device->addr, mp);
+  DBG ("%s is mounted at %s", addr, mp);
 
 
   th_path = thunar_vfs_path_new (mp, NULL);

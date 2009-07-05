@@ -27,6 +27,7 @@
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
+#include <libburn.h>
 
 #include <unistd.h>
 #include <sys/types.h>
@@ -142,6 +143,9 @@ xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent)
   gtk_widget_destroy (dialog);
 }
 
+/**********************/
+/* Simple GUI helpers */
+/**********************/
 
 gboolean
 xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, const gchar *secondary_text)
@@ -169,3 +173,42 @@ xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, const gchar *
 
   return ok;
 }
+
+
+/*******************/
+/* libburn helpers */
+/*******************/
+
+static char * libburn_msg_prefix = "libburn-";
+
+void
+xfburn_capture_libburn_messages ()
+{
+  int ret;
+
+#ifdef DEBUG_LIBBURN 
+  ret = burn_msgs_set_severities ("NEVER", "DEBUG", libburn_msg_prefix);
+#else
+  ret = burn_msgs_set_severities ("ALL", "NEVER", libburn_msg_prefix);
+#endif
+
+  if (ret <= 0)
+    g_warning ("Failed to set libburn message severities, burn errors might not get detected");
+}
+
+void
+xfburn_console_libburn_messages ()
+{
+  int ret;
+
+#ifdef DEBUG_LIBBURN 
+  ret = burn_msgs_set_severities ("NEVER", "DEBUG", libburn_msg_prefix);
+#else
+  ret = burn_msgs_set_severities ("NEVER", "FATAL", libburn_msg_prefix);
+#endif
+
+  if (ret <= 0)
+    g_warning ("Failed to set libburn message severities");
+ 
+}
+

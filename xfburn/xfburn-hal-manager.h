@@ -56,7 +56,7 @@ typedef struct
 GType xfburn_hal_manager_get_type ();
 //GObject *xfburn_hal_manager_new (); /* use _create_global / _get_instance instead */
 gchar *xfburn_hal_manager_create_global ();
-XfburnHalManager * xfburn_hal_manager_get_instance ();
+XfburnHalManager * xfburn_hal_manager_get_global ();
 void xfburn_hal_manager_shutdown ();
 void xfburn_hal_manager_send_volume_changed ();
 int xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **devices);

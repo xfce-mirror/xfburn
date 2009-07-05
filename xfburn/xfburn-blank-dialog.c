@@ -279,9 +279,14 @@ static void fill_combo_mode (XfburnBlankDialog *dialog)
 
 static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
 {
-  int profile_no = xfburn_device_list_get_profile_no ();
-  gboolean erasable = xfburn_device_list_disc_is_erasable ();
-  enum burn_disc_status disc_state = xfburn_device_list_get_disc_status ();
+  int profile_no;
+  gboolean erasable;
+  enum burn_disc_status disc_state;
+
+  XfburnDeviceList *devlist = xfburn_device_list_new ();
+
+  g_object_get (G_OBJECT (xfburn_device_list_get_current_device (devlist)), "profile-no", &profile_no, "erasable", &erasable, "disc-status)", &disc_state, NULL);
+  g_object_unref (devlist);
   
   if (profile_no == 0x13) {
     /* in 0x14 no blanking is needed, we can only deformat */

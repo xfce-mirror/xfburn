@@ -185,12 +185,13 @@ int
 main (int argc, char **argv)
 {
   GtkWidget *mainwin;
-  gint n_drives;
+  gint n_burners;
   GError *error = NULL;
 #ifdef HAVE_HAL
   gchar *error_msg;
 #endif
   XfburnTranscoder *transcoder;
+  XfburnDeviceList *devlist;
 
 #if DEBUG > 0
   /* I have to disable this until GtkTreeView gets fixed,
@@ -293,16 +294,19 @@ main (int argc, char **argv)
 #endif
 
   xfburn_stock_init ();
-  n_drives = xfburn_device_list_init ();
+  devlist = xfburn_device_list_new ();
+  g_object_get (devlist, "num-burners", &n_burners, NULL);
 
-  if (n_drives < 1) {
+  if (n_burners < 1) {
     GtkMessageDialog *dialog = (GtkMessageDialog *) gtk_message_dialog_new (NULL,
                                     GTK_DIALOG_DESTROY_WITH_PARENT,
                                     GTK_MESSAGE_WARNING,
                                     GTK_BUTTONS_CLOSE,
-                                    ((const gchar *) _("No drives are currently available")));
+                                    ((const gchar *) _("No burners are currently available")));
     gtk_message_dialog_format_secondary_text (dialog,
-                                    _("Possibly the disc(s) are in use, and cannot get accessed.\n\nPlease unmount and restart the application.\n\nIf no disc is in the drive, check that you have read and write access to the drive with the current user."));
+                                    _("Possibly the disc(s) are in use, and cannot get accessed.\n\n"
+                                      "Please unmount and restart the application.\n\n"
+                                      "If no disc is in the drive, check that you have read and write access to the drive with the current user."));
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (GTK_WIDGET (dialog));
   }
@@ -402,6 +406,7 @@ main (int argc, char **argv)
 
   /*----------shutdown--------------------------------------------------*/
 
+  g_object_unref (devlist);
   g_object_unref (transcoder);
 
 #ifdef HAVE_HAL
@@ -415,8 +420,6 @@ main (int argc, char **argv)
   xfburn_settings_flush ();
   xfburn_settings_free ();
   
-  xfburn_device_list_free ();
-
   burn_finish ();
 
   gdk_threads_leave ();

@@ -30,6 +30,7 @@ xfburn_headers = 							\
 	xfburn-create-iso-progress-dialog.h				\
 	xfburn-hal-manager.h						\
 	xfburn-device-box.h						\
+	xfburn-device.h							\
 	xfburn-device-list.h						\
 	xfburn-progress-dialog.h					\
 	xfburn-main-window.h						\
@@ -69,6 +70,7 @@ xfburn_SOURCES =							\
 	xfburn-settings.c						\
 	xfburn-hal-manager.c						\
 	xfburn-device-box.c						\
+	xfburn-device.c							\
 	xfburn-device-list.c						\
 	xfburn-progress-dialog.c					\
 	xfburn-main.c							\

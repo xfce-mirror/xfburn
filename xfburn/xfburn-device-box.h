@@ -45,9 +45,6 @@ typedef struct
 typedef struct
 {
   GtkVBoxClass parent_class;
-  
-  void (*device_changed) (XfburnDeviceBox *box, XfburnDevice *device);
-  void (*disc_refreshed) (XfburnDeviceBox *box, XfburnDevice *device);
 } XfburnDeviceBoxClass;
 
 typedef enum
@@ -79,7 +76,6 @@ GType xfburn_device_box_get_type (void);
 
 GtkWidget *xfburn_device_box_new (XfburnDeviceBoxFlags);
 
-gchar *xfburn_device_box_get_selected (XfburnDeviceBox *box);
 XfburnDevice *xfburn_device_box_get_selected_device (XfburnDeviceBox *box);
 
 gint xfburn_device_box_get_speed (XfburnDeviceBox *box);

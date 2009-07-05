@@ -24,7 +24,41 @@
 #include <config.h>
 #endif
 
+#include <glib-object.h>
 #include <libburn.h>
+
+#include "xfburn-device.h"
+
+G_BEGIN_DECLS
+
+#define XFBURN_TYPE_DEVICE_LIST xfburn_device_list_get_type()
+
+#define XFBURN_DEVICE_LIST(obj) \
+    (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DEVICE_LIST, XfburnDeviceList))
+
+#define XFBURN_DEVICE_LIST_CLASS(klass) \
+    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DEVICE_LIST, XfburnDeviceListClass))
+
+#define XFBURN_IS_DEVICE_LIST(obj) \
+    (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DEVICE_LIST))
+
+#define XFBURN_IS_DEVICE_LIST_CLASS(klass) \
+    (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DEVICE_LIST))
+
+#define XFBURN_DEVICE_LIST_GET_CLASS(obj) \
+    (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DEVICE_LIST, XfburnDeviceListClass))
+
+typedef struct {
+  GObject parent;
+} XfburnDeviceList;
+
+typedef struct {
+  GObjectClass parent_class;
+  
+  void (*device_changed) (XfburnDeviceList *devlist, XfburnDevice *device);
+  void (*volume_changed) (XfburnDeviceList *devlist, XfburnDevice *device);
+} XfburnDeviceListClass;
+
 
 /* what kind of recordable discs are there */
 /* usused so far */
@@ -54,46 +88,14 @@ enum XfburnDiscProfiles {
   XFBURN_PROFILE_BD_RE = 0x43,
 };
 
-typedef struct
-{
-  gchar *name;
-  gchar addr[BURN_DRIVE_ADR_LEN];
-  gboolean accessible;
+GType xfburn_device_list_get_type (void);
 
-  gint buffer_size;
-  gboolean dummy_write;
-  
-  gboolean cdr;
-  gboolean cdrw;
-  GSList *supported_cdr_speeds;
+XfburnDeviceList* xfburn_device_list_new (void);
 
-  gint tao_block_types;
-  gint sao_block_types;
-  gint raw_block_types;
-  gint packet_block_types;
-
-  gboolean dvdr;
-  gboolean dvdram;
-
-} XfburnDevice;
-
-#define XFBURN_DEVICE_LIST_CAN_BURN_CONDITION(dev) ((dev)->cdr || (dev)->cdrw || (dev)->dvdr || (dev)->dvdram)
-
-gint xfburn_device_list_init ();
-XfburnDevice * xfburn_device_lookup_by_name (const gchar * name);
-GList * xfburn_device_list_get_list ();
-enum burn_disc_status xfburn_device_list_get_disc_status ();
-int xfburn_device_list_get_profile_no ();
-const char * xfburn_device_list_get_profile_name ();
-gboolean xfburn_device_list_disc_is_erasable ();
-void xfburn_device_list_free ();
-
-gboolean xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info);
-gboolean xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info);
-gboolean xfburn_device_release (struct burn_drive_info *drive_info, gboolean eject);
-void xfburn_device_free (XfburnDevice * device);
-
-void xfburn_device_list_capture_messages ();
-void xfburn_device_list_console_messages ();
+XfburnDevice * xfburn_device_list_lookup_by_name (XfburnDeviceList *devlist, const gchar * name);
+gchar * xfburn_device_list_get_selected (XfburnDeviceList *devlist);
+GtkWidget * xfburn_device_list_get_refresh_button (XfburnDeviceList *devlist);
+GtkWidget * xfburn_device_list_get_device_combo (XfburnDeviceList *devlist);
+XfburnDevice * xfburn_device_list_get_current_device (XfburnDeviceList *devlist);
 
 #endif /* __XFBURN_DEVICE_LIST_H__ */

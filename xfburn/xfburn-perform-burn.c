@@ -28,6 +28,7 @@
 
 #include "xfburn-perform-burn.h"
 #include "xfburn-progress-dialog.h"
+#include "xfburn-utils.h"
 
 /*************/
 /* internals */
@@ -119,7 +120,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   }
 
   /* set us up to receive libburn errors */
-  xfburn_device_list_capture_messages ();
+  xfburn_capture_libburn_messages ();
 
   /* Install the default libburn abort signal handler.
    * Hopefully this means the drive won't be left in a burning state if we catch a signal */
@@ -294,7 +295,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   if (ret < 0)
     g_warning ("Fatal error while trying to retrieve libburn message!");
 
-  xfburn_device_list_console_messages ();
+  xfburn_console_libburn_messages ();
 
   percent = (gdouble) progress.buffer_min_fill / (gdouble) progress.buffer_capacity;
   xfburn_progress_dialog_set_buffer_bar_min_fill (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
