@@ -290,6 +290,8 @@ main (int argc, char **argv)
     gdk_threads_leave ();
     burn_finish ();
     return EXIT_FAILURE;
+  } else {
+    g_message ("Using HAL");
   }
 #endif
 
