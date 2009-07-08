@@ -56,6 +56,7 @@ static void xfburn_preferences_dialog_init (XfburnPreferencesDialog * sp);
 static void refresh_devices_list (XfburnPreferencesDialog * dialog);
 static void scan_button_clicked_cb (GtkWidget * button, gpointer user_data);
 static void xfburn_preferences_dialog_response_cb (XfburnPreferencesDialog * dialog, guint response_id, XfburnPreferencesDialogPrivate * priv);
+static void cb_show_hidden_clicked (GtkButton * Button, gpointer user_data);
 
 enum {
   SETTINGS_LIST_PIXBUF_COLUMN,
@@ -207,6 +208,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   priv->check_show_hidden = gtk_check_button_new_with_mnemonic (_("Show _hidden files"));
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_show_hidden, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->check_show_hidden);
+  g_signal_connect (G_OBJECT (priv->check_show_hidden), "clicked", G_CALLBACK (cb_show_hidden_clicked), NULL);
 
   priv->check_show_human_readable = gtk_check_button_new_with_mnemonic (_("Show human_readable filesizes"));
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_show_human_readable, FALSE, FALSE, BORDER);
@@ -454,6 +456,12 @@ static void
 scan_button_clicked_cb (GtkWidget * button, gpointer user_data)
 {
   refresh_devices_list (user_data);
+}
+
+static void 
+cb_show_hidden_clicked (GtkButton * Button, gpointer user_data)
+{
+  xfce_warn (_("Changing this setting only takes full effect after a program restart."));
 }
 
 /* public */

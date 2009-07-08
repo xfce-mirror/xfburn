@@ -31,6 +31,7 @@
 #include "xfburn-fs-browser.h"
 #include "xfburn-data-composition.h"
 #include "xfburn-utils.h"
+#include "xfburn-settings.h"
 
 /* prototypes */
 static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass);
@@ -132,6 +133,7 @@ load_directory_in_browser (XfburnFsBrowser * browser, const gchar * path, GtkTre
   GtkIconTheme *icon_theme;
   const gchar *dir_entry;
   int x, y;
+  gboolean show_hidden;
 
   dir = g_dir_open (path, 0, &error);
   if (!dir) {
@@ -148,15 +150,23 @@ load_directory_in_browser (XfburnFsBrowser * browser, const gchar * path, GtkTre
   icon_theme = gtk_icon_theme_get_for_screen (screen);
   icon = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-directory", x, 0, NULL);
 
+  show_hidden = xfburn_settings_get_boolean ("show-hidden-files", FALSE);
+
   while ((dir_entry = g_dir_read_name (dir))) {
     gchar *full_path;
 
+    if (dir_entry[0] == '.') {
+      /* skip . and .. */
+      if (dir_entry[1] == '\0' ||
+          (dir_entry[1] == '.' && dir_entry[2] == '\0'))
+        continue;
+
+      if (!show_hidden)
+        continue;
+    }
+
     full_path = g_build_filename (path, dir_entry, NULL);
-    if (dir_entry[0] != '.' && g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
-#if 0
-      &&
-        !g_file_test (full_path, G_FILE_TEST_IS_SYMLINK)) {
-#endif
+    if (g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
       GtkTreeIter iter;
       GtkTreeIter iter_empty;
 

@@ -38,6 +38,7 @@
 #include "xfburn-directory-browser.h"
 #include "xfburn-data-composition.h"
 #include "xfburn-utils.h"
+#include "xfburn-settings.h"
 
 #define XFBURN_DIRECTORY_BROWSER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DIRECTORY_BROWSER, XfburnDirectoryBrowserPrivate))
 
@@ -234,6 +235,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   gchar *temp;
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
+  gboolean show_hidden;
   
   dir = g_dir_open (path, 0, &error);
   if (!dir) {
@@ -256,9 +258,21 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   icon_directory = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-directory", x, 0, NULL);
   icon_file = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-regular", x, 0, NULL);
 
+  show_hidden = xfburn_settings_get_boolean ("show-hidden-files", FALSE);
+
   while ((dir_entry = g_dir_read_name (dir))) {
     gchar *full_path;
     struct stat s;
+
+    if (dir_entry[0] == '.') {
+      /* skip . and .. */
+      if (dir_entry[1] == '\0' ||
+          (dir_entry[1] == '.' && dir_entry[2] == '\0'))
+        continue;
+
+      if (!show_hidden)
+        continue;
+    }
 
     full_path = g_build_filename (path, dir_entry, NULL);
 #if 0
@@ -268,7 +282,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
     }
 #endif
 
-    if (dir_entry[0] != '.' && (stat (full_path, &s) == 0)) {
+    if (stat (full_path, &s) == 0) {
       gchar *humansize;
 
       gchar *path_utf8;
