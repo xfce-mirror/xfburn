@@ -283,7 +283,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE },
-                                { "text/plain", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN },
+                                { "text/plain;charset=utf-8", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN },
 #ifdef HAVE_THUNAR_VFS
                                 { "text/uri-list", 0, DATA_COMPOSITION_DND_TARGET_TEXT_URI_LIST },
 #endif
@@ -1604,19 +1604,22 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     xfburn_default_cursor (priv->content);
   }
   /* drag from the file selector */
-  else if (sd->target == gdk_atom_intern ("text/plain", FALSE)) {
+  else if (sd->target == gdk_atom_intern ("text/plain;charset=utf-8", FALSE)) {
     ThreadAddFilesDragParams *params;
     const gchar *file = NULL;
+    gchar *full_paths;
 
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
+
+    full_paths = (gchar *) gtk_selection_data_get_text (sd);
     
-    file = strtok ((gchar *) sd->data, "\n");
+    file = strtok ((gchar *) full_paths, "\n");
     while (file) {
       gchar *full_path;
 
       if (g_str_has_prefix (file, "file://"))
         full_path = g_build_filename (&file[7], NULL);
-      else if (g_str_has_prefix ((gchar *) sd->data, "file:"))
+      else if (g_str_has_prefix (file, "file:"))
         full_path = g_build_filename (&file[5], NULL);
       else
         full_path = g_build_filename (file, NULL);
@@ -1629,6 +1632,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
       file = strtok (NULL, "\n");
     }
+    g_free (full_paths);
 
     priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
     priv->path_where_insert = path_where_insert;

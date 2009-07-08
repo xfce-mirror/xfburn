@@ -318,7 +318,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE },
-                                { "text/plain", 0, AUDIO_COMPOSITION_DND_TARGET_TEXT_PLAIN },
+                                { "text/plain;charset=utf-8", 0, AUDIO_COMPOSITION_DND_TARGET_TEXT_PLAIN },
                                 { "text/uri-list", 0, AUDIO_COMPOSITION_DND_TARGET_TEXT_URI_LIST },
                               };
 
@@ -1688,20 +1688,23 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     xfburn_default_cursor (priv->content);
   }
   /* drag from the file selector */
-  else if (sd->target == gdk_atom_intern ("text/plain", FALSE)) {
+  else if (sd->target == gdk_atom_intern ("text/plain;charset=utf-8", FALSE)) {
     ThreadAddFilesDragParams *params;
     const gchar *file = NULL;
     gboolean ret = FALSE;
+    gchar *full_paths;
 
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
     
-    file = strtok ((gchar *) sd->data, "\n");
+    full_paths = (gchar *) gtk_selection_data_get_text (sd);
+
+    file = strtok ((gchar *) full_paths, "\n");
     while (file) {
       gchar *full_path;
 
       if (g_str_has_prefix (file, "file://"))
         full_path = g_build_filename (&file[7], NULL);
-      else if (g_str_has_prefix ((gchar *) sd->data, "file:"))
+      else if (g_str_has_prefix (file, "file:"))
         full_path = g_build_filename (&file[5], NULL);
       else
         full_path = g_build_filename (file, NULL);
@@ -1723,6 +1726,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
       file = strtok (NULL, "\n");
     }
+    g_free (full_paths);
 
     /* paths actually get sent to us in reverse order,
      * so no reverse is necessary to add them in the same order as selected.

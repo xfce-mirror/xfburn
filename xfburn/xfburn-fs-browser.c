@@ -84,7 +84,7 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   GtkCellRenderer *cell_icon, *cell_directory;
   GtkTreeSelection *selection;
 
-  GtkTargetEntry gte[] = { {"text/plain", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN} };
+  GtkTargetEntry gte[] = { {"text/plain;charset=utf-8", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN} };
 
   model = gtk_tree_store_new (FS_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), FS_BROWSER_COLUMN_DIRECTORY, GTK_SORT_ASCENDING);

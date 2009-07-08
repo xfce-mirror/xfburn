@@ -116,7 +116,7 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
   GtkCellRenderer *cell_icon, *cell_file;
   GtkTreeSelection *selection;
 
-  GtkTargetEntry gte[] = { {"text/plain", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN} };
+  GtkTargetEntry gte[] = { {"text/plain;charset=utf-8", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN} };
     
   model = gtk_list_store_new (DIRECTORY_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING);
@@ -270,6 +270,22 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
 
     if (dir_entry[0] != '.' && (stat (full_path, &s) == 0)) {
       gchar *humansize;
+
+      gchar *path_utf8;
+      GError *conv_error = NULL;
+
+      /* from the g_dir_read_name () docs: most of the time Linux stores 
+         filenames in utf8, but older versions might not, so convert here */
+
+      path_utf8 = g_filename_to_utf8 (full_path, -1, NULL, NULL, &conv_error);
+
+      if (!path_utf8 || conv_error) {
+        g_warning ("Failed to convert filename '%s' to utf8: %s. Falling back to native encoding.", full_path, conv_error->message);
+        path_utf8 = g_strdup (full_path);
+
+        if (conv_error)
+          g_error_free (conv_error);
+      }
       
       humansize = xfburn_humanreadable_filesize (s.st_size);
       
@@ -282,7 +298,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
                             DIRECTORY_BROWSER_COLUMN_HUMANSIZE, humansize,
                             DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) s.st_size,
-                            DIRECTORY_BROWSER_COLUMN_TYPE, _(DIRECTORY), DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
+                            DIRECTORY_BROWSER_COLUMN_TYPE, _(DIRECTORY), DIRECTORY_BROWSER_COLUMN_PATH, path_utf8, -1);
       }
       else if ((s.st_mode & S_IFREG)) {
         GtkTreeIter iter;
@@ -298,7 +314,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
 		
 #ifdef HAVE_THUNAR_VFS
 		mime_database = thunar_vfs_mime_database_get_default ();
-		mime_info = thunar_vfs_mime_database_get_info_for_file (mime_database, full_path, NULL);
+		mime_info = thunar_vfs_mime_database_get_info_for_file (mime_database, path_utf8, NULL);
 		
 		mime_icon_name = thunar_vfs_mime_info_lookup_icon_name (mime_info, icon_theme);
 		mime_icon = gtk_icon_theme_load_icon (icon_theme, mime_icon_name, x, 0, NULL);
@@ -310,7 +326,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
                             DIRECTORY_BROWSER_COLUMN_HUMANSIZE, humansize,
                             DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) s.st_size,
-                            DIRECTORY_BROWSER_COLUMN_TYPE, mime_str, DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
+                            DIRECTORY_BROWSER_COLUMN_TYPE, mime_str, DIRECTORY_BROWSER_COLUMN_PATH, path_utf8, -1);
 		
 		if (G_LIKELY (G_IS_OBJECT (mime_icon)))
 		  g_object_unref (mime_icon);
@@ -322,10 +338,11 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
                             DIRECTORY_BROWSER_COLUMN_FILE, dir_entry,
                             DIRECTORY_BROWSER_COLUMN_HUMANSIZE, humansize,
                             DIRECTORY_BROWSER_COLUMN_SIZE, (guint64) s.st_size,
-                            DIRECTORY_BROWSER_COLUMN_TYPE, _("File"), DIRECTORY_BROWSER_COLUMN_PATH, full_path, -1);
+                            DIRECTORY_BROWSER_COLUMN_TYPE, _("File"), DIRECTORY_BROWSER_COLUMN_PATH, path_utf8, -1);
 #endif
       }
       g_free (humansize);
+      g_free (path_utf8);
     }
     g_free (full_path);
   }
