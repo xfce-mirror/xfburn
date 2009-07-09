@@ -283,10 +283,10 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE },
-                                { "text/plain;charset=utf-8", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN },
 #ifdef HAVE_THUNAR_VFS
                                 { "text/uri-list", 0, DATA_COMPOSITION_DND_TARGET_TEXT_URI_LIST },
 #endif
+                                { "text/plain;charset=utf-8", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN },
                               };
 
   priv->full_paths_to_add = NULL;
@@ -1603,7 +1603,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     gtk_widget_hide (priv->progress);
     xfburn_default_cursor (priv->content);
   }
-  /* drag from the file selector */
+  /* drag from the file selector, or nautilus */
   else if (sd->target == gdk_atom_intern ("text/plain;charset=utf-8", FALSE)) {
     ThreadAddFilesDragParams *params;
     const gchar *file = NULL;
@@ -1617,6 +1617,24 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     while (file) {
       gchar *full_path;
 
+#ifdef HAVE_THUNAR_VFS
+      ThunarVfsPath *vfs_path;
+      GError *vfs_error = NULL;
+
+      vfs_path = thunar_vfs_path_new (file, &vfs_error);
+
+      if (vfs_error) {
+        g_warning ("Failed to create vfs path for '%s': %s", file, vfs_error->message);
+        g_error_free (vfs_error);
+        continue;
+      }
+
+      if (thunar_vfs_path_get_scheme (vfs_path) != THUNAR_VFS_PATH_SCHEME_FILE)
+        continue;
+      full_path = thunar_vfs_path_dup_string (vfs_path);
+
+#else /* no thunar-vfs */
+
       if (g_str_has_prefix (file, "file://"))
         full_path = g_build_filename (&file[7], NULL);
       else if (g_str_has_prefix (file, "file:"))
@@ -1626,6 +1644,9 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
       if (full_path[strlen (full_path) - 1] == '\r')
         full_path[strlen (full_path) - 1] = '\0';
+#endif
+
+      DBG ("Adding path '%s'", full_path);
 
       /* remember path to add it later in another thread */
       priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
