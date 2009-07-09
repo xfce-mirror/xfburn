@@ -310,8 +310,10 @@ get_libburn_device_list (XfburnDeviceList *devlist)
   guint i;
   gint ret; 
 
+  DBG ("Before scanning for drives");
   while ((ret = burn_drive_scan (&drives, &(priv->num_drives))) == 0)
     usleep (1002);
+  DBG ("After scanning for drives");
 
   if (ret < 0)
     g_warning ("An error occurred while scanning for available drives");
@@ -351,6 +353,8 @@ get_libburn_device_list (XfburnDeviceList *devlist)
 
   if (priv->num_drives > 0 && priv->num_burners < 1)
     g_warning ("There are %d drives in your system, but none are capable of burning", priv->num_drives);
+
+  DBG ("Done");
 }
 
 static XfburnDevice *
