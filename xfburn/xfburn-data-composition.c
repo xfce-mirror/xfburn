@@ -1784,6 +1784,7 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
       IsoNode *node = NULL;
       IsoDir *dir = NULL;
       int r;
+      gchar *basename;
       
       gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_TYPE, &type,
 			  DATA_COMPOSITION_COLUMN_CONTENT, &name, DATA_COMPOSITION_COLUMN_PATH, &src, -1);
@@ -1813,6 +1814,25 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
           g_error ("Failed adding %s as a node to the image: code %d!", src, r);
       }
 
+      basename = g_path_get_basename (src);
+
+      /* check if the file has been renamed */
+      if (strcmp (basename, name) != 0) {
+        /* rename the iso_node */
+        r = iso_node_set_name (node, name);
+
+        if (r == 0) {
+          xfce_warn (_("Duplicate filename '%s' for '%s'"), name, src);
+
+          g_free (basename);
+          g_free (name);
+          g_free (src);
+
+          continue;
+        }
+      }
+
+      g_free (basename);
       g_free (name);
       g_free (src);
 
