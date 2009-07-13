@@ -104,7 +104,7 @@ static XfburnBlankMode get_selected_mode (XfburnBlankDialogPrivate *priv);
 static gboolean thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *drive_info);
 static void thread_blank (ThreadBlankParams * params);
 static void xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, gpointer user_data);
-static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBlankDialog * dialog);
+static void cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice *device, XfburnBlankDialog * dialog);
 
 static XfceTitledDialogClass *parent_class = NULL;
 
@@ -204,7 +204,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
 
   /* devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CDRW_WRITERS | BLANK_MODE);
-  g_signal_connect (G_OBJECT (priv->device_box), "disc-refreshed", G_CALLBACK (cb_disc_refreshed), obj);
+  g_signal_connect (G_OBJECT (priv->device_box), "volume-changed", G_CALLBACK (cb_volume_changed), obj);
   gtk_widget_show (priv->device_box);
 
   frame = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
@@ -285,7 +285,7 @@ static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
 
   XfburnDeviceList *devlist = xfburn_device_list_new ();
 
-  g_object_get (G_OBJECT (xfburn_device_list_get_current_device (devlist)), "profile-no", &profile_no, "erasable", &erasable, "disc-status)", &disc_state, NULL);
+  g_object_get (G_OBJECT (xfburn_device_list_get_current_device (devlist)), "profile-no", &profile_no, "erasable", &erasable, "disc-status", &disc_state, NULL);
   g_object_unref (devlist);
   
   if (profile_no == 0x13) {
@@ -522,7 +522,7 @@ xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, g
 }
    
 static void
-cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBlankDialog * dialog)
+cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice *device, XfburnBlankDialog * dialog)
 {
   //XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (dialog);
 
@@ -537,7 +537,7 @@ xfburn_blank_dialog_new ()
   GtkWidget *obj;
 
   obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_BLANK_DIALOG, NULL));
-  cb_disc_refreshed (NULL, NULL, XFBURN_BLANK_DIALOG (obj));
+  cb_volume_changed (NULL, TRUE, NULL, XFBURN_BLANK_DIALOG (obj));
 
   xfburn_main_enter_window ();
 

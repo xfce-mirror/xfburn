@@ -67,8 +67,6 @@ typedef struct
   */
 
   gint response;
-
-  XfburnDeviceList *devlist;
 } XfburnBurnDataCompositionBaseDialogPrivate;
 
 enum {
@@ -105,7 +103,7 @@ static void cb_proceed_clicked (GtkButton * button, XfburnBurnDataCompositionBas
 */
 static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
-static void cb_disc_refreshed (XfburnDeviceList *devlist, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog);
+static void cb_volume_changed (XfburnDeviceBox *box, gboolean device_changed, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_id,
                                 XfburnBurnDataCompositionBaseDialogPrivate * priv);
 
@@ -188,10 +186,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_MODE_SELECTION | SHOW_SPEED_SELECTION);
   gtk_widget_show (priv->device_box);
 
-  priv->devlist = xfburn_device_list_new ();
-  /* FIXME: change name of callback */
-  g_signal_connect (G_OBJECT (priv->devlist), "device-change-end", G_CALLBACK (cb_disc_refreshed), obj);
-  g_signal_connect (G_OBJECT (priv->devlist), "volume-change-end", G_CALLBACK (cb_disc_refreshed), obj);
+  g_signal_connect (G_OBJECT (priv->device_box), "volume-changed", G_CALLBACK (cb_volume_changed), obj);
 
   priv->frame_device = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
   gtk_widget_show (priv->frame_device);
@@ -295,7 +290,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
 
-  cb_disc_refreshed (priv->devlist, xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box)), obj);
+  cb_volume_changed (XFBURN_DEVICE_BOX (priv->device_box), TRUE, xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box)), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
 
   return gobj;
@@ -338,8 +333,6 @@ xfburn_burn_data_composition_base_dialog_finalize (GObject * object)
 
   iso_image_unref (priv->image);
   
-  g_object_unref (G_OBJECT (priv->devlist));
-
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -419,14 +412,12 @@ cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
 }
 
 static void
-cb_disc_refreshed (XfburnDeviceList *devlist, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog)
+cb_volume_changed (XfburnDeviceBox *box, gboolean device_changed, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog)
 {
   XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
   gboolean valid_disc;
 
-  DBG ("trace");
-
-  g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
+  g_object_get (box, "valid", &valid_disc, NULL);
 
   /*
    * Disabled: change button_proceed functionality

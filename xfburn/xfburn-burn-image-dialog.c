@@ -74,8 +74,7 @@ static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * kl
 static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
 
 void burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error);
-static void cb_device_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnBurnImageDialog * dialog);
-static void cb_volume_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnBurnImageDialog * dialog);
+static void cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnBurnImageDialog * dialog);
 static void cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data);
 
 static void update_image_label (GtkFileChooser *chooser, XfburnBurnImageDialog * dialog);
@@ -211,12 +210,11 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 
   devlist = xfburn_device_list_new ();
 
-  g_signal_connect (G_OBJECT (devlist), "device-change-end", G_CALLBACK (cb_device_change_end), obj);
   g_signal_connect (G_OBJECT (devlist), "volume-change-end", G_CALLBACK (cb_volume_change_end), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), obj);
   device = xfburn_device_list_get_current_device (devlist);
 
-  cb_volume_change_end (devlist, device, obj);
+  cb_volume_change_end (devlist, TRUE, device, obj);
 
   if (device)
     gtk_widget_set_sensitive (priv->check_dummy, xfburn_device_can_dummy_write (device));
@@ -383,16 +381,12 @@ burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error
 }
 
 static void
-cb_device_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnBurnImageDialog * dialog)
+cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnBurnImageDialog * dialog)
 {
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
 
-  gtk_widget_set_sensitive (priv->check_dummy, xfburn_device_can_dummy_write (device));
-}
-
-static void
-cb_volume_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnBurnImageDialog * dialog)
-{
+  if (device_changed)
+    gtk_widget_set_sensitive (priv->check_dummy, xfburn_device_can_dummy_write (device));
   check_burn_button (dialog);
 }
 

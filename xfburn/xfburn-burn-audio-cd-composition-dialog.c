@@ -76,7 +76,7 @@ static void xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object);
 static void xfburn_burn_audio_cd_composition_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
 static void xfburn_burn_audio_cd_composition_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec);
 
-static void cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog);
+static void cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog);
 static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_id,
                                 XfburnBurnAudioCdCompositionDialogPrivate * priv);
 
@@ -154,8 +154,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
 
   /* burning devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_SPEED_SELECTION | ACCEPT_ONLY_CD);
-  g_signal_connect (G_OBJECT (priv->device_box), "disc-refreshed", G_CALLBACK (cb_disc_refreshed), obj);
-  g_signal_connect (G_OBJECT (priv->device_box), "device-changed", G_CALLBACK (cb_disc_refreshed), obj);
+  g_signal_connect (G_OBJECT (priv->device_box), "volume-changed", G_CALLBACK (cb_volume_changed), obj);
   gtk_widget_show (priv->device_box);
 
   priv->frame_device = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
@@ -229,7 +228,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
 
-  cb_disc_refreshed (priv->device_box, xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box)), obj);
+  cb_volume_changed (priv->device_box, TRUE, xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box)), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
 
   return gobj;
@@ -275,7 +274,7 @@ xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object)
 
 /* internals */
 static void
-cb_disc_refreshed (GtkWidget *device_box, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog)
+cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog)
 {
   XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
   gboolean valid_disc;

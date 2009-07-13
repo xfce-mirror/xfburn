@@ -38,6 +38,7 @@
 #include "xfburn-utils.h"
 
 #include "xfburn-device-list.h"
+#include "xfburn-cclosure-marshal.h"
 
 /*- private prototypes -*/
 
@@ -75,8 +76,6 @@ enum {
 };
 
 enum {
-  DEVICE_CHANGE_START,
-  DEVICE_CHANGE_END,
   VOLUME_CHANGE_START,
   VOLUME_CHANGE_END,
   LAST_SIGNAL,
@@ -194,22 +193,14 @@ xfburn_device_list_class_init (XfburnDeviceListClass *klass)
   object_class->constructor  = xfburn_device_list_constructor;
   object_class->finalize     = xfburn_device_list_finalize;
 
-  signals[DEVICE_CHANGE_START] = g_signal_new ("device-change-start", XFBURN_TYPE_DEVICE_LIST, G_SIGNAL_ACTION,
-                                          0,
-                                          NULL, NULL, g_cclosure_marshal_VOID__VOID,
-                                          G_TYPE_NONE, 1, G_TYPE_STRING);
-  signals[DEVICE_CHANGE_END] = g_signal_new ("device-change-end", XFBURN_TYPE_DEVICE_LIST, G_SIGNAL_ACTION,
-                                          G_STRUCT_OFFSET (XfburnDeviceListClass, device_changed),
-                                          NULL, NULL, g_cclosure_marshal_VOID__OBJECT,
-                                          G_TYPE_NONE, 1, XFBURN_TYPE_DEVICE);
   signals[VOLUME_CHANGE_START] = g_signal_new ("volume-change-start", XFBURN_TYPE_DEVICE_LIST, G_SIGNAL_ACTION,
                                           0,
-                                          NULL, NULL, g_cclosure_marshal_VOID__OBJECT,
-                                          G_TYPE_NONE, 1, XFBURN_TYPE_DEVICE);
+                                          NULL, NULL, g_cclosure_marshal_VOID__BOOLEAN,
+                                          G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
   signals[VOLUME_CHANGE_END] = g_signal_new ("volume-change-end", XFBURN_TYPE_DEVICE_LIST, G_SIGNAL_ACTION,
                                           G_STRUCT_OFFSET (XfburnDeviceListClass, volume_changed),
-                                          NULL, NULL, g_cclosure_marshal_VOID__OBJECT,
-                                          G_TYPE_NONE, 1, XFBURN_TYPE_DEVICE);
+                                          NULL, NULL, xfburn_cclosure_marshal_VOID__BOOLEAN_OBJECT,
+                                          G_TYPE_NONE, 2, G_TYPE_BOOLEAN, XFBURN_TYPE_DEVICE);
     
   g_object_class_install_property (object_class, PROP_NUM_BURNERS, 
                                    g_param_spec_int ("num-burners", _("Number of burners in the system"),
@@ -379,9 +370,7 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceList *devlist)
   XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
   XfburnDevice *device;
 
-  DBG ("trace");
-  
-  g_signal_emit (G_OBJECT (devlist), signals[DEVICE_CHANGE_START], 0);
+  g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_START], 0, TRUE);
   device = get_selected_device (combo);
 
   if (device == NULL)
@@ -389,7 +378,7 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceList *devlist)
 
   priv->curr_device = device;
   xfburn_device_refresh_info (device, TRUE);
-  g_signal_emit (G_OBJECT (devlist), signals[DEVICE_CHANGE_END], 0, device);
+  g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_END], 0, TRUE, device);
 }
 
 #ifdef HAVE_HAL
@@ -404,7 +393,6 @@ cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceList *devlist)
 static void
 cb_refresh_clicked (GtkButton *button, XfburnDeviceList *devlist)
 {
-  DBG ("trace");
   refresh (devlist);
 }
 
@@ -413,10 +401,10 @@ refresh (XfburnDeviceList *devlist)
 {
   XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
 
-  g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_START], 0, priv->curr_device);
+  g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_START], 0, FALSE);
   usleep (1000001);
   xfburn_device_refresh_info (priv->curr_device, TRUE);
-  g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_END], 0, priv->curr_device);
+  g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_END], 0, FALSE, priv->curr_device);
 }
 
 

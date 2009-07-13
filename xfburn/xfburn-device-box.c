@@ -34,6 +34,7 @@
 #include "xfburn-settings.h"
 #include "xfburn-utils.h"
 #include "xfburn-blank-dialog.h"
+#include "xfburn-cclosure-marshal.h"
 
 #define XFBURN_DEVICE_BOX_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBoxPrivate))
 
@@ -57,6 +58,11 @@ enum {
   MODE_TEXT_COLUMN,
   MODE_VALUE_COLUMN,
   MODE_N_COLUMNS,
+};
+
+enum {
+  VOLUME_CHANGED,
+  LAST_SIGNAL
 };
 
 /* private struct */
@@ -84,6 +90,9 @@ typedef struct
 
   gboolean have_asked_for_blanking;
   gboolean accept_only_cd;
+
+  gulong handler_volume_change_start;
+  gulong handler_volume_change_end;
   
   XfburnDeviceList *devlist;
 } XfburnDeviceBoxPrivate;
@@ -103,10 +112,8 @@ static void refresh_drive_info (XfburnDeviceBox *box, XfburnDevice *device);
 static void fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device);
 static void fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device);
 
-static void cb_device_change_start (XfburnDeviceList *devlist, XfburnDeviceBox *box);
-static void cb_device_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box);
-static void cb_volume_change_start (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box);
-static void cb_volume_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box);
+static void cb_volume_change_start (XfburnDeviceList *devlist, gboolean device_changed, XfburnDeviceBox *box);
+static void cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnDeviceBox *box);
 
 /* globals */
 static GtkVBoxClass *parent_class = NULL;
@@ -114,6 +121,8 @@ static GtkVBoxClass *parent_class = NULL;
 /*************************/
 /* XfburnDeviceBox class */
 /*************************/
+
+static guint signals[LAST_SIGNAL];
 
 GType
 xfburn_device_box_get_type (void)
@@ -155,6 +164,10 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
   object_class->set_property = xfburn_device_box_set_property;
   object_class->get_property = xfburn_device_box_get_property;
   
+  signals[VOLUME_CHANGED] = g_signal_new ("volume_changed", XFBURN_TYPE_DEVICE_BOX, G_SIGNAL_ACTION,
+                                          G_STRUCT_OFFSET (XfburnDeviceBoxClass, volume_changed),
+                                          NULL, NULL, xfburn_cclosure_marshal_VOID__BOOLEAN_OBJECT,
+                                          G_TYPE_NONE, 2, G_TYPE_BOOLEAN, XFBURN_TYPE_DEVICE);
     
   g_object_class_install_property (object_class, PROP_SHOW_WRITERS_ONLY, 
                                    g_param_spec_boolean ("show-writers-only", _("Show writers only"),
@@ -200,10 +213,8 @@ xfburn_device_box_constructor (GType type, guint n_construct_properties, GObject
   priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
 
   priv->devlist = devlist = xfburn_device_list_new ();
-  g_signal_connect (G_OBJECT (devlist), "device-change-start", G_CALLBACK (cb_device_change_start), box);
-  g_signal_connect (G_OBJECT (devlist), "device-change-end", G_CALLBACK (cb_device_change_end), box);
-  g_signal_connect (G_OBJECT (devlist), "volume-change-start", G_CALLBACK (cb_volume_change_start), box);
-  g_signal_connect (G_OBJECT (devlist), "volume-change-end", G_CALLBACK (cb_volume_change_end), box);
+  priv->handler_volume_change_start = g_signal_connect (G_OBJECT (devlist), "volume-change-start", G_CALLBACK (cb_volume_change_start), box);
+  priv->handler_volume_change_end   = g_signal_connect (G_OBJECT (devlist), "volume-change-end", G_CALLBACK (cb_volume_change_end), box);
 
   /* devices */
   priv->combo_device = xfburn_device_list_get_device_combo (devlist);
@@ -285,7 +296,11 @@ xfburn_device_box_finalize (GObject * object)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (object);
 
+  g_signal_handler_disconnect (priv->devlist, priv->handler_volume_change_start);
+  g_signal_handler_disconnect (priv->devlist, priv->handler_volume_change_end);
+
   g_object_unref (G_OBJECT (priv->devlist));
+
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -693,40 +708,27 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
 }
 
 static void
-cb_device_change_start (XfburnDeviceList *devlist, XfburnDeviceBox *box)
+cb_volume_change_start (XfburnDeviceList *devlist, gboolean device_changed, XfburnDeviceBox *box)
 {
   if (GTK_WIDGET_REALIZED (box))
     xfburn_busy_cursor (GTK_WIDGET (box));
 }
 
 static void
-cb_device_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box)
-{
-  /* FIXME: adjust selected device?  */
-
-  cb_volume_change_end (devlist, device, box);
-
-  /* not going back to a regular cursor, that'll happen in cb_volume_change_end */
-}
-
-static void
-cb_volume_change_start (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box)
-{
-  if (GTK_WIDGET_REALIZED (box))
-    xfburn_busy_cursor (GTK_WIDGET (box));
-}
-
-static void
-cb_volume_change_end (XfburnDeviceList *devlist, XfburnDevice *device, XfburnDeviceBox *box)
+cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnDeviceBox *box)
 {
   g_return_if_fail (XFBURN_IS_DEVICE_LIST (devlist));
   g_return_if_fail (XFBURN_IS_DEVICE (device));
   g_return_if_fail (XFBURN_IS_DEVICE_BOX (box));
 
+  /* FIXME: adjust selected device?  */
+
   refresh_drive_info (box, device);
 
   if (GTK_WIDGET_REALIZED (box))
     xfburn_default_cursor (GTK_WIDGET (box));
+
+  g_signal_emit (box, signals[VOLUME_CHANGED], 0, device_changed, device);
 }
 
 static void 

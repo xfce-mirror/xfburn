@@ -1718,6 +1718,8 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         continue;
       full_path = thunar_vfs_path_dup_string (vfs_path);
 
+      thunar_vfs_path_unref (vfs_path);
+
 #else /* no thunar-vfs */
 
       if (g_str_has_prefix (file, "file://"))

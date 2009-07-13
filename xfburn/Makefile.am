@@ -45,6 +45,7 @@ xfburn_headers = 							\
 	xfburn-fs-browser.h						\
 	xfburn-directory-browser.h					\
 	xfburn-preferences-dialog.h					\
+	xfburn-cclosure-marshal.h					\
 	xfburn-stock.h							\
 	xfburn-utils.h							\
 	xfburn-main.h
@@ -86,6 +87,7 @@ xfburn_SOURCES =							\
 	xfburn-fs-browser.c 						\
 	xfburn-directory-browser.c					\
 	xfburn-preferences-dialog.c					\
+	xfburn-cclosure-marshal.c					\
 	xfburn-stock.c							\
 	xfburn-utils.c
 
@@ -120,6 +122,16 @@ xfburn_LDADD += 							\
 
 endif
 
+xfburn-cclosure-marshal.h: xfburn-cclosure-marshal.list
+	glib-genmarshal --header --prefix=xfburn_cclosure_marshal $< > $@
+
+xfburn-cclosure-marshal.c: xfburn-cclosure-marshal.list
+	glib-genmarshal --body --prefix=xfburn_cclosure_marshal $< > $@
+
+BUILT_SOURCES = 							\
+	xfburn-cclosure-marshal.h					\
+	xfburn-cclosure-marshal.c
+
 # remove these when they're added to the build; needed
 # for make distcheck (--brian)
 missing_files = \
@@ -132,5 +144,6 @@ missing_files = \
 	xfburn-create-iso-progress-dialog.c
 
 EXTRA_DIST = $(missing_files)
+DISTCLEANFILES = $(BUILT_SOURCES)
 
 # vi:set ts=8 sw=8 noet ai nocindent softtabstop=0 list listchars=tab\:>-:
