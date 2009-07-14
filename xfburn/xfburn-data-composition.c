@@ -32,6 +32,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <time.h>
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
@@ -289,6 +290,13 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
                                 { "text/plain;charset=utf-8", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN },
                               };
 
+  gchar *vol_name;
+  char timestr[80];
+  struct tm *today;
+  time_t tm;
+  /* FIXME: put i into the class? */
+  static int i = 0;
+
   priv->full_paths_to_add = NULL;
 
   instances++;
@@ -348,7 +356,18 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   gtk_widget_show (label);
   
   priv->entry_volume_name = gtk_entry_new ();
-  gtk_entry_set_text (GTK_ENTRY (priv->entry_volume_name), _(DATA_COMPOSITION_DEFAULT_NAME));
+
+  tm = time (NULL);
+  today = localtime (&tm);
+
+  if (tm && strftime (timestr, 80, "%Y-%m-%d", today))
+    /* Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions */
+    vol_name = g_strdup_printf (_("Data %s~%d"), timestr, ++i);
+  else
+    vol_name = g_strdup_printf ("%s %d", _(DATA_COMPOSITION_DEFAULT_NAME), ++i);
+
+  gtk_entry_set_text (GTK_ENTRY (priv->entry_volume_name), vol_name);
+  g_free (vol_name);
   gtk_box_pack_start (GTK_BOX (hbox), priv->entry_volume_name, FALSE, FALSE, 0);
   gtk_widget_show (priv->entry_volume_name);
   

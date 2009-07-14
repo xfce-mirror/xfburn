@@ -27,6 +27,7 @@
 
 #include "xfburn-compositions-notebook.h"
 
+#include "xfburn-global.h"
 #include "xfburn-notebook-tab.h"
 #include "xfburn-welcome-tab.h"
 #include "xfburn-data-composition.h"
@@ -167,7 +168,7 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
   switch (type) {   
     case XFBURN_DATA_COMPOSITION:
       composition = xfburn_data_composition_new ();
-      label_text = g_strdup_printf ("%s %d", _("Data composition"), ++i);
+      label_text = g_strdup_printf ("%s %d", _(DATA_COMPOSITION_DEFAULT_NAME), ++i);
       break;
     case XFBURN_AUDIO_COMPOSITION:
       composition = xfburn_audio_composition_new ();
