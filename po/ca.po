@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-21 23:14-0700\n"
+"POT-Creation-Date: 2009-07-14 08:11-0600\n"
 "PO-Revision-Date: 2009-03-11 12:50+0100\n"
 "Last-Translator: Harald Servat <redcrash@gmail.com>\n"
 "Language-Team: Catalan\n"
@@ -64,12 +64,11 @@ msgstr "Disc en blanc"
 #: ../xfburn/xfburn-burn-image-dialog.c:171
 #: ../xfburn/xfburn-copy-cd-dialog.c:132
 #: ../xfburn/xfburn-copy-dvd-dialog.c:132
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:161
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:160
 msgid "Burning device"
 msgstr "Dispositiu de gravació"
 
-#: ../xfburn/xfburn-blank-dialog.c:223
-#: ../xfburn/xfburn-device-box.c:202
+#: ../xfburn/xfburn-blank-dialog.c:223 ../xfburn/xfburn-device-box.c:188
 msgid "Blank mode"
 msgstr "Tipus d'esborrat"
 
@@ -78,7 +77,7 @@ msgstr "Tipus d'esborrat"
 #: ../xfburn/xfburn-burn-image-dialog.c:179
 #: ../xfburn/xfburn-copy-cd-dialog.c:140
 #: ../xfburn/xfburn-copy-dvd-dialog.c:140
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:195
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:194
 msgid "Options"
 msgstr "Opcions"
 
@@ -87,7 +86,7 @@ msgstr "Opcions"
 #: ../xfburn/xfburn-burn-image-dialog.c:183
 #: ../xfburn/xfburn-copy-cd-dialog.c:144
 #: ../xfburn/xfburn-copy-dvd-dialog.c:144
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:199
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:198
 msgid "E_ject disk"
 msgstr "Expuls_a disc"
 
@@ -96,45 +95,44 @@ msgid "_Blank"
 msgstr "En _blanc"
 
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
-#: ../xfburn/xfburn-blank-dialog.c:351
+#: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "El disc introduït ja està en blanc."
 
 #. these ones we can blank
-#: ../xfburn/xfburn-blank-dialog.c:357
+#: ../xfburn/xfburn-blank-dialog.c:362
 msgid "Ready"
 msgstr "Preparat"
 
-#: ../xfburn/xfburn-blank-dialog.c:360
+#: ../xfburn/xfburn-blank-dialog.c:365
 msgid "No disc detected in the drive."
 msgstr "No s'ha trobat cap disc a la unitat."
 
-#: ../xfburn/xfburn-blank-dialog.c:369
+#: ../xfburn/xfburn-blank-dialog.c:374
 msgid "Disc is not erasable."
 msgstr "El disc no es pot esborrar."
 
-#: ../xfburn/xfburn-blank-dialog.c:409
+#: ../xfburn/xfburn-blank-dialog.c:414
 msgid "Blanking disc..."
 msgstr "S'està esborrant el disc…"
 
-#: ../xfburn/xfburn-blank-dialog.c:436
+#: ../xfburn/xfburn-blank-dialog.c:441
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:502
-#: ../xfburn/xfburn-perform-burn.c:298
+#: ../xfburn/xfburn-perform-burn.c:304
 #, c-format
 msgid "Done"
 msgstr "Fet"
 
-#: ../xfburn/xfburn-blank-dialog.c:439
-#: ../xfburn/xfburn-perform-burn.c:304
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:310
 #: ../xfburn/xfburn-progress-dialog.c:604
 msgid "Failure"
 msgstr "Fallit"
 
-#: ../xfburn/xfburn-blank-dialog.c:456
+#: ../xfburn/xfburn-blank-dialog.c:461
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:616
-#: ../xfburn/xfburn-burn-image-dialog.c:328
+#: ../xfburn/xfburn-burn-image-dialog.c:332
 #: ../xfburn/xfburn-burn-image-dialog.c:532
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:415
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:414
 msgid "Unable to grab the drive."
 msgstr "No s'ha pogut trobar la unitat."
 
@@ -155,13 +153,13 @@ msgstr "<small>Voleu canviar el nom per defecte de composició?</small>"
 #: ../xfburn/xfburn-burn-image-dialog.c:188
 #: ../xfburn/xfburn-copy-cd-dialog.c:149
 #: ../xfburn/xfburn-copy-dvd-dialog.c:149
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:204
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:203
 msgid "_Dummy write"
 msgstr "Si_mula l'escriptura"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
 #: ../xfburn/xfburn-burn-image-dialog.c:192
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:208
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
 msgid "Burn_Free"
 msgstr "Sobrepassa la gravació (Burn_Free)"
 
@@ -173,7 +171,7 @@ msgid "Only create _ISO"
 msgstr "Tant sols crea _ISO"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:279
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:223
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
 msgid "_Burn Composition"
 msgstr "Cr_ema la composició"
 
@@ -197,7 +195,7 @@ msgid "An error occurred in the burn backend."
 msgstr "S'ha produït un error al sistema de cremació."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:344
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:343
 msgid "The write mode is not supported currently."
 msgstr "El mode d'escriptura no és funcional encara."
 
@@ -228,38 +226,47 @@ msgstr "Imatges ISO"
 msgid "_Burn image"
 msgstr "_Crema imatge"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:292
-#: ../xfburn/xfburn-burn-image-dialog.c:321
+#: ../xfburn/xfburn-burn-image-dialog.c:296
+#: ../xfburn/xfburn-burn-image-dialog.c:325
 msgid "An error occurred in the burn backend"
 msgstr "S'ha produït un error en el sistema de cremació"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:305
+#: ../xfburn/xfburn-burn-image-dialog.c:309
 msgid "Unable to determine image size."
 msgstr "No s'ha pogut determinar la mida de la imatge."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:312
+#: ../xfburn/xfburn-burn-image-dialog.c:316
 msgid "Cannot open image."
 msgstr "No es pot obrir la imatge"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:337
+#: ../xfburn/xfburn-burn-image-dialog.c:341
 msgid "Burn mode is not currently implemented."
 msgstr "El mode de cremació no és funcional encara."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:347
+#: ../xfburn/xfburn-burn-image-dialog.c:351
 msgid "Burning image..."
 msgstr "S'està cremant la imatge…"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:422
-msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
-msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Seleccioneu la imatge a cremar</span>"
+msgid ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
+"select an image to burn</span>"
+msgstr ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded"
+"\">Seleccioneu la imatge a cremar</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:460
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "No es poden afegir dades a un disc multisessió amb aquest mode d'escriptura (empreu TAO)"
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr ""
+"No es poden afegir dades a un disc multisessió amb aquest mode d'escriptura "
+"(empreu TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:464
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr "Disc tancat amb dades detectades. Cal un disc en blanc o que se li puguin afegir dades"
+msgstr ""
+"Disc tancat amb dades detectades. Cal un disc en blanc o que se li puguin "
+"afegir dades"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:466
 msgid "No disc detected in drive"
@@ -278,22 +285,22 @@ msgid "Failed to get image size"
 msgstr "No s'ha obtingut la mida de la imatge"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:512
-msgid "Make sure you selected a valid file and you have the proper permissions to access it."
-msgstr "Assegureu-vos que heu seleccionat un fitxer vàlid i que el programa te els permisos correctes per accedir-hi."
+msgid ""
+"Make sure you selected a valid file and you have the proper permissions to "
+"access it."
+msgstr ""
+"Assegureu-vos que heu seleccionat un fitxer vàlid i que el programa te els "
+"permisos correctes per accedir-hi."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:542
 msgid "The write mode is not currently supported"
 msgstr "El mode d'escriptura actualment no és funcional"
 
-#: ../xfburn/xfburn-compositions-notebook.c:170
-msgid "Data composition"
-msgstr "Composició de dades"
-
-#: ../xfburn/xfburn-compositions-notebook.c:174
+#: ../xfburn/xfburn-compositions-notebook.c:175
 msgid "Audio composition"
 msgstr "Composició d'àudio"
 
-#: ../xfburn/xfburn-compositions-notebook.c:235
+#: ../xfburn/xfburn-compositions-notebook.c:236
 msgid "Welcome"
 msgstr "Benvinguts"
 
@@ -348,270 +355,307 @@ msgstr "_Copia DVD"
 msgid "Create ISO from CD"
 msgstr "Crea una ISO des del CD"
 
-#: ../xfburn/xfburn-data-composition.c:180
-#: ../xfburn/xfburn-audio-composition.c:205
+#: ../xfburn/xfburn-data-composition.c:182
+#: ../xfburn/xfburn-audio-composition.c:207
 msgid "Add"
 msgstr "Afegeix"
 
-#: ../xfburn/xfburn-data-composition.c:180
-#: ../xfburn/xfburn-audio-composition.c:205
+#: ../xfburn/xfburn-data-composition.c:182
+#: ../xfburn/xfburn-audio-composition.c:207
 msgid "Add the selected file(s) to the composition"
 msgstr "Afegeix el(s) fitxer(s) seleccionat(s) a la composició"
 
-#: ../xfburn/xfburn-data-composition.c:182
+#: ../xfburn/xfburn-data-composition.c:184
 msgid "Create directory"
 msgstr "Crea directori"
 
-#: ../xfburn/xfburn-data-composition.c:182
+#: ../xfburn/xfburn-data-composition.c:184
 msgid "Add a new directory to the composition"
 msgstr "Afegeix un nou directori a la composició"
 
-#: ../xfburn/xfburn-data-composition.c:184
-#: ../xfburn/xfburn-audio-composition.c:207
+#: ../xfburn/xfburn-data-composition.c:186
+#: ../xfburn/xfburn-audio-composition.c:209
 msgid "Remove"
 msgstr "Suprimeix"
 
-#: ../xfburn/xfburn-data-composition.c:184
-#: ../xfburn/xfburn-audio-composition.c:207
+#: ../xfburn/xfburn-data-composition.c:186
+#: ../xfburn/xfburn-audio-composition.c:209
 msgid "Remove the selected file(s) from the composition"
 msgstr "Suprimeix el(s) fitxer(s) seleccionat(s) de la composició"
 
-#: ../xfburn/xfburn-data-composition.c:186
-#: ../xfburn/xfburn-audio-composition.c:209
+#: ../xfburn/xfburn-data-composition.c:188
+#: ../xfburn/xfburn-audio-composition.c:211
 msgid "Clear"
 msgstr "Buida"
 
-#: ../xfburn/xfburn-data-composition.c:186
-#: ../xfburn/xfburn-audio-composition.c:209
+#: ../xfburn/xfburn-data-composition.c:188
+#: ../xfburn/xfburn-audio-composition.c:211
 msgid "Clear the content of the composition"
 msgstr "Buida el contingut de la composició"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-#: ../xfburn/xfburn-data-composition.c:189
+#: ../xfburn/xfburn-data-composition.c:191
 msgid "Rename"
 msgstr "Canvia de nom"
 
-#: ../xfburn/xfburn-data-composition.c:189
+#: ../xfburn/xfburn-data-composition.c:191
 msgid "Rename the selected file"
 msgstr "Canvia de nom els fitxer seleccionat"
 
-#: ../xfburn/xfburn-data-composition.c:345
+#: ../xfburn/xfburn-data-composition.c:354
 msgid "Volume name :"
 msgstr "Nom del volum: "
 
-#: ../xfburn/xfburn-data-composition.c:376
+#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#: ../xfburn/xfburn-data-composition.c:365
+#, c-format
+msgid "Data %s~%d"
+msgstr ""
+
+#: ../xfburn/xfburn-data-composition.c:397
 msgid "Contents"
 msgstr "Contingut"
 
-#: ../xfburn/xfburn-data-composition.c:391
-#: ../xfburn/xfburn-directory-browser.c:143
+#: ../xfburn/xfburn-data-composition.c:412
+#: ../xfburn/xfburn-directory-browser.c:144
 msgid "Size"
 msgstr "Mida"
 
-#: ../xfburn/xfburn-data-composition.c:394
+#: ../xfburn/xfburn-data-composition.c:415
 msgid "Local Path"
 msgstr "Camí local"
 
-#: ../xfburn/xfburn-data-composition.c:667
+#: ../xfburn/xfburn-data-composition.c:690
 msgid "You must give a name to the file."
 msgstr "Heu de posar un nom al fitxer."
 
-#: ../xfburn/xfburn-data-composition.c:676
-#: ../xfburn/xfburn-data-composition.c:1071
-#: ../xfburn/xfburn-audio-composition.c:1139
+#: ../xfburn/xfburn-data-composition.c:699
+#: ../xfburn/xfburn-data-composition.c:1097
+#: ../xfburn/xfburn-audio-composition.c:1146
 msgid "A file with the same name is already present in the composition."
 msgstr "Ja hi ha un fitxer amb aquest nom a la composició."
 
-#: ../xfburn/xfburn-data-composition.c:784
-#: ../xfburn/xfburn-data-composition.c:785
-#: ../xfburn/xfburn-data-composition.c:787
+#: ../xfburn/xfburn-data-composition.c:807
+#: ../xfburn/xfburn-data-composition.c:808
+#: ../xfburn/xfburn-data-composition.c:810
 msgid "New directory"
 msgstr "Directori nou"
 
-#: ../xfburn/xfburn-data-composition.c:1232
-#: ../xfburn/xfburn-audio-composition.c:1310
+#: ../xfburn/xfburn-data-composition.c:1176
+#, c-format
+msgid ""
+"%s cannot be added to the composition, because it exceeds the maximum "
+"allowed file size for iso9660."
+msgstr ""
+
+#: ../xfburn/xfburn-data-composition.c:1266
+#: ../xfburn/xfburn-audio-composition.c:1319
 msgid "Adding home directory"
 msgstr "S'està afegint el directori personal (home)"
 
-#: ../xfburn/xfburn-data-composition.c:1233
-#: ../xfburn/xfburn-audio-composition.c:1311
+#: ../xfburn/xfburn-data-composition.c:1267
+#: ../xfburn/xfburn-audio-composition.c:1320
 msgid ""
-"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely "
+"to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Esteu apunt d'afegir el vostre directori personal a la composició. Per això pot caldre força temps i pot ser massa gran per cabrer en disc.\n"
+"Esteu apunt d'afegir el vostre directori personal a la composició. Per això "
+"pot caldre força temps i pot ser massa gran per cabrer en disc.\n"
 "\n"
 "Voleu fer-ho? "
 
-#: ../xfburn/xfburn-data-composition.c:1395
+#: ../xfburn/xfburn-data-composition.c:1429
 #, c-format
-msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
-msgstr "Ja existeix un fitxer anomenat «%s» en aquest directori, el fitxer no s'ha afegit."
+msgid ""
+"A file named \"%s\" already exists in this directory, the file hasn't been "
+"added."
+msgstr ""
+"Ja existeix un fitxer anomenat «%s» en aquest directori, el fitxer no s'ha "
+"afegit."
 
-#: ../xfburn/xfburn-device-box.c:183
-#: ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-data-composition.c:1846
+#, c-format
+msgid "Duplicate filename '%s' for '%s'"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:173 ../xfburn/xfburn-device-box.c:174
 msgid "Show writers only"
 msgstr "Mostra sols les gravadores"
 
-#: ../xfburn/xfburn-device-box.c:186
+#: ../xfburn/xfburn-device-box.c:176
 msgid "Show speed selection"
 msgstr "Mostra la selecció de velocitat"
 
-#: ../xfburn/xfburn-device-box.c:187
+#: ../xfburn/xfburn-device-box.c:177
 msgid "Show speed selection combo"
 msgstr "Mostra la caixa de selecció de velocitat"
 
-#: ../xfburn/xfburn-device-box.c:190
+#: ../xfburn/xfburn-device-box.c:180
 msgid "Show mode selection"
 msgstr "Mostra la selecció de mode"
 
-#: ../xfburn/xfburn-device-box.c:191
+#: ../xfburn/xfburn-device-box.c:181
 msgid "Show mode selection combo"
 msgstr "Mostra la caixa de selecció de mode"
 
-#: ../xfburn/xfburn-device-box.c:194
-msgid "Disc status"
-msgstr "Estat del disc"
-
-#: ../xfburn/xfburn-device-box.c:195
-msgid "The status of the disc in the drive"
-msgstr "L'estat del disc al dispositiu"
-
-#: ../xfburn/xfburn-device-box.c:198
+#: ../xfburn/xfburn-device-box.c:184
 msgid "Is it a valid combination"
 msgstr "És una combinació vàlida"
 
-#: ../xfburn/xfburn-device-box.c:199
+#: ../xfburn/xfburn-device-box.c:185
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "És vàlida la combinació de maquinari i disc per cremar la composició?"
 
-#: ../xfburn/xfburn-device-box.c:203
+#: ../xfburn/xfburn-device-box.c:189
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "El mode en blanc mostra altres missatges d'estat del disc que el mode normal"
+msgstr ""
+"El mode en blanc mostra altres missatges d'estat del disc que el mode normal"
 
-#: ../xfburn/xfburn-device-box.c:206
-#: ../xfburn/xfburn-device-box.c:207
+#: ../xfburn/xfburn-device-box.c:192 ../xfburn/xfburn-device-box.c:193
 msgid "Accept only CDs as valid discs"
 msgstr "Accepta només CDs com a discs vàlids."
 
-#: ../xfburn/xfburn-device-box.c:280
+#: ../xfburn/xfburn-device-box.c:246
 msgid "_Speed:"
 msgstr "_Velocitat:"
 
-#: ../xfburn/xfburn-device-box.c:299
+#: ../xfburn/xfburn-device-box.c:265
 msgid "Write _mode:"
 msgstr "_Mode d'escriptura:"
 
-#: ../xfburn/xfburn-device-box.c:439
+#: ../xfburn/xfburn-device-box.c:388
 msgid "Empty speed list"
 msgstr "Llista de velocitat buida"
 
-#: ../xfburn/xfburn-device-box.c:447
+#: ../xfburn/xfburn-device-box.c:396
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to "
+"<i>xfburn@xfce.org</i> together with the console output to increase the "
+"chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us know.\n"
+"Burning should still work, but if there are problems anyways, please let us "
+"know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>No s'ha obtingut la llista de velocitats del dispositiu.</b>\n"
 "\n"
-"Aquesta és una errada coneguda que es dona amb alguns dispositius. Informeu d'això a <i>xfburn@xfce.org</i> junt amb la sortida de consola per augmentar les possibilitats de que es solucioni.\n"
+"Aquesta és una errada coneguda que es dona amb alguns dispositius. Informeu "
+"d'això a <i>xfburn@xfce.org</i> junt amb la sortida de consola per augmentar "
+"les possibilitats de que es solucioni.\n"
 "\n"
-"Cremar encara hauria de funcionar però, si hi han problemes, si us plau, informeu-nos.\n"
+"Cremar encara hauria de funcionar però, si hi han problemes, si us plau, "
+"informeu-nos.\n"
 "\n"
 "<i>Gràcies</i>"
 
-#: ../xfburn/xfburn-device-box.c:456
+#: ../xfburn/xfburn-device-box.c:405
 msgid "Continue to _show this notice"
 msgstr "Continua _mostrat aquesta notícia"
 
-#: ../xfburn/xfburn-device-box.c:493
+#: ../xfburn/xfburn-device-box.c:447
 msgid "default"
 msgstr "per defecte"
 
-#: ../xfburn/xfburn-device-box.c:529
+#: ../xfburn/xfburn-device-box.c:483
 msgid "Max"
 msgstr "Màx"
 
-#: ../xfburn/xfburn-device-box.c:620
+#: ../xfburn/xfburn-device-box.c:582
 msgid "Drive can't burn on the inserted disc"
 msgstr "El dispositiu no pot cremar el disc introduït"
 
-#: ../xfburn/xfburn-device-box.c:629
-#: ../xfburn/xfburn-device-box.c:675
+#: ../xfburn/xfburn-device-box.c:591 ../xfburn/xfburn-device-box.c:637
 msgid "Drive is empty"
 msgstr "El dispositiu està buit"
 
-#: ../xfburn/xfburn-device-box.c:632
+#: ../xfburn/xfburn-device-box.c:594
 msgid "Sorry, multisession is not yet supported"
 msgstr "La multisessió encara no és funcional"
 
-#: ../xfburn/xfburn-device-box.c:635
+#: ../xfburn/xfburn-device-box.c:597
 msgid "Inserted disc is full"
 msgstr "El disc introduït està ple"
 
-#: ../xfburn/xfburn-device-box.c:638
-#: ../xfburn/xfburn-device-box.c:681
+#: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Inserted disc is unsuitable"
 msgstr "El disc introduït no és apropiat"
 
-#: ../xfburn/xfburn-device-box.c:641
-#: ../xfburn/xfburn-device-box.c:684
+#: ../xfburn/xfburn-device-box.c:603 ../xfburn/xfburn-device-box.c:646
 msgid "Cannot access drive (it might be in use)"
 msgstr "No es por accedir al dispositiu (podria estar en ús)"
 
-#: ../xfburn/xfburn-device-box.c:646
-#: ../xfburn/xfburn-device-box.c:687
+#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:649
 msgid "Error determining disc"
 msgstr "Error al identificar el disc"
 
-#: ../xfburn/xfburn-device-box.c:667
+#: ../xfburn/xfburn-device-box.c:629
 msgid "Write-once disc, no blanking possible"
 msgstr "Disc d'escriptura única, no es pot posar en blanc"
 
-#: ../xfburn/xfburn-device-box.c:670
+#: ../xfburn/xfburn-device-box.c:632
 msgid "DVD+RW does not need blanking"
 msgstr "Als discs DVD+RW no els cal posar-los en blanc"
 
-#: ../xfburn/xfburn-device-box.c:678
+#: ../xfburn/xfburn-device-box.c:640
 msgid "Inserted disc is already blank"
 msgstr "El disc introduït ja està en blanc"
 
+#: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
+msgid "Number of burners in the system"
+msgstr ""
+
+#: ../xfburn/xfburn-device-list.c:209
+msgid "Number of drives in the system"
+msgstr ""
+
+#: ../xfburn/xfburn-device-list.c:210
+msgid "Number of drives in the system (readers and writers)"
+msgstr ""
+
+#: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
+#, fuzzy
+msgid "List of devices"
+msgstr "Bus_ca dispositius"
+
+#: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
+#, fuzzy
+msgid "Currently selected device"
+msgstr "Dispositius detectats"
+
 #. globals
-#: ../xfburn/xfburn-directory-browser.c:57
+#: ../xfburn/xfburn-directory-browser.c:58
 msgid "Folder"
 msgstr "Carpeta"
 
-#: ../xfburn/xfburn-directory-browser.c:130
-#: ../xfburn/xfburn-directory-browser.c:323
+#: ../xfburn/xfburn-directory-browser.c:131
+#: ../xfburn/xfburn-directory-browser.c:355
 msgid "File"
 msgstr "Fitxer"
 
-#: ../xfburn/xfburn-directory-browser.c:145
+#: ../xfburn/xfburn-directory-browser.c:146
 msgid "Type"
 msgstr "Tipus"
 
-#: ../xfburn/xfburn-fs-browser.c:95
-#: ../xfburn/xfburn-fs-browser.c:272
+#: ../xfburn/xfburn-fs-browser.c:96 ../xfburn/xfburn-fs-browser.c:285
 msgid "Filesystem"
 msgstr "Sistema de fitxers"
 
 #. load the user's home dir
-#: ../xfburn/xfburn-fs-browser.c:251
+#: ../xfburn/xfburn-fs-browser.c:264
 #, c-format
 msgid "%s's home"
 msgstr "Directori de %s"
 
-#: ../xfburn/xfburn-main.c:203
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:204 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main.c:213
+#: ../xfburn/xfburn-main.c:214
 #, c-format
 msgid ""
 "%s: %s\n"
@@ -621,29 +665,32 @@ msgstr ""
 "Feu %s --help per veure la llista sencera d'opcions disponibles de\n"
 "la línia d'ordres.\n"
 
-#: ../xfburn/xfburn-main.c:221
+#: ../xfburn/xfburn-main.c:222
 msgid "Unable to initialize the burning backend."
 msgstr "No es pot inicialitzar el sistema de cremació."
 
-#: ../xfburn/xfburn-main.c:303
-msgid "No drives are currently available"
+#: ../xfburn/xfburn-main.c:307
+#, fuzzy
+msgid "No burners are currently available"
 msgstr "No hi ha cap dispositiu disponible en aquests moments"
 
-#: ../xfburn/xfburn-main.c:305
+#: ../xfburn/xfburn-main.c:309
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the "
+"drive with the current user."
 msgstr ""
 "És possible que el disc(s) estigui en ús, i no es pot accedir-hi.\n"
 "\n"
 "Desmunteu i reinicieu l'aplicació.\n"
 "\n"
-"Si no hi ha cap disc al dispositiu comproveu que tingueu permís d'escriptura al dispositiu amb l'usuari actual."
+"Si no hi ha cap disc al dispositiu comproveu que tingueu permís d'escriptura "
+"al dispositiu amb l'usuari actual."
 
-#: ../xfburn/xfburn-main.c:337
+#: ../xfburn/xfburn-main.c:343
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
@@ -652,7 +699,7 @@ msgstr ""
 "No s'ha pogut iniciar el transcodificador «%s»: %s\n"
 "\t(emprant la implementació alternativa bàsica)"
 
-#: ../xfburn/xfburn-main.c:370
+#: ../xfburn/xfburn-main.c:376
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "El fitxer d'imatge «%s» no existeix."
@@ -773,8 +820,7 @@ msgstr "Editor de la barra d'eines"
 msgid "Another cd burning GUI"
 msgstr "Una altre IGU aplicació per cremar discs"
 
-#: ../xfburn/xfburn-main-window.c:536
-#: ../xfburn/xfburn-main-window.c:537
+#: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
 msgid "Author/Maintainer"
 msgstr "Autor/Mantenidor"
 
@@ -803,66 +849,69 @@ msgstr "Mostra el botó per tancar"
 msgid "Determine whether the close button is visible"
 msgstr "Decideix si el botó de tancament es mostra"
 
-#: ../xfburn/xfburn-perform-burn.c:94
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr "No es poden afegir dades a un disc multisessió en aquest mode d'escriptura (empreu TAO)."
-
-#: ../xfburn/xfburn-perform-burn.c:98
-msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr "Disc tancat amb dades detectades, cal un disc en blanc o que se li puguin afegir dades."
+#: ../xfburn/xfburn-perform-burn.c:96
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr ""
+"No es poden afegir dades a un disc multisessió en aquest mode d'escriptura "
+"(empreu TAO)."
 
 #: ../xfburn/xfburn-perform-burn.c:100
+msgid "Closed disc with data detected, a blank or appendable disc is needed."
+msgstr ""
+"Disc tancat amb dades detectades, cal un disc en blanc o que se li puguin "
+"afegir dades."
+
+#: ../xfburn/xfburn-perform-burn.c:102
 msgid "No disc detected in drive."
 msgstr "No s'ha detectat cap disc a la unitat."
 
-#: ../xfburn/xfburn-perform-burn.c:103
+#: ../xfburn/xfburn-perform-burn.c:105
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "No es reconeix l’estat de la unitat i el disc."
 
-#: ../xfburn/xfburn-perform-burn.c:112
+#: ../xfburn/xfburn-perform-burn.c:118
 msgid "There is not enough space available on the inserted disc."
 msgstr "No hi ha pro espai disponible en el disc introduït."
 
-#: ../xfburn/xfburn-perform-burn.c:157
+#: ../xfburn/xfburn-perform-burn.c:163
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "S'està cremant la pista %d/%d…"
 
-#: ../xfburn/xfburn-perform-burn.c:161
-#: ../xfburn/xfburn-perform-burn.c:226
+#: ../xfburn/xfburn-perform-burn.c:167 ../xfburn/xfburn-perform-burn.c:232
 msgid "Burning composition..."
 msgstr "S'està cremant la composició…"
 
-#: ../xfburn/xfburn-perform-burn.c:195
+#: ../xfburn/xfburn-perform-burn.c:201
 msgid "standby"
 msgstr "a l'espera"
 
-#: ../xfburn/xfburn-perform-burn.c:203
+#: ../xfburn/xfburn-perform-burn.c:209
 msgid "ending"
 msgstr "acabant"
 
-#: ../xfburn/xfburn-perform-burn.c:206
+#: ../xfburn/xfburn-perform-burn.c:212
 msgid "failing"
 msgstr "fallant"
 
-#: ../xfburn/xfburn-perform-burn.c:209
+#: ../xfburn/xfburn-perform-burn.c:215
 msgid "unused"
 msgstr "sense ús"
 
-#: ../xfburn/xfburn-perform-burn.c:212
+#: ../xfburn/xfburn-perform-burn.c:218
 msgid "abandoned"
 msgstr "abandonat"
 
-#: ../xfburn/xfburn-perform-burn.c:215
+#: ../xfburn/xfburn-perform-burn.c:221
 msgid "ended"
 msgstr "acabat"
 
-#: ../xfburn/xfburn-perform-burn.c:218
+#: ../xfburn/xfburn-perform-burn.c:224
 msgid "aborted"
 msgstr "interromput"
 
-#: ../xfburn/xfburn-perform-burn.c:221
-#: ../xfburn/xfburn-progress-dialog.c:200
+#: ../xfburn/xfburn-perform-burn.c:227 ../xfburn/xfburn-progress-dialog.c:200
 #: ../xfburn/xfburn-progress-dialog.c:217
 #: ../xfburn/xfburn-progress-dialog.c:227
 #: ../xfburn/xfburn-progress-dialog.c:310
@@ -872,116 +921,120 @@ msgstr "interromput"
 msgid "no info"
 msgstr "sense informació"
 
-#: ../xfburn/xfburn-perform-burn.c:231
+#: ../xfburn/xfburn-perform-burn.c:237
 msgid "Writing Lead-In..."
 msgstr "S'està escrivint l'inici de disc…"
 
-#: ../xfburn/xfburn-perform-burn.c:237
+#: ../xfburn/xfburn-perform-burn.c:243
 msgid "Writing Lead-Out..."
 msgstr "S'està escrivint el final de disc…"
 
-#: ../xfburn/xfburn-perform-burn.c:243
+#: ../xfburn/xfburn-perform-burn.c:249
 msgid "Writing pregap..."
 msgstr "S'està escrivint la taula de continguts…"
 
-#: ../xfburn/xfburn-perform-burn.c:249
+#: ../xfburn/xfburn-perform-burn.c:255
 msgid "Closing track..."
 msgstr "S'està tancant la pista…"
 
-#: ../xfburn/xfburn-perform-burn.c:255
+#: ../xfburn/xfburn-perform-burn.c:261
 msgid "Closing session..."
 msgstr "S'està tancant la sessió…"
 
-#: ../xfburn/xfburn-perform-burn.c:261
+#: ../xfburn/xfburn-perform-burn.c:267
 msgid "Formatting..."
 msgstr "S'està formatant…"
 
-#: ../xfburn/xfburn-perform-burn.c:274
+#: ../xfburn/xfburn-perform-burn.c:280
 msgid "see console"
 msgstr "vegeu la consola"
 
-#: ../xfburn/xfburn-perform-burn.c:302
+#: ../xfburn/xfburn-perform-burn.c:308
 msgid "User Aborted"
 msgstr "Interromput per l'usuari"
 
-#: ../xfburn/xfburn-preferences-dialog.c:141
+#: ../xfburn/xfburn-preferences-dialog.c:142
 msgid "Preferences"
 msgstr "Preferències"
 
-#: ../xfburn/xfburn-preferences-dialog.c:142
+#: ../xfburn/xfburn-preferences-dialog.c:143
 msgid "Tune how Xfburn behaves"
 msgstr "Personalitza el comportament de Xfburn"
 
-#: ../xfburn/xfburn-preferences-dialog.c:187
-#: ../xfburn/xfburn-preferences-dialog.c:191
+#: ../xfburn/xfburn-preferences-dialog.c:189
+#: ../xfburn/xfburn-preferences-dialog.c:193
 msgid "Temporary directory"
 msgstr "Directori temporal"
 
-#: ../xfburn/xfburn-preferences-dialog.c:195
+#: ../xfburn/xfburn-preferences-dialog.c:197
 msgid "_Clean temporary directory on exit"
 msgstr "Neteja el dire_ctori temporal en sortir"
 
-#: ../xfburn/xfburn-preferences-dialog.c:202
+#: ../xfburn/xfburn-preferences-dialog.c:204
 msgid "File browser"
 msgstr "Navegador de fitxers"
 
-#: ../xfburn/xfburn-preferences-dialog.c:206
+#: ../xfburn/xfburn-preferences-dialog.c:208
 msgid "Show _hidden files"
 msgstr "Mostra fitxers ocult_s"
 
-#: ../xfburn/xfburn-preferences-dialog.c:210
+#: ../xfburn/xfburn-preferences-dialog.c:213
 msgid "Show human_readable filesizes"
 msgstr "Most_ra mida de fitxers de forma intuïtiva"
 
-#: ../xfburn/xfburn-preferences-dialog.c:221
+#: ../xfburn/xfburn-preferences-dialog.c:224
 msgid "General"
 msgstr "General"
 
-#: ../xfburn/xfburn-preferences-dialog.c:232
-#: ../xfburn/xfburn-preferences-dialog.c:309
+#: ../xfburn/xfburn-preferences-dialog.c:235
+#: ../xfburn/xfburn-preferences-dialog.c:312
 msgid "Devices"
 msgstr "Dispositius"
 
-#: ../xfburn/xfburn-preferences-dialog.c:241
+#: ../xfburn/xfburn-preferences-dialog.c:244
 msgid "Detected devices"
 msgstr "Dispositius detectats"
 
-#: ../xfburn/xfburn-preferences-dialog.c:262
+#: ../xfburn/xfburn-preferences-dialog.c:265
 msgid "Name"
 msgstr "Nom"
 
-#: ../xfburn/xfburn-preferences-dialog.c:275
+#: ../xfburn/xfburn-preferences-dialog.c:278
 msgid "Node"
 msgstr "Node"
 
-#: ../xfburn/xfburn-preferences-dialog.c:277
+#: ../xfburn/xfburn-preferences-dialog.c:280
 msgid "Write CD-R"
 msgstr "Escriu CD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:279
+#: ../xfburn/xfburn-preferences-dialog.c:282
 msgid "Write CD-RW"
 msgstr "Escriu CD-RW"
 
-#: ../xfburn/xfburn-preferences-dialog.c:282
+#: ../xfburn/xfburn-preferences-dialog.c:285
 msgid "Write DVD-R"
 msgstr "Escriu DVD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:285
+#: ../xfburn/xfburn-preferences-dialog.c:288
 msgid "Write DVD-RAM"
 msgstr "Escriu DVD-RAM"
 
-#: ../xfburn/xfburn-preferences-dialog.c:293
+#: ../xfburn/xfburn-preferences-dialog.c:296
 msgid "Sc_an for devices"
 msgstr "Bus_ca dispositius"
 
 #. below the device list
-#: ../xfburn/xfburn-preferences-dialog.c:319
+#: ../xfburn/xfburn-preferences-dialog.c:322
 msgid "Show warning on _empty speed list"
 msgstr "Mostra advertència amb la llista de velocitats _buida"
 
-#: ../xfburn/xfburn-preferences-dialog.c:327
+#: ../xfburn/xfburn-preferences-dialog.c:330
 msgid "FIFO buffer size (in kb)"
 msgstr "Memòria cau FIFO (en kb)"
+
+#: ../xfburn/xfburn-preferences-dialog.c:464
+msgid "Changing this setting only takes full effect after a program restart."
+msgstr ""
 
 #: ../xfburn/xfburn-progress-dialog.c:182
 msgid "Initializing..."
@@ -1024,7 +1077,7 @@ msgstr "Completat"
 msgid "Aborting..."
 msgstr "S'està avortant…"
 
-#: ../xfburn/xfburn-utils.c:129
+#: ../xfburn/xfburn-utils.c:130
 msgid "Select command"
 msgstr "Seleccioni una ordre"
 
@@ -1065,55 +1118,55 @@ msgstr "<big>_Àudio CD</big>"
 msgid "Audio CD playable in regular stereos"
 msgstr "Àudio CD reproduïble en aparells estèreo"
 
-#: ../xfburn/xfburn-audio-composition.c:211
+#: ../xfburn/xfburn-audio-composition.c:213
 msgid "What files can get burned to an audio CD?"
 msgstr "Quins fitxers es poden cremar en un CD d'àudio?"
 
-#: ../xfburn/xfburn-audio-composition.c:215
+#: ../xfburn/xfburn-audio-composition.c:217
 msgid "Rename Artist"
 msgstr "Canvia l'intèrpret/artista"
 
-#: ../xfburn/xfburn-audio-composition.c:215
+#: ../xfburn/xfburn-audio-composition.c:217
 msgid "Rename the artist of the selected file"
 msgstr "Canvia el nom de l'intèrpret o artista del fitxer seleccionat"
 
-#: ../xfburn/xfburn-audio-composition.c:217
+#: ../xfburn/xfburn-audio-composition.c:219
 msgid "Rename Title"
 msgstr "Canvia el títol"
 
-#: ../xfburn/xfburn-audio-composition.c:217
+#: ../xfburn/xfburn-audio-composition.c:219
 msgid "Rename the title of the selected file"
 msgstr "Canvia el nom del títol del fitxer seleccionat"
 
-#: ../xfburn/xfburn-audio-composition.c:400
+#: ../xfburn/xfburn-audio-composition.c:403
 msgid "Pos"
 msgstr "Pos"
 
-#: ../xfburn/xfburn-audio-composition.c:402
+#: ../xfburn/xfburn-audio-composition.c:405
 msgid "Length"
 msgstr "Durada"
 
-#: ../xfburn/xfburn-audio-composition.c:408
+#: ../xfburn/xfburn-audio-composition.c:411
 msgid "Artist"
 msgstr "Intèrpret/artista"
 
-#: ../xfburn/xfburn-audio-composition.c:421
+#: ../xfburn/xfburn-audio-composition.c:424
 msgid "Title"
 msgstr "Títol"
 
-#: ../xfburn/xfburn-audio-composition.c:432
+#: ../xfburn/xfburn-audio-composition.c:435
 msgid "Filename"
 msgstr "Nom de fitxer"
 
-#: ../xfburn/xfburn-audio-composition.c:576
+#: ../xfburn/xfburn-audio-composition.c:582
 msgid "Cannot burn audio onto a DVD."
 msgstr "No es pot gravar àudio en un DVD."
 
-#: ../xfburn/xfburn-audio-composition.c:1223
+#: ../xfburn/xfburn-audio-composition.c:1230
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Només podeu tenir 99 pistes com a màxim."
 
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:312
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
 msgid "A problem with the burn backend occurred."
 msgstr "S'ha produït un error amb el sistema de cremada."
 
@@ -1149,32 +1202,32 @@ msgstr ""
 "diferents, compileu-lo amb les\n"
 "funcionalitats de gstreamer."
 
-#: ../xfburn/xfburn-transcoder-basic.c:198
+#: ../xfburn/xfburn-transcoder-basic.c:197
 #, c-format
 msgid "File %s does not have a .wav extension"
 msgstr "El fitxer «%s» no te extensió .wav"
 
-#: ../xfburn/xfburn-transcoder-basic.c:203
+#: ../xfburn/xfburn-transcoder-basic.c:202
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
 msgstr "El fitxer «%s» no és d'ona d'àudio descomprimida PCM"
 
-#: ../xfburn/xfburn-transcoder-basic.c:209
+#: ../xfburn/xfburn-transcoder-basic.c:208
 #, c-format
 msgid "Could not stat %s: %s"
 msgstr "No es pot obtenir l'estatus de «%s»: %s"
 
-#: ../xfburn/xfburn-transcoder-basic.c:244
+#: ../xfburn/xfburn-transcoder-basic.c:239
 #, c-format
 msgid "Could not open %s."
 msgstr "No es pot obrir «%s»."
 
-#: ../xfburn/xfburn-transcoder-basic.c:325
+#: ../xfburn/xfburn-transcoder-basic.c:320
 #, c-format
 msgid "Could not open %s: %s"
 msgstr "No es pot obrir «%s»: %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:636
+#: ../xfburn/xfburn-transcoder-gst.c:633
 #, c-format
 msgid ""
 "%s is missing.\n"
@@ -1192,11 +1245,11 @@ msgstr ""
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:725
+#: ../xfburn/xfburn-transcoder-gst.c:722
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:731
+#: ../xfburn/xfburn-transcoder-gst.c:728
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1216,12 +1269,12 @@ msgstr ""
 "comproveu que teniu el «bo, el dolent i el lleig»\n"
 "paquet del connector gstreamer instaŀlat."
 
-#: ../xfburn/xfburn-transcoder-gst.c:797
+#: ../xfburn/xfburn-transcoder-gst.c:793
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr "Al Gstreamer no li agrada aquest fitxer (temps excedit)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:806
+#: ../xfburn/xfburn-transcoder-gst.c:802
 #, c-format
 msgid ""
 "%s\n"
@@ -1236,19 +1289,18 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:924
+#: ../xfburn/xfburn-transcoder-gst.c:917
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "El Gstreamer no ha iniciat la transcodificació (temps excedit)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:959
+#: ../xfburn/xfburn-transcoder-gst.c:952
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "No s'han pogut canviar cançons mestres es transcodificaven"
 
-#: ../xfburn/xfburn-transcoder.c:125
-#: ../xfburn/xfburn-transcoder.c:137
-#: ../xfburn/xfburn-transcoder.c:149
+#: ../xfburn/xfburn-transcoder.c:125 ../xfburn/xfburn-transcoder.c:152
+#: ../xfburn/xfburn-transcoder.c:164
 #, c-format
 msgid "not implemented"
 msgstr "no està implementat"
@@ -1265,12 +1317,24 @@ msgstr "Crema una imatge (xfburn)"
 msgid "CD and DVD burning application"
 msgstr "Aplicació per cremar CD i DVD"
 
+#~ msgid "Data composition"
+#~ msgstr "Composició de dades"
+
+#~ msgid "Disc status"
+#~ msgstr "Estat del disc"
+
+#~ msgid "The status of the disc in the drive"
+#~ msgstr "L'estat del disc al dispositiu"
+
 #~ msgid "Unable to create disc object"
 #~ msgstr "No s’ha pogut crear el disc"
+
 #~ msgid "Cannot attach source object to track object"
 #~ msgstr "No s’ha pogut adjuntar la font a la pista"
+
 #~ msgid "Format DVD+RW"
 #~ msgstr "Donar format a un DVD+RW"
+
 #~ msgid "_Format"
 #~ msgstr "_Formata"
 
@@ -1279,6 +1343,7 @@ msgstr "Aplicació per cremar CD i DVD"
 #~ msgstr ""
 #~ "S’ha trobat un mitjà tancat amb dades. El mitjà ha d’estar en blank o "
 #~ "s’han de poder afegir dades."
+
 #~ msgid "No media detected in drive"
 #~ msgstr "No s’ha trobat cap mitjà a la unitat"
 
@@ -1289,14 +1354,19 @@ msgstr "Aplicació per cremar CD i DVD"
 #, fuzzy
 #~ msgid "Could not add source to track %s!"
 #~ msgstr "No s’ha pgut crear l’estructura de la ISO "
+
 #~ msgid "Import"
 #~ msgstr "Importa"
+
 #~ msgid "Import existing session"
 #~ msgstr "Importa d’una sessió existent"
+
 #~ msgid "Copy Audio CD"
 #~ msgstr "Copia un CD d’audio"
+
 #~ msgid "Create a new composition"
 #~ msgstr "Crea una nova composició"
+
 #~ msgid "Copy DVD"
 #~ msgstr "Copia DVD"
 
@@ -1315,10 +1385,12 @@ msgstr "Aplicació per cremar CD i DVD"
 #, fuzzy
 #~ msgid "Deformat Complete"
 #~ msgstr "Completa"
+
 #~ msgid "Fast"
 #~ msgstr "Ràpida"
+
 #~ msgid "Cannot recognize drive and media state"
 #~ msgstr "No s’ha pogut determinat l’estat del mitjà o la unitat"
+
 #~ msgid "Burn CD image"
 #~ msgstr "Crema la imatge de disc"
-
