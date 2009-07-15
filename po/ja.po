@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-14 08:11-0600\n"
-"PO-Revision-Date: 2009-03-15 23:16+0900\n"
+"POT-Creation-Date: 2009-07-15 22:54+0900\n"
+"PO-Revision-Date: 2009-07-15 21:23+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -411,11 +411,12 @@ msgstr "選択したファイルの名前を変更します"
 msgid "Volume name :"
 msgstr "ボリューム名 :"
 
+# Default volume name of data composition (Ja chars are  unavailable)
 #. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:365
 #, c-format
 msgid "Data %s~%d"
-msgstr ""
+msgstr "Data %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:397
 msgid "Contents"
@@ -486,7 +487,7 @@ msgstr ""
 #: ../xfburn/xfburn-data-composition.c:1846
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
-msgstr ""
+msgstr "ファイル名が重複しています: '%s' と '%s'"
 
 #: ../xfburn/xfburn-device-box.c:173 ../xfburn/xfburn-device-box.c:174
 msgid "Show writers only"
@@ -614,25 +615,23 @@ msgstr "挿入されたディスクはすでに消去されています"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
-msgstr ""
+msgstr "システムにあるバーナ数"
 
 #: ../xfburn/xfburn-device-list.c:209
 msgid "Number of drives in the system"
-msgstr ""
+msgstr "システムにあるドライブ数"
 
 #: ../xfburn/xfburn-device-list.c:210
 msgid "Number of drives in the system (readers and writers)"
-msgstr ""
+msgstr "システムにある読み込みおよび書き込みドライブ数"
 
 #: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
-#, fuzzy
 msgid "List of devices"
-msgstr "デバイスをスキャン(_A)"
+msgstr "デバイスの一覧"
 
 #: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
-#, fuzzy
 msgid "Currently selected device"
-msgstr "検出されたデバイス"
+msgstr "現在選択されているデバイス"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:58
@@ -677,9 +676,8 @@ msgid "Unable to initialize the burning backend."
 msgstr "バックエンドでの焼き込みの初期化ができません。"
 
 #: ../xfburn/xfburn-main.c:307
-#, fuzzy
 msgid "No burners are currently available"
-msgstr "現在有効なドライブがありません"
+msgstr "現在有効なバーナがありません"
 
 #: ../xfburn/xfburn-main.c:309
 msgid ""
@@ -1040,7 +1038,7 @@ msgstr "FIFO バッファサイズ (KB)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:464
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr ""
+msgstr "この設定の変更はプログラムの再起動後にすべて反映されます。"
 
 #: ../xfburn/xfburn-progress-dialog.c:182
 msgid "Initializing..."
@@ -1321,13 +1319,3 @@ msgstr "イメージを焼く (Xfburn)"
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD や DVD へ焼き込むアプリケーションです"
-
-# Default volume label (Can not use Japanese characters)
-#~ msgid "Data composition"
-#~ msgstr "Data composition"
-
-#~ msgid "Disc status"
-#~ msgstr "ディスクの状態"
-
-#~ msgid "The status of the disc in the drive"
-#~ msgstr "ドライブにあるディスクの状態"
