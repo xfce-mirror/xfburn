@@ -409,7 +409,7 @@ msgstr "Bolumen izena :"
 #: ../xfburn/xfburn-data-composition.c:365
 #, c-format
 msgid "Data %s~%d"
-msgstr ""
+msgstr "Data %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:397
 msgid "Contents"
@@ -446,6 +446,8 @@ msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr ""
+"%s ezin da konposiziora gehitu, iso9660 formatuko fitxategi tamaina "
+"muga gainditzen du eta."
 
 #: ../xfburn/xfburn-data-composition.c:1266
 #: ../xfburn/xfburn-audio-composition.c:1319
@@ -478,7 +480,7 @@ msgstr ""
 #: ../xfburn/xfburn-data-composition.c:1846
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
-msgstr ""
+msgstr "Bikoiztutako '%s'vfitxategi iznea '%s'-rentzat"
 
 #: ../xfburn/xfburn-device-box.c:173 ../xfburn/xfburn-device-box.c:174
 msgid "Show writers only"
@@ -515,7 +517,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:192 ../xfburn/xfburn-device-box.c:193
 msgid "Accept only CDs as valid discs"
-msgstr ""
+msgstr "Onartu CDak bakarrik disko erabilagrri gisa"
 
 #: ../xfburn/xfburn-device-box.c:246
 msgid "_Speed:"
@@ -607,25 +609,23 @@ msgstr "Sartutako diskoa dagoeneko zurian dago"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
-msgstr ""
+msgstr "Sistemako grabatzaile kopurua"
 
 #: ../xfburn/xfburn-device-list.c:209
 msgid "Number of drives in the system"
-msgstr ""
+msgstr "Sistemako gailu kopurua"
 
 #: ../xfburn/xfburn-device-list.c:210
 msgid "Number of drives in the system (readers and writers)"
-msgstr ""
+msgstr "Sistemako gailu kopurua (irakurle eta grabatzaileak)"
 
 #: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
-#, fuzzy
 msgid "List of devices"
-msgstr "Gailuak _atzeman"
+msgstr "Gailu zerrenda"
 
 #: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
-#, fuzzy
 msgid "Currently selected device"
-msgstr "Atzemandako gailuak"
+msgstr "Hautaturik dagoen gailua"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:58
@@ -669,9 +669,8 @@ msgid "Unable to initialize the burning backend."
 msgstr "Ezin da grabaketa motorra abiarazi."
 
 #: ../xfburn/xfburn-main.c:307
-#, fuzzy
 msgid "No burners are currently available"
-msgstr "Ez dago gailu erabilgarririk"
+msgstr "Ez dago gailu grabatzaile erabilgarririk"
 
 #: ../xfburn/xfburn-main.c:309
 msgid ""
@@ -1032,7 +1031,7 @@ msgstr "FIFO buffer tamaina (kb)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:464
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr ""
+msgstr "Ezarpena hau aldatzeak programa berrabiaraztean izango du eragina."
 
 #: ../xfburn/xfburn-progress-dialog.c:182
 msgid "Initializing..."
