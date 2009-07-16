@@ -4,15 +4,15 @@
 # Jean-François Wauthy <pollux@xfce.org>, 2005.
 # Etienne Collet <xanaxlnx@gmail.com>, 2005.
 # Maximilian Schleiss <maximilian@xfce.org>, 2007.
-# Mike Massonnet <mmassonnet@xfce.org>, 2008.
+# Mike Massonnet <mmassonnet@xfce.org>, 2008, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-14 08:11-0600\n"
-"PO-Revision-Date: 2008-12-03 21:20+0100\n"
-"Last-Translator: Maximilian Schleiss <maximilian@xfce.org>\n"
+"PO-Revision-Date: 2009-07-16 14:57+0200\n"
+"Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -191,10 +191,8 @@ msgstr "Une erreur s'est produite lors de l'écriture de l'ISO : %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:538
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:544
-#, fuzzy
 msgid "An error occurred in the burn backend."
-msgstr ""
-"Une erreur est intervenue dans la bibliothèque d'entrée-sortie ('%s'): %s"
+msgstr "Une erreur est intervenue dans le moteur de gravure."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:343
@@ -230,10 +228,8 @@ msgstr "_Graver l'image"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:296
 #: ../xfburn/xfburn-burn-image-dialog.c:325
-#, fuzzy
 msgid "An error occurred in the burn backend"
-msgstr ""
-"Une erreur est intervenue dans la bibliothèque d'entrée-sortie ('%s'): %s"
+msgstr "Une erreur est intervenue dans le moteur de gravure"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:309
 msgid "Unable to determine image size."
@@ -412,7 +408,7 @@ msgstr "Nom de volume :"
 #: ../xfburn/xfburn-data-composition.c:365
 #, c-format
 msgid "Data %s~%d"
-msgstr ""
+msgstr "Composition %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:397
 msgid "Contents"
@@ -449,6 +445,8 @@ msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr ""
+"%s ne peut pas être ajouté à la composition, parce qu'il excède la taille "
+"maximale admise d'un fichier autorisé par iso9660."
 
 #: ../xfburn/xfburn-data-composition.c:1266
 #: ../xfburn/xfburn-audio-composition.c:1319
@@ -480,7 +478,7 @@ msgstr ""
 #: ../xfburn/xfburn-data-composition.c:1846
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
-msgstr ""
+msgstr "Nom de fichier « %s » dupliqué par « %s »"
 
 #: ../xfburn/xfburn-device-box.c:173 ../xfburn/xfburn-device-box.c:174
 msgid "Show writers only"
@@ -520,7 +518,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:192 ../xfburn/xfburn-device-box.c:193
 msgid "Accept only CDs as valid discs"
-msgstr ""
+msgstr "Accepter uniquement les CD comme disques valides."
 
 #: ../xfburn/xfburn-device-box.c:246
 msgid "_Speed:"
@@ -612,25 +610,23 @@ msgstr "Le disque inséré est déjà vierge"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
-msgstr ""
+msgstr "Nombre de périphériques de gravures dans le système"
 
 #: ../xfburn/xfburn-device-list.c:209
 msgid "Number of drives in the system"
-msgstr ""
+msgstr "Nombre de périphériques dans le système"
 
 #: ../xfburn/xfburn-device-list.c:210
 msgid "Number of drives in the system (readers and writers)"
-msgstr ""
+msgstr "Nombre de périphériques dans le système (lecteurs et graveurs)"
 
 #: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
-#, fuzzy
 msgid "List of devices"
-msgstr "Re_chercher les périphériques"
+msgstr "Liste des périphériques"
 
 #: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
-#, fuzzy
 msgid "Currently selected device"
-msgstr "Périphériques détectés"
+msgstr "Périphérique couramment sélectionné"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:58
@@ -671,17 +667,14 @@ msgstr ""
 "commande.\n"
 
 #: ../xfburn/xfburn-main.c:222
-#, fuzzy
 msgid "Unable to initialize the burning backend."
-msgstr "Impossible d'initialiser le verrou sur la base. ERR=%s\n"
+msgstr "Impossible d'initialiser le moteur de gravure."
 
 #: ../xfburn/xfburn-main.c:307
-#, fuzzy
 msgid "No burners are currently available"
-msgstr "Aucun périphérique disponible"
+msgstr "Aucun périphérique de gravure n'est couramment disponible"
 
 #: ../xfburn/xfburn-main.c:309
-#, fuzzy
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
@@ -690,9 +683,12 @@ msgid ""
 "If no disc is in the drive, check that you have read and write access to the "
 "drive with the current user."
 msgstr ""
-"Peut-être qu'un disque se trouve être monté dans le lecteur ?\n"
+"Peut-être qu'un disque est en cours d'utilisation et ne peut pas être accédé.\n"
 "\n"
-"Veuillez le démonter et relancer l'application."
+"Veuillez le démonter et relancer l'application.\n"
+"\n"
+"S'il n'y a aucun disque dans le lecteur, vérifiez que vous avez les droits en lecteur "
+"et écriture sur le lecteur avec votre utilisateur."
 
 #: ../xfburn/xfburn-main.c:343
 #, c-format
@@ -1037,7 +1033,7 @@ msgstr "Tampon FIFO (en ko)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:464
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr ""
+msgstr "Changer ce paramètre ne prend effet seulement après avoir relancé le programme."
 
 #: ../xfburn/xfburn-progress-dialog.c:182
 msgid "Initializing..."
@@ -1179,7 +1175,7 @@ msgstr "Vous pouvez seulement avoir un maximum de 99 pistes."
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
 msgid "A problem with the burn backend occurred."
-msgstr ""
+msgstr "Un problème est intervenu avec le moteur de gravure."
 
 #: ../xfburn/xfburn-disc-usage.c:165
 msgid "Proceed to Burn"
@@ -1305,7 +1301,7 @@ msgstr "GStreamer a refusé de démarré le transcodage (délais dépassé)"
 #: ../xfburn/xfburn-transcoder-gst.c:952
 #, c-format
 msgid "Failed to change songs while transcoding"
-msgstr ""
+msgstr "Erreur lors du changement des pistes durant le transcodage."
 
 #: ../xfburn/xfburn-transcoder.c:125 ../xfburn/xfburn-transcoder.c:152
 #: ../xfburn/xfburn-transcoder.c:164
