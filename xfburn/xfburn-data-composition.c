@@ -1843,6 +1843,7 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
         r = iso_node_set_name (node, name);
 
         if (r == 0) {
+          /* The first string is the renamed name, the second one the original name */
           xfce_warn (_("Duplicate filename '%s' for '%s'"), name, src);
 
           g_free (basename);

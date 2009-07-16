@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-14 08:11-0600\n"
+"POT-Creation-Date: 2009-07-16 08:39-0600\n"
 "PO-Revision-Date: 2009-07-16 14:57+0200\n"
 "Last-Translator: Mike Massonnet <mmassonnet@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -475,7 +475,8 @@ msgstr ""
 "Un fichier nommé \"%s\" existe déjà dans ce répertoire, ce fichier n'a pas "
 "été ajouté."
 
-#: ../xfburn/xfburn-data-composition.c:1846
+#. The first string is the renamed name, the second one the original name
+#: ../xfburn/xfburn-data-composition.c:1847
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "Nom de fichier « %s » dupliqué par « %s »"
@@ -683,12 +684,13 @@ msgid ""
 "If no disc is in the drive, check that you have read and write access to the "
 "drive with the current user."
 msgstr ""
-"Peut-être qu'un disque est en cours d'utilisation et ne peut pas être accédé.\n"
+"Peut-être qu'un disque est en cours d'utilisation et ne peut pas être "
+"accédé.\n"
 "\n"
 "Veuillez le démonter et relancer l'application.\n"
 "\n"
-"S'il n'y a aucun disque dans le lecteur, vérifiez que vous avez les droits en lecteur "
-"et écriture sur le lecteur avec votre utilisateur."
+"S'il n'y a aucun disque dans le lecteur, vérifiez que vous avez les droits "
+"en lecteur et écriture sur le lecteur avec votre utilisateur."
 
 #: ../xfburn/xfburn-main.c:343
 #, c-format
@@ -1033,7 +1035,9 @@ msgstr "Tampon FIFO (en ko)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:464
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr "Changer ce paramètre ne prend effet seulement après avoir relancé le programme."
+msgstr ""
+"Changer ce paramètre ne prend effet seulement après avoir relancé le "
+"programme."
 
 #: ../xfburn/xfburn-progress-dialog.c:182
 msgid "Initializing..."
