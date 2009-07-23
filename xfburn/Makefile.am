@@ -143,7 +143,9 @@ missing_files = \
 	xfburn-copy-dvd-dialog.h					\
 	xfburn-create-iso-progress-dialog.c
 
-EXTRA_DIST = $(missing_files)
+EXTRA_DIST = $(missing_files) \
+	xfburn-cclosure-marshal.list
+
 DISTCLEANFILES = $(BUILT_SOURCES)
 
 # vi:set ts=8 sw=8 noet ai nocindent softtabstop=0 list listchars=tab\:>-:

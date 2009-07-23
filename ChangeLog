@@ -1,3 +1,315 @@
+2009-07-19  kelemeng
+
+	* po/ChangeLog, po/hu.po:
+	  2009-07-19 Gabor Kelemen <kelemeng@gnome.hu>
+	  
+	  * hu.po: Translation reworked.
+
+2009-07-16  David Mohr <david@mcbf.net>
+
+	* po/ChangeLog, po/ar.po, po/ca.po, po/cs.po, po/da.po, po/de.po,
+	  po/dz.po, po/el.po, po/en_GB.po, po/es.po, po/et.po, po/eu.po,
+	  po/fi.po, po/fr.po, po/gl.po, po/he.po, po/hu.po, po/id.po,
+	  po/it.po, po/ja.po, po/kk.po, po/ko.po, po/lt.po, po/lv.po,
+	  po/nb.po, po/nl.po, po/pa.po, po/pl.po, po/pt.po, po/pt_BR.po,
+	  po/ru.po, po/sq.po, po/sv.po, po/tr.po, po/uk.po, po/ur.po,
+	  po/ur_PK.po, po/xfburn.pot, po/zh_CN.po, po/zh_TW.po,
+	  xfburn/xfburn-data-composition.c:
+	  German translation update, adding comment for translators,
+	  updating po
+	* po/ChangeLog, po/LINGUAS, po/id.po, po/kk.po:
+	  Applying id update, add kk translation
+
+2009-07-16  mmassonnet
+
+	* po/ChangeLog, po/fr.po:
+	  update xfburn french translation
+
+2009-07-15  hashimo
+
+	* po/ChangeLog, po/ja.po:
+	  ja translation update
+
+2009-07-15  piarres
+
+	* po/ChangeLog, po/eu.po:
+	  Basque translation update
+
+2009-07-14  David Mohr <david@mcbf.net>
+
+	* po/ar.po, po/ca.po, po/cs.po, po/da.po, po/de.po, po/dz.po,
+	  po/el.po, po/en_GB.po, po/es.po, po/et.po, po/eu.po, po/fi.po,
+	  po/fr.po, po/gl.po, po/he.po, po/hu.po, po/id.po, po/it.po,
+	  po/ja.po, po/ko.po, po/lt.po, po/lv.po, po/nb.po, po/nl.po,
+	  po/pa.po, po/pl.po, po/pt.po, po/pt_BR.po, po/ru.po, po/sq.po,
+	  po/sv.po, po/tr.po, po/uk.po, po/ur.po, po/ur_PK.po,
+	  po/xfburn.pot, po/zh_CN.po, po/zh_TW.po:
+	  Updating po files
+	* xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-data-composition.c:
+	  Adding date to the default composition name
+
+2009-07-13  David Mohr <david@mcbf.net>
+
+	* xfburn/Makefile.am, xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-blank-dialog.c,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-cclosure-marshal.list,
+	  xfburn/xfburn-data-composition.c, xfburn/xfburn-device-box.c,
+	  xfburn/xfburn-device-box.h, xfburn/xfburn-device-list.c,
+	  xfburn/xfburn-device-list.h:
+	  Fixing the signal mess; use proper c closure marshal, DeviceBox
+	  now relays a signal from DeviceList for ease of use
+
+2009-07-11  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-composition.c:
+	  Rename files not just in the GUI but also in the generated
+	  IsoImage
+
+2009-07-09  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-device-list.c:
+	  Adding some debugging output
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-data-composition.c:
+	  Parse lines from the text/plain DnD destination as uris
+
+2009-07-08  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-directory-browser.c, xfburn/xfburn-fs-browser.c,
+	  xfburn/xfburn-preferences-dialog.c:
+	  Actually show hidden files if selected in the preferences
+	* xfburn/xfburn-main.c:
+	  Add notice when hal is in use
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-data-composition.c,
+	  xfburn/xfburn-directory-browser.c, xfburn/xfburn-fs-browser.c:
+	  Properly handle encoding of file names; work around poor gtk docs
+
+2009-07-05  David Mohr <david@mcbf.net>
+
+	* xfburn/Makefile.am, xfburn/xfburn-blank-dialog.c,
+	  xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-device-box.c,
+	  xfburn/xfburn-device-box.h, xfburn/xfburn-device-list.c,
+	  xfburn/xfburn-device-list.h, xfburn/xfburn-device.c,
+	  xfburn/xfburn-device.h, xfburn/xfburn-hal-manager.c,
+	  xfburn/xfburn-hal-manager.h, xfburn/xfburn-main-window.c,
+	  xfburn/xfburn-main.c, xfburn/xfburn-perform-burn.c,
+	  xfburn/xfburn-preferences-dialog.c, xfburn/xfburn-utils.c,
+	  xfburn/xfburn-utils.h:
+	  DeviceList and Device are now objects
+
+2009-06-16  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-perform-burn.c:
+	  Fix the size check
+	* xfburn/xfburn-perform-burn.c:
+	  Correctly calculate audio cd available size using a little hack
+
+2009-06-14  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-transcoder-gst.c:
+	  Adding resampling to gstreamer pipeline
+
+2009-06-13  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-directory-browser.c, xfburn/xfburn-fs-browser.c:
+	  Enabling symlink'ed directories
+
+2009-06-12  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-track-gst.c, xfburn/xfburn-audio-track.c,
+	  xfburn/xfburn-data-composition.c:
+	  Release memory of the treeview model when the composition is
+	  closed
+
+2009-06-09  mmassonnet
+
+	* po/ur_PK.po:
+	  Drop svn:executable bit from po files
+
+2009-06-09  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-composition.c:
+	  Freeing audio track after passing it on to the model
+	* xfburn/xfburn-adding-progress.c, xfburn/xfburn-adding-progress.h,
+	  xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-disc-usage.c,
+	  xfburn/xfburn-audio-disc-usage.h, xfburn/xfburn-blank-dialog.c,
+	  xfburn/xfburn-blank-dialog.h,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.h,
+	  xfburn/xfburn-burn-data-cd-composition-dialog.c,
+	  xfburn/xfburn-burn-data-cd-composition-dialog.h,
+	  xfburn/xfburn-burn-data-composition-base-dialog.c,
+	  xfburn/xfburn-burn-data-composition-base-dialog.h,
+	  xfburn/xfburn-burn-data-dvd-composition-dialog.c,
+	  xfburn/xfburn-burn-data-dvd-composition-dialog.h,
+	  xfburn/xfburn-burn-image-dialog.c,
+	  xfburn/xfburn-burn-image-dialog.h,
+	  xfburn/xfburn-compositions-notebook.c,
+	  xfburn/xfburn-compositions-notebook.h,
+	  xfburn/xfburn-copy-cd-dialog.c, xfburn/xfburn-copy-cd-dialog.h,
+	  xfburn/xfburn-copy-cd-progress-dialog.c,
+	  xfburn/xfburn-copy-cd-progress-dialog.h,
+	  xfburn/xfburn-copy-dvd-dialog.c, xfburn/xfburn-copy-dvd-dialog.h,
+	  xfburn/xfburn-create-iso-progress-dialog.c,
+	  xfburn/xfburn-create-iso-progress-dialog.h,
+	  xfburn/xfburn-data-composition.h,
+	  xfburn/xfburn-data-disc-usage.c, xfburn/xfburn-data-disc-usage.h,
+	  xfburn/xfburn-device-box.h, xfburn/xfburn-directory-browser.c,
+	  xfburn/xfburn-directory-browser.h, xfburn/xfburn-disc-usage.c,
+	  xfburn/xfburn-disc-usage.h, xfburn/xfburn-file-browser.c,
+	  xfburn/xfburn-file-browser.h, xfburn/xfburn-hal-manager.h,
+	  xfburn/xfburn-main-window.c, xfburn/xfburn-main-window.h,
+	  xfburn/xfburn-notebook-tab.c, xfburn/xfburn-notebook-tab.h,
+	  xfburn/xfburn-preferences-dialog.c,
+	  xfburn/xfburn-preferences-dialog.h,
+	  xfburn/xfburn-progress-dialog.c, xfburn/xfburn-progress-dialog.h,
+	  xfburn/xfburn-transcoder-basic.c,
+	  xfburn/xfburn-transcoder-basic.h, xfburn/xfburn-transcoder-gst.c,
+	  xfburn/xfburn-welcome-tab.c, xfburn/xfburn-welcome-tab.h:
+	  Replacing GtkType by GType
+	* xfburn/xfburn-audio-track-gst.c, xfburn/xfburn-audio-track.c,
+	  xfburn/xfburn-transcoder-basic.c, xfburn/xfburn-transcoder-gst.c,
+	  xfburn/xfburn-transcoder.c, xfburn/xfburn-transcoder.h:
+	  Create XfburnAudioTrack in the interface, properly copy and free
+	  it
+
+2009-06-08  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-track-gst.c, xfburn/xfburn-audio-track-gst.h,
+	  xfburn/xfburn-audio-track.c, xfburn/xfburn-audio-track.h:
+	  Adding missing files
+	* xfburn/Makefile.am, xfburn/xfburn-audio-composition.c,
+	  xfburn/xfburn-audio-composition.h,
+	  xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+	  xfburn/xfburn-transcoder-gst.c, xfburn/xfburn-transcoder-gst.h,
+	  xfburn/xfburn-transcoder.h:
+	  Converting audiotracks to GBoxedType - memory leaks probably
+	  remain
+
+2009-05-29  mmassonnet
+
+	* po/ChangeLog, po/LINGUAS, po/ur.po, po/ur_PK.po:
+	  update goodies translations
+
+2009-05-28  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-data-composition.c:
+	  Bugfix: only allow dropping into folders, not files. Copied from
+	  moving rows inside the composition
+	* xfburn/xfburn-transcoder-gst.c:
+	  Committing old uncommitted bugfix for god knows what
+
+2009-05-11  mmassonnet
+
+	* po/ChangeLog, po/tr.po, po/zh_CN.po:
+	  update translations
+
+2009-04-20  mmassonnet
+
+	* po/ChangeLog, po/gl.po:
+	  goodies translation update (galician only)
+
+2009-04-16  mmassonnet
+
+	* po/ChangeLog, po/gl.po:
+	  goodies translation update
+
+2009-04-13  mmassonnet
+
+	* po/ChangeLog, po/id.po:
+	  goodies translation update
+
+2009-03-29  maximilian
+
+	* po/ChangeLog, po/LINGUAS, po/it.po, po/pt.po:
+	  Translations updates - it pt
+
+2009-03-28  mmassonnet
+
+	* po/ca.po:
+	  german and catalan translations
+
+2009-03-19  hashimo
+
+	* po/ChangeLog, po/ja.po:
+	  * ja.po: Japanese translation update (Masato Hashimoto) * ja.po:
+	  Japanese translation update (Masato Hashimoto) * ja.po: Japanese
+	  translation update (Masato Hashimoto) * ja.po: Japanese
+	  translation update (Masato Hashimoto) * ja.po: Japanese
+	  translation update (Masato Hashimoto) * ja.po: Japanese
+	  translation update (Masato Hashimoto) * ja.po: Japanese
+	  translation update (Masato Hashimoto) * ja.po: Japanese
+	  translation update (Masato Hashimoto) * ja.po: Japanese
+	  translation update (Masato Hashimoto) * ja.po: Japanese
+	  translation update (Masato Hashimoto) * ja.po: Japanese
+	  translation update (Masato Hashimoto) * ja.po: Japanese
+	  translation update (Masato Hashimoto)
+
+2009-03-14  maximilian
+
+	* po/ChangeLog, po/gl.po, po/tr.po:
+	  Translations updates - es fr gl it tr
+
+2009-03-08  pko
+
+	* po/ChangeLog, po/da.po:
+	  * da.po: Danish translation update (Lars Christian Jensen)
+
+2009-03-08  brzydki
+
+	* po/pl.po:
+	  Updated Polish translations
+
+2009-03-05  mmassonnet
+
+	* po/nb.no, po/nb.po, po/pt.no, po/pt.po:
+	  Fix the renaming of the pt nb files -- thanks to jerome who
+	  noticed this problem
+	* po/ChangeLog, po/LINGUAS, po/nb.no, po/nb_NO.po, po/pt.no,
+	  po/pt_PT.po:
+	  Renamed pt_PT to pt and nb_NO to nb (bug #4574)
+
+2009-03-01  maximilian
+
+	* po/ChangeLog, po/es.po, po/pl.po, po/uk.po:
+	  Translations updates - es pl uk
+
+2009-02-28  David Mohr <david@mcbf.net>
+
+	* xfburn/xfburn-audio-composition.c:
+	  Fixing crash when dropping a song onto a row in the audio
+	  composition
+
+2009-02-26  David Mohr <david@mcbf.net>
+
+	* ., autogen.sh:
+	  Making eht16 and myself happy - take autogen configure flags from
+	  an optional config file
+
+2009-02-25  David Mohr <david@mcbf.net>
+
+	* NEWS, README, configure.in.in:
+	  post release version bump
+	* ChangeLog, autogen.sh:
+	  Updating changelog
+	* NEWS, README, configure.in.in:
+	  Preparing for release, reverting libburn version bump
+	* xfburn/xfburn-data-composition.c, xfburn/xfburn-global.h:
+	  Adding check for maximum iso9660 content file size
+	* xfburn/xfburn-preferences-dialog.c:
+	  Setting a bigger default size for the preference dialog
+	* NEWS, xfburn/xfburn-device-list.c, xfburn/xfburn-hal-manager.c:
+	  Falling back to libburn device detection if hal does not find
+	  any. Remove unecessary checks, and output to the console drives
+	  which are not burners
+
 2009-02-23  pko
 
 	* po/ChangeLog, po/da.po:
