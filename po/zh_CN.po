@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: xfburn 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-22 20:32-0600\n"
-"PO-Revision-Date: 2009-05-09 13:41+0800\n"
+"PO-Revision-Date: 2009-07-24 08:10+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -404,7 +404,7 @@ msgstr "卷标名:"
 #: ../xfburn/xfburn-data-composition.c:365
 #, c-format
 msgid "Data %s~%d"
-msgstr ""
+msgstr "数据 %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:397
 msgid "Contents"
@@ -441,6 +441,7 @@ msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr ""
+"%s 将无法被加入到盘中，因为它超过了 iso9660 格式规定的最大文件大小。"
 
 #: ../xfburn/xfburn-data-composition.c:1266
 #: ../xfburn/xfburn-audio-composition.c:1319
@@ -470,7 +471,7 @@ msgstr "该目录中已经存在名为\"%s\"的文件，没有文件被添加。
 #: ../xfburn/xfburn-data-composition.c:1847
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
-msgstr ""
+msgstr "“%s”与现有的文件“%s”同名"
 
 #: ../xfburn/xfburn-device-box.c:173 ../xfburn/xfburn-device-box.c:174
 msgid "Show writers only"
@@ -595,25 +596,23 @@ msgstr "插入的光盘已经是空白的"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
-msgstr ""
+msgstr "系统中刻录机的数量"
 
 #: ../xfburn/xfburn-device-list.c:209
 msgid "Number of drives in the system"
-msgstr ""
+msgstr "系统中驱动器的数量"
 
 #: ../xfburn/xfburn-device-list.c:210
 msgid "Number of drives in the system (readers and writers)"
 msgstr ""
 
 #: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
-#, fuzzy
 msgid "List of devices"
-msgstr "扫描设备(_a)"
+msgstr "设备列表"
 
 #: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
-#, fuzzy
 msgid "Currently selected device"
-msgstr "探测到设备"
+msgstr "当前选中的设备"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:58
@@ -657,9 +656,8 @@ msgid "Unable to initialize the burning backend."
 msgstr "无法启动烧录后端。"
 
 #: ../xfburn/xfburn-main.c:307
-#, fuzzy
 msgid "No burners are currently available"
-msgstr "当前无可用的驱动器"
+msgstr "当前无可用的刻录机"
 
 #: ../xfburn/xfburn-main.c:309
 msgid ""
@@ -1018,6 +1016,7 @@ msgstr "FIFO缓冲区大小(单位KB):"
 #: ../xfburn/xfburn-preferences-dialog.c:464
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr ""
+"该选项必须在重启此程序之后才能完全生效。"
 
 #: ../xfburn/xfburn-progress-dialog.c:182
 msgid "Initializing..."
@@ -1281,22 +1280,20 @@ msgid "not implemented"
 msgstr "无法执行"
 
 #: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
-#, fuzzy
 msgid "Display name"
-msgstr "文件名"
+msgstr "显示名称"
 
 #: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
-#, fuzzy
 msgid "Device address"
-msgstr "设备"
+msgstr "设备地址"
 
 #: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
 msgid "Is the device accessible"
-msgstr ""
+msgstr "设备可用吗"
 
 #: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
 msgid "Burn speeds supported by the device"
-msgstr ""
+msgstr "设备支持的刻录速度"
 
 #: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
 msgid "Disc status"
@@ -1304,52 +1301,53 @@ msgstr "光盘状态"
 
 #: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Profile no. as reported by libburn"
-msgstr ""
+msgstr "libburn 报告的档案编号"
 
 #: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
 msgid "Profile name as reported by libburn"
-msgstr ""
+msgstr "libburn 报告的档案名称"
 
 #: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
-#, fuzzy
 msgid "Is the disc erasable"
-msgstr "插入的光盘不合适"
+msgstr "该光盘可擦除吗？"
 
 #: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
 msgid "Can burn CDR"
-msgstr ""
+msgstr "能够刻录 CDR"
 
 #: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
 msgid "Can burn CDRW"
-msgstr ""
+msgstr "能够刻录 CDRW"
 
 #: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
 msgid "Can burn DVDR"
-msgstr ""
+msgstr "能够刻录 DVDR"
 
 #: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
 msgid "Can burn DVDPLUSR"
-msgstr ""
+msgstr "能够刻录 DVDPLUSR"
 
 #: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
 msgid "Can burn DVDRAM"
-msgstr ""
+msgstr "能够刻录 DVDRAM"
 
 #: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
+#, fuzzy
 msgid "libburn TAO block types"
-msgstr ""
+msgstr "libburn 提供的 TAO 块类型"
 
 #: ../xfburn/xfburn-device.c:290 ../xfburn/xfburn-device.c:291
+#, fuzzy
 msgid "libburn SAO block types"
-msgstr ""
+msgstr "libburn 提供的 SAO 块类型"
 
 #: ../xfburn/xfburn-device.c:293 ../xfburn/xfburn-device.c:294
 msgid "libburn RAW block types"
-msgstr ""
+msgstr "libburn 提供的 RAW 块类型"
 
 #: ../xfburn/xfburn-device.c:296 ../xfburn/xfburn-device.c:297
 msgid "libburn PACKET block types"
-msgstr ""
+msgstr "libburn 提供的 PACKET 块类型"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
@@ -1357,7 +1355,7 @@ msgstr "数据项目"
 
 #: ../xfburn.desktop.in.h:1
 msgid "Burn Image (xfburn)"
-msgstr "烧录映像(xfburn)"
+msgstr "刻录映像(xfburn)"
 
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
