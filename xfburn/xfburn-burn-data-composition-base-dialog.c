@@ -67,11 +67,14 @@ typedef struct
   */
 
   gint response;
+
+  gboolean show_volume_name;
 } XfburnBurnDataCompositionBaseDialogPrivate;
 
 enum {
   PROP_0,
-  PROP_IMAGE
+  PROP_IMAGE,
+  PROP_SHOW_VOLUME_NAME,
 };
 
 /*
@@ -150,7 +153,9 @@ xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBa
 
   /* properties */
   g_object_class_install_property (object_class, PROP_IMAGE,
-				   g_param_spec_pointer ("image", "Image", "Image", G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
+				   g_param_spec_pointer ("image", _("Image"), _("Image"), G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_SHOW_VOLUME_NAME,
+				   g_param_spec_boolean ("show-volume-name", _("Show volume name"), _("Show a text entry for the name of the volume"), FALSE, G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
 }
 
 static GObject *
@@ -194,7 +199,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
 
   /* composition name */
   comp_name = iso_image_get_volume_id (priv->image);
-  if (strcmp (comp_name, _(DATA_COMPOSITION_DEFAULT_NAME)) == 0) {
+  if (priv->show_volume_name) {
     GtkWidget *label;
     vbox = gtk_vbox_new (FALSE, 0);
     gtk_widget_show (vbox);
@@ -305,6 +310,9 @@ xfburn_burn_data_composition_base_dialog_get_property (GObject * object, guint p
   case PROP_IMAGE:
     g_value_set_pointer (value, priv->image);
     break;
+  case PROP_SHOW_VOLUME_NAME:
+    g_value_set_boolean (value, priv->show_volume_name);
+    break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     break;
@@ -319,6 +327,9 @@ xfburn_burn_data_composition_base_dialog_set_property (GObject * object, guint p
   switch (prop_id) {
   case PROP_IMAGE:
     priv->image = g_value_get_pointer (value);
+    break;
+  case PROP_SHOW_VOLUME_NAME:
+    priv->show_volume_name = g_value_get_boolean (value);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);

@@ -51,7 +51,7 @@ typedef struct
 
 GType xfburn_burn_data_cd_composition_dialog_get_type ();
 
-GtkWidget *xfburn_burn_data_cd_composition_dialog_new (IsoImage *image);
+GtkWidget *xfburn_burn_data_cd_composition_dialog_new (IsoImage *image, gboolean has_default_name);
 
 G_END_DECLS
 #endif /* XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_H */

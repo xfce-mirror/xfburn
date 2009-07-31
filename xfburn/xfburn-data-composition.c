@@ -113,6 +113,9 @@ static void save_to_file (XfburnComposition *composition);
 
 static gint directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data);
 
+static void set_default_name (XfburnDataComposition * dc);
+static gboolean has_default_name (XfburnDataComposition * dc);
+
 static void action_create_directory (GtkAction *, XfburnDataComposition *);
 static void action_clear (GtkAction *, XfburnDataComposition *);
 static void action_remove_selection (GtkAction *, XfburnDataComposition *);
@@ -171,6 +174,8 @@ typedef struct
   GtkWidget *disc_usage;
   GtkWidget *progress;
   GtkTreeStore *model;
+
+  gchar *default_vol_name;
 
 } XfburnDataCompositionPrivate;
 
@@ -290,13 +295,6 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
                                 { "text/plain;charset=utf-8", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN },
                               };
 
-  gchar *vol_name;
-  char timestr[80];
-  struct tm *today;
-  time_t tm;
-  /* FIXME: put i into the class? */
-  static int i = 0;
-
   priv->full_paths_to_add = NULL;
 
   instances++;
@@ -357,17 +355,8 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   
   priv->entry_volume_name = gtk_entry_new ();
 
-  tm = time (NULL);
-  today = localtime (&tm);
+  set_default_name (composition);
 
-  if (tm && strftime (timestr, 80, "%Y-%m-%d", today))
-    /* Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions */
-    vol_name = g_strdup_printf (_("Data %s~%d"), timestr, ++i);
-  else
-    vol_name = g_strdup_printf ("%s %d", _(DATA_COMPOSITION_DEFAULT_NAME), ++i);
-
-  gtk_entry_set_text (GTK_ENTRY (priv->entry_volume_name), vol_name);
-  g_free (vol_name);
   gtk_box_pack_start (GTK_BOX (hbox), priv->entry_volume_name, FALSE, FALSE, 0);
   gtk_widget_show (priv->entry_volume_name);
   
@@ -512,7 +501,7 @@ cb_begin_burn (XfburnDataDiscUsage * du, XfburnDataComposition * dc)
   
   switch (xfburn_disc_usage_get_disc_type (XFBURN_DISC_USAGE (du))) {
   case CD_DISC:
-    dialog = xfburn_burn_data_cd_composition_dialog_new (image);
+    dialog = xfburn_burn_data_cd_composition_dialog_new (image, has_default_name (dc));
     break;
   case DVD_DISC:
     dialog = xfburn_burn_data_dvd_composition_dialog_new (image);
@@ -957,6 +946,44 @@ action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
 }
 
 static void
+set_default_name (XfburnDataComposition * dc)
+{
+  XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
+
+  char timestr[80];
+  struct tm *today;
+  time_t tm;
+  /* FIXME: put i into the class? */
+  static int i = 0;
+
+  tm = time (NULL);
+  today = localtime (&tm);
+
+  if (priv->default_vol_name)
+    g_free (priv->default_vol_name);
+
+  if (tm && strftime (timestr, 80, "%Y-%m-%d", today))
+    /* Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions */
+    priv->default_vol_name = g_strdup_printf (_("Data %s~%d"), timestr, ++i);
+  else
+    priv->default_vol_name = g_strdup_printf ("%s %d", _(DATA_COMPOSITION_DEFAULT_NAME), ++i);
+
+  gtk_entry_set_text (GTK_ENTRY (priv->entry_volume_name), priv->default_vol_name);
+}
+
+static gboolean
+has_default_name (XfburnDataComposition * dc)
+{
+  XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
+
+  const gchar *name;
+
+  name = gtk_entry_get_text (GTK_ENTRY (priv->entry_volume_name));
+
+  return strcmp (name, priv->default_vol_name) == 0;
+}
+
+static void
 action_clear (GtkAction * action, XfburnDataComposition * dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
@@ -966,7 +993,7 @@ action_clear (GtkAction * action, XfburnDataComposition * dc)
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   gtk_tree_store_clear (GTK_TREE_STORE (model));
   
-  gtk_entry_set_text (GTK_ENTRY (priv->entry_volume_name), _(DATA_COMPOSITION_DEFAULT_NAME));
+  set_default_name (dc);
 
   xfburn_disc_usage_set_size (XFBURN_DISC_USAGE (priv->disc_usage), 0);
 }

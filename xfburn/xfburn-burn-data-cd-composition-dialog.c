@@ -111,11 +111,13 @@ xfburn_burn_data_cd_composition_dialog_finalize (GObject * object)
 
 /* public */
 GtkWidget *
-xfburn_burn_data_cd_composition_dialog_new (IsoImage *image)
+xfburn_burn_data_cd_composition_dialog_new (IsoImage *image, gboolean has_default_name)
 {
   XfburnBurnDataCdCompositionDialog *obj;
 
-  obj = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG, "image", image, NULL));
+  obj = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG, "image", image, 
+                                                                                                           "show-volume-name", has_default_name,
+                                                                                                           NULL));
   
   return GTK_WIDGET (obj);
 }
