@@ -29,14 +29,15 @@ EOF
 
 # substitute revision and linguas
 linguas=`sed -e '/^#/d' po/LINGUAS`
-if test -d .git/svn; then
-  revision=`git svn find-rev trunk 2>/dev/null ||
-            git svn find-rev origin/trunk 2>/dev/null ||
-            git svn find-rev HEAD 2>/dev/null ||
-            git svn find-rev master 2>/dev/null`
-else
-  revision=`LC_ALL=C svn info $0 | awk '/^Revision: / {printf "%05d\n", $2}'`
+
+if [ -d .git ]; then
+  revision=`git rev-parse --short HEAD 2>/dev/null`
 fi
+
+if [ -z "$revision" ]; then
+  revision="UNKNOWN"
+fi
+
 sed -e "s/@LINGUAS@/${linguas}/g" \
     -e "s/@REVISION@/${revision}/g" \
     < "configure.in.in" > "configure.in"
