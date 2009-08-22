@@ -34,7 +34,7 @@ XDT_CHECK_PACKAGE([LIBISOFS], [libisofs-1], [0.6.2])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.6.0])
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.10.0])
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
-XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.0])
+XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.4], [], [XDT_CHECK_PACKAGE([EXO], [exo-1], [0.3.100])])
 XDT_CHECK_OPTIONAL_PACKAGE([THUNAR_VFS], [thunar-vfs-1], [0.3.0], [thunar-vfs],
 	AC_HELP_STRING([--disable-thunar-vfs],
 			[Disable the use of Thunar's VFS layer to show mime type and icons in file browser]))
