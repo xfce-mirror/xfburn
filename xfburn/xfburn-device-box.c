@@ -1,6 +1,7 @@
 /* $Id$ */
 /*
  * Copyright (c) 2006 Jean-François Wauthy (pollux@xfce.org)
+ * Copyright (c) 2008-2009 David Mohr <david@mcbf.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -104,7 +105,7 @@ static void xfburn_device_box_finalize (GObject * object);
 static void xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
-static guint ask_for_blanking (XfburnDeviceBoxPrivate *priv);
+static gboolean ask_for_blanking (XfburnDeviceBoxPrivate *priv);
 static void status_label_update (XfburnDeviceBoxPrivate *priv);
 static gboolean check_disc_validity (XfburnDeviceBoxPrivate *priv);
 static void refresh_drive_info (XfburnDeviceBox *box, XfburnDevice *device);
@@ -171,15 +172,16 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
     
   g_object_class_install_property (object_class, PROP_SHOW_WRITERS_ONLY, 
                                    g_param_spec_boolean ("show-writers-only", _("Show writers only"),
-                                                        _("Show writers only"), FALSE, G_PARAM_READWRITE));
+                                                        _("Show writers only"),
+                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
   g_object_class_install_property (object_class, PROP_SHOW_SPEED_SELECTION, 
                                    g_param_spec_boolean ("show-speed-selection", _("Show speed selection"),
                                                         _("Show speed selection combo"), 
-                                                        FALSE, G_PARAM_READWRITE));
+                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
   g_object_class_install_property (object_class, PROP_SHOW_MODE_SELECTION, 
                                    g_param_spec_boolean ("show-mode-selection", _("Show mode selection"),
                                                         _("Show mode selection combo"), 
-                                                        FALSE, G_PARAM_READWRITE));
+                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
   g_object_class_install_property (object_class, PROP_VALID, 
                                    g_param_spec_boolean ("valid", _("Is it a valid combination"),
                                                         _("Is the combination of hardware and disc valid to burn the composition?"), 
@@ -187,11 +189,11 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
   g_object_class_install_property (object_class, PROP_BLANK_MODE, 
                                    g_param_spec_boolean ("blank-mode", _("Blank mode"),
                                                         _("The blank mode shows different disc status messages than regular mode"), 
-                                                        FALSE, G_PARAM_READWRITE));
+                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
   g_object_class_install_property (object_class, PROP_ACCEPT_ONLY_CD, 
                                    g_param_spec_boolean ("accept-only-cd", _("Accept only CDs as valid discs"),
                                                         _("Accept only CDs as valid discs"), 
-                                                        FALSE, G_PARAM_READWRITE));
+                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
 
 static GObject * 
@@ -256,6 +258,10 @@ xfburn_device_box_constructor (GType type, guint n_construct_properties, GObject
   gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_speed), cell, "text", SPEED_TEXT_COLUMN, NULL);
   gtk_widget_show (priv->combo_speed);
   gtk_box_pack_start (GTK_BOX (priv->hbox_speed_selection), priv->combo_speed, TRUE, TRUE, BORDER);
+  if (priv->show_speed_selection) {
+    gtk_widget_show (priv->hbox_speed_selection);
+    fill_combo_speed (XFBURN_DEVICE_BOX (box), xfburn_device_list_get_current_device (devlist));
+  }
 
   /* mode */
   priv->hbox_mode_selection = gtk_hbox_new (FALSE, 0);
@@ -277,6 +283,11 @@ xfburn_device_box_constructor (GType type, guint n_construct_properties, GObject
   gtk_box_pack_start (GTK_BOX (priv->hbox_mode_selection), priv->combo_mode, TRUE, TRUE, BORDER);
   g_object_get (G_OBJECT (devlist), "num-burners", &n_burners, NULL);
   gtk_widget_set_sensitive (priv->combo_mode, n_burners > 0);
+
+  if (priv->show_mode_selection) {
+    gtk_widget_show (priv->hbox_mode_selection);
+    fill_combo_mode (XFBURN_DEVICE_BOX (box), xfburn_device_list_get_current_device (devlist));
+  }
 
   /* status label */
   priv->status_label = gtk_label_new ("");
@@ -345,19 +356,9 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
       break;
     case PROP_SHOW_SPEED_SELECTION:
       priv->show_speed_selection = g_value_get_boolean (value);
-      if (priv->show_speed_selection) {
-        gtk_widget_show (priv->hbox_speed_selection);
-        fill_combo_speed (XFBURN_DEVICE_BOX (object), xfburn_device_list_get_current_device (priv->devlist));
-      } else
-        gtk_widget_hide (priv->hbox_speed_selection);
       break;
     case PROP_SHOW_MODE_SELECTION:
       priv->show_mode_selection = g_value_get_boolean (value);
-      if (priv->show_mode_selection) {
-        gtk_widget_show (priv->hbox_mode_selection);
-        fill_combo_mode (XFBURN_DEVICE_BOX (object), xfburn_device_list_get_current_device (priv->devlist));
-      } else
-        gtk_widget_hide (priv->hbox_mode_selection);
       break;
     case PROP_BLANK_MODE:
       priv->blank_mode = g_value_get_boolean (value);
@@ -503,7 +504,7 @@ status_label_update (XfburnDeviceBoxPrivate *priv)
   g_free (text);
 }
 
-static guint
+static gboolean
 ask_for_blanking (XfburnDeviceBoxPrivate *priv)
 {
   gboolean do_blank;
@@ -511,8 +512,9 @@ ask_for_blanking (XfburnDeviceBoxPrivate *priv)
   if (priv->have_asked_for_blanking)
     return FALSE;
 
-  gdk_threads_enter ();
   priv->have_asked_for_blanking = TRUE;
+
+  gdk_threads_enter ();
   do_blank = xfburn_ask_yes_no (GTK_MESSAGE_QUESTION, "A full, but erasable disc is in the drive",
                                          "Do you want to blank the disc, so that it can be used for the upcoming burn process?");
 
@@ -543,6 +545,8 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
   
   gtk_label_set_text (GTK_LABEL (priv->disc_label), profile_name);
   g_free (profile_name);
+
+  DBG ("blank_mode = %d", priv->blank_mode);
 
   if (!priv->blank_mode) {
     /* for burning */
