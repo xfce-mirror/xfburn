@@ -1,4 +1,3 @@
-/* $Id$ */
 /*
  * Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  *

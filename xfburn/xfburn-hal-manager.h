@@ -1,4 +1,3 @@
-/* $Id: xfburn-hal-manager.h 4352 2006-08-11 16:02:53Z pollux $ */
 /*
  *  Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  *  Copyright (c) 2008      David Mohr (david@mcbf.net)

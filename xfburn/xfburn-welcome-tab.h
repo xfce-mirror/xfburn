@@ -1,4 +1,3 @@
-/* $Id: xfburn-welcome-tab.h 4352 2008-04-24 16:02:53Z dmohr $ */
 /*
  *  Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  *  Copyright (c) 2008      David Mohr (david@mcbf.net)

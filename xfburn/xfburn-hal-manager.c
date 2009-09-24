@@ -1,4 +1,3 @@
-/* $Id: xfburn-hal-manager.c 4382 2006-11-01 17:08:37Z dmohr $ */
 /*
  *  Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  *  Copyright (c) 2008      David Mohr (dmohr@mcbf.net)

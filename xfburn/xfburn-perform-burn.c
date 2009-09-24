@@ -1,4 +1,3 @@
-/* $Id: xfburn-perform-burn.c 4557 2008-04-13 23:21:56Z squisher $ */
 /*
  * Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  * Copyright (c) 2008      David Mohr (squisher@xfce.org)

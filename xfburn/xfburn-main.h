@@ -1,4 +1,3 @@
-/* $Id: xfburn-main.h 4958 2008-06-17 15:11:44Z squisher $ */
 /*
  * Copyright (c) 2008 David Mohr <david@mcbf.net>
  *

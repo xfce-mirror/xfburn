@@ -1,4 +1,3 @@
-/* $Id$ */
 /*
  * Copyright (c) 2008 David Mohr <david@mcbf.net>
  *
