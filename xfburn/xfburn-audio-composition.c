@@ -987,7 +987,7 @@ action_add_selected_files (GtkAction *action, XfburnAudioComposition *dc)
     params->model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
     
     if (selected_paths) {
-      priv->path_where_insert = (GtkTreePath *) (selected_paths->data);
+      priv->path_where_insert = gtk_tree_path_copy ((GtkTreePath *) (selected_paths->data));
 
       gtk_tree_model_get_iter (params->model, &params->iter_where_insert, priv->path_where_insert);
       gtk_tree_model_get (params->model, &params->iter_where_insert, AUDIO_COMPOSITION_COLUMN_TYPE, &params->type, -1);

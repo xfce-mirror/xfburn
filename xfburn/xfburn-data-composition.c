@@ -928,7 +928,7 @@ action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
     params->model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
     
     if (selected_paths) {
-      priv->path_where_insert = (GtkTreePath *) (selected_paths->data);
+      priv->path_where_insert = gtk_tree_path_copy ((GtkTreePath *) (selected_paths->data));
 
       gtk_tree_model_get_iter (params->model, &params->iter_where_insert, priv->path_where_insert);
       gtk_tree_model_get (params->model, &params->iter_where_insert, DATA_COMPOSITION_COLUMN_TYPE, &params->type, -1);
@@ -1315,7 +1315,7 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
 
   files = g_strsplit (priv->selected_files, "\n", -1);
 
-  if (!files)
+  if (files)
     for (i=0; files[i] != NULL; i++) {
       GtkTreeIter iter;
       gchar *full_path = NULL;
@@ -1711,6 +1711,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       g_free (full_paths);
 
       priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
+      /* FIXME: path_where_insert is always NULL here */
       priv->path_where_insert = path_where_insert;
 
       params = g_new (ThreadAddFilesDragParams, 1);
@@ -1750,6 +1751,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       thunar_vfs_path_list_free (vfs_paths);
 
       priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
+      /* FIXME: path_where_insert is always NULL here */
       priv->path_where_insert = path_where_insert;
 
       params = g_new (ThreadAddFilesDragParams, 1);
