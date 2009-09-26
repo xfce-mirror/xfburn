@@ -1335,52 +1335,57 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
   GtkTreeModel *model = params->model;
   GtkTreeIter iter_where_insert = params->iter_where_insert;
   //GtkTreePath *path_where_insert = priv->path_where_insert;
-  const gchar * file = NULL;
+  gchar ** files = NULL;
+  int i;
 
 
-  file = strtok (priv->selected_files, "\n");
-  while (file) {
-    GtkTreeIter iter;
-    gchar *full_path = NULL;
-    
-    if (g_str_has_prefix (file, "file://"))
-      full_path = g_build_filename (&file[7], NULL);
-    else if (g_str_has_prefix (file, "file:"))
-      full_path = g_build_filename (&file[5], NULL);
-    else
-      full_path = g_build_filename (file, NULL);
+  files = g_strsplit (priv->selected_files, "\n", -1);
 
-    if (full_path[strlen (full_path) - 1] == '\r')
-      full_path[strlen (full_path) - 1] = '\0';
-
-    if (strcmp (full_path, g_getenv ("HOME")) == 0) {
-      if (!show_add_home_question_dialog ()) {
-        g_free (full_path);
-        break;
-      }
-    }
-
-    /* add files to the disc content */
-    if (params->type == AUDIO_COMPOSITION_TYPE_RAW) {
-      GtkTreeIter parent;
-      gboolean has_parent;
-
-      gdk_threads_enter ();
-      has_parent = gtk_tree_model_iter_parent (model, &parent, &iter_where_insert);
-      gdk_threads_leave ();
+  if (files)
+    for (i=0; files[i] != NULL; i++) {
+      GtkTreeIter iter;
+      gchar *full_path = NULL;
       
-      if (has_parent)
-        thread_add_file_to_list (dc, model, full_path, &iter, &parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);  
-      else 
-        thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
-    } else {
-      thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
-    }
-    
-    g_free (full_path);
+      if (g_str_has_prefix (files[i], "file://"))
+        full_path = g_build_filename (&files[i][7], NULL);
+      else if (g_str_has_prefix (files[i], "file:"))
+        full_path = g_build_filename (&files[i][5], NULL);
+      else
+        full_path = g_build_filename (files[i], NULL);
 
-    file = strtok (NULL, "\n");
-  }
+      if (full_path[strlen (full_path) - 1] == '\r')
+        full_path[strlen (full_path) - 1] = '\0';
+
+      if (strcmp (full_path, g_getenv ("HOME")) == 0) {
+        if (!show_add_home_question_dialog ()) {
+          g_free (full_path);
+          break;
+        }
+      }
+
+      /* add files to the disc content */
+      if (params->type == AUDIO_COMPOSITION_TYPE_RAW) {
+        GtkTreeIter parent;
+        gboolean has_parent;
+
+        gdk_threads_enter ();
+        has_parent = gtk_tree_model_iter_parent (model, &parent, &iter_where_insert);
+        gdk_threads_leave ();
+        
+        if (has_parent)
+          thread_add_file_to_list (dc, model, full_path, &iter, &parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);  
+        else 
+          thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
+      } else {
+        thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
+      }
+      
+      g_free (full_path);
+
+    }
+  /* end if files */
+
+  g_strfreev (files);
   xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
 }
 
@@ -1689,63 +1694,66 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   /* drag from the file selector */
   else if (sd->target == gdk_atom_intern ("text/plain;charset=utf-8", FALSE)) {
     ThreadAddFilesDragParams *params;
-    const gchar *file = NULL;
+    gchar **files = NULL;
     gboolean ret = FALSE;
     gchar *full_paths;
+    int i;
 
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
     
     full_paths = (gchar *) gtk_selection_data_get_text (sd);
 
-    file = strtok ((gchar *) full_paths, "\n");
-    while (file) {
-      gchar *full_path;
+    files = g_strsplit ((gchar *) full_paths, "\n", -1);
+    if (files)
+      for (i=0; files[i] != NULL; i++) {
+        gchar *full_path;
 
 #ifdef HAVE_THUNAR_VFS
-      ThunarVfsPath *vfs_path;
-      GError *vfs_error = NULL;
+        ThunarVfsPath *vfs_path;
+        GError *vfs_error = NULL;
 
-      vfs_path = thunar_vfs_path_new (file, &vfs_error);
+        vfs_path = thunar_vfs_path_new (files[i], &vfs_error);
 
-      if (vfs_error) {
-        g_warning ("Failed to create vfs path for '%s': %s", file, vfs_error->message);
-        g_error_free (vfs_error);
-        continue;
-      }
+        if (vfs_error) {
+          g_warning ("Failed to create vfs path for '%s': %s", files[i], vfs_error->message);
+          g_error_free (vfs_error);
+          continue;
+        }
 
-      if (thunar_vfs_path_get_scheme (vfs_path) != THUNAR_VFS_PATH_SCHEME_FILE)
-        continue;
-      full_path = thunar_vfs_path_dup_string (vfs_path);
+        if (thunar_vfs_path_get_scheme (vfs_path) != THUNAR_VFS_PATH_SCHEME_FILE)
+          continue;
+        full_path = thunar_vfs_path_dup_string (vfs_path);
 
-      thunar_vfs_path_unref (vfs_path);
+        thunar_vfs_path_unref (vfs_path);
 
 #else /* no thunar-vfs */
 
-      if (g_str_has_prefix (file, "file://"))
-        full_path = g_build_filename (&file[7], NULL);
-      else if (g_str_has_prefix (file, "file:"))
-        full_path = g_build_filename (&file[5], NULL);
-      else
-        full_path = g_build_filename (file, NULL);
+        if (g_str_has_prefix (files[i], "file://"))
+          full_path = g_build_filename (&files[i][7], NULL);
+        else if (g_str_has_prefix (files[i], "file:"))
+          full_path = g_build_filename (&files[i][5], NULL);
+        else
+          full_path = g_build_filename (files[i], NULL);
 
-      if (full_path[strlen (full_path) - 1] == '\r')
-        full_path[strlen (full_path) - 1] = '\0';
+        if (full_path[strlen (full_path) - 1] == '\r')
+          full_path[strlen (full_path) - 1] = '\0';
 #endif
 
-      /* remember path to add it later in another thread */
-      priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
-      ret = TRUE;
-      /*
-      if (xfburn_transcoder_is_audio_file (priv->trans, full_path, NULL)) {
+        /* remember path to add it later in another thread */
         priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
         ret = TRUE;
-      } else {
-        notify_not_adding (composition, NOT_ADDING_EXT, full_path);
-      }
-      */
+        /*
+        if (xfburn_transcoder_is_audio_file (priv->trans, full_path, NULL)) {
+          priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
+          ret = TRUE;
+        } else {
+          notify_not_adding (composition, NOT_ADDING_EXT, full_path);
+        }
+        */
 
-      file = strtok (NULL, "\n");
-    }
+      }
+    /* end if files */
+    g_strfreev (files);
     g_free (full_paths);
 
     /* paths actually get sent to us in reverse order,
