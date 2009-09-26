@@ -1316,7 +1316,7 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
   files = g_strsplit (priv->selected_files, "\n", -1);
 
   if (files)
-    for (i=0; files[i] != NULL; i++) {
+    for (i=0; files[i] != NULL && files[i][0] != '\0'; i++) {
       GtkTreeIter iter;
       gchar *full_path = NULL;
       
@@ -1668,7 +1668,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
     if (files) {
 
-      for (i=0; files[i] != NULL; i++) {
+      for (i=0; files[i] != NULL && files[i][0] != '\0'; i++) {
         gchar *full_path;
 
 #ifdef HAVE_THUNAR_VFS
