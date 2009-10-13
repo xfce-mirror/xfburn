@@ -65,12 +65,15 @@ typedef struct
 
   GtkWidget *burn_button;
 
+  gulong handler_volchange;
+
   ThreadBurnIsoParams *params;
 } XfburnBurnImageDialogPrivate;
 
 /* prototypes */
 static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass);
 static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
+static void xfburn_burn_image_dialog_finalize (GObject *object);
 
 void burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error);
 static void cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnBurnImageDialog * dialog);
@@ -114,8 +117,13 @@ xfburn_burn_image_dialog_get_type ()
 static void
 xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass)
 {
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
   g_type_class_add_private (klass, sizeof (XfburnBurnImageDialogPrivate));
+
   parent_class = g_type_class_peek_parent (klass);
+
+  object_class->finalize     = xfburn_burn_image_dialog_finalize;
 }
 
 static void
@@ -209,7 +217,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 
   devlist = xfburn_device_list_new ();
 
-  g_signal_connect (G_OBJECT (devlist), "volume-change-end", G_CALLBACK (cb_volume_change_end), obj);
+  priv->handler_volchange = g_signal_connect (G_OBJECT (devlist), "volume-change-end", G_CALLBACK (cb_volume_change_end), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), obj);
   device = xfburn_device_list_get_current_device (devlist);
 
@@ -220,6 +228,15 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 
   g_object_unref (G_OBJECT (devlist));
 
+}
+
+static void
+xfburn_burn_image_dialog_finalize (GObject *object)
+{
+  XfburnBurnImageDialog *dialog = XFBURN_BURN_IMAGE_DIALOG (object);
+  XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
+
+  g_signal_handler_disconnect (dialog, priv->handler_volchange);
 }
 
 /*************/
