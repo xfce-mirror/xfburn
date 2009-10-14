@@ -237,6 +237,10 @@ xfburn_burn_image_dialog_finalize (GObject *object)
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
 
   g_signal_handler_disconnect (dialog, priv->handler_volchange);
+
+  DBG ("bug: Disconnected signal handler");
+
+  G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
 /*************/

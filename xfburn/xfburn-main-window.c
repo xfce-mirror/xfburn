@@ -399,10 +399,11 @@ action_burn_image (GtkAction * action, XfburnMainWindow * window)
 
   dialog = xfburn_burn_image_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-  DBG ("Running burn image dialog");
+  DBG ("bug: Running burn image dialog");
   gtk_dialog_run (GTK_DIALOG (dialog));
-  DBG ("Destroying burn image dialog");
+  DBG ("bug: Destroying burn image dialog");
   gtk_widget_destroy (dialog);
+  DBG ("bug: Destroyed burn image dialog");
 }
 
 /*
