@@ -500,8 +500,8 @@ thread_write_iso (ThreadWriteIsoParams * params)
       i++;
 
       if (i >= 1000) {
-	i = 0;
 	gdouble percent = 0;
+	i = 0;
 
 	percent = ((gdouble) written / (gdouble) size);
 

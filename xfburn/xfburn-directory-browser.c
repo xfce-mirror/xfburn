@@ -202,7 +202,7 @@ directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b,
 
 static void
 cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
-                          GtkSelectionData * data, guint info, guint time, gpointer user_data)
+                          GtkSelectionData * data, guint info, guint timestamp, gpointer user_data)
 {
   if (info == DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN) {
     gchar *full_paths = NULL;

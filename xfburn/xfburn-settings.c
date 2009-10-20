@@ -327,7 +327,7 @@ value_destroy (Setting * val)
 }
 
 static XfburnSettings*
-get_instance ()
+get_instance (void)
 {
   if (G_LIKELY (instance))
 	return instance;
@@ -360,8 +360,8 @@ xfburn_settings_init (void)
 void
 xfburn_settings_flush (void)
 {
-  XfburnSettings *instance = get_instance ();
-  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
+  XfburnSettings *settings = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
   
   save_settings (priv);
 }
@@ -369,16 +369,16 @@ xfburn_settings_flush (void)
 void
 xfburn_settings_free (void)
 {
-  XfburnSettings *instance = get_instance ();
+  XfburnSettings *settings = get_instance ();
  
-  g_object_unref (instance);
+  g_object_unref (settings);
 }
 
 gboolean
 xfburn_settings_get_boolean (const gchar * key, gboolean fallback)
 {
-  XfburnSettings *instance = get_instance ();
-  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
+  XfburnSettings *settings = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
   gpointer orig;
   gpointer value;
 
@@ -397,8 +397,8 @@ xfburn_settings_get_boolean (const gchar * key, gboolean fallback)
 gint
 xfburn_settings_get_int (const gchar * key, gint fallback)
 {
-  XfburnSettings *instance = get_instance ();
-  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
+  XfburnSettings *settings = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
   gpointer orig;
   gpointer value;
 
@@ -417,8 +417,8 @@ xfburn_settings_get_int (const gchar * key, gint fallback)
 gchar *
 xfburn_settings_get_string (const gchar * key, const gchar * fallback)
 {
-  XfburnSettings *instance = get_instance ();
-  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
+  XfburnSettings *settings = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
   gpointer orig;
   gpointer value;
 
@@ -437,8 +437,8 @@ xfburn_settings_get_string (const gchar * key, const gchar * fallback)
 void
 xfburn_settings_set_boolean (const gchar * key, gboolean value)
 {
-  XfburnSettings *instance = get_instance ();
-  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
+  XfburnSettings *settings = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
   Setting *setting;
 
   setting = g_new0 (Setting, 1);
@@ -451,8 +451,8 @@ xfburn_settings_set_boolean (const gchar * key, gboolean value)
 void
 xfburn_settings_set_int (const gchar * key, gint value)
 {
-  XfburnSettings *instance = get_instance ();
-  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
+  XfburnSettings *settings = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
   Setting *setting;
 
   setting = g_new0 (Setting, 1);
@@ -465,8 +465,8 @@ xfburn_settings_set_int (const gchar * key, gint value)
 void
 xfburn_settings_set_string (const gchar * key, const gchar * value)
 {
-  XfburnSettings *instance = get_instance ();
-  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
+  XfburnSettings *settings = get_instance ();
+  XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
   Setting *setting;
 
   setting = g_new0 (Setting, 1);

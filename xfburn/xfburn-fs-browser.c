@@ -222,7 +222,7 @@ cb_browser_row_activated (GtkTreeView *treeview, GtkTreePath *path, GtkTreeViewC
 
 static void
 cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
-                          GtkSelectionData * data, guint info, guint time, XfburnFsBrowser *browser)
+                          GtkSelectionData * data, guint info, guint timestamp, XfburnFsBrowser *browser)
 {
   if (info == DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN) {
     gchar *full_path = NULL;

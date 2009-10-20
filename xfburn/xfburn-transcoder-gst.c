@@ -682,7 +682,7 @@ on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
 
     gchar *error_msg = "File content has a decoder but is not audio.";
 
-    DBG (error_msg);
+    DBG ("%s", error_msg);
     
     gst_caps_unref (caps);
     gst_object_unref (audiopad);

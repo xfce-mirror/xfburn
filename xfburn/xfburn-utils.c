@@ -64,15 +64,15 @@ xfburn_default_cursor (GtkWidget * widget)
 gchar *
 xfburn_humanreadable_filesize (guint64 size)
 {
-  if (!xfburn_settings_get_boolean ("human-readable-units", TRUE))
-    return g_strdup_printf ("%lu B", (long unsigned int) size);
-  
-  /* copied from GnomeBaker */
-
   gchar *ret = NULL;
   const gchar *unit_list[5] = { "B ", "KB", "MB", "GB", "TB" };
   gint unit = 0;
   gdouble human_size = (gdouble) size;
+
+  if (!xfburn_settings_get_boolean ("human-readable-units", TRUE))
+    return g_strdup_printf ("%lu B", (long unsigned int) size);
+  
+  /* copied from GnomeBaker */
 
   while (human_size > 1024 && unit < 4) {
     human_size = human_size / 1024;

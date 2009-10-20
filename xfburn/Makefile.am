@@ -126,7 +126,9 @@ xfburn-cclosure-marshal.h: xfburn-cclosure-marshal.list
 	glib-genmarshal --header --prefix=xfburn_cclosure_marshal $< > $@
 
 xfburn-cclosure-marshal.c: xfburn-cclosure-marshal.list
-	glib-genmarshal --body --prefix=xfburn_cclosure_marshal $< > $@
+	glib-genmarshal --body --prefix=xfburn_cclosure_marshal $< \
+		| awk 'BEGIN { print "#include \"$(patsubst %.c,%.h, $@)\"" } { print; }' > $@
+
 
 BUILT_SOURCES = 							\
 	xfburn-cclosure-marshal.h					\

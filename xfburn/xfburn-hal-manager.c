@@ -47,6 +47,8 @@ static void xfburn_hal_manager_class_init (XfburnHalManagerClass * klass);
 static void xfburn_hal_manager_init (XfburnHalManager * obj);
 static void xfburn_hal_manager_finalize (GObject * object);
 
+static GObject * xfburn_hal_manager_new (void);
+
 static void hal_finalize (LibHalContext  *hal_context);
 static void cb_device_added (LibHalContext *ctx, const char *udi);
 static void cb_device_removed (LibHalContext *ctx, const char *udi);
@@ -70,7 +72,7 @@ typedef struct {
 #endif
 } XfburnHalManagerPrivate;
 
-static XfburnHalManager *halman = NULL;
+static XfburnHalManager *instance = NULL;
 
 /*********************/
 /* class declaration */
@@ -131,7 +133,7 @@ xfburn_hal_manager_init (XfburnHalManager * obj)
   DBusConnection *dbus_connection;
   priv->error = NULL;
 
-  //if (halman != NULL)
+  //if (instance != NULL)
   //  g_error ("The HAL context was already there when trying to create a hal-manager!");
   
   /* dbus & hal init code taken from exo */
@@ -212,7 +214,7 @@ xfburn_hal_manager_finalize (GObject * object)
   hal_finalize (priv->hal_context);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
-  halman = NULL;
+  instance = NULL;
 }
 
 /*           */
@@ -235,13 +237,13 @@ hal_finalize (LibHalContext  *hal_context)
 static void cb_device_added (LibHalContext *ctx, const char *udi)
 {
   DBG ("HAL: device added");
-  g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
+  g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
 }
 
 static void cb_device_removed (LibHalContext *ctx, const char *udi)
 {
   DBG ("HAL: device removed");
-  g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
+  g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
 }
 
 static void cb_prop_modified (LibHalContext *ctx, const char *udi,
@@ -251,14 +253,14 @@ static void cb_prop_modified (LibHalContext *ctx, const char *udi,
    * way too many of these get triggered when a disc is
    * inserted or removed!
   DBG ("HAL: property modified");
-  g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
+  g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
   */
 }
 
-GObject *
+static GObject *
 xfburn_hal_manager_new (void)
 {
-  if (G_UNLIKELY (halman != NULL))
+  if (G_UNLIKELY (instance != NULL))
     g_error ("Trying to create a second instance of hal manager!");
   return g_object_new (XFBURN_TYPE_HAL_MANAGER, NULL);
 }
@@ -272,9 +274,9 @@ xfburn_hal_manager_create_global (void)
 {
   XfburnHalManagerPrivate *priv;
 
-  halman = XFBURN_HAL_MANAGER (xfburn_hal_manager_new ());
+  instance = XFBURN_HAL_MANAGER (xfburn_hal_manager_new ());
 
-  priv = XFBURN_HAL_MANAGER_GET_PRIVATE (halman);
+  priv = XFBURN_HAL_MANAGER_GET_PRIVATE (instance);
 
   if (priv->error) {
     gchar *error_msg, *ret;
@@ -291,25 +293,25 @@ xfburn_hal_manager_create_global (void)
 XfburnHalManager *
 xfburn_hal_manager_get_global (void)
 {
-  if (G_UNLIKELY (halman == NULL))
+  if (G_UNLIKELY (instance == NULL))
     g_error ("There is no instance of a hal manager!");
-  return halman;
+  return instance;
 }
 
 void
 xfburn_hal_manager_shutdown (void)
 {
-  if (G_UNLIKELY (halman == NULL))
+  if (G_UNLIKELY (instance == NULL))
     g_error ("There is no instance of a hal manager!");
-  g_object_unref (halman);
-  halman = NULL;
+  g_object_unref (instance);
+  instance = NULL;
 }
 
 void
 xfburn_hal_manager_send_volume_changed (void)
 {
   //gdk_threads_enter ();
-  g_signal_emit (halman, signals[VOLUME_CHANGED], 0);
+  g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
   //gdk_threads_leave ();
 }
 

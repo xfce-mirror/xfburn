@@ -148,7 +148,7 @@ static void cb_cell_title_edited (GtkCellRenderer * renderer, gchar * path, gcha
 static void cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                                       guint info, guint t, XfburnAudioComposition * composition);
 static void cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc, GtkSelectionData * data, guint info,
-                                      guint time, XfburnAudioComposition * content);
+                                      guint timestamp, XfburnAudioComposition * content);
 static void cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc);
 
 /* thread entry points */
@@ -162,6 +162,7 @@ static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnAudi
                                                    GtkTreeIter * insertion, GtkTreeViewDropPosition position);
 static gboolean thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeModel * model, const gchar * path, 
                                          GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
+static gboolean show_add_home_question_dialog (void);
                                   
 typedef struct
 {
@@ -1027,7 +1028,7 @@ action_info (GtkAction * action, XfburnAudioComposition * dc)
 
 static void
 cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
-                          GtkSelectionData * data, guint info, guint time, XfburnAudioComposition * content)
+                          GtkSelectionData * data, guint info, guint timestamp, XfburnAudioComposition * content)
 {
   if (info == AUDIO_COMPOSITION_DND_TARGET_INSIDE) {
     GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
@@ -1309,7 +1310,7 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
 }
 
 static gboolean
-show_add_home_question_dialog ()
+show_add_home_question_dialog (void)
 {
   gboolean ok = TRUE;
 
