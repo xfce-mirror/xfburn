@@ -181,7 +181,7 @@ xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, const gchar *
 static char * libburn_msg_prefix = "libburn-";
 
 void
-xfburn_capture_libburn_messages ()
+xfburn_capture_libburn_messages (void)
 {
   int ret;
 
@@ -196,7 +196,7 @@ xfburn_capture_libburn_messages ()
 }
 
 void
-xfburn_console_libburn_messages ()
+xfburn_console_libburn_messages (void)
 {
   int ret;
 

@@ -83,7 +83,7 @@ static GObjectClass *parent_class = NULL;
 static XfburnSettings *instance = NULL;
 
 GType
-xfburn_settings_get_type ()
+xfburn_settings_get_type (void)
 {
   static GType type = 0;
 
@@ -341,7 +341,7 @@ get_instance ()
 /* public methods */
 /******************/
 void
-xfburn_settings_init ()
+xfburn_settings_init (void)
 {
   if (G_LIKELY (instance == NULL)) {
 	XfburnSettingsPrivate *priv;
@@ -358,7 +358,7 @@ xfburn_settings_init ()
 }
 
 void
-xfburn_settings_flush ()
+xfburn_settings_flush (void)
 {
   XfburnSettings *instance = get_instance ();
   XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
@@ -367,7 +367,7 @@ xfburn_settings_flush ()
 }
 
 void
-xfburn_settings_free ()
+xfburn_settings_free (void)
 {
   XfburnSettings *instance = get_instance ();
  

@@ -52,12 +52,12 @@ typedef struct
   void (*volume_changed) (XfburnHalManager *halman);
 } XfburnHalManagerClass;
 
-GType xfburn_hal_manager_get_type ();
+GType xfburn_hal_manager_get_type (void);
 //GObject *xfburn_hal_manager_new (); /* use _create_global / _get_instance instead */
-gchar *xfburn_hal_manager_create_global ();
-XfburnHalManager * xfburn_hal_manager_get_global ();
-void xfburn_hal_manager_shutdown ();
-void xfburn_hal_manager_send_volume_changed ();
+gchar *xfburn_hal_manager_create_global (void);
+XfburnHalManager * xfburn_hal_manager_get_global (void);
+void xfburn_hal_manager_shutdown (void);
+void xfburn_hal_manager_send_volume_changed (void);
 int xfburn_hal_manager_get_devices (XfburnHalManager *halman, GList **devices);
 gboolean xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *device);
 

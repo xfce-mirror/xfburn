@@ -50,8 +50,8 @@ typedef struct
   
 } XfburnTranscoderGstClass;
 
-GType xfburn_transcoder_gst_get_type ();
-GObject *xfburn_transcoder_gst_new ();
+GType xfburn_transcoder_gst_get_type (void);
+GObject *xfburn_transcoder_gst_new (void);
 
 G_END_DECLS
 

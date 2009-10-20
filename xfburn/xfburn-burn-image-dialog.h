@@ -48,8 +48,8 @@ typedef struct
   XfceTitledDialogClass parent_class;
 } XfburnBurnImageDialogClass;
 
-GType xfburn_burn_image_dialog_get_type ();
-GtkWidget *xfburn_burn_image_dialog_new ();
+GType xfburn_burn_image_dialog_get_type (void);
+GtkWidget *xfburn_burn_image_dialog_new (void);
 void xfburn_burn_image_dialog_set_filechooser_name (GtkWidget * dialog, gchar *name);
 
 G_END_DECLS

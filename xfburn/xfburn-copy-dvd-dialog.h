@@ -46,9 +46,9 @@ typedef struct
   XfceTitledDialogClass parent_class;
 } XfburnCopyDvdDialogClass;
 
-GType xfburn_copy_dvd_dialog_get_type ();
+GType xfburn_copy_dvd_dialog_get_type (void);
 
-GtkWidget *xfburn_copy_dvd_dialog_new ();
+GtkWidget *xfburn_copy_dvd_dialog_new (void);
 
 G_END_DECLS
 

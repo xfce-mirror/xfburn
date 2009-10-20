@@ -56,7 +56,7 @@ static void xfburn_burn_data_dvd_composition_dialog_finalize (GObject * object);
 static XfceTitledDialogClass *parent_class = NULL;
 
 GType
-xfburn_burn_data_dvd_composition_dialog_get_type ()
+xfburn_burn_data_dvd_composition_dialog_get_type (void)
 {
   static GType type = 0;
 

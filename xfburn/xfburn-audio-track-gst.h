@@ -38,7 +38,7 @@ typedef struct {
   off_t size;
 } XfburnAudioTrackGst;
 
-GType xfburn_audio_track_gst_get_type ();
+GType xfburn_audio_track_gst_get_type (void);
 
 G_END_DECLS
 

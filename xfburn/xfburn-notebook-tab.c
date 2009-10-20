@@ -63,7 +63,7 @@ static guint notebook_tab_signals[LAST_SIGNAL];
 /* class initiliazation */
 /************************/
 GType
-xfburn_notebook_tab_get_type ()
+xfburn_notebook_tab_get_type (void)
 {
   static GType type = 0;
 

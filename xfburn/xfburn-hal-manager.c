@@ -79,7 +79,7 @@ static XfburnProgressDialogClass *parent_class = NULL;
 static guint signals[LAST_SIGNAL];
 
 GType
-xfburn_hal_manager_get_type ()
+xfburn_hal_manager_get_type (void)
 {
   static GType type = 0;
 
@@ -256,7 +256,7 @@ static void cb_prop_modified (LibHalContext *ctx, const char *udi,
 }
 
 GObject *
-xfburn_hal_manager_new ()
+xfburn_hal_manager_new (void)
 {
   if (G_UNLIKELY (halman != NULL))
     g_error ("Trying to create a second instance of hal manager!");
@@ -268,7 +268,7 @@ xfburn_hal_manager_new ()
 /*        */
 
 gchar *
-xfburn_hal_manager_create_global ()
+xfburn_hal_manager_create_global (void)
 {
   XfburnHalManagerPrivate *priv;
 
@@ -289,7 +289,7 @@ xfburn_hal_manager_create_global ()
 }
 
 XfburnHalManager *
-xfburn_hal_manager_get_global ()
+xfburn_hal_manager_get_global (void)
 {
   if (G_UNLIKELY (halman == NULL))
     g_error ("There is no instance of a hal manager!");
@@ -297,7 +297,7 @@ xfburn_hal_manager_get_global ()
 }
 
 void
-xfburn_hal_manager_shutdown ()
+xfburn_hal_manager_shutdown (void)
 {
   if (G_UNLIKELY (halman == NULL))
     g_error ("There is no instance of a hal manager!");
@@ -306,7 +306,7 @@ xfburn_hal_manager_shutdown ()
 }
 
 void
-xfburn_hal_manager_send_volume_changed ()
+xfburn_hal_manager_send_volume_changed (void)
 {
   //gdk_threads_enter ();
   g_signal_emit (halman, signals[VOLUME_CHANGED], 0);

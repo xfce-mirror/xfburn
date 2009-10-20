@@ -90,7 +90,7 @@ static void cb_clicked_ok (GtkButton * button, gpointer user_data);
 static XfceTitledDialogClass *parent_class = NULL;
 
 GType
-xfburn_burn_image_dialog_get_type ()
+xfburn_burn_image_dialog_get_type (void)
 {
   static GType type = 0;
 
@@ -577,7 +577,7 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
 
 /* public */
 GtkWidget *
-xfburn_burn_image_dialog_new ()
+xfburn_burn_image_dialog_new (void)
 {
   GtkWidget *obj;
 

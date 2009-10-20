@@ -113,7 +113,7 @@ static void cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gi
 static XfceTitledDialogClass *parent_class = NULL;
 
 GType
-xfburn_burn_data_composition_base_dialog_get_type ()
+xfburn_burn_data_composition_base_dialog_get_type (void)
 {
   static GType type = 0;
 

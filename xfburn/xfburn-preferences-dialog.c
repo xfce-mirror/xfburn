@@ -87,7 +87,7 @@ typedef struct
 static XfceTitledDialogClass *parent_class = NULL;
 
 GType
-xfburn_preferences_dialog_get_type ()
+xfburn_preferences_dialog_get_type (void)
 {
   static GType type = 0;
 
@@ -465,7 +465,7 @@ cb_show_hidden_clicked (GtkButton * Button, gpointer user_data)
 
 /* public */
 GtkWidget *
-xfburn_preferences_dialog_new ()
+xfburn_preferences_dialog_new (void)
 {
   GtkWidget *obj;
 

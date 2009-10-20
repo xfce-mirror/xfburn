@@ -48,8 +48,8 @@ typedef struct
   
 } XfburnTranscoderBasicClass;
 
-GType xfburn_transcoder_basic_get_type ();
-GObject *xfburn_transcoder_basic_new ();
+GType xfburn_transcoder_basic_get_type (void);
+GObject *xfburn_transcoder_basic_new (void);
 
 G_END_DECLS
 

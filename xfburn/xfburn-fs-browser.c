@@ -46,7 +46,7 @@ static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectio
 static ExoTreeViewClass *parent_class = NULL;
 
 GType
-xfburn_fs_browser_get_type ()
+xfburn_fs_browser_get_type (void)
 {
   static GType type = 0;
 
@@ -235,7 +235,7 @@ cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
 
 /* public methods */
 GtkWidget *
-xfburn_fs_browser_new ()
+xfburn_fs_browser_new (void)
 {
   return g_object_new (XFBURN_TYPE_FS_BROWSER, NULL);
 }

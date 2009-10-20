@@ -155,7 +155,7 @@ static GObject *parent_class = NULL;
 //static guint signals[LAST_SIGNAL];
 
 GType
-xfburn_transcoder_gst_get_type ()
+xfburn_transcoder_gst_get_type (void)
 {
   static GType type = 0;
 
@@ -1025,7 +1025,7 @@ is_initialized (XfburnTranscoder *trans, GError **error)
 /*        */
 
 GObject *
-xfburn_transcoder_gst_new ()
+xfburn_transcoder_gst_new (void)
 {
   return g_object_new (XFBURN_TYPE_TRANSCODER_GST, NULL);
 }

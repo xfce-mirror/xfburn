@@ -44,7 +44,7 @@ XfburnTranscoder *transcoder = NULL;
 //static guint signals[LAST_SIGNAL];
 
 GType
-xfburn_transcoder_get_type ()
+xfburn_transcoder_get_type (void)
 {
   static GType type = 0;
 
@@ -225,7 +225,7 @@ xfburn_transcoder_set_global (XfburnTranscoder *trans)
 }
 
 XfburnTranscoder *
-xfburn_transcoder_get_global ()
+xfburn_transcoder_get_global (void)
 {
   g_object_ref (transcoder);
   return transcoder;

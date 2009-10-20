@@ -99,7 +99,7 @@ static GOptionEntry optionentries[] = {
 
 /* public functions */
 void
-xfburn_main_enter_window ()
+xfburn_main_enter_window (void)
 {
   /* if a main window is present, then it is in control */
   if (window_counter != -42)
@@ -107,7 +107,7 @@ xfburn_main_enter_window ()
 }
 
 void 
-xfburn_main_leave_window ()
+xfburn_main_leave_window (void)
 {
   /* if a main window is present, then it is in control */
   if (window_counter == -42)

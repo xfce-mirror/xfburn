@@ -65,7 +65,7 @@ static void cb_dialog_response (XfburnCopyDvdDialog * dialog, gint response_id, 
 static XfceTitledDialogClass *parent_class = NULL;
 
 GType
-xfburn_copy_dvd_dialog_get_type ()
+xfburn_copy_dvd_dialog_get_type (void)
 {
   static GType type = 0;
 
@@ -299,7 +299,7 @@ cb_dialog_response (XfburnCopyDvdDialog * dialog, gint response_id, XfburnCopyDv
 
 /* public */
 GtkWidget *
-xfburn_copy_dvd_dialog_new ()
+xfburn_copy_dvd_dialog_new (void)
 {
   XfburnCopyDvdDialog *obj;
 

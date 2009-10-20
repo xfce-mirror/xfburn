@@ -83,7 +83,7 @@ static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gin
 static XfceTitledDialogClass *parent_class = NULL;
 
 GType
-xfburn_burn_audio_cd_composition_dialog_get_type ()
+xfburn_burn_audio_cd_composition_dialog_get_type (void)
 {
   static GType type = 0;
 
