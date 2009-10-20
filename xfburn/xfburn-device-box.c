@@ -114,6 +114,7 @@ static void fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device);
 
 static void cb_volume_change_start (XfburnDeviceList *devlist, gboolean device_changed, XfburnDeviceBox *box);
 static void cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnDeviceBox *box);
+static void empty_speed_list_dialog (void);
 
 /* globals */
 static GtkVBoxClass *parent_class = NULL;
@@ -376,7 +377,7 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
 /*************/
 
 static void
-empty_speed_list_dialog ()
+empty_speed_list_dialog (void)
 {
   GtkDialog *dialog;
   GtkWidget *label;

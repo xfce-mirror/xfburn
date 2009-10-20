@@ -683,7 +683,7 @@ xfburn_main_window_new (void)
 }
 
 XfburnMainWindow *
-xfburn_main_window_get_instance ()
+xfburn_main_window_get_instance (void)
 {
   if (!instance)
     g_warning ("No existing instance of XfburnMainWindow");

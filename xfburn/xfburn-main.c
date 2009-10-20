@@ -39,6 +39,7 @@
 #include <gst/gst.h>
 #endif
 
+#include "xfburn-main.h"
 #include "xfburn-global.h"
 #include "xfburn-device-list.h"
 #include "xfburn-utils.h"
@@ -55,6 +56,8 @@
 /* internal prototypes */
 static gboolean parse_option (const gchar *option_name, const gchar *value,
 			      gpointer data, GError **error);
+static void xfburn_main_enter_main_window (void);
+static void print_available_transcoders (void);
 
 /* globals */
 static int window_counter = 0;
@@ -99,7 +102,7 @@ static GOptionEntry optionentries[] = {
 
 /* public functions */
 void
-xfburn_main_enter_window ()
+xfburn_main_enter_window (void)
 {
   /* if a main window is present, then it is in control */
   if (window_counter != -42)
@@ -107,7 +110,7 @@ xfburn_main_enter_window ()
 }
 
 void 
-xfburn_main_leave_window ()
+xfburn_main_leave_window (void)
 {
   /* if a main window is present, then it is in control */
   if (window_counter == -42)
@@ -118,8 +121,8 @@ xfburn_main_leave_window ()
     g_idle_add ((GSourceFunc) gtk_main_quit, NULL );
 }
 
-void
-xfburn_main_enter_main_window ()
+static void
+xfburn_main_enter_main_window (void)
 {
   /* mark the window_counter as having a main window */
   window_counter = -42;
@@ -169,8 +172,8 @@ static gboolean parse_option (const gchar *option_name, const gchar *value,
 }
 
 
-void
-print_available_transcoders ()
+static void
+print_available_transcoders (void)
 {
   g_print ("Valid transcoders are:\n");
   g_print ("\tbasic\tCan only burn uncompressed CD quality .wav files.\n");

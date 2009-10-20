@@ -65,7 +65,7 @@ static void cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, X
 static XfceTitledDialogClass *parent_class = NULL;
 
 GType
-xfburn_copy_cd_dialog_get_type ()
+xfburn_copy_cd_dialog_get_type (void)
 {
   static GType type = 0;
 
@@ -300,7 +300,7 @@ cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdD
 
 /* public */
 GtkWidget *
-xfburn_copy_cd_dialog_new ()
+xfburn_copy_cd_dialog_new (void)
 {
   XfburnCopyCdDialog *obj;
 

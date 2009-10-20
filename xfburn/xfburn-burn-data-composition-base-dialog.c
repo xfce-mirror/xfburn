@@ -113,7 +113,7 @@ static void cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gi
 static XfceTitledDialogClass *parent_class = NULL;
 
 GType
-xfburn_burn_data_composition_base_dialog_get_type ()
+xfburn_burn_data_composition_base_dialog_get_type (void)
 {
   static GType type = 0;
 
@@ -500,8 +500,8 @@ thread_write_iso (ThreadWriteIsoParams * params)
       i++;
 
       if (i >= 1000) {
-	i = 0;
 	gdouble percent = 0;
+	i = 0;
 
 	percent = ((gdouble) written / (gdouble) size);
 

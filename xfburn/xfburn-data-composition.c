@@ -130,7 +130,7 @@ static void cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar
 static void cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                                       guint info, guint t, XfburnDataComposition * composition);
 static void cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc, GtkSelectionData * data, guint info,
-                                      guint time, XfburnDataComposition * content);
+                                      guint timestamp, XfburnDataComposition * content);
 static void cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc);
 
 /* thread entry points */
@@ -145,6 +145,7 @@ static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnData
 static gboolean thread_add_file_to_list (XfburnDataComposition * dc, GtkTreeModel * model, const gchar * path, 
                                          GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
 static IsoImage * generate_iso_image (XfburnDataComposition * dc);
+static gboolean show_add_home_question_dialog (void);
                                   
 typedef struct
 {
@@ -999,7 +1000,7 @@ action_clear (GtkAction * action, XfburnDataComposition * dc)
 
 static void
 cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
-                          GtkSelectionData * data, guint info, guint time, XfburnDataComposition * content)
+                          GtkSelectionData * data, guint info, guint timestamp, XfburnDataComposition * content)
 {
   if (info == DATA_COMPOSITION_DND_TARGET_INSIDE) {
     GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
@@ -1283,7 +1284,7 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
 }
 
 static gboolean
-show_add_home_question_dialog ()
+show_add_home_question_dialog (void)
 {
   gboolean ok = TRUE;
 

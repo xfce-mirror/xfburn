@@ -37,7 +37,7 @@ void xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent);
 
 gboolean xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, const gchar *secondary_text);
 
-void xfburn_capture_libburn_messages ();
-void xfburn_console_libburn_messages ();
+void xfburn_capture_libburn_messages (void);
+void xfburn_console_libburn_messages (void);
 
 #endif

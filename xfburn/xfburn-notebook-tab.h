@@ -42,7 +42,7 @@ typedef struct
   void (*button_close_clicked) (XfburnNotebookTab *tab);
 } XfburnNotebookTabClass;
 
-GType xfburn_notebook_tab_get_type ();
+GType xfburn_notebook_tab_get_type (void);
 
 GtkWidget *xfburn_notebook_tab_new (const gchar *label, gboolean show_button_close);
 

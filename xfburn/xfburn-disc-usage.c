@@ -86,7 +86,6 @@ static guint signals[LAST_SIGNAL];
 /*******************************/
 /* XfburnDiscUsage class */
 /*******************************/
-static guint signals[LAST_SIGNAL];
 
 GType
 xfburn_disc_usage_get_type (void)

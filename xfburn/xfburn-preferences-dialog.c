@@ -87,7 +87,7 @@ typedef struct
 static XfceTitledDialogClass *parent_class = NULL;
 
 GType
-xfburn_preferences_dialog_get_type ()
+xfburn_preferences_dialog_get_type (void)
 {
   static GType type = 0;
 
@@ -136,7 +136,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   GtkTreeViewColumn *column_name;
   GtkCellRenderer *cell_icon, *cell_name;
   GtkWidget *button_close;
-  gint index;
+  gint idx;
   
   gtk_window_set_title (GTK_WINDOW (obj), _("Preferences"));
   xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (obj), _("Tune how Xfburn behaves"));
@@ -179,7 +179,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   /* general tab */
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), BORDER);
-  index = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), vbox, NULL);
+  idx = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), vbox, NULL);
   gtk_widget_show (vbox);
 
   vbox2 = gtk_vbox_new (FALSE, 0);
@@ -221,14 +221,14 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_list_store_set (icon_store, &iter,
                       SETTINGS_LIST_PIXBUF_COLUMN, icon,
                       SETTINGS_LIST_TEXT_COLUMN, _("General"),
-                      SETTINGS_LIST_INDEX_COLUMN, index,
+                      SETTINGS_LIST_INDEX_COLUMN, idx,
                       -1);
   g_object_unref (G_OBJECT (icon));
   
   /* devices tab */
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), BORDER);
-  index = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), vbox, NULL);
+  idx = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), vbox, NULL);
   gtk_widget_show (vbox);
 
   label = gtk_label_new (_("Devices"));
@@ -309,7 +309,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_list_store_set (icon_store, &iter,
                       SETTINGS_LIST_PIXBUF_COLUMN, icon,
                       SETTINGS_LIST_TEXT_COLUMN, _("Devices"),
-                      SETTINGS_LIST_INDEX_COLUMN, index,
+                      SETTINGS_LIST_INDEX_COLUMN, idx,
                       -1);
   if (icon)
     g_object_unref (G_OBJECT (icon));
@@ -465,7 +465,7 @@ cb_show_hidden_clicked (GtkButton * Button, gpointer user_data)
 
 /* public */
 GtkWidget *
-xfburn_preferences_dialog_new ()
+xfburn_preferences_dialog_new (void)
 {
   GtkWidget *obj;
 

@@ -29,7 +29,7 @@ void audio_track_free (gpointer boxed);
 
 /* implementations */
 GType
-xfburn_audio_track_get_type ()
+xfburn_audio_track_get_type (void)
 {
   static GType type = 0;
 

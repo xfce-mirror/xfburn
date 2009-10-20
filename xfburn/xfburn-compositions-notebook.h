@@ -48,9 +48,9 @@ typedef enum
   XFBURN_AUDIO_COMPOSITION,
 } XfburnCompositionType;
 
-GType xfburn_compositions_notebook_get_type ();
+GType xfburn_compositions_notebook_get_type (void);
 
-GtkWidget *xfburn_compositions_notebook_new ();
+GtkWidget *xfburn_compositions_notebook_new (void);
 
 XfburnComposition *xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type);
 void xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, GtkActionGroup *action_group);

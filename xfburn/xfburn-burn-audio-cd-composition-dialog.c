@@ -83,7 +83,7 @@ static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gin
 static XfceTitledDialogClass *parent_class = NULL;
 
 GType
-xfburn_burn_audio_cd_composition_dialog_get_type ()
+xfburn_burn_audio_cd_composition_dialog_get_type (void)
 {
   static GType type = 0;
 
@@ -367,7 +367,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   int i,j;
   GSList *track_list;
   int *track_sectors;
-  gboolean abort = FALSE;
+  gboolean abort_burn = FALSE;
   XfburnTranscoder *trans;
   GError *error = NULL;
 
@@ -390,7 +390,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
     if (tracks[i] == NULL) {
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), error->message);
       g_error_free (error);
-      abort = TRUE;
+      abort_burn = TRUE;
       break;
     }
     srcs[i] = atrack->src;
@@ -400,15 +400,15 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
     track_list = g_slist_next (track_list);
   }
 
-  if (!abort) {
+  if (!abort_burn) {
     if (!xfburn_transcoder_prepare (trans, &error)) {
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), error->message);
       g_error_free (error);
-      abort = TRUE;
+      abort_burn = TRUE;
     }
   }
 
-  if (!abort) {
+  if (!abort_burn) {
     if (!xfburn_device_grab (params->device, &drive_info)) {
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab the drive."));
     } else {
@@ -441,6 +441,12 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
   if (response_id == GTK_RESPONSE_OK) {
     GtkWidget *dialog_progress;
 
+    ThreadBurnCompositionParams *params = NULL;
+    XfburnDevice *device;
+    gint speed;
+    XfburnWriteMode write_mode;
+    //struct burn_source * src_fifo = NULL;
+
     /* If the name was the default, update the image volume id and volset id */
     /*
     if (priv->entry != NULL) {
@@ -455,12 +461,6 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
     gtk_widget_hide (GTK_WIDGET (dialog));
     
     gtk_widget_show (dialog_progress);
-
-    ThreadBurnCompositionParams *params = NULL;
-    XfburnDevice *device;
-    gint speed;
-    XfburnWriteMode write_mode;
-    //struct burn_source * src_fifo = NULL;
 
     device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
     speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));

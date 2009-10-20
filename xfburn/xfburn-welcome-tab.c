@@ -69,7 +69,7 @@ static void blank_disc (GtkButton *button, XfburnWelcomeTab *tab);
 static GtkWidget *parent_class = NULL;
 
 GType
-xfburn_welcome_tab_get_type ()
+xfburn_welcome_tab_get_type (void)
 {
   static GType type = 0;
 

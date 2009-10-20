@@ -46,6 +46,6 @@ typedef enum
 
 #define XFBURN_ERROR xfburn_error_quark ()
 
-GQuark xfburn_error_quark ();
+GQuark xfburn_error_quark (void);
 
 #endif /* __XFBURN_ERROR_H__ */

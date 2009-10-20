@@ -45,8 +45,8 @@ typedef struct {
 	/* Add Signal Functions Here */
 } XfburnCopyCdProgressDialogClass;
 
-GType xfburn_copy_cd_progress_dialog_get_type ();
-GtkWidget *xfburn_copy_cd_progress_dialog_new ();
+GType xfburn_copy_cd_progress_dialog_get_type (void);
+GtkWidget *xfburn_copy_cd_progress_dialog_new (void);
 
 G_END_DECLS
 

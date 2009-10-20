@@ -155,7 +155,7 @@ static GObject *parent_class = NULL;
 //static guint signals[LAST_SIGNAL];
 
 GType
-xfburn_transcoder_gst_get_type ()
+xfburn_transcoder_gst_get_type (void)
 {
   static GType type = 0;
 
@@ -682,7 +682,7 @@ on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
 
     gchar *error_msg = "File content has a decoder but is not audio.";
 
-    DBG (error_msg);
+    DBG ("%s", error_msg);
     
     gst_caps_unref (caps);
     gst_object_unref (audiopad);
@@ -1025,7 +1025,7 @@ is_initialized (XfburnTranscoder *trans, GError **error)
 /*        */
 
 GObject *
-xfburn_transcoder_gst_new ()
+xfburn_transcoder_gst_new (void)
 {
   return g_object_new (XFBURN_TYPE_TRANSCODER_GST, NULL);
 }

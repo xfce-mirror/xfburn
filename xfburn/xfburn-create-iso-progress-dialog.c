@@ -42,7 +42,7 @@ static void cb_new_output (XfburnCreateIsoProgressDialog * dialog, const gchar *
 static XfburnProgressDialogClass *parent_class = NULL;
 
 GType
-xfburn_create_iso_progress_dialog_get_type ()
+xfburn_create_iso_progress_dialog_get_type (void)
 {
   static GType type = 0;
 
@@ -109,7 +109,7 @@ cb_new_output (XfburnCreateIsoProgressDialog * dialog, const gchar * output, gpo
 /*        */
 
 GtkWidget *
-xfburn_create_iso_progress_dialog_new ()
+xfburn_create_iso_progress_dialog_new (void)
 {
   XfburnCreateIsoProgressDialog *obj;
 

@@ -45,11 +45,11 @@ typedef struct
   GObjectClass parent_class;
 } XfburnSettingsClass;
 
-GType xfburn_settings_get_type ();
+GType xfburn_settings_get_type (void);
 
-void xfburn_settings_init ();
-void xfburn_settings_free ();
-void xfburn_settings_flush ();
+void xfburn_settings_init (void);
+void xfburn_settings_free (void);
+void xfburn_settings_flush (void);
 
 gint xfburn_settings_get_boolean (const gchar *key, gboolean fallback);
 gint xfburn_settings_get_int (const gchar *key, gint fallback);

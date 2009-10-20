@@ -58,10 +58,10 @@ typedef struct
   
 } XfburnTranscoderInterface;
 
-GType xfburn_transcoder_get_type ();
+GType xfburn_transcoder_get_type (void);
 
 void xfburn_transcoder_set_global (XfburnTranscoder *trans);
-XfburnTranscoder *xfburn_transcoder_get_global ();
+XfburnTranscoder *xfburn_transcoder_get_global (void);
 
 const gchar *xfburn_transcoder_get_name (XfburnTranscoder *trans);
 const gchar *xfburn_transcoder_get_description (XfburnTranscoder *trans);

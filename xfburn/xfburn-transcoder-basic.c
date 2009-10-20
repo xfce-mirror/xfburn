@@ -83,7 +83,7 @@ static GObject *parent_class = NULL;
 //static guint signals[LAST_SIGNAL];
 
 GType
-xfburn_transcoder_basic_get_type ()
+xfburn_transcoder_basic_get_type (void)
 {
   static GType type = 0;
 
@@ -366,7 +366,7 @@ needs_swap (char header[44])
 /*        */
 
 GObject *
-xfburn_transcoder_basic_new ()
+xfburn_transcoder_basic_new (void)
 {
   return g_object_new (XFBURN_TYPE_TRANSCODER_BASIC, NULL);
 }

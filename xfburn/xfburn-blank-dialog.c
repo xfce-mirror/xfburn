@@ -110,7 +110,7 @@ static XfceTitledDialogClass *parent_class = NULL;
 
 
 GType
-xfburn_blank_dialog_get_type ()
+xfburn_blank_dialog_get_type (void)
 {
   static GType type = 0;
 
@@ -531,7 +531,7 @@ cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice 
 
 /* public */
 GtkWidget *
-xfburn_blank_dialog_new ()
+xfburn_blank_dialog_new (void)
 {
   GtkWidget *obj;
 

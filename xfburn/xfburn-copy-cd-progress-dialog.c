@@ -42,7 +42,7 @@ static void cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * ou
 static XfburnProgressDialogClass *parent_class = NULL;
 
 GType
-xfburn_copy_cd_progress_dialog_get_type ()
+xfburn_copy_cd_progress_dialog_get_type (void)
 {
   static GType type = 0;
 
@@ -148,7 +148,7 @@ cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output, gpoint
 /*        */
 
 GtkWidget *
-xfburn_copy_cd_progress_dialog_new ()
+xfburn_copy_cd_progress_dialog_new (void)
 {
   XfburnCopyCdProgressDialog *obj;
 

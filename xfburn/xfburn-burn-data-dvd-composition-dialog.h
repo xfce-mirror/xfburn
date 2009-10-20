@@ -48,7 +48,7 @@ typedef struct
   XfburnBurnDataCompositionBaseDialogClass parent_class;
 } XfburnBurnDataDvdCompositionDialogClass;
 
-GType xfburn_burn_data_dvd_composition_dialog_get_type ();
+GType xfburn_burn_data_dvd_composition_dialog_get_type (void);
 
 GtkWidget *xfburn_burn_data_dvd_composition_dialog_new (IsoImage *image);
 

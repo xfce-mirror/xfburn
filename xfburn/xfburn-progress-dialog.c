@@ -111,7 +111,7 @@ xfburn_progress_dialog_status_get_type (void)
 static GtkDialogClass *parent_class = NULL;
 
 GType
-xfburn_progress_dialog_get_type ()
+xfburn_progress_dialog_get_type (void)
 {
   static GType type = 0;
 

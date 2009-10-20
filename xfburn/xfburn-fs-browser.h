@@ -54,9 +54,9 @@ enum
   FS_BROWSER_N_COLUMNS
 };
 
-GType xfburn_fs_browser_get_type ();
+GType xfburn_fs_browser_get_type (void);
 
-GtkWidget *xfburn_fs_browser_new ();
+GtkWidget *xfburn_fs_browser_new (void);
 
 void xfburn_fs_browser_refresh (XfburnFsBrowser *browser);
 gchar * xfburn_fs_browser_get_selection (XfburnFsBrowser *browser);

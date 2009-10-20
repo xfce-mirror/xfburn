@@ -59,7 +59,7 @@ static XfburnComposition * add_composition_with_data (XfburnCompositionsNotebook
 static GtkNotebookClass *parent_class = NULL;
 
 GType
-xfburn_compositions_notebook_get_type ()
+xfburn_compositions_notebook_get_type (void)
 {
   static GType type = 0;
 
@@ -210,7 +210,7 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
 /* public */
 /**********/
 GtkWidget *
-xfburn_compositions_notebook_new ()
+xfburn_compositions_notebook_new (void)
 {
   GtkWidget *obj;
 

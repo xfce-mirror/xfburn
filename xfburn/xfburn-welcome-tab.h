@@ -47,7 +47,7 @@ typedef struct
   GtkVBoxClass parent_class;
 } XfburnWelcomeTabClass;
 
-GType xfburn_welcome_tab_get_type ();
+GType xfburn_welcome_tab_get_type (void);
 GtkWidget *xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GtkActionGroup *action_group);
 
 G_END_DECLS

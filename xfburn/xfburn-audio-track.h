@@ -51,7 +51,7 @@ typedef struct
   gpointer data; 
 } XfburnAudioTrack;
 
-GType xfburn_audio_track_get_type ();
+GType xfburn_audio_track_get_type (void);
 
 G_END_DECLS
 
