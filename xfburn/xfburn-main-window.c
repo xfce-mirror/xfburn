@@ -304,7 +304,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
 
   /* filebrowser */
   priv->file_browser = xfburn_file_browser_new ();
-  gtk_paned_add1 (GTK_PANED (priv->vpaned), priv->file_browser);
+  gtk_paned_pack1 (GTK_PANED (priv->vpaned), priv->file_browser, TRUE, FALSE);
   gtk_widget_show (priv->file_browser);
 
   gtk_paned_set_position (GTK_PANED (priv->file_browser), xfburn_settings_get_int ("hpaned-position", 250));
@@ -312,7 +312,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   /* compositions notebook */
   priv->compositions_notebook = xfburn_compositions_notebook_new ();
   gtk_widget_show (priv->compositions_notebook);
-  gtk_paned_add2 (GTK_PANED (priv->vpaned), priv->compositions_notebook);
+  gtk_paned_pack2 (GTK_PANED (priv->vpaned), priv->compositions_notebook, TRUE, FALSE);
   
   gtk_paned_set_position (GTK_PANED (priv->vpaned), xfburn_settings_get_int ("vpaned-position", 200));
 
