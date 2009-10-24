@@ -236,8 +236,6 @@ xfburn_burn_image_dialog_finalize (GObject *object)
   g_signal_handler_disconnect (priv->devlist, priv->handler_volchange);
   g_object_unref (priv->devlist);
 
-  DBG ("bug: Disconnected signal handler");
-
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
