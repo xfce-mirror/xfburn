@@ -65,6 +65,7 @@ typedef struct
 
   GtkWidget *burn_button;
 
+  XfburnDeviceList *devlist;
   gulong handler_volchange;
 
   ThreadBurnIsoParams *params;
@@ -137,7 +138,6 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *button;
-  XfburnDeviceList *devlist;
   XfburnDevice *device;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn image"));
@@ -215,19 +215,16 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_widget_grab_focus (priv->burn_button);
   gtk_widget_grab_default (priv->burn_button);
 
-  devlist = xfburn_device_list_new ();
+  priv->devlist = xfburn_device_list_new ();
 
-  priv->handler_volchange = g_signal_connect (G_OBJECT (devlist), "volume-change-end", G_CALLBACK (cb_volume_change_end), obj);
+  priv->handler_volchange = g_signal_connect (G_OBJECT (priv->devlist), "volume-change-end", G_CALLBACK (cb_volume_change_end), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), obj);
-  device = xfburn_device_list_get_current_device (devlist);
+  device = xfburn_device_list_get_current_device (priv->devlist);
 
-  cb_volume_change_end (devlist, TRUE, device, obj);
+  cb_volume_change_end (priv->devlist, TRUE, device, obj);
 
   if (device)
     gtk_widget_set_sensitive (priv->check_dummy, xfburn_device_can_dummy_write (device));
-
-  g_object_unref (G_OBJECT (devlist));
-
 }
 
 static void
@@ -236,7 +233,10 @@ xfburn_burn_image_dialog_finalize (GObject *object)
   XfburnBurnImageDialog *dialog = XFBURN_BURN_IMAGE_DIALOG (object);
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
 
-  g_signal_handler_disconnect (dialog, priv->handler_volchange);
+  g_signal_handler_disconnect (priv->devlist, priv->handler_volchange);
+  g_object_unref (priv->devlist);
+
+  G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
 /*************/
