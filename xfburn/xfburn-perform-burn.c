@@ -25,6 +25,8 @@
 #include <libburn.h>
 #include <unistd.h>
 
+#include <libburn.h>
+
 #include "xfburn-perform-burn.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-utils.h"
@@ -43,6 +45,67 @@ xfburn_perform_burn_init (struct burn_disc **disc, struct burn_session **session
 {
 }
 */
+gboolean
+xfburn_set_write_mode (struct burn_write_opts *opts, XfburnWriteMode write_mode, struct burn_disc *disc, 
+                       XfburnWriteMode fallback)
+{
+  g_assert (fallback != WRITE_MODE_AUTO);
+
+  /* set all other burn_write_opts before calling this!
+   * See docs on burn_write_opts_auto_write_type
+   */
+
+  /* keep all modes here, just in case we want to change the default sometimes */
+  if (write_mode == WRITE_MODE_AUTO) {
+    char reason[BURN_REASONS_LEN];
+    enum burn_write_types mode;
+
+    mode = burn_write_opts_auto_write_type (opts, disc, reason, 0);
+
+    if (mode != BURN_WRITE_NONE) {
+      DBG("Automatically selected burn mode %d", mode);
+
+      // write mode set, we're done
+      
+      return TRUE;
+
+    } else {
+      g_warning ("Could not automatically determine write mode: %s", reason);
+      DBG ("This could be bad. Falling back to default %d.", fallback);
+
+      write_mode = fallback;
+      // fall through to set opts up
+    }
+  }
+
+  switch (write_mode) {
+  case WRITE_MODE_AUTO:
+    g_error ("WRITE_MODE_AUTO not valid at this point.");
+    break;
+  case WRITE_MODE_TAO:
+    burn_write_opts_set_write_type (opts, BURN_WRITE_TAO, BURN_BLOCK_MODE1);
+    break;
+  case WRITE_MODE_SAO:
+    burn_write_opts_set_write_type (opts, BURN_WRITE_SAO, BURN_BLOCK_SAO);
+    break;
+  case WRITE_MODE_RAW16:
+    burn_write_opts_set_write_type (opts, BURN_WRITE_RAW, BURN_BLOCK_RAW16);
+    break;
+  case WRITE_MODE_RAW96P:
+    burn_write_opts_set_write_type (opts, BURN_WRITE_RAW, BURN_BLOCK_RAW96P);
+    break;
+  case WRITE_MODE_RAW96R:
+    burn_write_opts_set_write_type (opts, BURN_WRITE_RAW, BURN_BLOCK_RAW96R);
+    break;
+  default:
+    /*
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The write mode is not supported currently."));
+    */
+    return FALSE;
+  }
+
+  return TRUE;
+}
 
 void
 xfburn_perform_burn_write (GtkWidget *dialog_progress, 

@@ -320,36 +320,19 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_options = burn_write_opts_new (drive);
   burn_write_opts_set_perform_opc (burn_options, 0);
   burn_write_opts_set_multi (burn_options, 0);
-
-  /* keep all modes here, just in case we want to change the default sometimes */
-  switch (params->write_mode) {
-  case WRITE_MODE_TAO:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_TAO, BURN_BLOCK_MODE1);
-    break;
-  case WRITE_MODE_SAO:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_SAO, BURN_BLOCK_SAO);
-    break;
-  case WRITE_MODE_RAW16:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW16);
-    break;
-  case WRITE_MODE_RAW96P:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96P);
-    break;
-  case WRITE_MODE_RAW96R:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96R);
-    break;
-  default:
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The write mode is not supported currently."));
-    return;
-  }
-
   burn_write_opts_set_simulate(burn_options, params->dummy ? 1 : 0);
-  DBG ("Set speed to %d kb/s", params->speed);
-  burn_drive_set_speed (drive, 0, params->speed);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
-  burn_drive_set_buffer_waiting (drive, 1, -1, -1, -1, 75, 95);
 
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, AUDIO_BYTES_PER_SECTOR, disc, srcs, track_sectors);
+  if (!xfburn_set_write_mode (burn_options, params->write_mode, disc, WRITE_MODE_SAO)) {
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The write mode is not supported currently."));
+  } else {
+
+    DBG ("Set speed to %d kb/s", params->speed);
+    burn_drive_set_speed (drive, 0, params->speed);
+    burn_drive_set_buffer_waiting (drive, 1, -1, -1, -1, 75, 95);
+
+    xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, AUDIO_BYTES_PER_SECTOR, disc, srcs, track_sectors);
+  }
 
   burn_write_opts_free (burn_options);
 }
@@ -464,8 +447,8 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
 
     device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
     speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
-    /* cdrskin burns audio with SAO */
-    write_mode = WRITE_MODE_SAO;
+    /* cdrskin burns audio with SAO, but we assume auto knows that */
+    write_mode = WRITE_MODE_AUTO;
 
     /* burn composition */
     params = g_new0 (ThreadBurnCompositionParams, 1);

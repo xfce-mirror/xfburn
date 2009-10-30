@@ -65,6 +65,7 @@ typedef enum
 
 typedef enum
 {
+  WRITE_MODE_AUTO,
   WRITE_MODE_TAO,
   WRITE_MODE_SAO,
   WRITE_MODE_RAW16,

@@ -31,6 +31,9 @@
 
 #include "xfburn-device-box.h"
 
+gboolean xfburn_set_write_mode (struct burn_write_opts *opts, XfburnWriteMode write_mode, struct burn_disc *disc,
+                                XfburnWriteMode fallback);
+
 void xfburn_perform_burn_write (GtkWidget *dialog_progress, 
                                 struct burn_drive *drive, XfburnWriteMode write_mode, struct burn_write_opts *burn_options, int sector_size,
                                 struct burn_disc *disc, struct burn_source **fifos, int *track_sectors);

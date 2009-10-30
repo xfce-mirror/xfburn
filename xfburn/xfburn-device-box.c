@@ -676,6 +676,9 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
+  gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+  gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, _("Auto"), MODE_VALUE_COLUMN, WRITE_MODE_AUTO, -1);
+
   g_object_get (G_OBJECT (device), "tao-block-types", &block_types, NULL);
   if (block_types) {
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);

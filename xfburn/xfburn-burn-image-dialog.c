@@ -50,6 +50,13 @@ typedef struct {
   gboolean eject;
   gboolean dummy;
   gboolean burnfree;
+
+  struct burn_disc *disc;
+  struct burn_session *session;
+  struct burn_track *track;
+  struct burn_source *fifo_src;
+  struct burn_write_opts * burn_options;
+
 } ThreadBurnIsoParams;
 
 typedef struct
@@ -76,14 +83,20 @@ static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * kl
 static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
 static void xfburn_burn_image_dialog_finalize (GObject *object);
 
+/* internal prototypes */
 void burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error);
 static void cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnBurnImageDialog * dialog);
 static void cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data);
 
 static void update_image_label (GtkFileChooser *chooser, XfburnBurnImageDialog * dialog);
 static void check_burn_button (XfburnBurnImageDialog * dialog);
-static gboolean check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct burn_drive *drive, struct burn_write_opts * burn_options);
+static gboolean check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct burn_drive *drive);
 static void cb_clicked_ok (GtkButton * button, gpointer user_data);
+
+static void free_params (ThreadBurnIsoParams *params);
+static gboolean prepare_params (ThreadBurnIsoParams *params, struct burn_drive *drive, gchar **failure_msg);
+static gboolean create_disc (ThreadBurnIsoParams *params, gchar **failure_msg);
+static void thread_burn_iso (ThreadBurnIsoParams * params);
 
 /*********************/
 /* class declaration */
@@ -242,78 +255,75 @@ xfburn_burn_image_dialog_finalize (GObject *object)
 /*************/
 /* internals */
 /*************/
-static struct burn_write_opts * 
-make_burn_options(ThreadBurnIsoParams *params, struct burn_drive *drive) {
+static gboolean 
+prepare_params (ThreadBurnIsoParams *params, struct burn_drive *drive, gchar **failure_msg)
+{
   struct burn_write_opts * burn_options;
 
   burn_options = burn_write_opts_new (drive);
   burn_write_opts_set_perform_opc (burn_options, 0);
   burn_write_opts_set_multi (burn_options, 0);
-
-  switch (params->write_mode) {
-  case WRITE_MODE_TAO:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_TAO, BURN_BLOCK_MODE1);
-    break;
-  case WRITE_MODE_SAO:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_SAO, BURN_BLOCK_SAO);
-    break;
-  /*
-  case WRITE_MODE_RAW16:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW16);
-    break;
-  case WRITE_MODE_RAW96P:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96P);
-    break;
-  case WRITE_MODE_RAW96R:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96R);
-    break;
-  */
-  default:
-    burn_write_opts_free (burn_options);
-    return NULL;
-  }
-
   burn_write_opts_set_simulate(burn_options, params->dummy ? 1 : 0);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
 
-  return burn_options;
+  if (!xfburn_set_write_mode (burn_options, params->write_mode, params->disc, WRITE_MODE_TAO)) {
+    burn_write_opts_free (burn_options);
+    *failure_msg = _("Burn mode is not currently implemented.");
+    return FALSE;
+  }
+
+  params->burn_options = burn_options;
+
+  params->disc = burn_disc_create ();
+  params->session = burn_session_create ();
+  params->track = burn_track_create ();
+
+  if (!create_disc (params, failure_msg)) {
+    return FALSE;
+  }
+
+  return TRUE;
 }
 
 static void
-thread_burn_iso (ThreadBurnIsoParams * params)
+free_params (ThreadBurnIsoParams *params)
 {
-  GtkWidget *dialog_progress = params->dialog_progress;
+  if (params->fifo_src)
+    burn_source_free (params->fifo_src);
 
-  struct burn_disc *disc;
-  struct burn_session *session;
-  struct burn_track *track;
+  if (params->burn_options)
+    burn_write_opts_free (params->burn_options);
 
+  if (params->track)
+    burn_track_free (params->track);
+
+  if (params->session)
+    burn_session_free (params->session);
+
+  if (params->disc)
+    burn_disc_free (params->disc);
+
+  g_free (params->iso_path);
+}
+
+static gboolean
+create_disc (ThreadBurnIsoParams *params, gchar **failure_msg)
+{
   gint fd;
   struct stat stbuf;
   off_t fixed_size = 0;
   struct burn_source *data_src;
-  struct burn_source *fifo_src;
-  int sectors[1];
-
-  struct burn_drive *drive;
-  struct burn_drive_info *drive_info = NULL;
-  struct burn_write_opts * burn_options;
-  struct burn_source **fifos = NULL;
 
   gint ret;
 
-  disc = burn_disc_create ();
-  session = burn_session_create ();
-  track = burn_track_create ();
-
-  ret = burn_disc_add_session (disc, session, BURN_POS_END);
+  ret = burn_disc_add_session (params->disc, params->session, BURN_POS_END);
   if (ret == 0) {
-    g_warning ("Unable to create disc object");
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("An error occurred in the burn backend"));
-    goto end;
+    g_warning ("Unable to add session to the disc object");
+    *failure_msg = _("An error occurred in the burn backend");
+    return FALSE;
   }
 
-  burn_track_define_data (track, 0, 300*1024, 1, BURN_MODE1);
+  burn_track_define_data (params->track, 0, 300*1024, 1, BURN_MODE1);
 
   fd = open (params->iso_path, O_RDONLY);
   if (fd >= 0)
@@ -322,68 +332,65 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 	fixed_size = stbuf.st_size;
 
   if (fixed_size == 0) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to determine image size."));
-    goto end;
+    *failure_msg = _("Unable to determine image size.");
+    return FALSE;
   }
 
   data_src = burn_fd_source_new(fd, -1, fixed_size);
 
   if (data_src == NULL) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot open image."));
-    goto end;
+    *failure_msg = _("Cannot open image.");
+    return FALSE;
   }
 
-  fifo_src = burn_fifo_source_new (data_src, 2048, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
+  params->fifo_src = burn_fifo_source_new (data_src, 2048, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
   burn_source_free (data_src);
 
-  if (burn_track_set_source (track, fifo_src) != BURN_SOURCE_OK) {
+  if (burn_track_set_source (params->track, params->fifo_src) != BURN_SOURCE_OK) {
     g_warning ("Cannot attach source object to track object");
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("An error occurred in the burn backend"));
-    goto end;
+    *failure_msg = _("An error occurred in the burn backend");
+    return FALSE;
   }
   
-  burn_session_add_track (session, track, BURN_POS_END);
+  burn_session_add_track (params->session, params->track, BURN_POS_END);
 
-  if (!xfburn_device_grab (params->device, &drive_info)) {
+  return TRUE;
+}
+
+static void
+thread_burn_iso (ThreadBurnIsoParams * params)
+{
+  GtkWidget *dialog_progress = params->dialog_progress;
+
+  struct burn_drive *drive;
+  struct burn_drive_info *drive_info = NULL;
+  struct burn_source **fifos = NULL;
+  int sectors[1];
+
+  if (xfburn_device_grab (params->device, &drive_info)) {
+    drive = drive_info->drive;
+
+    DBG ("Set speed to %d kb/s", params->speed);
+    burn_drive_set_speed (drive, 0, params->speed);
+
+    // this assumes that an iso image can only have one track
+    sectors[0] = burn_disc_get_sectors (params->disc);
+    
+    xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning image..."));
+
+    fifos = g_new(struct burn_source *,1);
+    fifos[0] = params->fifo_src;
+
+    xfburn_perform_burn_write (dialog_progress, drive_info->drive, params->write_mode, params->burn_options, DATA_BYTES_PER_SECTOR, params->disc, fifos, sectors);
+ 
+    xfburn_device_release (drive_info, params->eject);
+  } else {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab the drive."));
-
-    goto end;
   }
-
-  drive = drive_info->drive;
-
-  burn_options = make_burn_options (params, drive);
-  if (burn_options == NULL) {
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Burn mode is not currently implemented."));
-    goto cleanup;
-  }
-
-  DBG ("Set speed to %d kb/s", params->speed);
-  burn_drive_set_speed (drive, 0, params->speed);
-
-  // this assumes that an iso image can only have one track
-  sectors[0] = burn_disc_get_sectors (disc);
-  
-  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning image..."));
-
-  fifos = g_new(struct burn_source *,1);
-  fifos[0] = fifo_src;
-
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, DATA_BYTES_PER_SECTOR, disc, fifos, sectors);
 
   g_free (fifos);
 
-  burn_source_free (fifo_src);
-  burn_write_opts_free (burn_options);
-
- cleanup:
-  xfburn_device_release (drive_info, params->eject);
- end:
-  burn_track_free (track);
-  burn_session_free (session);
-  burn_disc_free (disc);
-
-  g_free (params->iso_path);
+  free_params (params);
   g_free (params);
 }
 
@@ -460,7 +467,7 @@ check_burn_button (XfburnBurnImageDialog * dialog)
 }
 
 static gboolean 
-check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct burn_drive *drive, struct burn_write_opts * burn_options)
+check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct burn_drive *drive)
 {
   enum burn_disc_status disc_state;
   struct stat st;
@@ -491,7 +498,7 @@ check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct
   ret = stat (params->iso_path, &st);
   if (ret == 0) {
     off_t disc_size;
-    disc_size = burn_disc_available_space (drive, burn_options);
+    disc_size = burn_disc_available_space (drive, params->burn_options);
     if (st.st_size > disc_size) {
       burn_image_dialog_error (dialog, _("The selected image does not fit on the inserted disc"));
       return FALSE;
@@ -515,10 +522,11 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
   XfburnDevice *device;
   gint speed;
   XfburnWriteMode write_mode;
-  struct burn_write_opts * burn_options;
 
   ThreadBurnIsoParams *params = NULL;
   struct burn_drive_info *drive_info = NULL;
+
+  gchar *failure_msg;
 
   /* check if the image file really exists and can be opened */
   iso_path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
@@ -552,24 +560,21 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
     return;
   }
 
-  burn_options = make_burn_options (params, drive_info->drive);
-
-  if (burn_options == NULL)
-    burn_image_dialog_error (dialog, _("The write mode is not currently supported"));
-  else {
-    checks_passed = check_media (dialog, params, drive_info->drive, burn_options);
-
-    burn_write_opts_free (burn_options);
+  if (!prepare_params(params, drive_info->drive, &failure_msg)) {
+    burn_image_dialog_error (dialog, failure_msg);
+  } else {
+    checks_passed = check_media (dialog, params, drive_info->drive);
   }
 
   xfburn_device_release (drive_info, 0);
 
-  priv->params = params;
 
-  if (checks_passed)
+  if (checks_passed) {
+    priv->params = params;
+
     gtk_dialog_response (GTK_DIALOG(dialog), GTK_RESPONSE_OK);
-  else {
-    g_free (params->iso_path);
+  } else {
+    free_params (params);
     g_free (params);
   }
 }

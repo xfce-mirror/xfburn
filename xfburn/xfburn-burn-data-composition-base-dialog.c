@@ -560,48 +560,32 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_options = burn_write_opts_new (drive);
   burn_write_opts_set_perform_opc (burn_options, 0);
   burn_write_opts_set_multi (burn_options, 0);
-
-  switch (params->write_mode) {
-  case WRITE_MODE_TAO:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_TAO, BURN_BLOCK_MODE1);
-    break;
-  case WRITE_MODE_SAO:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_SAO, BURN_BLOCK_SAO);
-    break;
-  case WRITE_MODE_RAW16:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW16);
-    break;
-  case WRITE_MODE_RAW96P:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96P);
-    break;
-  case WRITE_MODE_RAW96R:
-    burn_write_opts_set_write_type (burn_options, BURN_WRITE_RAW, BURN_BLOCK_RAW96R);
-    break;
-  default:
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The write mode is not supported currently."));
-    return;
-  }
-
   /* enable this when there is some time for testing
   DBG ("Enabling multisession");
   burn_write_opts_set_multi(burn_options, 1);
   */
   burn_write_opts_set_simulate(burn_options, params->dummy ? 1 : 0);
-  DBG ("Set speed to %d kb/s", params->speed);
-  burn_drive_set_speed (drive, 0, params->speed);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
 
-  sectors[0] = burn_disc_get_sectors (disc);
+  if (!xfburn_set_write_mode (burn_options, params->write_mode, disc, WRITE_MODE_TAO)) {
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The write mode is not supported currently."));
+  } else {
 
-  if (params->is_fifo) {
-    fifos = g_new(struct burn_source *,1);
-    fifos[0] = params->src;
-  }
+    DBG ("Set speed to %d kb/s", params->speed);
+    burn_drive_set_speed (drive, 0, params->speed);
 
-  xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, DATA_BYTES_PER_SECTOR, disc, fifos, sectors);
+    sectors[0] = burn_disc_get_sectors (disc);
 
-  if (params->is_fifo) {
-    g_free (fifos);
+    if (params->is_fifo) {
+      fifos = g_new(struct burn_source *,1);
+      fifos[0] = params->src;
+    }
+
+    xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, DATA_BYTES_PER_SECTOR, disc, fifos, sectors);
+
+    if (params->is_fifo) {
+      g_free (fifos);
+    }
   }
 
   burn_write_opts_free (burn_options);
