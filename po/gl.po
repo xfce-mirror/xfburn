@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-22 20:17-0600\n"
-"PO-Revision-Date: 2009-08-19 13:05+0100\n"
+"PO-Revision-Date: 2009-11-06 13:33+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "Selección rápida"
 #: ../xfburn/xfburn-blank-dialog.c:77
 #, fuzzy
 msgid "Full Deformat (slow)"
-msgstr "Lento con falsos"
+msgstr "Borrado completo (lento)"
 
 #: ../xfburn/xfburn-blank-dialog.c:150
 msgid "Eject the disc"
@@ -165,9 +165,8 @@ msgstr "Si_mular gravación"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
 #: ../xfburn/xfburn-burn-image-dialog.c:192
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
-#, fuzzy
 msgid "Burn_Free"
-msgstr "Garvacion _libre"
+msgstr "Burn_Free"
 
 #. create ISO ?
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:242
@@ -462,9 +461,9 @@ msgstr "Xa existe no directorio un ficheiro chamado \"%s\", non se engadiu o fic
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1847
-#, fuzzy, c-format
+#, c-format
 msgid "Duplicate filename '%s' for '%s'"
-msgstr "_Nome de ficheiro para as imaxes:"
+msgstr "Nome de ficheiro duplicado '%s' para '%s'"
 
 #: ../xfburn/xfburn-device-box.c:173
 #: ../xfburn/xfburn-device-box.c:174
@@ -680,6 +679,8 @@ msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr ""
+"Produciuse un erro ao iniciar o transcodificador %s: %s\n"
+"\t(volvendo á implementación básica)"
 
 #: ../xfburn/xfburn-main.c:376
 #, c-format
@@ -901,20 +902,21 @@ msgstr "abortado"
 msgid "no info"
 msgstr "sen información"
 
+# cabezallo
 #: ../xfburn/xfburn-perform-burn.c:237
-#, fuzzy
 msgid "Writing Lead-In..."
-msgstr "Executar nun terminal"
+msgstr "Escribindo a pista inicial..."
 
 #: ../xfburn/xfburn-perform-burn.c:243
-#, fuzzy
 msgid "Writing Lead-Out..."
-msgstr "Descargar ficheiros (check out)"
+msgstr "Escribindo a pista final..."
 
+# intervalo
+# pregap
+# Silencio previo
 #: ../xfburn/xfburn-perform-burn.c:249
-#, fuzzy
 msgid "Writing pregap..."
-msgstr "Escribindo no CD..."
+msgstr "Escribindo o silencio previo..."
 
 #: ../xfburn/xfburn-perform-burn.c:255
 msgid "Closing track..."
@@ -1038,7 +1040,7 @@ msgstr "Búfer do dispositivo:"
 #: ../xfburn/xfburn-progress-dialog.c:468
 #, c-format
 msgid "Min. fill was %2d%%"
-msgstr ""
+msgstr "O recheo mínimo era %2d%%"
 
 #: ../xfburn/xfburn-progress-dialog.c:527
 msgid "Aborted"
@@ -1176,6 +1178,14 @@ msgid ""
 "audio files, please compile with\n"
 "gstreamer support."
 msgstr ""
+"O transcodificador básico está\n"
+"incorporado, e non require ningunha\n"
+"libraría. Pero só pode manexar\n"
+"ficheiros .wav descomprimidos.\n"
+"Se desexa crear composicións de\n"
+"son a partir de diferentes tipos de\n"
+"ficheiros de son, compíleo con\n"
+"soporte para gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:197
 #, c-format
@@ -1273,7 +1283,7 @@ msgstr "Gstreamer non quixo iniciar a transcodificación (tempo esgotado)"
 #: ../xfburn/xfburn-transcoder-gst.c:952
 #, c-format
 msgid "Failed to change songs while transcoding"
-msgstr ""
+msgstr "Produciuse un erro ao cambiar as cancións ao transcodificar"
 
 #: ../xfburn/xfburn-transcoder.c:125
 #: ../xfburn/xfburn-transcoder.c:152
@@ -1284,9 +1294,8 @@ msgstr "non implementado"
 
 #: ../xfburn/xfburn-device.c:248
 #: ../xfburn/xfburn-device.c:249
-#, fuzzy
 msgid "Display name"
-msgstr "Nome do volume :"
+msgstr "Nome para mostrar"
 
 #: ../xfburn/xfburn-device.c:251
 #: ../xfburn/xfburn-device.c:252
@@ -1295,9 +1304,8 @@ msgstr "enderezo do dispositivo"
 
 #: ../xfburn/xfburn-device.c:254
 #: ../xfburn/xfburn-device.c:255
-#, fuzzy
 msgid "Is the device accessible"
-msgstr "Dispositivo %1 - %2 está automontado."
+msgstr "Está accesible o dispositivo"
 
 #: ../xfburn/xfburn-device.c:257
 #: ../xfburn/xfburn-device.c:258
@@ -1321,9 +1329,8 @@ msgstr "Nome do perfil comunicado por libburn"
 
 #: ../xfburn/xfburn-device.c:269
 #: ../xfburn/xfburn-device.c:270
-#, fuzzy
 msgid "Is the disc erasable"
-msgstr "O medio no é regrabable"
+msgstr "É o disco borrable"
 
 #: ../xfburn/xfburn-device.c:272
 #: ../xfburn/xfburn-device.c:273
@@ -1353,22 +1360,22 @@ msgstr "Pode gravar DVDRAM"
 #: ../xfburn/xfburn-device.c:287
 #: ../xfburn/xfburn-device.c:288
 msgid "libburn TAO block types"
-msgstr ""
+msgstr "Tipos de bloque TAO de libburn"
 
 #: ../xfburn/xfburn-device.c:290
 #: ../xfburn/xfburn-device.c:291
 msgid "libburn SAO block types"
-msgstr ""
+msgstr "Tipos de bloque SAO de libburn"
 
 #: ../xfburn/xfburn-device.c:293
 #: ../xfburn/xfburn-device.c:294
 msgid "libburn RAW block types"
-msgstr ""
+msgstr "Tipos de bloque RAW de libburn"
 
 #: ../xfburn/xfburn-device.c:296
 #: ../xfburn/xfburn-device.c:297
 msgid "libburn PACKET block types"
-msgstr ""
+msgstr "Tipos de bloque PACKET de libburn"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
