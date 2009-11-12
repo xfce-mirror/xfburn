@@ -46,8 +46,8 @@ typedef struct _XfburnDeviceListPrivate XfburnDeviceListPrivate;
 
 struct _XfburnDeviceListPrivate {
   GList *devices;
-  guint num_drives;
-  guint num_burners;
+  gint num_drives;
+  gint num_burners;
   XfburnDevice *curr_device;
 
 #ifdef HAVE_HAL
@@ -300,11 +300,14 @@ get_libburn_device_list (XfburnDeviceList *devlist)
   struct burn_drive_info *drives;
   guint i;
   gint ret; 
+  guint num_drives;
 
   DBG ("Before scanning for drives");
-  while ((ret = burn_drive_scan (&drives, &(priv->num_drives))) == 0)
+  while ((ret = burn_drive_scan (&drives, &(num_drives))) == 0)
     usleep (1002);
   DBG ("After scanning for drives");
+
+  priv->num_drives = (gint) num_drives;
 
   if (ret < 0)
     g_warning ("An error occurred while scanning for available drives");
