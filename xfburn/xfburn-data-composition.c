@@ -1867,10 +1867,10 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
           g_error ("Failed adding %s as a node to the image: null pointer!", src);
         else if (r == ISO_NODE_NAME_NOT_UNIQUE)
           g_error ("Failed adding %s as a node to the image: node name not unique!", src);
-        /* else if (r == ISO_MEM_ERROR)
-          g_error ("Failed adding %s as a node to the image: memory error!", src); */
+        else if (r == ISO_OUT_OF_MEM)
+          g_error ("Failed adding %s as a node to the image: out of memory!", src);
         else
-          g_error ("Failed adding %s as a node to the image: code %d!", src, r);
+          g_error ("Failed adding %s as a node to the image: code %X!", src, r);
       }
 
       basename = g_path_get_basename (src);
