@@ -45,6 +45,7 @@
 #include "xfburn-audio-composition.h"
 #include "xfburn-global.h"
 #include "xfburn-error.h"
+#include "xfburn-utils.h"
 
 #include "xfburn-adding-progress.h"
 #include "xfburn-composition.h"
@@ -92,8 +93,7 @@ typedef enum
 
 /* thread parameters */
 typedef struct {
-  char **filenames;
-  int filec;
+  GSList * filelist;
   XfburnAudioComposition *dc;
 } ThreadAddFilesCLIParams;
 
@@ -1293,19 +1293,21 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
   GtkTreeIter iter;
 
   GtkTreeModel *model;
-  int i;
-  gchar *full_path = NULL;
+  GSList * list_iter;
 
   gdk_threads_enter ();
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   gdk_threads_leave ();
 
-  for (i=0; i<params->filec; i++) {
-    full_path = g_build_filename (params->filenames[i], NULL);
+  for (list_iter = params->filelist; list_iter != NULL; list_iter = g_slist_next (list_iter)) {
+    gchar * full_path = (gchar *) list_iter->data;
+
     g_message ("Adding %s to the audio composition... (might take a while)", full_path);
     thread_add_file_to_list (params->dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
+
     g_free (full_path);
   }
+  g_slist_free (params->filelist);
   xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
 }
 
@@ -2145,16 +2147,15 @@ xfburn_audio_composition_new (void)
 }
 
 void 
-xfburn_audio_composition_add_files (XfburnAudioComposition *dc, int filec, char **filenames)
+xfburn_audio_composition_add_files (XfburnAudioComposition *dc, GSList * filelist)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   ThreadAddFilesCLIParams *params;
   
-  if (filec > 0) {
+  if (filelist != NULL) {
     params = g_new (ThreadAddFilesCLIParams, 1);
 
-    params->filenames = filenames;
-    params->filec = filec;
+    params->filelist = filelist;
     params->dc = dc;
 
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));

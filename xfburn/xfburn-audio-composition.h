@@ -56,7 +56,7 @@ enum
 GType xfburn_audio_composition_get_type (void);
 
 GtkWidget *xfburn_audio_composition_new (void);
-void xfburn_audio_composition_add_files (XfburnAudioComposition *content, int filec, char **filenames);
+void xfburn_audio_composition_add_files (XfburnAudioComposition *content, GSList * filelist);
 void xfburn_audio_composition_hide_toolbar (XfburnAudioComposition *content);
 void xfburn_audio_composition_show_toolbar (XfburnAudioComposition *content);
 

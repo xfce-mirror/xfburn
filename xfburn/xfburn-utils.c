@@ -211,3 +211,28 @@ xfburn_console_libburn_messages (void)
  
 }
 
+
+GSList *
+xfburn_make_abosulet_file_list (gint count, gchar *filenames[])
+{
+  gint i;
+  GSList * list = NULL;
+  gchar *file, *abs, *pwd;
+
+  pwd = g_get_current_dir ();
+
+  for (i=0; i<count; i++) {
+    file = filenames[i];
+
+    if (!g_path_is_absolute (file))
+      abs = g_build_filename (pwd, file, NULL);
+    else
+      abs = g_build_filename (file, NULL);
+
+    list = g_slist_prepend (list, abs);
+  }
+
+  g_free (pwd);
+
+  return list;
+}

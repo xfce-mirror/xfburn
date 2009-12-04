@@ -40,6 +40,7 @@
 #include "xfburn-settings.h"
 #include "xfburn-main.h"
 #include "xfburn-stock.h"
+#include "xfburn-utils.h"
 
 #define XFBURN_MAIN_WINDOW_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowPrivate))
 
@@ -709,9 +710,12 @@ xfburn_main_window_add_data_composition_with_files (XfburnMainWindow *window, in
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   XfburnComposition *comp;
+  GSList * filelist;
  
   comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_DATA_COMPOSITION);
-  xfburn_data_composition_add_files (XFBURN_DATA_COMPOSITION (comp), filec, filenames);
+
+  filelist = xfburn_make_abosulet_file_list (filec, filenames);
+  xfburn_data_composition_add_files (XFBURN_DATA_COMPOSITION (comp), filelist);
 }
 
 void 
@@ -719,9 +723,11 @@ xfburn_main_window_add_audio_composition_with_files (XfburnMainWindow *window, i
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   XfburnComposition *comp;
+  GSList * filelist;
  
   comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_AUDIO_COMPOSITION);
-  xfburn_audio_composition_add_files (XFBURN_AUDIO_COMPOSITION (comp), filec, filenames);
+  filelist = xfburn_make_abosulet_file_list (filec, filenames);
+  xfburn_audio_composition_add_files (XFBURN_AUDIO_COMPOSITION (comp), filelist);
 }
 
 gboolean
