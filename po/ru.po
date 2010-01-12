@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the xfburn package.
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
 # Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
@@ -65,8 +65,7 @@ msgstr "Очистка диска"
 msgid "Burning device"
 msgstr "Записывающее устройство"
 
-#: ../xfburn/xfburn-blank-dialog.c:223
-#: ../xfburn/xfburn-device-box.c:188
+#: ../xfburn/xfburn-blank-dialog.c:223 ../xfburn/xfburn-device-box.c:188
 msgid "Blank mode"
 msgstr "Тип очистки"
 
@@ -92,7 +91,8 @@ msgstr "_Извлечь диск"
 msgid "_Blank"
 msgstr "_Очистить"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "Вставленный диск уже очищен"
@@ -121,8 +121,7 @@ msgstr "Очистка..."
 msgid "Done"
 msgstr "Завершено"
 
-#: ../xfburn/xfburn-blank-dialog.c:444
-#: ../xfburn/xfburn-perform-burn.c:310
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:310
 #: ../xfburn/xfburn-progress-dialog.c:604
 msgid "Failure"
 msgstr "Завершена неудачно"
@@ -228,7 +227,7 @@ msgstr "_Записать образ"
 #: ../xfburn/xfburn-burn-image-dialog.c:296
 #: ../xfburn/xfburn-burn-image-dialog.c:325
 msgid "An error occurred in the burn backend"
-msgstr ""
+msgstr "В программе записи дисков произошла ошибка"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:309
 msgid "Unable to determine image size."
@@ -280,7 +279,7 @@ msgstr "Удостоверьтесь, что выбран правильный �
 
 #: ../xfburn/xfburn-burn-image-dialog.c:542
 msgid "The write mode is not currently supported"
-msgstr ""
+msgstr "Режим записи еще не поддерживается"
 
 #: ../xfburn/xfburn-compositions-notebook.c:175
 msgid "Audio composition"
@@ -379,7 +378,8 @@ msgstr "Очистить"
 msgid "Clear the content of the composition"
 msgstr "Очистить содержимое проекта"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:191
 msgid "Rename"
 msgstr "Переименовать"
@@ -392,11 +392,12 @@ msgstr "Переименовать выбранный файл"
 msgid "Volume name :"
 msgstr "Имя тома :"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:365
-#, c-format
+#, c-format, fuzzy
 msgid "Data %s~%d"
-msgstr ""
+msgstr "Диск %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:397
 msgid "Contents"
@@ -449,7 +450,7 @@ msgstr ""
 "Вы уверены, что хотите продолжить?"
 
 #: ../xfburn/xfburn-data-composition.c:1429
-#, fuzzy, c-format
+#, c-format
 msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
 msgstr "В этом каталоге уже существует файл с именем \"%s\", файл не был добавлен"
 
@@ -457,28 +458,27 @@ msgstr "В этом каталоге уже существует файл с и�
 #: ../xfburn/xfburn-data-composition.c:1847
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
-msgstr ""
+msgstr "Имя \"%s\" для файла \"%s\" уже существует"
 
-#: ../xfburn/xfburn-device-box.c:173
-#: ../xfburn/xfburn-device-box.c:174
+#: ../xfburn/xfburn-device-box.c:173 ../xfburn/xfburn-device-box.c:174
 msgid "Show writers only"
 msgstr "Показывать только записывающие устройства"
 
 #: ../xfburn/xfburn-device-box.c:176
 msgid "Show speed selection"
-msgstr ""
+msgstr "Выбор скорости"
 
 #: ../xfburn/xfburn-device-box.c:177
 msgid "Show speed selection combo"
-msgstr ""
+msgstr "Показывать список скоростей записи"
 
 #: ../xfburn/xfburn-device-box.c:180
 msgid "Show mode selection"
-msgstr ""
+msgstr "Выбор режима"
 
 #: ../xfburn/xfburn-device-box.c:181
 msgid "Show mode selection combo"
-msgstr ""
+msgstr "Показывать список режимов записи"
 
 #: ../xfburn/xfburn-device-box.c:184
 msgid "Is it a valid combination"
@@ -486,22 +486,20 @@ msgstr "Это подходящая комбинация"
 
 #: ../xfburn/xfburn-device-box.c:185
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
+msgstr "Поддерживается ли тип диска вашим оборудованием?"
 
 #: ../xfburn/xfburn-device-box.c:189
 #, fuzzy
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "Режим очистки показывает сообщения о состоянии диска, отличные от нормального режима"
 
-#: ../xfburn/xfburn-device-box.c:192
-#: ../xfburn/xfburn-device-box.c:193
+#: ../xfburn/xfburn-device-box.c:192 ../xfburn/xfburn-device-box.c:193
 msgid "Accept only CDs as valid discs"
 msgstr "Принимать только CD диски, как подходящие"
 
 #: ../xfburn/xfburn-device-box.c:246
-#, fuzzy
 msgid "_Speed:"
-msgstr "_Скорость :"
+msgstr "_Скорость:"
 
 #: ../xfburn/xfburn-device-box.c:265
 msgid "Write _mode:"
@@ -545,31 +543,27 @@ msgstr "Максимум"
 msgid "Drive can't burn on the inserted disc"
 msgstr "Привод не может записать вставленный диск"
 
-#: ../xfburn/xfburn-device-box.c:591
-#: ../xfburn/xfburn-device-box.c:637
+#: ../xfburn/xfburn-device-box.c:591 ../xfburn/xfburn-device-box.c:637
 msgid "Drive is empty"
 msgstr "Привод пуст"
 
 #: ../xfburn/xfburn-device-box.c:594
 msgid "Sorry, multisession is not yet supported"
-msgstr ""
+msgstr "Работа с сеансами записи пока невозможна"
 
 #: ../xfburn/xfburn-device-box.c:597
 msgid "Inserted disc is full"
 msgstr "Вставленный диск заполнен"
 
-#: ../xfburn/xfburn-device-box.c:600
-#: ../xfburn/xfburn-device-box.c:643
+#: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Inserted disc is unsuitable"
 msgstr "Вставленный диск непригоден"
 
-#: ../xfburn/xfburn-device-box.c:603
-#: ../xfburn/xfburn-device-box.c:646
+#: ../xfburn/xfburn-device-box.c:603 ../xfburn/xfburn-device-box.c:646
 msgid "Cannot access drive (it might be in use)"
 msgstr "Невозможно получить доступ к приводу (возможно он используется)"
 
-#: ../xfburn/xfburn-device-box.c:608
-#: ../xfburn/xfburn-device-box.c:649
+#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:649
 msgid "Error determining disc"
 msgstr "Ошибка при определении диска"
 
@@ -585,8 +579,7 @@ msgstr "DVD+RW не требует очистки"
 msgid "Inserted disc is already blank"
 msgstr "Вставо"
 
-#: ../xfburn/xfburn-device-list.c:206
-#: ../xfburn/xfburn-device-list.c:207
+#: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
 msgstr "Количество устройст прожига  в системе"
 
@@ -598,13 +591,11 @@ msgstr "Количество приводов в системе"
 msgid "Number of drives in the system (readers and writers)"
 msgstr "Количество приводов в системе (чтение и запись)"
 
-#: ../xfburn/xfburn-device-list.c:212
-#: ../xfburn/xfburn-device-list.c:213
+#: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
 msgid "List of devices"
 msgstr "_Список устройств"
 
-#: ../xfburn/xfburn-device-list.c:215
-#: ../xfburn/xfburn-device-list.c:216
+#: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
 msgid "Currently selected device"
 msgstr "Выбранное устройство"
 
@@ -622,8 +613,7 @@ msgstr "Файл"
 msgid "Type"
 msgstr "Тип"
 
-#: ../xfburn/xfburn-fs-browser.c:96
-#: ../xfburn/xfburn-fs-browser.c:285
+#: ../xfburn/xfburn-fs-browser.c:96 ../xfburn/xfburn-fs-browser.c:285
 msgid "Filesystem"
 msgstr "Файловая система"
 
@@ -633,8 +623,7 @@ msgstr "Файловая система"
 msgid "%s's home"
 msgstr "Домашняя папка %s"
 
-#: ../xfburn/xfburn-main.c:204
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:204 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -675,18 +664,22 @@ msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr ""
+"Не удалось запустить транскодер %s: %s\n"
+"\t(используется базовая реализация)"
 
 #: ../xfburn/xfburn-main.c:376
 #, c-format
 msgid "Image file '%s' does not exist."
-msgstr ""
+msgstr "Отсутсвует файл образа '%s'."
 
 #: ../xfburn/xfburn-main-window.c:100
 msgid "_File"
 msgstr "_Файл"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -696,11 +689,14 @@ msgstr "Новый диск с данными"
 msgid "New audio composition"
 msgstr "Новый аудиодиск"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -762,7 +758,8 @@ msgstr "Очистить CD-RW"
 msgid "Copy Data CD"
 msgstr "Копировать CD с данными"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Записать образ"
@@ -797,15 +794,13 @@ msgstr "Редактор панели инструментов"
 msgid "Another cd burning GUI"
 msgstr "Ещё один инструмент для записи CD"
 
-#: ../xfburn/xfburn-main-window.c:536
-#: ../xfburn/xfburn-main-window.c:537
+#: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
 msgid "Author/Maintainer"
 msgstr "Автор/сопровождающий"
 
 #: ../xfburn/xfburn-main-window.c:538
-#, fuzzy
 msgid "Retired author/maintainer"
-msgstr "Автор/сопровождающий"
+msgstr "Предыдущий автор/сопровождающий"
 
 #: ../xfburn/xfburn-main-window.c:544
 #, c-format
@@ -826,11 +821,11 @@ msgstr "Показывать кнопку закрытия"
 
 #: ../xfburn/xfburn-notebook-tab.c:112
 msgid "Determine whether the close button is visible"
-msgstr ""
+msgstr "Отображать ли кнопку закрытия"
 
 #: ../xfburn/xfburn-perform-burn.c:96
 msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
+msgstr "В данном режиме записи нельзя добавлять сеансы записи (используйте TAO)."
 
 #: ../xfburn/xfburn-perform-burn.c:100
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
@@ -853,14 +848,13 @@ msgstr "На вставленном диске недостаточно своб
 msgid "Burning track %2d/%d..."
 msgstr "Запись дорожки %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:167
-#: ../xfburn/xfburn-perform-burn.c:232
+#: ../xfburn/xfburn-perform-burn.c:167 ../xfburn/xfburn-perform-burn.c:232
 msgid "Burning composition..."
 msgstr "Запись проекта..."
 
 #: ../xfburn/xfburn-perform-burn.c:201
 msgid "standby"
-msgstr ""
+msgstr "ожидание"
 
 #: ../xfburn/xfburn-perform-burn.c:209
 msgid "ending"
@@ -876,7 +870,7 @@ msgstr "неиспользовано"
 
 #: ../xfburn/xfburn-perform-burn.c:218
 msgid "abandoned"
-msgstr ""
+msgstr "потерян контроль"
 
 #: ../xfburn/xfburn-perform-burn.c:221
 msgid "ended"
@@ -886,8 +880,7 @@ msgstr "завершено"
 msgid "aborted"
 msgstr "отменено"
 
-#: ../xfburn/xfburn-perform-burn.c:227
-#: ../xfburn/xfburn-progress-dialog.c:200
+#: ../xfburn/xfburn-perform-burn.c:227 ../xfburn/xfburn-progress-dialog.c:200
 #: ../xfburn/xfburn-progress-dialog.c:217
 #: ../xfburn/xfburn-progress-dialog.c:227
 #: ../xfburn/xfburn-progress-dialog.c:310
@@ -906,19 +899,16 @@ msgid "Writing Lead-Out..."
 msgstr "Запись Lead-Out..."
 
 #: ../xfburn/xfburn-perform-burn.c:249
-#, fuzzy
 msgid "Writing pregap..."
-msgstr "Запись CD..."
+msgstr "Запись просвета..."
 
 #: ../xfburn/xfburn-perform-burn.c:255
-#, fuzzy
 msgid "Closing track..."
-msgstr "Заполнение кэша..."
+msgstr "Закрытие дорожки..."
 
 #: ../xfburn/xfburn-perform-burn.c:261
-#, fuzzy
 msgid "Closing session..."
-msgstr "Импортировать существующую сессию"
+msgstr "Закрытие сеанса..."
 
 #: ../xfburn/xfburn-perform-burn.c:267
 msgid "Formatting..."
@@ -1034,12 +1024,11 @@ msgstr "Буфер устройства:"
 #: ../xfburn/xfburn-progress-dialog.c:468
 #, c-format
 msgid "Min. fill was %2d%%"
-msgstr ""
+msgstr "Мин. заполнение составило %2d%%"
 
 #: ../xfburn/xfburn-progress-dialog.c:527
-#, fuzzy
 msgid "Aborted"
-msgstr "_О программе"
+msgstr "Прервано"
 
 #: ../xfburn/xfburn-progress-dialog.c:533
 msgid "Failed"
@@ -1054,9 +1043,8 @@ msgid "Completed"
 msgstr "Завершена успешно"
 
 #: ../xfburn/xfburn-progress-dialog.c:576
-#, fuzzy
 msgid "Aborting..."
-msgstr "Фиксация..."
+msgstr "Прерывание..."
 
 #: ../xfburn/xfburn-utils.c:130
 msgid "Select command"
@@ -1101,16 +1089,15 @@ msgstr "Звуковой CD для обычных стереопроигрыва
 
 #: ../xfburn/xfburn-audio-composition.c:213
 msgid "What files can get burned to an audio CD?"
-msgstr ""
+msgstr "Какие файлы следует записать на аудио-CD?"
 
 #: ../xfburn/xfburn-audio-composition.c:217
 msgid "Rename Artist"
 msgstr "Изменить исполнителя"
 
 #: ../xfburn/xfburn-audio-composition.c:217
-#, fuzzy
 msgid "Rename the artist of the selected file"
-msgstr "Переименовать выбранный файл"
+msgstr "Переименовать исполнителя выбранного файла"
 
 #: ../xfburn/xfburn-audio-composition.c:219
 msgid "Rename Title"
@@ -1134,7 +1121,7 @@ msgstr "Исполнитель"
 
 #: ../xfburn/xfburn-audio-composition.c:424
 msgid "Title"
-msgstr "Назваание"
+msgstr "Название"
 
 #: ../xfburn/xfburn-audio-composition.c:435
 msgid "Filename"
@@ -1255,96 +1242,78 @@ msgstr ""
 msgid "Failed to change songs while transcoding"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder.c:125
-#: ../xfburn/xfburn-transcoder.c:152
+#: ../xfburn/xfburn-transcoder.c:125 ../xfburn/xfburn-transcoder.c:152
 #: ../xfburn/xfburn-transcoder.c:164
 #, fuzzy, c-format
 msgid "not implemented"
 msgstr "Завершена успешно"
 
-#: ../xfburn/xfburn-device.c:248
-#: ../xfburn/xfburn-device.c:249
+#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
 #, fuzzy
 msgid "Display name"
 msgstr "Переименовать"
 
-#: ../xfburn/xfburn-device.c:251
-#: ../xfburn/xfburn-device.c:252
+#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
 msgid "Device address"
 msgstr "Адрес устройства"
 
-#: ../xfburn/xfburn-device.c:254
-#: ../xfburn/xfburn-device.c:255
+#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
 msgid "Is the device accessible"
 msgstr "Устройство доступно"
 
-#: ../xfburn/xfburn-device.c:257
-#: ../xfburn/xfburn-device.c:258
+#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
 msgid "Burn speeds supported by the device"
 msgstr "Поддерживаемые устройством скрости записи"
 
-#: ../xfburn/xfburn-device.c:260
-#: ../xfburn/xfburn-device.c:261
+#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
 msgid "Disc status"
 msgstr "Состояние диска"
 
-#: ../xfburn/xfburn-device.c:263
-#: ../xfburn/xfburn-device.c:264
+#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Profile no. as reported by libburn"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:266
-#: ../xfburn/xfburn-device.c:267
+#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
 msgid "Profile name as reported by libburn"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:269
-#: ../xfburn/xfburn-device.c:270
+#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
 msgid "Is the disc erasable"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:272
-#: ../xfburn/xfburn-device.c:273
+#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
 msgid "Can burn CDR"
 msgstr "может записывать CDR"
 
-#: ../xfburn/xfburn-device.c:275
-#: ../xfburn/xfburn-device.c:276
+#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
 msgid "Can burn CDRW"
 msgstr "может записывать CDRW"
 
-#: ../xfburn/xfburn-device.c:278
-#: ../xfburn/xfburn-device.c:279
+#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
 msgid "Can burn DVDR"
 msgstr "может записывать DVDR"
 
-#: ../xfburn/xfburn-device.c:281
-#: ../xfburn/xfburn-device.c:282
+#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
 msgid "Can burn DVDPLUSR"
 msgstr "может записывать DVDPLUSR"
 
-#: ../xfburn/xfburn-device.c:284
-#: ../xfburn/xfburn-device.c:285
+#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
 msgid "Can burn DVDRAM"
 msgstr "может записывать DVDRAM"
 
-#: ../xfburn/xfburn-device.c:287
-#: ../xfburn/xfburn-device.c:288
+#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
 msgid "libburn TAO block types"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:290
-#: ../xfburn/xfburn-device.c:291
+#: ../xfburn/xfburn-device.c:290 ../xfburn/xfburn-device.c:291
 msgid "libburn SAO block types"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:293
-#: ../xfburn/xfburn-device.c:294
+#: ../xfburn/xfburn-device.c:293 ../xfburn/xfburn-device.c:294
 msgid "libburn RAW block types"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:296
-#: ../xfburn/xfburn-device.c:297
+#: ../xfburn/xfburn-device.c:296 ../xfburn/xfburn-device.c:297
 msgid "libburn PACKET block types"
 msgstr ""
 
@@ -1362,58 +1331,72 @@ msgstr "Приложение для записи CD и DVD"
 
 #~ msgid "Data composition"
 #~ msgstr "Проект с данными"
+
 #~ msgid "Format DVD+RW"
 #~ msgstr "Форматировать DVD-RW"
+
 #~ msgid "_Format"
 #~ msgstr "_Форматировать"
+
 #~ msgid "Import"
 #~ msgstr "Импорт"
+
 #~ msgid "Import existing session"
 #~ msgstr "Импортировать существующую сессию"
+
 #~ msgid "Copy Audio CD"
 #~ msgstr "Копировать аудио-CD"
+
 #~ msgid "Create a new composition"
 #~ msgstr "Создать проект"
+
 #~ msgid "Copy DVD"
 #~ msgstr "Копировать DVD"
 
-#, fuzzy
 #~ msgid "Action group"
 #~ msgstr "_Действия"
 
-#, fuzzy
 #~ msgid "Format Fast"
 #~ msgstr "_Форматировать"
 
-#, fuzzy
 #~ msgid "Format Complete"
 #~ msgstr "Полная"
 
-#, fuzzy
 #~ msgid "Deformat Complete"
 #~ msgstr "Полная"
+
 #~ msgid "Fast"
 #~ msgstr "Быстрая"
+
 #~ msgid "Burn CD image"
 #~ msgstr "Запись образа CD"
+
 #~ msgid "Reopen last session"
 #~ msgstr "Открыть последнюю сессию"
+
 #~ msgid "Erase last session"
 #~ msgstr "Стереть последнюю сессию"
+
 #~ msgid "_Force"
 #~ msgstr "_Принудительно"
+
 #~ msgid "Performing OPC..."
 #~ msgstr "Выполняется OPC..."
+
 #~ msgid "Finishing"
 #~ msgstr "Завершение"
+
 #~ msgid "Burn data composition"
 #~ msgstr "Запись проекта с данными"
+
 #~ msgid "Create ISO from composition"
 #~ msgstr "Создание ISO-образа из проекта"
+
 #~ msgid "Id"
 #~ msgstr "Id"
+
 #~ msgid "View _output"
 #~ msgstr "Просмотреть _вывод"
+
 #~ msgid "Operation finished"
 #~ msgstr "Операция завершена"
-
