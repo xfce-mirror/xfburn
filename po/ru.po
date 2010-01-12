@@ -1137,7 +1137,7 @@ msgstr "Максимально доступно 99 дорожек"
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
 msgid "A problem with the burn backend occurred."
-msgstr ""
+msgstr "Возникли проблемы с программой записи дисков"
 
 #: ../xfburn/xfburn-disc-usage.c:165
 msgid "Proceed to Burn"
@@ -1149,7 +1149,7 @@ msgstr "Вы пытаетесь записать больше данных, че
 
 #: ../xfburn/xfburn-transcoder-basic.c:167
 msgid "basic"
-msgstr ""
+msgstr "базовый"
 
 #: ../xfburn/xfburn-transcoder-basic.c:173
 msgid ""
@@ -1162,21 +1162,29 @@ msgid ""
 "audio files, please compile with\n"
 "gstreamer support."
 msgstr ""
+"Базовый транскодер встроен в прог-\n"
+"рамму, и не требует внешних библио-\n"
+"тек. Однако он может обрабатывать\n"
+"только несжатые .wav-файлы.\n"
+"\n"
+"Если вы хотите записывать аудиофайлы \r\n"
+"других типов, скомпилируйте xfburn\n"
+"с поддержкой gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:197
 #, c-format
 msgid "File %s does not have a .wav extension"
-msgstr ""
+msgstr "Файл %s не имеет расширения .wav"
 
 #: ../xfburn/xfburn-transcoder-basic.c:202
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
-msgstr ""
+msgstr "Файл %s не содержит несжатые звуковые данные в формате PCM"
 
 #: ../xfburn/xfburn-transcoder-basic.c:208
 #, c-format
 msgid "Could not stat %s: %s"
-msgstr ""
+msgstr "Не удалось получить сведения о %s: %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:239
 #, c-format
@@ -1197,13 +1205,18 @@ msgid ""
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
 msgstr ""
+"Отсутствует %s.\n"
+"\n"
+"В системе не установлен декодер для обработки этого\n"
+"файла. Скорее всего, он содержится в пакетах\n"
+"gst-plugins-*.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
 #: ../xfburn/xfburn-transcoder-gst.c:722
 msgid "gstreamer"
-msgstr ""
+msgstr "gstreamer"
 
 #: ../xfburn/xfburn-transcoder-gst.c:728
 msgid ""
@@ -1220,7 +1233,7 @@ msgstr ""
 #: ../xfburn/xfburn-transcoder-gst.c:793
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
-msgstr ""
+msgstr "Gstreamer не смог определить тип файла за отведённое время"
 
 #: ../xfburn/xfburn-transcoder-gst.c:802
 #, c-format
@@ -1231,11 +1244,16 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"%s\n"
+"\n"
+"не является аудиофайлом:\n"
+"\n"
+"%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:917
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
-msgstr ""
+msgstr "Gstreamer не начал перекодировку за отведённое время"
 
 #: ../xfburn/xfburn-transcoder-gst.c:952
 #, c-format
@@ -1271,15 +1289,15 @@ msgstr "Состояние диска"
 
 #: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Profile no. as reported by libburn"
-msgstr ""
+msgstr "Номер профиля по версии libburn"
 
 #: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
 msgid "Profile name as reported by libburn"
-msgstr ""
+msgstr "Название профиля по версии libburn"
 
 #: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
 msgid "Is the disc erasable"
-msgstr ""
+msgstr "Можно ли стереть данный диск"
 
 #: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
 msgid "Can burn CDR"
@@ -1303,19 +1321,19 @@ msgstr "может записывать DVDRAM"
 
 #: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
 msgid "libburn TAO block types"
-msgstr ""
+msgstr "Типы блоков TAO libburn"
 
 #: ../xfburn/xfburn-device.c:290 ../xfburn/xfburn-device.c:291
 msgid "libburn SAO block types"
-msgstr ""
+msgstr "Типы блоков SAO libburn"
 
 #: ../xfburn/xfburn-device.c:293 ../xfburn/xfburn-device.c:294
 msgid "libburn RAW block types"
-msgstr ""
+msgstr "Типы блоков RAW libburn"
 
 #: ../xfburn/xfburn-device.c:296 ../xfburn/xfburn-device.c:297
 msgid "libburn PACKET block types"
-msgstr ""
+msgstr "Типы блоков PACKET libburn"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
