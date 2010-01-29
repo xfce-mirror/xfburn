@@ -70,7 +70,7 @@ typedef struct _XfburnDevicePrivate XfburnDevicePrivate;
 struct _XfburnDevicePrivate {
   gchar *name;
   gchar *addr;
-  gboolean accessible;
+  gboolean details_known;
 
   gint buffer_size;
   gboolean dummy_write;
@@ -106,9 +106,6 @@ xfburn_device_get_property (GObject *object, guint property_id,
       break;
     case PROP_ADDRESS:
       g_value_set_string (value, priv->addr);
-      break;
-    case PROP_ACCESSIBLE:
-      g_value_set_boolean (value, priv->accessible);
       break;
     case PROP_SUPPORTED_SPEEDS:
       g_value_set_pointer (value, priv->supported_speeds);
@@ -169,9 +166,6 @@ xfburn_device_set_property (GObject *object, guint property_id,
       break;
     case PROP_ADDRESS:
       priv->addr = g_value_dup_string (value);
-      break;
-    case PROP_ACCESSIBLE:
-      priv->accessible = g_value_get_boolean (value);
       break;
     case PROP_SUPPORTED_SPEEDS:
       priv->supported_speeds = g_value_get_pointer (value);
@@ -250,9 +244,6 @@ xfburn_device_class_init (XfburnDeviceClass *klass)
   g_object_class_install_property (object_class, PROP_ADDRESS, 
                                    g_param_spec_string ("address", _("Device address"),
                                                         _("Device address"), "", G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_ACCESSIBLE, 
-                                   g_param_spec_string ("accessible", _("Is the device accessible"),
-                                                        _("Is the device accessible"), FALSE, G_PARAM_READABLE));
   g_object_class_install_property (object_class, PROP_SUPPORTED_SPEEDS, 
                                    g_param_spec_pointer ("supported-speeds", _("Burn speeds supported by the device"),
                                                         _("Burn speeds supported by the device"), G_PARAM_READABLE));
@@ -411,7 +402,7 @@ xfburn_device_fillin_libburn_info (XfburnDevice *device, struct burn_drive_info 
 {
   XfburnDevicePrivate *priv = GET_PRIVATE (device);
 
-  priv->accessible = TRUE;
+  priv->details_known = TRUE;
 
   priv->cdr = drive->write_cdr;
   priv->cdrw = drive->write_cdrw;
@@ -439,6 +430,9 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
   gchar drive_addr[BURN_DRIVE_ADR_LEN];
   int i;
   const int max_checks = 4;
+#ifdef HAVE_HAL
+  XfburnHalManager *halman = xfburn_hal_manager_get_global ();
+#endif
 
   ret = burn_drive_convert_fs_adr (priv->addr, drive_addr);
   if (ret <= 0) {
@@ -453,8 +447,14 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
     //DBG ("grab (%s)-> %d", drive_addr, ret);
     if (ret > 0)
       break;
-    else if  (i < max_checks)
+    else if  (i < max_checks) {
+#ifdef HAVE_HAL 
+      if (!xfburn_hal_manager_check_ask_umount (halman, device))
+        usleep(i*100001);
+#else
       usleep(i*100001);
+#endif
+    }
   }
 
   if (ret <= 0) {
@@ -472,9 +472,6 @@ xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info)
 
   struct burn_drive_info *drive_info = NULL;
   gboolean ret;
-#ifdef HAVE_HAL
-  XfburnHalManager *halman = xfburn_hal_manager_get_global ();
-#endif
 
   if (G_UNLIKELY (device == NULL)) {
     g_warning ("Hmm, why can we refresh when there is no drive?");
@@ -490,22 +487,14 @@ xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info)
   g_slist_free (priv->supported_speeds);
   priv->supported_speeds = NULL;
 
-  if (!priv->accessible) {
-#ifdef HAVE_HAL 
-    if (!xfburn_hal_manager_check_ask_umount (halman, device))
-      return FALSE;
-#else
-    return FALSE;
-#endif
-  }
-
   if (!xfburn_device_grab (device, &drive_info)) {
     ret = FALSE;
     g_warning ("Couldn't grab drive in order to update speed list.");
     priv->disc_status = BURN_DISC_UNGRABBED;
   } else {
-    if (!priv->accessible)
+    if (!priv->details_known)
       xfburn_device_fillin_libburn_info (device, drive_info);
+
     ret = TRUE;
     refresh_disc (device, drive_info);
     if (get_speed_info)

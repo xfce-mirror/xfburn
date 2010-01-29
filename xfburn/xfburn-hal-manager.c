@@ -483,6 +483,8 @@ is_a_device:
   return n_devices;
 }
 
+/* @Return TRUE if the drive is now accessible, FALSE if not.
+ */
 gboolean
 xfburn_hal_manager_check_ask_umount (XfburnHalManager *halman, XfburnDevice *device)
 {
