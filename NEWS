@@ -1,10 +1,14 @@
-xfburn 0.4.3 (2009-XX-XX)
+xfburn 0.4.3 (2010-02-12)
 ============-------------
 
 - Fall back gracefully to use libburn when compiled with HAL support but 
   when the HAL daemon is not running.
 - Again show the volume name in the burn dialog if it has the default value
 - By default let libburn autodetect the write mode
+- Fix a crash after burning is complete
+- Fix a crash when adding files to a composition which was non-empty
+- Don't ask unlimited number of times if a disc should get blanked
+- Always check for mounted discs before using the drive
 
 xfburn 0.4.2 (2009-07-23)
 ============-------------

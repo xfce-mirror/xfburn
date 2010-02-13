@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfburn 0.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-03 19:06+0100\n"
+"POT-Creation-Date: 2010-02-02 22:14-0700\n"
 "PO-Revision-Date: 2010-02-03 20:15+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -70,8 +70,7 @@ msgstr "Slet disk"
 msgid "Burning device"
 msgstr "Brænderenhed"
 
-#: ../xfburn/xfburn-blank-dialog.c:222
-#: ../xfburn/xfburn-device-box.c:190
+#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:190
 msgid "Blank mode"
 msgstr "Sletningstilstand"
 
@@ -126,8 +125,7 @@ msgstr "Sletter disk..."
 msgid "Done"
 msgstr "Færdig"
 
-#: ../xfburn/xfburn-blank-dialog.c:443
-#: ../xfburn/xfburn-perform-burn.c:372
+#: ../xfburn/xfburn-blank-dialog.c:443 ../xfburn/xfburn-perform-burn.c:372
 #: ../xfburn/xfburn-progress-dialog.c:603
 msgid "Failure"
 msgstr "Fejl"
@@ -264,12 +262,19 @@ msgid "Burning image..."
 msgstr "Brænder billede..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
-msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
-msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Vælg venligst det billede der skal brændes</span>"
+msgid ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
+"select an image to burn</span>"
+msgstr ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Vælg "
+"venligst det billede der skal brændes</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:483
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "Kan ikke tilføje data til multisessionsdisk i denne skrivetilstand (brug istedet TAO)"
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr ""
+"Kan ikke tilføje data til multisessionsdisk i denne skrivetilstand (brug "
+"istedet TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:487
 msgid "Closed disc with data detected. Need blank or appendable disc"
@@ -292,8 +297,12 @@ msgid "Failed to get image size"
 msgstr "Kan ikke hente billedstørrelsen"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
-msgid "Make sure you selected a valid file and you have the proper permissions to access it."
-msgstr "Vær sikker på at du har valgt en gyldig fil, og at du har korrekte rettigheder til at tilgå den."
+msgid ""
+"Make sure you selected a valid file and you have the proper permissions to "
+"access it."
+msgstr ""
+"Vær sikker på at du har valgt en gyldig fil, og at du har korrekte "
+"rettigheder til at tilgå den."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -442,8 +451,12 @@ msgstr "Data %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1202
 #, c-format
-msgid "%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."
-msgstr "%s kan ikke tilføjes projektet, da den overskrider den maksimalt tilladte filstørrelse for iso9660."
+msgid ""
+"%s cannot be added to the composition, because it exceeds the maximum "
+"allowed file size for iso9660."
+msgstr ""
+"%s kan ikke tilføjes projektet, da den overskrider den maksimalt tilladte "
+"filstørrelse for iso9660."
 
 #: ../xfburn/xfburn-data-composition.c:1294
 #: ../xfburn/xfburn-audio-composition.c:1321
@@ -453,18 +466,25 @@ msgstr "Tilføjer hjemmemappe"
 #: ../xfburn/xfburn-data-composition.c:1295
 #: ../xfburn/xfburn-audio-composition.c:1322
 msgid ""
-"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely "
+"to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Du er ved at tilføje din hjemmemappe til projektet. Dette vil højst sandsynligt tage lang tid og vil også være for stor til at kunne være på én disk. \n"
+"Du er ved at tilføje din hjemmemappe til projektet. Dette vil højst "
+"sandsynligt tage lang tid og vil også være for stor til at kunne være på én "
+"disk. \n"
 "\n"
 "Er du sikker på. at du vil fortsætte?"
 
 #: ../xfburn/xfburn-data-composition.c:1462
 #, c-format
-msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
-msgstr "En fil ved navn \"%s\" eksisterer allerede i denne mappe, filen er ikke tilføjet."
+msgid ""
+"A file named \"%s\" already exists in this directory, the file hasn't been "
+"added."
+msgstr ""
+"En fil ved navn \"%s\" eksisterer allerede i denne mappe, filen er ikke "
+"tilføjet."
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1886
@@ -472,8 +492,7 @@ msgstr "En fil ved navn \"%s\" eksisterer allerede i denne mappe, filen er ikke 
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "To filer med det samme navn '%s' til '%s'"
 
-#: ../xfburn/xfburn-device-box.c:174
-#: ../xfburn/xfburn-device-box.c:175
+#: ../xfburn/xfburn-device-box.c:174 ../xfburn/xfburn-device-box.c:175
 msgid "Show writers only"
 msgstr "Vis kun brændere"
 
@@ -503,10 +522,10 @@ msgstr "Er kombinationen af hardware og disk gyldig for at brænde projektet?"
 
 #: ../xfburn/xfburn-device-box.c:191
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "Sletningstilstanden viser nogle andre diskstatusbeskeder end normal tilstand"
+msgstr ""
+"Sletningstilstanden viser nogle andre diskstatusbeskeder end normal tilstand"
 
-#: ../xfburn/xfburn-device-box.c:194
-#: ../xfburn/xfburn-device-box.c:195
+#: ../xfburn/xfburn-device-box.c:194 ../xfburn/xfburn-device-box.c:195
 msgid "Accept only CDs as valid discs"
 msgstr "Acceptér kun cd'er som gyldige diske"
 
@@ -526,17 +545,23 @@ msgstr "Ryd hastighedsliste"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to "
+"<i>xfburn@xfce.org</i> together with the console output to increase the "
+"chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us know.\n"
+"Burning should still work, but if there are problems anyways, please let us "
+"know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>Er ikke istand til at læse hastighedslisten for drevet.</b>\n"
 "\n"
-"Dette er en kendt fejl, som opstår med nogen drev. Rapportér venligst fejlen til <i>xfburn@xfce.org</i> sammen med konsoludskriften, hvilket vil forhøje chancerne for, at det vil blive rettet.\n"
+"Dette er en kendt fejl, som opstår med nogen drev. Rapportér venligst fejlen "
+"til <i>xfburn@xfce.org</i> sammen med konsoludskriften, hvilket vil forhøje "
+"chancerne for, at det vil blive rettet.\n"
 "\n"
-"Brænding skulle stadig virke, men er der problemer alligevel, så lad os endelig få det at vide.\n"
+"Brænding skulle stadig virke, men er der problemer alligevel, så lad os "
+"endelig få det at vide.\n"
 "\n"
 "<i>Mange tak!</i>"
 
@@ -556,8 +581,7 @@ msgstr "Maks"
 msgid "Drive can't burn on the inserted disc"
 msgstr "Drevet kan ikke brænde på den indsatte disk"
 
-#: ../xfburn/xfburn-device-box.c:595
-#: ../xfburn/xfburn-device-box.c:641
+#: ../xfburn/xfburn-device-box.c:595 ../xfburn/xfburn-device-box.c:641
 msgid "Drive is empty"
 msgstr "Drevet er tomt"
 
@@ -569,18 +593,15 @@ msgstr "Beklager, men multisession er endnu ikke understøttet"
 msgid "Inserted disc is full"
 msgstr "Den indsatte disk er fuld"
 
-#: ../xfburn/xfburn-device-box.c:604
-#: ../xfburn/xfburn-device-box.c:647
+#: ../xfburn/xfburn-device-box.c:604 ../xfburn/xfburn-device-box.c:647
 msgid "Inserted disc is unsuitable"
 msgstr "Den indsatte disk er ikke egnet"
 
-#: ../xfburn/xfburn-device-box.c:607
-#: ../xfburn/xfburn-device-box.c:650
+#: ../xfburn/xfburn-device-box.c:607 ../xfburn/xfburn-device-box.c:650
 msgid "Cannot access drive (it might be in use)"
 msgstr "Kan ikke tilgå drevet (det er muligvis i brug)"
 
-#: ../xfburn/xfburn-device-box.c:612
-#: ../xfburn/xfburn-device-box.c:653
+#: ../xfburn/xfburn-device-box.c:612 ../xfburn/xfburn-device-box.c:653
 msgid "Error determining disc"
 msgstr "Fejl ved bestemmelsen af disken"
 
@@ -600,8 +621,7 @@ msgstr "Indsatte disk er allerede tom"
 msgid "Auto"
 msgstr "Auto"
 
-#: ../xfburn/xfburn-device-list.c:206
-#: ../xfburn/xfburn-device-list.c:207
+#: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
 msgstr "Antal brændere i systemet"
 
@@ -613,13 +633,11 @@ msgstr "Antal drev i systemet"
 msgid "Number of drives in the system (readers and writers)"
 msgstr "Antal drev i systemet (læsere og skrivere)"
 
-#: ../xfburn/xfburn-device-list.c:212
-#: ../xfburn/xfburn-device-list.c:213
+#: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
 msgid "List of devices"
 msgstr "Liste af enheder"
 
-#: ../xfburn/xfburn-device-list.c:215
-#: ../xfburn/xfburn-device-list.c:216
+#: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
 msgid "Currently selected device"
 msgstr "Valgt enhed"
 
@@ -637,8 +655,7 @@ msgstr "Fil"
 msgid "Type"
 msgstr "Type"
 
-#: ../xfburn/xfburn-fs-browser.c:95
-#: ../xfburn/xfburn-fs-browser.c:284
+#: ../xfburn/xfburn-fs-browser.c:95 ../xfburn/xfburn-fs-browser.c:284
 msgid "Filesystem"
 msgstr "Filsystem"
 
@@ -648,8 +665,7 @@ msgstr "Filsystem"
 msgid "%s's home"
 msgstr "%s's hjemmemappe"
 
-#: ../xfburn/xfburn-main.c:206
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:206 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -676,13 +692,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the "
+"drive with the current user."
 msgstr ""
 "Disken er muligvis i brug, og kan ikke tilgås.\n"
 "\n"
 "Venligst afmontér og genstart programmet.\n"
 "\n"
-"Hvis ingen disk er indsat, så vær sikker på at du har r/w adgang til drevet med den nuværende bruger."
+"Hvis ingen disk er indsat, så vær sikker på at du har r/w adgang til drevet "
+"med den nuværende bruger."
 
 #: ../xfburn/xfburn-main.c:345
 #, c-format
@@ -814,8 +832,7 @@ msgstr "Værktøjslinje redigering"
 msgid "Another cd burning GUI"
 msgstr "Et andet grafisk miljø til cd-brænder"
 
-#: ../xfburn/xfburn-main-window.c:536
-#: ../xfburn/xfburn-main-window.c:537
+#: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
 msgid "Author/Maintainer"
 msgstr "Forfatter/Vedligeholder"
 
@@ -845,8 +862,11 @@ msgid "Determine whether the close button is visible"
 msgstr "Se om lukkeknappen er synlig"
 
 #: ../xfburn/xfburn-perform-burn.c:158
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr "Kan ikke tilføje data til multisessionsdisk i denne skrivetilstand (brug istedet TAO)."
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr ""
+"Kan ikke tilføje data til multisessionsdisk i denne skrivetilstand (brug "
+"istedet TAO)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
@@ -869,8 +889,7 @@ msgstr "Der er for lidt plads tilgængeligt på den indsatte disk."
 msgid "Burning track %2d/%d..."
 msgstr "Brænder spor %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:229
-#: ../xfburn/xfburn-perform-burn.c:294
+#: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
 msgid "Burning composition..."
 msgstr "Brænder projektet..."
 
@@ -902,8 +921,7 @@ msgstr "afsluttet"
 msgid "aborted"
 msgstr "afbrudt"
 
-#: ../xfburn/xfburn-perform-burn.c:289
-#: ../xfburn/xfburn-progress-dialog.c:199
+#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:199
 #: ../xfburn/xfburn-progress-dialog.c:216
 #: ../xfburn/xfburn-progress-dialog.c:226
 #: ../xfburn/xfburn-progress-dialog.c:309
@@ -1026,7 +1044,9 @@ msgstr "FIFO-mellemlager størrelse (i kb)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:463
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr "Ændring af denne indstilling træder først helt i kraft efter, at programmet er genstartet."
+msgstr ""
+"Ændring af denne indstilling træder først helt i kraft efter, at programmet "
+"er genstartet."
 
 #: ../xfburn/xfburn-progress-dialog.c:181
 msgid "Initializing..."
@@ -1291,90 +1311,73 @@ msgstr "Gstreamer ville ikke begynde med omkodning (tidsudløb)"
 msgid "Failed to change songs while transcoding"
 msgstr "Kunne ikke ændre sange under omkodning"
 
-#: ../xfburn/xfburn-transcoder.c:124
-#: ../xfburn/xfburn-transcoder.c:151
+#: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
 #, c-format
 msgid "not implemented"
 msgstr "ikke understøttet"
 
-#: ../xfburn/xfburn-device.c:242
-#: ../xfburn/xfburn-device.c:243
+#: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
 msgid "Display name"
 msgstr "Navn  som vises"
 
-#: ../xfburn/xfburn-device.c:245
-#: ../xfburn/xfburn-device.c:246
+#: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
 msgid "Device address"
 msgstr "Enhedens adresse"
 
-#: ../xfburn/xfburn-device.c:248
-#: ../xfburn/xfburn-device.c:249
+#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
 msgid "Burn speeds supported by the device"
 msgstr "Brændehastigheder er understøttet af enheden"
 
-#: ../xfburn/xfburn-device.c:251
-#: ../xfburn/xfburn-device.c:252
+#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
 msgid "Disc status"
 msgstr "Diskstatus"
 
-#: ../xfburn/xfburn-device.c:254
-#: ../xfburn/xfburn-device.c:255
+#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
 msgid "Profile no. as reported by libburn"
 msgstr "Profilnummer rapporteret af libburn"
 
-#: ../xfburn/xfburn-device.c:257
-#: ../xfburn/xfburn-device.c:258
+#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
 msgid "Profile name as reported by libburn"
 msgstr "Profilnavn rapportet af libburn"
 
-#: ../xfburn/xfburn-device.c:260
-#: ../xfburn/xfburn-device.c:261
+#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
 msgid "Is the disc erasable"
 msgstr "Er disken sletbar"
 
-#: ../xfburn/xfburn-device.c:263
-#: ../xfburn/xfburn-device.c:264
+#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Can burn CDR"
 msgstr "Kan brænde cdr"
 
-#: ../xfburn/xfburn-device.c:266
-#: ../xfburn/xfburn-device.c:267
+#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
 msgid "Can burn CDRW"
 msgstr "Kan brænde cdrw"
 
-#: ../xfburn/xfburn-device.c:269
-#: ../xfburn/xfburn-device.c:270
+#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
 msgid "Can burn DVDR"
 msgstr "Kan brænde dvdr"
 
-#: ../xfburn/xfburn-device.c:272
-#: ../xfburn/xfburn-device.c:273
+#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
 msgid "Can burn DVDPLUSR"
 msgstr "Kan brænde dvdplusr"
 
-#: ../xfburn/xfburn-device.c:275
-#: ../xfburn/xfburn-device.c:276
+#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
 msgid "Can burn DVDRAM"
 msgstr "Kan brænde dvdram"
 
-#: ../xfburn/xfburn-device.c:278
-#: ../xfburn/xfburn-device.c:279
+#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
 msgid "libburn TAO block types"
 msgstr "libburn TAO bloktyper"
 
-#: ../xfburn/xfburn-device.c:281
-#: ../xfburn/xfburn-device.c:282
+#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
 msgid "libburn SAO block types"
 msgstr "libburn SAO bloktyper"
 
-#: ../xfburn/xfburn-device.c:284
-#: ../xfburn/xfburn-device.c:285
+#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
 msgid "libburn RAW block types"
 msgstr "libburn RAW bloktyper"
 
-#: ../xfburn/xfburn-device.c:287
-#: ../xfburn/xfburn-device.c:288
+#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
 msgid "libburn PACKET block types"
 msgstr "libburn PACKET bloktyper"
 
@@ -1392,10 +1395,12 @@ msgstr "Cd- og dvd-brænderprogram"
 
 #~ msgid "The write mode is not currently supported"
 #~ msgstr "Skrivetilstanden er i øjeblikket ikke understøttet"
+
 #~ msgid "Is the device accessible"
 #~ msgstr "Er enheden tilgængelig"
+
 #~ msgid "Data composition"
 #~ msgstr "Datakompilering"
+
 #~ msgid "The status of the disc in the drive"
 #~ msgstr "Status for disken i drevet"
-

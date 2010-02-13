@@ -2,13 +2,13 @@
 # Basque translations for xfburn package.
 # Copyright (C) 2005-2006 Jean-François Wauthy.
 # This file is distributed under the same license as the xfburn package.
-# 
+#
 # Piarres Beobide <pi@beobide.net>, 2005, 2006, 2007, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-09 06:02+0100\n"
+"POT-Creation-Date: 2010-02-02 22:14-0700\n"
 "PO-Revision-Date: 2009-08-18 09:02+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-eu@lists.debian.org>\n"
@@ -94,8 +94,7 @@ msgstr "Diskoa a_tera"
 msgid "_Blank"
 msgstr "_Hutsa"
 
-#. blanking can only be performed on blank discs, format and deformat are
-#. allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:355
 msgid "The inserted disc is already blank."
 msgstr "Sartutako diskoa dagoeneko zurian dago."
@@ -261,16 +260,24 @@ msgid "Burning image..."
 msgstr "Irudia grabatzen..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
-msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
-msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Mesedez hautatu irudi bat grabatzeko</span>"
+msgid ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
+"select an image to burn</span>"
+msgstr ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded"
+"\">Mesedez hautatu irudi bat grabatzeko</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:483
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "Ezin da daturik erantsi saio anitzeko diskora idazketa modu honetan (TAO erabili honen ordez)"
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr ""
+"Ezin da daturik erantsi saio anitzeko diskora idazketa modu honetan (TAO "
+"erabili honen ordez)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:487
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr "Datuak dituen disko itxia atzemana. Disko huts edo eransgarri bat behar da"
+msgstr ""
+"Datuak dituen disko itxia atzemana. Disko huts edo eransgarri bat behar da"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:489
 msgid "No disc detected in drive"
@@ -289,8 +296,12 @@ msgid "Failed to get image size"
 msgstr "Ezin da irudi tamaina eskuratu"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
-msgid "Make sure you selected a valid file and you have the proper permissions to access it."
-msgstr "Ziurtatu zaitez baliozko fitxategi bat hautatu duzula eta bera erabiltzeko baimena duzula."
+msgid ""
+"Make sure you selected a valid file and you have the proper permissions to "
+"access it."
+msgstr ""
+"Ziurtatu zaitez baliozko fitxategi bat hautatu duzula eta bera erabiltzeko "
+"baimena duzula."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -389,8 +400,7 @@ msgstr "Garbitu"
 msgid "Clear the content of the composition"
 msgstr "Konposizio edukia garbitu"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
-#. existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-data-composition.c:195
 msgid "Rename"
 msgstr "Berrizendatu"
@@ -432,8 +442,7 @@ msgstr "Izen berdineko fitxategi bat badago dagoeneko konposizioan."
 msgid "New directory"
 msgstr "Direktorio berria"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-
-#. day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:966
 #, c-format
 msgid "Data %s~%d"
@@ -441,8 +450,12 @@ msgstr "Data %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1202
 #, c-format
-msgid "%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."
-msgstr "%s ezin da konposiziora gehitu, iso9660 formatuko fitxategi tamaina muga gainditzen du eta."
+msgid ""
+"%s cannot be added to the composition, because it exceeds the maximum "
+"allowed file size for iso9660."
+msgstr ""
+"%s ezin da konposiziora gehitu, iso9660 formatuko fitxategi tamaina muga "
+"gainditzen du eta."
 
 #: ../xfburn/xfburn-data-composition.c:1294
 #: ../xfburn/xfburn-audio-composition.c:1321
@@ -452,18 +465,25 @@ msgstr "Etxe direktorioa gehitzen"
 #: ../xfburn/xfburn-data-composition.c:1295
 #: ../xfburn/xfburn-audio-composition.c:1322
 msgid ""
-"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely "
+"to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Zure etxe direktorioa konposiziora gehitzera zoaz. Honek normalean denbora asko tarda dezake, eta posible da disko bakar batetan sartzeko handiegia izatea.\n"
+"Zure etxe direktorioa konposiziora gehitzera zoaz. Honek normalean denbora "
+"asko tarda dezake, eta posible da disko bakar batetan sartzeko handiegia "
+"izatea.\n"
 "\n"
 "Ziur aurrera jarraitu nahi duzula?"
 
 #: ../xfburn/xfburn-data-composition.c:1462
 #, c-format
-msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
-msgstr "Badago dagoeneko \"%s\" izeneko fitxategi bat direktorio horretan, fitxategia ez da gehitu."
+msgid ""
+"A file named \"%s\" already exists in this directory, the file hasn't been "
+"added."
+msgstr ""
+"Badago dagoeneko \"%s\" izeneko fitxategi bat direktorio horretan, "
+"fitxategia ez da gehitu."
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1886
@@ -501,7 +521,8 @@ msgstr "Hardware eta diska konbinazioa baliozkoa al da konposizioa grabatzeko?"
 
 #: ../xfburn/xfburn-device-box.c:191
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "Garbitze moduak modu arruntaren disko egoera mezu ezberdinak erakusten ditu"
+msgstr ""
+"Garbitze moduak modu arruntaren disko egoera mezu ezberdinak erakusten ditu"
 
 #: ../xfburn/xfburn-device-box.c:194 ../xfburn/xfburn-device-box.c:195
 msgid "Accept only CDs as valid discs"
@@ -523,17 +544,23 @@ msgstr "Abiasura zerrenda hutsa"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to "
+"<i>xfburn@xfce.org</i> together with the console output to increase the "
+"chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us know.\n"
+"Burning should still work, but if there are problems anyways, please let us "
+"know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>Ezin da gailuaren abiadura zerrenda eskuratu.</b>\n"
 "\n"
-"Hau gailu batzuekin gertatzen den programa errore ezaguna bat da. Mesedez honen berri eman <i>xfburn@xfce.org</i> bidez kontsola irteerarekin akats hau konpontzeko aukerak handitzeko..\n"
+"Hau gailu batzuekin gertatzen den programa errore ezaguna bat da. Mesedez "
+"honen berri eman <i>xfburn@xfce.org</i> bidez kontsola irteerarekin akats "
+"hau konpontzeko aukerak handitzeko..\n"
 "\n"
-"Grabaketak funtzionatu beharko luke, hala ere arazorik baduzu, mesedez ohartu gaitzazu.\n"
+"Grabaketak funtzionatu beharko luke, hala ere arazorik baduzu, mesedez "
+"ohartu gaitzazu.\n"
 "\n"
 "<i>Milesker!</i>"
 
@@ -664,13 +691,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the "
+"drive with the current user."
 msgstr ""
 "Agian diskoa(k) erabilitzen ari da eta ezin atzitu?\n"
 "\n"
 "Mesedez desmuntatu eta aplikazioa berrabiarazi.\n"
 "\n"
-"Ez badago diskorik sartuta egiaztatu erabiltzaile honekin gailuan irakurketa/idazte baimenak dituzula."
+"Ez badago diskorik sartuta egiaztatu erabiltzaile honekin gailuan irakurketa/"
+"idazte baimenak dituzula."
 
 #: ../xfburn/xfburn-main.c:345
 #, c-format
@@ -690,10 +719,8 @@ msgstr "Ez dago '%s' irudi fitxategia."
 msgid "_File"
 msgstr "_Fitxategia"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
-#. new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
-#. a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -703,14 +730,11 @@ msgstr "Datu konposizio berria"
 msgid "New audio composition"
 msgstr "Audio konposizio berria"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
-#. composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
-#. composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
-#. NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -772,8 +796,7 @@ msgstr "CD-RW garbitu"
 msgid "Copy Data CD"
 msgstr "Datu CD-a kopiatu"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
-#. Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Grabatu irudia"
@@ -838,12 +861,16 @@ msgid "Determine whether the close button is visible"
 msgstr "Erabaki itxi botoia ikusten den hala ez"
 
 #: ../xfburn/xfburn-perform-burn.c:158
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr "Ezin da idazketa modu honetan daturik erantsi saio anitzeko diskora (TAO erabili honen ordez)."
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr ""
+"Ezin da idazketa modu honetan daturik erantsi saio anitzeko diskora (TAO "
+"erabili honen ordez)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr "Datuak dituen disko itxia atzemana, disko huts edo eransgarri bat behar da."
+msgstr ""
+"Datuak dituen disko itxia atzemana, disko huts edo eransgarri bat behar da."
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
@@ -1159,7 +1186,8 @@ msgstr "Grabatu"
 
 #: ../xfburn/xfburn-disc-usage.c:203
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "Diskoak eduki dezakeena baino datu gehiago grabatzen saiatzen ari zara."
+msgstr ""
+"Diskoak eduki dezakeena baino datu gehiago grabatzen saiatzen ari zara."
 
 #: ../xfburn/xfburn-transcoder-basic.c:166
 msgid "basic"

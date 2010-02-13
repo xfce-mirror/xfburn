@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-22 20:32-0600\n"
+"POT-Creation-Date: 2010-02-02 22:14-0700\n"
 "PO-Revision-Date: 2009-11-05 15:56+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
@@ -15,575 +15,610 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../xfburn/xfburn-adding-progress.c:112
+#: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
 msgstr "Přidání souborů do kompozice"
 
-#: ../xfburn/xfburn-blank-dialog.c:72
+#: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
 msgstr "Rychlé smazání"
 
-#: ../xfburn/xfburn-blank-dialog.c:73
+#: ../xfburn/xfburn-blank-dialog.c:72
 msgid "Full Blank (slow)"
 msgstr "Kompletní smazání (pomalé)"
 
-#: ../xfburn/xfburn-blank-dialog.c:74
+#: ../xfburn/xfburn-blank-dialog.c:73
 msgid "Quick Format"
 msgstr "Rychlé formátování"
 
-#: ../xfburn/xfburn-blank-dialog.c:75
+#: ../xfburn/xfburn-blank-dialog.c:74
 msgid "Full Format"
 msgstr "Kompletní formátování"
 
-#: ../xfburn/xfburn-blank-dialog.c:76
+#: ../xfburn/xfburn-blank-dialog.c:75
 msgid "Quick Deformat"
 msgstr "Rychlé deformátování"
 
-#: ../xfburn/xfburn-blank-dialog.c:77
+#: ../xfburn/xfburn-blank-dialog.c:76
 msgid "Full Deformat (slow)"
 msgstr "Kompletní deformátování (pomalé)"
 
-#: ../xfburn/xfburn-blank-dialog.c:150
+#: ../xfburn/xfburn-blank-dialog.c:149
 msgid "Eject the disc"
 msgstr "Vysunout disk"
 
-#: ../xfburn/xfburn-blank-dialog.c:151
+#: ../xfburn/xfburn-blank-dialog.c:150
 msgid "Default value for eject checkbox"
 msgstr "Výchozí hodnota zaškrtávacího tlačítka pro vysunutí"
 
-#: ../xfburn/xfburn-blank-dialog.c:198
+#: ../xfburn/xfburn-blank-dialog.c:197
 msgid "Blank Disc"
 msgstr "Vymazat disk"
 
-#: ../xfburn/xfburn-blank-dialog.c:210
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:191
-#: ../xfburn/xfburn-burn-image-dialog.c:171
-#: ../xfburn/xfburn-copy-cd-dialog.c:132
-#: ../xfburn/xfburn-copy-dvd-dialog.c:132
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:160
+#: ../xfburn/xfburn-blank-dialog.c:209
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:195
+#: ../xfburn/xfburn-burn-image-dialog.c:191
+#: ../xfburn/xfburn-copy-cd-dialog.c:131
+#: ../xfburn/xfburn-copy-dvd-dialog.c:131
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:159
 msgid "Burning device"
 msgstr "Zapisovací zařízení"
 
-#: ../xfburn/xfburn-blank-dialog.c:223
-#: ../xfburn/xfburn-device-box.c:188
+#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:190
 msgid "Blank mode"
 msgstr "Režim mazání"
 
-#: ../xfburn/xfburn-blank-dialog.c:231
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:223
-#: ../xfburn/xfburn-burn-image-dialog.c:179
-#: ../xfburn/xfburn-copy-cd-dialog.c:140
-#: ../xfburn/xfburn-copy-dvd-dialog.c:140
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:194
+#: ../xfburn/xfburn-blank-dialog.c:230
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
+#: ../xfburn/xfburn-burn-image-dialog.c:199
+#: ../xfburn/xfburn-copy-cd-dialog.c:139
+#: ../xfburn/xfburn-copy-dvd-dialog.c:139
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:193
 msgid "Options"
 msgstr "Možnosti"
 
-#: ../xfburn/xfburn-blank-dialog.c:235
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
-#: ../xfburn/xfburn-burn-image-dialog.c:183
-#: ../xfburn/xfburn-copy-cd-dialog.c:144
-#: ../xfburn/xfburn-copy-dvd-dialog.c:144
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:198
+#: ../xfburn/xfburn-blank-dialog.c:234
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
+#: ../xfburn/xfburn-burn-image-dialog.c:203
+#: ../xfburn/xfburn-copy-cd-dialog.c:143
+#: ../xfburn/xfburn-copy-dvd-dialog.c:143
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:197
 msgid "E_ject disk"
 msgstr "_Vysunout disk"
 
-#: ../xfburn/xfburn-blank-dialog.c:245
+#: ../xfburn/xfburn-blank-dialog.c:244
 msgid "_Blank"
 msgstr "_Prázdné"
 
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
-#: ../xfburn/xfburn-blank-dialog.c:356
+#: ../xfburn/xfburn-blank-dialog.c:355
 msgid "The inserted disc is already blank."
 msgstr "Vložený disk je již prázdný."
 
 #. these ones we can blank
-#: ../xfburn/xfburn-blank-dialog.c:362
+#: ../xfburn/xfburn-blank-dialog.c:361
 msgid "Ready"
 msgstr "Připraven"
 
-#: ../xfburn/xfburn-blank-dialog.c:365
+#: ../xfburn/xfburn-blank-dialog.c:364
 msgid "No disc detected in the drive."
 msgstr "V jednotce nebyl nalezen disk."
 
-#: ../xfburn/xfburn-blank-dialog.c:374
+#: ../xfburn/xfburn-blank-dialog.c:373
 msgid "Disc is not erasable."
 msgstr "Disk není smazatelný."
 
-#: ../xfburn/xfburn-blank-dialog.c:414
+#: ../xfburn/xfburn-blank-dialog.c:413
 msgid "Blanking disc..."
 msgstr "Mazání disku..."
 
-#: ../xfburn/xfburn-blank-dialog.c:441
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:502
-#: ../xfburn/xfburn-perform-burn.c:304
+#: ../xfburn/xfburn-blank-dialog.c:440
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:512
+#: ../xfburn/xfburn-perform-burn.c:366
 #, c-format
 msgid "Done"
 msgstr "Dokončeno"
 
-#: ../xfburn/xfburn-blank-dialog.c:444
-#: ../xfburn/xfburn-perform-burn.c:310
-#: ../xfburn/xfburn-progress-dialog.c:604
+#: ../xfburn/xfburn-blank-dialog.c:443 ../xfburn/xfburn-perform-burn.c:372
+#: ../xfburn/xfburn-progress-dialog.c:603
 msgid "Failure"
 msgstr "Chyba"
 
-#: ../xfburn/xfburn-blank-dialog.c:461
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:616
-#: ../xfburn/xfburn-burn-image-dialog.c:332
-#: ../xfburn/xfburn-burn-image-dialog.c:532
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:414
+#: ../xfburn/xfburn-blank-dialog.c:460
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:610
+#: ../xfburn/xfburn-burn-image-dialog.c:388
+#: ../xfburn/xfburn-burn-image-dialog.c:556
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:396
 msgid "Unable to grab the drive."
 msgstr "Nelze pracovat s jednotkou."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:179
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:149
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
+#, fuzzy
+msgid "Image"
+msgstr "Obrazy ISO"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#, fuzzy
+msgid "Show volume name"
+msgstr "Název svazku:"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+msgid "Show a text entry for the name of the volume"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
 msgid "Burn Composition"
 msgstr "Vypálit kompozici"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:202
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
 msgid "Composition name"
 msgstr "Název kompozice"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:207
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:211
 msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "<small>Chcete změnit výchozí název kompozice?</small>"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:232
-#: ../xfburn/xfburn-burn-image-dialog.c:188
-#: ../xfburn/xfburn-copy-cd-dialog.c:149
-#: ../xfburn/xfburn-copy-dvd-dialog.c:149
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:203
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
+#: ../xfburn/xfburn-burn-image-dialog.c:208
+#: ../xfburn/xfburn-copy-cd-dialog.c:148
+#: ../xfburn/xfburn-copy-dvd-dialog.c:148
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:202
 msgid "_Dummy write"
 msgstr "_Simulace zápisu"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
-#: ../xfburn/xfburn-burn-image-dialog.c:192
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:240
+#: ../xfburn/xfburn-burn-image-dialog.c:212
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:206
 msgid "Burn_Free"
 msgstr "Burn_Free"
 
 #. create ISO ?
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:242
-#: ../xfburn/xfburn-copy-cd-dialog.c:158
-#: ../xfburn/xfburn-copy-dvd-dialog.c:158
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
+#: ../xfburn/xfburn-copy-cd-dialog.c:157
+#: ../xfburn/xfburn-copy-dvd-dialog.c:157
 msgid "Only create _ISO"
 msgstr "Pouze vytvořit obraz _ISO"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:279
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:221
 msgid "_Burn Composition"
 msgstr "_Vypálit kompozici"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:460
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "Nelze vytvořit cílový soubor ISO: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:467
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 msgid "Writing ISO..."
 msgstr "Zapisování obrazu ISO..."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:484
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
 #, c-format
 msgid "An error occured while writing ISO: %s"
 msgstr "Při zápisu do souboru ISO došlo k chybě: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:538
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:544
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
 msgid "An error occurred in the burn backend."
 msgstr "Došlo k chybě v backendu pro vypalování."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:343
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:327
 msgid "The write mode is not supported currently."
 msgstr "Režim zápisu není nyní podporován."
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:659
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
 msgid "Could not create ISO source structure."
 msgstr "Nelze vytvořit strukturu zdroje obrazu ISO."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:136
+#: ../xfburn/xfburn-burn-image-dialog.c:156
 msgid "Burn image"
 msgstr "Vypálit obraz"
 
 #. file
-#: ../xfburn/xfburn-burn-image-dialog.c:143
-#: ../xfburn/xfburn-burn-image-dialog.c:156
+#: ../xfburn/xfburn-burn-image-dialog.c:163
+#: ../xfburn/xfburn-burn-image-dialog.c:176
 msgid "Image to burn"
 msgstr "Obraz k vypálení"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:147
+#: ../xfburn/xfburn-burn-image-dialog.c:167
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:151
+#: ../xfburn/xfburn-burn-image-dialog.c:171
 msgid "ISO images"
 msgstr "Obrazy ISO"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:202
+#: ../xfburn/xfburn-burn-image-dialog.c:222
 msgid "_Burn image"
 msgstr "_Vypálit obraz"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:296
-#: ../xfburn/xfburn-burn-image-dialog.c:325
-msgid "An error occurred in the burn backend"
-msgstr "Došlo k chybě v backendu pro vypalování"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:309
-msgid "Unable to determine image size."
-msgstr "Nelze zjistit velikost obrazu."
-
-#: ../xfburn/xfburn-burn-image-dialog.c:316
-msgid "Cannot open image."
-msgstr "Nelze otevřít obraz."
-
-#: ../xfburn/xfburn-burn-image-dialog.c:341
+#: ../xfburn/xfburn-burn-image-dialog.c:271
 msgid "Burn mode is not currently implemented."
 msgstr "Režim vypalování není implementován"
 
+#: ../xfburn/xfburn-burn-image-dialog.c:322
 #: ../xfburn/xfburn-burn-image-dialog.c:351
+msgid "An error occurred in the burn backend"
+msgstr "Došlo k chybě v backendu pro vypalování"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:335
+msgid "Unable to determine image size."
+msgstr "Nelze zjistit velikost obrazu."
+
+#: ../xfburn/xfburn-burn-image-dialog.c:342
+msgid "Cannot open image."
+msgstr "Nelze otevřít obraz."
+
+#: ../xfburn/xfburn-burn-image-dialog.c:379
 msgid "Burning image..."
 msgstr "Vypalování obrazu..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:422
-msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
-msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Zvolte obraz, který chcete vypálit</span>"
+#: ../xfburn/xfburn-burn-image-dialog.c:445
+msgid ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
+"select an image to burn</span>"
+msgstr ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Zvolte "
+"obraz, který chcete vypálit</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:460
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "V tomto režimu zápisu nelze přidat další data na disk typu multisession (použijte místo něj TAO)"
+#: ../xfburn/xfburn-burn-image-dialog.c:483
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr ""
+"V tomto režimu zápisu nelze přidat další data na disk typu multisession "
+"(použijte místo něj TAO)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:464
+#: ../xfburn/xfburn-burn-image-dialog.c:487
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr "Byl nalezen uzavřený disk s daty. Je vyžadován prázdný nebo neuzavřený disk"
+msgstr ""
+"Byl nalezen uzavřený disk s daty. Je vyžadován prázdný nebo neuzavřený disk"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:466
+#: ../xfburn/xfburn-burn-image-dialog.c:489
 msgid "No disc detected in drive"
 msgstr "V jednotce nebyl nalezen disk"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:468
+#: ../xfburn/xfburn-burn-image-dialog.c:491
 msgid "Cannot recognize state of drive and disc"
 msgstr "Nelze rozpoznat stav jednotky a disku"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:480
+#: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid "The selected image does not fit on the inserted disc"
 msgstr "Vybraný obraz nelze uložit na vložený disk"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:484
+#: ../xfburn/xfburn-burn-image-dialog.c:507
 msgid "Failed to get image size"
 msgstr "Nelze zjistit velikost obrazu"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:512
-msgid "Make sure you selected a valid file and you have the proper permissions to access it."
-msgstr "Ujistěte se, že jste vybrali platný soubor a máte k němu odpovídající oprávnění pro přístup."
+#: ../xfburn/xfburn-burn-image-dialog.c:536
+msgid ""
+"Make sure you selected a valid file and you have the proper permissions to "
+"access it."
+msgstr ""
+"Ujistěte se, že jste vybrali platný soubor a máte k němu odpovídající "
+"oprávnění pro přístup."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:542
-msgid "The write mode is not currently supported"
-msgstr "Režim zápisu není nyní podporován"
-
-#: ../xfburn/xfburn-compositions-notebook.c:175
+#: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
 msgstr "Hudební kompozice"
 
-#: ../xfburn/xfburn-compositions-notebook.c:236
+#: ../xfburn/xfburn-compositions-notebook.c:235
 msgid "Welcome"
 msgstr "Vítejte"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:114
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:157
+#: ../xfburn/xfburn-copy-cd-dialog.c:113
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
 msgstr "Kopírovat datové CD"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:124
+#: ../xfburn/xfburn-copy-cd-dialog.c:123
 msgid "CD Reader device"
 msgstr "Zařízení pro čtení CD"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:153
-#: ../xfburn/xfburn-copy-dvd-dialog.c:153
+#: ../xfburn/xfburn-copy-cd-dialog.c:152
+#: ../xfburn/xfburn-copy-dvd-dialog.c:152
 msgid "On the _fly"
 msgstr "Pří_mo"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:194
+#: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
 msgstr "_Kopírovat CD"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:94
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
 msgstr "Vyprazdňování vyrovnávací paměti..."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:106
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
 msgstr "Vložte zapisovatelný disk."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:128
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
 msgstr "Zapisování CD..."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:141
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:103
+#: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
+#: ../xfburn/xfburn-create-iso-progress-dialog.c:102
 msgid "Reading CD..."
 msgstr "Čtení CD..."
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:114
+#: ../xfburn/xfburn-copy-dvd-dialog.c:113
 msgid "Copy data DVD"
 msgstr "Kopírovat datové DVD"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:124
+#: ../xfburn/xfburn-copy-dvd-dialog.c:123
 msgid "DVD Reader device"
 msgstr "Zařízení pro čtení DVD"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:194
+#: ../xfburn/xfburn-copy-dvd-dialog.c:193
 msgid "_Copy DVD"
 msgstr "Z_kopírovat DVD"
 
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:118
+#: ../xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
 msgstr "Vytvořit obraz ISO z CD"
 
-#: ../xfburn/xfburn-data-composition.c:182
+#: ../xfburn/xfburn-data-composition.c:186
 #: ../xfburn/xfburn-audio-composition.c:207
 msgid "Add"
 msgstr "Přidat"
 
-#: ../xfburn/xfburn-data-composition.c:182
+#: ../xfburn/xfburn-data-composition.c:186
 #: ../xfburn/xfburn-audio-composition.c:207
 msgid "Add the selected file(s) to the composition"
 msgstr "Přidat vybrané soubory do kompozice"
 
-#: ../xfburn/xfburn-data-composition.c:184
+#: ../xfburn/xfburn-data-composition.c:188
 msgid "Create directory"
 msgstr "Vytvořit adresář"
 
-#: ../xfburn/xfburn-data-composition.c:184
+#: ../xfburn/xfburn-data-composition.c:188
 msgid "Add a new directory to the composition"
 msgstr "Přidat nový adresář do kompozice"
 
-#: ../xfburn/xfburn-data-composition.c:186
+#: ../xfburn/xfburn-data-composition.c:190
 #: ../xfburn/xfburn-audio-composition.c:209
 msgid "Remove"
 msgstr "Odebrat"
 
-#: ../xfburn/xfburn-data-composition.c:186
+#: ../xfburn/xfburn-data-composition.c:190
 #: ../xfburn/xfburn-audio-composition.c:209
 msgid "Remove the selected file(s) from the composition"
 msgstr "Odebrat vybrané soubory z kompozice"
 
-#: ../xfburn/xfburn-data-composition.c:188
+#: ../xfburn/xfburn-data-composition.c:192
 #: ../xfburn/xfburn-audio-composition.c:211
 msgid "Clear"
 msgstr "Vyčistit"
 
-#: ../xfburn/xfburn-data-composition.c:188
+#: ../xfburn/xfburn-data-composition.c:192
 #: ../xfburn/xfburn-audio-composition.c:211
 msgid "Clear the content of the composition"
 msgstr "Vymazat obsah kompozice"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:195
 msgid "Rename"
 msgstr "Přejmenovat"
 
-#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:195
 msgid "Rename the selected file"
 msgstr "Přejmenuje vybraný soubor"
 
-#: ../xfburn/xfburn-data-composition.c:354
+#: ../xfburn/xfburn-data-composition.c:351
 msgid "Volume name :"
 msgstr "Název svazku:"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:365
-#, c-format
-msgid "Data %s~%d"
-msgstr "Data %s~%d"
-
-#: ../xfburn/xfburn-data-composition.c:397
+#: ../xfburn/xfburn-data-composition.c:385
 msgid "Contents"
 msgstr "Obsah"
 
-#: ../xfburn/xfburn-data-composition.c:412
-#: ../xfburn/xfburn-directory-browser.c:144
+#: ../xfburn/xfburn-data-composition.c:400
+#: ../xfburn/xfburn-directory-browser.c:143
 msgid "Size"
 msgstr "Velikost"
 
-#: ../xfburn/xfburn-data-composition.c:415
+#: ../xfburn/xfburn-data-composition.c:403
 msgid "Local Path"
 msgstr "Místní cesta"
 
-#: ../xfburn/xfburn-data-composition.c:690
+#: ../xfburn/xfburn-data-composition.c:678
 msgid "You must give a name to the file."
 msgstr "Musíte vložit název souboru."
 
-#: ../xfburn/xfburn-data-composition.c:699
-#: ../xfburn/xfburn-data-composition.c:1097
+#: ../xfburn/xfburn-data-composition.c:687
+#: ../xfburn/xfburn-data-composition.c:1123
 #: ../xfburn/xfburn-audio-composition.c:1146
 msgid "A file with the same name is already present in the composition."
 msgstr "V kompozici již existuje soubor se stejným názvem."
 
-#: ../xfburn/xfburn-data-composition.c:807
-#: ../xfburn/xfburn-data-composition.c:808
-#: ../xfburn/xfburn-data-composition.c:810
+#: ../xfburn/xfburn-data-composition.c:795
+#: ../xfburn/xfburn-data-composition.c:796
+#: ../xfburn/xfburn-data-composition.c:798
 msgid "New directory"
 msgstr "Nový adresář"
 
-#: ../xfburn/xfburn-data-composition.c:1176
+#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#: ../xfburn/xfburn-data-composition.c:966
 #, c-format
-msgid "%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."
-msgstr "Soubor %s nelze přidat do kompozice, protože překročil maximální povolenou velikost souboru podle specifikace iso9660."
+msgid "Data %s~%d"
+msgstr "Data %s~%d"
 
-#: ../xfburn/xfburn-data-composition.c:1266
-#: ../xfburn/xfburn-audio-composition.c:1319
+#: ../xfburn/xfburn-data-composition.c:1202
+#, c-format
+msgid ""
+"%s cannot be added to the composition, because it exceeds the maximum "
+"allowed file size for iso9660."
+msgstr ""
+"Soubor %s nelze přidat do kompozice, protože překročil maximální povolenou "
+"velikost souboru podle specifikace iso9660."
+
+#: ../xfburn/xfburn-data-composition.c:1294
+#: ../xfburn/xfburn-audio-composition.c:1321
 msgid "Adding home directory"
 msgstr "Přídává se domovský adresář"
 
-#: ../xfburn/xfburn-data-composition.c:1267
-#: ../xfburn/xfburn-audio-composition.c:1320
+#: ../xfburn/xfburn-data-composition.c:1295
+#: ../xfburn/xfburn-audio-composition.c:1322
 msgid ""
-"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely "
+"to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Rozhodli jste se přidat váš domovský adresář do kompozice. Tato akce může trvat velmi dlouhou dobu a velikost obsahu může být příliš velká pro umístění na disk.\n"
+"Rozhodli jste se přidat váš domovský adresář do kompozice. Tato akce může "
+"trvat velmi dlouhou dobu a velikost obsahu může být příliš velká pro "
+"umístění na disk.\n"
 "\n"
 "Opravdu chcete pokračovat?"
 
-#: ../xfburn/xfburn-data-composition.c:1429
+#: ../xfburn/xfburn-data-composition.c:1462
 #, c-format
-msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
-msgstr "Soubor s názvem \"%s\" již v tomto adresáři existuje, proto nebyl přidán."
+msgid ""
+"A file named \"%s\" already exists in this directory, the file hasn't been "
+"added."
+msgstr ""
+"Soubor s názvem \"%s\" již v tomto adresáři existuje, proto nebyl přidán."
 
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1847
+#: ../xfburn/xfburn-data-composition.c:1886
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "Duplicitní název souboru '%s' pro '%s'"
 
-#: ../xfburn/xfburn-device-box.c:173
-#: ../xfburn/xfburn-device-box.c:174
+#: ../xfburn/xfburn-device-box.c:174 ../xfburn/xfburn-device-box.c:175
 msgid "Show writers only"
 msgstr "Zobrazovat pouze vypalovací mechaniky"
 
-#: ../xfburn/xfburn-device-box.c:176
+#: ../xfburn/xfburn-device-box.c:178
 msgid "Show speed selection"
 msgstr "Zobrazit výběr rychlosti"
 
-#: ../xfburn/xfburn-device-box.c:177
+#: ../xfburn/xfburn-device-box.c:179
 msgid "Show speed selection combo"
 msgstr "Zobrazit prvek pro výběr rychlosti"
 
-#: ../xfburn/xfburn-device-box.c:180
+#: ../xfburn/xfburn-device-box.c:182
 msgid "Show mode selection"
 msgstr "Zobrazit výběr režimu"
 
-#: ../xfburn/xfburn-device-box.c:181
+#: ../xfburn/xfburn-device-box.c:183
 msgid "Show mode selection combo"
 msgstr "Zobrazit prvek pro výběr režimu"
 
-#: ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-device-box.c:186
 msgid "Is it a valid combination"
 msgstr "Je toto platná kombinace?"
 
-#: ../xfburn/xfburn-device-box.c:185
+#: ../xfburn/xfburn-device-box.c:187
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "Umožňuje kombinace hardwaru a disku vypálit kompozici?"
 
-#: ../xfburn/xfburn-device-box.c:189
+#: ../xfburn/xfburn-device-box.c:191
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "Režim mazání zobrazuje jiná stavová hlášení než běžný režim"
 
-#: ../xfburn/xfburn-device-box.c:192
-#: ../xfburn/xfburn-device-box.c:193
+#: ../xfburn/xfburn-device-box.c:194 ../xfburn/xfburn-device-box.c:195
 msgid "Accept only CDs as valid discs"
 msgstr "Akceptovat pouze CD jako platné disky"
 
-#: ../xfburn/xfburn-device-box.c:246
+#: ../xfburn/xfburn-device-box.c:248
 msgid "_Speed:"
 msgstr "_Rychlost:"
 
-#: ../xfburn/xfburn-device-box.c:265
+#: ../xfburn/xfburn-device-box.c:271
 msgid "Write _mode:"
 msgstr "Reži_m zápisu:"
 
-#: ../xfburn/xfburn-device-box.c:388
+#: ../xfburn/xfburn-device-box.c:389
 msgid "Empty speed list"
 msgstr "Prázdný seznam rychlostí"
 
-#: ../xfburn/xfburn-device-box.c:396
+#: ../xfburn/xfburn-device-box.c:397
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to "
+"<i>xfburn@xfce.org</i> together with the console output to increase the "
+"chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us know.\n"
+"Burning should still work, but if there are problems anyways, please let us "
+"know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>Nebylo možné získat z jednotky seznam rychlostí.</b>\n"
 "\n"
-"Toto je známá chyba, která může nastat u některých mechanik. Prosíme vás, abyste tuto chybu nahlásili na adresu <i>xfburn@xfce.org</i> společně s výstupem na konzoli. Zvýšíte tím šanci, že tato chyba bude v příští verzi opravena.\n"
+"Toto je známá chyba, která může nastat u některých mechanik. Prosíme vás, "
+"abyste tuto chybu nahlásili na adresu <i>xfburn@xfce.org</i> společně s "
+"výstupem na konzoli. Zvýšíte tím šanci, že tato chyba bude v příští verzi "
+"opravena.\n"
 "\n"
-"Vypalování by však stále mělo pracovat. Pokud se přesto objeví potíže, prosíme, abyste nás o nich informovali.\n"
+"Vypalování by však stále mělo pracovat. Pokud se přesto objeví potíže, "
+"prosíme, abyste nás o nich informovali.\n"
 "\n"
 "<i>Děkujeme!</i>"
 
-#: ../xfburn/xfburn-device-box.c:405
+#: ../xfburn/xfburn-device-box.c:406
 msgid "Continue to _show this notice"
 msgstr "Toto upozornění _zobrazit i příště "
 
-#: ../xfburn/xfburn-device-box.c:447
+#: ../xfburn/xfburn-device-box.c:448
 msgid "default"
 msgstr "výchozí"
 
-#: ../xfburn/xfburn-device-box.c:483
+#: ../xfburn/xfburn-device-box.c:484
 msgid "Max"
 msgstr "Max"
 
-#: ../xfburn/xfburn-device-box.c:582
+#: ../xfburn/xfburn-device-box.c:586
 msgid "Drive can't burn on the inserted disc"
 msgstr "Jednotka nemůže vypalovat na vložený disk"
 
-#: ../xfburn/xfburn-device-box.c:591
-#: ../xfburn/xfburn-device-box.c:637
+#: ../xfburn/xfburn-device-box.c:595 ../xfburn/xfburn-device-box.c:641
 msgid "Drive is empty"
 msgstr "Jednotka je prázdná!"
 
-#: ../xfburn/xfburn-device-box.c:594
+#: ../xfburn/xfburn-device-box.c:598
 msgid "Sorry, multisession is not yet supported"
 msgstr "Omlouváme se, ale multisession zatím není podporován"
 
-#: ../xfburn/xfburn-device-box.c:597
+#: ../xfburn/xfburn-device-box.c:601
 msgid "Inserted disc is full"
 msgstr "Vložený disk je zaplněn"
 
-#: ../xfburn/xfburn-device-box.c:600
-#: ../xfburn/xfburn-device-box.c:643
+#: ../xfburn/xfburn-device-box.c:604 ../xfburn/xfburn-device-box.c:647
 msgid "Inserted disc is unsuitable"
 msgstr "Vložený disk není vhodný"
 
-#: ../xfburn/xfburn-device-box.c:603
-#: ../xfburn/xfburn-device-box.c:646
+#: ../xfburn/xfburn-device-box.c:607 ../xfburn/xfburn-device-box.c:650
 msgid "Cannot access drive (it might be in use)"
 msgstr "Přístup k jednotce nebyl možný (pravděpodobně se používá)"
 
-#: ../xfburn/xfburn-device-box.c:608
-#: ../xfburn/xfburn-device-box.c:649
+#: ../xfburn/xfburn-device-box.c:612 ../xfburn/xfburn-device-box.c:653
 msgid "Error determining disc"
 msgstr "Chyba při rozpoznávání disku"
 
-#: ../xfburn/xfburn-device-box.c:629
+#: ../xfburn/xfburn-device-box.c:633
 msgid "Write-once disc, no blanking possible"
 msgstr "Toto je disk pouze pro jeden zápis, mazání není možné"
 
-#: ../xfburn/xfburn-device-box.c:632
+#: ../xfburn/xfburn-device-box.c:636
 msgid "DVD+RW does not need blanking"
 msgstr "Disk DVD-RW není nutné mazat"
 
-#: ../xfburn/xfburn-device-box.c:640
+#: ../xfburn/xfburn-device-box.c:644
 msgid "Inserted disc is already blank"
 msgstr "Vložený disk je již prázdný"
 
-#: ../xfburn/xfburn-device-list.c:206
-#: ../xfburn/xfburn-device-list.c:207
+#: ../xfburn/xfburn-device-box.c:680
+#, fuzzy
+msgid "Auto"
+msgstr "_O aplikaci"
+
+#: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
 msgstr "Počet zapisovacích jednotek v systému"
 
@@ -595,78 +630,77 @@ msgstr "Počet čtecích jednotek v systému"
 msgid "Number of drives in the system (readers and writers)"
 msgstr "Počet jednotek v systému (čtecích a zapisovacích)"
 
-#: ../xfburn/xfburn-device-list.c:212
-#: ../xfburn/xfburn-device-list.c:213
+#: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
 msgid "List of devices"
 msgstr "Seznam zařízení"
 
-#: ../xfburn/xfburn-device-list.c:215
-#: ../xfburn/xfburn-device-list.c:216
+#: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
 msgid "Currently selected device"
 msgstr "Vybrané zařízení"
 
 #. globals
-#: ../xfburn/xfburn-directory-browser.c:58
+#: ../xfburn/xfburn-directory-browser.c:57
 msgid "Folder"
 msgstr "Složka"
 
-#: ../xfburn/xfburn-directory-browser.c:131
-#: ../xfburn/xfburn-directory-browser.c:355
+#: ../xfburn/xfburn-directory-browser.c:130
+#: ../xfburn/xfburn-directory-browser.c:354
 msgid "File"
 msgstr "Soubor"
 
-#: ../xfburn/xfburn-directory-browser.c:146
+#: ../xfburn/xfburn-directory-browser.c:145
 msgid "Type"
 msgstr "Typ"
 
-#: ../xfburn/xfburn-fs-browser.c:96
-#: ../xfburn/xfburn-fs-browser.c:285
+#: ../xfburn/xfburn-fs-browser.c:95 ../xfburn/xfburn-fs-browser.c:284
 msgid "Filesystem"
 msgstr "Systém souborů"
 
 #. load the user's home dir
-#: ../xfburn/xfburn-fs-browser.c:264
+#: ../xfburn/xfburn-fs-browser.c:263
 #, c-format
 msgid "%s's home"
 msgstr "Domovský adresář uživatele %s"
 
-#: ../xfburn/xfburn-main.c:204
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:206 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main.c:214
+#: ../xfburn/xfburn-main.c:216
 #, c-format
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 "%s: %s\n"
-"Úplný seznam voleb dostupných z příkazové řádky vypíšete pomocí příkazu %s --help.\n"
+"Úplný seznam voleb dostupných z příkazové řádky vypíšete pomocí příkazu %s --"
+"help.\n"
 
-#: ../xfburn/xfburn-main.c:222
+#: ../xfburn/xfburn-main.c:224
 msgid "Unable to initialize the burning backend."
 msgstr "Nelze inicializovat vypalovací backend."
 
-#: ../xfburn/xfburn-main.c:307
+#: ../xfburn/xfburn-main.c:309
 msgid "No burners are currently available"
 msgstr "V tomto okamžiku nejsou dostupné žádné zapisovací jednotky"
 
-#: ../xfburn/xfburn-main.c:309
+#: ../xfburn/xfburn-main.c:311
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the "
+"drive with the current user."
 msgstr ""
 "Disk se pravděpodobně používá, přístup byl odepřen.\n"
 "\n"
 "Odpojte disk a restartujte aplikaci.\n"
 "\n"
-"Pokud se v jednotce žádný disk nenachází, ověřte, zda máte pod současným uživatelem přístup pro čtení a zápis k jednotce."
+"Pokud se v jednotce žádný disk nenachází, ověřte, zda máte pod současným "
+"uživatelem přístup pro čtení a zápis k jednotce."
 
-#: ../xfburn/xfburn-main.c:343
+#: ../xfburn/xfburn-main.c:345
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
@@ -675,7 +709,7 @@ msgstr ""
 "Inicializace konvertoru %s se nezdařila : %s\n"
 "\t(přepínání na základní implementaci)"
 
-#: ../xfburn/xfburn-main.c:376
+#: ../xfburn/xfburn-main.c:378
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "Soubor obrazu '%s' neexistuje."
@@ -796,8 +830,7 @@ msgstr "Editor Panelu nástrojů"
 msgid "Another cd burning GUI"
 msgstr "Další nástroj pro vypalování CD"
 
-#: ../xfburn/xfburn-main-window.c:536
-#: ../xfburn/xfburn-main-window.c:537
+#: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
 msgid "Author/Maintainer"
 msgstr "Autor/Správce"
 
@@ -810,285 +843,287 @@ msgstr "Dřívější autor a správce"
 msgid "Translator (%s)"
 msgstr "Překladatel (%s)"
 
-#: ../xfburn/xfburn-notebook-tab.c:109
+#: ../xfburn/xfburn-notebook-tab.c:108
 msgid "Label"
 msgstr "Popisek"
 
-#: ../xfburn/xfburn-notebook-tab.c:109
+#: ../xfburn/xfburn-notebook-tab.c:108
 msgid "The text of the label"
 msgstr "Text popisku"
 
-#: ../xfburn/xfburn-notebook-tab.c:112
+#: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Show close button"
 msgstr "Zobrazit tlačítko zavřít"
 
-#: ../xfburn/xfburn-notebook-tab.c:112
+#: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Determine whether the close button is visible"
 msgstr "Rozezná viditelnost tlačítka zavřít"
 
-#: ../xfburn/xfburn-perform-burn.c:96
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr "V tomto režimu zápisu nelze přidat další data na disk typu multisession (použijte místo něj režim TAO)."
+#: ../xfburn/xfburn-perform-burn.c:158
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr ""
+"V tomto režimu zápisu nelze přidat další data na disk typu multisession "
+"(použijte místo něj režim TAO)."
 
-#: ../xfburn/xfburn-perform-burn.c:100
+#: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr "Byl nalezen uzavřený disk s daty, požaduje se prázdný nebo neuzavřený disk."
+msgstr ""
+"Byl nalezen uzavřený disk s daty, požaduje se prázdný nebo neuzavřený disk."
 
-#: ../xfburn/xfburn-perform-burn.c:102
+#: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
 msgstr "V jednotce nebyl nalezen disk."
 
-#: ../xfburn/xfburn-perform-burn.c:105
+#: ../xfburn/xfburn-perform-burn.c:167
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "Nelze rozpoznat stav jednotky a disku."
 
-#: ../xfburn/xfburn-perform-burn.c:118
+#: ../xfburn/xfburn-perform-burn.c:180
 msgid "There is not enough space available on the inserted disc."
 msgstr "Na vloženému disku není dostatek místa."
 
-#: ../xfburn/xfburn-perform-burn.c:163
+#: ../xfburn/xfburn-perform-burn.c:225
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Vypalování stopy %2d z %d..."
 
-#: ../xfburn/xfburn-perform-burn.c:167
-#: ../xfburn/xfburn-perform-burn.c:232
+#: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
 msgid "Burning composition..."
 msgstr "Zapisování kompozice..."
 
-#: ../xfburn/xfburn-perform-burn.c:201
+#: ../xfburn/xfburn-perform-burn.c:263
 msgid "standby"
 msgstr "připraveno v pohotovostním režimu"
 
-#: ../xfburn/xfburn-perform-burn.c:209
+#: ../xfburn/xfburn-perform-burn.c:271
 msgid "ending"
 msgstr "dokončuje se"
 
-#: ../xfburn/xfburn-perform-burn.c:212
+#: ../xfburn/xfburn-perform-burn.c:274
 msgid "failing"
 msgstr "selhání"
 
-#: ../xfburn/xfburn-perform-burn.c:215
+#: ../xfburn/xfburn-perform-burn.c:277
 msgid "unused"
 msgstr "nepoužito"
 
-#: ../xfburn/xfburn-perform-burn.c:218
+#: ../xfburn/xfburn-perform-burn.c:280
 msgid "abandoned"
 msgstr "zrušeno"
 
-#: ../xfburn/xfburn-perform-burn.c:221
+#: ../xfburn/xfburn-perform-burn.c:283
 msgid "ended"
 msgstr "ukončeno"
 
-#: ../xfburn/xfburn-perform-burn.c:224
+#: ../xfburn/xfburn-perform-burn.c:286
 msgid "aborted"
 msgstr "přerušeno"
 
-#: ../xfburn/xfburn-perform-burn.c:227
-#: ../xfburn/xfburn-progress-dialog.c:200
-#: ../xfburn/xfburn-progress-dialog.c:217
-#: ../xfburn/xfburn-progress-dialog.c:227
-#: ../xfburn/xfburn-progress-dialog.c:310
-#: ../xfburn/xfburn-progress-dialog.c:442
-#: ../xfburn/xfburn-progress-dialog.c:466
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:199
+#: ../xfburn/xfburn-progress-dialog.c:216
+#: ../xfburn/xfburn-progress-dialog.c:226
+#: ../xfburn/xfburn-progress-dialog.c:309
+#: ../xfburn/xfburn-progress-dialog.c:441
+#: ../xfburn/xfburn-progress-dialog.c:465
+#: ../xfburn/xfburn-progress-dialog.c:489
 msgid "no info"
 msgstr "žádné informace"
 
-#: ../xfburn/xfburn-perform-burn.c:237
+#: ../xfburn/xfburn-perform-burn.c:299
 msgid "Writing Lead-In..."
 msgstr "Zapisování součásti stopy \"Lead-In\"..."
 
-#: ../xfburn/xfburn-perform-burn.c:243
+#: ../xfburn/xfburn-perform-burn.c:305
 msgid "Writing Lead-Out..."
 msgstr "Zapisování součásti stopy \"Lead-Out\"..."
 
-#: ../xfburn/xfburn-perform-burn.c:249
+#: ../xfburn/xfburn-perform-burn.c:311
 msgid "Writing pregap..."
 msgstr "Zapisování součásti stopy \"pregap\"..."
 
-#: ../xfburn/xfburn-perform-burn.c:255
+#: ../xfburn/xfburn-perform-burn.c:317
 msgid "Closing track..."
 msgstr "Uzavírání stopy..."
 
-#: ../xfburn/xfburn-perform-burn.c:261
+#: ../xfburn/xfburn-perform-burn.c:323
 msgid "Closing session..."
 msgstr "Uzavírání session..."
 
-#: ../xfburn/xfburn-perform-burn.c:267
+#: ../xfburn/xfburn-perform-burn.c:329
 msgid "Formatting..."
 msgstr "Formátování..."
 
-#: ../xfburn/xfburn-perform-burn.c:280
+#: ../xfburn/xfburn-perform-burn.c:342
 msgid "see console"
 msgstr "prohlédnout konzoli"
 
-#: ../xfburn/xfburn-perform-burn.c:308
+#: ../xfburn/xfburn-perform-burn.c:370
 msgid "User Aborted"
 msgstr "Přerušeno uživatelem"
 
-#: ../xfburn/xfburn-preferences-dialog.c:142
+#: ../xfburn/xfburn-preferences-dialog.c:141
 msgid "Preferences"
 msgstr "Nastavení"
 
-#: ../xfburn/xfburn-preferences-dialog.c:143
+#: ../xfburn/xfburn-preferences-dialog.c:142
 msgid "Tune how Xfburn behaves"
 msgstr "Vylaďte si chování aplikace Xfburn"
 
-#: ../xfburn/xfburn-preferences-dialog.c:189
-#: ../xfburn/xfburn-preferences-dialog.c:193
+#: ../xfburn/xfburn-preferences-dialog.c:188
+#: ../xfburn/xfburn-preferences-dialog.c:192
 msgid "Temporary directory"
 msgstr "Adresář pro dočasné soubory"
 
-#: ../xfburn/xfburn-preferences-dialog.c:197
+#: ../xfburn/xfburn-preferences-dialog.c:196
 msgid "_Clean temporary directory on exit"
 msgstr "_Vyčistit adresář pro dočasné soubory při ukončení"
 
-#: ../xfburn/xfburn-preferences-dialog.c:204
+#: ../xfburn/xfburn-preferences-dialog.c:203
 msgid "File browser"
 msgstr "Prohlížeč souborů"
 
-#: ../xfburn/xfburn-preferences-dialog.c:208
+#: ../xfburn/xfburn-preferences-dialog.c:207
 msgid "Show _hidden files"
 msgstr "Zobrazit _skryté soubory"
 
-#: ../xfburn/xfburn-preferences-dialog.c:213
+#: ../xfburn/xfburn-preferences-dialog.c:212
 msgid "Show human_readable filesizes"
 msgstr "Zobrazit velikosti souborů v _převedených jednotkách"
 
-#: ../xfburn/xfburn-preferences-dialog.c:224
+#: ../xfburn/xfburn-preferences-dialog.c:223
 msgid "General"
 msgstr "Obecné"
 
-#: ../xfburn/xfburn-preferences-dialog.c:235
-#: ../xfburn/xfburn-preferences-dialog.c:312
+#: ../xfburn/xfburn-preferences-dialog.c:234
+#: ../xfburn/xfburn-preferences-dialog.c:311
 msgid "Devices"
 msgstr "Zařízení"
 
-#: ../xfburn/xfburn-preferences-dialog.c:244
+#: ../xfburn/xfburn-preferences-dialog.c:243
 msgid "Detected devices"
 msgstr "Nalezená zařízení"
 
-#: ../xfburn/xfburn-preferences-dialog.c:265
+#: ../xfburn/xfburn-preferences-dialog.c:264
 msgid "Name"
 msgstr "Název"
 
-#: ../xfburn/xfburn-preferences-dialog.c:278
+#: ../xfburn/xfburn-preferences-dialog.c:277
 msgid "Node"
 msgstr "Uzel"
 
-#: ../xfburn/xfburn-preferences-dialog.c:280
+#: ../xfburn/xfburn-preferences-dialog.c:279
 msgid "Write CD-R"
 msgstr "Zápis CD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:282
+#: ../xfburn/xfburn-preferences-dialog.c:281
 msgid "Write CD-RW"
 msgstr "Zápis CD-RW"
 
-#: ../xfburn/xfburn-preferences-dialog.c:285
+#: ../xfburn/xfburn-preferences-dialog.c:284
 msgid "Write DVD-R"
 msgstr "Zápis DVD-RW"
 
-#: ../xfburn/xfburn-preferences-dialog.c:288
+#: ../xfburn/xfburn-preferences-dialog.c:287
 msgid "Write DVD-RAM"
 msgstr "Zápis DVD-RAM"
 
-#: ../xfburn/xfburn-preferences-dialog.c:296
+#: ../xfburn/xfburn-preferences-dialog.c:295
 msgid "Sc_an for devices"
 msgstr "Hled_at zařízení"
 
 #. below the device list
-#: ../xfburn/xfburn-preferences-dialog.c:322
+#: ../xfburn/xfburn-preferences-dialog.c:321
 msgid "Show warning on _empty speed list"
 msgstr "Zobrazovat _varování o prázdném seznamu rychlostí"
 
-#: ../xfburn/xfburn-preferences-dialog.c:330
+#: ../xfburn/xfburn-preferences-dialog.c:329
 msgid "FIFO buffer size (in kb)"
 msgstr "Velikost vyrovnávací paměti FIFO (v kilobajtech)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:464
+#: ../xfburn/xfburn-preferences-dialog.c:463
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "Změna tohoto nastavení se projeví po restartování programu."
 
-#: ../xfburn/xfburn-progress-dialog.c:182
+#: ../xfburn/xfburn-progress-dialog.c:181
 msgid "Initializing..."
 msgstr "Inicializace..."
 
-#: ../xfburn/xfburn-progress-dialog.c:197
+#: ../xfburn/xfburn-progress-dialog.c:196
 msgid "Estimated writing speed:"
 msgstr "Odhadovaná rychlost zápisu:"
 
-#: ../xfburn/xfburn-progress-dialog.c:211
+#: ../xfburn/xfburn-progress-dialog.c:210
 msgid "FIFO buffer:"
 msgstr "Vyrovnávací pamět FIFO:"
 
-#: ../xfburn/xfburn-progress-dialog.c:221
+#: ../xfburn/xfburn-progress-dialog.c:220
 msgid "Device buffer:"
 msgstr "Vyrovnávací paměť zařízení:"
 
-#: ../xfburn/xfburn-progress-dialog.c:468
+#: ../xfburn/xfburn-progress-dialog.c:467
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "Minimální naplnění bylo %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:527
+#: ../xfburn/xfburn-progress-dialog.c:526
 msgid "Aborted"
 msgstr "Přerušeno"
 
-#: ../xfburn/xfburn-progress-dialog.c:533
+#: ../xfburn/xfburn-progress-dialog.c:532
 msgid "Failed"
 msgstr "Selhání"
 
-#: ../xfburn/xfburn-progress-dialog.c:536
+#: ../xfburn/xfburn-progress-dialog.c:535
 msgid "Cancelled"
 msgstr "Zrušeno"
 
-#: ../xfburn/xfburn-progress-dialog.c:539
+#: ../xfburn/xfburn-progress-dialog.c:538
 msgid "Completed"
 msgstr "Dokončeno"
 
-#: ../xfburn/xfburn-progress-dialog.c:576
+#: ../xfburn/xfburn-progress-dialog.c:575
 msgid "Aborting..."
 msgstr "Přerušuje se..."
 
-#: ../xfburn/xfburn-utils.c:130
+#: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
 msgstr "Vyberte příkaz"
 
-#: ../xfburn/xfburn-welcome-tab.c:130
+#: ../xfburn/xfburn-welcome-tab.c:129
 msgid "Welcome to xfburn!"
 msgstr "Vítejte v aplikaci xfburn."
 
 #. buttons
-#: ../xfburn/xfburn-welcome-tab.c:141
+#: ../xfburn/xfburn-welcome-tab.c:140
 msgid "<big>Burn _Image</big>"
 msgstr "<big>Vypálit _obraz</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:141
+#: ../xfburn/xfburn-welcome-tab.c:140
 msgid "Burn a prepared compilation, i.e. an .ISO file"
 msgstr "Vypálí předpřipravenou kompilaci, např. soubor ISO"
 
-#: ../xfburn/xfburn-welcome-tab.c:146
+#: ../xfburn/xfburn-welcome-tab.c:145
 msgid "<big>New _Data Composition</big>"
 msgstr "<big>Nová _datová kompozice</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:146
+#: ../xfburn/xfburn-welcome-tab.c:145
 msgid "Create a new data disc with the files of your choosing"
 msgstr "Vytvoří nový datový disk se soubory dle vašeho výběru"
 
-#: ../xfburn/xfburn-welcome-tab.c:151
+#: ../xfburn/xfburn-welcome-tab.c:150
 msgid "<big>_Blank Disc</big>"
 msgstr "<big>S_mazat disk</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:151
+#: ../xfburn/xfburn-welcome-tab.c:150
 msgid "Prepare the rewriteable disc for a new burn"
 msgstr "Připraví přepisovatelný disk na nové vypalování"
 
-#: ../xfburn/xfburn-welcome-tab.c:156
+#: ../xfburn/xfburn-welcome-tab.c:155
 msgid "<big>_Audio CD</big>"
 msgstr "<big>_Hudební CD</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:156
+#: ../xfburn/xfburn-welcome-tab.c:155
 msgid "Audio CD playable in regular stereos"
 msgstr "Hudební CD přehratelné v běžných přehrávačích"
 
@@ -1140,23 +1175,23 @@ msgstr "Hudbu nelze vypálit na disk DVD."
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Nejvyšší počet stop je 99."
 
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:310
 msgid "A problem with the burn backend occurred."
 msgstr "Nastaly potíže s vypalovacím backendem."
 
-#: ../xfburn/xfburn-disc-usage.c:165
+#: ../xfburn/xfburn-disc-usage.c:163
 msgid "Proceed to Burn"
 msgstr "Zahájit vypalování"
 
-#: ../xfburn/xfburn-disc-usage.c:205
+#: ../xfburn/xfburn-disc-usage.c:203
 msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "Pokoušíte se na disk vypálit více dat, než je možné."
 
-#: ../xfburn/xfburn-transcoder-basic.c:167
+#: ../xfburn/xfburn-transcoder-basic.c:166
 msgid "basic"
 msgstr "základní"
 
-#: ../xfburn/xfburn-transcoder-basic.c:173
+#: ../xfburn/xfburn-transcoder-basic.c:172
 msgid ""
 "The basic transcoder is built in,\n"
 "and does not require any library.\n"
@@ -1175,32 +1210,32 @@ msgstr ""
 "z jiných typů souborů, zakompilujte podporu\n"
 "aplikace gstreamer."
 
-#: ../xfburn/xfburn-transcoder-basic.c:197
+#: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
 msgid "File %s does not have a .wav extension"
 msgstr "Soubor %s nemá příponu .wav"
 
-#: ../xfburn/xfburn-transcoder-basic.c:202
+#: ../xfburn/xfburn-transcoder-basic.c:201
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
 msgstr "Soubor %s neobsahuje nekomprimovaný zvuk typu PCM"
 
-#: ../xfburn/xfburn-transcoder-basic.c:208
+#: ../xfburn/xfburn-transcoder-basic.c:207
 #, c-format
 msgid "Could not stat %s: %s"
 msgstr "Nelze spustit %s: %s"
 
-#: ../xfburn/xfburn-transcoder-basic.c:239
+#: ../xfburn/xfburn-transcoder-basic.c:238
 #, c-format
 msgid "Could not open %s."
 msgstr "Nelze otevřít %s."
 
-#: ../xfburn/xfburn-transcoder-basic.c:320
+#: ../xfburn/xfburn-transcoder-basic.c:319
 #, c-format
 msgid "Could not open %s: %s"
 msgstr "Nelze otevřít %s: %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:633
+#: ../xfburn/xfburn-transcoder-gst.c:632
 #, c-format
 msgid ""
 "%s is missing.\n"
@@ -1218,11 +1253,11 @@ msgstr ""
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:722
+#: ../xfburn/xfburn-transcoder-gst.c:721
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:728
+#: ../xfburn/xfburn-transcoder-gst.c:727
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1242,12 +1277,12 @@ msgstr ""
 "ujistěte se, že jsou nainstalovány zásuvné\n"
 "moduly 'good', 'bad' a 'ugly' aplikace gstreamer."
 
-#: ../xfburn/xfburn-transcoder-gst.c:793
+#: ../xfburn/xfburn-transcoder-gst.c:792
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr "Aplikace gstreamer nerozpoznala tento soubor (časový limit vypršel)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:802
+#: ../xfburn/xfburn-transcoder-gst.c:801
 #, c-format
 msgid ""
 "%s\n"
@@ -1262,105 +1297,83 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:917
+#: ../xfburn/xfburn-transcoder-gst.c:916
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "Aplikace gstreamer nezahájila konverzi (časový limit vypršel)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:952
+#: ../xfburn/xfburn-transcoder-gst.c:951
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "Změna písní při konverzi se nezdařila"
 
-#: ../xfburn/xfburn-transcoder.c:125
-#: ../xfburn/xfburn-transcoder.c:152
-#: ../xfburn/xfburn-transcoder.c:164
+#: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
+#: ../xfburn/xfburn-transcoder.c:163
 #, c-format
 msgid "not implemented"
 msgstr "neimplementováno"
 
-#: ../xfburn/xfburn-device.c:248
-#: ../xfburn/xfburn-device.c:249
+#: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
 msgid "Display name"
 msgstr "Název displeje"
 
-#: ../xfburn/xfburn-device.c:251
-#: ../xfburn/xfburn-device.c:252
+#: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
 msgid "Device address"
 msgstr "Adresa zařízení"
 
-#: ../xfburn/xfburn-device.c:254
-#: ../xfburn/xfburn-device.c:255
-msgid "Is the device accessible"
-msgstr "Je zařízení dostupné?"
-
-#: ../xfburn/xfburn-device.c:257
-#: ../xfburn/xfburn-device.c:258
+#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
 msgid "Burn speeds supported by the device"
 msgstr "Rychlosti vypalování podporované zařízením"
 
-#: ../xfburn/xfburn-device.c:260
-#: ../xfburn/xfburn-device.c:261
+#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
 msgid "Disc status"
 msgstr "Stav disku"
 
-#: ../xfburn/xfburn-device.c:263
-#: ../xfburn/xfburn-device.c:264
+#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
 msgid "Profile no. as reported by libburn"
 msgstr "Číslo profilu oznámené knihovnou libburn"
 
-#: ../xfburn/xfburn-device.c:266
-#: ../xfburn/xfburn-device.c:267
+#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
 msgid "Profile name as reported by libburn"
 msgstr "Název profilu oznámený knihovnou libburn"
 
-#: ../xfburn/xfburn-device.c:269
-#: ../xfburn/xfburn-device.c:270
+#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
 msgid "Is the disc erasable"
 msgstr "Je disk smazatelný?"
 
-#: ../xfburn/xfburn-device.c:272
-#: ../xfburn/xfburn-device.c:273
+#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Can burn CDR"
 msgstr "Vypaluje média CDR"
 
-#: ../xfburn/xfburn-device.c:275
-#: ../xfburn/xfburn-device.c:276
+#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
 msgid "Can burn CDRW"
 msgstr "Vypaluje média CDRW"
 
-#: ../xfburn/xfburn-device.c:278
-#: ../xfburn/xfburn-device.c:279
+#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
 msgid "Can burn DVDR"
 msgstr "Vypaluje média DVDR"
 
-#: ../xfburn/xfburn-device.c:281
-#: ../xfburn/xfburn-device.c:282
+#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
 msgid "Can burn DVDPLUSR"
 msgstr "Vypaluje média DVDPLUSR"
 
-#: ../xfburn/xfburn-device.c:284
-#: ../xfburn/xfburn-device.c:285
+#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
 msgid "Can burn DVDRAM"
 msgstr "Vypaluje média DVDRAM"
 
-#: ../xfburn/xfburn-device.c:287
-#: ../xfburn/xfburn-device.c:288
+#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
 msgid "libburn TAO block types"
 msgstr "Typ bloku TAO knihovny libburn"
 
-#: ../xfburn/xfburn-device.c:290
-#: ../xfburn/xfburn-device.c:291
+#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
 msgid "libburn SAO block types"
 msgstr "Typ bloku SAO knihovny libburn"
 
-#: ../xfburn/xfburn-device.c:293
-#: ../xfburn/xfburn-device.c:294
+#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
 msgid "libburn RAW block types"
 msgstr "Typ bloku RAW knihovny libburn"
 
-#: ../xfburn/xfburn-device.c:296
-#: ../xfburn/xfburn-device.c:297
+#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
 msgid "libburn PACKET block types"
 msgstr "Typ bloku PACKET knihovny libburn"
 
@@ -1376,16 +1389,27 @@ msgstr "Vypálit obraz (fxburn)"
 msgid "CD and DVD burning application"
 msgstr "Aplikace pro vypalování CD a DVD"
 
+#~ msgid "The write mode is not currently supported"
+#~ msgstr "Režim zápisu není nyní podporován"
+
+#~ msgid "Is the device accessible"
+#~ msgstr "Je zařízení dostupné?"
+
 #~ msgid "Data composition"
 #~ msgstr "Datová kompozice"
+
 #~ msgid "The status of the disc in the drive"
 #~ msgstr "Stav disku vloženého v jednotce"
+
 #~ msgid "Unable to create disc object"
 #~ msgstr "Nelze vytvořit objekt disku"
+
 #~ msgid "Cannot attach source object to track object"
 #~ msgstr "Nelze připojit zdrojový objekt k objektu stopy"
+
 #~ msgid "Format DVD+RW"
 #~ msgstr "Zformátovat DVD+RW"
+
 #~ msgid "_Format"
 #~ msgstr "Z_formátovat"
 
@@ -1394,10 +1418,13 @@ msgstr "Aplikace pro vypalování CD a DVD"
 #~ msgstr ""
 #~ "Bylo nalezeno uzavřené médium s daty. Je vyžadováno prázdné nebo "
 #~ "neuzavřené médium"
+
 #~ msgid "No media detected in drive"
 #~ msgstr "V jednotce nebylo nalezeno médium"
+
 #~ msgid "No access to drive (mounted?)"
 #~ msgstr "Nelze přistupovat k mechanice (je připojena?)"
+
 #~ msgid "active"
 #~ msgstr "aktívní"
 
@@ -1408,28 +1435,40 @@ msgstr "Aplikace pro vypalování CD a DVD"
 #, fuzzy
 #~ msgid "Could not add source to track %s!"
 #~ msgstr "Nelze vytvořit strukturu ze zdroje obrazu ISO"
+
 #~ msgid "Import"
 #~ msgstr "Importovat"
+
 #~ msgid "Import existing session"
 #~ msgstr "Importuje již vytvořenou session"
+
 #~ msgid "Copy Audio CD"
 #~ msgstr "Zkopírovat hudební CD"
+
 #~ msgid "Burn composition"
 #~ msgstr "Vypálit kompozici"
+
 #~ msgid "_New composition"
 #~ msgstr "_Nová kompozice"
+
 #~ msgid "Create a new composition"
 #~ msgstr "Vytvoří novou kompozici"
+
 #~ msgid "Copy DVD"
 #~ msgstr "Zkopírovat DVD"
+
 #~ msgid "The main window"
 #~ msgstr "Hlavní okno"
+
 #~ msgid "Notebook"
 #~ msgstr "Poznámky"
+
 #~ msgid "NOTEBOOK"
 #~ msgstr "POZNÁMKY"
+
 #~ msgid "Action group"
 #~ msgstr "Skupina akcí"
+
 #~ msgid "Action group from the main window"
 #~ msgstr "Skupina akcí hlavního okna"
 
@@ -1444,58 +1483,82 @@ msgstr "Aplikace pro vypalování CD a DVD"
 #, fuzzy
 #~ msgid "Deformat Complete"
 #~ msgstr "Kompletní"
+
 #~ msgid "Fast"
 #~ msgstr "Rychle"
+
 #~ msgid "Cannot recognize drive and media state"
 #~ msgstr "Nelze rozpoznat stav jednotky a média"
+
 #~ msgid "Burn CD image"
 #~ msgstr "Vypálit obraz CD"
 
 #, fuzzy
 #~ msgid "Initializing"
 #~ msgstr "Inicializuji..."
+
 #~ msgid "Show speed selection list and refresh button"
 #~ msgstr "Zobrazit seznam pro výběr rychlosti a tlačítko aktualizovat"
+
 #~ msgid "Reopen last session"
 #~ msgstr "Znovu otevřít poslední session"
+
 #~ msgid "Erase last session"
 #~ msgstr "Smazat poslední session"
+
 #~ msgid "_Force"
 #~ msgstr "Vy_nutit"
+
 #~ msgid "Blanking..."
 #~ msgstr "Mažu..."
+
 #~ msgid "Performing OPC..."
 #~ msgstr "Provádím OPC..."
+
 #~ msgid "Finishing"
 #~ msgstr "Dokončuji"
+
 #~ msgid "Burn data composition"
 #~ msgstr "Vypálit datovou kompozici"
+
 #~ msgid "Create ISO from composition"
 #~ msgstr "Vytvořit obraz ISO z kompozice"
+
 #~ msgid "Id"
 #~ msgstr "Id"
+
 #~ msgid "View _output"
 #~ msgstr "Z_obrazit výstup:"
+
 #~ msgid "Operation finished"
 #~ msgstr "Operace byla dokončena"
+
 #~ msgid "Are sure you want to quit?"
 #~ msgstr "Jste si jisti, že chcete program ukončit?"
+
 #~ msgid "Failed to open /proc/scsi/sg/devices"
 #~ msgstr "Nepodařilo se otevřít /proc/scsi/sg/devices"
+
 #~ msgid "Failed to open /proc/scsi/sg/device_strs"
 #~ msgstr "Nepodařilo se otevřít /proc/scsi/sg/device_strs"
+
 #~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
 #~ msgstr "Chyba při čtení informací o rozhraní SCSI z /proc/scsi/sg/devices"
+
 #~ msgid "No message..."
 #~ msgstr "Žádná zpráva..."
+
 #~ msgid "Burn Data CD"
 #~ msgstr "Vypálit datové CD"
+
 #~ msgid "Load composition"
 #~ msgstr "Načíst kompozici"
+
 #~ msgid "Show disc content toolbar"
 #~ msgstr "Zobrazit kontextový panel nástrojů disku"
+
 #~ msgid "Show/hide the disc content toolbar"
 #~ msgstr "Zobrazí/skryje kontextový panel nástrojů disku"
+
 #~ msgid "Xfburn preferences"
 #~ msgstr "Nastavení Xfburn"
-
