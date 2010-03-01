@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the xfburn package.
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
 # Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-02 22:14-0700\n"
+"POT-Creation-Date: 2010-03-01 12:00+0100\n"
 "PO-Revision-Date: 2010-01-25 01:12+0300\n"
 "Last-Translator: Vlad Vasilev <lortwer@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -91,7 +91,8 @@ msgstr "_Извлечь диск"
 msgid "_Blank"
 msgstr "_Очистить"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:355
 msgid "The inserted disc is already blank."
 msgstr "Вставленный диск уже очищен"
@@ -134,18 +135,16 @@ msgid "Unable to grab the drive."
 msgstr "Невозможно захватить привод"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
-#, fuzzy
 msgid "Image"
-msgstr "ISO образы"
+msgstr "Образ"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-#, fuzzy
 msgid "Show volume name"
-msgstr "Имя тома :"
+msgstr "Показать название тома"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
 msgid "Show a text entry for the name of the volume"
-msgstr ""
+msgstr "Показать текстовое поле для имени тома"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
@@ -259,19 +258,12 @@ msgid "Burning image..."
 msgstr "Запись образа..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded"
-"\">Пожалуйста, выберите образ для записи</span>"
+msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Пожалуйста, выберите образ для записи</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:483
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Невозможно добавить данные к мультисессионному диску в этом режиме записи "
-"(используйте TAO)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr "Невозможно добавить данные к мультисессионному диску в этом режиме записи (используйте TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:487
 msgid "Closed disc with data detected. Need blank or appendable disc"
@@ -294,12 +286,8 @@ msgid "Failed to get image size"
 msgstr "Невозможно определить размер образа"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
-msgid ""
-"Make sure you selected a valid file and you have the proper permissions to "
-"access it."
-msgstr ""
-"Удостоверьтесь, что выбран правильный файл, и у вас достаточно прав для "
-"доступа к нему"
+msgid "Make sure you selected a valid file and you have the proper permissions to access it."
+msgstr "Удостоверьтесь, что выбран правильный файл, и у вас достаточно прав для доступа к нему"
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -398,7 +386,8 @@ msgstr "Очистить"
 msgid "Clear the content of the composition"
 msgstr "Очистить содержимое проекта"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:195
 msgid "Rename"
 msgstr "Переименовать"
@@ -440,7 +429,8 @@ msgstr "В проекте уже есть файл с таким именем"
 msgid "New directory"
 msgstr "Новый каталог"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:966
 #, c-format
 msgid "Data %s~%d"
@@ -448,12 +438,8 @@ msgstr "Данные %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1202
 #, c-format
-msgid ""
-"%s cannot be added to the composition, because it exceeds the maximum "
-"allowed file size for iso9660."
-msgstr ""
-"%s невозможно добавить в проект, т.к. размер превышает максимум допустимый "
-"для iso9660."
+msgid "%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."
+msgstr "%s невозможно добавить в проект, т.к. размер превышает максимум допустимый для iso9660."
 
 #: ../xfburn/xfburn-data-composition.c:1294
 #: ../xfburn/xfburn-audio-composition.c:1321
@@ -463,23 +449,18 @@ msgstr "Добавление домашней папки"
 #: ../xfburn/xfburn-data-composition.c:1295
 #: ../xfburn/xfburn-audio-composition.c:1322
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Вы собираетесь добавить в проект домашнюю папку. Это может занять много "
-"времени, а размер папки превысить размеры диска. \n"
+"Вы собираетесь добавить в проект домашнюю папку. Это может занять много времени, а размер папки превысить размеры диска. \n"
 "\n"
 "Вы уверены, что хотите продолжить?"
 
 #: ../xfburn/xfburn-data-composition.c:1462
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added."
-msgstr ""
-"В этом каталоге уже существует файл с именем \"%s\", файл не был добавлен"
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
+msgstr "В этом каталоге уже существует файл с именем \"%s\", файл не был добавлен"
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1886
@@ -517,9 +498,7 @@ msgstr "Поддерживается ли тип диска вашим обор�
 
 #: ../xfburn/xfburn-device-box.c:191
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"Режим очистки показывает сообщения о состоянии диска, отличные от "
-"нормального режима"
+msgstr "Режим очистки показывает сообщения о состоянии диска, отличные от нормального режима"
 
 #: ../xfburn/xfburn-device-box.c:194 ../xfburn/xfburn-device-box.c:195
 msgid "Accept only CDs as valid discs"
@@ -541,20 +520,15 @@ msgstr "Пустой список скоростей"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to "
-"<i>xfburn@xfce.org</i> together with the console output to increase the "
-"chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>Невозможно получить список скоростей для привода.</b>\n"
 "\n"
-"Это известная ошибка, возникающая с некоторыми приводами. Пожалуйста, "
-"сообщите об этом на <i>xfburn@xfce.org</i> Приложите вывод консоли, это "
-"поможет исправить ошибку.\n"
+"Это известная ошибка, возникающая с некоторыми приводами. Пожалуйста, сообщите об этом на <i>xfburn@xfce.org</i> Приложите вывод консоли, это поможет исправить ошибку.\n"
 "\n"
 "Запись должна работать, но если возникнут ошибки, пожалуйста, сообщите нам\n"
 "\n"
@@ -613,9 +587,8 @@ msgid "Inserted disc is already blank"
 msgstr "Вставленный диск уже очищен"
 
 #: ../xfburn/xfburn-device-box.c:680
-#, fuzzy
 msgid "Auto"
-msgstr "_О программе"
+msgstr "Автоматически"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
@@ -688,15 +661,13 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
 "Возможно диск используется и недоступен. \n"
 "\n"
 "Пожалуйста отмонтируйте диск и перезапустите приложение. \n"
 "\n"
-"Если в приводе нет диска, проверьте есть ли у вас права доступа на чтение и "
-"запись к приводу."
+"Если в приводе нет диска, проверьте есть ли у вас права доступа на чтение и запись к приводу."
 
 #: ../xfburn/xfburn-main.c:345
 #, c-format
@@ -716,8 +687,10 @@ msgstr "Отсутсвует файл образа '%s'."
 msgid "_File"
 msgstr "_Файл"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -727,11 +700,14 @@ msgstr "Новый диск с данными"
 msgid "New audio composition"
 msgstr "Новый аудиодиск"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -793,7 +769,8 @@ msgstr "Очистить CD-RW"
 msgid "Copy Data CD"
 msgstr "Копировать CD с данными"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Записать образ"
@@ -858,10 +835,8 @@ msgid "Determine whether the close button is visible"
 msgstr "Отображать ли кнопку закрытия"
 
 #: ../xfburn/xfburn-perform-burn.c:158
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"В данном режиме записи нельзя добавлять сеансы записи (используйте TAO)."
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr "В данном режиме записи нельзя добавлять сеансы записи (используйте TAO)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
