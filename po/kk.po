@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-02 22:14-0700\n"
+"POT-Creation-Date: 2010-03-15 06:01+0100\n"
 "PO-Revision-Date: 2009-09-10 10:05+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
@@ -91,7 +91,8 @@ msgstr "Д_искті шығару"
 msgid "_Blank"
 msgstr "Та_зарту"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:355
 msgid "The inserted disc is already blank."
 msgstr "Салынған диск бос болып тұр."
@@ -134,18 +135,16 @@ msgid "Unable to grab the drive."
 msgstr "Құрылғыны басқару мүмкін емес."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
-#, fuzzy
 msgid "Image"
-msgstr "ISO бейнелері"
+msgstr "Бейне"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-#, fuzzy
 msgid "Show volume name"
-msgstr "Бөлім аты :"
+msgstr "Бөлім атын көрсету"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
 msgid "Show a text entry for the name of the volume"
-msgstr ""
+msgstr "Бөлім аты үшін мәтін өрісін көрсету"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
@@ -259,25 +258,16 @@ msgid "Burning image..."
 msgstr "Бейнені жазу..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Жазу "
-"үшін бейне файлын таңдаңыз</span>"
+msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Жазу үшін бейне файлын таңдаңыз</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:483
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Бұл жазу режимінде мультисессиялық дискіге мәліметті қоса алмайсыз (орнына "
-"TAO қолдаңыңыз)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr "Бұл жазу режимінде мультисессиялық дискіге мәліметті қоса алмайсыз (орнына TAO қолдаңыңыз)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:487
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"Жабылған диск анықталды. Оны тазарту керек не басқа, қосуға болатын диск "
-"керек"
+msgstr "Жабылған диск анықталды. Оны тазарту керек не басқа, қосуға болатын диск керек"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:489
 msgid "No disc detected in drive"
@@ -296,9 +286,7 @@ msgid "Failed to get image size"
 msgstr "Бейне көлемін анықтау мүмкін емес"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
-msgid ""
-"Make sure you selected a valid file and you have the proper permissions to "
-"access it."
+msgid "Make sure you selected a valid file and you have the proper permissions to access it."
 msgstr "Файлдың дұрыстығына және өзіңіздің оған рұқсатына көз жеткізіңіз."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
@@ -398,7 +386,8 @@ msgstr "Тазарту"
 msgid "Clear the content of the composition"
 msgstr "Жобаны тазарту"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:195
 msgid "Rename"
 msgstr "Атын ауыстыру"
@@ -440,7 +429,8 @@ msgstr "Аттас файл жоба ішінде бар болып тұр."
 msgid "New directory"
 msgstr "Жаңа бума"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:966
 #, c-format
 msgid "Data %s~%d"
@@ -448,12 +438,8 @@ msgstr "Мәліметтер %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1202
 #, c-format
-msgid ""
-"%s cannot be added to the composition, because it exceeds the maximum "
-"allowed file size for iso9660."
-msgstr ""
-"%s жобаға қосуға болмайды, өйткені оның өлшемі iso9660 үшін рұқсат етілген "
-"максималды өлшемнен артық."
+msgid "%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."
+msgstr "%s жобаға қосуға болмайды, өйткені оның өлшемі iso9660 үшін рұқсат етілген максималды өлшемнен артық."
 
 #: ../xfburn/xfburn-data-composition.c:1294
 #: ../xfburn/xfburn-audio-composition.c:1321
@@ -463,21 +449,17 @@ msgstr "Үй бумасын қосу"
 #: ../xfburn/xfburn-data-composition.c:1295
 #: ../xfburn/xfburn-audio-composition.c:1322
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Сіз үй бумаңызды жобаға қосуды таңдадыңыз. Бұл әрекет ұзақ уақытты алуы "
-"мүмкін, немесе мәліметтер дискке сыймайтын жағдай болуы мүмкін.\n"
+"Сіз үй бумаңызды жобаға қосуды таңдадыңыз. Бұл әрекет ұзақ уақытты алуы мүмкін, немесе мәліметтер дискке сыймайтын жағдай болуы мүмкін.\n"
 "\n"
 "Жалғастыруды қалайсыз ба?"
 
 #: ../xfburn/xfburn-data-composition.c:1462
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added."
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
 msgstr "\"%s\" атауы бар файл бумада бар болып тұр, файл жобаға қосылмады."
 
 #. The first string is the renamed name, the second one the original name
@@ -538,19 +520,15 @@ msgstr "Жылдамдық тізімін тазарту"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to "
-"<i>xfburn@xfce.org</i> together with the console output to increase the "
-"chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>Құрылғы үшін жылдамдықтар тізімін алу мүмкін емес.</b>\n"
 "\n"
-"Кейбір түрлерімен болатын бұл белгілі ақаулық. Ол туралы <i>xfburn@xfce.org</"
-"i> адресіне консольдегі шығысын қосып, хабарласыңыз.\n"
+"Кейбір түрлерімен болатын бұл белгілі ақаулық. Ол туралы <i>xfburn@xfce.org</i> адресіне консольдегі шығысын қосып, хабарласыңыз.\n"
 "\n"
 "Жазуды жалғастыруға болады, мәселелер болса, хабарласыңыз.\n"
 "\n"
@@ -609,9 +587,8 @@ msgid "Inserted disc is already blank"
 msgstr "Салынған диск бос болып тұр"
 
 #: ../xfburn/xfburn-device-box.c:680
-#, fuzzy
 msgid "Auto"
-msgstr "Осы тур_алы"
+msgstr "Авто"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
@@ -684,15 +661,13 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
 "Мүмкін, диск(тер) қолдануда, және оларға рұқсат жоқ.\n"
 "\n"
 "Оларды тіркеуден босатып, қолданбаны қайта қосыңыз.\n"
 "\n"
-"Құрылғыда диск болмаса, ағымдағы пайдаланушының құрылғыға құқығы бар екеніне "
-"көз жеткізіңіз."
+"Құрылғыда диск болмаса, ағымдағы пайдаланушының құрылғыға құқығы бар екеніне көз жеткізіңіз."
 
 #: ../xfburn/xfburn-main.c:345
 #, c-format
@@ -712,8 +687,10 @@ msgstr "'%s' бейне файлы жоқ болып тұр."
 msgid "_File"
 msgstr "_Файл"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -723,11 +700,14 @@ msgstr "Жаңа мәліметтер жобасы"
 msgid "New audio composition"
 msgstr "Жаңа аудио жобасы"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -789,7 +769,8 @@ msgstr "CD-RW тазарту"
 msgid "Copy Data CD"
 msgstr "Мәліметтер CD-ін көшіру"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Бейнені жазу"
@@ -854,11 +835,8 @@ msgid "Determine whether the close button is visible"
 msgstr "Жабу батырмасының көрінуін басқарады"
 
 #: ../xfburn/xfburn-perform-burn.c:158
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Мультисессиялық дискіге осы режимде мәліметті қосуға болмайды (орнына TAO "
-"қолданыңыз)."
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr "Мультисессиялық дискіге осы режимде мәліметті қосуға болмайды (орнына TAO қолданыңыз)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
