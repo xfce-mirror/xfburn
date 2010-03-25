@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn git version\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-02 22:14-0700\n"
-"PO-Revision-Date: 2009-09-10 22:43+0200\n"
+"POT-Creation-Date: 2010-03-25 18:01+0100\n"
+"PO-Revision-Date: 2010-03-26 00:15+0200\n"
 "Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,8 @@ msgstr "Κενός δίσκος"
 msgid "Burning device"
 msgstr "Συσκευή εγγραφής"
 
-#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:190
+#: ../xfburn/xfburn-blank-dialog.c:222
+#: ../xfburn/xfburn-device-box.c:190
 msgid "Blank mode"
 msgstr "Τύπος διαγραφής"
 
@@ -123,7 +124,8 @@ msgstr "Διαγραφή δίσκου..."
 msgid "Done"
 msgstr "Ολοκληρώθηκε"
 
-#: ../xfburn/xfburn-blank-dialog.c:443 ../xfburn/xfburn-perform-burn.c:372
+#: ../xfburn/xfburn-blank-dialog.c:443
+#: ../xfburn/xfburn-perform-burn.c:372
 #: ../xfburn/xfburn-progress-dialog.c:603
 msgid "Failure"
 msgstr "Απέτυχε"
@@ -137,14 +139,13 @@ msgid "Unable to grab the drive."
 msgstr "Αδυναμία προσάρτησης του επιλεγμένου οδηγού."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
-#, fuzzy
 msgid "Image"
-msgstr "Εικόνες ISO"
+msgstr "Εικόνα"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
 #, fuzzy
 msgid "Show volume name"
-msgstr "Όνομα τόμου:"
+msgstr "Εισάγετε το νέο όνομα:"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
 msgid "Show a text entry for the name of the volume"
@@ -262,25 +263,16 @@ msgid "Burning image..."
 msgstr "Εγγραφή εικόνας..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded"
-"\">Παρακαλώ επιλέξτε μία εικόνα προς εγγραφή</span>"
+msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Παρακαλώ επιλέξτε μία εικόνα προς εγγραφή</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:483
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Αδυναμία προσθήκης αρχείων στο δίσκο πολλών συνεδριών σε αυτή την κατάσταση "
-"εγγραφής (χρησιμοποιείστε ΤΑΟ αντί αυτού)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr "Αδυναμία προσθήκης αρχείων στο δίσκο πολλών συνεδριών σε αυτή την κατάσταση εγγραφής (χρησιμοποιείστε ΤΑΟ αντί αυτού)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:487
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"Εντοπίστηκε κλειστός δίσκος με δεδομένα. Χρειάζεται κενός ή δίσκος στον "
-"οποίο μπορεί να γίνει προσθήκη"
+msgstr "Εντοπίστηκε κλειστός δίσκος με δεδομένα. Χρειάζεται κενός ή δίσκος στον οποίο μπορεί να γίνει προσθήκη"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:489
 msgid "No disc detected in drive"
@@ -299,12 +291,8 @@ msgid "Failed to get image size"
 msgstr "Αποτυχία κατά τον υπολογισμού του μεγέθους της εικόνας"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
-msgid ""
-"Make sure you selected a valid file and you have the proper permissions to "
-"access it."
-msgstr ""
-"Σιγουρευτείτε ότι έχετε επιλέξει ένα έγκυρο αρχείο και έχετε ρυθμίσει τα "
-"κατάλληλα δικαιώματα πρόσβασης."
+msgid "Make sure you selected a valid file and you have the proper permissions to access it."
+msgstr "Σιγουρευτείτε ότι έχετε επιλέξει ένα έγκυρο αρχείο και έχετε ρυθμίσει τα κατάλληλα δικαιώματα πρόσβασης."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -453,12 +441,8 @@ msgstr "Δεδομένα %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1202
 #, c-format
-msgid ""
-"%s cannot be added to the composition, because it exceeds the maximum "
-"allowed file size for iso9660."
-msgstr ""
-"%s δεν μπορεί να προστεθεί στην σύνθεση, επειδή ξεπερνάει το μέγιστο "
-"επιτρεπτό μέγεθος αρχείου για iso9660."
+msgid "%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."
+msgstr "%s δεν μπορεί να προστεθεί στην σύνθεση, επειδή ξεπερνάει το μέγιστο επιτρεπτό μέγεθος αρχείου για iso9660."
 
 #: ../xfburn/xfburn-data-composition.c:1294
 #: ../xfburn/xfburn-audio-composition.c:1321
@@ -468,24 +452,17 @@ msgstr "Προσθήκη καταλόγου χρήστη"
 #: ../xfburn/xfburn-data-composition.c:1295
 #: ../xfburn/xfburn-audio-composition.c:1322
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Είστε έτοιμοι να προσθέσετε το προσωπικό σας κατάλογο στην σύνθεση. Αυτό "
-"πιθανά να πάρει αρκετή ώρα, και επίσης να είναι πολύ μεγάλο για να χωρέσει "
-"σε ένα δίσκο.\n"
+"Είστε έτοιμοι να προσθέσετε το προσωπικό σας κατάλογο στην σύνθεση. Αυτό πιθανά να πάρει αρκετή ώρα, και επίσης να είναι πολύ μεγάλο για να χωρέσει σε ένα δίσκο.\n"
 "Είστε σίγουροι ότι θέλετε να προχωρήσετε;"
 
 #: ../xfburn/xfburn-data-composition.c:1462
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added."
-msgstr ""
-"Υπάρχει ήδη ένα αρχείο με όνομα \"%s\" στον κατάλογο, το αρχείο δεν έχει "
-"προστεθεί."
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
+msgstr "Υπάρχει ήδη ένα αρχείο με όνομα \"%s\" στον κατάλογο, το αρχείο δεν έχει προστεθεί."
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1886
@@ -493,7 +470,8 @@ msgstr ""
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "Διπλό όνομα αρχείου '%s' για '%s'"
 
-#: ../xfburn/xfburn-device-box.c:174 ../xfburn/xfburn-device-box.c:175
+#: ../xfburn/xfburn-device-box.c:174
+#: ../xfburn/xfburn-device-box.c:175
 msgid "Show writers only"
 msgstr "Εμφάνιση μόνο εγγραφέων"
 
@@ -502,16 +480,18 @@ msgid "Show speed selection"
 msgstr "Εμφάνιση επιλογής ταχύτητας"
 
 #: ../xfburn/xfburn-device-box.c:179
+#, fuzzy
 msgid "Show speed selection combo"
-msgstr ""
+msgstr "Εμφάνιση της σελίδας των ιδιοτήτων [επιλογή καναλιού ] του συντονιστή."
 
 #: ../xfburn/xfburn-device-box.c:182
 msgid "Show mode selection"
 msgstr "Εμφάνιση επιλογής λειτουργίας"
 
 #: ../xfburn/xfburn-device-box.c:183
+#, fuzzy
 msgid "Show mode selection combo"
-msgstr ""
+msgstr "Εμφάνιση της σελίδας των ιδιοτήτων [επιλογή καναλιού ] του συντονιστή."
 
 #: ../xfburn/xfburn-device-box.c:186
 msgid "Is it a valid combination"
@@ -519,16 +499,14 @@ msgstr "Είναι έγκυρη σύνθεση"
 
 #: ../xfburn/xfburn-device-box.c:187
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
-"Είναι έγκυρος ο συνδυασμός υλικού και δίσκου ώστε να γράψει την σύνθεση;"
+msgstr "Είναι έγκυρος ο συνδυασμός υλικού και δίσκου ώστε να γράψει την σύνθεση;"
 
 #: ../xfburn/xfburn-device-box.c:191
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"Η κενή κατάσταση εμφανίζει διαφορετικό μήνυμα κατάστασης δίσκου από την "
-"κανονική κατάσταση"
+msgstr "Η κενή κατάσταση εμφανίζει διαφορετικό μήνυμα κατάστασης δίσκου από την κανονική κατάσταση"
 
-#: ../xfburn/xfburn-device-box.c:194 ../xfburn/xfburn-device-box.c:195
+#: ../xfburn/xfburn-device-box.c:194
+#: ../xfburn/xfburn-device-box.c:195
 msgid "Accept only CDs as valid discs"
 msgstr "Δεχόνται μόνο CDs ως έγκυροι δίσκοι"
 
@@ -548,23 +526,17 @@ msgstr "Κενή λίστα ταχυτήτων"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to "
-"<i>xfburn@xfce.org</i> together with the console output to increase the "
-"chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>Αδυναμία ανάκτησης της λίστας ταχυτήτων του οδηγού.</b>\n"
 "\n"
-"Αυτό είναι ένα γνωστό σφάλμα, το οποίο συμβαίνει σε μερικούς οδηγούς. "
-"Παρακαλώ αναφέρατε το στο<i>xfburn@xfce.org</i>μαζί με το αποτέλεσμα της "
-"κονσόλας για να αυξηθούν οι πιθανότητες επίλυσής του.\n"
+"Αυτό είναι ένα γνωστό σφάλμα, το οποίο συμβαίνει σε μερικούς οδηγούς. Παρακαλώ αναφέρατε το στο<i>xfburn@xfce.org</i>μαζί με το αποτέλεσμα της κονσόλας για να αυξηθούν οι πιθανότητες επίλυσής του.\n"
 "\n"
-"Η εγγραφή θα πρέπει να δουλέψει, αλλά εάν έχετε προβλήματα παρόλαυτά, "
-"παρακαλώ γνωστοποιήσετε τα μας.\n"
+"Η εγγραφή θα πρέπει να δουλέψει, αλλά εάν έχετε προβλήματα παρόλαυτά, παρακαλώ γνωστοποιήσετε τα μας.\n"
 "\n"
 "<i>Ευχαριστούμε!</i>"
 
@@ -584,7 +556,8 @@ msgstr "Μέγιστο"
 msgid "Drive can't burn on the inserted disc"
 msgstr "Ο οδηγός δεν μπορεί να γράψει τον επιλεγμένο δίσκο"
 
-#: ../xfburn/xfburn-device-box.c:595 ../xfburn/xfburn-device-box.c:641
+#: ../xfburn/xfburn-device-box.c:595
+#: ../xfburn/xfburn-device-box.c:641
 msgid "Drive is empty"
 msgstr "Ο οδηγός είναι κενός"
 
@@ -596,15 +569,18 @@ msgstr "Λυπάμαι, οι πολλαπλές συνεδρίες δεν υπο
 msgid "Inserted disc is full"
 msgstr "Ο δίσκος που έχετε εισάγει είναι γεμάτος"
 
-#: ../xfburn/xfburn-device-box.c:604 ../xfburn/xfburn-device-box.c:647
+#: ../xfburn/xfburn-device-box.c:604
+#: ../xfburn/xfburn-device-box.c:647
 msgid "Inserted disc is unsuitable"
 msgstr "Ο δίσκος που έχετε εισάγει δεν είναι κατάλληλος"
 
-#: ../xfburn/xfburn-device-box.c:607 ../xfburn/xfburn-device-box.c:650
+#: ../xfburn/xfburn-device-box.c:607
+#: ../xfburn/xfburn-device-box.c:650
 msgid "Cannot access drive (it might be in use)"
 msgstr "Αδυναμία πρόσβασης στον οδηγό (μπορεί να είναι σε χρήση)"
 
-#: ../xfburn/xfburn-device-box.c:612 ../xfburn/xfburn-device-box.c:653
+#: ../xfburn/xfburn-device-box.c:612
+#: ../xfburn/xfburn-device-box.c:653
 msgid "Error determining disc"
 msgstr "Σφάλμα προσδιορισμού δίσκου"
 
@@ -621,11 +597,11 @@ msgid "Inserted disc is already blank"
 msgstr "Ο δίσκος που εισάγατε είναι ήδη κενός"
 
 #: ../xfburn/xfburn-device-box.c:680
-#, fuzzy
 msgid "Auto"
-msgstr "_Περί"
+msgstr "Αυτόματο"
 
-#: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
+#: ../xfburn/xfburn-device-list.c:206
+#: ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
 msgstr "Αριθμός συσκευών εγγραφής στο σύστημα"
 
@@ -637,11 +613,13 @@ msgstr "Αριθμός των οδηγών στο σύστημα"
 msgid "Number of drives in the system (readers and writers)"
 msgstr "Ο αριθμός των οδηγών στο σύστημα (ανάγνωσης και εγγραφής)"
 
-#: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
+#: ../xfburn/xfburn-device-list.c:212
+#: ../xfburn/xfburn-device-list.c:213
 msgid "List of devices"
 msgstr "Λίστα συσκευών"
 
-#: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
+#: ../xfburn/xfburn-device-list.c:215
+#: ../xfburn/xfburn-device-list.c:216
 msgid "Currently selected device"
 msgstr "Επιλεγμένη συσκευή για την ώρα"
 
@@ -659,7 +637,8 @@ msgstr "Αρχείο"
 msgid "Type"
 msgstr "Τύπος"
 
-#: ../xfburn/xfburn-fs-browser.c:95 ../xfburn/xfburn-fs-browser.c:284
+#: ../xfburn/xfburn-fs-browser.c:95
+#: ../xfburn/xfburn-fs-browser.c:284
 msgid "Filesystem"
 msgstr "Σύστημα αρχείων"
 
@@ -669,7 +648,8 @@ msgstr "Σύστημα αρχείων"
 msgid "%s's home"
 msgstr "%s"
 
-#: ../xfburn/xfburn-main.c:206 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:206
+#: ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -680,8 +660,7 @@ msgid ""
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 "%s: %s\n"
-"Δοκιμάστε %s --help για να δείτε μία πλήρη λίστα με όλες τις διαθέσιμες "
-"επιλογές της γραμμής εντολών.\n"
+"Δοκιμάστε %s --help για να δείτε μία πλήρη λίστα με όλες τις διαθέσιμες επιλογές της γραμμής εντολών.\n"
 
 #: ../xfburn/xfburn-main.c:224
 msgid "Unable to initialize the burning backend."
@@ -697,15 +676,13 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
 "Πιθανά ο δίσκος(οι) είναι σε χρήση, και δεν υπάρχει πρόσβαση.\n"
 "\n"
 "Παρακαλώ αποπροσαρτήσετε το και επανεκκίνηστε την εφαρμογή.\n"
 "\n"
-"Εάν δεν υπάρχει δίσκος στον οδηγό, ελέγξτε ότι έχετε δικαιώματα ανάγνωσης "
-"και εγγραφής στον οδηγό ως χρήστης."
+"Εάν δεν υπάρχει δίσκος στον οδηγό, ελέγξτε ότι έχετε δικαιώματα ανάγνωσης και εγγραφής στον οδηγό ως χρήστης."
 
 #: ../xfburn/xfburn-main.c:345
 #, c-format
@@ -835,7 +812,8 @@ msgstr "Επεξεργαστής εργαλειοθήκης"
 msgid "Another cd burning GUI"
 msgstr "Ένα ακόμη εργαλείο εγγραφής cd"
 
-#: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
+#: ../xfburn/xfburn-main-window.c:536
+#: ../xfburn/xfburn-main-window.c:537
 msgid "Author/Maintainer"
 msgstr "Δημιουργός"
 
@@ -865,16 +843,12 @@ msgid "Determine whether the close button is visible"
 msgstr "Καθορισμός εάν το κουμπί κλεισίματος θα είναι εμφανές"
 
 #: ../xfburn/xfburn-perform-burn.c:158
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Αδυναμία προσθήκης δεδομένων στο δίσκο πολλαπλών συνεδριών σε αυτή την "
-"κατάσταση εγγραφής (χρησιμοποίηση ΤΑΟ αντ'αυτού)."
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr "Αδυναμία προσθήκης δεδομένων στο δίσκο πολλαπλών συνεδριών σε αυτή την κατάσταση εγγραφής (χρησιμοποίηση ΤΑΟ αντ'αυτού)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-"Εντοπίστηκε κλειστός δίσκος, χρειάζεται κενός ή δίσκος που να δέχεται αρχεία."
+msgstr "Εντοπίστηκε κλειστός δίσκος, χρειάζεται κενός ή δίσκος που να δέχεται αρχεία."
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
@@ -893,7 +867,8 @@ msgstr "Δεν υπάρχει αρκετός διαθέσιμος χώρος σ�
 msgid "Burning track %2d/%d..."
 msgstr "Εγγραφή ίχνους %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
+#: ../xfburn/xfburn-perform-burn.c:229
+#: ../xfburn/xfburn-perform-burn.c:294
 msgid "Burning composition..."
 msgstr "Εγγραφή σύνθεσης..."
 
@@ -925,7 +900,8 @@ msgstr "τελείωσε"
 msgid "aborted"
 msgstr "ακυρώθηκε"
 
-#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:199
+#: ../xfburn/xfburn-perform-burn.c:289
+#: ../xfburn/xfburn-progress-dialog.c:199
 #: ../xfburn/xfburn-progress-dialog.c:216
 #: ../xfburn/xfburn-progress-dialog.c:226
 #: ../xfburn/xfburn-progress-dialog.c:309
@@ -1048,9 +1024,7 @@ msgstr "FIFO buffer μέγεθος (σε kb)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:463
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr ""
-"Η αλλαγή της ρύθμισης θα τεθεί σε λειτουργίας μετά την επανεκκίνηση του "
-"προγράμματος."
+msgstr "Η αλλαγή της ρύθμισης θα τεθεί σε λειτουργίας μετά την επανεκκίνηση του προγράμματος."
 
 #: ../xfburn/xfburn-progress-dialog.c:181
 msgid "Initializing..."
@@ -1221,9 +1195,9 @@ msgid "File %s does not contain uncompressed PCM wave audio"
 msgstr "Το αρχείο %s δεν περιέχει ασυμπίεστο PCM μουσικό αρχείο"
 
 #: ../xfburn/xfburn-transcoder-basic.c:207
-#, c-format
+#, fuzzy, c-format
 msgid "Could not stat %s: %s"
-msgstr ""
+msgstr "Αδύνατη η προσπέλαση του `%s': %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:238
 #, c-format
@@ -1294,73 +1268,90 @@ msgstr ""
 msgid "Failed to change songs while transcoding"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
+#: ../xfburn/xfburn-transcoder.c:124
+#: ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
 #, c-format
 msgid "not implemented"
 msgstr "δεν έχει υλοποιηθεί"
 
-#: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
+#: ../xfburn/xfburn-device.c:242
+#: ../xfburn/xfburn-device.c:243
 msgid "Display name"
 msgstr "Εμφάνιση ονόματος"
 
-#: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
+#: ../xfburn/xfburn-device.c:245
+#: ../xfburn/xfburn-device.c:246
 msgid "Device address"
 msgstr "Διεύθυνση συσκευής"
 
-#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
+#: ../xfburn/xfburn-device.c:248
+#: ../xfburn/xfburn-device.c:249
 msgid "Burn speeds supported by the device"
 msgstr "Η ταχύτητα εγγραφής που υποστηρίζεται από την συσκευή"
 
-#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
+#: ../xfburn/xfburn-device.c:251
+#: ../xfburn/xfburn-device.c:252
 msgid "Disc status"
 msgstr "Κατάσταση δίσκου"
 
-#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
+#: ../xfburn/xfburn-device.c:254
+#: ../xfburn/xfburn-device.c:255
 msgid "Profile no. as reported by libburn"
 msgstr "Αριθμός προφίλ όπως αναφέρθηκε από το libburn"
 
-#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
+#: ../xfburn/xfburn-device.c:257
+#: ../xfburn/xfburn-device.c:258
 msgid "Profile name as reported by libburn"
 msgstr "Το όνομα του προφίλ όπως αναφέρθηκε από το libburn"
 
-#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
+#: ../xfburn/xfburn-device.c:260
+#: ../xfburn/xfburn-device.c:261
 msgid "Is the disc erasable"
 msgstr "Μπορεί ο δίσκος να διαγραφεί"
 
-#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
+#: ../xfburn/xfburn-device.c:263
+#: ../xfburn/xfburn-device.c:264
 msgid "Can burn CDR"
 msgstr "Μπορεί να γράψει CDR"
 
-#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
+#: ../xfburn/xfburn-device.c:266
+#: ../xfburn/xfburn-device.c:267
 msgid "Can burn CDRW"
 msgstr "Μπορεί να γράψει CDRW"
 
-#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
+#: ../xfburn/xfburn-device.c:269
+#: ../xfburn/xfburn-device.c:270
 msgid "Can burn DVDR"
 msgstr "Μπορεί να γράψει DVDR"
 
-#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
+#: ../xfburn/xfburn-device.c:272
+#: ../xfburn/xfburn-device.c:273
 msgid "Can burn DVDPLUSR"
 msgstr "Μπορεί να γράψει DVDPLUSR"
 
-#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
+#: ../xfburn/xfburn-device.c:275
+#: ../xfburn/xfburn-device.c:276
 msgid "Can burn DVDRAM"
 msgstr "Μπορεί να γράψει DVDRAM"
 
-#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
+#: ../xfburn/xfburn-device.c:278
+#: ../xfburn/xfburn-device.c:279
 msgid "libburn TAO block types"
 msgstr "τύποι μπλοκ libburn TAO"
 
-#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
+#: ../xfburn/xfburn-device.c:281
+#: ../xfburn/xfburn-device.c:282
 msgid "libburn SAO block types"
 msgstr "τύποι μπλοκ libburn SAO"
 
-#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
+#: ../xfburn/xfburn-device.c:284
+#: ../xfburn/xfburn-device.c:285
 msgid "libburn RAW block types"
 msgstr "τύποι μπλοκ libburn RAW"
 
-#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
+#: ../xfburn/xfburn-device.c:287
+#: ../xfburn/xfburn-device.c:288
 msgid "libburn PACKET block types"
 msgstr "τύποι μπλοκ libburn PACKET"
 
@@ -1376,8 +1367,3 @@ msgstr "Εγγραφή εικόνας (xfburn)"
 msgid "CD and DVD burning application"
 msgstr "Εφαρμογή εγγραφής CD και DVD"
 
-#~ msgid "The write mode is not currently supported"
-#~ msgstr "Η κατάσταση εγγραφής για την ώρα δεν υποστήριζεται"
-
-#~ msgid "Is the device accessible"
-#~ msgstr "Είναι η συσκευή προσβάσιμη"
