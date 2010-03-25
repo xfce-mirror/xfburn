@@ -1,1474 +1,549 @@
-# Latvian translations for xfburn package.
-# Copyright (C) 2005-2006 Jean-FranÃ§ois Wauthy
-# This file is distributed under the same license as the xfburn package.
+# Latvian translation of the xfce4-dict-plugin package.
+# opyright (C) 2006-2007 Enrico TrÃ¶ger
+# This file is distributed under the same license as the fce4-dict-plugin package.
 #
 # Rihards Prieditis <rprieditis@inbox.lv>, 2007.
 # Rihards Prieditis <rprieditis@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn 0.0.3svn\n"
+"Project-Id-Version: xfce4-dict-plugin 0.3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-02 22:14-0700\n"
-"PO-Revision-Date: 2009-10-16 17:35+0100\n"
-"Last-Translator: Rihards Prieditis <rprieditis@gmail.com>\n"
+"POT-Creation-Date: 2010-03-25 18:01+0100\n"
+"PO-Revision-Date: 2010-03-25 21:47+0100\n"
+"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>\n"
 "Language-Team: Latvian <translation-team-lv@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
-"2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
-#: ../xfburn/xfburn-adding-progress.c:111
-msgid "Adding files to the composition"
-msgstr "Pieveinot failus kompilācijai"
+#: ../panel-plugin/xfce4-dict-plugin.desktop.in.in.h:1
+msgid "A plugin to query different dictionaries."
+msgstr "Spraudnis, lai vaicātu dažādām vārdnīcām."
 
-#: ../xfburn/xfburn-blank-dialog.c:71
-msgid "Quick Blank"
-msgstr "Ātri tukšot"
+#: ../panel-plugin/xfce4-dict-plugin.desktop.in.in.h:2
+#: ../src/xfce4-dict.desktop.in.h:2
+#: ../lib/gui.c:627
+#: ../lib/prefs.c:270
+msgid "Dictionary"
+msgstr "Vārdnīca"
 
-#: ../xfburn/xfburn-blank-dialog.c:72
-msgid "Full Blank (slow)"
-msgstr "Pilnā tukšošana (lēni)"
-
-#: ../xfburn/xfburn-blank-dialog.c:73
-msgid "Quick Format"
-msgstr "Ātrā formatēšana"
-
-#: ../xfburn/xfburn-blank-dialog.c:74
-msgid "Full Format"
-msgstr "Pilnā formatēšana"
-
-#: ../xfburn/xfburn-blank-dialog.c:75
-msgid "Quick Deformat"
-msgstr "Ātrā pārformēšana"
-
-#: ../xfburn/xfburn-blank-dialog.c:76
-msgid "Full Deformat (slow)"
-msgstr "Pilnā pārformēšana (lēni)"
-
-#: ../xfburn/xfburn-blank-dialog.c:149
-msgid "Eject the disc"
-msgstr "Izgrūst disku"
-
-#: ../xfburn/xfburn-blank-dialog.c:150
-msgid "Default value for eject checkbox"
-msgstr "Noklusēta vērtība priekš izgrūšanas atzīmes lodziņa"
-
-#: ../xfburn/xfburn-blank-dialog.c:197
-msgid "Blank Disc"
-msgstr "Tukšs disks"
-
-#: ../xfburn/xfburn-blank-dialog.c:209
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:195
-#: ../xfburn/xfburn-burn-image-dialog.c:191
-#: ../xfburn/xfburn-copy-cd-dialog.c:131
-#: ../xfburn/xfburn-copy-dvd-dialog.c:131
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:159
-msgid "Burning device"
-msgstr "Dedzināšanas ierīce"
-
-#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:190
-msgid "Blank mode"
-msgstr "Tukšais režīms"
-
-#: ../xfburn/xfburn-blank-dialog.c:230
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
-#: ../xfburn/xfburn-burn-image-dialog.c:199
-#: ../xfburn/xfburn-copy-cd-dialog.c:139
-#: ../xfburn/xfburn-copy-dvd-dialog.c:139
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:193
-msgid "Options"
-msgstr "Uzstādījumi"
-
-#: ../xfburn/xfburn-blank-dialog.c:234
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
-#: ../xfburn/xfburn-burn-image-dialog.c:203
-#: ../xfburn/xfburn-copy-cd-dialog.c:143
-#: ../xfburn/xfburn-copy-dvd-dialog.c:143
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:197
-msgid "E_ject disk"
-msgstr "I_zgrūst disku"
-
-#: ../xfburn/xfburn-blank-dialog.c:244
-msgid "_Blank"
-msgstr "_Tukšs"
-
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
-#: ../xfburn/xfburn-blank-dialog.c:355
-msgid "The inserted disc is already blank."
-msgstr "Ievietotais disks, jau ir tukšs."
-
-#. these ones we can blank
-#: ../xfburn/xfburn-blank-dialog.c:361
+#: ../panel-plugin/xfce4-dict-plugin.c:346
+#: ../panel-plugin/xfce4-dict-plugin.c:472
+#: ../src/xfce4-dict.c:204
+#: ../lib/spell.c:243
+#: ../lib/gui.c:411
 msgid "Ready"
 msgstr "Gatavs"
 
-#: ../xfburn/xfburn-blank-dialog.c:364
-msgid "No disc detected in the drive."
-msgstr "Iekārtā nav noteikts disks."
+#: ../panel-plugin/xfce4-dict-plugin.c:412
+msgid "Look up a word"
+msgstr "Meklēt vārdu"
 
-#: ../xfburn/xfburn-blank-dialog.c:373
-msgid "Disc is not erasable."
-msgstr "Datu nesējs nav dzēšams."
+#: ../panel-plugin/xfce4-dict-plugin.c:443
+#: ../lib/gui.c:651
+msgid "Search term"
+msgstr "Meklēšanas termins"
 
-#: ../xfburn/xfburn-blank-dialog.c:413
-msgid "Blanking disc..."
-msgstr "Diska tukšošana..."
+#: ../src/xfce4-dict.c:51
+msgid "Search the given text using a Dict server(RFC 2229)"
+msgstr "Meklēt doto vārdu izmantojot Dict serveri (RFC 2229)"
 
-#: ../xfburn/xfburn-blank-dialog.c:440
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:512
-#: ../xfburn/xfburn-perform-burn.c:366
+#: ../src/xfce4-dict.c:52
+msgid "Search the given text using a web-based search engine"
+msgstr "Meklēt doto tekstu izmantojot tīmekļa-bāzes meklēšanas dzinēju"
+
+#: ../src/xfce4-dict.c:53
+msgid "Check the given text with a spell checker"
+msgstr "Pārbaudīt doto tekstu ar pareizrakstības pārbaudītāju"
+
+#: ../src/xfce4-dict.c:54
+msgid "Grab the focus on the text field in the panel"
+msgstr "Noķert fokusu paneļa teksta laukā"
+
+#: ../src/xfce4-dict.c:55
+msgid "Start stand-alone application even if the panel plugin is loaded"
+msgstr "Palaist lietotni pat ja paneļa spraudnis ir ielādēts"
+
+#: ../src/xfce4-dict.c:56
+msgid "Grabs the PRIMARY selection content and uses it as search text"
+msgstr "Paķer PRIMĀRO atlasi saturam un izmanto to kā meklēšanas tekstu"
+
+#: ../src/xfce4-dict.c:57
+msgid "Be verbose"
+msgstr "Būt detalizētam"
+
+#: ../src/xfce4-dict.c:58
+msgid "Show version information"
+msgstr "Rādīt versijas informāciju"
+
+#: ../src/xfce4-dict.c:131
+msgid "[TEXT]"
+msgstr "[TEKSTS]"
+
+#: ../src/xfce4-dict.c:147
 #, c-format
-msgid "Done"
-msgstr "Darīts"
+msgid "Please report bugs to <%s>."
+msgstr "Lūdzu ziņojiet par kļūdām uz <%s>."
 
-#: ../xfburn/xfburn-blank-dialog.c:443 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:603
-msgid "Failure"
+#: ../src/xfce4-dict.desktop.in.h:1
+#: ../lib/gui.c:847
+msgid "A client program to query different dictionaries."
+msgstr "Klienta programma, lai vaicātu dažādas vārdnīcas."
+
+#: ../src/xfce4-dict.desktop.in.h:3
+msgid "Dictionary Client"
+msgstr "Vārdnīcu klients"
+
+#: ../lib/spell.c:75
+msgid "Spell Checker Results:"
+msgstr "Pareizrakstības pārbaudītāja resultāti:"
+
+#: ../lib/spell.c:101
+#, c-format
+msgid "%d suggestion found."
+msgid_plural "%d suggestions found."
+msgstr[0] "%d ierosinājumi atrasti."
+msgstr[1] "%d definīcija(as) atrasta(as)."
+msgstr[2] "%d definīcija(as) atrasta(as)."
+
+#: ../lib/spell.c:105
+#, c-format
+msgid "Suggestions for \"%s\" (%s):"
+msgstr "Ierosinājumi priekš \"%s\" (%s):"
+
+#: ../lib/spell.c:122
+#, c-format
+msgid "\"%s\" is spelled correctly (%s)."
+msgstr "\"%s\" ir sintaktiski pareizs (%s)."
+
+#: ../lib/spell.c:134
+#, c-format
+msgid "No suggestions could be found for \"%s\" (%s)."
+msgstr "Netika atrasti nekādi ierosinājumi priekš \"%s\" (%s)."
+
+#. translation hint:
+#. * Error while executing <spell command, e.g. "aspell"> (<error message>)
+#: ../lib/spell.c:164
+#, c-format
+msgid "Error while executing \"%s\" (%s)."
+msgstr "Kļūda izpildot \"%s\" (%s)."
+
+#: ../lib/spell.c:202
+msgid "Please set the spell check command in the preferences dialog."
+msgstr "Lūdzu uzstādiet pareizrakstības pārbaudes komandu uzstādījumu logā."
+
+#: ../lib/spell.c:208
+#: ../lib/common.c:224
+msgid "Invalid input"
+msgstr "Nederīgs ievads"
+
+#: ../lib/spell.c:247
+#, c-format
+msgid "Process failed (%s)"
+msgstr "Process neizdevās (%s)"
+
+#: ../lib/speedreader.c:80
+#: ../lib/speedreader.c:665
+msgid "P_ause"
+msgstr "_Pauzēt"
+
+#: ../lib/speedreader.c:81
+msgid "_Resume"
+msgstr "_Atsākt"
+
+#: ../lib/speedreader.c:263
+msgid "Running"
+msgstr "Skrien"
+
+#: ../lib/speedreader.c:266
+msgid "Finished"
+msgstr "Pabeidzis"
+
+#: ../lib/speedreader.c:274
+msgid "Speed Reader"
+msgstr "Ātruma lasītājs"
+
+#: ../lib/speedreader.c:369
+msgid "You must enter a text."
+msgstr "Jums jāievada teksts."
+
+#: ../lib/speedreader.c:506
+msgid "Choose a file to load"
+msgstr "Izvēlaties failu, kuru ielādēt"
+
+#: ../lib/speedreader.c:535
+#, c-format
+msgid "The file '%s' could not be loaded."
+msgstr "Fails \"%s\" netika ielādēts."
+
+#: ../lib/speedreader.c:553
+#, c-format
+msgid "(display %d word at a time)"
+msgid_plural "(display %d words at a time)"
+msgstr[0] "(attēlo %d vārdus)"
+msgstr[1] "(attēlo %d vārdu)"
+msgstr[2] "(attēlo %d vārdus)"
+
+#: ../lib/speedreader.c:578
+msgid "This is an easy speed reading utility to help train you to read faster. It does this by flashing words at a rapid rate on the screen."
+msgstr "Šī ir viegla ātruma lasīšanas programmiņa, lai palīdzetu trenēties ātrlasīšanā. Tā strāda zibinot vārdus lielā ātrumā uz ekrāna."
+
+#: ../lib/speedreader.c:581
+msgid "_Words per Minute:"
+msgstr "Vārdi minutē:"
+
+#: ../lib/speedreader.c:587
+msgid "_Mark Paragraphs"
+msgstr "Atzī_mēt paragrāfu"
+
+#: ../lib/speedreader.c:594
+msgid "Word _Grouping:"
+msgstr "Vārdu _grupēšana:"
+
+#: ../lib/speedreader.c:610
+msgid "_Font Size:"
+msgstr "_Fonta izmērs:"
+
+#: ../lib/speedreader.c:630
+msgid ""
+"Enter some text here you would like to read.\n"
+"\n"
+"Be relaxed and make yourself comfortable, then press Start to begin speed reading."
+msgstr ""
+"Ievadiet kaut kādu tekstu, kuru vēlaties lasīt.\n"
+"\n"
+"Atslābinieties un ērti iekārtojaties, tad nospiediet Sākt, lai sāktu ātruma lasīšanu."
+
+#: ../lib/speedreader.c:646
+msgid "Load the contents of a file"
+msgstr "Ielādēt faila saturu"
+
+#: ../lib/speedreader.c:654
+msgid "Clear the contents of the text field"
+msgstr "Notīrīt teksta lauka saturu"
+
+#: ../lib/speedreader.c:666
+msgid "_Start"
+msgstr "_Sākt"
+
+#: ../lib/common.c:189
+msgid "The search URL is empty. Please check your preferences."
+msgstr "Meklēšanas URL ir tukšs. Lūdzu pārbaudiet uzstādījumus."
+
+#: ../lib/common.c:195
+msgid "Browser could not be opened. Please check your preferences."
+msgstr "Pārlūks nav atverams. Lūdzu pārbaudiet uzstādījumus."
+
+#: ../lib/common.c:234
+msgid "Invalid non-UTF8 input"
+msgstr "Nederīgs ne-UTF8 ievads"
+
+#: ../lib/common.c:608
+msgid "Error"
 msgstr "Kļūda"
 
-#: ../xfburn/xfburn-blank-dialog.c:460
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:610
-#: ../xfburn/xfburn-burn-image-dialog.c:388
-#: ../xfburn/xfburn-burn-image-dialog.c:556
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:396
-msgid "Unable to grab the drive."
-msgstr "Neizdevās paķert ierīci."
+#: ../lib/common.c:611
+msgid "warning"
+msgstr "brīdinājums"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
-#, fuzzy
-msgid "Image"
-msgstr "ISO attēli"
+#: ../lib/dictd.c:379
+#: ../lib/dictd.c:685
+#: ../lib/dictd.c:694
+#: ../lib/dictd.c:777
+#: ../lib/dictd.c:786
+msgid "Could not connect to server."
+msgstr "Nevarēju savienoties ar serveri."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-#, fuzzy
-msgid "Show volume name"
-msgstr "Sējuma nosaukums :"
+#: ../lib/dictd.c:385
+msgid "The server is not ready."
+msgstr "Serveris nav gatavs."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-msgid "Show a text entry for the name of the volume"
-msgstr ""
+#: ../lib/dictd.c:392
+msgid "Invalid dictionary specified. Please check your preferences."
+msgstr "Norādīta nederīga vārdnīca. Lūdzu pārbaudiet uzstādījumus."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
-msgid "Burn Composition"
-msgstr "Dedzināt kompozīciju"
+#: ../lib/dictd.c:400
+#: ../lib/dictd.c:456
+#: ../lib/dictd.c:808
+msgid "Unknown error while quering the server."
+msgstr "Nezināma kļūda vaicājot serveri."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
-msgid "Composition name"
-msgstr "Kompozīcijas nosaukums"
+#: ../lib/dictd.c:415
+msgid "Dictionary Results:"
+msgstr "Vārdnīcas resultāti:"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:211
-msgid "<small>Would you like to change the default composition name?</small>"
-msgstr ""
-"<small>Vai vēlaties nomainīt noklusētās kompozīcijas nosaukumu?</small>"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
-#: ../xfburn/xfburn-burn-image-dialog.c:208
-#: ../xfburn/xfburn-copy-cd-dialog.c:148
-#: ../xfburn/xfburn-copy-dvd-dialog.c:148
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:202
-msgid "_Dummy write"
-msgstr "_Dumjā rakstīšana"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:240
-#: ../xfburn/xfburn-burn-image-dialog.c:212
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:206
-msgid "Burn_Free"
-msgstr "Brīvā_dedzināšana"
-
-#. create ISO ?
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
-#: ../xfburn/xfburn-copy-cd-dialog.c:157
-#: ../xfburn/xfburn-copy-dvd-dialog.c:157
-msgid "Only create _ISO"
-msgstr "Veidot tikai _ISO"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:221
-msgid "_Burn Composition"
-msgstr "_Dedzināt kompozīciju"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
+#: ../lib/dictd.c:418
 #, c-format
-msgid "Could not create destination ISO file: %s"
-msgstr "Nevarēju izveidot ISO failu: %s"
+msgid "No matches could be found for \"%s\"."
+msgstr "Nekas netika atrasts uz \"%s\"."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
-msgid "Writing ISO..."
-msgstr "ISO rakstīšana..."
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
+#. for translators: the first wildcard is the search term, the second wildcard
+#. * is the name of the preferred web search engine
+#: ../lib/dictd.c:434
 #, c-format
-msgid "An error occured while writing ISO: %s"
-msgstr "Notika kļūda rakstot ISO: %s"
+msgid "Search \"%s\" using \"%s\""
+msgstr "Meklēt \"%s\" izmantojot \"%s\""
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
-msgid "An error occurred in the burn backend."
-msgstr "Notika kļūda rakstīšanas aizmugurē."
+#: ../lib/dictd.c:439
+msgid "Web Search:"
+msgstr "Tīmekļa meklēšana:"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:327
-msgid "The write mode is not supported currently."
-msgstr "Šis rakstīšanas režīms pagaidām netiek atbalstīts."
-
-#. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
-msgid "Could not create ISO source structure."
-msgstr "Nevarēju izveidot ISO avota struktūru."
-
-#: ../xfburn/xfburn-burn-image-dialog.c:156
-msgid "Burn image"
-msgstr "Dedzināt attēlu"
-
-#. file
-#: ../xfburn/xfburn-burn-image-dialog.c:163
-#: ../xfburn/xfburn-burn-image-dialog.c:176
-msgid "Image to burn"
-msgstr "Attēls, kuru dedzināt"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:167
-msgid "All files"
-msgstr "Visi faili"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:171
-msgid "ISO images"
-msgstr "ISO attēli"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:222
-msgid "_Burn image"
-msgstr "_Dedzināt attēlu"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:271
-msgid "Burn mode is not currently implemented."
-msgstr "Šis rakstīšanas režīms pagaidām nav izstrādāts."
-
-#: ../xfburn/xfburn-burn-image-dialog.c:322
-#: ../xfburn/xfburn-burn-image-dialog.c:351
-msgid "An error occurred in the burn backend"
-msgstr "Notika kļūda dedzināšanas aizmugurē"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:335
-msgid "Unable to determine image size."
-msgstr "Nevarēju noteikt attēla izmēru."
-
-#: ../xfburn/xfburn-burn-image-dialog.c:342
-msgid "Cannot open image."
-msgstr "Nevaru atvērt attēlu."
-
-#: ../xfburn/xfburn-burn-image-dialog.c:379
-msgid "Burning image..."
-msgstr "Attēla dedzināšana..."
-
-#: ../xfburn/xfburn-burn-image-dialog.c:445
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Lūdzu "
-"norādiet dedzināmo attēlu</span>"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:483
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Nevar apvienot datus uz vairāksesiju diska ar esošo rakstīšanas režīmu "
-"(izmantojiet TAO)"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:487
-msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"Noteikts aizvērts datu nesējs, ar datiem. Nepieciešams tukšs, vai "
-"papildināms datu nesējs"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:489
-msgid "No disc detected in drive"
-msgstr "Iekārtā nav noteikts neviens disks"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:491
-msgid "Cannot recognize state of drive and disc"
-msgstr "Nevar atpazīt stāvokli ierīcei un datu nesējam"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:503
-msgid "The selected image does not fit on the inserted disc"
-msgstr "Atlasītais attēls nevar ietilpt ievietotajā diskā"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:507
-msgid "Failed to get image size"
-msgstr "Nevarēju noteikt attēla izmēru"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:536
-msgid ""
-"Make sure you selected a valid file and you have the proper permissions to "
-"access it."
-msgstr ""
-"Pārliecinieties, ka esat norādījuši derīgu failu un jums ir tiesības piekļūt "
-"šim failam."
-
-#: ../xfburn/xfburn-compositions-notebook.c:174
-msgid "Audio composition"
-msgstr "Audio kompozīcija"
-
-#: ../xfburn/xfburn-compositions-notebook.c:235
-msgid "Welcome"
-msgstr "Esiet sveicināti"
-
-#: ../xfburn/xfburn-copy-cd-dialog.c:113
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
-msgid "Copy data CD"
-msgstr "Kopēt datu CD"
-
-#: ../xfburn/xfburn-copy-cd-dialog.c:123
-msgid "CD Reader device"
-msgstr "CD lasītāja iekārta"
-
-#: ../xfburn/xfburn-copy-cd-dialog.c:152
-#: ../xfburn/xfburn-copy-dvd-dialog.c:152
-msgid "On the _fly"
-msgstr "_Pa tiešo"
-
-#: ../xfburn/xfburn-copy-cd-dialog.c:193
-msgid "_Copy CD"
-msgstr "_Kopēt CD"
-
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr "Keša attīrīšana..."
-
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
-msgid "Please insert a recordable disc."
-msgstr "Lūdzu, ievietojiet ierakstāmu datu nesēju."
-
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
-msgid "Writing CD..."
-msgstr "CD rakstīšana..."
-
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:102
-msgid "Reading CD..."
-msgstr "CD lasīšana..."
-
-#: ../xfburn/xfburn-copy-dvd-dialog.c:113
-msgid "Copy data DVD"
-msgstr "Kopēt datu DVD"
-
-#: ../xfburn/xfburn-copy-dvd-dialog.c:123
-msgid "DVD Reader device"
-msgstr "DVD lasāmā ierīce"
-
-#: ../xfburn/xfburn-copy-dvd-dialog.c:193
-msgid "_Copy DVD"
-msgstr "_Kopēt DVD"
-
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:117
-msgid "Create ISO from CD"
-msgstr "Veidot ISO no CD"
-
-#: ../xfburn/xfburn-data-composition.c:186
-#: ../xfburn/xfburn-audio-composition.c:207
-msgid "Add"
-msgstr "Pievienot"
-
-#: ../xfburn/xfburn-data-composition.c:186
-#: ../xfburn/xfburn-audio-composition.c:207
-msgid "Add the selected file(s) to the composition"
-msgstr "Pievienot atlasīto(-s) failus kompozīcijai"
-
-#: ../xfburn/xfburn-data-composition.c:188
-msgid "Create directory"
-msgstr "Izveidot direktoriju"
-
-#: ../xfburn/xfburn-data-composition.c:188
-msgid "Add a new directory to the composition"
-msgstr "Pievienot jaunu direktoriju kompozīcijai"
-
-#: ../xfburn/xfburn-data-composition.c:190
-#: ../xfburn/xfburn-audio-composition.c:209
-msgid "Remove"
-msgstr "Noņemt"
-
-#: ../xfburn/xfburn-data-composition.c:190
-#: ../xfburn/xfburn-audio-composition.c:209
-msgid "Remove the selected file(s) from the composition"
-msgstr "Noņemt atlasīto(-s) failus no kompozīcijas"
-
-#: ../xfburn/xfburn-data-composition.c:192
-#: ../xfburn/xfburn-audio-composition.c:211
-msgid "Clear"
-msgstr "Notīrīt"
-
-#: ../xfburn/xfburn-data-composition.c:192
-#: ../xfburn/xfburn-audio-composition.c:211
-msgid "Clear the content of the composition"
-msgstr "Notīrīt kompozīcijas saturu"
-
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-#: ../xfburn/xfburn-data-composition.c:195
-msgid "Rename"
-msgstr "Pārdēvēt"
-
-#: ../xfburn/xfburn-data-composition.c:195
-msgid "Rename the selected file"
-msgstr "Pārdēvēt atlasīto failu"
-
-#: ../xfburn/xfburn-data-composition.c:351
-msgid "Volume name :"
-msgstr "Sējuma nosaukums :"
-
-#: ../xfburn/xfburn-data-composition.c:385
-msgid "Contents"
-msgstr "Saturs"
-
-#: ../xfburn/xfburn-data-composition.c:400
-#: ../xfburn/xfburn-directory-browser.c:143
-msgid "Size"
-msgstr "Izmērs"
-
-#: ../xfburn/xfburn-data-composition.c:403
-msgid "Local Path"
-msgstr "Vietējais ceļš"
-
-#: ../xfburn/xfburn-data-composition.c:678
-msgid "You must give a name to the file."
-msgstr "Jums, jānorāda failam nosaukums."
-
-#: ../xfburn/xfburn-data-composition.c:687
-#: ../xfburn/xfburn-data-composition.c:1123
-#: ../xfburn/xfburn-audio-composition.c:1146
-msgid "A file with the same name is already present in the composition."
-msgstr "Fails ar tādu nosaukumu jau ir kompozīcijā."
-
-#: ../xfburn/xfburn-data-composition.c:795
-#: ../xfburn/xfburn-data-composition.c:796
-#: ../xfburn/xfburn-data-composition.c:798
-msgid "New directory"
-msgstr "Jauna direktorija"
-
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:966
+#: ../lib/dictd.c:461
 #, c-format
-msgid "Data %s~%d"
-msgstr "Datums %s~%d"
+msgid "%d definition found."
+msgid_plural "%d definitions found."
+msgstr[0] "%d definīcija atrasta."
+msgstr[1] "%d definīcija(as) atrasta(as)."
+msgstr[2] "%d definīcija(as) atrasta(as)."
 
-#: ../xfburn/xfburn-data-composition.c:1202
+#: ../lib/dictd.c:656
 #, c-format
-msgid ""
-"%s cannot be added to the composition, because it exceeds the maximum "
-"allowed file size for iso9660."
-msgstr ""
-"%s nevar tikt pievienots kompozīcijā, jo tas pārsniedz atļautā faila izmēra "
-"maksimumu ISO9660 standartā."
+msgid "Querying %s..."
+msgstr "Vaicā %s...."
 
-#: ../xfburn/xfburn-data-composition.c:1294
-#: ../xfburn/xfburn-audio-composition.c:1321
-msgid "Adding home directory"
-msgstr "Pievienoju mājas direktoriju"
+#: ../lib/dictd.c:712
+msgid "An error occured while querying server information."
+msgstr "Notika kļūda pie servera informācijas vaicāšanas."
 
-#: ../xfburn/xfburn-data-composition.c:1295
-#: ../xfburn/xfburn-audio-composition.c:1322
-msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
-"\n"
-"Are you sure you want to proceed?"
-msgstr ""
-"Jūs grasāties pievienot savu mājas mapi kompozīcijā. Visdrīzāk tas aizņems "
-"ļoti daudz laika un diskā var nebūt tik daudz vietas.\n"
-"\n"
-"Vai vēlaties turpināt?"
-
-#: ../xfburn/xfburn-data-composition.c:1462
+#: ../lib/dictd.c:723
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added."
-msgstr ""
-"Faila nosaukums \"%s\" jau eksistē šai direktorijā, fails netika pievienots."
+msgid "Server Information for \"%s\""
+msgstr "Servera informācija priekš \"%s\""
 
-#. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1886
-#, c-format
-msgid "Duplicate filename '%s' for '%s'"
-msgstr "Dublikāts faila nosaukumam \"%s\" priekš \"%s\""
+#: ../lib/dictd.c:803
+msgid "The server doesn't offer any databases."
+msgstr "Serveris nepiedāvā nevienu datubāzi."
 
-#: ../xfburn/xfburn-device-box.c:174 ../xfburn/xfburn-device-box.c:175
-msgid "Show writers only"
-msgstr "Rādīt tikai rakstītājus"
-
-#: ../xfburn/xfburn-device-box.c:178
-msgid "Show speed selection"
-msgstr "Rādīt ātruma atlasi"
-
-#: ../xfburn/xfburn-device-box.c:179
-msgid "Show speed selection combo"
-msgstr "Rādīt kombinēto ātruma atlasi"
-
-#: ../xfburn/xfburn-device-box.c:182
-msgid "Show mode selection"
-msgstr "Rādīt režīma atlasi"
-
-#: ../xfburn/xfburn-device-box.c:183
-msgid "Show mode selection combo"
-msgstr "Rādīt kombinēto režīma atlasi"
-
-#: ../xfburn/xfburn-device-box.c:186
-msgid "Is it a valid combination"
-msgstr "Vai tā ir derīga kombinācija"
-
-#: ../xfburn/xfburn-device-box.c:187
-msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr "Vai dzelža un diska kombinācija ir derīga kompozīcijas dedzināšanai?"
-
-#: ../xfburn/xfburn-device-box.c:191
-msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"Tukšais režīms rāda citus diska statusa paziņojumus nekā parastais režīms"
-
-#: ../xfburn/xfburn-device-box.c:194 ../xfburn/xfburn-device-box.c:195
-msgid "Accept only CDs as valid discs"
-msgstr "Pieņemt tikai derīgos CD diskus"
-
-#: ../xfburn/xfburn-device-box.c:248
-msgid "_Speed:"
-msgstr "Ātrum_s:"
-
-#: ../xfburn/xfburn-device-box.c:271
-msgid "Write _mode:"
-msgstr "Rakstīšanas r_ežīms:"
-
-#: ../xfburn/xfburn-device-box.c:389
-msgid "Empty speed list"
-msgstr "Tukšs ātruma saraksts"
-
-#: ../xfburn/xfburn-device-box.c:397
-msgid ""
-"<b>Unable to retrieve the speed list for the drive.</b>\n"
-"\n"
-"This is a known bug, which occurs with some drives. Please report it to "
-"<i>xfburn@xfce.org</i> together with the console output to increase the "
-"chances that it will get fixed.\n"
-"\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
-"\n"
-"<i>Thank you!</i>"
-msgstr ""
-"<b>Neizdevās iegūt ātruma sarakstu no ierīces.</b>\n"
-"\n"
-"Tā ir zināma kļūda, kas notiek dažās iekārtās. Lūdzu ziņojiet par to uz "
-"<i>xfburn@xfce.org</i> kopā ar konsoles izvadu, lai palielinātu salabošanas "
-"iespējas.\n"
-"\n"
-"Dedzināšanai būtu vienalga jāstrādā, bet ja rodas kādas problēmas ziņojiet.\n"
-"\n"
-"<i>Paldies!</i>"
-
-#: ../xfburn/xfburn-device-box.c:406
-msgid "Continue to _show this notice"
-msgstr "Turpmāk arī _rādīt šo ziņu"
-
-#: ../xfburn/xfburn-device-box.c:448
-msgid "default"
-msgstr "noklusētais"
-
-#: ../xfburn/xfburn-device-box.c:484
-msgid "Max"
-msgstr "Maks"
-
-#: ../xfburn/xfburn-device-box.c:586
-msgid "Drive can't burn on the inserted disc"
-msgstr "Ierīce nevar iededzināt ievietoto disku"
-
-#: ../xfburn/xfburn-device-box.c:595 ../xfburn/xfburn-device-box.c:641
-msgid "Drive is empty"
-msgstr "Disks ir tukšs"
-
-#: ../xfburn/xfburn-device-box.c:598
-msgid "Sorry, multisession is not yet supported"
-msgstr "Piedodiet, multisesijas netiek vēl atbalstītas"
-
-#: ../xfburn/xfburn-device-box.c:601
-msgid "Inserted disc is full"
-msgstr "Ievietotais disks ir pilns"
-
-#: ../xfburn/xfburn-device-box.c:604 ../xfburn/xfburn-device-box.c:647
-msgid "Inserted disc is unsuitable"
-msgstr "Ievietotais disks nav derīgs"
-
-#: ../xfburn/xfburn-device-box.c:607 ../xfburn/xfburn-device-box.c:650
-msgid "Cannot access drive (it might be in use)"
-msgstr "Nevar piekļūt ierīcei (iespējams, ka ierīce tiek lietota)"
-
-#: ../xfburn/xfburn-device-box.c:612 ../xfburn/xfburn-device-box.c:653
-msgid "Error determining disc"
-msgstr "Kļūda nosakot disku"
-
-#: ../xfburn/xfburn-device-box.c:633
-msgid "Write-once disc, no blanking possible"
-msgstr "Vienreiz ierakstām disks, iztukšošana nav iespējama"
-
-#: ../xfburn/xfburn-device-box.c:636
-msgid "DVD+RW does not need blanking"
-msgstr "DVD+RW nav nepieciešama iztukšošana"
-
-#: ../xfburn/xfburn-device-box.c:644
-msgid "Inserted disc is already blank"
-msgstr "Ievietotais disks, jau ir tukšs"
-
-#: ../xfburn/xfburn-device-box.c:680
-#, fuzzy
-msgid "Auto"
-msgstr "_Par"
-
-#: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
-msgid "Number of burners in the system"
-msgstr "Dedzinātāju skaits sistēmā"
-
-#: ../xfburn/xfburn-device-list.c:209
-msgid "Number of drives in the system"
-msgstr "Ierīču skaits sistēmā"
-
-#: ../xfburn/xfburn-device-list.c:210
-msgid "Number of drives in the system (readers and writers)"
-msgstr "Ierīču skaits sistēmā (lasītāji un rakstītāji)"
-
-#: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
-msgid "List of devices"
-msgstr "Ierīču saraksts"
-
-#: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
-msgid "Currently selected device"
-msgstr "Patreiz atlasītā ierīce"
-
-#. globals
-#: ../xfburn/xfburn-directory-browser.c:57
-msgid "Folder"
-msgstr "Mape"
-
-#: ../xfburn/xfburn-directory-browser.c:130
-#: ../xfburn/xfburn-directory-browser.c:354
-msgid "File"
-msgstr "Fails"
-
-#: ../xfburn/xfburn-directory-browser.c:145
-msgid "Type"
-msgstr "Tips"
-
-#: ../xfburn/xfburn-fs-browser.c:95 ../xfburn/xfburn-fs-browser.c:284
-msgid "Filesystem"
-msgstr "Failu sistēma"
-
-#. load the user's home dir
-#: ../xfburn/xfburn-fs-browser.c:263
-#, c-format
-msgid "%s's home"
-msgstr "%s mājas"
-
-#: ../xfburn/xfburn-main.c:206 ../xfburn.desktop.in.h:3
-msgid "Xfburn"
-msgstr "Xfburn"
-
-#: ../xfburn/xfburn-main.c:216
-#, c-format
-msgid ""
-"%s: %s\n"
-"Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"Mēģiniet %s --help , lai redzētu pilnu sarakstu ar komandas līnijas "
-"opcijām.\n"
-
-#: ../xfburn/xfburn-main.c:224
-msgid "Unable to initialize the burning backend."
-msgstr "Neizdevās inicializēt dedzināšanas aizmuguri."
-
-#: ../xfburn/xfburn-main.c:309
-msgid "No burners are currently available"
-msgstr "Neviens dedzinātājs pagaidām nav pieejams"
-
-#: ../xfburn/xfburn-main.c:311
-msgid ""
-"Possibly the disc(s) are in use, and cannot get accessed.\n"
-"\n"
-"Please unmount and restart the application.\n"
-"\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
-msgstr ""
-"Iespējams disks(-i) tiek izmantoti un tāpēc nav pieejami.\n"
-"\n"
-"Lūdzu atmontējiet un pārstartējiet lietotni\n"
-"\n"
-"Ja nav neviena diska ierīce, tad pārbaudiet, vai jums ir rakstīšanas un "
-"lasīšanas pieejas iekārtai ar šo lietotāju."
-
-#: ../xfburn/xfburn-main.c:345
-#, c-format
-msgid ""
-"Failed to initialize %s transcoder: %s\n"
-"\t(falling back to basic implementation)"
-msgstr ""
-"Neizdevās inicializēt %s transcoder: %s\n"
-"\t(atgriežas uz pamata izstrādni)"
-
-#: ../xfburn/xfburn-main.c:378
-#, c-format
-msgid "Image file '%s' does not exist."
-msgstr "Attēla fails \"%s\" neeksistē."
-
-#: ../xfburn/xfburn-main-window.c:100
+#: ../lib/gui.c:566
 msgid "_File"
 msgstr "_Fails"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
-#. G_CALLBACK (action_new_data_composition),},
-#: ../xfburn/xfburn-main-window.c:104
-msgid "New data composition"
-msgstr "Jauna datu kompozīcija"
+#: ../lib/gui.c:571
+#: ../lib/gui.c:675
+msgid "Speed _Reader"
+msgstr "Āt_ruma lasītajs"
 
-#: ../xfburn/xfburn-main-window.c:106
-msgid "New audio composition"
-msgstr "Jauna audio kompozīcija"
-
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
-#. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
-#. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
-#. G_CALLBACK (action_save_as),},
-#: ../xfburn/xfburn-main-window.c:114
-msgid "Close composition"
-msgstr "Aizvērt kompozīciju"
-
-#: ../xfburn/xfburn-main-window.c:116
-msgid "_Quit"
-msgstr "I_ziet"
-
-#: ../xfburn/xfburn-main-window.c:116
-msgid "Quit Xfburn"
-msgstr "Iziet no Xfburn"
-
-#: ../xfburn/xfburn-main-window.c:117
-msgid "_Edit"
-msgstr "_Rediģēt"
-
-#: ../xfburn/xfburn-main-window.c:118
-msgid "Prefere_nces"
-msgstr "Uzs_tādījumi"
-
-#: ../xfburn/xfburn-main-window.c:118
-msgid "Show preferences dialog"
-msgstr "Parādīt uzstādījumu dialogu"
-
-#: ../xfburn/xfburn-main-window.c:120
-msgid "_Actions"
-msgstr "_Darbības"
-
-#: ../xfburn/xfburn-main-window.c:121
-msgid "_View"
-msgstr "_Skats"
-
-#: ../xfburn/xfburn-main-window.c:122
-msgid "Refresh"
-msgstr "Atsvaidzināt"
-
-#: ../xfburn/xfburn-main-window.c:122
-msgid "Refresh file list"
-msgstr "Atsvaidzināt failu sarakstu"
-
-#: ../xfburn/xfburn-main-window.c:124
+#: ../lib/gui.c:592
 msgid "_Help"
 msgstr "_Palīdzība"
 
-#: ../xfburn/xfburn-main-window.c:125
-msgid "_About"
-msgstr "_Par"
+#: ../lib/gui.c:696
+msgid "Search with:"
+msgstr "Meklēt ar:"
 
-#: ../xfburn/xfburn-main-window.c:125
-msgid "Display information about Xfburn"
-msgstr "Parāda informāciju par Xfburn"
+#: ../lib/gui.c:700
+msgid "_Dictionary Server"
+msgstr "Vārdnīcu _serveris"
 
-#: ../xfburn/xfburn-main-window.c:127
-msgid "Blank CD-RW"
-msgstr "Tukšs CD-RW"
+#: ../lib/gui.c:706
+msgid "_Web Service"
+msgstr "_Tīmekļa pakalpojums"
 
-#: ../xfburn/xfburn-main-window.c:129
-msgid "Copy Data CD"
-msgstr "Kopēt Data CD"
+#: ../lib/gui.c:714
+msgid "_Spell Checker"
+msgstr "_Pareizrakstības pārbaudītājs"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
-#: ../xfburn/xfburn-main-window.c:132
-msgid "Burn Image"
-msgstr "Dedzināt attēlu"
+#: ../lib/gui.c:839
+msgid "Xfce4 Dictionary"
+msgstr "Xfce4 vārdnīca"
 
-#. {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
-#. G_CALLBACK (action_copy_dvd),},
-#: ../xfburn/xfburn-main-window.c:136
-msgid "Burn DVD Image"
-msgstr "Dedzināt DVD attēlu"
+#: ../lib/gui.c:848
+msgid "Copyright © 2006-2010 Enrico Tröger"
+msgstr "Autortiesības © 2006-2010 Enrico Tröger"
 
-#: ../xfburn/xfburn-main-window.c:141
-msgid "Show file browser"
-msgstr "Rādīt failu pārlūku"
+#: ../lib/gui.c:851
+msgid "translator-credits"
+msgstr "Rihards Priedītis"
 
-#: ../xfburn/xfburn-main-window.c:141
-msgid "Show/hide the file browser"
-msgstr "Rādīt/slēpt failu pārlūku"
+#: ../lib/prefs.c:55
+msgid "dict.leo.org - German <-> English"
+msgstr "dict.leo.org - Vācu <-> Angļu"
 
-#: ../xfburn/xfburn-main-window.c:143
-msgid "Show toolbar"
-msgstr "Rādīt rīku joslu"
+#: ../lib/prefs.c:56
+msgid "dict.leo.org - German <-> French"
+msgstr "dict.leo.org - Vācu <-> Franču"
 
-#: ../xfburn/xfburn-main-window.c:143
-msgid "Show/hide the toolbar"
-msgstr "Rādīt/slēpt rīku joslu"
+#: ../lib/prefs.c:57
+msgid "dict.leo.org - German <-> Spanish"
+msgstr "dict.leo.org - Vācu <-> Spāņu"
 
-#: ../xfburn/xfburn-main-window.c:350
-msgid "Toolbar Editor"
-msgstr "Rīku joslas redaktors"
+#: ../lib/prefs.c:58
+msgid "dict.leo.org - German <-> Italian"
+msgstr "dict.leo.org - Vācu <-> Itāļu"
 
-#: ../xfburn/xfburn-main-window.c:533
-msgid "Another cd burning GUI"
-msgstr "Vēl viens cd dedzināšanas GUI"
+#: ../lib/prefs.c:59
+msgid "dict.leo.org - German <-> Chinese"
+msgstr "dict.leo.org - Vācu <-> Ķīniešu"
 
-#: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
-msgid "Author/Maintainer"
-msgstr "Autors/Uzturētājs"
+#: ../lib/prefs.c:60
+msgid "dist.cc - Dictionary"
+msgstr "dist.cc - Vārdnīca"
 
-#: ../xfburn/xfburn-main-window.c:538
-msgid "Retired author/maintainer"
-msgstr "Aizgājušais autors/uzturētājs"
+#: ../lib/prefs.c:61
+msgid "Dictionary.com"
+msgstr "Dictionary.com"
 
-#: ../xfburn/xfburn-main-window.c:544
-#, c-format
-msgid "Translator (%s)"
-msgstr "Tulkotājs (%s)"
+#: ../lib/prefs.c:62
+msgid "TheFreeDictionary.com"
+msgstr "TheFreeDictionary.com"
 
-#: ../xfburn/xfburn-notebook-tab.c:108
-msgid "Label"
-msgstr "Etiķete"
+#: ../lib/prefs.c:63
+msgid "Wikipedia, the free encyclopedia (EN)"
+msgstr "Wikipedia, brīvā enciklopēdija (Angliski)"
 
-#: ../xfburn/xfburn-notebook-tab.c:108
-msgid "The text of the label"
-msgstr "Etiķetes teksts"
+#: ../lib/prefs.c:64
+msgid "Wiktionary, the free dictionary (EN)"
+msgstr "Wiktionary, brīvā vārdnīca (Angliski)"
 
-#: ../xfburn/xfburn-notebook-tab.c:111
-msgid "Show close button"
-msgstr "Rādīt aizvēršanas pogu"
+#: ../lib/prefs.c:65
+msgid "Merriam-Webster Online Dictionary"
+msgstr "Merriam-Webster tiešsaistes vārdnīca"
 
-#: ../xfburn/xfburn-notebook-tab.c:111
-msgid "Determine whether the close button is visible"
-msgstr "Nosaka vai aizvēršanas poga ir redzama"
+#: ../lib/prefs.c:66
+msgid "Clear"
+msgstr "Notīrīt"
 
-#: ../xfburn/xfburn-perform-burn.c:158
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Nevar apvienot datus uz vairāksesiju diska a esošo rakstīšanas režīmu "
-"(izmantojiet TAO)."
+#: ../lib/prefs.c:101
+msgid "You have chosen an invalid dictionary."
+msgstr "Jūs esat izvēlējies nederīgu vārdnīcu."
 
-#: ../xfburn/xfburn-perform-burn.c:162
-msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-"Aizvērts datu nesējs, ar datiem, noteikts. Nepieciešams tukšs, vai "
-"papildināms datu nesējs."
-
-#: ../xfburn/xfburn-perform-burn.c:164
-msgid "No disc detected in drive."
-msgstr "Iekārtā nav noteikts disks."
-
-#: ../xfburn/xfburn-perform-burn.c:167
-msgid "Cannot recognize the state of the drive and disc."
-msgstr "Nevar atpazīt stāvokli ierīcei un datu nesējam."
-
-#: ../xfburn/xfburn-perform-burn.c:180
-msgid "There is not enough space available on the inserted disc."
-msgstr "Uz ievietotā diska nav pietiekami daudz brīvās vietas."
-
-#: ../xfburn/xfburn-perform-burn.c:225
-#, c-format
-msgid "Burning track %2d/%d..."
-msgstr "Celiņa dedzināšana %2d/%d..."
-
-#: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
-msgid "Burning composition..."
-msgstr "Kompozīcijas dedzināšana..."
-
-#: ../xfburn/xfburn-perform-burn.c:263
-msgid "standby"
-msgstr "gaidstāve"
-
-#: ../xfburn/xfburn-perform-burn.c:271
-msgid "ending"
-msgstr "beigas"
-
-#: ../xfburn/xfburn-perform-burn.c:274
-msgid "failing"
-msgstr "neizdodas"
-
-#: ../xfburn/xfburn-perform-burn.c:277
-msgid "unused"
-msgstr "nelietots"
-
-#: ../xfburn/xfburn-perform-burn.c:280
-msgid "abandoned"
-msgstr "pamests"
-
-#: ../xfburn/xfburn-perform-burn.c:283
-msgid "ended"
-msgstr "beidzies"
-
-#: ../xfburn/xfburn-perform-burn.c:286
-msgid "aborted"
-msgstr "atcelts"
-
-#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:199
-#: ../xfburn/xfburn-progress-dialog.c:216
-#: ../xfburn/xfburn-progress-dialog.c:226
-#: ../xfburn/xfburn-progress-dialog.c:309
-#: ../xfburn/xfburn-progress-dialog.c:441
-#: ../xfburn/xfburn-progress-dialog.c:465
-#: ../xfburn/xfburn-progress-dialog.c:489
-msgid "no info"
-msgstr "nav informācijas"
-
-#: ../xfburn/xfburn-perform-burn.c:299
-msgid "Writing Lead-In..."
-msgstr "Raksta ievadu..."
-
-#: ../xfburn/xfburn-perform-burn.c:305
-msgid "Writing Lead-Out..."
-msgstr "Raksta izvadu..."
-
-#: ../xfburn/xfburn-perform-burn.c:311
-msgid "Writing pregap..."
-msgstr "Raksta pirmsatkāpi..."
-
-#: ../xfburn/xfburn-perform-burn.c:317
-msgid "Closing track..."
-msgstr "Aizver celiņu..."
-
-#: ../xfburn/xfburn-perform-burn.c:323
-msgid "Closing session..."
-msgstr "Aizver sesiju..."
-
-#: ../xfburn/xfburn-perform-burn.c:329
-msgid "Formatting..."
-msgstr "Formatē"
-
-#: ../xfburn/xfburn-perform-burn.c:342
-msgid "see console"
-msgstr "apskatīt konsoli"
-
-#: ../xfburn/xfburn-perform-burn.c:370
-msgid "User Aborted"
-msgstr "Lietotāja atcelts"
-
-#: ../xfburn/xfburn-preferences-dialog.c:141
-msgid "Preferences"
-msgstr "Uzstādījumi"
-
-#: ../xfburn/xfburn-preferences-dialog.c:142
-msgid "Tune how Xfburn behaves"
-msgstr "Noskaņot Xfburn uzvedību"
-
-#: ../xfburn/xfburn-preferences-dialog.c:188
-#: ../xfburn/xfburn-preferences-dialog.c:192
-msgid "Temporary directory"
-msgstr "Pagaidu direktorija"
-
-#: ../xfburn/xfburn-preferences-dialog.c:196
-msgid "_Clean temporary directory on exit"
-msgstr "_Attīrīt pagaidu direktoriju uz aizvēršanu"
-
-#: ../xfburn/xfburn-preferences-dialog.c:203
-msgid "File browser"
-msgstr "Failu pārlūks"
-
-#: ../xfburn/xfburn-preferences-dialog.c:207
-msgid "Show _hidden files"
-msgstr "Rādīt _slēptos failus"
-
-#: ../xfburn/xfburn-preferences-dialog.c:212
-msgid "Show human_readable filesizes"
-msgstr "Rādīt cilvēkam _lasāmus failu izmērus"
-
-#: ../xfburn/xfburn-preferences-dialog.c:223
+#: ../lib/prefs.c:303
 msgid "General"
 msgstr "Vispārēji"
 
-#: ../xfburn/xfburn-preferences-dialog.c:234
-#: ../xfburn/xfburn-preferences-dialog.c:311
-msgid "Devices"
-msgstr "Ierīces"
+#: ../lib/prefs.c:305
+msgid "<b>Default search method:</b>"
+msgstr "<b>Noklusēta meklēšanas metode:</b>"
 
-#: ../xfburn/xfburn-preferences-dialog.c:243
-msgid "Detected devices"
-msgstr "Noteiktās ierīces"
+#: ../lib/prefs.c:311
+#: ../lib/prefs.c:472
+msgid "Dictionary Server"
+msgstr "Vārdnīcu serveris"
 
-#: ../xfburn/xfburn-preferences-dialog.c:264
-msgid "Name"
-msgstr "Nosaukums"
+#: ../lib/prefs.c:320
+#: ../lib/prefs.c:593
+msgid "Web Service"
+msgstr "Tīmekļa pakalpojums"
 
-#: ../xfburn/xfburn-preferences-dialog.c:277
-msgid "Node"
-msgstr "Mezgls"
+#: ../lib/prefs.c:329
+#: ../lib/prefs.c:643
+msgid "Spell Checker"
+msgstr "Pareizrakstības pārbaudītājs"
 
-#: ../xfburn/xfburn-preferences-dialog.c:279
-msgid "Write CD-R"
-msgstr "Rakstīt CD-R"
+#: ../lib/prefs.c:338
+msgid "Last used method"
+msgstr "Pēdējā izmantotā metode"
 
-#: ../xfburn/xfburn-preferences-dialog.c:281
-msgid "Write CD-RW"
-msgstr "Rakstīt CD-RW"
+#: ../lib/prefs.c:347
+msgid "<b>Colors:</b>"
+msgstr "<b>Krāsas:</b>"
 
-#: ../xfburn/xfburn-preferences-dialog.c:284
-msgid "Write DVD-R"
-msgstr "Rakstīt DVD-R"
+#: ../lib/prefs.c:353
+msgid "Links:"
+msgstr "Saites:"
 
-#: ../xfburn/xfburn-preferences-dialog.c:287
-msgid "Write DVD-RAM"
-msgstr "Rakstīt DVD-RAM"
+#: ../lib/prefs.c:354
+msgid "Phonetics:"
+msgstr "Fonētikas: "
 
-#: ../xfburn/xfburn-preferences-dialog.c:295
-msgid "Sc_an for devices"
-msgstr "M_eklēt ierīces"
+#: ../lib/prefs.c:355
+msgid "Spelled correctly:"
+msgstr "Sintakse pareiza:"
 
-#. below the device list
-#: ../xfburn/xfburn-preferences-dialog.c:321
-msgid "Show warning on _empty speed list"
-msgstr "Rādīt brīdinājumu uz _tukšu ātruma sarakstu"
+#: ../lib/prefs.c:356
+msgid "Spelled incorrectly:"
+msgstr "Sintakse nav pareiza:"
 
-#: ../xfburn/xfburn-preferences-dialog.c:329
-msgid "FIFO buffer size (in kb)"
-msgstr "FIFO bufera izmērs (kb)"
+#: ../lib/prefs.c:416
+msgid "<b>Panel Text Field:</b>"
+msgstr "<b>Paneļa teksta lauks:</b>"
 
-#: ../xfburn/xfburn-preferences-dialog.c:463
-msgid "Changing this setting only takes full effect after a program restart."
-msgstr "Šo uzstādījumu maiņa stājas spēka pēc programmas pārstartēšanas."
+#: ../lib/prefs.c:422
+msgid "Show text field in the panel"
+msgstr "Rādīt teksta lauku panelī"
 
-#: ../xfburn/xfburn-progress-dialog.c:181
-msgid "Initializing..."
-msgstr "Inicializācija..."
+#. panel entry size
+#: ../lib/prefs.c:429
+msgid "Text field size:"
+msgstr "Teksta lauka izmērs:"
 
-#: ../xfburn/xfburn-progress-dialog.c:196
-msgid "Estimated writing speed:"
-msgstr "Aptuvenais rakstīšanas ātrums:"
+#. server address
+#: ../lib/prefs.c:475
+msgid "Server:"
+msgstr "Serveris:"
 
-#: ../xfburn/xfburn-progress-dialog.c:210
-msgid "FIFO buffer:"
-msgstr "FIFO buferis:"
+#. server port
+#: ../lib/prefs.c:487
+msgid "Server Port:"
+msgstr "Servera ports:"
 
-#: ../xfburn/xfburn-progress-dialog.c:220
-msgid "Device buffer:"
-msgstr "Ierīces buferis:"
+#. dictionary
+#: ../lib/prefs.c:495
+#: ../lib/prefs.c:668
+msgid "Dictionary:"
+msgstr "Vārdnīca:"
 
-#: ../xfburn/xfburn-progress-dialog.c:467
-#, c-format
-msgid "Min. fill was %2d%%"
-msgstr "Min. aizpildījums bija %2d%%"
+#: ../lib/prefs.c:499
+msgid "* (use all)"
+msgstr "* (izmanto visu)"
 
-#: ../xfburn/xfburn-progress-dialog.c:526
-msgid "Aborted"
-msgstr "Kļūdas atcelts"
+#: ../lib/prefs.c:501
+msgid "! (use all, stop after first match)"
+msgstr "! (izmantot visu, apstāties pie pirmā rezultāta)"
 
-#: ../xfburn/xfburn-progress-dialog.c:532
-msgid "Failed"
-msgstr "Neizdevās"
+#: ../lib/prefs.c:595
+msgid "<b>Web search URL:</b>"
+msgstr "<b>Tīmekļa meklēšanas URL:</b>"
 
-#: ../xfburn/xfburn-progress-dialog.c:535
-msgid "Cancelled"
-msgstr "Atcelts"
+#: ../lib/prefs.c:601
+msgid "URL:"
+msgstr "URL:"
 
-#: ../xfburn/xfburn-progress-dialog.c:538
-msgid "Completed"
-msgstr "Pabeigts"
+#: ../lib/prefs.c:621
+msgid "Enter the URL of a web site which offers translation or dictionary services. Use {word} as placeholder for the searched word."
+msgstr "Ievadiet URL uz mājas lapu, kura piedāvā tulkošanas pakalpojumus. Izmantojiet {word}, kā aizvietotāju meklējamajam vārdam."
 
-#: ../xfburn/xfburn-progress-dialog.c:575
-msgid "Aborting..."
-msgstr "Atcelšana..."
+#: ../lib/prefs.c:645
+msgid "Spell Check Program:"
+msgstr "Pareizrakstības pārbaudes programma:"
 
-#: ../xfburn/xfburn-utils.c:129
-msgid "Select command"
-msgstr "Norādiet komandu"
-
-#: ../xfburn/xfburn-welcome-tab.c:129
-msgid "Welcome to xfburn!"
-msgstr "Sveicināti xfburn!"
-
-#. buttons
-#: ../xfburn/xfburn-welcome-tab.c:140
-msgid "<big>Burn _Image</big>"
-msgstr "<big>Dedzināt _attēlu</big>"
-
-#: ../xfburn/xfburn-welcome-tab.c:140
-msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr "Dedzināt sagatavotu kompilāciju, piemēram, ISO fails"
-
-#: ../xfburn/xfburn-welcome-tab.c:145
-msgid "<big>New _Data Composition</big>"
-msgstr "<big>Jauna _datu kompozīcija</big>"
-
-#: ../xfburn/xfburn-welcome-tab.c:145
-msgid "Create a new data disc with the files of your choosing"
-msgstr "Izveidot jaunu data disku, ar jūsu atlasītajiem failiem"
-
-#: ../xfburn/xfburn-welcome-tab.c:150
-msgid "<big>_Blank Disc</big>"
-msgstr "<big>_Tukšot disks</big>"
-
-#: ../xfburn/xfburn-welcome-tab.c:150
-msgid "Prepare the rewriteable disc for a new burn"
-msgstr "Sagatavo pārrakstāmo disku jaunai dedzināšanai"
-
-#: ../xfburn/xfburn-welcome-tab.c:155
-msgid "<big>_Audio CD</big>"
-msgstr "<big>_Audio CD</big>"
-
-#: ../xfburn/xfburn-welcome-tab.c:155
-msgid "Audio CD playable in regular stereos"
-msgstr "Audio CD atskaņojams parasto mūzikas atskaņotājos"
-
-#: ../xfburn/xfburn-audio-composition.c:213
-msgid "What files can get burned to an audio CD?"
-msgstr "Kādi faili var tikt iededzināti Audio CD?"
-
-#: ../xfburn/xfburn-audio-composition.c:217
-msgid "Rename Artist"
-msgstr "Pārdēvēt izpildītāju"
-
-#: ../xfburn/xfburn-audio-composition.c:217
-msgid "Rename the artist of the selected file"
-msgstr "Pārdēvēt atlasītā faila izpildītāju"
-
-#: ../xfburn/xfburn-audio-composition.c:219
-msgid "Rename Title"
-msgstr "Pārdēvēt virsrakstu"
-
-#: ../xfburn/xfburn-audio-composition.c:219
-msgid "Rename the title of the selected file"
-msgstr "Pārdēvēt atlasītā faila virsrakstu"
-
-#: ../xfburn/xfburn-audio-composition.c:403
-msgid "Pos"
-msgstr "Pozīcija"
-
-#: ../xfburn/xfburn-audio-composition.c:405
-msgid "Length"
-msgstr "Garums"
-
-#: ../xfburn/xfburn-audio-composition.c:411
-msgid "Artist"
-msgstr "Izpildītājs"
-
-#: ../xfburn/xfburn-audio-composition.c:424
-msgid "Title"
-msgstr "Virsraksts"
-
-#: ../xfburn/xfburn-audio-composition.c:435
-msgid "Filename"
-msgstr "Faila nosaukums"
-
-#: ../xfburn/xfburn-audio-composition.c:582
-msgid "Cannot burn audio onto a DVD."
-msgstr "Nevar iededzināt audio cd iekš DVD diska."
-
-#: ../xfburn/xfburn-audio-composition.c:1230
-msgid "You can only have a maximum of 99 tracks."
-msgstr "Maksimālais celiņu skaits ir 99."
-
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:310
-msgid "A problem with the burn backend occurred."
-msgstr "Notika problēma ar dedzināšanas aizmuguri."
-
-#: ../xfburn/xfburn-disc-usage.c:163
-msgid "Proceed to Burn"
-msgstr "Doties uz dedzināšanu"
-
-#: ../xfburn/xfburn-disc-usage.c:203
-msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "Jūs mēģināt iededzināt vairāk datu, nekā disks spēj saturēt."
-
-#: ../xfburn/xfburn-transcoder-basic.c:166
-msgid "basic"
-msgstr "pamata"
-
-#: ../xfburn/xfburn-transcoder-basic.c:172
+#: ../lib/prefs.c:662
 msgid ""
-"The basic transcoder is built in,\n"
-"and does not require any library.\n"
-"But it can only handle uncompressed\n"
-".wav files.\n"
-"If you would like to create audio\n"
-"compositions from different types of\n"
-"audio files, please compile with\n"
-"gstreamer support."
+"<i>The spell check program can be 'enchant', 'aspell', 'ispell' or any other spell check program which is compatible to the ispell command.\n"
+"The icon shows whether the entered command exists.</i>"
 msgstr ""
-"Pamata transcoder ir iestrādāts,\n"
-"un tam nav nepieciešamas nekādas bibliotēkas.\n"
-"Bet tas var tikt galā tikai ar nesaspiestiem\n"
-".wav failiem.\n"
-"Ja jūs vēlaties izveidot audi\n"
-"kompozīciju no citiem audio failu\n"
-"tipiem, lūdzu kompilējiet ar\n"
-"gstreamer atbalstu."
+"<i>Pareizrakstības pārbaudes programma var būt \"enchant\", \"aspell\", \"ispell\", vai jebkura cita pārbaudes programma, kura ir sader ar ispell komandām.\n"
+"Ikona parāda vai ievadītā komanda eksistē.</i>"
 
-#: ../xfburn/xfburn-transcoder-basic.c:196
-#, c-format
-msgid "File %s does not have a .wav extension"
-msgstr "Failam %s nav .wav paplašinājuma"
-
-#: ../xfburn/xfburn-transcoder-basic.c:201
-#, c-format
-msgid "File %s does not contain uncompressed PCM wave audio"
-msgstr "Fails %s nesatur nesaspiestu PCM wave skaņu"
-
-#: ../xfburn/xfburn-transcoder-basic.c:207
-#, c-format
-msgid "Could not stat %s: %s"
-msgstr "Nevarēja iestatīt %s: %s"
-
-#: ../xfburn/xfburn-transcoder-basic.c:238
-#, c-format
-msgid "Could not open %s."
-msgstr "Nevarēja atvērt %s."
-
-#: ../xfburn/xfburn-transcoder-basic.c:319
-#, c-format
-msgid "Could not open %s: %s"
-msgstr "Nevarēja atvērt %s: %s"
-
-#: ../xfburn/xfburn-transcoder-gst.c:632
-#, c-format
-msgid ""
-"%s is missing.\n"
-"\n"
-"You do not have a decoder installed to handle this file.\n"
-"Probably you need to look at the gst-plugins-* packages\n"
-"for the necessary plugins.\n"
-msgstr ""
-"%s trūkst.\n"
-"\n"
-"Jums nav instalēts dekoderis, lai apstrādātu šo failu.\n"
-"Visdrīzāk jums ir jāskata gst-plugins-* paciņas, lai\n"
-"tiktu pie nepieciešama spraudņa.\n"
-
-#. Note to translators: you can probably keep this as gstreamer,
-#. * unless you have a good reason to call it by another name that
-#. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:721
-msgid "gstreamer"
-msgstr "gstreamer"
-
-#: ../xfburn/xfburn-transcoder-gst.c:727
-msgid ""
-"The gstreamer transcoder uses the gstreamer\n"
-"library for creating audio compositions.\n"
-"\n"
-"Essentially all audio files should be supported\n"
-"given that the correct plugins are installed.\n"
-"If an audio file is not recognized, make sure\n"
-"that you have the 'good','bad', and 'ugly'\n"
-"gstreamer plugin packages installed."
-msgstr ""
-"gstreamer transcoder izmanto gstreamer\n"
-"bibliotēku, lai veidotu audio kompozīcijas.\n"
-"\n"
-"Pamatā visi audio failiem jābūt atbalstītiem,\n"
-"ja pieņem ka spraudņi ir pareizi instalēti.\n"
-"Ja audio fails netiek atpazīts, pārliecinieties, ka \n"
-"jums ir instalētas gstreamer spraudņu paciņas\n"
-"'good','bad', un 'ugly'."
-
-#: ../xfburn/xfburn-transcoder-gst.c:792
-#, c-format
-msgid "Gstreamer did not like this file (detection timed out)"
-msgstr "Gstreamer nepatika šis fails  (noteikšana iztecēja)"
-
-#: ../xfburn/xfburn-transcoder-gst.c:801
-#, c-format
-msgid ""
-"%s\n"
-"\n"
-"is not an audio file:\n"
-"\n"
-"%s"
-msgstr ""
-"%s\n"
-"\n"
-"nav audio fails:\n"
-"\n"
-"%s"
-
-#: ../xfburn/xfburn-transcoder-gst.c:916
-#, c-format
-msgid "Gstreamer did not want to start transcoding (timed out)"
-msgstr "Gstreamer negribēja sākt transcoding (iztecēja)"
-
-#: ../xfburn/xfburn-transcoder-gst.c:951
-#, c-format
-msgid "Failed to change songs while transcoding"
-msgstr "Neizdevās izmainīt dziesmas, kamēr notika transcoding"
-
-#: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
-#: ../xfburn/xfburn-transcoder.c:163
-#, c-format
-msgid "not implemented"
-msgstr "nav izstrādāts"
-
-#: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
-msgid "Display name"
-msgstr "Attēlot nosaukumu"
-
-#: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
-msgid "Device address"
-msgstr "Ierīces adrese"
-
-#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
-msgid "Burn speeds supported by the device"
-msgstr "Rakstīšanas ātrumi, kurus atbalsta ierīce"
-
-#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
-msgid "Disc status"
-msgstr "Diska status"
-
-#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
-msgid "Profile no. as reported by libburn"
-msgstr "Profila numurs, kā ziņo libburn"
-
-#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
-msgid "Profile name as reported by libburn"
-msgstr "Profila nosaukums, kā ziņo libburn"
-
-#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
-msgid "Is the disc erasable"
-msgstr "Vai disks ir dzēšams"
-
-#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
-msgid "Can burn CDR"
-msgstr "Var dedzināt CDR"
-
-#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
-msgid "Can burn CDRW"
-msgstr "Var dedzināt CDRW"
-
-#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
-msgid "Can burn DVDR"
-msgstr "Var dedzināt DVDR"
-
-#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
-msgid "Can burn DVDPLUSR"
-msgstr "Var dedzināt DVDPLUSR"
-
-#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
-msgid "Can burn DVDRAM"
-msgstr "Var dedzināt DVDRAM"
-
-#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
-msgid "libburn TAO block types"
-msgstr "libburn TAO bloka tipi"
-
-#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
-msgid "libburn SAO block types"
-msgstr "libburn SAO bloka tipi"
-
-#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
-msgid "libburn RAW block types"
-msgstr "libburn RAW bloka tipi"
-
-#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
-msgid "libburn PACKET block types"
-msgstr "libburn PACKET bloka tips"
-
-#: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
-msgid "Data Composition"
-msgstr "Datu kompozīcija"
-
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "Dedzināt attēlu (xfburn)"
-
-#: ../xfburn.desktop.in.h:2
-msgid "CD and DVD burning application"
-msgstr "CD un DVD dedzināšanas lietotne"
-
-#~ msgid "The write mode is not currently supported"
-#~ msgstr "Šis rakstīšanas režīms pagaidām netiek atbalstīts"
-
-#~ msgid "Is the device accessible"
-#~ msgstr "Vai ierīce ir pieejama"
-
-#~ msgid "Data composition"
-#~ msgstr "Datu Kompozīcija"
-
-#~ msgid "Unable to create disc object"
-#~ msgstr "Neizdevās izveidot diska objektu"
-
-#~ msgid "Cannot attach source object to track object"
-#~ msgstr "Nevar pievienot avota objektu celiņa objektam"
-
-#~ msgid "Format DVD+RW"
-#~ msgstr "Formatēt DVD+RW"
-
-#~ msgid "_Format"
-#~ msgstr "_Formatēt"
+#~ msgid "You must set a valid search URL."
+#~ msgstr "Jums ir jānorāda derīgs meklēšanas URL."
+#~ msgid "Link Color:"
+#~ msgstr "Saites krāsa:"
 
 #, fuzzy
-#~ msgid "Closed disc with data detected. Need blank or appendable media"
-#~ msgstr ""
-#~ "Aizvērts datu nesējs, ar datiem, noteikts. Nepieciešams tukšs, vai "
-#~ "papildināms datu nesējs"
-
-#~ msgid "No media detected in drive"
-#~ msgstr "Ierīcē Datu nesējs nav noteikts"
+#~ msgid "_Dict"
+#~ msgstr "Vārdnīca"
+#~ msgid "Dict"
+#~ msgstr "Vārdnīca"
 
 #, fuzzy
-#~ msgid "Could not create burn_source from %s!"
-#~ msgstr "Nevarēju izveidot ISO avota struktūru"
+#~ msgid "Xfce4 Dictionary Preferences"
+#~ msgstr "Vārdnīca :"
+#~ msgid "Developer"
+#~ msgstr "Izstrādāja"
+#~ msgid "Text to search:"
+#~ msgstr "Meklējamais teksts:"
+#~ msgid "Properties"
+#~ msgstr "Rekvizīti"
+#~ msgid "Use a DICT server"
+#~ msgstr "Izmantot DICT serveri"
+#~ msgid "Use another website"
+#~ msgstr "Izmantot citu mājas lapu"
+#~ msgid "Use a web site"
+#~ msgstr "Izmantot mājas lapu"
+#~ msgid ""
+#~ "This option can only be used when the panel has a horizontal orientation."
+#~ msgstr "Šo opciju var izmantot tikai ar horezontālu paneļa orentāciju."
 
-#, fuzzy
-#~ msgid "Could not add source to track %s!"
-#~ msgstr "Nevarēju izveidot ISO avota struktūru"
-
-#~ msgid "Import"
-#~ msgstr "Importēt"
-
-#~ msgid "Import existing session"
-#~ msgstr "Importēt esošu sesiju"
-
-#~ msgid "Copy Audio CD"
-#~ msgstr "Kopēt Audio CD"
-
-#~ msgid "Create a new composition"
-#~ msgstr "Izveidot jaunu kompozīciju"
-
-#~ msgid "Copy DVD"
-#~ msgstr "Kopēt DVD"
-
-#, fuzzy
-#~ msgid "Action group"
-#~ msgstr "_Darbības"
-
-#, fuzzy
-#~ msgid "Format Fast"
-#~ msgstr "_Formatēt"
-
-#, fuzzy
-#~ msgid "Format Complete"
-#~ msgstr "Pabeigts"
-
-#, fuzzy
-#~ msgid "Deformat Complete"
-#~ msgstr "Pabeigts"
-
-#~ msgid "Fast"
-#~ msgstr "Ātrs"
-
-#~ msgid "Cannot recognize drive and media state"
-#~ msgstr "Nevar atpazīt diska un datu nesēja stāvokli"
-
-#~ msgid "Burn CD image"
-#~ msgstr "Dedzināt CD attēlu"
