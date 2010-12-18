@@ -2,12 +2,12 @@
 # Copyright (c) 2006, 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfburn package.
 # Daniel Nylander <po@danielnylander.se>, 2006, 2008, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-02 22:14-0700\n"
+"POT-Creation-Date: 2010-12-18 17:02+0000\n"
 "PO-Revision-Date: 2009-12-16 18:20+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -90,7 +90,8 @@ msgstr "M_ata ut skiva"
 msgid "_Blank"
 msgstr "_Radera"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:355
 msgid "The inserted disc is already blank."
 msgstr "Den inmatade skivan är redan tom."
@@ -133,14 +134,12 @@ msgid "Unable to grab the drive."
 msgstr "Kunde inte fånga enheten."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
-#, fuzzy
 msgid "Image"
-msgstr "ISO-avbildningar"
+msgstr "Avbildning"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-#, fuzzy
 msgid "Show volume name"
-msgstr "Volymnamn :"
+msgstr "Visa volymnamn"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
 msgid "Show a text entry for the name of the volume"
@@ -258,25 +257,16 @@ msgid "Burning image..."
 msgstr "Bränner avbildning..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Välj "
-"en avbildning att bränna</span>"
+msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Välj en avbildning att bränna</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:483
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Kan inte lägga till data till en multisession-skiva i detta skrivningsläge "
-"(använd TAO istället)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr "Kan inte lägga till data till en multisession-skiva i detta skrivningsläge (använd TAO istället)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:487
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"Stängd skiva med data hittades. Behöver en tom skiva eller en möjlig att "
-"lägga till på"
+msgstr "Stängd skiva med data hittades. Behöver en tom skiva eller en möjlig att lägga till på"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:489
 msgid "No disc detected in drive"
@@ -295,12 +285,8 @@ msgid "Failed to get image size"
 msgstr "Misslyckades med att få avbildningens storlek"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
-msgid ""
-"Make sure you selected a valid file and you have the proper permissions to "
-"access it."
-msgstr ""
-"Försäkra dig om att du valt en giltig fil och att du har lämpliga "
-"rättigheter för att komma åt den."
+msgid "Make sure you selected a valid file and you have the proper permissions to access it."
+msgstr "Försäkra dig om att du valt en giltig fil och att du har lämpliga rättigheter för att komma åt den."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -399,7 +385,8 @@ msgstr "Töm"
 msgid "Clear the content of the composition"
 msgstr "Töm innehållet i kompileringen"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:195
 msgid "Rename"
 msgstr "Byt namn"
@@ -441,7 +428,8 @@ msgstr "En fil med samma namn finns redan i kompileringen."
 msgid "New directory"
 msgstr "Ny katalog"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:966
 #, c-format
 msgid "Data %s~%d"
@@ -449,9 +437,7 @@ msgstr "Data %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1202
 #, c-format
-msgid ""
-"%s cannot be added to the composition, because it exceeds the maximum "
-"allowed file size for iso9660."
+msgid "%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."
 msgstr ""
 
 #: ../xfburn/xfburn-data-composition.c:1294
@@ -462,25 +448,18 @@ msgstr "Lägger till hemkatalog"
 #: ../xfburn/xfburn-data-composition.c:1295
 #: ../xfburn/xfburn-audio-composition.c:1322
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"Du är på väg att lägga till din hemkatalog till kompileringen. Detta kommer "
-"antagligen att ta mycket lång tid och kommer säkerligen att bli för mycket "
-"för att passa på en skiva.\n"
+"Du är på väg att lägga till din hemkatalog till kompileringen. Detta kommer antagligen att ta mycket lång tid och kommer säkerligen att bli för mycket för att passa på en skiva.\n"
 "\n"
 "Är du säker på att du vill fortsätta?"
 
 #: ../xfburn/xfburn-data-composition.c:1462
 #, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added."
-msgstr ""
-"En fil med namnet \"%s\" finns redan i den här katalogen. Filen har inte "
-"lagts till."
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
+msgstr "En fil med namnet \"%s\" finns redan i den här katalogen. Filen har inte lagts till."
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1886
@@ -514,8 +493,7 @@ msgstr "Är det en giltig kombination"
 
 #: ../xfburn/xfburn-device-box.c:187
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
-"Är kombinationen av hårdvara och skiva giltig för att bränna kompileringen?"
+msgstr "Är kombinationen av hårdvara och skiva giltig för att bränna kompileringen?"
 
 #: ../xfburn/xfburn-device-box.c:191
 msgid "The blank mode shows different disc status messages than regular mode"
@@ -541,23 +519,17 @@ msgstr "Tom hastighetslista"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to "
-"<i>xfburn@xfce.org</i> together with the console output to increase the "
-"chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>Kunde inte hämta hastighetslistan för enheten.</b>\n"
 "\n"
-"Detta är ett känt fel som inträffar med vissa enheter. Rapportera det till "
-"<i>xfburn@xfce.org</i> tillsammans med utdata på konsollen för att öka "
-"chanserna att få problemet korrigerat.\n"
+"Detta är ett känt fel som inträffar med vissa enheter. Rapportera det till <i>xfburn@xfce.org</i> tillsammans med utdata på konsollen för att öka chanserna att få problemet korrigerat.\n"
 "\n"
-"Bränningen ska fortfarande fungera men informera oss om det fortfarande "
-"skapar problem.\n"
+"Bränningen ska fortfarande fungera men informera oss om det fortfarande skapar problem.\n"
 "\n"
 "<i>Tack!</i>"
 
@@ -616,7 +588,7 @@ msgstr "Inmatad skiva är redan tom"
 #: ../xfburn/xfburn-device-box.c:680
 #, fuzzy
 msgid "Auto"
-msgstr "_Om"
+msgstr "Auto"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
@@ -673,8 +645,7 @@ msgid ""
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 "%s: %s\n"
-"Prova %s --help för att se en komplett lista över tillgängliga "
-"kommandoradsflaggor.\n"
+"Prova %s --help för att se en komplett lista över tillgängliga kommandoradsflaggor.\n"
 
 #: ../xfburn/xfburn-main.c:224
 msgid "Unable to initialize the burning backend."
@@ -690,15 +661,13 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
 "Kanske används skivorna och inte kan kommas åt.\n"
 "\n"
 "Avmontera och starta om programmet.\n"
 "\n"
-"Kontrollera att du har läs- och skrivåtkomst till enheten för den aktuella "
-"användaren om ingen skiva finns i enheten."
+"Kontrollera att du har läs- och skrivåtkomst till enheten för den aktuella användaren om ingen skiva finns i enheten."
 
 #: ../xfburn/xfburn-main.c:345
 #, c-format
@@ -718,8 +687,10 @@ msgstr "Avbildningsfilen \"%s\" finns inte."
 msgid "_File"
 msgstr "_Arkiv"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -729,11 +700,14 @@ msgstr "Ny datakompilering"
 msgid "New audio composition"
 msgstr "Ny ljudkompilering"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -795,7 +769,8 @@ msgstr "Radera cd-rw"
 msgid "Copy Data CD"
 msgstr "Kopiera data-cd"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Bränn avbildning"
@@ -860,17 +835,12 @@ msgid "Determine whether the close button is visible"
 msgstr "Fastställ huruvida stängningsknappen är synlig"
 
 #: ../xfburn/xfburn-perform-burn.c:158
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Kan inte lägga till data till en multisession-skiva i detta skrivningsläge "
-"(använd TAO istället)."
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr "Kan inte lägga till data till en multisession-skiva i detta skrivningsläge (använd TAO istället)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-"Stängd skiva med data upptäcktes, en tom skiva eller en som är möjlig att "
-"lägga till data på behövs."
+msgstr "Stängd skiva med data upptäcktes, en tom skiva eller en som är möjlig att lägga till data på behövs."
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
@@ -1403,15 +1373,12 @@ msgstr "Cd- och dvd-brännarprogram"
 #~ msgid "The status of the disc in the drive"
 #~ msgstr "Status för skivan i enheten"
 
-#, fuzzy
 #~ msgid "Format DVD+RW"
 #~ msgstr "Formatera dvd-rw"
 
-#, fuzzy
 #~ msgid "_Format"
 #~ msgstr "_Tvinga"
 
-#, fuzzy
 #~ msgid "No media detected in drive"
 #~ msgstr "Ingen skiva i cd-rom-enheten"
 
@@ -1427,23 +1394,18 @@ msgstr "Cd- och dvd-brännarprogram"
 #~ msgid "Create a new composition"
 #~ msgstr "Skapa en ny kompilering"
 
-#, fuzzy
 #~ msgid "Copy DVD"
 #~ msgstr "_Kopiera cd"
 
-#, fuzzy
 #~ msgid "Action group"
 #~ msgstr "_Åtgärder"
 
-#, fuzzy
 #~ msgid "Format Fast"
 #~ msgstr "_Tvinga"
 
-#, fuzzy
 #~ msgid "Format Complete"
 #~ msgstr "Färdig"
 
-#, fuzzy
 #~ msgid "Deformat Complete"
 #~ msgstr "Färdig"
 
@@ -1453,7 +1415,6 @@ msgstr "Cd- och dvd-brännarprogram"
 #~ msgid "Burn CD image"
 #~ msgstr "Bränn cd-avbild"
 
-#, fuzzy
 #~ msgid "Initializing"
 #~ msgstr "Initierar..."
 
