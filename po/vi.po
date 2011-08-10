@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-04 10:02+0000\n"
-"PO-Revision-Date: 2011-07-05 14:14-0700\n"
+"POT-Creation-Date: 2011-08-09 10:02+0000\n"
+"PO-Revision-Date: 2011-08-10 05:03-0700\n"
 "Last-Translator: Vinh Nguyen <kureikain@gmail.com>\n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr "Sẵn sàng"
 
 #: ../xfburn/xfburn-blank-dialog.c:364
 msgid "No disc detected in the drive."
-msgstr "Không phát hiện đĩa trong đầu đọc đĩa"
+msgstr "Không tìm thấy đĩa trong đầu đọc đĩa"
 
 #: ../xfburn/xfburn-blank-dialog.c:373
 msgid "Disc is not erasable."
@@ -147,15 +147,15 @@ msgstr "Hiển thị một mục nhập văn bản cho tên thiết bị"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
 msgid "Burn Composition"
-msgstr ""
+msgstr "Ghi bộ chọn"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
 msgid "Composition name"
-msgstr ""
+msgstr "Tên bô chọn"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:211
 msgid "<small>Would you like to change the default composition name?</small>"
-msgstr ""
+msgstr "<small>B</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
 #: ../xfburn/xfburn-burn-image-dialog.c:208
@@ -181,79 +181,79 @@ msgstr "Chỉ tạo tập tin _ISO"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:221
 msgid "_Burn Composition"
-msgstr ""
+msgstr "_Ghi bộ chọn"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
 #, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr ""
+msgstr "Không tạo được file ISO: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 msgid "Writing ISO..."
-msgstr ""
+msgstr "Đang ghi ISO..."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
 #, c-format
 msgid "An error occured while writing ISO: %s"
-msgstr ""
+msgstr "Có lỗi xảy ra khi ghi ISO: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
 msgid "An error occurred in the burn backend."
-msgstr ""
+msgstr "Có lỗi xảy ra trong bên trong chương trình ghi"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:327
 msgid "The write mode is not supported currently."
-msgstr ""
+msgstr "Chế độ ghi hiện tại không được hỗ trợ"
 
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
 msgid "Could not create ISO source structure."
-msgstr ""
+msgstr "Không thể tạo cấu trúc file ISO nguồn"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:156
 msgid "Burn image"
-msgstr ""
+msgstr "Ghi ảnh"
 
 #. file
 #: ../xfburn/xfburn-burn-image-dialog.c:163
 #: ../xfburn/xfburn-burn-image-dialog.c:176
 msgid "Image to burn"
-msgstr ""
+msgstr "Ảnh để ghi"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:167
 msgid "All files"
-msgstr ""
+msgstr "Tất cả tập tin"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:171
 msgid "ISO images"
-msgstr ""
+msgstr "Các ảnh ISO"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:222
 msgid "_Burn image"
-msgstr ""
+msgstr "_Ghi ảnh"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:271
 msgid "Burn mode is not currently implemented."
-msgstr ""
+msgstr "Chế độ ghi hiện tại chưa được thiết lập"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:322
 #: ../xfburn/xfburn-burn-image-dialog.c:351
 msgid "An error occurred in the burn backend"
-msgstr ""
+msgstr "Xảy ra lỗi bên trong chương trình ghi"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:335
 msgid "Unable to determine image size."
-msgstr ""
+msgstr "Không xác định được kích thước ảnh"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:342
 msgid "Cannot open image."
-msgstr ""
+msgstr "Không thể mở tập tin ảnh"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:379
 msgid "Burning image..."
-msgstr ""
+msgstr "Đang ghi ảnh..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
 msgid ""
@@ -265,58 +265,61 @@ msgstr ""
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
+"Không thể thêm dữ liệu vào đĩa đa phiên trong chế độ ghi này (hãy sử dụng TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:487
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
+msgstr "Đĩa đã có dữ liệu. Cần đĩa trống hay đĩa có thể ghi thêm vào"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:489
 msgid "No disc detected in drive"
-msgstr ""
+msgstr "Không thấy đĩa trong đầu ghi"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:491
 msgid "Cannot recognize state of drive and disc"
-msgstr ""
+msgstr "Không thể ghi nhận trạng thái của đầu ghi và đĩa"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid "The selected image does not fit on the inserted disc"
-msgstr ""
+msgstr "Ảnh lựa chọn không chứa vừa trên đĩa đã đưa vào"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:507
 msgid "Failed to get image size"
-msgstr ""
+msgstr "Ko lấy được kích thước ảnh"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
 msgstr ""
+"Hãy chắc rằng bạn đã lựa chọn một tập tin hợp lệ và có quyền để "
+"truy xuất nó."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
-msgstr ""
+msgstr "Bộ chọn âm thành"
 
 #: ../xfburn/xfburn-compositions-notebook.c:235
 msgid "Welcome"
-msgstr ""
+msgstr "Xin chào"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
-msgstr ""
+msgstr "Sao chép dữ liệu đĩa CD"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:123
 msgid "CD Reader device"
-msgstr ""
+msgstr "Thiết bị đọc CD"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:152
 #: ../xfburn/xfburn-copy-dvd-dialog.c:152
 msgid "On the _fly"
-msgstr ""
+msgstr "Đg thực h_iện"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
-msgstr ""
+msgstr "_Sao chép CD"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
@@ -324,16 +327,16 @@ msgstr ""
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
-msgstr ""
+msgstr "Hãy bỏ một đĩa có thể ghi dữ liệu vào"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
-msgstr ""
+msgstr "Đang ghi CD..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:102
 msgid "Reading CD..."
-msgstr ""
+msgstr "Đang đọc CD..."
 
 #: ../xfburn/xfburn-copy-dvd-dialog.c:113
 msgid "Copy data DVD"
@@ -1217,7 +1220,8 @@ msgstr ""
 #: ../xfburn/xfburn-transcoder-gst.c:792
 #, fuzzy, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
-msgstr "Gstreamer không làm việc được với loại file này (hết thời gian phán đoán)"
+msgstr ""
+"Gstreamer không làm việc được với loại file này (hết thời gian phán đoán)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:801
 #, c-format
