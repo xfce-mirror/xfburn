@@ -2,12 +2,12 @@
 # Copyright (C) 2006 THE XfBurn'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Xfburn package.
 # Cosmo Chene <cosmolax@gmail.com>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfburn 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-02 22:14-0700\n"
+"POT-Creation-Date: 2011-09-21 04:02+0000\n"
 "PO-Revision-Date: 2006-08-20 01:09+0800\n"
 "Last-Translator: Cosmo Chene <cosmolax@gmail.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -22,21 +22,19 @@ msgstr "將檔案加入燒錄流程中"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
-msgstr ""
+msgstr "快速抹除"
 
 #: ../xfburn/xfburn-blank-dialog.c:72
 msgid "Full Blank (slow)"
-msgstr ""
+msgstr "完全抹除(慢速)"
 
 #: ../xfburn/xfburn-blank-dialog.c:73
-#, fuzzy
 msgid "Quick Format"
-msgstr "強制執行(_F)"
+msgstr "快速格式化"
 
 #: ../xfburn/xfburn-blank-dialog.c:74
-#, fuzzy
 msgid "Full Format"
-msgstr "強制執行(_F)"
+msgstr "完全格式化"
 
 #: ../xfburn/xfburn-blank-dialog.c:75
 msgid "Quick Deformat"
@@ -56,9 +54,8 @@ msgid "Default value for eject checkbox"
 msgstr ""
 
 #: ../xfburn/xfburn-blank-dialog.c:197
-#, fuzzy
 msgid "Blank Disc"
-msgstr "抹寫方式"
+msgstr "抹除光碟"
 
 #: ../xfburn/xfburn-blank-dialog.c:209
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:195
@@ -70,9 +67,8 @@ msgid "Burning device"
 msgstr "燒錄裝置"
 
 #: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:190
-#, fuzzy
 msgid "Blank mode"
-msgstr "抹寫方式"
+msgstr "抹除模式"
 
 #: ../xfburn/xfburn-blank-dialog.c:230
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
@@ -96,15 +92,16 @@ msgstr "退出光碟片(_J)"
 msgid "_Blank"
 msgstr "抹除(_B)"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:355
 msgid "The inserted disc is already blank."
-msgstr ""
+msgstr "放入的光碟片已被抹除"
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:361
 msgid "Ready"
-msgstr ""
+msgstr "準備好了"
 
 #: ../xfburn/xfburn-blank-dialog.c:364
 #, fuzzy
@@ -113,19 +110,18 @@ msgstr "光碟機中未放入光碟"
 
 #: ../xfburn/xfburn-blank-dialog.c:373
 msgid "Disc is not erasable."
-msgstr ""
+msgstr "光碟片不可抹除"
 
 #: ../xfburn/xfburn-blank-dialog.c:413
-#, fuzzy
 msgid "Blanking disc..."
-msgstr "燒錄裝置"
+msgstr "抹除光碟中..."
 
 #: ../xfburn/xfburn-blank-dialog.c:440
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:512
 #: ../xfburn/xfburn-perform-burn.c:366
 #, c-format
 msgid "Done"
-msgstr ""
+msgstr "完成"
 
 #: ../xfburn/xfburn-blank-dialog.c:443 ../xfburn/xfburn-perform-burn.c:372
 #: ../xfburn/xfburn-progress-dialog.c:603
@@ -167,7 +163,7 @@ msgstr "燒錄所選的資料內容"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:211
 msgid "<small>Would you like to change the default composition name?</small>"
-msgstr ""
+msgstr "<small>你想要變更預設的資料名稱嗎?</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
 #: ../xfburn/xfburn-burn-image-dialog.c:208
@@ -198,7 +194,7 @@ msgstr "燒錄所選的內容(_B)"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
 #, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr ""
+msgstr "無法在目的地建立ISO檔: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 msgid "Writing ISO..."
@@ -207,7 +203,7 @@ msgstr "正在寫入映像檔"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
 #, c-format
 msgid "An error occured while writing ISO: %s"
-msgstr ""
+msgstr "寫入ISO時發生錯誤: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
@@ -237,11 +233,11 @@ msgstr "欲燒錄的映像檔"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:167
 msgid "All files"
-msgstr ""
+msgstr "所有檔案"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:171
 msgid "ISO images"
-msgstr ""
+msgstr "ISO映像檔"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:222
 msgid "_Burn image"
@@ -258,31 +254,27 @@ msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:335
 msgid "Unable to determine image size."
-msgstr ""
+msgstr "無法確認映像檔大小"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:342
 msgid "Cannot open image."
-msgstr ""
+msgstr "無法開啟映像檔"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:379
-#, fuzzy
 msgid "Burning image..."
-msgstr "燒錄映像檔(_B)"
+msgstr "燒錄映像檔(_B)..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
-msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
+msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">請選擇燒錄的映像檔</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:483
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:487
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
+msgstr "發現已有資料的光碟片.需要抹除或新的光碟片"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:489
 #, fuzzy
@@ -291,30 +283,27 @@ msgstr "光碟機中未放入光碟"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:491
 msgid "Cannot recognize state of drive and disc"
-msgstr ""
+msgstr "無法辨別光碟機或光碟片的狀態"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid "The selected image does not fit on the inserted disc"
-msgstr ""
+msgstr "選擇的映像檔超過放入的光碟片"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:507
 msgid "Failed to get image size"
-msgstr ""
+msgstr "無法取得映像檔大小"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
-msgid ""
-"Make sure you selected a valid file and you have the proper permissions to "
-"access it."
-msgstr ""
+msgid "Make sure you selected a valid file and you have the proper permissions to access it."
+msgstr "請確認選擇了有效的檔案且有適當的權限來存取"
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
-#, fuzzy
 msgid "Audio composition"
-msgstr "燒錄這個燒錄流程"
+msgstr "音訊清單"
 
 #: ../xfburn/xfburn-compositions-notebook.c:235
 msgid "Welcome"
-msgstr ""
+msgstr "歡迎"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
@@ -409,7 +398,8 @@ msgstr "清除"
 msgid "Clear the content of the composition"
 msgstr "清除燒錄流程中的內容"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:195
 msgid "Rename"
 msgstr "重新命名"
@@ -443,9 +433,8 @@ msgstr "您必須賦予檔案一個可用的名稱"
 #: ../xfburn/xfburn-data-composition.c:687
 #: ../xfburn/xfburn-data-composition.c:1123
 #: ../xfburn/xfburn-audio-composition.c:1146
-#, fuzzy
 msgid "A file with the same name is already present in the composition."
-msgstr "相同名稱的檔案已存在於本次燒錄流程中"
+msgstr "相同名稱的檔案已存在於本次燒錄清單中"
 
 #: ../xfburn/xfburn-data-composition.c:795
 #: ../xfburn/xfburn-data-composition.c:796
@@ -453,39 +442,37 @@ msgstr "相同名稱的檔案已存在於本次燒錄流程中"
 msgid "New directory"
 msgstr "新增資料夾"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:966
 #, c-format
 msgid "Data %s~%d"
-msgstr ""
+msgstr "資料 %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1202
 #, c-format
-msgid ""
-"%s cannot be added to the composition, because it exceeds the maximum "
-"allowed file size for iso9660."
-msgstr ""
+msgid "%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."
+msgstr "%s 無法被加入清單, 因為超過iso9660的最大允許檔案大小"
 
 #: ../xfburn/xfburn-data-composition.c:1294
 #: ../xfburn/xfburn-audio-composition.c:1321
-#, fuzzy
 msgid "Adding home directory"
-msgstr "新增資料夾"
+msgstr "新增家目錄"
 
 #: ../xfburn/xfburn-data-composition.c:1295
 #: ../xfburn/xfburn-audio-composition.c:1322
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
+"您可以把家目錄加到清單中.這可能會花很長的時間而且可能超過一張光碟片的大小.\n"
+"\n"
+"您確定想繼續嗎?"
 
 #: ../xfburn/xfburn-data-composition.c:1462
 #, fuzzy, c-format
-msgid ""
-"A file named \"%s\" already exists in this directory, the file hasn't been "
-"added."
+msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
 msgstr "名稱為 \"%s\" 的檔案已在此資料夾中，您無法再次加入這個檔案。"
 
 #. The first string is the renamed name, the second one the original name
@@ -551,12 +538,9 @@ msgstr ""
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to "
-"<i>xfburn@xfce.org</i> together with the console output to increase the "
-"chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
@@ -690,8 +674,7 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
 
 #: ../xfburn/xfburn-main.c:345
@@ -710,8 +693,10 @@ msgstr ""
 msgid "_File"
 msgstr "檔案(_F)"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 #, fuzzy
@@ -723,11 +708,14 @@ msgstr "燒錄資料"
 msgid "New audio composition"
 msgstr "新建燒錄流程(_N)"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -789,7 +777,8 @@ msgstr "抹寫 CD-RW"
 msgid "Copy Data CD"
 msgstr "複製資料光碟"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 #, fuzzy
 msgid "Burn Image"
@@ -859,8 +848,7 @@ msgid "Determine whether the close button is visible"
 msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:158
-msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
 msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:162
@@ -1389,15 +1377,12 @@ msgstr "CD 及 DVD 燒錄程式"
 #~ msgid "Data composition"
 #~ msgstr "燒錄資料"
 
-#, fuzzy
 #~ msgid "Format DVD+RW"
 #~ msgstr "格式化 DVD-RW"
 
-#, fuzzy
 #~ msgid "_Format"
 #~ msgstr "強制執行(_F)"
 
-#, fuzzy
 #~ msgid "No media detected in drive"
 #~ msgstr "光碟機中未放入光碟"
 
@@ -1413,23 +1398,18 @@ msgstr "CD 及 DVD 燒錄程式"
 #~ msgid "Create a new composition"
 #~ msgstr "建立新的燒錄流程"
 
-#, fuzzy
 #~ msgid "Copy DVD"
 #~ msgstr "複製光碟(_C)"
 
-#, fuzzy
 #~ msgid "Action group"
 #~ msgstr "動作(_A)"
 
-#, fuzzy
 #~ msgid "Format Fast"
 #~ msgstr "強制執行(_F)"
 
-#, fuzzy
 #~ msgid "Format Complete"
 #~ msgstr "完整抹寫"
 
-#, fuzzy
 #~ msgid "Deformat Complete"
 #~ msgstr "完整抹寫"
 
@@ -1439,7 +1419,6 @@ msgstr "CD 及 DVD 燒錄程式"
 #~ msgid "Burn CD image"
 #~ msgstr "燒錄光碟映像檔"
 
-#, fuzzy
 #~ msgid "Initializing"
 #~ msgstr "初始化中"
 
