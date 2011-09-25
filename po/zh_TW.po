@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfburn 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-22 22:02+0000\n"
+"POT-Creation-Date: 2011-09-25 04:02+0000\n"
 "PO-Revision-Date: 2006-08-20 01:09+0800\n"
 "Last-Translator: Cosmo Chene <cosmolax@gmail.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -1179,10 +1179,9 @@ msgstr ""
 
 #: ../xfburn/xfburn-disc-usage.c:163
 msgid "Proceed to Burn"
-msgstr ""
+msgstr "繼續燒錄"
 
 #: ../xfburn/xfburn-disc-usage.c:203
-#, fuzzy
 msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "您想燒錄的資料大小超過光碟本身的容量!"
 
@@ -1220,12 +1219,12 @@ msgstr ""
 #: ../xfburn/xfburn-transcoder-basic.c:238
 #, c-format
 msgid "Could not open %s."
-msgstr ""
+msgstr "無法開啟 %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:319
 #, c-format
 msgid "Could not open %s: %s"
-msgstr ""
+msgstr "無法開啟 %s: %s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:632
 #, c-format
@@ -1270,6 +1269,11 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"%s\n"
+"\n"
+"不是音樂檔:\n"
+"\n"
+"%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:916
 #, c-format
@@ -1279,7 +1283,7 @@ msgstr ""
 #: ../xfburn/xfburn-transcoder-gst.c:951
 #, c-format
 msgid "Failed to change songs while transcoding"
-msgstr ""
+msgstr "轉檔時不能切換音樂"
 
 #: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
@@ -1299,11 +1303,11 @@ msgstr "裝置"
 
 #: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
 msgid "Burn speeds supported by the device"
-msgstr ""
+msgstr "裝置支援的燒錄速度"
 
 #: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
 msgid "Disc status"
-msgstr ""
+msgstr "光碟狀態"
 
 #: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
 msgid "Profile no. as reported by libburn"
@@ -1319,23 +1323,23 @@ msgstr ""
 
 #: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Can burn CDR"
-msgstr ""
+msgstr "可以燒錄CDR"
 
 #: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
 msgid "Can burn CDRW"
-msgstr ""
+msgstr "可以燒錄CDRW"
 
 #: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
 msgid "Can burn DVDR"
-msgstr ""
+msgstr "可以燒錄DVDR"
 
 #: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
 msgid "Can burn DVDPLUSR"
-msgstr ""
+msgstr "可以燒錄DVDPLUSR"
 
 #: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
 msgid "Can burn DVDRAM"
-msgstr ""
+msgstr "可以燒錄DVDRAM"
 
 #: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
 msgid "libburn TAO block types"
@@ -1354,9 +1358,8 @@ msgid "libburn PACKET block types"
 msgstr ""
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
-#, fuzzy
 msgid "Data Composition"
-msgstr "燒錄資料"
+msgstr "資料清單"
 
 #: ../xfburn.desktop.in.h:1
 #, fuzzy
