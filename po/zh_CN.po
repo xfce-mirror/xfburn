@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
-msgstr "在项目区添加文件..."
+msgstr "在项目中添加文件..."
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
@@ -52,7 +52,7 @@ msgstr "弹出光盘"
 
 #: ../xfburn/xfburn-blank-dialog.c:150
 msgid "Default value for eject checkbox"
-msgstr "弹出选项框默认值"
+msgstr "弹出选择框默认值"
 
 #: ../xfburn/xfburn-blank-dialog.c:197
 msgid "Blank Disc"
@@ -96,12 +96,12 @@ msgstr "擦除(_B)"
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:355
 msgid "The inserted disc is already blank."
-msgstr "插入的光盘已经是空的。"
+msgstr "插入的光盘已经擦除。"
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:361
 msgid "Ready"
-msgstr "准备好"
+msgstr "就绪"
 
 #: ../xfburn/xfburn-blank-dialog.c:364
 msgid "No disc detected in the drive."
@@ -172,7 +172,7 @@ msgstr "模拟写入(_D)"
 #: ../xfburn/xfburn-burn-image-dialog.c:212
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:206
 msgid "Burn_Free"
-msgstr "释放刻录(_F)"
+msgstr "自由刻录(_F)"
 
 #. create ISO ?
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
@@ -248,7 +248,7 @@ msgstr "刻录后端出错"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:335
 msgid "Unable to determine image size."
-msgstr "无法检测镜像大小。"
+msgstr "未能检测镜像大小。"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:342
 msgid "Cannot open image."
@@ -256,7 +256,7 @@ msgstr "未能打开镜像。"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:379
 msgid "Burning image..."
-msgstr "刻录镜像..."
+msgstr "正在刻录镜像..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
 msgid ""
@@ -282,7 +282,7 @@ msgstr "驱动器中没有检测到光盘"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:491
 msgid "Cannot recognize state of drive and disc"
-msgstr "未能确定驱动器和介质的状态"
+msgstr "未能确定驱动器和光盘的状态"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid "The selected image does not fit on the inserted disc"
@@ -326,15 +326,15 @@ msgstr "复制 CD(_C)"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
-msgstr "清空缓存..."
+msgstr "正在清空缓存..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
-msgstr "请插入可录制介质。"
+msgstr "请插入可录制光盘。"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
-msgstr "写入 CD..."
+msgstr "正在写入 CD..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:102
@@ -351,11 +351,11 @@ msgstr "DVD 读取设备"
 
 #: ../xfburn/xfburn-copy-dvd-dialog.c:193
 msgid "_Copy DVD"
-msgstr "复制DVD(_C)"
+msgstr "复制 DVD(_C)"
 
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
-msgstr "从 CD 创建 ISO 镜像"
+msgstr "从 CD 创建 ISO"
 
 #: ../xfburn/xfburn-data-composition.c:186
 #: ../xfburn/xfburn-audio-composition.c:207
@@ -365,7 +365,7 @@ msgstr "添加"
 #: ../xfburn/xfburn-data-composition.c:186
 #: ../xfburn/xfburn-audio-composition.c:207
 msgid "Add the selected file(s) to the composition"
-msgstr "在项目区添加文件"
+msgstr "在项目中添加选中的文件"
 
 #: ../xfburn/xfburn-data-composition.c:188
 msgid "Create directory"
@@ -373,7 +373,7 @@ msgstr "创建目录"
 
 #: ../xfburn/xfburn-data-composition.c:188
 msgid "Add a new directory to the composition"
-msgstr "添加新目录到项目区"
+msgstr "在项目中添加新目录"
 
 #: ../xfburn/xfburn-data-composition.c:190
 #: ../xfburn/xfburn-audio-composition.c:209
@@ -383,7 +383,7 @@ msgstr "移除"
 #: ../xfburn/xfburn-data-composition.c:190
 #: ../xfburn/xfburn-audio-composition.c:209
 msgid "Remove the selected file(s) from the composition"
-msgstr "从项目区中移除选中的文件"
+msgstr "从项目中中移除选中的文件"
 
 #: ../xfburn/xfburn-data-composition.c:192
 #: ../xfburn/xfburn-audio-composition.c:211
@@ -393,7 +393,7 @@ msgstr "清除"
 #: ../xfburn/xfburn-data-composition.c:192
 #: ../xfburn/xfburn-audio-composition.c:211
 msgid "Clear the content of the composition"
-msgstr "清空项目内容"
+msgstr "清除项目内容"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-data-composition.c:195
@@ -429,7 +429,7 @@ msgstr "您必须给文件起个名。"
 #: ../xfburn/xfburn-data-composition.c:1123
 #: ../xfburn/xfburn-audio-composition.c:1146
 msgid "A file with the same name is already present in the composition."
-msgstr "在项目区已经有相同名称的文件存在。"
+msgstr "在项目中已经有相同名称的文件存在。"
 
 #: ../xfburn/xfburn-data-composition.c:795
 #: ../xfburn/xfburn-data-composition.c:796
@@ -448,12 +448,12 @@ msgstr "数据 %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr "未能在项目区中添加 %s，因为它超过了 iso9660 格式规定的最大值。"
+msgstr "未能在项目中添加 %s，因为它超过了 iso9660 允许的最大值。"
 
 #: ../xfburn/xfburn-data-composition.c:1294
 #: ../xfburn/xfburn-audio-composition.c:1321
 msgid "Adding home directory"
-msgstr "正在添加主目录"
+msgstr "正在添加主文件夹"
 
 #: ../xfburn/xfburn-data-composition.c:1295
 #: ../xfburn/xfburn-audio-composition.c:1322
@@ -463,10 +463,10 @@ msgid ""
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"即将在项目区添加您的主目录。这似乎需要很长\n"
+"即将在项目中添加您的主文件夹。这可能需要很长\n"
 "时间，而且对于一张光盘来说可能太大。\n"
 "\n"
-"您确定要继续？"
+"您确定要继续吗？"
 
 #: ../xfburn/xfburn-data-composition.c:1462
 #, c-format
@@ -479,7 +479,7 @@ msgstr "此目录中已经存在名为 “%s” 的文件，没有添加此文�
 #: ../xfburn/xfburn-data-composition.c:1886
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
-msgstr "“%s” 与现有的文件 “%s” 同名"
+msgstr "和 ‘%2$d’ 重复的文件名 ‘%1$d’"
 
 #: ../xfburn/xfburn-device-box.c:174 ../xfburn/xfburn-device-box.c:175
 msgid "Show writers only"
@@ -491,43 +491,43 @@ msgstr "显示速度选择"
 
 #: ../xfburn/xfburn-device-box.c:179
 msgid "Show speed selection combo"
-msgstr "显示速度选择"
+msgstr "显示速度选择器"
 
 #: ../xfburn/xfburn-device-box.c:182
 msgid "Show mode selection"
-msgstr "显示选择模式"
+msgstr "显示模式选择"
 
 #: ../xfburn/xfburn-device-box.c:183
 msgid "Show mode selection combo"
-msgstr "显示选择模式"
+msgstr "显示模式选择器"
 
 #: ../xfburn/xfburn-device-box.c:186
 msgid "Is it a valid combination"
-msgstr "是一个有效的组合?"
+msgstr "它是有效的组件吗？"
 
 #: ../xfburn/xfburn-device-box.c:187
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr "硬件和光盘的组合对刻录项目是否有效?"
+msgstr "刻录项目的硬件和光盘组件是有效的吗？"
 
 #: ../xfburn/xfburn-device-box.c:191
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "擦除模式和正常模式显示不同的光盘状态信息"
+msgstr "与正常模式相比擦除模式显示不同的光盘状态信息"
 
 #: ../xfburn/xfburn-device-box.c:194 ../xfburn/xfburn-device-box.c:195
 msgid "Accept only CDs as valid discs"
-msgstr "仅接受CD作为合法光盘"
+msgstr "仅将 CD 作为有效光盘"
 
 #: ../xfburn/xfburn-device-box.c:248
 msgid "_Speed:"
-msgstr "速度(_S):"
+msgstr "速度(_S)："
 
 #: ../xfburn/xfburn-device-box.c:271
 msgid "Write _mode:"
-msgstr "写入模式(_m):"
+msgstr "写入模式(_M)："
 
 #: ../xfburn/xfburn-device-box.c:389
 msgid "Empty speed list"
-msgstr "无速度列表"
+msgstr "清空速度列表"
 
 #: ../xfburn/xfburn-device-box.c:397
 msgid ""
@@ -542,21 +542,21 @@ msgid ""
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
-"<b>不能获取驱动器的速度列表</b>\n"
+"<b>未能获取驱动器的速度列表。</b>\n"
 "\n"
-"这是已知有些驱动器上的一个Bug.请向<i>xfburn@xfce.org</i>报告,包括终端中的输出"
-"信息等;以便下一次修复它.\n"
+"这是在一些驱动器上发生的一个已知缺陷，请向 <i>xfburn@xfce.org</i> "
+"报告，连带终端中的输出一道以增其获得修正的可能性。\n"
 "\n"
-"刻录将继续.总之,如果有问题,请一定要让我们知道.\n"
-"<i>谢谢!</i>"
+"应能继续刻录，但如果总是有问题，请告诉我们。\n"
+"<i>谢谢！</i>"
 
 #: ../xfburn/xfburn-device-box.c:406
 msgid "Continue to _show this notice"
-msgstr "继续显示该提示(_s)"
+msgstr "继续显示此提示(_S)"
 
 #: ../xfburn/xfburn-device-box.c:448
 msgid "default"
-msgstr "默认"
+msgstr "默认值"
 
 #: ../xfburn/xfburn-device-box.c:484
 msgid "Max"
@@ -564,19 +564,19 @@ msgstr "最大"
 
 #: ../xfburn/xfburn-device-box.c:586
 msgid "Drive can't burn on the inserted disc"
-msgstr "驱动器不能刻录插入的光盘"
+msgstr "驱动器未能在插入的光盘上刻录"
 
 #: ../xfburn/xfburn-device-box.c:595 ../xfburn/xfburn-device-box.c:641
 msgid "Drive is empty"
-msgstr "驱动器为空"
+msgstr "驱动器是空的"
 
 #: ../xfburn/xfburn-device-box.c:598
 msgid "Sorry, multisession is not yet supported"
-msgstr "对不起，多会话尚未不支持"
+msgstr "对不起，尚未支持多重会话"
 
 #: ../xfburn/xfburn-device-box.c:601
 msgid "Inserted disc is full"
-msgstr "插入的光盘控件已满"
+msgstr "插入的光盘已满"
 
 #: ../xfburn/xfburn-device-box.c:604 ../xfburn/xfburn-device-box.c:647
 msgid "Inserted disc is unsuitable"
@@ -584,19 +584,19 @@ msgstr "插入的光盘不合适"
 
 #: ../xfburn/xfburn-device-box.c:607 ../xfburn/xfburn-device-box.c:650
 msgid "Cannot access drive (it might be in use)"
-msgstr "无法连接驱动器（可能正在使用中）"
+msgstr "未能访问驱动器(可能正在使用)"
 
 #: ../xfburn/xfburn-device-box.c:612 ../xfburn/xfburn-device-box.c:653
 msgid "Error determining disc"
-msgstr "检测光盘时发生错误"
+msgstr "检测光盘时出错"
 
 #: ../xfburn/xfburn-device-box.c:633
 msgid "Write-once disc, no blanking possible"
-msgstr "只写一次光盘,不能擦除."
+msgstr "一次性光盘，无擦除可能性"
 
 #: ../xfburn/xfburn-device-box.c:636
 msgid "DVD+RW does not need blanking"
-msgstr "DVD+RW不需要擦除"
+msgstr "DVD+RW 不需要擦除"
 
 #: ../xfburn/xfburn-device-box.c:644
 msgid "Inserted disc is already blank"
@@ -616,7 +616,7 @@ msgstr "系统中驱动器的数量"
 
 #: ../xfburn/xfburn-device-list.c:210
 msgid "Number of drives in the system (readers and writers)"
-msgstr "系统中驱动器的数量 (读取和写入设备)"
+msgstr "系统中驱动器的数量(读取和写入设备)"
 
 #: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
 msgid "List of devices"
@@ -629,7 +629,7 @@ msgstr "当前选中的设备"
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:57
 msgid "Folder"
-msgstr "目录"
+msgstr "文件夹"
 
 #: ../xfburn/xfburn-directory-browser.c:130
 #: ../xfburn/xfburn-directory-browser.c:354
@@ -648,11 +648,11 @@ msgstr "文件系统"
 #: ../xfburn/xfburn-fs-browser.c:263
 #, c-format
 msgid "%s's home"
-msgstr "%s' 主目录"
+msgstr "%s 的主文件夹"
 
 #: ../xfburn/xfburn-main.c:206 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
-msgstr "Xfburn"
+msgstr "Xfburn 刻录器"
 
 #: ../xfburn/xfburn-main.c:216
 #, c-format
@@ -660,12 +660,12 @@ msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
-"%s: %s\n"
-"尝试用 %s --help 查看全部命令选项列表.\n"
+"%s：%s\n"
+"试试 %s --help 查看可用命令行选项的完整列表。\n"
 
 #: ../xfburn/xfburn-main.c:224
 msgid "Unable to initialize the burning backend."
-msgstr "无法启动刻录后端。"
+msgstr "未能初始化刻录后端。"
 
 #: ../xfburn/xfburn-main.c:309
 msgid "No burners are currently available"
@@ -680,10 +680,10 @@ msgid ""
 "If no disc is in the drive, check that you have read and write access to the "
 "drive with the current user."
 msgstr ""
-"光盘介质正在使用，无法连接。\n"
+"光盘可能正在使用，未能访问。\n"
 "\n"
-"请卸载后重新启动应用程序.\n"
-"如果驱动器中无光盘介质，请检查当前用户是否对该驱动器有读写(r/w)权限。"
+"请卸载后重启应用程序。\n"
+"如果驱动器中无光盘，检查您以当前用户是否有读写访问驱动器的权限。"
 
 #: ../xfburn/xfburn-main.c:345
 #, c-format
@@ -691,13 +691,13 @@ msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr ""
-"初始化解码器 %s 失败: %s\n"
-"\t(返回默认操作)"
+"无法初始化 %s 解码器：%s\n"
+"\t(返回基本操作)"
 
 #: ../xfburn/xfburn-main.c:378
 #, c-format
 msgid "Image file '%s' does not exist."
-msgstr "镜像'%s'不存在！"
+msgstr "镜像文件 ‘%s’ 不存在。"
 
 #: ../xfburn/xfburn-main-window.c:100
 msgid "_File"
@@ -712,7 +712,7 @@ msgstr "新建数据项目"
 
 #: ../xfburn/xfburn-main-window.c:106
 msgid "New audio composition"
-msgstr "新建音乐项目"
+msgstr "新建音频项目"
 
 #. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
@@ -730,7 +730,7 @@ msgstr "退出(_Q)"
 
 #: ../xfburn/xfburn-main-window.c:116
 msgid "Quit Xfburn"
-msgstr "退出Xfburn"
+msgstr "退出 Xfburn 刻录器"
 
 #: ../xfburn/xfburn-main-window.c:117
 msgid "_Edit"
@@ -738,7 +738,7 @@ msgstr "编辑(_E)"
 
 #: ../xfburn/xfburn-main-window.c:118
 msgid "Prefere_nces"
-msgstr "首选项(_n)"
+msgstr "首选项(_N)"
 
 #: ../xfburn/xfburn-main-window.c:118
 msgid "Show preferences dialog"
@@ -750,7 +750,7 @@ msgstr "动作(_A)"
 
 #: ../xfburn/xfburn-main-window.c:121
 msgid "_View"
-msgstr "查看(_V)"
+msgstr "视图(_V)"
 
 #: ../xfburn/xfburn-main-window.c:122
 msgid "Refresh"
@@ -758,7 +758,7 @@ msgstr "刷新"
 
 #: ../xfburn/xfburn-main-window.c:122
 msgid "Refresh file list"
-msgstr "刷新列表"
+msgstr "刷新文件列表"
 
 #: ../xfburn/xfburn-main-window.c:124
 msgid "_Help"
@@ -770,15 +770,15 @@ msgstr "关于(_A)"
 
 #: ../xfburn/xfburn-main-window.c:125
 msgid "Display information about Xfburn"
-msgstr "显示关于Xfburn的信息"
+msgstr "显示 Xfburn 刻录器相关信息"
 
 #: ../xfburn/xfburn-main-window.c:127
 msgid "Blank CD-RW"
-msgstr "擦除CD-RW"
+msgstr "擦除 CD-RW"
 
 #: ../xfburn/xfburn-main-window.c:129
 msgid "Copy Data CD"
-msgstr "复制数据CD"
+msgstr "复制数据 CD"
 
 #. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
@@ -789,7 +789,7 @@ msgstr "刻录镜像"
 #. G_CALLBACK (action_copy_dvd),},
 #: ../xfburn/xfburn-main-window.c:136
 msgid "Burn DVD Image"
-msgstr "刻录DVD镜像"
+msgstr "刻录 DVD 镜像"
 
 #: ../xfburn/xfburn-main-window.c:141
 msgid "Show file browser"
@@ -813,7 +813,7 @@ msgstr "工具栏编辑器"
 
 #: ../xfburn/xfburn-main-window.c:533
 msgid "Another cd burning GUI"
-msgstr "一个图形CD刻录程序"
+msgstr "另一个 CD 刻录图形界面"
 
 #: ../xfburn/xfburn-main-window.c:536 ../xfburn/xfburn-main-window.c:537
 msgid "Author/Maintainer"
@@ -821,7 +821,7 @@ msgstr "作者/维护者"
 
 #: ../xfburn/xfburn-main-window.c:538
 msgid "Retired author/maintainer"
-msgstr "作者/维护者"
+msgstr "已退出作者/维护者"
 
 #: ../xfburn/xfburn-main-window.c:544
 #, c-format
@@ -834,7 +834,7 @@ msgstr "卷标"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "The text of the label"
-msgstr "卷标的文本"
+msgstr "卷标文本"
 
 #: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Show close button"
@@ -847,38 +847,37 @@ msgstr "决定是否显示关闭按钮"
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr "该写模式不支持将数据追加到多个会话光盘（请使用TAO模式替代）。"
+msgstr "在写入模式下无法在多重会话光盘中附加数据(使用 TAO 模式)"
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr ""
-"根据数据探测关闭光盘介质，\n"
-"此项功能需要空白的或者可追加写入的光盘。"
+"已检测数据的已关闭光盘，需要空白或可附加光盘。"
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
-msgstr "驱动器中无光盘。"
+msgstr "驱动器未检测到光盘。"
 
 #: ../xfburn/xfburn-perform-burn.c:167
 msgid "Cannot recognize the state of the drive and disc."
-msgstr "不能确定驱动器和介质的状态。"
+msgstr "未能识别驱动器和光盘的状态。"
 
 #: ../xfburn/xfburn-perform-burn.c:180
 msgid "There is not enough space available on the inserted disc."
-msgstr "插入光盘可用空间不足"
+msgstr "插入的光盘中没有足够的空间可用。"
 
 #: ../xfburn/xfburn-perform-burn.c:225
 #, c-format
 msgid "Burning track %2d/%d..."
-msgstr "刻录轨道%2d/%d..."
+msgstr "正在刻录音轨 %2d/%d..."
 
 #: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
 msgid "Burning composition..."
-msgstr "刻录项目..."
+msgstr "正在刻录项目..."
 
 #: ../xfburn/xfburn-perform-burn.c:263
 msgid "standby"
-msgstr "标准"
+msgstr "准备"
 
 #: ../xfburn/xfburn-perform-burn.c:271
 msgid "ending"
@@ -894,15 +893,15 @@ msgstr "未使用"
 
 #: ../xfburn/xfburn-perform-burn.c:280
 msgid "abandoned"
-msgstr "已抛弃"
+msgstr "已放弃"
 
 #: ../xfburn/xfburn-perform-burn.c:283
 msgid "ended"
-msgstr "结束"
+msgstr "已结束"
 
 #: ../xfburn/xfburn-perform-burn.c:286
 msgid "aborted"
-msgstr "已中止"
+msgstr "已失败"
 
 #: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:199
 #: ../xfburn/xfburn-progress-dialog.c:216
@@ -916,11 +915,11 @@ msgstr "无信息"
 
 #: ../xfburn/xfburn-perform-burn.c:299
 msgid "Writing Lead-In..."
-msgstr "写引入..."
+msgstr "正在写入..."
 
 #: ../xfburn/xfburn-perform-burn.c:305
 msgid "Writing Lead-Out..."
-msgstr "写引出..."
+msgstr "正在写出..."
 
 #: ../xfburn/xfburn-perform-burn.c:311
 msgid "Writing pregap..."
@@ -952,7 +951,7 @@ msgstr "首选项"
 
 #: ../xfburn/xfburn-preferences-dialog.c:142
 msgid "Tune how Xfburn behaves"
-msgstr "调整 Xfburn 参数"
+msgstr "调整 Xfburn 行为"
 
 #: ../xfburn/xfburn-preferences-dialog.c:188
 #: ../xfburn/xfburn-preferences-dialog.c:192
@@ -1169,7 +1168,7 @@ msgstr "刻录进程"
 
 #: ../xfburn/xfburn-disc-usage.c:203
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "你正试图刻录超过介质容量极限的数据。"
+msgstr "你正试图刻录超过光盘容量极限的数据。"
 
 #: ../xfburn/xfburn-transcoder-basic.c:166
 msgid "basic"
