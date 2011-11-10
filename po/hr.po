@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-13 10:02+0000\n"
+"POT-Creation-Date: 2011-11-10 11:01+0000\n"
 "PO-Revision-Date: 2011-01-16 01:18+0100\n"
 "Last-Translator: Ivica Kolić <ikoli@yahoo.com>\n"
 "Language-Team: Croatian <ikoli@yahoo.com>\n"
@@ -109,7 +109,7 @@ msgstr "Nijedan disk nije otkriven u pogonu."
 
 #: ../xfburn/xfburn-blank-dialog.c:373
 msgid "Disc is not erasable."
-msgstr ""
+msgstr "Disk nije izbrisiv."
 
 #: ../xfburn/xfburn-blank-dialog.c:413
 msgid "Blanking disc..."
@@ -259,11 +259,16 @@ msgid "Burning image..."
 msgstr "Snimam sliku..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
-msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
-msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Molim odaberite sliku za snimanje</span>"
+msgid ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
+"select an image to burn</span>"
+msgstr ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Molim "
+"odaberite sliku za snimanje</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:483
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:487
@@ -287,8 +292,10 @@ msgid "Failed to get image size"
 msgstr "Neuspjelo određivanje veličine slike"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
-msgid "Make sure you selected a valid file and you have the proper permissions to access it."
-msgstr ""
+msgid ""
+"Make sure you selected a valid file and you have the proper permissions to "
+"access it."
+msgstr "Provjerite jeste li odabrali valjanu datoteku i imate odgovarajuće dozvole za pristup."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -439,7 +446,9 @@ msgstr "Podatak %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1202
 #, c-format
-msgid "%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."
+msgid ""
+"%s cannot be added to the composition, because it exceeds the maximum "
+"allowed file size for iso9660."
 msgstr ""
 
 #: ../xfburn/xfburn-data-composition.c:1294
@@ -450,14 +459,17 @@ msgstr "Dodajem osobni direktorij"
 #: ../xfburn/xfburn-data-composition.c:1295
 #: ../xfburn/xfburn-audio-composition.c:1322
 msgid ""
-"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely "
+"to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
 
 #: ../xfburn/xfburn-data-composition.c:1462
 #, c-format
-msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
+msgid ""
+"A file named \"%s\" already exists in this directory, the file hasn't been "
+"added."
 msgstr ""
 
 #. The first string is the renamed name, the second one the original name
@@ -518,16 +530,19 @@ msgstr ""
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n"
+"This is a known bug, which occurs with some drives. Please report it to "
+"<i>xfburn@xfce.org</i> together with the console output to increase the "
+"chances that it will get fixed.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us know.\n"
+"Burning should still work, but if there are problems anyways, please let us "
+"know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:406
 msgid "Continue to _show this notice"
-msgstr ""
+msgstr "Nastavi _pokazivati ovu obavijest"
 
 #: ../xfburn/xfburn-device-box.c:448
 msgid "default"
@@ -636,7 +651,8 @@ msgid ""
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 "%s: %s\n"
-"Pokušaj %s --help da biste vidjeli cijelu listu dostupnih opcija naredbenog retka.\n"
+"Pokušaj %s --help da biste vidjeli cijelu listu dostupnih opcija naredbenog "
+"retka.\n"
 
 #: ../xfburn/xfburn-main.c:224
 msgid "Unable to initialize the burning backend."
@@ -652,7 +668,8 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the "
+"drive with the current user."
 msgstr ""
 
 #: ../xfburn/xfburn-main.c:345
@@ -804,11 +821,11 @@ msgstr ""
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "Label"
-msgstr ""
+msgstr "Naljepnica"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "The text of the label"
-msgstr ""
+msgstr "Tekst naljepnice"
 
 #: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Show close button"
@@ -819,7 +836,8 @@ msgid "Determine whether the close button is visible"
 msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:158
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)."
 msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:162
@@ -899,11 +917,11 @@ msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:317
 msgid "Closing track..."
-msgstr ""
+msgstr "Zatvaranje zapisa ..."
 
 #: ../xfburn/xfburn-perform-burn.c:323
 msgid "Closing session..."
-msgstr ""
+msgstr "Zatvaranje sesije ..."
 
 #: ../xfburn/xfburn-perform-burn.c:329
 msgid "Formatting..."
@@ -915,7 +933,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:370
 msgid "User Aborted"
-msgstr ""
+msgstr " Prekinuo korisnik"
 
 #: ../xfburn/xfburn-preferences-dialog.c:141
 msgid "Preferences"
@@ -1027,7 +1045,7 @@ msgstr "Prekinut"
 
 #: ../xfburn/xfburn-progress-dialog.c:532
 msgid "Failed"
-msgstr ""
+msgstr "Nije uspjelo"
 
 #: ../xfburn/xfburn-progress-dialog.c:535
 msgid "Cancelled"
@@ -1080,7 +1098,7 @@ msgstr "<big>_Audio CD</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:155
 msgid "Audio CD playable in regular stereos"
-msgstr ""
+msgstr "Audio CD koji može svirati u uobičajenim stereo uređajima"
 
 #: ../xfburn/xfburn-audio-composition.c:213
 msgid "What files can get burned to an audio CD?"
@@ -1108,7 +1126,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:405
 msgid "Length"
-msgstr ""
+msgstr "Dužina"
 
 #: ../xfburn/xfburn-audio-composition.c:411
 msgid "Artist"
@@ -1140,11 +1158,11 @@ msgstr "Nastavi sa snimanjem"
 
 #: ../xfburn/xfburn-disc-usage.c:203
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr ""
+msgstr "Pokušavate na disk snimiti više nego što može držati."
 
 #: ../xfburn/xfburn-transcoder-basic.c:166
 msgid "basic"
-msgstr ""
+msgstr "osnovni"
 
 #: ../xfburn/xfburn-transcoder-basic.c:172
 msgid ""
@@ -1198,7 +1216,7 @@ msgstr ""
 #. * the user would understand better
 #: ../xfburn/xfburn-transcoder-gst.c:721
 msgid "gstreamer"
-msgstr ""
+msgstr "gstreamer"
 
 #: ../xfburn/xfburn-transcoder-gst.c:727
 msgid ""
@@ -1241,7 +1259,7 @@ msgstr ""
 #: ../xfburn/xfburn-transcoder.c:163
 #, c-format
 msgid "not implemented"
-msgstr ""
+msgstr "ne primjenjeno"
 
 #: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
 msgid "Display name"
@@ -1269,7 +1287,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
 msgid "Is the disc erasable"
-msgstr ""
+msgstr "Je li disk izbrisiv"
 
 #: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Can burn CDR"
