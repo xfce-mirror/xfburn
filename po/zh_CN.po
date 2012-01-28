@@ -181,7 +181,7 @@ msgstr "自由刻录(_F)"
 #: ../xfburn/xfburn-copy-cd-dialog.c:157
 #: ../xfburn/xfburn-copy-dvd-dialog.c:157
 msgid "Only create _ISO"
-msgstr "仅创建 ISO 文件(_I)"
+msgstr "仅创建 ISO(_I)"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:221
@@ -301,8 +301,8 @@ msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
 msgstr ""
-"确保您选择的是有效的文件并确保您有合适的"
-"权限访问它。"
+"确保您选择的是有效的文件且您有合适的权限"
+"访问它。"
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -389,7 +389,7 @@ msgstr "移除"
 #: ../xfburn/xfburn-data-composition.c:190
 #: ../xfburn/xfburn-audio-composition.c:209
 msgid "Remove the selected file(s) from the composition"
-msgstr "从项目中中移除选中的文件"
+msgstr "从项目中移除选中的文件"
 
 #: ../xfburn/xfburn-data-composition.c:192
 #: ../xfburn/xfburn-audio-composition.c:211
@@ -412,7 +412,7 @@ msgstr "重命名选中的文件"
 
 #: ../xfburn/xfburn-data-composition.c:351
 msgid "Volume name :"
-msgstr "卷标名："
+msgstr "卷名称："
 
 #: ../xfburn/xfburn-data-composition.c:385
 msgid "Contents"
@@ -454,7 +454,9 @@ msgstr "数据 %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr "未能在项目中添加 %s，因为它超过了 iso9660 允许的最大值。"
+msgstr ""
+"未能在项目中添加 %s，因为它超过了 iso9660 "
+"允许的最大值。"
 
 #: ../xfburn/xfburn-data-composition.c:1294
 #: ../xfburn/xfburn-audio-composition.c:1321
@@ -479,13 +481,15 @@ msgstr ""
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr "此目录中已经存在名为 “%s” 的文件，没有添加此文件。"
+msgstr ""
+"此目录中已经存在名为 “%s” 的文件，没有"
+"添加此文件。"
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1886
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
-msgstr "和 ‘%2$d’ 重复的文件名 ‘%1$d’"
+msgstr "和 ‘%2$s’ 重复的文件名 ‘%1$s’"
 
 #: ../xfburn/xfburn-device-box.c:174 ../xfburn/xfburn-device-box.c:175
 msgid "Show writers only"
@@ -493,19 +497,19 @@ msgstr "仅显示刻录机"
 
 #: ../xfburn/xfburn-device-box.c:178
 msgid "Show speed selection"
-msgstr "显示速度选择"
+msgstr "显示速度选择器"
 
 #: ../xfburn/xfburn-device-box.c:179
 msgid "Show speed selection combo"
-msgstr "显示速度选择器"
+msgstr "显示速度选择器组合"
 
 #: ../xfburn/xfburn-device-box.c:182
 msgid "Show mode selection"
-msgstr "显示模式选择"
+msgstr "显示模式选择器"
 
 #: ../xfburn/xfburn-device-box.c:183
 msgid "Show mode selection combo"
-msgstr "显示模式选择器"
+msgstr "显示模式选择器组合"
 
 #: ../xfburn/xfburn-device-box.c:186
 msgid "Is it a valid combination"
@@ -517,7 +521,8 @@ msgstr "刻录项目的硬件和光盘组件是有效的吗？"
 
 #: ../xfburn/xfburn-device-box.c:191
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "与正常模式相比擦除模式显示不同的光盘状态信息"
+msgstr ""
+"与正常模式相比擦除模式显示不同的光盘状态信息"
 
 #: ../xfburn/xfburn-device-box.c:194 ../xfburn/xfburn-device-box.c:195
 msgid "Accept only CDs as valid discs"
@@ -548,10 +553,11 @@ msgid ""
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
-"<b>未能获取驱动器的速度列表。</b>\n"
+"<b>未能获取驱动器速度列表。</b>\n"
 "\n"
-"这是在一些驱动器上发生的一个已知缺陷，请向 <i>xfburn@xfce.org</i> 报告，连带"
-"终端中的输出一道以增其获得修正的可能性。\n"
+"这是在一些驱动器上发生的一个已知缺陷，请向 "
+"<i>xfburn@xfce.org</i> 报告，连带终端"
+"中的输出一道以增其获得修正的可能性。\n"
 "\n"
 "应能继续刻录，但如果总是有问题，请告诉我们。\n"
 "<i>谢谢！</i>"
@@ -562,7 +568,7 @@ msgstr "继续显示此提示(_S)"
 
 #: ../xfburn/xfburn-device-box.c:448
 msgid "default"
-msgstr "默认值"
+msgstr "默认"
 
 #: ../xfburn/xfburn-device-box.c:484
 msgid "Max"
@@ -598,7 +604,7 @@ msgstr "检测光盘时出错"
 
 #: ../xfburn/xfburn-device-box.c:633
 msgid "Write-once disc, no blanking possible"
-msgstr "一次性光盘，无擦除可能性"
+msgstr "一次性写入光盘，无擦除可能性"
 
 #: ../xfburn/xfburn-device-box.c:636
 msgid "DVD+RW does not need blanking"
@@ -667,7 +673,7 @@ msgid ""
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 "%s：%s\n"
-"试试 %s --help 查看可用命令行选项的完整列表。\n"
+"尝试 %s --help 查看可用命令行选项的完整列表。\n"
 
 #: ../xfburn/xfburn-main.c:224
 msgid "Unable to initialize the burning backend."
@@ -686,10 +692,12 @@ msgid ""
 "If no disc is in the drive, check that you have read and write access to the "
 "drive with the current user."
 msgstr ""
-"光盘可能正在使用，未能访问。\n"
+"可能光盘正在使用且未能访问。\n"
 "\n"
-"请卸载后重启应用程序。\n"
-"如果驱动器中无光盘，检查您以当前用户是否有读写访问驱动器的权限。"
+"请卸载后重启此应用程序。\n"
+"\n"
+"如果驱动器中无光盘，检查您以当前用户是否"
+"有读写访问驱动器的权限。"
 
 #: ../xfburn/xfburn-main.c:345
 #, c-format
