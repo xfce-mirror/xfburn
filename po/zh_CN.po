@@ -560,6 +560,7 @@ msgstr ""
 "中的输出一道以增其获得修正的可能性。\n"
 "\n"
 "应能继续刻录，但如果总是有问题，请告诉我们。\n"
+"\n"
 "<i>谢谢！</i>"
 
 #: ../xfburn/xfburn-device-box.c:406
@@ -744,7 +745,7 @@ msgstr "退出(_Q)"
 
 #: ../xfburn/xfburn-main-window.c:116
 msgid "Quit Xfburn"
-msgstr "退出 Xfburn 刻录器"
+msgstr "退出 Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:117
 msgid "_Edit"
@@ -784,7 +785,7 @@ msgstr "关于(_A)"
 
 #: ../xfburn/xfburn-main-window.c:125
 msgid "Display information about Xfburn"
-msgstr "显示 Xfburn 刻录器相关信息"
+msgstr "显示 Xfburn 相关信息"
 
 #: ../xfburn/xfburn-main-window.c:127
 msgid "Blank CD-RW"
@@ -835,7 +836,7 @@ msgstr "作者/维护者"
 
 #: ../xfburn/xfburn-main-window.c:538
 msgid "Retired author/maintainer"
-msgstr "已退出作者/维护者"
+msgstr "已退出的作者/维护者"
 
 #: ../xfburn/xfburn-main-window.c:544
 #, c-format
@@ -848,7 +849,7 @@ msgstr "卷标"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "The text of the label"
-msgstr "卷标文本"
+msgstr "卷标的文字"
 
 #: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Show close button"
@@ -861,15 +862,19 @@ msgstr "决定是否显示关闭按钮"
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr "在写入模式下无法在多重会话光盘中附加数据(使用 TAO 模式)"
+msgstr ""
+"在写入模式下未能在多重会话光盘中附加数据"
+"(使用 TAO 模式)"
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr "已检测数据的已关闭光盘，需要空白或可附加光盘。"
+msgstr ""
+"已检测数据的已关闭光盘，需要空白或可附加"
+"光盘。"
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
-msgstr "驱动器未检测到光盘。"
+msgstr "在驱动器中未检测到光盘。"
 
 #: ../xfburn/xfburn-perform-burn.c:167
 msgid "Cannot recognize the state of the drive and disc."
@@ -1035,11 +1040,11 @@ msgstr "空速度列表时显示警告(_E)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:329
 msgid "FIFO buffer size (in kb)"
-msgstr "FIFO 缓冲区大小(以 KB 计)"
+msgstr "FIFO 缓冲区大小(以 K 计)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:463
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr "更改此项只在程序重启后才完全生效。"
+msgstr "更改此设置只在程序重启后才完全生效。"
 
 #: ../xfburn/xfburn-progress-dialog.c:181
 msgid "Initializing..."
@@ -1088,7 +1093,7 @@ msgstr "选择命令"
 
 #: ../xfburn/xfburn-welcome-tab.c:129
 msgid "Welcome to xfburn!"
-msgstr "欢迎使用 xfburn 刻录器！"
+msgstr "欢迎使用 xfburn！"
 
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:140
@@ -1097,7 +1102,7 @@ msgstr "<big>刻录镜像(_I)</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:140
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr "刻录准备好的项目，比如 .ISO 文件"
+msgstr "刻录准备好的集合，比如 .ISO 文件"
 
 #: ../xfburn/xfburn-welcome-tab.c:145
 msgid "<big>New _Data Composition</big>"
@@ -1125,7 +1130,7 @@ msgstr "以一般立体声可播放的音频 CD"
 
 #: ../xfburn/xfburn-audio-composition.c:213
 msgid "What files can get burned to an audio CD?"
-msgstr "何种文件能刻录为音频 CD ？"
+msgstr "何种文件能刻录为音频 CD？"
 
 #: ../xfburn/xfburn-audio-composition.c:217
 msgid "Rename Artist"
@@ -1145,7 +1150,7 @@ msgstr "重命名选中的文件的标题"
 
 #: ../xfburn/xfburn-audio-composition.c:403
 msgid "Pos"
-msgstr "节点"
+msgstr "位置"
 
 #: ../xfburn/xfburn-audio-composition.c:405
 msgid "Length"
@@ -1165,11 +1170,11 @@ msgstr "文件名"
 
 #: ../xfburn/xfburn-audio-composition.c:582
 msgid "Cannot burn audio onto a DVD."
-msgstr "未能在 DVD 上刻录音频"
+msgstr "未能在 DVD 上刻录音频。"
 
 #: ../xfburn/xfburn-audio-composition.c:1230
 msgid "You can only have a maximum of 99 tracks."
-msgstr "最大只能有 99 个音轨！"
+msgstr "最大只能有 99 个音轨。"
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:310
 msgid "A problem with the burn backend occurred."
@@ -1181,7 +1186,7 @@ msgstr "继续刻录"
 
 #: ../xfburn/xfburn-disc-usage.c:203
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "您正试图刻录超过光盘容量极限的数据。"
+msgstr "您正试图刻录超过光盘能容纳的数据。"
 
 #: ../xfburn/xfburn-transcoder-basic.c:166
 msgid "basic"
@@ -1198,10 +1203,10 @@ msgid ""
 "audio files, please compile with\n"
 "gstreamer support."
 msgstr ""
-"内置基本解码器，且不依赖任何库。\n"
-"但仅能处理未压缩的 .wav 文件。\n"
-"如果您想从不同类型的音频文件创建\n"
-"音频项目，请编译支持 gstreaner。"
+"内置基本解码器，且不需要任何库文件。\n"
+"但仅能处理未压缩的.wav 文件。\n"
+"如果您想从不同类型的音频文件创建音频\n"
+"项目，请编译支持 gstreaner。"
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
