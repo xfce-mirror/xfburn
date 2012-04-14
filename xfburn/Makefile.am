@@ -28,7 +28,7 @@ xfburn_headers = 							\
 	xfburn-composition.h						\
 	xfburn-compositions-notebook.h					\
 	xfburn-create-iso-progress-dialog.h				\
-	xfburn-hal-manager.h						\
+	xfburn-udev-manager.h						\
 	xfburn-device-box.h						\
 	xfburn-device.h							\
 	xfburn-device-list.h						\
@@ -69,7 +69,7 @@ xfburn_SOURCES =							\
 	xfburn-composition.c						\
 	xfburn-compositions-notebook.c					\
 	xfburn-settings.c						\
-	xfburn-hal-manager.c						\
+	xfburn-udev-manager.c						\
 	xfburn-device-box.c						\
 	xfburn-device.c							\
 	xfburn-device-list.c						\
@@ -97,7 +97,11 @@ xfburn_CFLAGS =								\
 	$(LIBISOFS_CFLAGS)						\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(EXO_CFLAGS)							\
-	$(THUNAR_VFS_CFLAGS)						\
+	$(GIO_CFLAGS)							\
+	$(GIO_UNIX_CFLAGS)						\
+	$(GLIB_CFLAGS)							\
+	$(GTHREAD_CFLAGS)						\
+	$(GTK_CFLAGS)							\
 	$(GST_CFLAGS)							\
 	$(GST_PBUTILS_CFLAGS)
 
@@ -108,17 +112,20 @@ xfburn_LDADD = 								\
 	$(LIBISOFS_LIBS)						\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(EXO_LIBS)							\
-	$(THUNAR_VFS_LIBS)						\
+	$(GIO_LIBS)							\
+	$(GIO_UNIX_LIBS)						\
+	$(GLIB_LIBS)							\
+	$(GTHREAD_LIBS)							\
+	$(GTK_LIBS)							\
 	$(GST_LIBS)							\
 	$(GST_PBUTILS_LIBS)
 
-if HAVE_HAL
+if HAVE_GUDEV
 xfburn_CFLAGS +=							\
-	$(HAL_CFLAGS)
+	$(GUDEV_CFLAGS)
 
 xfburn_LDADD += 							\
-	$(HAL_LIBS)
-	$(HAL_DBUS_LIBS)
+	$(GUDEV_LIBS)
 
 endif
 

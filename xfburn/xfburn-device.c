@@ -25,7 +25,7 @@
 #include <unistd.h>
 
 #include "xfburn-device.h"
-#include "xfburn-hal-manager.h"
+#include "xfburn-udev-manager.h"
 
 /*- globals -*/
 
@@ -430,8 +430,8 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
   gchar drive_addr[BURN_DRIVE_ADR_LEN];
   int i;
   const int max_checks = 4;
-#ifdef HAVE_HAL
-  XfburnHalManager *halman = xfburn_hal_manager_get_global ();
+#ifdef HAVE_GUDEV
+  XfburnUdevManager *udevman = xfburn_udev_manager_get_global ();
 #endif
 
   ret = burn_drive_convert_fs_adr (priv->addr, drive_addr);
@@ -448,8 +448,8 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
     if (ret > 0)
       break;
     else if  (i < max_checks) {
-#ifdef HAVE_HAL 
-      if (!xfburn_hal_manager_check_ask_umount (halman, device))
+#ifdef HAVE_GUDEV
+      if (!xfburn_udev_manager_check_ask_umount (udevman, device))
         usleep(i*100001);
 #else
       usleep(i*100001);

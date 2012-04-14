@@ -37,9 +37,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#ifdef HAVE_THUNAR_VFS
-#include <thunar-vfs/thunar-vfs.h>
-#endif
+#include <gio/gio.h>
 
 #include <exo/exo.h>
 
@@ -288,9 +286,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE },
-#ifdef HAVE_THUNAR_VFS
                                 { "text/uri-list", 0, DATA_COMPOSITION_DND_TARGET_TEXT_URI_LIST },
-#endif
                                 { "text/plain;charset=utf-8", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN },
                               };
 
@@ -1188,14 +1184,14 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
     }
     /* new file */
     else if (S_ISREG (s.st_mode) || S_ISCHR(s.st_mode) || S_ISBLK(s.st_mode) || S_ISLNK (s.st_mode)) {
-#ifdef HAVE_THUNAR_VFS
       GdkScreen *screen;
       GtkIconTheme *icon_theme;
-      ThunarVfsMimeDatabase *mime_database = NULL;
-      ThunarVfsMimeInfo *mime_info = NULL;
-      const gchar *mime_icon_name = NULL;
-      GdkPixbuf *mime_icon = NULL;
+      GdkPixbuf *mime_icon_pixbuf = NULL;
       gint x,y;
+      GFile *file = NULL;
+      GFileInfo *info = NULL;
+      GIcon *mime_icon = NULL;
+      GtkIconInfo *icon_info = NULL;
 
       if (s.st_size > MAXIMUM_ISO_FILE_SIZE) {
         gdk_threads_enter ();
@@ -1208,45 +1204,38 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
       gdk_threads_enter ();
       screen = gtk_widget_get_screen (GTK_WIDGET (dc));
       icon_theme = gtk_icon_theme_get_for_screen (screen);
-      
-      mime_database = thunar_vfs_mime_database_get_default ();
-      mime_info = thunar_vfs_mime_database_get_info_for_file (mime_database, path, NULL);
-          
       gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
-      mime_icon_name = thunar_vfs_mime_info_lookup_icon_name (mime_info, icon_theme);
-      mime_icon = gtk_icon_theme_load_icon (icon_theme, mime_icon_name, x, 0, NULL);
-#endif
-	
+
+      file = g_file_new_for_path(path);
+      info = g_file_query_info (file, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, G_FILE_QUERY_INFO_NONE, NULL, NULL);
+      mime_icon = g_content_type_get_icon (g_file_info_get_content_type (info));
+      if (mime_icon != NULL) {
+        icon_info = gtk_icon_theme_lookup_by_gicon (icon_theme, mime_icon, x, GTK_ICON_LOOKUP_USE_BUILTIN);
+        if (icon_info != NULL) {
+          mime_icon_pixbuf = gtk_icon_info_load_icon (icon_info, NULL);
+          gtk_icon_info_free (icon_info);
+        }
+      }
+
       gtk_tree_store_append (GTK_TREE_STORE (model), iter, parent);
 
       humansize = xfburn_humanreadable_filesize (s.st_size);
 
-#ifdef HAVE_THUNAR_VFS
       gtk_tree_store_set (GTK_TREE_STORE (model), iter,
-                          DATA_COMPOSITION_COLUMN_ICON, (G_IS_OBJECT (mime_icon) ? mime_icon : icon_file),
+                          DATA_COMPOSITION_COLUMN_ICON, (G_IS_OBJECT (mime_icon_pixbuf) ? mime_icon_pixbuf : icon_file),
                           DATA_COMPOSITION_COLUMN_CONTENT, name,
                           DATA_COMPOSITION_COLUMN_HUMANSIZE, humansize,
                           DATA_COMPOSITION_COLUMN_SIZE, (guint64) s.st_size, 
                           DATA_COMPOSITION_COLUMN_PATH, path,
                           DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_FILE, -1);
-#else
-      gtk_tree_store_set (GTK_TREE_STORE (model), iter,
-                          DATA_COMPOSITION_COLUMN_ICON, icon_file,
-                          DATA_COMPOSITION_COLUMN_CONTENT, name,
-                          DATA_COMPOSITION_COLUMN_HUMANSIZE, humansize,
-                          DATA_COMPOSITION_COLUMN_SIZE, (guint64) s.st_size,
-                          DATA_COMPOSITION_COLUMN_PATH, path,
-                          DATA_COMPOSITION_COLUMN_TYPE, DATA_COMPOSITION_TYPE_FILE, -1);
-#endif
 
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), s.st_size);
-#ifdef HAVE_THUNAR_VFS
+
       if (G_LIKELY (G_IS_OBJECT (mime_icon)))
         g_object_unref (mime_icon);
-      thunar_vfs_mime_info_unref (mime_info);
-      g_object_unref (mime_database);
+      if (G_LIKELY (G_IS_OBJECT (file)))
+        g_object_unref(file);
       gdk_threads_leave ();
-#endif
     }
     g_free (humansize);
     g_free (parent);
@@ -1673,26 +1662,6 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       for (i=0; files[i] != NULL && files[i][0] != '\0'; i++) {
         gchar *full_path;
 
-#ifdef HAVE_THUNAR_VFS
-        ThunarVfsPath *vfs_path;
-        GError *vfs_error = NULL;
-
-        vfs_path = thunar_vfs_path_new (files[i], &vfs_error);
-
-        if (vfs_error) {
-          g_warning ("Failed to create vfs path for '%s': %s", files[i], vfs_error->message);
-          g_error_free (vfs_error);
-          continue;
-        }
-
-        if (thunar_vfs_path_get_scheme (vfs_path) != THUNAR_VFS_PATH_SCHEME_FILE)
-          continue;
-        full_path = thunar_vfs_path_dup_string (vfs_path);
-
-        thunar_vfs_path_unref (vfs_path);
-
-#else /* no thunar-vfs */
-
         if (g_str_has_prefix (files[i], "file://"))
           full_path = g_build_filename (&files[i][7], NULL);
         else if (g_str_has_prefix (files[i], "file:"))
@@ -1702,8 +1671,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
         if (full_path[strlen (full_path) - 1] == '\r')
           full_path[strlen (full_path) - 1] = '\0';
-#endif
-
+					
         DBG ("Adding path '%s'", full_path);
 
         /* remember path to add it later in another thread */
@@ -1731,26 +1699,44 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     gtk_drag_finish (dc, TRUE, FALSE, t);
   } 
   else if (sd->target == gdk_atom_intern ("text/uri-list", FALSE)) {
-#ifdef HAVE_THUNAR_VFS
     GList *vfs_paths = NULL;
     GList *vfs_path;
-    GError *error = NULL;
+    GList *lp;
     gchar *full_path;
+    gchar **uris;
+    gsize   n;
 
-    vfs_paths = thunar_vfs_path_list_from_string ((gchar *) sd->data, &error);
+    uris = g_uri_list_extract_uris ((gchar *) sd->data);
+
+    for (n = 0; uris != NULL && uris[n] != NULL; ++n)
+      vfs_paths = g_list_append (vfs_paths, g_file_new_for_uri (uris[n]));
+
+    g_strfreev (uris);
 
     if (G_LIKELY (vfs_paths != NULL)) {
       ThreadAddFilesDragParams *params;
       priv->full_paths_to_add = NULL;
       for (vfs_path = vfs_paths; vfs_path != NULL; vfs_path = g_list_next (vfs_path)) {
-        ThunarVfsPath *path = THUNAR_VFS_PATH (vfs_path->data);
-        if (thunar_vfs_path_get_scheme (path) != THUNAR_VFS_PATH_SCHEME_FILE)
+	GFile *path = vfs_path->data;
+	if (path == NULL)
           continue;
-        full_path = thunar_vfs_path_dup_string (path);
+	/* unable to handle non-local files */
+	if (G_UNLIKELY (!g_file_has_uri_scheme (path, "file"))) {
+            g_object_unref (path);
+	    continue;
+        }
+        full_path = g_file_get_path (path);
+        /* if there is no local path, use the URI (which always works) */
+        if (full_path == NULL)
+            full_path = g_file_get_uri (path);
+        /* release the location */
         g_debug ("adding uri path: %s", full_path);
         priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
       }
-      thunar_vfs_path_list_free (vfs_paths);
+
+      for (lp = vfs_paths; lp != NULL; lp = lp->next)
+        g_object_unref (lp->data);
+      g_list_free (vfs_paths);
 
       priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
       /* FIXME: path_where_insert is always NULL here */
@@ -1769,18 +1755,10 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
       gtk_drag_finish (dc, TRUE, FALSE, t);
     } else {
-      if (G_UNLIKELY (error != NULL))
-        g_warning ("text/uri-list drag failed because '%s'", error->message);
-      else
-        g_warning("There were no files in the uri list!");
+      g_warning("There were no files in the uri list!");
       gtk_drag_finish (dc, FALSE, FALSE, t);
       xfburn_default_cursor (priv->content);
     }
-#else
-    g_warning ("Receiving this type of drag and drop requires thunar-vfs support, sorry!");
-    gtk_drag_finish (dc, FALSE, FALSE, t);
-    xfburn_default_cursor (priv->content);
-#endif
   } 
   else {
     g_warning ("Trying to receive an unsupported drag target, this should not happen.");

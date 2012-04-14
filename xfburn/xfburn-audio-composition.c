@@ -34,9 +34,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#ifdef HAVE_THUNAR_VFS
-#include <thunar-vfs/thunar-vfs.h>
-#endif
+#include <gio/gio.h>
 
 #include <exo/exo.h>
 
@@ -1712,26 +1710,6 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       for (i=0; files[i] != NULL && files[i][0] != '\0'; i++) {
         gchar *full_path;
 
-#ifdef HAVE_THUNAR_VFS
-        ThunarVfsPath *vfs_path;
-        GError *vfs_error = NULL;
-
-        vfs_path = thunar_vfs_path_new (files[i], &vfs_error);
-
-        if (vfs_error) {
-          g_warning ("Failed to create vfs path for '%s': %s", files[i], vfs_error->message);
-          g_error_free (vfs_error);
-          continue;
-        }
-
-        if (thunar_vfs_path_get_scheme (vfs_path) != THUNAR_VFS_PATH_SCHEME_FILE)
-          continue;
-        full_path = thunar_vfs_path_dup_string (vfs_path);
-
-        thunar_vfs_path_unref (vfs_path);
-
-#else /* no thunar-vfs */
-
         if (g_str_has_prefix (files[i], "file://"))
           full_path = g_build_filename (&files[i][7], NULL);
         else if (g_str_has_prefix (files[i], "file:"))
@@ -1741,7 +1719,8 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
         if (full_path[strlen (full_path) - 1] == '\r')
           full_path[strlen (full_path) - 1] = '\0';
-#endif
+
+        DBG ("Adding path '%s'", full_path);
 
         /* remember path to add it later in another thread */
         priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
@@ -1786,29 +1765,46 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     }
   } 
   else if (sd->target == gdk_atom_intern ("text/uri-list", FALSE)) {
-#ifdef HAVE_THUNAR_VFS
     GList *vfs_paths = NULL;
     GList *vfs_path;
-    GError *error = NULL;
+    GList *lp;
     gchar *full_path;
+    gchar **uris;
+    gsize   n;
     gboolean ret = FALSE;
 
-    vfs_paths = thunar_vfs_path_list_from_string ((gchar *) sd->data, &error);
+    uris = g_uri_list_extract_uris ((gchar *) sd->data);
+
+    for (n = 0; uris != NULL && uris[n] != NULL; ++n)
+      vfs_paths = g_list_append (vfs_paths, g_file_new_for_uri (uris[n]));
+
+    g_strfreev (uris);
 
     if (G_LIKELY (vfs_paths != NULL)) {
       ThreadAddFilesDragParams *params;
       priv->full_paths_to_add = NULL;
       for (vfs_path = vfs_paths; vfs_path != NULL; vfs_path = g_list_next (vfs_path)) {
-        ThunarVfsPath *path = THUNAR_VFS_PATH (vfs_path->data);
-        if (thunar_vfs_path_get_scheme (path) != THUNAR_VFS_PATH_SCHEME_FILE)
+	GFile *path = vfs_path->data;
+	if (path == NULL)
           continue;
-        full_path = thunar_vfs_path_dup_string (path);
+	/* unable to handle non-local files */
+	if (G_UNLIKELY (!g_file_has_uri_scheme (path, "file"))) {
+            g_object_unref (path);
+	    continue;
+        }
+        full_path = g_file_get_path (path);
+        /* if there is no local path, use the URI (which always works) */
+        if (full_path == NULL)
+            full_path = g_file_get_uri (path);
+        /* release the location */
         g_debug ("adding uri path: %s", full_path);
-
         priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
         ret = TRUE;
       }
-      thunar_vfs_path_list_free (vfs_paths);
+
+      for (lp = vfs_paths; lp != NULL; lp = lp->next)
+        g_object_unref (lp->data);
+      g_list_free (vfs_paths);
 
       priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
       priv->path_where_insert = path_where_insert;
@@ -1831,18 +1827,10 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         cb_adding_done (XFBURN_ADDING_PROGRESS (priv->progress), composition);
       }
     } else {
-      if (G_UNLIKELY (error != NULL))
-        g_warning ("text/uri-list drag failed because '%s'", error->message);
-      else
-        g_warning("There were no files in the uri list!");
+      g_warning("There were no files in the uri list!");
       gtk_drag_finish (dc, FALSE, FALSE, t);
       xfburn_default_cursor (priv->content);
     }
-#else
-    g_warning ("Receiving this type of drag and drop requires thunar-vfs support, sorry!");
-    gtk_drag_finish (dc, FALSE, FALSE, t);
-    xfburn_default_cursor (priv->content);
-#endif
   } 
   else {
     g_warning ("Trying to receive an unsupported drag target, this should not happen.");

@@ -30,7 +30,7 @@
 #include "xfburn-device-box.h"
 #include "xfburn-device-list.h"
 #include "xfburn-stock.h"
-#include "xfburn-hal-manager.h"
+#include "xfburn-udev-manager.h"
 #include "xfburn-main.h"
 
 #include "xfburn-blank-dialog.h"
@@ -465,10 +465,10 @@ thread_blank (ThreadBlankParams * params)
  
   g_free (params);
 
-#ifdef HAVE_HAL
+#ifdef HAVE_GUDEV
   gdk_threads_enter ();
   DBG ("blanking done!");
-  xfburn_hal_manager_send_volume_changed ();
+  xfburn_udev_manager_send_volume_changed ();
   gdk_threads_leave ();
 #endif
 }

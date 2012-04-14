@@ -31,10 +31,6 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#ifdef HAVE_THUNAR_VFS
-#include <thunar-vfs/thunar-vfs.h>
-#endif
-
 #ifdef HAVE_GST
 #include <gst/gst.h>
 #endif
@@ -48,7 +44,7 @@
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-main-window.h"
 #include "xfburn-blank-dialog.h"
-#include "xfburn-hal-manager.h"
+#include "xfburn-udev-manager.h"
 #include "xfburn-transcoder-basic.h"
 #include "xfburn-transcoder-gst.h"
 
@@ -189,7 +185,7 @@ main (int argc, char **argv)
   GtkWidget *mainwin;
   gint n_burners;
   GError *error = NULL;
-#ifdef HAVE_HAL
+#ifdef HAVE_GUDEV
   gchar *error_msg;
 #endif
   XfburnTranscoder *transcoder;
@@ -275,25 +271,15 @@ main (int argc, char **argv)
 
   xfburn_settings_init ();
   
-#ifdef HAVE_THUNAR_VFS
-  thunar_vfs_init ();
-  g_message ("Using Thunar-VFS %d.%d.%d", THUNAR_VFS_MAJOR_VERSION, THUNAR_VFS_MINOR_VERSION, THUNAR_VFS_MICRO_VERSION);
-#else
-  g_message ("Thunar-VFS not available, using default implementation");
-#endif
-  
-#ifdef HAVE_HAL
-  error_msg = xfburn_hal_manager_create_global ();
+#ifdef HAVE_GUDEV
+  error_msg = xfburn_udev_manager_create_global ();
   if (error_msg) {
     xfce_err (error_msg);
-#ifdef HAVE_THUNAR_VFS
-    thunar_vfs_shutdown ();
-#endif
     gdk_threads_leave ();
     burn_finish ();
     return EXIT_FAILURE;
   } else {
-    g_message ("Using HAL");
+    g_message ("Using UDEV");
   }
 #endif
 
@@ -413,14 +399,10 @@ main (int argc, char **argv)
   g_object_unref (devlist);
   g_object_unref (transcoder);
 
-#ifdef HAVE_HAL
-  xfburn_hal_manager_shutdown ();
+#ifdef HAVE_GUDEV
+  xfburn_udev_manager_shutdown ();
 #endif
 
-#ifdef HAVE_THUNAR_VFS
-  thunar_vfs_shutdown ();
-#endif
-  
   xfburn_settings_flush ();
   xfburn_settings_free ();
   

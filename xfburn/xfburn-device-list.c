@@ -34,7 +34,7 @@
 #include <libburn.h>
 
 #include "xfburn-global.h"
-#include "xfburn-hal-manager.h"
+#include "xfburn-udev-manager.h"
 #include "xfburn-utils.h"
 
 #include "xfburn-device-list.h"
@@ -50,7 +50,7 @@ struct _XfburnDeviceListPrivate {
   gint num_burners;
   XfburnDevice *curr_device;
 
-#ifdef HAVE_HAL
+#ifdef HAVE_GUDEV
   gulong volume_changed_handlerid;
 #endif
 };
@@ -58,8 +58,8 @@ struct _XfburnDeviceListPrivate {
 void get_libburn_device_list (XfburnDeviceList *devlist);
 static void cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceList *devlist);
 static void cb_refresh_clicked (GtkButton *button, XfburnDeviceList *devlist);
-#ifdef HAVE_HAL
-static void cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceList *devlist);
+#ifdef HAVE_GUDEV
+static void cb_volumes_changed (XfburnUdevManager *udevman, XfburnDeviceList *devlist);
 #endif
 static XfburnDevice * get_selected_device (GtkComboBox *combo_device);
 static void refresh (XfburnDeviceList *devlist);
@@ -219,64 +219,23 @@ xfburn_device_list_class_init (XfburnDeviceListClass *klass)
   //klass->volume_changed = cb_volume_changed
 }
 
-#if 0
 static void
 xfburn_device_list_init (XfburnDeviceList *self)
 {
   XfburnDeviceListPrivate *priv = GET_PRIVATE (self);
 
-#ifdef HAVE_HAL
-  XfburnHalManager *halman = xfburn_hal_manager_get_global ();
+#ifdef HAVE_GUDEV
+  XfburnUdevManager *udevman = xfburn_udev_manager_get_global ();
 #endif
 
   DBG ("Constructing device list");
   xfburn_console_libburn_messages ();
 
-#ifdef HAVE_HAL
-  /* FIXME: hal_manager currently only returns burners, not readers */
-  priv->num_drives = priv->num_burners = xfburn_hal_manager_get_devices (halman, &priv->devices);
-  if (priv->num_burners < 1) {
-    /* if some error occurred while checking hal properties,
-       or hal for some reason did not find a device, then just
-       fall back on libburn */
-    g_message ("HAL said there are %d burners, checking libburn if it can detect any", priv->num_burners);
-
-    get_libburn_device_list (self);
-  }
-
-  priv->volume_changed_handlerid = g_signal_connect (G_OBJECT (xfburn_hal_manager_get_global ()), "volume-changed", G_CALLBACK (cb_volumes_changed), self);
-
-#else
-  get_libburn_device_list (self);
-#endif
-}
-#endif
-
-static void
-xfburn_device_list_init (XfburnDeviceList *self)
-{
-  XfburnDeviceListPrivate *priv = GET_PRIVATE (self);
-
-#ifdef HAVE_HAL
-  XfburnHalManager *halman = xfburn_hal_manager_get_global ();
-#endif
-
-  DBG ("Constructing device list");
-  xfburn_console_libburn_messages ();
-
-#ifdef HAVE_HAL
-  /* FIXME: hal_manager currently only returns burners, not readers */
-  priv->num_drives = priv->num_burners = xfburn_hal_manager_get_devices (halman, &priv->devices);
-  if (priv->num_burners < 1) {
-    /* if some error occurred while checking hal properties,
-       or hal for some reason did not find a device, then just
-       fall back on libburn */
-    g_message ("HAL said there are %d burners, checking libburn if it can detect any", priv->num_burners);
-
-    get_libburn_device_list (self);
-  }
-  priv->volume_changed_handlerid = g_signal_connect (G_OBJECT (xfburn_hal_manager_get_global ()), "volume-changed", G_CALLBACK (cb_volumes_changed), self);
-
+#ifdef HAVE_GUDEV
+  priv->devices = xfburn_udev_manager_get_devices (udevman, &priv->num_drives, &priv->num_burners);
+  if (priv->num_drives > 0 && priv->num_burners < 1)
+    g_warning ("There are %d drives in your system, but none are capable of burning", priv->num_drives);
+  priv->volume_changed_handlerid = g_signal_connect (G_OBJECT (xfburn_udev_manager_get_global ()), "volume-changed", G_CALLBACK (cb_volumes_changed), self);
 #else
   get_libburn_device_list (self);
 #endif
@@ -383,11 +342,11 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceList *devlist)
   g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_END], 0, TRUE, device);
 }
 
-#ifdef HAVE_HAL
+#ifdef HAVE_GUDEV
 static void
-cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceList *devlist)
+cb_volumes_changed (XfburnUdevManager *udevman, XfburnDeviceList *devlist)
 {
-  DBG ("Hal volume changed");
+  DBG ("Udev volume changed");
   refresh (devlist);
 }
 #endif
