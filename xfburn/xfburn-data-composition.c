@@ -35,7 +35,7 @@
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include <gio/gio.h>
 
@@ -671,7 +671,7 @@ cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
   GtkTreePath *real_path;
 
   if (strlen (newtext) == 0) {
-    xfce_err (_("You must give a name to the file."));
+    xfce_dialog_show_error (NULL, NULL, _("You must give a name to the file."));
     return;
   }
     
@@ -680,7 +680,7 @@ cb_cell_file_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, 
 
   if (gtk_tree_model_get_iter (model, &iter, real_path)) {
     if (file_exists_on_same_level (model, real_path, TRUE, newtext)) {
-      xfce_err (_("A file with the same name is already present in the composition."));
+      xfce_dialog_show_error (NULL, NULL, _("A file with the same name is already present in the composition."));
     }
     else {
       gtk_tree_store_set (GTK_TREE_STORE (model), &iter, DATA_COMPOSITION_COLUMN_CONTENT, newtext, -1);
@@ -1116,7 +1116,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
     
     gdk_threads_enter ();
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
-      xfce_err (_("A file with the same name is already present in the composition."));
+      xfce_dialog_show_error (NULL, NULL, _("A file with the same name is already present in the composition."));
 
       gtk_tree_path_free (tree_path);
       gdk_threads_leave ();
@@ -1195,7 +1195,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
 
       if (s.st_size > MAXIMUM_ISO_FILE_SIZE) {
         gdk_threads_enter ();
-        xfce_err (_("%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."), path);
+        xfce_dialog_show_error (NULL, NULL, _("%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."), path);
         gdk_threads_leave ();
 
         return FALSE;
@@ -1448,7 +1448,7 @@ copy_entry_to (XfburnDataComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, G
       }
     
       if (file_exists_on_same_level (model, path_level, FALSE, name)) {
-        xfce_warn (_("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
+	xfce_dialog_show_warning(NULL, NULL, _("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
         goto cleanup;
       }
       
@@ -1861,7 +1861,7 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
 
         if (r == 0) {
           /* The first string is the renamed name, the second one the original name */
-          xfce_warn (_("Duplicate filename '%s' for '%s'"), name, src);
+	  xfce_dialog_show_warning(NULL, NULL, _("Duplicate filename '%s' for '%s'"), name, src);
 
           g_free (basename);
           g_free (name);

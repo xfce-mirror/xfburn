@@ -26,6 +26,7 @@
 #include "xfburn-global.h"
 
 #include <gtk/gtk.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 G_BEGIN_DECLS
 

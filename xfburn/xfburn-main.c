@@ -29,7 +29,7 @@
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #ifdef HAVE_GST
 #include <gst/gst.h>
@@ -217,7 +217,7 @@ main (int argc, char **argv)
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
-    xfce_err (_("Unable to initialize the burning backend."));
+    xfce_dialog_show_error (NULL, NULL, _("Unable to initialize the burning backend."));
     gdk_threads_leave ();
     return EXIT_FAILURE;
   }
@@ -274,7 +274,7 @@ main (int argc, char **argv)
 #ifdef HAVE_GUDEV
   error_msg = xfburn_udev_manager_create_global ();
   if (error_msg) {
-    xfce_err (error_msg);
+    xfce_dialog_show_error (NULL, NULL, error_msg);
     gdk_threads_leave ();
     burn_finish ();
     return EXIT_FAILURE;
@@ -328,7 +328,7 @@ main (int argc, char **argv)
   }
 
   if (!xfburn_transcoder_is_initialized (transcoder, &error)) {
-    xfce_warn (_("Failed to initialize %s transcoder: %s\n\t(falling back to basic implementation)"), xfburn_transcoder_get_name (transcoder), error->message);
+    xfce_dialog_show_warning(NULL, NULL, _("Failed to initialize %s transcoder: %s\n\t(falling back to basic implementation)"), xfburn_transcoder_get_name (transcoder), error->message);
     g_error_free (error);
     g_object_unref (transcoder);
     transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
@@ -361,7 +361,7 @@ main (int argc, char **argv)
       if (g_file_test (image_fullname, G_FILE_TEST_EXISTS))
 	xfburn_burn_image_dialog_set_filechooser_name (dialog, image_fullname);
       else
-	xfce_err ( g_strdup_printf ( _("Image file '%s' does not exist."), image_fullname));
+        xfce_dialog_show_error (NULL, NULL, g_strdup_printf ( _("Image file '%s' does not exist."), image_fullname));
     }
 
     gtk_dialog_run (GTK_DIALOG (dialog));

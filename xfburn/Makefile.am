@@ -95,7 +95,7 @@ xfburn_CFLAGS =								\
 	$(GTHREAD_CFLAGS)						\
 	$(LIBBURN_CFLAGS)						\
 	$(LIBISOFS_CFLAGS)						\
-	$(LIBXFCEGUI4_CFLAGS)						\
+	$(LIBXFCE4UI_CFLAGS)						\
 	$(EXO_CFLAGS)							\
 	$(GIO_CFLAGS)							\
 	$(GIO_UNIX_CFLAGS)						\
@@ -110,7 +110,7 @@ xfburn_LDADD = 								\
 	$(GTHREAD_LIBS)							\
 	$(LIBBURN_LIBS)							\
 	$(LIBISOFS_LIBS)						\
-	$(LIBXFCEGUI4_LIBS)						\
+	$(LIBXFCE4UI_LIBS)						\
 	$(EXO_LIBS)							\
 	$(GIO_LIBS)							\
 	$(GIO_UNIX_LIBS)						\

@@ -156,7 +156,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   g_signal_connect (G_OBJECT (priv->device_box), "volume-changed", G_CALLBACK (cb_volume_changed), obj);
   gtk_widget_show (priv->device_box);
 
-  priv->frame_device = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
+  priv->frame_device = xfce_gtk_frame_box_new_with_content (_("Burning device"), priv->device_box);
   gtk_widget_show (priv->frame_device);
   gtk_box_pack_start (box, priv->frame_device, FALSE, FALSE, BORDER);
 
@@ -168,7 +168,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
     vbox = gtk_vbox_new (FALSE, 0);
     gtk_widget_show (vbox);
 
-    frame = xfce_create_framebox_with_content (_("Composition name"), vbox);
+    frame = xfce_gtk_frame_box_new_with_content (_("Composition name"), vbox);
     gtk_widget_show (frame);
     gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -190,7 +190,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
 
-  frame = xfce_create_framebox_with_content (_("Options"), vbox);
+  frame = xfce_gtk_frame_box_new_with_content (_("Options"), vbox);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -218,7 +218,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  priv->button_proceed = button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn Composition"));
+  priv->button_proceed = button = xfce_gtk_button_new_mixed ("xfburn-burn-cd", _("_Burn Composition"));
 
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);

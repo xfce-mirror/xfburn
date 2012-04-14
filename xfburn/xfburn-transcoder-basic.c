@@ -33,7 +33,7 @@
 #include <errno.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include <libburn.h>
 
@@ -235,7 +235,7 @@ is_valid_wav (const gchar *path)
   fd = open (path, 0);
 
   if (fd == -1) {
-    xfce_warn (_("Could not open %s."), path);
+    xfce_dialog_show_warning(NULL, _("Could not open %s."), path);
     return FALSE;
   }
 

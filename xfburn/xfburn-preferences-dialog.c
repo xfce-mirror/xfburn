@@ -20,7 +20,7 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 #include <exo/exo.h>
 
 #include "xfburn-preferences-dialog.h"
@@ -185,7 +185,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox2);
 
-  frame = xfce_create_framebox_with_content (_("Temporary directory"), vbox2);
+  frame = xfce_gtk_frame_box_new_with_content (_("Temporary directory"), vbox2);
   gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, BORDER);
   gtk_widget_show (frame);
 
@@ -200,7 +200,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox2);
 
-  frame = xfce_create_framebox_with_content (_("File browser"), vbox2);
+  frame = xfce_gtk_frame_box_new_with_content (_("File browser"), vbox2);
   gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, BORDER);
   gtk_widget_show (frame);
 
@@ -240,7 +240,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   vbox2 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox2);
 
-  frame = xfce_create_framebox_with_content (_("Detected devices"), vbox2);
+  frame = xfce_gtk_frame_box_new_with_content (_("Detected devices"), vbox2);
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, BORDER);
   gtk_widget_show (frame);
 
@@ -292,17 +292,17 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, BORDER);
   gtk_widget_show (hbox);
 
-  priv->button_scan = xfce_create_mixed_button (GTK_STOCK_CDROM, _("Sc_an for devices"));
+  priv->button_scan = xfce_gtk_button_new_mixed (GTK_STOCK_CDROM, _("Sc_an for devices"));
   gtk_box_pack_end (GTK_BOX (hbox), priv->button_scan, FALSE, FALSE, BORDER);
   g_signal_connect (G_OBJECT (priv->button_scan), "clicked", G_CALLBACK (scan_button_clicked_cb), obj);
   gtk_widget_show (priv->button_scan);
 
   gtk_icon_size_lookup (GTK_ICON_SIZE_DIALOG, &x, &y);
-  icon = xfce_themed_icon_load ("media-optical", x);
+  icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-optical", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
   if (!icon)
-    icon = xfce_themed_icon_load ("media-cdrom", x);
+    icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-cdrom", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
   if (!icon)
-    icon = xfce_themed_icon_load (GTK_STOCK_CDROM, x);
+    icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), GTK_STOCK_CDROM, x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
 
   
   gtk_list_store_append (icon_store, &iter);
@@ -326,7 +326,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   vbox3 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox3);
 
-  frame = xfce_create_framebox_with_content (_("FIFO buffer size (in kb)"), vbox3);
+  frame = xfce_gtk_frame_box_new_with_content (_("FIFO buffer size (in kb)"), vbox3);
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, BORDER);
   gtk_widget_show (frame);
 
@@ -460,7 +460,7 @@ scan_button_clicked_cb (GtkWidget * button, gpointer user_data)
 static void 
 cb_show_hidden_clicked (GtkButton * Button, gpointer user_data)
 {
-  xfce_warn (_("Changing this setting only takes full effect after a program restart."));
+  xfce_dialog_show_warning(NULL, NULL, _("Changing this setting only takes full effect after a program restart."));
 }
 
 /* public */

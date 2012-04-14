@@ -32,7 +32,7 @@
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include <gio/gio.h>
 
@@ -577,7 +577,7 @@ cb_begin_burn (XfburnDiscUsage * du, XfburnAudioComposition * dc)
     dialog = xfburn_burn_audio_cd_composition_dialog_new (src);
     break;
   case DVD_DISC:
-    xfce_err (_("Cannot burn audio onto a DVD."));
+    xfce_dialog_show_error (NULL, NULL, _("Cannot burn audio onto a DVD."));
     return;
     break;
   }
@@ -1021,7 +1021,7 @@ action_info (GtkAction * action, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   
-  xfce_info (xfburn_transcoder_get_description (priv->trans));
+  xfce_dialog_show_info(NULL, NULL, xfburn_transcoder_get_description (priv->trans));
 }
 
 static void
@@ -1089,14 +1089,14 @@ notify_not_adding (XfburnAudioComposition * dc, GError *error)
   g_assert (error != NULL);
 
   if (error->domain != XFBURN_ERROR) {
-    xfce_warn (error->message);
+    xfce_dialog_show_warning(NULL, NULL, error->message);
     return;
   }
 
   if (g_hash_table_lookup (priv->warned_about, GINT_TO_POINTER (error->code)) == NULL) {
     g_hash_table_insert (priv->warned_about, GINT_TO_POINTER (error->code), did_warn);
 
-    xfce_warn (error->message);
+    xfce_dialog_show_warning(NULL, NULL, error->message);
   }
 }
 
@@ -1141,7 +1141,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     
     gdk_threads_enter ();
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
-      xfce_err (_("A file with the same name is already present in the composition."));
+      xfce_dialog_show_error (NULL, NULL, _("A file with the same name is already present in the composition."));
 
       gtk_tree_path_free (tree_path);
       gdk_threads_leave ();
@@ -1225,7 +1225,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
         if (g_hash_table_lookup (priv->warned_about, GINT_TO_POINTER (err_code)) == NULL) {
           g_hash_table_insert (priv->warned_about, GINT_TO_POINTER (err_code), did_warn);
           gdk_threads_enter ();
-          xfce_err (_("You can only have a maximum of 99 tracks."));
+          xfce_dialog_show_error (NULL, NULL, _("You can only have a maximum of 99 tracks."));
           gdk_threads_leave ();
         }
 
@@ -1475,7 +1475,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
     
       /*
       if (file_exists_on_same_level (model, path_level, FALSE, name)) {
-        xfce_warn (_("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
+        xfce_dialog_warning(NULL, _("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
         goto cleanup;
       }
       */

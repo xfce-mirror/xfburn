@@ -22,7 +22,7 @@
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include <exo/exo.h>
 
@@ -479,79 +479,69 @@ action_quit (GtkAction * action, XfburnMainWindow * window)
 static void
 action_about (GtkAction * action, XfburnMainWindow * window)
 {
-  XfceAboutInfo *info;
-  GtkWidget *dialog;
   gint x, y;
-  GdkPixbuf *icon;
-  guint n;
-
-  static const struct
-  {
-    gchar *name, *email, *language;
-  } translators[] = {
-    {"Mohamed Magdy", "mohamed.m.k@gmail.com", "ar",},
-    {"Pau Rul lan Ferragut", "paurullan@bulma.net", "ca",},
-    {"Michal Várady", "miko.vaji@gmail.com", "cs",},
-    {"Enrico Tröger", "enrico.troeger@uvena.de", "de",},
-    {"Fabian Nowak", "timstery@arcor.de", "de",},
-    {"Nico Schümann", "nico@prog.nico22.de", "de",},
-    {"Stavros Giannouris", "stavrosg2002@freemail.gr", "el",},
-    {"Jeff Bailes", "thepizzaking@gmail.com", "en_GB",},
-    {"Diego Rodriguez", "dieymir@yahoo.es", "es",},
-    {"Kristjan Siimson", "kristjan.siimson@gmail.com", "et",},
-    {"Piarres Beobide", "pi@beobide.net", "eu",},
-    {"Jari Rahkonen", "jari.rahkonen@pp1.inet.fi", "fi",},
-    {"Etienne Collet", "xanaxlnx@gmail.com", "fr",},
-    {"Maximilian Schleiss", "maximilian@xfce.org", "fr",},
-    {"Attila Szervác", "sas@321.hu", "hu",},
-    {"Daichi Kawahata", "daichi@xfce.org", "ja",},
-    {"ByungHyun Choi", "byunghyun.choi@debianusers.org", "kr",},
-    {"Mantas", "mantaz@users.sourceforge.net", "lt",},
-    {"Rihards Prieditis", "RPrieditis@inbox.lv", "lv",},
-    {"Terje Uriansrud", "ter@operamail.com", "nb_NO",},
-    {"Stephan Arts", "psybsd@gmail.com", "nl",},
-    {"Szymon Kałasz", "szymon_maestro@gazeta.pl", "pl",},
-    {"Fábio Nogueira", "deb-user-ba@ubuntu.com", "pt_BR",},
-    {"Og Maciel", "omaciel@xfce.org", "pt_BR",},
-    {"Nuno Miguel", "nunis@netcabo.pt", "pt_PT",},
-    {"Sergey Fedoseev", "fedoseev.sergey@gmail.com", "ru",},
-    {"Besnik Bleta", "besnik@programeshqip.org", "sq",},
-    {"Maxim V. Dziumanenko", "mvd@mylinux.com.ua", "uk",},
-    {"Dmitry Nikitin", "", "uk",},
-    {"ﻢﺤﻣﺩ ﻊﻠﻳ ﺎﻠﻤﻜﻳ", "makki.ma@gmail.com", "ur",},
-    {"正龙 赵", "longer.zhao@gmail.com", "zh_CN",},
-    {"Cosmo Chene", "cosmolax@gmail.com", "zh_TW",},
-  };
+  GdkPixbuf *icon = NULL;
+  const gchar *auth[] = { "David Mohr david@mcbf.net Author/Maintainer",
+	  		  "Mario Đanić mario@libburnia-project.org Author/Maintainer",
+			  "Jean-François Wauthy pollux@xfce.org Retired author/maintainer",
+			  NULL };
+  const gchar *translators =
+    "Mohamed Magdy mohamed.m.k@gmail.com ar\n"
+    "Pau Rul lan Ferragut paurullan@bulma.net ca\n"
+    "Michal Várady miko.vaji@gmail.com cs\n"
+    "Enrico Tröger enrico.troeger@uvena.de de\n"
+    "Fabian Nowak timstery@arcor.de de\n"
+    "Nico Schümann nico@prog.nico22.de de\n"
+    "Stavros Giannouris stavrosg2002@freemail.gr el\n"
+    "Jeff Bailes thepizzaking@gmail.com en_GB\n"
+    "Diego Rodriguez dieymir@yahoo.es es\n"
+    "Kristjan Siimson kristjan.siimson@gmail.com et\n"
+    "Piarres Beobide pi@beobide.net eu\n"
+    "Jari Rahkonen jari.rahkonen@pp1.inet.fi fi\n"
+    "Etienne Collet xanaxlnx@gmail.com fr\n"
+    "Maximilian Schleiss maximilian@xfce.org fr\n"
+    "Attila Szervác sas@321.hu hu\n"
+    "Daichi Kawahata daichi@xfce.org ja\n"
+    "ByungHyun Choi byunghyun.choi@debianusers.org kr\n"
+    "Mantas mantaz@users.sourceforge.net lt\n"
+    "Rihards Prieditis RPrieditis@inbox.lv lv\n"
+    "Terje Uriansrud ter@operamail.com nb_NO\n"
+    "Stephan Arts psybsd@gmail.com nl\n"
+    "Szymon Kałasz szymon_maestro@gazeta.pl pl\n"
+    "Fábio Nogueira deb-user-ba@ubuntu.com pt_BR\n"
+    "Og Maciel omaciel@xfce.org pt_BR\n"
+    "Nuno Miguel nunis@netcabo.pt pt_PT\n"
+    "Sergey Fedoseev fedoseev.sergey@gmail.com ru\n"
+    "Besnik Bleta besnik@programeshqip.org sq\n"
+    "Maxim V. Dziumanenko mvd@mylinux.com.ua uk\n"
+    "Dmitry Nikitin  uk\n"
+    "ﻢﺤﻣﺩ ﻊﻠﻳ ﺎﻠﻤﻜﻳ makki.ma@gmail.com ur\n"
+    "正龙 赵 longer.zhao@gmail.com zh_CN\n"
+    "Cosmo Chene cosmolax@gmail.com zh_TW\n";
 
   gtk_icon_size_lookup (GTK_ICON_SIZE_DIALOG, &x, &y);
-  icon = xfce_themed_icon_load ("media-optical", x);
+  icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-optical", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
   if (!icon)
-    icon = xfce_themed_icon_load ("media-cdrom", x);
+    icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-cdrom", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
   if (!icon)
-    icon = xfce_themed_icon_load (GTK_STOCK_CDROM, x);
+    icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), GTK_STOCK_CDROM, x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
 
-  info = xfce_about_info_new ("Xfburn", VERSION, _("Another cd burning GUI"),
-                              XFCE_COPYRIGHT_TEXT ("2005-2008", "David Mohr, Mario Đanić, Jean-François Wauthy"), XFCE_LICENSE_GPL);
-  xfce_about_info_set_homepage (info, "http://www.xfce.org/projects/xfburn");
-  xfce_about_info_add_credit (info, "David Mohr", "david@mcbf.net", _("Author/Maintainer"));
-  xfce_about_info_add_credit (info, "Mario Đanić", "mario@libburnia-project.org", _("Author/Maintainer"));
-  xfce_about_info_add_credit (info, "Jean-François Wauthy", "pollux@xfce.org", _("Retired author/maintainer"));
-  
+#if !GTK_CHECK_VERSION (2, 18, 0)
+  gtk_about_dialog_set_email_hook (exo_gtk_url_about_dialog_hook, NULL, NULL);
+  gtk_about_dialog_set_url_hook (exo_gtk_url_about_dialog_hook, NULL, NULL);
+#endif
+  gtk_show_about_dialog(GTK_WINDOW (window),
+		  "logo", icon,
+		  "program-name", "Xfburn",
+		  "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
+		  "version", VERSION,
+		  "comments", _("Another cd burning GUI"),
+		  "website", "http://www.xfce.org/projects/xfburn",
+		  "copyright", "2005-2008 David Mohr, Mario Đanić, Jean-François Wauthy",
+		  "authors", auth, 
+		  "translator-credits", translators,
+		  NULL);
 
-  for (n = 0; n < G_N_ELEMENTS (translators); ++n) {
-    gchar *s;
-
-    s = g_strdup_printf (_("Translator (%s)"), translators[n].language);
-    xfce_about_info_add_credit (info, translators[n].name, translators[n].email, s);
-    g_free (s);
-  }
-
-  dialog = xfce_about_dialog_new_with_values (GTK_WINDOW (window), info, icon);
-  gtk_widget_set_size_request (GTK_WIDGET (dialog), 400, 300);
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
-
-  xfce_about_info_free (info);
   if (G_LIKELY (icon != NULL))
     g_object_unref (G_OBJECT (icon));
 }

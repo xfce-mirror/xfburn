@@ -20,7 +20,7 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include <libburn.h>
 
@@ -206,7 +206,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   g_signal_connect (G_OBJECT (priv->device_box), "volume-changed", G_CALLBACK (cb_volume_changed), obj);
   gtk_widget_show (priv->device_box);
 
-  frame = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
+  frame = xfce_gtk_frame_box_new_with_content (_("Burning device"), priv->device_box);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -219,7 +219,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_type), cell, "text", BLANK_COMBO_NAME_COLUMN, NULL);
   gtk_widget_show (priv->combo_type);
 
-  frame = xfce_create_framebox_with_content (_("Blank mode"), priv->combo_type);
+  frame = xfce_gtk_frame_box_new_with_content (_("Blank mode"), priv->combo_type);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -227,7 +227,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
 
-  frame = xfce_create_framebox_with_content (_("Options"), vbox);
+  frame = xfce_gtk_frame_box_new_with_content (_("Options"), vbox);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -241,7 +241,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  button = xfce_create_mixed_button ("xfburn-blank-cdrw", _("_Blank"));
+  button = xfce_gtk_button_new_mixed ("xfburn-blank-cdrw", _("_Blank"));
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
   GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);

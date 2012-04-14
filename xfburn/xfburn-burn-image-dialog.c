@@ -173,7 +173,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (priv->chooser_image), filter);
   gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (priv->chooser_image), filter);
 
-  frame = xfce_create_framebox_with_content (_("Image to burn"), priv->chooser_image);
+  frame = xfce_gtk_frame_box_new_with_content (_("Image to burn"), priv->chooser_image);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
   
@@ -188,7 +188,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_DVD_WRITERS | SHOW_MODE_SELECTION | SHOW_SPEED_SELECTION);
   gtk_widget_show (priv->device_box);
   
-  frame = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
+  frame = xfce_gtk_frame_box_new_with_content (_("Burning device"), priv->device_box);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -196,7 +196,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
 
-  frame = xfce_create_framebox_with_content (_("Options"), vbox);
+  frame = xfce_gtk_frame_box_new_with_content (_("Options"), vbox);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -219,7 +219,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  priv->burn_button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn image"));
+  priv->burn_button = xfce_gtk_button_new_mixed ("xfburn-burn-cd", _("_Burn image"));
   gtk_widget_show (priv->burn_button);
   g_signal_connect (G_OBJECT (priv->burn_button), "clicked", G_CALLBACK (cb_clicked_ok), obj);
   gtk_container_add (GTK_CONTAINER( GTK_DIALOG(obj)->action_area), priv->burn_button);
@@ -400,7 +400,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 void
 burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error)
 {
-  xfce_err (msg_error);
+  xfce_dialog_show_error (NULL, NULL, msg_error); 
 }
 
 static void

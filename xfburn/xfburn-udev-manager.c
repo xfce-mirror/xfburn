@@ -33,7 +33,7 @@
 #include <errno.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include "xfburn-global.h"
 #include "xfburn-progress-dialog.h"
@@ -514,7 +514,7 @@ xfburn_udev_manager_check_ask_umount (XfburnUdevManager *udevman, XfburnDevice *
   if (unmounted)
     g_message ("Unmounted '%s'", mp);
   else {
-    xfce_err ("Failed to unmount '%s'. Drive cannot be used for burning.", mp);
+    xfce_dialog_show_error (NULL, NULL, "Failed to unmount '%s'. Drive cannot be used for burning.", mp);
     DBG ("Failed to unmount '%s'", mp);
   }
 
