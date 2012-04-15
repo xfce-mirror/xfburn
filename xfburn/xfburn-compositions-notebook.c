@@ -146,10 +146,10 @@ cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook)
 static void
 cb_composition_name_changed (XfburnComposition *composition, const gchar * name, XfburnCompositionsNotebook *notebook)
 {
-  guint page_num;
+  //guint page_num;
   GtkWidget *tab, *menu_label;
   
-  page_num = gtk_notebook_page_num (GTK_NOTEBOOK (notebook), GTK_WIDGET (composition));
+  //page_num = gtk_notebook_page_num (GTK_NOTEBOOK (notebook), GTK_WIDGET (composition));
   
   tab = gtk_notebook_get_tab_label (GTK_NOTEBOOK (notebook), GTK_WIDGET (composition));
   xfburn_notebook_tab_set_label (XFBURN_NOTEBOOK_TAB (tab), name);

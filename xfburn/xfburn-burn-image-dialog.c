@@ -400,7 +400,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 void
 burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error)
 {
-  xfce_dialog_show_error (NULL, NULL, msg_error); 
+  xfce_dialog_show_error (NULL, NULL, "%s", msg_error); 
 }
 
 static void

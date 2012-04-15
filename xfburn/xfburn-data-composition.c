@@ -1031,6 +1031,7 @@ static void
 set_modified (XfburnDataCompositionPrivate *priv)
 {
   if (!(priv->modified)) {
+    /*
     XfburnMainWindow *mainwin;
     GtkUIManager *ui_manager;
     GtkActionGroup *action_group;
@@ -1040,10 +1041,9 @@ set_modified (XfburnDataCompositionPrivate *priv)
   
     action_group = (GtkActionGroup *) gtk_ui_manager_get_action_groups (ui_manager)->data;
     
-    /*
     action = gtk_action_group_get_action (action_group, "save-composition");
     gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
-  */
+    */
     priv->modified = TRUE;
   }
 }
@@ -1919,6 +1919,7 @@ typedef struct
   GQueue *queue_iter;
 } LoadParserStruct;
 
+/*
 static gint
 _find_attribute (const gchar ** attribute_names, const gchar * attr)
 {
@@ -1931,12 +1932,15 @@ _find_attribute (const gchar ** attribute_names, const gchar * attr)
 
   return -1;
 }
+*/
 
 static void
 load_composition_start (GMarkupParseContext * context, const gchar * element_name,
                         const gchar ** attribute_names, const gchar ** attribute_values,
                         gpointer data, GError ** error)
 {
+  g_error ("This method needs to get fixed, and does not work right now!");
+/*
   LoadParserStruct * parserinfo = (LoadParserStruct *) data;
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (parserinfo->dc);
 
@@ -1958,11 +1962,8 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
       model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
       parent = g_queue_peek_head (parserinfo->queue_iter);
           
-      g_error ("This method needs to get fixed, and does not work right now!");
-      /*
       add_file_to_list_with_name (attribute_values[i], parserinfo->dc, model, attribute_values[j], &iter, 
                                   parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
-      */
     }
   } else if (!strcmp (element_name, "directory")) {
     int i, j;
@@ -1977,6 +1978,7 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
       //add_directory_to_list (attribute_values[i], parserinfo->dc, model, attribute_values[j], &iter, parent);    
     }
   }
+  */
 }
 
 static void

@@ -327,6 +327,7 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
 
   struct burn_drive *drive;
   enum burn_disc_status disc_state;
+  enum burn_drive_status drive_state;
   struct burn_progress progress;
 
   int ret;
@@ -412,8 +413,8 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
 
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Blanking disc..."));
 
-  while ((disc_state = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
-    //DBG ("disc_state = %d", disc_state);
+  while ((drive_state = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
+    //DBG ("drive_state = %d", drive_state);
     if(progress.sectors>0 && progress.sector>=0) {
       gdouble percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
       

@@ -235,7 +235,7 @@ is_valid_wav (const gchar *path)
   fd = open (path, 0);
 
   if (fd == -1) {
-    xfce_dialog_show_warning(NULL, _("Could not open %s."), path);
+    xfce_dialog_show_warning(NULL, "", _("Could not open %s."), path);
     return FALSE;
   }
 

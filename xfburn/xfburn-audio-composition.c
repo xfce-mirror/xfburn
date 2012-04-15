@@ -1021,7 +1021,7 @@ action_info (GtkAction * action, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   
-  xfce_dialog_show_info(NULL, NULL, xfburn_transcoder_get_description (priv->trans));
+  xfce_dialog_show_info(NULL, NULL, "%s", xfburn_transcoder_get_description (priv->trans));
 }
 
 static void
@@ -1062,6 +1062,7 @@ static void
 set_modified (XfburnAudioCompositionPrivate *priv)
 {
   if (!(priv->modified)) {
+    /*
     XfburnMainWindow *mainwin;
     GtkUIManager *ui_manager;
     GtkActionGroup *action_group;
@@ -1071,7 +1072,6 @@ set_modified (XfburnAudioCompositionPrivate *priv)
   
     action_group = (GtkActionGroup *) gtk_ui_manager_get_action_groups (ui_manager)->data;
     
-    /*
     action = gtk_action_group_get_action (action_group, "save-composition");
     gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
   */
@@ -1089,14 +1089,14 @@ notify_not_adding (XfburnAudioComposition * dc, GError *error)
   g_assert (error != NULL);
 
   if (error->domain != XFBURN_ERROR) {
-    xfce_dialog_show_warning(NULL, NULL, error->message);
+    xfce_dialog_show_warning(NULL, NULL, "%s", error->message);
     return;
   }
 
   if (g_hash_table_lookup (priv->warned_about, GINT_TO_POINTER (error->code)) == NULL) {
     g_hash_table_insert (priv->warned_about, GINT_TO_POINTER (error->code), did_warn);
 
-    xfce_dialog_show_warning(NULL, NULL, error->message);
+    xfce_dialog_show_warning(NULL, NULL, "%s", error->message);
   }
 }
 
@@ -1894,6 +1894,7 @@ typedef struct
   GQueue *queue_iter;
 } LoadParserStruct;
 
+/*
 static gint
 _find_attribute (const gchar ** attribute_names, const gchar * attr)
 {
@@ -1906,16 +1907,19 @@ _find_attribute (const gchar ** attribute_names, const gchar * attr)
 
   return -1;
 }
+*/
 
 static void
 load_composition_start (GMarkupParseContext * context, const gchar * element_name,
                         const gchar ** attribute_names, const gchar ** attribute_values,
                         gpointer data, GError ** error)
 {
+      g_error ("This method needs to get fixed, and does not work right now!");
+  
+      /*
   LoadParserStruct * parserinfo = (LoadParserStruct *) data;
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (parserinfo->dc);
 
-  
   if (!(parserinfo->started) && !strcmp (element_name, "xfburn-composition"))
     parserinfo->started = TRUE;
   else if (!(parserinfo->started))
@@ -1933,11 +1937,8 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
       model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
       parent = g_queue_peek_head (parserinfo->queue_iter);
           
-      g_error ("This method needs to get fixed, and does not work right now!");
-      /*
       add_file_to_list_with_name (attribute_values[i], parserinfo->dc, model, attribute_values[j], &iter, 
                                   parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
-      */
     }
   } else if (!strcmp (element_name, "directory")) {
     int i, j;
@@ -1952,6 +1953,7 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
       //add_directory_to_list (attribute_values[i], parserinfo->dc, model, attribute_values[j], &iter, parent);    
     }
   }
+      */
 }
 
 static void
