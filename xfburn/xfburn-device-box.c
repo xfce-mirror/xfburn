@@ -389,7 +389,10 @@ empty_speed_list_dialog (void)
                                   NULL);
 
   label = gtk_label_new (NULL);
-  gtk_label_set_markup (GTK_LABEL (label), _("<b>Unable to retrieve the speed list for the drive.</b>\n\nThis is a known bug, which occurs with some drives. Please report it to <i>xfburn@xfce.org</i> together with the console output to increase the chances that it will get fixed.\n\nBurning should still work, but if there are problems anyways, please let us know.\n\n<i>Thank you!</i>")
+  gtk_label_set_markup (GTK_LABEL (label),
+                        _("<b>Unable to retrieve the speed list for the drive.</b>\n\n"
+                          "This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n\n"
+                          "Burning should still work, but if there are problems anyways, please let us know.\n\n<i>Thank you!</i>")
                         );
   gtk_label_set_selectable (GTK_LABEL (label), TRUE);
   gtk_label_set_width_chars (GTK_LABEL (label), 30);
