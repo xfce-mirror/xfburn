@@ -88,9 +88,9 @@ static GOptionEntry optionentries[] = {
   { "directory", 'D', G_OPTION_FLAG_OPTIONAL_ARG , G_OPTION_ARG_CALLBACK, &parse_option, 
     "Start the file browser in the specified directory, or the current directory if none is specified (the default is to start in your home directory)", NULL },
 #endif
-  { "version", 'V', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_version, 
+  { "version", 'V', 0 , G_OPTION_ARG_NONE, &show_version, 
     "Display program version and exit", NULL },
-  { "main", 'm', G_OPTION_FLAG_NO_ARG , G_OPTION_ARG_NONE, &show_main, 
+  { "main", 'm', 0, G_OPTION_ARG_NONE, &show_main, 
     "Show main program even when other action is specified on the command line.", NULL },
   { NULL, ' ', 0, 0, NULL, NULL, NULL }
 };
