@@ -1,0 +1,7 @@
+Notes for the maintainer:
+
+* It is recommended to use a autogen.configureflags file so that your favorite
+  configuration options are automatically applied: 
+cat << EOF > autogen.configureflags
+--enable-debug=full
+EOF
