@@ -20,7 +20,7 @@
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include <libburn.h>
 
@@ -30,7 +30,7 @@
 #include "xfburn-device-box.h"
 #include "xfburn-device-list.h"
 #include "xfburn-stock.h"
-#include "xfburn-hal-manager.h"
+#include "xfburn-udev-manager.h"
 #include "xfburn-main.h"
 
 #include "xfburn-blank-dialog.h"
@@ -206,7 +206,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   g_signal_connect (G_OBJECT (priv->device_box), "volume-changed", G_CALLBACK (cb_volume_changed), obj);
   gtk_widget_show (priv->device_box);
 
-  frame = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
+  frame = xfce_gtk_frame_box_new_with_content (_("Burning device"), priv->device_box);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -219,7 +219,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->combo_type), cell, "text", BLANK_COMBO_NAME_COLUMN, NULL);
   gtk_widget_show (priv->combo_type);
 
-  frame = xfce_create_framebox_with_content (_("Blank mode"), priv->combo_type);
+  frame = xfce_gtk_frame_box_new_with_content (_("Blank mode"), priv->combo_type);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -227,7 +227,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
 
-  frame = xfce_create_framebox_with_content (_("Options"), vbox);
+  frame = xfce_gtk_frame_box_new_with_content (_("Options"), vbox);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -241,7 +241,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  button = xfce_create_mixed_button ("xfburn-blank-cdrw", _("_Blank"));
+  button = xfce_gtk_button_new_mixed ("xfburn-blank-cdrw", _("_Blank"));
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
   GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
@@ -327,6 +327,7 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
 
   struct burn_drive *drive;
   enum burn_disc_status disc_state;
+  enum burn_drive_status drive_state;
   struct burn_progress progress;
 
   int ret;
@@ -412,8 +413,8 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
 
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Blanking disc..."));
 
-  while ((disc_state = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
-    //DBG ("disc_state = %d", disc_state);
+  while ((drive_state = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
+    //DBG ("drive_state = %d", drive_state);
     if(progress.sectors>0 && progress.sector>=0) {
       gdouble percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
       
@@ -465,10 +466,10 @@ thread_blank (ThreadBlankParams * params)
  
   g_free (params);
 
-#ifdef HAVE_HAL
+#ifdef HAVE_GUDEV
   gdk_threads_enter ();
   DBG ("blanking done!");
-  xfburn_hal_manager_send_volume_changed ();
+  xfburn_udev_manager_send_volume_changed ();
   gdk_threads_leave ();
 #endif
 }

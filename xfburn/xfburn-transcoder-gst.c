@@ -36,7 +36,6 @@
 #include <errno.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
 
 #include <libburn.h>
 

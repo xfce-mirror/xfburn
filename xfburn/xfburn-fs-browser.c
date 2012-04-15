@@ -24,7 +24,6 @@
 #include <string.h>
 #endif
 
-#include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4util/libxfce4util.h>
 
 #include "xfburn-fs-browser.h"

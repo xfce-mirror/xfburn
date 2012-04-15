@@ -192,7 +192,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
 
   g_signal_connect (G_OBJECT (priv->device_box), "volume-changed", G_CALLBACK (cb_volume_changed), obj);
 
-  priv->frame_device = xfce_create_framebox_with_content (_("Burning device"), priv->device_box);
+  priv->frame_device = xfce_gtk_frame_box_new_with_content (_("Burning device"), priv->device_box);
   gtk_widget_show (priv->frame_device);
   gtk_box_pack_start (box, priv->frame_device, FALSE, FALSE, BORDER);
 
@@ -203,7 +203,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
     vbox = gtk_vbox_new (FALSE, 0);
     gtk_widget_show (vbox);
 
-    frame = xfce_create_framebox_with_content (_("Composition name"), vbox);
+    frame = xfce_gtk_frame_box_new_with_content (_("Composition name"), vbox);
     gtk_widget_show (frame);
     gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -224,7 +224,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (vbox);
 
-  frame = xfce_create_framebox_with_content (_("Options"), vbox);
+  frame = xfce_gtk_frame_box_new_with_content (_("Options"), vbox);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
@@ -280,7 +280,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  priv->button_proceed = button = xfce_create_mixed_button ("xfburn-burn-cd", _("_Burn Composition"));
+  priv->button_proceed = button = xfce_gtk_button_new_mixed ("xfburn-burn-cd", _("_Burn Composition"));
   /*
    * Disabled: change button_proceed functionality
   button = create_proceed_button (obj, "xfburn-burn-cd", "");
@@ -650,7 +650,7 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
 
     if (iso_image_create_burn_source (priv->image, write_opts, &src) < 0) {
       /* could not create source */
-      xfce_err (_("Could not create ISO source structure."));
+      xfce_dialog_show_error (NULL, NULL, _("Could not create ISO source structure."));
       return;
     }
 

@@ -24,6 +24,7 @@
 #endif /* !HAVE_CONFIG_H */
 
 #include <glib.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 

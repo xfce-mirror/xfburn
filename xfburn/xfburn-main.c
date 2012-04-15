@@ -29,11 +29,7 @@
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
-
-#ifdef HAVE_THUNAR_VFS
-#include <thunar-vfs/thunar-vfs.h>
-#endif
+#include <libxfce4ui/libxfce4ui.h>
 
 #ifdef HAVE_GST
 #include <gst/gst.h>
@@ -48,7 +44,7 @@
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-main-window.h"
 #include "xfburn-blank-dialog.h"
-#include "xfburn-hal-manager.h"
+#include "xfburn-udev-manager.h"
 #include "xfburn-transcoder-basic.h"
 #include "xfburn-transcoder-gst.h"
 
@@ -189,7 +185,7 @@ main (int argc, char **argv)
   GtkWidget *mainwin;
   gint n_burners;
   GError *error = NULL;
-#ifdef HAVE_HAL
+#ifdef HAVE_GUDEV
   gchar *error_msg;
 #endif
   XfburnTranscoder *transcoder;
@@ -221,7 +217,7 @@ main (int argc, char **argv)
 
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
-    xfce_err (_("Unable to initialize the burning backend."));
+    xfce_dialog_show_error (NULL, NULL, _("Unable to initialize the burning backend."));
     gdk_threads_leave ();
     return EXIT_FAILURE;
   }
@@ -275,25 +271,15 @@ main (int argc, char **argv)
 
   xfburn_settings_init ();
   
-#ifdef HAVE_THUNAR_VFS
-  thunar_vfs_init ();
-  g_message ("Using Thunar-VFS %d.%d.%d", THUNAR_VFS_MAJOR_VERSION, THUNAR_VFS_MINOR_VERSION, THUNAR_VFS_MICRO_VERSION);
-#else
-  g_message ("Thunar-VFS not available, using default implementation");
-#endif
-  
-#ifdef HAVE_HAL
-  error_msg = xfburn_hal_manager_create_global ();
+#ifdef HAVE_GUDEV
+  error_msg = xfburn_udev_manager_create_global ();
   if (error_msg) {
-    xfce_err (error_msg);
-#ifdef HAVE_THUNAR_VFS
-    thunar_vfs_shutdown ();
-#endif
+    xfce_dialog_show_error (NULL, NULL, error_msg);
     gdk_threads_leave ();
     burn_finish ();
     return EXIT_FAILURE;
   } else {
-    g_message ("Using HAL");
+    g_message ("Using UDEV");
   }
 #endif
 
@@ -342,7 +328,7 @@ main (int argc, char **argv)
   }
 
   if (!xfburn_transcoder_is_initialized (transcoder, &error)) {
-    xfce_warn (_("Failed to initialize %s transcoder: %s\n\t(falling back to basic implementation)"), xfburn_transcoder_get_name (transcoder), error->message);
+    xfce_dialog_show_warning(NULL, NULL, _("Failed to initialize %s transcoder: %s\n\t(falling back to basic implementation)"), xfburn_transcoder_get_name (transcoder), error->message);
     g_error_free (error);
     g_object_unref (transcoder);
     transcoder = XFBURN_TRANSCODER (xfburn_transcoder_basic_new ());
@@ -375,7 +361,7 @@ main (int argc, char **argv)
       if (g_file_test (image_fullname, G_FILE_TEST_EXISTS))
 	xfburn_burn_image_dialog_set_filechooser_name (dialog, image_fullname);
       else
-	xfce_err ( g_strdup_printf ( _("Image file '%s' does not exist."), image_fullname));
+        xfce_dialog_show_error (NULL, NULL, _("Image file '%s' does not exist."), image_fullname);
     }
 
     gtk_dialog_run (GTK_DIALOG (dialog));
@@ -413,14 +399,10 @@ main (int argc, char **argv)
   g_object_unref (devlist);
   g_object_unref (transcoder);
 
-#ifdef HAVE_HAL
-  xfburn_hal_manager_shutdown ();
+#ifdef HAVE_GUDEV
+  xfburn_udev_manager_shutdown ();
 #endif
 
-#ifdef HAVE_THUNAR_VFS
-  thunar_vfs_shutdown ();
-#endif
-  
   xfburn_settings_flush ();
   xfburn_settings_free ();
   

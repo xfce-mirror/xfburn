@@ -30,7 +30,7 @@
 
 #include <gtk/gtk.h>
 
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include "xfburn-progress-dialog.h"
 #include "xfburn-global.h"
@@ -603,7 +603,7 @@ xfburn_progress_dialog_burning_failed (XfburnProgressDialog * dialog, const gcha
   xfburn_progress_dialog_set_status_with_text (dialog, XFBURN_PROGRESS_DIALOG_STATUS_FAILED, _("Failure"));
 
   gdk_threads_enter ();
-  xfce_err (msg_error);
+  xfce_dialog_show_error (NULL, NULL, "%s", msg_error);
   gdk_threads_leave ();
 }
 

@@ -32,11 +32,9 @@
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
-#ifdef HAVE_THUNAR_VFS
-#include <thunar-vfs/thunar-vfs.h>
-#endif
+#include <gio/gio.h>
 
 #include <exo/exo.h>
 
@@ -579,7 +577,7 @@ cb_begin_burn (XfburnDiscUsage * du, XfburnAudioComposition * dc)
     dialog = xfburn_burn_audio_cd_composition_dialog_new (src);
     break;
   case DVD_DISC:
-    xfce_err (_("Cannot burn audio onto a DVD."));
+    xfce_dialog_show_error (NULL, NULL, _("Cannot burn audio onto a DVD."));
     return;
     break;
   }
@@ -1023,7 +1021,7 @@ action_info (GtkAction * action, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   
-  xfce_info (xfburn_transcoder_get_description (priv->trans));
+  xfce_dialog_show_info(NULL, NULL, "%s", xfburn_transcoder_get_description (priv->trans));
 }
 
 static void
@@ -1064,6 +1062,7 @@ static void
 set_modified (XfburnAudioCompositionPrivate *priv)
 {
   if (!(priv->modified)) {
+    /*
     XfburnMainWindow *mainwin;
     GtkUIManager *ui_manager;
     GtkActionGroup *action_group;
@@ -1073,7 +1072,6 @@ set_modified (XfburnAudioCompositionPrivate *priv)
   
     action_group = (GtkActionGroup *) gtk_ui_manager_get_action_groups (ui_manager)->data;
     
-    /*
     action = gtk_action_group_get_action (action_group, "save-composition");
     gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
   */
@@ -1091,14 +1089,14 @@ notify_not_adding (XfburnAudioComposition * dc, GError *error)
   g_assert (error != NULL);
 
   if (error->domain != XFBURN_ERROR) {
-    xfce_warn (error->message);
+    xfce_dialog_show_warning(NULL, NULL, "%s", error->message);
     return;
   }
 
   if (g_hash_table_lookup (priv->warned_about, GINT_TO_POINTER (error->code)) == NULL) {
     g_hash_table_insert (priv->warned_about, GINT_TO_POINTER (error->code), did_warn);
 
-    xfce_warn (error->message);
+    xfce_dialog_show_warning(NULL, NULL, "%s", error->message);
   }
 }
 
@@ -1143,7 +1141,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     
     gdk_threads_enter ();
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
-      xfce_err (_("A file with the same name is already present in the composition."));
+      xfce_dialog_show_error (NULL, NULL, _("A file with the same name is already present in the composition."));
 
       gtk_tree_path_free (tree_path);
       gdk_threads_leave ();
@@ -1227,7 +1225,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
         if (g_hash_table_lookup (priv->warned_about, GINT_TO_POINTER (err_code)) == NULL) {
           g_hash_table_insert (priv->warned_about, GINT_TO_POINTER (err_code), did_warn);
           gdk_threads_enter ();
-          xfce_err (_("You can only have a maximum of 99 tracks."));
+          xfce_dialog_show_error (NULL, NULL, _("You can only have a maximum of 99 tracks."));
           gdk_threads_leave ();
         }
 
@@ -1477,7 +1475,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
     
       /*
       if (file_exists_on_same_level (model, path_level, FALSE, name)) {
-        xfce_warn (_("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
+        xfce_dialog_warning(NULL, _("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
         goto cleanup;
       }
       */
@@ -1712,26 +1710,6 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       for (i=0; files[i] != NULL && files[i][0] != '\0'; i++) {
         gchar *full_path;
 
-#ifdef HAVE_THUNAR_VFS
-        ThunarVfsPath *vfs_path;
-        GError *vfs_error = NULL;
-
-        vfs_path = thunar_vfs_path_new (files[i], &vfs_error);
-
-        if (vfs_error) {
-          g_warning ("Failed to create vfs path for '%s': %s", files[i], vfs_error->message);
-          g_error_free (vfs_error);
-          continue;
-        }
-
-        if (thunar_vfs_path_get_scheme (vfs_path) != THUNAR_VFS_PATH_SCHEME_FILE)
-          continue;
-        full_path = thunar_vfs_path_dup_string (vfs_path);
-
-        thunar_vfs_path_unref (vfs_path);
-
-#else /* no thunar-vfs */
-
         if (g_str_has_prefix (files[i], "file://"))
           full_path = g_build_filename (&files[i][7], NULL);
         else if (g_str_has_prefix (files[i], "file:"))
@@ -1741,7 +1719,8 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
         if (full_path[strlen (full_path) - 1] == '\r')
           full_path[strlen (full_path) - 1] = '\0';
-#endif
+
+        DBG ("Adding path '%s'", full_path);
 
         /* remember path to add it later in another thread */
         priv->full_paths_to_add = g_list_append (priv->full_paths_to_add, full_path);
@@ -1786,29 +1765,46 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     }
   } 
   else if (sd->target == gdk_atom_intern ("text/uri-list", FALSE)) {
-#ifdef HAVE_THUNAR_VFS
     GList *vfs_paths = NULL;
     GList *vfs_path;
-    GError *error = NULL;
+    GList *lp;
     gchar *full_path;
+    gchar **uris;
+    gsize   n;
     gboolean ret = FALSE;
 
-    vfs_paths = thunar_vfs_path_list_from_string ((gchar *) sd->data, &error);
+    uris = g_uri_list_extract_uris ((gchar *) sd->data);
+
+    for (n = 0; uris != NULL && uris[n] != NULL; ++n)
+      vfs_paths = g_list_append (vfs_paths, g_file_new_for_uri (uris[n]));
+
+    g_strfreev (uris);
 
     if (G_LIKELY (vfs_paths != NULL)) {
       ThreadAddFilesDragParams *params;
       priv->full_paths_to_add = NULL;
       for (vfs_path = vfs_paths; vfs_path != NULL; vfs_path = g_list_next (vfs_path)) {
-        ThunarVfsPath *path = THUNAR_VFS_PATH (vfs_path->data);
-        if (thunar_vfs_path_get_scheme (path) != THUNAR_VFS_PATH_SCHEME_FILE)
+	GFile *path = vfs_path->data;
+	if (path == NULL)
           continue;
-        full_path = thunar_vfs_path_dup_string (path);
+	/* unable to handle non-local files */
+	if (G_UNLIKELY (!g_file_has_uri_scheme (path, "file"))) {
+            g_object_unref (path);
+	    continue;
+        }
+        full_path = g_file_get_path (path);
+        /* if there is no local path, use the URI (which always works) */
+        if (full_path == NULL)
+            full_path = g_file_get_uri (path);
+        /* release the location */
         g_debug ("adding uri path: %s", full_path);
-
         priv->full_paths_to_add = g_list_prepend (priv->full_paths_to_add, full_path);
         ret = TRUE;
       }
-      thunar_vfs_path_list_free (vfs_paths);
+
+      for (lp = vfs_paths; lp != NULL; lp = lp->next)
+        g_object_unref (lp->data);
+      g_list_free (vfs_paths);
 
       priv->full_paths_to_add = g_list_reverse (priv->full_paths_to_add);
       priv->path_where_insert = path_where_insert;
@@ -1831,18 +1827,10 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         cb_adding_done (XFBURN_ADDING_PROGRESS (priv->progress), composition);
       }
     } else {
-      if (G_UNLIKELY (error != NULL))
-        g_warning ("text/uri-list drag failed because '%s'", error->message);
-      else
-        g_warning("There were no files in the uri list!");
+      g_warning("There were no files in the uri list!");
       gtk_drag_finish (dc, FALSE, FALSE, t);
       xfburn_default_cursor (priv->content);
     }
-#else
-    g_warning ("Receiving this type of drag and drop requires thunar-vfs support, sorry!");
-    gtk_drag_finish (dc, FALSE, FALSE, t);
-    xfburn_default_cursor (priv->content);
-#endif
   } 
   else {
     g_warning ("Trying to receive an unsupported drag target, this should not happen.");
@@ -1906,6 +1894,7 @@ typedef struct
   GQueue *queue_iter;
 } LoadParserStruct;
 
+/*
 static gint
 _find_attribute (const gchar ** attribute_names, const gchar * attr)
 {
@@ -1918,16 +1907,19 @@ _find_attribute (const gchar ** attribute_names, const gchar * attr)
 
   return -1;
 }
+*/
 
 static void
 load_composition_start (GMarkupParseContext * context, const gchar * element_name,
                         const gchar ** attribute_names, const gchar ** attribute_values,
                         gpointer data, GError ** error)
 {
+      g_error ("This method needs to get fixed, and does not work right now!");
+  
+      /*
   LoadParserStruct * parserinfo = (LoadParserStruct *) data;
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (parserinfo->dc);
 
-  
   if (!(parserinfo->started) && !strcmp (element_name, "xfburn-composition"))
     parserinfo->started = TRUE;
   else if (!(parserinfo->started))
@@ -1945,11 +1937,8 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
       model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
       parent = g_queue_peek_head (parserinfo->queue_iter);
           
-      g_error ("This method needs to get fixed, and does not work right now!");
-      /*
       add_file_to_list_with_name (attribute_values[i], parserinfo->dc, model, attribute_values[j], &iter, 
                                   parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
-      */
     }
   } else if (!strcmp (element_name, "directory")) {
     int i, j;
@@ -1964,6 +1953,7 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
       //add_directory_to_list (attribute_values[i], parserinfo->dc, model, attribute_values[j], &iter, parent);    
     }
   }
+      */
 }
 
 static void

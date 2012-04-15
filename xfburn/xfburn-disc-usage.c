@@ -30,7 +30,7 @@
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include "xfburn-disc-usage.h"
 #include "xfburn-global.h"
@@ -160,7 +160,7 @@ xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObject
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->combo, FALSE, FALSE, BORDER);
   gtk_widget_show (disc_usage->combo);
 
-  disc_usage->button = xfce_create_mixed_button (XFBURN_STOCK_BURN_CD, _("Proceed to Burn"));
+  disc_usage->button = xfce_gtk_button_new_mixed (XFBURN_STOCK_BURN_CD, _("Proceed to Burn"));
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->button, FALSE, FALSE, BORDER);
   gtk_widget_set_sensitive (disc_usage->button, FALSE);
   gtk_widget_show (disc_usage->button);
@@ -200,7 +200,7 @@ cb_button_clicked (GtkButton *button, XfburnDiscUsage *du)
   if (du->size <= class->labels[gtk_combo_box_get_active (GTK_COMBO_BOX (du->combo))].size) {
     g_signal_emit (G_OBJECT (du), signals[BEGIN_BURN], 0);
   } else {
-    xfce_err (_("You are trying to burn more onto the disc than it can hold."));
+    xfce_dialog_show_error (NULL, NULL, _("You are trying to burn more onto the disc than it can hold."));
   }
 }
 
