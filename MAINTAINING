@@ -5,3 +5,5 @@ Notes for the maintainer:
 cat << EOF > autogen.configureflags
 --enable-debug=full
 EOF
+
+* Run `make -C po update-po` when preparing for a release.
