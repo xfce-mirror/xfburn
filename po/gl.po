@@ -1,24 +1,24 @@
 # Galician translation of xfburn
 # Copyright (C) 2008-2009 Leandro Regueiro
 # This file is distributed under the same license as the xfburn package.
-#
+# 
 # Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>, 2006, 2008, 2009.
-#
+# 
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 16:12-0600\n"
+"POT-Creation-Date: 2012-04-16 04:21+0000\n"
 "PO-Revision-Date: 2010-11-02 18:10+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
-"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../xfburn/xfburn-adding-progress.c:111
@@ -96,7 +96,8 @@ msgstr "E_xpulsar o disco"
 msgid "_Blank"
 msgstr "_Baleiro"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "O disco inserido xa está baleiro."
@@ -405,7 +406,8 @@ msgstr "Limpar"
 msgid "Clear the content of the composition"
 msgstr "Limpar o contido da composición"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:193
 msgid "Rename"
 msgstr "Renomear"
@@ -447,7 +449,8 @@ msgstr "Xa existe un ficheiro con ese nome na composición."
 msgid "New directory"
 msgstr "Novo directorio"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:962
 #, c-format
 msgid "Data %s~%d"
@@ -545,7 +548,6 @@ msgid "Empty speed list"
 msgstr "Baleirar a lista de velocidades"
 
 #: ../xfburn/xfburn-device-box.c:393
-#, fuzzy
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -667,7 +669,7 @@ msgstr "Sistema de ficheiros"
 msgid "%s's home"
 msgstr "Directorio persoal de %s"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -723,8 +725,10 @@ msgstr "O ficheiro de imaxe '%s' non existe."
 msgid "_File"
 msgstr "_Ficheiro"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -734,11 +738,14 @@ msgstr "Nova composición de datos"
 msgid "New audio composition"
 msgstr "Crear unha nova composición"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -800,7 +807,8 @@ msgstr "Borrar CD-RW"
 msgid "Copy Data CD"
 msgstr "Copiar CD de datos"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Gravar Imaxe"
@@ -1381,13 +1389,13 @@ msgstr "Tipos de bloque PACKET de libburn"
 msgid "Data Composition"
 msgstr "Composición de datos"
 
+#: ../xfburn.desktop.in.h:1
+msgid "Burn Image (xfburn)"
+msgstr "Gravar imaxe (xfburn)"
+
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Aplicación para a gravación de CDs e DVDs"
-
-#: ../xfburn.desktop.in.h:3
-msgid "Burn Image (xfburn)"
-msgstr "Gravar imaxe (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Autor/Mantedor"
