@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the xfburn package.
 # Stephan Arts <psyBSD@gmail.com>, 2006.
 # Pjotr, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 16:12-0600\n"
+"POT-Creation-Date: 2012-04-16 04:21+0000\n"
 "PO-Revision-Date: 2011-09-08 17:34+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
-"Language: nl (Dutch)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl (Dutch)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfburn/xfburn-adding-progress.c:111
@@ -93,7 +93,8 @@ msgstr "Schijf uitw_erpen"
 msgid "_Blank"
 msgstr "_Wissen"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "De ingebrachte schijf is al leeg."
@@ -399,7 +400,8 @@ msgstr "Wissen"
 msgid "Clear the content of the composition"
 msgstr "Inhoud van de verzameling wissen"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:193
 msgid "Rename"
 msgstr "Naam wijzigen"
@@ -441,7 +443,8 @@ msgstr "Een bestand met dezelfde naam is al aanwezig in de verzameling."
 msgid "New directory"
 msgstr "Nieuwe map"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:962
 #, c-format
 msgid "Data %s~%d"
@@ -543,7 +546,6 @@ msgid "Empty speed list"
 msgstr "Lege snelhedenlijst"
 
 #: ../xfburn/xfburn-device-box.c:393
-#, fuzzy
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -665,7 +667,7 @@ msgstr "Bestandssysteem"
 msgid "%s's home"
 msgstr "%s's persoonlijke map"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -721,8 +723,10 @@ msgstr "Beeldbestand '%s' bestaat niet."
 msgid "_File"
 msgstr "_Bestand"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -732,11 +736,14 @@ msgstr "Nieuwe gegevensverzameling"
 msgid "New audio composition"
 msgstr "Nieuwe geluidverzameling"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -798,7 +805,8 @@ msgstr "CD-RW wissen"
 msgid "Copy Data CD"
 msgstr "Kopieer gegevens-CD"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Brand beeldbestand"
@@ -1376,13 +1384,13 @@ msgstr "libburn PACKET block types"
 msgid "Data Composition"
 msgstr "Gegevensverzameling"
 
+#: ../xfburn.desktop.in.h:1
+msgid "Burn Image (xfburn)"
+msgstr "Brand beeldbestand (xfburn)"
+
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD- en DVD-brandprogramma"
-
-#: ../xfburn.desktop.in.h:3
-msgid "Burn Image (xfburn)"
-msgstr "Brand beeldbestand (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Auteur/Onderhouder"
