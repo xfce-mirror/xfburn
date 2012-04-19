@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.3.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 07:06+0000\n"
+"POT-Creation-Date: 2012-04-19 12:51+0000\n"
 "PO-Revision-Date: 2011-01-30 13:09+0100\n"
 "Last-Translator: David Mohr <squisher@xfce.org>\n"
 "Language-Team: de <>\n"
@@ -54,7 +54,7 @@ msgstr "CD auswerfen"
 
 #: ../xfburn/xfburn-blank-dialog.c:150
 msgid "Default value for eject checkbox"
-msgstr "Standardwert für die Checkbox zum Auswurf"
+msgstr "Standardwert für das Ankreuzfeld zum Auswurf"
 
 #: ../xfburn/xfburn-blank-dialog.c:197
 msgid "Blank Disc"
@@ -116,7 +116,7 @@ msgstr "Medium nicht löschbar."
 
 #: ../xfburn/xfburn-blank-dialog.c:414
 msgid "Blanking disc..."
-msgstr "Leere Medium..."
+msgstr "Medium wird geleert …"
 
 #: ../xfburn/xfburn-blank-dialog.c:441
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:512
@@ -144,11 +144,11 @@ msgstr "ISO-Abbild"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
 msgid "Show volume name"
-msgstr "Volumennamen anzeigen"
+msgstr "Datenträgernamen anzeigen"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
 msgid "Show a text entry for the name of the volume"
-msgstr "Texteingabefeld für den Volumennamen zeigen"
+msgstr "Texteingabefeld für den Datenträgernamen zeigen"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
@@ -193,11 +193,11 @@ msgstr "_Zusammenstellung brennen"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
 #, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr "Konnte Ziel-ISO-Datei »%s« nicht anlegen"
+msgstr "ISO-Zieldatei »%s« konnte nicht angelegt werden"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 msgid "Writing ISO..."
-msgstr "Schreibe ISO-Datei..."
+msgstr "ISO-Datei wird geschrieben"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
 #, c-format
@@ -217,7 +217,7 @@ msgstr "Dieser Schreibmodus wird zur Zeit nicht unterstützt."
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
 msgid "Could not create ISO source structure."
-msgstr "Konnte die ISO-Quellstruktur nicht anlegen."
+msgstr "Die ISO-Quellstruktur konnte nicht angelegt werden."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:156
 msgid "Burn image"
@@ -252,7 +252,7 @@ msgstr "Ein Fehler ist im Brennmodul aufgetreten"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:335
 msgid "Unable to determine image size."
-msgstr "Konnte Abbildgröße nicht ermitteln."
+msgstr "Abbildgröße konnte nicht ermittelt werden."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:342
 msgid "Cannot open image."
@@ -260,7 +260,7 @@ msgstr "Öffnen des Abbilds fehlgeschlagen."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:379
 msgid "Burning image..."
-msgstr "Brenne Abbild..."
+msgstr "Abbild wird gebrannt …"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:445
 msgid ""
@@ -289,7 +289,7 @@ msgstr "Kein Medium im Laufwerk erkannt"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:491
 msgid "Cannot recognize state of drive and disc"
-msgstr "Kann Laufwerks- und Medienstatus nicht ermitteln"
+msgstr "Laufwerks- und Medienstatus kann nicht ermittelt werden"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid "The selected image does not fit on the inserted disc"
@@ -297,7 +297,7 @@ msgstr "Das ausgewählte CD-Abbild ist zu groß für das Medium im Laufwerk"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:507
 msgid "Failed to get image size"
-msgstr "Konnte Abbildgröße nicht ermitteln"
+msgstr "Abbildgröße konnte nicht ermittelt werden"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
 msgid ""
@@ -335,7 +335,7 @@ msgstr "CD _kopieren"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
-msgstr "Leere Cache..."
+msgstr "Zwischenspeicher wird geleert …"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
@@ -343,12 +343,12 @@ msgstr "Bitte legen Sie ein beschreibbares Medium ein."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
-msgstr "Schreibe CD..."
+msgstr "CD wird geschrieben …"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:102
 msgid "Reading CD..."
-msgstr "Lese CD..."
+msgstr "CD wird gelesen …"
 
 #: ../xfburn/xfburn-copy-dvd-dialog.c:113
 msgid "Copy data DVD"
@@ -378,11 +378,11 @@ msgstr "Ausgewählte Datei(en) zu der Zusammenstellung hinzufügen"
 
 #: ../xfburn/xfburn-data-composition.c:186
 msgid "Create directory"
-msgstr "Neues Verzeichnis"
+msgstr "Neuer Ordner"
 
 #: ../xfburn/xfburn-data-composition.c:186
 msgid "Add a new directory to the composition"
-msgstr "Fügt ein neues Verzeichnis zur Zusammenstellung hinzu"
+msgstr "Einen neuen Ordner zur Zusammenstellung hinzufügen"
 
 #: ../xfburn/xfburn-data-composition.c:188
 #: ../xfburn/xfburn-audio-composition.c:207
@@ -392,7 +392,7 @@ msgstr "Entfernen"
 #: ../xfburn/xfburn-data-composition.c:188
 #: ../xfburn/xfburn-audio-composition.c:207
 msgid "Remove the selected file(s) from the composition"
-msgstr "Ausgewählte Datei(en) von der zusammenstellung entfernen"
+msgstr "Ausgewählte Datei(en) aus der Zusammenstellung entfernen"
 
 #: ../xfburn/xfburn-data-composition.c:190
 #: ../xfburn/xfburn-audio-composition.c:209
@@ -416,7 +416,7 @@ msgstr "Ausgewählte Datei umbennen"
 
 #: ../xfburn/xfburn-data-composition.c:347
 msgid "Volume name :"
-msgstr "Bezeichnung:"
+msgstr "Datenträgerbezeichnung:"
 
 #: ../xfburn/xfburn-data-composition.c:381
 msgid "Contents"
@@ -447,7 +447,7 @@ msgstr ""
 #: ../xfburn/xfburn-data-composition.c:792
 #: ../xfburn/xfburn-data-composition.c:794
 msgid "New directory"
-msgstr "Neues Verzeichnis"
+msgstr "Neuer Ordner"
 
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
@@ -505,11 +505,11 @@ msgstr "Nur Brenner zeigen"
 
 #: ../xfburn/xfburn-device-box.c:173
 msgid "Show speed selection"
-msgstr "Geschwindidigkeitsauswahl zeigen"
+msgstr "Geschwindigkeitsauswahl zeigen"
 
 #: ../xfburn/xfburn-device-box.c:174
 msgid "Show speed selection combo"
-msgstr "Geschwindidigkeitsauswahl zeigen"
+msgstr "Geschwindigkeitsauswahl zeigen"
 
 #: ../xfburn/xfburn-device-box.c:177
 msgid "Show mode selection"
@@ -547,7 +547,7 @@ msgstr "Schreib_modus:"
 
 #: ../xfburn/xfburn-device-box.c:384
 msgid "Empty speed list"
-msgstr "Leere Geschwindigkeitsliste"
+msgstr "Geschwindigkeitsliste ist leer"
 
 #: ../xfburn/xfburn-device-box.c:393
 msgid ""
@@ -796,7 +796,7 @@ msgstr "_Hilfe"
 
 #: ../xfburn/xfburn-main-window.c:125
 msgid "_About"
-msgstr "Ü_ber"
+msgstr "_Info"
 
 #: ../xfburn/xfburn-main-window.c:125
 msgid "Display information about Xfburn"
@@ -848,11 +848,11 @@ msgstr "Noch ein CD-Brennprogramm"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "Label"
-msgstr "Label"
+msgstr "Beschriftung"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "The text of the label"
-msgstr "Der Text des Labels"
+msgstr "Der Text der Beschriftung"
 
 #: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Show close button"
@@ -882,7 +882,7 @@ msgstr "Kein Medium im Laufwerk erkannt"
 
 #: ../xfburn/xfburn-perform-burn.c:167
 msgid "Cannot recognize the state of the drive and disc."
-msgstr "Kann Laufwerks- und Medienstatus nicht ermitteln."
+msgstr "Laufwerks- und Medienstatus kann nicht ermittelt werden."
 
 #: ../xfburn/xfburn-perform-burn.c:180
 msgid "There is not enough space available on the inserted disc."
@@ -891,11 +891,11 @@ msgstr "Das ausgewählte CD-Abbild ist zu groß für das Medium im Laufwerk."
 #: ../xfburn/xfburn-perform-burn.c:225
 #, c-format
 msgid "Burning track %2d/%d..."
-msgstr "Brenne Titel %2d/%d..."
+msgstr "Titel %2d/%d wird gebrannt …"
 
 #: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
 msgid "Burning composition..."
-msgstr "Schreibe Zusammenstellung..."
+msgstr "Zusammenstellung wird geschrieben …"
 
 #: ../xfburn/xfburn-perform-burn.c:263
 msgid "standby"
@@ -937,27 +937,27 @@ msgstr "Keine Information"
 
 #: ../xfburn/xfburn-perform-burn.c:299
 msgid "Writing Lead-In..."
-msgstr "Schreibe Lead-In..."
+msgstr "Lead-In wird geschrieben …"
 
 #: ../xfburn/xfburn-perform-burn.c:305
 msgid "Writing Lead-Out..."
-msgstr "Schreibe Lead-Out..."
+msgstr "Lead-Out wird geschrieben …"
 
 #: ../xfburn/xfburn-perform-burn.c:311
 msgid "Writing pregap..."
-msgstr "Schreibe Pregap..."
+msgstr "Pregap wird geschrieben …"
 
 #: ../xfburn/xfburn-perform-burn.c:317
 msgid "Closing track..."
-msgstr "Schließe Spur ab..."
+msgstr "Spur wird abgeschlossen …"
 
 #: ../xfburn/xfburn-perform-burn.c:323
 msgid "Closing session..."
-msgstr "Schließe Sitzung ab..."
+msgstr "Sitzung wird abgeschlossen …"
 
 #: ../xfburn/xfburn-perform-burn.c:329
 msgid "Formatting..."
-msgstr "Formatiere..."
+msgstr "Formatierung …"
 
 #: ../xfburn/xfburn-perform-burn.c:342
 msgid "see console"
@@ -978,11 +978,11 @@ msgstr "Das Verhalten von »Xfburn« konfigurieren"
 #: ../xfburn/xfburn-preferences-dialog.c:188
 #: ../xfburn/xfburn-preferences-dialog.c:192
 msgid "Temporary directory"
-msgstr "Verzeichnis für temporäre Dateien"
+msgstr "Ordner für temporäre Dateien"
 
 #: ../xfburn/xfburn-preferences-dialog.c:196
 msgid "_Clean temporary directory on exit"
-msgstr "_Verzeichnis für temporäre Dateien beim Beenden aufräumen"
+msgstr "_Ordner für temporäre Dateien beim Beenden aufräumen"
 
 #: ../xfburn/xfburn-preferences-dialog.c:203
 msgid "File browser"
@@ -990,7 +990,7 @@ msgstr "Dateibrowser"
 
 #: ../xfburn/xfburn-preferences-dialog.c:207
 msgid "Show _hidden files"
-msgstr "_Versteckte Dateien anzeigen"
+msgstr "_Verborgene Dateien anzeigen"
 
 #: ../xfburn/xfburn-preferences-dialog.c:212
 msgid "Show human_readable filesizes"
@@ -1044,7 +1044,7 @@ msgstr "Warnung bei _leerer Geschwindigkeitsliste zeigen"
 
 #: ../xfburn/xfburn-preferences-dialog.c:329
 msgid "FIFO buffer size (in kb)"
-msgstr "FIFO Puffer Größe (in KB)"
+msgstr "FIFO-Puffergröße (in kB)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:463
 msgid "Changing this setting only takes full effect after a program restart."
@@ -1054,7 +1054,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-progress-dialog.c:181
 msgid "Initializing..."
-msgstr "Initialisiere..."
+msgstr "Initialisierung …"
 
 #: ../xfburn/xfburn-progress-dialog.c:196
 msgid "Estimated writing speed:"
@@ -1066,7 +1066,7 @@ msgstr "FIFO-Puffer:"
 
 #: ../xfburn/xfburn-progress-dialog.c:220
 msgid "Device buffer:"
-msgstr "Geräte-Puffer:"
+msgstr "Gerätepuffer:"
 
 #: ../xfburn/xfburn-progress-dialog.c:467
 #, c-format
@@ -1091,7 +1091,7 @@ msgstr "Fertig"
 
 #: ../xfburn/xfburn-progress-dialog.c:575
 msgid "Aborting..."
-msgstr "Abbrechen..."
+msgstr "Abbrechen …"
 
 #: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
@@ -1104,7 +1104,7 @@ msgstr "Willkommen zu xfburn!"
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:140
 msgid "<big>Burn _Image</big>"
-msgstr "<big>CD-Abbild _brennen</big>"
+msgstr "<big>Abbild _brennen</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:140
 msgid "Burn a prepared compilation, i.e. an .ISO file"
@@ -1230,7 +1230,7 @@ msgstr "Datei »%s« enthält keine unkomprimierten PCM-Wave-Daten"
 #: ../xfburn/xfburn-transcoder-basic.c:207
 #, c-format
 msgid "Could not stat %s: %s"
-msgstr "Konnte keine Informationen über »%s« erlangen: %s"
+msgstr "Informationen über »%s« konnten nicht ermittelt werden: %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:238
 #, c-format
@@ -1319,7 +1319,7 @@ msgstr "Titelwechsel beim Umwandeln ist fehlgeschlagen"
 #: ../xfburn/xfburn-transcoder.c:163
 #, c-format
 msgid "not implemented"
-msgstr "noch nicht implementiert"
+msgstr "nicht implementiert"
 
 #: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
 msgid "Display name"
