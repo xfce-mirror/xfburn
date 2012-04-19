@@ -11,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.3.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 16:12-0600\n"
+"POT-Creation-Date: 2012-04-19 07:06+0000\n"
 "PO-Revision-Date: 2011-01-30 13:09+0100\n"
 "Last-Translator: David Mohr <squisher@xfce.org>\n"
 "Language-Team: de <>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: \n"
+"Language: \n"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -95,7 +95,8 @@ msgstr "CD aus_werfen"
 msgid "_Blank"
 msgstr "_Löschen"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "Das Medium ist schon leer."
@@ -403,7 +404,8 @@ msgstr "Leeren"
 msgid "Clear the content of the composition"
 msgstr "Inhalt der Zusammenstellung leeren"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:193
 msgid "Rename"
 msgstr "Umbenennen"
@@ -447,7 +449,8 @@ msgstr ""
 msgid "New directory"
 msgstr "Neues Verzeichnis"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:962
 #, c-format
 msgid "Data %s~%d"
@@ -547,7 +550,6 @@ msgid "Empty speed list"
 msgstr "Leere Geschwindigkeitsliste"
 
 #: ../xfburn/xfburn-device-box.c:393
-#, fuzzy
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -670,7 +672,7 @@ msgstr "Dateisystem"
 msgid "%s's home"
 msgstr "Persönlicher Ordner von %s"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -726,8 +728,10 @@ msgstr "Die Abbilddatei »%s« ist nicht vorhanden."
 msgid "_File"
 msgstr "_Datei"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -737,11 +741,14 @@ msgstr "Neue Datenzusammenstellung"
 msgid "New audio composition"
 msgstr "Neue Musikzusammenstellung"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -803,7 +810,8 @@ msgstr "CD-RW löschen"
 msgid "Copy Data CD"
 msgstr "Daten-CD kopieren"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "CD-Abbild brennen"
@@ -1381,13 +1389,13 @@ msgstr "libburn-Paket-Blocktypen"
 msgid "Data Composition"
 msgstr "Datenzusammenstellung"
 
+#: ../xfburn.desktop.in.h:1
+msgid "Burn Image (xfburn)"
+msgstr "CD-Abbild brennen (xfburn)"
+
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Brennprogramm für CDs und DVDs"
-
-#: ../xfburn.desktop.in.h:3
-msgid "Burn Image (xfburn)"
-msgstr "CD-Abbild brennen (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Autor/Entwickler"
