@@ -4,24 +4,24 @@
 # This file is distributed under the same license as the xfburn package.
 # Pau Rul·lan Ferragut <paurullan@bulma.net>, 2006.
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008-2010.
-#
-#
+# 
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 16:12-0600\n"
+"POT-Creation-Date: 2012-04-19 18:36+0000\n"
 "PO-Revision-Date: 2010-02-04 20:49+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Catalan\n"
-"X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Country: SPAIN\n"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -98,7 +98,8 @@ msgstr "Expuls_a disc"
 msgid "_Blank"
 msgstr "En _blanc"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "El disc introduït ja està en blanc."
@@ -405,7 +406,8 @@ msgstr "Buida"
 msgid "Clear the content of the composition"
 msgstr "Buida el contingut de la composició"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:193
 msgid "Rename"
 msgstr "Canvia de nom"
@@ -447,7 +449,8 @@ msgstr "Ja hi ha un fitxer amb aquest nom a la composició."
 msgid "New directory"
 msgstr "Directori nou"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:962
 #, c-format
 msgid "Data %s~%d"
@@ -545,7 +548,6 @@ msgid "Empty speed list"
 msgstr "Llista de velocitat buida"
 
 #: ../xfburn/xfburn-device-box.c:393
-#, fuzzy
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -667,7 +669,7 @@ msgstr "Sistema de fitxers"
 msgid "%s's home"
 msgstr "Directori de %s"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -723,8 +725,10 @@ msgstr "El fitxer d'imatge «%s» no existeix."
 msgid "_File"
 msgstr "_Fitxer"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -734,11 +738,14 @@ msgstr "Nova composició de dades"
 msgid "New audio composition"
 msgstr "Nova composició d'àudio"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -800,7 +807,8 @@ msgstr "CD-RW en blanc"
 msgid "Copy Data CD"
 msgstr "Copia un CD de dades"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Crema la imatge"
@@ -1376,13 +1384,13 @@ msgstr "Tipus de bloc PACKET de «libburn»"
 msgid "Data Composition"
 msgstr "Composició de dades"
 
+#: ../xfburn.desktop.in.h:1
+msgid "Burn Image (xfburn)"
+msgstr "Crema una imatge (xfburn)"
+
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Aplicació per cremar CD i DVD"
-
-#: ../xfburn.desktop.in.h:3
-msgid "Burn Image (xfburn)"
-msgstr "Crema una imatge (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Autor/Mantenidor"
@@ -1417,7 +1425,6 @@ msgstr "Crema una imatge (xfburn)"
 #~ msgid "_Format"
 #~ msgstr "_Formata"
 
-#, fuzzy
 #~ msgid "Closed disc with data detected. Need blank or appendable media"
 #~ msgstr ""
 #~ "S’ha trobat un mitjà tancat amb dades. El mitjà ha d’estar en blank o "
@@ -1426,11 +1433,9 @@ msgstr "Crema una imatge (xfburn)"
 #~ msgid "No media detected in drive"
 #~ msgstr "No s’ha trobat cap mitjà a la unitat"
 
-#, fuzzy
 #~ msgid "Could not create burn_source from %s!"
 #~ msgstr "No s’ha pgut crear l’estructura de la ISO "
 
-#, fuzzy
 #~ msgid "Could not add source to track %s!"
 #~ msgstr "No s’ha pgut crear l’estructura de la ISO "
 
@@ -1449,19 +1454,15 @@ msgstr "Crema una imatge (xfburn)"
 #~ msgid "Copy DVD"
 #~ msgstr "Copia DVD"
 
-#, fuzzy
 #~ msgid "Action group"
 #~ msgstr "_Accions"
 
-#, fuzzy
 #~ msgid "Format Fast"
 #~ msgstr "_Formata"
 
-#, fuzzy
 #~ msgid "Format Complete"
 #~ msgstr "Completa"
 
-#, fuzzy
 #~ msgid "Deformat Complete"
 #~ msgstr "Completa"
 
