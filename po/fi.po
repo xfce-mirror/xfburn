@@ -1,14 +1,14 @@
 # Translation of xfburn into Finnish.
 # Copyright (C) 2005-2010 Jean-François Wauthy, Mario Đanić, David Mohr
 # This file is distributed under the same license as the xfburn package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008-2010.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008-2012.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn 0.4.3\n"
+"Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 16:12-0600\n"
-"PO-Revision-Date: 2010-01-29 13:21+0200\n"
+"POT-Creation-Date: 2012-04-27 06:15+0000\n"
+"PO-Revision-Date: 2012-04-27 14:14+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish\n"
 "Language: \n"
@@ -532,7 +532,6 @@ msgid "Empty speed list"
 msgstr "Nopeuslista on tyhjä"
 
 #: ../xfburn/xfburn-device-box.c:393
-#, fuzzy
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -546,9 +545,8 @@ msgid ""
 msgstr ""
 "<b>Aseman nopeuslistaa ei voi noutaa.</b>\n"
 "\n"
-"Tämä on tunnettu vika, joka ilmenee joidenkin asemien yhteydessä. Vian "
-"korjaaminen helpottuu, jos lähetät päätteeseen tulostuvan tiedon meille "
-"osoitteeseen <i>xfburn@xfce.org</i>.\n"
+"Tämä on tunnettu vika joillakin asemilla. Jos sen korjaaminen kiinostaa, "
+"voit vilkaista libburn-kirjastoa.\n"
 "\n"
 "Polttamisen pitäisi toimia tästä huolimatta. Jos ongelmia kuitenkin "
 "esiintyy, ole hyvä ja ilmoita niistä meille.\n"
@@ -557,7 +555,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:404
 msgid "Continue to _show this notice"
-msgstr "_Näytä ilmoitus jatkossa"
+msgstr "_Näytä ilmoitus myös jatkossa"
 
 #: ../xfburn/xfburn-device-box.c:446
 msgid "default"
@@ -654,7 +652,7 @@ msgstr "Tiedostojärjestelmä"
 msgid "%s's home"
 msgstr "Käyttäjän %s koti"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -1358,13 +1356,13 @@ msgstr "libburnin PACKET-lohkotyypit"
 msgid "Data Composition"
 msgstr "Tiedostokokoelma"
 
+#: ../xfburn.desktop.in.h:1
+msgid "Burn Image (xfburn)"
+msgstr "Polta levykuva (xfburn)"
+
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD- ja DVD-polttosovellus"
-
-#: ../xfburn.desktop.in.h:3
-msgid "Burn Image (xfburn)"
-msgstr "Polta levykuva (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Ohjelmoija/Ylläpitäjä"
