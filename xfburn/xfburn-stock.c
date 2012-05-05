@@ -38,6 +38,7 @@ static const gchar *xfburn_stock_icons[] = {
   XFBURN_STOCK_DATA_COPY,
   XFBURN_STOCK_IMPORT_SESSION,
   XFBURN_STOCK_NEW_DATA_COMPOSITION,
+  XFBURN_STOCK,
 };
 
 void

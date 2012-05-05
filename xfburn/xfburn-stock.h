@@ -30,6 +30,7 @@ G_BEGIN_DECLS;
 #define XFBURN_STOCK_DATA_COPY            "xfburn-data-copy"
 #define XFBURN_STOCK_IMPORT_SESSION       "xfburn-import-session"
 #define XFBURN_STOCK_NEW_DATA_COMPOSITION "xfburn-new-data-composition"
+#define XFBURN_STOCK                      "xfburn"
 
 void xfburn_stock_init (void);
 

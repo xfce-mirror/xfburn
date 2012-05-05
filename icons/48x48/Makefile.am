@@ -5,7 +5,8 @@ icons_DATA =								\
 	stock_xfburn-burn-cd.png					\
 	stock_xfburn-data-copy.png					\
 	stock_xfburn-new-data-composition.png				\
-	stock_xfburn-import-session.png
+	stock_xfburn-import-session.png					\
+	xfburn.png
 
 EXTRA_DIST =								\
 	$(icons_DATA)

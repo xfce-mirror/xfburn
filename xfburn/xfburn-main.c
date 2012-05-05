@@ -274,7 +274,7 @@ main (int argc, char **argv)
 #ifdef HAVE_GUDEV
   error_msg = xfburn_udev_manager_create_global ();
   if (error_msg) {
-    xfce_dialog_show_error (NULL, NULL, error_msg);
+    xfce_dialog_show_error (NULL, NULL, "%s", error_msg);
     gdk_threads_leave ();
     burn_finish ();
     return EXIT_FAILURE;

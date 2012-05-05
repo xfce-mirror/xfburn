@@ -5,7 +5,8 @@ icons_DATA =								\
 	stock_xfburn-burn-cd.svg					\
 	stock_xfburn-data-copy.svg					\
 	stock_xfburn-new-data-composition.svg				\
-	stock_xfburn-import-session.svg
+	stock_xfburn-import-session.svg					\
+	xfburn.svg
 
 EXTRA_DIST =								\
 	$(icons_DATA)

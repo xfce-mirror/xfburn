@@ -223,7 +223,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   /* the window itself */
   gtk_window_set_position (GTK_WINDOW (mainwin), GTK_WIN_POS_CENTER_ON_PARENT);
   gtk_window_set_title (GTK_WINDOW (mainwin), "Xfburn");
-  gtk_window_set_icon_name (GTK_WINDOW (mainwin), GTK_STOCK_CDROM);
+  gtk_window_set_icon_name (GTK_WINDOW (mainwin), XFBURN_STOCK);
   gtk_window_resize (GTK_WINDOW (mainwin), xfburn_settings_get_int ("main-window-width", 850),
 		     xfburn_settings_get_int ("main-window-height", 700));
 
