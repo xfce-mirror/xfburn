@@ -623,7 +623,7 @@ xfburn_main_window_new (void)
 
     /* load settings */
     action = gtk_action_group_get_action (priv->action_group, "show-filebrowser");
-    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-filebrowser", TRUE));
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-filebrowser", FALSE));
     action = gtk_action_group_get_action (priv->action_group, "show-toolbar");
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), xfburn_settings_get_boolean ("show-toolbar", TRUE));
    /* action = gtk_action_group_get_action (priv->action_group, "save-composition");
