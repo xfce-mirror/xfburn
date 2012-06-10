@@ -2,19 +2,19 @@
 # Copyright (C) 2005-2007 Jean-François Wauthy.
 # This file is distributed under the same license as the xfburn package.
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 16:12-0600\n"
+"POT-Creation-Date: 2012-06-10 08:06+0000\n"
 "PO-Revision-Date: 2010-05-31 23:10+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
-"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -91,7 +91,8 @@ msgstr "K_eluarkan cakram"
 msgid "_Blank"
 msgstr "_Kosongkan"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "Cakram yang dimasukkan telah kosong."
@@ -397,7 +398,8 @@ msgstr "Bersihkan"
 msgid "Clear the content of the composition"
 msgstr "Bersihkan isi dari komposisi"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:193
 msgid "Rename"
 msgstr "Ganti Nama"
@@ -439,7 +441,8 @@ msgstr "Berkas dengan nama yang sama telah ada di komposisi."
 msgid "New directory"
 msgstr "Direktori baru"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:962
 #, c-format
 msgid "Data %s~%d"
@@ -539,7 +542,6 @@ msgid "Empty speed list"
 msgstr "Kosongkan senarai kecepatan"
 
 #: ../xfburn/xfburn-device-box.c:393
-#, fuzzy
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -661,7 +663,7 @@ msgstr "Sistem berkas"
 msgid "%s's home"
 msgstr "home %s"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -717,8 +719,10 @@ msgstr "Berkas citra '%s' tak ada."
 msgid "_File"
 msgstr "_Berkas"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -728,11 +732,14 @@ msgstr "Komposisi data baru"
 msgid "New audio composition"
 msgstr "Komposisi audio baru"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -794,7 +801,8 @@ msgstr "Kosongkan CD-RW"
 msgid "Copy Data CD"
 msgstr "Salin CD Data"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Bakar Citra"
@@ -1372,13 +1380,13 @@ msgstr "libburn tipe blok PACKET"
 msgid "Data Composition"
 msgstr "Komposisi Data"
 
+#: ../xfburn.desktop.in.h:1
+msgid "Burn Image (xfburn)"
+msgstr "Bakar Citra (xfburn)"
+
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Aplikasi pembakaran CD dan DVD"
-
-#: ../xfburn.desktop.in.h:3
-msgid "Burn Image (xfburn)"
-msgstr "Bakar Citra (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Penulis/Pengelola"
@@ -1413,7 +1421,6 @@ msgstr "Bakar Citra (xfburn)"
 #~ msgid "_Format"
 #~ msgstr "_Format"
 
-#, fuzzy
 #~ msgid "Closed disc with data detected. Need blank or appendable media"
 #~ msgstr ""
 #~ "Media yang ditutup dengan data terdeteksi. Butuh media kosong atau dapat "
@@ -1428,11 +1435,9 @@ msgstr "Bakar Citra (xfburn)"
 #~ msgid "active"
 #~ msgstr "aktif"
 
-#, fuzzy
 #~ msgid "Could not create burn_source from %s!"
 #~ msgstr "Tak dapat membuat struktur sumber ISO"
 
-#, fuzzy
 #~ msgid "Could not add source to track %s!"
 #~ msgstr "Tak dapat membuat struktur sumber ISO"
 
