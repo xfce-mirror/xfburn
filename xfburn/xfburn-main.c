@@ -340,6 +340,17 @@ main (int argc, char **argv)
 
   /*----------evaluate parsed command line action options-------------------------*/
 
+  /* heuristic for file names on the commandline */
+  if (argc == 2) {
+    /* exactly one filename, assume it is an image */
+      image_filename = argv[1];
+  } else if (argc > 2) {
+    /* several file names, for now just open up a data composition */
+    /* TODO: auto-detect music files for audio compositions */
+    add_data_composition = TRUE;
+  }
+
+
   if (show_main) {
     xfburn_main_enter_main_window ();
   }
