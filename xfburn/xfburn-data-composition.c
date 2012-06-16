@@ -1867,26 +1867,29 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
           g_error ("Failed adding %s as a node to the image: code %X!", src, r);
       }
 
-      basename = g_path_get_basename (src);
-
-      /* check if the file has been renamed */
-      if (strcmp (basename, name) != 0) {
-        /* rename the iso_node */
-        r = iso_node_set_name (node, name);
-
-        if (r == 0) {
-          /* The first string is the renamed name, the second one the original name */
-	  xfce_dialog_show_warning(NULL, NULL, _("Duplicate filename '%s' for '%s'"), name, src);
-
-          g_free (basename);
-          g_free (name);
-          g_free (src);
-
-          continue;
+      if (src != '\0') {
+        basename = g_path_get_basename (src);
+        
+        /* check if the file has been renamed */
+        if (strcmp (basename, name) != 0) {
+          /* rename the iso_node */
+          r = iso_node_set_name (node, name);
+  
+          if (r == 0) {
+            /* The first string is the renamed name, the second one the original name */
+            xfce_dialog_show_warning(NULL, NULL, _("Duplicate filename '%s' for '%s'"), name, src);
+  
+            g_free (basename);
+            g_free (name);
+            g_free (src);
+  
+            continue;
+          }
         }
+
+        g_free (basename);
       }
 
-      g_free (basename);
       g_free (name);
       g_free (src);
 
