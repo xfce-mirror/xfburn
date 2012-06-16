@@ -905,7 +905,22 @@ action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
   gchar *selected_files = NULL;
   
   xfburn_busy_cursor (priv->content);
-  selected_files = xfburn_file_browser_get_selection (browser);
+  if (xfburn_settings_get_boolean("show-filebrowser", FALSE)) {
+    selected_files = xfburn_file_browser_get_selection (browser);
+  } else {
+    GtkWidget * dialog;
+
+    dialog = gtk_file_chooser_dialog_new (_("Files to add to composition"),
+                                          GTK_WINDOW(xfburn_main_window_get_instance()),
+                                          GTK_FILE_CHOOSER_ACTION_OPEN,
+                                          _("Add"),
+                                          GTK_RESPONSE_ACCEPT,
+                                          NULL);
+    if (gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT) {
+      selected_files = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    }
+    gtk_widget_destroy (dialog);
+  }
   
   if (selected_files) {
     GtkTreeSelection *selection;
