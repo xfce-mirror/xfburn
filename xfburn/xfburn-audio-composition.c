@@ -52,6 +52,7 @@
 #include "xfburn-utils.h"
 #include "xfburn-burn-audio-cd-composition-dialog.h"
 #include "xfburn-transcoder.h"
+#include "xfburn-settings.h"
 
 #define XFBURN_AUDIO_COMPOSITION_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_AUDIO_COMPOSITION, XfburnAudioCompositionPrivate))
 
@@ -967,7 +968,38 @@ action_add_selected_files (GtkAction *action, XfburnAudioComposition *dc)
   gchar *selected_files = NULL;
   
   xfburn_busy_cursor (priv->content);
-  selected_files = xfburn_file_browser_get_selection (browser);
+  if (xfburn_settings_get_boolean("show-filebrowser", FALSE)) {
+    selected_files = xfburn_file_browser_get_selection (browser);
+  } else {
+    GtkWidget * dialog;
+
+    dialog = gtk_file_chooser_dialog_new (_("File(s) to add to composition"),
+                                          GTK_WINDOW(xfburn_main_window_get_instance()),
+                                          GTK_FILE_CHOOSER_ACTION_OPEN,
+                                          _("Add"),
+                                          GTK_RESPONSE_ACCEPT,
+                                          NULL);
+    gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER(dialog), TRUE);
+
+    if (gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT) {
+        GSList *list = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
+        GString  * str = g_string_new(NULL);
+        GSList * curr;
+
+        for (curr = list; curr!=NULL; curr = curr->next) {
+            g_string_append(str, curr->data);
+            g_string_append_c(str, '\n');;
+        }
+
+        g_slist_free_full (list, g_free);
+        selected_files = str->str;
+        g_string_free (str, FALSE);
+        DBG("selected  files: %s ", selected_files);
+
+      //selected_files = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    }
+    gtk_widget_destroy (dialog);
+  }
   
   if (selected_files) {
     GtkTreeSelection *selection;
