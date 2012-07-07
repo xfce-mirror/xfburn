@@ -117,7 +117,9 @@ static void action_create_directory (GtkAction *, XfburnDataComposition *);
 static void action_clear (GtkAction *, XfburnDataComposition *);
 static void action_remove_selection (GtkAction *, XfburnDataComposition *);
 static void action_rename_selection (GtkAction *, XfburnDataComposition *);
-static void action_add_selected_files (GtkAction *, XfburnDataComposition *);
+static void action_add_or_select (GtkAction *, XfburnDataComposition *);
+static void add_files (gchar * files, XfburnDataComposition *);
+static void add_cb (GtkWidget * widget, gpointer data);
 
 static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnDataComposition * dc);
 static void cb_treeview_row_activated (GtkTreeView * treeview, GtkTreePath * path, GtkTreeViewColumn * column, XfburnDataComposition * composition);
@@ -172,6 +174,8 @@ typedef struct
   GtkWidget *disc_usage;
   GtkWidget *progress;
   GtkTreeStore *model;
+  GtkWidget *add_filechooser;
+  GtkWidget *add_window;
 
   gchar *default_vol_name;
 
@@ -183,7 +187,7 @@ static guint instances = 0;
 
 static const GtkActionEntry action_entries[] = {
   {"add-file", GTK_STOCK_ADD, N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
-   G_CALLBACK (action_add_selected_files),},
+   G_CALLBACK (action_add_or_select),},
   {"create-dir", GTK_STOCK_NEW, N_("Create directory"), NULL, N_("Add a new directory to the composition"),
    G_CALLBACK (action_create_directory),},
   {"remove-file", GTK_STOCK_REMOVE, N_("Remove"), NULL, N_("Remove the selected file(s) from the composition"),
@@ -896,49 +900,92 @@ action_remove_selection (GtkAction * action, XfburnDataComposition * dc)
   g_list_free (references);
 }
 
+static void
+add_cb (GtkWidget * widget, gpointer data)
+{
+    XfburnDataComposition * dc = XFBURN_DATA_COMPOSITION(data);
+    XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
+    gchar *selected_files = NULL;
+  
+    GSList *list = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (priv->add_filechooser));
+    GString  * str = g_string_new(NULL);
+    GSList * curr;
+
+    for (curr = list; curr!=NULL; curr = curr->next) {
+        g_string_append(str, curr->data);
+        g_string_append_c(str, '\n');;
+    }
+
+    g_slist_free_full (list, g_free);
+    selected_files = str->str;
+    g_string_free (str, FALSE);
+    DBG("selected  files: %s ", selected_files);
+
+    gtk_widget_destroy (priv->add_window);
+
+    add_files (selected_files, dc);
+}
 
 static void
-action_add_selected_files (GtkAction *action, XfburnDataComposition *dc)
+select_files (XfburnDataComposition * dc)
+{
+    XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
+
+    GtkWidget * window;
+    GtkWidget * add_button;
+    GtkWidget * vbox;
+    GtkWidget * bbox;
+
+    priv->add_window = window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_DIALOG);
+    gtk_window_set_title (GTK_WINDOW(window), _("File(s) to add to composition"));
+    gtk_window_set_position (GTK_WINDOW(window), GTK_WIN_POS_CENTER); // GTK_WINDOW(xfburn_main_window_get_instance()),
+    gtk_container_set_border_width (GTK_CONTAINER(window), 10);
+    gtk_window_set_default_size(GTK_WINDOW(window), 600, 400);
+
+    priv->add_filechooser = gtk_file_chooser_widget_new (GTK_FILE_CHOOSER_ACTION_OPEN);
+
+    gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER(priv->add_filechooser), TRUE);
+
+    vbox = gtk_vbox_new (FALSE, 0);
+    gtk_container_add(GTK_CONTAINER(window), vbox);
+
+    gtk_box_pack_start(GTK_BOX(vbox), priv->add_filechooser, TRUE, TRUE, 3);
+
+    add_button = gtk_button_new_with_label (_("Add"));
+    g_signal_connect (add_button, "clicked", G_CALLBACK(add_cb), dc);
+    g_signal_connect (priv->add_filechooser, "file-activated", G_CALLBACK(add_cb), dc);
+
+    bbox = gtk_hbutton_box_new ();
+    gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_END);
+    gtk_box_pack_end(GTK_BOX(vbox), bbox, FALSE, FALSE, 3);
+
+    gtk_box_pack_end(GTK_BOX(bbox), add_button, FALSE, FALSE, 3);
+
+    g_signal_connect(window, "destroy",
+                     G_CALLBACK(gtk_widget_destroyed), &window);
+
+    gtk_widget_show_all (window);
+}
+
+static void
+action_add_or_select (GtkAction *action, XfburnDataComposition *dc)
+{
+  if (xfburn_settings_get_boolean("show-filebrowser", FALSE)) {
+    XfburnFileBrowser *browser = xfburn_main_window_get_file_browser (xfburn_main_window_get_instance ());
+  
+    add_files (xfburn_file_browser_get_selection (browser), dc);
+  } else {
+    select_files(dc);
+  }
+}
+
+static void
+add_files(gchar * selected_files, XfburnDataComposition *dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
-  XfburnFileBrowser *browser = xfburn_main_window_get_file_browser (xfburn_main_window_get_instance ());
-  
-  gchar *selected_files = NULL;
-  
+
   xfburn_busy_cursor (priv->content);
-  if (xfburn_settings_get_boolean("show-filebrowser", FALSE)) {
-    selected_files = xfburn_file_browser_get_selection (browser);
-  } else {
-    GtkWidget * dialog;
-
-    dialog = gtk_file_chooser_dialog_new (_("File(s) to add to composition"),
-                                          GTK_WINDOW(xfburn_main_window_get_instance()),
-                                          GTK_FILE_CHOOSER_ACTION_OPEN,
-                                          _("Add"),
-                                          GTK_RESPONSE_ACCEPT,
-                                          NULL);
-    gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER(dialog), TRUE);
-
-    if (gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT) {
-        GSList *list = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
-        GString  * str = g_string_new(NULL);
-        GSList * curr;
-
-        for (curr = list; curr!=NULL; curr = curr->next) {
-            g_string_append(str, curr->data);
-            g_string_append_c(str, '\n');;
-        }
-
-        g_slist_free_full (list, g_free);
-        selected_files = str->str;
-        g_string_free (str, FALSE);
-        DBG("selected  files: %s ", selected_files);
-
-      //selected_files = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-    }
-    gtk_widget_destroy (dialog);
-  }
-  
   if (selected_files) {
     GtkTreeSelection *selection;
     GList *selected_paths = NULL;
