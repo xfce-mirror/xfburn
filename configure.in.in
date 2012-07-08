@@ -53,7 +53,7 @@ fi
 
 
 dnl check for debugging support
-BM_DEBUG_SUPPORT()
+XDT_FEATURE_DEBUG()
 dnl add -Wextra if debug is enabled
 if test x"$enable_debug" != x"no"; then
   CFLAGS="$CFLAGS -Wextra -Wno-unused-parameter -Wno-sign-compare"
