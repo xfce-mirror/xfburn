@@ -109,7 +109,9 @@ static void fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device);
 
 static void cb_volume_change_start (XfburnDeviceList *devlist, gboolean device_changed, XfburnDeviceBox *box);
 static void cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnDeviceBox *box);
+#if 0
 static void empty_speed_list_dialog (void);
+#endif
 
 /* globals */
 static GtkVBoxClass *parent_class = NULL;
@@ -371,6 +373,7 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
 /* internals */
 /*************/
 
+#if 0
 static void
 empty_speed_list_dialog (void)
 {
@@ -418,6 +421,7 @@ empty_speed_list_dialog (void)
   }
   gtk_widget_destroy (GTK_WIDGET (dialog));
 }
+#endif
 
 static void
 fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
@@ -441,7 +445,9 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
     GtkTreeIter iter;
     gchar *str;
 
+#if 0
     empty_speed_list_dialog ();
+#endif
 
     str = _("default");
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
