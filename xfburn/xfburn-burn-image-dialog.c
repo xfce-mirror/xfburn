@@ -76,7 +76,10 @@ typedef struct
   gulong handler_volchange;
 
   ThreadBurnIsoParams *params;
+
 } XfburnBurnImageDialogPrivate;
+
+static gchar * last_file = NULL;
 
 /* prototypes */
 static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass);
@@ -172,6 +175,10 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_file_filter_add_pattern (filter, "*.iso");
   gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (priv->chooser_image), filter);
   gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (priv->chooser_image), filter);
+
+  if (last_file) {
+    gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (priv->chooser_image), last_file);
+  }
 
   frame = xfce_gtk_frame_box_new_with_content (_("Image to burn"), priv->chooser_image);
   gtk_widget_show (frame);
@@ -459,8 +466,10 @@ check_burn_button (XfburnBurnImageDialog * dialog)
   g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
   filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
   if (filename != NULL) {
+    if (last_file)
+        g_free (last_file);
+    last_file = filename;
     gtk_widget_set_sensitive (priv->burn_button, valid_disc);
-    g_free (filename);
   } else {
     gtk_widget_set_sensitive (priv->burn_button, FALSE);
   }
