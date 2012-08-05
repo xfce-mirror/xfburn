@@ -1150,7 +1150,9 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
     
     /* ensure that we can only drop on top of folders, not files */
     if (insertion) {
+      gdk_threads_enter ();
       gtk_tree_model_get (model, insertion, DATA_COMPOSITION_COLUMN_TYPE, &parent_type, -1);
+      gdk_threads_leave ();
 
       if (parent_type == DATA_COMPOSITION_TYPE_FILE) {
         DBG ("Parent is file, and we're dropping into %d", position);
@@ -1191,9 +1193,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
     } else {
       tree_path = gtk_tree_path_new_first ();
     }
-    gdk_threads_leave ();
     
-    gdk_threads_enter ();
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
       xfce_dialog_show_error (NULL, NULL, _("A file with the same name is already present in the composition."));
 
@@ -1878,10 +1878,11 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
       
       if (thread_add_file_to_list (composition, model, full_path, &iter, &iter_where_insert, position)) {
         if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE 
-            || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER)
+            || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER) {
           gdk_threads_enter ();
           gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), priv->path_where_insert, FALSE);
           gdk_threads_leave ();
+        }
       }
       
     } else  {

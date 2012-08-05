@@ -27,6 +27,11 @@
 
 #include "xfburn-global.h"
 
+/*
+#define XFBURN_GDK_ENTER() { DBG("gdk-thread-enter"); gdk_threads_enter(); }
+#define XFBURN_GDK_LEAVE() { DBG("gdk-thread-leave"); gdk_threads_leave(); }
+*/
+
 void xfburn_busy_cursor (GtkWidget *);
 void xfburn_default_cursor (GtkWidget *);
 
