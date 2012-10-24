@@ -1,13 +1,13 @@
 # Uyghur translation for xfburn.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Gheyret Kenji <gheyret@gmail.com>, 2012.
+# Gheyret Kenji <gheyret@gmail.com>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-09 23:18+0000\n"
+"POT-Creation-Date: 2012-10-24 02:15+0000\n"
 "PO-Revision-Date: 2011-11-09 16:10+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -688,7 +688,7 @@ msgstr "قارىغاندا دىسكا(لار) ئىشلىتىلىۋاتقاندە
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr "كود ئالماشتۇرغۇچ(transcoder) %s نى دەسلەپلەشتۈرۈش مەغلۇپ بولدى.\n"
+msgstr "كود ئالماشتۇرغۇچ(transcoder) %s نى دەسلەپلەشتۈرۈش مەغلۇپ بولدى: %s\n"
 "\t(ئاساسىي ئەمەلىيلەشتۈرۈلمىسىگە قايتىدۇ)"
 
 #: ../xfburn/xfburn-main.c:375
@@ -1181,7 +1181,7 @@ msgstr "ھۆججەت %s نىڭ كېڭەيتىلمە ئاتى .wav ئەمەس ئ�
 #: ../xfburn/xfburn-transcoder-basic.c:201
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
-msgstr "ھۆججەت تەركىبىدە پرېسلانمىغان PCM دولقۇن ئۈنى يوق ئىكەن"
+msgstr "ھۆججەت   %s تەركىبىدە پرېسلانمىغان PCM دولقۇن ئۈنى يوق ئىكەن"
 
 #: ../xfburn/xfburn-transcoder-basic.c:207
 #, c-format
@@ -1206,7 +1206,9 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr "بۇ تىپتىكى ھۆججەتنى بىر تەرەپ قىلىدىغان كودسىزلىغۇچ يوق.\n"
+msgstr " %s يوقالغان.\n"
+"\n"
+"بۇ تىپتىكى ھۆججەتنى بىر تەرەپ قىلىدىغان كودسىزلىغۇچ يوق.\n"
 "كېرەكلىك كودسىزلىغۇچنى gst-plugins-* بوغچىسىدىن\n"
 "ئورنىتىشقا بولىدۇ.\n"
 
