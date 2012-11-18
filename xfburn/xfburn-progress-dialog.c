@@ -38,6 +38,11 @@
 
 #define XFBURN_PROGRESS_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_PROGRESS_DIALOG, XfburnProgressDialogPrivate))
 
+enum {
+  BURNING_DONE,
+  LAST_SIGNAL,
+};
+
 /* struct */
 typedef struct
 {
@@ -46,6 +51,7 @@ typedef struct
   gboolean animate;
   int ani_index;
   gboolean stop;
+  gboolean quit;
   
   GtkWidget *label_action;
   GtkWidget *progress_bar;
@@ -59,6 +65,8 @@ typedef struct
 } XfburnProgressDialogPrivate;
 
 /* globals */
+static guint signals[LAST_SIGNAL];
+
 static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass);
 static void xfburn_progress_dialog_init (XfburnProgressDialog * sp);
 
@@ -80,6 +88,7 @@ enum
   PROP_STATUS,
   PROP_SHOW_BUFFERS,
   PROP_ANIMATE,
+  PROP_QUIT,
   PROP_STOP,
 };
 
@@ -157,9 +166,17 @@ xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
   g_object_class_install_property (object_class, PROP_ANIMATE,
                                    g_param_spec_boolean ("animate", "Show an animation", "Show an animation",
                                                          FALSE, G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_QUIT,
+                                   g_param_spec_boolean ("quit", "Quit", "Quit after successful completion",
+                                                         FALSE, G_PARAM_READWRITE));
   g_object_class_install_property (object_class, PROP_STOP,
                                    g_param_spec_boolean ("stop", "Stop the burning process", "Stop the burning process",
                                                          FALSE, G_PARAM_READABLE));
+  /* signals */
+  signals[BURNING_DONE] = g_signal_new ("burning-done", XFBURN_TYPE_PROGRESS_DIALOG, G_SIGNAL_ACTION,
+                                          G_STRUCT_OFFSET (XfburnProgressDialogClass, burning_done),
+                                          NULL, NULL, g_cclosure_marshal_VOID__VOID,
+                                          G_TYPE_NONE, 0);
 }
 
 static void
@@ -262,6 +279,9 @@ xfburn_progress_dialog_get_property (GObject * object, guint prop_id, GValue * v
   case PROP_ANIMATE:
     g_value_set_boolean (value, priv->animate);
     break;
+  case PROP_QUIT:
+    g_value_set_boolean (value, priv->quit);
+    break;
   case PROP_STOP:
     g_value_set_boolean (value, priv->stop);
     break;
@@ -288,6 +308,9 @@ xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GVal
     priv->animate = g_value_get_boolean (value);
     priv->ani_index = 0;
     //DBG ("Set animate to %d", priv->animate);
+    break;
+  case PROP_QUIT:
+    priv->quit = g_value_get_boolean (value);
     break;
   case PROP_STOP:
     DBG ("this should not be allowed...");
@@ -528,6 +551,9 @@ xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog,
     case XFBURN_PROGRESS_DIALOG_STATUS_RUNNING:
       text = g_strdup ("100%");
       break;
+    case XFBURN_PROGRESS_DIALOG_STATUS_META_DONE:
+      g_warning ("Invalid progress dialog state");
+      break;
     case XFBURN_PROGRESS_DIALOG_STATUS_FAILED:
       text = g_strdup (_("Failed"));
       break;
@@ -587,9 +613,17 @@ xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgress
 void
 xfburn_progress_dialog_set_status_with_text (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status, const gchar * text)
 {
+  XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
+
   xfburn_progress_dialog_set_status (dialog, status);
+
   gdk_threads_enter ();
   set_action_text (dialog, status, text);
+  if (status > XFBURN_PROGRESS_DIALOG_STATUS_META_DONE) {
+    g_signal_emit (G_OBJECT (dialog), signals[BURNING_DONE], 0);
+    if (status == XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED && priv->quit)
+      g_idle_add ((GSourceFunc) gtk_main_quit, NULL );
+  }
   gdk_threads_leave ();
 }
 

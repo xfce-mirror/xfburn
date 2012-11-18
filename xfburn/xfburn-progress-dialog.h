@@ -34,6 +34,7 @@ typedef enum
 {
   XFBURN_PROGRESS_DIALOG_STATUS_STOPPING,
   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING,
+  XFBURN_PROGRESS_DIALOG_STATUS_META_DONE,
   XFBURN_PROGRESS_DIALOG_STATUS_FAILED,
   XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED,
   XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED
@@ -58,6 +59,7 @@ typedef struct
 typedef struct
 {
   GtkDialogClass parent_class;
+  void (*burning_done) (XfburnProgressDialog *progress);
 } XfburnProgressDialogClass;
 
 

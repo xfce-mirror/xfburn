@@ -50,6 +50,7 @@ typedef struct {
   gboolean eject;
   gboolean dummy;
   gboolean burnfree;
+  gboolean quit;
 
   struct burn_disc *disc;
   struct burn_session *session;
@@ -68,6 +69,7 @@ typedef struct
 
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
+  GtkWidget *check_quit;
   GtkWidget *check_dummy;
 
   GtkWidget *burn_button;
@@ -220,6 +222,11 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_burnfree), TRUE);
   gtk_widget_show (priv->check_burnfree);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);
+
+  priv->check_quit = gtk_check_button_new_with_mnemonic (_("_Quit after successful completion"));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_quit), xfburn_settings_get_boolean("quit_after_success", FALSE));
+  gtk_widget_show (priv->check_quit);
+  gtk_box_pack_start (GTK_BOX (vbox), priv->check_quit, FALSE, FALSE, BORDER);
 
   /* action buttons */
   button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
@@ -428,11 +435,17 @@ cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer u
     XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
 
     GtkWidget *dialog_progress;
+    gboolean quit;
 
     dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
     gtk_widget_hide (GTK_WIDGET (dialog));
-    
+
+    quit = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(priv->check_quit));
+    xfburn_settings_set_boolean ("quit_after_success", quit);
+
+    g_object_set (G_OBJECT (dialog_progress), "quit", quit, NULL);
+
     priv->params->dialog_progress = dialog_progress;
     gtk_widget_show (dialog_progress);
     
@@ -587,7 +600,6 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
     g_free (params);
   }
 }
-
 
 /* public */
 GtkWidget *
