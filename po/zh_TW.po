@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfburn 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-20 23:00+0000\n"
+"POT-Creation-Date: 2012-12-07 00:12+0000\n"
 "PO-Revision-Date: 2012-07-10 22:14+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -158,7 +158,7 @@ msgstr "燒錄清單名稱"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:211
 msgid "<small>Would you like to change the default composition name?</small>"
-msgstr "<small>你想要變更預設的燒錄清單名稱嗎？</small>"
+msgstr "<small>想要變更預設的燒錄清單名稱嗎？</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
 #: ../xfburn/xfburn-burn-image-dialog.c:217
@@ -179,7 +179,7 @@ msgstr "防燒壞(_F)"
 #: ../xfburn/xfburn-copy-cd-dialog.c:157
 #: ../xfburn/xfburn-copy-dvd-dialog.c:157
 msgid "Only create _ISO"
-msgstr "只建立 ISO(_I)"
+msgstr "只建立 ISO 檔(_I)"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
@@ -189,16 +189,16 @@ msgstr "燒錄清單資料(_B)"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
 #, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr "無法建立在目的地 ISO 檔：%s"
+msgstr "無法建立目的 ISO 檔：%s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 msgid "Writing ISO..."
-msgstr "正在寫入 ISO..."
+msgstr "正在寫入 ISO 檔..."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
 #, c-format
 msgid "An error occured while writing ISO: %s"
-msgstr "寫入 ISO 時遭遇錯誤：%s"
+msgstr "寫入 ISO 檔時遭遇錯誤：%s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
@@ -208,7 +208,7 @@ msgstr "燒錄後端程式遭遇錯誤。"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
-msgstr "目前不支援寫入模式。"
+msgstr "目前不支援該寫入模式。"
 
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
@@ -243,7 +243,7 @@ msgstr "燒錄映像檔(_B)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:285
 msgid "Burn mode is not currently implemented."
-msgstr "燒錄模式目前尚未實作。"
+msgstr "目前尚未能使用該燒錄模式。"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:336
 #: ../xfburn/xfburn-burn-image-dialog.c:365
@@ -273,7 +273,7 @@ msgstr ""
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "於此寫入模式無法附加資料至多區段光碟 (改用 TAO 模式)"
+msgstr "於此寫入模式無法附加資料至多區段光碟 (請改用 TAO 模式)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
@@ -289,17 +289,17 @@ msgstr "無法辨別光碟機或光碟片的狀態"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:525
 msgid "The selected image does not fit on the inserted disc"
-msgstr "選擇的映像檔大小超出放入的光碟片"
+msgstr "選擇的映像檔大小超出放入光碟片的容量"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:529
 msgid "Failed to get image size"
-msgstr "無法取得映像檔大小"
+msgstr "無法得知映像檔的大小"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:558
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr "請確認選擇的檔案有效，且有擁有的許可權來存取它。"
+msgstr "請確認選擇的檔案有效，且有合適的許可權以存取。"
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -378,7 +378,7 @@ msgstr "建立目錄"
 
 #: ../xfburn/xfburn-data-composition.c:191
 msgid "Add a new directory to the composition"
-msgstr "在此燒錄清單中新增一個目錄"
+msgstr "在此燒錄清單新增目錄"
 
 #: ../xfburn/xfburn-data-composition.c:193
 #: ../xfburn/xfburn-audio-composition.c:208
@@ -388,7 +388,7 @@ msgstr "移除"
 #: ../xfburn/xfburn-data-composition.c:193
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove the selected file(s) from the composition"
-msgstr "將所選取的檔案從燒錄清單中刪除"
+msgstr "將所選取的檔案從燒錄清單移除"
 
 #: ../xfburn/xfburn-data-composition.c:195
 #: ../xfburn/xfburn-audio-composition.c:210
@@ -398,7 +398,7 @@ msgstr "清除"
 #: ../xfburn/xfburn-data-composition.c:195
 #: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear the content of the composition"
-msgstr "清除燒錄清單中的內容"
+msgstr "清除燒錄清單的內容"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
 #. existing session"),},
@@ -408,7 +408,7 @@ msgstr "重新命名"
 
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename the selected file"
-msgstr "重新命名所選的檔案"
+msgstr "為所選的檔案重新命名"
 
 #: ../xfburn/xfburn-data-composition.c:352
 msgid "Volume name :"
@@ -416,7 +416,7 @@ msgstr "儲存體名稱 ："
 
 #: ../xfburn/xfburn-data-composition.c:386
 msgid "Contents"
-msgstr "光碟內容"
+msgstr "目錄"
 
 #: ../xfburn/xfburn-data-composition.c:401
 #: ../xfburn/xfburn-directory-browser.c:140
@@ -425,17 +425,17 @@ msgstr "大小"
 
 #: ../xfburn/xfburn-data-composition.c:404
 msgid "Local Path"
-msgstr "本地路徑"
+msgstr "本機路徑"
 
 #: ../xfburn/xfburn-data-composition.c:679
 msgid "You must give a name to the file."
-msgstr "您必須賦予檔案一個名稱。"
+msgstr "必須賦予檔案名稱。"
 
 #: ../xfburn/xfburn-data-composition.c:688
 #: ../xfburn/xfburn-data-composition.c:1198
 #: ../xfburn/xfburn-audio-composition.c:1176
 msgid "A file with the same name is already present in the composition."
-msgstr "相同名稱的檔案已存在於本燒錄清單中。"
+msgstr "本燒錄清單已有相同名稱的檔案。"
 
 #: ../xfburn/xfburn-data-composition.c:796
 #: ../xfburn/xfburn-data-composition.c:797
@@ -446,7 +446,7 @@ msgstr "新增資料夾"
 #: ../xfburn/xfburn-data-composition.c:941
 #: ../xfburn/xfburn-audio-composition.c:976
 msgid "File(s) to add to composition"
-msgstr "將檔案加入燒錄清單中"
+msgstr "將檔案加入燒錄清單"
 
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
@@ -460,7 +460,7 @@ msgstr "資料 %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr "%s 無法加入燒錄清單，因為超過 iso9660 的最大允許檔案大小。"
+msgstr "無法將 %s 加入燒錄清單，因為會超過 iso9660 格式的最大允許檔案大小。"
 
 #: ../xfburn/xfburn-data-composition.c:1362
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -485,7 +485,7 @@ msgstr ""
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr "名稱為「%s」的檔案已存在此資料夾中，您無法再次加入這個檔案。"
+msgstr "此資料夾已有名為「%s」的檔案，無法再次加入。"
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1945
@@ -583,7 +583,7 @@ msgstr "裝置是空的"
 
 #: ../xfburn/xfburn-device-box.c:602
 msgid "Sorry, multisession is not yet supported"
-msgstr "很抱歉，多區段功能尚未支援"
+msgstr "很抱歉，尚未支援多區段功能"
 
 #: ../xfburn/xfburn-device-box.c:605
 msgid "Inserted disc is full"
@@ -658,7 +658,7 @@ msgstr "檔案系統"
 #: ../xfburn/xfburn-fs-browser.c:262
 #, c-format
 msgid "%s's home"
-msgstr "%s 的家"
+msgstr "%s 的家目錄"
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
@@ -675,11 +675,11 @@ msgstr ""
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
-msgstr "無法初始化燒錄用後端程式。"
+msgstr "無法初始化燒錄後端程式。"
 
 #: ../xfburn/xfburn-main.c:295
 msgid "No burners are currently available"
-msgstr "幕前沒有可用的燒錄機"
+msgstr "目前沒有可用的燒錄機"
 
 #: ../xfburn/xfburn-main.c:297
 msgid ""
@@ -742,11 +742,11 @@ msgstr "關閉燒錄清單"
 
 #: ../xfburn/xfburn-main-window.c:116
 msgid "_Quit"
-msgstr "退出(_Q)"
+msgstr "結束(_Q)"
 
 #: ../xfburn/xfburn-main-window.c:116
 msgid "Quit Xfburn"
-msgstr "退出 Xfburn"
+msgstr "結束 Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:117
 msgid "_Edit"
@@ -830,7 +830,7 @@ msgstr "工具列編輯器"
 
 #: ../xfburn/xfburn-main-window.c:538
 msgid "Another cd burning GUI"
-msgstr "另一個光碟燒錄圖形使用者介面"
+msgstr "又一個燒碟光碟的圖像化程式"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "Label"
@@ -846,12 +846,12 @@ msgstr "顯示關閉按鈕"
 
 #: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Determine whether the close button is visible"
-msgstr "確認是否顯示關閉按鈕"
+msgstr "是否顯示關閉按鈕"
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr "在這個寫入模式下無法附加資料到多區段光碟裡 (改用TAO模式)。"
+msgstr "在這個寫入模式無法附加資料到多區段光碟 (請改用TAO模式)。"
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
@@ -904,7 +904,7 @@ msgstr "用完"
 
 #: ../xfburn/xfburn-perform-burn.c:286
 msgid "aborted"
-msgstr "已中止"
+msgstr "中止"
 
 #: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:216
 #: ../xfburn/xfburn-progress-dialog.c:233
@@ -946,7 +946,7 @@ msgstr "查看主控臺"
 
 #: ../xfburn/xfburn-perform-burn.c:370
 msgid "User Aborted"
-msgstr "使用者已中止"
+msgstr "由使用者中止"
 
 #: ../xfburn/xfburn-preferences-dialog.c:143
 msgid "Preferences"
@@ -963,7 +963,7 @@ msgstr "暫存資料夾"
 
 #: ../xfburn/xfburn-preferences-dialog.c:198
 msgid "_Clean temporary directory on exit"
-msgstr "離開時清除暫存資料夾(_C)"
+msgstr "結束時清除暫存資料夾(_C)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:205
 msgid "File browser"
@@ -975,7 +975,7 @@ msgstr "顯示隱藏檔案(_H)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:214
 msgid "Show human_readable filesizes"
-msgstr "顯示人類可讀的檔案大小(_R)"
+msgstr "以容易理解的方式顯示檔案大小(_R)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:225
 msgid "General"
@@ -1020,15 +1020,15 @@ msgstr "掃描裝置(_A)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:324
 msgid "Show warning on _empty speed list"
-msgstr "於空白速度清單顯示警告(_E)"
+msgstr "偵測不到速度清單時顯示警告(_E)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:333
 msgid "FIFO buffer size (in kb)"
-msgstr "FIFO 緩衝大小 (單位為 kb)"
+msgstr "FIFO 緩衝區大小 (單位為 kb)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:471
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr "改變這個設定值只會在程式重新啟動後才能完全生效。"
+msgstr "改變這個設定值要在程式重新啟動後才能生效。"
 
 #: ../xfburn/xfburn-progress-dialog.c:198
 msgid "Initializing..."
@@ -1040,20 +1040,20 @@ msgstr "概估燒錄速度："
 
 #: ../xfburn/xfburn-progress-dialog.c:227
 msgid "FIFO buffer:"
-msgstr "FIFO 緩衝："
+msgstr "FIFO 緩衝區："
 
 #: ../xfburn/xfburn-progress-dialog.c:237
 msgid "Device buffer:"
-msgstr "裝置緩衝："
+msgstr "裝置緩衝區："
 
 #: ../xfburn/xfburn-progress-dialog.c:490
 #, c-format
 msgid "Min. fill was %2d%%"
-msgstr "最少填滿為 %2d%%"
+msgstr "最小填滿量為 %2d%%"
 
 #: ../xfburn/xfburn-progress-dialog.c:549
 msgid "Aborted"
-msgstr "已中止"
+msgstr "中止"
 
 #: ../xfburn/xfburn-progress-dialog.c:558
 msgid "Failed"
@@ -1061,7 +1061,7 @@ msgstr "失敗"
 
 #: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Cancelled"
-msgstr "已取消"
+msgstr "取消"
 
 #: ../xfburn/xfburn-progress-dialog.c:564
 msgid "Completed"
@@ -1077,7 +1077,7 @@ msgstr "選取指令"
 
 #: ../xfburn/xfburn-welcome-tab.c:129
 msgid "Welcome to xfburn!"
-msgstr "歡迎使用 xfburn！"
+msgstr "歡迎使用 Xfburn！"
 
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:140
@@ -1094,7 +1094,7 @@ msgstr "<big>新增資料燒錄清單(_D)</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:145
 msgid "Create a new data disc with the files of your choosing"
-msgstr "使用選擇的檔案來建立新的資料光碟"
+msgstr "以選擇的檔案來建立新的資料光碟"
 
 #: ../xfburn/xfburn-welcome-tab.c:150
 msgid "<big>_Blank Disc</big>"
@@ -1154,7 +1154,7 @@ msgstr "檔案名稱"
 
 #: ../xfburn/xfburn-audio-composition.c:581
 msgid "Cannot burn audio onto a DVD."
-msgstr "無法燒錄音訊至 DVD。"
+msgstr "無法將音訊燒錄至 DVD。"
 
 #: ../xfburn/xfburn-audio-composition.c:1260
 msgid "You can only have a maximum of 99 tracks."
@@ -1170,7 +1170,7 @@ msgstr "繼續燒錄"
 
 #: ../xfburn/xfburn-disc-usage.c:203
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "您想燒錄的資料大小超過光碟本身的容量！"
+msgstr "要燒錄的資料大小超過光碟本身的容量！"
 
 #: ../xfburn/xfburn-transcoder-basic.c:166
 msgid "basic"
@@ -1198,12 +1198,12 @@ msgstr ""
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
 msgid "File %s does not have a .wav extension"
-msgstr "檔案 %s 沒有 .wav 副檔名"
+msgstr "%s 檔案沒有 .wav 副檔名"
 
 #: ../xfburn/xfburn-transcoder-basic.c:201
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
-msgstr "檔案 %s 不包含未壓縮的 PCM 波形音訊"
+msgstr "%s 檔案不包含未壓縮的 PCM 波形音訊"
 
 #: ../xfburn/xfburn-transcoder-basic.c:207
 #, c-format
@@ -1295,7 +1295,7 @@ msgstr "轉碼時不能切換歌曲"
 #: ../xfburn/xfburn-transcoder.c:163
 #, c-format
 msgid "not implemented"
-msgstr "尚未實作"
+msgstr "尚未完成"
 
 #: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
 msgid "Display name"
@@ -1315,11 +1315,11 @@ msgstr "光碟狀態"
 
 #: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
 msgid "Profile no. as reported by libburn"
-msgstr "個人設定檔編號如 libburn 所回報"
+msgstr "libburn 所回報的設定組合編號"
 
 #: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
 msgid "Profile name as reported by libburn"
-msgstr "個人設定檔名稱如 libburn 所回報"
+msgstr "libburn 所回報的設定組合名稱"
 
 #: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
 msgid "Is the disc erasable"
@@ -1331,19 +1331,19 @@ msgstr "可以燒錄 CDR"
 
 #: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
 msgid "Can burn CDRW"
-msgstr "可以燒錄 CDRW"
+msgstr "可以燒錄 CD-RW"
 
 #: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
 msgid "Can burn DVDR"
-msgstr "可以燒錄 DVDR"
+msgstr "可以燒錄 DVD-R"
 
 #: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
 msgid "Can burn DVDPLUSR"
-msgstr "可以燒錄 DVDPLUSR"
+msgstr "可以燒錄 DVD+R"
 
 #: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
 msgid "Can burn DVDRAM"
-msgstr "可以燒錄 DVDRAM"
+msgstr "可以燒錄 DVD-RAM"
 
 #: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
 msgid "libburn TAO block types"
