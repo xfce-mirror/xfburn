@@ -1,22 +1,23 @@
 # translation of he.po to Hebrew
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2005-2006 Jean-François Wauthy.
-# 
 # Dotan Kamber <kamberd@yahoo.com>, 2006.
 # Yuval Tanny <tanai@int.gov.il>, 2006, 2007.
+# koby vurgaft <slipperygate@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-11 05:51+0000\n"
-"PO-Revision-Date: 2007-01-19 14:29+0200\n"
-"Last-Translator: Yuval Tanny <tanai@int.gov.il>\n"
-"Language-Team: Hebrew\n"
+"POT-Creation-Date: 2013-01-25 17:15+0000\n"
+"PO-Revision-Date: 2013-01-26 00:02+0300\n"
+"Last-Translator: koby vurgaft <slipperygate@gmail.com>\n"
+"Language-Team: גזר\n"
+"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -93,8 +94,7 @@ msgstr "הוצא _תקליטור"
 msgid "_Blank"
 msgstr "_מחיקה"
 
-#. blanking can only be performed on blank discs, format and deformat are
-#. allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "התקליטור שהוכנס כבר ריק."
@@ -258,7 +258,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:356
 msgid "Cannot open image."
-msgstr ""
+msgstr "לא ניתן לפתוח תמונה."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:393
 #, fuzzy
@@ -406,8 +406,7 @@ msgstr "נקה"
 msgid "Clear the content of the composition"
 msgstr "נקה את תוכן הפרויקט"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
-#. existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "שנה שם"
@@ -457,8 +456,7 @@ msgstr "ספריה חדשה"
 msgid "File(s) to add to composition"
 msgstr "הוסף קבצים לפרויקט"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-
-#. day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -580,11 +578,11 @@ msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:590
 msgid "Drive can't burn on the inserted disc"
-msgstr ""
+msgstr "הכונן אינו מסוגל לצרוב על התקליטור שהוכנס"
 
 #: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:645
 msgid "Drive is empty"
-msgstr ""
+msgstr "הכונן ריק"
 
 #: ../xfburn/xfburn-device-box.c:602
 msgid "Sorry, multisession is not yet supported"
@@ -592,15 +590,16 @@ msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:605
 msgid "Inserted disc is full"
-msgstr ""
+msgstr "התקליטור שהוכנס הינו מלא"
 
 #: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:651
 msgid "Inserted disc is unsuitable"
-msgstr ""
+msgstr "התקליטור שהוכנס אינו תואם"
 
 #: ../xfburn/xfburn-device-box.c:611 ../xfburn/xfburn-device-box.c:654
+#, fuzzy
 msgid "Cannot access drive (it might be in use)"
-msgstr ""
+msgstr "לא ניתן לגשת לכונן (הוא עלול להיות בשימוש)"
 
 #: ../xfburn/xfburn-device-box.c:616 ../xfburn/xfburn-device-box.c:657
 msgid "Error determining disc"
@@ -625,15 +624,15 @@ msgstr "_אודות"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
-msgstr ""
+msgstr "מספר הצורבים במערכת"
 
 #: ../xfburn/xfburn-device-list.c:209
 msgid "Number of drives in the system"
-msgstr ""
+msgstr "מספר הכוננים במערכת"
 
 #: ../xfburn/xfburn-device-list.c:210
 msgid "Number of drives in the system (readers and writers)"
-msgstr ""
+msgstr "מספר הכוננים במערכת (קוראים וכותבים)"
 
 #: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
 #, fuzzy
@@ -713,10 +712,8 @@ msgstr ""
 msgid "_File"
 msgstr "_קובץ"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
-#. new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
-#. a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 #, fuzzy
@@ -728,14 +725,11 @@ msgstr "פרויקט צריבה"
 msgid "New audio composition"
 msgstr "פרויקט חדש"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
-#. composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
-#. composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
-#. NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -797,8 +791,7 @@ msgstr "מחיקת CD-RW"
 msgid "Copy Data CD"
 msgstr "העתק תקליטור מידע"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
-#. Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 #, fuzzy
 msgid "Burn Image"
@@ -1082,16 +1075,15 @@ msgstr "הושלם"
 #: ../xfburn/xfburn-progress-dialog.c:601
 #, fuzzy
 msgid "Aborting..."
-msgstr "מקבע..."
+msgstr "מבטל..."
 
 #: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
 msgstr "בחירת פקודה"
 
 #: ../xfburn/xfburn-welcome-tab.c:129
-#, fuzzy
 msgid "Welcome to xfburn!"
-msgstr "קובץ תמונה לצריבה"
+msgstr "ברוך בואך ל־xfburn!"
 
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:140
@@ -1101,7 +1093,7 @@ msgstr "צרוב תמונת תקליטור"
 
 #: ../xfburn/xfburn-welcome-tab.c:140
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr ""
+msgstr "צרוב אוסף מוכן, ז.א. קובץ ISO."
 
 #: ../xfburn/xfburn-welcome-tab.c:145
 #, fuzzy
@@ -1159,21 +1151,21 @@ msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:404
 msgid "Length"
-msgstr ""
+msgstr "אורך‏"
 
 #: ../xfburn/xfburn-audio-composition.c:410
 msgid "Artist"
-msgstr ""
+msgstr "אמן"
 
 #: ../xfburn/xfburn-audio-composition.c:423
 #, fuzzy
 msgid "Title"
-msgstr "קובץ"
+msgstr "כותרת"
 
 #: ../xfburn/xfburn-audio-composition.c:434
 #, fuzzy
 msgid "Filename"
-msgstr "שנה שם"
+msgstr "שם הקובץ"
 
 #: ../xfburn/xfburn-audio-composition.c:581
 msgid "Cannot burn audio onto a DVD."
@@ -1197,8 +1189,9 @@ msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "אתה מנסה לצרוב יותר מידע מאשר שהתקליטור יכול להכיל."
 
 #: ../xfburn/xfburn-transcoder-basic.c:166
+#, fuzzy
 msgid "basic"
-msgstr ""
+msgstr "בסיסי"
 
 #: ../xfburn/xfburn-transcoder-basic.c:172
 msgid ""
@@ -1252,7 +1245,7 @@ msgstr ""
 #. * the user would understand better
 #: ../xfburn/xfburn-transcoder-gst.c:720
 msgid "gstreamer"
-msgstr ""
+msgstr "gstreamer"
 
 #: ../xfburn/xfburn-transcoder-gst.c:726
 msgid ""
@@ -1309,11 +1302,11 @@ msgstr "התקנים"
 
 #: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
 msgid "Burn speeds supported by the device"
-msgstr ""
+msgstr "מהירויות צריבה הנתמכות על ידי התקן"
 
 #: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
 msgid "Disc status"
-msgstr ""
+msgstr "מצב תקליטור"
 
 #: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
 msgid "Profile no. as reported by libburn"
@@ -1325,7 +1318,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
 msgid "Is the disc erasable"
-msgstr ""
+msgstr "האם התקליטור מחיק"
 
 #: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Can burn CDR"
