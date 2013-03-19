@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 16:12-0600\n"
+"POT-Creation-Date: 2013-03-19 09:46+0100\n"
 "PO-Revision-Date: 2010-08-20 11:08+0530\n"
 "Last-Translator: \n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
@@ -16,6 +16,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.0\n"
+
+#: ../xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:32
+#, fuzzy
+msgid "length"
+msgstr "දිග"
+
+#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr "තාවකාලික ගොණු මැකීයමින්..."
+
+#: ../xfburn/xfburn-global.h:34
+#, fuzzy
+msgid "Please insert a recordable disc and hit enter"
+msgstr "කරූණාකර පිටපත් කල හැකි තැටියක් ඇතුල් කරන්න"
+
+#: ../xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:42
+#, fuzzy
+msgid "Data composition"
+msgstr "දත්ත සංයෝජනය"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -59,32 +98,32 @@ msgstr "හිස් තැටිය"
 
 #: ../xfburn/xfburn-blank-dialog.c:209
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:195
-#: ../xfburn/xfburn-burn-image-dialog.c:191
+#: ../xfburn/xfburn-burn-image-dialog.c:200
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
 #: ../xfburn/xfburn-copy-dvd-dialog.c:131
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:159
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:160
 msgid "Burning device"
 msgstr "තැටිගතකරණ ධාවකය"
 
-#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:185
+#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:187
 msgid "Blank mode"
 msgstr "හිස් අවස්ථාව"
 
 #: ../xfburn/xfburn-blank-dialog.c:230
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
-#: ../xfburn/xfburn-burn-image-dialog.c:199
+#: ../xfburn/xfburn-burn-image-dialog.c:208
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
 #: ../xfburn/xfburn-copy-dvd-dialog.c:139
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:193
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:194
 msgid "Options"
 msgstr "විකල්ප"
 
 #: ../xfburn/xfburn-blank-dialog.c:234
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
-#: ../xfburn/xfburn-burn-image-dialog.c:203
+#: ../xfburn/xfburn-burn-image-dialog.c:212
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
 #: ../xfburn/xfburn-copy-dvd-dialog.c:143
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:197
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:198
 msgid "E_ject disk"
 msgstr "තැටිය එලියට දමන්න"
 
@@ -122,15 +161,15 @@ msgid "Done"
 msgstr "කලා"
 
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:603
+#: ../xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
 msgstr "බැරිවිය"
 
 #: ../xfburn/xfburn-blank-dialog.c:461
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:610
-#: ../xfburn/xfburn-burn-image-dialog.c:388
-#: ../xfburn/xfburn-burn-image-dialog.c:556
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:396
+#: ../xfburn/xfburn-burn-image-dialog.c:402
+#: ../xfburn/xfburn-burn-image-dialog.c:578
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
 msgid "Unable to grab the drive."
 msgstr ""
 
@@ -160,16 +199,16 @@ msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "සංයෝජකයේ නම වෙනස් කිරීමට කැමතිද?"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
-#: ../xfburn/xfburn-burn-image-dialog.c:208
+#: ../xfburn/xfburn-burn-image-dialog.c:217
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
 #: ../xfburn/xfburn-copy-dvd-dialog.c:148
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:202
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:203
 msgid "_Dummy write"
 msgstr ""
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:240
-#: ../xfburn/xfburn-burn-image-dialog.c:212
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:206
+#: ../xfburn/xfburn-burn-image-dialog.c:221
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
 msgid "Burn_Free"
 msgstr ""
 
@@ -181,7 +220,7 @@ msgid "Only create _ISO"
 msgstr "ISO ගොණුව පමණක් සාදන්න (_I)"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:221
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
 msgid "_Burn Composition"
 msgstr "තැටිගතකරන සංයෝජනය (_B)"
 
@@ -205,7 +244,7 @@ msgid "An error occurred in the burn backend."
 msgstr "තැටිගත කිරීමේදී පසු අවසානයේ දොෂයක් ඇති විය"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:327
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
 msgstr ""
 
@@ -214,50 +253,54 @@ msgstr ""
 msgid "Could not create ISO source structure."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:156
+#: ../xfburn/xfburn-burn-image-dialog.c:161
 msgid "Burn image"
 msgstr ""
 
 #. file
-#: ../xfburn/xfburn-burn-image-dialog.c:163
-#: ../xfburn/xfburn-burn-image-dialog.c:176
+#: ../xfburn/xfburn-burn-image-dialog.c:168
+#: ../xfburn/xfburn-burn-image-dialog.c:185
 msgid "Image to burn"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:167
+#: ../xfburn/xfburn-burn-image-dialog.c:172
 msgid "All files"
 msgstr "සෑම ගොණුවක්ම"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:171
+#: ../xfburn/xfburn-burn-image-dialog.c:176
 msgid "ISO images"
 msgstr "ISO ගොණු"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:222
+#: ../xfburn/xfburn-burn-image-dialog.c:226
+msgid "_Quit after successful completion"
+msgstr ""
+
+#: ../xfburn/xfburn-burn-image-dialog.c:236
 msgid "_Burn image"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:271
+#: ../xfburn/xfburn-burn-image-dialog.c:285
 msgid "Burn mode is not currently implemented."
 msgstr "තැටිගතකිරීමේ ආකාරය දැනට සම්පූර්ණ කල නොහැක"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:322
-#: ../xfburn/xfburn-burn-image-dialog.c:351
+#: ../xfburn/xfburn-burn-image-dialog.c:336
+#: ../xfburn/xfburn-burn-image-dialog.c:365
 msgid "An error occurred in the burn backend"
 msgstr "තැටිගත කිරීමේදී පසු අවසානයේ දොෂයක් ඇති විය"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:335
+#: ../xfburn/xfburn-burn-image-dialog.c:349
 msgid "Unable to determine image size."
 msgstr "ගොනුවේ ප්‍රමාණය නිෂ්චය කරගැනීමට නොහැක"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:342
+#: ../xfburn/xfburn-burn-image-dialog.c:356
 msgid "Cannot open image."
 msgstr "ගොනුව විවෘත කල‍ නොහැක"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:379
+#: ../xfburn/xfburn-burn-image-dialog.c:393
 msgid "Burning image..."
 msgstr "ප්‍රතිබිම්භයක් තැටිගත කරමින්..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:445
+#: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
 "select an image to burn</span>"
@@ -265,32 +308,32 @@ msgstr ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">කරුණාකර "
 "තැටිගත කිරීමට අවශ්‍යය ප්‍රතිබිම්බය තෝරන්න</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:483
+#: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:487
+#: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "මෙය තැටිගතකර ඇත. හිස් හෝ නැවත තැටිගතකල හැකි තැටියක් අවශය වේ."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:489
+#: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "No disc detected in drive"
 msgstr "ධාවකයේ තැටියක් නොමැත"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:491
+#: ../xfburn/xfburn-burn-image-dialog.c:513
 msgid "Cannot recognize state of drive and disc"
 msgstr "ධාවකයේ හා තැටියේ තත්වය හදුනාගත නොහැක"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:503
+#: ../xfburn/xfburn-burn-image-dialog.c:525
 msgid "The selected image does not fit on the inserted disc"
 msgstr "තෝරා ගත් ප්‍රතිබිම්භය ඇතුල් කර ඇති තැටියට සුදුසු නොවේ"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:507
+#: ../xfburn/xfburn-burn-image-dialog.c:529
 msgid "Failed to get image size"
 msgstr "ප්‍රතිබිම්භයේ ප්‍රමාණය ගණනය කල නොහැක"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:536
+#: ../xfburn/xfburn-burn-image-dialog.c:558
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
@@ -322,10 +365,6 @@ msgstr ""
 msgid "_Copy CD"
 msgstr "CD පිටපත් කරන්න (_C)"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr "තාවකාලික ගොණු මැකීයමින්..."
-
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
 msgstr "කරූණාකර පිටපත් කල හැකි තැටියක් ඇතුල් කරන්න"
@@ -355,106 +394,114 @@ msgstr "DVD පිටපත් කරන්න (_C)"
 msgid "Create ISO from CD"
 msgstr "CD මගින් ISO ගොනුවක් සෑදීම"
 
-#: ../xfburn/xfburn-data-composition.c:184
-#: ../xfburn/xfburn-audio-composition.c:205
+#: ../xfburn/xfburn-data-composition.c:189
+#: ../xfburn/xfburn-data-composition.c:955
+#: ../xfburn/xfburn-audio-composition.c:206
+#: ../xfburn/xfburn-audio-composition.c:979
 msgid "Add"
 msgstr "එක් කිරීම"
 
-#: ../xfburn/xfburn-data-composition.c:184
-#: ../xfburn/xfburn-audio-composition.c:205
+#: ../xfburn/xfburn-data-composition.c:189
+#: ../xfburn/xfburn-audio-composition.c:206
 msgid "Add the selected file(s) to the composition"
 msgstr "තෝරා ඇති ගොනු සංයෝජනයට එකතු කරන්න"
 
-#: ../xfburn/xfburn-data-composition.c:186
+#: ../xfburn/xfburn-data-composition.c:191
 msgid "Create directory"
 msgstr "බහලුමක් සාදන්න"
 
-#: ../xfburn/xfburn-data-composition.c:186
+#: ../xfburn/xfburn-data-composition.c:191
 msgid "Add a new directory to the composition"
 msgstr "සංයෝජනයට නව බහලුමක් සාදන්න"
 
-#: ../xfburn/xfburn-data-composition.c:188
-#: ../xfburn/xfburn-audio-composition.c:207
+#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove"
 msgstr "ඉවත් කරන්න"
 
-#: ../xfburn/xfburn-data-composition.c:188
-#: ../xfburn/xfburn-audio-composition.c:207
+#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove the selected file(s) from the composition"
 msgstr "තෝරාඇති ගොණු(ව) සංයෝජනයෙන් ඉවත් කරන්න"
 
-#: ../xfburn/xfburn-data-composition.c:190
-#: ../xfburn/xfburn-audio-composition.c:209
+#: ../xfburn/xfburn-data-composition.c:195
+#: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear"
 msgstr "හිස් කරන්න"
 
-#: ../xfburn/xfburn-data-composition.c:190
-#: ../xfburn/xfburn-audio-composition.c:209
+#: ../xfburn/xfburn-data-composition.c:195
+#: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear the content of the composition"
 msgstr ""
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "නම වෙනස් කරන්න"
 
-#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename the selected file"
 msgstr "තෝරාගත් ගොනුවෙහි නම වෙනස් කරන්න"
 
-#: ../xfburn/xfburn-data-composition.c:347
+#: ../xfburn/xfburn-data-composition.c:352
 msgid "Volume name :"
 msgstr "වෙළුවේ නම :"
 
-#: ../xfburn/xfburn-data-composition.c:381
+#: ../xfburn/xfburn-data-composition.c:386
 msgid "Contents"
 msgstr "අන්තරගතය"
 
-#: ../xfburn/xfburn-data-composition.c:396
+#: ../xfburn/xfburn-data-composition.c:401
 #: ../xfburn/xfburn-directory-browser.c:140
 msgid "Size"
 msgstr "ප්‍රමාණය"
 
-#: ../xfburn/xfburn-data-composition.c:399
+#: ../xfburn/xfburn-data-composition.c:404
 msgid "Local Path"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:674
+#: ../xfburn/xfburn-data-composition.c:679
 msgid "You must give a name to the file."
 msgstr "මෙම ගොණුවට නමක් දිය යුතුයි"
 
-#: ../xfburn/xfburn-data-composition.c:683
-#: ../xfburn/xfburn-data-composition.c:1119
-#: ../xfburn/xfburn-audio-composition.c:1144
+#: ../xfburn/xfburn-data-composition.c:688
+#: ../xfburn/xfburn-data-composition.c:1198
+#: ../xfburn/xfburn-audio-composition.c:1176
 msgid "A file with the same name is already present in the composition."
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:791
-#: ../xfburn/xfburn-data-composition.c:792
-#: ../xfburn/xfburn-data-composition.c:794
+#: ../xfburn/xfburn-data-composition.c:796
+#: ../xfburn/xfburn-data-composition.c:797
+#: ../xfburn/xfburn-data-composition.c:799
 msgid "New directory"
 msgstr "අළුත් බහලුමක්"
 
+#: ../xfburn/xfburn-data-composition.c:941
+#: ../xfburn/xfburn-audio-composition.c:976
+#, fuzzy
+msgid "File(s) to add to composition"
+msgstr "සංයෝජකයට ගොණු ඇතුලත්වෙමින් පවතී."
+
 #. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:962
+#: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
 msgstr "%s~%d දත්ත"
 
-#: ../xfburn/xfburn-data-composition.c:1198
+#: ../xfburn/xfburn-data-composition.c:1277
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:1283
-#: ../xfburn/xfburn-audio-composition.c:1319
+#: ../xfburn/xfburn-data-composition.c:1362
+#: ../xfburn/xfburn-audio-composition.c:1351
 msgid "Adding home directory"
 msgstr "නිවෙස් බහලුමට එකතුවෙමින්"
 
-#: ../xfburn/xfburn-data-composition.c:1284
-#: ../xfburn/xfburn-audio-composition.c:1320
+#: ../xfburn/xfburn-data-composition.c:1363
+#: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
 "You are about to add your home directory to the composition. This is likely "
 "to take a very long time, and also to be too big to fit on one disc.\n"
@@ -462,7 +509,7 @@ msgid ""
 "Are you sure you want to proceed?"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:1451
+#: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
@@ -470,60 +517,60 @@ msgid ""
 msgstr "\"%s\" නැමති ගොනුව දැනටමත් මෙහි ඇති බැවින්, මෙය එකතු කිරීමට නොහැක"
 
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1864
+#: ../xfburn/xfburn-data-composition.c:1945
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:169 ../xfburn/xfburn-device-box.c:170
+#: ../xfburn/xfburn-device-box.c:171 ../xfburn/xfburn-device-box.c:172
 msgid "Show writers only"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:173
+#: ../xfburn/xfburn-device-box.c:175
 msgid "Show speed selection"
 msgstr "තෝරාගත් වේගය පෙන්වන්න"
 
-#: ../xfburn/xfburn-device-box.c:174
+#: ../xfburn/xfburn-device-box.c:176
 msgid "Show speed selection combo"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:177
+#: ../xfburn/xfburn-device-box.c:179
 msgid "Show mode selection"
 msgstr "තෝරාගත් ආකාරය පෙන්වන්න"
 
-#: ../xfburn/xfburn-device-box.c:178
+#: ../xfburn/xfburn-device-box.c:180
 msgid "Show mode selection combo"
 msgstr "මාදිලි තේරීම් කවුළුව පෙන්වන්න"
 
-#: ../xfburn/xfburn-device-box.c:181
+#: ../xfburn/xfburn-device-box.c:183
 msgid "Is it a valid combination"
 msgstr "මෙය වලංගු එක් කිරීමක්ද"
 
-#: ../xfburn/xfburn-device-box.c:182
+#: ../xfburn/xfburn-device-box.c:184
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:186
+#: ../xfburn/xfburn-device-box.c:188
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:189 ../xfburn/xfburn-device-box.c:190
+#: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
 msgid "Accept only CDs as valid discs"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:243
+#: ../xfburn/xfburn-device-box.c:245
 msgid "_Speed:"
 msgstr "වේගය (_S)"
 
-#: ../xfburn/xfburn-device-box.c:266
+#: ../xfburn/xfburn-device-box.c:268
 msgid "Write _mode:"
 msgstr "තැටිගත කරන ආකාරය (_m)"
 
-#: ../xfburn/xfburn-device-box.c:384
+#: ../xfburn/xfburn-device-box.c:387
 msgid "Empty speed list"
 msgstr "හිස් වේග ලැයිස්තුව"
 
-#: ../xfburn/xfburn-device-box.c:393
+#: ../xfburn/xfburn-device-box.c:396
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -536,59 +583,59 @@ msgid ""
 "<i>Thank you!</i>"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:404
+#: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:446
+#: ../xfburn/xfburn-device-box.c:452
 msgid "default"
 msgstr "පෙරනිමි"
 
-#: ../xfburn/xfburn-device-box.c:482
+#: ../xfburn/xfburn-device-box.c:488
 msgid "Max"
 msgstr "උපරිම"
 
-#: ../xfburn/xfburn-device-box.c:584
+#: ../xfburn/xfburn-device-box.c:590
 msgid "Drive can't burn on the inserted disc"
 msgstr "අතුල්කර ඇති තැටිය තැටිගත කිරීමට නොහැක"
 
-#: ../xfburn/xfburn-device-box.c:593 ../xfburn/xfburn-device-box.c:639
+#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:645
 msgid "Drive is empty"
 msgstr "ධාවකය හිස්ය"
 
-#: ../xfburn/xfburn-device-box.c:596
+#: ../xfburn/xfburn-device-box.c:602
 msgid "Sorry, multisession is not yet supported"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:599
+#: ../xfburn/xfburn-device-box.c:605
 msgid "Inserted disc is full"
 msgstr "මෙම තැටියේ ඉඩ නොමැත"
 
-#: ../xfburn/xfburn-device-box.c:602 ../xfburn/xfburn-device-box.c:645
+#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:651
 msgid "Inserted disc is unsuitable"
 msgstr "ඇතුල් කල තැටිය සුදුසු නොවේ"
 
-#: ../xfburn/xfburn-device-box.c:605 ../xfburn/xfburn-device-box.c:648
+#: ../xfburn/xfburn-device-box.c:611 ../xfburn/xfburn-device-box.c:654
 msgid "Cannot access drive (it might be in use)"
 msgstr "ධාවකයයට ඇතුල්වීමට නොහැක (එය දැබටමත් භාවිත වේ)"
 
-#: ../xfburn/xfburn-device-box.c:610 ../xfburn/xfburn-device-box.c:651
+#: ../xfburn/xfburn-device-box.c:616 ../xfburn/xfburn-device-box.c:657
 msgid "Error determining disc"
 msgstr "තැටිය නිශ්චයීය කරගැනීම දොෂ සහිතයි"
 
-#: ../xfburn/xfburn-device-box.c:631
+#: ../xfburn/xfburn-device-box.c:637
 msgid "Write-once disc, no blanking possible"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:634
+#: ../xfburn/xfburn-device-box.c:640
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW හිස් කිරීම අනවශ්‍යයි "
 
-#: ../xfburn/xfburn-device-box.c:642
+#: ../xfburn/xfburn-device-box.c:648
 msgid "Inserted disc is already blank"
 msgstr "ඇතුලත් කල තැටිය හිස්ය"
 
-#: ../xfburn/xfburn-device-box.c:678
+#: ../xfburn/xfburn-device-box.c:684
 msgid "Auto"
 msgstr "ස්වයංක්‍රීය"
 
@@ -671,7 +718,7 @@ msgid ""
 "\t(falling back to basic implementation)"
 msgstr ""
 
-#: ../xfburn/xfburn-main.c:364
+#: ../xfburn/xfburn-main.c:375
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "'%s'  ලෙස ගොණුවක් නොමැත"
@@ -866,13 +913,13 @@ msgstr "අවසානයි"
 msgid "aborted"
 msgstr "අසාර්ථක විය"
 
-#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:199
-#: ../xfburn/xfburn-progress-dialog.c:216
-#: ../xfburn/xfburn-progress-dialog.c:226
-#: ../xfburn/xfburn-progress-dialog.c:309
-#: ../xfburn/xfburn-progress-dialog.c:441
-#: ../xfburn/xfburn-progress-dialog.c:465
-#: ../xfburn/xfburn-progress-dialog.c:489
+#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:216
+#: ../xfburn/xfburn-progress-dialog.c:233
+#: ../xfburn/xfburn-progress-dialog.c:243
+#: ../xfburn/xfburn-progress-dialog.c:332
+#: ../xfburn/xfburn-progress-dialog.c:464
+#: ../xfburn/xfburn-progress-dialog.c:488
+#: ../xfburn/xfburn-progress-dialog.c:512
 msgid "no info"
 msgstr ""
 
@@ -908,127 +955,126 @@ msgstr "කොන්සෝලය බැලීම"
 msgid "User Aborted"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:141
+#: ../xfburn/xfburn-preferences-dialog.c:143
 msgid "Preferences"
 msgstr "අභිප්‍රේත"
 
-#: ../xfburn/xfburn-preferences-dialog.c:142
+#: ../xfburn/xfburn-preferences-dialog.c:144
 msgid "Tune how Xfburn behaves"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:188
-#: ../xfburn/xfburn-preferences-dialog.c:192
+#: ../xfburn/xfburn-preferences-dialog.c:190
+#: ../xfburn/xfburn-preferences-dialog.c:194
 msgid "Temporary directory"
 msgstr "තාවකාලික බහලුම"
 
-#: ../xfburn/xfburn-preferences-dialog.c:196
+#: ../xfburn/xfburn-preferences-dialog.c:198
 msgid "_Clean temporary directory on exit"
 msgstr "ඉවත් වන විට තාවකාලික බහලුම මකා දමන්න"
 
-#: ../xfburn/xfburn-preferences-dialog.c:203
+#: ../xfburn/xfburn-preferences-dialog.c:205
 msgid "File browser"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:207
+#: ../xfburn/xfburn-preferences-dialog.c:209
 msgid "Show _hidden files"
 msgstr "සැගවී ඇති ගොණු පෙන්වන්න (_h)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:212
+#: ../xfburn/xfburn-preferences-dialog.c:214
 msgid "Show human_readable filesizes"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:223
+#: ../xfburn/xfburn-preferences-dialog.c:225
 msgid "General"
 msgstr "සාමාන්‍ය"
 
-#: ../xfburn/xfburn-preferences-dialog.c:234
-#: ../xfburn/xfburn-preferences-dialog.c:311
+#: ../xfburn/xfburn-preferences-dialog.c:236
+#: ../xfburn/xfburn-preferences-dialog.c:313
 msgid "Devices"
 msgstr "ධාවක"
 
-#: ../xfburn/xfburn-preferences-dialog.c:243
+#: ../xfburn/xfburn-preferences-dialog.c:245
 msgid "Detected devices"
 msgstr "සම්බන්ධ ඇති ධාවක"
 
-#: ../xfburn/xfburn-preferences-dialog.c:264
+#: ../xfburn/xfburn-preferences-dialog.c:266
 msgid "Name"
 msgstr "නම"
 
-#: ../xfburn/xfburn-preferences-dialog.c:277
+#: ../xfburn/xfburn-preferences-dialog.c:279
 msgid "Node"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:279
+#: ../xfburn/xfburn-preferences-dialog.c:281
 msgid "Write CD-R"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:281
+#: ../xfburn/xfburn-preferences-dialog.c:283
 msgid "Write CD-RW"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:284
+#: ../xfburn/xfburn-preferences-dialog.c:286
 msgid "Write DVD-R"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:287
+#: ../xfburn/xfburn-preferences-dialog.c:289
 msgid "Write DVD-RAM"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:295
+#: ../xfburn/xfburn-preferences-dialog.c:297
 msgid "Sc_an for devices"
 msgstr "උපකරණ පිරික්සන්න"
 
-#. below the device list
-#: ../xfburn/xfburn-preferences-dialog.c:321
+#: ../xfburn/xfburn-preferences-dialog.c:324
 msgid "Show warning on _empty speed list"
 msgstr "හිස් වේග ලැයිස්තුවේ අනතුරු ඇගවීම් පෙන්වන්න (_e)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:329
+#: ../xfburn/xfburn-preferences-dialog.c:333
 msgid "FIFO buffer size (in kb)"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:463
+#: ../xfburn/xfburn-preferences-dialog.c:471
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:181
+#: ../xfburn/xfburn-progress-dialog.c:198
 msgid "Initializing..."
 msgstr "අරඹමින්..."
 
-#: ../xfburn/xfburn-progress-dialog.c:196
+#: ../xfburn/xfburn-progress-dialog.c:213
 msgid "Estimated writing speed:"
 msgstr "තැටිගත කිරීමේ වේගය"
 
-#: ../xfburn/xfburn-progress-dialog.c:210
+#: ../xfburn/xfburn-progress-dialog.c:227
 msgid "FIFO buffer:"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:220
+#: ../xfburn/xfburn-progress-dialog.c:237
 msgid "Device buffer:"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:467
+#: ../xfburn/xfburn-progress-dialog.c:490
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:526
+#: ../xfburn/xfburn-progress-dialog.c:549
 msgid "Aborted"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:532
+#: ../xfburn/xfburn-progress-dialog.c:558
 msgid "Failed"
 msgstr "නෙැහැකි විය"
 
-#: ../xfburn/xfburn-progress-dialog.c:535
+#: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Cancelled"
 msgstr "අවලංගු උනා"
 
-#: ../xfburn/xfburn-progress-dialog.c:538
+#: ../xfburn/xfburn-progress-dialog.c:564
 msgid "Completed"
 msgstr "සාර්ථකයි"
 
-#: ../xfburn/xfburn-progress-dialog.c:575
+#: ../xfburn/xfburn-progress-dialog.c:601
 msgid "Aborting..."
 msgstr ""
 
@@ -1073,55 +1119,55 @@ msgstr "<big>ශබ්ද තැටිය (_A)</big>"
 msgid "Audio CD playable in regular stereos"
 msgstr ""
 
-#: ../xfburn/xfburn-audio-composition.c:211
+#: ../xfburn/xfburn-audio-composition.c:212
 msgid "What files can get burned to an audio CD?"
 msgstr ""
 
-#: ../xfburn/xfburn-audio-composition.c:215
+#: ../xfburn/xfburn-audio-composition.c:216
 msgid "Rename Artist"
 msgstr "කළාකරුවාගේ නම වෙනස් කරන්න"
 
-#: ../xfburn/xfburn-audio-composition.c:215
+#: ../xfburn/xfburn-audio-composition.c:216
 msgid "Rename the artist of the selected file"
 msgstr "තෝරා ගත් ගොණුවේ කළාකරුවාගේ නම වෙනස් කරන්න"
 
-#: ../xfburn/xfburn-audio-composition.c:217
+#: ../xfburn/xfburn-audio-composition.c:218
 msgid "Rename Title"
 msgstr "මාතෘකාව වෙනස් කරන්න"
 
-#: ../xfburn/xfburn-audio-composition.c:217
+#: ../xfburn/xfburn-audio-composition.c:218
 msgid "Rename the title of the selected file"
 msgstr "තෝරාගත් ගොනුවේ මාතෘකාව වෙනස් කරන්න"
 
-#: ../xfburn/xfburn-audio-composition.c:401
+#: ../xfburn/xfburn-audio-composition.c:402
 msgid "Pos"
 msgstr ""
 
-#: ../xfburn/xfburn-audio-composition.c:403
+#: ../xfburn/xfburn-audio-composition.c:404
 msgid "Length"
 msgstr "දිග"
 
-#: ../xfburn/xfburn-audio-composition.c:409
+#: ../xfburn/xfburn-audio-composition.c:410
 msgid "Artist"
 msgstr "කළාකරූවා"
 
-#: ../xfburn/xfburn-audio-composition.c:422
+#: ../xfburn/xfburn-audio-composition.c:423
 msgid "Title"
 msgstr "මාතෘකාව"
 
-#: ../xfburn/xfburn-audio-composition.c:433
+#: ../xfburn/xfburn-audio-composition.c:434
 msgid "Filename"
 msgstr "ගොණුවේ නම"
 
-#: ../xfburn/xfburn-audio-composition.c:580
+#: ../xfburn/xfburn-audio-composition.c:581
 msgid "Cannot burn audio onto a DVD."
 msgstr "ශබ්ද DVDය තැටිගත කිරීමට නොහැක"
 
-#: ../xfburn/xfburn-audio-composition.c:1228
+#: ../xfburn/xfburn-audio-composition.c:1260
 msgid "You can only have a maximum of 99 tracks."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:310
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
 msgid "A problem with the burn backend occurred."
 msgstr "තැටිගත කිරීමේ  පසු අවසානයේ දෝෂයක් "
 

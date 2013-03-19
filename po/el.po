@@ -3,23 +3,62 @@
 # This file is distributed under the same license as the xfburn package.
 # Stavros Giannouris <stavrosg@serverhive.com>, 2006.
 # Efstathios Iosifidis <iosifidis@opensuse.org>, 2012.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn git version\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-18 08:42+0000\n"
+"POT-Creation-Date: 2013-03-19 09:46+0100\n"
 "PO-Revision-Date: 2012-07-30 00:46+0300\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Ελληνικά, Σύγχρονα <opensuse-translation-el@opensuse.org>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Poedit-Language: Greek\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Country: GREECE\n"
+
+#: ../xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:32
+#, fuzzy
+msgid "length"
+msgstr "Διάρκεια"
+
+#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr "Άδειασμα προσωρινής μνήμης..."
+
+#: ../xfburn/xfburn-global.h:34
+#, fuzzy
+msgid "Please insert a recordable disc and hit enter"
+msgstr "Παρακαλώ εισάγεται ένα εγγράψιμο δίσκο."
+
+#: ../xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:42
+#, fuzzy
+msgid "Data composition"
+msgstr "Σύνθεση δεδομένων"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -96,8 +135,7 @@ msgstr "Ε_ξαγωγή δίσκου:"
 msgid "_Blank"
 msgstr "_Διαγραφή"
 
-#. blanking can only be performed on blank discs, format and deformat are
-#. allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "Ο δίσκος είναι ήδη κενός."
@@ -337,10 +375,6 @@ msgstr "Απευ_θείας"
 msgid "_Copy CD"
 msgstr "Α_ντιγραφή CD"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr "Άδειασμα προσωρινής μνήμης..."
-
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
 msgstr "Παρακαλώ εισάγεται ένα εγγράψιμο δίσκο."
@@ -410,8 +444,7 @@ msgstr "Καθάρισμα"
 msgid "Clear the content of the composition"
 msgstr "Εκκαθάριση περιεχομένων σύνθεσης"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
-#. existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "Μετονομασία"
@@ -458,8 +491,7 @@ msgstr "Νέος κατάλογος"
 msgid "File(s) to add to composition"
 msgstr "Προσθήκη αρχείου(ων) στη σύνθεση"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-
-#. day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -679,7 +711,7 @@ msgstr "Σύστημα αρχείων"
 msgid "%s's home"
 msgstr "Προσωπικός κατάλογος %s"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -735,10 +767,8 @@ msgstr "Το αρχείο εικόνας '%s' δεν υπάρχει."
 msgid "_File"
 msgstr "_Αρχείο"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
-#. new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
-#. a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -748,14 +778,11 @@ msgstr "Νέα σύνθεση δεδομένων"
 msgid "New audio composition"
 msgstr "Νέα σύνθεση ήχου"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
-#. composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
-#. composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
-#. NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -817,8 +844,7 @@ msgstr "Διαγραφή CD-RW"
 msgid "Copy Data CD"
 msgstr "Αντιγραφή CD δεδομένων"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
-#. Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Εγγραφή εικόνας"
@@ -1404,13 +1430,13 @@ msgstr "τύποι μπλοκ libburn PACKET"
 msgid "Data Composition"
 msgstr "Σύνθεση δεδομένων"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "Εγγραφή εικόνας (xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Εφαρμογή εγγραφής CD και DVD"
+
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "Εγγραφή εικόνας (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Δημιουργός"

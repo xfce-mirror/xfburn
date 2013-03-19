@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-20 06:57+0000\n"
+"POT-Creation-Date: 2013-03-19 09:46+0100\n"
 "PO-Revision-Date: 2012-11-20 13:06+0300\n"
 "Last-Translator: محمد الحرقان <malham1@gmail.com>\n"
 "Language-Team: http://www.vertaal.com.ar/files/factory/ar/list/\n"
@@ -17,6 +17,44 @@ msgstr ""
 "X-Poedit-Language: Arabic\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Country: Morocco\n"
+
+#: ../xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:32
+#, fuzzy
+msgid "length"
+msgstr "المدة"
+
+#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr "يتم مسح ذاكرة التخزين المؤقت..."
+
+#: ../xfburn/xfburn-global.h:34
+#, fuzzy
+msgid "Please insert a recordable disc and hit enter"
+msgstr "من فضلك أدخل وسيط يقبل التسجيل."
+
+#: ../xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:42
+msgid "Data composition"
+msgstr "تأليفة البيانات"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -328,10 +366,6 @@ msgstr "على _الطائر"
 #: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
 msgstr "_انسخ القرص"
-
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr "يتم مسح ذاكرة التخزين المؤقت..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
@@ -663,7 +697,7 @@ msgstr "نظام الملفات"
 msgid "%s's home"
 msgstr "%s's منزل"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -1369,13 +1403,13 @@ msgstr "أنواع حزم كتلة libburn"
 msgid "Data Composition"
 msgstr "تجهيز التوليفة"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "حرق صورة (xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "تطبيق حرق الأقراص والدفدي"
+
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "حرق صورة (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "المؤلف/الراعي"
@@ -1388,9 +1422,6 @@ msgstr "تطبيق حرق الأقراص والدفدي"
 
 #~ msgid "The write mode is not currently supported"
 #~ msgstr "وضع الكتابة غير مدعوم حاليا"
-
-#~ msgid "Data composition"
-#~ msgstr "تأليفة البيانات"
 
 #~ msgid "The status of the disc in the drive"
 #~ msgstr "حالة القرص في المشغل"

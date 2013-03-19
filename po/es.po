@@ -3,19 +3,57 @@
 # This file is distributed under the same license as the Xfburn package.
 # Diego Rodríguez <dieymir@yahoo.es>, 2007.
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-21 15:03+0000\n"
+"POT-Creation-Date: 2013-03-19 09:46+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sergio <oigres200@gmail.com>\n"
 "Language-Team: Spanish <xfce-i18n@xfce.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
+
+#: ../xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:32
+#, fuzzy
+msgid "length"
+msgstr "Duración"
+
+#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr "Vaciando caché..."
+
+#: ../xfburn/xfburn-global.h:34
+#, fuzzy
+msgid "Please insert a recordable disc and hit enter"
+msgstr "Por favor introduzca un disco grabable."
+
+#: ../xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:42
+msgid "Data composition"
+msgstr "Composición de datos"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -92,8 +130,7 @@ msgstr "E_xpulsar disco"
 msgid "_Blank"
 msgstr "_Borrar"
 
-#. blanking can only be performed on blank discs, format and deformat are
-#. allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "El disco introducido ya está vacío."
@@ -334,10 +371,6 @@ msgstr "Al _vuelo"
 msgid "_Copy CD"
 msgstr "_Copiar CD"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr "Vaciando caché..."
-
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
 msgstr "Por favor introduzca un disco grabable."
@@ -407,8 +440,7 @@ msgstr "Limpiar"
 msgid "Clear the content of the composition"
 msgstr "Limpiar el contenido de la composición"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
-#. existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "Renombrar"
@@ -455,8 +487,7 @@ msgstr "Nueva carpeta"
 msgid "File(s) to add to composition"
 msgstr "Archivo(s) a añadir a la composición"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-
-#. day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -678,7 +709,7 @@ msgstr "Sistema de archivos"
 msgid "%s's home"
 msgstr "Directorio personal de %s"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -734,10 +765,8 @@ msgstr "El archivo de imagen '%s' no existe."
 msgid "_File"
 msgstr "_Archivo"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
-#. new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
-#. a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -747,14 +776,11 @@ msgstr "Nueva composición de datos"
 msgid "New audio composition"
 msgstr "Nueva composición de audio"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
-#. composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
-#. composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
-#. NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -816,8 +842,7 @@ msgstr "Borrar CD-RW"
 msgid "Copy Data CD"
 msgstr "Copiar CD de datos"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
-#. Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Grabar imagen"
@@ -1395,13 +1420,13 @@ msgstr "Tipos de bloque de PACKET de libburn"
 msgid "Data Composition"
 msgstr "Composición de datos"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "Grabar imagen (xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Aplicación para grabar CD y DVD"
+
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "Grabar imagen (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Autor/Mantenedor"
@@ -1417,9 +1442,6 @@ msgstr "Aplicación para grabar CD y DVD"
 
 #~ msgid "Is the device accessible"
 #~ msgstr "¿Está el dispositivo accesible?"
-
-#~ msgid "Data composition"
-#~ msgstr "Composición de datos"
 
 #~ msgid "The status of the disc in the drive"
 #~ msgstr "El estado del disco en la unidad"

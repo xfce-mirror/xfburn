@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-24 07:15+0000\n"
+"POT-Creation-Date: 2013-03-19 09:46+0100\n"
 "PO-Revision-Date: 2012-11-24 07:06-0300\n"
 "Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -18,6 +18,44 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:32
+#, fuzzy
+msgid "length"
+msgstr "Comprimento"
+
+#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr "Esvaziando cache..."
+
+#: ../xfburn/xfburn-global.h:34
+#, fuzzy
+msgid "Please insert a recordable disc and hit enter"
+msgstr "Por favor, insira uma mídia gravável."
+
+#: ../xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:42
+msgid "Data composition"
+msgstr "Composição de dados"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -333,10 +371,6 @@ msgstr "Em _tempo real"
 #: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
 msgstr "_Copiar CD"
-
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr "Esvaziando cache..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
@@ -675,7 +709,7 @@ msgstr "Sistema de arquivos"
 msgid "%s's home"
 msgstr "Pasta pessoal de %s"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -1383,13 +1417,13 @@ msgstr "tipos de blocos libburn PACKET"
 msgid "Data Composition"
 msgstr "Composição de dados"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "Gravar Imagem (xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Aplicativo de gravação de CD e DVD"
+
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "Gravar Imagem (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Autor/Mantenedor"
@@ -1405,9 +1439,6 @@ msgstr "Aplicativo de gravação de CD e DVD"
 
 #~ msgid "Is the device accessible"
 #~ msgstr "O dispositivo está acessível"
-
-#~ msgid "Data composition"
-#~ msgstr "Composição de dados"
 
 #~ msgid "The status of the disc in the drive"
 #~ msgstr "O status do disco na unidade"

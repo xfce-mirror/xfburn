@@ -1,21 +1,59 @@
 # Ivica Kolić <ikoli@yahoo.com>, 2011.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-20 06:57+0000\n"
+"POT-Creation-Date: 2013-03-19 09:46+0100\n"
 "PO-Revision-Date: 2011-01-16 01:18+0100\n"
 "Last-Translator: Ivica Kolić <ikoli@yahoo.com>\n"
 "Language-Team: Croatian <ikoli@yahoo.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Country: CROATIA\n"
-"Language: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Language: Croatian\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: ../xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:32
+#, fuzzy
+msgid "length"
+msgstr "Dužina"
+
+#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:34
+msgid "Please insert a recordable disc and hit enter"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:42
+msgid "Data composition"
+msgstr ""
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -92,8 +130,7 @@ msgstr "I_zbaci disk"
 msgid "_Blank"
 msgstr "_Prazan"
 
-#. blanking can only be performed on blank discs, format and deformat are
-#. allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "Ubačeni disk je već prazan"
@@ -329,10 +366,6 @@ msgstr "U _letu"
 msgid "_Copy CD"
 msgstr "_Kopiraj CD"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr ""
-
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
 msgstr ""
@@ -402,8 +435,7 @@ msgstr "Očisti"
 msgid "Clear the content of the composition"
 msgstr ""
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
-#. existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "Preimenuj"
@@ -450,8 +482,7 @@ msgstr "Novi direktorij"
 msgid "File(s) to add to composition"
 msgstr ""
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-
-#. day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -651,7 +682,7 @@ msgstr "Datotečni sustav"
 msgid "%s's home"
 msgstr ""
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -699,10 +730,8 @@ msgstr "Slikovna datoteka '%s' ne postoji"
 msgid "_File"
 msgstr "_Datoteka"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
-#. new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
-#. a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -712,14 +741,11 @@ msgstr ""
 msgid "New audio composition"
 msgstr ""
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
-#. composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
-#. composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
-#. NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -781,8 +807,7 @@ msgstr "Prazan CD-RW"
 msgid "Copy Data CD"
 msgstr "Kopiraj podatkovni CD"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
-#. Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Snimi sliku"
@@ -1326,13 +1351,13 @@ msgstr ""
 msgid "Data Composition"
 msgstr ""
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "Snimi sliku (xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Program za snimanje CD-a i DVD-a"
+
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "Snimi sliku (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Autor/Održavatelj"

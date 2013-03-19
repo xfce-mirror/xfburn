@@ -7,16 +7,55 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-26 23:27+0000\n"
+"POT-Creation-Date: 2013-03-19 09:46+0100\n"
 "PO-Revision-Date: 2009-07-23 12:22+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at gnome dot hu>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:32
+#, fuzzy
+msgid "length"
+msgstr "Hossz"
+
+#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr "Gyorsítótár ürítése…"
+
+#: ../xfburn/xfburn-global.h:34
+#, fuzzy
+msgid "Please insert a recordable disc and hit enter"
+msgstr "Helyezzen be egy írható lemezt."
+
+#: ../xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:42
+#, fuzzy
+msgid "Data composition"
+msgstr "Adat-összeállítás"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -93,8 +132,7 @@ msgstr "Lemez kia_dása"
 msgid "_Blank"
 msgstr "_Törlés"
 
-#. blanking can only be performed on blank discs, format and deformat are
-#. allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "A behelyezett lemez már üres."
@@ -334,10 +372,6 @@ msgstr "_Menet közben"
 msgid "_Copy CD"
 msgstr "_CD másolása"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr "Gyorsítótár ürítése…"
-
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
 msgstr "Helyezzen be egy írható lemezt."
@@ -407,8 +441,7 @@ msgstr "Törlés"
 msgid "Clear the content of the composition"
 msgstr "Az összeállítás tartalmának törlése"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
-#. existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "Átnevezés"
@@ -455,8 +488,7 @@ msgstr "Új könyvtár"
 msgid "File(s) to add to composition"
 msgstr "Ezen fájlok hozzáadása az összeállításhoz"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-
-#. day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -671,7 +703,7 @@ msgstr "Fájlrendszer"
 msgid "%s's home"
 msgstr "%s mappája"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -726,10 +758,8 @@ msgstr "A lemezképfájl („%s”) nem létezik."
 msgid "_File"
 msgstr "_Fájl"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
-#. new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
-#. a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -739,14 +769,11 @@ msgstr "Új adat-összeállítás"
 msgid "New audio composition"
 msgstr "Új hangösszeállítás"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
-#. composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
-#. composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
-#. NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -808,8 +835,7 @@ msgstr "CD-RW törlése"
 msgid "Copy Data CD"
 msgstr "Adat CD másolása"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
-#. Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Lemezkép írása"
@@ -1380,13 +1406,13 @@ msgstr "libburn PACKET blokktípusok"
 msgid "Data Composition"
 msgstr "Adat-összeállítás"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "Lemezkép írása"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD- és DVD-író alkalmazás"
+
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "Lemezkép írása"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "Szerző/karbantartó"

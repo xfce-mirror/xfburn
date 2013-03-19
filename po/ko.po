@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-23 17:06+0000\n"
+"POT-Creation-Date: 2013-03-19 09:46+0100\n"
 "PO-Revision-Date: 2013-01-24 05:36+0900\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
@@ -18,6 +18,45 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:32
+#, fuzzy
+msgid "length"
+msgstr "길이"
+
+#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr "캐쉬 비우는 중..."
+
+#: ../xfburn/xfburn-global.h:34
+#, fuzzy
+msgid "Please insert a recordable disc and hit enter"
+msgstr "기록 가능한 디스크를 넣어 주십시오."
+
+#: ../xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr ""
+
+#: ../xfburn/xfburn-global.h:42
+#, fuzzy
+msgid "Data composition"
+msgstr "데이터 구성"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -68,8 +107,7 @@ msgstr "빈 디스크"
 msgid "Burning device"
 msgstr "기록 장치"
 
-#: ../xfburn/xfburn-blank-dialog.c:222
-#: ../xfburn/xfburn-device-box.c:187
+#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:187
 msgid "Blank mode"
 msgstr "빈 상태"
 
@@ -124,8 +162,7 @@ msgstr "디스크 비우는 중..."
 msgid "Done"
 msgstr "완료"
 
-#: ../xfburn/xfburn-blank-dialog.c:444
-#: ../xfburn/xfburn-perform-burn.c:372
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
 #: ../xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
 msgstr "실패"
@@ -266,16 +303,25 @@ msgid "Burning image..."
 msgstr "이미지 기록중..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
-msgid "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"
-msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">기록할 이미지를 선택하십시오</span>"
+msgid ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
+"select an image to burn</span>"
+msgstr ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">기록할 "
+"이미지를 선택하십시오</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "현재의 기록모드로는 다중세션 디스크에 데이터를 추가할 수 없습니다:(대신 TAO를 사용하십시오)"
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr ""
+"현재의 기록모드로는 다중세션 디스크에 데이터를 추가할 수 없습니다:(대신 TAO"
+"를 사용하십시오)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr "데이터가 들어있는 닫힌 디스크를 감지했습니다. 비었거나 세션을 덧붙일 수 있는 디스크가 필요합니다"
+msgstr ""
+"데이터가 들어있는 닫힌 디스크를 감지했습니다. 비었거나 세션을 덧붙일 수 있는 "
+"디스크가 필요합니다"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "No disc detected in drive"
@@ -294,8 +340,12 @@ msgid "Failed to get image size"
 msgstr "이미지 크기를 가져오는데 실패했습니다"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:558
-msgid "Make sure you selected a valid file and you have the proper permissions to access it."
-msgstr "올바른 파일을 선택하였는지 그리고 접근할 적절한 권한을 가지고 있는지 확인하기 바랍니다."
+msgid ""
+"Make sure you selected a valid file and you have the proper permissions to "
+"access it."
+msgstr ""
+"올바른 파일을 선택하였는지 그리고 접근할 적절한 권한을 가지고 있는지 확인하"
+"기 바랍니다."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -322,10 +372,6 @@ msgstr "즉시(_F)"
 #: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
 msgstr "CD 복사(_C)"
-
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr "캐쉬 비우는 중..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
@@ -451,8 +497,12 @@ msgstr "데이터 %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1277
 #, c-format
-msgid "%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."
-msgstr "%s을(를) 구성에 추가할 수 없습니다. iso9660의 파일 사이즈에서 허용하는 최대 파일 크기를 넘었기 때문입니다."
+msgid ""
+"%s cannot be added to the composition, because it exceeds the maximum "
+"allowed file size for iso9660."
+msgstr ""
+"%s을(를) 구성에 추가할 수 없습니다. iso9660의 파일 사이즈에서 허용하는 최대 "
+"파일 크기를 넘었기 때문입니다."
 
 #: ../xfburn/xfburn-data-composition.c:1362
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -462,18 +512,23 @@ msgstr "홈 디렉터리 추가"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely "
+"to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"구성에 여러분의 홈 디렉터리를 추가하려 합니다. 이는 매우 긴 시간이 필요하며, 디스크 용량에 맞추기에는 너무 큽니다.\n"
+"구성에 여러분의 홈 디렉터리를 추가하려 합니다. 이는 매우 긴 시간이 필요하며, "
+"디스크 용량에 맞추기에는 너무 큽니다.\n"
 "\n"
 "정말로 실행하시렵니까?"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
-msgid "A file named \"%s\" already exists in this directory, the file hasn't been added."
-msgstr "\"%s\"(이)라는 파일이 이 디렉터리에 이미 있기 때문에 추가할 수 없습니다."
+msgid ""
+"A file named \"%s\" already exists in this directory, the file hasn't been "
+"added."
+msgstr ""
+"\"%s\"(이)라는 파일이 이 디렉터리에 이미 있기 때문에 추가할 수 없습니다."
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1945
@@ -481,8 +536,7 @@ msgstr "\"%s\"(이)라는 파일이 이 디렉터리에 이미 있기 때문에 
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "'%s' 파일 이름을 '%s'에 대하여 복사"
 
-#: ../xfburn/xfburn-device-box.c:171
-#: ../xfburn/xfburn-device-box.c:172
+#: ../xfburn/xfburn-device-box.c:171 ../xfburn/xfburn-device-box.c:172
 msgid "Show writers only"
 msgstr "작성자만 표시"
 
@@ -512,10 +566,11 @@ msgstr "구성을 기록하기 위한 하드웨어와 디스크의 조합이 유
 
 #: ../xfburn/xfburn-device-box.c:188
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "일반 모드와는 달리 빈 디스크 모드에서는 각기 다른 디스크 상태 메시지를 보입니다"
+msgstr ""
+"일반 모드와는 달리 빈 디스크 모드에서는 각기 다른 디스크 상태 메시지를 보입니"
+"다"
 
-#: ../xfburn/xfburn-device-box.c:191
-#: ../xfburn/xfburn-device-box.c:192
+#: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
 msgid "Accept only CDs as valid discs"
 msgstr "유효한 디스크 CD만 허용"
 
@@ -535,15 +590,18 @@ msgstr "빈 속도 목록"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please "
+"have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us know.\n"
+"Burning should still work, but if there are problems anyways, please let us "
+"know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 "<b>드라이브에 대한 속도 목록을 찾을 수 없습니다.</b>\n"
 "\n"
-"이는 드라이브에서 알려진 버그입니다. 이를 고치는데 관심이 있다면. libburn 라이브러리를 찾아보십시오.\n"
+"이는 드라이브에서 알려진 버그입니다. 이를 고치는데 관심이 있다면. libburn 라"
+"이브러리를 찾아보십시오.\n"
 "\n"
 "기록을 계속 진행하겠지만, 그래도 문제가 있다면 알려주시기 바랍니디.\n"
 "\n"
@@ -565,8 +623,7 @@ msgstr "최대"
 msgid "Drive can't burn on the inserted disc"
 msgstr "드라이브가 삽입한 디스크에 기록할 수 없습니다"
 
-#: ../xfburn/xfburn-device-box.c:599
-#: ../xfburn/xfburn-device-box.c:645
+#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:645
 msgid "Drive is empty"
 msgstr "드라이브가 비었습니다"
 
@@ -578,18 +635,15 @@ msgstr "죄송하지만, 아직 다중세션을 지원하지 않습니다"
 msgid "Inserted disc is full"
 msgstr "삽입한 디스크가 가득찼습니다"
 
-#: ../xfburn/xfburn-device-box.c:608
-#: ../xfburn/xfburn-device-box.c:651
+#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:651
 msgid "Inserted disc is unsuitable"
 msgstr "삽입한 디스크가 적당하지 않습니다"
 
-#: ../xfburn/xfburn-device-box.c:611
-#: ../xfburn/xfburn-device-box.c:654
+#: ../xfburn/xfburn-device-box.c:611 ../xfburn/xfburn-device-box.c:654
 msgid "Cannot access drive (it might be in use)"
 msgstr "드라이브에 접근할 수 없습니다(아마도 사용중인 것 같습니다)"
 
-#: ../xfburn/xfburn-device-box.c:616
-#: ../xfburn/xfburn-device-box.c:657
+#: ../xfburn/xfburn-device-box.c:616 ../xfburn/xfburn-device-box.c:657
 msgid "Error determining disc"
 msgstr "디스크 판단 오류"
 
@@ -609,8 +663,7 @@ msgstr "삽입한 디스크는 이미 비워져있습니다"
 msgid "Auto"
 msgstr "자동"
 
-#: ../xfburn/xfburn-device-list.c:206
-#: ../xfburn/xfburn-device-list.c:207
+#: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
 msgstr "시스템의 기록장치 수"
 
@@ -622,13 +675,11 @@ msgstr "시스템의 드라이브 수"
 msgid "Number of drives in the system (readers and writers)"
 msgstr "시스템의 드라이브 수(리더기와 기록기)"
 
-#: ../xfburn/xfburn-device-list.c:212
-#: ../xfburn/xfburn-device-list.c:213
+#: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
 msgid "List of devices"
 msgstr "장치 목록"
 
-#: ../xfburn/xfburn-device-list.c:215
-#: ../xfburn/xfburn-device-list.c:216
+#: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
 msgid "Currently selected device"
 msgstr "현재 선택한 장치"
 
@@ -645,8 +696,7 @@ msgstr "파일"
 msgid "Type"
 msgstr "형태"
 
-#: ../xfburn/xfburn-fs-browser.c:94
-#: ../xfburn/xfburn-fs-browser.c:283
+#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:283
 msgid "Filesystem"
 msgstr "파일 시스템"
 
@@ -656,8 +706,7 @@ msgstr "파일 시스템"
 msgid "%s's home"
 msgstr "%s의 홈"
 
-#: ../xfburn/xfburn-main.c:202
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -684,13 +733,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the "
+"drive with the current user."
 msgstr ""
 "디스크이 사용중일 가능성이 있고, 접근할 수 없습니다.\n"
 "\n"
 "마운트를 해제하고 프로그램을 다시 시작하십시오.\n"
 "\n"
-"드라이브에 디스크가 없다면, 현재 사용자가 드라이브에 읽고 쓰는 중인지 확인하십시오."
+"드라이브에 디스크가 없다면, 현재 사용자가 드라이브에 읽고 쓰는 중인지 확인하"
+"십시오."
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
@@ -839,12 +890,17 @@ msgid "Determine whether the close button is visible"
 msgstr "닫기 단추를 보일 것인지 결정"
 
 #: ../xfburn/xfburn-perform-burn.c:158
-msgid "Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr "현재의 기록모드로는 다중 세션 디스크에 데이터를 추가할 수 없습니다.(TAO를 이용하시지요)"
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)."
+msgstr ""
+"현재의 기록모드로는 다중 세션 디스크에 데이터를 추가할 수 없습니다.(TAO를 이"
+"용하시지요)"
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr "데이터가 들어있는 닫힌 디스크를 감지했습니다. 비었거나 세션을 덧붙일 수 있는 디스크가 필요합니다."
+msgstr ""
+"데이터가 들어있는 닫힌 디스크를 감지했습니다. 비었거나 세션을 덧붙일 수 있는 "
+"디스크가 필요합니다."
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
@@ -863,8 +919,7 @@ msgstr "삽입한 디스크에 사용가능한 충분한 용량이 없습니다.
 msgid "Burning track %2d/%d..."
 msgstr "트랙 기록중 %2d/%2d..."
 
-#: ../xfburn/xfburn-perform-burn.c:229
-#: ../xfburn/xfburn-perform-burn.c:294
+#: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
 msgid "Burning composition..."
 msgstr "구성 내용을 기록하고 있습니다..."
 
@@ -896,8 +951,7 @@ msgstr "마침"
 msgid "aborted"
 msgstr "취소함"
 
-#: ../xfburn/xfburn-perform-burn.c:289
-#: ../xfburn/xfburn-progress-dialog.c:216
+#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:216
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
@@ -1282,90 +1336,73 @@ msgstr "Gstreamer가 변환 코딩 시작을 원하지 않습니다(시간 초�
 msgid "Failed to change songs while transcoding"
 msgstr "변환 코딩을 진행하는 동안 노래를 바꾸는데 실패했습니다"
 
-#: ../xfburn/xfburn-transcoder.c:124
-#: ../xfburn/xfburn-transcoder.c:151
+#: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
 #, c-format
 msgid "not implemented"
 msgstr "지원하지 않음"
 
-#: ../xfburn/xfburn-device.c:242
-#: ../xfburn/xfburn-device.c:243
+#: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
 msgid "Display name"
 msgstr "표시 이름"
 
-#: ../xfburn/xfburn-device.c:245
-#: ../xfburn/xfburn-device.c:246
+#: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
 msgid "Device address"
 msgstr "장치 주소"
 
-#: ../xfburn/xfburn-device.c:248
-#: ../xfburn/xfburn-device.c:249
+#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
 msgid "Burn speeds supported by the device"
 msgstr "장치에서 기록 속도를 지원합니다"
 
-#: ../xfburn/xfburn-device.c:251
-#: ../xfburn/xfburn-device.c:252
+#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
 msgid "Disc status"
 msgstr "디스크 상태"
 
-#: ../xfburn/xfburn-device.c:254
-#: ../xfburn/xfburn-device.c:255
+#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
 msgid "Profile no. as reported by libburn"
 msgstr "libburn이 보고한 프로파일 번호"
 
-#: ../xfburn/xfburn-device.c:257
-#: ../xfburn/xfburn-device.c:258
+#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
 msgid "Profile name as reported by libburn"
 msgstr "libburn이 보고한 프로파일 이름"
 
-#: ../xfburn/xfburn-device.c:260
-#: ../xfburn/xfburn-device.c:261
+#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
 msgid "Is the disc erasable"
 msgstr "지울 수 있는 디스크임"
 
-#: ../xfburn/xfburn-device.c:263
-#: ../xfburn/xfburn-device.c:264
+#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Can burn CDR"
 msgstr "CDR을 기록할 수 있음"
 
-#: ../xfburn/xfburn-device.c:266
-#: ../xfburn/xfburn-device.c:267
+#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
 msgid "Can burn CDRW"
 msgstr "CDRW를 기록할 수 있음"
 
-#: ../xfburn/xfburn-device.c:269
-#: ../xfburn/xfburn-device.c:270
+#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
 msgid "Can burn DVDR"
 msgstr "DVDR을 기록할 수 있음"
 
-#: ../xfburn/xfburn-device.c:272
-#: ../xfburn/xfburn-device.c:273
+#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
 msgid "Can burn DVDPLUSR"
 msgstr "DVDPLUSR을 기록할 수 있음"
 
-#: ../xfburn/xfburn-device.c:275
-#: ../xfburn/xfburn-device.c:276
+#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
 msgid "Can burn DVDRAM"
 msgstr "DVDRAM을 기록할 수 있음"
 
-#: ../xfburn/xfburn-device.c:278
-#: ../xfburn/xfburn-device.c:279
+#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
 msgid "libburn TAO block types"
 msgstr "libburn TAO 블록 유형"
 
-#: ../xfburn/xfburn-device.c:281
-#: ../xfburn/xfburn-device.c:282
+#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
 msgid "libburn SAO block types"
 msgstr "libburn SAO 블록 유형"
 
-#: ../xfburn/xfburn-device.c:284
-#: ../xfburn/xfburn-device.c:285
+#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
 msgid "libburn RAW block types"
 msgstr "libburn RAW 블록 유형"
 
-#: ../xfburn/xfburn-device.c:287
-#: ../xfburn/xfburn-device.c:288
+#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
 msgid "libburn PACKET block types"
 msgstr "libburn PACKET 블록 유형"
 
@@ -1373,11 +1410,10 @@ msgstr "libburn PACKET 블록 유형"
 msgid "Data Composition"
 msgstr "데이터 구성"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "이미지 기록하기(xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD/DVD 기록 프로그램"
 
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "이미지 기록하기(xfburn)"
