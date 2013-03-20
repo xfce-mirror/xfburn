@@ -6,24 +6,24 @@
 # 赵正龙 <longer.zhao@gmail.com>, 2008.
 # Hunt Xu <huntxu@live.cn>, 2009, 2010.
 # Chipong Luo <chipong.luo@yahoo.com>, 2011, 2012.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 09:46+0100\n"
+"POT-Creation-Date: 2013-03-19 23:54+0000\n"
 "PO-Revision-Date: 2010-03-18 15:25+0800\n"
 "Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n-cn@xfce.org>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
-msgstr ""
+msgstr "容量:"
 
 #: ../xfburn/xfburn-global.h:29
 msgid "addr:"
@@ -34,7 +34,6 @@ msgid "Time total:"
 msgstr ""
 
 #: ../xfburn/xfburn-global.h:32
-#, fuzzy
 msgid "length"
 msgstr "长度"
 
@@ -43,20 +42,18 @@ msgid "Flushing cache..."
 msgstr "正在清空缓存..."
 
 #: ../xfburn/xfburn-global.h:34
-#, fuzzy
 msgid "Please insert a recordable disc and hit enter"
-msgstr "请插入可录制光盘。"
+msgstr "请插入刻录光盘，按下回车键"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr ""
+msgstr "无法确定光盘状态 - 请按下回车键再试一次。"
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr ""
+msgstr "CD 复制成功。"
 
 #: ../xfburn/xfburn-global.h:42
-#, fuzzy
 msgid "Data composition"
 msgstr "数据项目"
 
@@ -135,7 +132,8 @@ msgstr "弹出光盘(_J)"
 msgid "_Blank"
 msgstr "擦除(_B)"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "插入的光盘已经擦除。"
@@ -438,7 +436,8 @@ msgstr "清除"
 msgid "Clear the content of the composition"
 msgstr "清除项目内容"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "重命名"
@@ -485,7 +484,8 @@ msgstr "新建目录"
 msgid "File(s) to add to composition"
 msgstr "在项目中添加文件"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -697,7 +697,7 @@ msgstr "文件系统"
 msgid "%s's home"
 msgstr "%s 的主文件夹"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn 刻录程序"
 
@@ -751,8 +751,10 @@ msgstr "镜像文件 ‘%s’ 不存在。"
 msgid "_File"
 msgstr "文件(_F)"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -762,11 +764,14 @@ msgstr "新建数据项目"
 msgid "New audio composition"
 msgstr "新建音频项目"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -828,7 +833,8 @@ msgstr "擦除 CD-RW"
 msgid "Copy Data CD"
 msgstr "复制数据 CD"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "刻录镜像"
@@ -1393,13 +1399,13 @@ msgstr "libburn 的 PACKET 块类型"
 msgid "Data Composition"
 msgstr "数据项目"
 
+#: ../xfburn.desktop.in.h:1
+msgid "Burn Image (xfburn)"
+msgstr "刻录镜像(xfburn)"
+
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD 和 DVD 刻录应用程序"
-
-#: ../xfburn.desktop.in.h:3
-msgid "Burn Image (xfburn)"
-msgstr "刻录镜像(xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "作者/维护者"
