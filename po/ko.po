@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 09:46+0100\n"
-"PO-Revision-Date: 2013-01-24 05:36+0900\n"
+"POT-Creation-Date: 2013-03-23 13:30+0000\n"
+"PO-Revision-Date: 2013-03-24 21:51+0900\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
 "Language: ko\n"
@@ -18,21 +18,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
-msgstr ""
+msgstr "용량:"
 
 #: ../xfburn/xfburn-global.h:29
 msgid "addr:"
-msgstr ""
+msgstr "주소:"
 
 #: ../xfburn/xfburn-global.h:30
 msgid "Time total:"
-msgstr ""
+msgstr "총 소요시간:"
 
 #: ../xfburn/xfburn-global.h:32
-#, fuzzy
 msgid "length"
 msgstr "길이"
 
@@ -41,20 +41,19 @@ msgid "Flushing cache..."
 msgstr "캐쉬 비우는 중..."
 
 #: ../xfburn/xfburn-global.h:34
-#, fuzzy
 msgid "Please insert a recordable disc and hit enter"
-msgstr "기록 가능한 디스크를 넣어 주십시오."
+msgstr "기록 가능한 디스크를 넣고 엔터키를 누르십시오"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
 msgstr ""
+"디스크 상태를 결정할 수 없습니다 - 엔터 키를 누르시고 다시 시도하십시오."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr ""
+msgstr "CD 복사를 성공적으로 완료했습니다."
 
 #: ../xfburn/xfburn-global.h:42
-#, fuzzy
 msgid "Data composition"
 msgstr "데이터 구성"
 
@@ -80,7 +79,7 @@ msgstr "완전 포맷"
 
 #: ../xfburn/xfburn-blank-dialog.c:75
 msgid "Quick Deformat"
-msgstr "빠른 포맷복구"
+msgstr "빠른 포맷 복구"
 
 #: ../xfburn/xfburn-blank-dialog.c:76
 msgid "Full Deformat (slow)"
@@ -92,7 +91,7 @@ msgstr "디스크 추출"
 
 #: ../xfburn/xfburn-blank-dialog.c:150
 msgid "Default value for eject checkbox"
-msgstr "꺼내기 체크상자에 대한 기본값"
+msgstr "꺼내기 확인 상자에 대한 기본값"
 
 #: ../xfburn/xfburn-blank-dialog.c:197
 msgid "Blank Disc"
@@ -131,12 +130,12 @@ msgstr "디스크 꺼내기(_J)"
 
 #: ../xfburn/xfburn-blank-dialog.c:244
 msgid "_Blank"
-msgstr "지우기(_B)"
+msgstr "비우기(_B)"
 
 #. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
-msgstr "삽입한 디스크는 이미 지워져 있습니다."
+msgstr "삽입한 디스크는 이미 비어 있습니다."
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:362
@@ -283,7 +282,7 @@ msgstr "이미지 기록(_B)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:285
 msgid "Burn mode is not currently implemented."
-msgstr "현재로서는 기록모드를 지원하지 않습니다."
+msgstr "아직 기록모드를 구현하지 않았습니다."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:336
 #: ../xfburn/xfburn-burn-image-dialog.c:365
@@ -325,11 +324,11 @@ msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "No disc detected in drive"
-msgstr "드라이브에 디스크가 없음"
+msgstr "드라이브에 디스크가 없습니다"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:513
 msgid "Cannot recognize state of drive and disc"
-msgstr "드라이브와 디스크의 상태를 알 수 없음"
+msgstr "드라이브와 디스크의 상태를 알 수 없습니다"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:525
 msgid "The selected image does not fit on the inserted disc"
@@ -344,8 +343,8 @@ msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
 msgstr ""
-"올바른 파일을 선택하였는지 그리고 접근할 적절한 권한을 가지고 있는지 확인하"
-"기 바랍니다."
+"올바른 파일을 선택하였는지 그리고 접근할 적절한 권한을 가지고 있는지 확인하십"
+"시오."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -412,7 +411,7 @@ msgstr "추가"
 #: ../xfburn/xfburn-data-composition.c:189
 #: ../xfburn/xfburn-audio-composition.c:206
 msgid "Add the selected file(s) to the composition"
-msgstr "선택한 파일을 구성내용에 추가합니다"
+msgstr "선택한 파일을 구성 내용에 추가합니다"
 
 #: ../xfburn/xfburn-data-composition.c:191
 msgid "Create directory"
@@ -430,7 +429,7 @@ msgstr "제거"
 #: ../xfburn/xfburn-data-composition.c:193
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove the selected file(s) from the composition"
-msgstr "선택한 파일을 구성내용에서 제거합니다"
+msgstr "선택한 파일을 구성 내용에서 제거합니다"
 
 #: ../xfburn/xfburn-data-composition.c:195
 #: ../xfburn/xfburn-audio-composition.c:210
@@ -440,16 +439,16 @@ msgstr "지우기"
 #: ../xfburn/xfburn-data-composition.c:195
 #: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear the content of the composition"
-msgstr "구성한 내용을 지웁니다"
+msgstr "구성 내용을 지웁니다"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
-msgstr "이름변경"
+msgstr "이름 바꾸기"
 
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename the selected file"
-msgstr "선택한 파일의 이름을 변경합니다"
+msgstr "선택한 파일의 이름을 바꿉니다"
 
 #: ../xfburn/xfburn-data-composition.c:352
 msgid "Volume name :"
@@ -507,7 +506,7 @@ msgstr ""
 #: ../xfburn/xfburn-data-composition.c:1362
 #: ../xfburn/xfburn-audio-composition.c:1351
 msgid "Adding home directory"
-msgstr "홈 디렉터리 추가"
+msgstr "내 디렉터리 추가"
 
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
@@ -517,7 +516,7 @@ msgid ""
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"구성에 여러분의 홈 디렉터리를 추가하려 합니다. 이는 매우 긴 시간이 필요하며, "
+"구성에 여러분의 내 디렉터리를 추가하려 합니다. 이는 매우 긴 시간이 필요하며, "
 "디스크 용량에 맞추기에는 너무 큽니다.\n"
 "\n"
 "정말로 실행하시렵니까?"
@@ -704,9 +703,9 @@ msgstr "파일 시스템"
 #: ../xfburn/xfburn-fs-browser.c:262
 #, c-format
 msgid "%s's home"
-msgstr "%s의 홈"
+msgstr "%s의 내 폴더"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -1278,7 +1277,7 @@ msgstr ""
 "\n"
 "이 파일을 다루기 위한 디코더를 설치하지 않았습니다.\n"
 "아마도 필요한 플러긴을 위해 gst-plugins-* 패키지를\n"
-"찾아볼 필요가 있는 것 같습니다.\n"
+"찾아봐야 할 것 같습니다.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1410,10 +1409,10 @@ msgstr "libburn PACKET 블록 유형"
 msgid "Data Composition"
 msgstr "데이터 구성"
 
+#: ../xfburn.desktop.in.h:1
+msgid "Burn Image (xfburn)"
+msgstr "이미지 기록하기(xfburn)"
+
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD/DVD 기록 프로그램"
-
-#: ../xfburn.desktop.in.h:3
-msgid "Burn Image (xfburn)"
-msgstr "이미지 기록하기(xfburn)"
