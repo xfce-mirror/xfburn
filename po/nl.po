@@ -2,7 +2,7 @@
 # Copyright (C) The Xfce development team.
 # This file is distributed under the same license as the xfburn package.
 # Stephan Arts <psyBSD@gmail.com>, 2006.
-# Pjotr, 2011.
+# Pjotr pjotrvertaalt@gmail.com , 2011 - 2013.
 # 
 msgid ""
 msgstr ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-20 10:36+0000\n"
 "PO-Revision-Date: 2011-09-08 17:34+0200\n"
-"Last-Translator: Pjotr\n"
+"Last-Translator: Pjotr pjotrvertaalt@gmail.com\n"
 "Language-Team: Dutch (Flemish)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +36,7 @@ msgstr "duur"
 
 #: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
-msgstr "Opslag aan het legen..."
+msgstr "Tijdelijke opslag aan het legen..."
 
 #: ../xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
@@ -311,7 +311,7 @@ msgstr ""
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
-"Kan geen gegevens vastmaken aan de multisessie-schijf in deze schrijfmodus "
+"Kan geen gegevens toevoegen aan de multisessie-schijf in deze schrijfmodus "
 "(gebruik in plaats daarvan TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
@@ -515,9 +515,9 @@ msgid ""
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"U staat op het punt om uw thuismap toe te voegen aan de verzameling. Dit zal "
-"waarschijnlijk een hele tijd duren, en zal ook de verzameling vermoedelijk "
-"te groot maken om op één schijf te passen.\n"
+"U staat op het punt om uw volledige thuismap toe te voegen aan de verzameling. "
+"Dit zal waarschijnlijk een hele tijd duren, en zal ook de verzameling "
+"vermoedelijk te groot maken om op één schijf te passen.\n"
 "\n"
 "Weet u zeker dat u door wil gaan?"
 
@@ -527,7 +527,7 @@ msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr ""
-"Een bestand met de naam \"%s\" bestaat al in deze map, het bestand is niet "
+"Een bestand met de naam '%s' bestaat al in deze map, het bestand is niet "
 "toegevoegd."
 
 #. The first string is the renamed name, the second one the original name
@@ -563,7 +563,7 @@ msgstr "Is het een geldige combinatie?"
 #: ../xfburn/xfburn-device-box.c:184
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr ""
-"Is de combinatie van ijzerwaar en schijf in staat om de verzameling te "
+"Is de combinatie van apparatuur en schijf in staat om de verzameling te "
 "branden?"
 
 #: ../xfburn/xfburn-device-box.c:188
@@ -602,12 +602,12 @@ msgid ""
 msgstr ""
 "<b>Kon geen snelhedenlijst voor het station ophalen.</b>\n"
 "\n"
-"Dit is een bekende fout, die bij sommige stations plaatsvindt. Meld het a.u."
-"b. aan <i>xfburn@xfce.org</i>, samen met de terminaluitvoer, om de kans dat "
-"het wordt hersteld, te vergroten.\n"
+"Dit is een bekende fout, die bij sommige stations plaatsvindt. Meld het "
+"a.u.b. aan <i>xfburn@xfce.org</i>, samen met de terminaluitvoer, om "
+"de kans dat het wordt hersteld, te vergroten.\n"
 "\n"
 "Branden zou nog steeds moeten lukken, maar als ook daar problemen mee zijn, "
-"laat het ons a.u.b. weten.\n"
+"laat het ons dan alstublieft weten.\n"
 "\n"
 "<i>Bij voorbaat dank!</i>"
 
@@ -745,7 +745,7 @@ msgstr ""
 "\n"
 "Gelieve het schijfstation te ontkoppelen en de toepassing te herstarten.\n"
 "\n"
-"Indien er geen schijf zit in het station, controleer dat u lees/schrijf-"
+"Indien er geen schijf in het station zit, controleer dan dat u lees/schrijf-"
 "toegang hebt voor het station, als huidige gebruiker."
 
 #: ../xfburn/xfburn-main.c:331
@@ -862,11 +862,11 @@ msgstr "Brand DVD-beeldbestand"
 
 #: ../xfburn/xfburn-main-window.c:141
 msgid "Show file browser"
-msgstr "Toon verkenner"
+msgstr "Toon bestandbeheerder"
 
 #: ../xfburn/xfburn-main-window.c:141
 msgid "Show/hide the file browser"
-msgstr "Toon/verberg de verkenner"
+msgstr "Toon/verberg de bestandbeheerder"
 
 #: ../xfburn/xfburn-main-window.c:143
 msgid "Show toolbar"
@@ -882,7 +882,7 @@ msgstr "Werkbalkbewerker"
 
 #: ../xfburn/xfburn-main-window.c:538
 msgid "Another cd burning GUI"
-msgstr "Een werkomgeving voor branden van CD's"
+msgstr "Een grafische schil voor het branden van CD's"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "Label"
@@ -1172,7 +1172,7 @@ msgstr "Geluid-CD afspeelbaar in normale stereo-installaties"
 
 #: ../xfburn/xfburn-audio-composition.c:212
 msgid "What files can get burned to an audio CD?"
-msgstr "Welke bestanden kunnen worden gebrand op een geluid-CD?"
+msgstr "Welke bestanden kunnen er worden gebrand op een geluid-CD?"
 
 #: ../xfburn/xfburn-audio-composition.c:216
 msgid "Rename Artist"
@@ -1250,8 +1250,8 @@ msgstr ""
 "Maar hij kan alleen omgaan met\n"
 "niet-gecomprimeerde .wav-bestanden.\n"
 "Als u geluidverzamelingen wil maken\n"
-"van andere geluidbestanden, stel die\n"
-"dan samen met gstreamer-ondersteuning."
+"van andere geluidbestanden, compileer\n"
+"dan met gstreamer-ondersteuning."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1291,7 +1291,7 @@ msgstr ""
 "\n"
 "U hebt geen decodeerder geïnstalleerd voor dit bestand.\n"
 "U zult waarschijnlijk moeten zoeken naar de\n"
-"gst-plugins-*-pakketten voor de nodige plugins.\n"
+"gst-plugins-*-pakketten voor de nodige invoegtoepassingen.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1318,14 +1318,14 @@ msgstr ""
 "In wezen zouden alle geluidbestanden ondersteund\n"
 "moeten zijn, op voorwaarde dat de juiste plugins\n"
 "zijn geïnstalleerd. Indien een geluidbestand niet\n"
-"wordt herkend, zorg er dan voor dat u de 'goede',\n"
-"'slechte' en 'lelijke' plugin-pakketten allemaal\n"
-"hebt geïnstalleerd."
+"wordt herkend, zorg er dan voor dat u de 'good',\n"
+"'bad' en 'ugly' invoegtoepassing-pakketten\n"
+"allemaal hebt geïnstalleerd."
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
-msgstr "Gstreamer beviel dit bestand niet (detectie duurde te lang)"
+msgstr "Dit bestand beviel Gstreamer niet (detectie duurde te lang)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:800
 #, c-format
