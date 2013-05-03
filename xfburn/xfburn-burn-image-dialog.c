@@ -223,7 +223,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_widget_show (priv->check_burnfree);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);
 
-  priv->check_quit = gtk_check_button_new_with_mnemonic (_("_Quit after successful completion"));
+  priv->check_quit = gtk_check_button_new_with_mnemonic (_("_Quit after success"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_quit), xfburn_settings_get_boolean("quit_after_success", FALSE));
   gtk_widget_show (priv->check_quit);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_quit, FALSE, FALSE, BORDER);
