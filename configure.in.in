@@ -20,8 +20,9 @@ AM_MAINTAINER_MODE()
 dnl check for basic programs
 AC_PROG_CC()
 AC_PROG_INSTALL()
-AC_PROG_LIBTOOL()
 AC_PROG_INTLTOOL([0.31], [no-xml])
+LT_PREREQ([2.2.6])
+LT_INIT()
 
 AC_SYS_LARGEFILE
 
