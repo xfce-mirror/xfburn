@@ -367,6 +367,18 @@ stop (XfburnProgressDialog *dialog)
 static void
 cb_button_stop_clicked (GtkWidget *button, XfburnProgressDialog *dialog)
 {
+  gint res;
+  GtkWidget *popup;
+
+  popup = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO,
+                                  _("Are you sure you want to abort?"));
+
+  res = gtk_dialog_run (GTK_DIALOG (popup));
+  gtk_widget_destroy (popup);
+
+  if (res != GTK_RESPONSE_YES)
+    return;
+
   stop (dialog);
 }
 
