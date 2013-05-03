@@ -174,7 +174,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_file_chooser_add_filter (GTK_FILE_CHOOSER(priv->chooser_image), filter);
   filter = gtk_file_filter_new ();
   gtk_file_filter_set_name (filter, _("ISO images"));
-  gtk_file_filter_add_pattern (filter, "*.iso");
+  gtk_file_filter_add_pattern (filter, "*.[iI][sS][oO]");
   gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (priv->chooser_image), filter);
   gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (priv->chooser_image), filter);
 
