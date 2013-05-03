@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn 0.0.3svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-03 04:54+0000\n"
+"POT-Creation-Date: 2013-03-28 05:51+0000\n"
 "PO-Revision-Date: 2010-03-02 18:18+0300\n"
 "Last-Translator: Dima Smirnov <arch@cnc-parts.info>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -16,6 +16,42 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
+
+#: ../xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr "Ёмкость:"
+
+#: ../xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr "адрес:"
+
+#: ../xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr "Всего времени:"
+
+#: ../xfburn/xfburn-global.h:32
+msgid "length"
+msgstr "Длина"
+
+#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr "Заполнение кэша..."
+
+#: ../xfburn/xfburn-global.h:34
+msgid "Please insert a recordable disc and hit enter"
+msgstr "Пожалуйста, вставьте записываемый диск и нажмите enter"
+
+#: ../xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr "Не удалось определить статус диска. Нажмите Enter, чтобы попробовать снова."
+
+#: ../xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr "Копирование CD успешно завершено."
+
+#: ../xfburn/xfburn-global.h:42
+msgid "Data composition"
+msgstr "Проект с данными"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -330,10 +366,6 @@ msgstr "_На лету"
 #: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
 msgstr "_Копировать CD"
-
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr "Заполнение кэша..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
@@ -1402,9 +1434,6 @@ msgstr "Приложение для записи CD и DVD"
 
 #~ msgid "Is the device accessible"
 #~ msgstr "Устройство доступно"
-
-#~ msgid "Data composition"
-#~ msgstr "Проект с данными"
 
 #~ msgid "Format DVD+RW"
 #~ msgstr "Форматировать DVD-RW"

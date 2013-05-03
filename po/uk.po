@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-23 20:33+0000\n"
+"POT-Creation-Date: 2013-03-22 10:45+0000\n"
 "PO-Revision-Date: 2009-02-24 19:42+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -18,6 +18,42 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
+
+#: ../xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr "Ємність:"
+
+#: ../xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr "адр.:"
+
+#: ../xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr "Повний час:"
+
+#: ../xfburn/xfburn-global.h:32
+msgid "length"
+msgstr "тривалість"
+
+#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr "Очищення кешу..."
+
+#: ../xfburn/xfburn-global.h:34
+msgid "Please insert a recordable disc and hit enter"
+msgstr "Будь ласка, вставте диск з можливістю запису і натисніть кнопку 'Enter'"
+
+#: ../xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr "Неможливо визначити статус диску - натисніть 'Enter' для нової спроби."
+
+#: ../xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr "Копіювання CD успішно завершено."
+
+#: ../xfburn/xfburn-global.h:42
+msgid "Data composition"
+msgstr "Сеанс з даними"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -334,10 +370,6 @@ msgstr "На _ходу"
 #: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
 msgstr "_Копіювати диск"
-
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:93
-msgid "Flushing cache..."
-msgstr "Очищення кешу..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
@@ -1408,9 +1440,6 @@ msgstr "Програма для запису CD та DVD"
 
 #~ msgid "The write mode is not currently supported"
 #~ msgstr "Поточний режим запису не підтримується"
-
-#~ msgid "Data composition"
-#~ msgstr "Сеанс з даними"
 
 #~ msgid "The status of the disc in the drive"
 #~ msgstr "Стан диску в приводі"

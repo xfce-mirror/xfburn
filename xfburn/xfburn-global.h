@@ -25,21 +25,21 @@
 
 #define BORDER 5
 
-#define READCD_CAPACITY "Capacity:"
-#define READCD_PROGRESS "addr:"
-#define READCD_DONE "Time total:"
+#define READCD_CAPACITY N_("Capacity:")
+#define READCD_PROGRESS N_("addr:")
+#define READCD_DONE N_("Time total:")
 
-#define CDRDAO_LENGTH "length"
-#define CDRDAO_FLUSHING "Flushing cache..."
-#define CDRDAO_INSERT "Please insert a recordable disc and hit enter"
-#define CDRDAO_INSERT_AGAIN "Cannot determine disc status - hit enter to try again."
-#define CDRDAO_DONE "CD copying finished successfully."
+#define CDRDAO_LENGTH N_("length")
+#define CDRDAO_FLUSHING N_("Flushing cache...")
+#define CDRDAO_INSERT N_("Please insert a recordable disc and hit enter")
+#define CDRDAO_INSERT_AGAIN N_("Cannot determine disc status - hit enter to try again.")
+#define CDRDAO_DONE N_("CD copying finished successfully.")
 
 /* in reality CDR_1X_SPEED is 176.4 (see libburn.h:1577), but that shouldn't matter */
 #define CDR_1X_SPEED 176
 #define DVD_1X_SPEED 1385
 
-#define DATA_COMPOSITION_DEFAULT_NAME "Data composition"
+#define DATA_COMPOSITION_DEFAULT_NAME N_("Data composition")
 
 #define FIFO_DEFAULT_SIZE  4096    /* in kb, as int */
 
