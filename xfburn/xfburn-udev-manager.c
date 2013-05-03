@@ -162,15 +162,10 @@ static void cb_device_monitor_uevent(GUdevClient  *client,
 {
   DBG ("UDEV: device uevent: %s", action);
 
-  if (g_str_equal (action, "remove") || g_str_equal (action, "add"))
+  if (g_str_equal (action, "remove") || g_str_equal (action, "add") ||
+      g_str_equal (action, "change"))
     g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
 
-  /* Lets ignore this for now,
-   * way too many of these get triggered when a disc is
-   * inserted or removed!
-  DBG ("HAL: property modified");
-  g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
-  */
 }
 
 static GObject *
