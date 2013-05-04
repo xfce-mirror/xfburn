@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-20 10:36+0000\n"
+"POT-Creation-Date: 2013-05-04 16:48+0000\n"
 "PO-Revision-Date: 2011-09-08 17:34+0200\n"
 "Last-Translator: Pjotr pjotrvertaalt@gmail.com\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -44,7 +44,8 @@ msgstr "Voer a.u.b. een beschrijfbare schijf in en druk op Enter"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr "Kan schijfstatus niet bepalen - druk op Enter om het opnieuw te proberen."
+msgstr ""
+"Kan schijfstatus niet bepalen - druk op Enter om het opnieuw te proberen."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
@@ -160,7 +161,7 @@ msgid "Done"
 msgstr "Klaar"
 
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: ../xfburn/xfburn-progress-dialog.c:649
 msgid "Failure"
 msgstr "Mislukking"
 
@@ -271,8 +272,8 @@ msgid "ISO images"
 msgstr "ISO-beeldbestanden"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:226
-msgid "_Quit after successful completion"
-msgstr "Sluit na geslaagde voltooiing"
+msgid "_Quit after success"
+msgstr "Sluit af na geslaagde voltooiing"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:236
 msgid "_Burn image"
@@ -515,9 +516,9 @@ msgid ""
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
-"U staat op het punt om uw volledige thuismap toe te voegen aan de verzameling. "
-"Dit zal waarschijnlijk een hele tijd duren, en zal ook de verzameling "
-"vermoedelijk te groot maken om op één schijf te passen.\n"
+"U staat op het punt om uw volledige thuismap toe te voegen aan de "
+"verzameling. Dit zal waarschijnlijk een hele tijd duren, en zal ook de "
+"verzameling vermoedelijk te groot maken om op één schijf te passen.\n"
 "\n"
 "Weet u zeker dat u door wil gaan?"
 
@@ -602,9 +603,9 @@ msgid ""
 msgstr ""
 "<b>Kon geen snelhedenlijst voor het station ophalen.</b>\n"
 "\n"
-"Dit is een bekende fout, die bij sommige stations plaatsvindt. Meld het "
-"a.u.b. aan <i>xfburn@xfce.org</i>, samen met de terminaluitvoer, om "
-"de kans dat het wordt hersteld, te vergroten.\n"
+"Dit is een bekende fout, die bij sommige stations plaatsvindt. Meld het a.u."
+"b. aan <i>xfburn@xfce.org</i>, samen met de terminaluitvoer, om de kans dat "
+"het wordt hersteld, te vergroten.\n"
 "\n"
 "Branden zou nog steeds moeten lukken, maar als ook daar problemen mee zijn, "
 "laat het ons dan alstublieft weten.\n"
@@ -966,9 +967,9 @@ msgstr "afgebroken"
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:464
-#: ../xfburn/xfburn-progress-dialog.c:488
-#: ../xfburn/xfburn-progress-dialog.c:512
+#: ../xfburn/xfburn-progress-dialog.c:476
+#: ../xfburn/xfburn-progress-dialog.c:500
+#: ../xfburn/xfburn-progress-dialog.c:524
 msgid "no info"
 msgstr "geen informatie"
 
@@ -1104,28 +1105,32 @@ msgstr "FIFO-buffer:"
 msgid "Device buffer:"
 msgstr "Apparaatbuffer:"
 
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-progress-dialog.c:374
+msgid "Are you sure you want to abort?"
+msgstr "Weet u zeker dat u wil afbreken?"
+
+#: ../xfburn/xfburn-progress-dialog.c:502
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "Min. vulling was %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:549
+#: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Aborted"
 msgstr "Afgebroken"
 
-#: ../xfburn/xfburn-progress-dialog.c:558
+#: ../xfburn/xfburn-progress-dialog.c:570
 msgid "Failed"
 msgstr "Mislukt"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:573
 msgid "Cancelled"
 msgstr "Geannuleerd"
 
-#: ../xfburn/xfburn-progress-dialog.c:564
+#: ../xfburn/xfburn-progress-dialog.c:576
 msgid "Completed"
 msgstr "Klaar"
 
-#: ../xfburn/xfburn-progress-dialog.c:601
+#: ../xfburn/xfburn-progress-dialog.c:613
 msgid "Aborting..."
 msgstr "Aan het afbreken..."
 
