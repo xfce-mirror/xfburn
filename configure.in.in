@@ -14,7 +14,7 @@ AC_INIT([xfburn], [xfburn_version], [xfburn@xfce.org])
 
 dnl Initialize automake
 AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
-AM_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE()
 
 dnl check for basic programs
