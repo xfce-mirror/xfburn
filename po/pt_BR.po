@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfburn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-07 11:57+0000\n"
-"PO-Revision-Date: 2013-04-07 11:59-0300\n"
+"POT-Creation-Date: 2013-05-06 22:48+0000\n"
+"PO-Revision-Date: 2013-05-06 22:24-0300\n"
 "Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <xfce-i18n-br@xfce.org>\n"
 "Language: pt_BR\n"
@@ -163,7 +163,7 @@ msgid "Done"
 msgstr "Pronto"
 
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: ../xfburn/xfburn-progress-dialog.c:649
 msgid "Failure"
 msgstr "Falha"
 
@@ -274,7 +274,7 @@ msgid "ISO images"
 msgstr "Imagens ISO"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:226
-msgid "_Quit after successful completion"
+msgid "_Quit after success"
 msgstr "_Sair após concluir com sucesso"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:236
@@ -959,9 +959,9 @@ msgstr "abortado"
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:464
-#: ../xfburn/xfburn-progress-dialog.c:488
-#: ../xfburn/xfburn-progress-dialog.c:512
+#: ../xfburn/xfburn-progress-dialog.c:476
+#: ../xfburn/xfburn-progress-dialog.c:500
+#: ../xfburn/xfburn-progress-dialog.c:524
 msgid "no info"
 msgstr "sem informação"
 
@@ -1097,28 +1097,32 @@ msgstr "FIFO buffer:"
 msgid "Device buffer:"
 msgstr "Buffer do dispositivo:"
 
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-progress-dialog.c:374
+msgid "Are you sure you want to abort?"
+msgstr "Você tem certeza que deseja abortar?"
+
+#: ../xfburn/xfburn-progress-dialog.c:502
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "Preenchimento mín. foi %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:549
+#: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Aborted"
 msgstr "Abortado"
 
-#: ../xfburn/xfburn-progress-dialog.c:558
+#: ../xfburn/xfburn-progress-dialog.c:570
 msgid "Failed"
 msgstr "Falhou"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:573
 msgid "Cancelled"
 msgstr "Cancelado"
 
-#: ../xfburn/xfburn-progress-dialog.c:564
+#: ../xfburn/xfburn-progress-dialog.c:576
 msgid "Completed"
 msgstr "Finalizado"
 
-#: ../xfburn/xfburn-progress-dialog.c:601
+#: ../xfburn/xfburn-progress-dialog.c:613
 msgid "Aborting..."
 msgstr "Abortando..."
 
