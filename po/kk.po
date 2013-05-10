@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-16 05:21+0000\n"
+"POT-Creation-Date: 2013-05-10 07:48+0000\n"
 "PO-Revision-Date: 2012-08-04 08:43+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
@@ -43,7 +43,8 @@ msgstr "Жазуға болатын дискті салып, enter басыңы�
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr "Диск қалып-күйін анықтау мүмкін емес - қайтадан көру үшін enter басыңыз."
+msgstr ""
+"Диск қалып-күйін анықтау мүмкін емес - қайтадан көру үшін enter басыңыз."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
@@ -159,7 +160,7 @@ msgid "Done"
 msgstr "Аяқталды"
 
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: ../xfburn/xfburn-progress-dialog.c:649
 msgid "Failure"
 msgstr "Сәтсіз"
 
@@ -270,7 +271,7 @@ msgid "ISO images"
 msgstr "ISO бейнелері"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:226
-msgid "_Quit after successful completion"
+msgid "_Quit after success"
 msgstr "_Сәтті аяқталғаннан кейін шығу"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:236
@@ -952,9 +953,9 @@ msgstr "тоқтатылған"
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:464
-#: ../xfburn/xfburn-progress-dialog.c:488
-#: ../xfburn/xfburn-progress-dialog.c:512
+#: ../xfburn/xfburn-progress-dialog.c:476
+#: ../xfburn/xfburn-progress-dialog.c:500
+#: ../xfburn/xfburn-progress-dialog.c:524
 msgid "no info"
 msgstr "ақпараты жоқ"
 
@@ -1088,28 +1089,32 @@ msgstr "FIFO буфері:"
 msgid "Device buffer:"
 msgstr "Құрылғы буфері:"
 
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-progress-dialog.c:374
+msgid "Are you sure you want to abort?"
+msgstr "Әрекетті үзуді шынымен қалайсыз ба?"
+
+#: ../xfburn/xfburn-progress-dialog.c:502
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "Мин. толуы %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:549
+#: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Aborted"
 msgstr "Үзілді"
 
-#: ../xfburn/xfburn-progress-dialog.c:558
+#: ../xfburn/xfburn-progress-dialog.c:570
 msgid "Failed"
 msgstr "Сәтсіз аяқталды"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:573
 msgid "Cancelled"
 msgstr "Тоқтатылған"
 
-#: ../xfburn/xfburn-progress-dialog.c:564
+#: ../xfburn/xfburn-progress-dialog.c:576
 msgid "Completed"
 msgstr "Аяқталған"
 
-#: ../xfburn/xfburn-progress-dialog.c:601
+#: ../xfburn/xfburn-progress-dialog.c:613
 msgid "Aborting..."
 msgstr "Тоқтату..."
 
