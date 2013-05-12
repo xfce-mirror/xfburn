@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfburn 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 09:46+0100\n"
-"PO-Revision-Date: 2012-07-10 22:14+0800\n"
+"POT-Creation-Date: 2013-05-12 08:24+0000\n"
+"PO-Revision-Date: 2013-05-12 16:46+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
@@ -16,21 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
-msgstr ""
+msgstr "容量："
 
 #: ../xfburn/xfburn-global.h:29
 msgid "addr:"
-msgstr ""
+msgstr "位址："
 
 #: ../xfburn/xfburn-global.h:30
 msgid "Time total:"
-msgstr ""
+msgstr "時間總計："
 
 #: ../xfburn/xfburn-global.h:32
-#, fuzzy
 msgid "length"
 msgstr "長度"
 
@@ -39,17 +39,16 @@ msgid "Flushing cache..."
 msgstr "正在沖刷快取..."
 
 #: ../xfburn/xfburn-global.h:34
-#, fuzzy
 msgid "Please insert a recordable disc and hit enter"
-msgstr "請放入可供燒錄的光碟。"
+msgstr "請放入可供燒錄的光碟，並按下 Enter。"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr ""
+msgstr "無法判定光碟狀態 - 請按下 Enter 並重試。"
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr ""
+msgstr "CD 成功複製完成。"
 
 #: ../xfburn/xfburn-global.h:42
 msgid "Data composition"
@@ -160,7 +159,7 @@ msgid "Done"
 msgstr "完成"
 
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: ../xfburn/xfburn-progress-dialog.c:649
 msgid "Failure"
 msgstr "失敗"
 
@@ -271,8 +270,8 @@ msgid "ISO images"
 msgstr "ISO 映像檔"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:226
-msgid "_Quit after successful completion"
-msgstr "成功完成後結束(_Q)"
+msgid "_Quit after success"
+msgstr "成功完成後退出(_Q)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:236
 msgid "_Burn image"
@@ -691,7 +690,7 @@ msgstr "檔案系統"
 msgid "%s's home"
 msgstr "%s 的家目錄"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -935,9 +934,9 @@ msgstr "中止"
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:464
-#: ../xfburn/xfburn-progress-dialog.c:488
-#: ../xfburn/xfburn-progress-dialog.c:512
+#: ../xfburn/xfburn-progress-dialog.c:476
+#: ../xfburn/xfburn-progress-dialog.c:500
+#: ../xfburn/xfburn-progress-dialog.c:524
 msgid "no info"
 msgstr "沒有資訊"
 
@@ -1071,28 +1070,32 @@ msgstr "FIFO 緩衝區："
 msgid "Device buffer:"
 msgstr "裝置緩衝區："
 
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-progress-dialog.c:374
+msgid "Are you sure you want to abort?"
+msgstr "您是否確定要中止？"
+
+#: ../xfburn/xfburn-progress-dialog.c:502
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "最小填滿量為 %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:549
+#: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Aborted"
 msgstr "中止"
 
-#: ../xfburn/xfburn-progress-dialog.c:558
+#: ../xfburn/xfburn-progress-dialog.c:570
 msgid "Failed"
 msgstr "失敗"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:573
 msgid "Cancelled"
 msgstr "取消"
 
-#: ../xfburn/xfburn-progress-dialog.c:564
+#: ../xfburn/xfburn-progress-dialog.c:576
 msgid "Completed"
 msgstr "完成"
 
-#: ../xfburn/xfburn-progress-dialog.c:601
+#: ../xfburn/xfburn-progress-dialog.c:613
 msgid "Aborting..."
 msgstr "正在中止..."
 
@@ -1390,13 +1393,13 @@ msgstr "libburn PACKET 區塊類型"
 msgid "Data Composition"
 msgstr "資料燒錄清單"
 
+#: ../xfburn.desktop.in.h:1
+msgid "Burn Image (xfburn)"
+msgstr "燒錄映像檔 (xfburn)"
+
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD 及 DVD 燒錄程式"
-
-#: ../xfburn.desktop.in.h:3
-msgid "Burn Image (xfburn)"
-msgstr "燒錄映像檔 (xfburn)"
 
 #~ msgid "Author/Maintainer"
 #~ msgstr "作者/維護者"
@@ -1487,9 +1490,6 @@ msgstr "燒錄映像檔 (xfburn)"
 
 #~ msgid "Operation finished"
 #~ msgstr "操作結束"
-
-#~ msgid "Are sure you want to quit?"
-#~ msgstr "您確定要離開程式嗎?"
 
 #~ msgid "Failed to open /proc/scsi/sg/devices"
 #~ msgstr "無法開啟 /proc/scsi/sg/devices 裝置"
