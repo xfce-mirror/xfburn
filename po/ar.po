@@ -1,37 +1,36 @@
-# محمد الحرقان <malham1@gmail.com>, 2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# محمد الحرقان <malham1@gmail.com>, 2012-2013
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 09:46+0100\n"
-"PO-Revision-Date: 2012-11-20 13:06+0300\n"
-"Last-Translator: محمد الحرقان <malham1@gmail.com>\n"
-"Language-Team: http://www.vertaal.com.ar/files/factory/ar/list/\n"
-"Language: ar\n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2013-09-30 10:10+0000\n"
+"Last-Translator: mohammad alhargan <malham1@hotmail.com>\n"
+"Language-Team: Arabic (http://www.transifex.com/projects/p/xfce/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Virtaal 0.7.1\n"
-"X-Poedit-Language: Arabic\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Country: Morocco\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
-msgstr ""
+msgstr "السعة:"
 
 #: ../xfburn/xfburn-global.h:29
 msgid "addr:"
-msgstr ""
+msgstr "العنوان:"
 
 #: ../xfburn/xfburn-global.h:30
 msgid "Time total:"
-msgstr ""
+msgstr "مجموع الوقت:"
 
 #: ../xfburn/xfburn-global.h:32
-#, fuzzy
 msgid "length"
 msgstr "المدة"
 
@@ -40,21 +39,20 @@ msgid "Flushing cache..."
 msgstr "يتم مسح ذاكرة التخزين المؤقت..."
 
 #: ../xfburn/xfburn-global.h:34
-#, fuzzy
 msgid "Please insert a recordable disc and hit enter"
-msgstr "من فضلك أدخل وسيط يقبل التسجيل."
+msgstr "الرجاء إدراج قرص قابل لتسجيل، وإضغط إدخال"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr ""
+msgstr "لا يمكن تحديد حالة القرص- إضغط هنا للمحاولة مرة أخرى."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr ""
+msgstr "إنتهى نسخ القرص المضغوط بنجاح."
 
 #: ../xfburn/xfburn-global.h:42
 msgid "Data composition"
-msgstr "تأليفة البيانات"
+msgstr "تجهيز البيانات"
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -131,7 +129,8 @@ msgstr "اخ_رج القرص"
 msgid "_Blank"
 msgstr "_فارغ"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "القرص المدرج بالفعل فارغ."
@@ -161,7 +160,7 @@ msgid "Done"
 msgstr "إنتهى"
 
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: ../xfburn/xfburn-progress-dialog.c:649
 msgid "Failure"
 msgstr "فشل"
 
@@ -272,8 +271,8 @@ msgid "ISO images"
 msgstr "صور أيزو"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:226
-msgid "_Quit after successful completion"
-msgstr "_أخرج بعد الانتهاء بنجاح"
+msgid "_Quit after success"
+msgstr "_الخروج بعد الإنتهاء"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:236
 msgid "_Burn image"
@@ -302,18 +301,14 @@ msgstr "جاري حرق الصورة..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">الرجاء "
-"اختيار صورة للحرق</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">الرجاء اختيار صورة للحرق</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"لا يمكن إضافة بيانات على قرص متعدد الجلسات في وضع الكتابة هذا (استخدام TAO "
-"بدلا من ذلك)"
+msgstr "لا يمكن إضافة بيانات على قرص متعدد الجلسات في وضع الكتابة هذا (استخدام TAO بدلا من ذلك)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
@@ -436,7 +431,8 @@ msgstr "امسح"
 msgid "Clear the content of the composition"
 msgstr "امسح المحتوى من التوليفة"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "أعد التسمية"
@@ -483,7 +479,8 @@ msgstr "مجلد جديد"
 msgid "File(s) to add to composition"
 msgstr "إضافة (s) الملفات للتوليفة"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -494,9 +491,7 @@ msgstr "بيانات %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr ""
-"%s لا يمكن إضافته التوليفة ، لأنه تجاوز الحجم الأقصى المسموح به للملف "
-"ISO9660."
+msgstr "%s لا يمكن إضافته التوليفة ، لأنه تجاوز الحجم الأقصى المسموح به للملف ISO9660."
 
 #: ../xfburn/xfburn-data-composition.c:1362
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -506,15 +501,10 @@ msgstr "إضافة مجلد المنزل"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
-"أنت على وشك إضافة مجلد المنزل للتوليفة. قد يستغرق هذا وقتا طويلا جدا ، وأيضا "
-"قد يكون كبيرة لاحتوائه في قرص واحد.\n"
-"\n"
-"متأكد أنك تريد المتابعة؟"
+msgstr "أنت على وشك إضافة مجلد المنزل للتوليفة. قد يستغرق هذا وقتا طويلا جدا ، وأيضا قد يكون كبيرة لاحتوائه في قرص واحد.\n\nمتأكد أنك تريد المتابعة؟"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
@@ -581,22 +571,12 @@ msgstr "قائمة سرعات فارغة"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr ""
-"<b>غير قادر على استرداد قائمة سرعة السواقة.</b>\n"
-"\n"
-"هذه علة معروفة تحدث مع بعض محركات الأقراص. الرجاء ارسل تقرير بها إلى مكتبة "
-"libburn مع الرسالة الواردة لتقليل فرصة حصولها مرة اخرى.\n"
-"\n"
-"البرنامج يجب أن يعمل ، ولكن إذا كانت هناك مشاكل ،اسمح لنا أن نعرف.\n"
-"\n"
-"<i>شكرا لك!</i>"
+msgstr "<b>غير قادر على استرداد قائمة سرعة السواقة.</b>\n\nهذه علة معروفة تحدث مع بعض محركات الأقراص. الرجاء ارسل تقرير بها إلى مكتبة libburn مع الرسالة الواردة لتقليل فرصة حصولها مرة اخرى.\n\nالبرنامج يجب أن يعمل ، ولكن إذا كانت هناك مشاكل ،اسمح لنا أن نعرف.\n\n<i>شكرا لك!</i>"
 
 #: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
@@ -706,10 +686,7 @@ msgstr "Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"جرب %s --helpالمساعدة في مشاهدة قائمة كاملة من الخيارات المتاحة في سطر "
-"الأوامر.\n"
+msgstr "%s: %s\nجرب %s --helpالمساعدة في مشاهدة قائمة كاملة من الخيارات المتاحة في سطر الأوامر.\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
@@ -725,24 +702,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
-msgstr ""
-"قد يكون القرص (s) قيد الاستخدام ، ولا يمكن الوصول لها.\n"
-"\n"
-"الرجاء إلغاء توصيله وإعادة تشغيل التطبيق.\n"
-"\n"
-"إذا لم يكن القرص في محرك الأقراص ، تحقق من أن لديك حق القراءة والكتابة على "
-"محرك الأقراص للمستخدم."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+msgstr "قد يكون القرص (s) قيد الاستخدام ، ولا يمكن الوصول لها.\n\nالرجاء إلغاء توصيله وإعادة تشغيل التطبيق.\n\nإذا لم يكن القرص في محرك الأقراص ، تحقق من أن لديك حق القراءة والكتابة على محرك الأقراص للمستخدم."
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr ""
-"فشل تهيئة %s عبر البرنامج %s\n"
-"\t(الرجوع للتنفيذ الأساسي)"
+msgstr "فشل تهيئة %s عبر البرنامج %s\n\t(الرجوع للتنفيذ الأساسي)"
 
 #: ../xfburn/xfburn-main.c:375
 #, c-format
@@ -753,8 +721,10 @@ msgstr "ملف الصورة '%s' غير موجود."
 msgid "_File"
 msgstr "_الملف"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -764,11 +734,14 @@ msgstr "توليفة بيانات جديدة"
 msgid "New audio composition"
 msgstr "توليفة جديدة للصوت"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -822,7 +795,6 @@ msgstr "_حول"
 msgid "Display information about Xfburn"
 msgstr "اعرض معلومات حول Xfburn"
 
-# غير متأكد من المعنى ، هل تعني الجملة افراغ القرص ام ان القرص فارغ
 #: ../xfburn/xfburn-main-window.c:127
 msgid "Blank CD-RW"
 msgstr "أفرغ القرص"
@@ -831,7 +803,8 @@ msgstr "أفرغ القرص"
 msgid "Copy Data CD"
 msgstr "انسخ قرص بيانات"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "احرق الصورة"
@@ -884,10 +857,9 @@ msgstr "تحديد ما إذا كان زر الإغلاق مرئيا"
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"لا يمكن إضافة بيانات على قرص متعدد الجلسة في وضع الكتابة هذا (استخدم TAO "
-"بدلا من ذلك)."
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
+msgstr "لا يمكن إضافة بيانات على قرص متعدد الجلسة في وضع الكتابة هذا (استخدم TAO بدلا من ذلك)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
@@ -946,9 +918,9 @@ msgstr "اجهضت"
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:464
-#: ../xfburn/xfburn-progress-dialog.c:488
-#: ../xfburn/xfburn-progress-dialog.c:512
+#: ../xfburn/xfburn-progress-dialog.c:476
+#: ../xfburn/xfburn-progress-dialog.c:500
+#: ../xfburn/xfburn-progress-dialog.c:524
 msgid "no info"
 msgstr "لاتوجد معلومات"
 
@@ -1082,28 +1054,32 @@ msgstr "FIFO المخزن المؤقت:"
 msgid "Device buffer:"
 msgstr "مخزن الجهاز المؤقت:"
 
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-progress-dialog.c:374
+msgid "Are you sure you want to abort?"
+msgstr "متأكد أنك تريد الإحباط؟"
+
+#: ../xfburn/xfburn-progress-dialog.c:502
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "دقيقة وكان %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:549
+#: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Aborted"
 msgstr "إحباط"
 
-#: ../xfburn/xfburn-progress-dialog.c:558
+#: ../xfburn/xfburn-progress-dialog.c:570
 msgid "Failed"
 msgstr "فشلت"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:573
 msgid "Cancelled"
 msgstr "الغيت"
 
-#: ../xfburn/xfburn-progress-dialog.c:564
+#: ../xfburn/xfburn-progress-dialog.c:576
 msgid "Completed"
 msgstr "اكتملت"
 
-#: ../xfburn/xfburn-progress-dialog.c:601
+#: ../xfburn/xfburn-progress-dialog.c:613
 msgid "Aborting..."
 msgstr "إحباط..."
 
@@ -1222,15 +1198,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr ""
-"محول الملفات الرئيسي مدمج.\n"
-"ولا يحتاج إلى أي مكتبة\n"
-"ولكن يمكنه فقط معالجة ملفات wav.\n"
-"غير المضغوطة\n"
-"إذا رغبت في إنشاء التوليفة\n"
-"صوت من أنواع مختلفة من الملفات\n"
-"الصوتية، يرجى تحويلها\n"
-"بدعم gstreamer."
+msgstr "محول الملفات الرئيسي مدمج.\nولا يحتاج إلى أي مكتبة\nولكن يمكنه فقط معالجة ملفات wav.\nغير المضغوطة\nإذا رغبت في إنشاء التوليفة\nصوت من أنواع مختلفة من الملفات\nالصوتية، يرجى تحويلها\nبدعم gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1265,12 +1233,7 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr ""
-"%s مفقود.\n"
-"\n"
-"لم تثبت وحدة فك الترميز للتعامل مع هذا الملف.\n"
-"عادة انت بحاجة للبحث عن gst-plugins-* وتفقد\n"
-"الإضافات اللازمة.\n"
+msgstr "%s مفقود.\n\nلم تثبت وحدة فك الترميز للتعامل مع هذا الملف.\nعادة انت بحاجة للبحث عن gst-plugins-* وتفقد\nالإضافات اللازمة.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1289,15 +1252,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
-"محول جيستريمر يستخدم مكتبة\n"
-"gstreamer لإنشاء التوليفة الصوتية.\n"
-"\n"
-"ينبغي دعم كافة الملفات الصوتية إفتراضياً\n"
-"بحال تم تثبيت الإضافات الصحيح.\n"
-"إذا لم يتم التعرف على ملف صوتي تأكد\n"
-"أن لديك حزم 'جيدة','سيئة', و 'قبيحة'\n"
-"لحزم gstreamer."
+msgstr "محول جيستريمر يستخدم مكتبة\ngstreamer لإنشاء التوليفة الصوتية.\n\nينبغي دعم كافة الملفات الصوتية إفتراضياً\nبحال تم تثبيت الإضافات الصحيح.\nإذا لم يتم التعرف على ملف صوتي تأكد\nأن لديك حزم 'جيدة','سيئة', و 'قبيحة'\nلحزم gstreamer."
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
@@ -1312,12 +1267,7 @@ msgid ""
 "is not an audio file:\n"
 "\n"
 "%s"
-msgstr ""
-"%s\n"
-"\n"
-"ليس ملف صوت:\n"
-"\n"
-"%s"
+msgstr "%s\n\nليس ملف صوت:\n\n%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:915
 #, c-format
@@ -1410,69 +1360,3 @@ msgstr "تطبيق حرق الأقراص والدفدي"
 #: ../xfburn.desktop.in.h:3
 msgid "Burn Image (xfburn)"
 msgstr "حرق صورة (xfburn)"
-
-#~ msgid "Author/Maintainer"
-#~ msgstr "المؤلف/الراعي"
-
-#~ msgid "Retired author/maintainer"
-#~ msgstr "تقاعد المؤلف / حارس"
-
-#~ msgid "Translator (%s)"
-#~ msgstr "المترجم (%s)"
-
-#~ msgid "The write mode is not currently supported"
-#~ msgstr "وضع الكتابة غير مدعوم حاليا"
-
-#~ msgid "The status of the disc in the drive"
-#~ msgstr "حالة القرص في المشغل"
-
-#~ msgid "Format DVD+RW"
-#~ msgstr "هيىء DVD+RW"
-
-#~ msgid "_Format"
-#~ msgstr "_هيىء"
-
-#~ msgid "No media detected in drive"
-#~ msgstr "لم يكشف عن ميديا في المشغل"
-
-#~ msgid "active"
-#~ msgstr "نشطة"
-
-#~ msgid "Could not create burn_source from %s!"
-#~ msgstr "غير قادر على إنشاء تركيب مصدر الأيزو"
-
-#~ msgid "Import"
-#~ msgstr "استورد"
-
-#~ msgid "Import existing session"
-#~ msgstr "استورد جلسة موجودة"
-
-#~ msgid "Copy Audio CD"
-#~ msgstr "انسخ قرص صوتي"
-
-#~ msgid "Create a new composition"
-#~ msgstr "انشيء تأليفة جديدة"
-
-#~ msgid "Copy DVD"
-#~ msgstr " انسخ ال DVD"
-
-#~ msgid "The main window"
-#~ msgstr "النافذة الرئيسية"
-
-#~ msgid "Action group"
-#~ msgstr "مجموعة الإجراء"
-
-#~ msgid "Fast"
-#~ msgstr "سريع"
-
-#~ msgid "Complete"
-#~ msgstr "اكتملت"
-
-#~ msgid "Burn CD image"
-#~ msgstr "احرق الصورة"
-
-#~ msgid "Format Complete"
-#~ msgstr "اكتملت"
-
-#~ msgid "Deformat Complete"
-#~ msgstr "اكتملت"
