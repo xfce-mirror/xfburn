@@ -1,55 +1,55 @@
-# Norwegian Bokmal translations for xfburn package.
-# Copyright (C) 2007 THE xfburn'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfburn package.
-# Terje Uriansrud <terje@uriansrud.net>, 2010.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# papparonny <ronny@olufsen.org>, 2013
+# Terje Uriansrud <terje@uriansrud.net>, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn 0.3.0svn-25821\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 09:46+0100\n"
-"PO-Revision-Date: 2007-06-18 12:33+0200\n"
-"Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
-"Language-Team: Norwegian Bokmal <i18n-nb@lister.ping.uio.no>\n"
-"Language: nb\n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2013-11-11 15:03+0000\n"
+"Last-Translator: papparonny <ronny@olufsen.org>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/xfce/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
-msgstr ""
+msgstr "Kapasitet:"
 
 #: ../xfburn/xfburn-global.h:29
 msgid "addr:"
-msgstr ""
+msgstr "adr:"
 
 #: ../xfburn/xfburn-global.h:30
 msgid "Time total:"
-msgstr ""
+msgstr "Tid totalt:"
 
 #: ../xfburn/xfburn-global.h:32
-#, fuzzy
 msgid "length"
-msgstr "Lengde"
+msgstr "lengde"
 
 #: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
 msgstr "Tømmer hurtiglager..."
 
 #: ../xfburn/xfburn-global.h:34
-#, fuzzy
 msgid "Please insert a recordable disc and hit enter"
-msgstr "Sett inn en disk som kan brennes."
+msgstr "Sett inn en skrivbar disk og trykk enter"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr ""
+msgstr "Kan ikke fastslå diskstatus - trykk enter for å prøve på nytt."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr ""
+msgstr "Vellykket kopiering av CD."
 
 #: ../xfburn/xfburn-global.h:42
 msgid "Data composition"
@@ -130,7 +130,8 @@ msgstr "_Løs ut disk"
 msgid "_Blank"
 msgstr "_Slett"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "Den gjeldende disken er allerede slettet."
@@ -160,7 +161,7 @@ msgid "Done"
 msgstr "Fullført"
 
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: ../xfburn/xfburn-progress-dialog.c:649
 msgid "Failure"
 msgstr "Feil"
 
@@ -271,8 +272,8 @@ msgid "ISO images"
 msgstr "ISO avtrykk"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:226
-msgid "_Quit after successful completion"
-msgstr ""
+msgid "_Quit after success"
+msgstr "_Avslutt etter vellykket"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:236
 msgid "_Burn image"
@@ -301,17 +302,14 @@ msgstr "Brenner avtrykk..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Velg "
-"et avtrykk som skal brennes</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Velg et avtrykk som skal brennes</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Klarte ikke tilføye data til multiøkt disk med valgt modus (bruk TAO modus)"
+msgstr "Klarte ikke tilføye data til multiøkt disk med valgt modus (bruk TAO modus)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
@@ -337,8 +335,7 @@ msgstr "Klarte ikke å bestemme avtrykksstørrelse"
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr ""
-"Sørg for å velge en gyldig fil og at du har rettigheter til å lese den."
+msgstr "Sørg for å velge en gyldig fil og at du har rettigheter til å lese den."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -435,7 +432,8 @@ msgstr "Tøm"
 msgid "Clear the content of the composition"
 msgstr "Tøm innholdet av komposisjonen"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "Gi nytt navn"
@@ -479,11 +477,11 @@ msgstr "Ny mappe"
 
 #: ../xfburn/xfburn-data-composition.c:941
 #: ../xfburn/xfburn-audio-composition.c:976
-#, fuzzy
 msgid "File(s) to add to composition"
-msgstr "Legger til filer i komposisjonen"
+msgstr "Fil(er) å legge til komposisjon"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -494,9 +492,7 @@ msgstr "Data %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr ""
-"%s kan ikke legges til komposisjonen fordi den overstiger maksimal tillatt "
-"filstørrelse for iso9660 standarden."
+msgstr "%s kan ikke legges til komposisjonen fordi den overstiger maksimal tillatt filstørrelse for iso9660 standarden."
 
 #: ../xfburn/xfburn-data-composition.c:1362
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -506,23 +502,17 @@ msgstr "Legger til hjemmemappe"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
-"Du er i ferd med å legge til hjemmemappen din i komposisjonen. Dette vil "
-"sannsynligvis ta lang tid, og vil ikke få plass på en disk.\n"
-"\n"
-"Er du sikker på at du vil fortsette?"
+msgstr "Du er i ferd med å legge til hjemmemappen din i komposisjonen. Dette vil sannsynligvis ta lang tid, og vil ikke få plass på en disk.\n\nEr du sikker på at du vil fortsette?"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr ""
-"Filen \"%s\" finnes allerede i denne mappen, filen har ikke blitt lagt til."
+msgstr "Filen \"%s\" finnes allerede i denne mappen, filen har ikke blitt lagt til."
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1945
@@ -556,8 +546,7 @@ msgstr "Er det en gyldig kombinasjon"
 
 #: ../xfburn/xfburn-device-box.c:184
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
-"Er kombinasjonen av maskinvare og disk gyldig for å brenne komposisjonen?"
+msgstr "Er kombinasjonen av maskinvare og disk gyldig for å brenne komposisjonen?"
 
 #: ../xfburn/xfburn-device-box.c:188
 msgid "The blank mode shows different disc status messages than regular mode"
@@ -580,28 +569,15 @@ msgid "Empty speed list"
 msgstr "Tøn hastighetsliste"
 
 #: ../xfburn/xfburn-device-box.c:396
-#, fuzzy
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr ""
-"<b>Klarte ikke hente list med hastigheter for diskenheten.</b>\n"
-"\n"
-"Dette er en kjent feil som oppstår med enkelte enheter. Vennligst rapporter "
-"til <i>xfburn@xfce.org</i> sammen med konsollteksten.Dette øker sjansene for "
-"at feilen blir fikset.\n"
-"\n"
-"Brenning burde fortsatt fungere, men hvis det oppstår problemer - gi oss "
-"beskjed.\n"
-"\n"
-"<i>Takk!</i>"
+msgstr "<b>Klarte ikke hente hastighetsliste for enhet.</b>\n\nDette er en kjent feil for enheter. Hvis du vil hjelpe med å rette på dette, ta en titt på libburn biblioteket.\n\nSkriving burde fungere, men hvis det likevel er problemer, gi oss beskjed.\n\n<i>Takk!</i>"
 
 #: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
@@ -711,9 +687,7 @@ msgstr "Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"Prøv %s --help for å se alle kommandolinjeopsjoner.\n"
+msgstr "%s: %s\nPrøv %s --help for å se alle kommandolinjeopsjoner.\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
@@ -729,24 +703,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
-msgstr ""
-"Disken(e) er muligens i bruk og kan ikke aksesseres.\n"
-"\n"
-"Vennligst avmonter og restart programmet.\n"
-"\n"
-"Hvis det ikke er en disk i enheten, kontroller at du har lese og skrive-"
-"rettigheter til enheten med brukeren du nå benytter."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+msgstr "Disken(e) er muligens i bruk og kan ikke aksesseres.\n\nVennligst avmonter og restart programmet.\n\nHvis det ikke er en disk i enheten, kontroller at du har lese og skrive-rettigheter til enheten med brukeren du nå benytter."
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr ""
-"Klarte ikke initialisere %s omkoder: %s\n"
-"\t(bruker i stedet basisimplemetasjonen)"
+msgstr "Klarte ikke initialisere %s omkoder: %s\n\t(bruker i stedet basisimplemetasjonen)"
 
 #: ../xfburn/xfburn-main.c:375
 #, c-format
@@ -757,8 +722,10 @@ msgstr "Avtrykket '%s' finnes ikke."
 msgid "_File"
 msgstr "_Fil"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -768,11 +735,14 @@ msgstr "Ny datakomposisjon"
 msgid "New audio composition"
 msgstr "_Ny lydkomposisjon"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -834,7 +804,8 @@ msgstr "Slett CD-RW"
 msgid "Copy Data CD"
 msgstr "Kopier datacd"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Brenn CD avtrykk"
@@ -887,9 +858,9 @@ msgstr "Avgjør om lukkeknappen er synlig"
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Kan ikke tilføye data til multiøkt disk med valgt modus (bruk TAO modus)."
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
+msgstr "Kan ikke tilføye data til multiøkt disk med valgt modus (bruk TAO modus)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
@@ -948,9 +919,9 @@ msgstr "avbrutt"
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:464
-#: ../xfburn/xfburn-progress-dialog.c:488
-#: ../xfburn/xfburn-progress-dialog.c:512
+#: ../xfburn/xfburn-progress-dialog.c:476
+#: ../xfburn/xfburn-progress-dialog.c:500
+#: ../xfburn/xfburn-progress-dialog.c:524
 msgid "no info"
 msgstr "ingen informasjon"
 
@@ -1066,9 +1037,7 @@ msgstr "FIFO mellomlager størrelse (i kb)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:471
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr ""
-"Endring av denne innstillingen krever omstart av programmet for å ta full "
-"effekt"
+msgstr "Endring av denne innstillingen krever omstart av programmet for å ta full effekt"
 
 #: ../xfburn/xfburn-progress-dialog.c:198
 msgid "Initializing..."
@@ -1086,28 +1055,32 @@ msgstr "FIFO mellomlager"
 msgid "Device buffer:"
 msgstr "Enhetsmellomlager:"
 
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-progress-dialog.c:374
+msgid "Are you sure you want to abort?"
+msgstr "Er du sikker på at du vil avbryte?"
+
+#: ../xfburn/xfburn-progress-dialog.c:502
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "Min. fill var %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:549
+#: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Aborted"
 msgstr "Avbrutt"
 
-#: ../xfburn/xfburn-progress-dialog.c:558
+#: ../xfburn/xfburn-progress-dialog.c:570
 msgid "Failed"
 msgstr "Feilet"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:573
 msgid "Cancelled"
 msgstr "Avbrutt"
 
-#: ../xfburn/xfburn-progress-dialog.c:564
+#: ../xfburn/xfburn-progress-dialog.c:576
 msgid "Completed"
 msgstr "Ferdig"
 
-#: ../xfburn/xfburn-progress-dialog.c:601
+#: ../xfburn/xfburn-progress-dialog.c:613
 msgid "Aborting..."
 msgstr "Avbryter..."
 
@@ -1226,15 +1199,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr ""
-"Den grunnleggende omkoderen som er\n"
-"innebygget, krever ingen tillegg,\n"
-"men kan bare håndtere ukomprimerte\n"
-"wav-filer.\n"
-"Hvis du ønsker å lage komposisjoner\n"
-"bestående av forskjellige lydfiltyper\n"
-"må du bygge/kompilere xfburn med\n"
-"gstreamer støtte."
+msgstr "Den grunnleggende omkoderen som er\ninnebygget, krever ingen tillegg,\nmen kan bare håndtere ukomprimerte\nwav-filer.\nHvis du ønsker å lage komposisjoner\nbestående av forskjellige lydfiltyper\nmå du bygge/kompilere xfburn med\ngstreamer støtte."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1269,12 +1234,7 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr ""
-"%s mangler.\n"
-"\n"
-"Du har ikke dekoder installert for å håndtere denne filen.\n"
-"Antakelig må du sjekke ut gst-plugins-* pakkene\n"
-"for å finne nødvendige dekoder.\n"
+msgstr "%s mangler.\n\nDu har ikke dekoder installert for å håndtere denne filen.\nAntakelig må du sjekke ut gst-plugins-* pakkene\nfor å finne nødvendige dekoder.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1293,15 +1253,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
-"Gstreamer omkoderen bruker gstreamer\n"
-"funksjoner for å lage lydkomposisjoner.\n"
-"\n"
-"Nær alle lydformater burde være støttet\n"
-"hvis korrekte lydplugins er installert.\n"
-"Hvis en lydfil ikke kan dekodes, sørg for\n"
-"at du har alle plugins som ligger i gstreamer\n"
-"pluginpakkene 'good','bad', og 'ugly' installert."
+msgstr "Gstreamer omkoderen bruker gstreamer\nfunksjoner for å lage lydkomposisjoner.\n\nNær alle lydformater burde være støttet\nhvis korrekte lydplugins er installert.\nHvis en lydfil ikke kan dekodes, sørg for\nat du har alle plugins som ligger i gstreamer\npluginpakkene 'good','bad', og 'ugly' installert."
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
@@ -1316,12 +1268,7 @@ msgid ""
 "is not an audio file:\n"
 "\n"
 "%s"
-msgstr ""
-"%s\n"
-"\n"
-"er ikke en lydfil:\n"
-"\n"
-"%s"
+msgstr "%s\n\ner ikke en lydfil:\n\n%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:915
 #, c-format
@@ -1414,18 +1361,3 @@ msgstr "CD og DVD brenneprogram"
 #: ../xfburn.desktop.in.h:3
 msgid "Burn Image (xfburn)"
 msgstr "Brenn avtrykk (xfburn)"
-
-#~ msgid "Author/Maintainer"
-#~ msgstr "Forfatter/Vedlikeholder"
-
-#~ msgid "Retired author/maintainer"
-#~ msgstr "Tidligere Forfatter/Vedlikeholder"
-
-#~ msgid "Translator (%s)"
-#~ msgstr "Oversetter (%s)"
-
-#~ msgid "The write mode is not currently supported"
-#~ msgstr "Den valgte skrivemodus er ikke støttet"
-
-#~ msgid "The status of the disc in the drive"
-#~ msgstr "Status til disken i diskenheten"
