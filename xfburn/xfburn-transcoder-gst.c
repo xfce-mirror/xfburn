@@ -115,6 +115,7 @@ typedef struct {
   XfburnTranscoderGstState state;
   GCond *gst_cond;
   GMutex *gst_mutex;
+  gboolean gst_done;
   gboolean is_audio;
   gint64 duration;
 
@@ -128,7 +129,7 @@ typedef struct {
 
 /* constants */
 
-#define SIGNAL_WAIT_TIMEOUT_MICROS 1500000
+#define SIGNAL_WAIT_TIMEOUT_MS 1500
 
 #define SIGNAL_SEND_ITERATIONS 10
 /* SIGNAL_SEND_TIMEOUT_MICROS is the total time,
@@ -213,11 +214,11 @@ xfburn_transcoder_gst_init (XfburnTranscoderGst * obj)
 
   /* the condition is used to signal that
    * gst has returned information */
-  priv->gst_cond = g_cond_new ();
+  g_cond_init (priv->gst_cond);
 
   /* if the mutex is locked, then we're not currently seeking
    * information from gst */
-  priv->gst_mutex = g_mutex_new ();
+  g_mutex_init (priv->gst_mutex);
   g_mutex_lock (priv->gst_mutex);
 }
 
@@ -402,6 +403,8 @@ signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res)
 #if DEBUG_GST > 0
   DBG ("Trying to lock mutex (%s)", dbg_res);
 #endif
+
+  priv->gst_done = TRUE;
 
   /* There is no g_mutex_lock_timed, so emulate it with a loop.
     * I have never seen this getting hung here, but one never knows! */
@@ -592,6 +595,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 #endif
           }
 
+          priv->gst_done = TRUE;
           g_cond_signal (priv->gst_cond);
           g_mutex_unlock (priv->gst_mutex);
           break;
@@ -763,7 +767,7 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (tgst);
 
   XfburnAudioTrackGst *gtrack;
-  GTimeVal tv;
+  gint64 end_time;
   off_t size;
 
   priv->is_audio = FALSE;
@@ -779,18 +783,19 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
 #endif
   }
 
-  g_get_current_time (&tv);
-  g_time_val_add (&tv, SIGNAL_WAIT_TIMEOUT_MICROS);
+  end_time = g_get_monotonic_time () + SIGNAL_WAIT_TIMEOUT_MS * G_TIME_SPAN_MILLISECOND;
 #if DEBUG_GST > 0
   DBG ("Now waiting for identification result");
 #endif
-  if (!g_cond_timed_wait (priv->gst_cond, priv->gst_mutex, &tv)) {
-    DBG ("gst identification timed out");
-    recreate_pipeline (tgst);
-    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_TIMEOUT,
-                 _("Gstreamer did not like this file (detection timed out)"));
-    return FALSE;
-  }
+  while (!priv->gst_done)
+    if (!g_cond_wait_until (priv->gst_cond, priv->gst_mutex, end_time)) {
+      DBG ("gst identification timed out");
+      recreate_pipeline (tgst);
+      g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_TIMEOUT,
+                   _("Gstreamer did not like this file (detection timed out)"));
+      return FALSE;
+    }
+  priv->gst_done = FALSE;
 #if DEBUG_GST > 0
   DBG ("Got an identification result ");
 #endif
@@ -899,7 +904,7 @@ prepare (XfburnTranscoder *trans, GError **error)
   XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (gst);
   gboolean ret;
-  GTimeVal tv;
+  gint64 end_time;
 
   priv->tracks = g_slist_reverse (priv->tracks);
 
@@ -907,14 +912,14 @@ prepare (XfburnTranscoder *trans, GError **error)
   ret = transcode_next_track (gst, error);
 
   //DBG ("Waiting for start signal");
-  g_get_current_time (&tv);
-  g_time_val_add (&tv, SIGNAL_WAIT_TIMEOUT_MICROS);
-  if (!g_cond_timed_wait (priv->gst_cond, priv->gst_mutex, &tv)) {
-    recreate_pipeline (gst);
-    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_TIMEOUT,
-                 _("Gstreamer did not want to start transcoding (timed out)"));
-    return FALSE;
-  }
+  end_time = g_get_monotonic_time () + SIGNAL_WAIT_TIMEOUT_MS * G_TIME_SPAN_MILLISECOND;
+  while (!priv->gst_done)
+    if (!g_cond_wait_until (priv->gst_cond, priv->gst_mutex, end_time)) {
+      recreate_pipeline (gst);
+      g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_TIMEOUT,
+                  _("Gstreamer did not want to start transcoding (timed out)"));
+      return FALSE;
+    }
   //DBG ("Got the start signal");
 
   priv->state = XFBURN_TRANSCODER_GST_STATE_TRANSCODING;
