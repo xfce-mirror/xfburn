@@ -1027,7 +1027,7 @@ action_add_selected_files (GtkAction *action, XfburnAudioComposition *dc)
     priv->selected_files = selected_files;
 
     priv->thread_params = params;
-    g_thread_create ((GThreadFunc) thread_add_files_action, params, FALSE, NULL);
+    g_thread_new ("audio_add_selected", (GThreadFunc) thread_add_files_action, params);
     
     g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
     g_list_free (selected_paths);
@@ -1788,7 +1788,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       gtk_tree_store_append (GTK_TREE_STORE (model), &params->iter_dummy, NULL);
 
       priv->thread_params = params;
-      g_thread_create ((GThreadFunc) thread_add_files_drag, params, FALSE, NULL);
+      g_thread_new ("add_files_drag", (GThreadFunc) thread_add_files_drag, params);
 
       gtk_drag_finish (dc, TRUE, FALSE, t);
     } else {
@@ -1851,7 +1851,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         gtk_tree_store_append (GTK_TREE_STORE (model), &params->iter_dummy, NULL);
 
         priv->thread_params = params;
-        g_thread_create ((GThreadFunc) thread_add_files_drag, params, FALSE, NULL);
+        g_thread_new ("audio_add_uri_list", (GThreadFunc) thread_add_files_drag, params);
 
         gtk_drag_finish (dc, TRUE, FALSE, t);
       } else {
@@ -2184,7 +2184,7 @@ xfburn_audio_composition_add_files (XfburnAudioComposition *dc, GSList * filelis
     xfburn_busy_cursor (priv->content);
 
     priv->thread_params = params;
-    g_thread_create ((GThreadFunc) thread_add_files_cli, params, FALSE, NULL);
+    g_thread_new ("audio_add_files_cli", (GThreadFunc) thread_add_files_cli, params);
   }
 }
 

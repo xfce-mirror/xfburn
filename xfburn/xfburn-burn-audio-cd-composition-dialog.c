@@ -461,7 +461,7 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
     params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));
     params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
     params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
-    g_thread_create ((GThreadFunc) thread_burn_composition, params, FALSE, NULL);
+    g_thread_new ("audio_cd_burn", (GThreadFunc) thread_burn_composition, params);
   }
 }
 

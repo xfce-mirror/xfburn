@@ -515,7 +515,7 @@ xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, g
     params->device = device;
     params->blank_mode = get_selected_mode (priv);
     params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)); 
-    g_thread_create ((GThreadFunc) thread_blank, params, FALSE, NULL);
+    g_thread_new ("xfburn_blank", (GThreadFunc) thread_blank, params);
   } else {
     xfburn_main_leave_window ();
   }

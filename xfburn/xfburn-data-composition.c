@@ -1012,7 +1012,7 @@ add_files(gchar * selected_files, XfburnDataComposition *dc)
     priv->selected_files = selected_files;
 
     priv->thread_params = params;
-    g_thread_create ((GThreadFunc) thread_add_files_action, params, FALSE, NULL);
+    g_thread_new ("data_add_files", (GThreadFunc) thread_add_files_action, params);
     
     g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
     g_list_free (selected_paths);
@@ -1772,7 +1772,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       gtk_tree_store_append (GTK_TREE_STORE (model), &params->iter_dummy, NULL);
 
       priv->thread_params = params;
-      g_thread_create ((GThreadFunc) thread_add_files_drag, params, FALSE, NULL);
+      g_thread_new ("data_add_dnd_plain", (GThreadFunc) thread_add_files_drag, params);
     }
 
     gtk_drag_finish (dc, TRUE, FALSE, t);
@@ -1830,7 +1830,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       gtk_tree_store_append (GTK_TREE_STORE (model), &params->iter_dummy, NULL);
 
       priv->thread_params = params;
-      g_thread_create ((GThreadFunc) thread_add_files_drag, params, FALSE, NULL);
+      g_thread_new ("data_add_dnd_uri", (GThreadFunc) thread_add_files_drag, params);
 
       gtk_drag_finish (dc, TRUE, FALSE, t);
     } else {
@@ -2269,7 +2269,7 @@ xfburn_data_composition_add_files (XfburnDataComposition *dc, GSList * filelist)
     xfburn_busy_cursor (priv->content);
 
     priv->thread_params = params;
-    g_thread_create ((GThreadFunc) thread_add_files_cli, params, FALSE, NULL);
+    g_thread_new ("data_add_files_cli", (GThreadFunc) thread_add_files_cli, params);
   }
 }
 
