@@ -201,7 +201,6 @@ main (int argc, char **argv)
   
   g_set_application_name (_("Xfburn"));
 
-  g_thread_init (NULL);
   gdk_threads_init ();
   gdk_threads_enter ();
 

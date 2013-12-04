@@ -113,8 +113,8 @@ typedef struct {
   GstElement *source, *decoder, *resample, *conv, *sink;
 
   XfburnTranscoderGstState state;
-  GCond *gst_cond;
-  GMutex *gst_mutex;
+  GCond gst_cond;
+  GMutex gst_mutex;
   gboolean gst_done;
   gboolean is_audio;
   gint64 duration;
@@ -214,12 +214,12 @@ xfburn_transcoder_gst_init (XfburnTranscoderGst * obj)
 
   /* the condition is used to signal that
    * gst has returned information */
-  g_cond_init (priv->gst_cond);
+  g_cond_init (&priv->gst_cond);
 
   /* if the mutex is locked, then we're not currently seeking
    * information from gst */
-  g_mutex_init (priv->gst_mutex);
-  g_mutex_lock (priv->gst_mutex);
+  g_mutex_init (&priv->gst_mutex);
+  g_mutex_lock (&priv->gst_mutex);
 }
 
 static void
@@ -409,7 +409,7 @@ signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res)
   /* There is no g_mutex_lock_timed, so emulate it with a loop.
     * I have never seen this getting hung here, but one never knows! */
   for (i=0; i<SIGNAL_SEND_ITERATIONS; i++) {
-    if (g_mutex_trylock (priv->gst_mutex))
+    if (g_mutex_trylock (&priv->gst_mutex))
       break;
     g_usleep (SIGNAL_SEND_TIMEOUT_MICROS / SIGNAL_SEND_ITERATIONS);
     g_thread_yield ();
@@ -423,8 +423,8 @@ signal_identification_done (XfburnTranscoderGst *trans, const char *dbg_res)
     }
   }
 
-  g_cond_signal (priv->gst_cond);
-  g_mutex_unlock (priv->gst_mutex);
+  g_cond_signal (&priv->gst_cond);
+  g_mutex_unlock (&priv->gst_mutex);
 
 #if DEBUG_GST > 0
  #if DEBUG > 0
@@ -586,7 +586,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
           if (strcmp (GST_OBJECT_NAME (GST_MESSAGE_SRC (msg)), "decoder") != 0)
             break;
           
-          if (!g_mutex_trylock (priv->gst_mutex)) {
+          if (!g_mutex_trylock (&priv->gst_mutex)) {
             g_critical ("Lock held by another thread, can't signal transcoding start!");
             break;
           } else {
@@ -596,8 +596,8 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
           }
 
           priv->gst_done = TRUE;
-          g_cond_signal (priv->gst_cond);
-          g_mutex_unlock (priv->gst_mutex);
+          g_cond_signal (&priv->gst_cond);
+          g_mutex_unlock (&priv->gst_mutex);
           break;
       } /* switch of priv->state */
 
@@ -788,7 +788,7 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
   DBG ("Now waiting for identification result");
 #endif
   while (!priv->gst_done)
-    if (!g_cond_wait_until (priv->gst_cond, priv->gst_mutex, end_time)) {
+    if (!g_cond_wait_until (&priv->gst_cond, &priv->gst_mutex, end_time)) {
       DBG ("gst identification timed out");
       recreate_pipeline (tgst);
       g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_TIMEOUT,
@@ -914,7 +914,7 @@ prepare (XfburnTranscoder *trans, GError **error)
   //DBG ("Waiting for start signal");
   end_time = g_get_monotonic_time () + SIGNAL_WAIT_TIMEOUT_MS * G_TIME_SPAN_MILLISECOND;
   while (!priv->gst_done)
-    if (!g_cond_wait_until (priv->gst_cond, priv->gst_mutex, end_time)) {
+    if (!g_cond_wait_until (&priv->gst_cond, &priv->gst_mutex, end_time)) {
       recreate_pipeline (gst);
       g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_TIMEOUT,
                   _("Gstreamer did not want to start transcoding (timed out)"));
