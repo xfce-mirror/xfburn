@@ -340,7 +340,7 @@ main (int argc, char **argv)
   /*----------evaluate parsed command line action options-------------------------*/
 
   /* heuristic for file names on the commandline */
-  if (argc == 2) {
+  if (argc == 2 && !add_data_composition) {
     /* exactly one filename, assume it is an image */
       image_filename = argv[1];
   } else if (argc > 2) {
