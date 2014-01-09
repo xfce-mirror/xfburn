@@ -1,23 +1,24 @@
-# Ukrainian translation of xfburn.
-# Copyright (C) 2002-2006 The Xfce development team.
-# This file is distributed under the same license as the xfburn package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
-# Maxim V. Dziumanenko <mvd@mylinux.ua>, 2006.
-# Dmitry Nikitin <luckas_fb@mail.ru>, 2007, 2008.
+# Translators:
+# Dmitry Nikitin <luckas_fb@mail.ru>, 2007-2008
+# Maxim V. Dziumanenko <mvd@mylinux.ua>, 2006
+# zubr139 <zubr139@ukr.net>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-06 06:36+0000\n"
-"PO-Revision-Date: 2009-02-24 19:42+0200\n"
-"Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
-"Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2014-01-09 22:14+0000\n"
+"Last-Translator: zubr139 <zubr139@ukr.net>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
@@ -41,8 +42,7 @@ msgstr "Очищення кешу..."
 
 #: ../xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
-msgstr ""
-"Будь ласка, вставте диск з можливістю запису і натисніть кнопку 'Enter'"
+msgstr "Будь ласка, вставте диск з можливістю запису і натисніть кнопку 'Enter'"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
@@ -303,24 +303,18 @@ msgstr "Записати образ..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Будь "
-"ласка виберіть образ для запису</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Будь ласка виберіть образ для запису</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Неможливо додати дані до мульти-сесійного диску в цьому режимі запису "
-"(використовувати замість TAO)"
+msgstr "Неможливо додати дані до мульти-сесійного диску в цьому режимі запису (використовувати замість TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"Виявлено закритий носій з даними. Потрібен чистий диск або диск з можливістю "
-"продовження запису"
+msgstr "Виявлено закритий носій з даними. Потрібен чистий диск або диск з можливістю продовження запису"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "No disc detected in drive"
@@ -342,9 +336,7 @@ msgstr "Неможливо визначити розмір образу"
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr ""
-"Впевніться, що вибрали правильний файл і маєте відповідні права доступу до "
-"нього."
+msgstr "Впевніться, що вибрали правильний файл і маєте відповідні права доступу до нього."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -501,9 +493,7 @@ msgstr "Дані %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr ""
-"%s не може бути додано до проекту, тому що тоді перевищується максимальний "
-"дозволений розмір для iso9660."
+msgstr "%s не може бути додано до проекту, тому що тоді перевищується максимальний дозволений розмір для iso9660."
 
 #: ../xfburn/xfburn-data-composition.c:1362
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -513,23 +503,17 @@ msgstr "Додати домашню директорію"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
-"Чи Ви знаєте, що додали вашу домашню теку до проекту         Це мабуть може "
-"зайняти багато часу а також буде великий файл для одного  диску.    \n"
-"\n"
-"Ви впевнені, що бажаєте продовжити?"
+msgstr "Чи Ви знаєте, що додали вашу домашню теку до проекту         Це мабуть може зайняти багато часу а також буде великий файл для одного  диску.    \n\nВи впевнені, що бажаєте продовжити?"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr ""
-"Файл з назвою \"%s\" вже присутній в цій теці, файл не може бути доданий."
+msgstr "Файл з назвою \"%s\" вже присутній в цій теці, файл не може бути доданий."
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1945
@@ -567,9 +551,7 @@ msgstr "Чи правильна комбінація обладнання і д�
 
 #: ../xfburn/xfburn-device-box.c:188
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"Режим очищення показує різні повідомлення стану диску на відміну від "
-"звичайного режиму"
+msgstr "Режим очищення показує різні повідомлення стану диску на відміну від звичайного режиму"
 
 #: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
 msgid "Accept only CDs as valid discs"
@@ -591,24 +573,12 @@ msgstr "Список швидкостей пустий"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr ""
-"<b>неможливо отримати список швидкостей приводу.</b>\n"
-"\n"
-"Ця помилка відома, і виникає з деякими приводами. Будь ласка повідомте про "
-"це <i>xfburn@xfce.org</i> також разом з виводом консолі щоб збільшити наші "
-"шанси на перемогу цих проблем. \n"
-"\n"
-"Запис буде працювати, але при наявності проблем завжди ставте нас до "
-"відома      \n"
-"\n"
-"<i>Дякуємо Вам!</i>"
+msgstr "<b>неможливо отримати список швидкостей приводу.</b>\n\nЦя помилка відома, і виникає з деякими приводами. Будь ласка повідомте про це <i>xfburn@xfce.org</i> також разом з виводом консолі щоб збільшити наші шанси на перемогу цих проблем. \n\nЗапис буде працювати, але при наявності проблем завжди ставте нас до відома      \n\n<i>Дякуємо Вам!</i>"
 
 #: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
@@ -709,7 +679,7 @@ msgstr "Файлова система"
 msgid "%s's home"
 msgstr "Домашня тека %s"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Програма запису Xfburn"
 
@@ -718,10 +688,7 @@ msgstr "Програма запису Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"Спробуйте %s --help для перегляду повного списку доступних параметрів "
-"команди.\n"
+msgstr "%s: %s\nСпробуйте %s --help для перегляду повного списку доступних параметрів команди.\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
@@ -737,24 +704,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
-msgstr ""
-"Можливо диск(и) зараз у використанні і не дадуть доступу.\n"
-"\n"
-"Витягніть і перезапустіть програму.\n"
-"\n"
-"Якщо диску в приводі немає, перевірте чи має доступ до приводу поточний "
-"користувач в режимі запису."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+msgstr "Можливо диск(и) зараз у використанні і не дадуть доступу.\n\nВитягніть і перезапустіть програму.\n\nЯкщо диску в приводі немає, перевірте чи має доступ до приводу поточний користувач в режимі запису."
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr ""
-"Невдача ініціалізаці %s transcoder: %s\n"
-"\t(падіння до основної імплементації)"
+msgstr "Невдача ініціалізаці %s transcoder: %s\n\t(падіння до основної імплементації)"
 
 #: ../xfburn/xfburn-main.c:375
 #, c-format
@@ -801,7 +759,7 @@ msgstr "Вийти з Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:117
 msgid "_Edit"
-msgstr "_Правка"
+msgstr "З_міни"
 
 #: ../xfburn/xfburn-main-window.c:118
 msgid "Prefere_nces"
@@ -901,16 +859,13 @@ msgstr "Визначити чи відображається кнопка зак
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Неможливо додати дані до мульти-сесійного диску в цьому режимі запису "
-"(використовуйте краще TAO)."
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
+msgstr "Неможливо додати дані до мульти-сесійного диску в цьому режимі запису (використовуйте краще TAO)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-"Виявлено закритий носій з даними. потрібен чистий диск, або диск з "
-"можливістю дозапису."
+msgstr "Виявлено закритий носій з даними. потрібен чистий диск, або диск з можливістю дозапису."
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
@@ -1245,15 +1200,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr ""
-"Базовий перекодувальник вбудовано\n"
-"і не потрібно якоїсь бібліотеки. \n"
-"Але він може тільки розпакувати\n"
-".wav файли.\n"
-"Якщо Ви хочете створювати аудіо\n"
-"композиції з різних типів файлів\n"
-"аудіо, будь ласка скомпілюйте з\n"
-"підтримкою gstreamer."
+msgstr "Базовий перекодувальник вбудовано\nі не потрібно якоїсь бібліотеки. \nАле він може тільки розпакувати\n.wav файли.\nЯкщо Ви хочете створювати аудіо\nкомпозиції з різних типів файлів\nаудіо, будь ласка скомпілюйте з\nпідтримкою gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1288,12 +1235,7 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr ""
-"%s відсутній.\n"
-"\n"
-"Ви не встановили декодера для обробки цього файлу.\n"
-"Спробуйте переглянути і встановити пакети gst-plugins-*\n"
-"для відповідних плагінів.\n"
+msgstr "%s відсутній.\n\nВи не встановили декодера для обробки цього файлу.\nСпробуйте переглянути і встановити пакети gst-plugins-*\nдля відповідних плагінів.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1312,15 +1254,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
-"Перекодувальник gstreamer використовує свою\n"
-"бібліотеку для створення композицій.\n"
-"\n"
-"Практично всі аудіо файли мають підтримуватись\n"
-"звичайно якщо правильно встановлені плагіни.\n"
-"Якщо деякі файли не розпізнаються, впевніться\n"
-"що Ви встановили 'good','bad', та 'ugly'\n"
-"плагіни для gstreamer."
+msgstr "Перекодувальник gstreamer використовує свою\nбібліотеку для створення композицій.\n\nПрактично всі аудіо файли мають підтримуватись\nзвичайно якщо правильно встановлені плагіни.\nЯкщо деякі файли не розпізнаються, впевніться\nщо Ви встановили 'good','bad', та 'ugly'\nплагіни для gstreamer."
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
@@ -1335,12 +1269,7 @@ msgid ""
 "is not an audio file:\n"
 "\n"
 "%s"
-msgstr ""
-"%s\n"
-"\n"
-"це не є аудіо файлом:\n"
-"\n"
-"%s"
+msgstr "%s\n\nце не є аудіо файлом:\n\n%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:915
 #, c-format
@@ -1426,25 +1355,10 @@ msgstr "Типи блоків libburn PACKET"
 msgid "Data Composition"
 msgstr "Дані Проекту"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "Записати образ (xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Програма для запису CD та DVD"
 
-#~ msgid "Author/Maintainer"
-#~ msgstr "Автор/Розробник"
-
-#~ msgid "Retired author/maintainer"
-#~ msgstr "Попередній автор/розробник"
-
-#~ msgid "Translator (%s)"
-#~ msgstr "Перекладач (%s)"
-
-#~ msgid "The write mode is not currently supported"
-#~ msgstr "Поточний режим запису не підтримується"
-
-#~ msgid "The status of the disc in the drive"
-#~ msgstr "Стан диску в приводі"
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "Записати образ (xfburn)"
