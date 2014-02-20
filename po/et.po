@@ -1,20 +1,22 @@
-# Translation of xfburn into Estonian.
-# Copyright (C) 2005-2006 Jean-François Wauthy.
-# This file is distributed under the same license as the xfburn package.
-# Kristjan Siimson <kristjan.siimson@gmail.com>, 2008.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Kristjan Siimson <kristjan.siimson@gmail.com>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn 0.0.3svn\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 09:46+0100\n"
-"PO-Revision-Date: 2008-07-16 18:14+0300\n"
-"Last-Translator: Kristjan Siimson <kristjan.siimson@gmail.com>\n"
-"Language-Team: Estonian <et@li.org>\n"
-"Language: et\n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2013-07-03 18:35+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Estonian (http://www.transifex.com/projects/p/xfce/language/et/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
@@ -37,9 +39,8 @@ msgid "Flushing cache..."
 msgstr "Puhvri tühjendamine..."
 
 #: ../xfburn/xfburn-global.h:34
-#, fuzzy
 msgid "Please insert a recordable disc and hit enter"
-msgstr "Sisesta tühi andmekandja."
+msgstr ""
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
@@ -90,9 +91,8 @@ msgid "Default value for eject checkbox"
 msgstr "Avamise märkeruudu vaikeväärtus"
 
 #: ../xfburn/xfburn-blank-dialog.c:197
-#, fuzzy
 msgid "Blank Disc"
-msgstr "Plaadi tühjendamine..."
+msgstr ""
 
 #: ../xfburn/xfburn-blank-dialog.c:209
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:195
@@ -129,11 +129,11 @@ msgstr "Plaat välja_statakse"
 msgid "_Blank"
 msgstr "_Tühjenda"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
-#, fuzzy
 msgid "The inserted disc is already blank."
-msgstr "Sisestatud plaat on juba tühi"
+msgstr ""
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:362
@@ -141,14 +141,12 @@ msgid "Ready"
 msgstr "Valmis"
 
 #: ../xfburn/xfburn-blank-dialog.c:365
-#, fuzzy
 msgid "No disc detected in the drive."
-msgstr "Plaat ei ole seadmes"
+msgstr ""
 
 #: ../xfburn/xfburn-blank-dialog.c:374
-#, fuzzy
 msgid "Disc is not erasable."
-msgstr "Andmekandjat ei või tühjendada"
+msgstr ""
 
 #: ../xfburn/xfburn-blank-dialog.c:414
 msgid "Blanking disc..."
@@ -162,7 +160,7 @@ msgid "Done"
 msgstr "Valmis"
 
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: ../xfburn/xfburn-progress-dialog.c:649
 msgid "Failure"
 msgstr "Ebaõnnestus"
 
@@ -171,19 +169,16 @@ msgstr "Ebaõnnestus"
 #: ../xfburn/xfburn-burn-image-dialog.c:402
 #: ../xfburn/xfburn-burn-image-dialog.c:578
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
-#, fuzzy
 msgid "Unable to grab the drive."
-msgstr "Seadme haaramine ei õnnestu"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
-#, fuzzy
 msgid "Image"
-msgstr "ISO-tõmmised"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-#, fuzzy
 msgid "Show volume name"
-msgstr "Andmekandja nimi:"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
 msgid "Show a text entry for the name of the volume"
@@ -225,9 +220,8 @@ msgstr "Luuakse ainult _ISO-fail"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
-#, fuzzy
 msgid "_Burn Composition"
-msgstr "Kogumiku kirjutamine"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
 #, c-format
@@ -245,21 +239,18 @@ msgstr "Viga ISO kirjutamisel: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
-#, fuzzy
 msgid "An error occurred in the burn backend."
-msgstr "Viga ISO kirjutamisel: %s"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
-#, fuzzy
 msgid "The write mode is not supported currently."
-msgstr "Kirjutusrežiim pole hetkel toetatud"
+msgstr ""
 
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
-#, fuzzy
 msgid "Could not create ISO source structure."
-msgstr "ISO lähtestruktuuri loomine ebaõnnestus"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:161
 msgid "Burn image"
@@ -280,7 +271,7 @@ msgid "ISO images"
 msgstr "ISO-tõmmised"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:226
-msgid "_Quit after successful completion"
+msgid "_Quit after success"
 msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:236
@@ -288,85 +279,66 @@ msgid "_Burn image"
 msgstr "Kirj_uta tõmmis"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:285
-#, fuzzy
 msgid "Burn mode is not currently implemented."
-msgstr "Kirjutusrežiim pole veel toetatud"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:336
 #: ../xfburn/xfburn-burn-image-dialog.c:365
-#, fuzzy
 msgid "An error occurred in the burn backend"
-msgstr "Viga ISO kirjutamisel: %s"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:349
-#, fuzzy
 msgid "Unable to determine image size."
-msgstr "Tõmmise mahu tuvastamine ebaõnnestus"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:356
-#, fuzzy
 msgid "Cannot open image."
-msgstr "Tõmmise avamine ebaõnnestus"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:393
 msgid "Burning image..."
 msgstr "Tõmmise kirjutamine..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
-#, fuzzy
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
 msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Vali "
-"kirjutatav tõmmis!</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Multisessioonilist plaati pole selles kirjutusrežiimis võimalik täiendada "
-"(kasuta selle asemel TAO-režiimi)"
+msgstr "Multisessioonilist plaati pole selles kirjutusrežiimis võimalik täiendada (kasuta selle asemel TAO-režiimi)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
-#, fuzzy
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr ""
-"Leitud andmeid sisaldav suletud andmekandja. Tarvis läheb tühja või "
-"täiendatavat andmekandjat"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:511
-#, fuzzy
 msgid "No disc detected in drive"
-msgstr "Plaat ei ole seadmes"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:513
-#, fuzzy
 msgid "Cannot recognize state of drive and disc"
-msgstr "Seadme ja andmekandja tuvastamine ebaõnnestus"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:525
-#, fuzzy
 msgid "The selected image does not fit on the inserted disc"
-msgstr "Valitud tõmmis ei mahu sisestatud plaadile!"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:529
-#, fuzzy
 msgid "Failed to get image size"
-msgstr "Tõmmise suuruse leidmine ebaõnnestus!"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:558
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr ""
-"Veendu, et valisid sobiva faili, ning et sa omad sellele ligi pääsemiseks "
-"vajalike õiguseid."
+msgstr "Veendu, et valisid sobiva faili, ning et sa omad sellele ligi pääsemiseks vajalike õiguseid."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
-#, fuzzy
 msgid "Audio composition"
-msgstr "Kirjuta kogumik"
+msgstr ""
 
 #: ../xfburn/xfburn-compositions-notebook.c:235
 msgid "Welcome"
@@ -391,9 +363,8 @@ msgid "_Copy CD"
 msgstr "_Kopeeri CD"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
-#, fuzzy
 msgid "Please insert a recordable disc."
-msgstr "Sisesta tühi andmekandja."
+msgstr ""
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
@@ -460,7 +431,8 @@ msgstr "Puhasta"
 msgid "Clear the content of the composition"
 msgstr "Puhasta kogumiku sisu"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "Muuda nime"
@@ -487,16 +459,14 @@ msgid "Local Path"
 msgstr "Kohalik asukoht"
 
 #: ../xfburn/xfburn-data-composition.c:679
-#, fuzzy
 msgid "You must give a name to the file."
-msgstr "Sa pead failile nime andma"
+msgstr ""
 
 #: ../xfburn/xfburn-data-composition.c:688
 #: ../xfburn/xfburn-data-composition.c:1198
 #: ../xfburn/xfburn-audio-composition.c:1176
-#, fuzzy
 msgid "A file with the same name is already present in the composition."
-msgstr "Kogumikus on sama nimega fail juba olemas"
+msgstr ""
 
 #: ../xfburn/xfburn-data-composition.c:796
 #: ../xfburn/xfburn-data-composition.c:797
@@ -506,11 +476,11 @@ msgstr "Uus kataloog"
 
 #: ../xfburn/xfburn-data-composition.c:941
 #: ../xfburn/xfburn-audio-composition.c:976
-#, fuzzy
 msgid "File(s) to add to composition"
-msgstr "Failide lisamine kogumiku"
+msgstr ""
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -531,22 +501,17 @@ msgstr "Kodukataloogi lisamine"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
-"Oled lisamas kogumiku oma kodukataloogi. See võtab tõenäoliselt väga kaua "
-"aega, ning see võib ühele plaadile mahtumiseks liiga palju ruumi võtta.\n"
-"\n"
-"Oled kindel, et jätkata?"
+msgstr "Oled lisamas kogumiku oma kodukataloogi. See võtab tõenäoliselt väga kaua aega, ning see võib ühele plaadile mahtumiseks liiga palju ruumi võtta.\n\nOled kindel, et jätkata?"
 
 #: ../xfburn/xfburn-data-composition.c:1530
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr "Fail nimega \"%s\" on juba selles kataloogis olemas, faili ei lisatud"
+msgstr ""
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1945
@@ -580,15 +545,11 @@ msgstr "On see sobilik kombinatsioon"
 
 #: ../xfburn/xfburn-device-box.c:184
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
-"Kas riistvara ja plaadi kombinatsioon on kompositsiooni kirjutamiseks "
-"sobilik?"
+msgstr "Kas riistvara ja plaadi kombinatsioon on kompositsiooni kirjutamiseks sobilik?"
 
 #: ../xfburn/xfburn-device-box.c:188
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"Tühjendamisrežiimis on plaatide kohta teistsugused olekuteated, kui "
-"tavarežiimis"
+msgstr "Tühjendamisrežiimis on plaatide kohta teistsugused olekuteated, kui tavarežiimis"
 
 #: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
 msgid "Accept only CDs as valid discs"
@@ -607,28 +568,15 @@ msgid "Empty speed list"
 msgstr "Kiiruste loend on tühi"
 
 #: ../xfburn/xfburn-device-box.c:396
-#, fuzzy
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
-"<b>Seadme kiiruste loendi hankimine ebaõnnestus.</b>\n"
-"\n"
-"Tegu on tuntud veaga, mis esineb mõningate seadmetega. Palun teavita sellest "
-"aadressil <i>xfburn@xfce.org</i> koos konsooliväljundiga, et tõenäosus vea "
-"paranadamiseks oleks suurem.\n"
-"\n"
-"Kirjutamine peaks toimima, kuid kui siiski esineb probleeme, palun anna "
-"meile teada.\n"
-"\n"
-"<i>Täname!</i>"
 
 #: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
@@ -643,37 +591,32 @@ msgid "Max"
 msgstr "Suurim"
 
 #: ../xfburn/xfburn-device-box.c:590
-#, fuzzy
 msgid "Drive can't burn on the inserted disc"
-msgstr "Seade ei oska valitud plaadile kirjutada!"
+msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:645
-#, fuzzy
 msgid "Drive is empty"
-msgstr "Seade on tühi!"
+msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:602
 msgid "Sorry, multisession is not yet supported"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:605
-#, fuzzy
 msgid "Inserted disc is full"
-msgstr "Plaat on täis!"
+msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:651
-#, fuzzy
 msgid "Inserted disc is unsuitable"
-msgstr "Ebasobiv plaat!"
+msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:611 ../xfburn/xfburn-device-box.c:654
 msgid "Cannot access drive (it might be in use)"
 msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:616 ../xfburn/xfburn-device-box.c:657
-#, fuzzy
 msgid "Error determining disc"
-msgstr "Seadet ei õnnestu tuvastada!"
+msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:637
 msgid "Write-once disc, no blanking possible"
@@ -684,14 +627,12 @@ msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW-plaati ei pea tühjendama"
 
 #: ../xfburn/xfburn-device-box.c:648
-#, fuzzy
 msgid "Inserted disc is already blank"
-msgstr "Plaat on juba tühi!"
+msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:684
-#, fuzzy
 msgid "Auto"
-msgstr "_Info"
+msgstr ""
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
@@ -706,14 +647,12 @@ msgid "Number of drives in the system (readers and writers)"
 msgstr ""
 
 #: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
-#, fuzzy
 msgid "List of devices"
-msgstr "_Otsi seadmeid"
+msgstr ""
 
 #: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
-#, fuzzy
 msgid "Currently selected device"
-msgstr "Leitud seadmed"
+msgstr ""
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:54
@@ -747,32 +686,24 @@ msgstr "Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"Käsk %s --help järjestab kõik käsurea valikuid.\n"
+msgstr "%s: %s\nKäsk %s --help järjestab kõik käsurea valikuid.\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
 msgstr ""
 
 #: ../xfburn/xfburn-main.c:295
-#, fuzzy
 msgid "No burners are currently available"
-msgstr "Seadmeid pole saadaval!"
+msgstr ""
 
 #: ../xfburn/xfburn-main.c:297
-#, fuzzy
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
-"Seadmes võib olla ühendatud andmekandaja?\n"
-"\n"
-"Ühenda seade lahti ja taaskäivita aplikatsioon."
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
@@ -782,32 +713,35 @@ msgid ""
 msgstr ""
 
 #: ../xfburn/xfburn-main.c:375
-#, fuzzy, c-format
+#, c-format
 msgid "Image file '%s' does not exist."
-msgstr "Tõmmist \"%s\" ei ole olemas!"
+msgstr ""
 
 #: ../xfburn/xfburn-main-window.c:100
 msgid "_File"
 msgstr "_Fail"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
-#, fuzzy
 msgid "New data composition"
-msgstr "Andmekogumik"
+msgstr ""
 
 #: ../xfburn/xfburn-main-window.c:106
-#, fuzzy
 msgid "New audio composition"
-msgstr "_Uus kogumik"
+msgstr ""
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -869,7 +803,8 @@ msgstr "Tühjenda CD-RW"
 msgid "Copy Data CD"
 msgstr "Kopeeri andme-CD"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Kirjuta tõmmis"
@@ -913,48 +848,39 @@ msgid "The text of the label"
 msgstr "Pealdise kiri"
 
 #: ../xfburn/xfburn-notebook-tab.c:111
-#, fuzzy
 msgid "Show close button"
-msgstr "Näidatakse režiimivalikut"
+msgstr ""
 
 #: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Determine whether the close button is visible"
 msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:158
-#, fuzzy
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
 msgstr ""
-"Multisessioonilist plaati pole selles kirjutusrežiimis võimalik täiendada "
-"(kasuta selle asemel TAO-režiimi)"
 
 #: ../xfburn/xfburn-perform-burn.c:162
-#, fuzzy
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr ""
-"Leitud andmeid sisaldav suletud andmekandja. Tarvis läheb tühja või "
-"täiendatavat andmekandjat"
 
 #: ../xfburn/xfburn-perform-burn.c:164
-#, fuzzy
 msgid "No disc detected in drive."
-msgstr "Plaat ei ole seadmes"
+msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:167
-#, fuzzy
 msgid "Cannot recognize the state of the drive and disc."
-msgstr "Seadme ja andmekandja tuvastamine ebaõnnestus"
+msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:180
-#, fuzzy
 msgid "There is not enough space available on the inserted disc."
-msgstr "Valitud tõmmis ei mahu sisestatud plaadile!"
+msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:225
-#, fuzzy, c-format
+#, c-format
 msgid "Burning track %2d/%d..."
-msgstr "Tõmmise kirjutamine..."
+msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
 msgid "Burning composition..."
@@ -992,9 +918,9 @@ msgstr "katkestatud"
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:464
-#: ../xfburn/xfburn-progress-dialog.c:488
-#: ../xfburn/xfburn-progress-dialog.c:512
+#: ../xfburn/xfburn-progress-dialog.c:476
+#: ../xfburn/xfburn-progress-dialog.c:500
+#: ../xfburn/xfburn-progress-dialog.c:524
 msgid "no info"
 msgstr "andmed puuduvad"
 
@@ -1027,9 +953,8 @@ msgid "see console"
 msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:370
-#, fuzzy
 msgid "User Aborted"
-msgstr "katkestatud"
+msgstr ""
 
 #: ../xfburn/xfburn-preferences-dialog.c:143
 msgid "Preferences"
@@ -1102,9 +1027,8 @@ msgid "Sc_an for devices"
 msgstr "_Otsi seadmeid"
 
 #: ../xfburn/xfburn-preferences-dialog.c:324
-#, fuzzy
 msgid "Show warning on _empty speed list"
-msgstr "Hoiatatakse _tühja kiirusteloendit põhjustava vea eest"
+msgstr ""
 
 #: ../xfburn/xfburn-preferences-dialog.c:333
 msgid "FIFO buffer size (in kb)"
@@ -1130,32 +1054,34 @@ msgstr "FIFO-puhver:"
 msgid "Device buffer:"
 msgstr "Seadme puhver:"
 
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-progress-dialog.c:374
+msgid "Are you sure you want to abort?"
+msgstr ""
+
+#: ../xfburn/xfburn-progress-dialog.c:502
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "Väikseim täitumisaste %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:549
-#, fuzzy
+#: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Aborted"
-msgstr "katkestatud"
+msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:558
+#: ../xfburn/xfburn-progress-dialog.c:570
 msgid "Failed"
 msgstr "Ebaõnnestunud"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:573
 msgid "Cancelled"
 msgstr "Tühistatud"
 
-#: ../xfburn/xfburn-progress-dialog.c:564
+#: ../xfburn/xfburn-progress-dialog.c:576
 msgid "Completed"
 msgstr "Valmis"
 
-#: ../xfburn/xfburn-progress-dialog.c:601
-#, fuzzy
+#: ../xfburn/xfburn-progress-dialog.c:613
 msgid "Aborting..."
-msgstr "Vormindamine..."
+msgstr ""
 
 #: ../xfburn/xfburn-utils.c:129
 msgid "Select command"
@@ -1191,9 +1117,8 @@ msgid "Prepare the rewriteable disc for a new burn"
 msgstr "Valmista korduvkasutatav plaat uueks kirjutamiseks ette"
 
 #: ../xfburn/xfburn-welcome-tab.c:155
-#, fuzzy
 msgid "<big>_Audio CD</big>"
-msgstr "<big>_Tühjenda plaat</big>"
+msgstr ""
 
 #: ../xfburn/xfburn-welcome-tab.c:155
 msgid "Audio CD playable in regular stereos"
@@ -1204,24 +1129,20 @@ msgid "What files can get burned to an audio CD?"
 msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:216
-#, fuzzy
 msgid "Rename Artist"
-msgstr "Muuda nime"
+msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:216
-#, fuzzy
 msgid "Rename the artist of the selected file"
-msgstr "Muuda valitud faili nime"
+msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:218
-#, fuzzy
 msgid "Rename Title"
-msgstr "Muuda nime"
+msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:218
-#, fuzzy
 msgid "Rename the title of the selected file"
-msgstr "Muuda valitud faili nime"
+msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:402
 msgid "Pos"
@@ -1236,14 +1157,12 @@ msgid "Artist"
 msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:423
-#, fuzzy
 msgid "Title"
-msgstr "Fail"
+msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:434
-#, fuzzy
 msgid "Filename"
-msgstr "Muuda nime"
+msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:581
 msgid "Cannot burn audio onto a DVD."
@@ -1262,9 +1181,8 @@ msgid "Proceed to Burn"
 msgstr ""
 
 #: ../xfburn/xfburn-disc-usage.c:203
-#, fuzzy
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "Sa üritad plaadile rohkem kirjutada, kui sinna mahub!"
+msgstr ""
 
 #: ../xfburn/xfburn-transcoder-basic.c:166
 msgid "basic"
@@ -1293,14 +1211,14 @@ msgid "File %s does not contain uncompressed PCM wave audio"
 msgstr ""
 
 #: ../xfburn/xfburn-transcoder-basic.c:207
-#, fuzzy, c-format
+#, c-format
 msgid "Could not stat %s: %s"
-msgstr "ISO-faili loomine ebaõnnestus: %s"
+msgstr ""
 
 #: ../xfburn/xfburn-transcoder-basic.c:238
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open %s."
-msgstr "ISO-faili loomine ebaõnnestus: %s"
+msgstr ""
 
 #: ../xfburn/xfburn-transcoder-basic.c:319
 #, c-format
@@ -1363,19 +1281,17 @@ msgstr ""
 
 #: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
-#, fuzzy, c-format
+#, c-format
 msgid "not implemented"
-msgstr "Valmis"
+msgstr ""
 
 #: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
-#, fuzzy
 msgid "Display name"
-msgstr "Muuda nime"
+msgstr ""
 
 #: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
-#, fuzzy
 msgid "Device address"
-msgstr "Seadmed"
+msgstr ""
 
 #: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
 msgid "Burn speeds supported by the device"
@@ -1394,9 +1310,8 @@ msgid "Profile name as reported by libburn"
 msgstr ""
 
 #: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
-#, fuzzy
 msgid "Is the disc erasable"
-msgstr "Ebasobiv plaat!"
+msgstr ""
 
 #: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Can burn CDR"
@@ -1435,96 +1350,13 @@ msgid "libburn PACKET block types"
 msgstr ""
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
-#, fuzzy
 msgid "Data Composition"
-msgstr "Andmekogumik"
+msgstr ""
 
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD- ja DVD-kirjutamise aplikatsioon"
 
 #: ../xfburn.desktop.in.h:3
-#, fuzzy
 msgid "Burn Image (xfburn)"
-msgstr "Kirjuta tõmmis"
-
-#~ msgid "Author/Maintainer"
-#~ msgstr "Kirjutaja/Hooldaja"
-
-#, fuzzy
-#~ msgid "Retired author/maintainer"
-#~ msgstr "Kirjutaja/Hooldaja"
-
-#~ msgid "Translator (%s)"
-#~ msgstr "Tõlkija (%s)"
-
-#~ msgid "The write mode is not currently supported"
-#~ msgstr "Kirjutamine pole veel toetatud"
-
-#~ msgid "The status of the disc in the drive"
-#~ msgstr "Seadmes oleva plaadi staatus"
-
-#~ msgid "Unable to create disc object"
-#~ msgstr "Plaadiobjekti loomine ebaõnnestus"
-
-#~ msgid "Cannot attach source object to track object"
-#~ msgstr "Lähteobjekti lisamine rajaobjektile ei õnnestu"
-
-#~ msgid "Format DVD+RW"
-#~ msgstr "Vorminda DVD+RW"
-
-#~ msgid "_Format"
-#~ msgstr "_Vorminda"
-
-#, fuzzy
-#~ msgid "Closed disc with data detected. Need blank or appendable media"
-#~ msgstr ""
-#~ "Leitud andmeid sisaldav suletud andmekandja. Tarvis läheb tühja või "
-#~ "täiendatavat andmekandjat"
-
-#~ msgid "No media detected in drive"
-#~ msgstr "Seadmes pole andmekandjat"
-
-#~ msgid "No access to drive (mounted?)"
-#~ msgstr "Ligipääs seadmele puudub (on seade ühendatud?)"
-
-#~ msgid "active"
-#~ msgstr "aktiivne"
-
-#, fuzzy
-#~ msgid "Could not create burn_source from %s!"
-#~ msgstr "ISO lähtestruktuuri loomine ebaõnnestus"
-
-#, fuzzy
-#~ msgid "Could not add source to track %s!"
-#~ msgstr "ISO lähtestruktuuri loomine ebaõnnestus"
-
-#~ msgid "Import"
-#~ msgstr "Impordi"
-
-#~ msgid "Import existing session"
-#~ msgstr "Impordi olemasolev sessioon"
-
-#~ msgid "Copy Audio CD"
-#~ msgstr "Kopeeri audio-CD"
-
-#~ msgid "Create a new composition"
-#~ msgstr "Loo uus kogumik"
-
-#~ msgid "Copy DVD"
-#~ msgstr "Kopeeri DVD"
-
-#~ msgid "The main window"
-#~ msgstr "Põhiaken"
-
-#~ msgid "Notebook"
-#~ msgstr "Märkmik"
-
-#~ msgid "NOTEBOOK"
-#~ msgstr "MÄRKMIK"
-
-#~ msgid "Action group"
-#~ msgstr "Toimingurühm"
-
-#~ msgid "Action group from the main window"
-#~ msgstr "Põhiakna toimingurühm"
+msgstr ""

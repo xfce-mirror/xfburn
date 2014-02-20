@@ -1,20 +1,20 @@
-# Simplified Chinese translations for
-# the xfburn package.
-# This file is distributed under the same license as
-# the xfburn package.
-# longer.zhao@gmail.com, 2008.
-# 赵正龙 <longer.zhao@gmail.com>, 2008.
-# Hunt Xu <huntxu@live.cn>, 2009, 2010.
-# Chipong Luo <chipong.luo@yahoo.com>, 2011, 2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Chipong Luo <chipong.luo@yahoo.com>, 2011-2012
+# Hunt Xu <huntxu@live.cn>, 2009-2010
+# longer.zhao@gmail.com, 2008
+# 赵正龙 <longer.zhao@gmail.com>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-08 01:48+0000\n"
-"PO-Revision-Date: 2010-03-18 15:25+0800\n"
-"Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
-"Language-Team: Chinese (Simplified) <xfce-i18n-cn@xfce.org>\n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2013-07-03 18:36+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/xfce/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -304,11 +304,9 @@ msgstr "正在刻录镜像..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span eight=\"bold\" foreground=\"darked\" stretch=\"semiexpanded\">请选择要"
-"刻录的镜像</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span eight=\"bold\" foreground=\"darked\" stretch=\"semiexpanded\">请选择要刻录的镜像</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
@@ -506,15 +504,10 @@ msgstr "正在添加主文件夹"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
-"即将在项目中添加您的主文件夹。这可能需要很长\n"
-"时间，而且对于一张光盘来说可能太大。\n"
-"\n"
-"您确定要继续吗？"
+msgstr "即将在项目中添加您的主文件夹。这可能需要很长\n时间，而且对于一张光盘来说可能太大。\n\n您确定要继续吗？"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
@@ -581,22 +574,12 @@ msgstr "空速度列表"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr ""
-"<b>未能获取驱动器速度列表。</b>\n"
-"\n"
-"这是在一些驱动器上出现的已知缺陷，如果您有兴趣修复它，请看看 libburn 库文"
-"件。\n"
-"\n"
-"应该能够继续刻录，但如果总是有问题，请告诉我们。\n"
-"\n"
-"<i>谢谢！</i>"
+msgstr "<b>未能获取驱动器速度列表。</b>\n\n这是在一些驱动器上出现的已知缺陷，如果您有兴趣修复它，请看看 libburn 库文件。\n\n应该能够继续刻录，但如果总是有问题，请告诉我们。\n\n<i>谢谢！</i>"
 
 #: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
@@ -697,7 +680,7 @@ msgstr "文件系统"
 msgid "%s's home"
 msgstr "%s 的主文件夹"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn 刻录程序"
 
@@ -706,9 +689,7 @@ msgstr "Xfburn 刻录程序"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s：%s\n"
-"尝试 %s --help 查看可用命令行选项的完整列表。\n"
+msgstr "%s：%s\n尝试 %s --help 查看可用命令行选项的完整列表。\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
@@ -724,23 +705,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
-msgstr ""
-"可能光盘正在使用且未能访问。\n"
-"\n"
-"请卸载后重启此应用程序。\n"
-"\n"
-"如果驱动器中无光盘，检查您所用的用户是否有读写访问此驱动器的权限。"
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+msgstr "可能光盘正在使用且未能访问。\n\n请卸载后重启此应用程序。\n\n如果驱动器中无光盘，检查您所用的用户是否有读写访问此驱动器的权限。"
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr ""
-"无法初始化 %s 解码器：%s\n"
-"\t(返回基本操作)"
+msgstr "无法初始化 %s 解码器：%s\n\t(返回基本操作)"
 
 #: ../xfburn/xfburn-main.c:375
 #, c-format
@@ -887,7 +860,8 @@ msgstr "决定是否显示关闭按钮"
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
 msgstr "在写入模式下未能在多重会话光盘中附加数据(使用 TAO 模式)"
 
 #: ../xfburn/xfburn-perform-burn.c:162
@@ -1227,11 +1201,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr ""
-"内置基本解码器，且不需要任何库文件。\n"
-"但仅能处理未压缩的.wav 文件。\n"
-"如果您想从不同类型的音频文件创建音频\n"
-"项目，请编译支持 gstreaner。"
+msgstr "内置基本解码器，且不需要任何库文件。\n但仅能处理未压缩的.wav 文件。\n如果您想从不同类型的音频文件创建音频\n项目，请编译支持 gstreaner。"
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1266,12 +1236,7 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr ""
-"%s 丢失。\n"
-"\n"
-"您没有安装处理此文件的解码器。\n"
-"您可能需要看看 gst-plugins-*\n"
-"软件包获取必要的插件。\n"
+msgstr "%s 丢失。\n\n您没有安装处理此文件的解码器。\n您可能需要看看 gst-plugins-*\n软件包获取必要的插件。\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1290,14 +1255,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
-"gstreamer 解码器使用 gstreamer 库文件\n"
-"创建音频项目。\n"
-"\n"
-"如果已安装了合适的插件基本上所有音频文件\n"
-"都能支持。如果有音频文件未被识别，确保您\n"
-"安装了 gstreamer 的 ‘good’、‘bad’ 和\n"
-"‘ugly’ 插件软件包。"
+msgstr "gstreamer 解码器使用 gstreamer 库文件\n创建音频项目。\n\n如果已安装了合适的插件基本上所有音频文件\n都能支持。如果有音频文件未被识别，确保您\n安装了 gstreamer 的 ‘good’、‘bad’ 和\n‘ugly’ 插件软件包。"
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
@@ -1312,12 +1270,7 @@ msgid ""
 "is not an audio file:\n"
 "\n"
 "%s"
-msgstr ""
-"%s\n"
-"\n"
-"不是音频文件：\n"
-"\n"
-"%s"
+msgstr "%s\n\n不是音频文件：\n\n%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:915
 #, c-format
@@ -1403,19 +1356,10 @@ msgstr "libburn 的 PACKET 块类型"
 msgid "Data Composition"
 msgstr "数据项目"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "刻录镜像(xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD 和 DVD 刻录应用程序"
 
-#~ msgid "Author/Maintainer"
-#~ msgstr "作者/维护者"
-
-#~ msgid "Retired author/maintainer"
-#~ msgstr "已退出的作者/维护者"
-
-#~ msgid "Translator (%s)"
-#~ msgstr "翻译者(%s)"
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "刻录镜像(xfburn)"

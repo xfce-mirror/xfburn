@@ -1,24 +1,23 @@
-# Korean translations for xfburn package.
-# Copyright (C) 2005-2006 Jean-François Wauthy.
-# This file is distributed under the same license as the xfburn package.
-# ByungHyun Choi<byunghyun.choi@debianusers.org>, 2006.
-# Sung Jin Gang <ujuc@ujuc.kr>, 2012.
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2013.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# ByungHyun Choi<byunghyun.choi@debianusers.org>, 2006
+# Sung Jin Gang <ujuc@ujuc.kr>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn.master\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-12 03:00+0000\n"
-"PO-Revision-Date: 2013-05-12 15:52+0900\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
-"Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
-"Language: ko\n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2013-07-03 18:36+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Korean (http://www.transifex.com/projects/p/xfce/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.5\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
@@ -46,8 +45,7 @@ msgstr "기록 가능한 디스크를 넣고 엔터키를 누르십시오"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr ""
-"디스크 상태를 결정할 수 없습니다 - 엔터 키를 누르시고 다시 시도하십시오."
+msgstr "디스크 상태를 결정할 수 없습니다 - 엔터 키를 누르시고 다시 시도하십시오."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
@@ -132,7 +130,8 @@ msgstr "디스크 꺼내기(_J)"
 msgid "_Blank"
 msgstr "비우기(_B)"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "삽입한 디스크는 이미 비어 있습니다."
@@ -303,24 +302,18 @@ msgstr "이미지 기록중..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">기록할 "
-"이미지를 선택하십시오</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">기록할 이미지를 선택하십시오</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"현재의 기록모드로는 다중세션 디스크에 데이터를 추가할 수 없습니다:(대신 TAO"
-"를 사용하십시오)"
+msgstr "현재의 기록모드로는 다중세션 디스크에 데이터를 추가할 수 없습니다:(대신 TAO를 사용하십시오)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"데이터가 들어있는 닫힌 디스크를 감지했습니다. 비었거나 세션을 덧붙일 수 있는 "
-"디스크가 필요합니다"
+msgstr "데이터가 들어있는 닫힌 디스크를 감지했습니다. 비었거나 세션을 덧붙일 수 있는 디스크가 필요합니다"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "No disc detected in drive"
@@ -342,9 +335,7 @@ msgstr "이미지 크기를 가져오는데 실패했습니다"
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr ""
-"올바른 파일을 선택하였는지 그리고 접근할 적절한 권한을 가지고 있는지 확인하십"
-"시오."
+msgstr "올바른 파일을 선택하였는지 그리고 접근할 적절한 권한을 가지고 있는지 확인하십시오."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -441,7 +432,8 @@ msgstr "지우기"
 msgid "Clear the content of the composition"
 msgstr "구성 내용을 지웁니다"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "이름 바꾸기"
@@ -488,7 +480,8 @@ msgstr "새로운 디렉터리"
 msgid "File(s) to add to composition"
 msgstr "구성 내용에 추가할 파일"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -499,9 +492,7 @@ msgstr "데이터 %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr ""
-"%s을(를) 구성에 추가할 수 없습니다. iso9660의 파일 사이즈에서 허용하는 최대 "
-"파일 크기를 넘었기 때문입니다."
+msgstr "%s을(를) 구성에 추가할 수 없습니다. iso9660의 파일 사이즈에서 허용하는 최대 파일 크기를 넘었기 때문입니다."
 
 #: ../xfburn/xfburn-data-composition.c:1362
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -511,23 +502,17 @@ msgstr "내 디렉터리 추가"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
-"구성에 여러분의 내 디렉터리를 추가하려 합니다. 이는 매우 긴 시간이 필요하며, "
-"디스크 용량에 맞추기에는 너무 큽니다.\n"
-"\n"
-"정말로 실행하시렵니까?"
+msgstr "구성에 여러분의 내 디렉터리를 추가하려 합니다. 이는 매우 긴 시간이 필요하며, 디스크 용량에 맞추기에는 너무 큽니다.\n\n정말로 실행하시렵니까?"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr ""
-"\"%s\"(이)라는 파일이 이 디렉터리에 이미 있기 때문에 추가할 수 없습니다."
+msgstr "\"%s\"(이)라는 파일이 이 디렉터리에 이미 있기 때문에 추가할 수 없습니다."
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1945
@@ -565,9 +550,7 @@ msgstr "구성을 기록하기 위한 하드웨어와 디스크의 조합이 유
 
 #: ../xfburn/xfburn-device-box.c:188
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"일반 모드와는 달리 빈 디스크 모드에서는 각기 다른 디스크 상태 메시지를 보입니"
-"다"
+msgstr "일반 모드와는 달리 빈 디스크 모드에서는 각기 다른 디스크 상태 메시지를 보입니다"
 
 #: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
 msgid "Accept only CDs as valid discs"
@@ -589,22 +572,12 @@ msgstr "빈 속도 목록"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr ""
-"<b>드라이브에 대한 속도 목록을 찾을 수 없습니다.</b>\n"
-"\n"
-"이는 드라이브에서 알려진 버그입니다. 이를 고치는데 관심이 있다면. libburn 라"
-"이브러리를 찾아보십시오.\n"
-"\n"
-"기록을 계속 진행하겠지만, 그래도 문제가 있다면 알려주시기 바랍니디.\n"
-"\n"
-"<i>감사합니다!</i>"
+msgstr "<b>드라이브에 대한 속도 목록을 찾을 수 없습니다.</b>\n\n이는 드라이브에서 알려진 버그입니다. 이를 고치는데 관심이 있다면. libburn 라이브러리를 찾아보십시오.\n\n기록을 계속 진행하겠지만, 그래도 문제가 있다면 알려주시기 바랍니디.\n\n<i>감사합니다!</i>"
 
 #: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
@@ -705,7 +678,7 @@ msgstr "파일 시스템"
 msgid "%s's home"
 msgstr "%s의 내 폴더"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -714,9 +687,7 @@ msgstr "Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"사용가능한 모든 명령줄 옵션 목록을 보려면 %s --help를 입력하십시오.\n"
+msgstr "%s: %s\n사용가능한 모든 명령줄 옵션 목록을 보려면 %s --help를 입력하십시오.\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
@@ -732,24 +703,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
-msgstr ""
-"디스크이 사용중일 가능성이 있고, 접근할 수 없습니다.\n"
-"\n"
-"마운트를 해제하고 프로그램을 다시 시작하십시오.\n"
-"\n"
-"드라이브에 디스크가 없다면, 현재 사용자가 드라이브에 읽고 쓰는 중인지 확인하"
-"십시오."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+msgstr "디스크이 사용중일 가능성이 있고, 접근할 수 없습니다.\n\n마운트를 해제하고 프로그램을 다시 시작하십시오.\n\n드라이브에 디스크가 없다면, 현재 사용자가 드라이브에 읽고 쓰는 중인지 확인하십시오."
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr ""
-"%s 변환코더를 초기화하는데 실패했습니다: %s\n"
-"\t(기본 지원으로 돌아가는 중)"
+msgstr "%s 변환코더를 초기화하는데 실패했습니다: %s\n\t(기본 지원으로 돌아가는 중)"
 
 #: ../xfburn/xfburn-main.c:375
 #, c-format
@@ -760,8 +722,10 @@ msgstr "'%s' 이미지 파일은 존재하지 않습니다."
 msgid "_File"
 msgstr "파일(_F)"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -771,11 +735,14 @@ msgstr "새 데이터 구성"
 msgid "New audio composition"
 msgstr "새 음악 구성"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -837,7 +804,8 @@ msgstr "CD-RW를 지웁니다."
 msgid "Copy Data CD"
 msgstr "데이터 CD를 복사"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "이미지 기록하기"
@@ -890,16 +858,13 @@ msgstr "닫기 단추를 보일 것인지 결정"
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"현재의 기록모드로는 다중 세션 디스크에 데이터를 추가할 수 없습니다.(TAO를 이"
-"용하시지요)"
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
+msgstr "현재의 기록모드로는 다중 세션 디스크에 데이터를 추가할 수 없습니다.(TAO를 이용하시지요)"
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-"데이터가 들어있는 닫힌 디스크를 감지했습니다. 비었거나 세션을 덧붙일 수 있는 "
-"디스크가 필요합니다."
+msgstr "데이터가 들어있는 닫힌 디스크를 감지했습니다. 비었거나 세션을 덧붙일 수 있는 디스크가 필요합니다."
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
@@ -1234,14 +1199,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr ""
-"기본 변환 코더는 내장형이며,\n"
-"라이브러리가 필요하지 않습니다.\n"
-"그러나 비압축 .wav파일만 다룰 수\n"
-"있습니다.\n"
-"제각기 다른 음악 파일 유형을 사용하여\n"
-"음악 구성물을 만들고 싶다면,\n"
-"gstreamer를 지원하도록 컴파일 하십시오."
+msgstr "기본 변환 코더는 내장형이며,\n라이브러리가 필요하지 않습니다.\n그러나 비압축 .wav파일만 다룰 수\n있습니다.\n제각기 다른 음악 파일 유형을 사용하여\n음악 구성물을 만들고 싶다면,\ngstreamer를 지원하도록 컴파일 하십시오."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1276,12 +1234,7 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr ""
-"%s이(가) 빠져있습니다.\n"
-"\n"
-"이 파일을 다루기 위한 디코더를 설치하지 않았습니다.\n"
-"아마도 필요한 플러긴을 위해 gst-plugins-* 패키지를\n"
-"찾아봐야 할 것 같습니다.\n"
+msgstr "%s이(가) 빠져있습니다.\n\n이 파일을 다루기 위한 디코더를 설치하지 않았습니다.\n아마도 필요한 플러긴을 위해 gst-plugins-* 패키지를\n찾아봐야 할 것 같습니다.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1300,14 +1253,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
-"gstreamer 변환코더는 음악 구성을 만드는\n"
-"gstreamer 라이브러리를 사용합니다.\n"
-"\n"
-"핵심적으로 설치한 올바른 플러그인이 모든 음악 파일을\n"
-"지원해주어야 합니다. 음악 파일을 인식하지 않는다면\n"
-"'좋은', '나쁜', '보기 흉한' gstreamer 플러긴 패키지를\n"
-" 설치했는지 확인하십시오."
+msgstr "gstreamer 변환코더는 음악 구성을 만드는\ngstreamer 라이브러리를 사용합니다.\n\n핵심적으로 설치한 올바른 플러그인이 모든 음악 파일을\n지원해주어야 합니다. 음악 파일을 인식하지 않는다면\n'좋은', '나쁜', '보기 흉한' gstreamer 플러긴 패키지를\n 설치했는지 확인하십시오."
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
@@ -1322,12 +1268,7 @@ msgid ""
 "is not an audio file:\n"
 "\n"
 "%s"
-msgstr ""
-"%s\n"
-"\n"
-"는 음악 파일이 아닙니다:\n"
-"\n"
-"%s"
+msgstr "%s\n\n는 음악 파일이 아닙니다:\n\n%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:915
 #, c-format
@@ -1413,10 +1354,10 @@ msgstr "libburn PACKET 블록 유형"
 msgid "Data Composition"
 msgstr "데이터 구성"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "이미지 기록하기(xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD/DVD 기록 프로그램"
+
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "이미지 기록하기(xfburn)"

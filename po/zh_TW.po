@@ -1,22 +1,22 @@
-# Traditional Chinese translation for Xfburn.
-# Copyright (C) 2006 THE XfBurn'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the Xfburn package.
-# Cosmo Chene <cosmolax@gmail.com>, 2006.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Cosmo Chene <cosmolax@gmail.com>, 2006
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfburn 1.0\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-12 08:24+0000\n"
-"PO-Revision-Date: 2013-05-12 16:46+0800\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
-"Language: zh_TW\n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2013-07-03 18:35+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.5\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
@@ -129,7 +129,8 @@ msgstr "退出光碟片(_J)"
 msgid "_Blank"
 msgstr "抹除(_B)"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "放入的光碟片已被抹除。"
@@ -300,11 +301,9 @@ msgstr "正在燒錄映像檔..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">請選取"
-"要燒錄的映像檔</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">請選取要燒錄的映像檔</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
@@ -432,7 +431,8 @@ msgstr "清除"
 msgid "Clear the content of the composition"
 msgstr "清除燒錄清單的內容"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "重新命名"
@@ -479,7 +479,8 @@ msgstr "新增資料夾"
 msgid "File(s) to add to composition"
 msgstr "將檔案加入燒錄清單"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -500,15 +501,10 @@ msgstr "正在加入家目錄"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
-"您正在將您的家目錄加至燒錄清單中。這可能會花上很長的時間，而且容量可能超出一"
-"張光碟片的大小。\n"
-"\n"
-"您確定想繼續嗎？"
+msgstr "您正在將您的家目錄加至燒錄清單中。這可能會花上很長的時間，而且容量可能超出一張光碟片的大小。\n\n您確定想繼續嗎？"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
@@ -575,21 +571,12 @@ msgstr "空白速度清單"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr ""
-"<b>無法取得裝置的速度清單。</b>\n"
-"\n"
-"這是已知的臭蟲。如果您對於修正它有所興趣，請看一下 libburn 函式庫。\n"
-"\n"
-"燒錄功能應該仍可運作，但如果發生了任何問題請讓我們知道。\n"
-"\n"
-"<i>感謝您！</i> "
+msgstr "<b>無法取得裝置的速度清單。</b>\n\n這是已知的臭蟲。如果您對於修正它有所興趣，請看一下 libburn 函式庫。\n\n燒錄功能應該仍可運作，但如果發生了任何問題請讓我們知道。\n\n<i>感謝您！</i> "
 
 #: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
@@ -690,7 +677,7 @@ msgstr "檔案系統"
 msgid "%s's home"
 msgstr "%s 的家目錄"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -699,9 +686,7 @@ msgstr "Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"嘗試使用 %s --help 查看可使用的命令列選項.\n"
+msgstr "%s: %s\n嘗試使用 %s --help 查看可使用的命令列選項.\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
@@ -717,23 +702,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
-msgstr ""
-"可能光碟片正在使用而無法存取。\n"
-"\n"
-"請卸載並重新啟動應用程式。\n"
-"\n"
-"如果光碟機內沒有光碟片，請確認目前的使用者是否有讀取與寫入的存取權。"
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+msgstr "可能光碟片正在使用而無法存取。\n\n請卸載並重新啟動應用程式。\n\n如果光碟機內沒有光碟片，請確認目前的使用者是否有讀取與寫入的存取權。"
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr ""
-"無法初始化 %s 轉碼器：%s\n"
-"\t(退回基礎實作)"
+msgstr "無法初始化 %s 轉碼器：%s\n\t(退回基礎實作)"
 
 #: ../xfburn/xfburn-main.c:375
 #, c-format
@@ -744,8 +721,10 @@ msgstr "映像檔「%s」不存在。"
 msgid "_File"
 msgstr "檔案(_F)"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -755,11 +734,14 @@ msgstr "新增資料燒錄清單"
 msgid "New audio composition"
 msgstr "新增音訊燒錄清單"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -821,7 +803,8 @@ msgstr "抹除 CD-RW"
 msgid "Copy Data CD"
 msgstr "複製資料 CD"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "燒錄映像檔"
@@ -874,7 +857,8 @@ msgstr "是否顯示關閉按鈕"
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
 msgstr "在這個寫入模式無法附加資料到多區段光碟 (請改用TAO模式)。"
 
 #: ../xfburn/xfburn-perform-burn.c:162
@@ -1214,14 +1198,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr ""
-"基礎轉碼器為內建，\n"
-"不需要任何函式庫。\n"
-"但它僅能處理未壓縮的\n"
-".wav 檔案。\n"
-"若您想從不同類型的音訊檔案\n"
-"燒錄清單資料，請在編譯時\n"
-"加入 gstreamer 支援。"
+msgstr "基礎轉碼器為內建，\n不需要任何函式庫。\n但它僅能處理未壓縮的\n.wav 檔案。\n若您想從不同類型的音訊檔案\n燒錄清單資料，請在編譯時\n加入 gstreamer 支援。"
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1256,12 +1233,7 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr ""
-"遺失 %s。\n"
-"\n"
-"您沒有安裝處理此檔案用的解碼器。\n"
-"您很可能需要查看 gst-plugins-* 套件\n"
-"來得到需要的插件。\n"
+msgstr "遺失 %s。\n\n您沒有安裝處理此檔案用的解碼器。\n您很可能需要查看 gst-plugins-* 套件\n來得到需要的插件。\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1280,14 +1252,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
-"Gstreamer 轉碼器使用 gstreamer 函式庫\n"
-"來建立音訊燒錄清單資料。\n"
-"\n"
-"只要正確的插件已安裝，所有必要的音訊檔\n"
-"應該都會支援。\n"
-"若音訊檔無法被辨識出來，請確認您有安裝\n"
-"'good'、'bad'、'ugly' gstreamer 插件套件。"
+msgstr "Gstreamer 轉碼器使用 gstreamer 函式庫\n來建立音訊燒錄清單資料。\n\n只要正確的插件已安裝，所有必要的音訊檔\n應該都會支援。\n若音訊檔無法被辨識出來，請確認您有安裝\n'good'、'bad'、'ugly' gstreamer 插件套件。"
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
@@ -1302,12 +1267,7 @@ msgid ""
 "is not an audio file:\n"
 "\n"
 "%s"
-msgstr ""
-"%s\n"
-"\n"
-"不是音效檔：\n"
-"\n"
-"%s"
+msgstr "%s\n\n不是音效檔：\n\n%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:915
 #, c-format
@@ -1393,127 +1353,10 @@ msgstr "libburn PACKET 區塊類型"
 msgid "Data Composition"
 msgstr "資料燒錄清單"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "燒錄映像檔 (xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "CD 及 DVD 燒錄程式"
 
-#~ msgid "Author/Maintainer"
-#~ msgstr "作者/維護者"
-
-#~ msgid "Retired author/maintainer"
-#~ msgstr "退休作者/維護人員"
-
-#~ msgid "Translator (%s)"
-#~ msgstr "翻譯人員 (%s)"
-
-#~ msgid "Format DVD+RW"
-#~ msgstr "格式化 DVD-RW"
-
-#~ msgid "_Format"
-#~ msgstr "強制執行(_F)"
-
-#~ msgid "No media detected in drive"
-#~ msgstr "光碟機中未放入光碟"
-
-#~ msgid "Import"
-#~ msgstr "匯入"
-
-#~ msgid "Import existing session"
-#~ msgstr "匯入已有的光碟區段"
-
-#~ msgid "Copy Audio CD"
-#~ msgstr "複製音樂光碟"
-
-#~ msgid "Create a new composition"
-#~ msgstr "建立新的燒錄流程"
-
-#~ msgid "Copy DVD"
-#~ msgstr "複製光碟(_C)"
-
-#~ msgid "Action group"
-#~ msgstr "動作(_A)"
-
-#~ msgid "Format Fast"
-#~ msgstr "強制執行(_F)"
-
-#~ msgid "Format Complete"
-#~ msgstr "完整抹寫"
-
-#~ msgid "Deformat Complete"
-#~ msgstr "完整抹寫"
-
-#~ msgid "Fast"
-#~ msgstr "快速抹寫"
-
-#~ msgid "Burn CD image"
-#~ msgstr "燒錄光碟映像檔"
-
-#~ msgid "Initializing"
-#~ msgstr "初始化中"
-
-#~ msgid "Show speed selection list and refresh button"
-#~ msgstr "顯示選擇燒錄速度及重新整理的按鈕"
-
-#~ msgid "Reopen last session"
-#~ msgstr "重開上次的燒錄紀錄"
-
-#~ msgid "Erase last session"
-#~ msgstr "刪除上次的燒錄紀錄"
-
-#~ msgid "_Force"
-#~ msgstr "強制執行(_F)"
-
-#~ msgid "Blanking..."
-#~ msgstr "資料抹除中."
-
-#~ msgid "Performing OPC..."
-#~ msgstr "執行光碟片燒錄最佳化"
-
-#~ msgid "Finishing"
-#~ msgstr "結束燒錄中"
-
-#~ msgid "Burn data composition"
-#~ msgstr "燒錄資料光碟"
-
-#~ msgid "Create ISO from composition"
-#~ msgstr "從選取的燒錄內容建立映像檔"
-
-#~ msgid "Id"
-#~ msgstr "裝置Id"
-
-#~ msgid "View _output"
-#~ msgstr "檢視輸出訊息(_O)"
-
-#~ msgid "Operation finished"
-#~ msgstr "操作結束"
-
-#~ msgid "Failed to open /proc/scsi/sg/devices"
-#~ msgstr "無法開啟 /proc/scsi/sg/devices 裝置"
-
-#~ msgid "Failed to open /proc/scsi/sg/device_strs"
-#~ msgstr "無法開啟 /proc/scsi/sg/device_strs"
-
-#~ msgid "Error reading scsi information from /proc/scsi/sg/devices"
-#~ msgstr "從 /proc/scsi/sg/devices 中讀取裝置訊息時發生錯誤"
-
-#~ msgid "No message..."
-#~ msgstr "沒有訊息..."
-
-#~ msgid "Burn Data CD"
-#~ msgstr "燒錄資料光碟"
-
-#~ msgid "Load composition"
-#~ msgstr "載入燒錄內容"
-
-#~ msgid "Show disc content toolbar"
-#~ msgstr "顯示光碟內容工具列"
-
-#~ msgid "Show/hide the disc content toolbar"
-#~ msgstr "顯示/隱藏 光碟內容工具列"
-
-#~ msgid "Xfburn preferences"
-#~ msgstr "Xfburn 功能設定"
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "燒錄映像檔 (xfburn)"

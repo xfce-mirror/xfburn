@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-03 20:34+0200\n"
-"PO-Revision-Date: 2013-08-05 01:31+0000\n"
+"PO-Revision-Date: 2013-08-05 09:12+0000\n"
 "Last-Translator: jc1 <jc1.quebecos@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/xfce/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -255,7 +255,7 @@ msgstr "Le mode écriture n'est pas encore supporté."
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
 msgid "Could not create ISO source structure."
-msgstr "Échec à la création du fichier ISO source."
+msgstr "Impossible de créer le fichier ISO source."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:161
 msgid "Burn image"
@@ -317,7 +317,7 @@ msgstr "L'ajout de données au disque multisessions n'est pas possible dans ce m
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr "Disque avec données détecté. Disque vierge ou multisession requis"
+msgstr "Disque fermé avec des données détectées. Besoin d'un disque vierge ou réinscriptible"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "No disc detected in drive"
@@ -325,7 +325,7 @@ msgstr "Pas de disque détecté dans le périphérique"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:513
 msgid "Cannot recognize state of drive and disc"
-msgstr "Échec à la détection de l'état du périphérique et du disque"
+msgstr "Impossible de reconnaître l'état ​​du périphérique et du disque"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:525
 msgid "The selected image does not fit on the inserted disc"
@@ -333,13 +333,13 @@ msgstr "L'image sélectionnée n'a pas assez de place pour le disque inséré"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:529
 msgid "Failed to get image size"
-msgstr "Échec à la détermination de la taille de l'image"
+msgstr "Impossible d'obtenir la taille de l'image"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:558
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr "Assurez-vous que le fichier est valide et que vous avez les permissions nécessaires."
+msgstr "Assurez-vous que vous avez sélectionné un fichier valide et vous avez les permissions nécessaires pour y accéder."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -356,7 +356,7 @@ msgstr "Copier un CD de données"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:123
 msgid "CD Reader device"
-msgstr "Périphérique de lecture"
+msgstr "Périphérique de lecture CD"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:152
 #: ../xfburn/xfburn-copy-dvd-dialog.c:152
@@ -461,7 +461,7 @@ msgstr "Taille"
 
 #: ../xfburn/xfburn-data-composition.c:404
 msgid "Local Path"
-msgstr "Chemin complet"
+msgstr "Chemin local"
 
 #: ../xfburn/xfburn-data-composition.c:679
 msgid "You must give a name to the file."
@@ -489,7 +489,7 @@ msgstr "Fichier(s) à ajouter à la composition"
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
-msgstr "Composition %s~%d"
+msgstr "Données %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1277
 #, c-format
@@ -509,7 +509,7 @@ msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr "Vous êtes sur le point d'ajouter votre dossier personnel à la composition, ceci pourrait prendre beaucoup de temps et de place.\n\nÊtes-vous sûr de vouloir continuer ?"
+msgstr "Vous êtes sur le point d'ajouter votre dossier personnel à la composition. Ceci pourrait prendre beaucoup de temps et de place.\n\nÊtes-vous sûr de vouloir continuer ?"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
@@ -526,7 +526,7 @@ msgstr "Nom de fichier « %s » dupliqué par « %s »"
 
 #: ../xfburn/xfburn-device-box.c:171 ../xfburn/xfburn-device-box.c:172
 msgid "Show writers only"
-msgstr "Ne montrer que les graveurs"
+msgstr "Voir seulement les graveurs"
 
 #: ../xfburn/xfburn-device-box.c:175
 msgid "Show speed selection"
@@ -625,7 +625,7 @@ msgstr "Erreur à l'évaluation du disque"
 
 #: ../xfburn/xfburn-device-box.c:637
 msgid "Write-once disc, no blanking possible"
-msgstr "Disque écriture unique, pas d'effacement possible"
+msgstr "Disque à écriture unique, pas d'effacement possible"
 
 #: ../xfburn/xfburn-device-box.c:640
 msgid "DVD+RW does not need blanking"
@@ -699,7 +699,7 @@ msgstr "Impossible d'initialiser le moteur de gravure."
 
 #: ../xfburn/xfburn-main.c:295
 msgid "No burners are currently available"
-msgstr "Aucun périphérique de gravure n'est couramment disponible"
+msgstr "Aucun périphérique de gravure disponible"
 
 #: ../xfburn/xfburn-main.c:297
 msgid ""
@@ -720,7 +720,7 @@ msgstr "Impossible d'initialiser le transcodeur %s : %s\n\t(l'implémentation de
 #: ../xfburn/xfburn-main.c:375
 #, c-format
 msgid "Image file '%s' does not exist."
-msgstr "L'image '%s' n'existe pas"
+msgstr "Le fichier image '%s' n'existe pas"
 
 #: ../xfburn/xfburn-main-window.c:100
 msgid "_File"
@@ -733,11 +733,11 @@ msgstr "_Fichier"
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
-msgstr "Composition de données"
+msgstr "Nouvelle composition de données"
 
 #: ../xfburn/xfburn-main-window.c:106
 msgid "New audio composition"
-msgstr "Composition audio"
+msgstr "Nouvelle composition audio"
 
 #. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
 #. composition"),
@@ -770,7 +770,7 @@ msgstr "Préfér_ences"
 
 #: ../xfburn/xfburn-main-window.c:118
 msgid "Show preferences dialog"
-msgstr "Modifier les préférences de Xfburn"
+msgstr "Voir les préférences de Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:120
 msgid "_Actions"
@@ -802,7 +802,7 @@ msgstr "Afficher des informations à propos de Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:127
 msgid "Blank CD-RW"
-msgstr "Nettoyer un disque"
+msgstr "Nettoyer un CD-RW"
 
 #: ../xfburn/xfburn-main-window.c:129
 msgid "Copy Data CD"
@@ -846,11 +846,11 @@ msgstr "Une autre interface de gravure de CD"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "Label"
-msgstr "Label"
+msgstr "Étiquette"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "The text of the label"
-msgstr "Le texte du label"
+msgstr "Le texte de l'étiquette"
 
 #: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Show close button"
@@ -858,17 +858,17 @@ msgstr "Afficher le bouton fermer"
 
 #: ../xfburn/xfburn-notebook-tab.c:111
 msgid "Determine whether the close button is visible"
-msgstr "Détermine si le boutton fermer est visible"
+msgstr "Détermine si le bouton fermer est visible"
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
-msgstr "L'ajout de données au disque multisessions n'est pas possible dans ce mode d'écriture (utilisez le mode TAO)."
+msgstr "Impossible d'ajouter des données au disque multisession dans ce mode d'écriture (utilisez le mode TAO)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr "Disque avec données détecté, un disque vierge ou multisession est requis."
+msgstr "Disque fermé avec des données détectées, un disque vierge ou réinscriptible est nécessaire."
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
@@ -876,11 +876,11 @@ msgstr "Pas de disque détecté dans le périphérique."
 
 #: ../xfburn/xfburn-perform-burn.c:167
 msgid "Cannot recognize the state of the drive and disc."
-msgstr "Échec à la détection de l'état du périphérique et du disque."
+msgstr "Impossible de reconnaître l'état du lecteur et du disque"
 
 #: ../xfburn/xfburn-perform-burn.c:180
 msgid "There is not enough space available on the inserted disc."
-msgstr "L'image sélectionnée n'a pas assez de place pour le disque inséré."
+msgstr "Il n'y a pas assez d'espace disponible sur le disque inséré."
 
 #: ../xfburn/xfburn-perform-burn.c:225
 #, c-format
@@ -1041,7 +1041,7 @@ msgstr "Taille du tampon FIFO (en kio)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:471
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr "Changer ce paramètre ne prend effet seulement après avoir relancé le programme."
+msgstr "La modification de ce paramètre ne prend son plein effet après un redémarrage du programme."
 
 #: ../xfburn/xfburn-progress-dialog.c:198
 msgid "Initializing..."
@@ -1049,7 +1049,7 @@ msgstr "Initialisation..."
 
 #: ../xfburn/xfburn-progress-dialog.c:213
 msgid "Estimated writing speed:"
-msgstr "Estimation de la vitesse d'écriture"
+msgstr "Estimation de la vitesse d'écriture :"
 
 #: ../xfburn/xfburn-progress-dialog.c:227
 msgid "FIFO buffer:"
@@ -1103,7 +1103,7 @@ msgstr "<big>_Graver une image</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:140
 msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr "Graver une compilation prête,\np.e. un fichier .ISO"
+msgstr "Graver une compilation prête, p.e. un fichier .ISO"
 
 #: ../xfburn/xfburn-welcome-tab.c:145
 msgid "<big>New _Data Composition</big>"
@@ -1111,7 +1111,7 @@ msgstr "<big>_Composition de données</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:145
 msgid "Create a new data disc with the files of your choosing"
-msgstr "Créer un nouveau disque de données\navec les fichiers de votre choix"
+msgstr "Créer un nouveau disque de données avec les fichiers de votre choix"
 
 #: ../xfburn/xfburn-welcome-tab.c:150
 msgid "<big>_Blank Disc</big>"
@@ -1119,19 +1119,19 @@ msgstr "<big>_Nettoyer un disque</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:150
 msgid "Prepare the rewriteable disc for a new burn"
-msgstr "Préparer un disque réinscriptible\npour une nouvelle gravure"
+msgstr "Préparer un disque réinscriptible pour une nouvelle gravure"
 
 #: ../xfburn/xfburn-welcome-tab.c:155
 msgid "<big>_Audio CD</big>"
-msgstr "<big>Composition _audio</big>"
+msgstr "<big>CD _audio</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:155
 msgid "Audio CD playable in regular stereos"
-msgstr "Graver une compilation Audio\nlisible par les chaînes Hi-Fi"
+msgstr "CD audio lisibles sur une chaine stéréo"
 
 #: ../xfburn/xfburn-audio-composition.c:212
 msgid "What files can get burned to an audio CD?"
-msgstr "Quels fichiers peuvent être gravés sur une composition audio ?"
+msgstr "Quels fichiers peuvent être gravés sur un CD audio ?"
 
 #: ../xfburn/xfburn-audio-composition.c:216
 msgid "Rename Artist"
@@ -1167,11 +1167,11 @@ msgstr "Titre"
 
 #: ../xfburn/xfburn-audio-composition.c:434
 msgid "Filename"
-msgstr "Fichier"
+msgstr "Nom de fichier"
 
 #: ../xfburn/xfburn-audio-composition.c:581
 msgid "Cannot burn audio onto a DVD."
-msgstr "Impossible de graver sur un DVD."
+msgstr "Impossible de graver sur un DVD audio."
 
 #: ../xfburn/xfburn-audio-composition.c:1260
 msgid "You can only have a maximum of 99 tracks."
@@ -1257,12 +1257,12 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr "Le transcodeur utilise le framework multimédia GStreamer.\n\nTous les formats de fichiers devraient être supportés du moment que les bons plugins sont installés. Si un fichier audio n'est pas reconnu, vérifiez que les plugins GStreamer 'good', 'bad', et 'ugly' sont installés."
+msgstr "Le transcodeur gstreamer utilise la bibliothèque GStreamer\npour créer des compositions audio.\n\nTous les formats de fichiers devraient être supportés\ndu moment que les bons greffon sont installés.\nSi un fichier audio n'est pas reconnu, vérifiez que les greffons GStreamer 'good', 'bad', et 'ugly' sont installés."
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
-msgstr "GStreamer n'a pas récupéré d'information sur ce fichier (délais de détection dépassé)"
+msgstr "Gstreamer n'aimait pas ce fichier (délais de détection dépassé)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:800
 #, c-format
@@ -1282,7 +1282,7 @@ msgstr "GStreamer a refusé de démarré le transcodage (délais dépassé)"
 #: ../xfburn/xfburn-transcoder-gst.c:950
 #, c-format
 msgid "Failed to change songs while transcoding"
-msgstr "Erreur lors du changement des pistes durant le transcodage."
+msgstr "Impossible de changer la chanson pendant le transcodage"
 
 #: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
@@ -1316,7 +1316,7 @@ msgstr "Nom du profil tel que rapporté par libburn"
 
 #: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
 msgid "Is the disc erasable"
-msgstr "Le disque est effaçable"
+msgstr "est le disque effaçable"
 
 #: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
 msgid "Can burn CDR"

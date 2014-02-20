@@ -1,24 +1,23 @@
-# Portuguese translations for xfburn package.
-# Copyright (C) 2007 THE xfburn'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfburn package.
-# Og Maciel <ogmaciel@gnome.org>, 2008-2009.
-# Fábio Nogueira <deb-user-ba@ubuntu.com>, 2007-2008.
-# Henrique P Machado <zehrique@gmail.com>, 2008.
-# Sérgio Cipolla <secipolla@gmail.com>, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Henrique P. Machado <zehrique@gmail.com>, 2008
+# secipolla <secipolla@gmail.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-06 22:48+0000\n"
-"PO-Revision-Date: 2013-05-06 22:24-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <xfce-i18n-br@xfce.org>\n"
-"Language: pt_BR\n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2013-07-03 18:36+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/xfce/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.5\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
@@ -46,9 +45,7 @@ msgstr "Por favor, insira uma mídia gravável e pressione ENTER."
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr ""
-"Não foi possível determinar estado do disco - pressione ENTER para tentar "
-"novamente."
+msgstr "Não foi possível determinar estado do disco - pressione ENTER para tentar novamente."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
@@ -133,7 +130,8 @@ msgstr "E_jetar disco"
 msgid "_Blank"
 msgstr "_Apagar"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "O disco inserido já está em branco."
@@ -304,24 +302,18 @@ msgstr "Gravando imagem..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Por "
-"favor, selecione uma imagem para gravar</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Por favor, selecione uma imagem para gravar</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Não é possível adicionar dados ao disco de multissessão neste modo de "
-"gravação (use o modo TAO)"
+msgstr "Não é possível adicionar dados ao disco de multissessão neste modo de gravação (use o modo TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"Detectada mídia fechada e com dados. Necessária uma mídia em branco ou com "
-"sessão aberta."
+msgstr "Detectada mídia fechada e com dados. Necessária uma mídia em branco ou com sessão aberta."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "No disc detected in drive"
@@ -343,9 +335,7 @@ msgstr "Não foi possível determinar o tamanho da imagem"
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr ""
-"Certifique-se que você selecionou um arquivo válido e que você possui as "
-"permissões apropriadas de acesso."
+msgstr "Certifique-se que você selecionou um arquivo válido e que você possui as permissões apropriadas de acesso."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -442,7 +432,8 @@ msgstr "Limpar"
 msgid "Clear the content of the composition"
 msgstr "Limpa o conteúdo da composição"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "Renomear"
@@ -489,7 +480,8 @@ msgstr "Novo diretório"
 msgid "File(s) to add to composition"
 msgstr "Arquivo(s) para adicionar à composição"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -500,9 +492,7 @@ msgstr "Dados %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr ""
-"%s não pode ser adicionado à composição porque excede o tamanho máximo de "
-"arquivos para iso9600."
+msgstr "%s não pode ser adicionado à composição porque excede o tamanho máximo de arquivos para iso9600."
 
 #: ../xfburn/xfburn-data-composition.c:1362
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -512,25 +502,17 @@ msgstr "Adicionando diretório pessoal"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
-"Você está prestes a adicionar a sua pasta pessoal à composição. É bem "
-"provável que isso demore muito e que também seja muito grande para caber em "
-"um disco.\n"
-"\n"
-"Você tem certeza que deseja continuar?"
+msgstr "Você está prestes a adicionar a sua pasta pessoal à composição. É bem provável que isso demore muito e que também seja muito grande para caber em um disco.\n\nVocê tem certeza que deseja continuar?"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr ""
-"Um arquivo chamado \"%s\" já existe neste diretório, o arquivo não foi "
-"adicionado."
+msgstr "Um arquivo chamado \"%s\" já existe neste diretório, o arquivo não foi adicionado."
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1945
@@ -568,9 +550,7 @@ msgstr "É válida a combinação de hardware e disco para gravar a composição
 
 #: ../xfburn/xfburn-device-box.c:188
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"O modo de apagamento mostra mensagens de status do disco diferentes do modo "
-"normal"
+msgstr "O modo de apagamento mostra mensagens de status do disco diferentes do modo normal"
 
 #: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
 msgid "Accept only CDs as valid discs"
@@ -592,24 +572,12 @@ msgstr "Lista de velocidades vazia"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr ""
-"<b>Não foi possível obter a lista de velocidades da unidade de disco.</b>\n"
-"\n"
-"Este é um erro já conhecido que ocorre com algumas unidades. Por favor, "
-"relate este erro para <i>xfburn@xfce.org</i> junto com a saída do console "
-"para aumentar as chances do problema ser resolvido.\n"
-"\n"
-"O modo de gravação deve ainda assim funcionar, mas se houver problemas, nos "
-"avise.\n"
-"\n"
-"<i>Obrigado!</i>"
+msgstr "<b>Não foi possível obter a lista de velocidades da unidade de disco.</b>\n\nEste é um erro já conhecido que ocorre com algumas unidades. Por favor, relate este erro para <i>xfburn@xfce.org</i> junto com a saída do console para aumentar as chances do problema ser resolvido.\n\nO modo de gravação deve ainda assim funcionar, mas se houver problemas, nos avise.\n\n<i>Obrigado!</i>"
 
 #: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
@@ -710,7 +678,7 @@ msgstr "Sistema de arquivos"
 msgid "%s's home"
 msgstr "Pasta pessoal de %s"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
 
@@ -719,9 +687,7 @@ msgstr "Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"Tente %s --help para ver a lista completa das opções da linha de comando.\n"
+msgstr "%s: %s\nTente %s --help para ver a lista completa das opções da linha de comando.\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
@@ -737,24 +703,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
-msgstr ""
-"Provavelmente o(s) disco(s) está(ão) em uso e não pode(m) ser acessado(s).\n"
-"\n"
-"Por favor, desmonte-o(s) e reinicie o aplicativo.\n"
-"\n"
-"Se nenhuma mídia está inserida, verifique se você tem acesso de leitura e "
-"gravação no drive com o usuário atual."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+msgstr "Provavelmente o(s) disco(s) está(ão) em uso e não pode(m) ser acessado(s).\n\nPor favor, desmonte-o(s) e reinicie o aplicativo.\n\nSe nenhuma mídia está inserida, verifique se você tem acesso de leitura e gravação no drive com o usuário atual."
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr ""
-"Falhou ao inicializar o transcodificador %s: %s\n"
-"\t(voltando para a implementação básica)"
+msgstr "Falhou ao inicializar o transcodificador %s: %s\n\t(voltando para a implementação básica)"
 
 #: ../xfburn/xfburn-main.c:375
 #, c-format
@@ -765,8 +722,10 @@ msgstr "O arquivo de imagem \"%s\" não existe."
 msgid "_File"
 msgstr "_Arquivo"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -776,11 +735,14 @@ msgstr "Nova composição de dados"
 msgid "New audio composition"
 msgstr "Nova composição de áudio"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -842,7 +804,8 @@ msgstr "Apagar CD-RW"
 msgid "Copy Data CD"
 msgstr "Copiar CD de dados"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Gravar imagem"
@@ -895,16 +858,13 @@ msgstr "Determina se o botão de fechar é visível"
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Não é possível adicionar dados ao disco de multissessão neste modo de "
-"gravação (use o modo TAO)."
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
+msgstr "Não é possível adicionar dados ao disco de multissessão neste modo de gravação (use o modo TAO)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-"Detectada mídia fechada e com dados. Necessária uma mídia em branco ou com "
-"sessão aberta."
+msgstr "Detectada mídia fechada e com dados. Necessária uma mídia em branco ou com sessão aberta."
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
@@ -1077,9 +1037,7 @@ msgstr "Tamanho do buffer FIFO (em KB)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:471
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr ""
-"As modificações desta configuração só terão efeito após a reinicialização do "
-"programa."
+msgstr "As modificações desta configuração só terão efeito após a reinicialização do programa."
 
 #: ../xfburn/xfburn-progress-dialog.c:198
 msgid "Initializing..."
@@ -1241,15 +1199,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr ""
-"O transcoder básico é embutido\n"
-"e não requer qualquer biblioteca.\n"
-"Mas ele só pode manipular arquivos .wav\n"
-"não-comprimidos.\n"
-"Se você deseja criar composições de\n"
-"áudio de diferentes tipos de arquivos\n"
-"de áudio, por favor compile a gravação\n"
-"com suporte a gstreamer."
+msgstr "O transcoder básico é embutido\ne não requer qualquer biblioteca.\nMas ele só pode manipular arquivos .wav\nnão-comprimidos.\nSe você deseja criar composições de\náudio de diferentes tipos de arquivos\nde áudio, por favor compile a gravação\ncom suporte a gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1284,11 +1234,7 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr ""
-"%s está faltando.\n"
-"Você não tem um decodificador instalado para manipular este arquivo.\n"
-"Provavelmente necessite procurar pelos plug-ins necessários nos\n"
-"pacotes gst-plugins-*\n"
+msgstr "%s está faltando.\nVocê não tem um decodificador instalado para manipular este arquivo.\nProvavelmente necessite procurar pelos plug-ins necessários nos\npacotes gst-plugins-*\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1307,16 +1253,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
-"O transcoder gstreamer usa a biblioteca\n"
-"gstreamer para criar composições de áudio.\n"
-"\n"
-"Essencialmente todos os tipos de áudio deveriam\n"
-"ser suportados uma vez que os plug-ins corretos\n"
-"estejam instalados. Se um arquivo de áudio não é\n"
-"reconhecido, certifique-se que tem os pacotes\n"
-"de plug-ins \"good\", \"bad\" e \"ugly\"\n"
-"do gstreamer instalados."
+msgstr "O transcoder gstreamer usa a biblioteca\ngstreamer para criar composições de áudio.\n\nEssencialmente todos os tipos de áudio deveriam\nser suportados uma vez que os plug-ins corretos\nestejam instalados. Se um arquivo de áudio não é\nreconhecido, certifique-se que tem os pacotes\nde plug-ins \"good\", \"bad\" e \"ugly\"\ndo gstreamer instalados."
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
@@ -1331,12 +1268,7 @@ msgid ""
 "is not an audio file:\n"
 "\n"
 "%s"
-msgstr ""
-"%s\n"
-"\n"
-"não é um arquivo de áudio:\n"
-"\n"
-"%s"
+msgstr "%s\n\nnão é um arquivo de áudio:\n\n%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:915
 #, c-format
@@ -1422,108 +1354,10 @@ msgstr "tipos de blocos libburn PACKET"
 msgid "Data Composition"
 msgstr "Composição de dados"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "Gravar Imagem (xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Aplicativo de gravação de CD e DVD"
 
-#~ msgid "Author/Maintainer"
-#~ msgstr "Autor/Mantenedor"
-
-#~ msgid "Retired author/maintainer"
-#~ msgstr "Autor/Mantenedor inativo"
-
-#~ msgid "Translator (%s)"
-#~ msgstr "Tradutor (%s)"
-
-#~ msgid "The write mode is not currently supported"
-#~ msgstr "O modo de gravação não é suportado atualmente"
-
-#~ msgid "Is the device accessible"
-#~ msgstr "O dispositivo está acessível"
-
-#~ msgid "The status of the disc in the drive"
-#~ msgstr "O status do disco na unidade"
-
-#~ msgid "Unable to create disc object"
-#~ msgstr "Não é possível criar objeto de disco"
-
-#~ msgid "Cannot attach source object to track object"
-#~ msgstr "Não é possível adicionar o objeto fonte à faixa"
-
-#~ msgid "Format DVD+RW"
-#~ msgstr "Formato DVD+RW"
-
-#~ msgid "_Format"
-#~ msgstr "_Formato"
-
-#~ msgid "Closed disc with data detected. Need blank or appendable media"
-#~ msgstr ""
-#~ "Detectado mídia com dados. Necessária uma mídia vazia ou com espaço para "
-#~ "gravação"
-
-#~ msgid "No media detected in drive"
-#~ msgstr "Não há mídia no drive"
-
-#~ msgid "No access to drive (mounted?)"
-#~ msgstr "Sem acesso à unidade de disco (montada?)"
-
-#~ msgid "active"
-#~ msgstr "ativo"
-
-#~ msgid "Could not create burn_source from %s!"
-#~ msgstr "Não foi possível criar uma estrutura ISO"
-
-#~ msgid "Could not add source to track %s!"
-#~ msgstr "Não foi possível criar uma estrutura ISO"
-
-#~ msgid "Import"
-#~ msgstr "Importar"
-
-#~ msgid "Import existing session"
-#~ msgstr "Importar sessão existente"
-
-#~ msgid "Copy Audio CD"
-#~ msgstr "Copiar CD de áudio"
-
-#~ msgid "Create a new composition"
-#~ msgstr "Criar uma nova composição"
-
-#~ msgid "Copy DVD"
-#~ msgstr "Copiar DVD"
-
-#~ msgid "The main window"
-#~ msgstr "A janela principal"
-
-#~ msgid "Notebook"
-#~ msgstr "Notebook"
-
-#~ msgid "NOTEBOOK"
-#~ msgstr "NOTEBOOK"
-
-#~ msgid "Action group"
-#~ msgstr "Grupo de ações"
-
-#~ msgid "Action group from the main window"
-#~ msgstr "Grupo de ações da janela principal"
-
-#~ msgid "Format Fast"
-#~ msgstr "_Formato"
-
-#~ msgid "Format Complete"
-#~ msgstr "Completo"
-
-#~ msgid "Deformat Complete"
-#~ msgstr "Completo"
-
-#~ msgid "Fast"
-#~ msgstr "Rápido"
-
-#~ msgid "Cannot recognize drive and media state"
-#~ msgstr "Não é possível reconhecer o drive e o estado da mídia"
-
-#~ msgid "Burn CD image"
-#~ msgstr "Gravar imagem de CD"
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "Gravar Imagem (xfburn)"

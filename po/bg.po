@@ -1,20 +1,22 @@
-# Bulgarian translations for xfburn package.
-# Copyright (C) 2005-2006 Jean-François Wauthy
-# This file is distributed under the same license as the xfburn package.
-# Kiril Kirilov (Cybercop) <cybercop_montana@abv.bg>, 2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# cybercop <cybercop_montana@abv.bg>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn 0.0.3svn\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-10 07:48+0000\n"
-"PO-Revision-Date: 2013-04-27 15:07+0200\n"
-"Last-Translator: Kiril Kirilov (Cybercop) <cybercop_montana@abv.bg>\n"
-"Language-Team: Bulgarian <bg@li.org>\n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2013-07-03 18:35+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfce/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
@@ -42,8 +44,7 @@ msgstr "Моля, поставете записваем диск и натисн
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr ""
-"Не може да бъде определен статусът на диска - натиснете Enter за нов опит."
+msgstr "Не може да бъде определен статусът на диска - натиснете Enter за нов опит."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
@@ -300,24 +301,18 @@ msgstr "Запис на образ..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Моля, "
-"изберете образ за записване</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Моля, изберете образ за записване</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Невъзможно е да добавите данни в този диск за многократно използване в този "
-"режим на запис (използвайте TAO)"
+msgstr "Невъзможно е да добавите данни в този диск за многократно използване в този режим на запис (използвайте TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"Намерен е заключен диск с данни. Трябва да бъде изчистен или да се постави "
-"празен диск"
+msgstr "Намерен е заключен диск с данни. Трябва да бъде изчистен или да се постави празен диск"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "No disc detected in drive"
@@ -339,9 +334,7 @@ msgstr "Не може да бъде определен размерът на о�
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr ""
-"Удостоверява, че е избран правилен файл и вие имате достатъчно права за "
-"достъп до него"
+msgstr "Удостоверява, че е избран правилен файл и вие имате достатъчно права за достъп до него"
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -498,9 +491,7 @@ msgstr "Данни %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr ""
-"%s не могат да бъдат добавени в проекта, тъй- като размерът им превишава "
-"максимално допустимият за iso9660."
+msgstr "%s не могат да бъдат добавени в проекта, тъй- като размерът им превишава максимално допустимият за iso9660."
 
 #: ../xfburn/xfburn-data-composition.c:1362
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -510,24 +501,17 @@ msgstr "Добавяне на домашната папка"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
-"Вие сте избрали да добавите в проекта домашната папка. Това може да отнеме "
-"много време, а размерът на папката може да превишава размерът на диска\n"
-"\n"
-"Сигурен ли сте, че искате да продължите?"
+msgstr "Вие сте избрали да добавите в проекта домашната папка. Това може да отнеме много време, а размерът на папката може да превишава размерът на диска\n\nСигурен ли сте, че искате да продължите?"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr ""
-"В тази папка вече съществува файл с име \"%s\" и файлът не може да бъде "
-"добавен"
+msgstr "В тази папка вече съществува файл с име \"%s\" и файлът не може да бъде добавен"
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1945
@@ -565,9 +549,7 @@ msgstr "Вашето устройство поддържа ли този тип 
 
 #: ../xfburn/xfburn-device-box.c:188
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"Режимът на почистване показва съобщения за състоянието на диска, които се "
-"различават от нормалният режим"
+msgstr "Режимът на почистване показва съобщения за състоянието на диска, които се различават от нормалният режим"
 
 #: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
 msgid "Accept only CDs as valid discs"
@@ -589,23 +571,12 @@ msgstr "Списъкът със скоростите на запис е праз
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr ""
-"<b>Невъзможно е получаването на списъка със скоростите на устройството.</b>\n"
-"\n"
-"Това е често срещана грешка, която се получава при някои устройства. Моля, "
-"съобщете за това на <i>xfburn@xfce.org</i> Приложете изхода от терминала, "
-"което ще ни помогне да отстраним грешката.\n"
-"\n"
-"Записването трябва да работи, но ако има грешка, моля да ни уведомите\n"
-"\n"
-"<i>Спасибо!</i>"
+msgstr "<b>Невъзможно е получаването на списъка със скоростите на устройството.</b>\n\nТова е често срещана грешка, която се получава при някои устройства. Моля, съобщете за това на <i>xfburn@xfce.org</i> Приложете изхода от терминала, което ще ни помогне да отстраним грешката.\n\nЗаписването трябва да работи, но ако има грешка, моля да ни уведомите\n\n<i>Спасибо!</i>"
 
 #: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
@@ -706,7 +677,7 @@ msgstr "Файлова система"
 msgid "%s's home"
 msgstr "%s's Домашна папка"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:3
+#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Запис на диск - Xfburn"
 
@@ -715,9 +686,7 @@ msgstr "Запис на диск - Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"Опитайте %s --help за получаване на списък с достъпните опции.\n"
+msgstr "%s: %s\nОпитайте %s --help за получаване на списък с достъпните опции.\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
@@ -733,24 +702,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
-msgstr ""
-"Възможно е дискът да се използва и да е недостъпен. \n"
-"\n"
-"Моля, демонтирайте диска и рестартирайте програмата. \n"
-"\n"
-"Ако в устройството няма диск, проверете, дали имате достатъчно права за "
-"работа с устройството."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+msgstr "Възможно е дискът да се използва и да е недостъпен. \n\nМоля, демонтирайте диска и рестартирайте програмата. \n\nАко в устройството няма диск, проверете, дали имате достатъчно права за работа с устройството."
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr ""
-"Не може да се стартира транскодер %s: %s\n"
-"\t(използване на основните настройки)"
+msgstr "Не може да се стартира транскодер %s: %s\n\t(използване на основните настройки)"
 
 #: ../xfburn/xfburn-main.c:375
 #, c-format
@@ -897,16 +857,13 @@ msgstr "Определя, дали да се показва бутона за з
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Не можете да добавите данни към мултисесиен диск в този режим на запис "
-"(използвайте вместо TAO)."
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
+msgstr "Не можете да добавите данни към мултисесиен диск в този режим на запис (използвайте вместо TAO)."
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-"Открит е затворен диск с данни. Трябва да бъде почистен или поставен празен "
-"диск."
+msgstr "Открит е затворен диск с данни. Трябва да бъде почистен или поставен празен диск."
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
@@ -1079,9 +1036,7 @@ msgstr "Рзмер на буфера FIFO (в кБ):"
 
 #: ../xfburn/xfburn-preferences-dialog.c:471
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr ""
-"Промените ще влязат в сила само, ако програмата бъде рестартирана и дискът "
-"изваден."
+msgstr "Промените ще влязат в сила само, ако програмата бъде рестартирана и дискът изваден."
 
 #: ../xfburn/xfburn-progress-dialog.c:198
 msgid "Initializing..."
@@ -1227,9 +1182,7 @@ msgstr "Преминаване към запис"
 
 #: ../xfburn/xfburn-disc-usage.c:203
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr ""
-"Вие се опитвате да запишете повече данни, отколкото могат да се поберат на "
-"диска!"
+msgstr "Вие се опитвате да запишете повече данни, отколкото могат да се поберат на диска!"
 
 #: ../xfburn/xfburn-transcoder-basic.c:166
 msgid "basic"
@@ -1245,15 +1198,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr ""
-"Основният декодер е вграден в програ-\n"
-"мата и не са необходими външни библиотеки\n"
-"Обаче, той може да обработва само некомпре-\n"
-"сирани .wav-файлове.\n"
-"\n"
-"Если вы хотите записывать аудиофайлы \r\n"
-"других типов, скомпилируйте xfburn\n"
-"с поддержкой gstreamer."
+msgstr "Основният декодер е вграден в програ-\nмата и не са необходими външни библиотеки\nОбаче, той може да обработва само некомпре-\nсирани .wav-файлове.\n\nЕсли вы хотите записывать аудиофайлы \r\nдругих типов, скомпилируйте xfburn\nс поддержкой gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1288,12 +1233,7 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr ""
-"Липсва %s.\n"
-"\n"
-"В системата не е открит декодер за обработването на този\n"
-"файл. Трябва да погледнете в пакетите\n"
-"gst-plugins-* за необходимите плъгини.\n"
+msgstr "Липсва %s.\n\nВ системата не е открит декодер за обработването на този\nфайл. Трябва да погледнете в пакетите\ngst-plugins-* за необходимите плъгини.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1312,21 +1252,12 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
-"Декодерът използва библиотеки gstreamer\n"
-"за създаване на аудио проекти.\n"
-"\n"
-"Обикновено поддържа всички типове аудио файлове,\n"
-"ако са инсталиране необходимите плъгини.\n"
-"Ако форматът на файла не може да бъде определен,\n"
-"проверете дали са инсталиране 'good', 'bad',  и 'ugly'\n"
-"плъгините за gstreamer."
+msgstr "Декодерът използва библиотеки gstreamer\nза създаване на аудио проекти.\n\nОбикновено поддържа всички типове аудио файлове,\nако са инсталиране необходимите плъгини.\nАко форматът на файла не може да бъде определен,\nпроверете дали са инсталиране 'good', 'bad',  и 'ugly'\nплъгините за gstreamer."
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
-msgstr ""
-"Gstreamer не можа да разпознае този файл (времето за разпознаване изтече)"
+msgstr "Gstreamer не можа да разпознае този файл (времето за разпознаване изтече)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:800
 #, c-format
@@ -1336,18 +1267,12 @@ msgid ""
 "is not an audio file:\n"
 "\n"
 "%s"
-msgstr ""
-"%s\n"
-"\n"
-"не е аудио файл:\n"
-"\n"
-"%s"
+msgstr "%s\n\nне е аудио файл:\n\n%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:915
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
-msgstr ""
-"Gstreamer не стартира декодирането за определеното време (времето изтече)"
+msgstr "Gstreamer не стартира декодирането за определеното време (времето изтече)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:950
 #, c-format
@@ -1428,94 +1353,10 @@ msgstr "тип блокове PACKET libburn"
 msgid "Data Composition"
 msgstr "Проект с данни"
 
-#: ../xfburn.desktop.in.h:1
-msgid "Burn Image (xfburn)"
-msgstr "Запис на образ (xfburn)"
-
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
 msgstr "Програма за запис на CD и DVD"
 
-#~ msgid "Author/Maintainer"
-#~ msgstr "Автор/сопровождающий"
-
-#~ msgid "Retired author/maintainer"
-#~ msgstr "Предыдущий автор/сопровождающий"
-
-#~ msgid "Translator (%s)"
-#~ msgstr "Переводчик (%s)"
-
-#~ msgid "The write mode is not currently supported"
-#~ msgstr "Режим записи еще не поддерживается"
-
-#~ msgid "Is the device accessible"
-#~ msgstr "Устройство доступно"
-
-#~ msgid "Format DVD+RW"
-#~ msgstr "Форматировать DVD-RW"
-
-#~ msgid "_Format"
-#~ msgstr "_Форматировать"
-
-#~ msgid "Import"
-#~ msgstr "Импорт"
-
-#~ msgid "Import existing session"
-#~ msgstr "Импортировать существующую сессию"
-
-#~ msgid "Copy Audio CD"
-#~ msgstr "Копировать аудио-CD"
-
-#~ msgid "Create a new composition"
-#~ msgstr "Создать проект"
-
-#~ msgid "Copy DVD"
-#~ msgstr "Копировать DVD"
-
-#~ msgid "Action group"
-#~ msgstr "_Действия"
-
-#~ msgid "Format Fast"
-#~ msgstr "_Форматировать"
-
-#~ msgid "Format Complete"
-#~ msgstr "Полная"
-
-#~ msgid "Deformat Complete"
-#~ msgstr "Полная"
-
-#~ msgid "Fast"
-#~ msgstr "Быстрая"
-
-#~ msgid "Burn CD image"
-#~ msgstr "Запись образа CD"
-
-#~ msgid "Reopen last session"
-#~ msgstr "Открыть последнюю сессию"
-
-#~ msgid "Erase last session"
-#~ msgstr "Стереть последнюю сессию"
-
-#~ msgid "_Force"
-#~ msgstr "_Принудительно"
-
-#~ msgid "Performing OPC..."
-#~ msgstr "Выполняется OPC..."
-
-#~ msgid "Finishing"
-#~ msgstr "Завершение"
-
-#~ msgid "Burn data composition"
-#~ msgstr "Запись проекта с данными"
-
-#~ msgid "Create ISO from composition"
-#~ msgstr "Создание ISO-образа из проекта"
-
-#~ msgid "Id"
-#~ msgstr "Id"
-
-#~ msgid "View _output"
-#~ msgstr "Просмотреть _вывод"
-
-#~ msgid "Operation finished"
-#~ msgstr "Операция завершена"
+#: ../xfburn.desktop.in.h:3
+msgid "Burn Image (xfburn)"
+msgstr "Запис на образ (xfburn)"

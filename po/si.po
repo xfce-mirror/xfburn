@@ -1,21 +1,22 @@
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
-# Danishka Navin, 2010.
+# 
+# Translators:
+# Danishka Navin, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 09:46+0100\n"
-"PO-Revision-Date: 2010-08-20 11:08+0530\n"
-"Last-Translator: \n"
-"Language-Team: American English <kde-i18n-doc@kde.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2013-07-03 18:36+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Sinhala (http://www.transifex.com/projects/p/xfce/language/si/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: si\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.0\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
@@ -30,18 +31,16 @@ msgid "Time total:"
 msgstr ""
 
 #: ../xfburn/xfburn-global.h:32
-#, fuzzy
 msgid "length"
-msgstr "දිග"
+msgstr ""
 
 #: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
 msgstr "තාවකාලික ගොණු මැකීයමින්..."
 
 #: ../xfburn/xfburn-global.h:34
-#, fuzzy
 msgid "Please insert a recordable disc and hit enter"
-msgstr "කරූණාකර පිටපත් කල හැකි තැටියක් ඇතුල් කරන්න"
+msgstr ""
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
@@ -52,9 +51,8 @@ msgid "CD copying finished successfully."
 msgstr ""
 
 #: ../xfburn/xfburn-global.h:42
-#, fuzzy
 msgid "Data composition"
-msgstr "දත්ත සංයෝජනය"
+msgstr ""
 
 #: ../xfburn/xfburn-adding-progress.c:111
 msgid "Adding files to the composition"
@@ -131,7 +129,8 @@ msgstr "තැටිය එලියට දමන්න"
 msgid "_Blank"
 msgstr "හිස් (_B)"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "ඇතුලත් කල තැටිය හිස් තැටියකි"
@@ -161,7 +160,7 @@ msgid "Done"
 msgstr "කලා"
 
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: ../xfburn/xfburn-progress-dialog.c:649
 msgid "Failure"
 msgstr "බැරිවිය"
 
@@ -272,7 +271,7 @@ msgid "ISO images"
 msgstr "ISO ගොණු"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:226
-msgid "_Quit after successful completion"
+msgid "_Quit after success"
 msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:236
@@ -302,11 +301,9 @@ msgstr "ප්‍රතිබිම්භයක් තැටිගත කරම�
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">කරුණාකර "
-"තැටිගත කිරීමට අවශ්‍යය ප්‍රතිබිම්බය තෝරන්න</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">කරුණාකර තැටිගත කිරීමට අවශ්‍යය ප්‍රතිබිම්බය තෝරන්න</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
@@ -434,7 +431,8 @@ msgstr "හිස් කරන්න"
 msgid "Clear the content of the composition"
 msgstr ""
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "නම වෙනස් කරන්න"
@@ -478,11 +476,11 @@ msgstr "අළුත් බහලුමක්"
 
 #: ../xfburn/xfburn-data-composition.c:941
 #: ../xfburn/xfburn-audio-composition.c:976
-#, fuzzy
 msgid "File(s) to add to composition"
-msgstr "සංයෝජකයට ගොණු ඇතුලත්වෙමින් පවතී."
+msgstr ""
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -503,8 +501,7 @@ msgstr "නිවෙස් බහලුමට එකතුවෙමින්"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
@@ -574,11 +571,9 @@ msgstr "හිස් වේග ලැයිස්තුව"
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
@@ -707,8 +702,7 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
 
 #: ../xfburn/xfburn-main.c:331
@@ -727,8 +721,10 @@ msgstr "'%s'  ලෙස ගොණුවක් නොමැත"
 msgid "_File"
 msgstr "ගොනුව (_F)"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -738,11 +734,14 @@ msgstr "අළුත් දත්ත සංයෝජනය"
 msgid "New audio composition"
 msgstr "අළුත් ශබ්ද සංයෝජයක්"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -804,7 +803,8 @@ msgstr "හිස් CD-RW"
 msgid "Copy Data CD"
 msgstr "දත්ත CD පිටපත් කරන්න"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr ""
@@ -857,7 +857,8 @@ msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
 msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:162
@@ -917,9 +918,9 @@ msgstr "අසාර්ථක විය"
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:464
-#: ../xfburn/xfburn-progress-dialog.c:488
-#: ../xfburn/xfburn-progress-dialog.c:512
+#: ../xfburn/xfburn-progress-dialog.c:476
+#: ../xfburn/xfburn-progress-dialog.c:500
+#: ../xfburn/xfburn-progress-dialog.c:524
 msgid "no info"
 msgstr ""
 
@@ -1053,28 +1054,32 @@ msgstr ""
 msgid "Device buffer:"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-progress-dialog.c:374
+msgid "Are you sure you want to abort?"
+msgstr ""
+
+#: ../xfburn/xfburn-progress-dialog.c:502
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:549
+#: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Aborted"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:558
+#: ../xfburn/xfburn-progress-dialog.c:570
 msgid "Failed"
 msgstr "නෙැහැකි විය"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:573
 msgid "Cancelled"
 msgstr "අවලංගු උනා"
 
-#: ../xfburn/xfburn-progress-dialog.c:564
+#: ../xfburn/xfburn-progress-dialog.c:576
 msgid "Completed"
 msgstr "සාර්ථකයි"
 
-#: ../xfburn/xfburn-progress-dialog.c:601
+#: ../xfburn/xfburn-progress-dialog.c:613
 msgid "Aborting..."
 msgstr ""
 
@@ -1262,12 +1267,7 @@ msgid ""
 "is not an audio file:\n"
 "\n"
 "%s"
-msgstr ""
-"%s\n"
-"\n"
-"ශබ්ද ගොණුවක් නොවේ:\n"
-"\n"
-"%s"
+msgstr "%s\n\nශබ්ද ගොණුවක් නොවේ:\n\n%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:915
 #, c-format
@@ -1360,9 +1360,3 @@ msgstr "CD සහ DVD කැටිගත කරන වැඩසටහන"
 #: ../xfburn.desktop.in.h:3
 msgid "Burn Image (xfburn)"
 msgstr ""
-
-#~ msgid "Author/Maintainer"
-#~ msgstr "මූලිකයා/නඩත්තු කරන්නා"
-
-#~ msgid "Translator (%s)"
-#~ msgstr "පරිවර්තක (%s)"

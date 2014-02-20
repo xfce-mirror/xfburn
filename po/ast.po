@@ -1,16 +1,21 @@
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn 0.0.3svn\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 09:46+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: astur <malditoastur@gmail.com>\n"
-"Language-Team: Asturian <alministradores@softastur.org>\n"
-"Language: ast\n"
+"POT-Creation-Date: 2013-07-03 20:34+0200\n"
+"PO-Revision-Date: 2013-07-03 18:36+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Asturian (http://www.transifex.com/projects/p/xfce/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ast\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
@@ -25,18 +30,16 @@ msgid "Time total:"
 msgstr ""
 
 #: ../xfburn/xfburn-global.h:32
-#, fuzzy
 msgid "length"
-msgstr "Duración"
+msgstr ""
 
 #: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
 msgstr "Vaciando caché..."
 
 #: ../xfburn/xfburn-global.h:34
-#, fuzzy
 msgid "Please insert a recordable disc and hit enter"
-msgstr "Por favor introduz un discu grabable."
+msgstr ""
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
@@ -125,7 +128,8 @@ msgstr "E_strayer discu"
 msgid "_Blank"
 msgstr "_Esborrar"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
 msgstr "El discu introducíu yá ta baleru."
@@ -155,7 +159,7 @@ msgid "Done"
 msgstr "Fináu"
 
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: ../xfburn/xfburn-progress-dialog.c:649
 msgid "Failure"
 msgstr "Fallu"
 
@@ -168,14 +172,12 @@ msgid "Unable to grab the drive."
 msgstr "Imposible obtener la unidá."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
-#, fuzzy
 msgid "Image"
-msgstr "Imáxenes ISO"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-#, fuzzy
 msgid "Show volume name"
-msgstr "Nome del volume:"
+msgstr ""
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
 msgid "Show a text entry for the name of the volume"
@@ -268,7 +270,7 @@ msgid "ISO images"
 msgstr "Imáxenes ISO"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:226
-msgid "_Quit after successful completion"
+msgid "_Quit after success"
 msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:236
@@ -298,24 +300,18 @@ msgstr "Grabando imaxe..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:465
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
-msgstr ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Por "
-"favor, escueyi una imaxe pa grabar</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Por favor, escueyi una imaxe pa grabar</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:505
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr ""
-"Nun puede amestase datos al discu multisesión nesti mou d'escritura (usa'l "
-"mou TAO en so llugar)"
+msgstr "Nun puede amestase datos al discu multisesión nesti mou d'escritura (usa'l mou TAO en so llugar)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr ""
-"Deteutóse un discu con datos cuya sesión ta zarrada. Necesítase desaniciar "
-"el discu o ún al que puedan amestáse-y datos."
+msgstr "Deteutóse un discu con datos cuya sesión ta zarrada. Necesítase desaniciar el discu o ún al que puedan amestáse-y datos."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "No disc detected in drive"
@@ -337,9 +333,7 @@ msgstr "Fallu al obtener el tamañu de la imaxe"
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr ""
-"Asegúrate de seleicionár un ficheru válidu y que tien los permisos adecuaos "
-"p'acceder a él"
+msgstr "Asegúrate de seleicionár un ficheru válidu y que tien los permisos adecuaos p'acceder a él"
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -436,7 +430,8 @@ msgstr "Llimpiar"
 msgid "Clear the content of the composition"
 msgstr "Llimpiar el conteníu de la composición"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
 #: ../xfburn/xfburn-data-composition.c:198
 msgid "Rename"
 msgstr "Renomar"
@@ -480,11 +475,11 @@ msgstr "Nuevu direutoriu"
 
 #: ../xfburn/xfburn-data-composition.c:941
 #: ../xfburn/xfburn-audio-composition.c:976
-#, fuzzy
 msgid "File(s) to add to composition"
-msgstr "Amestando ficheros a la composición"
+msgstr ""
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
 #: ../xfburn/xfburn-data-composition.c:1041
 #, c-format
 msgid "Data %s~%d"
@@ -495,9 +490,7 @@ msgstr "Datos %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr ""
-"%s nun puede amestase a la composición, porque sobropasa'l máximu permitíu "
-"de tamañu de ficheru pa iso9660."
+msgstr "%s nun puede amestase a la composición, porque sobropasa'l máximu permitíu de tamañu de ficheru pa iso9660."
 
 #: ../xfburn/xfburn-data-composition.c:1362
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -507,25 +500,17 @@ msgstr "Amestando direutoriu personal"
 #: ../xfburn/xfburn-data-composition.c:1363
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
-"Tas a puntu d'amestar el to direutoriu personal a la composición. Ye dable "
-"qu'esto tarde munchu tiempu y tamién que seya enforma grande pa caber nun "
-"discu.\n"
-"\n"
-"¿Ta seguru de que quies siguir?"
+msgstr "Tas a puntu d'amestar el to direutoriu personal a la composición. Ye dable qu'esto tarde munchu tiempu y tamién que seya enforma grande pa caber nun discu.\n\n¿Ta seguru de que quies siguir?"
 
 #: ../xfburn/xfburn-data-composition.c:1530
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr ""
-"Yá esiste un ficheru denomáu \"%s\" nesti direutoriu: el ficheru nun "
-"s'amestó."
+msgstr "Yá esiste un ficheru denomáu \"%s\" nesti direutoriu: el ficheru nun s'amestó."
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1945
@@ -559,13 +544,11 @@ msgstr "¿Ye una combinación válida?"
 
 #: ../xfburn/xfburn-device-box.c:184
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
-"¿Ye la combinación de hardware y discu válida pa grabar la composición?"
+msgstr "¿Ye la combinación de hardware y discu válida pa grabar la composición?"
 
 #: ../xfburn/xfburn-device-box.c:188
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
-"El mou d'esborráu amuesa mensaxes d'estáu de discu distintos al mou normal"
+msgstr "El mou d'esborráu amuesa mensaxes d'estáu de discu distintos al mou normal"
 
 #: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
 msgid "Accept only CDs as valid discs"
@@ -584,28 +567,15 @@ msgid "Empty speed list"
 msgstr "Llista de velocidá balera"
 
 #: ../xfburn/xfburn-device-box.c:396
-#, fuzzy
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
-"<b>Imposible obtener la llista de velocidá pal preséu.</b>\n"
-"\n"
-"Esto ye un fallu conocíu qu'ocurre con dalgunes unidaes. Por favor, informa "
-"d'ello a <i>xfburn@xfce.org</i> xunto cola salida de consola pa qu'aumenten "
-"posibilidaes de que s'igüe.\n"
-"\n"
-"La grabación tendría que furrular, pero si hai dalgún problema, por favor, "
-"fáinoslo saber.\n"
-"\n"
-"<i>¡Gracies!</i>"
 
 #: ../xfburn/xfburn-device-box.c:407
 msgid "Continue to _show this notice"
@@ -660,9 +630,8 @@ msgid "Inserted disc is already blank"
 msgstr "El discu inxertáu yá ta baleru"
 
 #: ../xfburn/xfburn-device-box.c:684
-#, fuzzy
 msgid "Auto"
-msgstr "_Tocante a"
+msgstr ""
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
@@ -716,10 +685,7 @@ msgstr "Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"Preba %s --help pa ver una llista completa d'opciones de llinia de "
-"comandos.\n"
+msgstr "%s: %s\nPreba %s --help pa ver una llista completa d'opciones de llinia de comandos.\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
@@ -735,24 +701,15 @@ msgid ""
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
-msgstr ""
-"Dablemente el/los discu(os) tan n'usu y nun puede accedese a ellos.\n"
-"\n"
-"Por favor desmonta y reinicia l'aplicación.\n"
-"\n"
-"Si nun hai dengún discu na unidá comprueba que tengas permisu de llectura y "
-"escritura na unidá col usuariu actual."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+msgstr "Dablemente el/los discu(os) tan n'usu y nun puede accedese a ellos.\n\nPor favor desmonta y reinicia l'aplicación.\n\nSi nun hai dengún discu na unidá comprueba que tengas permisu de llectura y escritura na unidá col usuariu actual."
 
 #: ../xfburn/xfburn-main.c:331
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr ""
-"Fallu al anicializar el trescodificador %s: %s\n"
-"\t(volviendo a la implementación básica)"
+msgstr "Fallu al anicializar el trescodificador %s: %s\n\t(volviendo a la implementación básica)"
 
 #: ../xfburn/xfburn-main.c:375
 #, c-format
@@ -763,8 +720,10 @@ msgstr "El ficheru d'imaxe '%s' nun esiste."
 msgid "_File"
 msgstr "_Ficheru"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
@@ -774,11 +733,14 @@ msgstr "Nueva composición de datos"
 msgid "New audio composition"
 msgstr "Nueva composición d'audiu"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
@@ -840,7 +802,8 @@ msgstr "Desaniciar CD-RW"
 msgid "Copy Data CD"
 msgstr "Copiar CD de datos"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
 msgstr "Grabar imaxe"
@@ -893,16 +856,13 @@ msgstr "Determinar si'l botón de zarrar ye visible"
 
 #: ../xfburn/xfburn-perform-burn.c:158
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-"Nun pueden amestase datos al discu multisesión nesti mou d'escritura (usa'l "
-"mou TAO en so llugar)"
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
+msgstr "Nun pueden amestase datos al discu multisesión nesti mou d'escritura (usa'l mou TAO en so llugar)"
 
 #: ../xfburn/xfburn-perform-burn.c:162
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-"Deteutóse un discu con datos cuya sesión ta zarrada. Necesítase un discu "
-"baleru o ún al que puedan amestase-y datos."
+msgstr "Deteutóse un discu con datos cuya sesión ta zarrada. Necesítase un discu baleru o ún al que puedan amestase-y datos."
 
 #: ../xfburn/xfburn-perform-burn.c:164
 msgid "No disc detected in drive."
@@ -957,9 +917,9 @@ msgstr "albortáu"
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:464
-#: ../xfburn/xfburn-progress-dialog.c:488
-#: ../xfburn/xfburn-progress-dialog.c:512
+#: ../xfburn/xfburn-progress-dialog.c:476
+#: ../xfburn/xfburn-progress-dialog.c:500
+#: ../xfburn/xfburn-progress-dialog.c:524
 msgid "no info"
 msgstr "ensin información"
 
@@ -1093,28 +1053,32 @@ msgstr "Búfer FIFO:"
 msgid "Device buffer:"
 msgstr "Búfer de preséu:"
 
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-progress-dialog.c:374
+msgid "Are you sure you want to abort?"
+msgstr ""
+
+#: ../xfburn/xfburn-progress-dialog.c:502
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "El llenáu mínimu foi %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:549
+#: ../xfburn/xfburn-progress-dialog.c:561
 msgid "Aborted"
 msgstr "Albortáu"
 
-#: ../xfburn/xfburn-progress-dialog.c:558
+#: ../xfburn/xfburn-progress-dialog.c:570
 msgid "Failed"
 msgstr "Fallu"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:573
 msgid "Cancelled"
 msgstr "Encaboxáu"
 
-#: ../xfburn/xfburn-progress-dialog.c:564
+#: ../xfburn/xfburn-progress-dialog.c:576
 msgid "Completed"
 msgstr "Completáu"
 
-#: ../xfburn/xfburn-progress-dialog.c:601
+#: ../xfburn/xfburn-progress-dialog.c:613
 msgid "Aborting..."
 msgstr "Albortando..."
 
@@ -1233,15 +1197,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr ""
-"El trescodificador básicu ta incluyíu\n"
-"y nun necesites denguna biblioteca,\n"
-"pero namái puedes tratar ficheros .wav\n"
-"ensin comprimir.\n"
-"Si quies criar composiciones d'audiu\n"
-"de distintes tribes de ficheros\n"
-"d'audiu, por favor, compila con\n"
-"sofitu pa gstreamer."
+msgstr "El trescodificador básicu ta incluyíu\ny nun necesites denguna biblioteca,\npero namái puedes tratar ficheros .wav\nensin comprimir.\nSi quies criar composiciones d'audiu\nde distintes tribes de ficheros\nd'audiu, por favor, compila con\nsofitu pa gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1276,12 +1232,7 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr ""
-"Falta %s.\n"
-"\n"
-"Nun tienes dengún decodificador instaláu pa remanar esti ficheru.\n"
-"Dablemente necesites comprobar los paquetes gst-plugins-*\n"
-"pa los complementos necesarios.\n"
+msgstr "Falta %s.\n\nNun tienes dengún decodificador instaláu pa remanar esti ficheru.\nDablemente necesites comprobar los paquetes gst-plugins-*\npa los complementos necesarios.\n"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1300,15 +1251,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
-"El trescodificador de gstreamer usa la biblioteca\n"
-"de gstreamer pa criar composicones d'audiu.\n"
-"\n"
-"Básicamente tolos ficheros d'audiu deberíen\n"
-"ser sofitaos si los complementos necesarios tan\n"
-"instalaos. Si un ficheru d'audiu nun ye reconocíu,\n"
-"asegúrate de que tienes los paquetes de complementos\n"
-"'good', 'bad' y 'ugly' instalaos."
+msgstr "El trescodificador de gstreamer usa la biblioteca\nde gstreamer pa criar composicones d'audiu.\n\nBásicamente tolos ficheros d'audiu deberíen\nser sofitaos si los complementos necesarios tan\ninstalaos. Si un ficheru d'audiu nun ye reconocíu,\nasegúrate de que tienes los paquetes de complementos\n'good', 'bad' y 'ugly' instalaos."
 
 #: ../xfburn/xfburn-transcoder-gst.c:791
 #, c-format
@@ -1323,18 +1266,12 @@ msgid ""
 "is not an audio file:\n"
 "\n"
 "%s"
-msgstr ""
-"%s\n"
-"\n"
-"nun ye un ficheru d'audiu:\n"
-"\n"
-"%s"
+msgstr "%s\n\nnun ye un ficheru d'audiu:\n\n%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:915
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
-msgstr ""
-"Gstreamer nun quiso entamar la trescodificación (finó'l tiempu llímite)"
+msgstr "Gstreamer nun quiso entamar la trescodificación (finó'l tiempu llímite)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:950
 #, c-format
@@ -1422,90 +1359,3 @@ msgstr "Aplicación pa grabar CDs y DVDs"
 #: ../xfburn.desktop.in.h:3
 msgid "Burn Image (xfburn)"
 msgstr "Grabar imaxe (xfburn)"
-
-#~ msgid "Author/Maintainer"
-#~ msgstr "Autor/Caltenedor"
-
-#~ msgid "Retired author/maintainer"
-#~ msgstr "Autor/caltenedor retiráu"
-
-#~ msgid "Translator (%s)"
-#~ msgstr "Tornador (%s)"
-
-#~ msgid "The write mode is not currently supported"
-#~ msgstr "Anguaño'l mou d'escritura nun ta sofitáu"
-
-#~ msgid "Is the device accessible"
-#~ msgstr "El preséu ye accesible"
-
-#~ msgid "The status of the disc in the drive"
-#~ msgstr "L'estáu del discu na unidá"
-
-#~ msgid "Unable to create disc object"
-#~ msgstr "No se puede criar oxetu discu"
-
-#~ msgid "Cannot attach source object to track object"
-#~ msgstr "No se puede adjuntar el oxetu fuente al oxetu pista"
-
-#~ msgid "Format DVD+RW"
-#~ msgstr "Formatear DVD+RW"
-
-#~ msgid "_Format"
-#~ msgstr "_Formatear"
-
-#, fuzzy
-#~ msgid "Closed disc with data detected. Need blank or appendable media"
-#~ msgstr ""
-#~ "Se ha deteutáu un mediu cerráu con datos. Se necesita que el mediu esté "
-#~ "en blanco o que ten una sesión abierta"
-
-#~ msgid "No media detected in drive"
-#~ msgstr "No se ha deteutáu dengún mediu nel preséu"
-
-#, fuzzy
-#~ msgid "Could not create burn_source from %s!"
-#~ msgstr "No se pudo criar la estructura orixe de la imaxe ISO"
-
-#, fuzzy
-#~ msgid "Could not add source to track %s!"
-#~ msgstr "No se pudo criar la estructura orixe de la imaxe ISO"
-
-#~ msgid "Import"
-#~ msgstr "Importar"
-
-#~ msgid "Import existing session"
-#~ msgstr "Importar sesión esistente"
-
-#~ msgid "Copy Audio CD"
-#~ msgstr "Copiar CD de audio"
-
-#~ msgid "Create a new composition"
-#~ msgstr "Criar una nueva composición"
-
-#~ msgid "Copy DVD"
-#~ msgstr "Copiar DVD"
-
-#, fuzzy
-#~ msgid "Action group"
-#~ msgstr "_Aiciones"
-
-#, fuzzy
-#~ msgid "Format Fast"
-#~ msgstr "_Formatear"
-
-#, fuzzy
-#~ msgid "Format Complete"
-#~ msgstr "Completa"
-
-#, fuzzy
-#~ msgid "Deformat Complete"
-#~ msgstr "Completa"
-
-#~ msgid "Fast"
-#~ msgstr "Rápida"
-
-#~ msgid "Cannot recognize drive and media state"
-#~ msgstr "No se ha podido determinar el estáu del mediu y del preséu"
-
-#~ msgid "Burn CD image"
-#~ msgstr "Grabar la imaxe de CD"
