@@ -1,120 +1,157 @@
-2010-02-12  David Mohr <squisher@xfce.org>
+2014-02-20  David Mohr <david@mcbf.net>
 
-  * update-changelog.py:
-    Fix up update-changelog.py to have nicer output.
+  * icons/16x16/Makefile.am, icons/16x16/stock_xfburn.png,
+    icons/16x16/xfburn.png, icons/22x22/Makefile.am,
+    icons/22x22/stock_xfburn.png, icons/22x22/xfburn.png,
+    icons/24x24/Makefile.am, icons/24x24/stock_xfburn.png,
+    icons/24x24/xfburn.png, icons/32x32/Makefile.am,
+    icons/32x32/stock_xfburn.png, icons/32x32/xfburn.png,
+    icons/48x48/Makefile.am, icons/48x48/stock_xfburn.png,
+    icons/48x48/xfburn.png, icons/scalable/Makefile.am,
+    icons/scalable/stock_xfburn.svg, icons/scalable/xfburn.svg:
+    Correctly use stock_xfburn instead of xfburn (closes #9669)
+    Thanks Christian!
+
+  * po/ast.po, po/bg.po, po/ca.po, po/el.po, po/en.po, po/en_GB.po, po/es.po,
+    po/et.po, po/fr.po, po/gl.po, po/he.po, po/hu.po, po/id.po, po/ko.po,
+    po/lt.po, po/lv.po, po/nl.po, po/nn.po, po/oc.po, po/pa.po, po/pt.po,
+    po/pt_BR.po, po/ru.po, po/si.po, po/sk.po, po/sq.po, po/sr.po,
+    po/ur_PK.po, po/vi.po, po/zh_CN.po, po/zh_TW.po:
+    Importing translations from transifex (Thanks Pjotr)
+
+2013-12-03  David Mohr <david@mcbf.net>
+
+  * xfburn/xfburn-main.c, xfburn/xfburn-transcoder-gst.c:
+    g_cond / g_mutex deprecated removed, g_thread_init removed
+
+  * xfburn/xfburn-audio-composition.c, xfburn/xfburn-blank-dialog.c,
+    xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+    xfburn/xfburn-burn-data-composition-base-dialog.c,
+    xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-data-composition.c:
+    g_thread_create -> g_thread_new
+
+2013-07-13  Nick Schermer <nick@xfce.org>
+
+  * INSTALL, module.xml, po/ChangeLog:
+    Remove unneeded files.
+
+2013-05-02  David Mohr <david@mcbf.net>
+
+  * NEWS, configure.in.in:
+    Grammar, apply fix xfce4-dev-tools bug #6920
+
+2013-03-19  Mike Massonnet <mmassonnet@xfce.org>
+
+  * po/POTFILES.in, po/ar.po, po/ast.po, po/bg.po, po/ca.po, po/cs.po,
+    po/da.po, po/de.po, po/dz.po, po/el.po, po/en_GB.po, po/es.po, po/et.po,
+    po/eu.po, po/fi.po, po/fr.po, po/gl.po, po/he.po, po/hr.po, po/hu.po,
+    po/id.po, po/is.po, po/it.po, po/ja.po, po/kk.po, po/ko.po, po/lt.po,
+    po/lv.po, po/nb.po, po/nl.po, po/nn.po, po/pa.po, po/pl.po, po/pt.po,
+    po/pt_BR.po, po/ru.po, po/si.po, po/sk.po, po/sq.po, po/sr.po, po/sv.po,
+    po/tr.po, po/ug.po, po/uk.po, po/ur.po, po/ur_PK.po, po/vi.po,
+    po/zh_CN.po, po/zh_TW.po, xfburn/xfburn-global.h:
+    Include xfburn-global.h messages for translation.
+    Update all related po files.
+
+2012-11-17  David Mohr <david@mcbf.net>
+
+  * xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-progress-dialog.c,
+    xfburn/xfburn-progress-dialog.h:
+    Add setting to quit right after successfully burning an image
+
+2012-08-04  David Mohr <david@mcbf.net>
+
+  * xfburn/xfburn-data-composition.c, xfburn/xfburn-utils.h:
+    Bugfix: Do use {} for if with several statements
+
+2012-07-08  David Mohr <david@mcbf.net>
+
+  * xfburn/xfburn-device-box.c, xfburn/xfburn-preferences-dialog.c:
+    Remove empty speed list dialog
+
+2012-07-03  David Mohr <david@mcbf.net>
+
+  * xfburn/xfburn-audio-composition.c, xfburn/xfburn-data-composition.c:
+    Show select file dialog on add while browser is hidden.
+
+2012-05-05  David Mohr <david@mcbf.net>
+
+  * icons/16x16/Makefile.am, icons/16x16/xfburn.png, icons/22x22/Makefile.am,
+    icons/22x22/xfburn.png, icons/24x24/Makefile.am, icons/24x24/xfburn.png,
+    icons/32x32/Makefile.am, icons/32x32/xfburn.png, icons/48x48/Makefile.am,
+    icons/48x48/xfburn.png, icons/bitmap.sh, icons/scalable/Makefile.am,
+    icons/scalable/xfburn.svg, icons/xfburn-128.svg, icons/xfburn-16.svg,
+    icons/xfburn-48.svg, xfburn/xfburn-disc-usage.c,
+    xfburn/xfburn-main-window.c, xfburn/xfburn-main.c, xfburn/xfburn-stock.c,
+    xfburn/xfburn-stock.h:
+    New icon by Simon Steinbeiß
+
+2012-04-15  David Mohr <david@mcbf.net>
+
+  * MAINTAINING, po/ar.po, po/ast.po, po/ca.po, po/cs.po, po/da.po, po/de.po,
+    po/dz.po, po/el.po, po/en_GB.po, po/es.po, po/et.po, po/eu.po, po/fi.po,
+    po/fr.po, po/gl.po, po/he.po, po/hr.po, po/hu.po, po/id.po, po/is.po,
+    po/it.po, po/ja.po, po/kk.po, po/ko.po, po/lt.po, po/lv.po, po/nb.po,
+    po/nl.po, po/nn.po, po/pa.po, po/pl.po, po/pt.po, po/pt_BR.po, po/ru.po,
+    po/si.po, po/sk.po, po/sq.po, po/sv.po, po/tr.po, po/ug.po, po/uk.po,
+    po/ur.po, po/ur_PK.po, po/vi.po, po/zh_CN.po, po/zh_TW.po:
+    update-po
+
+  * MAINTAINING, NEWS:
+    More credits, some notes
+
+  * po/POTFILES.in, xfburn.desktop.in:
+    Update POTFILES, xfburn.desktop to validate properly
+
+  * README, xfburn/xfburn-device-box.c:
+    Update description, missing burn list feedback.
+
+2012-04-14  David Mohr <david@mcbf.net>
+
+  * configure.in.in, xfburn/xfburn-audio-composition.c,
+    xfburn/xfburn-blank-dialog.c, xfburn/xfburn-burn-image-dialog.c,
+    xfburn/xfburn-compositions-notebook.c, xfburn/xfburn-data-composition.c,
+    xfburn/xfburn-main.c, xfburn/xfburn-progress-dialog.c,
+    xfburn/xfburn-transcoder-basic.c:
+    Fixed compiler errors and warnings after applying the patches
+
+  * configure.in.in, xfburn/Makefile.am, xfburn/xfburn-audio-composition.c,
+    xfburn/xfburn-audio-disc-usage.c, xfburn/xfburn-blank-dialog.c,
+    xfburn/xfburn-blank-dialog.h,
+    xfburn/xfburn-burn-audio-cd-composition-dialog.c,
+    xfburn/xfburn-burn-audio-cd-composition-dialog.h,
+    xfburn/xfburn-burn-data-cd-composition-dialog.h,
+    xfburn/xfburn-burn-data-composition-base-dialog.c,
+    xfburn/xfburn-burn-data-composition-base-dialog.h,
+    xfburn/xfburn-burn-data-dvd-composition-dialog.h,
+    xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-burn-image-dialog.h,
+    xfburn/xfburn-copy-cd-dialog.h, xfburn/xfburn-copy-dvd-dialog.h,
+    xfburn/xfburn-data-composition.c, xfburn/xfburn-data-disc-usage.c,
+    xfburn/xfburn-device-box.c, xfburn/xfburn-directory-browser.c,
+    xfburn/xfburn-disc-usage.c, xfburn/xfburn-file-browser.c,
+    xfburn/xfburn-fs-browser.c, xfburn/xfburn-main-window.c,
+    xfburn/xfburn-main.c, xfburn/xfburn-perform-burn.h,
+    xfburn/xfburn-preferences-dialog.c, xfburn/xfburn-progress-dialog.c,
+    xfburn/xfburn-transcoder-basic.c, xfburn/xfburn-transcoder-gst.c,
+    xfburn/xfburn-udev-manager.c:
+    Applying patch by skunnyk: port to xfce4ui.
+    [PATCH] Port xfburn to libxfce4ui (for master, based on bug 7355)
+
+  * INSTALL, configure.in.in, xfburn/Makefile.am,
+    xfburn/xfburn-audio-composition.c, xfburn/xfburn-blank-dialog.c,
+    xfburn/xfburn-data-composition.c, xfburn/xfburn-device-box.c,
+    xfburn/xfburn-device-list.c, xfburn/xfburn-device.c,
+    xfburn/xfburn-directory-browser.c, xfburn/xfburn-hal-manager.c,
+    xfburn/xfburn-hal-manager.h, xfburn/xfburn-main.c,
+    xfburn/xfburn-settings.h, xfburn/xfburn-udev-manager.c,
+    xfburn/xfburn-udev-manager.h:
+    Applying skunnyk's patch.
+    [PATCH] Port xfburn to gio/udev (based on  #7355)
+
+2010-02-12  David Mohr <squisher@xfce.org>
 
   * update-changelog.py, update-changelog.sh:
     Importing a script to update the changelog from git
-
-2010-02-09  Piarres Beobide <pi@beobide.net>
-
-  * po/eu.po:
-    l10n: Updated Basque (eu) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-02-08  douart patrick <patrick.2@laposte.net>
-
-  * po/fr.po:
-    l10n: Updated French (fr) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-02-08  Sergio Marques <smarquespt@gmail.com>
-
-  * po/pt.po:
-    l10n: Updated Portuguese (pt) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-02-05  Gabor Kelemen <kelemeng@gnome.hu>
-
-  * po/hu.po:
-    l10n: Updated Hungarian (hu) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-02-05  David Mohr <david@mcbf.net>
-
-  * po/de.po:
-    l10n: Updated German (de) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-02-05  Gabor Kelemen <kelemeng@gnome.hu>
-
-  * po/hu.po:
-    l10n: Updated Hungarian (hu) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-  * po/hu.po:
-    l10n: Updated Hungarian (hu) translation to 99%
-    New status: 282 messages complete with 1 fuzzy and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-02-04  Carles Muñoz Gorriz <carlesmu@internautas.org>
-
-  * po/ca.po:
-    l10n: Updated Catalan (Valencian) (ca) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-02-04  Cristian Marchi <cri.penta@gmail.com>
-
-  * po/it.po:
-    l10n: Updated Italian (it) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-02-04  Jeff Bailes <thepizzaking@gmail.com>
-
-  * po/en_GB.po:
-    l10n: Updated English (United Kingdom) (en_GB) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-02-03  Og Maciel <ogmaciel@gnome.org>
-
-  * po/pt_BR.po:
-    l10n: Updated Portuguese (Brazilian) (pt_BR) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-02-03  Per Kongstad <p_kongstad@op.pl>
-
-  * po/da.po:
-    l10n: Updated Danish (da) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-01-31  Masato Hashimoto <cabezon.hashimoto@gmail.com>
-
-  * po/ja.po:
-    l10n: Updated Japanese (ja) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-01-29  Og Maciel <ogmaciel@gnome.org>
-
-  * po/pt_BR.po:
-    l10n: Updated Portuguese (Brazilian) (pt_BR) translation to 100%
-    New status: 281 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-01-29  Nuno Miguel <nunis@netcabo.pt>
-
-  * po/pt.po:
-    l10n: Updated Portuguese (pt) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-01-29  Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
-
-  * po/fi.po:
-    l10n: Updated Finnish (fi) translation to 100%
-    New status: 283 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
 
 2010-01-28  David Mohr <squisher@xfce.org>
 
@@ -122,31 +159,6 @@
     Remove accessible attribute of xfburn_device, since this can change
     pretty much at any time. Now check for unmount whenever we try to grab
     the drive.
-
-2010-01-24  Vlad Vasilev <lortwer@gmail.com>
-
-  * po/ru.po:
-    l10n: Updated Russian (ru) translation to 100%
-    New status: 281 messages complete with 0 fuzzies and 0 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2010-01-13  Aleksandr Ponomarenko <dwqwt3i02@sneakemail.com>
-
-  * po/ru.po:
-    l10n: Updated Russian (ru) translation to 97%
-    New status: 275 messages complete with 4 fuzzies and 2 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-  * po/ru.po:
-    l10n: Updated Russian (ru) translation to 91%
-    New status: 257 messages complete with 4 fuzzies and 20 untranslated.
-    Transmitted-via: Transifex (translations.xfce.org).
-
-2009-12-16  Daniel Nylander <po@danielnylander.se>
-
-  * po/sv.po:
-    l10n: Updates to Swedish (sv) translation
-    Transmitted-via: Transifex (translations.xfce.org)
 
 2009-12-04  David Mohr <squisher@xfce.org>
 
@@ -156,34 +168,10 @@
     xfburn/xfburn-utils.h:
     Ensure that paths passed in from the cli are absolute
 
-  * po/xfburn.pot:
-    Don't keep generated files in the repository
-
-2009-12-03  David Mohr <squisher@xfce.org>
-
-  * xfburn/xfburn-data-composition.c:
-    Better error reporting
-
 2009-11-11  David Mohr <squisher@xfce.org>
 
   * NEWS, xfburn/xfburn-device-list.c:
     uint screwed up the -1 return
-
-2009-11-06  Leandro Regueiro <leandro.regueiro@gmail.com>
-
-  * po/gl.po:
-    l10n: Updates to Galician (gl) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-  * po/gl.po:
-    l10n: Updates to Galician (gl) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-11-05  Michal Várady <miko.vaji@gmail.com>
-
-  * po/cs.po:
-    l10n: Updates to Czech (cs) translation
-    Transmitted-via: Transifex (translations.xfce.org)
 
 2009-10-29  David Mohr <squisher@xfce.org>
 
@@ -196,36 +184,8 @@
 
 2009-10-24  David Mohr <squisher@xfce.org>
 
-  * xfburn/xfburn-main-window.c:
-    Do not allow shrinking the notebook in the vpaned (thanks Peter de Ridder)
-
-2009-10-24  douart patrick <patrick.2@laposte.net>
-
-  * po/fr.po:
-    l10n: Updates to French (fr) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-10-24  David Mohr <squisher@xfce.org>
-
   * xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-main-window.c:
     Remove debugging messages
-
-2009-10-23  David Mohr <squisher@xfce.org>
-
-  * xfburn/xfburn-burn-image-dialog.c:
-    Keep the devlist around, disconnect from the propper object
-
-2009-10-21  Xu Meihong <mhuntxu@gmail.com>
-
-  * po/zh_CN.po:
-    l10n: Updates to Chinese (China) (zh_CN) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-10-20  Nuno Miguel <nunis@netcabo.pt>
-
-  * po/pt.po:
-    l10n: Updates to Portuguese (pt) translation
-    Transmitted-via: Transifex (translations.xfce.org)
 
 2009-10-20  David Mohr <squisher@xfce.org>
 
@@ -276,18 +236,6 @@
     xfburn/xfburn-welcome-tab.c, xfburn/xfburn-welcome-tab.h:
     Replace old style function declarations - () with (void)
 
-2009-10-18  Vlad Vasilev <lortwer@gmail.com>
-
-  * po/ru.po:
-    l10n: Updates to Russian (ru) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-10-16  Rihards Prieditis <rprieditis@gmail.com>
-
-  * po/lv.po:
-    l10n: Updates to Latvian (lv) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
 2009-10-13  David Mohr <squisher@xfce.org>
 
   * xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-main-window.c:
@@ -298,19 +246,10 @@
   * xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-main-window.c:
     Disconnect from the volume change signal of the device box
 
-2009-10-01  Leandro Regueiro <leandro.regueiro@gmail.com>
-
-  * po/gl.po:
-    l10n: Updates to Galician (gl) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
 2009-09-25  David Mohr <squisher@xfce.org>
 
   * xfburn/xfburn-audio-composition.c, xfburn/xfburn-data-composition.c:
     Avoid adding empty strings created by g_strsplit
-
-  * .gitignore:
-    Ignore cores
 
   * xfburn/xfburn-audio-composition.c, xfburn/xfburn-data-composition.c:
     Copy tree path for thread because it will get freed in the main thread immediately
@@ -371,66 +310,7 @@
   * xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c:
     Mark constructor properties, make some constructor_only
 
-2009-08-22  David Mohr <squisher@xfce.org>
-
-  * NEWS:
-    Forgot to add message to NEWS
-
-2009-09-10  Evaggelos Balaskas <ebalaskas@ebalaskas.gr>
-
-  * po/el.po:
-    l10n: Updates to Greek (el) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-09-10  Bauzhan Muftakhidinov <baurthefirst@gmail.com>
-
-  * po/kk.po:
-    l10n: Updates to Kazakh (kk) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-09-05  Ignacio Velasco <elega@elega.com.ar>
-
-  * po/es.po:
-    l10n: Updates to Spanish (Castilian) (es) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-09-02  Iñigo Varela <malditoastur@gmail.com>
-
-  * po/ast.po:
-    l10n: Updates to Asturian (ast) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-09-01  Nuno Miguel <nunis@netcabo.pt>
-
-  * po/pt.po:
-    l10n: Updates to Portuguese (pt) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-08-25  Andhika Padmawan <andhika.padmawan@gmail.com>
-
-  * po/id.po:
-    l10n: Updates to Indonesian (id) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-  * po/id.po:
-    l10n: Updates to Indonesian (id) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-08-22  David Mohr <squisher@xfce.org>
-
-  * configure.in.in:
-    Also accept exo-1 instead of only exo-0 (copied from Terminal)
-
-2009-08-19  Per Kongstad <p_kongstad@op.pl>
-
-  * po/da.po:
-    l10n: Updates to Danish (da) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
 2009-08-18  David Mohr <squisher@xfce.org>
-
-  * configure.in.in:
-    Use git instead of svn as the dev revision tag
 
   * autogen.sh, po/LINGUAS:
     Compute languages on the fly instead of using LINGUAS
@@ -440,32 +320,10 @@
   * .gitignore, INSTALL:
     Adding gitignore
 
-2009-08-18  Piarres Beobide <pi@beobide.net>
-
-  * po/eu.po:
-    l10n: Basque translation update
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-08-18  Jeff Bailes <thepizzaking@gmail.com>
-
-  * po/en_GB.po:
-    l10n: Updates to English (United Kingdom) (en_GB) translation
-    Transmitted-via: Transifex (translations.xfce.org)
-
-2009-08-17  David Mohr <david@mcbf.net>
-
-  * autogen.sh:
-    Adjusting autogen.sh to use the xfce revision tag
-
-2009-08-12  David Mohr <david@mcbf.net>
-
-  * module.xml:
-    Adding module description xml file
-
 2009-08-08  Mike Massonnet <mmassonnet@xfce.org>
 
   * po/ChangeLog, po/LINGUAS, po/ast.po, po/ca.po, po/gl.po, po/it.po,
-    po/tr.po:
+    po/kk.po, po/tr.po:
     update goodies translation
     (Old svn revision: 7896)
 
@@ -607,17 +465,7 @@
     Fixing the signal mess; use proper c closure marshal, DeviceBox now relays a signal from DeviceList for ease of use
     (Old svn revision: 7718)
 
-2009-07-11  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-data-composition.c:
-    Rename files not just in the GUI but also in the generated IsoImage
-    (Old svn revision: 7715)
-
 2009-07-09  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-device-list.c:
-    Adding some debugging output
-    (Old svn revision: 7713)
 
   * xfburn/xfburn-audio-composition.c, xfburn/xfburn-data-composition.c:
     Parse lines from the text/plain DnD destination as uris
@@ -629,10 +477,6 @@
     xfburn/xfburn-preferences-dialog.c:
     Actually show hidden files if selected in the preferences
     (Old svn revision: 7700)
-
-  * xfburn/xfburn-main.c:
-    Add notice when hal is in use
-    (Old svn revision: 7695)
 
   * xfburn/xfburn-audio-composition.c, xfburn/xfburn-data-composition.c,
     xfburn/xfburn-directory-browser.c, xfburn/xfburn-fs-browser.c:
@@ -654,22 +498,6 @@
     DeviceList and Device are now objects
     (Old svn revision: 7677)
 
-2009-06-16  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-perform-burn.c:
-    Fix the size check
-    (Old svn revision: 7596)
-
-  * xfburn/xfburn-perform-burn.c:
-    Correctly calculate audio cd available size using a little hack
-    (Old svn revision: 7583)
-
-2009-06-14  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-transcoder-gst.c:
-    Adding resampling to gstreamer pipeline
-    (Old svn revision: 7563)
-
 2009-06-13  David Mohr <david@mcbf.net>
 
   * xfburn/xfburn-directory-browser.c, xfburn/xfburn-fs-browser.c:
@@ -683,17 +511,7 @@
     Release memory of the treeview model when the composition is closed
     (Old svn revision: 7535)
 
-2009-06-09  Mike Massonnet <mmassonnet@xfce.org>
-
-  * :
-    Drop svn:executable bit from po files
-    (Old svn revision: 7518)
-
 2009-06-09  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-audio-composition.c:
-    Freeing audio track after passing it on to the model
-    (Old svn revision: 7507)
 
   * xfburn/xfburn-adding-progress.c, xfburn/xfburn-adding-progress.h,
     xfburn/xfburn-audio-composition.c, xfburn/xfburn-audio-disc-usage.c,
@@ -756,12 +574,6 @@
     update goodies translations
     (Old svn revision: 7436)
 
-2009-05-28  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-data-composition.c:
-    Bugfix: only allow dropping into folders, not files. Copied from moving rows inside the composition
-    (Old svn revision: 7431)
-
 2009-05-11  Mike Massonnet <mmassonnet@xfce.org>
 
   * po/ChangeLog, po/tr.po, po/zh_CN.po:
@@ -792,12 +604,6 @@
     Translations updates - it pt
     (Old svn revision: 7036)
 
-2009-03-28  Mike Massonnet <mmassonnet@xfce.org>
-
-  * po/ca.po:
-    german and catalan translations
-    (Old svn revision: 7012)
-
 2009-03-19  Masato Hashimoto <cabezon.hashimoto@gmail.com>
 
   * po/ChangeLog, po/ja.po:
@@ -827,12 +633,6 @@
     * da.po: Danish translation update (Lars Christian Jensen)
     (Old svn revision: 6870)
 
-2009-03-08  Piotr Sokól <piotr.sokol@10g.pl>
-
-  * po/pl.po:
-    Updated Polish translations
-    (Old svn revision: 6868)
-
 2009-03-05  Mike Massonnet <mmassonnet@xfce.org>
 
   * po/nb.no, po/nb.po, po/pt.no, po/pt.po:
@@ -848,18 +648,6 @@
   * po/ChangeLog, po/es.po, po/pl.po, po/uk.po:
     Translations updates - es pl uk
     (Old svn revision: 6826)
-
-2009-02-28  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-audio-composition.c:
-    Fixing crash when dropping a song onto a row in the audio composition
-    (Old svn revision: 6806)
-
-2009-02-26  David Mohr <david@mcbf.net>
-
-  * autogen.sh:
-    Making eht16 and myself happy - take autogen configure flags from an optional config file
-    (Old svn revision: 6798)
 
 2009-02-25  David Mohr <david@mcbf.net>
 
@@ -878,10 +666,6 @@
   * xfburn/xfburn-data-composition.c, xfburn/xfburn-global.h:
     Adding check for maximum iso9660 content file size
     (Old svn revision: 6780)
-
-  * xfburn/xfburn-preferences-dialog.c:
-    Setting a bigger default size for the preference dialog
-    (Old svn revision: 6779)
 
   * NEWS, xfburn/xfburn-device-list.c, xfburn/xfburn-hal-manager.c:
     Falling back to libburn device detection if hal does not find any. Remove unecessary checks, and output to the console drives which are not burners
@@ -920,18 +704,10 @@
     Running update-po, translating one German string
     (Old svn revision: 6742)
 
-  * NEWS:
-    Updating NEWS
-    (Old svn revision: 6741)
-
   * xfburn/xfburn-device-list.c, xfburn/xfburn-device-list.h,
     xfburn/xfburn-hal-manager.c:
     Check devices from hal for being a burner in the same way as libburn devices. Fixes bug 4957
     (Old svn revision: 6740)
-
-  * README:
-    Forgot to update README about the libburn version bump
-    (Old svn revision: 6739)
 
   * NEWS, configure.in.in:
     Updating NEWS, bumping libburn version requirement
@@ -951,10 +727,6 @@
     Some minor changes
     (Old svn revision: 6735)
 
-  * xfburn/xfburn-data-composition.c:
-    Correctly handle new iso directory in fill_image_with_composition
-    (Old svn revision: 6734)
-
 2009-02-20  Maximilian Schleiss <maxschleiss@solnet.ch>
 
   * po/ChangeLog, po/ca.po, po/gl.po:
@@ -972,20 +744,6 @@
   * README, xfburn/xfburn-hal-manager.c:
     Workaround for bug 4957, don't check hal's storage.cdrom.write_speed > 0
     (Old svn revision: 6711)
-
-  * TODO:
-    Updating TODO
-    (Old svn revision: 6710)
-
-2009-02-17  David Mohr <david@mcbf.net>
-
-  * README:
-    Updating README
-    (Old svn revision: 6709)
-
-  * xfburn.desktop.in:
-    Change menu category from Utility (accessories) to AudioVideo (multimedia)
-    (Old svn revision: 6708)
 
 2009-02-15  Og Maciel <ogmaciel@gnome.org>
 
@@ -1064,30 +822,14 @@
     Post-release updates
     (Old svn revision: 6355)
 
-  * ChangeLog:
-    Updating ChangeLog
-    (Old svn revision: 6353)
-
   * NEWS, README, configure.in.in:
     Preparing for release
     (Old svn revision: 6352)
-
-  * xfburn/xfburn-transcoder-gst.c:
-    Fixing updated debug messages
-    (Old svn revision: 6351)
 
   * xfburn/xfburn-burn-audio-cd-composition-dialog.c,
     xfburn/xfburn-device-box.c, xfburn/xfburn-device-box.h:
     Adding option to only accept cds to the device box
     (Old svn revision: 6350)
-
-  * xfburn/xfburn-transcoder-gst.c:
-    Further refining debug messages
-    (Old svn revision: 6349)
-
-  * xfburn/xfburn-transcoder-gst.c:
-    Changing when some debug messages appear
-    (Old svn revision: 6348)
 
 2008-12-20  Alexander Toresson <alexander.toresson@gmail.com>
 
@@ -1136,10 +878,6 @@
 
 2008-12-13  Maximilian Schleiss <maxschleiss@solnet.ch>
 
-  * po/ja.po:
-    Translations updates - fr ja
-    (Old svn revision: 6306)
-
   * po/ChangeLog, po/ja.po, po/zh_CN.po:
     Translations updates - ja uk zh_CN
     (Old svn revision: 6298)
@@ -1160,12 +898,6 @@
     po/uk.po, po/ur.po, po/xfburn.pot, po/zh_CN.po, po/zh_TW.po:
     Translations updates - fr - xfburn po files update
     (Old svn revision: 6263)
-
-2008-12-03  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-main.c:
-    Adding version debug output
-    (Old svn revision: 6252)
 
 2008-11-30  Og Maciel <ogmaciel@gnome.org>
 
@@ -1207,20 +939,6 @@
     Update Finnish translations.
     (Old svn revision: 6216)
 
-2008-11-27  David Mohr <david@mcbf.net>
-
-  * xfburn/Makefile.am:
-    Adding gst_pbutils cflags & libs
-    (Old svn revision: 6215)
-
-  * configure.in.in:
-    Fixing check for pbutils some more
-    (Old svn revision: 6214)
-
-  * configure.in.in:
-    Fixing package check
-    (Old svn revision: 6213)
-
 2008-11-27  Michal Varady <miko.vaji@gmail.com>
 
   * po/ChangeLog, po/cs.po:
@@ -1245,10 +963,6 @@
     Display proper error message when a plugin is missing.
     (Old svn revision: 6210)
 
-  * README:
-    Updating README with debugging instructions
-    (Old svn revision: 6207)
-
 2008-11-24  Maximilian Schleiss <maxschleiss@solnet.ch>
 
   * po/ChangeLog, po/ar.po, po/ca.po, po/da.po, po/de.po, po/dz.po, po/el.po,
@@ -1261,10 +975,6 @@
     (Old svn revision: 6197)
 
 2008-11-24  Michal Varady <miko.vaji@gmail.com>
-
-  * po/cs.po:
-    Czech translation updated
-    (Old svn revision: 6196)
 
   * po/ChangeLog, po/cs.po:
     Czech translation updated
@@ -1283,10 +993,6 @@
     (Old svn revision: 6189)
 
 2008-11-23  David Mohr <david@mcbf.net>
-
-  * README:
-    Slightly updating the README
-    (Old svn revision: 6187)
 
   * xfburn/xfburn-audio-composition.c, xfburn/xfburn-error.h:
     Reset the track count on clear; check track count before inserting the iter
@@ -1325,15 +1031,7 @@
     Adding transcoder info button to the gstreamer composition, descriptions about the transcoders
     (Old svn revision: 6173)
 
-  * xfburn/xfburn-transcoder-gst.c:
-    Don't let id-messages disrupt transcoding
-    (Old svn revision: 6172)
-
 2008-11-21  Piarres Beobide <pi@beobide.net>
-
-  * po/ChangeLog:
-    Fix last changes date (sorry)and add power-managment Basque translation
-    (Old svn revision: 6148)
 
   * po/ChangeLog, po/eu.po:
     Goodies BAsque translation update
@@ -1353,39 +1051,10 @@
 
 2008-11-16  David Mohr <david@mcbf.net>
 
-  * NEWS:
-    Updating NEWS
-    (Old svn revision: 6126)
-
-  * xfburn/xfburn-data-composition.c:
-    Allow adding of hidden files. Verified that device files do work. Both are still not shown in the file selector, but can get added through the command line
-    (Old svn revision: 6125)
-
-2008-11-16  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-main-window.c:
-    David is now the official maintainer of Xfburn.
-    Good luck David and keep up the good work.
-    (Old svn revision: 6124)
-
-2008-11-16  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-data-composition.c:
-    adding missing include
-    (Old svn revision: 6123)
-
-  * xfburn/xfburn-data-composition.c:
-    Allowing also special files to get added to the composition - does not completely work yet
-    (Old svn revision: 6119)
-
   * Makefile.am, NEWS, configure.in.in, desktop-integration/Makefile.am,
-    .../thunar-sendto-xfburn.desktop.in, po/POTFILES.in:
+    desktop-integration/thunar-sendto-xfburn.desktop.in, po/POTFILES.in:
     Adding and updating m8t's patch for Thunar sendto integration
     (Old svn revision: 6118)
-
-  * xfburn/xfburn-data-composition.c:
-    Add directories to the iso with properties from the filesystem through iso_tree_add_node
-    (Old svn revision: 6117)
 
 2008-11-15  Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
 
@@ -1398,32 +1067,6 @@
   * po/ChangeLog, po/zh_CN.po:
     Applying updated zh_CN translation update
     (Old svn revision: 6098)
-
-2008-11-13  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-burn-data-composition-base-dialog.c:
-    Don't use TRUE for calls to libisofs
-    (Old svn revision: 6092)
-
-  * xfburn/xfburn-transcoder-gst.c:
-    Only compile in the identity element and handoff inspection when debugging
-    (Old svn revision: 6086)
-
-2008-11-12  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-burn-audio-cd-composition-dialog.c:
-    Removing code to create an .iso file from an audio composition. I don't think iso9660 can contain audio data.
-    (Old svn revision: 6082)
-
-  * xfburn/xfburn-audio-composition.c:
-    Disabling all code related to song title / artist (fixes #4604)
-    (Old svn revision: 6081)
-
-2008-11-12  Mike Massonnet <mmassonnet@xfce.org>
-
-  * po/fr.po:
-    ...and again
-    (Old svn revision: 6080)
 
 2008-11-12  David Mohr <david@mcbf.net>
 
@@ -1448,10 +1091,6 @@
     (Old svn revision: 6078)
 
 2008-11-12  Mike Massonnet <mmassonnet@xfce.org>
-
-  * po/fr.po:
-    Update xfburn french translation (fix fuzzy strings)
-    (Old svn revision: 6077)
 
   * po/ChangeLog, po/fr.po:
     Update xfburn french translation
@@ -1481,14 +1120,6 @@
     Changing audio cd icon again (color more in line with the rest of the icons)
     (Old svn revision: 6071)
 
-  * xfburn/xfburn-audio-composition.c:
-    Add DnD files to audio composition in correct order
-    (Old svn revision: 6070)
-
-  * xfburn/xfburn-audio-disc-usage.c:
-    CD duration display changed to be more clear
-    (Old svn revision: 6069)
-
 2008-11-12  Piarres Beobide <pi@beobide.net>
 
   * po/ChangeLog, po/eu.po:
@@ -1505,16 +1136,7 @@
     Preparing code for setting the browser start directory
     (Old svn revision: 6059)
 
-  * xfburn/xfburn-transcoder-gst.c:
-    * Better debugging output and control
-    * Query for duration after state changes also, instead of just after a duration msg
-    (Old svn revision: 6058)
-
 2008-11-10  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-transcoder-gst.c:
-    Increasing most timeouts to 5s for testing
-    (Old svn revision: 6054)
 
   * xfburn/xfburn-global.h, xfburn/xfburn-perform-burn.c,
     xfburn/xfburn-progress-dialog.c, xfburn/xfburn-progress-dialog.h:
@@ -1529,14 +1151,6 @@
     * Forget the drive info when releasing the drive
     * Get debug messages from the beginning on when DEBUG_LIBBURN is set
     (Old svn revision: 6048)
-
-  * xfburn/xfburn-perform-burn.c:
-    Burn result: free string, allocate default for the new check
-    (Old svn revision: 6047)
-
-  * xfburn/xfburn-perform-burn.c:
-    Properly check if the burn run succeeded
-    (Old svn revision: 6046)
 
   * xfburn/xfburn-audio-disc-usage.c, xfburn/xfburn-data-disc-usage.c,
     xfburn/xfburn-disc-usage.c:
@@ -1605,12 +1219,6 @@
     (Old svn revision: 6014)
 
 2008-11-06  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-perform-burn.c:
-    Fifo buffer status bugfixes:
-    - show the correct text
-    - don't crash
-    (Old svn revision: 5992)
 
   * xfburn/xfburn-burn-audio-cd-composition-dialog.c,
     xfburn/xfburn-burn-data-composition-base-dialog.c,
@@ -1738,14 +1346,6 @@
 
 2008-10-28  David Mohr <david@mcbf.net>
 
-  * xfburn/xfburn-burn-audio-cd-composition-dialog.c:
-    Switch burning mode to TAO
-    (Old svn revision: 5844)
-
-  * xfburn/xfburn-burn-audio-cd-composition-dialog.c:
-    Adding control over buffer behavior
-    (Old svn revision: 5843)
-
   * xfburn/Makefile.am, xfburn/xfburn-burn-audio-cd-composition-dialog.c,
     xfburn/xfburn-global.h, xfburn/xfburn-perform-burn.c,
     xfburn/xfburn-transcoder-basic.c, xfburn/xfburn-transcoder-gst.c:
@@ -1759,10 +1359,6 @@
     (Old svn revision: 5832)
 
 2008-10-27  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-perform-burn.c:
-    Installing libburn abort signal handler
-    (Old svn revision: 5831)
 
   * xfburn/xfburn-burn-audio-cd-composition-dialog.c,
     xfburn/xfburn-transcoder-basic.c, xfburn/xfburn-transcoder-gst.c,
@@ -1818,19 +1414,11 @@
 
 2008-10-12  Lars Nielsen <lars@mit-web.dk>
 
-  * po/da.po:
-    Add Danish translation
-    (Old svn revision: 5593)
-
   * po/ChangeLog, po/LINGUAS:
     * da.po,LINGUAS: Danish translation update
     (Old svn revision: 5592)
 
 2008-10-12  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-audio-composition.c:
-    Fixing a bug when adding a folder with subfolders to an audio composition
-    (Old svn revision: 5580)
 
   * xfburn/xfburn-error.c, xfburn/xfburn-error.h:
     Oops, forgot to add files to GError!
@@ -1900,10 +1488,6 @@
 
 2008-09-14  David Mohr <david@mcbf.net>
 
-  * configure.in.in:
-    Correctly show gstreamer option in configure --help
-    (Old svn revision: 5404)
-
   * configure.in.in, xfburn/Makefile.am, xfburn/xfburn-adding-progress.c,
     xfburn/xfburn-audio-composition.c, xfburn/xfburn-audio-disc-usage.c,
     xfburn/xfburn-blank-dialog.c,
@@ -1928,16 +1512,6 @@
     * initialize gstreamer,
     * have gcc report more warnings, and fix 'em
     (Old svn revision: 5403)
-
-2008-09-13  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-audio-composition.c:
-    Correctly initialize ret
-    (Old svn revision: 5400)
-
-  * xfburn/xfburn-audio-composition.c:
-    Use correct datatype for wav header
-    (Old svn revision: 5399)
 
 2008-09-10  Og Maciel <ogmaciel@gnome.org>
 
@@ -1975,10 +1549,6 @@
 
 2008-09-05  David Mohr <david@mcbf.net>
 
-  * xfburn/xfburn-audio-disc-usage.c:
-    Update audio disc sizes
-    (Old svn revision: 5361)
-
   * xfburn/xfburn-audio-composition.c, xfburn/xfburn-audio-disc-usage.c,
     xfburn/xfburn-data-disc-usage.c, xfburn/xfburn-disc-usage.c,
     xfburn/xfburn-disc-usage.h, xfburn/xfburn-global.h:
@@ -1992,10 +1562,6 @@
     (Old svn revision: 5352)
 
 2008-09-03  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-burn-audio-cd-composition-dialog.c:
-    Don't show mode selection for burning audio
-    (Old svn revision: 5346)
 
   * xfburn/xfburn-burn-audio-cd-composition-dialog.c,
     xfburn/xfburn-burn-data-composition-base-dialog.c,
@@ -2024,23 +1590,9 @@
 
 2008-08-29  David Mohr <david@mcbf.net>
 
-  * xfburn/xfburn-burn-audio-cd-composition-dialog.c:
-    Adding remark about endianness
-    (Old svn revision: 5318)
-
-  * xfburn/xfburn-burn-audio-cd-composition-dialog.c:
-    Checking .wav headers
-    (Old svn revision: 5317)
-
   * xfburn/xfburn-audio-composition.c, xfburn/xfburn-main.c:
     Make sure only .wav files can get added to an audio composition
     (Old svn revision: 5316)
-
-2008-08-26  Mario Danic <mario.danic@gmail.com>
-
-  * xfburn/xfburn-blank-dialog.c:
-    Tiny little change in Blanking dialog, affects translators
-    (Old svn revision: 5309)
 
 2008-08-25  David Mohr <david@mcbf.net>
 
@@ -2075,12 +1627,6 @@
     Adding files for burning audio cds
     (Old svn revision: 5280)
 
-2008-08-18  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-audio-composition.c:
-    Make artist and title editable
-    (Old svn revision: 5277)
-
 2008-08-17  David Mohr <david@mcbf.net>
 
   * xfburn/xfburn-audio-composition.c, xfburn/xfburn-audio-composition.h:
@@ -2109,12 +1655,6 @@
     Adding files for disc usage base class
     (Old svn revision: 5230)
 
-2008-08-13  David Mohr <david@mcbf.net>
-
-  * xfburn.desktop.in:
-    Adding burn image action to desktop file
-    (Old svn revision: 5226)
-
 2008-08-10  Maximilian Schleiss <maxschleiss@solnet.ch>
 
   * po/ChangeLog, po/LINGUAS, po/id.po:
@@ -2129,10 +1669,6 @@
 
 2008-08-07  David Mohr <david@mcbf.net>
 
-  * README:
-    Updating README
-    (Old svn revision: 5208)
-
   * xfburn/xfburn-blank-dialog.c,
     xfburn/xfburn-burn-data-composition-base-dialog.c:
     Bugfix: removing call to hal_manager_send_volume_changed while still within burn code
@@ -2145,18 +1681,6 @@
     (Old svn revision: 5206)
 
 2008-08-05  David Mohr <david@mcbf.net>
-
-  * NEWS:
-    Updating NEWS
-    (Old svn revision: 5203)
-
-  * xfburn/xfburn-hal-manager.c:
-    Fixing compilation without thunar-vfs
-    (Old svn revision: 5202)
-
-  * xfburn/xfburn-hal-manager.c:
-    Fixing typo
-    (Old svn revision: 5201)
 
   * xfburn/xfburn-device-list.c, xfburn/xfburn-hal-manager.c:
     Fall back to libburn if there is a hal error trying to get the device list
@@ -2181,10 +1705,6 @@
     Little bit of code cleanup
     (Old svn revision: 5190)
 
-  * NEWS:
-    Update NEWS
-    (Old svn revision: 5189)
-
   * xfburn/xfburn-device-box.c, xfburn/xfburn-main.c:
     Adding (disabled) code to umount mounted drives
     (Old svn revision: 5188)
@@ -2195,12 +1715,6 @@
     Updating German translation
     (Old svn revision: 5185)
 
-2008-07-24  David Mohr <david@mcbf.net>
-
-  * TODO:
-    Updating TODO
-    (Old svn revision: 5156)
-
 2008-07-23  David Mohr <david@mcbf.net>
 
   * xfburn/xfburn-data-composition.c, xfburn/xfburn-data-composition.h:
@@ -2208,39 +1722,17 @@
     Accept text/uri-list dnd targets (i.e. drag from thunar)
     (Old svn revision: 5155)
 
-2008-07-19  Michal Varady <miko.vaji@gmail.com>
-
-  * po/cs.po:
-    Fixed Czech translations
-    (Old svn revision: 5144)
-
 2008-07-18  David Mohr <david@mcbf.net>
 
   * xfburn/xfburn-data-disc-usage.c, xfburn/xfburn-device-box.c:
     Small translation bugfix, rename burn button in composition window (thanks to Enrico Troeger)
     (Old svn revision: 5141)
 
-2008-07-18  Mohamed Magdy <mohamed.m.k@gmail.com>
-
-  * po/ar.po:
-    Update Arabic translations
-    (Old svn revision: 5140)
-
-2008-07-18  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-data-disc-usage.c:
-    Updating size labels to be base 2, like the rest of xfburn
-    (Old svn revision: 5139)
-
   * xfburn/xfburn-device-list.c, xfburn/xfburn-main.c:
     Make Mario's message about permissions from r5133 more visible
     (Old svn revision: 5138)
 
 2008-07-18  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-compositions-notebook.c:
-    does not show Tabs if only the welcome tab is visible
-    (Old svn revision: 5137)
 
   * xfburn/xfburn-compositions-notebook.c,
     xfburn/xfburn-compositions-notebook.h, xfburn/xfburn-main-window.c,
@@ -2249,54 +1741,10 @@
     * cleanup XfBurnWelcomeTab code a bit
     (Old svn revision: 5136)
 
-  * xfburn/xfburn-welcome-tab.c:
-    no need for properties here
-    (Old svn revision: 5135)
-
   * xfburn/xfburn-compositions-notebook.c, xfburn/xfburn-device-list.c,
     xfburn/xfburn-notebook-tab.c, xfburn/xfburn-notebook-tab.h:
     add support for adding/showing close button of a composition tab
     (Old svn revision: 5134)
-
-2008-07-18  Mario Danic <mario.danic@gmail.com>
-
-  * xfburn/xfburn-device-list.c:
-    Write a clue message if no drives detected
-    (Old svn revision: 5133)
-
-  * xfburn.desktop.in:
-    Thanks Moe, Xfburn is not attached to ISO
-    (Old svn revision: 5132)
-
-2008-07-17  Mohamed Magdy <mohamed.m.k@gmail.com>
-
-  * po/ar.po:
-    Update Arabic translations
-    (Old svn revision: 5126)
-
-2008-07-17  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-blank-dialog.c:
-    Adding missing ifdef HAVE_HAL
-    (Old svn revision: 5122)
-
-2008-07-16  Mohamed Magdy <mohamed.m.k@gmail.com>
-
-  * po/ar.po:
-    Update Arabic translations
-    (Old svn revision: 5120)
-
-  * po/ar.po:
-    Update Arabic translations
-    (Old svn revision: 5119)
-
-  * po/ar.po:
-    Update Arabic translations
-    (Old svn revision: 5118)
-
-  * po/ar.po:
-    Update Arabic translations
-    (Old svn revision: 5117)
 
 2008-07-16  David Mohr <david@mcbf.net>
 
@@ -2325,24 +1773,6 @@
   * po/ChangeLog, po/pt_PT.po:
     Xfburn European Portuguese translation update (pt_PT)
     (Old svn revision: 5092)
-
-2008-07-15  Mohamed Magdy <mohamed.m.k@gmail.com>
-
-  * po/ar.po:
-    Update Arabic translations
-    (Old svn revision: 5091)
-
-2008-07-15  Michal Varady <miko.vaji@gmail.com>
-
-  * po/cs.po:
-    Updated Czech translations
-    (Old svn revision: 5089)
-
-2008-07-15  Maximilian Schleiss <maxschleiss@solnet.ch>
-
-  * po/ChangeLog:
-    Translations updated for the xfburn package (fr;nb_NO)
-    (Old svn revision: 5085)
 
   * po/fr.po, po/nb_NO.po:
     Translations updated for the xfburn package (fr;nb_NO)
@@ -2383,10 +1813,6 @@
     Updating some strings according to suggestion from Og Maciel
     (Old svn revision: 5078)
 
-  * NEWS:
-    Updating NEWS
-    (Old svn revision: 5077)
-
   * po/ChangeLog, po/ar.po, po/ca.po, po/cs.po, po/de.po, po/dz.po, po/el.po,
     po/en_GB.po, po/es.po, po/eu.po, po/fi.po, po/fr.po, po/gl.po, po/he.po,
     po/hu.po, po/it.po, po/ja.po, po/ko.po, po/lt.po, po/lv.po, po/nb_NO.po,
@@ -2420,13 +1846,6 @@
     Translations added and updated for most goodies (gl;pt_PT;zh_CN)
     (Old svn revision: 5072)
 
-2008-07-14  Maxim Dziumanenko <mvd@mylinux.com.ua>
-
-  * po/uk.po:
-    Maxim Dziumanenko <dziumanenko@gmail.com>
-    * Update Ukrainian translatioon
-    (Old svn revision: 5071)
-
 2008-07-13  David Mohr <david@mcbf.net>
 
   * po/ChangeLog, xfburn/xfburn-main-window.c:
@@ -2443,23 +1862,7 @@
     xfburn Greek translation update
     (Old svn revision: 5068)
 
-2008-07-12  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    [intl:hu] screenshooter updated
-    (Old svn revision: 5067)
-
-2008-07-12  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-main-window.c:
-    Fixing translator's email address
-    (Old svn revision: 5066)
-
 2008-07-12  Og Maciel <ogmaciel@gnome.org>
-
-  * po/pt_BR.po:
-    Minor tweaks to Brazilian Portuguese translation
-    (Old svn revision: 5061)
 
   * po/ChangeLog, po/pt_BR.po:
     Updated Brazilian Portuguese translation
@@ -2478,10 +1881,6 @@
 
 2008-07-12  David Mohr <david@mcbf.net>
 
-  * xfburn/xfburn-main-window.c:
-    Updating translators credit
-    (Old svn revision: 5058)
-
   * TODO, xfburn/Makefile.am, xfburn/xfburn-blank-dialog.c,
     xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-device-box.c,
     xfburn/xfburn-main-window.c, xfburn/xfburn-main.c, xfburn/xfburn-main.h,
@@ -2489,17 +1888,7 @@
     Bugfixes: don't exit program if main window is not shown, don't check for disc validity before drive status has been refreshed
     (Old svn revision: 5057)
 
-2008-07-11  Michal Varady <miko.vaji@gmail.com>
-
-  * po/cs.po:
-    Updated and fixed Czech translations
-    (Old svn revision: 5056)
-
 2008-07-11  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-welcome-tab.c:
-    Adding missing translation
-    (Old svn revision: 5055)
 
   * NEWS, xfburn/xfburn-burn-image-dialog.c:
     Also set burn speed when burning an image
@@ -2508,18 +1897,6 @@
   * NEWS, xfburn/xfburn-device-box.c:
     Fix bug which caused a wrong complaint about a missing speed list
     (Old svn revision: 5053)
-
-2008-07-11  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    [intl:hu] little fixes2
-    (Old svn revision: 5052)
-
-2008-07-11  Michal Varady <miko.vaji@gmail.com>
-
-  * po/cs.po:
-    Updated Czech translations
-    (Old svn revision: 5049)
 
 2008-07-11  Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
 
@@ -2540,10 +1917,6 @@
     (Old svn revision: 5046)
 
 2008-07-10  David Mohr <david@mcbf.net>
-
-  * ChangeLog:
-    Updating changelog
-    (Old svn revision: 5043)
 
   * README, po/ChangeLog, po/ar.po, po/ca.po, po/cs.po, po/de.po, po/dz.po,
     po/el.po, po/en_GB.po, po/es.po, po/eu.po, po/fi.po, po/fr.po, po/gl.po,
@@ -2579,29 +1952,6 @@
     Creating global instance of hal manager, prepared code for a switching proceed button's funcitonality
     (Old svn revision: 5038)
 
-2008-07-09  Maxim Dziumanenko <mvd@mylinux.com.ua>
-
-  * po/uk.po:
-    Maxim Dziumanenko <dziumanenko@gmail.com>
-    Updated Ukrainian translation
-    (Old svn revision: 5037)
-
-2008-07-09  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-data-composition.c:
-    Bugfix for bugfix of rev. 5033
-    (Old svn revision: 5035)
-
-2008-07-08  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-data-composition.c:
-    Small bugfix: correctly enter / exit gdk threads
-    (Old svn revision: 5033)
-
-  * xfburn/xfburn-device-box.c:
-    Making maximum speed the default
-    (Old svn revision: 5032)
-
 2008-07-07  David Mohr <david@mcbf.net>
 
   * xfburn/xfburn-data-composition.c, xfburn/xfburn-main.c:
@@ -2615,31 +1965,15 @@
 
 2008-07-05  David Mohr <david@mcbf.net>
 
-  * xfburn/xfburn-burn-data-composition-base-dialog.c:
-    Also allow deep paths
-    (Old svn revision: 5028)
-
   * NEWS, TODO, xfburn/xfburn-burn-data-composition-base-dialog.c:
     Changing iso_write_opts profile to preserve file attribute
     (Old svn revision: 5027)
-
-2008-06-28  David Mohr <david@mcbf.net>
-
-  * TODO:
-    Updating TODO file
-    (Old svn revision: 5009)
 
 2008-06-26  Maximilian Schleiss <maxschleiss@solnet.ch>
 
   * po/ChangeLog, po/gl.po:
     Translations added and updated for most goodies (gl)
     (Old svn revision: 4998)
-
-2008-06-25  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-hal-manager.c:
-    Additional hal error check
-    (Old svn revision: 4992)
 
 2008-06-22  David Mohr <david@mcbf.net>
 
@@ -2650,10 +1984,6 @@
 
 2008-06-21  David Mohr <david@mcbf.net>
 
-  * NEWS:
-    Updating NEWS
-    (Old svn revision: 4979)
-
   * xfburn/xfburn-burn-data-composition-base-dialog.c,
     xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-global.h,
     xfburn/xfburn-perform-burn.c, xfburn/xfburn-perform-burn.h,
@@ -2663,10 +1993,6 @@
     (Old svn revision: 4978)
 
 2008-06-20  David Mohr <david@mcbf.net>
-
-  * NEWS:
-    Update NEWS
-    (Old svn revision: 4973)
 
   * xfburn/xfburn-burn-data-composition-base-dialog.c,
     xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c:
@@ -2688,12 +2014,6 @@
     Implementing adding of files to a data composition from the command line
     (Old svn revision: 4966)
 
-2008-06-18  Mario Danic <mario.danic@gmail.com>
-
-  * NEWS:
-    Updated NEWS file for 0.3.1
-    (Old svn revision: 4963)
-
 2008-06-17  David Mohr <david@mcbf.net>
 
   * xfburn/xfburn-compositions-notebook.c,
@@ -2703,12 +2023,6 @@
     Adding cli option to start with data composition window, adding of files not implemented yet
     (Old svn revision: 4958)
 
-2008-06-13  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-device-box.c:
-    Bugfix: only show busy cursor when the dialog is already realized
-    (Old svn revision: 4933)
-
 2008-06-09  David Mohr <david@mcbf.net>
 
   * xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-burn-image-dialog.h,
@@ -2716,21 +2030,7 @@
     Adding infrastructure for command line options, implement burn image cli option
     (Old svn revision: 4924)
 
-2008-06-08  Mario Danic <mario.danic@gmail.com>
-
-  * xfburn/xfburn-device-box.c:
-    Fixed compilation warnings with regards to xfburn_*_cursor
-    (Old svn revision: 4915)
-
 2008-06-05  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-data-composition.c:
-    Make data composition columns resizeable, increase default sizes of columns (workaround for bug #2151)
-    (Old svn revision: 4894)
-
-  * xfburn/xfburn-device-box.c:
-    Busy cursor during device box refreshes
-    (Old svn revision: 4893)
 
   * xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.h:
     Checking inserted disc type against capabilites of the drive
@@ -2740,41 +2040,13 @@
     Adding busy cursors when adding files
     (Old svn revision: 4890)
 
-  * xfburn/xfburn-utils.c:
-    Small bugfixes: make sure xfburn_humanreadable_filesize returns a sane string
-    (Old svn revision: 4889)
-
-  * xfburn/xfburn-device-list.c:
-    Adding additional output while scanning for drives
-    (Old svn revision: 4886)
-
-2008-06-03  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-data-composition.c:
-    Applying patch from jeromeg to have clear reset the title (fixes #4130)
-    (Old svn revision: 4885)
-
 2008-06-02  Jean-François Wauthy <pollux@xfce.org>
-
-  * configure.in.in:
-    post tag version bump
-    (Old svn revision: 4883)
 
   * README, configure.in.in:
     get ready for tagging
     (Old svn revision: 4881)
 
-2008-06-01  Jean-François Wauthy <pollux@xfce.org>
-
-  * po/pt_BR.po:
-    run make update-po
-    (Old svn revision: 4873)
-
 2008-06-01  David Mohr <david@mcbf.net>
-
-  * po/POTFILES.in:
-    added another missing source file to POTFILES
-    (Old svn revision: 4872)
 
   * po/POTFILES.in, po/de.po:
     Updating i18n files
@@ -2801,20 +2073,6 @@
     Updating msgstrs and German translation
     (Old svn revision: 4865)
 
-2008-05-29  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-device-list.c:
-    Invalidate stored disc data upon refresh
-    (Old svn revision: 4864)
-
-  * xfburn/xfburn-data-composition.c:
-    Adding warning when adding home directory to compilation
-    (Old svn revision: 4858)
-
-  * xfburn/xfburn-blank-dialog.c:
-    Connecting blank dialog to device box refresh signal
-    (Old svn revision: 4857)
-
 2008-05-28  David Mohr <david@mcbf.net>
 
   * xfburn/xfburn-blank-dialog.c, xfburn/xfburn-progress-dialog.c:
@@ -2825,20 +2083,6 @@
     xfburn/xfburn-device-box.c, xfburn/xfburn-device-box.h:
     Cleaning up setting of status label, make label grayed out when insensitive
     (Old svn revision: 4854)
-
-  * xfburn/xfburn-blank-dialog.c:
-    Removed gotos from blanking code
-    (Old svn revision: 4853)
-
-  * xfburn/xfburn-blank-dialog.c:
-    Adding format & deformat options to the blanking dialog
-    (Old svn revision: 4852)
-
-2008-05-12  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-progress-dialog.c:
-    Adding a simple animation option to the progress dialog
-    (Old svn revision: 4786)
 
 2008-05-10  David Mohr <david@mcbf.net>
 
@@ -2856,18 +2100,6 @@
     Adding debugging output about disc format
     (Old svn revision: 4765)
 
-2008-05-06  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-perform-burn.c:
-    Bugfix: first check message queue for fatal errors before retrieving other messages
-    (Old svn revision: 4739)
-
-2008-05-05  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-device-box.c:
-    Bugfix: correctly check for the presence of a device
-    (Old svn revision: 4725)
-
 2008-05-04  David Mohr <david@mcbf.net>
 
   * xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c,
@@ -2877,10 +2109,6 @@
     * Don't allow refresh when there is no detected drive
     Keep track of disc profile.
     (Old svn revision: 4721)
-
-  * xfburn/xfburn-device-box.c:
-    Bugfix: don't complain about invalid disc if there is no available drive
-    (Old svn revision: 4720)
 
 2008-05-03  David Mohr <david@mcbf.net>
 
@@ -2892,14 +2120,6 @@
     Implement error reporting
     (Old svn revision: 4718)
 
-  * xfburn/xfburn-hal-manager.c:
-    Bugfix: corrected previous bugfix for hal, hal now correctly registered globally instead of not at all
-    (Old svn revision: 4717)
-
-  * xfburn/xfburn-hal-manager.c:
-    Bugfix: hal-manager allocation now done per object creation
-    (Old svn revision: 4716)
-
 2008-05-02  David Mohr <david@mcbf.net>
 
   * xfburn-toolbars.ui, xfburn.ui, xfburn/xfburn-compositions-notebook.c,
@@ -2909,10 +2129,6 @@
     (Old svn revision: 4705)
 
 2008-05-01  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-hal-manager.c:
-    Bugfix: proper shutwdown of HAL
-    (Old svn revision: 4693)
 
   * xfburn/Makefile.am, xfburn/xfburn-blank-dialog.c,
     xfburn/xfburn-blank-dialog.h, xfburn/xfburn-main-window.c,
@@ -2931,22 +2147,10 @@
 
 2008-04-29  David Mohr <david@mcbf.net>
 
-  * xfburn/xfburn-device-box.c:
-    Bugfix: deallocate HalManager, don't refresh speed list when the DeviceBox is empty
-    (Old svn revision: 4686)
-
-  * xfburn/xfburn-burn-data-composition-base-dialog.c:
-    Bugfix: Enable burn button when target is an iso file, not a burner
-    (Old svn revision: 4684)
-
   * xfburn/xfburn-burn-data-composition-base-dialog.c,
     xfburn/xfburn-data-composition.c, xfburn/xfburn-global.h:
     Ask for compilation name again in the burn dialog if it was left as the default
     (Old svn revision: 4683)
-
-  * xfburn/xfburn-welcome-tab.c:
-    Adding icons and secondary text to the welcome screen
-    (Old svn revision: 4682)
 
 2008-04-26  David Mohr <david@mcbf.net>
 
@@ -2963,10 +2167,6 @@
     Adding error message when unable to grab drive (program aborted before)
     (Old svn revision: 4675)
 
-  * xfburn/xfburn-device-box.c:
-    Adding default entry if no speed list is available
-    (Old svn revision: 4674)
-
   * TODO, xfburn/Makefile.am, xfburn/xfburn-compositions-notebook.c,
     xfburn/xfburn-compositions-notebook.h, xfburn/xfburn-hal-manager.c,
     xfburn/xfburn-hal-manager.h, xfburn/xfburn-main-window.c,
@@ -2975,14 +2175,6 @@
     (Old svn revision: 4673)
 
 2008-04-24  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-device-box.c:
-    Adding formating to the empty device list dialog text
-    (Old svn revision: 4672)
-
-  * xfburn/xfburn-device-list.c:
-    Forgot to delete debugging statement
-    (Old svn revision: 4670)
 
   * xfburn/xfburn-device-box.c, xfburn/xfburn-device-list.c,
     xfburn/xfburn-preferences-dialog.c:
@@ -3005,12 +2197,6 @@
     Querying thunar for volume changes in device box
     (Old svn revision: 4660)
 
-2008-04-21  David Mohr <david@mcbf.net>
-
-  * configure.in.in:
-    Adding HAL detection to configure.in.in
-    (Old svn revision: 4644)
-
 2008-04-20  David Mohr <david@mcbf.net>
 
   * xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-device-list.c:
@@ -3023,10 +2209,6 @@
     Bugfix for blank mode, 2nd try
     (Old svn revision: 4635)
 
-  * xfburn/xfburn-device-box.c:
-    Bugfix: actually parse BLANK_MODE flag in the device box
-    (Old svn revision: 4634)
-
   * xfburn/xfburn-blank-cd-dialog.c, xfburn/xfburn-device-box.c,
     xfburn/xfburn-device-box.h:
     Improving device box:
@@ -3037,21 +2219,9 @@
 
 2008-04-18  David Mohr <david@mcbf.net>
 
-  * xfburn/xfburn-device-list.c:
-    Trying to grab the drive a bit more often now
-    (Old svn revision: 4632)
-
-  * TODO:
-    Updating TODO
-    (Old svn revision: 4631)
-
   * xfburn-toolbars.ui, xfburn.ui:
     Disabling copy cd toolbar /menu items
     (Old svn revision: 4630)
-
-  * TODO:
-    Updating TODO
-    (Old svn revision: 4614)
 
   * xfburn/xfburn-burn-data-composition-base-dialog.c,
     xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-device-box.c,
@@ -3065,75 +2235,9 @@
 
 2008-04-17  Mario Danic <mario.danic@gmail.com>
 
-  * xfburn/xfburn-burn-image-dialog.c:
-    Now user knows he needs to choose image
-    (Old svn revision: 4612)
-
-  * xfburn/xfburn-device-list.c:
-    No p0llux anymore
-    (Old svn revision: 4611)
-
-  * xfburn/xfburn-device-list.c:
-    Will this debug p0llux?
-    (Old svn revision: 4610)
-
-  * xfburn/xfburn-device-list.c:
-    Done minor formatting changes
-    (Old svn revision: 4609)
-
-2008-04-17  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-device-box.c:
-    Only access combo box if it has entries
-    (Old svn revision: 4608)
-
-2008-04-17  Mario Danic <mario.danic@gmail.com>
-
   * INSTALL, xfburn/xfburn-device-list.c:
     Implemented some checks for burning devices
     (Old svn revision: 4607)
-
-  * TODO:
-    Disable isnt done at proper moment yet
-    (Old svn revision: 4606)
-
-  * TODO:
-    So again it is todo
-    (Old svn revision: 4605)
-
-2008-04-17  David Mohr <david@mcbf.net>
-
-  * TODO:
-    Updating TODO
-    (Old svn revision: 4604)
-
-2008-04-17  Mario Danic <mario.danic@gmail.com>
-
-  * TODO:
-    Updated TODO for erasing magic
-    (Old svn revision: 4603)
-
-  * TODO:
-    Updated TODO again
-    (Old svn revision: 4602)
-
-  * TODO:
-    Migration to gvfs added to TODO
-    (Old svn revision: 4601)
-
-  * TODO:
-    Sorting available burn speeds works now
-    (Old svn revision: 4600)
-
-  * TODO:
-    Added more todo items
-    (Old svn revision: 4599)
-
-2008-04-17  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-data-disc-usage.c:
-    Adding automatic switching between data disc types / sizes
-    (Old svn revision: 4597)
 
 2008-04-16  David Mohr <david@mcbf.net>
 
@@ -3143,14 +2247,6 @@
     xfburn/xfburn-data-composition.c:
     Creating burn data dvd subclass
     (Old svn revision: 4592)
-
-2008-04-16  Jean-François Wauthy <pollux@xfce.org>
-
-  * configure.in.in:
-    bump required GTK+ version to 2.10 (fix bug #4024)
-    (Old svn revision: 4591)
-
-2008-04-16  David Mohr <david@mcbf.net>
 
   * xfburn/Makefile.am, xfburn/xfburn-burn-data-cd-composition-dialog.c,
     xfburn/xfburn-burn-data-composition-base-dialog.c,
@@ -3164,28 +2260,10 @@
 
 2008-04-14  David Mohr <david@mcbf.net>
 
-  * xfburn/xfburn-compositions-notebook.c:
-    Making compositions reorderable in the notebook (patch by jeromeg)
-    (Old svn revision: 4575)
-
   * xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-device-box.c,
     xfburn/xfburn-device-box.h:
     Adding new signal for a refresh to the device box class to be able to en/disable the burn botton
     (Old svn revision: 4574)
-
-2008-04-14  Mario Danic <mario.danic@gmail.com>
-
-  * NEWS:
-    Updated news with recent changes
-    (Old svn revision: 4560)
-
-  * xfburn/xfburn-data-disc-usage.c:
-    Disable burn composition button when there is nothing in composition
-    (Old svn revision: 4559)
-
-  * xfburn/xfburn-device-box.c:
-    Made message when there is no disk in drive more specific
-    (Old svn revision: 4558)
 
 2008-04-13  David Mohr <david@mcbf.net>
 
@@ -3195,83 +2273,13 @@
 
 2008-04-13  Mario Danic <mario.danic@gmail.com>
 
-  * xfburn/xfburn-directory-browser.c:
-    Hopefully fixed abort now ;))
-    (Old svn revision: 4556)
-
-  * xfburn/xfburn-directory-browser.c:
-    Done some resize columns magic
-    (Old svn revision: 4555)
-
-  * xfburn/xfburn-directory-browser.c:
-    Temporarily undone last patch
-    (Old svn revision: 4554)
-
-  * xfburn/xfburn-directory-browser.c:
-    Done more work on resizable columns magic! Thanks Jerome
-    (Old svn revision: 4553)
-
-  * NEWS:
-    Updated news to reflect that we fixed 4012
-    (Old svn revision: 4552)
-
-2008-04-13  David Mohr <david@mcbf.net>
-
-  * xfburn/xfburn-device-list.c:
-    Sort speed list, added fallback value if no list is available (fixes bug #4012)
-    (Old svn revision: 4551)
-
-2008-04-13  Mario Danic <mario.danic@gmail.com>
-
-  * TODO:
-    Updated TODO again
-    (Old svn revision: 4550)
-
-2008-04-13  Jean-François Wauthy <pollux@xfce.org>
-
-  * CONTRIBUTORS:
-    be more explicit about the contributions in order to keep track
-    (Old svn revision: 4549)
-
-2008-04-13  Mario Danic <mario.danic@gmail.com>
-
-  * CONTRIBUTORS:
-    Added Jerome to contributors
-    (Old svn revision: 4548)
-
   * NEWS, xfburn/xfburn-directory-browser.c:
     Made list columns resizable
     (Old svn revision: 4547)
 
-  * TODO:
-    Once again updated TODO
-    (Old svn revision: 4546)
-
-  * TODO:
-    Added popup in todo for proper speed detection
-    (Old svn revision: 4545)
-
-  * NEWS:
-    Correct url of libburnia project in news
-    (Old svn revision: 4544)
-
   * AUTHORS, xfburn/xfburn-main-window.c:
     Updated about dialog
     (Old svn revision: 4543)
-
-  * AUTHORS:
-    Added David and myself to authors
-    (Old svn revision: 4541)
-
-  * TODO:
-    Updated TODO file with various new tasks
-    (Old svn revision: 4540)
-
-2008-04-12  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn.desktop.in:
-    remove deprecated Encoding key in .desktop file (fix bug #4006)
-    (Old svn revision: 4539)
 
 2008-04-09  Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
 
@@ -3285,20 +2293,6 @@
     xfburn/xfburn-main-window.c, xfburn/xfburn-main.c:
     Fixing compiler warnings
     (Old svn revision: 4509)
-
-2008-04-03  Mario Danic <mario.danic@gmail.com>
-
-  * xfburn/xfburn-global.h:
-    Removed obsolete mkisofs defines
-    (Old svn revision: 4508)
-
-  * xfburn/xfburn-global.h:
-    Removed obsolete CDRECORD defines
-    (Old svn revision: 4507)
-
-  * :
-    Checked in contributors file
-    (Old svn revision: 4506)
 
 2008-04-03  David Mohr <david@mcbf.net>
 
@@ -3356,12 +2350,6 @@
     Add Urdu translations to trunk (hope this is right *sigh*)
     (Old svn revision: 4484)
 
-2007-11-14  Brian Tarricone <brian@tarricone.org>
-
-  * po/LINGUAS:
-    s/PT_BR/pt_BR/
-    (Old svn revision: 4483)
-
 2007-11-11  Mike Massonnet <mmassonnet@xfce.org>
 
   * po/ChangeLog, po/LINGUAS, po/lv.po:
@@ -3374,45 +2362,11 @@
     Added Brazilian Portuguese translation by Fábio Nogueira <deb-user-ba@ubuntu.com>; Added pt_BR to LINGUAS
     (Old svn revision: 4481)
 
-2007-11-01  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    Hungarian updates before 4.4.2
-    (Old svn revision: 4480)
-
 2007-10-25  Brian Tarricone <brian@tarricone.org>
-
-  * po/POTFILES.in:
-    add missing file to POTFILES
-    (Old svn revision: 4479)
-
-  * xfburn/Makefile.am:
-    add some files that aren't in the build yet to EXTRA_DIST so make distcheck
-    works
-    (Old svn revision: 4478)
 
   * po/POTFILES.in, po/xfburn.pot:
     fix incorrect filename in POTFILES
     (Old svn revision: 4477)
-
-2007-10-24  Brian Tarricone <brian@tarricone.org>
-
-  * configure.in.in:
-    remove trailing parens on AC_INIT version info to work around bug
-    in intltool 0.35.x and 0.36.x
-    (Old svn revision: 4476)
-
-2007-09-22  Mohamed Magdy <mohamed.m.k@gmail.com>
-
-  * po/ar.po:
-    Updating Arabic translations
-    (Old svn revision: 4475)
-
-2007-09-16  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-main-window.c:
-    Add Nuno Miguel to translator credits
-    (Old svn revision: 4474)
 
 2007-08-21  Jean-François Wauthy <pollux@xfce.org>
 
@@ -3421,12 +2375,6 @@
     xfburn/xfburn-data-composition.c:
     build with libisofs 0.2.8
     (Old svn revision: 4473)
-
-2007-08-20  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    hu trunk: burn & gui updates
-    (Old svn revision: 4472)
 
 2007-07-08  Maximilian Schleiss <maxschleiss@solnet.ch>
 
@@ -3450,12 +2398,6 @@
     * pt_PT: Added European Portuguese translations
     * Changed my email address
     (Old svn revision: 4469)
-
-2007-05-05  Michal Varady <miko.vaji@gmail.com>
-
-  * po/cs.po:
-    Updated Czech translations
-    (Old svn revision: 4468)
 
 2007-05-01  Jean-François Wauthy <pollux@xfce.org>
 
@@ -3488,18 +2430,6 @@
   * configure.in.in, xfburn/xfburn-burn-image-dialog.c:
     off_t *must* be 8 bytes long ! (fix bug #3140)
     (Old svn revision: 4464)
-
-2007-04-09  Maximilian Schleiss <maxschleiss@solnet.ch>
-
-  * po/fr.po:
-    * fr.po: Fixed headers in trunk
-    * Updated AUTHORS file in xfce-utils trunk and branch 4.4
-    (Old svn revision: 4463)
-
-  * po/fr.po:
-    * fr.po: Fixed typos and style in the French translation of Terminal's manual
-    * Changed my email address in all the fr.po files in trunk and 4.4
-    (Old svn revision: 4462)
 
 2007-04-05  Pau Rullan Ferragut <paurullan@bulma.net>
 
@@ -3549,12 +2479,6 @@
     * Update Ukrainian translation by Dmitry Nikitin <luckas_fb@mail.ru>
     (Old svn revision: 4455)
 
-2007-03-08  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    hu trunk: little updates
-    (Old svn revision: 4454)
-
 2007-02-22  Maximilian Schleiss <maxschleiss@solnet.ch>
 
   * po/ChangeLog, po/de.po:
@@ -3570,39 +2494,17 @@
     xfce-utils, thunar, xfburn and mousepad
     (Old svn revision: 4452)
 
-2007-02-18  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-device-list.c:
-    correctly free the 'drives' array
-    (Old svn revision: 4451)
-
 2007-02-10  Maximilian Schleiss <maxschleiss@solnet.ch>
 
   * po/ChangeLog, po/LINGUAS:
     Verified all LINGUAS files and added Albanian language to it.
     (Old svn revision: 4450)
 
-2007-02-08  Mohamed Magdy <mohamed.m.k@gmail.com>
-
-  * po/ChangeLog:
-    Adding information to the ChangeLog
-    (Old svn revision: 4449)
-
-  * po/LINGUAS:
-    Adding AR language code.
-    (Old svn revision: 4447)
-
 2007-02-03  Piarres Beobide <pi@beobide.net>
 
   * po/ChangeLog, po/eu.po:
     Xfburn basque translation update
     (Old svn revision: 4446)
-
-2007-01-28  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    hu trunk: little updates
-    (Old svn revision: 4445)
 
 2007-01-26  Jean-François Wauthy <pollux@xfce.org>
 
@@ -3618,10 +2520,6 @@
     (Old svn revision: 4442)
 
 2007-01-23  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-main-window.c:
-    fix icon for Moe
-    (Old svn revision: 4441)
 
   * NEWS, TODO, configure.in.in, po/POTFILES.in, po/ca.po, po/cs.po,
     po/de.po, po/dz.po, po/el.po, po/eu.po, po/fi.po, po/fr.po, po/gl.po,
@@ -3653,23 +2551,7 @@
     merge libburn branch into trunk
     (Old svn revision: 4440)
 
-2007-01-20  Yuval Tanny <tanai@int.gov.il>
-
-  * po/he.po:
-    Hebrew translation update
-    (Old svn revision: 4436)
-
-2007-01-13  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-data-disc-usage.c:
-    fix cd sizes using values from http://en.wikipedia.org/wiki/CD-ROM#Capacity (fix #2753)
-    (Old svn revision: 4430)
-
 2007-01-09  Jean-François Wauthy <pollux@xfce.org>
-
-  * NEWS:
-    update NEWS
-    (Old svn revision: 4427)
 
   * icons/16x16/Makefile.am, icons/16x16/stock_xfburn-blank-cdrw.png,
     icons/16x16/stock_xfburn-burn-cd.png,
@@ -3710,33 +2592,11 @@
     icons/24x24/stock_xfburn-data-copy.png,
     icons/24x24/stock_xfburn-format-dvdrw.png,
     icons/24x24/stock_xfburn-import-session.png, icons/Makefile.am,
-    .../xfburn-burn-data-composition-progress-dialog.h,
-    ...n-create-iso-from-composition-progress-dialog.h,
+    xfburn/xfburn-burn-data-composition-progress-dialog.h,
+    .../xfburn-create-iso-from-composition-progress-dialog.h,
     xfburn/xfburn-progress-dialog.h:
     remove icons in order to backport new icons
     (Old svn revision: 4425)
-
-2007-01-07  Stephan Arts <stephan@xfce.org>
-
-  * po/nl.po:
-    set content-type of dutch translations to UTF-8
-    (Old svn revision: 4418)
-
-  * po/nl.po:
-    Updated Dutch translation
-    (Old svn revision: 4415)
-
-2006-12-26  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-directory-browser.c:
-    hide symbolic links in directory browser for consistency (related to bug #2688)
-    (Old svn revision: 4411)
-
-2006-12-23  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-progress-dialog.c:
-    Apply patch from Jasper to prevent crash when closing the Blanking CD dialog (fix bug #2679)
-    (Old svn revision: 4406)
 
 2006-12-23  Amanpreet Alam <apbrar@gmail.com>
 
@@ -3744,23 +2604,11 @@
     adding Punjabi Translation by alam and update Linguas/Changelog
     (Old svn revision: 4405)
 
-2006-12-22  Maximilian Schleiss <maxschleiss@solnet.ch>
-
-  * po/ChangeLog:
-    Updated the French translation for the xarchiver package and fixed a mistake I introduced in Changelog's lately
-    (Old svn revision: 4404)
-
 2006-12-20  Maximilian Schleiss <maxschleiss@solnet.ch>
 
   * po/ChangeLog, po/ru.po:
     Updated the Russian translations by Andrey Fedoseev for a lot of packages
     (Old svn revision: 4403)
-
-2006-12-03  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-progress-dialog.c:
-    get rid of all the stupid g_object_{get,set}_data calls
-    (Old svn revision: 4395)
 
 2006-11-30  Stavros Giannouris <stavrosg2002@freemail.gr>
 
@@ -3768,17 +2616,7 @@
     E-mail address change. Sorry for the noise.
     (Old svn revision: 4394)
 
-2006-11-16  Yuval Tanny <tanai@int.gov.il>
-
-  * po/he.po:
-    Updated Hebrew translations
-    (Old svn revision: 4393)
-
 2006-11-11  Maximilian Schleiss <maxschleiss@solnet.ch>
-
-  * po/fr.po:
-    Still missed one accelerator in xfburn and forgot to name ByungHyun Choi for the Korean translation
-    (Old svn revision: 4392)
 
   * po/ChangeLog, po/fr.po:
     Updated the Korean translation for the mousepad package and corrected the  French xfburn translation following the advice from JFW
@@ -3829,12 +2667,6 @@
     xfburn basque translation update
     (Old svn revision: 4384)
 
-2006-11-01  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    hu trunk: arch & burn updates
-    (Old svn revision: 4383)
-
 2006-11-01  Jean-François Wauthy <pollux@xfce.org>
 
   * NEWS, icons/24x24/Makefile.am, icons/24x24/stock_xfburn-blank-dvdrw.png,
@@ -3851,12 +2683,6 @@
     Add create ISO from DVD support
     (Old svn revision: 4382)
 
-2006-10-29  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn.desktop.in:
-    use media-cdrom as icon until better comes up (fix bug #2421)
-    (Old svn revision: 4381)
-
 2006-10-28  Pau Rullan Ferragut <paurullan@bulma.net>
 
   * po/ChangeLog, po/LINGUAS, po/dz.po:
@@ -3869,12 +2695,6 @@
   * po/ChangeLog, po/el.po:
     Updated Greek translations
     (Old svn revision: 4379)
-
-2006-10-11  Stavros Giannouris <stavrosg2002@freemail.gr>
-
-  * po/el.po:
-    Greek translations update
-    (Old svn revision: 4378)
 
 2006-10-10  Alexander Toresson <alexander.toresson@gmail.com>
 
@@ -3897,12 +2717,6 @@
   * po/ChangeLog, po/ca.po:
     [i18n] update catalan translation
     (Old svn revision: 4374)
-
-2006-09-02  Yuval Tanny <tanai@int.gov.il>
-
-  * po/he.po:
-    Update Hebrew translation
-    (Old svn revision: 4373)
 
 2006-08-27  Jean-François Wauthy <pollux@xfce.org>
 
@@ -3943,10 +2757,6 @@
 
 2006-08-20  Jean-François Wauthy <pollux@xfce.org>
 
-  * :
-    remove executable property from gl.po
-    (Old svn revision: 4367)
-
   * po/ChangeLog, po/LINGUAS, po/gl.po:
     Add Galician translations
     (Old svn revision: 4366)
@@ -3964,14 +2774,6 @@
     (Old svn revision: 4364)
 
 2006-08-18  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-main-window.c:
-    deactivate quit confirmation as it's more annoying than usefull at this point (fix bug #2193)
-    (Old svn revision: 4363)
-
-  * INSTALL:
-    add INSTALL to please sofar's autotools
-    (Old svn revision: 4362)
 
   * NEWS, xfburn/xfburn-data-composition.c:
     Avoid adding non regular files (bug #2179)
@@ -3996,12 +2798,6 @@
     - Fix wrong get_speed call in burn iso dialog
     - Directory are sort before files in data composition
     (Old svn revision: 4358)
-
-2006-08-12  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    hu trunk: panel, burn updated
-    (Old svn revision: 4357)
 
 2006-08-12  Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
 
@@ -4049,10 +2845,6 @@
 
 2006-08-10  Jean-François Wauthy <pollux@xfce.org>
 
-  * xfburn/xfburn-data-composition.c:
-    add copy support in DnD inside a data composition
-    (Old svn revision: 4351)
-
   * po/ChangeLog, po/cs.po:
     updated Czech translations
     (Old svn revision: 4350)
@@ -4090,12 +2882,6 @@
     Xfburn Greek translations update
     (Old svn revision: 4345)
 
-2006-08-09  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-data-composition.c:
-    update parent directory size when adding a subdirectory via the toolbar button (fix bug #2139)
-    (Old svn revision: 4344)
-
 2006-08-08  Jean-François Wauthy <pollux@xfce.org>
 
   * po/ChangeLog, po/de.po:
@@ -4125,12 +2911,6 @@
   * NEWS, xfburn/xfburn-data-composition.c:
     Prevent having two 'New directory' entries in a data composition
     (Old svn revision: 4339)
-
-2006-08-06  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    hu trunk: burn updated
-    (Old svn revision: 4338)
 
 2006-08-05  Jean-François Wauthy <pollux@xfce.org>
 
@@ -4219,10 +2999,6 @@
 
 2006-07-30  Jean-François Wauthy <pollux@xfce.org>
 
-  * po/hu.po:
-    update-po
-    (Old svn revision: 4321)
-
   * Makefile.am, configure.in.in, xfburn/Makefile.am:
     fix distcheck and bump version
     (Old svn revision: 4320)
@@ -4230,14 +3006,6 @@
   * xfburn/xfburn-file-browser.c, xfburn/xfburn-fs-browser.c:
     fix browsing
     (Old svn revision: 4319)
-
-2006-07-30  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    hu trunk: burn & archiver update
-    (Old svn revision: 4318)
-
-2006-07-30  Jean-François Wauthy <pollux@xfce.org>
 
   * po/POTFILES.in, po/ca.po, po/cs.po, po/de.po, po/el.po, po/eu.po,
     po/fi.po, po/fr.po, po/he.po, po/hu.po, po/ja.po, po/lt.po, po/pl.po,
@@ -4309,18 +3077,6 @@
     * rename tab and menu label if the user saves the composition
     (Old svn revision: 4310)
 
-2006-07-23  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    hu trunk: burn update
-    (Old svn revision: 4309)
-
-2006-07-23  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-compositions-notebook.c:
-    use GObject data instead of a customized struct in order to store the pointer to the composition
-    (Old svn revision: 4308)
-
   * xfburn/Makefile.am, xfburn/xfburn-adding-progress.c,
     xfburn/xfburn-composition.c, xfburn/xfburn-compositions-notebook.c,
     xfburn/xfburn-data-composition.c, xfburn/xfburn-main-window.c,
@@ -4385,12 +3141,6 @@
     improve disc usage management
     (Old svn revision: 4300)
 
-2006-07-10  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-disc-content.c:
-    fix compilation without thunar-vfs
-    (Old svn revision: 4299)
-
 2006-07-07  Jean-François Wauthy <pollux@xfce.org>
 
   * xfburn/xfburn-blank-cd-dialog.c, xfburn/xfburn-blank-cd-dialog.h,
@@ -4413,10 +3163,6 @@
     (Old svn revision: 4297)
 
 2006-07-06  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-directory-browser.c:
-    i misinterpreter the basename parameter
-    (Old svn revision: 4296)
 
   * xfburn/Makefile.am, xfburn/xfburn-directory-browser.c,
     xfburn/xfburn-disc-content.c, xfburn/xfburn-file-browser.c,
@@ -4445,47 +3191,11 @@
     updated French translations by Maximilian Schleiss <maxschleiss@bluewin.ch>
     (Old svn revision: 4291)
 
-2006-05-31  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-disc-content.c:
-    support for saving tree-based composition
-    (Old svn revision: 4290)
-
-2006-05-30  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-disc-content.c:
-    GUI support for tree in composition
-    (Old svn revision: 4289)
-
 2006-05-29  Jean-François Wauthy <pollux@xfce.org>
 
   * xfburn/xfburn-disc-content.c, xfburn/xfburn-main-window.c:
     reduce memory usage using const (patch from Nick Schermer)
     (Old svn revision: 4288)
-
-2006-05-28  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-disc-content.c:
-    basic treeview in disc content (just the gui part)
-    (Old svn revision: 4287)
-
-  * xfburn/xfburn-disc-content.c:
-    * use static variables for folder and file icon in disc content
-    * use a GtkTreeStore instead of GtkListStore in order to implement tree
-    support in compilation
-    (Old svn revision: 4286)
-
-2006-05-28  Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
-
-  * po/fi.po:
-    Updated Finnish translations.
-    (Old svn revision: 4285)
-
-2006-05-28  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-disc-content.c:
-    avoid having two files with the same name in the compilation
-    (Old svn revision: 4284)
 
 2006-05-27  Jean-François Wauthy <pollux@xfce.org>
 
@@ -4501,8 +3211,8 @@
     xfburn/xfburn-copy-cd-dialog.c, xfburn/xfburn-copy-cd-dialog.h,
     xfburn/xfburn-copy-cd-progress-dialog.c,
     xfburn/xfburn-copy-cd-progress-dialog.h,
-    ...n-create-iso-from-composition-progress-dialog.c,
-    ...n-create-iso-from-composition-progress-dialog.h,
+    xfburn/xfburn-create-iso-from-composition-progress-dialog.c,
+    xfburn/xfburn-create-iso-from-composition-progress-dialog.h,
     xfburn/xfburn-create-iso-progress-dialog.c,
     xfburn/xfburn-create-iso-progress-dialog.h,
     xfburn/xfburn-directory-browser.c, xfburn/xfburn-directory-browser.h,
@@ -4516,10 +3226,6 @@
     xfburn/xfburn-settings.h, xfburn/xfburn-utils.c, xfburn/xfburn-utils.h:
     update copyright info
     (Old svn revision: 4283)
-
-  * xfburn/xfburn-disc-content.c:
-    fix crash when removing multiple files from the disc content (#1846)
-    (Old svn revision: 4282)
 
   * xfburn/xfburn-fs-browser.c, xfburn/xfburn-main-window.c,
     xfburn/xfburn-settings.c:
@@ -4539,10 +3245,6 @@
     (Old svn revision: 4279)
 
 2006-05-24  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-disc-content.c:
-    fix compilation with gcc 4.1
-    (Old svn revision: 4278)
 
   * xfburn/xfburn-blank-cd-dialog.c, xfburn/xfburn-burn-composition-dialog.c,
     xfburn/xfburn-burn-image-dialog.c, xfburn/xfburn-copy-cd-dialog.c,
@@ -4592,12 +3294,6 @@
     Added/Updated Czech translations by Michal Varady <miko.vaji@gmail.com>.
     (Old svn revision: 4273)
 
-2006-05-09  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-main-window.c:
-    fix segfault reported by Kamran Khan
-    (Old svn revision: 4272)
-
 2006-05-09  Stavros Giannouris <stavrosg2002@freemail.gr>
 
   * po/ChangeLog, po/el.po:
@@ -4610,53 +3306,13 @@
     Added xfburn Greek translation
     (Old svn revision: 4270)
 
-2006-05-06  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    hu trunk: terminal gui & burn fixes
-    (Old svn revision: 4269)
-
-2006-05-03  SZERVÁC Attila <sas@321.hu>
-
-  * po/hu.po:
-    hu trunk: xfburn updates
-    (Old svn revision: 4268)
-
 2006-05-02  SZERVÁC Attila <sas@321.hu>
 
   * configure.ac, po/hu.po:
     hu trunk: initial hungarian xfburn translation
     (Old svn revision: 4267)
 
-2006-05-02  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * po/ChangeLog:
-    Removed timestamps so that a translator isn't bothered:
-    "Then, what time is it now in UTC?"
-    (Old svn revision: 4266)
-
-  * configure.ac:
-    Added `pl' to XDT_I18N().
-    (Old svn revision: 4265)
-
-  * po/pl.po:
-    Added/Updated Polish translations by Szymon Kalasz <szymon_maestro@gazeta.pl>.
-    (Old svn revision: 4264)
-
-2006-05-02  Jean-François Wauthy <pollux@xfce.org>
-
-  * Makefile.am:
-    should fix bug #1695 (patch from Jani Monoses)
-    (Old svn revision: 4263)
-
 2006-05-01  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * po/ru.po:
-    Updated Russian translations by
-    Anthony Ivanoff <a-i@bk.ru>,
-    Maxim Zenin <webmechanics@gmail.com>,
-    Sergey Fedoseev <fedoseev.sergey@gmail.com>.
-    (Old svn revision: 4262)
 
   * po/de.po, po/he.po, po/uk.po:
     Updated.
@@ -4670,79 +3326,11 @@
     Fixes by Moritz Heiber <moe@xfce.org>
     (Old svn revision: 4260)
 
-2006-04-29  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * configure.ac:
-    Added `uk' to XDT_I18N().
-    (Old svn revision: 4259)
-
-2006-04-23  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * po/ru.po:
-    Updated Russian translations by Sergey Fedoseev <fedoseev.sergey@gmail.com>.
-    (Old svn revision: 4258)
-
-2006-04-21  Maxim Dziumanenko <mvd@mylinux.com.ua>
-
-  * po/uk.po:
-    2006-04-21  Maxim Dziumanenko <mvd@mylinux.ua>
-    * Updated Ukrainian translation.
-    (Old svn revision: 4257)
-
 2006-04-18  Yuval Tanny <tanai@int.gov.il>
 
   * configure.ac, po/he.po:
     Hebrew translation for xfburn
     (Old svn revision: 4256)
-
-2006-04-15  Olivier Fourdan <fourdan.olivier@wanadoo.fr>
-
-  * ChangeLog:
-    Update ChangeLog
-    (Old svn revision: 4255)
-
-2006-04-15  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * po/ca.po:
-    Bump, etc.
-    (Old svn revision: 4254)
-
-  * po/ru.po:
-    Updated Russian translations by Andrey Fedoseev <andrey.fedoseev@gmail.com>.
-    (Old svn revision: 4253)
-
-  * configure.ac:
-    Added missing language codes.
-    (Old svn revision: 4252)
-
-2006-04-02  Pau Rullan Ferragut <paurullan@bulma.net>
-
-  * po/ca.po:
-    [i18n] catalan
-    little of work on catalan translations
-    (Old svn revision: 4251)
-
-2006-03-27  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * po/ru.po:
-    Added/Updated Russian translations by
-    Andrey Fedoseev <andrey.fedoseev@gmail.com> and
-    Sergey Fedoseev <fedoseev.sergey@gmail.com>.
-    (Old svn revision: 4250)
-
-2006-03-19  Pau Rullan Ferragut <paurullan@bulma.net>
-
-  * po/ca.po:
-    [i18n] catalan
-    seems a lot of work but they all are fuzzy
-    (Old svn revision: 4249)
-
-2006-03-18  Pau Rullan Ferragut <paurullan@bulma.net>
-
-  * po/ca.po:
-    [i18n] catalan
-    added null translation and some little tweaks to not-parsing ones
-    (Old svn revision: 4248)
 
 2006-03-18  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
 
@@ -4752,37 +3340,11 @@
     Sergey Fedoseev <fedoseev.sergey@gmail.com>.
     (Old svn revision: 4247)
 
-2006-01-18  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * po/ChangeLog:
-    Updated.
-    (Old svn revision: 4246)
-
 2006-01-07  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
 
   * po/eu.po, po/fr.po, po/ja.po:
     Updated copyright information.
     (Old svn revision: 4245)
-
-2005-12-20  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * configure.ac:
-    Added `eu' at the XDT_I18N().
-    (Old svn revision: 4244)
-
-  * po/eu.po:
-    Fixed errors etc.
-    (Old svn revision: 4243)
-
-  * po/ChangeLog:
-    Updated.
-    (Old svn revision: 4242)
-
-2005-12-18  Jean-François Wauthy <pollux@xfce.org>
-
-  * Makefile.am:
-    add dist-bz2 and distcheck-bz2 targets in order to build snapshots
-    (Old svn revision: 4241)
 
 2005-12-04  Piarres Beobide <pi@beobide.net>
 
@@ -4790,44 +3352,11 @@
     Xfburn Basque translation
     (Old svn revision: 4240)
 
-2005-11-28  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * po/ChangeLog:
-    Updated.
-    (Old svn revision: 4239)
-
-2005-11-22  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * po/ja.po:
-    Updated Japanese translations.
-    (Old svn revision: 4238)
-
 2005-11-21  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
 
   * po/fr.po, po/ja.po, po/xfburn.pot:
     Updated.
     (Old svn revision: 4237)
-
-  * po/POTFILES.in:
-    Updated POTFILES.in files.
-    (Old svn revision: 4236)
-
-2005-11-05  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
-
-  * po/ChangeLog:
-    Deciphering.
-    (Old svn revision: 4235)
-
-  * po/ChangeLog:
-    Trimmed and updated.
-    (Old svn revision: 4234)
-
-2005-10-30  Olivier Fourdan <fourdan.olivier@wanadoo.fr>
-
-  * xfburn/xfburn-disc-content.c:
-    g_object_set() uses a variable list of arguments and must be NULL termianted otherwise unpredictable results may happen (a core dump in my case).
-    This is to fix that bug.
-    (Old svn revision: 4233)
 
 2005-10-30  Daichi Kawahata <daichi.k@aioros.ocn.ne.jp>
 
@@ -4847,19 +3376,6 @@
     Added initial Japanese translations.
     (Old svn revision: 4230)
 
-  * po/xfburn.pot:
-    Updated.
-    (Old svn revision: 4229)
-
-  * po/fr.po:
-    * Modified initial header strings using template by `msginit'.
-    * Modified initial comment strings using template by `msginit'.
-    (Old svn revision: 4228)
-
-  * po/POTFILES.in:
-    Added a missing file.
-    (Old svn revision: 4227)
-
 2005-10-08  Jean-François Wauthy <pollux@xfce.org>
 
   * po/fr.po, xfburn/xfburn-main-window.c:
@@ -4873,14 +3389,6 @@
     (Old svn revision: 4225)
 
 2005-09-07  Jean-François Wauthy <pollux@xfce.org>
-
-  * po/ChangeLog:
-    update ChangeLog
-    (Old svn revision: 4224)
-
-  * ChangeLog:
-    update ChangeLog
-    (Old svn revision: 4223)
 
   * class diagram.zuml, configure.ac, po/fr.po, po/xfburn.pot:
     update ChangeLog
@@ -4900,10 +3408,6 @@
     xfburn/xfburn-global.h:
     create iso from composition implemented
     (Old svn revision: 4220)
-
-  * xfburn/xfburn-progress-dialog.c:
-    closing ProgressDialog cancels current command
-    (Old svn revision: 4219)
 
   * xfburn/Makefile.am, xfburn/xfburn-copy-cd-dialog.c,
     xfburn/xfburn-copy-cd-progress-dialog.c,
@@ -5016,10 +3520,6 @@
 
 2005-08-28  Jean-François Wauthy <pollux@xfce.org>
 
-  * configure.ac:
-    keywords
-    (Old svn revision: 4208)
-
   * TODO, configure.ac, po/fr.po, po/xfburn.pot,
     xfburn/xfburn-burn-composition-dialog.c,
     xfburn/xfburn-burn-composition-dialog.h,
@@ -5042,10 +3542,6 @@
     * implement refresh
     * add burn composition dialog
     (Old svn revision: 4205)
-
-  * xfburn/xfburn-disc-content.c:
-    don't load file that doesn't exist
-    (Old svn revision: 4204)
 
   * xfburn.ui, xfburn/xfburn-disc-content.c, xfburn/xfburn-disc-content.h,
     xfburn/xfburn-main-window.c:
@@ -5103,10 +3599,6 @@
     improve burning dialog
     (Old svn revision: 4195)
 
-  * xfburn/xfburn-progress-dialog.c:
-    burn ISO working in no error use case
-    (Old svn revision: 4194)
-
 2005-08-11  Jean-François Wauthy <pollux@xfce.org>
 
   * TODO, po/fr.po, po/xfburn.pot, xfburn/xfburn-burn-image-dialog.c,
@@ -5124,19 +3616,7 @@
     update po
     (Old svn revision: 4191)
 
-  * xfburn/xfburn-progress-dialog.c:
-    gtk uses UTF-8 internally not the current charset
-    (Old svn revision: 4190)
-
-  * xfburn/xfburn-progress-dialog.c:
-    cdrecord is written in ISO-8859-1, so we need to convert to the current locale before inserting it int the textview
-    (Old svn revision: 4189)
-
 2005-08-10  Jean-François Wauthy <pollux@xfce.org>
-
-  * xfburn/xfburn-progress-dialog.c:
-    improve progress dialog
-    (Old svn revision: 4188)
 
   * TODO, po/POTFILES.in, po/fr.po, po/xfburn.pot,
     xfburn/xfburn-progress-dialog.c:
@@ -5172,10 +3652,6 @@
     xfburn/xfburn-main-window.c:
     add burn image dialog
     (Old svn revision: 4182)
-
-  * po/POTFILES.in:
-    add burn image dialog
-    (Old svn revision: 4181)
 
   * po/ChangeLog, po/POTFILES.in, xfburn/Makefile.am,
     xfburn/xfburn-blank-cd-dialog.c, xfburn/xfburn-blank-cd-dialog.h,
@@ -5298,10 +3774,6 @@
     basic DnD between filebrowser and cd content
     (Old svn revision: 4161)
 
-  * xfburn/xfburn-file-browser.c:
-    fix filebrowser bug
-    (Old svn revision: 4160)
-
 2005-08-01  Jean-François Wauthy <pollux@xfce.org>
 
   * xfburn/xfburn-directory-browser.c, xfburn/xfburn-disc-content.c,
@@ -5390,15 +3862,11 @@
     update svn:ignore
     (Old svn revision: 4146)
 
-  * po/fr.po:
-    fix fr.po
-    (Old svn revision: 4145)
-
   * autogen.sh, po/POTFILES.in, po/fr.po, po/xfburn.pot:
     xdt-autogen works
     (Old svn revision: 4144)
 
-  * AUTHORS, Makefile.am, configure.ac, po/POTFILES.in, xfburn/Makefile.am,
-    xfburn/main.c:
+  * AUTHORS, ChangeLog, Makefile.am, NEWS, README, configure.ac,
+    po/ChangeLog, po/POTFILES.in, xfburn/Makefile.am, xfburn/main.c:
     should work with xdt-autogen
     (Old svn revision: 4143)
