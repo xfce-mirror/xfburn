@@ -511,6 +511,7 @@ xfburn_device_release (struct burn_drive_info *drive_info, gboolean eject)
 {
   int ret;
 
+  burn_drive_snooze (drive_info->drive, 0);
   burn_drive_release (drive_info->drive, eject);
 
   ret = burn_drive_info_forget (drive_info, 0);

@@ -299,6 +299,7 @@ get_libburn_device_list (XfburnDeviceList *devlist)
       g_message ("Ignoring reader '%s' at '%s'", name, addr);
       g_object_unref (device);
     }
+    burn_drive_snooze(drives[i].drive, 0);
   }
 
   burn_drive_info_free (drives);
