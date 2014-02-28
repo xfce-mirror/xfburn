@@ -42,7 +42,7 @@ static XfburnDiscUsageClass *parent_class = NULL;
 
 #define DEFAULT_DISK_SIZE_LABEL 2
 #define LAST_CD_LABEL 4
-#define NUM_LABELS 7
+#define NUM_LABELS 10
 
 XfburnDiscLabels datadiscsizes[] = {
   {
@@ -59,6 +59,12 @@ XfburnDiscLabels datadiscsizes[] = {
   G_GINT64_CONSTANT(0x1182a0000), "4.3GB DVD"}, /* 4 700 372 992 */
   {
   G_GINT64_CONSTANT(0x1fd3e0000), "7.9GB DVD"}, /* 8 543 666 176 */
+  {
+  G_GINT64_CONSTANT(0x5a3a00000), "22.5GB BD"}, /* 24 220 008 448 */
+  {
+  G_GINT64_CONSTANT(0xba7400000), "46.5GB BD"}, /* 50 050 629 632 */
+  {
+  G_GINT64_CONSTANT(0x20000000000), "2TB"}, /* limit of libburn: 2 TiB */
 };
 
 /*******************************/
