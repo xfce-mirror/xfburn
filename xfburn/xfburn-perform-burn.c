@@ -140,12 +140,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
  
   /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
   if (burn_disc_get_profile(drive, &media_no, media_name) == 1) {
-    /* this will fail if newer disk types get supported */
-    if (media_no <= 0x0a)
-      factor = CDR_1X_SPEED;
-    else
-      /* assume DVD for now */
-      factor = DVD_1X_SPEED;
+    factor = xfburn_media_profile_to_kb (media_no);
   } else {
     g_warning ("no profile could be retrieved to calculate current burn speed");
     factor = 1;

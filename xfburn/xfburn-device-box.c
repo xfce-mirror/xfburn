@@ -456,12 +456,7 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 
   /* check profile, so we can convert from 'kb/s' into 'x' rating */
   if (profile_no != 0) {
-    /* this will fail if newer disk types get supported */
-    if (profile_no <= 0x0a)
-      factor = CDR_1X_SPEED;
-    else
-      /* assume DVD for now */
-      factor = DVD_1X_SPEED;
+    factor = xfburn_media_profile_to_kb (profile_no);
   } else {
     factor = 1;
   }
@@ -580,7 +575,15 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
         if (!priv->accept_only_cd)
           g_object_get (G_OBJECT (device), "dvdr", &priv->valid_disc, NULL);
         break;
+      case XFBURN_PROFILE_BD_R:
+      case XFBURN_PROFILE_BD_RE:
+        if (!priv->accept_only_cd)
+          g_object_get (G_OBJECT (device), "dvdr", &priv->valid_disc, NULL);
+        break;
       default:
+
+        /* >>> should recognize 0x08 = CD-ROM, 0x10 = DVD-ROM, 0x40 BD-ROM */
+
         g_warning ("Unknown disc profile 0x%x!", profile_no);
         priv->valid_disc = TRUE;
         break;

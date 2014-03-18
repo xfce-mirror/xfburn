@@ -38,6 +38,7 @@
 /* in reality CDR_1X_SPEED is 176.4 (see libburn.h:1577), but that shouldn't matter */
 #define CDR_1X_SPEED 176
 #define DVD_1X_SPEED 1385
+#define BD_1X_SPEED  4496
 
 #define DATA_COMPOSITION_DEFAULT_NAME N_("Data composition")
 

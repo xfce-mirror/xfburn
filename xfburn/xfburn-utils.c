@@ -211,6 +211,23 @@ xfburn_console_libburn_messages (void)
  
 }
 
+int
+xfburn_media_profile_to_kb (int media_no)
+{
+  int factor = 1;
+  if (media_no <= XFBURN_PROFILE_CDR)
+    factor = CDR_1X_SPEED;
+  else if (media_no >= XFBURN_PROFILE_DVD_MINUS_R && media_no <= XFBURN_PROFILE_DVD_PLUS_R_DL)
+    factor = DVD_1X_SPEED;
+  else if (media_no >= XFBURN_PROFILE_BD_R && media_no <= XFBURN_PROFILE_BD_RE)
+    factor = BD_1X_SPEED;
+  else {
+    g_warning ("unknown profile, assuming BD");
+    factor = BD_1X_SPEED;
+  }
+  return factor;
+}
+
 
 GSList *
 xfburn_make_abosulet_file_list (gint count, gchar *filenames[])

@@ -45,5 +45,6 @@ gboolean xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, cons
 
 void xfburn_capture_libburn_messages (void);
 void xfburn_console_libburn_messages (void);
+int xfburn_media_profile_to_kb (int media_no);
 
 #endif
