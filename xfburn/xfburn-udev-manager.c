@@ -251,10 +251,13 @@ xfburn_udev_manager_get_devices (XfburnUdevManager *udevman, gint *drives, gint 
                    || g_udev_device_get_property_as_boolean(l->data, "ID_CDROM_DVD_PLUS_RW")
                    || g_udev_device_get_property_as_boolean(l->data, "ID_CDROM_DVD_PLUS_R_DL");
       gboolean dvdram = g_udev_device_get_property_as_boolean(l->data, "ID_CDROM_DVD_RAM");
+      gboolean bdr = g_udev_device_get_property_as_boolean(l->data, "ID_CDROM_BD")
+                  || g_udev_device_get_property_as_boolean(l->data, "ID_CDROM_BD_R")
+                  || g_udev_device_get_property_as_boolean(l->data, "ID_CDROM_BD_RE");
 
       (*drives)++;
 
-      if (cdr || dvdr || dvdram) {
+      if (cdr || dvdr || dvdram || bdr) {
         XfburnDevice *device;
         const gchar *addr, *name, *str_model, *str_vendor; 
 
@@ -291,6 +294,7 @@ xfburn_udev_manager_get_devices (XfburnUdevManager *udevman, gint *drives, gint 
         g_object_set (G_OBJECT (device), "cdrw", cdrw, NULL);
         g_object_set (G_OBJECT (device), "dvdr", dvdr, NULL);
         g_object_set (G_OBJECT (device), "dvdram", dvdram, NULL);
+        g_object_set (G_OBJECT (device), "bd", bdr, NULL);
 
         if (!xfburn_device_can_burn (device)) {
           g_message ("Ignoring reader '%s' at '%s'", name, addr);

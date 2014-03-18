@@ -563,7 +563,7 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
         break;
       case XFBURN_PROFILE_BD_R:
       case XFBURN_PROFILE_BD_RE:
-        g_object_get (G_OBJECT (device), "dvdr", &priv->valid_disc, NULL);
+        g_object_get (G_OBJECT (device), "bd", &priv->valid_disc, NULL);
         break;
       case XFBURN_PROFILE_CDROM:
       case XFBURN_PROFILE_DVDROM:

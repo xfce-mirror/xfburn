@@ -75,6 +75,7 @@ enum
   DEVICE_LIST_COLUMN_CDRW,
   DEVICE_LIST_COLUMN_DVDR,
   DEVICE_LIST_COLUMN_DVDRAM,
+  DEVICE_LIST_COLUMN_BD,
   DEVICE_LIST_N_COLUMNS
 };
 
@@ -253,7 +254,8 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox2), scrolled_window, TRUE, TRUE, BORDER);
 
   store = gtk_list_store_new (DEVICE_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
-                              G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
+                              G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN,
+                              G_TYPE_BOOLEAN);
   priv->treeview_devices = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), DEVICE_LIST_COLUMN_NAME, GTK_SORT_ASCENDING);
   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview_devices), TRUE);
@@ -288,6 +290,9 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
                                                NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Write DVD-RAM"),
                                                gtk_cell_renderer_toggle_new (), "active", DEVICE_LIST_COLUMN_DVDRAM,
+                                               NULL);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Write Blu-ray"),
+                                               gtk_cell_renderer_toggle_new (), "active", DEVICE_LIST_COLUMN_BD,
                                                NULL);
 
   hbox = gtk_hbox_new (FALSE, 0);
@@ -426,13 +431,13 @@ refresh_devices_list (XfburnPreferencesDialog * dialog)
     GtkTreeIter iter;
     XfburnDevice *device_data;
     gchar *name, *addr;
-    gboolean cdr, cdrw, dvdr, dvdram;
+    gboolean cdr, cdrw, dvdr, dvdram, bd;
 
     device_data = (XfburnDevice *) device->data;
 
     g_object_get (G_OBJECT (device_data), "name", &name, "address", &addr,
                   "cdr", &cdr, "cdrw", &cdrw, "dvdr", &dvdr, "dvdram", &dvdram,
-                  NULL);
+                  "bd", &bd, NULL);
 
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
@@ -442,6 +447,7 @@ refresh_devices_list (XfburnPreferencesDialog * dialog)
                         DEVICE_LIST_COLUMN_CDRW, cdrw,
                         DEVICE_LIST_COLUMN_DVDR, dvdr, 
                         DEVICE_LIST_COLUMN_DVDRAM, dvdram, 
+                        DEVICE_LIST_COLUMN_BD, bd,
                         -1);
 
     g_free (name);

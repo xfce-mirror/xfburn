@@ -44,6 +44,7 @@ enum {
   PROP_DVDR,
   PROP_DVDPLUSR,
   PROP_DVDRAM,
+  PROP_BD,
   PROP_TAO_BLOCK_TYPES,
   PROP_SAO_BLOCK_TYPES,
   PROP_RAW_BLOCK_TYPES,
@@ -80,6 +81,7 @@ struct _XfburnDevicePrivate {
   gboolean dvdr;
   gboolean dvdplusr;
   gboolean dvdram;
+  gboolean bd;
 
   GSList *supported_speeds;
 
@@ -136,6 +138,9 @@ xfburn_device_get_property (GObject *object, guint property_id,
       break;
     case PROP_DVDRAM:
       g_value_set_boolean (value, priv->dvdram);
+      break;
+    case PROP_BD:
+      g_value_set_boolean (value, priv->bd);
       break;
     case PROP_TAO_BLOCK_TYPES:
       g_value_set_int (value, priv->tao_block_types);
@@ -196,6 +201,9 @@ xfburn_device_set_property (GObject *object, guint property_id,
       break;
     case PROP_DVDRAM:
       priv->dvdram = g_value_get_boolean (value);
+      break;
+    case PROP_BD:
+      priv->bd = g_value_get_boolean (value);
       break;
     case PROP_TAO_BLOCK_TYPES:
       priv->tao_block_types = g_value_get_int (value);
@@ -274,6 +282,9 @@ xfburn_device_class_init (XfburnDeviceClass *klass)
   g_object_class_install_property (object_class, PROP_DVDRAM, 
                                    g_param_spec_boolean ("dvdram", _("Can burn DVDRAM"),
                                                         _("Can burn DVDRAM"), FALSE, G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_BD,
+                                   g_param_spec_boolean ("bd", _("Can burn Blu-ray"),
+                                                        _("Can burn Blu-ray"), FALSE, G_PARAM_READWRITE));
   g_object_class_install_property (object_class, PROP_TAO_BLOCK_TYPES, 
                                    g_param_spec_int ("tao-block-types", _("libburn TAO block types"),
                                                      _("libburn TAO block types"), 0, G_MAXINT, 0, G_PARAM_READABLE));
