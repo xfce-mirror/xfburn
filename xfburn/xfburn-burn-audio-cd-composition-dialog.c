@@ -153,7 +153,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
 
   /* burning devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS |
-                                            SHOW_SPEED_SELECTION | SHOW_MODE_SELECTION |ACCEPT_ONLY_CD);
+                                            SHOW_SPEED_SELECTION | SHOW_MODE_SELECTION);
   g_signal_connect (G_OBJECT (priv->device_box), "volume-changed", G_CALLBACK (cb_volume_changed), obj);
   gtk_widget_show (priv->device_box);
 
