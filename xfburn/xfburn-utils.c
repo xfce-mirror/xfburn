@@ -34,6 +34,7 @@
 
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
+#include "xfburn-device-list.h"
 
 /***********/
 /* cursors */
