@@ -179,6 +179,7 @@ typedef struct
 
   gchar *default_vol_name;
 
+  gboolean large_files;
 } XfburnDataCompositionPrivate;
 
 /* globals */
@@ -1278,8 +1279,13 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
         gdk_threads_leave ();
 
         return FALSE;
+      } else if (s.st_size > MAXIMUM_ISO_LEVEL_2_FILE_SIZE && !priv->large_files) {
+        priv->large_files = TRUE;
+        gdk_threads_enter ();
+        xfce_dialog_show_warning (NULL, NULL, _("%s is larger than what iso9660 level 2 allows. This can be a problem for old systems or software."), path);
+        gdk_threads_leave ();
       }
-	  
+
       gdk_threads_enter ();
       screen = gtk_widget_get_screen (GTK_WIDGET (dc));
       icon_theme = gtk_icon_theme_get_for_screen (screen);

@@ -640,7 +640,7 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
     /* Sets profile 0 [basic] */
     iso_write_opts_new (&write_opts, 0);
 
-    iso_write_opts_set_iso_level (write_opts, 2);
+    iso_write_opts_set_iso_level (write_opts, 3);
     iso_write_opts_set_rockridge (write_opts, 1);
     iso_write_opts_set_joliet (write_opts, 1);
     iso_write_opts_set_allow_deep_paths (write_opts, 1);
