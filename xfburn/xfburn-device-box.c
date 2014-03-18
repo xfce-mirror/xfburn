@@ -565,10 +565,13 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
       case XFBURN_PROFILE_BD_RE:
         g_object_get (G_OBJECT (device), "dvdr", &priv->valid_disc, NULL);
         break;
+      case XFBURN_PROFILE_CDROM:
+      case XFBURN_PROFILE_DVDROM:
+      case XFBURN_PROFILE_BDROM:
+        g_warning ("Read-only profile 0x%x!", profile_no);
+        priv->valid_disc = FALSE;
+        break;
       default:
-
-        /* >>> should recognize 0x08 = CD-ROM, 0x10 = DVD-ROM, 0x40 BD-ROM */
-
         g_warning ("Unknown disc profile 0x%x!", profile_no);
         priv->valid_disc = TRUE;
         break;

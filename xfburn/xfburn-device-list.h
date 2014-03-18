@@ -85,6 +85,10 @@ enum XfburnDiscProfiles {
   XFBURN_PROFILE_DVD_PLUS_R_DL = 0x2b,
   XFBURN_PROFILE_BD_R = 0x41,
   XFBURN_PROFILE_BD_RE = 0x43,
+  /* Read-only profiles */
+  XFBURN_PROFILE_CDROM = 0x08,
+  XFBURN_PROFILE_DVDROM = 0x10,
+  XFBURN_PROFILE_BDROM = 0x40,
 };
 
 GType xfburn_device_list_get_type (void);
