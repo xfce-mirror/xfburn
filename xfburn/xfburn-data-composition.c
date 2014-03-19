@@ -144,6 +144,7 @@ static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnData
                                                    GtkTreeIter * insertion, GtkTreeViewDropPosition position);
 static gboolean thread_add_file_to_list (XfburnDataComposition * dc, GtkTreeModel * model, const gchar * path, 
                                          GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
+static void concat_free (char * msg, char ** combined_msg);
 static IsoImage * generate_iso_image (XfburnDataComposition * dc);
 static gboolean show_add_home_question_dialog (void);
                                   
@@ -1899,7 +1900,7 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
 }
 
 static void
-fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * parent, GtkTreeIter *iter)
+fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * parent, GtkTreeIter *iter, GSList **errors)
 {
   do {
       DataCompositionEntryType type;
@@ -1928,14 +1929,23 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
       }
 
       if (r < 0) {
+        char * msg;
+
         if (r == ISO_NULL_POINTER)
-          g_error ("Failed adding %s as a node to the image: null pointer!", src);
+          msg = g_strdup_printf (_("%s: null pointer"), src);
         else if (r == ISO_NODE_NAME_NOT_UNIQUE)
-          g_error ("Failed adding %s as a node to the image: node name not unique!", src);
+          msg = g_strdup_printf (_("%s: node name not unique"), src);
         else if (r == ISO_OUT_OF_MEM)
-          g_error ("Failed adding %s as a node to the image: out of memory!", src);
+          msg = g_strdup_printf (_("%s: out of memory"), src);
         else
-          g_error ("Failed adding %s as a node to the image: code %X!", src, r);
+          msg = g_strdup_printf (_("%s: %s (code %X)"), src, iso_error_to_msg(r), r);
+
+        g_warning ("%s", msg);
+        *errors = g_slist_prepend (*errors, msg);
+
+        g_free (name);
+        g_free (src);
+        continue;
       }
 
       if (src != '\0') {
@@ -1973,9 +1983,16 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
         dir = (IsoDir *)node;
 
 	gtk_tree_model_iter_children (model, &child, iter);
-	fill_image_with_composition (model, image, dir, &child);
+	fill_image_with_composition (model, image, dir, &child, errors);
       }
   } while (gtk_tree_model_iter_next (model, iter));
+}
+
+static
+void concat_free (char * msg, char ** combined_msg)
+{
+  *combined_msg = g_strconcat (*combined_msg, msg, "\n", NULL);
+  free (msg);
 }
 
 static IsoImage *
@@ -1985,6 +2002,7 @@ generate_iso_image (XfburnDataComposition * dc)
   IsoImage *image = NULL;
   GtkTreeModel *model;
   GtkTreeIter iter;
+  GSList *errors = NULL;
 
   iso_image_new (gtk_entry_get_text (GTK_ENTRY (priv->entry_volume_name)), &image);
   iso_image_set_application_id (image, "Xfburn");
@@ -1992,7 +2010,56 @@ generate_iso_image (XfburnDataComposition * dc)
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   if (gtk_tree_model_get_iter_first (model, &iter)) {
-    fill_image_with_composition (model, image, iso_image_get_root (image), &iter);
+    fill_image_with_composition (model, image, iso_image_get_root (image), &iter, &errors);
+
+    if (errors != NULL) {
+      gchar * combined_msg = "";
+      GtkWidget * dialog, * label, * textview, * scrolled;
+      GtkTextBuffer * buffer;
+      GdkGeometry hints = {600, 200, -1, -1, 700, 400, 1, 1, 0.0, 0.0};
+      XfburnMainWindow *mainwin = xfburn_main_window_get_instance ();
+      gchar * title;
+
+      errors = g_slist_reverse (errors);
+
+      g_slist_foreach (errors, (GFunc) concat_free, &combined_msg);
+
+      title = _("Error(s) occured while adding files");
+      dialog = gtk_dialog_new_with_buttons (title,
+                                            GTK_WINDOW (mainwin),
+                                            GTK_DIALOG_DESTROY_WITH_PARENT,
+                                            GTK_STOCK_OK,
+                                            GTK_RESPONSE_NONE,
+                                            NULL);
+
+      label = gtk_label_new (NULL);
+      title = g_strdup_printf ("<b>%s</b>", title);
+      gtk_label_set_markup(GTK_LABEL (label), title);
+      g_free (title);
+      gtk_container_add (GTK_CONTAINER (GTK_DIALOG(dialog)->vbox), label);
+
+      textview = gtk_text_view_new ();
+      buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
+      gtk_text_buffer_set_text (buffer, combined_msg, -1);
+      gtk_text_view_set_editable (GTK_TEXT_VIEW(textview), FALSE);
+
+      scrolled = gtk_scrolled_window_new (NULL, NULL);
+      gtk_container_add (GTK_CONTAINER (scrolled), textview);
+      gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+      gtk_container_add (GTK_CONTAINER (GTK_DIALOG(dialog)->vbox), scrolled);
+
+      gtk_window_set_geometry_hints (GTK_WINDOW (dialog),
+                                     scrolled,
+                                     &hints,
+                                     GDK_HINT_BASE_SIZE | GDK_HINT_MIN_SIZE);
+
+      gtk_widget_show (label);
+      gtk_widget_show (textview);
+      gtk_widget_show (scrolled);
+
+      gtk_dialog_run (GTK_DIALOG (dialog));
+      g_free (combined_msg);
+    }
   }
 
   return image;
