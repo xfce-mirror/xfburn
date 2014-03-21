@@ -4,12 +4,13 @@
 # 
 # Translators:
 # theppitak <theppitak@gmail.com>, 2014
+# theppitak <theppitak@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-03 20:34+0200\n"
-"PO-Revision-Date: 2014-02-10 15:32+0000\n"
+"POT-Creation-Date: 2014-03-20 00:31+0100\n"
+"PO-Revision-Date: 2014-03-21 10:37+0000\n"
 "Last-Translator: theppitak <theppitak@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/projects/p/xfce/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +51,7 @@ msgstr "ไม่สามารถอ่านสถานะของแผ่
 msgid "CD copying finished successfully."
 msgstr "คัดลอกซีดีเสร็จแล้ว"
 
-#: ../xfburn/xfburn-global.h:42
+#: ../xfburn/xfburn-global.h:43
 msgid "Data composition"
 msgstr "ร่างต้นฉบับข้อมูล"
 
@@ -103,7 +104,7 @@ msgstr "ล้างแผ่น"
 msgid "Burning device"
 msgstr "อุปกรณ์เขียน"
 
-#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:187
+#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:185
 msgid "Blank mode"
 msgstr "โหมดล้างแผ่น"
 
@@ -154,12 +155,12 @@ msgstr "กำลังล้างแผ่น..."
 
 #: ../xfburn/xfburn-blank-dialog.c:441
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:512
-#: ../xfburn/xfburn-perform-burn.c:366
+#: ../xfburn/xfburn-perform-burn.c:361
 #, c-format
 msgid "Done"
 msgstr "เสร็จแล้ว"
 
-#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:367
 #: ../xfburn/xfburn-progress-dialog.c:649
 msgid "Failure"
 msgstr "ล้มเหลว"
@@ -391,114 +392,121 @@ msgstr "_คัดลอกดีวีดี"
 msgid "Create ISO from CD"
 msgstr "สร้าง ISO จากซีดี"
 
-#: ../xfburn/xfburn-data-composition.c:189
-#: ../xfburn/xfburn-data-composition.c:955
+#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:957
 #: ../xfburn/xfburn-audio-composition.c:206
 #: ../xfburn/xfburn-audio-composition.c:979
 msgid "Add"
 msgstr "เพิ่ม"
 
-#: ../xfburn/xfburn-data-composition.c:189
+#: ../xfburn/xfburn-data-composition.c:191
 #: ../xfburn/xfburn-audio-composition.c:206
 msgid "Add the selected file(s) to the composition"
 msgstr "เพิ่มแฟ้มที่เลือกลงในร่างต้นฉบับ"
 
-#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:193
 msgid "Create directory"
 msgstr "สร้างไดเรกทอรี"
 
-#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:193
 msgid "Add a new directory to the composition"
 msgstr "สร้างไดเรกทอรีใหม่ในร่างต้นฉบับ"
 
-#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-data-composition.c:195
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove"
 msgstr "ลบ"
 
-#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-data-composition.c:195
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove the selected file(s) from the composition"
 msgstr "ลบแฟ้มที่เลือกออกจากร่างต้นฉบับ"
 
-#: ../xfburn/xfburn-data-composition.c:195
+#: ../xfburn/xfburn-data-composition.c:197
 #: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear"
 msgstr "ล้าง"
 
-#: ../xfburn/xfburn-data-composition.c:195
+#: ../xfburn/xfburn-data-composition.c:197
 #: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear the content of the composition"
 msgstr "ล้างเนื้อหาของร่างต้นฉบับ"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
 #. existing session"),},
-#: ../xfburn/xfburn-data-composition.c:198
+#: ../xfburn/xfburn-data-composition.c:200
 msgid "Rename"
 msgstr "เปลี่ยนชื่อ"
 
-#: ../xfburn/xfburn-data-composition.c:198
+#: ../xfburn/xfburn-data-composition.c:200
 msgid "Rename the selected file"
 msgstr "เปลี่ยนชื่อแฟ้มที่เลือก"
 
-#: ../xfburn/xfburn-data-composition.c:352
+#: ../xfburn/xfburn-data-composition.c:354
 msgid "Volume name :"
 msgstr "ชื่อแผ่น :"
 
-#: ../xfburn/xfburn-data-composition.c:386
+#: ../xfburn/xfburn-data-composition.c:388
 msgid "Contents"
 msgstr "เนื้อหา"
 
-#: ../xfburn/xfburn-data-composition.c:401
+#: ../xfburn/xfburn-data-composition.c:403
 #: ../xfburn/xfburn-directory-browser.c:140
 msgid "Size"
 msgstr "ขนาด"
 
-#: ../xfburn/xfburn-data-composition.c:404
+#: ../xfburn/xfburn-data-composition.c:406
 msgid "Local Path"
 msgstr "พาธในเครื่อง"
 
-#: ../xfburn/xfburn-data-composition.c:679
+#: ../xfburn/xfburn-data-composition.c:681
 msgid "You must give a name to the file."
 msgstr "คุณต้องตั้งชื่อให้กับแฟ้ม"
 
-#: ../xfburn/xfburn-data-composition.c:688
-#: ../xfburn/xfburn-data-composition.c:1198
+#: ../xfburn/xfburn-data-composition.c:690
+#: ../xfburn/xfburn-data-composition.c:1200
 #: ../xfburn/xfburn-audio-composition.c:1176
 msgid "A file with the same name is already present in the composition."
 msgstr "มีแฟ้มชื่อเดียวกันอยู่ก่อนแล้วในร่างต้นฉบับ"
 
-#: ../xfburn/xfburn-data-composition.c:796
-#: ../xfburn/xfburn-data-composition.c:797
+#: ../xfburn/xfburn-data-composition.c:798
 #: ../xfburn/xfburn-data-composition.c:799
+#: ../xfburn/xfburn-data-composition.c:801
 msgid "New directory"
 msgstr "ไดเรกทอรีใหม่"
 
-#: ../xfburn/xfburn-data-composition.c:941
+#: ../xfburn/xfburn-data-composition.c:943
 #: ../xfburn/xfburn-audio-composition.c:976
 msgid "File(s) to add to composition"
 msgstr "แฟ้มที่จะเพิ่มลงในร่างต้นฉบับ"
 
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:1041
+#: ../xfburn/xfburn-data-composition.c:1043
 #, c-format
 msgid "Data %s~%d"
 msgstr "ข้อมูล %s~%d"
 
-#: ../xfburn/xfburn-data-composition.c:1277
+#: ../xfburn/xfburn-data-composition.c:1279
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr "ไม่สามารถเพิ่ม %s ลงในร่างต้นฉบับ เพราะมีขนาดเกินขนาดแฟ้มที่อนุญาตใน iso9660"
 
-#: ../xfburn/xfburn-data-composition.c:1362
+#: ../xfburn/xfburn-data-composition.c:1286
+#, c-format
+msgid ""
+"%s is larger than what iso9660 level 2 allows. This can be a problem for old"
+" systems or software."
+msgstr "%s มีขนาดใหญ่กว่าที่ iso9660 ระดับ 2 อนุญาต ซึ่งอาจเป็นปัญหาสำหรับระบบหรือซอฟต์แวร์รุ่นเก่า"
+
+#: ../xfburn/xfburn-data-composition.c:1369
 #: ../xfburn/xfburn-audio-composition.c:1351
 msgid "Adding home directory"
 msgstr "กำลังเพิ่มไดเรกทอรีบ้าน"
 
-#: ../xfburn/xfburn-data-composition.c:1363
+#: ../xfburn/xfburn-data-composition.c:1370
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
@@ -506,68 +514,88 @@ msgid ""
 "Are you sure you want to proceed?"
 msgstr "คุณกำลังจะเพิ่มไดเรกทอรีบ้านของคุณลงในร่างต้นฉบับ ซึ่งมีแนวโน้มจะใช้เวลานานมาก และอาจใหญ่เกินกว่าขนาดของแผ่น\n\nคุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อไป?"
 
-#: ../xfburn/xfburn-data-composition.c:1530
+#: ../xfburn/xfburn-data-composition.c:1537
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr "มีแฟ้มชื่อ \"%s\" ในไดเรกทอรีนี้อยู่ก่อนแล้ว จึงไม่ได้เพิ่มแฟ้มนี้"
 
+#: ../xfburn/xfburn-data-composition.c:1935
+#, c-format
+msgid "%s: null pointer"
+msgstr "%s: พอยน์เตอร์ศูนย์"
+
+#: ../xfburn/xfburn-data-composition.c:1937
+#, c-format
+msgid "%s: node name not unique"
+msgstr "%s: ชื่อโหนดซ้ำกับโหนดอื่น"
+
+#: ../xfburn/xfburn-data-composition.c:1939
+#, c-format
+msgid "%s: out of memory"
+msgstr "%s: หน่วยความจำไม่พอ"
+
+#: ../xfburn/xfburn-data-composition.c:1941
+#, c-format
+msgid "%s: %s (code %X)"
+msgstr "%s: %s (รหัส %X)"
+
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1945
+#: ../xfburn/xfburn-data-composition.c:1961
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "ชื่อแฟ้ม '%s' ซ้ำสำหรับ '%s'"
 
-#: ../xfburn/xfburn-device-box.c:171 ../xfburn/xfburn-device-box.c:172
+#: ../xfburn/xfburn-data-composition.c:2027
+msgid "Error(s) occured while adding files"
+msgstr "เกิดข้อผิดพลาดขณะเพิ่มแฟ้ม"
+
+#: ../xfburn/xfburn-device-box.c:169 ../xfburn/xfburn-device-box.c:170
 msgid "Show writers only"
 msgstr "แสดงอุปกรณ์เขียนเท่านั้น"
 
-#: ../xfburn/xfburn-device-box.c:175
+#: ../xfburn/xfburn-device-box.c:173
 msgid "Show speed selection"
 msgstr "แสดงตัวเลือกความเร็ว"
 
-#: ../xfburn/xfburn-device-box.c:176
+#: ../xfburn/xfburn-device-box.c:174
 msgid "Show speed selection combo"
 msgstr "แสดงกล่องคอมโบเลือกความเร็ว"
 
-#: ../xfburn/xfburn-device-box.c:179
+#: ../xfburn/xfburn-device-box.c:177
 msgid "Show mode selection"
 msgstr "แสดงตัวเลือกโหมด"
 
-#: ../xfburn/xfburn-device-box.c:180
+#: ../xfburn/xfburn-device-box.c:178
 msgid "Show mode selection combo"
 msgstr "แสดงกล่องคอมโบเลือกโหมด"
 
-#: ../xfburn/xfburn-device-box.c:183
+#: ../xfburn/xfburn-device-box.c:181
 msgid "Is it a valid combination"
 msgstr "เป็นคู่ที่เข้ากันได้หรือไม่"
 
-#: ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-device-box.c:182
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "ฮาร์ดแวร์และแผ่นสามารถใช้เขียนร่างต้นฉบับได้หรือไม่"
 
-#: ../xfburn/xfburn-device-box.c:188
+#: ../xfburn/xfburn-device-box.c:186
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "โหมดล้างแผ่นจะแสดงสถานะของแผ่นในแบบที่ต่างจากโหมดปกติ"
 
-#: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
-msgid "Accept only CDs as valid discs"
-msgstr "รับเฉพาะแผ่นซีดีเท่านั้น"
-
-#: ../xfburn/xfburn-device-box.c:245
+#: ../xfburn/xfburn-device-box.c:239
 msgid "_Speed:"
 msgstr "ความเ_ร็ว:"
 
-#: ../xfburn/xfburn-device-box.c:268
+#: ../xfburn/xfburn-device-box.c:262
 msgid "Write _mode:"
 msgstr "โหมดเ_ขียน:"
 
-#: ../xfburn/xfburn-device-box.c:387
+#: ../xfburn/xfburn-device-box.c:375
 msgid "Empty speed list"
 msgstr "ไม่มีข้อมูลความเร็ว"
 
-#: ../xfburn/xfburn-device-box.c:396
+#: ../xfburn/xfburn-device-box.c:384
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -578,59 +606,59 @@ msgid ""
 "<i>Thank you!</i>"
 msgstr "<b>ไม่สามารถดึงข้อมูลความเร็วที่รองรับจากไดรว์</b>\n\nนี่เป็นปัญหาที่มีรายงานแล้วสำหรับไดรว์ต่างๆ หากคุณสนใจจะแก้ปัญหานี้ กรุณาตรวจสอบที่ไลบรารี libburn\n\nการเขียนน่าจะยังทำได้ แต่หากยังพบปัญหา กรุณาแจ้งให้เราทราบ\n\n<i>ขอบคุณครับ!</i>"
 
-#: ../xfburn/xfburn-device-box.c:407
+#: ../xfburn/xfburn-device-box.c:395
 msgid "Continue to _show this notice"
 msgstr "แ_สดงข้อสังเกตนี้อีก"
 
-#: ../xfburn/xfburn-device-box.c:452
+#: ../xfburn/xfburn-device-box.c:440
 msgid "default"
 msgstr "ปริยาย"
 
-#: ../xfburn/xfburn-device-box.c:488
+#: ../xfburn/xfburn-device-box.c:471
 msgid "Max"
 msgstr "สูงสุด"
 
-#: ../xfburn/xfburn-device-box.c:590
+#: ../xfburn/xfburn-device-box.c:581
 msgid "Drive can't burn on the inserted disc"
 msgstr "ไดรว์ไม่สามารถเขียนแผ่นที่ใส่เข้ามาได้"
 
-#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:645
+#: ../xfburn/xfburn-device-box.c:590 ../xfburn/xfburn-device-box.c:636
 msgid "Drive is empty"
 msgstr "ไดรว์ไม่มีแผ่น"
 
-#: ../xfburn/xfburn-device-box.c:602
+#: ../xfburn/xfburn-device-box.c:593
 msgid "Sorry, multisession is not yet supported"
 msgstr "ขออภัย ยังไม่รองรับมัลติเซสชัน"
 
-#: ../xfburn/xfburn-device-box.c:605
+#: ../xfburn/xfburn-device-box.c:596
 msgid "Inserted disc is full"
 msgstr "แผ่นที่ใส่เข้ามาเต็มแล้ว"
 
-#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:651
+#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:642
 msgid "Inserted disc is unsuitable"
 msgstr "แผ่นที่ใส่เข้ามาไม่เหมาะสม"
 
-#: ../xfburn/xfburn-device-box.c:611 ../xfburn/xfburn-device-box.c:654
+#: ../xfburn/xfburn-device-box.c:602 ../xfburn/xfburn-device-box.c:645
 msgid "Cannot access drive (it might be in use)"
 msgstr "ไม่สามารถเข้าใช้ไดรว์ได้ (อาจกำลังใช้งานอยู่)"
 
-#: ../xfburn/xfburn-device-box.c:616 ../xfburn/xfburn-device-box.c:657
+#: ../xfburn/xfburn-device-box.c:607 ../xfburn/xfburn-device-box.c:648
 msgid "Error determining disc"
 msgstr "เกิดข้อผิดพลาดขณะพิจารณาแผ่น"
 
-#: ../xfburn/xfburn-device-box.c:637
+#: ../xfburn/xfburn-device-box.c:628
 msgid "Write-once disc, no blanking possible"
 msgstr "แผ่นเขียนได้ครั้งเดียว ไม่สามารถล้างแผ่นได้"
 
-#: ../xfburn/xfburn-device-box.c:640
+#: ../xfburn/xfburn-device-box.c:631
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW ไม่จำเป็นต้องล้างแผ่น"
 
-#: ../xfburn/xfburn-device-box.c:648
+#: ../xfburn/xfburn-device-box.c:639
 msgid "Inserted disc is already blank"
 msgstr "แผ่นที่ใส่เข้ามาถูกล้างอยู่แล้ว"
 
-#: ../xfburn/xfburn-device-box.c:684
+#: ../xfburn/xfburn-device-box.c:675
 msgid "Auto"
 msgstr "อัตโนมัติ"
 
@@ -681,22 +709,22 @@ msgstr "บ้านของ %s"
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main.c:212
+#: ../xfburn/xfburn-main.c:211
 #, c-format
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
 msgstr "%s: %s\nลองสั่ง %s --help เพื่อดูตัวเลือกทั้งหมดของบรรทัดคำสั่ง\n"
 
-#: ../xfburn/xfburn-main.c:220
+#: ../xfburn/xfburn-main.c:219
 msgid "Unable to initialize the burning backend."
 msgstr "ไม่สามารถตั้งค่าเริ่มต้นแบกเอนด์เขียนแผ่น"
 
-#: ../xfburn/xfburn-main.c:295
+#: ../xfburn/xfburn-main.c:294
 msgid "No burners are currently available"
 msgstr "ไม่มีอุปกรณ์เขียนที่ใช้ได้ในขณะนี้"
 
-#: ../xfburn/xfburn-main.c:297
+#: ../xfburn/xfburn-main.c:296
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
@@ -705,14 +733,14 @@ msgid ""
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr "อาจจะมีแผ่นที่กำลังใช้งานอยู่ และไม่สามารถเข้าใช้ได้\n\nกรุณาเลิกเมานท์แผ่นแล้วเริ่มเปิดโปรแกรมนี้ใหม่\n\nหากไม่มีแผ่นในไดรว์ กรุณาตรวจสอบให้แน่ใจว่าคุณมีสิทธิ์อ่านและเขียนไดรว์ด้วยบัญชีผู้ใช้ปัจจุบัน"
 
-#: ../xfburn/xfburn-main.c:331
+#: ../xfburn/xfburn-main.c:330
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr "ตั้งค่าเริ่มต้นตัวแปลงรหัส %s ไม่สำเร็จ: %s\n\t(จะถอยกลับไปใช้การรองรับแบบพื้นฐาน)"
 
-#: ../xfburn/xfburn-main.c:375
+#: ../xfburn/xfburn-main.c:374
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "แฟ้มอิมเมจ '%s' ไม่มีอยู่"
@@ -855,66 +883,66 @@ msgstr "แสดงปุ่มปิด"
 msgid "Determine whether the close button is visible"
 msgstr "กำหนดว่าจะแสดงปุ่มปิดหรือไม่"
 
-#: ../xfburn/xfburn-perform-burn.c:158
+#: ../xfburn/xfburn-perform-burn.c:153
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "ไม่สามารถเพิ่มข้อมูลต่อท้ายแผ่นมัลติเซสชันในโหมดเขียนนี้ได้ (กรุณาใช้ TAO แทน)"
 
-#: ../xfburn/xfburn-perform-burn.c:162
+#: ../xfburn/xfburn-perform-burn.c:157
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "พบแผ่นที่มีข้อมูลและปิดเซสชันไปแล้ว ต้องใช้แผ่นเปล่าหรือแผ่นที่เพิ่มข้อมูลต่อท้ายได้"
 
-#: ../xfburn/xfburn-perform-burn.c:164
+#: ../xfburn/xfburn-perform-burn.c:159
 msgid "No disc detected in drive."
 msgstr "ไม่พบแผ่นในไดรว์"
 
-#: ../xfburn/xfburn-perform-burn.c:167
+#: ../xfburn/xfburn-perform-burn.c:162
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "ไม่สามารถจำแนกสถานะของไดรว์และแผ่นได้"
 
-#: ../xfburn/xfburn-perform-burn.c:180
+#: ../xfburn/xfburn-perform-burn.c:175
 msgid "There is not enough space available on the inserted disc."
 msgstr "มีเนื้อที่ว่างไม่พอในแผ่นที่ใส่เข้ามา"
 
-#: ../xfburn/xfburn-perform-burn.c:225
+#: ../xfburn/xfburn-perform-burn.c:220
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "กำลังเขียนแทร็ก %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
+#: ../xfburn/xfburn-perform-burn.c:224 ../xfburn/xfburn-perform-burn.c:289
 msgid "Burning composition..."
 msgstr "กำลังเขียนแผ่นจากร่างต้นฉบับ..."
 
-#: ../xfburn/xfburn-perform-burn.c:263
+#: ../xfburn/xfburn-perform-burn.c:258
 msgid "standby"
 msgstr "คอยดู"
 
-#: ../xfburn/xfburn-perform-burn.c:271
+#: ../xfburn/xfburn-perform-burn.c:266
 msgid "ending"
 msgstr "กำลังจบ"
 
-#: ../xfburn/xfburn-perform-burn.c:274
+#: ../xfburn/xfburn-perform-burn.c:269
 msgid "failing"
 msgstr "ล้มเหลว"
 
-#: ../xfburn/xfburn-perform-burn.c:277
+#: ../xfburn/xfburn-perform-burn.c:272
 msgid "unused"
 msgstr "ไม่ได้ใช้งาน"
 
-#: ../xfburn/xfburn-perform-burn.c:280
+#: ../xfburn/xfburn-perform-burn.c:275
 msgid "abandoned"
 msgstr "ถูกละทิ้ง"
 
-#: ../xfburn/xfburn-perform-burn.c:283
+#: ../xfburn/xfburn-perform-burn.c:278
 msgid "ended"
 msgstr "จบแล้ว"
 
-#: ../xfburn/xfburn-perform-burn.c:286
+#: ../xfburn/xfburn-perform-burn.c:281
 msgid "aborted"
 msgstr "ถูกล้มเลิก"
 
-#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:216
+#: ../xfburn/xfburn-perform-burn.c:284 ../xfburn/xfburn-progress-dialog.c:216
 #: ../xfburn/xfburn-progress-dialog.c:233
 #: ../xfburn/xfburn-progress-dialog.c:243
 #: ../xfburn/xfburn-progress-dialog.c:332
@@ -924,117 +952,121 @@ msgstr "ถูกล้มเลิก"
 msgid "no info"
 msgstr "ไม่มีข้อมูล"
 
-#: ../xfburn/xfburn-perform-burn.c:299
+#: ../xfburn/xfburn-perform-burn.c:294
 msgid "Writing Lead-In..."
 msgstr "กำลังเขียน Lead-In..."
 
-#: ../xfburn/xfburn-perform-burn.c:305
+#: ../xfburn/xfburn-perform-burn.c:300
 msgid "Writing Lead-Out..."
 msgstr "กำลังเขียน Lead-Out..."
 
-#: ../xfburn/xfburn-perform-burn.c:311
+#: ../xfburn/xfburn-perform-burn.c:306
 msgid "Writing pregap..."
 msgstr "กำลังเขียน pregap..."
 
-#: ../xfburn/xfburn-perform-burn.c:317
+#: ../xfburn/xfburn-perform-burn.c:312
 msgid "Closing track..."
 msgstr "กำลังปิดแทร็ก..."
 
-#: ../xfburn/xfburn-perform-burn.c:323
+#: ../xfburn/xfburn-perform-burn.c:318
 msgid "Closing session..."
 msgstr "กำลังปิดเซสชัน..."
 
-#: ../xfburn/xfburn-perform-burn.c:329
+#: ../xfburn/xfburn-perform-burn.c:324
 msgid "Formatting..."
 msgstr "กำลังฟอร์แมต..."
 
-#: ../xfburn/xfburn-perform-burn.c:342
+#: ../xfburn/xfburn-perform-burn.c:337
 msgid "see console"
 msgstr "ดูคอนโซล"
 
-#: ../xfburn/xfburn-perform-burn.c:370
+#: ../xfburn/xfburn-perform-burn.c:365
 msgid "User Aborted"
 msgstr "ผู้ใช้ล้มเลิก"
 
-#: ../xfburn/xfburn-preferences-dialog.c:143
+#: ../xfburn/xfburn-preferences-dialog.c:144
 msgid "Preferences"
 msgstr "ปรับแต่ง"
 
-#: ../xfburn/xfburn-preferences-dialog.c:144
+#: ../xfburn/xfburn-preferences-dialog.c:145
 msgid "Tune how Xfburn behaves"
 msgstr "ปรับแต่งพฤติกรรมของ Xfburn"
 
-#: ../xfburn/xfburn-preferences-dialog.c:190
-#: ../xfburn/xfburn-preferences-dialog.c:194
+#: ../xfburn/xfburn-preferences-dialog.c:191
+#: ../xfburn/xfburn-preferences-dialog.c:195
 msgid "Temporary directory"
 msgstr "ไดเรกทอรีชั่วคราว"
 
-#: ../xfburn/xfburn-preferences-dialog.c:198
+#: ../xfburn/xfburn-preferences-dialog.c:199
 msgid "_Clean temporary directory on exit"
 msgstr "_ล้างไดเรกทอรีชั่วคราวก่อนจบโปรแกรม"
 
-#: ../xfburn/xfburn-preferences-dialog.c:205
+#: ../xfburn/xfburn-preferences-dialog.c:206
 msgid "File browser"
 msgstr "ช่องท่องดูแฟ้ม"
 
-#: ../xfburn/xfburn-preferences-dialog.c:209
+#: ../xfburn/xfburn-preferences-dialog.c:210
 msgid "Show _hidden files"
 msgstr "แสดงแฟ้มซ่อ_น"
 
-#: ../xfburn/xfburn-preferences-dialog.c:214
+#: ../xfburn/xfburn-preferences-dialog.c:215
 msgid "Show human_readable filesizes"
 msgstr "แสดงขนาดแฟ้มแบบอ่าน_ง่าย"
 
-#: ../xfburn/xfburn-preferences-dialog.c:225
+#: ../xfburn/xfburn-preferences-dialog.c:226
 msgid "General"
 msgstr "ทั่วไป"
 
-#: ../xfburn/xfburn-preferences-dialog.c:236
-#: ../xfburn/xfburn-preferences-dialog.c:313
+#: ../xfburn/xfburn-preferences-dialog.c:237
+#: ../xfburn/xfburn-preferences-dialog.c:318
 msgid "Devices"
 msgstr "อุปกรณ์"
 
-#: ../xfburn/xfburn-preferences-dialog.c:245
+#: ../xfburn/xfburn-preferences-dialog.c:246
 msgid "Detected devices"
 msgstr "อุปกรณ์ที่ตรวจพบ"
 
-#: ../xfburn/xfburn-preferences-dialog.c:266
+#: ../xfburn/xfburn-preferences-dialog.c:268
 msgid "Name"
 msgstr "ชื่อ"
 
-#: ../xfburn/xfburn-preferences-dialog.c:279
+#: ../xfburn/xfburn-preferences-dialog.c:281
 msgid "Node"
 msgstr "โหนด"
 
-#: ../xfburn/xfburn-preferences-dialog.c:281
+#: ../xfburn/xfburn-preferences-dialog.c:283
 msgid "Write CD-R"
 msgstr "เขียน CD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:283
+#: ../xfburn/xfburn-preferences-dialog.c:285
 msgid "Write CD-RW"
 msgstr "เขียน CD-RW"
 
-#: ../xfburn/xfburn-preferences-dialog.c:286
+#: ../xfburn/xfburn-preferences-dialog.c:288
 msgid "Write DVD-R"
 msgstr "เขียน DVD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:289
+#: ../xfburn/xfburn-preferences-dialog.c:291
 msgid "Write DVD-RAM"
 msgstr "เขียน DVD-RAM"
 
-#: ../xfburn/xfburn-preferences-dialog.c:297
+#: ../xfburn/xfburn-preferences-dialog.c:294
+msgid "Write Blu-ray"
+msgstr "เขียนบลูเรย์"
+
+#: ../xfburn/xfburn-preferences-dialog.c:302
 msgid "Sc_an for devices"
 msgstr "ตรวจ_หาอุปกรณ์"
 
-#: ../xfburn/xfburn-preferences-dialog.c:324
+#: ../xfburn/xfburn-preferences-dialog.c:329
 msgid "Show warning on _empty speed list"
 msgstr "แสดงคำเตือนหากไ_ม่พบข้อมูลความเร็วไดรว์"
 
-#: ../xfburn/xfburn-preferences-dialog.c:333
+#: ../xfburn/xfburn-preferences-dialog.c:338
 msgid "FIFO buffer size (in kb)"
 msgstr "ขนาดบัฟเฟอร์ FIFO (เป็น kB)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:471
+#: ../xfburn/xfburn-preferences-dialog.c:477
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "การเปลี่ยนค่าตั้งนี้จะมีผลหลังจากเปิดโปรแกรมใหม่"
 
@@ -1083,7 +1115,7 @@ msgstr "เสร็จสมบูรณ์"
 msgid "Aborting..."
 msgstr "กำลังล้มเลิก..."
 
-#: ../xfburn/xfburn-utils.c:129
+#: ../xfburn/xfburn-utils.c:130
 msgid "Select command"
 msgstr "เลือกคำสั่ง"
 
@@ -1225,7 +1257,7 @@ msgstr "ไม่สามารถเปิด %s"
 msgid "Could not open %s: %s"
 msgstr "ไม่สามารถเปิด %s: %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:631
+#: ../xfburn/xfburn-transcoder-gst.c:635
 #, c-format
 msgid ""
 "%s is missing.\n"
@@ -1238,11 +1270,11 @@ msgstr "%s ขาดหายไป\n\nคุณไม่ได้ติดต�
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:720
+#: ../xfburn/xfburn-transcoder-gst.c:724
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:726
+#: ../xfburn/xfburn-transcoder-gst.c:730
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1254,12 +1286,12 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "ตัวแปลงรหัส gstreamer ใช้ไลบรารี gstreamer\nในการสร้างต้นฉบับแผ่นเพลง\n\nโดยหลักการแล้ว ควรจะรองรับแฟ้มเสียงทุกชนิด\nถ้าได้ติดตั้งปลั๊กอินที่ถูกต้องไว้\nหากมีแฟ้มเสียงที่ไม่รองรับ กรุณาตรวจดูให้แน่ใจ\nว่าคุณได้ติดตั้งแพกเกจปลั๊กอิน 'good','bad',\nและ 'ugly' ของ gstreamer ไว้"
 
-#: ../xfburn/xfburn-transcoder-gst.c:791
+#: ../xfburn/xfburn-transcoder-gst.c:795
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr "gstreamer ไม่ชอบแฟ้มนี้ (หมดเวลาคอยขณะตรวจหาชนิดแฟ้ม)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:800
+#: ../xfburn/xfburn-transcoder-gst.c:805
 #, c-format
 msgid ""
 "%s\n"
@@ -1269,12 +1301,12 @@ msgid ""
 "%s"
 msgstr "%s\n\nis ไม่ใช่แฟ้มเสียง:\n\n%s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:915
+#: ../xfburn/xfburn-transcoder-gst.c:920
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "gstreamer ไม่ต้องการเริ่มแปลงรหัส (หมดเวลาคอย)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:950
+#: ../xfburn/xfburn-transcoder-gst.c:955
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "เปลี่ยนเพลงไม่สำเร็จขณะแปลงรหัส"
@@ -1285,67 +1317,71 @@ msgstr "เปลี่ยนเพลงไม่สำเร็จขณะแ
 msgid "not implemented"
 msgstr "ยังไม่รองรับ"
 
-#: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
+#: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
 msgid "Display name"
 msgstr "ชื่อสำหรับแสดงผล"
 
-#: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
+#: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
 msgid "Device address"
 msgstr "ที่อยู่ของอุปกรณ์"
 
-#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
+#: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
 msgid "Burn speeds supported by the device"
 msgstr "ความเร็วในการเขียนที่อุปกรณ์รองรับ"
 
-#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
+#: ../xfburn/xfburn-device.c:259 ../xfburn/xfburn-device.c:260
 msgid "Disc status"
 msgstr "สถานะของแผ่น"
 
-#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
+#: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
 msgid "Profile no. as reported by libburn"
 msgstr "หมายเลขโพรไฟล์ตามที่ libburn รายงาน"
 
-#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
+#: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
 msgid "Profile name as reported by libburn"
 msgstr "ชื่อโพรไฟล์ตามที่ libburn รายงาน"
 
-#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
+#: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
 msgid "Is the disc erasable"
 msgstr "แผ่นลบได้หรือไม่"
 
-#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
+#: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
 msgid "Can burn CDR"
 msgstr "สามารถเขียน CD-R ได้"
 
-#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
+#: ../xfburn/xfburn-device.c:274 ../xfburn/xfburn-device.c:275
 msgid "Can burn CDRW"
 msgstr "สามารถเขียน CD-RW ได้"
 
-#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
+#: ../xfburn/xfburn-device.c:277 ../xfburn/xfburn-device.c:278
 msgid "Can burn DVDR"
 msgstr "สามารถเขียน DVD-R ได้"
 
-#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
+#: ../xfburn/xfburn-device.c:280 ../xfburn/xfburn-device.c:281
 msgid "Can burn DVDPLUSR"
 msgstr "สามารถเขียน DVD+R ได้"
 
-#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
+#: ../xfburn/xfburn-device.c:283 ../xfburn/xfburn-device.c:284
 msgid "Can burn DVDRAM"
 msgstr "สามารถเขียน DVD-RAM ได้"
 
-#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
+#: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
+msgid "Can burn Blu-ray"
+msgstr "สามารถเขียนบลูเรย์ได้"
+
+#: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
 msgid "libburn TAO block types"
 msgstr "ชนิดบล็อค TAO ของ libburn"
 
-#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
+#: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
 msgid "libburn SAO block types"
 msgstr "ชนิดบล็อค SAO ของ libburn"
 
-#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
+#: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
 msgid "libburn RAW block types"
 msgstr "ชนิดบล็อค RAW ของ libburn"
 
-#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
+#: ../xfburn/xfburn-device.c:298 ../xfburn/xfburn-device.c:299
 msgid "libburn PACKET block types"
 msgstr "ชนิดบล็อค PACKET ของ libburn"
 
