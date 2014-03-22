@@ -125,9 +125,9 @@ cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output, gpoint
       }
 
       xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Writing CD..."));
-      xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), fraction);
-      xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), ((gdouble) buffer1) / 100);
-      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), ((gdouble) buffer2) / 100);
+      xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), fraction * 100.0);
+      xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), ((gdouble) buffer1));
+      xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), ((gdouble) buffer2));
     }
     else if (sscanf (output, "%d:%d:%d", &min, &sec, &cent) == 3) {
       gint readcd_done = -1;

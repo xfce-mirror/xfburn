@@ -35,6 +35,108 @@
 /* internals */
 /*************/
 
+/* ts B40225 : Automatically format unformatted BD-RE and DVD-RAM
+   Return: <= 0 = failure, 1 = formatting happened, 2 = no formatting needed
+*/
+static int
+xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
+{
+  int ret, profile, status, num_formats;
+  char profile_name[80];
+  off_t size;
+  unsigned int dummy;
+  struct burn_progress p;
+  double percent;
+  int format_flag = 64 | (3 << 1); /* Fast formatting with default size */
+
+/* Test mock-up for non-BD burners with DVD+RW
+#define XFBURN_DVD_PLUS_RW_FOR_BD_RE 1
+*/
+/* Test mock-up for already formatted DVD-RAM and BD-RE
+#define XFBURN_PRETEND_UNFORMATTED 1
+*/
+/* Test mock-up for protecting your only unformatted BD-RE from formatting.
+   Will keep burning from happening and make xfburn stall, so that it has to
+   be killed externally.
+#define XFBURN_KEEP_UNFORMATTED 1
+*/
+
+ ret = burn_disc_get_profile (drive, &profile, profile_name);
+
+#ifdef XFBURN_DVD_PLUS_RW_FOR_BD_RE
+ if (profile == 0x1a) {
+    DBG("Pretending DVD+RW is a BD RE");
+    profile = 0x43;           /* Pretend (for this function only) to be BD-RE */
+    format_flag |= 16;        /* Re-format already formatted medium */
+    strcpy(profile_name, "DVD+RW as BD-RE");
+  }
+#endif
+
+  if (ret <= 0 || (profile != 0x12 &&  profile != 0x43))
+    return 2;
+  /* The medium is DVD-RAM or BD-RE */
+  ret= burn_disc_get_formats (drive, &status, &size, &dummy, &num_formats);
+
+#ifdef XFBURN_DVD_PLUS_RW_FOR_BD_RE
+  if (strncmp(profile_name, "DVD+RW", 6) == 0) {
+    DBG("Pretending to be unformatted");
+    ret = 1;
+    status = BURN_FORMAT_IS_UNFORMATTED;
+  }
+#endif
+#ifdef XFBURN_PRETEND_UNFORMATTED
+  DBG("Pretending to be unformatted (using re-format)");
+  status = BURN_FORMAT_IS_UNFORMATTED;
+  format_flag |= 16;        /* Re-format already formatted medium */
+#endif
+
+  if(ret <= 0 || status != BURN_FORMAT_IS_UNFORMATTED)
+    return 2;
+
+  /* The medium is unformatted */
+
+  //g_object_set (dialog_progress, "animate", TRUE, NULL);
+  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress),
+                                               XFBURN_PROGRESS_DIALOG_STATUS_FORMATTING,
+                                               _("Formatting..."));
+
+#ifdef XFBURN_KEEP_UNFORMATTED
+  g_warning ("Will Not Format");
+  return -1;
+#endif
+
+  /* Apply formatting */
+  percent = 0.0;
+  burn_disc_format (drive, 0, format_flag);
+  while (burn_drive_get_status (drive, &p) != BURN_DRIVE_IDLE) {
+    if (p.sectors > 0 && p.sector >= 0) /* display 1 to 99 percent */
+      percent = 1.0 + ((double) p.sector + 1.0) / ((double) p.sectors) * 98.0;
+      xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress),
+                                                        percent);
+ 
+    //DBG ("Formatting (%.f%%)", percent);
+ 
+    usleep (500000);
+  }
+ 
+  /* Check for success */
+  if (burn_drive_wrote_well (drive)) {
+    percent = 100.0;
+ 
+    DBG ("Formatting done");
+ 
+    xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress),
+                                                      percent);
+  } else {
+    DBG ("Formatting failed");
+
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Formatting failed."));
+ 
+    return 0;
+  }
+  return 1;
+}
+
 
 /**************/
 /* public API */
@@ -164,6 +266,10 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     return;
   }
 
+  ret = xfburn_auto_format (dialog_progress, drive);
+  if (ret <= 0)
+    return;
+
   total_sectors = burn_disc_get_sectors (disc);
 
   disc_size = burn_disc_available_space (drive, burn_options);
@@ -244,7 +350,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
           DBG ("%.0f ; track = %d\tsector %d/%d", percent, progress.track, progress.sector, progress.sectors);
         }
         */
-	xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent / 100.0);
+	xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 
         cur_speed = ((gdouble) ((gdouble)(glong)progress.sector * 2048L) / (gdouble) (time_now - time_start)) / ((gdouble) (factor * 1000.0));
         //DBG ("(%f / %f) / %f = %f\n", (gdouble) ((gdouble)(glong)progress.sector * 2048L), (gdouble) (time_now - time_start), ((gdouble) (factor * 1000.0)), cur_speed);

@@ -96,7 +96,7 @@ cb_new_output (XfburnCreateIsoProgressDialog * dialog, const gchar * output, gpo
     sscanf (output, "%*s %d", &readcd_done);
     fraction = ((gdouble) readcd_done) / readcd_end;
 
-    xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), fraction);
+    xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog), fraction * 100.0);
   }
   else if (strstr (output, READCD_CAPACITY)) {
     xfburn_progress_dialog_set_action_text (XFBURN_PROGRESS_DIALOG (dialog), _("Reading CD..."));

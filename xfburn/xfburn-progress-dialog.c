@@ -103,6 +103,7 @@ xfburn_progress_dialog_status_get_type (void)
   static GType type = 0;
   if (type == 0) {
     static const GEnumValue values[] = {
+      {XFBURN_PROGRESS_DIALOG_STATUS_FORMATTING, "XFBURN_PROGRESS_DIALOG_STATUS_FORMATTING", "formatting"},
       {XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, "XFBURN_PROGRESS_DIALOG_STATUS_RUNNING", "running"},
       {XFBURN_PROGRESS_DIALOG_STATUS_FAILED, "XFBURN_PROGRESS_DIALOG_STATUS_FAILED", "failed"},
       {XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED, "XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED", "cancelled"},
@@ -213,7 +214,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   frame = gtk_frame_new (_("Estimated writing speed:"));
   gtk_widget_show (frame);
   gtk_box_pack_start (GTK_BOX (priv->hbox_buffers), frame, FALSE, FALSE, 0);
-  priv->label_speed = gtk_label_new (_("no info"));
+  priv->label_speed = gtk_label_new (_("unknown"));
   set_writing_speed (obj, -1);
   gtk_widget_show (priv->label_speed);
   gtk_container_add (GTK_CONTAINER (frame), priv->label_speed);
@@ -230,7 +231,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
   gtk_widget_show (label);
   priv->fifo_bar = gtk_progress_bar_new ();
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), _("no info"));
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), _("unknown"));
   gtk_table_attach (GTK_TABLE (table), priv->fifo_bar, 1, 2, 0, 1, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
   gtk_widget_show (priv->fifo_bar);
 
@@ -240,7 +241,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, 0, 0);
   gtk_widget_show (label);
   priv->buffer_bar = gtk_progress_bar_new ();
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), _("no info"));
+  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), _("unknown"));
   gtk_table_attach (GTK_TABLE (table), priv->buffer_bar, 1, 2, 1, 2, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
   gtk_widget_show (priv->buffer_bar);
 
@@ -329,7 +330,7 @@ set_writing_speed (XfburnProgressDialog * dialog, gfloat speed)
   gchar *temp;
 
   if (speed < 0)
-    temp = g_strdup_printf ("<b><i>%s</i></b>", _("no info"));
+    temp = g_strdup_printf ("<b><i>%s</i></b>", _("unknown"));
   else
     temp = g_strdup_printf ("<b><i>%.1f x</i></b>", speed);
   
@@ -468,14 +469,14 @@ xfburn_progress_dialog_set_buffer_bar_fraction (XfburnProgressDialog * dialog, g
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
   gchar *text = NULL;
 
-  if (fraction > 1.0) {
-    fraction = 1.0;
+  if (fraction > 100.0) {
+    fraction = 100.0;
     text = g_strdup ("100%");
   } else if (fraction < 0.0) {
     fraction = 0.0;
-    text = g_strdup (_("no info"));
+    text = g_strdup (_("unknown"));
   } else {
-    text = g_strdup_printf ("%d%%", (int) (fraction * 100));
+    text = g_strdup_printf ("%d%%", (int) (fraction));
   }
 
   gdk_threads_enter ();  
@@ -492,14 +493,14 @@ xfburn_progress_dialog_set_buffer_bar_min_fill (XfburnProgressDialog * dialog, g
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
   gchar *text = NULL;
 
-  if (fraction > 1.0) {
-    fraction = 1.0;
+  if (fraction > 100.0) {
+    fraction = 100.0;
     text = g_strdup ("100%");
   } else if (fraction < 0.0) {
     fraction = 0.0;
-    text = g_strdup (_("no info"));
+    text = g_strdup (_("unknown"));
   } else {
-    text = g_strdup_printf (_("Min. fill was %2d%%"), (int) (fraction * 100));
+    text = g_strdup_printf (_("Min. fill was %2d%%"), (int) (fraction));
   }
 
   gdk_threads_enter ();    
@@ -516,14 +517,14 @@ xfburn_progress_dialog_set_fifo_bar_fraction (XfburnProgressDialog * dialog, gdo
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
   gchar *text = NULL;
 
-  if (fraction > 1.0) {
-    fraction = 1.0;
+  if (fraction > 100.0) {
+    fraction = 100.0;
     text = g_strdup ("100%");
   } else if (fraction < 0.0) {
     fraction = 0.0;
-    text = g_strdup (_("no info"));
+    text = g_strdup (_("unknown"));
   } else {
-    text = g_strdup_printf ("%d%%", (int) (fraction * 100));
+    text = g_strdup_printf ("%d%%", (int) (fraction));
   }
   
   gdk_threads_enter ();
@@ -549,16 +550,19 @@ void
 xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
-  gdouble cur_fraction = 0;
+  gdouble cur_fraction = 0.0;
   gchar *text = NULL;
 
   cur_fraction = gtk_progress_bar_get_fraction (GTK_PROGRESS_BAR (priv->progress_bar));
 
-  if (fraction >= 1.0) {
-    fraction = 1.0;
+  if (fraction >= 100.0) {
+    fraction = 100.0;
     switch (priv->status) {
     case XFBURN_PROGRESS_DIALOG_STATUS_STOPPING:
       text = g_strdup (_("Aborted"));
+      break;
+    case XFBURN_PROGRESS_DIALOG_STATUS_FORMATTING:
+      text = g_strdup (_("Formatted."));
       break;
     case XFBURN_PROGRESS_DIALOG_STATUS_RUNNING:
       text = g_strdup ("100%");
@@ -583,10 +587,10 @@ xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog,
   }
   else if (priv->status == XFBURN_PROGRESS_DIALOG_STATUS_RUNNING && fraction >= cur_fraction) {
     if (priv->animate) {
-      text = g_strdup_printf ("%2d%% %c", (int) (fraction * 100), animation[priv->ani_index]);
+      text = g_strdup_printf ("%2d%% %c", (int) (fraction), animation[priv->ani_index]);
       priv->ani_index = (priv->ani_index + 1) % 4;
     } else {
-      text = g_strdup_printf ("%d%%  ", (int) (fraction * 100));
+      text = g_strdup_printf ("%d%%  ", (int) (fraction));
     }
   }
   else if (fraction < cur_fraction) {
@@ -618,7 +622,7 @@ xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgress
     gtk_widget_set_sensitive (priv->button_close, TRUE);
     gdk_threads_leave ();
 
-    xfburn_progress_dialog_set_progress_bar_fraction (dialog, 1.0);
+    xfburn_progress_dialog_set_progress_bar_fraction (dialog, 100.0);
   }
 }
 
