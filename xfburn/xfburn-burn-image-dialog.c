@@ -248,10 +248,8 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), obj);
   device = xfburn_device_list_get_current_device (priv->devlist);
 
-  cb_volume_change_end (priv->devlist, TRUE, device, obj);
-
   if (device)
-    gtk_widget_set_sensitive (priv->check_dummy, xfburn_device_can_dummy_write (device));
+    cb_volume_change_end (priv->devlist, TRUE, device, obj);
 }
 
 static void

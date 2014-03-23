@@ -416,15 +416,17 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_speed));
-  GSList *el;
-  int profile_no;
+  GSList *el = NULL;
+  int profile_no = 0;
   int factor;
   GtkTreeIter iter_max;
 
-  g_object_get (G_OBJECT (xfburn_device_list_get_current_device (priv->devlist)),
-                "profile-no", &profile_no,
-                "supported-speeds", &el,
-                NULL);
+  if (device) {
+    g_object_get (G_OBJECT (device),
+                  "profile-no", &profile_no,
+                  "supported-speeds", &el,
+                  NULL);
+  }
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -667,20 +669,23 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
   GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_mode));
   GtkTreeIter iter;
-  gint block_types;
+  gint block_types = 0;
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
   gtk_list_store_append (GTK_LIST_STORE (model), &iter);
   gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, _("Auto"), MODE_VALUE_COLUMN, WRITE_MODE_AUTO, -1);
 
-  g_object_get (G_OBJECT (device), "tao-block-types", &block_types, NULL);
+  if (device) 
+    g_object_get (G_OBJECT (device), "tao-block-types", &block_types, NULL);
+
   if (block_types) {
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "TAO", MODE_VALUE_COLUMN, WRITE_MODE_TAO, -1);
   }
 
-  g_object_get (G_OBJECT (device), "sao-block-types", &block_types, NULL);
+  if (device) 
+    g_object_get (G_OBJECT (device), "sao-block-types", &block_types, NULL);
   if (block_types & BURN_BLOCK_SAO) {
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "SAO", MODE_VALUE_COLUMN, WRITE_MODE_SAO, -1);

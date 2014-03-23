@@ -278,8 +278,8 @@ static void fill_combo_mode (XfburnBlankDialog *dialog)
 
 static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
 {
-  int profile_no;
-  gboolean erasable;
+  int profile_no = 0;
+  gboolean erasable = FALSE;
   enum burn_disc_status disc_state;
 
   XfburnDeviceList *devlist = xfburn_device_list_new ();
