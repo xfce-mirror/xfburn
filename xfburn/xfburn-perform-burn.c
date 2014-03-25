@@ -50,15 +50,15 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
   int format_flag = 64 | (3 << 1); /* Fast formatting with default size */
 
 /* Test mock-up for non-BD burners with DVD+RW
-#define XFBURN_DVD_PLUS_RW_FOR_BD_RE 1
+ #de fine XFBURN_DVD_PLUS_RW_FOR_BD_RE 1
 */
 /* Test mock-up for already formatted DVD-RAM and BD-RE
-#define XFBURN_PRETEND_UNFORMATTED 1
+ #de fine XFBURN_PRETEND_UNFORMATTED 1
 */
 /* Test mock-up for protecting your only unformatted BD-RE from formatting.
    Will keep burning from happening and make xfburn stall, so that it has to
    be killed externally.
-#define XFBURN_KEEP_UNFORMATTED 1
+ #de fine XFBURN_KEEP_UNFORMATTED 1
 */
 
  ret = burn_disc_get_profile (drive, &profile, profile_name);
