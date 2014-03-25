@@ -520,20 +520,24 @@ ask_for_blanking (XfburnDeviceBoxPrivate *priv)
 static gboolean
 check_disc_validity (XfburnDeviceBoxPrivate *priv)
 {
-  enum burn_disc_status disc_status;
-  int profile_no;
-  gchar *profile_name;
-  gboolean is_erasable;
-  XfburnDevice *device;
+  enum burn_disc_status disc_status = BURN_DISC_UNREADY;
+  int profile_no = 0;
+  gchar *profile_name = NULL;
+  gboolean is_erasable = FALSE;
+  XfburnDevice *device = NULL;
 
   g_object_get (G_OBJECT (priv->devlist), "current-device", &device, NULL);
+
+  if (device == NULL)
+    return FALSE;
 
   g_object_get (G_OBJECT (device), "disc-status", &disc_status, "profile-no", &profile_no, 
                                    "erasable", &is_erasable, "profile-name", &profile_name,
                                    NULL);
-  
-  gtk_label_set_text (GTK_LABEL (priv->disc_label), profile_name);
-  g_free (profile_name);
+  if (profile_name != NULL) {
+    gtk_label_set_text (GTK_LABEL (priv->disc_label), profile_name);
+    g_free (profile_name);
+  }
 
   DBG ("blank_mode = %d", priv->blank_mode);
 
