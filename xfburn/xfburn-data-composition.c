@@ -2016,7 +2016,6 @@ generate_iso_image (XfburnDataComposition * dc)
       gchar * combined_msg = "";
       GtkWidget * dialog, * label, * textview, * scrolled;
       GtkTextBuffer * buffer;
-      GdkGeometry hints = {600, 200, -1, -1, 700, 400, 1, 1, 0.0, 0.0};
       XfburnMainWindow *mainwin = xfburn_main_window_get_instance ();
       gchar * title;
 
@@ -2029,7 +2028,7 @@ generate_iso_image (XfburnDataComposition * dc)
                                             GTK_WINDOW (mainwin),
                                             GTK_DIALOG_DESTROY_WITH_PARENT,
                                             GTK_STOCK_OK,
-                                            GTK_RESPONSE_NONE,
+                                            GTK_RESPONSE_OK,
                                             NULL);
 
       label = gtk_label_new (NULL);
@@ -2048,16 +2047,15 @@ generate_iso_image (XfburnDataComposition * dc)
       gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
       gtk_container_add (GTK_CONTAINER (GTK_DIALOG(dialog)->vbox), scrolled);
 
-      gtk_window_set_geometry_hints (GTK_WINDOW (dialog),
-                                     scrolled,
-                                     &hints,
-                                     GDK_HINT_BASE_SIZE | GDK_HINT_MIN_SIZE);
+      gtk_window_set_default_size (GTK_WINDOW (dialog), 600, 200);
 
       gtk_widget_show (label);
       gtk_widget_show (textview);
       gtk_widget_show (scrolled);
 
       gtk_dialog_run (GTK_DIALOG (dialog));
+
+      gtk_widget_destroy (dialog);
       g_free (combined_msg);
     }
   }
