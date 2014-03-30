@@ -545,19 +545,13 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
     /* for burning */
     switch (profile_no) {
       case XFBURN_PROFILE_NONE:
-        /* empty drive is caught later,
-         * not sure if there would be another reason for 0x0 */
-        priv->valid_disc = TRUE;
-        break;
+        /* Very old CD burner (MMC-1) or unsuitable medium.
+         * An unsuitable medium will later be marked invalid because it is not
+         * BURN_DISC_BLANK. So for now it is a valid disc on probation.
+         */
       case XFBURN_PROFILE_CDR:
-        g_object_get (G_OBJECT (device), "cdr", &priv->valid_disc, NULL);
-        break;
       case XFBURN_PROFILE_CDRW:
-        g_object_get (G_OBJECT (device), "cdrw", &priv->valid_disc, NULL);
-        break;
       case XFBURN_PROFILE_DVDRAM:
-        g_object_get (G_OBJECT (device), "dvdram", &priv->valid_disc, NULL);
-        break;
       case XFBURN_PROFILE_DVD_MINUS_R:
       case XFBURN_PROFILE_DVD_MINUS_RW_OVERWRITE:
       case XFBURN_PROFILE_DVD_MINUS_RW_SEQUENTIAL:
@@ -565,11 +559,9 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
       case XFBURN_PROFILE_DVD_PLUS_R:
       case XFBURN_PROFILE_DVD_PLUS_R_DL:
       case XFBURN_PROFILE_DVD_PLUS_RW:
-        g_object_get (G_OBJECT (device), "dvdr", &priv->valid_disc, NULL);
-        break;
       case XFBURN_PROFILE_BD_R:
       case XFBURN_PROFILE_BD_RE:
-        g_object_get (G_OBJECT (device), "bd", &priv->valid_disc, NULL);
+        priv->valid_disc = TRUE;
         break;
       case XFBURN_PROFILE_CDROM:
       case XFBURN_PROFILE_DVDROM:
