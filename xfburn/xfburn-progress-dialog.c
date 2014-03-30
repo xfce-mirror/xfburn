@@ -585,7 +585,9 @@ xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog,
     fraction = 0.0;
     text = g_strdup ("0%");
   }
-  else if (priv->status == XFBURN_PROGRESS_DIALOG_STATUS_RUNNING && fraction >= cur_fraction) {
+  else if ((priv->status == XFBURN_PROGRESS_DIALOG_STATUS_RUNNING ||
+            priv->status == XFBURN_PROGRESS_DIALOG_STATUS_FORMATTING) &&
+            fraction >= cur_fraction) {
     if (priv->animate) {
       text = g_strdup_printf ("%2d%% %c", (int) (fraction), animation[priv->ani_index]);
       priv->ani_index = (priv->ani_index + 1) % 4;
@@ -616,7 +618,8 @@ xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgress
     gdk_threads_enter ();
     set_action_text (dialog, status, _("Aborting..."));
     gdk_threads_leave ();
-  } else if (status != XFBURN_PROGRESS_DIALOG_STATUS_RUNNING) {
+  } else if (status != XFBURN_PROGRESS_DIALOG_STATUS_RUNNING ||
+             status != XFBURN_PROGRESS_DIALOG_STATUS_FORMATTING) {
     gdk_threads_enter ();
     gtk_widget_set_sensitive (priv->button_stop, FALSE);
     gtk_widget_set_sensitive (priv->button_close, TRUE);
