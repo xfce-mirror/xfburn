@@ -122,7 +122,6 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
 
     if (stop && !stopping) {
       DBG ("cancelling...");
-      burn_drive_cancel (drive);
       stopping = TRUE;
       xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_STOPPING);
     }
@@ -131,6 +130,11 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
     //DBG ("Formatting (%.f%%)", percent);
  
     usleep (500000);
+  }
+
+  if (stopping) {
+    xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED);
+    return 0;
   }
  
   /* Check for success */
@@ -481,11 +485,13 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     final_message = g_strdup (_("Done"));
     final_status = XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED;
   } else {
-    if (stopping)
+    if (stopping) {
       final_status_text  = _("User Aborted");
-    else
+      final_status = XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED;
+    } else {
       final_status_text  = _("Failure");
-    final_status = XFBURN_PROGRESS_DIALOG_STATUS_FAILED;
+      final_status = XFBURN_PROGRESS_DIALOG_STATUS_FAILED;
+    }
     if (msg_text[0] != '\0')
       final_message = g_strdup_printf ("%s: %s", final_status_text, msg_text);
     else
