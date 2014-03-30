@@ -48,6 +48,8 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
   struct burn_progress p;
   double percent;
   int format_flag = 64 | (3 << 1); /* Fast formatting with default size */
+  gboolean stop;
+  gboolean stopping = FALSE;
 
 /* Test mock-up for non-BD burners with DVD+RW
  #de fine XFBURN_DVD_PLUS_RW_FOR_BD_RE 1
@@ -109,10 +111,22 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
   percent = 0.0;
   burn_disc_format (drive, 0, format_flag);
   while (burn_drive_get_status (drive, &p) != BURN_DRIVE_IDLE) {
-    if (p.sectors > 0 && p.sector >= 0) /* display 1 to 99 percent */
+    if (p.sectors > 0 && p.sector >= 0) {
+      /* display 1 to 99 percent */
       percent = 1.0 + ((double) p.sector + 1.0) / ((double) p.sectors) * 98.0;
       xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress),
                                                         percent);
+    }
+
+    g_object_get (G_OBJECT (dialog_progress), "stop", &stop, NULL);
+
+    if (stop && !stopping) {
+      DBG ("cancelling...");
+      burn_drive_cancel (drive);
+      stopping = TRUE;
+      xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_STOPPING);
+    }
+
  
     //DBG ("Formatting (%.f%%)", percent);
  
