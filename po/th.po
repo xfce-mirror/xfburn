@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-20 00:31+0100\n"
-"PO-Revision-Date: 2014-03-21 10:37+0000\n"
+"POT-Creation-Date: 2014-03-23 00:31+0100\n"
+"PO-Revision-Date: 2014-04-04 06:00+0000\n"
 "Last-Translator: theppitak <theppitak@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/projects/p/xfce/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgid "Blank Disc"
 msgstr "ล้างแผ่น"
 
 #: ../xfburn/xfburn-blank-dialog.c:209
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:195
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:196
 #: ../xfburn/xfburn-burn-image-dialog.c:200
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
 #: ../xfburn/xfburn-copy-dvd-dialog.c:131
@@ -109,7 +109,7 @@ msgid "Blank mode"
 msgstr "โหมดล้างแผ่น"
 
 #: ../xfburn/xfburn-blank-dialog.c:230
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:228
 #: ../xfburn/xfburn-burn-image-dialog.c:208
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
 #: ../xfburn/xfburn-copy-dvd-dialog.c:139
@@ -118,7 +118,7 @@ msgid "Options"
 msgstr "ตัวเลือก"
 
 #: ../xfburn/xfburn-blank-dialog.c:234
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:232
 #: ../xfburn/xfburn-burn-image-dialog.c:212
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
 #: ../xfburn/xfburn-copy-dvd-dialog.c:143
@@ -154,51 +154,51 @@ msgid "Blanking disc..."
 msgstr "กำลังล้างแผ่น..."
 
 #: ../xfburn/xfburn-blank-dialog.c:441
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:512
-#: ../xfburn/xfburn-perform-burn.c:361
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:519
+#: ../xfburn/xfburn-perform-burn.c:467
 #, c-format
 msgid "Done"
 msgstr "เสร็จแล้ว"
 
-#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:367
-#: ../xfburn/xfburn-progress-dialog.c:649
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:473
+#: ../xfburn/xfburn-progress-dialog.c:653
 msgid "Failure"
 msgstr "ล้มเหลว"
 
 #: ../xfburn/xfburn-blank-dialog.c:461
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:610
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:619
 #: ../xfburn/xfburn-burn-image-dialog.c:402
 #: ../xfburn/xfburn-burn-image-dialog.c:578
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
 msgid "Unable to grab the drive."
 msgstr "ไม่สามารถจับยึดไดรว์ได้"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:156
 msgid "Image"
 msgstr "อิมเมจ"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
 msgid "Show volume name"
 msgstr "แสดงชื่อโวลุม"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
 msgid "Show a text entry for the name of the volume"
 msgstr "แสดงช่องข้อความเพื่อแสดงชื่อของโวลุม"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:184
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
 msgid "Burn Composition"
 msgstr "เขียนจากร่างต้นฉบับ"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:207
 msgid "Composition name"
 msgstr "ชื่อร่างต้นฉบับ"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:211
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:212
 msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "<small>คุณต้องการเปลี่ยนชื่อปริยายของร่างต้นฉบับหรือไม่?</small>"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:237
 #: ../xfburn/xfburn-burn-image-dialog.c:217
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
 #: ../xfburn/xfburn-copy-dvd-dialog.c:148
@@ -206,50 +206,54 @@ msgstr "<small>คุณต้องการเปลี่ยนชื่อ�
 msgid "_Dummy write"
 msgstr "เขียนห_ลอกๆ"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:240
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:241
 #: ../xfburn/xfburn-burn-image-dialog.c:221
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
 msgid "Burn_Free"
 msgstr "ป้องกันบัฟเฟอร์ขาด_พร่อง (BurnFree)"
 
-#. create ISO ?
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
+msgid "Stream _Recording"
+msgstr "บันทึก_กระแสข้อมูล"
+
+#. create ISO ?
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:252
 #: ../xfburn/xfburn-copy-cd-dialog.c:157
 #: ../xfburn/xfburn-copy-dvd-dialog.c:157
 msgid "Only create _ISO"
 msgstr "สร้าง _ISO เท่านั้น"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:289
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
 msgid "_Burn Composition"
 msgstr "เขีย_นจากร่างต้นฉบับ"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "ไม่สามารถสร้างแฟ้ม ISO ปลายทางได้: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:484
 msgid "Writing ISO..."
 msgstr "กำลังเขียน ISO..."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:501
 #, c-format
 msgid "An error occured while writing ISO: %s"
 msgstr "เกิดข้อผิดพลาดขณะเขียน ISO: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:556
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:562
 msgid "An error occurred in the burn backend."
 msgstr "เกิดข้อผิดพลาดในแบกเอนด์เขียนแผ่น"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:580
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
 msgstr "ไม่รองรับโหมดเขียนนี้ในขณะนี้"
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:662
 msgid "Could not create ISO source structure."
 msgstr "ไม่สามารถสร้างออบเจกต์แทนข้อมูลต้นทางสำหรับ ISO"
 
@@ -883,104 +887,102 @@ msgstr "แสดงปุ่มปิด"
 msgid "Determine whether the close button is visible"
 msgstr "กำหนดว่าจะแสดงปุ่มปิดหรือไม่"
 
-#: ../xfburn/xfburn-perform-burn.c:153
+#: ../xfburn/xfburn-perform-burn.c:101 ../xfburn/xfburn-perform-burn.c:430
+msgid "Formatting..."
+msgstr "กำลังฟอร์แมต..."
+
+#: ../xfburn/xfburn-perform-burn.c:133
+msgid "Formatting failed."
+msgstr "ฟอร์แมตไม่สำเร็จ"
+
+#: ../xfburn/xfburn-perform-burn.c:255
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "ไม่สามารถเพิ่มข้อมูลต่อท้ายแผ่นมัลติเซสชันในโหมดเขียนนี้ได้ (กรุณาใช้ TAO แทน)"
 
-#: ../xfburn/xfburn-perform-burn.c:157
+#: ../xfburn/xfburn-perform-burn.c:259
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "พบแผ่นที่มีข้อมูลและปิดเซสชันไปแล้ว ต้องใช้แผ่นเปล่าหรือแผ่นที่เพิ่มข้อมูลต่อท้ายได้"
 
-#: ../xfburn/xfburn-perform-burn.c:159
+#: ../xfburn/xfburn-perform-burn.c:261
 msgid "No disc detected in drive."
 msgstr "ไม่พบแผ่นในไดรว์"
 
-#: ../xfburn/xfburn-perform-burn.c:162
+#: ../xfburn/xfburn-perform-burn.c:264
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "ไม่สามารถจำแนกสถานะของไดรว์และแผ่นได้"
 
-#: ../xfburn/xfburn-perform-burn.c:175
+#: ../xfburn/xfburn-perform-burn.c:281
 msgid "There is not enough space available on the inserted disc."
 msgstr "มีเนื้อที่ว่างไม่พอในแผ่นที่ใส่เข้ามา"
 
-#: ../xfburn/xfburn-perform-burn.c:220
+#: ../xfburn/xfburn-perform-burn.c:326
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "กำลังเขียนแทร็ก %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:224 ../xfburn/xfburn-perform-burn.c:289
+#: ../xfburn/xfburn-perform-burn.c:330 ../xfburn/xfburn-perform-burn.c:395
 msgid "Burning composition..."
 msgstr "กำลังเขียนแผ่นจากร่างต้นฉบับ..."
 
-#: ../xfburn/xfburn-perform-burn.c:258
+#: ../xfburn/xfburn-perform-burn.c:364
 msgid "standby"
 msgstr "คอยดู"
 
-#: ../xfburn/xfburn-perform-burn.c:266
+#: ../xfburn/xfburn-perform-burn.c:372
 msgid "ending"
 msgstr "กำลังจบ"
 
-#: ../xfburn/xfburn-perform-burn.c:269
+#: ../xfburn/xfburn-perform-burn.c:375
 msgid "failing"
 msgstr "ล้มเหลว"
 
-#: ../xfburn/xfburn-perform-burn.c:272
+#: ../xfburn/xfburn-perform-burn.c:378
 msgid "unused"
 msgstr "ไม่ได้ใช้งาน"
 
-#: ../xfburn/xfburn-perform-burn.c:275
+#: ../xfburn/xfburn-perform-burn.c:381
 msgid "abandoned"
 msgstr "ถูกละทิ้ง"
 
-#: ../xfburn/xfburn-perform-burn.c:278
+#: ../xfburn/xfburn-perform-burn.c:384
 msgid "ended"
 msgstr "จบแล้ว"
 
-#: ../xfburn/xfburn-perform-burn.c:281
+#: ../xfburn/xfburn-perform-burn.c:387
 msgid "aborted"
 msgstr "ถูกล้มเลิก"
 
-#: ../xfburn/xfburn-perform-burn.c:284 ../xfburn/xfburn-progress-dialog.c:216
-#: ../xfburn/xfburn-progress-dialog.c:233
-#: ../xfburn/xfburn-progress-dialog.c:243
-#: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:476
-#: ../xfburn/xfburn-progress-dialog.c:500
-#: ../xfburn/xfburn-progress-dialog.c:524
+#: ../xfburn/xfburn-perform-burn.c:390
 msgid "no info"
 msgstr "ไม่มีข้อมูล"
 
-#: ../xfburn/xfburn-perform-burn.c:294
+#: ../xfburn/xfburn-perform-burn.c:400
 msgid "Writing Lead-In..."
 msgstr "กำลังเขียน Lead-In..."
 
-#: ../xfburn/xfburn-perform-burn.c:300
+#: ../xfburn/xfburn-perform-burn.c:406
 msgid "Writing Lead-Out..."
 msgstr "กำลังเขียน Lead-Out..."
 
-#: ../xfburn/xfburn-perform-burn.c:306
+#: ../xfburn/xfburn-perform-burn.c:412
 msgid "Writing pregap..."
 msgstr "กำลังเขียน pregap..."
 
-#: ../xfburn/xfburn-perform-burn.c:312
+#: ../xfburn/xfburn-perform-burn.c:418
 msgid "Closing track..."
 msgstr "กำลังปิดแทร็ก..."
 
-#: ../xfburn/xfburn-perform-burn.c:318
+#: ../xfburn/xfburn-perform-burn.c:424
 msgid "Closing session..."
 msgstr "กำลังปิดเซสชัน..."
 
-#: ../xfburn/xfburn-perform-burn.c:324
-msgid "Formatting..."
-msgstr "กำลังฟอร์แมต..."
-
-#: ../xfburn/xfburn-perform-burn.c:337
+#: ../xfburn/xfburn-perform-burn.c:443
 msgid "see console"
 msgstr "ดูคอนโซล"
 
-#: ../xfburn/xfburn-perform-burn.c:365
+#: ../xfburn/xfburn-perform-burn.c:471
 msgid "User Aborted"
 msgstr "ผู้ใช้ล้มเลิก"
 
@@ -1070,48 +1072,62 @@ msgstr "ขนาดบัฟเฟอร์ FIFO (เป็น kB)"
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "การเปลี่ยนค่าตั้งนี้จะมีผลหลังจากเปิดโปรแกรมใหม่"
 
-#: ../xfburn/xfburn-progress-dialog.c:198
+#: ../xfburn/xfburn-progress-dialog.c:199
 msgid "Initializing..."
 msgstr "กำลังตั้งค่าเริ่มต้น..."
 
-#: ../xfburn/xfburn-progress-dialog.c:213
+#: ../xfburn/xfburn-progress-dialog.c:214
 msgid "Estimated writing speed:"
 msgstr "ความเร็วของการเขียนโดยประมาณ:"
 
-#: ../xfburn/xfburn-progress-dialog.c:227
+#: ../xfburn/xfburn-progress-dialog.c:217
+#: ../xfburn/xfburn-progress-dialog.c:234
+#: ../xfburn/xfburn-progress-dialog.c:244
+#: ../xfburn/xfburn-progress-dialog.c:333
+#: ../xfburn/xfburn-progress-dialog.c:477
+#: ../xfburn/xfburn-progress-dialog.c:501
+#: ../xfburn/xfburn-progress-dialog.c:525
+msgid "unknown"
+msgstr "ไม่ทราบ"
+
+#: ../xfburn/xfburn-progress-dialog.c:228
 msgid "FIFO buffer:"
 msgstr "บัฟเฟอร์ FIFO:"
 
-#: ../xfburn/xfburn-progress-dialog.c:237
+#: ../xfburn/xfburn-progress-dialog.c:238
 msgid "Device buffer:"
 msgstr "บัฟเฟอร์ของอุปกรณ์:"
 
-#: ../xfburn/xfburn-progress-dialog.c:374
+#: ../xfburn/xfburn-progress-dialog.c:375
 msgid "Are you sure you want to abort?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการล้มเลิก?"
 
-#: ../xfburn/xfburn-progress-dialog.c:502
+#: ../xfburn/xfburn-progress-dialog.c:503
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "ข้อมูลเติมต่ำสุดคือ %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:562
 msgid "Aborted"
 msgstr "ล้มเลิก"
 
-#: ../xfburn/xfburn-progress-dialog.c:570
+#: ../xfburn/xfburn-progress-dialog.c:565
+msgid "Formatted."
+msgstr "ฟอร์แมตเสร็จแล้ว"
+
+#: ../xfburn/xfburn-progress-dialog.c:574
 msgid "Failed"
 msgstr "ล้มเหลว"
 
-#: ../xfburn/xfburn-progress-dialog.c:573
+#: ../xfburn/xfburn-progress-dialog.c:577
 msgid "Cancelled"
 msgstr "ยกเลิก"
 
-#: ../xfburn/xfburn-progress-dialog.c:576
+#: ../xfburn/xfburn-progress-dialog.c:580
 msgid "Completed"
 msgstr "เสร็จสมบูรณ์"
 
-#: ../xfburn/xfburn-progress-dialog.c:613
+#: ../xfburn/xfburn-progress-dialog.c:617
 msgid "Aborting..."
 msgstr "กำลังล้มเลิก..."
 
