@@ -132,16 +132,16 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
     usleep (500000);
   }
 
-  if (stopping) {
-    xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED);
-    return 0;
-  }
- 
   /* Check for success */
   if (burn_drive_wrote_well (drive)) {
-    percent = 100.0;
- 
     DBG ("Formatting done");
+ 
+    if (stopping) {
+      xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED);
+      return 0;
+    }
+    
+    percent = 100.0;
  
     xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress),
                                                       percent);
