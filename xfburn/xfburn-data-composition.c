@@ -1932,11 +1932,11 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
         char * msg;
 
         if (r == ISO_NULL_POINTER)
-          msg = g_strdup_printf (_("%s: null pointer"), src);
+          g_error (_("%s: null pointer"), src);
+        else if (r == ISO_OUT_OF_MEM)
+          g_error (_("%s: out of memory"), src);
         else if (r == ISO_NODE_NAME_NOT_UNIQUE)
           msg = g_strdup_printf (_("%s: node name not unique"), src);
-        else if (r == ISO_OUT_OF_MEM)
-          msg = g_strdup_printf (_("%s: out of memory"), src);
         else
           msg = g_strdup_printf (_("%s: %s (code %X)"), src, iso_error_to_msg(r), r);
 

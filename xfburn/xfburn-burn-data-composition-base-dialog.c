@@ -574,6 +574,11 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   */
   burn_write_opts_set_simulate(burn_options, params->dummy ? 1 : 0);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
+  /*
+   * 32 is the number of blocks to skip. This will increase reliability with BD disks that
+   * are used for multisessions. xfburn doesn't support this, but other programs may be using
+   * the disc that way, so we respect that here.
+   */
   burn_write_opts_set_stream_recording (burn_options, params->stream_recording ? 32 : 0);
 
   if (!xfburn_set_write_mode (burn_options, params->write_mode, disc, WRITE_MODE_TAO)) {
