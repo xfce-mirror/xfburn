@@ -46,6 +46,7 @@ static void xfburn_adding_progress_class_init (XfburnAddingProgressClass *);
 static void xfburn_adding_progress_init (XfburnAddingProgress *);
 static void xfburn_adding_progress_finalize (GObject * object);
 static gboolean cb_delete (GtkWidget *widget, GdkEvent *event, gpointer data);
+static gboolean cb_cancel (GtkWidget *widget, GdkEvent *event, gpointer data);
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
@@ -102,7 +103,7 @@ static void
 xfburn_adding_progress_init (XfburnAddingProgress * win)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (win);
-  GtkWidget *vbox;
+  GtkWidget *vbox, *cancel_btn;
   
   gtk_window_set_resizable (GTK_WINDOW (win), FALSE);
 
@@ -121,8 +122,14 @@ xfburn_adding_progress_init (XfburnAddingProgress * win)
 
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->progress_bar), 0.5);  
 
+  cancel_btn = gtk_button_new_with_label (_("Cancel"));
+  gtk_box_pack_start (GTK_BOX (vbox), cancel_btn, TRUE, TRUE, BORDER);
+  gtk_widget_show (cancel_btn);
+
+
   priv->aborted = FALSE;
   g_signal_connect (G_OBJECT (win), "delete-event", G_CALLBACK (cb_delete), NULL);
+  g_signal_connect (G_OBJECT (cancel_btn), "clicked", G_CALLBACK (cb_cancel), G_OBJECT(win));
 }
 
 static void
@@ -138,6 +145,15 @@ static gboolean
 cb_delete (GtkWidget *widget, GdkEvent *event, gpointer data)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (widget);
+  priv->aborted = TRUE;
+
+  return TRUE;
+}
+
+static gboolean
+cb_cancel (GtkWidget *widget, GdkEvent *event, gpointer data)
+{
+  XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (data);
   priv->aborted = TRUE;
 
   return TRUE;
