@@ -424,6 +424,8 @@ xfburn_device_fillin_libburn_info (XfburnDevice *device, struct burn_drive_info 
   priv->buffer_size = drive->buffer_size;
   priv->dummy_write = drive->write_simulate;
 
+  DBG ("libburn will determine BD support based on the disk in the drive");
+
   /* write modes */
   priv->tao_block_types = drive->tao_block_types;
   priv->sao_block_types = drive->sao_block_types;
