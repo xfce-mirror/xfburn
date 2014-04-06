@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 00:31+0100\n"
-"PO-Revision-Date: 2014-03-23 20:00+0000\n"
+"POT-Creation-Date: 2014-04-05 12:31+0200\n"
+"PO-Revision-Date: 2014-04-06 21:29+0000\n"
 "Last-Translator: Alois Nešpor <info@aloisnespor.info>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/xfce/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -55,9 +55,13 @@ msgstr "Kopírování CD úspěšně dokončeno."
 msgid "Data composition"
 msgstr "Datová kompozice"
 
-#: ../xfburn/xfburn-adding-progress.c:111
+#: ../xfburn/xfburn-adding-progress.c:112
 msgid "Adding files to the composition"
 msgstr "Přidání souborů do kompozice"
+
+#: ../xfburn/xfburn-adding-progress.c:125
+msgid "Cancel"
+msgstr "Zrušit"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
@@ -155,20 +159,20 @@ msgstr "Mazání disku..."
 
 #: ../xfburn/xfburn-blank-dialog.c:441
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:519
-#: ../xfburn/xfburn-perform-burn.c:467
+#: ../xfburn/xfburn-perform-burn.c:485
 #, c-format
 msgid "Done"
 msgstr "Dokončeno"
 
-#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:473
-#: ../xfburn/xfburn-progress-dialog.c:653
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:492
+#: ../xfburn/xfburn-progress-dialog.c:654
 msgid "Failure"
 msgstr "Chyba"
 
 #: ../xfburn/xfburn-blank-dialog.c:461
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:619
-#: ../xfburn/xfburn-burn-image-dialog.c:402
-#: ../xfburn/xfburn-burn-image-dialog.c:578
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:624
+#: ../xfburn/xfburn-burn-image-dialog.c:400
+#: ../xfburn/xfburn-burn-image-dialog.c:576
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
 msgid "Unable to grab the drive."
 msgstr "Nelze pracovat s jednotkou."
@@ -247,13 +251,13 @@ msgstr "Při zápisu do souboru ISO došlo k chybě: %s"
 msgid "An error occurred in the burn backend."
 msgstr "Došlo k chybě v backendu pro vypalování."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:580
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
 msgstr "Režim zápisu není nyní podporován."
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:662
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:667
 msgid "Could not create ISO source structure."
 msgstr "Nelze vytvořit strukturu zdroje obrazu ISO."
 
@@ -283,59 +287,59 @@ msgstr "_Ukončit po dokončení"
 msgid "_Burn image"
 msgstr "_Vypálit obraz"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:285
+#: ../xfburn/xfburn-burn-image-dialog.c:283
 msgid "Burn mode is not currently implemented."
 msgstr "Režim vypalování není implementován"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:336
-#: ../xfburn/xfburn-burn-image-dialog.c:365
+#: ../xfburn/xfburn-burn-image-dialog.c:334
+#: ../xfburn/xfburn-burn-image-dialog.c:363
 msgid "An error occurred in the burn backend"
 msgstr "Došlo k chybě v backendu pro vypalování"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:349
+#: ../xfburn/xfburn-burn-image-dialog.c:347
 msgid "Unable to determine image size."
 msgstr "Nelze zjistit velikost obrazu."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:356
+#: ../xfburn/xfburn-burn-image-dialog.c:354
 msgid "Cannot open image."
 msgstr "Nelze otevřít obraz."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:393
+#: ../xfburn/xfburn-burn-image-dialog.c:391
 msgid "Burning image..."
 msgstr "Vypalování obrazu..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:465
+#: ../xfburn/xfburn-burn-image-dialog.c:463
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Zvolte obraz, který chcete vypálit</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:505
+#: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "V tomto režimu zápisu nelze přidat další data na disk typu multisession (použijte místo něj TAO)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:509
+#: ../xfburn/xfburn-burn-image-dialog.c:507
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "Byl nalezen uzavřený disk s daty. Je vyžadován prázdný nebo neuzavřený disk"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "No disc detected in drive"
 msgstr "V jednotce nebyl nalezen disk"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:513
+#: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "Cannot recognize state of drive and disc"
 msgstr "Nelze rozpoznat stav jednotky a disku"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:525
+#: ../xfburn/xfburn-burn-image-dialog.c:523
 msgid "The selected image does not fit on the inserted disc"
 msgstr "Vybraný obraz nelze uložit na vložený disk"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:529
+#: ../xfburn/xfburn-burn-image-dialog.c:527
 msgid "Failed to get image size"
 msgstr "Nelze zjistit velikost obrazu"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:558
+#: ../xfburn/xfburn-burn-image-dialog.c:556
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
@@ -532,13 +536,13 @@ msgstr "%s: null pointer"
 
 #: ../xfburn/xfburn-data-composition.c:1937
 #, c-format
-msgid "%s: node name not unique"
-msgstr "%s: jméno nodu není unikátní"
+msgid "%s: out of memory"
+msgstr "%s: out of memory"
 
 #: ../xfburn/xfburn-data-composition.c:1939
 #, c-format
-msgid "%s: out of memory"
-msgstr "%s: out of memory"
+msgid "%s: node name not unique"
+msgstr "%s: jméno nodu není unikátní"
 
 #: ../xfburn/xfburn-data-composition.c:1941
 #, c-format
@@ -551,7 +555,7 @@ msgstr "%s: %s (kód %X)"
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "Duplicitní název souboru '%s' pro '%s'"
 
-#: ../xfburn/xfburn-data-composition.c:2027
+#: ../xfburn/xfburn-data-composition.c:2026
 msgid "Error(s) occured while adding files"
 msgstr "Při přidávání souborů došlo k chybě (chybám)."
 
@@ -614,55 +618,55 @@ msgstr "<b>Nebylo možné získat z jednotky seznam rychlostí.</b>\n\nToto je z
 msgid "Continue to _show this notice"
 msgstr "Toto upozornění _zobrazit i příště "
 
-#: ../xfburn/xfburn-device-box.c:440
+#: ../xfburn/xfburn-device-box.c:442
 msgid "default"
 msgstr "výchozí"
 
-#: ../xfburn/xfburn-device-box.c:471
+#: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Max"
 
-#: ../xfburn/xfburn-device-box.c:581
+#: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
 msgstr "Jednotka nemůže vypalovat na vložený disk"
 
-#: ../xfburn/xfburn-device-box.c:590 ../xfburn/xfburn-device-box.c:636
+#: ../xfburn/xfburn-device-box.c:588 ../xfburn/xfburn-device-box.c:634
 msgid "Drive is empty"
 msgstr "Jednotka je prázdná!"
 
-#: ../xfburn/xfburn-device-box.c:593
+#: ../xfburn/xfburn-device-box.c:591
 msgid "Sorry, multisession is not yet supported"
 msgstr "Omlouváme se, ale multisession zatím není podporován"
 
-#: ../xfburn/xfburn-device-box.c:596
+#: ../xfburn/xfburn-device-box.c:594
 msgid "Inserted disc is full"
 msgstr "Vložený disk je zaplněn"
 
-#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:642
+#: ../xfburn/xfburn-device-box.c:597 ../xfburn/xfburn-device-box.c:640
 msgid "Inserted disc is unsuitable"
 msgstr "Vložený disk není vhodný"
 
-#: ../xfburn/xfburn-device-box.c:602 ../xfburn/xfburn-device-box.c:645
+#: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Cannot access drive (it might be in use)"
 msgstr "Přístup k jednotce nebyl možný (pravděpodobně se používá)"
 
-#: ../xfburn/xfburn-device-box.c:607 ../xfburn/xfburn-device-box.c:648
+#: ../xfburn/xfburn-device-box.c:605 ../xfburn/xfburn-device-box.c:646
 msgid "Error determining disc"
 msgstr "Chyba při rozpoznávání disku"
 
-#: ../xfburn/xfburn-device-box.c:628
+#: ../xfburn/xfburn-device-box.c:626
 msgid "Write-once disc, no blanking possible"
 msgstr "Toto je disk pouze pro jeden zápis, mazání není možné"
 
-#: ../xfburn/xfburn-device-box.c:631
+#: ../xfburn/xfburn-device-box.c:629
 msgid "DVD+RW does not need blanking"
 msgstr "Disk DVD-RW není nutné mazat"
 
-#: ../xfburn/xfburn-device-box.c:639
+#: ../xfburn/xfburn-device-box.c:637
 msgid "Inserted disc is already blank"
 msgstr "Vložený disk je již prázdný"
 
-#: ../xfburn/xfburn-device-box.c:675
+#: ../xfburn/xfburn-device-box.c:673
 msgid "Auto"
 msgstr "Automaticky"
 
@@ -887,102 +891,102 @@ msgstr "Zobrazit tlačítko zavřít"
 msgid "Determine whether the close button is visible"
 msgstr "Rozezná viditelnost tlačítka zavřít"
 
-#: ../xfburn/xfburn-perform-burn.c:101 ../xfburn/xfburn-perform-burn.c:430
+#: ../xfburn/xfburn-perform-burn.c:103 ../xfburn/xfburn-perform-burn.c:448
 msgid "Formatting..."
 msgstr "Formátování..."
 
-#: ../xfburn/xfburn-perform-burn.c:133
+#: ../xfburn/xfburn-perform-burn.c:151
 msgid "Formatting failed."
 msgstr "Formátování selhalo."
 
-#: ../xfburn/xfburn-perform-burn.c:255
+#: ../xfburn/xfburn-perform-burn.c:273
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "V tomto režimu zápisu nelze přidat další data na disk typu multisession (použijte místo něj režim TAO)."
 
-#: ../xfburn/xfburn-perform-burn.c:259
+#: ../xfburn/xfburn-perform-burn.c:277
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "Byl nalezen uzavřený disk s daty, požaduje se prázdný nebo neuzavřený disk."
 
-#: ../xfburn/xfburn-perform-burn.c:261
+#: ../xfburn/xfburn-perform-burn.c:279
 msgid "No disc detected in drive."
 msgstr "V jednotce nebyl nalezen disk."
 
-#: ../xfburn/xfburn-perform-burn.c:264
+#: ../xfburn/xfburn-perform-burn.c:282
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "Nelze rozpoznat stav jednotky a disku."
 
-#: ../xfburn/xfburn-perform-burn.c:281
+#: ../xfburn/xfburn-perform-burn.c:299
 msgid "There is not enough space available on the inserted disc."
 msgstr "Na vloženému disku není dostatek místa."
 
-#: ../xfburn/xfburn-perform-burn.c:326
+#: ../xfburn/xfburn-perform-burn.c:344
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Vypalování stopy %2d z %d..."
 
-#: ../xfburn/xfburn-perform-burn.c:330 ../xfburn/xfburn-perform-burn.c:395
+#: ../xfburn/xfburn-perform-burn.c:348 ../xfburn/xfburn-perform-burn.c:413
 msgid "Burning composition..."
 msgstr "Zapisování kompozice..."
 
-#: ../xfburn/xfburn-perform-burn.c:364
+#: ../xfburn/xfburn-perform-burn.c:382
 msgid "standby"
 msgstr "připraveno v pohotovostním režimu"
 
-#: ../xfburn/xfburn-perform-burn.c:372
+#: ../xfburn/xfburn-perform-burn.c:390
 msgid "ending"
 msgstr "dokončuje se"
 
-#: ../xfburn/xfburn-perform-burn.c:375
+#: ../xfburn/xfburn-perform-burn.c:393
 msgid "failing"
 msgstr "selhání"
 
-#: ../xfburn/xfburn-perform-burn.c:378
+#: ../xfburn/xfburn-perform-burn.c:396
 msgid "unused"
 msgstr "nepoužito"
 
-#: ../xfburn/xfburn-perform-burn.c:381
+#: ../xfburn/xfburn-perform-burn.c:399
 msgid "abandoned"
 msgstr "zrušeno"
 
-#: ../xfburn/xfburn-perform-burn.c:384
+#: ../xfburn/xfburn-perform-burn.c:402
 msgid "ended"
 msgstr "ukončeno"
 
-#: ../xfburn/xfburn-perform-burn.c:387
+#: ../xfburn/xfburn-perform-burn.c:405
 msgid "aborted"
 msgstr "přerušeno"
 
-#: ../xfburn/xfburn-perform-burn.c:390
+#: ../xfburn/xfburn-perform-burn.c:408
 msgid "no info"
 msgstr "žádné informace"
 
-#: ../xfburn/xfburn-perform-burn.c:400
+#: ../xfburn/xfburn-perform-burn.c:418
 msgid "Writing Lead-In..."
 msgstr "Zapisování součásti stopy \"Lead-In\"..."
 
-#: ../xfburn/xfburn-perform-burn.c:406
+#: ../xfburn/xfburn-perform-burn.c:424
 msgid "Writing Lead-Out..."
 msgstr "Zapisování součásti stopy \"Lead-Out\"..."
 
-#: ../xfburn/xfburn-perform-burn.c:412
+#: ../xfburn/xfburn-perform-burn.c:430
 msgid "Writing pregap..."
 msgstr "Zapisování součásti stopy \"pregap\"..."
 
-#: ../xfburn/xfburn-perform-burn.c:418
+#: ../xfburn/xfburn-perform-burn.c:436
 msgid "Closing track..."
 msgstr "Uzavírání stopy..."
 
-#: ../xfburn/xfburn-perform-burn.c:424
+#: ../xfburn/xfburn-perform-burn.c:442
 msgid "Closing session..."
 msgstr "Uzavírání session..."
 
-#: ../xfburn/xfburn-perform-burn.c:443
+#: ../xfburn/xfburn-perform-burn.c:461
 msgid "see console"
 msgstr "prohlédnout konzoli"
 
-#: ../xfburn/xfburn-perform-burn.c:471
+#: ../xfburn/xfburn-perform-burn.c:489
 msgid "User Aborted"
 msgstr "Přerušeno uživatelem"
 
@@ -1127,7 +1131,7 @@ msgstr "Zrušeno"
 msgid "Completed"
 msgstr "Dokončeno"
 
-#: ../xfburn/xfburn-progress-dialog.c:617
+#: ../xfburn/xfburn-progress-dialog.c:618
 msgid "Aborting..."
 msgstr "Přerušuje se..."
 
