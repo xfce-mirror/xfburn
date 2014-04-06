@@ -335,11 +335,10 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceList *devlist)
   g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_START], 0, TRUE);
   device = get_selected_device (combo);
 
-  if (device == NULL)
-    return;
-
-  priv->curr_device = device;
-  xfburn_device_refresh_info (device, TRUE);
+  if (device != NULL) {
+    priv->curr_device = device;
+    xfburn_device_refresh_info (device, TRUE);
+  }
   g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_END], 0, TRUE, device);
 }
 
