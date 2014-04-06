@@ -72,6 +72,7 @@ void xfburn_progress_dialog_pulse_progress_bar (XfburnProgressDialog * dialog);
 XfburnProgressDialogStatus xfburn_progress_dialog_get_status (XfburnProgressDialog * dialog);
 gdouble xfburn_progress_dialog_get_progress_bar_fraction (XfburnProgressDialog * dialog);
 
+void xfburn_progress_dialog_reset (XfburnProgressDialog * dialog);
 void xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction);
 void xfburn_progress_dialog_set_fifo_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction);
 void xfburn_progress_dialog_set_fifo_bar_text (XfburnProgressDialog * dialog, const gchar *text);

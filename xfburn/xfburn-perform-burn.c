@@ -36,7 +36,7 @@
 /*************/
 
 /* ts B40225 : Automatically format unformatted BD-RE and DVD-RAM
-   Return: <= 0 = failure, 1 = formatting happened, 2 = no formatting needed
+   Return: <=-1 failure, 0 = aborted, 1 = formatting happened, 2 = no formatting needed
 */
 static int
 xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
@@ -103,8 +103,8 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
                                                _("Formatting..."));
 
 #ifdef XFBURN_KEEP_UNFORMATTED
-  g_warning ("Will Not Format");
-  return -1;
+  g_warning ("Will not Format");
+  return 0;
 #endif
 
   /* Apply formatting */
@@ -137,7 +137,6 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
     DBG ("Formatting done");
  
     if (stopping) {
-      xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED);
       return 0;
     }
     
@@ -148,9 +147,7 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
   } else {
     DBG ("Formatting failed");
 
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Formatting failed."));
- 
-    return 0;
+    return -1;
   }
   return 1;
 }
@@ -285,8 +282,16 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   }
 
   ret = xfburn_auto_format (dialog_progress, drive);
-  if (ret <= 0)
+  if (ret < 0) {
+    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Formatting failed."));
     return;
+  } else if (ret == 0) {
+    xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED);
+    return;
+  } else if (ret == 1) {
+    /* formatting happened, reset the dialog */
+    xfburn_progress_dialog_reset (XFBURN_PROGRESS_DIALOG(dialog_progress));
+  }
 
   total_sectors = burn_disc_get_sectors (disc);
 

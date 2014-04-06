@@ -547,6 +547,15 @@ xfburn_progress_dialog_set_fifo_bar_text (XfburnProgressDialog * dialog, const g
 }
 
 void
+xfburn_progress_dialog_reset (XfburnProgressDialog * dialog)
+{
+  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog),
+                                               XFBURN_PROGRESS_DIALOG_STATUS_RUNNING,
+                                               _("Initializing..."));
+  xfburn_progress_dialog_set_progress_bar_fraction (dialog, -1.0);
+}
+
+void
 xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
