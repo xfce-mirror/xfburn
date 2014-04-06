@@ -348,10 +348,10 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
           xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning composition..."));
         }
 
-	percent = (gdouble) (progress.buffer_capacity - progress.buffer_available) / (gdouble) progress.buffer_capacity;
+	percent = (gdouble) (progress.buffer_capacity - progress.buffer_available + 1.0) / (gdouble) progress.buffer_capacity * 98.0;
 
         /* assume that we don't have buffer info if the result is outside the sane range */
-        if (percent >= 0 && percent <= 1)
+        if (percent >= 0 && percent <= 100.0)
           xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 
         /* accumulate the sectors that have been burned in the previous track */
@@ -360,7 +360,6 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
           track_sectors[progress.track-1] = 0;
         }
 
-	//percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
 	percent = 1.0 + ((gdouble) progress.sector + burned_sectors + 1.0) / ((gdouble) total_sectors) * 98.0;
 
         /*
@@ -383,7 +382,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
               break;
             case 1:
               /* active */
-              percent = (gdouble) (fifo_size - fifo_free) / (gdouble) fifo_size;
+              percent = (gdouble) (fifo_size - fifo_free + 1.0) / (gdouble) fifo_size * 98.0;
               xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
               break;
             case 2:
@@ -478,7 +477,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
   xfburn_console_libburn_messages ();
 
-  percent = (gdouble) progress.buffer_min_fill / (gdouble) progress.buffer_capacity;
+  percent = (gdouble) progress.buffer_min_fill / (gdouble) progress.buffer_capacity * 100.0;
   xfburn_progress_dialog_set_buffer_bar_min_fill (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 
   if (G_LIKELY (burn_drive_wrote_well (drive))) {
