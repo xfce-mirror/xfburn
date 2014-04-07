@@ -353,7 +353,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
           xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning composition..."));
         }
 
-	percent = (gdouble) (progress.buffer_capacity - progress.buffer_available + 1.0) / (gdouble) progress.buffer_capacity * 98.0;
+	percent = (gdouble) (progress.buffer_capacity - progress.buffer_available) / (gdouble) progress.buffer_capacity * 100.0;
 
         /* assume that we don't have buffer info if the result is outside the sane range */
         if (percent >= 0 && percent <= 100.0)
@@ -387,7 +387,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
               break;
             case 1:
               /* active */
-              percent = (gdouble) (fifo_size - fifo_free + 1.0) / (gdouble) fifo_size * 98.0;
+              percent = (gdouble) (fifo_size - fifo_free) / (gdouble) fifo_size * 100.0;
               xfburn_progress_dialog_set_fifo_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
               break;
             case 2:
