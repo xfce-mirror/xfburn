@@ -413,6 +413,8 @@ xfburn_device_list_get_device_combo (XfburnDeviceList *devlist)
   GtkListStore *store = NULL;
   GtkCellRenderer *cell;
 
+  int i, selected;
+
   store = gtk_list_store_new (DEVICE_N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER);
   combo_device = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
   g_object_unref (store);
@@ -423,6 +425,7 @@ xfburn_device_list_get_device_combo (XfburnDeviceList *devlist)
   gtk_widget_show (combo_device);
 
   device = priv->devices;
+  i = 0;
   while (device) {
     XfburnDevice *device_data = (XfburnDevice *) device->data;
     GtkTreeIter iter;
@@ -433,12 +436,16 @@ xfburn_device_list_get_device_combo (XfburnDeviceList *devlist)
     gtk_list_store_append (store, &iter);
     gtk_list_store_set (store, &iter, DEVICE_NAME_COLUMN, name, DEVICE_POINTER_COLUMN, device_data, -1);
 
+    if (device_data == priv->curr_device)
+        selected = i;
+
     device = g_list_next (device);
+    i++;
   }
   /* FIXME: this might have to change once reading devices need to get selected as well */
   gtk_widget_set_sensitive (combo_device, priv->num_drives > 0);
 
-  gtk_combo_box_set_active (GTK_COMBO_BOX (combo_device), 0);
+  gtk_combo_box_set_active (GTK_COMBO_BOX (combo_device), selected);
 
   g_signal_connect (G_OBJECT (combo_device), "changed", G_CALLBACK (cb_combo_device_changed), devlist);
 
