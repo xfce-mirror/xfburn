@@ -50,6 +50,7 @@ typedef struct {
   gboolean eject;
   gboolean dummy;
   gboolean burnfree;
+  gboolean stream_recording;
   gboolean quit;
 
   struct burn_disc *disc;
@@ -69,6 +70,7 @@ typedef struct
 
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
+  GtkWidget *check_stream_recording;
   GtkWidget *check_quit;
   GtkWidget *check_dummy;
 
@@ -223,6 +225,11 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_widget_show (priv->check_burnfree);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);
 
+  priv->check_stream_recording = gtk_check_button_new_with_mnemonic (_("Stream _Recording"));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_stream_recording), TRUE);
+  gtk_widget_show (priv->check_stream_recording);
+  gtk_box_pack_start (GTK_BOX (vbox), priv->check_stream_recording, FALSE, FALSE, BORDER);
+
   priv->check_quit = gtk_check_button_new_with_mnemonic (_("_Quit after success"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_quit), xfburn_settings_get_boolean("quit_after_success", FALSE));
   gtk_widget_show (priv->check_quit);
@@ -277,6 +284,12 @@ prepare_params (ThreadBurnIsoParams *params, struct burn_drive *drive, gchar **f
   burn_write_opts_set_multi (burn_options, 0);
   burn_write_opts_set_simulate(burn_options, params->dummy ? 1 : 0);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
+  /*
+   * 32 is the number of blocks to skip. This will increase reliability with BD disks that
+   * are used for multisessions. xfburn doesn't support this, but other programs may be using
+   * the disc that way, so we respect that here.
+   */
+  burn_write_opts_set_stream_recording (burn_options, params->stream_recording ? 32 : 0);
 
   if (!xfburn_set_write_mode (burn_options, params->write_mode, params->disc, WRITE_MODE_TAO)) {
     burn_write_opts_free (burn_options);
