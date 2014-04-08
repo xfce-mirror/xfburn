@@ -176,6 +176,7 @@ typedef struct
   GtkWidget *progress;
   GtkTreeStore *model;
   GtkWidget *add_filechooser;
+  gchar * last_directory;
   GtkWidget *add_window;
 
   gchar *default_vol_name;
@@ -913,6 +914,8 @@ add_cb (GtkWidget * widget, gpointer data)
     GString  * str = g_string_new(NULL);
     GSList * curr;
 
+    priv->last_directory = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER(priv->add_filechooser));
+
     for (curr = list; curr!=NULL; curr = curr->next) {
         g_string_append(str, curr->data);
         g_string_append_c(str, '\n');;
@@ -948,6 +951,8 @@ select_files (XfburnDataComposition * dc)
     priv->add_filechooser = gtk_file_chooser_widget_new (GTK_FILE_CHOOSER_ACTION_OPEN);
 
     gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER(priv->add_filechooser), TRUE);
+    if (priv->last_directory)
+      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER(priv->add_filechooser), priv->last_directory);
 
     vbox = gtk_vbox_new (FALSE, 0);
     gtk_container_add(GTK_CONTAINER(window), vbox);
