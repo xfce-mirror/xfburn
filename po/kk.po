@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2009
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2009,2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-03 20:34+0200\n"
-"PO-Revision-Date: 2014-02-12 16:10+0000\n"
+"POT-Creation-Date: 2014-04-05 12:31+0200\n"
+"PO-Revision-Date: 2014-04-09 08:46+0000\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh (http://www.transifex.com/projects/p/xfce/language/kk/)\n"
 "MIME-Version: 1.0\n"
@@ -50,13 +50,17 @@ msgstr "Диск қалып-күйін анықтау мүмкін емес - қ
 msgid "CD copying finished successfully."
 msgstr "CD дискісін көшіру сәтті аяқталды."
 
-#: ../xfburn/xfburn-global.h:42
+#: ../xfburn/xfburn-global.h:43
 msgid "Data composition"
 msgstr "Мәліметтер жобасы"
 
-#: ../xfburn/xfburn-adding-progress.c:111
+#: ../xfburn/xfburn-adding-progress.c:112
 msgid "Adding files to the composition"
 msgstr "Жобаға файлдарды қосу"
+
+#: ../xfburn/xfburn-adding-progress.c:125
+msgid "Cancel"
+msgstr "Бас тарту"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
@@ -95,7 +99,7 @@ msgid "Blank Disc"
 msgstr "Дискті тазарту"
 
 #: ../xfburn/xfburn-blank-dialog.c:209
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:195
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:196
 #: ../xfburn/xfburn-burn-image-dialog.c:200
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
 #: ../xfburn/xfburn-copy-dvd-dialog.c:131
@@ -103,12 +107,12 @@ msgstr "Дискті тазарту"
 msgid "Burning device"
 msgstr "Жазу құрылғысы"
 
-#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:187
+#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:185
 msgid "Blank mode"
 msgstr "Тазарту режимі"
 
 #: ../xfburn/xfburn-blank-dialog.c:230
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:228
 #: ../xfburn/xfburn-burn-image-dialog.c:208
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
 #: ../xfburn/xfburn-copy-dvd-dialog.c:139
@@ -117,7 +121,7 @@ msgid "Options"
 msgstr "Опциялар"
 
 #: ../xfburn/xfburn-blank-dialog.c:234
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:232
 #: ../xfburn/xfburn-burn-image-dialog.c:212
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
 #: ../xfburn/xfburn-copy-dvd-dialog.c:143
@@ -153,51 +157,51 @@ msgid "Blanking disc..."
 msgstr "Дискті тазарту..."
 
 #: ../xfburn/xfburn-blank-dialog.c:441
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:512
-#: ../xfburn/xfburn-perform-burn.c:366
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:519
+#: ../xfburn/xfburn-perform-burn.c:485
 #, c-format
 msgid "Done"
 msgstr "Аяқталды"
 
-#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:649
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:492
+#: ../xfburn/xfburn-progress-dialog.c:654
 msgid "Failure"
 msgstr "Сәтсіз"
 
 #: ../xfburn/xfburn-blank-dialog.c:461
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:610
-#: ../xfburn/xfburn-burn-image-dialog.c:402
-#: ../xfburn/xfburn-burn-image-dialog.c:578
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:624
+#: ../xfburn/xfburn-burn-image-dialog.c:400
+#: ../xfburn/xfburn-burn-image-dialog.c:576
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
 msgid "Unable to grab the drive."
 msgstr "Құрылғыны басқару мүмкін емес."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:156
 msgid "Image"
 msgstr "Бейне"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
 msgid "Show volume name"
 msgstr "Бөлім атын көрсету"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
 msgid "Show a text entry for the name of the volume"
 msgstr "Бөлім аты үшін мәтін өрісін көрсету"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:184
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
 msgid "Burn Composition"
 msgstr "Жобаны жазу"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:207
 msgid "Composition name"
 msgstr "Жоба аты"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:211
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:212
 msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "<small>Жоба үшін бастапқы атын өзгертуді қалайсыз ба?</small>"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:237
 #: ../xfburn/xfburn-burn-image-dialog.c:217
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
 #: ../xfburn/xfburn-copy-dvd-dialog.c:148
@@ -205,50 +209,54 @@ msgstr "<small>Жоба үшін бастапқы атын өзгертуді қ
 msgid "_Dummy write"
 msgstr "Жазуды и_митациялау"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:240
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:241
 #: ../xfburn/xfburn-burn-image-dialog.c:221
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
 msgid "Burn_Free"
 msgstr "Burn_Free"
 
-#. create ISO ?
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
+msgid "Stream _Recording"
+msgstr "Ағынды жа_зу"
+
+#. create ISO ?
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:252
 #: ../xfburn/xfburn-copy-cd-dialog.c:157
 #: ../xfburn/xfburn-copy-dvd-dialog.c:157
 msgid "Only create _ISO"
 msgstr "Те_к ISO бейнесін жасау"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:289
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
 msgid "_Burn Composition"
 msgstr "Ж_обаны жазу"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "Мақсат ISO файлын жасау мүмкін емес: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:484
 msgid "Writing ISO..."
 msgstr "ISO-ны жазу..."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:501
 #, c-format
 msgid "An error occured while writing ISO: %s"
 msgstr "ISO жазғанда қате кетті: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:556
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:562
 msgid "An error occurred in the burn backend."
 msgstr "Жазу жүйесінде қате кетті."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
 msgstr "Жазу режиміне қазір қолдау жоқ."
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:667
 msgid "Could not create ISO source structure."
 msgstr "ISO көзінің құрамасын жасау мүмкін емес."
 
@@ -278,59 +286,59 @@ msgstr "_Сәтті аяқталғаннан кейін шығу"
 msgid "_Burn image"
 msgstr "_Бейнені жазу"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:285
+#: ../xfburn/xfburn-burn-image-dialog.c:283
 msgid "Burn mode is not currently implemented."
 msgstr "Жазу режиміне әзірше қолдау жоқ."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:336
-#: ../xfburn/xfburn-burn-image-dialog.c:365
+#: ../xfburn/xfburn-burn-image-dialog.c:334
+#: ../xfburn/xfburn-burn-image-dialog.c:363
 msgid "An error occurred in the burn backend"
 msgstr "Жазу жүйесінде қате кетті."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:349
+#: ../xfburn/xfburn-burn-image-dialog.c:347
 msgid "Unable to determine image size."
 msgstr "Бейне көлемін анықтау мүмкін емес."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:356
+#: ../xfburn/xfburn-burn-image-dialog.c:354
 msgid "Cannot open image."
 msgstr "Бейне файлын ашу мүмкін емес."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:393
+#: ../xfburn/xfburn-burn-image-dialog.c:391
 msgid "Burning image..."
 msgstr "Бейнені жазу..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:465
+#: ../xfburn/xfburn-burn-image-dialog.c:463
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Жазу үшін бейне файлын таңдаңыз</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:505
+#: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "Бұл жазу режимінде мультисессиялық дискіге мәліметті қоса алмайсыз (орнына TAO қолданыңыз)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:509
+#: ../xfburn/xfburn-burn-image-dialog.c:507
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "Жабылған диск анықталды. Оны тазарту керек не басқа, қосуға болатын диск керек"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "No disc detected in drive"
 msgstr "Құрылғыда диск табылмады"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:513
+#: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "Cannot recognize state of drive and disc"
 msgstr "Құрылғы мен дисктің қалып-күйін анықтау мүмкін емес"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:525
+#: ../xfburn/xfburn-burn-image-dialog.c:523
 msgid "The selected image does not fit on the inserted disc"
 msgstr "Таңдалған бейне салынған дискіге сыймайды"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:529
+#: ../xfburn/xfburn-burn-image-dialog.c:527
 msgid "Failed to get image size"
 msgstr "Бейне көлемін анықтау мүмкін емес"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:558
+#: ../xfburn/xfburn-burn-image-dialog.c:556
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
@@ -391,114 +399,121 @@ msgstr "DVD кө_шіру"
 msgid "Create ISO from CD"
 msgstr "CD-дан ISO бейнесін жасау"
 
-#: ../xfburn/xfburn-data-composition.c:189
-#: ../xfburn/xfburn-data-composition.c:955
+#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:957
 #: ../xfburn/xfburn-audio-composition.c:206
 #: ../xfburn/xfburn-audio-composition.c:979
 msgid "Add"
 msgstr "Қосу"
 
-#: ../xfburn/xfburn-data-composition.c:189
+#: ../xfburn/xfburn-data-composition.c:191
 #: ../xfburn/xfburn-audio-composition.c:206
 msgid "Add the selected file(s) to the composition"
 msgstr "Ерекшеленген файл(дар)ды жобаға қосу"
 
-#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:193
 msgid "Create directory"
 msgstr "Буманы жасау"
 
-#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:193
 msgid "Add a new directory to the composition"
 msgstr "Жобаға жаңа буманы қосу"
 
-#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-data-composition.c:195
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove"
 msgstr "Өшіру"
 
-#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-data-composition.c:195
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove the selected file(s) from the composition"
 msgstr "Жобадан ерекшеленген файл(дар)ды өшіру"
 
-#: ../xfburn/xfburn-data-composition.c:195
+#: ../xfburn/xfburn-data-composition.c:197
 #: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear"
 msgstr "Тазарту"
 
-#: ../xfburn/xfburn-data-composition.c:195
+#: ../xfburn/xfburn-data-composition.c:197
 #: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear the content of the composition"
 msgstr "Жобаны тазарту"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
 #. existing session"),},
-#: ../xfburn/xfburn-data-composition.c:198
+#: ../xfburn/xfburn-data-composition.c:200
 msgid "Rename"
 msgstr "Атын ауыстыру"
 
-#: ../xfburn/xfburn-data-composition.c:198
+#: ../xfburn/xfburn-data-composition.c:200
 msgid "Rename the selected file"
 msgstr "Ерекшеленген файлдың атын ауыстыру"
 
-#: ../xfburn/xfburn-data-composition.c:352
+#: ../xfburn/xfburn-data-composition.c:354
 msgid "Volume name :"
 msgstr "Бөлім аты :"
 
-#: ../xfburn/xfburn-data-composition.c:386
+#: ../xfburn/xfburn-data-composition.c:388
 msgid "Contents"
 msgstr "Құрамасы"
 
-#: ../xfburn/xfburn-data-composition.c:401
+#: ../xfburn/xfburn-data-composition.c:403
 #: ../xfburn/xfburn-directory-browser.c:140
 msgid "Size"
 msgstr "Өлшемі"
 
-#: ../xfburn/xfburn-data-composition.c:404
+#: ../xfburn/xfburn-data-composition.c:406
 msgid "Local Path"
 msgstr "Жергілікті жолы"
 
-#: ../xfburn/xfburn-data-composition.c:679
+#: ../xfburn/xfburn-data-composition.c:681
 msgid "You must give a name to the file."
 msgstr "Файлға атау беруіңіз керек."
 
-#: ../xfburn/xfburn-data-composition.c:688
-#: ../xfburn/xfburn-data-composition.c:1198
+#: ../xfburn/xfburn-data-composition.c:690
+#: ../xfburn/xfburn-data-composition.c:1200
 #: ../xfburn/xfburn-audio-composition.c:1176
 msgid "A file with the same name is already present in the composition."
 msgstr "Аттас файл жоба ішінде бар болып тұр."
 
-#: ../xfburn/xfburn-data-composition.c:796
-#: ../xfburn/xfburn-data-composition.c:797
+#: ../xfburn/xfburn-data-composition.c:798
 #: ../xfburn/xfburn-data-composition.c:799
+#: ../xfburn/xfburn-data-composition.c:801
 msgid "New directory"
 msgstr "Жаңа бума"
 
-#: ../xfburn/xfburn-data-composition.c:941
+#: ../xfburn/xfburn-data-composition.c:943
 #: ../xfburn/xfburn-audio-composition.c:976
 msgid "File(s) to add to composition"
 msgstr "Жобаға қосылатын файл(дар)"
 
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:1041
+#: ../xfburn/xfburn-data-composition.c:1043
 #, c-format
 msgid "Data %s~%d"
 msgstr "Мәліметтер %s~%d"
 
-#: ../xfburn/xfburn-data-composition.c:1277
+#: ../xfburn/xfburn-data-composition.c:1279
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr "%s жобаға қосуға болмайды, өйткені оның өлшемі iso9660 үшін рұқсат етілген максималды өлшемнен артық."
 
-#: ../xfburn/xfburn-data-composition.c:1362
+#: ../xfburn/xfburn-data-composition.c:1286
+#, c-format
+msgid ""
+"%s is larger than what iso9660 level 2 allows. This can be a problem for old"
+" systems or software."
+msgstr "%s iso9660 деңгей 2 ұсынатын шамасынан артық болып тұр. Бұл ескі жүйелер не БҚ үшін мәселе туғызуы мүмкін.."
+
+#: ../xfburn/xfburn-data-composition.c:1369
 #: ../xfburn/xfburn-audio-composition.c:1351
 msgid "Adding home directory"
 msgstr "Үй бумасын қосу"
 
-#: ../xfburn/xfburn-data-composition.c:1363
+#: ../xfburn/xfburn-data-composition.c:1370
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
@@ -506,68 +521,88 @@ msgid ""
 "Are you sure you want to proceed?"
 msgstr "Сіз үй бумаңызды жобаға қосуды таңдадыңыз. Бұл әрекет ұзақ уақытты алуы мүмкін, немесе мәліметтер дискке сыймайтын жағдай болуы мүмкін.\n\nЖалғастыруды қалайсыз ба?"
 
-#: ../xfburn/xfburn-data-composition.c:1530
+#: ../xfburn/xfburn-data-composition.c:1537
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr "\"%s\" атауы бар файл бумада бар болып тұр, файл жобаға қосылмады."
 
+#: ../xfburn/xfburn-data-composition.c:1935
+#, c-format
+msgid "%s: null pointer"
+msgstr "%s: нөлдік сілтеме"
+
+#: ../xfburn/xfburn-data-composition.c:1937
+#, c-format
+msgid "%s: out of memory"
+msgstr "%s: жады жеткіліксіз"
+
+#: ../xfburn/xfburn-data-composition.c:1939
+#, c-format
+msgid "%s: node name not unique"
+msgstr "%s: торап аты бірегей емес"
+
+#: ../xfburn/xfburn-data-composition.c:1941
+#, c-format
+msgid "%s: %s (code %X)"
+msgstr "%s: %s (коды %X)"
+
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1945
+#: ../xfburn/xfburn-data-composition.c:1961
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "'%s' үшін '%s' қайталанатын файл аты"
 
-#: ../xfburn/xfburn-device-box.c:171 ../xfburn/xfburn-device-box.c:172
+#: ../xfburn/xfburn-data-composition.c:2026
+msgid "Error(s) occured while adding files"
+msgstr "Файлдарды қосқан кезде қате(лер) орын алды"
+
+#: ../xfburn/xfburn-device-box.c:169 ../xfburn/xfburn-device-box.c:170
 msgid "Show writers only"
 msgstr "Тек жазатындарын көрсету"
 
-#: ../xfburn/xfburn-device-box.c:175
+#: ../xfburn/xfburn-device-box.c:173
 msgid "Show speed selection"
 msgstr "Жылдамдық таңдауды көрсету"
 
-#: ../xfburn/xfburn-device-box.c:176
+#: ../xfburn/xfburn-device-box.c:174
 msgid "Show speed selection combo"
 msgstr "Жылдамдықты таңдау тізімін көрсету"
 
-#: ../xfburn/xfburn-device-box.c:179
+#: ../xfburn/xfburn-device-box.c:177
 msgid "Show mode selection"
 msgstr "Режимді таңдауды көрсету"
 
-#: ../xfburn/xfburn-device-box.c:180
+#: ../xfburn/xfburn-device-box.c:178
 msgid "Show mode selection combo"
 msgstr "Режимді таңдау тізімін көрсету"
 
-#: ../xfburn/xfburn-device-box.c:183
+#: ../xfburn/xfburn-device-box.c:181
 msgid "Is it a valid combination"
 msgstr "Бұл дұрыс комбинация ма"
 
-#: ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-device-box.c:182
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "Құрылғы мен диск жобаны жазу үшін келе ме?"
 
-#: ../xfburn/xfburn-device-box.c:188
+#: ../xfburn/xfburn-device-box.c:186
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "Тазарту режимі қалыптыдан басқаша хабарламаларды көрсетеді"
 
-#: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
-msgid "Accept only CDs as valid discs"
-msgstr "Дұрыс дисктер ретінде тек CD-ді қабылдау"
-
-#: ../xfburn/xfburn-device-box.c:245
+#: ../xfburn/xfburn-device-box.c:239
 msgid "_Speed:"
 msgstr "Ж_ылдамдық:"
 
-#: ../xfburn/xfburn-device-box.c:268
+#: ../xfburn/xfburn-device-box.c:262
 msgid "Write _mode:"
 msgstr "Жазу режи_мі:"
 
-#: ../xfburn/xfburn-device-box.c:387
+#: ../xfburn/xfburn-device-box.c:375
 msgid "Empty speed list"
 msgstr "Жылдамдық тізімін тазарту"
 
-#: ../xfburn/xfburn-device-box.c:396
+#: ../xfburn/xfburn-device-box.c:384
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -578,59 +613,59 @@ msgid ""
 "<i>Thank you!</i>"
 msgstr "<b>Құрылғы үшін жылдамдықтар тізімін алу мүмкін емес.</b>\n\nОптикалық құрылғылар үшін бұл белгілі ақаулық. Оны түзетуге көңіл білдірсеңіз, libburn жинағына қараңыз.\n\nЖазуды жалғастыруға болады, мәселелер болса, хабарласыңыз.\n\n<i>Рахмет!</i>"
 
-#: ../xfburn/xfburn-device-box.c:407
+#: ../xfburn/xfburn-device-box.c:395
 msgid "Continue to _show this notice"
 msgstr "Осы е_скертуді көруді жалғастыру"
 
-#: ../xfburn/xfburn-device-box.c:452
+#: ../xfburn/xfburn-device-box.c:442
 msgid "default"
 msgstr "бастапқысы"
 
-#: ../xfburn/xfburn-device-box.c:488
+#: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Максимал"
 
-#: ../xfburn/xfburn-device-box.c:590
+#: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
 msgstr "Құрылғы салынған дискіге жаза алмайды"
 
-#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:645
+#: ../xfburn/xfburn-device-box.c:588 ../xfburn/xfburn-device-box.c:634
 msgid "Drive is empty"
 msgstr "Құрылғы бос"
 
-#: ../xfburn/xfburn-device-box.c:602
+#: ../xfburn/xfburn-device-box.c:591
 msgid "Sorry, multisession is not yet supported"
 msgstr "Кешіріңіз, мультисессияға әлі қолдау жоқ"
 
-#: ../xfburn/xfburn-device-box.c:605
+#: ../xfburn/xfburn-device-box.c:594
 msgid "Inserted disc is full"
 msgstr "Салынған диск толып тұр"
 
-#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:651
+#: ../xfburn/xfburn-device-box.c:597 ../xfburn/xfburn-device-box.c:640
 msgid "Inserted disc is unsuitable"
 msgstr "Салынған диск жарамайды"
 
-#: ../xfburn/xfburn-device-box.c:611 ../xfburn/xfburn-device-box.c:654
+#: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Cannot access drive (it might be in use)"
 msgstr "Құрылғыға қатынас құру қатесі (қолдануда болуы мүмкін)"
 
-#: ../xfburn/xfburn-device-box.c:616 ../xfburn/xfburn-device-box.c:657
+#: ../xfburn/xfburn-device-box.c:605 ../xfburn/xfburn-device-box.c:646
 msgid "Error determining disc"
 msgstr "Дискті анықтау қатесі"
 
-#: ../xfburn/xfburn-device-box.c:637
+#: ../xfburn/xfburn-device-box.c:626
 msgid "Write-once disc, no blanking possible"
 msgstr "Тек жазу үшін диск, тазарту мүмкін емес"
 
-#: ../xfburn/xfburn-device-box.c:640
+#: ../xfburn/xfburn-device-box.c:629
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW тазарту керек етпейді"
 
-#: ../xfburn/xfburn-device-box.c:648
+#: ../xfburn/xfburn-device-box.c:637
 msgid "Inserted disc is already blank"
 msgstr "Салынған диск бос болып тұр"
 
-#: ../xfburn/xfburn-device-box.c:684
+#: ../xfburn/xfburn-device-box.c:673
 msgid "Auto"
 msgstr "Авто"
 
@@ -681,22 +716,22 @@ msgstr "%s-ң үй бумасы"
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main.c:212
+#: ../xfburn/xfburn-main.c:211
 #, c-format
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
 msgstr "%s: %s\nКомандалық жолдың опцияларын көру үшін, %s --help енгізіңіз.\n"
 
-#: ../xfburn/xfburn-main.c:220
+#: ../xfburn/xfburn-main.c:219
 msgid "Unable to initialize the burning backend."
 msgstr "Жазу жүйесін іске қосу мүмкін емес."
 
-#: ../xfburn/xfburn-main.c:295
+#: ../xfburn/xfburn-main.c:294
 msgid "No burners are currently available"
 msgstr "Жазатын құрылғылар табылмады"
 
-#: ../xfburn/xfburn-main.c:297
+#: ../xfburn/xfburn-main.c:296
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
@@ -705,14 +740,14 @@ msgid ""
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr "Мүмкін, диск(тер) қолдануда, және оларға рұқсат жоқ.\n\nОларды тіркеуден босатып, қолданбаны қайта қосыңыз.\n\nҚұрылғыда диск болмаса, ағымдағы пайдаланушының құрылғыға құқығы бар екеніне көз жеткізіңіз."
 
-#: ../xfburn/xfburn-main.c:331
+#: ../xfburn/xfburn-main.c:330
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr "%s транскодерін іске қосу қатесі: %s\n\t(бастапқы түріне оралу)"
 
-#: ../xfburn/xfburn-main.c:375
+#: ../xfburn/xfburn-main.c:374
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "'%s' бейне файлы жоқ болып тұр."
@@ -855,235 +890,251 @@ msgstr "Жабу батырмасын көрсету"
 msgid "Determine whether the close button is visible"
 msgstr "Жабу батырмасының көрінуін басқарады"
 
-#: ../xfburn/xfburn-perform-burn.c:158
+#: ../xfburn/xfburn-perform-burn.c:103 ../xfburn/xfburn-perform-burn.c:448
+msgid "Formatting..."
+msgstr "Пішімдеу..."
+
+#: ../xfburn/xfburn-perform-burn.c:151
+msgid "Formatting failed."
+msgstr "Пішімдеу сәтсіз."
+
+#: ../xfburn/xfburn-perform-burn.c:273
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "Мультисессиялық дискіге осы режимде мәліметті қосуға болмайды (орнына TAO қолданыңыз)."
 
-#: ../xfburn/xfburn-perform-burn.c:162
+#: ../xfburn/xfburn-perform-burn.c:277
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "Мәліметтері бар жабылған диск анықталды, бос не жабылмаған керек."
 
-#: ../xfburn/xfburn-perform-burn.c:164
+#: ../xfburn/xfburn-perform-burn.c:279
 msgid "No disc detected in drive."
 msgstr "Құрылғыда диск табылмады."
 
-#: ../xfburn/xfburn-perform-burn.c:167
+#: ../xfburn/xfburn-perform-burn.c:282
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "Құрылғы мен дисктің қалып-күйін анықтау мүмкін емес."
 
-#: ../xfburn/xfburn-perform-burn.c:180
+#: ../xfburn/xfburn-perform-burn.c:299
 msgid "There is not enough space available on the inserted disc."
 msgstr "Салынған дискіде орын жеткіліксіз."
 
-#: ../xfburn/xfburn-perform-burn.c:225
+#: ../xfburn/xfburn-perform-burn.c:344
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Трек жазылуда %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
+#: ../xfburn/xfburn-perform-burn.c:348 ../xfburn/xfburn-perform-burn.c:413
 msgid "Burning composition..."
 msgstr "Жобаны жазу..."
 
-#: ../xfburn/xfburn-perform-burn.c:263
+#: ../xfburn/xfburn-perform-burn.c:382
 msgid "standby"
 msgstr "күту"
 
-#: ../xfburn/xfburn-perform-burn.c:271
+#: ../xfburn/xfburn-perform-burn.c:390
 msgid "ending"
 msgstr "аяқтау"
 
-#: ../xfburn/xfburn-perform-burn.c:274
+#: ../xfburn/xfburn-perform-burn.c:393
 msgid "failing"
 msgstr "қате"
 
-#: ../xfburn/xfburn-perform-burn.c:277
+#: ../xfburn/xfburn-perform-burn.c:396
 msgid "unused"
 msgstr "қолданылмаған"
 
-#: ../xfburn/xfburn-perform-burn.c:280
+#: ../xfburn/xfburn-perform-burn.c:399
 msgid "abandoned"
 msgstr "бас тартылды"
 
-#: ../xfburn/xfburn-perform-burn.c:283
+#: ../xfburn/xfburn-perform-burn.c:402
 msgid "ended"
 msgstr "аяқталған"
 
-#: ../xfburn/xfburn-perform-burn.c:286
+#: ../xfburn/xfburn-perform-burn.c:405
 msgid "aborted"
 msgstr "тоқтатылған"
 
-#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:216
-#: ../xfburn/xfburn-progress-dialog.c:233
-#: ../xfburn/xfburn-progress-dialog.c:243
-#: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:476
-#: ../xfburn/xfburn-progress-dialog.c:500
-#: ../xfburn/xfburn-progress-dialog.c:524
+#: ../xfburn/xfburn-perform-burn.c:408
 msgid "no info"
 msgstr "ақпараты жоқ"
 
-#: ../xfburn/xfburn-perform-burn.c:299
+#: ../xfburn/xfburn-perform-burn.c:418
 msgid "Writing Lead-In..."
 msgstr "Lead-In жазу..."
 
-#: ../xfburn/xfburn-perform-burn.c:305
+#: ../xfburn/xfburn-perform-burn.c:424
 msgid "Writing Lead-Out..."
 msgstr "Lead-Out жазу..."
 
-#: ../xfburn/xfburn-perform-burn.c:311
+#: ../xfburn/xfburn-perform-burn.c:430
 msgid "Writing pregap..."
 msgstr "Дискті жазу..."
 
-#: ../xfburn/xfburn-perform-burn.c:317
+#: ../xfburn/xfburn-perform-burn.c:436
 msgid "Closing track..."
 msgstr "Тректі жабу..."
 
-#: ../xfburn/xfburn-perform-burn.c:323
+#: ../xfburn/xfburn-perform-burn.c:442
 msgid "Closing session..."
 msgstr "Сессияны жабу..."
 
-#: ../xfburn/xfburn-perform-burn.c:329
-msgid "Formatting..."
-msgstr "Пішімдеу..."
-
-#: ../xfburn/xfburn-perform-burn.c:342
+#: ../xfburn/xfburn-perform-burn.c:461
 msgid "see console"
 msgstr "консолін қараңыз"
 
-#: ../xfburn/xfburn-perform-burn.c:370
+#: ../xfburn/xfburn-perform-burn.c:489
 msgid "User Aborted"
 msgstr "Пайдаланушы тоқтатқан"
 
-#: ../xfburn/xfburn-preferences-dialog.c:143
+#: ../xfburn/xfburn-preferences-dialog.c:144
 msgid "Preferences"
 msgstr "Баптаулар"
 
-#: ../xfburn/xfburn-preferences-dialog.c:144
+#: ../xfburn/xfburn-preferences-dialog.c:145
 msgid "Tune how Xfburn behaves"
 msgstr "Xfburn әрекеттерін баптау"
 
-#: ../xfburn/xfburn-preferences-dialog.c:190
-#: ../xfburn/xfburn-preferences-dialog.c:194
+#: ../xfburn/xfburn-preferences-dialog.c:191
+#: ../xfburn/xfburn-preferences-dialog.c:195
 msgid "Temporary directory"
 msgstr "Уақытша бума"
 
-#: ../xfburn/xfburn-preferences-dialog.c:198
+#: ../xfburn/xfburn-preferences-dialog.c:199
 msgid "_Clean temporary directory on exit"
 msgstr "Шыққан кезде уақыт_ша буманы тазарту"
 
-#: ../xfburn/xfburn-preferences-dialog.c:205
+#: ../xfburn/xfburn-preferences-dialog.c:206
 msgid "File browser"
 msgstr "Файлдарды шолу"
 
-#: ../xfburn/xfburn-preferences-dialog.c:209
+#: ../xfburn/xfburn-preferences-dialog.c:210
 msgid "Show _hidden files"
 msgstr "Жас_ырын файлдарды көрсету"
 
-#: ../xfburn/xfburn-preferences-dialog.c:214
+#: ../xfburn/xfburn-preferences-dialog.c:215
 msgid "Show human_readable filesizes"
 msgstr "Адамға _түсінікті файлдар өлшемдерін көрсету"
 
-#: ../xfburn/xfburn-preferences-dialog.c:225
+#: ../xfburn/xfburn-preferences-dialog.c:226
 msgid "General"
 msgstr "Жалпы"
 
-#: ../xfburn/xfburn-preferences-dialog.c:236
-#: ../xfburn/xfburn-preferences-dialog.c:313
+#: ../xfburn/xfburn-preferences-dialog.c:237
+#: ../xfburn/xfburn-preferences-dialog.c:318
 msgid "Devices"
 msgstr "Құрылғылар"
 
-#: ../xfburn/xfburn-preferences-dialog.c:245
+#: ../xfburn/xfburn-preferences-dialog.c:246
 msgid "Detected devices"
 msgstr "Табылған құрылғылар"
 
-#: ../xfburn/xfburn-preferences-dialog.c:266
+#: ../xfburn/xfburn-preferences-dialog.c:268
 msgid "Name"
 msgstr "Аты"
 
-#: ../xfburn/xfburn-preferences-dialog.c:279
+#: ../xfburn/xfburn-preferences-dialog.c:281
 msgid "Node"
 msgstr "Құрылғысы"
 
-#: ../xfburn/xfburn-preferences-dialog.c:281
+#: ../xfburn/xfburn-preferences-dialog.c:283
 msgid "Write CD-R"
 msgstr "CD-R жазу"
 
-#: ../xfburn/xfburn-preferences-dialog.c:283
+#: ../xfburn/xfburn-preferences-dialog.c:285
 msgid "Write CD-RW"
 msgstr "CD-RW жазу"
 
-#: ../xfburn/xfburn-preferences-dialog.c:286
+#: ../xfburn/xfburn-preferences-dialog.c:288
 msgid "Write DVD-R"
 msgstr "DVD-R жазу"
 
-#: ../xfburn/xfburn-preferences-dialog.c:289
+#: ../xfburn/xfburn-preferences-dialog.c:291
 msgid "Write DVD-RAM"
 msgstr "DVD-RAM жазу"
 
-#: ../xfburn/xfburn-preferences-dialog.c:297
+#: ../xfburn/xfburn-preferences-dialog.c:294
+msgid "Write Blu-ray"
+msgstr "Blu-ray жазу"
+
+#: ../xfburn/xfburn-preferences-dialog.c:302
 msgid "Sc_an for devices"
 msgstr "Құрылғ_ыларды іздеу"
 
-#: ../xfburn/xfburn-preferences-dialog.c:324
+#: ../xfburn/xfburn-preferences-dialog.c:329
 msgid "Show warning on _empty speed list"
 msgstr "Жылдамдықтар тізі_мі бос болса, ескерту"
 
-#: ../xfburn/xfburn-preferences-dialog.c:333
+#: ../xfburn/xfburn-preferences-dialog.c:338
 msgid "FIFO buffer size (in kb)"
 msgstr "FIFO буфер өлшемі (Кб есебінде)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:471
+#: ../xfburn/xfburn-preferences-dialog.c:477
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "Бұл баптауды өзгертуді іске асыру үшін бағдарламаны қайта қосу керек."
 
-#: ../xfburn/xfburn-progress-dialog.c:198
+#: ../xfburn/xfburn-progress-dialog.c:199
 msgid "Initializing..."
 msgstr "Іске қосылу..."
 
-#: ../xfburn/xfburn-progress-dialog.c:213
+#: ../xfburn/xfburn-progress-dialog.c:214
 msgid "Estimated writing speed:"
 msgstr "Орташа жазу жылдамдығы:"
 
-#: ../xfburn/xfburn-progress-dialog.c:227
+#: ../xfburn/xfburn-progress-dialog.c:217
+#: ../xfburn/xfburn-progress-dialog.c:234
+#: ../xfburn/xfburn-progress-dialog.c:244
+#: ../xfburn/xfburn-progress-dialog.c:333
+#: ../xfburn/xfburn-progress-dialog.c:477
+#: ../xfburn/xfburn-progress-dialog.c:501
+#: ../xfburn/xfburn-progress-dialog.c:525
+msgid "unknown"
+msgstr "белгісіз"
+
+#: ../xfburn/xfburn-progress-dialog.c:228
 msgid "FIFO buffer:"
 msgstr "FIFO буфері:"
 
-#: ../xfburn/xfburn-progress-dialog.c:237
+#: ../xfburn/xfburn-progress-dialog.c:238
 msgid "Device buffer:"
 msgstr "Құрылғы буфері:"
 
-#: ../xfburn/xfburn-progress-dialog.c:374
+#: ../xfburn/xfburn-progress-dialog.c:375
 msgid "Are you sure you want to abort?"
 msgstr "Әрекетті үзуді шынымен қалайсыз ба?"
 
-#: ../xfburn/xfburn-progress-dialog.c:502
+#: ../xfburn/xfburn-progress-dialog.c:503
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "Мин. толуы %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:562
 msgid "Aborted"
 msgstr "Үзілді"
 
-#: ../xfburn/xfburn-progress-dialog.c:570
+#: ../xfburn/xfburn-progress-dialog.c:565
+msgid "Formatted."
+msgstr "Пішімделген."
+
+#: ../xfburn/xfburn-progress-dialog.c:574
 msgid "Failed"
 msgstr "Сәтсіз аяқталды"
 
-#: ../xfburn/xfburn-progress-dialog.c:573
+#: ../xfburn/xfburn-progress-dialog.c:577
 msgid "Cancelled"
 msgstr "Тоқтатылған"
 
-#: ../xfburn/xfburn-progress-dialog.c:576
+#: ../xfburn/xfburn-progress-dialog.c:580
 msgid "Completed"
 msgstr "Аяқталған"
 
-#: ../xfburn/xfburn-progress-dialog.c:613
+#: ../xfburn/xfburn-progress-dialog.c:618
 msgid "Aborting..."
 msgstr "Тоқтату..."
 
-#: ../xfburn/xfburn-utils.c:129
+#: ../xfburn/xfburn-utils.c:130
 msgid "Select command"
 msgstr "Команданы таңдаңыз"
 
@@ -1225,7 +1276,7 @@ msgstr "%s ашу мүмкін емес."
 msgid "Could not open %s: %s"
 msgstr "%s ашу мүмкін емес: %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:631
+#: ../xfburn/xfburn-transcoder-gst.c:635
 #, c-format
 msgid ""
 "%s is missing.\n"
@@ -1238,11 +1289,11 @@ msgstr "%s жоқ.\n\nОсы файлды өндеу үшін сізде дек�
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:720
+#: ../xfburn/xfburn-transcoder-gst.c:724
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:726
+#: ../xfburn/xfburn-transcoder-gst.c:730
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1254,12 +1305,12 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "Gstreamer транскодері gstreamer жинағын\nаудио жобаларды құру үшін қолданады.\n\nБарлық плагиндер орнатылған болса, аудио\nфайлдардың барлық түріне қолдау болады.\nАудио файл өнделмесе, сізде gstreamer-дің\n'good','bad', және 'ugly' плагиндер дестелері\nорнатылғанына көз жеткізіңіз."
 
-#: ../xfburn/xfburn-transcoder-gst.c:791
+#: ../xfburn/xfburn-transcoder-gst.c:795
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr "Gstreamer-ге файл ұнамады (анықтау уақыты бітті)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:800
+#: ../xfburn/xfburn-transcoder-gst.c:805
 #, c-format
 msgid ""
 "%s\n"
@@ -1269,12 +1320,12 @@ msgid ""
 "%s"
 msgstr "%s\n\nаудио файлы емес:\n\n%s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:915
+#: ../xfburn/xfburn-transcoder-gst.c:920
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "Gstreamer транскодалауды бастамады (уақыты бітті)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:950
+#: ../xfburn/xfburn-transcoder-gst.c:955
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "Транскодтау кезінде өлеңдерді алмастыру қатесі"
@@ -1285,67 +1336,71 @@ msgstr "Транскодтау кезінде өлеңдерді алмасты�
 msgid "not implemented"
 msgstr "іске асырылмаған"
 
-#: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
+#: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
 msgid "Display name"
 msgstr "Атын көрсету"
 
-#: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
+#: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
 msgid "Device address"
 msgstr "Құрылғы адресі"
 
-#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
+#: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
 msgid "Burn speeds supported by the device"
 msgstr "Құрылғы қолдайтын жазу жылдамдықтары"
 
-#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
+#: ../xfburn/xfburn-device.c:259 ../xfburn/xfburn-device.c:260
 msgid "Disc status"
 msgstr "Диск қалйп-күйі"
 
-#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
+#: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
 msgid "Profile no. as reported by libburn"
 msgstr "libburn қайтарған "
 
-#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
+#: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
 msgid "Profile name as reported by libburn"
 msgstr "libburn қайтарған профайл аты"
 
-#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
+#: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
 msgid "Is the disc erasable"
 msgstr "Өшірілетін диск пе"
 
-#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
+#: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
 msgid "Can burn CDR"
 msgstr "CDR жазады"
 
-#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
+#: ../xfburn/xfburn-device.c:274 ../xfburn/xfburn-device.c:275
 msgid "Can burn CDRW"
 msgstr "CDRW жазады"
 
-#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
+#: ../xfburn/xfburn-device.c:277 ../xfburn/xfburn-device.c:278
 msgid "Can burn DVDR"
 msgstr "DVDR жазады"
 
-#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
+#: ../xfburn/xfburn-device.c:280 ../xfburn/xfburn-device.c:281
 msgid "Can burn DVDPLUSR"
 msgstr "DVDPLUSR жазады"
 
-#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
+#: ../xfburn/xfburn-device.c:283 ../xfburn/xfburn-device.c:284
 msgid "Can burn DVDRAM"
 msgstr "DVDRAM жазады"
 
-#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
+#: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
+msgid "Can burn Blu-ray"
+msgstr "Blu-ray жаза алады"
+
+#: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
 msgid "libburn TAO block types"
 msgstr "libburn TAO block types"
 
-#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
+#: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
 msgid "libburn SAO block types"
 msgstr "libburn SAO block types"
 
-#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
+#: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
 msgid "libburn RAW block types"
 msgstr "libburn RAW block types"
 
-#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
+#: ../xfburn/xfburn-device.c:298 ../xfburn/xfburn-device.c:299
 msgid "libburn PACKET block types"
 msgstr "libburn PACKET block types"
 
