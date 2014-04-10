@@ -584,6 +584,7 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
   params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));
   params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
   params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
+  params->stream_recording = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_stream_recording));
   
   if (!xfburn_device_grab (device, &drive_info)) {
     burn_image_dialog_error (dialog, _("Unable to grab the drive."));
