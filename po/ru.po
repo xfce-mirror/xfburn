@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-05 12:31+0200\n"
-"PO-Revision-Date: 2014-04-20 00:43+0000\n"
+"PO-Revision-Date: 2014-04-20 09:34+0000\n"
 "Last-Translator: asvl <alyoshin.s@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/xfce/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -521,14 +521,14 @@ msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr "Вы собираетесь добавить в проект домашний каталог. Это может занять много времени, а размер папки превысить размеры диска. \n\nВы уверены, что хотите продолжить?"
+msgstr "Вы собираетесь добавить в проект домашний каталог. Это может занять много времени, а размер каталога превысить размеры диска. \n\nВы уверены, что хотите продолжить?"
 
 #: ../xfburn/xfburn-data-composition.c:1537
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr "В этом каталоге уже существует файл с именем \"%s\", файл не был добавлен"
+msgstr "Файл не был добавлен, т.к. в этом каталоге уже существует файл с именем «%s»"
 
 #: ../xfburn/xfburn-data-composition.c:1935
 #, c-format
@@ -554,7 +554,7 @@ msgstr "%s: %s (код %X)"
 #: ../xfburn/xfburn-data-composition.c:1961
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
-msgstr "Имя \"%s\" для файла \"%s\" уже существует"
+msgstr "Имя «%s» для файла «%s» уже существует"
 
 #: ../xfburn/xfburn-data-composition.c:2026
 msgid "Error(s) occured while adding files"
@@ -673,7 +673,7 @@ msgstr "Автоматически"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
-msgstr "Количество устройст прожига  в системе"
+msgstr "Количество записываемых приводов в системе"
 
 #: ../xfburn/xfburn-device-list.c:209
 msgid "Number of drives in the system"
@@ -681,7 +681,7 @@ msgstr "Количество приводов в системе"
 
 #: ../xfburn/xfburn-device-list.c:210
 msgid "Number of drives in the system (readers and writers)"
-msgstr "Количество приводов в системе (чтение и запись)"
+msgstr "Количество приводов в системе (для чтения и записи)"
 
 #: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
 msgid "List of devices"
@@ -694,7 +694,7 @@ msgstr "Выбранное устройство"
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:54
 msgid "Folder"
-msgstr "Папка"
+msgstr "Каталог"
 
 #: ../xfburn/xfburn-directory-browser.c:127
 msgid "File"
@@ -712,7 +712,7 @@ msgstr "Файловая система"
 #: ../xfburn/xfburn-fs-browser.c:262
 #, c-format
 msgid "%s's home"
-msgstr "Домашняя папка %s"
+msgstr "Домашний каталог %s"
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
@@ -740,7 +740,7 @@ msgid ""
 "Please unmount and restart the application.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr "Возможно диск используется и недоступен. \n\nПожалуйста отмонтируйте диск и перезапустите приложение. \n\nЕсли в приводе нет диска, проверьте есть ли у вас права доступа на чтение и запись к приводу."
+msgstr "Возможно диск используется и поэтому недоступен. \n\nПожалуйста отмонтируйте диск и перезапустите приложение. \n\nЕсли в приводе нет диска, проверьте есть ли у вас права доступа на чтение и запись для привода."
 
 #: ../xfburn/xfburn-main.c:330
 #, c-format
@@ -752,7 +752,7 @@ msgstr "Не удалось запустить перекодировщик %s: 
 #: ../xfburn/xfburn-main.c:374
 #, c-format
 msgid "Image file '%s' does not exist."
-msgstr "Отсутсвует файл образа '%s'."
+msgstr "Отсутствует файл образа «%s»."
 
 #: ../xfburn/xfburn-main-window.c:100
 msgid "_File"
@@ -874,7 +874,7 @@ msgstr "Редактор панели инструментов"
 
 #: ../xfburn/xfburn-main-window.c:538
 msgid "Another cd burning GUI"
-msgstr "Ещё один инструмент для записи CD"
+msgstr "Ещё одна графическая оболочка для записи CD"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "Label"
@@ -912,15 +912,15 @@ msgstr "Обнаружен закрытый диск с данными. Треб
 
 #: ../xfburn/xfburn-perform-burn.c:279
 msgid "No disc detected in drive."
-msgstr "В приводе не обнаружено диска"
+msgstr "В приводе не обнаружено диска."
 
 #: ../xfburn/xfburn-perform-burn.c:282
 msgid "Cannot recognize the state of the drive and disc."
-msgstr "Невозможно определить состояние диска и привода"
+msgstr "Невозможно определить состояние диска и привода."
 
 #: ../xfburn/xfburn-perform-burn.c:299
 msgid "There is not enough space available on the inserted disc."
-msgstr "На вставленном диске недостаточно свободного места "
+msgstr "На вставленном диске недостаточно свободного места ."
 
 #: ../xfburn/xfburn-perform-burn.c:344
 #, c-format
@@ -997,16 +997,16 @@ msgstr "Параметры"
 
 #: ../xfburn/xfburn-preferences-dialog.c:145
 msgid "Tune how Xfburn behaves"
-msgstr "Настройка того, как будет себя вести Xfburn"
+msgstr "Настройка поведения Xfburn"
 
 #: ../xfburn/xfburn-preferences-dialog.c:191
 #: ../xfburn/xfburn-preferences-dialog.c:195
 msgid "Temporary directory"
-msgstr "Временная папка"
+msgstr "Временный каталог"
 
 #: ../xfburn/xfburn-preferences-dialog.c:199
 msgid "_Clean temporary directory on exit"
-msgstr "_Очищать временную папку при выходе"
+msgstr "_Очищать временный каталог при выходе"
 
 #: ../xfburn/xfburn-preferences-dialog.c:206
 msgid "File browser"
@@ -1364,7 +1364,7 @@ msgstr "Название профиля по версии libburn"
 
 #: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
 msgid "Is the disc erasable"
-msgstr "Можно ли стереть данный диск"
+msgstr "Можно ли стереть диск"
 
 #: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
 msgid "Can burn CDR"
