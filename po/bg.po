@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 00:31+0100\n"
-"PO-Revision-Date: 2014-03-23 07:48+0000\n"
+"POT-Creation-Date: 2014-04-05 12:31+0200\n"
+"PO-Revision-Date: 2014-04-25 06:54+0000\n"
 "Last-Translator: cybercop <cybercop_montana@abv.bg>\n"
-"Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfce/language/bg/)\n"
+"Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfce-apps/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,11 +53,15 @@ msgstr "Копирането на CD приключи успешно."
 
 #: ../xfburn/xfburn-global.h:43
 msgid "Data composition"
-msgstr "Проект с данными"
+msgstr "Проект с данни"
 
-#: ../xfburn/xfburn-adding-progress.c:111
+#: ../xfburn/xfburn-adding-progress.c:112
 msgid "Adding files to the composition"
 msgstr "Добавяне на файлове към проекта"
+
+#: ../xfburn/xfburn-adding-progress.c:125
+msgid "Cancel"
+msgstr "Отмяна"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
@@ -155,20 +159,20 @@ msgstr "Изчистване..."
 
 #: ../xfburn/xfburn-blank-dialog.c:441
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:519
-#: ../xfburn/xfburn-perform-burn.c:467
+#: ../xfburn/xfburn-perform-burn.c:485
 #, c-format
 msgid "Done"
 msgstr "Готово"
 
-#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:473
-#: ../xfburn/xfburn-progress-dialog.c:653
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:492
+#: ../xfburn/xfburn-progress-dialog.c:654
 msgid "Failure"
 msgstr "Неуспех"
 
 #: ../xfburn/xfburn-blank-dialog.c:461
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:619
-#: ../xfburn/xfburn-burn-image-dialog.c:402
-#: ../xfburn/xfburn-burn-image-dialog.c:578
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:624
+#: ../xfburn/xfburn-burn-image-dialog.c:400
+#: ../xfburn/xfburn-burn-image-dialog.c:576
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
 msgid "Unable to grab the drive."
 msgstr "Устройството не може да се прихване"
@@ -247,13 +251,13 @@ msgstr "Възникна грешка при записа на ISO: %s"
 msgid "An error occurred in the burn backend."
 msgstr "Възникна грешка в устройството за записване"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:580
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
 msgstr "Режимът на запис не се поддържа"
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:662
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:667
 msgid "Could not create ISO source structure."
 msgstr "Невъзможно е създаването на изходна ISO структура"
 
@@ -283,59 +287,59 @@ msgstr "Затваряне след успешно приключване"
 msgid "_Burn image"
 msgstr "Запис на образ"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:285
+#: ../xfburn/xfburn-burn-image-dialog.c:283
 msgid "Burn mode is not currently implemented."
 msgstr "Режимът на запис не може да се приложи"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:336
-#: ../xfburn/xfburn-burn-image-dialog.c:365
+#: ../xfburn/xfburn-burn-image-dialog.c:334
+#: ../xfburn/xfburn-burn-image-dialog.c:363
 msgid "An error occurred in the burn backend"
 msgstr "Грешка в програмата за записване на диск"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:349
+#: ../xfburn/xfburn-burn-image-dialog.c:347
 msgid "Unable to determine image size."
 msgstr "Невъзможно е да се определи размера на образа"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:356
+#: ../xfburn/xfburn-burn-image-dialog.c:354
 msgid "Cannot open image."
 msgstr "Образът не може да се отвори"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:393
+#: ../xfburn/xfburn-burn-image-dialog.c:391
 msgid "Burning image..."
 msgstr "Запис на образ..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:465
+#: ../xfburn/xfburn-burn-image-dialog.c:463
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Моля, изберете образ за записване</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:505
+#: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "Невъзможно е да добавите данни в този диск за многократно използване в този режим на запис (използвайте TAO)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:509
+#: ../xfburn/xfburn-burn-image-dialog.c:507
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "Намерен е заключен диск с данни. Трябва да бъде изчистен или да се постави празен диск"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "No disc detected in drive"
 msgstr "В устройството не е открит диск"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:513
+#: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "Cannot recognize state of drive and disc"
 msgstr "Не е възможно да се определи състоянието на устройството и диска"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:525
+#: ../xfburn/xfburn-burn-image-dialog.c:523
 msgid "The selected image does not fit on the inserted disc"
 msgstr "Размерът на образа превишава размерът на диска"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:529
+#: ../xfburn/xfburn-burn-image-dialog.c:527
 msgid "Failed to get image size"
 msgstr "Не може да бъде определен размерът на образа"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:558
+#: ../xfburn/xfburn-burn-image-dialog.c:556
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
@@ -532,13 +536,13 @@ msgstr "%s: нулев показател"
 
 #: ../xfburn/xfburn-data-composition.c:1937
 #, c-format
-msgid "%s: node name not unique"
-msgstr "%s: името на възловата точка не е уникално"
+msgid "%s: out of memory"
+msgstr "%s: недостатъчно памет"
 
 #: ../xfburn/xfburn-data-composition.c:1939
 #, c-format
-msgid "%s: out of memory"
-msgstr "%s: недостатъчно памет"
+msgid "%s: node name not unique"
+msgstr "%s: името на възловата точка не е уникално"
 
 #: ../xfburn/xfburn-data-composition.c:1941
 #, c-format
@@ -551,7 +555,7 @@ msgstr "%s: %s (код %X)"
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "Име \"%s\" за файл \"%s\" вече съществува"
 
-#: ../xfburn/xfburn-data-composition.c:2027
+#: ../xfburn/xfburn-data-composition.c:2026
 msgid "Error(s) occured while adding files"
 msgstr "Възникна грешка(и) при добавянето на файловете"
 
@@ -614,55 +618,55 @@ msgstr "<b>Невъзможно е получаването на списъка 
 msgid "Continue to _show this notice"
 msgstr "Продължаване на показването на това уведомление"
 
-#: ../xfburn/xfburn-device-box.c:440
+#: ../xfburn/xfburn-device-box.c:442
 msgid "default"
 msgstr "по подразбиране"
 
-#: ../xfburn/xfburn-device-box.c:471
+#: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Максимална скорост"
 
-#: ../xfburn/xfburn-device-box.c:581
+#: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
 msgstr "Устройството не може да записва на поставеният диск"
 
-#: ../xfburn/xfburn-device-box.c:590 ../xfburn/xfburn-device-box.c:636
+#: ../xfburn/xfburn-device-box.c:588 ../xfburn/xfburn-device-box.c:634
 msgid "Drive is empty"
 msgstr "Устройството е празно"
 
-#: ../xfburn/xfburn-device-box.c:593
+#: ../xfburn/xfburn-device-box.c:591
 msgid "Sorry, multisession is not yet supported"
 msgstr "Съжаляваме, записът в многосесиен режим не се поддържа"
 
-#: ../xfburn/xfburn-device-box.c:596
+#: ../xfburn/xfburn-device-box.c:594
 msgid "Inserted disc is full"
 msgstr "Поставеният диск е пълен"
 
-#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:642
+#: ../xfburn/xfburn-device-box.c:597 ../xfburn/xfburn-device-box.c:640
 msgid "Inserted disc is unsuitable"
 msgstr "Поставеният диск е негоден"
 
-#: ../xfburn/xfburn-device-box.c:602 ../xfburn/xfburn-device-box.c:645
+#: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Cannot access drive (it might be in use)"
 msgstr "Устройството е недостъпно (възможно е в момента да се използва)"
 
-#: ../xfburn/xfburn-device-box.c:607 ../xfburn/xfburn-device-box.c:648
+#: ../xfburn/xfburn-device-box.c:605 ../xfburn/xfburn-device-box.c:646
 msgid "Error determining disc"
 msgstr "Грешка при определянето на диска"
 
-#: ../xfburn/xfburn-device-box.c:628
+#: ../xfburn/xfburn-device-box.c:626
 msgid "Write-once disc, no blanking possible"
 msgstr "Дискът е само за еднократен запис и не може да бъде изчистен"
 
-#: ../xfburn/xfburn-device-box.c:631
+#: ../xfburn/xfburn-device-box.c:629
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW не се нуждае от изчистване"
 
-#: ../xfburn/xfburn-device-box.c:639
+#: ../xfburn/xfburn-device-box.c:637
 msgid "Inserted disc is already blank"
 msgstr "Поставеният диск вече е почистен"
 
-#: ../xfburn/xfburn-device-box.c:675
+#: ../xfburn/xfburn-device-box.c:673
 msgid "Auto"
 msgstr "Автоматично"
 
@@ -887,102 +891,102 @@ msgstr "Показване на бутона за затваряне"
 msgid "Determine whether the close button is visible"
 msgstr "Определя, дали да се показва бутона за затваряне"
 
-#: ../xfburn/xfburn-perform-burn.c:101 ../xfburn/xfburn-perform-burn.c:430
+#: ../xfburn/xfburn-perform-burn.c:103 ../xfburn/xfburn-perform-burn.c:448
 msgid "Formatting..."
 msgstr "Форматиране..."
 
-#: ../xfburn/xfburn-perform-burn.c:133
+#: ../xfburn/xfburn-perform-burn.c:151
 msgid "Formatting failed."
 msgstr "Форматирането е неуспешно."
 
-#: ../xfburn/xfburn-perform-burn.c:255
+#: ../xfburn/xfburn-perform-burn.c:273
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "Не можете да добавите данни към мултисесиен диск в този режим на запис (използвайте вместо TAO)."
 
-#: ../xfburn/xfburn-perform-burn.c:259
+#: ../xfburn/xfburn-perform-burn.c:277
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "Открит е затворен диск с данни. Трябва да бъде почистен или поставен празен диск."
 
-#: ../xfburn/xfburn-perform-burn.c:261
+#: ../xfburn/xfburn-perform-burn.c:279
 msgid "No disc detected in drive."
 msgstr "В устройството не е намерен диск"
 
-#: ../xfburn/xfburn-perform-burn.c:264
+#: ../xfburn/xfburn-perform-burn.c:282
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "Не е възможно да се определи състоянието на диска в устройството."
 
-#: ../xfburn/xfburn-perform-burn.c:281
+#: ../xfburn/xfburn-perform-burn.c:299
 msgid "There is not enough space available on the inserted disc."
 msgstr "На поставеният диск няма достатъчно свободно място"
 
-#: ../xfburn/xfburn-perform-burn.c:326
+#: ../xfburn/xfburn-perform-burn.c:344
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Записване на писта %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:330 ../xfburn/xfburn-perform-burn.c:395
+#: ../xfburn/xfburn-perform-burn.c:348 ../xfburn/xfburn-perform-burn.c:413
 msgid "Burning composition..."
 msgstr "Запис на проект..."
 
-#: ../xfburn/xfburn-perform-burn.c:364
+#: ../xfburn/xfburn-perform-burn.c:382
 msgid "standby"
 msgstr "изчакване"
 
-#: ../xfburn/xfburn-perform-burn.c:372
+#: ../xfburn/xfburn-perform-burn.c:390
 msgid "ending"
 msgstr "завършване"
 
-#: ../xfburn/xfburn-perform-burn.c:375
+#: ../xfburn/xfburn-perform-burn.c:393
 msgid "failing"
 msgstr "неуспех"
 
-#: ../xfburn/xfburn-perform-burn.c:378
+#: ../xfburn/xfburn-perform-burn.c:396
 msgid "unused"
 msgstr "неизползван"
 
-#: ../xfburn/xfburn-perform-burn.c:381
+#: ../xfburn/xfburn-perform-burn.c:399
 msgid "abandoned"
 msgstr "изоставен"
 
-#: ../xfburn/xfburn-perform-burn.c:384
+#: ../xfburn/xfburn-perform-burn.c:402
 msgid "ended"
 msgstr "завършен"
 
-#: ../xfburn/xfburn-perform-burn.c:387
+#: ../xfburn/xfburn-perform-burn.c:405
 msgid "aborted"
 msgstr "отменен"
 
-#: ../xfburn/xfburn-perform-burn.c:390
+#: ../xfburn/xfburn-perform-burn.c:408
 msgid "no info"
 msgstr "няма информация"
 
-#: ../xfburn/xfburn-perform-burn.c:400
+#: ../xfburn/xfburn-perform-burn.c:418
 msgid "Writing Lead-In..."
 msgstr "Въвеждане за запис..."
 
-#: ../xfburn/xfburn-perform-burn.c:406
+#: ../xfburn/xfburn-perform-burn.c:424
 msgid "Writing Lead-Out..."
 msgstr "Изваждане на запис..."
 
-#: ../xfburn/xfburn-perform-burn.c:412
+#: ../xfburn/xfburn-perform-burn.c:430
 msgid "Writing pregap..."
 msgstr "Симулация преди запис..."
 
-#: ../xfburn/xfburn-perform-burn.c:418
+#: ../xfburn/xfburn-perform-burn.c:436
 msgid "Closing track..."
 msgstr "Затваряне на пътека..."
 
-#: ../xfburn/xfburn-perform-burn.c:424
+#: ../xfburn/xfburn-perform-burn.c:442
 msgid "Closing session..."
 msgstr "Затваряне на сесия..."
 
-#: ../xfburn/xfburn-perform-burn.c:443
+#: ../xfburn/xfburn-perform-burn.c:461
 msgid "see console"
 msgstr "вижте изхода от терминала"
 
-#: ../xfburn/xfburn-perform-burn.c:471
+#: ../xfburn/xfburn-perform-burn.c:489
 msgid "User Aborted"
 msgstr "Потребителят е отхвърлен"
 
@@ -1127,7 +1131,7 @@ msgstr "Отменено"
 msgid "Completed"
 msgstr "Завършено"
 
-#: ../xfburn/xfburn-progress-dialog.c:617
+#: ../xfburn/xfburn-progress-dialog.c:618
 msgid "Aborting..."
 msgstr "Отхвърляне..."
 
