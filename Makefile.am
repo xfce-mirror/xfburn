@@ -11,13 +11,22 @@ uidir = $(datadir)/xfburn
 ui_DATA =  	                                                        \
         xfburn.ui							\
 	xfburn-toolbars.ui
-		
+
+#
+# appdata
+#
+@INTLTOOL_XML_RULE@
+appdatadir = $(datadir)/appdata
+appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+appdata_in_files = xfburn.appdata.xml.in
+
 EXTRA_DIST = 								\
 	$(apps_in_files)						\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in						\
-	$(ui_DATA)
+	$(ui_DATA)								\
+	$(appdata_in_files)
 
 appsdir = $(datadir)/applications
 apps_in_files = xfburn.desktop.in
@@ -36,6 +45,7 @@ DISTCLEANFILES =							\
 	intltool-extract						\
 	intltool-merge							\
 	intltool-update							\
-	$(apps_DATA)
+	$(apps_DATA)							\
+	$(appdata_DATA)
 
 # vi:set ts=8 sw=8 noet ai nocindent softtabstop=0 list listchars=tab\:>-:
