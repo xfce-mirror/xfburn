@@ -5,14 +5,15 @@
 # Translators:
 # Alois Nešpor <info@aloisnespor.info>, 2013
 # Alois Nešpor <info@aloisnespor.info>, 2014
+# Michal Várady <miko.vaji@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-05 12:31+0200\n"
-"PO-Revision-Date: 2014-04-06 21:29+0000\n"
-"Last-Translator: Alois Nešpor <info@aloisnespor.info>\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/xfce/language/cs/)\n"
+"PO-Revision-Date: 2014-10-30 19:01+0000\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/xfce-apps/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,7 +42,7 @@ msgstr "Vyprazdňování vyrovnávací paměti..."
 
 #: ../xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
-msgstr "Vložte zapisovatelný disk a zmáčkněte enter"
+msgstr "Vložte zapisovatelný disk a stiskněte enter"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
@@ -218,7 +219,7 @@ msgstr "Burn_Free"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
 msgid "Stream _Recording"
-msgstr "Stream _Recording"
+msgstr "Záznam st_reamu"
 
 #. create ISO ?
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:252
@@ -281,7 +282,7 @@ msgstr "Obrazy ISO"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:226
 msgid "_Quit after success"
-msgstr "_Ukončit po dokončení"
+msgstr "_Ukončit po úspěšném dokončení"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:236
 msgid "_Burn image"
@@ -507,7 +508,7 @@ msgstr "Soubor %s nelze přidat do kompozice, protože překročil maximální p
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
-msgstr "%s je větší než dovoluje ISO 9660 Level 2. To může způsobit problémy u starých systémů či programů."
+msgstr "%s je větší než umožňuje norma ISO 9660 Level 2. To může způsobit problémy u starých systémů či softwaru."
 
 #: ../xfburn/xfburn-data-composition.c:1369
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -532,17 +533,17 @@ msgstr "Soubor s názvem \"%s\" již v tomto adresáři existuje, proto nebyl p�
 #: ../xfburn/xfburn-data-composition.c:1935
 #, c-format
 msgid "%s: null pointer"
-msgstr "%s: null pointer"
+msgstr "%s: ukazatel má hodnotu null"
 
 #: ../xfburn/xfburn-data-composition.c:1937
 #, c-format
 msgid "%s: out of memory"
-msgstr "%s: out of memory"
+msgstr "%s: nedostatek paměti"
 
 #: ../xfburn/xfburn-data-composition.c:1939
 #, c-format
 msgid "%s: node name not unique"
-msgstr "%s: jméno nodu není unikátní"
+msgstr "%s: název uzlu není unikátní"
 
 #: ../xfburn/xfburn-data-composition.c:1941
 #, c-format
@@ -897,7 +898,7 @@ msgstr "Formátování..."
 
 #: ../xfburn/xfburn-perform-burn.c:151
 msgid "Formatting failed."
-msgstr "Formátování selhalo."
+msgstr "Formátování se nezdařilo."
 
 #: ../xfburn/xfburn-perform-burn.c:273
 msgid ""
@@ -1104,7 +1105,7 @@ msgstr "Vyrovnávací paměť zařízení:"
 
 #: ../xfburn/xfburn-progress-dialog.c:375
 msgid "Are you sure you want to abort?"
-msgstr "Jste si jisti, že chcete zrušit?"
+msgstr "Opravdu chcete akci zrušit?"
 
 #: ../xfburn/xfburn-progress-dialog.c:503
 #, c-format
@@ -1117,7 +1118,7 @@ msgstr "Přerušeno"
 
 #: ../xfburn/xfburn-progress-dialog.c:565
 msgid "Formatted."
-msgstr "Naformátované."
+msgstr "Naformátováno."
 
 #: ../xfburn/xfburn-progress-dialog.c:574
 msgid "Failed"
@@ -1250,7 +1251,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr "Základní konvertor je dodáván s touto\naplikací a nevyžaduje žádné knihovny.\nDokáže však zpracovat pouze komprimované\nsoubory typu .wav.\nPokud chcete vytvořit hudební kompozice\nz jiných typů souborů, zakompilujte podporu\naplikace gstreamer."
+msgstr "Základní konvertor je dodáván s touto\naplikací a nevyžaduje žádné knihovny.\nDokáže však zpracovat pouze\nnekomprimované soubory typu .wav.\nPokud chcete vytvořit hudební kompozice\nz jiných typů souborů, zakompilujte podporu\nknihovny gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1304,7 +1305,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr "Konvertor používá pro vytváření hudebních\nkompozic knihovnu gstreamer.\n\nZvukové soubory jsou podporovány na\nzákladě instalace odpovídajících zásuvných\nmodulů. Není-li zvukový soubor rozeznán,\nujistěte se, že jsou nainstalovány zásuvné\nmoduly 'good', 'bad' a 'ugly' aplikace gstreamer."
+msgstr "Pro vytváření hudebních\nkompozic používá konvertor knihovnu gstreamer.\n\nZvukové soubory jsou podporovány na\nzákladě instalace odpovídajících zásuvných\nmodulů. Není-li zvukový soubor rozeznán,\nujistěte se, že jsou nainstalovány zásuvné\nmoduly 'good', 'bad' a 'ugly' knihovny gstreamer."
 
 #: ../xfburn/xfburn-transcoder-gst.c:795
 #, c-format
