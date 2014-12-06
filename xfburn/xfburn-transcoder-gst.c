@@ -110,7 +110,7 @@ typedef enum {
 
 typedef struct {
   GstElement *pipeline;
-  GstElement *source, *decoder, *resample, *conv, *sink;
+  GstElement *source, *decoder, *resample, *conv1, *conv2, *sink;
 
   XfburnTranscoderGstState state;
   GCond gst_cond;
@@ -257,7 +257,7 @@ create_pipeline (XfburnTranscoderGst *trans)
 {
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
 
-  GstElement *pipeline, *source, *decoder, *resample, *conv, *sink;
+  GstElement *pipeline, *source, *decoder, *resample, *conv1, *conv2, *sink;
 #if DEBUG_GST > 0 && DEBUG > 0
   GstElement *id;
 #endif
@@ -268,18 +268,18 @@ create_pipeline (XfburnTranscoderGst *trans)
 
   priv->pipeline = pipeline = gst_pipeline_new ("transcoder");
 
-  priv->source  = source   = gst_element_factory_make ("filesrc",       "file-source");
-  priv->decoder = decoder  = gst_element_factory_make ("decodebin",     "decoder");
-  priv->resample= resample = gst_element_factory_make ("audioresample", "resampler");
-  priv->conv    = conv     = gst_element_factory_make ("audioconvert",  "converter");
+  priv->source   = source   = gst_element_factory_make ("filesrc",       "file-source");
+  priv->decoder  = decoder  = gst_element_factory_make ("decodebin",     "decoder");
+  priv->conv1    = conv1    = gst_element_factory_make ("audioconvert",  "converter1");
+  priv->resample = resample = gst_element_factory_make ("audioresample", "resampler");
+  priv->conv2    = conv2    = gst_element_factory_make ("audioconvert",  "converter2");
 #if DEBUG_GST > 0 && DEBUG > 0
                   id       = gst_element_factory_make ("identity",      "debugging-identity");
 #endif
   priv->sink    = sink     = gst_element_factory_make ("fdsink",        "audio-output");
   //priv->sink    = sink     = gst_element_factory_make ("fakesink",        "audio-output");
-  //DBG ("\npipeline = %p\nsource = %p\ndecoder = %p\nconv = %p\nsink = %p", pipeline, source, decoder, conv, sink);
 
-  if (!pipeline || !source || !decoder || !resample || !conv || !sink) {
+  if (!pipeline || !source || !decoder || !resample || !conv1 || !conv2 || !sink) {
     g_warning ("A pipeline element could not be created");
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
 		    "%s",
@@ -304,13 +304,14 @@ create_pipeline (XfburnTranscoderGst *trans)
   gst_object_unref (bus);
 
   gst_bin_add_many (GST_BIN (pipeline),
-                    source, decoder, resample, conv, sink, NULL);
+                    source, decoder, conv1, resample, conv2, sink, NULL);
 #if DEBUG_GST > 0 && DEBUG > 0
   gst_bin_add (GST_BIN (pipeline), id);
 #endif
 
   gst_element_link (source, decoder);
-  gst_element_link (resample, conv);
+  gst_element_link (conv1, resample);
+  gst_element_link (resample, conv2);
 
   /* setup caps for raw pcm data */
   caps = gst_caps_new_simple ("audio/x-raw-int",
@@ -323,9 +324,9 @@ create_pipeline (XfburnTranscoderGst *trans)
             NULL);
 
 #if DEBUG_GST > 0 && DEBUG > 0
-  if (!gst_element_link_filtered (conv, id, caps)) {
+  if (!gst_element_link_filtered (conv2, id, caps)) {
 #else
-  if (!gst_element_link_filtered (conv, sink, caps)) {
+  if (!gst_element_link_filtered (conv2, sink, caps)) {
 #endif
     g_warning ("Could not setup filtered gstreamer link");
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
@@ -661,7 +662,7 @@ on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
   GstCaps *caps;
   GstStructure *str;
   GstPad *audiopad;
-  GstElement *audio = (GstElement *) priv->resample;
+  GstElement *audio = (GstElement *) priv->conv1;
 
   // only link once
   audiopad = gst_element_get_static_pad (audio, "sink");
