@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-03 20:34+0200\n"
-"PO-Revision-Date: 2013-09-30 10:10+0000\n"
-"Last-Translator: mohammad alhargan <malham1@hotmail.com>\n"
-"Language-Team: Arabic (http://www.transifex.com/projects/p/xfce/language/ar/)\n"
+"POT-Creation-Date: 2014-04-05 12:31+0200\n"
+"PO-Revision-Date: 2014-12-07 16:53+0000\n"
+"Last-Translator: عبدالله رضوان <abbodmar@gmail.com>\n"
+"Language-Team: Arabic (http://www.transifex.com/projects/p/xfce-apps/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -50,13 +50,17 @@ msgstr "لا يمكن تحديد حالة القرص- إضغط هنا للمحا
 msgid "CD copying finished successfully."
 msgstr "إنتهى نسخ القرص المضغوط بنجاح."
 
-#: ../xfburn/xfburn-global.h:42
+#: ../xfburn/xfburn-global.h:43
 msgid "Data composition"
 msgstr "تجهيز البيانات"
 
-#: ../xfburn/xfburn-adding-progress.c:111
+#: ../xfburn/xfburn-adding-progress.c:112
 msgid "Adding files to the composition"
 msgstr "إضافة الملفات للتوليفة"
+
+#: ../xfburn/xfburn-adding-progress.c:125
+msgid "Cancel"
+msgstr "ألغ"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
@@ -95,7 +99,7 @@ msgid "Blank Disc"
 msgstr "قرص فارغ"
 
 #: ../xfburn/xfburn-blank-dialog.c:209
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:195
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:196
 #: ../xfburn/xfburn-burn-image-dialog.c:200
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
 #: ../xfburn/xfburn-copy-dvd-dialog.c:131
@@ -103,12 +107,12 @@ msgstr "قرص فارغ"
 msgid "Burning device"
 msgstr "جهاز الحرق"
 
-#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:187
+#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:185
 msgid "Blank mode"
 msgstr "أفرغ القرص"
 
 #: ../xfburn/xfburn-blank-dialog.c:230
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:228
 #: ../xfburn/xfburn-burn-image-dialog.c:208
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
 #: ../xfburn/xfburn-copy-dvd-dialog.c:139
@@ -117,7 +121,7 @@ msgid "Options"
 msgstr "الخيارات"
 
 #: ../xfburn/xfburn-blank-dialog.c:234
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:232
 #: ../xfburn/xfburn-burn-image-dialog.c:212
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
 #: ../xfburn/xfburn-copy-dvd-dialog.c:143
@@ -153,51 +157,51 @@ msgid "Blanking disc..."
 msgstr "جاري افراغ القرص..."
 
 #: ../xfburn/xfburn-blank-dialog.c:441
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:512
-#: ../xfburn/xfburn-perform-burn.c:366
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:519
+#: ../xfburn/xfburn-perform-burn.c:485
 #, c-format
 msgid "Done"
 msgstr "إنتهى"
 
-#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:649
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:492
+#: ../xfburn/xfburn-progress-dialog.c:654
 msgid "Failure"
 msgstr "فشل"
 
 #: ../xfburn/xfburn-blank-dialog.c:461
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:610
-#: ../xfburn/xfburn-burn-image-dialog.c:402
-#: ../xfburn/xfburn-burn-image-dialog.c:578
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:624
+#: ../xfburn/xfburn-burn-image-dialog.c:400
+#: ../xfburn/xfburn-burn-image-dialog.c:576
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
 msgid "Unable to grab the drive."
 msgstr "لا يمكن جلب المشغل."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:156
 msgid "Image"
 msgstr "صورة"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
 msgid "Show volume name"
 msgstr "عرض اسم وحدة التخزين"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
 msgid "Show a text entry for the name of the volume"
 msgstr "إظهار النص المدخل لاسم وحدة التخزين"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:184
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
 msgid "Burn Composition"
 msgstr "احرق التأليفة"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:207
 msgid "Composition name"
 msgstr "اسم التأليفة"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:211
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:212
 msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "<small>هل ترغب في تغيير اسم التوليفة الافتراضي؟</small>"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:237
 #: ../xfburn/xfburn-burn-image-dialog.c:217
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
 #: ../xfburn/xfburn-copy-dvd-dialog.c:148
@@ -205,50 +209,54 @@ msgstr "<small>هل ترغب في تغيير اسم التوليفة الافت�
 msgid "_Dummy write"
 msgstr "_كتابة زائفة"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:240
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:241
 #: ../xfburn/xfburn-burn-image-dialog.c:221
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
 msgid "Burn_Free"
 msgstr "حرق_ حر"
 
-#. create ISO ?
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
+msgid "Stream _Recording"
+msgstr "تسجيل_التيار"
+
+#. create ISO ?
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:252
 #: ../xfburn/xfburn-copy-cd-dialog.c:157
 #: ../xfburn/xfburn-copy-dvd-dialog.c:157
 msgid "Only create _ISO"
 msgstr "فقط انشيء الأيزو"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:289
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
 msgid "_Burn Composition"
 msgstr "_إحراق التوليفة"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "تعذّر إنشاء ملف الآيزو: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:484
 msgid "Writing ISO..."
 msgstr "تتم كتابة الأيزو..."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:501
 #, c-format
 msgid "An error occured while writing ISO: %s"
 msgstr "حدث خطأ أثناء كتابة الأيزو: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:556
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:562
 msgid "An error occurred in the burn backend."
 msgstr "وقع خطأ في خلفية الحرق."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
 msgstr "وضع الكتابة غير معتمد حاليا."
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:667
 msgid "Could not create ISO source structure."
 msgstr "تعذر إنشاء بنية مصدر ISO."
 
@@ -278,59 +286,59 @@ msgstr "_الخروج بعد الإنتهاء"
 msgid "_Burn image"
 msgstr "_احرق الصورة"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:285
+#: ../xfburn/xfburn-burn-image-dialog.c:283
 msgid "Burn mode is not currently implemented."
 msgstr "وضع الحرق غير منفذ حالياً."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:336
-#: ../xfburn/xfburn-burn-image-dialog.c:365
+#: ../xfburn/xfburn-burn-image-dialog.c:334
+#: ../xfburn/xfburn-burn-image-dialog.c:363
 msgid "An error occurred in the burn backend"
 msgstr "وقع خطأ في خلفية الحرق"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:349
+#: ../xfburn/xfburn-burn-image-dialog.c:347
 msgid "Unable to determine image size."
 msgstr "غير قادر على التعرف على حجم الصورة."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:356
+#: ../xfburn/xfburn-burn-image-dialog.c:354
 msgid "Cannot open image."
 msgstr "غير قادر على فتح الصورة."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:393
+#: ../xfburn/xfburn-burn-image-dialog.c:391
 msgid "Burning image..."
 msgstr "جاري حرق الصورة..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:465
+#: ../xfburn/xfburn-burn-image-dialog.c:463
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">الرجاء اختيار صورة للحرق</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:505
+#: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "لا يمكن إضافة بيانات على قرص متعدد الجلسات في وضع الكتابة هذا (استخدام TAO بدلا من ذلك)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:509
+#: ../xfburn/xfburn-burn-image-dialog.c:507
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "تم العثور على قرص بيانات مغلق. بحاجة لقرص فارغ أو قابل لإعادة الكتابة"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "No disc detected in drive"
 msgstr "لا يوجد قرص في المشغل"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:513
+#: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "Cannot recognize state of drive and disc"
 msgstr "لا يمكن التعرف على حالة المُشغل والوسيط"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:525
+#: ../xfburn/xfburn-burn-image-dialog.c:523
 msgid "The selected image does not fit on the inserted disc"
 msgstr "الصورة المختارة لا تناسب القرص المدخل"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:529
+#: ../xfburn/xfburn-burn-image-dialog.c:527
 msgid "Failed to get image size"
 msgstr "فشل التعرف على حجم الصورة"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:558
+#: ../xfburn/xfburn-burn-image-dialog.c:556
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
@@ -391,114 +399,121 @@ msgstr "_انسخ DVD"
 msgid "Create ISO from CD"
 msgstr "انشيء أيزو من CD"
 
-#: ../xfburn/xfburn-data-composition.c:189
-#: ../xfburn/xfburn-data-composition.c:955
+#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:957
 #: ../xfburn/xfburn-audio-composition.c:206
 #: ../xfburn/xfburn-audio-composition.c:979
 msgid "Add"
 msgstr "أضف"
 
-#: ../xfburn/xfburn-data-composition.c:189
+#: ../xfburn/xfburn-data-composition.c:191
 #: ../xfburn/xfburn-audio-composition.c:206
 msgid "Add the selected file(s) to the composition"
 msgstr "أضف الملف(s) المختارة للتوليفة"
 
-#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:193
 msgid "Create directory"
 msgstr "إنشاء مجلد"
 
-#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:193
 msgid "Add a new directory to the composition"
 msgstr "أضف مجلد جديد التوليفة"
 
-#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-data-composition.c:195
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove"
 msgstr "أزل"
 
-#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-data-composition.c:195
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove the selected file(s) from the composition"
 msgstr "أزل الملف(s) المختارة من التوليفة"
 
-#: ../xfburn/xfburn-data-composition.c:195
+#: ../xfburn/xfburn-data-composition.c:197
 #: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear"
 msgstr "امسح"
 
-#: ../xfburn/xfburn-data-composition.c:195
+#: ../xfburn/xfburn-data-composition.c:197
 #: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear the content of the composition"
 msgstr "امسح المحتوى من التوليفة"
 
 #. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
 #. existing session"),},
-#: ../xfburn/xfburn-data-composition.c:198
+#: ../xfburn/xfburn-data-composition.c:200
 msgid "Rename"
 msgstr "أعد التسمية"
 
-#: ../xfburn/xfburn-data-composition.c:198
+#: ../xfburn/xfburn-data-composition.c:200
 msgid "Rename the selected file"
 msgstr "أعد تسمية الملف المختار"
 
-#: ../xfburn/xfburn-data-composition.c:352
+#: ../xfburn/xfburn-data-composition.c:354
 msgid "Volume name :"
 msgstr "اسم وحدة التخزين :"
 
-#: ../xfburn/xfburn-data-composition.c:386
+#: ../xfburn/xfburn-data-composition.c:388
 msgid "Contents"
 msgstr "المحتويات"
 
-#: ../xfburn/xfburn-data-composition.c:401
+#: ../xfburn/xfburn-data-composition.c:403
 #: ../xfburn/xfburn-directory-browser.c:140
 msgid "Size"
 msgstr "الحجم"
 
-#: ../xfburn/xfburn-data-composition.c:404
+#: ../xfburn/xfburn-data-composition.c:406
 msgid "Local Path"
 msgstr "المسار المحلي"
 
-#: ../xfburn/xfburn-data-composition.c:679
+#: ../xfburn/xfburn-data-composition.c:681
 msgid "You must give a name to the file."
 msgstr "يتوجب عليك تسمية الملف."
 
-#: ../xfburn/xfburn-data-composition.c:688
-#: ../xfburn/xfburn-data-composition.c:1198
+#: ../xfburn/xfburn-data-composition.c:690
+#: ../xfburn/xfburn-data-composition.c:1200
 #: ../xfburn/xfburn-audio-composition.c:1176
 msgid "A file with the same name is already present in the composition."
 msgstr "هناك ملف بنفس الاسم موجود مسبقاً في التوليفة."
 
-#: ../xfburn/xfburn-data-composition.c:796
-#: ../xfburn/xfburn-data-composition.c:797
+#: ../xfburn/xfburn-data-composition.c:798
 #: ../xfburn/xfburn-data-composition.c:799
+#: ../xfburn/xfburn-data-composition.c:801
 msgid "New directory"
 msgstr "مجلد جديد"
 
-#: ../xfburn/xfburn-data-composition.c:941
+#: ../xfburn/xfburn-data-composition.c:943
 #: ../xfburn/xfburn-audio-composition.c:976
 msgid "File(s) to add to composition"
 msgstr "إضافة (s) الملفات للتوليفة"
 
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:1041
+#: ../xfburn/xfburn-data-composition.c:1043
 #, c-format
 msgid "Data %s~%d"
 msgstr "بيانات %s~%d"
 
-#: ../xfburn/xfburn-data-composition.c:1277
+#: ../xfburn/xfburn-data-composition.c:1279
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr "%s لا يمكن إضافته التوليفة ، لأنه تجاوز الحجم الأقصى المسموح به للملف ISO9660."
 
-#: ../xfburn/xfburn-data-composition.c:1362
+#: ../xfburn/xfburn-data-composition.c:1286
+#, c-format
+msgid ""
+"%s is larger than what iso9660 level 2 allows. This can be a problem for old"
+" systems or software."
+msgstr " %s أكبر مما يسمح iso9660 مستوى 2.يمكن أن يكون هذا مشكلة للأنظمة أو البرامج القديمة"
+
+#: ../xfburn/xfburn-data-composition.c:1369
 #: ../xfburn/xfburn-audio-composition.c:1351
 msgid "Adding home directory"
 msgstr "إضافة مجلد المنزل"
 
-#: ../xfburn/xfburn-data-composition.c:1363
+#: ../xfburn/xfburn-data-composition.c:1370
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
@@ -506,68 +521,88 @@ msgid ""
 "Are you sure you want to proceed?"
 msgstr "أنت على وشك إضافة مجلد المنزل للتوليفة. قد يستغرق هذا وقتا طويلا جدا ، وأيضا قد يكون كبيرة لاحتوائه في قرص واحد.\n\nمتأكد أنك تريد المتابعة؟"
 
-#: ../xfburn/xfburn-data-composition.c:1530
+#: ../xfburn/xfburn-data-composition.c:1537
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr "ملف اسمه \"%s\" موجود بالفعل في هذا المجلد ، الملف لم تتم إضافته."
 
+#: ../xfburn/xfburn-data-composition.c:1935
+#, c-format
+msgid "%s: null pointer"
+msgstr "%s: المؤشر فارغ"
+
+#: ../xfburn/xfburn-data-composition.c:1937
+#, c-format
+msgid "%s: out of memory"
+msgstr "%s: من الذاكرة"
+
+#: ../xfburn/xfburn-data-composition.c:1939
+#, c-format
+msgid "%s: node name not unique"
+msgstr "%s: اسم العقدة ليس فريد من نوعه"
+
+#: ../xfburn/xfburn-data-composition.c:1941
+#, c-format
+msgid "%s: %s (code %X)"
+msgstr "%s: %s (كود %X)"
+
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1945
+#: ../xfburn/xfburn-data-composition.c:1961
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "تكرار اسم الملف '%s' من أجل '%s'"
 
-#: ../xfburn/xfburn-device-box.c:171 ../xfburn/xfburn-device-box.c:172
+#: ../xfburn/xfburn-data-composition.c:2026
+msgid "Error(s) occured while adding files"
+msgstr "الخطأ (الأخطاء) حدثت عند إضافة الملفات"
+
+#: ../xfburn/xfburn-device-box.c:169 ../xfburn/xfburn-device-box.c:170
 msgid "Show writers only"
 msgstr "عرض الكتاب فقط"
 
-#: ../xfburn/xfburn-device-box.c:175
+#: ../xfburn/xfburn-device-box.c:173
 msgid "Show speed selection"
 msgstr "عرض اختيار السرعة"
 
-#: ../xfburn/xfburn-device-box.c:176
+#: ../xfburn/xfburn-device-box.c:174
 msgid "Show speed selection combo"
 msgstr "عرض سرعة تحرير التأليفة"
 
-#: ../xfburn/xfburn-device-box.c:179
+#: ../xfburn/xfburn-device-box.c:177
 msgid "Show mode selection"
 msgstr "عرض وضع التحديد"
 
-#: ../xfburn/xfburn-device-box.c:180
+#: ../xfburn/xfburn-device-box.c:178
 msgid "Show mode selection combo"
 msgstr "عرض وضع تحديد التأليفة"
 
-#: ../xfburn/xfburn-device-box.c:183
+#: ../xfburn/xfburn-device-box.c:181
 msgid "Is it a valid combination"
 msgstr "هل هي تأليفة صالحة"
 
-#: ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-device-box.c:182
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "هل التوليفة مزيج من الأجهزة وصالحة للحرق على القرص؟"
 
-#: ../xfburn/xfburn-device-box.c:188
+#: ../xfburn/xfburn-device-box.c:186
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "وضع فارغ يعرض رسائل حالات قرص مختلفة أكثر من الوضع العادي"
 
-#: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
-msgid "Accept only CDs as valid discs"
-msgstr "قبول الأقراص المدمجة كأقراص صالحة فقط"
-
-#: ../xfburn/xfburn-device-box.c:245
+#: ../xfburn/xfburn-device-box.c:239
 msgid "_Speed:"
 msgstr "_السرعة:"
 
-#: ../xfburn/xfburn-device-box.c:268
+#: ../xfburn/xfburn-device-box.c:262
 msgid "Write _mode:"
 msgstr "وضع _الكتابة:"
 
-#: ../xfburn/xfburn-device-box.c:387
+#: ../xfburn/xfburn-device-box.c:375
 msgid "Empty speed list"
 msgstr "قائمة سرعات فارغة"
 
-#: ../xfburn/xfburn-device-box.c:396
+#: ../xfburn/xfburn-device-box.c:384
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -578,59 +613,59 @@ msgid ""
 "<i>Thank you!</i>"
 msgstr "<b>غير قادر على استرداد قائمة سرعة السواقة.</b>\n\nهذه علة معروفة تحدث مع بعض محركات الأقراص. الرجاء ارسل تقرير بها إلى مكتبة libburn مع الرسالة الواردة لتقليل فرصة حصولها مرة اخرى.\n\nالبرنامج يجب أن يعمل ، ولكن إذا كانت هناك مشاكل ،اسمح لنا أن نعرف.\n\n<i>شكرا لك!</i>"
 
-#: ../xfburn/xfburn-device-box.c:407
+#: ../xfburn/xfburn-device-box.c:395
 msgid "Continue to _show this notice"
 msgstr "استمر بعرض هذه الملاحظة"
 
-#: ../xfburn/xfburn-device-box.c:452
+#: ../xfburn/xfburn-device-box.c:442
 msgid "default"
 msgstr "افتراضي"
 
-#: ../xfburn/xfburn-device-box.c:488
+#: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "أقصى"
 
-#: ../xfburn/xfburn-device-box.c:590
+#: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
 msgstr "لا يمكن الحرق على القرص المدرج"
 
-#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:645
+#: ../xfburn/xfburn-device-box.c:588 ../xfburn/xfburn-device-box.c:634
 msgid "Drive is empty"
 msgstr "المحرك فارغ"
 
-#: ../xfburn/xfburn-device-box.c:602
+#: ../xfburn/xfburn-device-box.c:591
 msgid "Sorry, multisession is not yet supported"
 msgstr "عذرا ، لم يتم حتى الآن دعم الجلسات المتعددة"
 
-#: ../xfburn/xfburn-device-box.c:605
+#: ../xfburn/xfburn-device-box.c:594
 msgid "Inserted disc is full"
 msgstr "القرص المدخل ممتلىء"
 
-#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:651
+#: ../xfburn/xfburn-device-box.c:597 ../xfburn/xfburn-device-box.c:640
 msgid "Inserted disc is unsuitable"
 msgstr "القرص المدخل غير صالح"
 
-#: ../xfburn/xfburn-device-box.c:611 ../xfburn/xfburn-device-box.c:654
+#: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Cannot access drive (it might be in use)"
 msgstr "لا يمكن الوصول إلى محرك الأقراص (قد يكون قيد الاستخدام)"
 
-#: ../xfburn/xfburn-device-box.c:616 ../xfburn/xfburn-device-box.c:657
+#: ../xfburn/xfburn-device-box.c:605 ../xfburn/xfburn-device-box.c:646
 msgid "Error determining disc"
 msgstr "خطأ بتحديد القرص"
 
-#: ../xfburn/xfburn-device-box.c:637
+#: ../xfburn/xfburn-device-box.c:626
 msgid "Write-once disc, no blanking possible"
 msgstr "للكتابة مرة واحدة للقرص، لا يمكن التفريغ"
 
-#: ../xfburn/xfburn-device-box.c:640
+#: ../xfburn/xfburn-device-box.c:629
 msgid "DVD+RW does not need blanking"
 msgstr "DVD + RW لا يحتاج للتفريغ"
 
-#: ../xfburn/xfburn-device-box.c:648
+#: ../xfburn/xfburn-device-box.c:637
 msgid "Inserted disc is already blank"
 msgstr "القرص المدرج فارغ بالفعل"
 
-#: ../xfburn/xfburn-device-box.c:684
+#: ../xfburn/xfburn-device-box.c:673
 msgid "Auto"
 msgstr "تلقائي"
 
@@ -681,22 +716,22 @@ msgstr "%s's منزل"
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main.c:212
+#: ../xfburn/xfburn-main.c:211
 #, c-format
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
 msgstr "%s: %s\nجرب %s --helpالمساعدة في مشاهدة قائمة كاملة من الخيارات المتاحة في سطر الأوامر.\n"
 
-#: ../xfburn/xfburn-main.c:220
+#: ../xfburn/xfburn-main.c:219
 msgid "Unable to initialize the burning backend."
 msgstr "غير قادر على تهيئة الحرق في الخلفية."
 
-#: ../xfburn/xfburn-main.c:295
+#: ../xfburn/xfburn-main.c:294
 msgid "No burners are currently available"
 msgstr "لا توجد مشغلات متاحة حاليا"
 
-#: ../xfburn/xfburn-main.c:297
+#: ../xfburn/xfburn-main.c:296
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
@@ -705,14 +740,14 @@ msgid ""
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr "قد يكون القرص (s) قيد الاستخدام ، ولا يمكن الوصول لها.\n\nالرجاء إلغاء توصيله وإعادة تشغيل التطبيق.\n\nإذا لم يكن القرص في محرك الأقراص ، تحقق من أن لديك حق القراءة والكتابة على محرك الأقراص للمستخدم."
 
-#: ../xfburn/xfburn-main.c:331
+#: ../xfburn/xfburn-main.c:330
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr "فشل تهيئة %s عبر البرنامج %s\n\t(الرجوع للتنفيذ الأساسي)"
 
-#: ../xfburn/xfburn-main.c:375
+#: ../xfburn/xfburn-main.c:374
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "ملف الصورة '%s' غير موجود."
@@ -855,235 +890,251 @@ msgstr "عرض زر الإغلاق"
 msgid "Determine whether the close button is visible"
 msgstr "تحديد ما إذا كان زر الإغلاق مرئيا"
 
-#: ../xfburn/xfburn-perform-burn.c:158
+#: ../xfburn/xfburn-perform-burn.c:103 ../xfburn/xfburn-perform-burn.c:448
+msgid "Formatting..."
+msgstr "تتم الآن التهيئة..."
+
+#: ../xfburn/xfburn-perform-burn.c:151
+msgid "Formatting failed."
+msgstr "فشل التنسيق"
+
+#: ../xfburn/xfburn-perform-burn.c:273
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "لا يمكن إضافة بيانات على قرص متعدد الجلسة في وضع الكتابة هذا (استخدم TAO بدلا من ذلك)."
 
-#: ../xfburn/xfburn-perform-burn.c:162
+#: ../xfburn/xfburn-perform-burn.c:277
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "تم اكتشاف بيانات على قرص مغلق، انت بحاجة لقرص فارغ."
 
-#: ../xfburn/xfburn-perform-burn.c:164
+#: ../xfburn/xfburn-perform-burn.c:279
 msgid "No disc detected in drive."
 msgstr "لا يوجد قرص في محرك الأقراص."
 
-#: ../xfburn/xfburn-perform-burn.c:167
+#: ../xfburn/xfburn-perform-burn.c:282
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "لم يتم التعرف على حالة المشغل والوسيط."
 
-#: ../xfburn/xfburn-perform-burn.c:180
+#: ../xfburn/xfburn-perform-burn.c:299
 msgid "There is not enough space available on the inserted disc."
 msgstr "لا توجد مساحة كافية على القرص المدرج."
 
-#: ../xfburn/xfburn-perform-burn.c:225
+#: ../xfburn/xfburn-perform-burn.c:344
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "حرق المقطع%2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
+#: ../xfburn/xfburn-perform-burn.c:348 ../xfburn/xfburn-perform-burn.c:413
 msgid "Burning composition..."
 msgstr "يجري حرق التوليفة..."
 
-#: ../xfburn/xfburn-perform-burn.c:263
+#: ../xfburn/xfburn-perform-burn.c:382
 msgid "standby"
 msgstr "استعداد"
 
-#: ../xfburn/xfburn-perform-burn.c:271
+#: ../xfburn/xfburn-perform-burn.c:390
 msgid "ending"
 msgstr "تنتهي"
 
-#: ../xfburn/xfburn-perform-burn.c:274
+#: ../xfburn/xfburn-perform-burn.c:393
 msgid "failing"
 msgstr "تفشل"
 
-#: ../xfburn/xfburn-perform-burn.c:277
+#: ../xfburn/xfburn-perform-burn.c:396
 msgid "unused"
 msgstr "غير مستخدمة"
 
-#: ../xfburn/xfburn-perform-burn.c:280
+#: ../xfburn/xfburn-perform-burn.c:399
 msgid "abandoned"
 msgstr "مهجور"
 
-#: ../xfburn/xfburn-perform-burn.c:283
+#: ../xfburn/xfburn-perform-burn.c:402
 msgid "ended"
 msgstr "انتهت"
 
-#: ../xfburn/xfburn-perform-burn.c:286
+#: ../xfburn/xfburn-perform-burn.c:405
 msgid "aborted"
 msgstr "اجهضت"
 
-#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:216
-#: ../xfburn/xfburn-progress-dialog.c:233
-#: ../xfburn/xfburn-progress-dialog.c:243
-#: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:476
-#: ../xfburn/xfburn-progress-dialog.c:500
-#: ../xfburn/xfburn-progress-dialog.c:524
+#: ../xfburn/xfburn-perform-burn.c:408
 msgid "no info"
 msgstr "لاتوجد معلومات"
 
-#: ../xfburn/xfburn-perform-burn.c:299
+#: ../xfburn/xfburn-perform-burn.c:418
 msgid "Writing Lead-In..."
 msgstr "تقدم الكتابة..."
 
-#: ../xfburn/xfburn-perform-burn.c:305
+#: ../xfburn/xfburn-perform-burn.c:424
 msgid "Writing Lead-Out..."
 msgstr "تقدم استخراج الكتابة..."
 
-#: ../xfburn/xfburn-perform-burn.c:311
+#: ../xfburn/xfburn-perform-burn.c:430
 msgid "Writing pregap..."
 msgstr "التجهيز للكتابة..."
 
-#: ../xfburn/xfburn-perform-burn.c:317
+#: ../xfburn/xfburn-perform-burn.c:436
 msgid "Closing track..."
 msgstr "يجري إغلاق المسار..."
 
-#: ../xfburn/xfburn-perform-burn.c:323
+#: ../xfburn/xfburn-perform-burn.c:442
 msgid "Closing session..."
 msgstr "يجري إغلاق الجلسة..."
 
-#: ../xfburn/xfburn-perform-burn.c:329
-msgid "Formatting..."
-msgstr "تتم الآن التهيئة..."
-
-#: ../xfburn/xfburn-perform-burn.c:342
+#: ../xfburn/xfburn-perform-burn.c:461
 msgid "see console"
 msgstr "مراقبة اللوحة"
 
-#: ../xfburn/xfburn-perform-burn.c:370
+#: ../xfburn/xfburn-perform-burn.c:489
 msgid "User Aborted"
 msgstr "إحباط من قبل المستخدم"
 
-#: ../xfburn/xfburn-preferences-dialog.c:143
+#: ../xfburn/xfburn-preferences-dialog.c:144
 msgid "Preferences"
 msgstr "التفضيلات"
 
-#: ../xfburn/xfburn-preferences-dialog.c:144
+#: ../xfburn/xfburn-preferences-dialog.c:145
 msgid "Tune how Xfburn behaves"
 msgstr "كيفية ضبط سلوك Xfburn"
 
-#: ../xfburn/xfburn-preferences-dialog.c:190
-#: ../xfburn/xfburn-preferences-dialog.c:194
+#: ../xfburn/xfburn-preferences-dialog.c:191
+#: ../xfburn/xfburn-preferences-dialog.c:195
 msgid "Temporary directory"
 msgstr "مجلد مؤقت"
 
-#: ../xfburn/xfburn-preferences-dialog.c:198
+#: ../xfburn/xfburn-preferences-dialog.c:199
 msgid "_Clean temporary directory on exit"
 msgstr "_نظف المجلد المؤقت عند الخروج"
 
-#: ../xfburn/xfburn-preferences-dialog.c:205
+#: ../xfburn/xfburn-preferences-dialog.c:206
 msgid "File browser"
 msgstr "متصفح الملفات"
 
-#: ../xfburn/xfburn-preferences-dialog.c:209
+#: ../xfburn/xfburn-preferences-dialog.c:210
 msgid "Show _hidden files"
 msgstr "اظهر _الملفات المخفية"
 
-#: ../xfburn/xfburn-preferences-dialog.c:214
+#: ../xfburn/xfburn-preferences-dialog.c:215
 msgid "Show human_readable filesizes"
 msgstr "اظهر أحجام ملفات بشكل مقروء"
 
-#: ../xfburn/xfburn-preferences-dialog.c:225
+#: ../xfburn/xfburn-preferences-dialog.c:226
 msgid "General"
 msgstr "عام"
 
-#: ../xfburn/xfburn-preferences-dialog.c:236
-#: ../xfburn/xfburn-preferences-dialog.c:313
+#: ../xfburn/xfburn-preferences-dialog.c:237
+#: ../xfburn/xfburn-preferences-dialog.c:318
 msgid "Devices"
 msgstr "الأجهزة"
 
-#: ../xfburn/xfburn-preferences-dialog.c:245
+#: ../xfburn/xfburn-preferences-dialog.c:246
 msgid "Detected devices"
 msgstr "الأجهزة المكتشفة"
 
-#: ../xfburn/xfburn-preferences-dialog.c:266
+#: ../xfburn/xfburn-preferences-dialog.c:268
 msgid "Name"
 msgstr "الاسم"
 
-#: ../xfburn/xfburn-preferences-dialog.c:279
+#: ../xfburn/xfburn-preferences-dialog.c:281
 msgid "Node"
 msgstr "العقدة"
 
-#: ../xfburn/xfburn-preferences-dialog.c:281
+#: ../xfburn/xfburn-preferences-dialog.c:283
 msgid "Write CD-R"
 msgstr "اكتب CD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:283
+#: ../xfburn/xfburn-preferences-dialog.c:285
 msgid "Write CD-RW"
 msgstr "اكتب CD-RW"
 
-#: ../xfburn/xfburn-preferences-dialog.c:286
+#: ../xfburn/xfburn-preferences-dialog.c:288
 msgid "Write DVD-R"
 msgstr "اكتب DVD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:289
+#: ../xfburn/xfburn-preferences-dialog.c:291
 msgid "Write DVD-RAM"
 msgstr "اكتب DVD-RAM"
 
-#: ../xfburn/xfburn-preferences-dialog.c:297
+#: ../xfburn/xfburn-preferences-dialog.c:294
+msgid "Write Blu-ray"
+msgstr "إرسال Blu-ray"
+
+#: ../xfburn/xfburn-preferences-dialog.c:302
 msgid "Sc_an for devices"
 msgstr "البحث عن أجهزة"
 
-#: ../xfburn/xfburn-preferences-dialog.c:324
+#: ../xfburn/xfburn-preferences-dialog.c:329
 msgid "Show warning on _empty speed list"
 msgstr "عرض تحذير على قائمة السرعات الخالية"
 
-#: ../xfburn/xfburn-preferences-dialog.c:333
+#: ../xfburn/xfburn-preferences-dialog.c:338
 msgid "FIFO buffer size (in kb)"
 msgstr "حجم التخزين المؤقت FIFO (بالكيلوبايت)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:471
+#: ../xfburn/xfburn-preferences-dialog.c:477
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "هذه التغييرات ستنفذ بعد إعادة تشغيل البرنامج."
 
-#: ../xfburn/xfburn-progress-dialog.c:198
+#: ../xfburn/xfburn-progress-dialog.c:199
 msgid "Initializing..."
 msgstr "تهيئة..."
 
-#: ../xfburn/xfburn-progress-dialog.c:213
+#: ../xfburn/xfburn-progress-dialog.c:214
 msgid "Estimated writing speed:"
 msgstr "سرعة الكتابة المقدرة:"
 
-#: ../xfburn/xfburn-progress-dialog.c:227
+#: ../xfburn/xfburn-progress-dialog.c:217
+#: ../xfburn/xfburn-progress-dialog.c:234
+#: ../xfburn/xfburn-progress-dialog.c:244
+#: ../xfburn/xfburn-progress-dialog.c:333
+#: ../xfburn/xfburn-progress-dialog.c:477
+#: ../xfburn/xfburn-progress-dialog.c:501
+#: ../xfburn/xfburn-progress-dialog.c:525
+msgid "unknown"
+msgstr "مجهول"
+
+#: ../xfburn/xfburn-progress-dialog.c:228
 msgid "FIFO buffer:"
 msgstr "FIFO المخزن المؤقت:"
 
-#: ../xfburn/xfburn-progress-dialog.c:237
+#: ../xfburn/xfburn-progress-dialog.c:238
 msgid "Device buffer:"
 msgstr "مخزن الجهاز المؤقت:"
 
-#: ../xfburn/xfburn-progress-dialog.c:374
+#: ../xfburn/xfburn-progress-dialog.c:375
 msgid "Are you sure you want to abort?"
 msgstr "متأكد أنك تريد الإحباط؟"
 
-#: ../xfburn/xfburn-progress-dialog.c:502
+#: ../xfburn/xfburn-progress-dialog.c:503
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "دقيقة وكان %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: ../xfburn/xfburn-progress-dialog.c:562
 msgid "Aborted"
 msgstr "إحباط"
 
-#: ../xfburn/xfburn-progress-dialog.c:570
+#: ../xfburn/xfburn-progress-dialog.c:565
+msgid "Formatted."
+msgstr "منسق"
+
+#: ../xfburn/xfburn-progress-dialog.c:574
 msgid "Failed"
 msgstr "فشلت"
 
-#: ../xfburn/xfburn-progress-dialog.c:573
+#: ../xfburn/xfburn-progress-dialog.c:577
 msgid "Cancelled"
 msgstr "الغيت"
 
-#: ../xfburn/xfburn-progress-dialog.c:576
+#: ../xfburn/xfburn-progress-dialog.c:580
 msgid "Completed"
 msgstr "اكتملت"
 
-#: ../xfburn/xfburn-progress-dialog.c:613
+#: ../xfburn/xfburn-progress-dialog.c:618
 msgid "Aborting..."
 msgstr "إحباط..."
 
-#: ../xfburn/xfburn-utils.c:129
+#: ../xfburn/xfburn-utils.c:130
 msgid "Select command"
 msgstr "أختر الأمر"
 
@@ -1225,7 +1276,7 @@ msgstr "غير قادر على فتح %s."
 msgid "Could not open %s: %s"
 msgstr "غير قادر على فتح %s: %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:631
+#: ../xfburn/xfburn-transcoder-gst.c:635
 #, c-format
 msgid ""
 "%s is missing.\n"
@@ -1238,11 +1289,11 @@ msgstr "%s مفقود.\n\nلم تثبت وحدة فك الترميز للتعا�
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:720
+#: ../xfburn/xfburn-transcoder-gst.c:724
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:726
+#: ../xfburn/xfburn-transcoder-gst.c:730
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1254,12 +1305,12 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "محول جيستريمر يستخدم مكتبة\ngstreamer لإنشاء التوليفة الصوتية.\n\nينبغي دعم كافة الملفات الصوتية إفتراضياً\nبحال تم تثبيت الإضافات الصحيح.\nإذا لم يتم التعرف على ملف صوتي تأكد\nأن لديك حزم 'جيدة','سيئة', و 'قبيحة'\nلحزم gstreamer."
 
-#: ../xfburn/xfburn-transcoder-gst.c:791
+#: ../xfburn/xfburn-transcoder-gst.c:795
 #, c-format
 msgid "Gstreamer did not like this file (detection timed out)"
 msgstr "gstreamer لم يعرف الصيغة (إنتهت المهلة )"
 
-#: ../xfburn/xfburn-transcoder-gst.c:800
+#: ../xfburn/xfburn-transcoder-gst.c:805
 #, c-format
 msgid ""
 "%s\n"
@@ -1269,12 +1320,12 @@ msgid ""
 "%s"
 msgstr "%s\n\nليس ملف صوت:\n\n%s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:915
+#: ../xfburn/xfburn-transcoder-gst.c:920
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "gstreamer لم يحول الصيغة (إنتهت المهلة)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:950
+#: ../xfburn/xfburn-transcoder-gst.c:955
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "فشل في تغيير الأغاني عند تحويل الصيغة"
@@ -1285,67 +1336,71 @@ msgstr "فشل في تغيير الأغاني عند تحويل الصيغة"
 msgid "not implemented"
 msgstr "لم تنفذ"
 
-#: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
+#: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
 msgid "Display name"
 msgstr "اسم العرض"
 
-#: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
+#: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
 msgid "Device address"
 msgstr "عنوان الجهاز"
 
-#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
+#: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
 msgid "Burn speeds supported by the device"
 msgstr "سرعات الحرق التي يدعمها الجهاز"
 
-#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
+#: ../xfburn/xfburn-device.c:259 ../xfburn/xfburn-device.c:260
 msgid "Disc status"
 msgstr "حالة القرص"
 
-#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
+#: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
 msgid "Profile no. as reported by libburn"
 msgstr "رقم التعريف اللذي أرجعه libburn"
 
-#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
+#: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
 msgid "Profile name as reported by libburn"
 msgstr "اسم التعريف اللذي أرجعه libburn"
 
-#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
+#: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
 msgid "Is the disc erasable"
 msgstr "هل القرص قابل للمسح"
 
-#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
+#: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
 msgid "Can burn CDR"
 msgstr "يمكن أن يحرق CDR"
 
-#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
+#: ../xfburn/xfburn-device.c:274 ../xfburn/xfburn-device.c:275
 msgid "Can burn CDRW"
 msgstr "يمكن أن يحرق CDRW"
 
-#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
+#: ../xfburn/xfburn-device.c:277 ../xfburn/xfburn-device.c:278
 msgid "Can burn DVDR"
 msgstr "يمكن أن يحرق DVDR"
 
-#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
+#: ../xfburn/xfburn-device.c:280 ../xfburn/xfburn-device.c:281
 msgid "Can burn DVDPLUSR"
 msgstr "يمكن أن يحرق DVDPLUSR"
 
-#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
+#: ../xfburn/xfburn-device.c:283 ../xfburn/xfburn-device.c:284
 msgid "Can burn DVDRAM"
 msgstr "يمكن أن يحرق DVDRAM"
 
-#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
+#: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
+msgid "Can burn Blu-ray"
+msgstr "يمكن حرق Blu-ray"
+
+#: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
 msgid "libburn TAO block types"
 msgstr "أنواع كتلة libburn TAO"
 
-#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
+#: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
 msgid "libburn SAO block types"
 msgstr "أنواع كتلة libburn SAO"
 
-#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
+#: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
 msgid "libburn RAW block types"
 msgstr "أنواع كتلة libburn RAW"
 
-#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
+#: ../xfburn/xfburn-device.c:298 ../xfburn/xfburn-device.c:299
 msgid "libburn PACKET block types"
 msgstr "أنواع حزم كتلة libburn"
 
