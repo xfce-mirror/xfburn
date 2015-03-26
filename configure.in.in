@@ -3,13 +3,13 @@ dnl $Id$
 dnl Version information
 m4_define([xfburn_version_major], [0])
 m4_define([xfburn_version_minor], [5])
-m4_define([xfburn_version_micro], [2])
+m4_define([xfburn_version_micro], [3])
 m4_define([xfburn_version_build], [@REVISION@])
 m4_define([xfburn_version_tag], [])
 m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()ifelse(xfburn_version_tag(), [git], [xfburn_version_tag()-xfburn_version_build()], [xfburn_version_tag()])])
 
 dnl Initialize autoconf
-AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>, 2008-2014 David Mohr <david@mcbf.net>])
+AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>, 2008-2015 David Mohr <david@mcbf.net>])
 AC_INIT([xfburn], [xfburn_version], [xfburn@xfce.org])
 
 dnl Initialize automake
@@ -48,9 +48,9 @@ dnl *** Optional support for gstreamer ***
 dnl **************************************
 dnl (based on xfce4-mixer (trunk@27735)
 dnl XDT_CHECK_OPTIONAL_PACKAGE([GST_PLUGINS_BASE], [gstreamer-plugins-base-0.10], [0.10.2])
-XDT_CHECK_OPTIONAL_PACKAGE([GST], [gstreamer-0.10], [0.10.2], [gstreamer], [GStreamer support for burning audio])
+XDT_CHECK_OPTIONAL_PACKAGE([GST], [gstreamer-1.0], [1.0.0], [gstreamer], [GStreamer support for burning audio])
 if test x"$GST_FOUND" == x"yes"; then
-  XDT_CHECK_PACKAGE([GST_PBUTILS], [gstreamer-pbutils-0.10], [0.10.2])
+  XDT_CHECK_PACKAGE([GST_PBUTILS], [gstreamer-pbutils-1.0], [1.0])
 fi
 
 

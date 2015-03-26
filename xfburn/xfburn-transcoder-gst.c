@@ -89,7 +89,7 @@ static gboolean query_and_signal_duration (XfburnTranscoderGst *trans);
 
 /* gstreamer support functions */
 static gboolean bus_call (GstBus *bus, GstMessage *msg, gpointer data);
-static void on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data);
+static void on_pad_added (GstElement *element, GstPad *pad, gpointer data);
 
 #ifdef DEBUG_GST
 static void cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data);
@@ -314,7 +314,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   gst_element_link (resample, conv2);
 
   /* setup caps for raw pcm data */
-  caps = gst_caps_new_simple ("audio/x-raw-int",
+  caps = gst_caps_new_simple ("audio/x-raw",
             "rate", G_TYPE_INT, 44100,
             "channels", G_TYPE_INT, 2,
             "endianness", G_TYPE_INT, G_LITTLE_ENDIAN,
@@ -324,7 +324,9 @@ create_pipeline (XfburnTranscoderGst *trans)
             NULL);
 
 #if DEBUG_GST > 0 && DEBUG > 0
-  if (!gst_element_link_filtered (conv2, id, caps)) {
+  // TODO without the filter it does work but I'm not sure the audio format is correct
+  //if (!gst_element_link_filtered (conv2, id, caps)) {
+  if (!gst_element_link (conv2, id)) {
 #else
   if (!gst_element_link_filtered (conv2, sink, caps)) {
 #endif
@@ -341,7 +343,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   g_signal_connect (id, "handoff", G_CALLBACK (cb_handoff), id);
 #endif
 
-  g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK (on_pad_added), trans);
+  g_signal_connect (decoder, "pad-added", G_CALLBACK (on_pad_added), trans);
 }
 
 static void 
@@ -447,7 +449,7 @@ query_and_signal_duration (XfburnTranscoderGst *trans)
   //guint secs;
 
   fmt = GST_FORMAT_TIME;
-  if (!gst_element_query_duration (priv->pipeline, &fmt, &priv->duration)) {
+  if (!gst_element_query_duration (priv->pipeline, fmt, &priv->duration)) {
     return FALSE;
   }
 
@@ -605,7 +607,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       break;
     }
 
-    case GST_MESSAGE_DURATION: {
+    case GST_MESSAGE_DURATION_CHANGED: {
 
       switch (priv->state) {
         case XFBURN_TRANSCODER_GST_STATE_IDLE:
@@ -654,7 +656,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 }
 
 static void
-on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
+on_pad_added (GstElement *element, GstPad *pad, gpointer data)
 {
   XfburnTranscoderGst *trans = XFBURN_TRANSCODER_GST (data);
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
@@ -677,7 +679,7 @@ on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
 #endif
 
   // check disc type
-  caps = gst_pad_get_caps (pad);
+  caps = gst_pad_query_caps (pad, NULL);
   str = gst_caps_get_structure (caps, 0);
   if (!g_strrstr (gst_structure_get_name (str), "audio")) {
     GstStructure *msg_struct;
@@ -696,7 +698,7 @@ on_pad_added (GstElement *element, GstPad *pad, gboolean last, gpointer data)
 		    "%s",
                  _(error_msg));
     
-    msg_struct = gst_structure_new ("no-audio-content", NULL);
+    msg_struct = gst_structure_new_empty ("no-audio-content");
 
     msg = gst_message_new_application (GST_OBJECT (element), msg_struct);
 
@@ -745,7 +747,7 @@ get_description (XfburnTranscoder *trans)
 static void
 cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data)
 {
-  guint size = GST_BUFFER_SIZE (buffer);
+  guint size = gst_buffer_get_size (buffer);
 #if DEBUG_GST > 2
   static int i = 0;
   const int step = 30;
