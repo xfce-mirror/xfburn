@@ -317,16 +317,12 @@ create_pipeline (XfburnTranscoderGst *trans)
   caps = gst_caps_new_simple ("audio/x-raw",
             "rate", G_TYPE_INT, 44100,
             "channels", G_TYPE_INT, 2,
-            "endianness", G_TYPE_INT, G_LITTLE_ENDIAN,
-            "width", G_TYPE_INT, 16,
-            "depth", G_TYPE_INT, 16,
-            "signed", G_TYPE_BOOLEAN, TRUE,
+            "format", G_TYPE_STRING, "S16LE",
             NULL);
 
 #if DEBUG_GST > 0 && DEBUG > 0
   // TODO without the filter it does work but I'm not sure the audio format is correct
-  //if (!gst_element_link_filtered (conv2, id, caps)) {
-  if (!gst_element_link (conv2, id)) {
+  if (!gst_element_link_filtered (conv2, id, caps)) {
 #else
   if (!gst_element_link_filtered (conv2, sink, caps)) {
 #endif
