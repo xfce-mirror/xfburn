@@ -219,7 +219,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  priv->button_proceed = button = xfce_gtk_button_new_mixed ("xfburn-burn-cd", _("_Burn Composition"));
+  priv->button_proceed = button = xfburn_gtk_button_new_mixed (XFBURN_STOCK_BURN_CD, _("_Burn Composition"));
 
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);

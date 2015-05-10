@@ -160,7 +160,7 @@ xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObject
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->combo, FALSE, FALSE, BORDER);
   gtk_widget_show (disc_usage->combo);
 
-  disc_usage->button = xfce_gtk_button_new_mixed (XFBURN_STOCK, _("Proceed to Burn"));
+  disc_usage->button = xfburn_gtk_button_new_mixed (XFBURN_STOCK, _("Proceed to Burn"));
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->button, FALSE, FALSE, BORDER);
   gtk_widget_set_sensitive (disc_usage->button, FALSE);
   gtk_widget_show (disc_usage->button);

@@ -174,6 +174,27 @@ xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, const gchar *
   return ok;
 }
 
+/* Based on xfce_gtk_Button_new_mixed, but always use a stock icon */
+GtkWidget *
+xfburn_gtk_button_new_mixed (const gchar *stock_id, const gchar *label)
+{
+    GtkWidget *button;
+    GtkWidget *image;
+    g_return_val_if_fail (stock_id != NULL || label != NULL, NULL);
+    if (label != NULL) {
+        button = gtk_button_new_with_mnemonic (label);
+        if (stock_id != NULL) {
+            /* create image widget */
+            image = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
+            gtk_button_set_image (GTK_BUTTON (button), image);
+        }
+    } else {
+        /* fall back to a stock button */
+        button = gtk_button_new_from_stock (stock_id);
+    }
+    return button;
+}
+
 
 /*******************/
 /* libburn helpers */
