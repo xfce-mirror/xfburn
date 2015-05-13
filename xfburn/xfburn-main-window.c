@@ -129,7 +129,7 @@ static const GtkActionEntry action_entries[] = {
   {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),
    G_CALLBACK (action_copy_cd),},
   /*{"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),}, */
-  {"burn-image", "xfburn-burn-cd", N_("Burn Image"), NULL, N_("Burn Image"),
+  {"burn-image", "stock_xfburn", N_("Burn Image"), NULL, N_("Burn Image"),
    G_CALLBACK (action_burn_image),},
 /*  {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
    G_CALLBACK (action_copy_dvd),}, */
