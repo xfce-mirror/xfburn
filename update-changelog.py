@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright 2008 Marcus D. Hanwell <marcus@cryos.org>
-#           2010 David Mohr <squisher@xfce.org>
+#           2010,2015 David Mohr <squisher@xfce.org>
 # Distributed under the terms of the GNU General Public License v2 or later
 #
 # Renamed from gitlog2changelog.py, from avogardro commit 8be9957e5b3b5675701ef2ed002aa9e718d4146e
@@ -9,10 +9,11 @@
 #   * Newline after the files
 #   * Fix linebreak at 78 chars
 
-import string, re, os
+import re, os
 
 # Execute git log with the desired command line options.
-fin = os.popen('git log --summary --stat --no-merges --date=short', 'r')
+cmd = 'git log --summary --stat --no-merges --date=short --pretty=format:"commit %H%nAuthor: %an <%ae>%nDate: %cd%n%n%s%n"'
+fin = os.popen(cmd, 'r')
 # Create a ChangeLog file in the current directory.
 fout = open('ChangeLog', 'w')
 
@@ -29,7 +30,7 @@ prevAuthorLine = ""
 # The main part of the loop
 for line in fin:
     # The commit line marks the start of a new commit object.
-    if string.find(line, 'commit') >= 0:
+    if re.search('^commit', line) is not None:
         # Start all over again...
         authorFound = False
         dateFound = False
@@ -40,25 +41,25 @@ for line in fin:
         files = ""
         continue
     # Match the author line and extract the part we want
-    elif re.match('Author:', line) >=0:
+    elif re.match('Author:', line) is not None:
         authorList = re.split(': ', line, 1)
         author = authorList[1]
         author = author[0:len(author)-1]
         authorFound = True
     # Match the date line
-    elif re.match('Date:', line) >= 0:
-        dateList = re.split(':   ', line, 1)
+    elif re.match('Date:', line) is not None:
+        dateList = re.split(': ', line, 1)
         date = dateList[1]
         date = date[0:len(date)-1]
         dateFound = True
     # The svn-id lines are ignored
-    elif re.match('    git-svn-id:', line) >= 0:
+    elif re.match('    git-svn-id:', line) is not None:
         continue
     # The sign off line is ignored too
-    elif re.search('Signed-off-by', line) >= 0:
+    elif re.search('Signed-off-by', line) is not None:
         continue
     # Extract the actual commit message for this commit
-    elif authorFound & dateFound & messageFound == False:
+    elif authorFound & dateFound & messageFound is False:
         # Find the commit message if we can
         if len(line) == 1:
             if messageNL:
@@ -74,7 +75,7 @@ for line in fin:
             if len(line) > 1:
                 message = message + '    ' + line
     # If this line is hit all of the files have been stored for this commit
-    elif re.search('files changed', line) >= 0:
+    elif re.search('files? changed', line) is not None:
         filesFound = True
         continue
     # Collect the files for this commit. FIXME: Still need to add +/- to files
@@ -104,11 +105,11 @@ for line in fin:
         commit = ""
         while i < len(commitLine):
             if i == 0:
-              indent = '  '
-              line_len = 76
+                indent = '  '
+                line_len = 76
             else:
-              indent = '    '
-              line_len = 74
+                indent = '    '
+                line_len = 74
 
             if len(commitLine) < i + line_len:
                 commit = commit + "\n" + indent + commitLine[i:len(commitLine)]
@@ -127,7 +128,7 @@ for line in fin:
 
         fout.write(message)
 
-        #Now reset all the variables ready for a new commit block.
+        # Now reset all the variables ready for a new commit block.
         authorFound = False
         dateFound = False
         messageFound = False
