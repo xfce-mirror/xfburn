@@ -10,17 +10,18 @@ m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfbur
 
 dnl Initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>, 2008-2015 David Mohr <david@mcbf.net>])
-AC_INIT([xfburn], [xfburn_version], [xfburn@xfce.org])
+AC_INIT([xfburn], [xfburn_version])
+AC_CONFIG_SRCDIR([xfburn/xfburn-main.c])
 
 dnl Initialize automake
-AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
+AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE()
 
 dnl check for basic programs
 AC_PROG_CC()
 AC_PROG_INSTALL()
-AC_PROG_INTLTOOL([0.31], [no-xml])
+IT_PROG_INTLTOOL([0.35.0])
 LT_PREREQ([2.2.6])
 LT_INIT()
 
@@ -75,4 +76,3 @@ docs/Makefile
 desktop-integration/Makefile
 xfburn/Makefile
 ])
-	

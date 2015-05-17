@@ -31,7 +31,7 @@ fi
 
 sed -e "s/@LINGUAS@/${linguas}/g" \
     -e "s/@REVISION@/${revision}/g" \
-    < "configure.in.in" > "configure.in"
+    < "configure.ac.in" > "configure.ac"
 
 if test -f autogen.configureflags; then
   configureflags=`cat autogen.configureflags`
