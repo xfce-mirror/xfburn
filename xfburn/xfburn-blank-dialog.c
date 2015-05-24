@@ -484,9 +484,12 @@ get_selected_mode (XfburnBlankDialogPrivate *priv)
 
   model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_type));
   ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_type), &iter);
-  if (ret)
+  if (ret) {
     gtk_tree_model_get (model, &iter, BLANK_COMBO_MODE_COLUMN, &blank_mode, -1);
-
+  } else {
+    g_warning("No blank mode selected, using default");
+    blank_mode = XFBURN_BLANK_FAST;
+  }
   return blank_mode;
 }
 
