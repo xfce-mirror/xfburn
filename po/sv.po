@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Alex Nordlund <deep.alexander@gmail.com>, 2013
-# Alex Nordlund <deep.alexander@gmail.com>, 2013
+# Alexander Nordlund <deep.alexander@gmail.com>, 2013
+# Alexander Nordlund <deep.alexander@gmail.com>, 2013
 # Daniel Nylander <po@danielnylander.se>, 2006,2008-2009
-# PavelNicklasson <pavelnicklasson@bahnhof.se>, 2014
-# PavelNicklasson <pavelnicklasson@bahnhof.se>, 2014
+# Påvel Nicklasson <pavel.frimixse>, 2014-2015
+# Påvel Nicklasson <pavelnicklasson@bahnhof.se>, 2014
+# Påvel Nicklasson <pavelnicklasson@bahnhof.se>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 00:31+0100\n"
-"PO-Revision-Date: 2014-03-23 13:45+0000\n"
-"Last-Translator: PavelNicklasson <pavelnicklasson@bahnhof.se>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/xfce/language/sv/)\n"
+"POT-Creation-Date: 2014-04-05 12:31+0200\n"
+"PO-Revision-Date: 2015-06-03 15:37+0000\n"
+"Last-Translator: Påvel Nicklasson <pavelnicklasson@bahnhof.se>\n"
+"Language-Team: Swedish (http://www.transifex.com/projects/p/xfce-apps/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -58,9 +59,13 @@ msgstr "CD-kopiering slutfördes framgångsrikt."
 msgid "Data composition"
 msgstr "Datakompilering"
 
-#: ../xfburn/xfburn-adding-progress.c:111
+#: ../xfburn/xfburn-adding-progress.c:112
 msgid "Adding files to the composition"
 msgstr "Lägger till filer till kompileringen"
+
+#: ../xfburn/xfburn-adding-progress.c:125
+msgid "Cancel"
+msgstr "Avbryt"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
@@ -158,20 +163,20 @@ msgstr "Tömmer skiva..."
 
 #: ../xfburn/xfburn-blank-dialog.c:441
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:519
-#: ../xfburn/xfburn-perform-burn.c:467
+#: ../xfburn/xfburn-perform-burn.c:485
 #, c-format
 msgid "Done"
 msgstr "Färdig"
 
-#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:473
-#: ../xfburn/xfburn-progress-dialog.c:653
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:492
+#: ../xfburn/xfburn-progress-dialog.c:654
 msgid "Failure"
 msgstr "Fel"
 
 #: ../xfburn/xfburn-blank-dialog.c:461
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:619
-#: ../xfburn/xfburn-burn-image-dialog.c:402
-#: ../xfburn/xfburn-burn-image-dialog.c:578
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:624
+#: ../xfburn/xfburn-burn-image-dialog.c:400
+#: ../xfburn/xfburn-burn-image-dialog.c:576
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
 msgid "Unable to grab the drive."
 msgstr "Kunde inte fånga enheten."
@@ -250,13 +255,13 @@ msgstr "Ett fel inträffade vid skrivning av ISO-avbildning: %s"
 msgid "An error occurred in the burn backend."
 msgstr "Ett fel inträffade i bränningsbakänden."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:580
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
 msgstr "Skrivningsläget stöds för närvarande inte."
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:662
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:667
 msgid "Could not create ISO source structure."
 msgstr "Kunde inte skapa ISO-källstruktur."
 
@@ -286,59 +291,59 @@ msgstr "Avsluta efter ly_ckat resultat"
 msgid "_Burn image"
 msgstr "_Bränn avbildning"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:285
+#: ../xfburn/xfburn-burn-image-dialog.c:283
 msgid "Burn mode is not currently implemented."
 msgstr "Bränningsläget stöds för närvarande inte."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:336
-#: ../xfburn/xfburn-burn-image-dialog.c:365
+#: ../xfburn/xfburn-burn-image-dialog.c:334
+#: ../xfburn/xfburn-burn-image-dialog.c:363
 msgid "An error occurred in the burn backend"
 msgstr "Ett fel inträffade i bränningsbakänden."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:349
+#: ../xfburn/xfburn-burn-image-dialog.c:347
 msgid "Unable to determine image size."
 msgstr "Kunde inte fastställa avbildningens storlek."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:356
+#: ../xfburn/xfburn-burn-image-dialog.c:354
 msgid "Cannot open image."
 msgstr "Kan inte öppna avbildningen."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:393
+#: ../xfburn/xfburn-burn-image-dialog.c:391
 msgid "Burning image..."
 msgstr "Bränner avbildning..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:465
+#: ../xfburn/xfburn-burn-image-dialog.c:463
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Välj en avbildning att bränna</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:505
+#: ../xfburn/xfburn-burn-image-dialog.c:503
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "Kan inte lägga till data till en multisession-skiva i detta skrivningsläge (använd TAO istället)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:509
+#: ../xfburn/xfburn-burn-image-dialog.c:507
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "Stängd skiva med data hittades. Behöver en tom skiva eller en möjlig att lägga till på"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:509
 msgid "No disc detected in drive"
 msgstr "Ingen skiva upptäcktes i enheten"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:513
+#: ../xfburn/xfburn-burn-image-dialog.c:511
 msgid "Cannot recognize state of drive and disc"
 msgstr "Kan inte känna igen tillståndet för enheten och skivan"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:525
+#: ../xfburn/xfburn-burn-image-dialog.c:523
 msgid "The selected image does not fit on the inserted disc"
 msgstr "Den valda avbildningen får inte plats på den inmatade skivan"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:529
+#: ../xfburn/xfburn-burn-image-dialog.c:527
 msgid "Failed to get image size"
 msgstr "Misslyckades med att få avbildningens storlek"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:558
+#: ../xfburn/xfburn-burn-image-dialog.c:556
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
@@ -535,13 +540,13 @@ msgstr "%s: nollpekare"
 
 #: ../xfburn/xfburn-data-composition.c:1937
 #, c-format
-msgid "%s: node name not unique"
-msgstr "%s: nodnamn är inte unikt"
+msgid "%s: out of memory"
+msgstr "%s: slut på minne"
 
 #: ../xfburn/xfburn-data-composition.c:1939
 #, c-format
-msgid "%s: out of memory"
-msgstr "%s: slut på minne"
+msgid "%s: node name not unique"
+msgstr "%s: nodnamn är inte unikt"
 
 #: ../xfburn/xfburn-data-composition.c:1941
 #, c-format
@@ -554,7 +559,7 @@ msgstr "%s: %s (kod %X)"
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "Dubblett filnamn \"%s\" för \"%s\""
 
-#: ../xfburn/xfburn-data-composition.c:2027
+#: ../xfburn/xfburn-data-composition.c:2026
 msgid "Error(s) occured while adding files"
 msgstr "Fel inträffade då filer lades till"
 
@@ -617,55 +622,55 @@ msgstr "<b>Det gick inte att hämta hastighetslistan för enheten.</b>\n\nDetta 
 msgid "Continue to _show this notice"
 msgstr "Fortsätt att _visa denna notering"
 
-#: ../xfburn/xfburn-device-box.c:440
+#: ../xfburn/xfburn-device-box.c:442
 msgid "default"
 msgstr "standard"
 
-#: ../xfburn/xfburn-device-box.c:471
+#: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Maximal"
 
-#: ../xfburn/xfburn-device-box.c:581
+#: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
 msgstr "Enheten kan inte bränna på den inmatade skivan"
 
-#: ../xfburn/xfburn-device-box.c:590 ../xfburn/xfburn-device-box.c:636
+#: ../xfburn/xfburn-device-box.c:588 ../xfburn/xfburn-device-box.c:634
 msgid "Drive is empty"
 msgstr "Enheten är tom"
 
-#: ../xfburn/xfburn-device-box.c:593
+#: ../xfburn/xfburn-device-box.c:591
 msgid "Sorry, multisession is not yet supported"
 msgstr "Tyvärr, multisession stöds ännu inte"
 
-#: ../xfburn/xfburn-device-box.c:596
+#: ../xfburn/xfburn-device-box.c:594
 msgid "Inserted disc is full"
 msgstr "Inmatad skiva är full"
 
-#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:642
+#: ../xfburn/xfburn-device-box.c:597 ../xfburn/xfburn-device-box.c:640
 msgid "Inserted disc is unsuitable"
 msgstr "Inmatad skiva är olämplig"
 
-#: ../xfburn/xfburn-device-box.c:602 ../xfburn/xfburn-device-box.c:645
+#: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Cannot access drive (it might be in use)"
 msgstr "Kan inte komma åt enheten (den kanske används)"
 
-#: ../xfburn/xfburn-device-box.c:607 ../xfburn/xfburn-device-box.c:648
+#: ../xfburn/xfburn-device-box.c:605 ../xfburn/xfburn-device-box.c:646
 msgid "Error determining disc"
 msgstr "Fel vid fastställning av skiva"
 
-#: ../xfburn/xfburn-device-box.c:628
+#: ../xfburn/xfburn-device-box.c:626
 msgid "Write-once disc, no blanking possible"
 msgstr "Skivan kan endast skrivas en gång, ingen radering möjlig"
 
-#: ../xfburn/xfburn-device-box.c:631
+#: ../xfburn/xfburn-device-box.c:629
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW behöver inte tömmas"
 
-#: ../xfburn/xfburn-device-box.c:639
+#: ../xfburn/xfburn-device-box.c:637
 msgid "Inserted disc is already blank"
 msgstr "Inmatad skiva är redan tom"
 
-#: ../xfburn/xfburn-device-box.c:675
+#: ../xfburn/xfburn-device-box.c:673
 msgid "Auto"
 msgstr "Auto"
 
@@ -890,102 +895,102 @@ msgstr "Visa stängningsknapp"
 msgid "Determine whether the close button is visible"
 msgstr "Fastställ huruvida stängningsknappen är synlig"
 
-#: ../xfburn/xfburn-perform-burn.c:101 ../xfburn/xfburn-perform-burn.c:430
+#: ../xfburn/xfburn-perform-burn.c:103 ../xfburn/xfburn-perform-burn.c:448
 msgid "Formatting..."
 msgstr "Formaterar..."
 
-#: ../xfburn/xfburn-perform-burn.c:133
+#: ../xfburn/xfburn-perform-burn.c:151
 msgid "Formatting failed."
 msgstr "Formatering misslyckades."
 
-#: ../xfburn/xfburn-perform-burn.c:255
+#: ../xfburn/xfburn-perform-burn.c:273
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "Kan inte lägga till data till en multisession-skiva i detta skrivningsläge (använd TAO istället)."
 
-#: ../xfburn/xfburn-perform-burn.c:259
+#: ../xfburn/xfburn-perform-burn.c:277
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "Stängd skiva med data upptäcktes, en tom skiva eller en som är möjlig att lägga till data på behövs."
 
-#: ../xfburn/xfburn-perform-burn.c:261
+#: ../xfburn/xfburn-perform-burn.c:279
 msgid "No disc detected in drive."
 msgstr "Ingen skiva upptäcktes i enheten."
 
-#: ../xfburn/xfburn-perform-burn.c:264
+#: ../xfburn/xfburn-perform-burn.c:282
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "Kunde inte känna igen tillståndet för enheten och skivan."
 
-#: ../xfburn/xfburn-perform-burn.c:281
+#: ../xfburn/xfburn-perform-burn.c:299
 msgid "There is not enough space available on the inserted disc."
 msgstr "Det finns inte tillräckligt mycket utrymme på den inmatade skivan."
 
-#: ../xfburn/xfburn-perform-burn.c:326
+#: ../xfburn/xfburn-perform-burn.c:344
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Bränner spår %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:330 ../xfburn/xfburn-perform-burn.c:395
+#: ../xfburn/xfburn-perform-burn.c:348 ../xfburn/xfburn-perform-burn.c:413
 msgid "Burning composition..."
 msgstr "Bränner kompilering..."
 
-#: ../xfburn/xfburn-perform-burn.c:364
+#: ../xfburn/xfburn-perform-burn.c:382
 msgid "standby"
 msgstr "avvaktar"
 
-#: ../xfburn/xfburn-perform-burn.c:372
+#: ../xfburn/xfburn-perform-burn.c:390
 msgid "ending"
 msgstr "avslutar"
 
-#: ../xfburn/xfburn-perform-burn.c:375
+#: ../xfburn/xfburn-perform-burn.c:393
 msgid "failing"
 msgstr "misslyckades"
 
-#: ../xfburn/xfburn-perform-burn.c:378
+#: ../xfburn/xfburn-perform-burn.c:396
 msgid "unused"
 msgstr "oanvänt"
 
-#: ../xfburn/xfburn-perform-burn.c:381
+#: ../xfburn/xfburn-perform-burn.c:399
 msgid "abandoned"
 msgstr "övergiven"
 
-#: ../xfburn/xfburn-perform-burn.c:384
+#: ../xfburn/xfburn-perform-burn.c:402
 msgid "ended"
 msgstr "slutade"
 
-#: ../xfburn/xfburn-perform-burn.c:387
+#: ../xfburn/xfburn-perform-burn.c:405
 msgid "aborted"
 msgstr "avbruten"
 
-#: ../xfburn/xfburn-perform-burn.c:390
+#: ../xfburn/xfburn-perform-burn.c:408
 msgid "no info"
 msgstr "ingen info"
 
-#: ../xfburn/xfburn-perform-burn.c:400
+#: ../xfburn/xfburn-perform-burn.c:418
 msgid "Writing Lead-In..."
 msgstr "Skriver inledande..."
 
-#: ../xfburn/xfburn-perform-burn.c:406
+#: ../xfburn/xfburn-perform-burn.c:424
 msgid "Writing Lead-Out..."
 msgstr "Skriver avslutande..."
 
-#: ../xfburn/xfburn-perform-burn.c:412
+#: ../xfburn/xfburn-perform-burn.c:430
 msgid "Writing pregap..."
 msgstr "Skriver pregap..."
 
-#: ../xfburn/xfburn-perform-burn.c:418
+#: ../xfburn/xfburn-perform-burn.c:436
 msgid "Closing track..."
 msgstr "Stänger spår..."
 
-#: ../xfburn/xfburn-perform-burn.c:424
+#: ../xfburn/xfburn-perform-burn.c:442
 msgid "Closing session..."
 msgstr "Stänger session..."
 
-#: ../xfburn/xfburn-perform-burn.c:443
+#: ../xfburn/xfburn-perform-burn.c:461
 msgid "see console"
 msgstr "se konsollen"
 
-#: ../xfburn/xfburn-perform-burn.c:471
+#: ../xfburn/xfburn-perform-burn.c:489
 msgid "User Aborted"
 msgstr "Användaren avbröt"
 
@@ -1130,7 +1135,7 @@ msgstr "Avbruten"
 msgid "Completed"
 msgstr "Färdig"
 
-#: ../xfburn/xfburn-progress-dialog.c:617
+#: ../xfburn/xfburn-progress-dialog.c:618
 msgid "Aborting..."
 msgstr "Avbryter..."
 
@@ -1249,7 +1254,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr "Den grundläggande omkodaren är inbyggd\noch kräver inga extra bibliotek.\nDock kan den endast hantera okomprimerade\n.wav-filer.\nOm du vill skapa ljudkompileringar\nfrån olika typer av ljudfiler så bör du\nkompilera med stöd för gstreamer."
+msgstr "Den enkla omkodaren är inbyggd\noch kräver inga extra bibliotek.\nDock kan den endast hantera okomprimerade\n.wav-filer.\nOm du vill skapa ljudkompileringar\nfrån olika typer av ljudfiler så bör du\nkompilera med stöd för gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
