@@ -41,6 +41,7 @@
 
 #include <gst/gst.h>
 #include <gst/pbutils/missing-plugins.h>
+#include <gst/pbutils/pbutils.h>
 
 #include "xfburn-global.h"
 #include "xfburn-error.h"
@@ -118,6 +119,8 @@ typedef struct {
   gboolean gst_done;
   gboolean is_audio;
   gint64 duration;
+
+  GstDiscoverer *discoverer;
 
   GError *error;
 
@@ -220,6 +223,8 @@ xfburn_transcoder_gst_init (XfburnTranscoderGst * obj)
    * information from gst */
   g_mutex_init (&priv->gst_mutex);
   g_mutex_lock (&priv->gst_mutex);
+
+  priv->discoverer = gst_discoverer_new(GST_SECOND, NULL);
 }
 
 static void
@@ -230,6 +235,7 @@ xfburn_transcoder_gst_finalize (GObject * object)
   gst_element_set_state (priv->pipeline, GST_STATE_NULL);
 
   gst_object_unref (GST_OBJECT (priv->pipeline));
+  gst_object_unref (GST_OBJECT (priv->discoverer));
   priv->pipeline = NULL;
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
@@ -766,8 +772,10 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (tgst);
 
   XfburnAudioTrackGst *gtrack;
-  gint64 end_time;
   off_t size;
+  GstDiscovererInfo *info;
+  GstDiscovererResult result;
+  gchar *uri;
 
   priv->is_audio = FALSE;
 #if DEBUG_GST > 0
@@ -775,38 +783,27 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
 #endif
 
   priv->state = XFBURN_TRANSCODER_GST_STATE_IDENTIFYING;
-  g_object_set (G_OBJECT (priv->source), "location", atrack->inputfile, NULL);
-  if (gst_element_set_state (priv->pipeline, GST_STATE_PAUSED) == GST_STATE_CHANGE_FAILURE) {
-#if DEBUG_GST > 0
-    g_message ("Supposedly failed to change gstreamer state, ignoring it as usually it does it anyways.");
-#endif
+
+  uri = g_strdup_printf("file://%s", atrack->inputfile);
+  info = gst_discoverer_discover_uri(priv->discoverer, uri, error);
+  g_free(uri);
+
+  if (*error != NULL) {
+      return FALSE;
   }
 
-  end_time = g_get_monotonic_time () + SIGNAL_WAIT_TIMEOUT_MS * G_TIME_SPAN_MILLISECOND;
-#if DEBUG_GST > 0
-  DBG ("Now waiting for identification result");
-#endif
-  while (!priv->gst_done)
-    if (!g_cond_wait_until (&priv->gst_cond, &priv->gst_mutex, end_time)) {
-      DBG ("gst identification timed out");
-      recreate_pipeline (tgst);
-      g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_TIMEOUT,
-                   _("Gstreamer did not like this file (detection timed out)"));
-      return FALSE;
-    }
-  priv->gst_done = FALSE;
-#if DEBUG_GST > 0
-  DBG ("Got an identification result ");
-#endif
-
-  if (!priv->is_audio) {
-    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_AUDIO_FORMAT,
-                 _("%s\n\nis not an audio file:\n\n%s"), atrack->inputfile, priv->error->message);
-    g_error_free (priv->error);
-    priv->error = NULL;
+  if ((result = gst_discoverer_info_get_result(info)) != GST_DISCOVERER_OK) {
+    gst_discoverer_info_unref(info);
+    DBG ("gst discoverer said %d", result);
+    /* TODO: improve error messages */
+    //recreate_pipeline (tgst);
+    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_DISCOVERER,
+                _("Could not identify '%s'with gstreamer"), atrack->inputfile);
     return FALSE;
   }
+  priv->gst_done = FALSE;
 
+  priv->duration = gst_discoverer_info_get_duration(info);
   atrack->length = priv->duration / 1000000000;
 
   size = (off_t) floorf (priv->duration * (PCM_BYTES_PER_SECS / (float) 1000000000));
@@ -820,6 +817,8 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
   atrack->type = XFBURN_TYPE_AUDIO_TRACK_GST;
 
   gtrack->size = size;
+
+  gst_discoverer_info_unref(info);
 
   return TRUE;
 }
