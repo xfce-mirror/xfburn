@@ -520,7 +520,8 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
     }
 
     case GST_MESSAGE_ELEMENT: {
-      /* TODO: is this code still reachable now that identification uses the discoverer API? */
+      /* This should not happen now that the discoverer API is used to identify songs.
+       * Shouldn't hurt to keep around though. */
       if (gst_is_missing_plugin_message (msg)) {
           recreate_pipeline (trans);
 
@@ -649,6 +650,26 @@ cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data)
 
 #endif
 
+static gchar *
+get_discoverer_required_plugins_message (GstDiscovererInfo *info)
+{
+  GString *str;
+  gchar **plugins;
+  gchar *plugins_str;
+
+  plugins = (gchar **) gst_discoverer_info_get_missing_elements_installer_details (info);
+
+  if (g_strv_length(plugins) == 0) {
+    str = g_string_new ("No information available on which plugin is required.");
+  } else {
+    str = g_string_new("Required plugins: ");
+    plugins_str = g_strjoinv (", ", plugins);
+    g_string_append (str, plugins_str);
+    g_free (plugins_str);
+  }
+
+  return g_string_free (str, FALSE);
+}
 
 static gboolean
 get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
@@ -670,19 +691,48 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
   info = gst_discoverer_discover_uri(priv->discoverer, uri, error);
   g_free(uri);
 
-  if (*error != NULL) {
+  if (info == NULL) {
+    if (error && *error == NULL) {
+        DBG ("no info and no error");
+        g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_DISCOVERER,
+                    _("An error occurred while identifying '%s' with gstreamer"), atrack->inputfile);
+    }
+    return FALSE;
+  }
+
+  result = gst_discoverer_info_get_result(info);
+  switch (result) {
+    case GST_DISCOVERER_MISSING_PLUGINS:
+      g_clear_error (error);
+      /*
+      g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_DISCOVERER,
+                  _("%s: %s"), atrack->inputfile, get_discoverer_required_plugins_message (info));
+      */
+      // the message is pretty useless, so print it only on the console, and create our own instead.
+      DBG ("%s", get_discoverer_required_plugins_message (info));
+      g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_MISSING_PLUGIN,
+                   _("A plugin is missing.\n"
+                     "\n"
+                     "You do not have a decoder installed to handle this file.\n"
+                     "Probably you need to look at the gst-plugins-* packages\n"
+                     "for the necessary plugins.\n"));
+      gst_discoverer_info_unref(info);
+      return FALSE;
+    case GST_DISCOVERER_OK:
+      break;
+    default:
+      gst_discoverer_info_unref(info);
+      DBG ("gst discoverer said %d", result);
+      /* TODO: improve error messages */
+      //recreate_pipeline (tgst);
+      if (error && *error == NULL)
+        g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_DISCOVERER,
+                     _("An error occurred while identifying '%s' with gstreamer"), atrack->inputfile);
+      else
+        g_prefix_error (error, "%s: ", atrack->inputfile);
       return FALSE;
   }
 
-  if ((result = gst_discoverer_info_get_result(info)) != GST_DISCOVERER_OK) {
-    gst_discoverer_info_unref(info);
-    DBG ("gst discoverer said %d", result);
-    /* TODO: improve error messages */
-    //recreate_pipeline (tgst);
-    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_DISCOVERER,
-                _("An error occurred while identifying '%s' with gstreamer"), atrack->inputfile);
-    return FALSE;
-  }
   priv->gst_done = FALSE;
 
   priv->duration = gst_discoverer_info_get_duration(info);
