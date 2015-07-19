@@ -145,6 +145,11 @@ static guint64 total_size = 0;
 
 static const gchar *errormsg_gst_setup = "An error occurred setting gstreamer up for transcoding";
 static const gchar *errormsg_libburn_setup = "An error occurred while setting the burning backend up";
+static const gchar *errormsg_missing_plugin = "%s is missing.\n"
+                                              "\n"
+                                              "You do not have a decoder installed to handle this file.\n"
+                                              "Probably you need to look at the gst-plugins-* packages\n"
+                                              "for the necessary plugins.\n";
 
 /*********************/
 /* class declaration */
@@ -526,11 +531,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
           recreate_pipeline (trans);
 
           g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_MISSING_PLUGIN,
-                       _("%s is missing.\n"
-                         "\n"
-                         "You do not have a decoder installed to handle this file.\n"
-                         "Probably you need to look at the gst-plugins-* packages\n"
-                         "for the necessary plugins.\n"),
+                       _(errormsg_missing_plugin),
                         gst_missing_plugin_message_get_description (msg)); 
       }
     }
@@ -711,11 +712,9 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
       // the message is pretty useless, so print it only on the console, and create our own instead.
       DBG ("%s", get_discoverer_required_plugins_message (info));
       g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_MISSING_PLUGIN,
-                   _("A plugin is missing.\n"
-                     "\n"
-                     "You do not have a decoder installed to handle this file.\n"
-                     "Probably you need to look at the gst-plugins-* packages\n"
-                     "for the necessary plugins.\n"));
+                   _(errormsg_missing_plugin),
+                   _("A plugin"));
+
       gst_discoverer_info_unref(info);
       return FALSE;
     case GST_DISCOVERER_OK:
