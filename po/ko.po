@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 12:30+0200\n"
-"PO-Revision-Date: 2015-07-17 18:12+0000\n"
+"POT-Creation-Date: 2015-07-20 06:30+0200\n"
+"PO-Revision-Date: 2015-07-20 13:25+0000\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/p/xfce-apps/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1281,24 +1281,14 @@ msgstr "%s을(를) 열 수 없습니다."
 msgid "Could not open %s: %s"
 msgstr "%s을(를) 열 수 없습니다: %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:640
-#, c-format
-msgid ""
-"%s is missing.\n"
-"\n"
-"You do not have a decoder installed to handle this file.\n"
-"Probably you need to look at the gst-plugins-* packages\n"
-"for the necessary plugins.\n"
-msgstr "%s이(가) 빠져있습니다.\n\n이 파일을 다루기 위한 디코더를 설치하지 않았습니다.\n아마도 필요한 플러긴을 위해 gst-plugins-* 패키지를\n찾아봐야 할 것 같습니다.\n"
-
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:729
+#: ../xfburn/xfburn-transcoder-gst.c:616
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:735
+#: ../xfburn/xfburn-transcoder-gst.c:622
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1310,17 +1300,21 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "gstreamer 변환코더는 음악 구성을 만드는\ngstreamer 라이브러리를 사용합니다.\n\n핵심적으로 설치한 올바른 플러그인이 모든 음악 파일을\n지원해주어야 합니다. 음악 파일을 인식하지 않는다면\n'좋은', '나쁜', '보기 흉한' gstreamer 플러긴 패키지를\n 설치했는지 확인하십시오."
 
-#: ../xfburn/xfburn-transcoder-gst.c:801
+#: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
-msgid "Could not identify '%s'with gstreamer"
-msgstr "gstreamer로 '%s'을(를) 식별할 수 없습니다"
+msgid "An error occurred while identifying '%s' with gstreamer"
+msgstr "gstreamer에서 '%s'을(를) 식별하는 동안 오류가 발생했습니다"
 
-#: ../xfburn/xfburn-transcoder-gst.c:918
+#: ../xfburn/xfburn-transcoder-gst.c:716
+msgid "A plugin"
+msgstr "플러그인"
+
+#: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "Gstreamer가 변환 코딩 시작을 원하지 않습니다(시간 초과)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:953
+#: ../xfburn/xfburn-transcoder-gst.c:884
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "변환 코딩을 진행하는 동안 노래를 바꾸는데 실패했습니다"
