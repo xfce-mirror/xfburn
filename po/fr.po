@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 12:30+0200\n"
-"PO-Revision-Date: 2015-07-18 07:44+0000\n"
+"POT-Creation-Date: 2015-07-20 06:30+0200\n"
+"PO-Revision-Date: 2015-07-20 13:59+0000\n"
 "Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/p/xfce-apps/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1286,24 +1286,14 @@ msgstr "Impossible d'ouvrir %s."
 msgid "Could not open %s: %s"
 msgstr "Impossible d'ouvrir %s : %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:640
-#, c-format
-msgid ""
-"%s is missing.\n"
-"\n"
-"You do not have a decoder installed to handle this file.\n"
-"Probably you need to look at the gst-plugins-* packages\n"
-"for the necessary plugins.\n"
-msgstr "%s est manquant.\n\nVous n'avez pas de décodeur installé pour ce type de fichier.\nLes modules nécessaires se trouvent probablement\ndans les paquets gst-plugins-*.\n"
-
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:729
+#: ../xfburn/xfburn-transcoder-gst.c:616
 msgid "gstreamer"
 msgstr "Transcodeur GStreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:735
+#: ../xfburn/xfburn-transcoder-gst.c:622
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1315,17 +1305,21 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "Le transcodeur gstreamer utilise la bibliothèque GStreamer\npour créer des compositions audio.\n\nTous les formats de fichiers devraient être pris en charge\ndu moment que les bons greffons sont installés.\nSi un fichier audio n'est pas reconnu, vérifiez que les greffons GStreamer 'good', 'bad', et 'ugly' sont installés."
 
-#: ../xfburn/xfburn-transcoder-gst.c:801
+#: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
-msgid "Could not identify '%s'with gstreamer"
-msgstr "Impossible d’identifier « %s » avec gstreamer"
+msgid "An error occurred while identifying '%s' with gstreamer"
+msgstr "Une erreur s’est produite en identifiant « %s » avec gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:918
+#: ../xfburn/xfburn-transcoder-gst.c:716
+msgid "A plugin"
+msgstr "Un greffon"
+
+#: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "GStreamer a refusé de démarré le transcodage (délais dépassé)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:953
+#: ../xfburn/xfburn-transcoder-gst.c:884
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "Impossible de changer la chanson pendant le transcodage"
