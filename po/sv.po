@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 12:30+0200\n"
-"PO-Revision-Date: 2015-07-19 17:14+0000\n"
+"POT-Creation-Date: 2015-07-20 06:30+0200\n"
+"PO-Revision-Date: 2015-08-29 18:59+0000\n"
 "Last-Translator: Påvel Nicklasson <pavelnicklasson@bahnhof.se>\n"
-"Language-Team: Swedish (http://www.transifex.com/p/xfce-apps/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/xfce/xfce-apps/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1283,24 +1283,14 @@ msgstr "Det gick inte att öppna %s."
 msgid "Could not open %s: %s"
 msgstr "Det gick inte att öppna %s: %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:640
-#, c-format
-msgid ""
-"%s is missing.\n"
-"\n"
-"You do not have a decoder installed to handle this file.\n"
-"Probably you need to look at the gst-plugins-* packages\n"
-"for the necessary plugins.\n"
-msgstr "%s saknas.\n\nDu har inte en avkodare installerad för att hantera denna fil.\nAntagligen behöver du ta en titt på paketen gst-plugins-*\nefter de nödvändiga insticksmodulerna.\n"
-
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:729
+#: ../xfburn/xfburn-transcoder-gst.c:616
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:735
+#: ../xfburn/xfburn-transcoder-gst.c:622
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1312,17 +1302,21 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "Omkodaren gstreamer använder gstreamer-\nbiblioteket för att skapa ljudsamlingar.\n\nI stort sett alla ljudfiler stöds om de korrekta\ninsticksmodulerna är installerade.\nOm en ljudfil inte känns igen bör du försäkra\ndig om att du har gstreamer-instickspaketen\n\"good\",\"bad\" och \"ugly\" installerade."
 
-#: ../xfburn/xfburn-transcoder-gst.c:801
+#: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
-msgid "Could not identify '%s'with gstreamer"
-msgstr "Det gick inte att identifiera '%s' med gstreamer"
+msgid "An error occurred while identifying '%s' with gstreamer"
+msgstr "Ett fel inträffade vid identifiering av '%s' med gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:918
+#: ../xfburn/xfburn-transcoder-gst.c:716
+msgid "A plugin"
+msgstr "Ett insticksprogram"
+
+#: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "Gstreamer ville inte starta omkodningen (tidsgränsen överstegs)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:953
+#: ../xfburn/xfburn-transcoder-gst.c:884
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "Misslyckades med att ändra låtar under omkodning"
