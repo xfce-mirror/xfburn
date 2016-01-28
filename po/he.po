@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2016-01-26 20:42+0000\n"
+"PO-Revision-Date: 2016-01-28 13:09+0000\n"
 "Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -1269,17 +1269,17 @@ msgstr "קובץ %s לא מכיל אודיו גל PCM לא דחוס"
 #: ../xfburn/xfburn-transcoder-basic.c:207
 #, c-format
 msgid "Could not stat %s: %s"
-msgstr ""
+msgstr "לא ניתן להתחיל %s: %s "
 
 #: ../xfburn/xfburn-transcoder-basic.c:238
 #, c-format
 msgid "Could not open %s."
-msgstr ""
+msgstr "לא ניתן לפתוח %s. "
 
 #: ../xfburn/xfburn-transcoder-basic.c:319
 #, c-format
 msgid "Could not open %s: %s"
-msgstr ""
+msgstr "לא ניתן לפתוח %s: %s "
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1298,40 +1298,40 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
+msgstr "טרנסקודר gstreamer משתמש בספריית\ngstreamer ליצירת עריכות אודיו.\n\nלמעשה כל קבצי האודיו צריכים להיות נתמכים\nבהינתן שהתוספים הנכונים מותקנים.\nאם קובץ אודיו לא מזוהה, וודא\nשחבילות תוסף gstreamer 'הטובה', 'הרעה' ו-'המכוערת'\nמותקנות."
 
 #: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
 msgid "An error occurred while identifying '%s' with gstreamer"
-msgstr ""
+msgstr "אירעה שגיאה בעת זיהוי '%s' עם gstreamer "
 
 #: ../xfburn/xfburn-transcoder-gst.c:716
 msgid "A plugin"
-msgstr ""
+msgstr "תוסף"
 
 #: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
-msgstr ""
+msgstr "Gstreamer לא רצה להתחיל פעולת transcoding (זמן עבר)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:884
 #, c-format
 msgid "Failed to change songs while transcoding"
-msgstr ""
+msgstr "נכשל להחליף שירים בעת פעולת transcoding "
 
 #: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
 #, c-format
 msgid "not implemented"
-msgstr ""
+msgstr "לא מיושם"
 
 #: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
 msgid "Display name"
-msgstr ""
+msgstr "שם מסך"
 
 #: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
 msgid "Device address"
-msgstr ""
+msgstr "כתובת התקן"
 
 #: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
 msgid "Burn speeds supported by the device"
@@ -1343,11 +1343,11 @@ msgstr "מצב תקליטור"
 
 #: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
 msgid "Profile no. as reported by libburn"
-msgstr ""
+msgstr "מס' פרופיל כפי שדווח ע\"י libburn "
 
 #: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
 msgid "Profile name as reported by libburn"
-msgstr ""
+msgstr "שם פרופיל כפי שדווח ע\"י libburn "
 
 #: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
 msgid "Is the disc erasable"
@@ -1355,47 +1355,47 @@ msgstr "האם התקליטור מחיק"
 
 #: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
 msgid "Can burn CDR"
-msgstr ""
+msgstr "יכול לצרוב CDR "
 
 #: ../xfburn/xfburn-device.c:274 ../xfburn/xfburn-device.c:275
 msgid "Can burn CDRW"
-msgstr ""
+msgstr "יכול לצרוב CDRW "
 
 #: ../xfburn/xfburn-device.c:277 ../xfburn/xfburn-device.c:278
 msgid "Can burn DVDR"
-msgstr ""
+msgstr "יכול לצרוב DVDR "
 
 #: ../xfburn/xfburn-device.c:280 ../xfburn/xfburn-device.c:281
 msgid "Can burn DVDPLUSR"
-msgstr ""
+msgstr "יכול לצרוב DVDPLUSR "
 
 #: ../xfburn/xfburn-device.c:283 ../xfburn/xfburn-device.c:284
 msgid "Can burn DVDRAM"
-msgstr ""
+msgstr "יכול לצרוב DVDRAM "
 
 #: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
 msgid "Can burn Blu-ray"
-msgstr ""
+msgstr "יכול לצרוב Blu-ray "
 
 #: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
 msgid "libburn TAO block types"
-msgstr ""
+msgstr "סוגי בלוקים libburn TAO "
 
 #: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
 msgid "libburn SAO block types"
-msgstr ""
+msgstr "סוגי בלוקים libburn SAO "
 
 #: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
 msgid "libburn RAW block types"
-msgstr ""
+msgstr "סוגי בלוקים libburn RAW "
 
 #: ../xfburn/xfburn-device.c:298 ../xfburn/xfburn-device.c:299
 msgid "libburn PACKET block types"
-msgstr ""
+msgstr "סוגי בלוקים libburn PACKET "
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
-msgstr ""
+msgstr "עריכת מידע"
 
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
@@ -1403,4 +1403,4 @@ msgstr "יישום צריבת CD ו-DVD"
 
 #: ../xfburn.desktop.in.h:3
 msgid "Burn Image (xfburn)"
-msgstr ""
+msgstr "צרוב אימג' (xfburn) "
