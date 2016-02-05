@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2016-02-05 14:50+0000\n"
+"PO-Revision-Date: 2016-02-05 19:27+0000\n"
 "Last-Translator: Apostolos Papadimitriu <apostolos.papadimitriu@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfce-apps/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -31,11 +31,11 @@ msgstr ""
 
 #: ../xfburn/xfburn-global.h:30
 msgid "Time total:"
-msgstr ""
+msgstr "Συνολικός χρόνος:"
 
 #: ../xfburn/xfburn-global.h:32
 msgid "length"
-msgstr ""
+msgstr "μήκος"
 
 #: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
@@ -43,19 +43,19 @@ msgstr "Άδειασμα προσωρινής μνήμης..."
 
 #: ../xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
-msgstr ""
+msgstr "Παρακαλώ εισάγεται ένα εγγράψιμο δίσκο και πατήστε enter."
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr ""
+msgstr "Δεν ήταν δυνατό να καθοριστεί η κατάσταση του δίσκου - πατήστε enter και ξαναπροσπαθήστε."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr ""
+msgstr "Η αντιγραφή CD ολοκληρώθηκε επιτυχώς."
 
 #: ../xfburn/xfburn-global.h:43
 msgid "Data composition"
-msgstr ""
+msgstr "Σύνθεση δεδομένων"
 
 #: ../xfburn/xfburn-adding-progress.c:112
 msgid "Adding files to the composition"
@@ -284,7 +284,7 @@ msgstr "Εικόνες ISO"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:233
 msgid "_Quit after success"
-msgstr ""
+msgstr "_Κλείσιμο μετά από επιτυχημένη εγγραφή"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:243
 msgid "_Burn image"
@@ -510,7 +510,7 @@ msgstr "%s δεν μπορεί να προστεθεί στην σύνθεση, 
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
-msgstr ""
+msgstr "To %s είναι μεγαλύτερο απ' ότι επιτρέπει το iso9660 level 2. Αυτό μπορεί να προκαλέσει προβλήματα σε παλιά συστήματα ή λογισμικό."
 
 #: ../xfburn/xfburn-data-composition.c:1374
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -560,7 +560,7 @@ msgstr "Διπλό όνομα αρχείου '%s' για '%s'"
 
 #: ../xfburn/xfburn-data-composition.c:2031
 msgid "Error(s) occured while adding files"
-msgstr ""
+msgstr "Σφάλμα(τα) κατά την προσθήκη αρχείων"
 
 #: ../xfburn/xfburn-device-box.c:169 ../xfburn/xfburn-device-box.c:170
 msgid "Show writers only"
@@ -918,7 +918,7 @@ msgstr "Αδυναμία αναγνώρισης της κατάστασης το
 
 #: ../xfburn/xfburn-perform-burn.c:286
 msgid "Formatting failed."
-msgstr ""
+msgstr "Η διαμόρφωση απέτυχε."
 
 #: ../xfburn/xfburn-perform-burn.c:304
 msgid "There is not enough space available on the inserted disc."
@@ -1061,7 +1061,7 @@ msgstr "Εγγραφή DVD-RAM"
 
 #: ../xfburn/xfburn-preferences-dialog.c:294
 msgid "Write Blu-ray"
-msgstr ""
+msgstr "Εγγραφή σε Blu-ray"
 
 #: ../xfburn/xfburn-preferences-dialog.c:302
 msgid "Sc_an for devices"
@@ -1096,7 +1096,7 @@ msgstr "Εκτιμώμενη ταχύτητα εγγραφής:"
 #: ../xfburn/xfburn-progress-dialog.c:501
 #: ../xfburn/xfburn-progress-dialog.c:525
 msgid "unknown"
-msgstr ""
+msgstr "άγνωστο"
 
 #: ../xfburn/xfburn-progress-dialog.c:228
 msgid "FIFO buffer:"
@@ -1108,7 +1108,7 @@ msgstr "Buffer συσκευής:"
 
 #: ../xfburn/xfburn-progress-dialog.c:375
 msgid "Are you sure you want to abort?"
-msgstr ""
+msgstr "Είστε σίγουροι ότι θέλετε να διακόψετε τη διαδικασία;"
 
 #: ../xfburn/xfburn-progress-dialog.c:503
 #, c-format
@@ -1121,7 +1121,7 @@ msgstr "Ακυρώθηκε"
 
 #: ../xfburn/xfburn-progress-dialog.c:574
 msgid "Formatted."
-msgstr ""
+msgstr "Διαμορφωμένο."
 
 #: ../xfburn/xfburn-progress-dialog.c:583
 msgid "Failed"
@@ -1303,11 +1303,11 @@ msgstr "Ο κωδικοποιητής gstreamer χρησιμοποιεί τη\n\
 #: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
 msgid "An error occurred while identifying '%s' with gstreamer"
-msgstr ""
+msgstr "Συνέβη ένα σφάλμα κατά την ταυτοποίηση του '%s' με το gstreamer"
 
 #: ../xfburn/xfburn-transcoder-gst.c:716
 msgid "A plugin"
-msgstr ""
+msgstr "Ένα πρόσθετο"
 
 #: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
@@ -1375,7 +1375,7 @@ msgstr "Μπορεί να γράψει DVDRAM"
 
 #: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
 msgid "Can burn Blu-ray"
-msgstr ""
+msgstr "Μπορεί να γίνει εγγραφή σε Blu-ray"
 
 #: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
 msgid "libburn TAO block types"
