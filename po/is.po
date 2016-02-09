@@ -1,74 +1,77 @@
-# translation of xfburn.master.untitled.po to Icelandic
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
-# Sveinn í Felli <sveinki@nett.is>, 2011.
+# 
+# Translators:
+# Sveinn í Felli <sv1@fellsnet.is>, 2014
+# Sveinn í Felli <sveinki@nett.is>, 2011,2016
 msgid ""
 msgstr ""
-"Project-Id-Version: xfburn.master.untitled\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-19 09:46+0100\n"
-"PO-Revision-Date: 2011-12-01 20:34+0000\n"
-"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
-"Language: \n"
+"POT-Creation-Date: 2015-07-20 06:30+0200\n"
+"PO-Revision-Date: 2016-02-09 17:58+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"Language-Team: Icelandic (http://www.transifex.com/xfce/xfce-apps/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Language: is\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
-msgstr ""
+msgstr "Rýmd:"
 
 #: ../xfburn/xfburn-global.h:29
 msgid "addr:"
-msgstr ""
+msgstr "vistf:"
 
 #: ../xfburn/xfburn-global.h:30
 msgid "Time total:"
-msgstr ""
+msgstr "Heildartími:"
 
 #: ../xfburn/xfburn-global.h:32
-#, fuzzy
 msgid "length"
 msgstr "Lengd"
 
 #: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
-msgstr ""
+msgstr "Tæmi biðminni..."
 
 #: ../xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
-msgstr ""
+msgstr "Settu skrifanlegan disk í drifið og ýttu á 'enter'"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr ""
+msgstr "Get ekki ákvarðað stöðu disks - ýttu á Enter til að reyna aftur."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr ""
+msgstr "Afritun CD-disks kláruð án athugasemda."
 
-#: ../xfburn/xfburn-global.h:42
+#: ../xfburn/xfburn-global.h:43
 msgid "Data composition"
-msgstr ""
+msgstr "Samsetning gagna"
 
-#: ../xfburn/xfburn-adding-progress.c:111
+#: ../xfburn/xfburn-adding-progress.c:112
 msgid "Adding files to the composition"
-msgstr ""
+msgstr "Bæti skrám við samsetninguna"
+
+#: ../xfburn/xfburn-adding-progress.c:125
+msgid "Cancel"
+msgstr "Hætta við"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
-msgstr ""
+msgstr "Flýtitæming"
 
 #: ../xfburn/xfburn-blank-dialog.c:72
 msgid "Full Blank (slow)"
-msgstr ""
+msgstr "Full tæming (hægvirkt)"
 
 #: ../xfburn/xfburn-blank-dialog.c:73
-#, fuzzy
 msgid "Quick Format"
 msgstr "Hröð forsníðing"
 
@@ -78,11 +81,11 @@ msgstr "Nákvæm forsníðing"
 
 #: ../xfburn/xfburn-blank-dialog.c:75
 msgid "Quick Deformat"
-msgstr ""
+msgstr "Hröð af-forsníðing"
 
 #: ../xfburn/xfburn-blank-dialog.c:76
 msgid "Full Deformat (slow)"
-msgstr ""
+msgstr "Full af-forsníðing (hægvirkt)"
 
 #: ../xfburn/xfburn-blank-dialog.c:149
 msgid "Eject the disc"
@@ -93,252 +96,251 @@ msgid "Default value for eject checkbox"
 msgstr ""
 
 #: ../xfburn/xfburn-blank-dialog.c:197
-#, fuzzy
 msgid "Blank Disc"
 msgstr "Tómur diskur"
 
 #: ../xfburn/xfburn-blank-dialog.c:209
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:195
-#: ../xfburn/xfburn-burn-image-dialog.c:200
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:196
+#: ../xfburn/xfburn-burn-image-dialog.c:202
 #: ../xfburn/xfburn-copy-cd-dialog.c:131
 #: ../xfburn/xfburn-copy-dvd-dialog.c:131
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:160
 msgid "Burning device"
-msgstr ""
+msgstr "Brennari"
 
-#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:187
+#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:185
 msgid "Blank mode"
-msgstr ""
+msgstr "Tæmaingarhamur"
 
 #: ../xfburn/xfburn-blank-dialog.c:230
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
-#: ../xfburn/xfburn-burn-image-dialog.c:208
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:228
+#: ../xfburn/xfburn-burn-image-dialog.c:210
 #: ../xfburn/xfburn-copy-cd-dialog.c:139
 #: ../xfburn/xfburn-copy-dvd-dialog.c:139
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:194
-#, fuzzy
 msgid "Options"
 msgstr "Valkostir"
 
 #: ../xfburn/xfburn-blank-dialog.c:234
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
-#: ../xfburn/xfburn-burn-image-dialog.c:212
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:232
+#: ../xfburn/xfburn-burn-image-dialog.c:214
 #: ../xfburn/xfburn-copy-cd-dialog.c:143
 #: ../xfburn/xfburn-copy-dvd-dialog.c:143
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:198
 msgid "E_ject disk"
-msgstr ""
+msgstr "Spýta út _diski"
 
 #: ../xfburn/xfburn-blank-dialog.c:244
-#, fuzzy
 msgid "_Blank"
 msgstr "_Tæma"
 
-#. blanking can only be performed on blank discs, format and deformat are allowed to be blank ones
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
-msgstr ""
+msgstr "Diskurinn sem var settur inn er þegar tómur."
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:362
-#, fuzzy
 msgid "Ready"
-msgstr "Tilbúinn"
+msgstr "Tilbúið"
 
 #: ../xfburn/xfburn-blank-dialog.c:365
 msgid "No disc detected in the drive."
-msgstr ""
+msgstr "Enginn diskur fannst í drifinu."
 
 #: ../xfburn/xfburn-blank-dialog.c:374
 msgid "Disc is not erasable."
-msgstr ""
+msgstr "Ekki er hægt að hreinsa þennan disk."
 
 #: ../xfburn/xfburn-blank-dialog.c:414
 msgid "Blanking disc..."
-msgstr ""
+msgstr "Tæmi disk..."
 
 #: ../xfburn/xfburn-blank-dialog.c:441
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:512
-#: ../xfburn/xfburn-perform-burn.c:366
-#, fuzzy, c-format
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:519
+#: ../xfburn/xfburn-perform-burn.c:489
+#, c-format
 msgid "Done"
 msgstr "Lokið"
 
-#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:637
-#, fuzzy
+#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:496
+#: ../xfburn/xfburn-progress-dialog.c:663
 msgid "Failure"
 msgstr "Villa"
 
 #: ../xfburn/xfburn-blank-dialog.c:461
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:610
-#: ../xfburn/xfburn-burn-image-dialog.c:402
-#: ../xfburn/xfburn-burn-image-dialog.c:578
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:624
+#: ../xfburn/xfburn-burn-image-dialog.c:413
+#: ../xfburn/xfburn-burn-image-dialog.c:590
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
 msgid "Unable to grab the drive."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
-#, fuzzy
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:156
 msgid "Image"
-msgstr "Mynd"
+msgstr "Diskmynd"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
 msgid "Show volume name"
-msgstr ""
+msgstr "Birta heiti á gagnageymslu"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
 msgid "Show a text entry for the name of the volume"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:184
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
 msgid "Burn Composition"
-msgstr ""
+msgstr "_Brenna samsetningu"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:207
 msgid "Composition name"
-msgstr ""
+msgstr "Heiti samsetningar"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:211
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:212
 msgid "<small>Would you like to change the default composition name?</small>"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
-#: ../xfburn/xfburn-burn-image-dialog.c:217
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:237
+#: ../xfburn/xfburn-burn-image-dialog.c:219
 #: ../xfburn/xfburn-copy-cd-dialog.c:148
 #: ../xfburn/xfburn-copy-dvd-dialog.c:148
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:203
 msgid "_Dummy write"
-msgstr ""
+msgstr "_Platskrifun"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:240
-#: ../xfburn/xfburn-burn-image-dialog.c:221
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:241
+#: ../xfburn/xfburn-burn-image-dialog.c:223
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
 msgid "Burn_Free"
-msgstr ""
+msgstr "_Frjáls brennsla (BurnFree)"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
+#: ../xfburn/xfburn-burn-image-dialog.c:228
+msgid "Stream _Recording"
+msgstr "St_reyma upptöku"
 
 #. create ISO ?
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:252
 #: ../xfburn/xfburn-copy-cd-dialog.c:157
 #: ../xfburn/xfburn-copy-dvd-dialog.c:157
 msgid "Only create _ISO"
-msgstr ""
+msgstr "Búa einungis til ISO-diskmynd"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:289
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
 msgid "_Burn Composition"
-msgstr ""
+msgstr "_Brenna samsetningu"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:484
 msgid "Writing ISO..."
-msgstr ""
+msgstr "Skrifa ISO-diskmynd..."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:501
 #, c-format
 msgid "An error occured while writing ISO: %s"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:556
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:562
 msgid "An error occurred in the burn backend."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
 msgstr ""
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:667
 msgid "Could not create ISO source structure."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:161
+#: ../xfburn/xfburn-burn-image-dialog.c:163
 msgid "Burn image"
-msgstr ""
+msgstr "Brenna diskmynd"
 
 #. file
-#: ../xfburn/xfburn-burn-image-dialog.c:168
-#: ../xfburn/xfburn-burn-image-dialog.c:185
+#: ../xfburn/xfburn-burn-image-dialog.c:170
+#: ../xfburn/xfburn-burn-image-dialog.c:187
 msgid "Image to burn"
-msgstr ""
+msgstr "Diskmynd sem á að brenna"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:172
-#, fuzzy
+#: ../xfburn/xfburn-burn-image-dialog.c:174
 msgid "All files"
 msgstr "Allar skrár"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:176
+#: ../xfburn/xfburn-burn-image-dialog.c:178
 msgid "ISO images"
-msgstr ""
+msgstr "ISO diskmyndir"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:226
-msgid "_Quit after successful completion"
-msgstr ""
+#: ../xfburn/xfburn-burn-image-dialog.c:233
+msgid "_Quit after success"
+msgstr "_Hætta ef vinnsla tekst"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:236
+#: ../xfburn/xfburn-burn-image-dialog.c:243
 msgid "_Burn image"
-msgstr ""
+msgstr "_Brenna diskmynd"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:285
+#: ../xfburn/xfburn-burn-image-dialog.c:296
 msgid "Burn mode is not currently implemented."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:336
-#: ../xfburn/xfburn-burn-image-dialog.c:365
+#: ../xfburn/xfburn-burn-image-dialog.c:347
+#: ../xfburn/xfburn-burn-image-dialog.c:376
 msgid "An error occurred in the burn backend"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:349
+#: ../xfburn/xfburn-burn-image-dialog.c:360
 msgid "Unable to determine image size."
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:356
+#: ../xfburn/xfburn-burn-image-dialog.c:367
 msgid "Cannot open image."
-msgstr ""
+msgstr "Gat ekki opnað diskmynd ."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:393
+#: ../xfburn/xfburn-burn-image-dialog.c:404
 msgid "Burning image..."
-msgstr ""
+msgstr "Brenni diskmynd..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:465
+#: ../xfburn/xfburn-burn-image-dialog.c:476
 msgid ""
-"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please "
-"select an image to burn</span>"
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:505
+#: ../xfburn/xfburn-burn-image-dialog.c:516
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:509
+#: ../xfburn/xfburn-burn-image-dialog.c:520
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:522
 msgid "No disc detected in drive"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:513
+#: ../xfburn/xfburn-burn-image-dialog.c:524
 msgid "Cannot recognize state of drive and disc"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:525
+#: ../xfburn/xfburn-burn-image-dialog.c:536
 msgid "The selected image does not fit on the inserted disc"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:529
+#: ../xfburn/xfburn-burn-image-dialog.c:540
 msgid "Failed to get image size"
 msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:558
+#: ../xfburn/xfburn-burn-image-dialog.c:569
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
@@ -346,501 +348,501 @@ msgstr ""
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
-msgstr ""
+msgstr "Samsetning hljóðs"
 
 #: ../xfburn/xfburn-compositions-notebook.c:235
-#, fuzzy
 msgid "Welcome"
 msgstr "Velkomin(n)"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:113
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
-msgstr ""
+msgstr "Afrita CD gagnadisk"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:123
 msgid "CD Reader device"
-msgstr ""
+msgstr "CD lestæki"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:152
 #: ../xfburn/xfburn-copy-dvd-dialog.c:152
 msgid "On the _fly"
-msgstr ""
+msgstr "Ja_fnóðum"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
-msgstr ""
+msgstr "Afrita _CD disk"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
-msgstr ""
+msgstr "Settu skrifanlegan disk í drifið."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
-msgstr ""
+msgstr "Brenni CD-geisladisk..."
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:102
 msgid "Reading CD..."
-msgstr ""
+msgstr "Les CD..."
 
 #: ../xfburn/xfburn-copy-dvd-dialog.c:113
 msgid "Copy data DVD"
-msgstr ""
+msgstr "Afrita DVD-gagnadisk"
 
 #: ../xfburn/xfburn-copy-dvd-dialog.c:123
 msgid "DVD Reader device"
-msgstr ""
+msgstr "DVD lestæki"
 
 #: ../xfburn/xfburn-copy-dvd-dialog.c:193
 msgid "_Copy DVD"
-msgstr ""
+msgstr "Afrita _DVD"
 
 #: ../xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
-msgstr ""
+msgstr "Búa til ISO-diskmynd út frá CD-diski"
 
-#: ../xfburn/xfburn-data-composition.c:189
-#: ../xfburn/xfburn-data-composition.c:955
+#: ../xfburn/xfburn-data-composition.c:192
+#: ../xfburn/xfburn-data-composition.c:962
 #: ../xfburn/xfburn-audio-composition.c:206
 #: ../xfburn/xfburn-audio-composition.c:979
-#, fuzzy
 msgid "Add"
 msgstr "Bæta við"
 
-#: ../xfburn/xfburn-data-composition.c:189
+#: ../xfburn/xfburn-data-composition.c:192
 #: ../xfburn/xfburn-audio-composition.c:206
 msgid "Add the selected file(s) to the composition"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:191
-#, fuzzy
+#: ../xfburn/xfburn-data-composition.c:194
 msgid "Create directory"
 msgstr "Búa til möppu"
 
-#: ../xfburn/xfburn-data-composition.c:191
+#: ../xfburn/xfburn-data-composition.c:194
 msgid "Add a new directory to the composition"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-data-composition.c:196
 #: ../xfburn/xfburn-audio-composition.c:208
-#, fuzzy
 msgid "Remove"
 msgstr "Fjarlægja"
 
-#: ../xfburn/xfburn-data-composition.c:193
+#: ../xfburn/xfburn-data-composition.c:196
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove the selected file(s) from the composition"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:195
+#: ../xfburn/xfburn-data-composition.c:198
 #: ../xfburn/xfburn-audio-composition.c:210
-#, fuzzy
 msgid "Clear"
 msgstr "Hreinsa"
 
-#: ../xfburn/xfburn-data-composition.c:195
+#: ../xfburn/xfburn-data-composition.c:198
 #: ../xfburn/xfburn-audio-composition.c:210
 msgid "Clear the content of the composition"
-msgstr ""
+msgstr "Hreinsa innihald samsetningarinnar"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-#: ../xfburn/xfburn-data-composition.c:198
-#, fuzzy
+#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
+#. existing session"),},
+#: ../xfburn/xfburn-data-composition.c:201
 msgid "Rename"
 msgstr "Endurnefna"
 
-#: ../xfburn/xfburn-data-composition.c:198
-#, fuzzy
+#: ../xfburn/xfburn-data-composition.c:201
 msgid "Rename the selected file"
 msgstr "Endurnefna valda skrá"
 
-#: ../xfburn/xfburn-data-composition.c:352
+#: ../xfburn/xfburn-data-composition.c:355
 msgid "Volume name :"
-msgstr ""
+msgstr "Heiti á gagnageymslu :"
 
-#: ../xfburn/xfburn-data-composition.c:386
-#, fuzzy
+#: ../xfburn/xfburn-data-composition.c:389
 msgid "Contents"
 msgstr "Innihald"
 
-#: ../xfburn/xfburn-data-composition.c:401
+#: ../xfburn/xfburn-data-composition.c:404
 #: ../xfburn/xfburn-directory-browser.c:140
-#, fuzzy
 msgid "Size"
 msgstr "Stærð"
 
-#: ../xfburn/xfburn-data-composition.c:404
-#, fuzzy
+#: ../xfburn/xfburn-data-composition.c:407
 msgid "Local Path"
 msgstr "Staðbundin slóð"
 
-#: ../xfburn/xfburn-data-composition.c:679
+#: ../xfburn/xfburn-data-composition.c:682
 msgid "You must give a name to the file."
-msgstr ""
+msgstr "Þú verður að gefa upp nafn á skrána."
 
-#: ../xfburn/xfburn-data-composition.c:688
-#: ../xfburn/xfburn-data-composition.c:1198
+#: ../xfburn/xfburn-data-composition.c:691
+#: ../xfburn/xfburn-data-composition.c:1205
 #: ../xfburn/xfburn-audio-composition.c:1176
 msgid "A file with the same name is already present in the composition."
-msgstr ""
+msgstr "Skrá með sama nafni er þegar í samsetningunni."
 
-#: ../xfburn/xfburn-data-composition.c:796
-#: ../xfburn/xfburn-data-composition.c:797
 #: ../xfburn/xfburn-data-composition.c:799
-#, fuzzy
+#: ../xfburn/xfburn-data-composition.c:800
+#: ../xfburn/xfburn-data-composition.c:802
 msgid "New directory"
 msgstr "Ný mappa"
 
-#: ../xfburn/xfburn-data-composition.c:941
+#: ../xfburn/xfburn-data-composition.c:946
 #: ../xfburn/xfburn-audio-composition.c:976
 msgid "File(s) to add to composition"
-msgstr ""
+msgstr "Skrár sem á að bæta í samsetningu"
 
-#. Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:1041
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
+#: ../xfburn/xfburn-data-composition.c:1048
 #, c-format
 msgid "Data %s~%d"
-msgstr ""
+msgstr "Gögn %s~%d"
 
-#: ../xfburn/xfburn-data-composition.c:1277
+#: ../xfburn/xfburn-data-composition.c:1284
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:1362
-#: ../xfburn/xfburn-audio-composition.c:1351
-msgid "Adding home directory"
+#: ../xfburn/xfburn-data-composition.c:1291
+#, c-format
+msgid ""
+"%s is larger than what iso9660 level 2 allows. This can be a problem for old"
+" systems or software."
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:1363
+#: ../xfburn/xfburn-data-composition.c:1374
+#: ../xfburn/xfburn-audio-composition.c:1351
+msgid "Adding home directory"
+msgstr "Bæti við heimamöppu"
+
+#: ../xfburn/xfburn-data-composition.c:1375
 #: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
-"You are about to add your home directory to the composition. This is likely "
-"to take a very long time, and also to be too big to fit on one disc.\n"
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr ""
 
-#: ../xfburn/xfburn-data-composition.c:1530
+#: ../xfburn/xfburn-data-composition.c:1542
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr ""
 
-#. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1945
+#: ../xfburn/xfburn-data-composition.c:1940
 #, c-format
-msgid "Duplicate filename '%s' for '%s'"
+msgid "%s: null pointer"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:171 ../xfburn/xfburn-device-box.c:172
+#: ../xfburn/xfburn-data-composition.c:1942
+#, c-format
+msgid "%s: out of memory"
+msgstr "%s: ekkert minni eftir"
+
+#: ../xfburn/xfburn-data-composition.c:1944
+#, c-format
+msgid "%s: node name not unique"
+msgstr ""
+
+#: ../xfburn/xfburn-data-composition.c:1946
+#, c-format
+msgid "%s: %s (code %X)"
+msgstr "%s: %s (kóði %X)"
+
+#. The first string is the renamed name, the second one the original name
+#: ../xfburn/xfburn-data-composition.c:1966
+#, c-format
+msgid "Duplicate filename '%s' for '%s'"
+msgstr "Tvítekið skráarheiti '%s' fyrir '%s'"
+
+#: ../xfburn/xfburn-data-composition.c:2031
+msgid "Error(s) occured while adding files"
+msgstr "Villa við að bæta við skrám"
+
+#: ../xfburn/xfburn-device-box.c:169 ../xfburn/xfburn-device-box.c:170
 msgid "Show writers only"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:175
+#: ../xfburn/xfburn-device-box.c:173
 msgid "Show speed selection"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:176
+#: ../xfburn/xfburn-device-box.c:174
 msgid "Show speed selection combo"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:179
+#: ../xfburn/xfburn-device-box.c:177
 msgid "Show mode selection"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:180
+#: ../xfburn/xfburn-device-box.c:178
 msgid "Show mode selection combo"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:183
+#: ../xfburn/xfburn-device-box.c:181
 msgid "Is it a valid combination"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:184
+#: ../xfburn/xfburn-device-box.c:182
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:188
+#: ../xfburn/xfburn-device-box.c:186
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
-msgid "Accept only CDs as valid discs"
-msgstr ""
-
-#: ../xfburn/xfburn-device-box.c:245
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:239
 msgid "_Speed:"
-msgstr "_Hraði:"
+msgstr "_Hraði"
 
-#: ../xfburn/xfburn-device-box.c:268
+#: ../xfburn/xfburn-device-box.c:262
 msgid "Write _mode:"
-msgstr ""
+msgstr "Skrifha_mur:"
 
-#: ../xfburn/xfburn-device-box.c:387
+#: ../xfburn/xfburn-device-box.c:375
 msgid "Empty speed list"
-msgstr ""
+msgstr "Tómur listi yfir hraða"
 
-#: ../xfburn/xfburn-device-box.c:396
+#: ../xfburn/xfburn-device-box.c:384
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
-"This is a known bug for drives. If you're interested in fixing it, please "
-"have a look at the libburn library.\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
 "\n"
-"Burning should still work, but if there are problems anyways, please let us "
-"know.\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
 msgstr ""
 
-#: ../xfburn/xfburn-device-box.c:407
+#: ../xfburn/xfburn-device-box.c:395
 msgid "Continue to _show this notice"
-msgstr ""
+msgstr "_Halda áfram að birta þessi skilaboð"
 
-#: ../xfburn/xfburn-device-box.c:452
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:442
 msgid "default"
 msgstr "sjálfgefið"
 
-#: ../xfburn/xfburn-device-box.c:488
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Hámark"
 
-#: ../xfburn/xfburn-device-box.c:590
+#: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
-msgstr ""
+msgstr "Drifið getur ekki brennt á diskinn sem var settur inn"
 
-#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:645
+#: ../xfburn/xfburn-device-box.c:588 ../xfburn/xfburn-device-box.c:634
 msgid "Drive is empty"
-msgstr ""
+msgstr "Drifið er tómt"
 
-#: ../xfburn/xfburn-device-box.c:602
+#: ../xfburn/xfburn-device-box.c:591
 msgid "Sorry, multisession is not yet supported"
-msgstr ""
+msgstr "Því miður, margsetur (multisession) eru ekki ennþá studdar"
 
-#: ../xfburn/xfburn-device-box.c:605
+#: ../xfburn/xfburn-device-box.c:594
 msgid "Inserted disc is full"
-msgstr ""
+msgstr "Diskurinn sem var settur inn er fullur"
 
-#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:651
+#: ../xfburn/xfburn-device-box.c:597 ../xfburn/xfburn-device-box.c:640
 msgid "Inserted disc is unsuitable"
-msgstr ""
+msgstr "Diskurinn sem var settur inn hentar ekki"
 
-#: ../xfburn/xfburn-device-box.c:611 ../xfburn/xfburn-device-box.c:654
+#: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Cannot access drive (it might be in use)"
-msgstr ""
+msgstr "Næ ekki að tengjast drifi (það gæti verið í notkun)"
 
-#: ../xfburn/xfburn-device-box.c:616 ../xfburn/xfburn-device-box.c:657
+#: ../xfburn/xfburn-device-box.c:605 ../xfburn/xfburn-device-box.c:646
 msgid "Error determining disc"
-msgstr ""
+msgstr "Villa við að ákvarða disk"
+
+#: ../xfburn/xfburn-device-box.c:626
+msgid "Write-once disc, no blanking possible"
+msgstr "Einnota diskur, tæming er ekki möguleg"
+
+#: ../xfburn/xfburn-device-box.c:629
+msgid "DVD+RW does not need blanking"
+msgstr "DVD+RW þarfnast ekki tæmingar"
 
 #: ../xfburn/xfburn-device-box.c:637
-msgid "Write-once disc, no blanking possible"
-msgstr ""
-
-#: ../xfburn/xfburn-device-box.c:640
-msgid "DVD+RW does not need blanking"
-msgstr ""
-
-#: ../xfburn/xfburn-device-box.c:648
 msgid "Inserted disc is already blank"
-msgstr ""
+msgstr "Diskurinn sem var settur inn er þegar tæmdur"
 
-#: ../xfburn/xfburn-device-box.c:684
-#, fuzzy
+#: ../xfburn/xfburn-device-box.c:673
 msgid "Auto"
 msgstr "Sjálfvirkt"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
-msgstr ""
+msgstr "Fjöldi brennara á kerfinu"
 
 #: ../xfburn/xfburn-device-list.c:209
 msgid "Number of drives in the system"
-msgstr ""
+msgstr "Fjöldi drifa á kerfinu"
 
 #: ../xfburn/xfburn-device-list.c:210
 msgid "Number of drives in the system (readers and writers)"
-msgstr ""
+msgstr "Fjöldi drifa á kerfinu (lesarar og brennarar)"
 
 #: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
 msgid "List of devices"
-msgstr ""
+msgstr "Listi yfir tæki"
 
 #: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
 msgid "Currently selected device"
-msgstr ""
+msgstr "Valið tæki"
 
 #. globals
 #: ../xfburn/xfburn-directory-browser.c:54
-#, fuzzy
 msgid "Folder"
 msgstr "Mappa"
 
 #: ../xfburn/xfburn-directory-browser.c:127
-#, fuzzy
 msgid "File"
 msgstr "Skrá"
 
 #: ../xfburn/xfburn-directory-browser.c:142
-#, fuzzy
 msgid "Type"
 msgstr "Tegund"
 
 #: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:283
-#, fuzzy
 msgid "Filesystem"
-msgstr "Skráarkerfi"
+msgstr "Skráakerfi"
 
 #. load the user's home dir
 #: ../xfburn/xfburn-fs-browser.c:262
 #, c-format
 msgid "%s's home"
-msgstr ""
+msgstr "Heimasvæði %s"
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
-#, fuzzy
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main.c:212
+#: ../xfburn/xfburn-main.c:211
 #, c-format
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
+msgstr "%s: %s\nPrufaðu %s --hjálp til að sjá lista með öllum tiltækum skipanavalkostum.\n"
 
-#: ../xfburn/xfburn-main.c:220
+#: ../xfburn/xfburn-main.c:219
 msgid "Unable to initialize the burning backend."
-msgstr ""
+msgstr "Tókst ekki að frumstilla brennslubakendann."
 
-#: ../xfburn/xfburn-main.c:295
+#: ../xfburn/xfburn-main.c:294
 msgid "No burners are currently available"
-msgstr ""
+msgstr "Engir brennarar eru tiltækir í augnablikinu"
 
-#: ../xfburn/xfburn-main.c:297
+#: ../xfburn/xfburn-main.c:296
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "Please unmount and restart the application.\n"
 "\n"
-"If no disc is in the drive, check that you have read and write access to the "
-"drive with the current user."
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr ""
 
-#: ../xfburn/xfburn-main.c:331
+#: ../xfburn/xfburn-main.c:330
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr ""
 
-#: ../xfburn/xfburn-main.c:375
+#: ../xfburn/xfburn-main.c:374
 #, c-format
 msgid "Image file '%s' does not exist."
-msgstr ""
+msgstr "Diskmyndin  '%s' er ekki til."
 
 #: ../xfburn/xfburn-main-window.c:100
-#, fuzzy
 msgid "_File"
 msgstr "_Skrá"
 
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"),
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
+#. new composition"),},
+#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
+#. a new composition"),
 #. G_CALLBACK (action_new_data_composition),},
 #: ../xfburn/xfburn-main-window.c:104
 msgid "New data composition"
-msgstr ""
+msgstr "Ný gagnasamsetning"
 
 #: ../xfburn/xfburn-main-window.c:106
 msgid "New audio composition"
-msgstr ""
+msgstr "Ný hljóðsamsetning"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
+#. composition"),
 #. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"),
+#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
+#. composition"),
 #. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
+#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
+#. NULL, N_("Save composition as"),
 #. G_CALLBACK (action_save_as),},
 #: ../xfburn/xfburn-main-window.c:114
 msgid "Close composition"
-msgstr ""
+msgstr "Loka samsetningarglugga"
 
 #: ../xfburn/xfburn-main-window.c:116
-#, fuzzy
 msgid "_Quit"
 msgstr "_Hætta"
 
 #: ../xfburn/xfburn-main-window.c:116
 msgid "Quit Xfburn"
-msgstr ""
+msgstr "Hætta í Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:117
-#, fuzzy
 msgid "_Edit"
-msgstr "_Breyta"
+msgstr "Br_eyta"
 
 #: ../xfburn/xfburn-main-window.c:118
-#, fuzzy
 msgid "Prefere_nces"
 msgstr "Stilli_ngar"
 
 #: ../xfburn/xfburn-main-window.c:118
 msgid "Show preferences dialog"
-msgstr ""
+msgstr "Birta kjörstillingagluggann"
 
 #: ../xfburn/xfburn-main-window.c:120
-#, fuzzy
 msgid "_Actions"
-msgstr "_Aðgerðir"
+msgstr "Aðgerðir"
 
 #: ../xfburn/xfburn-main-window.c:121
-#, fuzzy
 msgid "_View"
 msgstr "S_koða"
 
 #: ../xfburn/xfburn-main-window.c:122
-#, fuzzy
 msgid "Refresh"
-msgstr "Endurlesa"
+msgstr "Uppfæra"
 
 #: ../xfburn/xfburn-main-window.c:122
 msgid "Refresh file list"
-msgstr ""
+msgstr "Uppfæra skráalista"
 
 #: ../xfburn/xfburn-main-window.c:124
-#, fuzzy
 msgid "_Help"
 msgstr "_Hjálp"
 
 #: ../xfburn/xfburn-main-window.c:125
-#, fuzzy
 msgid "_About"
-msgstr "_Um"
+msgstr "_Um forritið"
 
 #: ../xfburn/xfburn-main-window.c:125
 msgid "Display information about Xfburn"
-msgstr ""
+msgstr "Birta upplýsingar um Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:127
-#, fuzzy
 msgid "Blank CD-RW"
 msgstr "Tómur CD-RW"
 
 #: ../xfburn/xfburn-main-window.c:129
 msgid "Copy Data CD"
-msgstr ""
+msgstr "Afrita CD-gagnadisk"
 
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),},
+#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
+#. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
-#, fuzzy
 msgid "Burn Image"
 msgstr "Skrifa diskmynd"
 
@@ -848,45 +850,41 @@ msgstr "Skrifa diskmynd"
 #. G_CALLBACK (action_copy_dvd),},
 #: ../xfburn/xfburn-main-window.c:136
 msgid "Burn DVD Image"
-msgstr ""
+msgstr "Skrifa DVD-diskmynd"
 
 #: ../xfburn/xfburn-main-window.c:141
 msgid "Show file browser"
-msgstr ""
+msgstr "Opna skráavafra"
 
 #: ../xfburn/xfburn-main-window.c:141
 msgid "Show/hide the file browser"
-msgstr ""
+msgstr "Sýna/Fela skráavafra"
 
 #: ../xfburn/xfburn-main-window.c:143
-#, fuzzy
 msgid "Show toolbar"
-msgstr "Sýna tækjaslá"
+msgstr "Birta verkfærastiku"
 
 #: ../xfburn/xfburn-main-window.c:143
 msgid "Show/hide the toolbar"
-msgstr ""
+msgstr "Sýna/Fela verkfærastikuna"
 
 #: ../xfburn/xfburn-main-window.c:350
-#, fuzzy
 msgid "Toolbar Editor"
-msgstr "Tólstikuritill"
+msgstr "Verkfærastikuritill"
 
 #: ../xfburn/xfburn-main-window.c:538
 msgid "Another cd burning GUI"
-msgstr ""
+msgstr "Annað viðmót fyrir diskabrennslu"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
-#, fuzzy
 msgid "Label"
-msgstr "Merki"
+msgstr "Skýring"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "The text of the label"
-msgstr ""
+msgstr "Texti í lýsingu."
 
 #: ../xfburn/xfburn-notebook-tab.c:111
-#, fuzzy
 msgid "Show close button"
 msgstr "Sýna lokunarhnapp"
 
@@ -894,257 +892,263 @@ msgstr "Sýna lokunarhnapp"
 msgid "Determine whether the close button is visible"
 msgstr ""
 
-#: ../xfburn/xfburn-perform-burn.c:158
+#: ../xfburn/xfburn-perform-burn.c:103 ../xfburn/xfburn-perform-burn.c:452
+msgid "Formatting..."
+msgstr "Forsníð..."
+
+#: ../xfburn/xfburn-perform-burn.c:270
 msgid ""
-"Cannot append data to multisession disc in this write mode (use TAO instead)."
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:162
-msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:164
-msgid "No disc detected in drive."
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:167
-msgid "Cannot recognize the state of the drive and disc."
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:180
-msgid "There is not enough space available on the inserted disc."
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:225
-#, c-format
-msgid "Burning track %2d/%d..."
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
-msgid "Burning composition..."
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:263
-msgid "standby"
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:271
-msgid "ending"
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
 msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:274
-msgid "failing"
+msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr ""
 
-#: ../xfburn/xfburn-perform-burn.c:277
-#, fuzzy
-msgid "unused"
-msgstr "ónotað"
+#: ../xfburn/xfburn-perform-burn.c:276
+msgid "No disc detected in drive."
+msgstr "Enginn diskur fannst í drifinu."
 
-#: ../xfburn/xfburn-perform-burn.c:280
-msgid "abandoned"
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:283
-msgid "ended"
+#: ../xfburn/xfburn-perform-burn.c:279
+msgid "Cannot recognize the state of the drive and disc."
 msgstr ""
 
 #: ../xfburn/xfburn-perform-burn.c:286
-msgid "aborted"
-msgstr ""
+msgid "Formatting failed."
+msgstr "Forsníðing mistókst."
 
-#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:216
-#: ../xfburn/xfburn-progress-dialog.c:233
-#: ../xfburn/xfburn-progress-dialog.c:243
-#: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:464
-#: ../xfburn/xfburn-progress-dialog.c:488
-#: ../xfburn/xfburn-progress-dialog.c:512
-#, fuzzy
+#: ../xfburn/xfburn-perform-burn.c:304
+msgid "There is not enough space available on the inserted disc."
+msgstr "Ekki er nógu mikið pláss eftir á disknum sem var settur inn."
+
+#: ../xfburn/xfburn-perform-burn.c:349
+#, c-format
+msgid "Burning track %2d/%d..."
+msgstr "Brenni spor %2d/%d..."
+
+#: ../xfburn/xfburn-perform-burn.c:353 ../xfburn/xfburn-perform-burn.c:417
+msgid "Burning composition..."
+msgstr "Brenni samsetningu..."
+
+#: ../xfburn/xfburn-perform-burn.c:386
+msgid "standby"
+msgstr "í bið"
+
+#: ../xfburn/xfburn-perform-burn.c:394
+msgid "ending"
+msgstr "enda"
+
+#: ../xfburn/xfburn-perform-burn.c:397
+msgid "failing"
+msgstr "bila"
+
+#: ../xfburn/xfburn-perform-burn.c:400
+msgid "unused"
+msgstr "ónotað"
+
+#: ../xfburn/xfburn-perform-burn.c:403
+msgid "abandoned"
+msgstr "yfirgefið"
+
+#: ../xfburn/xfburn-perform-burn.c:406
+msgid "ended"
+msgstr "lokið"
+
+#: ../xfburn/xfburn-perform-burn.c:409
+msgid "aborted"
+msgstr "hætt við"
+
+#: ../xfburn/xfburn-perform-burn.c:412
 msgid "no info"
 msgstr "engar upplýsingar"
 
-#: ../xfburn/xfburn-perform-burn.c:299
+#: ../xfburn/xfburn-perform-burn.c:422
 msgid "Writing Lead-In..."
-msgstr ""
+msgstr "Skrifa upphafsmörk..."
 
-#: ../xfburn/xfburn-perform-burn.c:305
+#: ../xfburn/xfburn-perform-burn.c:428
 msgid "Writing Lead-Out..."
-msgstr ""
+msgstr "Skrifa endamörk..."
 
-#: ../xfburn/xfburn-perform-burn.c:311
+#: ../xfburn/xfburn-perform-burn.c:434
 msgid "Writing pregap..."
-msgstr ""
+msgstr "Skrifa forþögn..."
 
-#: ../xfburn/xfburn-perform-burn.c:317
+#: ../xfburn/xfburn-perform-burn.c:440
 msgid "Closing track..."
-msgstr ""
+msgstr "Loka spori..."
 
-#: ../xfburn/xfburn-perform-burn.c:323
+#: ../xfburn/xfburn-perform-burn.c:446
 msgid "Closing session..."
-msgstr ""
+msgstr "Loka setu..."
 
-#: ../xfburn/xfburn-perform-burn.c:329
-#, fuzzy
-msgid "Formatting..."
-msgstr "Snið..."
-
-#: ../xfburn/xfburn-perform-burn.c:342
+#: ../xfburn/xfburn-perform-burn.c:465
 msgid "see console"
-msgstr ""
+msgstr "skoða stjórnskjá"
 
-#: ../xfburn/xfburn-perform-burn.c:370
+#: ../xfburn/xfburn-perform-burn.c:493
 msgid "User Aborted"
-msgstr ""
-
-#: ../xfburn/xfburn-preferences-dialog.c:143
-#, fuzzy
-msgid "Preferences"
-msgstr "Stillingar"
+msgstr "Notandi hætti við"
 
 #: ../xfburn/xfburn-preferences-dialog.c:144
+msgid "Preferences"
+msgstr "Kjörstillingar"
+
+#: ../xfburn/xfburn-preferences-dialog.c:145
 msgid "Tune how Xfburn behaves"
-msgstr ""
+msgstr "Fínstilla hegðun Xfburn"
 
-#: ../xfburn/xfburn-preferences-dialog.c:190
-#: ../xfburn/xfburn-preferences-dialog.c:194
+#: ../xfburn/xfburn-preferences-dialog.c:191
+#: ../xfburn/xfburn-preferences-dialog.c:195
 msgid "Temporary directory"
-msgstr ""
+msgstr "Bráðabirgðamappa"
 
-#: ../xfburn/xfburn-preferences-dialog.c:198
+#: ../xfburn/xfburn-preferences-dialog.c:199
 msgid "_Clean temporary directory on exit"
-msgstr ""
+msgstr "_Hreinsa bráðabirgðamöppu þegar hætt er"
 
-#: ../xfburn/xfburn-preferences-dialog.c:205
+#: ../xfburn/xfburn-preferences-dialog.c:206
 msgid "File browser"
-msgstr ""
+msgstr "Skráarvafri"
 
-#: ../xfburn/xfburn-preferences-dialog.c:209
+#: ../xfburn/xfburn-preferences-dialog.c:210
 msgid "Show _hidden files"
-msgstr ""
+msgstr "Sýna _faldar skrár"
 
-#: ../xfburn/xfburn-preferences-dialog.c:214
+#: ../xfburn/xfburn-preferences-dialog.c:215
 msgid "Show human_readable filesizes"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:225
-#, fuzzy
+#: ../xfburn/xfburn-preferences-dialog.c:226
 msgid "General"
 msgstr "Almennt"
 
-#: ../xfburn/xfburn-preferences-dialog.c:236
-#: ../xfburn/xfburn-preferences-dialog.c:313
-#, fuzzy
+#: ../xfburn/xfburn-preferences-dialog.c:237
+#: ../xfburn/xfburn-preferences-dialog.c:318
 msgid "Devices"
 msgstr "Tæki"
 
-#: ../xfburn/xfburn-preferences-dialog.c:245
+#: ../xfburn/xfburn-preferences-dialog.c:246
 msgid "Detected devices"
-msgstr ""
+msgstr "Fundin tæki"
 
-#: ../xfburn/xfburn-preferences-dialog.c:266
-#, fuzzy
+#: ../xfburn/xfburn-preferences-dialog.c:268
 msgid "Name"
-msgstr "Nafn"
-
-#: ../xfburn/xfburn-preferences-dialog.c:279
-msgid "Node"
-msgstr ""
+msgstr "Heiti"
 
 #: ../xfburn/xfburn-preferences-dialog.c:281
-msgid "Write CD-R"
-msgstr ""
+msgid "Node"
+msgstr "Hnútur"
 
 #: ../xfburn/xfburn-preferences-dialog.c:283
+msgid "Write CD-R"
+msgstr "Skrifa CD-R"
+
+#: ../xfburn/xfburn-preferences-dialog.c:285
 msgid "Write CD-RW"
-msgstr ""
+msgstr "Skrifa CD-RW"
 
-#: ../xfburn/xfburn-preferences-dialog.c:286
+#: ../xfburn/xfburn-preferences-dialog.c:288
 msgid "Write DVD-R"
-msgstr ""
+msgstr "Skrifa DVD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:289
+#: ../xfburn/xfburn-preferences-dialog.c:291
 msgid "Write DVD-RAM"
-msgstr ""
+msgstr "Skrifa DVD-RAM"
 
-#: ../xfburn/xfburn-preferences-dialog.c:297
+#: ../xfburn/xfburn-preferences-dialog.c:294
+msgid "Write Blu-ray"
+msgstr "Skrifa Blu-ray"
+
+#: ../xfburn/xfburn-preferences-dialog.c:302
 msgid "Sc_an for devices"
-msgstr ""
+msgstr "Leita _að tækjum"
 
-#: ../xfburn/xfburn-preferences-dialog.c:324
+#: ../xfburn/xfburn-preferences-dialog.c:329
 msgid "Show warning on _empty speed list"
 msgstr ""
 
-#: ../xfburn/xfburn-preferences-dialog.c:333
+#: ../xfburn/xfburn-preferences-dialog.c:338
 msgid "FIFO buffer size (in kb)"
-msgstr ""
+msgstr "Stærð FIFO biðminnis (í kB)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:471
+#: ../xfburn/xfburn-preferences-dialog.c:477
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr ""
+msgstr "Breytingar á þessum stillingum taka aðeins gildi eftir endurræsingu forritsins."
 
-#: ../xfburn/xfburn-progress-dialog.c:198
-#, fuzzy
+#: ../xfburn/xfburn-progress-dialog.c:199
+#: ../xfburn/xfburn-progress-dialog.c:554
 msgid "Initializing..."
 msgstr "Frumstilli..."
 
-#: ../xfburn/xfburn-progress-dialog.c:213
-#, fuzzy
+#: ../xfburn/xfburn-progress-dialog.c:214
 msgid "Estimated writing speed:"
 msgstr "Áætlaður skrifhraði:"
 
-#: ../xfburn/xfburn-progress-dialog.c:227
-msgid "FIFO buffer:"
-msgstr ""
+#: ../xfburn/xfburn-progress-dialog.c:217
+#: ../xfburn/xfburn-progress-dialog.c:234
+#: ../xfburn/xfburn-progress-dialog.c:244
+#: ../xfburn/xfburn-progress-dialog.c:333
+#: ../xfburn/xfburn-progress-dialog.c:477
+#: ../xfburn/xfburn-progress-dialog.c:501
+#: ../xfburn/xfburn-progress-dialog.c:525
+msgid "unknown"
+msgstr "óþekkt"
 
-#: ../xfburn/xfburn-progress-dialog.c:237
-#, fuzzy
+#: ../xfburn/xfburn-progress-dialog.c:228
+msgid "FIFO buffer:"
+msgstr "FIFO biðminni:"
+
+#: ../xfburn/xfburn-progress-dialog.c:238
 msgid "Device buffer:"
 msgstr "Biðminni tækis:"
 
-#: ../xfburn/xfburn-progress-dialog.c:490
+#: ../xfburn/xfburn-progress-dialog.c:375
+msgid "Are you sure you want to abort?"
+msgstr "Ertu viss um að þú viljir hætta við?"
+
+#: ../xfburn/xfburn-progress-dialog.c:503
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr ""
 
-#: ../xfburn/xfburn-progress-dialog.c:549
-#, fuzzy
+#: ../xfburn/xfburn-progress-dialog.c:571
 msgid "Aborted"
 msgstr "Hætt við"
 
-#: ../xfburn/xfburn-progress-dialog.c:558
-#, fuzzy
+#: ../xfburn/xfburn-progress-dialog.c:574
+msgid "Formatted."
+msgstr "Forsniðið"
+
+#: ../xfburn/xfburn-progress-dialog.c:583
 msgid "Failed"
 msgstr "Mistókst"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
-#, fuzzy
+#: ../xfburn/xfburn-progress-dialog.c:586
 msgid "Cancelled"
-msgstr "Hætt við"
+msgstr "Frestað"
 
-#: ../xfburn/xfburn-progress-dialog.c:564
-#, fuzzy
+#: ../xfburn/xfburn-progress-dialog.c:589
 msgid "Completed"
 msgstr "Lokið"
 
-#: ../xfburn/xfburn-progress-dialog.c:601
-#, fuzzy
+#: ../xfburn/xfburn-progress-dialog.c:627
 msgid "Aborting..."
 msgstr "Hætti við..."
 
-#: ../xfburn/xfburn-utils.c:129
-#, fuzzy
+#: ../xfburn/xfburn-utils.c:130
 msgid "Select command"
-msgstr "Velja skipun"
+msgstr "Veldu skipun"
 
 #: ../xfburn/xfburn-welcome-tab.c:129
 msgid "Welcome to xfburn!"
-msgstr ""
+msgstr "Velkomin í xfburn!"
 
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:140
 msgid "<big>Burn _Image</big>"
-msgstr ""
+msgstr "<big>Brenna d_iskmynd</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:140
 msgid "Burn a prepared compilation, i.e. an .ISO file"
@@ -1152,7 +1156,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-welcome-tab.c:145
 msgid "<big>New _Data Composition</big>"
-msgstr ""
+msgstr "<big>Ný _gagnasamsetning</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:145
 msgid "Create a new data disc with the files of your choosing"
@@ -1160,7 +1164,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-welcome-tab.c:150
 msgid "<big>_Blank Disc</big>"
-msgstr ""
+msgstr "<big>Tó_mur diskur</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:150
 msgid "Prepare the rewriteable disc for a new burn"
@@ -1168,11 +1172,11 @@ msgstr ""
 
 #: ../xfburn/xfburn-welcome-tab.c:155
 msgid "<big>_Audio CD</big>"
-msgstr ""
+msgstr "<big>_CD hljóðdiskur</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:155
 msgid "Audio CD playable in regular stereos"
-msgstr ""
+msgstr "CD-tónlistardiskur sem hægt er að spila í tölvum og hljómflutningstækjum"
 
 #: ../xfburn/xfburn-audio-composition.c:212
 msgid "What files can get burned to an audio CD?"
@@ -1180,7 +1184,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:216
 msgid "Rename Artist"
-msgstr ""
+msgstr "Endurnefna flytjanda"
 
 #: ../xfburn/xfburn-audio-composition.c:216
 msgid "Rename the artist of the selected file"
@@ -1188,44 +1192,39 @@ msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:218
 msgid "Rename Title"
-msgstr ""
+msgstr "Endurnefna titil"
 
 #: ../xfburn/xfburn-audio-composition.c:218
 msgid "Rename the title of the selected file"
 msgstr ""
 
 #: ../xfburn/xfburn-audio-composition.c:402
-#, fuzzy
 msgid "Pos"
 msgstr "Staða"
 
 #: ../xfburn/xfburn-audio-composition.c:404
-#, fuzzy
 msgid "Length"
 msgstr "Lengd"
 
 #: ../xfburn/xfburn-audio-composition.c:410
-#, fuzzy
 msgid "Artist"
 msgstr "Flytjandi"
 
 #: ../xfburn/xfburn-audio-composition.c:423
-#, fuzzy
 msgid "Title"
 msgstr "Titill"
 
 #: ../xfburn/xfburn-audio-composition.c:434
-#, fuzzy
 msgid "Filename"
 msgstr "Skráarheiti"
 
 #: ../xfburn/xfburn-audio-composition.c:581
 msgid "Cannot burn audio onto a DVD."
-msgstr ""
+msgstr "Get ekki brennt hljóðskrá á DVD."
 
 #: ../xfburn/xfburn-audio-composition.c:1260
 msgid "You can only have a maximum of 99 tracks."
-msgstr ""
+msgstr "Þú getur bara brennt 99 spor."
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
 msgid "A problem with the burn backend occurred."
@@ -1233,7 +1232,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-disc-usage.c:163
 msgid "Proceed to Burn"
-msgstr ""
+msgstr "Halda áfram í brennslu"
 
 #: ../xfburn/xfburn-disc-usage.c:203
 msgid "You are trying to burn more onto the disc than it can hold."
@@ -1241,7 +1240,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-transcoder-basic.c:166
 msgid "basic"
-msgstr ""
+msgstr "einfalt"
 
 #: ../xfburn/xfburn-transcoder-basic.c:172
 msgid ""
@@ -1268,36 +1267,26 @@ msgstr ""
 #: ../xfburn/xfburn-transcoder-basic.c:207
 #, c-format
 msgid "Could not stat %s: %s"
-msgstr ""
+msgstr "Gat ekki fundið %s: %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:238
 #, c-format
 msgid "Could not open %s."
-msgstr ""
+msgstr "Gat ekki opnað %s."
 
 #: ../xfburn/xfburn-transcoder-basic.c:319
 #, c-format
 msgid "Could not open %s: %s"
-msgstr ""
-
-#: ../xfburn/xfburn-transcoder-gst.c:631
-#, c-format
-msgid ""
-"%s is missing.\n"
-"\n"
-"You do not have a decoder installed to handle this file.\n"
-"Probably you need to look at the gst-plugins-* packages\n"
-"for the necessary plugins.\n"
-msgstr ""
+msgstr "Gat ekki opnað %s: %s"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:720
+#: ../xfburn/xfburn-transcoder-gst.c:616
 msgid "gstreamer"
-msgstr ""
+msgstr "gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:726
+#: ../xfburn/xfburn-transcoder-gst.c:622
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1309,27 +1298,21 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:791
+#: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
-msgid "Gstreamer did not like this file (detection timed out)"
+msgid "An error occurred while identifying '%s' with gstreamer"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:800
-#, c-format
-msgid ""
-"%s\n"
-"\n"
-"is not an audio file:\n"
-"\n"
-"%s"
-msgstr ""
+#: ../xfburn/xfburn-transcoder-gst.c:716
+msgid "A plugin"
+msgstr "Forritsviðbót"
 
-#: ../xfburn/xfburn-transcoder-gst.c:915
+#: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:950
+#: ../xfburn/xfburn-transcoder-gst.c:884
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr ""
@@ -1338,89 +1321,84 @@ msgstr ""
 #: ../xfburn/xfburn-transcoder.c:163
 #, c-format
 msgid "not implemented"
-msgstr ""
+msgstr "ekki útfært"
 
-#: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
-#, fuzzy
+#: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
 msgid "Display name"
-msgstr "Nafn sýnt"
+msgstr "Birtingarnafn"
 
-#: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
+#: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
 msgid "Device address"
-msgstr ""
+msgstr "Vistfang tækis"
 
-#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
+#: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
 msgid "Burn speeds supported by the device"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
+#: ../xfburn/xfburn-device.c:259 ../xfburn/xfburn-device.c:260
 msgid "Disc status"
-msgstr ""
+msgstr "Staða disks"
 
-#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
+#: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
 msgid "Profile no. as reported by libburn"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
+#: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
 msgid "Profile name as reported by libburn"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
+#: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
 msgid "Is the disc erasable"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
+#: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
 msgid "Can burn CDR"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
+#: ../xfburn/xfburn-device.c:274 ../xfburn/xfburn-device.c:275
 msgid "Can burn CDRW"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
+#: ../xfburn/xfburn-device.c:277 ../xfburn/xfburn-device.c:278
 msgid "Can burn DVDR"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
+#: ../xfburn/xfburn-device.c:280 ../xfburn/xfburn-device.c:281
 msgid "Can burn DVDPLUSR"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
+#: ../xfburn/xfburn-device.c:283 ../xfburn/xfburn-device.c:284
 msgid "Can burn DVDRAM"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
+#: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
+msgid "Can burn Blu-ray"
+msgstr ""
+
+#: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
 msgid "libburn TAO block types"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
+#: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
 msgid "libburn SAO block types"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
+#: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
 msgid "libburn RAW block types"
 msgstr ""
 
-#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
+#: ../xfburn/xfburn-device.c:298 ../xfburn/xfburn-device.c:299
 msgid "libburn PACKET block types"
 msgstr ""
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
-msgstr ""
+msgstr "Samsetning gagna"
 
 #: ../xfburn.desktop.in.h:2
 msgid "CD and DVD burning application"
-msgstr ""
+msgstr "CD og DVD brennsluforrit"
 
 #: ../xfburn.desktop.in.h:3
 msgid "Burn Image (xfburn)"
-msgstr ""
-
-#, fuzzy
-#~ msgid "Author/Maintainer"
-#~ msgstr "Höfundur/umsjónarmaður"
-
-#, fuzzy
-#~ msgid "Translator (%s)"
-#~ msgstr "Þýðandi (%s)"
+msgstr "Brenna diskmynd (xfburn)"
