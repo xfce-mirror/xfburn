@@ -185,7 +185,7 @@ static void
 xfburn_blank_dialog_init (XfburnBlankDialog * obj)
 {
   XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (obj);
-  GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
+  GtkBox *box = GTK_BOX (gtk_dialog_get_content_area (obj));
   GdkPixbuf *icon = NULL;
   GtkWidget *frame;
   GtkWidget *vbox;
@@ -244,7 +244,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   button = xfburn_gtk_button_new_mixed (XFBURN_STOCK_BLANK_CDRW, _("_Blank"));
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
-  GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default (button, TRUE);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
   priv->button_blank = button;

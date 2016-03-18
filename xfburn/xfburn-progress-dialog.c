@@ -184,7 +184,7 @@ static void
 xfburn_progress_dialog_init (XfburnProgressDialog * obj)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (obj);
-  GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
+  GtkBox *box = GTK_BOX (gtk_dialog_get_content_area (obj));
   GtkWidget *frame;
   GtkWidget *table;
   GtkWidget *label;
@@ -254,7 +254,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   priv->button_close = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
   gtk_widget_show (priv->button_close);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), priv->button_close, GTK_RESPONSE_CLOSE);
-  GTK_WIDGET_SET_FLAGS (priv->button_close, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default (priv->button_close, TRUE);
   gtk_widget_grab_focus (priv->button_close);
   gtk_widget_grab_default (priv->button_close);
   gtk_widget_set_sensitive (priv->button_close, FALSE);
