@@ -125,7 +125,7 @@ xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass)
 static void
 xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
 {
-  GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
+  GtkBox *box = GTK_BOX (gtk_dialog_get_content_area (obj));
   XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (obj);
   
   GtkWidget *vbox, *vbox2, *vbox3, *hbox;
@@ -350,7 +350,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   button_close = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (button_close);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button_close, GTK_RESPONSE_CLOSE);
-  GTK_WIDGET_SET_FLAGS (button_close, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default (button_close, TRUE);
   gtk_widget_grab_focus (button_close);
   gtk_widget_grab_default (button_close);
 

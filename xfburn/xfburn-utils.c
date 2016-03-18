@@ -168,7 +168,7 @@ xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, const gchar *
     default:
       ok = FALSE;
   }
-  xfburn_busy_cursor (GTK_DIALOG (dialog)->vbox);
+  xfburn_busy_cursor (gtk_dialog_get_content_area (dialog));
   gtk_widget_destroy (GTK_WIDGET (dialog));
 
   return ok;

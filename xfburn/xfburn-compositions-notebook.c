@@ -48,7 +48,7 @@ static void xfburn_compositions_notebook_finalize (GObject * object);
 
 
 /* internals */
-static void cb_switch_page (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, 
+static void cb_switch_page (GtkNotebook *notebook, GtkWidget *page, guint page_num, 
                             XfburnCompositionsNotebookPrivate *priv);
 static void cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook);
 static void cb_composition_name_changed (XfburnComposition *composition, const gchar * name, XfburnCompositionsNotebook *notebook);
@@ -125,7 +125,7 @@ xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook)
 /* internals */
 /*************/
 static void
-cb_switch_page (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, XfburnCompositionsNotebookPrivate *priv)
+cb_switch_page (GtkNotebook *notebook, GtkWidget *page, guint page_num, XfburnCompositionsNotebookPrivate *priv)
 {
 
 }

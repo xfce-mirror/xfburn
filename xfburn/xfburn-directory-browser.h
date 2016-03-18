@@ -38,12 +38,12 @@ G_BEGIN_DECLS
 
 typedef struct
 {
-  ExoTreeView treeview;
+  GtkTreeView treeview;
 } XfburnDirectoryBrowser;
 
 typedef struct
 {
-  ExoTreeViewClass parent_class;
+  GtkTreeViewClass parent_class;
 } XfburnDirectoryBrowserClass;
 
 enum
