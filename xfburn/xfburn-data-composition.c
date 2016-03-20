@@ -1694,7 +1694,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
           g_free (parent_humansize);
         }
           
-        if (gtk_drag_context_get_action(dc) == GDK_ACTION_MOVE) {
+        if (gdk_drag_context_get_action(dc) == GDK_ACTION_MOVE) {
           /* remove source entry */
           if (gtk_tree_path_up (path_parent) && path_where_insert && 
               !gtk_tree_path_is_descendant (path_where_insert, path_parent)) {
@@ -1797,7 +1797,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     gchar **uris;
     gsize   n;
 
-    uris = g_uri_list_extract_uris ((gchar *) gtk_selectino_data_get_data(sd));
+    uris = g_uri_list_extract_uris ((gchar *) gtk_selection_data_get_data(sd));
 
     for (n = 0; uris != NULL && uris[n] != NULL; ++n)
       vfs_paths = g_list_append (vfs_paths, g_file_new_for_uri (uris[n]));

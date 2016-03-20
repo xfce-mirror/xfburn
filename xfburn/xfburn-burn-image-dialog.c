@@ -243,7 +243,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   priv->burn_button = xfburn_gtk_button_new_mixed (XFBURN_STOCK_BURN_CD, _("_Burn image"));
   gtk_widget_show (priv->burn_button);
   g_signal_connect (G_OBJECT (priv->burn_button), "clicked", G_CALLBACK (cb_clicked_ok), obj);
-  gtk_container_add (GTK_CONTAINER( gtk_dialod_get_action_area(obj)), priv->burn_button);
+  gtk_container_add (GTK_CONTAINER( gtk_dialog_get_action_area(obj)), priv->burn_button);
   //gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
   gtk_widget_set_can_default (priv->burn_button, TRUE);
   gtk_widget_grab_focus (priv->burn_button);
