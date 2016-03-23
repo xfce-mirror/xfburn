@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pjotr <pjotrvertaalt@gmail.com>, 2014-2015
+# Pjotr <pjotrvertaalt@gmail.com>, 2014-2016
 # Stephan Arts <psyBSD@gmail.com>, 2006
 msgid ""
 msgstr ""
@@ -49,7 +49,7 @@ msgstr "Kan schijfstatus niet bepalen - druk op Enter om het opnieuw te proberen
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr "Kopiëren van CD met succes voltooid."
+msgstr "Kopiëren van DVD met succes voltooid."
 
 #: ../xfburn/xfburn-global.h:43
 msgid "Data composition"
@@ -313,12 +313,15 @@ msgstr "Schijfkopie aan het branden..."
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
-msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Kies a.u.b. een schijfkopie om te branden</span>"
+msgstr ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Kies"
+"a.u.b. een schijfkopie om te branden</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:516
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "Kan geen gegevens toevoegen aan multisessie-schijf in deze brandmodus (gebruik in plaats daarvan TAO)"
+msgstr ""
+"Kan geen gegevens toevoegen aan multisessieschijf in deze brandmodus (gebruik in plaats daarvan TAO)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:520
 msgid "Closed disc with data detected. Need blank or appendable disc"
@@ -344,7 +347,9 @@ msgstr "Kon omvang van schijfkopie niet bepalen"
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr "Vergewis u ervan dat u een geldig bestand hebt gekozen en dat u de juiste rechten hebt om het te benaderen."
+msgstr ""
+"Vergewis u ervan dat u een geldig bestand hebt gekozen en dat u de juiste "
+"rechten hebt om het te benaderen."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -501,14 +506,18 @@ msgstr "Gegevens %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr "%s kan niet worden toegevoegd aan de verzameling, omdat het de maximaal toegestane bestandgrootte voor iso9660 overschrijdt."
+msgstr ""
+"%s kan niet worden toegevoegd aan de verzameling, omdat het de maximaal "
+"toegestane bestandgrootte voor iso9660 overschrijdt."
 
 #: ../xfburn/xfburn-data-composition.c:1291
 #, c-format
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
-msgstr "%s is groter dan wat iso9660 niveau 2 toestaat. Dit kan een probleem zijn voor oude systemen of oude programmatuur."
+msgstr ""
+"%s is groter dan wat iso9660 niveau 2 toestaat. Dit kan een probleem zijn voor"
+" oude systemen of oude programmatuur."
 
 #: ../xfburn/xfburn-data-composition.c:1374
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -521,14 +530,19 @@ msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr "U staat op het punt om uw volledige thuismap toe te voegen aan de verzameling. Dit zal waarschijnlijk een hele tijd duren, en zal ook de verzameling vermoedelijk te groot maken om op één schijf te passen.\n\nWeet u zeker dat u door wil gaan?"
+msgstr ""
+"U staat op het punt om uw volledige thuismap toe te voegen aan de verzameling. Dit zal waarschijnlijk een hele tijd duren, en zal ook de verzameling vermoedelijk te groot maken om op één schijf te passen.\n"
+"\n"
+"Weet u zeker dat u door wil gaan?"
 
 #: ../xfburn/xfburn-data-composition.c:1542
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr "Een bestand met de naam '%s' bestaat al in deze map; het bestand is niet toegevoegd."
+msgstr ""
+"Een bestand met de naam '%s' bestaat al in deze map; het bestand is niet "
+"toegevoegd."
 
 #: ../xfburn/xfburn-data-composition.c:1940
 #, c-format
@@ -594,7 +608,7 @@ msgstr "De wismodus toont andere boodschappen voor schijfstatus dan de normale m
 
 #: ../xfburn/xfburn-device-box.c:239
 msgid "_Speed:"
-msgstr "_Snelheid :"
+msgstr "_Snelheid:"
 
 #: ../xfburn/xfburn-device-box.c:262
 msgid "Write _mode:"
@@ -613,7 +627,14 @@ msgid ""
 "Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr "<b>Kon geen snelhedenlijst voor het station ophalen.</b>\n\nDit is een bekende fout, die bij sommige stations plaatsvindt. Als u hem zou willen herstellen, kijk dan eens\nnaar het bibliotheekbestand libburn.\n\nBranden zou nog steeds moeten lukken, maar als ook daar problemen mee zijn, laat het ons dan alstublieft weten.\n<i>Bij voorbaat dank!</i>"
+msgstr ""
+"<b>Kon geen snelhedenlijst voor het station ophalen.</b>\n"
+"\n"
+"Dit is een bekende fout, die bij sommige stations plaatsvindt. Als u hem zou willen herstellen, kijk dan eens\n"
+"naar het bibliotheekbestand libburn.\n"
+"\n"
+"Branden zou nog steeds moeten lukken, maar als ook daar problemen mee zijn, laat het ons dan alstublieft weten.\n"
+"<i>Bij voorbaat dank!</i>"
 
 #: ../xfburn/xfburn-device-box.c:395
 msgid "Continue to _show this notice"
@@ -723,7 +744,9 @@ msgstr "Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr "%s: %s\nProbeer '%s --help' om een volledige lijst te zien van beschikbare opties voor de opdrachtregel.\n"
+msgstr ""
+"%s: %s\n"
+"Probeer '%s --help' om een volledige lijst te zien van beschikbare opties voor de opdrachtregel.\n"
 
 #: ../xfburn/xfburn-main.c:219
 msgid "Unable to initialize the burning backend."
@@ -740,14 +763,21 @@ msgid ""
 "Please unmount and restart the application.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr "Mogelijk is de schijf in gebruik en kan deze niet worden benaderd.\n\nGelieve het schijfstation te ontkoppelen en de toepassing te herstarten.\n\nIndien er geen schijf in het station zit, controleer dan dat u lees/schrijf-toegang hebt voor het station, als huidige gebruiker."
+msgstr ""
+"Mogelijk is de schijf in gebruik en kan deze niet worden benaderd.\n"
+"\n"
+"Gelieve het schijfstation te ontkoppelen en de toepassing te herstarten.\n"
+"\n"
+"Indien er geen schijf in het station zit, controleer dan dat u lees/schrijf-toegang hebt voor het station, als huidige gebruiker."
 
 #: ../xfburn/xfburn-main.c:330
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr "Kon transcoder %s niet initialiseren: %s\n\t(terug aan het vallen op de basis-implementatie)"
+msgstr ""
+"Kon transcoder %s niet initialiseren: %s\n"
+"\t(terug aan het vallen op de basisimplementatie)"
 
 #: ../xfburn/xfburn-main.c:374
 #, c-format
@@ -830,7 +860,7 @@ msgstr "_Over"
 
 #: ../xfburn/xfburn-main-window.c:125
 msgid "Display information about Xfburn"
-msgstr "Geef informatie weer over Xfburn"
+msgstr "Toon informatie over Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:127
 msgid "Blank CD-RW"
@@ -874,7 +904,7 @@ msgstr "Werkbalkbewerker"
 
 #: ../xfburn/xfburn-main-window.c:538
 msgid "Another cd burning GUI"
-msgstr "Een grafische schil voor het branden van CD's"
+msgstr "Een grafische schil voor het branden van DVD's"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "Label"
@@ -900,7 +930,9 @@ msgstr "Aan het formatteren..."
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
-msgstr "Kan geen gegevens toevoegen aan multisessie-schijf in deze brandmodus (gebruik in plaats daarvan TAO)."
+msgstr ""
+"Kan geen gegevens toevoegen aan multisessie-schijf in deze brandmodus "
+"(gebruik in plaats daarvan TAO)."
 
 #: ../xfburn/xfburn-perform-burn.c:274
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
@@ -1252,7 +1284,14 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr "De basis-codeerder is ingebouwd, en\nheeft geen bibliotheekbestand nodig.\nMaar hij kan alleen omgaan met\nniet-gecomprimeerde .wav-bestanden.\nAls u geluidverzamelingen wil maken\nvan andere geluidbestanden, compileer\ndan a.u.b. met gstreamer-ondersteuning."
+msgstr ""
+"De basis-codeerder is ingebouwd, en\n"
+"heeft geen bibliotheekbestand nodig.\n"
+"Maar hij kan alleen omgaan met\n"
+"niet-gecomprimeerde .wav-bestanden.\n"
+"Als u geluidverzamelingen wil maken\n"
+"van andere geluidbestanden, compileer\n"
+"dan a.u.b. met gstreamer-ondersteuning."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1296,7 +1335,18 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr "De gstreamer-codeerder gebruikt het \ngstreamer-bibliotheekbestand voor het \nmaken van geluidverzamelingen.\n\nIn wezen zouden alle geluidbestanden\nondersteund moeten zijn, wanneer de juiste\ninvoegtoepassingen zijn geïnstalleerd.\nIndien een geluidbestand niet wordt\nherkend, zorg er dan voor dat u de \ninvoegtoepassingen 'good', 'bad' en \n'ugly' allemaal hebt geïnstalleerd."
+msgstr ""
+"De gstreamer-codeerder gebruikt het \n"
+"gstreamer-bibliotheekbestand voor het \n"
+"maken van geluidverzamelingen.\n"
+"\n"
+"In wezen zouden alle geluidbestanden\n"
+"ondersteund moeten zijn, wanneer de juiste\n"
+"invoegtoepassingen zijn geïnstalleerd.\n"
+"Indien een geluidbestand niet wordt\n"
+"herkend, zorg er dan voor dat u de \n"
+"invoegtoepassingen 'good', 'bad' en \n"
+"'ugly' allemaal hebt geïnstalleerd."
 
 #: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
@@ -1329,7 +1379,7 @@ msgstr "Schermnaam"
 
 #: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
 msgid "Device address"
-msgstr "Apparaat-adres"
+msgstr "Apparaatadres"
 
 #: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
 msgid "Burn speeds supported by the device"
@@ -1341,7 +1391,7 @@ msgstr "Schijfstatus"
 
 #: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
 msgid "Profile no. as reported by libburn"
-msgstr "Profielnummer zoals gemeld door libburn"
+msgstr "Profielnr. zoals gemeld door libburn"
 
 #: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
 msgid "Profile name as reported by libburn"
