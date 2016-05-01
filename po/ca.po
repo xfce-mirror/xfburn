@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2016-05-01 09:41+0000\n"
+"PO-Revision-Date: 2016-05-01 13:35+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "S'estan afegint fitxers a la composició"
 
 #: ../xfburn/xfburn-adding-progress.c:125
 msgid "Cancel"
-msgstr "Canecel·la"
+msgstr "Cancel·la"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
@@ -261,7 +261,7 @@ msgstr "El mode d'escriptura no és funcional encara."
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:667
 msgid "Could not create ISO source structure."
-msgstr "No s'ha pogut crear l’estructura de la font ISO."
+msgstr "No es pot crear l'estructura de l'origen de la ISO."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:163
 msgid "Burn image"
@@ -304,7 +304,7 @@ msgstr "No s'ha pogut determinar la mida de la imatge."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:367
 msgid "Cannot open image."
-msgstr "No es pot obrir la imatge"
+msgstr "No es pot obrir la imatge."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:404
 msgid "Burning image..."
@@ -319,7 +319,7 @@ msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Se
 #: ../xfburn/xfburn-burn-image-dialog.c:516
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "No es poden afegir dades a un disc multisessió amb aquest mode d'escriptura (utilitzeu TAO en lloc seu)"
+msgstr "No es poden afegir dades a un disc de sessió múltiple amb aquest mode d'escriptura (utilitzeu TAO en lloc seu)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:520
 msgid "Closed disc with data detected. Need blank or appendable disc"
@@ -331,7 +331,7 @@ msgstr "No s'ha detectat cap disc a la unitat"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:524
 msgid "Cannot recognize state of drive and disc"
-msgstr "No es sap l'estat de la unitat ni del disc"
+msgstr "No es pot reconèixer l'estat de la unitat ni del disc"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
 msgid "The selected image does not fit on the inserted disc"
@@ -345,7 +345,7 @@ msgstr "No s'ha obtingut la mida de la imatge"
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr "Assegureu-vos que heu seleccionat un fitxer vàlid i que el programa te els permisos correctes per accedir-hi."
+msgstr "Assegureu-vos que heu seleccionat un fitxer vàlid i que tingueu els permisos adequats per accedir-hi."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -502,7 +502,7 @@ msgstr "Data %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr "«%s» no es por afegir a la composició degut a que excedeix la capacitat màxima permesa de iso9660."
+msgstr "«%s» no es por afegir a la composició perquè excedeix la capacitat màxima permesa per a l'iso9660."
 
 #: ../xfburn/xfburn-data-composition.c:1291
 #, c-format
@@ -614,7 +614,7 @@ msgid ""
 "Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr "<b>No s'ha pogut obtenir la llista de les velocitats de la unitat.</b>\n\nAquesta és un error de programari coneguda que es dóna amb algunes unitats. Si esteu interessats amb la seva correcció, doneu un cop d'ull a la biblioteca libburn.\n\nLa gravació encara hauria de funcionar, però si hi ha problemes permeteu que els coneguem.\n\n<i>Gràcies</i>"
+msgstr "<b>No s'ha pogut obtenir la llista de les velocitats de la unitat.</b>\n\nAquesta és un error de programari coneguda que es dóna amb algunes unitats. Si esteu interessat amb la seva correcció, doneu un cop d'ull a la biblioteca libburn.\n\nLa gravació encara hauria de funcionar, però si hi ha problemes permeteu que els coneguem.\n\n<i>Gràcies</i>"
 
 #: ../xfburn/xfburn-device-box.c:395
 msgid "Continue to _show this notice"
@@ -638,7 +638,7 @@ msgstr "La unitat està buida"
 
 #: ../xfburn/xfburn-device-box.c:591
 msgid "Sorry, multisession is not yet supported"
-msgstr "La multisessió encara no és funcional"
+msgstr "La sessió múltiple encara no és funcional"
 
 #: ../xfburn/xfburn-device-box.c:594
 msgid "Inserted disc is full"
@@ -901,7 +901,7 @@ msgstr "S'està formatant..."
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
-msgstr "No es poden afegir dades a un disc multisessió amb aquest mode d'escriptura (utilitzeu TAO en lloc seu)."
+msgstr "No es poden afegir dades a un disc de sessió múltiple amb aquest mode d'escriptura (utilitzeu TAO en lloc seu)."
 
 #: ../xfburn/xfburn-perform-burn.c:274
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
@@ -1253,12 +1253,12 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr "El transcodificador bàsic és intern\ni no li cal pas cap llibreria. Però\nnomés gestiona fitxers .wav\ndescomprimits.\nSi voleu crear composicions d'àudio\ndes de tipus de fitxer d'àudio\ndiferents, compileu-lo amb les\nfuncionalitats de gstreamer."
+msgstr "El transcodificador bàsic està incrustat\ni no us cal cap biblioteca. Però només\npot gestionar els fitxers .wav sense\ncompressió.\nSi voleu crear composicions d'àudio\na partir de tipus de fitxer d'àudio\ndiferents, compileu-ho amb\ncompatibilitat gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
 msgid "File %s does not have a .wav extension"
-msgstr "El fitxer «%s» no te extensió .wav"
+msgstr "El fitxer «%s» no té una extensió .wav"
 
 #: ../xfburn/xfburn-transcoder-basic.c:201
 #, c-format
