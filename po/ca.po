@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2016-05-02 19:11+0000\n"
+"PO-Revision-Date: 2016-05-03 08:39+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -220,14 +220,14 @@ msgstr "Sobrepassa la gravació"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
 #: ../xfburn/xfburn-burn-image-dialog.c:228
 msgid "Stream _Recording"
-msgstr "G_ravació de flux"
+msgstr "G_ravació del flux"
 
 #. create ISO ?
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:252
 #: ../xfburn/xfburn-copy-cd-dialog.c:157
 #: ../xfburn/xfburn-copy-dvd-dialog.c:157
 msgid "Only create _ISO"
-msgstr "Tant sols crea _ISO"
+msgstr "Únicament crea l'_ISO"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:289
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
@@ -237,7 +237,7 @@ msgstr "_Grava la composició"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 #, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr "No s'ha pogut crear el fitxer ISO destí: %s"
+msgstr "No s'ha pogut crear el fitxer ISO de destinació: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:484
 msgid "Writing ISO..."
@@ -371,7 +371,7 @@ msgstr "Al _vol"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:193
 msgid "_Copy CD"
-msgstr "_Copia CD"
+msgstr "_Copia un CD"
 
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
@@ -502,7 +502,7 @@ msgstr "Data %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr "«%s» no es por afegir a la composició perquè excedeix la capacitat màxima permesa per a l'iso9660."
+msgstr "«%s» no es pot afegir a la composició perquè excedeix la capacitat màxima permesa per a l'iso9660."
 
 #: ../xfburn/xfburn-data-composition.c:1291
 #, c-format
@@ -650,11 +650,11 @@ msgstr "El disc inserit no és apropiat"
 
 #: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Cannot access drive (it might be in use)"
-msgstr "No es por accedir a la unitat (podria estar en ús)"
+msgstr "No es pot accedir a la unitat (podria estar en ús)"
 
 #: ../xfburn/xfburn-device-box.c:605 ../xfburn/xfburn-device-box.c:646
 msgid "Error determining disc"
-msgstr "Error al identificar el disc"
+msgstr "Error en identificar el disc"
 
 #: ../xfburn/xfburn-device-box.c:626
 msgid "Write-once disc, no blanking possible"
@@ -913,7 +913,7 @@ msgstr "No s'ha detectat cap disc a la unitat."
 
 #: ../xfburn/xfburn-perform-burn.c:279
 msgid "Cannot recognize the state of the drive and disc."
-msgstr "No es reconeix l’estat de la unitat i del disc."
+msgstr "No es reconeix l'estat de la unitat i del disc."
 
 #: ../xfburn/xfburn-perform-burn.c:286
 msgid "Formatting failed."
@@ -1072,7 +1072,7 @@ msgstr "Mostra una advertència quan la llista de les velocitats estigui _buida"
 
 #: ../xfburn/xfburn-preferences-dialog.c:338
 msgid "FIFO buffer size (in kb)"
-msgstr "Memòria cau FIFO (en kb)"
+msgstr "Mida de la memòria intermèdia FIFO (en kb)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:477
 msgid "Changing this setting only takes full effect after a program restart."
@@ -1099,11 +1099,11 @@ msgstr "desconegut"
 
 #: ../xfburn/xfburn-progress-dialog.c:228
 msgid "FIFO buffer:"
-msgstr "Cau de memòria FIFO:"
+msgstr "Memòria intermèdia FIFO:"
 
 #: ../xfburn/xfburn-progress-dialog.c:238
 msgid "Device buffer:"
-msgstr "Memòria cau del dispositiu:"
+msgstr "Memòria intermèdia del dispositiu:"
 
 #: ../xfburn/xfburn-progress-dialog.c:375
 msgid "Are you sure you want to abort?"
@@ -1120,7 +1120,7 @@ msgstr "Avortat"
 
 #: ../xfburn/xfburn-progress-dialog.c:574
 msgid "Formatted."
-msgstr "Formatat"
+msgstr "Formatat."
 
 #: ../xfburn/xfburn-progress-dialog.c:583
 msgid "Failed"
@@ -1263,12 +1263,12 @@ msgstr "El fitxer «%s» no té una extensió .wav"
 #: ../xfburn/xfburn-transcoder-basic.c:201
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
-msgstr "El fitxer «%s» no és d'ona d'àudio descomprimida PCM"
+msgstr "El fitxer «%s» no conté l'àudio PCM descomprimit"
 
 #: ../xfburn/xfburn-transcoder-basic.c:207
 #, c-format
 msgid "Could not stat %s: %s"
-msgstr "No es pot obtenir l'estatus de «%s»: %s"
+msgstr "No es pot obtenir l'estat de «%s»: %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:238
 #, c-format
@@ -1316,7 +1316,7 @@ msgstr "El Gstreamer no ha iniciat la transcodificació (temps excedit)"
 #: ../xfburn/xfburn-transcoder-gst.c:884
 #, c-format
 msgid "Failed to change songs while transcoding"
-msgstr "No s'han pogut canviar cançons mestres es transcodificaven"
+msgstr "No s'han pogut canviar les cançons mestre es transcodificaven"
 
 #: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
@@ -1342,11 +1342,11 @@ msgstr "Estat del disc"
 
 #: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
 msgid "Profile no. as reported by libburn"
-msgstr "Número de perfil del que ens informa «libburn»"
+msgstr "Número del perfil segons informa libburn"
 
 #: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
 msgid "Profile name as reported by libburn"
-msgstr "Nom del perfil del que ens informa «libburn»"
+msgstr "Nom del perfil segons informa libburn"
 
 #: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
 msgid "Is the disc erasable"
@@ -1378,19 +1378,19 @@ msgstr "Pot gravar Blu-ray"
 
 #: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
 msgid "libburn TAO block types"
-msgstr "Tipus de bloc TAO de «libburn»"
+msgstr "Tipus de bloc TAO de libburn"
 
 #: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
 msgid "libburn SAO block types"
-msgstr "Tipus de bloc SAO de «libburn»"
+msgstr "Tipus de bloc SAO de libburn"
 
 #: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
 msgid "libburn RAW block types"
-msgstr "Tipus de bloc RAW de «libburn»"
+msgstr "Tipus de bloc RAW de libburn"
 
 #: ../xfburn/xfburn-device.c:298 ../xfburn/xfburn-device.c:299
 msgid "libburn PACKET block types"
-msgstr "Tipus de bloc PACKET de «libburn»"
+msgstr "Tipus de bloc PACKET de libburn"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
