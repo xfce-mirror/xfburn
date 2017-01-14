@@ -5,13 +5,13 @@
 # Translators:
 # Aputsiak Niels Janussen <aj@isit.gl>, 2014
 # Chris Darnell <chris@cedeel.com>, 2013
-# scootergrisen, 2016
+# scootergrisen, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2016-12-17 23:50+0000\n"
+"PO-Revision-Date: 2017-01-14 11:21+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -176,11 +176,11 @@ msgstr "Fejl"
 #: ../xfburn/xfburn-burn-image-dialog.c:590
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
 msgid "Unable to grab the drive."
-msgstr "Ikke istand til at klargøre drevet."
+msgstr "Ikke i stand til at klargøre drevet."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:156
 msgid "Image"
-msgstr "Billede"
+msgstr "Aftryk"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
 msgid "Show volume name"
@@ -265,13 +265,13 @@ msgstr "Kan ikke skabe ISO-kildestruktur."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:163
 msgid "Burn image"
-msgstr "Brænd billede"
+msgstr "Brænd aftryk"
 
 #. file
 #: ../xfburn/xfburn-burn-image-dialog.c:170
 #: ../xfburn/xfburn-burn-image-dialog.c:187
 msgid "Image to burn"
-msgstr "Billede til brænding"
+msgstr "Aftryk som skal brændes"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:174
 msgid "All files"
@@ -279,7 +279,7 @@ msgstr "Alle filer"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:178
 msgid "ISO images"
-msgstr "ISO-billeder"
+msgstr "ISO-aftryk"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:233
 msgid "_Quit after success"
@@ -287,7 +287,7 @@ msgstr "_Afslut efter succes"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:243
 msgid "_Burn image"
-msgstr "_Brænd billede"
+msgstr "_Brænd aftryk"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:296
 msgid "Burn mode is not currently implemented."
@@ -300,21 +300,21 @@ msgstr "En fejl opstod i det underliggende brænderprogram"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:360
 msgid "Unable to determine image size."
-msgstr "Kan ikke fastslå billedstørrelse."
+msgstr "Kan ikke fastslå aftrykstørrelse."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:367
 msgid "Cannot open image."
-msgstr "Kan ikke åbne billede."
+msgstr "Kan ikke åbne aftryk."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:404
 msgid "Burning image..."
-msgstr "Brænder billede..."
+msgstr "Brænder aftryk..."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:476
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
-msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Vælg venligst det billede der skal brændes</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Vælg venligst det aftryk der skal brændes</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:516
 msgid ""
@@ -335,11 +335,11 @@ msgstr "Kan ikke genkende drev og medie tilstand"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
 msgid "The selected image does not fit on the inserted disc"
-msgstr "Det valgte billede passer ikke på det indsatte medie"
+msgstr "Det valgte aftryk passer ikke på det indsatte medie"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:540
 msgid "Failed to get image size"
-msgstr "Kan ikke hente billedstørrelsen"
+msgstr "Kan ikke hente aftrykstørrelsen"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:569
 msgid ""
@@ -614,7 +614,7 @@ msgid ""
 "Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr "<b>Er ikke istand til at læse hastighedslisten for drevet.</b>\n\nDette er en kendt fejl, som opstår med nogen drev. Rapportér venligst fejlen til <i>xfburn@xfce.org</i> sammen med konsoludskriften, hvilket vil forhøje chancerne for, at det vil blive rettet.\n\nBrænding skulle stadig virke, men er der problemer alligevel, så lad os endelig få det at vide.\n\n<i>Mange tak!</i>"
+msgstr "<b>Er ikke i stand til at læse hastighedslisten for drevet.</b>\n\nDette er en kendt fejl, som opstår med nogen drev. Hvis du er interesseret i at rette det, så se venligst på libburn-biblioteket.\n\nBrænding skulle stadig virke, men er der problemer alligevel, så lad os endelig få det at vide.\n\n<i>Mange tak!</i>"
 
 #: ../xfburn/xfburn-device-box.c:395
 msgid "Continue to _show this notice"
@@ -724,7 +724,7 @@ msgstr "Xfburn"
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr "%s %s\nPrøv %s --help for at se hele listen af mulige parametre. \n"
+msgstr "%s %s\nPrøv %s --help for at se hele listen af mulige parametre.\n"
 
 #: ../xfburn/xfburn-main.c:219
 msgid "Unable to initialize the burning backend."
@@ -753,7 +753,7 @@ msgstr "Kunne ikke starte %s omkoder: %s\n\t(bruger basis implementering)"
 #: ../xfburn/xfburn-main.c:374
 #, c-format
 msgid "Image file '%s' does not exist."
-msgstr "Billedfilen '%s' findes ikke."
+msgstr "Aftrykfilen '%s' findes ikke."
 
 #: ../xfburn/xfburn-main-window.c:100
 msgid "_File"
@@ -845,13 +845,13 @@ msgstr "Kopiér data-cd"
 #. Audio CD"),},
 #: ../xfburn/xfburn-main-window.c:132
 msgid "Burn Image"
-msgstr "Brænd billede"
+msgstr "Brænd aftryk"
 
 #. {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
 #. G_CALLBACK (action_copy_dvd),},
 #: ../xfburn/xfburn-main-window.c:136
 msgid "Burn DVD Image"
-msgstr "Brænd dvd-billede"
+msgstr "Brænd dvd-aftryk"
 
 #: ../xfburn/xfburn-main-window.c:141
 msgid "Show file browser"
@@ -875,7 +875,7 @@ msgstr "Værktøjslinje redigering"
 
 #: ../xfburn/xfburn-main-window.c:538
 msgid "Another cd burning GUI"
-msgstr "Et andet grafisk miljø til cd-brænder"
+msgstr "Endnu et grafisk miljø til cd-brænding"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
 msgid "Label"
@@ -1149,7 +1149,7 @@ msgstr "Velkommen til xfburn!"
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:140
 msgid "<big>Burn _Image</big>"
-msgstr "<big>Brænd _billede</big>"
+msgstr "<big>Brænd _aftryk</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:140
 msgid "Burn a prepared compilation, i.e. an .ISO file"
@@ -1326,7 +1326,7 @@ msgstr "ikke understøttet"
 
 #: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
 msgid "Display name"
-msgstr "Navn  som vises"
+msgstr "Navn som vises"
 
 #: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
 msgid "Device address"
@@ -1402,4 +1402,4 @@ msgstr "Cd- og dvd-brænderprogram"
 
 #: ../xfburn.desktop.in.h:3
 msgid "Burn Image (xfburn)"
-msgstr "Brænd Billede (xfburn)"
+msgstr "Brænd aftryk (xfburn)"
