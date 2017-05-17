@@ -1599,7 +1599,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   GtkTreeIter iter_where_insert;
 
   g_return_if_fail (sd);
-  g_return_if_fail (sd->data);
+  g_return_if_fail (gtk_selection_data_get_data(sd));
   
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
   
@@ -1608,14 +1608,14 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   xfburn_busy_cursor (priv->content);
 
   /* move a selection inside of the composition window */
-  if (sd->target == gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE)) {
+  if (gtk_selection_data_get_target(sd) == gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE)) {
     GList *row = NULL, *selected_rows = NULL;
     GtkTreeIter *iter = NULL;
     DataCompositionEntryType type_dest = -1;
     
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
 
-    row = selected_rows = *((GList **) sd->data);
+    row = selected_rows = *((GList **) gtk_selection_data_get_data(sd));
     
     if (path_where_insert) {      
       gtk_tree_model_get_iter (model, &iter_where_insert, path_where_insert);
@@ -1694,7 +1694,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
           g_free (parent_humansize);
         }
           
-        if (dc->action == GDK_ACTION_MOVE) {       
+        if (gdk_drag_context_get_action(dc) == GDK_ACTION_MOVE) {
           /* remove source entry */
           if (gtk_tree_path_up (path_parent) && path_where_insert && 
               !gtk_tree_path_is_descendant (path_where_insert, path_parent)) {
@@ -1736,7 +1736,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     xfburn_default_cursor (priv->content);
   }
   /* drag from the file selector, or nautilus */
-  else if (sd->target == gdk_atom_intern ("text/plain;charset=utf-8", FALSE)) {
+  else if (gtk_selection_data_get_target(sd) == gdk_atom_intern ("text/plain;charset=utf-8", FALSE)) {
     ThreadAddFilesDragParams *params;
     gchar **files = NULL;
     gchar *full_paths;
@@ -1789,7 +1789,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
     gtk_drag_finish (dc, TRUE, FALSE, t);
   } 
-  else if (sd->target == gdk_atom_intern ("text/uri-list", FALSE)) {
+  else if (gtk_selection_data_get_target(sd) == gdk_atom_intern ("text/uri-list", FALSE)) {
     GList *vfs_paths = NULL;
     GList *vfs_path;
     GList *lp;
@@ -1797,7 +1797,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     gchar **uris;
     gsize   n;
 
-    uris = g_uri_list_extract_uris ((gchar *) sd->data);
+    uris = g_uri_list_extract_uris ((gchar *) gtk_selection_data_get_data(sd));
 
     for (n = 0; uris != NULL && uris[n] != NULL; ++n)
       vfs_paths = g_list_append (vfs_paths, g_file_new_for_uri (uris[n]));
@@ -2040,7 +2040,7 @@ generate_iso_image (XfburnDataComposition * dc)
       title = g_strdup_printf ("<b>%s</b>", title);
       gtk_label_set_markup(GTK_LABEL (label), title);
       g_free (title);
-      gtk_container_add (GTK_CONTAINER (GTK_DIALOG(dialog)->vbox), label);
+      gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG(dialog))), label);
 
       textview = gtk_text_view_new ();
       buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
@@ -2050,7 +2050,7 @@ generate_iso_image (XfburnDataComposition * dc)
       scrolled = gtk_scrolled_window_new (NULL, NULL);
       gtk_container_add (GTK_CONTAINER (scrolled), textview);
       gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-      gtk_container_add (GTK_CONTAINER (GTK_DIALOG(dialog)->vbox), scrolled);
+      gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG(dialog))), scrolled);
 
       gtk_window_set_default_size (GTK_WINDOW (dialog), 600, 200);
 
