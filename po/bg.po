@@ -5,15 +5,15 @@
 # Translators:
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2012
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2014-2015
-# Lyubomir Vasilev, 2015
+# Любомир Василев, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-17 12:30+0200\n"
-"PO-Revision-Date: 2015-07-19 06:03+0000\n"
+"POT-Creation-Date: 2015-07-20 06:30+0200\n"
+"PO-Revision-Date: 2017-09-19 18:05+0000\n"
 "Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>\n"
-"Language-Team: Bulgarian (http://www.transifex.com/p/xfce-apps/language/bg/)\n"
+"Language-Team: Bulgarian (http://www.transifex.com/xfce/xfce-apps/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1280,24 +1280,14 @@ msgstr "Не може да бъде отворен %s."
 msgid "Could not open %s: %s"
 msgstr "Не може да бъде отворен %s: %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:640
-#, c-format
-msgid ""
-"%s is missing.\n"
-"\n"
-"You do not have a decoder installed to handle this file.\n"
-"Probably you need to look at the gst-plugins-* packages\n"
-"for the necessary plugins.\n"
-msgstr "Липсва %s.\n\nВ системата не е открит декодер за обработването на този\nфайл. Трябва да погледнете в пакетите\ngst-plugins-* за необходимите плъгини.\n"
-
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:729
+#: ../xfburn/xfburn-transcoder-gst.c:616
 msgid "gstreamer"
 msgstr "GStreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:735
+#: ../xfburn/xfburn-transcoder-gst.c:622
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1309,17 +1299,21 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "Преобразувателят gstreamer използва библиотеката gstreamer\nза създаване на аудио композиции.\n\nВсички видове аудио файлове би трябвало да се поддържат,\nако са инсталиране необходимите разширения.\nАко форматът на файла не може да бъде определен,\nпроверете дали са инсталирани разширенията „good“, „bad“, и „ugly“\nза gstreamer."
 
-#: ../xfburn/xfburn-transcoder-gst.c:801
+#: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
-msgid "Could not identify '%s'with gstreamer"
-msgstr "Не може да се идентифицира '%s' с gstreamer"
+msgid "An error occurred while identifying '%s' with gstreamer"
+msgstr "Възникна грешка при идентификацията на '%s' с gstreamer"
 
-#: ../xfburn/xfburn-transcoder-gst.c:918
+#: ../xfburn/xfburn-transcoder-gst.c:716
+msgid "A plugin"
+msgstr "Добавка"
+
+#: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "Gstreamer не стартира декодирането за определеното време (времето изтече)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:953
+#: ../xfburn/xfburn-transcoder-gst.c:884
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "Не може да бъде променена песента по време на декодирането"
