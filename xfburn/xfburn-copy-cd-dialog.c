@@ -195,7 +195,7 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   button = xfce_create_mixed_button ("xfburn-data-copy", _("_Copy CD"));
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
-  GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default (button, GTK_CAN_DEFAULT);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
 

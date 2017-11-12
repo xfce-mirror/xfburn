@@ -152,9 +152,9 @@ xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObject
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->progress_bar, TRUE, TRUE, BORDER);
   gtk_widget_show (disc_usage->progress_bar);
 
-  disc_usage->combo = gtk_combo_box_new_text ();
+  disc_usage->combo = gtk_combo_box_text_new ();
   for (i = 0; i < class->num_labels; i++) {
-    gtk_combo_box_append_text (GTK_COMBO_BOX (disc_usage->combo), class->labels[i].label);
+    gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (disc_usage->combo), class->labels[i].label);
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (disc_usage->combo), DEFAULT_DISK_SIZE_LABEL);
   gtk_box_pack_start (GTK_BOX (disc_usage), disc_usage->combo, FALSE, FALSE, BORDER);

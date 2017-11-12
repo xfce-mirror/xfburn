@@ -27,6 +27,7 @@
 #include <fcntl.h>
 
 #include <gtk/gtk.h>
+#include <exo/exo.h>
 
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
@@ -150,7 +151,7 @@ xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass)
 static void
 xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 {
-  GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
+  GtkBox *box = GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG (obj)));
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (obj);
   
   GdkPixbuf *icon = NULL;
@@ -249,9 +250,9 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   priv->burn_button = xfce_gtk_button_new_mixed ("stock_xfburn", _("_Burn image"));
   gtk_widget_show (priv->burn_button);
   g_signal_connect (G_OBJECT (priv->burn_button), "clicked", G_CALLBACK (cb_clicked_ok), obj);
-  gtk_container_add (GTK_CONTAINER( GTK_DIALOG(obj)->action_area), priv->burn_button);
+  gtk_container_add (GTK_CONTAINER( GTK_DIALOG(exo_gtk_dialog_get_action_area(GTK_DIALOG(obj)))), priv->burn_button);
   //gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
-  GTK_WIDGET_SET_FLAGS (priv->burn_button, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default (priv->burn_button, TRUE);
   gtk_widget_grab_focus (priv->burn_button);
   gtk_widget_grab_default (priv->burn_button);
 

@@ -143,7 +143,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   gobj = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_properties, construct_properties);
   obj = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG (gobj);
   priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (obj);
-  box = GTK_BOX (GTK_DIALOG (obj)->vbox);
+  box = GTK_BOX (gtk_dialog_get_content_area((GTK_DIALOG (obj))));
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
@@ -224,7 +224,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
   //gtk_box_pack_start (GTK_BOX (GTK_DIALOG(obj)->action_area), button, TRUE, TRUE, 0);
-  GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default (button, TRUE);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
 

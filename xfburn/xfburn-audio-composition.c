@@ -1590,7 +1590,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   GtkTreeIter *iter_where_insert;
 
   g_return_if_fail (sd);
-  g_return_if_fail (sd->data);
+  g_return_if_fail (gtk_selection_data_get_data(sd));
   
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
 
@@ -1614,7 +1614,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   xfburn_busy_cursor (priv->content);
 
   /* move a selection inside of the composition window */
-  if (sd->target == gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE)) {
+  if (gtk_selection_data_get_target(sd) == gdk_atom_intern ("XFBURN_TREE_PATHS", FALSE)) {
     GList *row = NULL, *selected_rows = NULL;
     GtkTreeIter *iter = NULL;
     GtkTreeIter *iter_prev = NULL;
@@ -1622,7 +1622,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
 
-    row = selected_rows = *((GList **) sd->data);
+    row = selected_rows = *((GList **) gtk_selection_data_get_data(sd));
     
     if (path_where_insert) {
       iter_where_insert = g_new0 (GtkTreeIter, 1);
@@ -1682,7 +1682,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       if ((iter = copy_entry_to (composition, &iter_src, iter_prev, position)) != NULL) {
         GtkTreePath *path_parent = gtk_tree_path_copy (path_src);
         
-        if (dc->action == GDK_ACTION_MOVE) {
+        if (gdk_drag_context_get_actions(dc) == GDK_ACTION_MOVE) {
           /* remove source entry */
           /*
            * This shouldn't be able to happen anymore w/o folders
@@ -1730,7 +1730,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     xfburn_default_cursor (priv->content);
   }
   /* drag from the file selector */
-  else if (sd->target == gdk_atom_intern ("text/plain;charset=utf-8", FALSE)) {
+  else if (gtk_selection_data_get_target(sd) == gdk_atom_intern ("text/plain;charset=utf-8", FALSE)) {
     ThreadAddFilesDragParams *params;
     gchar **files = NULL;
     gboolean ret = FALSE;
@@ -1801,7 +1801,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       cb_adding_done (XFBURN_ADDING_PROGRESS (priv->progress), composition);
     }
   } 
-  else if (sd->target == gdk_atom_intern ("text/uri-list", FALSE)) {
+  else if (gtk_selection_data_get_target(sd) == gdk_atom_intern ("text/uri-list", FALSE)) {
     GList *vfs_paths = NULL;
     GList *vfs_path;
     GList *lp;
@@ -1810,7 +1810,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     gsize   n;
     gboolean ret = FALSE;
 
-    uris = g_uri_list_extract_uris ((gchar *) sd->data);
+    uris = g_uri_list_extract_uris ((gchar *) gtk_selection_data_get_data(sd));
 
     for (n = 0; uris != NULL && uris[n] != NULL; ++n)
       vfs_paths = g_list_append (vfs_paths, g_file_new_for_uri (uris[n]));

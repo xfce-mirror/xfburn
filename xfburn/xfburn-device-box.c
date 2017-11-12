@@ -480,7 +480,7 @@ status_label_update (XfburnDeviceBoxPrivate *priv)
   gchar * text;
   gboolean sensitive;
 
-  sensitive = GTK_WIDGET_SENSITIVE (priv->combo_device);
+  sensitive = gtk_widget_get_sensitive (priv->combo_device);
 
   //DBG ("sensitive = %d", sensitive);
 
@@ -713,7 +713,7 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
 static void
 cb_volume_change_start (XfburnDeviceList *devlist, gboolean device_changed, XfburnDeviceBox *box)
 {
-  if (GTK_WIDGET_REALIZED (box))
+  if (gtk_widget_get_realized (GTK_WIDGET(box)))
     xfburn_busy_cursor (GTK_WIDGET (box));
 }
 
@@ -728,7 +728,7 @@ cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, Xfburn
 
   refresh_drive_info (box, device);
 
-  if (GTK_WIDGET_REALIZED (box))
+  if (gtk_widget_get_realized (GTK_WIDGET (box)))
     xfburn_default_cursor (GTK_WIDGET (box));
 
   g_signal_emit (box, signals[VOLUME_CHANGED], 0, device_changed, device);
