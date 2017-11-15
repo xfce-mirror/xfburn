@@ -137,22 +137,22 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_widget_show (table);
 
   /* buttons */
-  priv->button_image = create_welcome_button (XFBURN_STOCK_BURN_CD, _("<big>Burn _Image</big>"), _("Burn a prepared compilation, i.e. an .ISO file"));
+  priv->button_image = create_welcome_button ("stock_xfburn", _("<big>Burn _Image</big>"), _("Burn a prepared compilation, i.e. an .ISO file"));
   gtk_table_attach_defaults (GTK_TABLE (table), priv->button_image, 0, 1, 0, 1);
   gtk_widget_show (priv->button_image);
   g_signal_connect (G_OBJECT(priv->button_image), "clicked", G_CALLBACK(burn_image), obj);
 
-  priv->button_data_comp = create_welcome_button (XFBURN_STOCK_NEW_DATA_COMPOSITION, _("<big>New _Data Composition</big>"), _("Create a new data disc with the files of your choosing"));
+  priv->button_data_comp = create_welcome_button ("stock_xfburn-new-data-composition", _("<big>New _Data Composition</big>"), _("Create a new data disc with the files of your choosing"));
   gtk_table_attach_defaults (GTK_TABLE (table), priv->button_data_comp, 1, 2, 0, 1);
   gtk_widget_show (priv->button_data_comp);
   g_signal_connect (G_OBJECT(priv->button_data_comp), "clicked", G_CALLBACK(new_data_composition), obj);
 
-  priv->button_blank = create_welcome_button (XFBURN_STOCK_BLANK_CDRW, _("<big>_Blank Disc</big>"), _("Prepare the rewriteable disc for a new burn"));
+  priv->button_blank = create_welcome_button ("stock_xfburn-blank-cdrw", _("<big>_Blank Disc</big>"), _("Prepare the rewriteable disc for a new burn"));
   gtk_table_attach_defaults (GTK_TABLE (table), priv->button_blank, 0, 1, 1, 2);
   gtk_widget_show (priv->button_blank);
   g_signal_connect (G_OBJECT(priv->button_blank), "clicked", G_CALLBACK(blank_disc), obj);
 
-  priv->button_audio_comp = create_welcome_button (XFBURN_STOCK_AUDIO_CD, _("<big>_Audio CD</big>"), _("Audio CD playable in regular stereos"));
+  priv->button_audio_comp = create_welcome_button ("stock_xfburn-audio-cd", _("<big>_Audio CD</big>"), _("Audio CD playable in regular stereos"));
   gtk_table_attach_defaults (GTK_TABLE (table), priv->button_audio_comp, 1, 2, 1, 2);
   gtk_widget_show (priv->button_audio_comp);
   g_signal_connect (G_OBJECT(priv->button_audio_comp), "clicked", G_CALLBACK(new_audio_cd), obj);
@@ -181,7 +181,7 @@ create_welcome_button (const gchar *stock, const gchar *text, const gchar *secon
   gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);
 
-  image = gtk_image_new_from_stock (stock, GTK_ICON_SIZE_DIALOG);
+  image = gtk_image_new_from_icon_name (stock, GTK_ICON_SIZE_DIALOG);
   hbox = gtk_hbox_new (FALSE, 20);
   vbox = gtk_vbox_new (FALSE, 2);
 

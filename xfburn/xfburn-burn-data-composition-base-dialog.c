@@ -273,7 +273,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gtk_widget_show (priv->entry_path_iso);
   gtk_box_pack_start (GTK_BOX (priv->hbox_iso), priv->entry_path_iso, FALSE, FALSE, 0);
 
-  img = gtk_image_new_from_stock (GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_SMALL_TOOLBAR);
+  img = gtk_image_new_from_stock ("folder", GTK_ICON_SIZE_SMALL_TOOLBAR);
   gtk_widget_show (img);
   button = gtk_button_new ();
   gtk_container_add (GTK_CONTAINER (button), img);
@@ -286,7 +286,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  priv->button_proceed = button = xfburn_gtk_button_new_mixed (XFBURN_STOCK_BURN_CD, _("_Burn Composition"));
+  priv->button_proceed = button = xfce_gtk_button_new_mixed ("stock_xfburn", _("_Burn Composition"));
   /*
    * Disabled: change button_proceed functionality
   button = create_proceed_button (obj, "xfburn-burn-cd", "");

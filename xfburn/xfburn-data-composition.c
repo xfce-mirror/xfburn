@@ -190,13 +190,13 @@ static GtkHPanedClass *parent_class = NULL;
 static guint instances = 0;
 
 static const GtkActionEntry action_entries[] = {
-  {"add-file", GTK_STOCK_ADD, N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
+  {"add-file", "list-add", N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
    G_CALLBACK (action_add_or_select),},
-  {"create-dir", GTK_STOCK_NEW, N_("Create directory"), NULL, N_("Add a new directory to the composition"),
+  {"create-dir", "document-new", N_("Create directory"), NULL, N_("Add a new directory to the composition"),
    G_CALLBACK (action_create_directory),},
-  {"remove-file", GTK_STOCK_REMOVE, N_("Remove"), NULL, N_("Remove the selected file(s) from the composition"),
+  {"remove-file", "list-remove", N_("Remove"), NULL, N_("Remove the selected file(s) from the composition"),
    G_CALLBACK (action_remove_selection),},
-  {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the content of the composition"),
+  {"clear", "edit-clear", N_("Clear"), NULL, N_("Clear the content of the composition"),
    G_CALLBACK (action_clear),},
   /*{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),}, */
   {"rename-file", GTK_STOCK_EDIT, N_("Rename"), NULL, N_("Rename the selected file"),

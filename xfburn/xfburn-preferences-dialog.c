@@ -145,7 +145,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (obj), _("Tune how Xfburn behaves"));
   gtk_window_set_default_size (GTK_WINDOW (obj), 775, 400);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
-  gtk_window_set_icon_name (GTK_WINDOW (obj), GTK_STOCK_PREFERENCES);
+  gtk_window_set_icon_name (GTK_WINDOW (obj), "preferences-system");
   gtk_dialog_set_has_separator (GTK_DIALOG (obj), FALSE);
   
   hbox = gtk_hbox_new (FALSE, 0);
@@ -217,7 +217,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_widget_show (priv->check_show_human_readable);
 
   icon = gtk_widget_render_icon (GTK_WIDGET (priv->icon_bar),
-                                 GTK_STOCK_PROPERTIES,
+                                 "document-properties",
                                  GTK_ICON_SIZE_DIALOG,
                                  NULL);
   gtk_list_store_append (icon_store, &iter);
@@ -299,7 +299,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, BORDER);
   gtk_widget_show (hbox);
 
-  priv->button_scan = xfce_gtk_button_new_mixed (GTK_STOCK_CDROM, _("Sc_an for devices"));
+  priv->button_scan = xfce_gtk_button_new_mixed ("media-optical", _("Sc_an for devices"));
   gtk_box_pack_end (GTK_BOX (hbox), priv->button_scan, FALSE, FALSE, BORDER);
   g_signal_connect (G_OBJECT (priv->button_scan), "clicked", G_CALLBACK (scan_button_clicked_cb), obj);
   gtk_widget_show (priv->button_scan);
@@ -309,7 +309,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   if (!icon)
     icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-cdrom", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
   if (!icon)
-    icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), GTK_STOCK_CDROM, x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
+    icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-optical", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
 
   
   gtk_list_store_append (icon_store, &iter);

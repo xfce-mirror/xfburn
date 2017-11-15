@@ -98,31 +98,31 @@ static void action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * wi
 static GtkWindowClass *parent_class = NULL;
 static const GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL, NULL, NULL},
-  /*{"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a new composition"),},*/
-  /*{"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create a new composition"), 
+  /*{"new-composition", "document-new", N_("_New composition"), "", N_("Create a new composition"),},*/
+  /*{"new-composition", "document-new", N_("_New composition"), NULL, N_("Create a new composition"), 
     G_CALLBACK (action_new_data_composition),}, */
-  {"new-data-composition", XFBURN_STOCK_NEW_DATA_COMPOSITION, N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
+  {"new-data-composition", "xfburn-new-data-composition", N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
     G_CALLBACK (action_new_data_composition),},
-  {"new-audio-composition", XFBURN_STOCK_AUDIO_CD, N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
+  {"new-audio-composition", "xfburn-audio-cd", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
     G_CALLBACK (action_new_audio_composition),},
-  /*{"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load composition"),
+  /*{"load-composition", "document-open", N_("Load composition"), NULL, N_("Load composition"),
    G_CALLBACK (action_load),},
-  {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save composition"), 
+  {"save-composition", "document-save", N_("Save composition"), NULL, N_("Save composition"), 
    G_CALLBACK (action_save),},
-  {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."), NULL, N_("Save composition as"), 
+  {"save-composition-as", "document-save"_AS, N_("Save composition as..."), NULL, N_("Save composition as"), 
    G_CALLBACK (action_save_as),},*/
-  {"close-composition", GTK_STOCK_CLOSE, N_("Close composition"), NULL, N_("Close composition"), 
+  {"close-composition", "window-close", N_("Close composition"), NULL, N_("Close composition"), 
    G_CALLBACK (action_close),},
-  {"quit", GTK_STOCK_QUIT, N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (action_quit),},
+  {"quit", "application-exit", N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (action_quit),},
   {"edit-menu", NULL, N_("_Edit"), NULL, NULL, NULL},
-  {"preferences", GTK_STOCK_PREFERENCES, N_("Prefere_nces"), NULL, N_("Show preferences dialog"),
+  {"preferences", "preferences-system", N_("Prefere_nces"), NULL, N_("Show preferences dialog"),
    G_CALLBACK (action_preferences),},
   {"action-menu", NULL, N_("_Actions"), NULL, NULL, NULL},
   {"view-menu", NULL, N_("_View"), NULL, NULL, NULL},
-  {"refresh", GTK_STOCK_REFRESH, N_("Refresh"), NULL, N_("Refresh file list"),
+  {"refresh", "view-refresh", N_("Refresh"), NULL, N_("Refresh file list"),
    G_CALLBACK (action_refresh_directorybrowser),},
   {"help-menu", NULL, N_("_Help"), NULL, NULL, NULL},
-  {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Display information about Xfburn"),
+  {"about", "gtk-about", N_("_About"), NULL, N_("Display information about Xfburn"),
    G_CALLBACK (action_about),},
   {"blank-disc", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),
    G_CALLBACK (action_blank),},
@@ -472,7 +472,7 @@ action_new_audio_composition (GtkAction *action, XfburnMainWindow * window)
 static void
 action_quit (GtkAction * action, XfburnMainWindow * window)
 {
-  // if (xfce_confirm (_("Are sure you want to quit?"), GTK_STOCK_QUIT, _("_Quit")))
+  // if (xfce_confirm (_("Are sure you want to quit?"), "application-exit", _("_Quit")))
   gtk_main_quit ();
 }
 
@@ -524,7 +524,7 @@ action_about (GtkAction * action, XfburnMainWindow * window)
   if (!icon)
     icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-cdrom", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
   if (!icon)
-    icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), GTK_STOCK_CDROM, x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
+    icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-optical", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
 
 #if !GTK_CHECK_VERSION (2, 18, 0)
   gtk_about_dialog_set_email_hook (exo_gtk_url_about_dialog_hook, NULL, NULL);

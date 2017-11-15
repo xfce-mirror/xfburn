@@ -241,7 +241,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  button = xfburn_gtk_button_new_mixed (XFBURN_STOCK_BLANK_CDRW, _("_Blank"));
+  button = xfce_gtk_button_new_mixed ("xfburn-blank-cdrw", _("_Blank"));
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
   GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);

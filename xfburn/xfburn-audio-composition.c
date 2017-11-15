@@ -204,13 +204,13 @@ static gchar *did_warn = "Did warn about this already";
 static gchar trans_name[MAX_NAME_LENGTH] = {""};
 
 static const GtkActionEntry action_entries[] = {
-  {"add-file", GTK_STOCK_ADD, N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
+  {"add-file", "list-add", N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
    G_CALLBACK (action_add_selected_files),},
-  {"remove-file", GTK_STOCK_REMOVE, N_("Remove"), NULL, N_("Remove the selected file(s) from the composition"),
+  {"remove-file", "list-remove", N_("Remove"), NULL, N_("Remove the selected file(s) from the composition"),
    G_CALLBACK (action_remove_selection),},
-  {"clear", GTK_STOCK_CLEAR, N_("Clear"), NULL, N_("Clear the content of the composition"),
+  {"clear", "edit-clear", N_("Clear"), NULL, N_("Clear the content of the composition"),
    G_CALLBACK (action_clear),},
-  {"transcoder-info", GTK_STOCK_INFO, trans_name, NULL, N_("What files can get burned to an audio CD?"),
+  {"transcoder-info", "dialog-information", trans_name, NULL, N_("What files can get burned to an audio CD?"),
    G_CALLBACK (action_info),},
   //{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #if 0 /* CDTEXT */
