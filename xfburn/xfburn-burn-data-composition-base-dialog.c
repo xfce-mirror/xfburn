@@ -282,7 +282,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_browse_iso), obj);
 
   /* action buttons */
-  button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
+  button = gtk_button_new_from_stock ("_Cancel");
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 

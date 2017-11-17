@@ -199,7 +199,7 @@ static const GtkActionEntry action_entries[] = {
   {"clear", "edit-clear", N_("Clear"), NULL, N_("Clear the content of the composition"),
    G_CALLBACK (action_clear),},
   /*{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),}, */
-  {"rename-file", GTK_STOCK_EDIT, N_("Rename"), NULL, N_("Rename the selected file"),
+  {"rename-file", "gtk-edit", N_("Rename"), NULL, N_("Rename the selected file"),
    G_CALLBACK (action_rename_selection),},
 };
 
@@ -2038,7 +2038,7 @@ generate_iso_image (XfburnDataComposition * dc)
       dialog = gtk_dialog_new_with_buttons (title,
                                             GTK_WINDOW (mainwin),
                                             GTK_DIALOG_DESTROY_WITH_PARENT,
-                                            GTK_STOCK_OK,
+                                            _("OK"),
                                             GTK_RESPONSE_OK,
                                             NULL);
 

@@ -215,7 +215,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
 
   /* action buttons */
-  button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
+  button = gtk_button_new_from_stock ("_Cancel");
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 

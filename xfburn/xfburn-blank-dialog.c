@@ -237,11 +237,11 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_eject, FALSE, FALSE, BORDER);
 
   /* action buttons */
-  button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
+  button = gtk_button_new_from_stock ("_Cancel");
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
-  button = xfce_gtk_button_new_mixed ("xfburn-blank-cdrw", _("_Blank"));
+  button = xfce_gtk_button_new_mixed ("stock_xfburn-blank-cdrw", _("_Blank"));
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
   GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);

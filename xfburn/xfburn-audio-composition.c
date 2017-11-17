@@ -214,9 +214,9 @@ static const GtkActionEntry action_entries[] = {
    G_CALLBACK (action_info),},
   //{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
 #if 0 /* CDTEXT */
-  {"rename-artist", GTK_STOCK_EDIT, N_("Rename Artist"), NULL, N_("Rename the artist of the selected file"),
+  {"rename-artist", "gtk-edit", N_("Rename Artist"), NULL, N_("Rename the artist of the selected file"),
    G_CALLBACK (action_rename_selection_artist),},
-  {"rename-title", GTK_STOCK_EDIT, N_("Rename Title"), NULL, N_("Rename the title of the selected file"),
+  {"rename-title", "gtk-edit", N_("Rename Title"), NULL, N_("Rename the title of the selected file"),
    G_CALLBACK (action_rename_selection_title),},
 #endif /* CDTEXT */
 };

@@ -240,7 +240,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_quit, FALSE, FALSE, BORDER);
 
   /* action buttons */
-  button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
+  button = gtk_button_new_from_stock ("_Cancel");
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
