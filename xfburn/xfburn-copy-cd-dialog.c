@@ -109,10 +109,12 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   GtkWidget *align;
   GtkWidget *button;
   gchar *default_path, *tmp_dir;
+  gint x,y;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Copy data CD"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
-  icon = gtk_widget_render_icon (GTK_WIDGET (obj), XFBURN_STOCK_DATA_COPY, GTK_ICON_SIZE_DIALOG, NULL);
+  gtk_icon_size_lookup (GTK_ICON_SIZE_DIALOG, &x, &y);
+  icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "stock_xfburn-data-copy", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
   gtk_window_set_icon (GTK_WINDOW (obj), icon);
   g_object_unref (icon);
 

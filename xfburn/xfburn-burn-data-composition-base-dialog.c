@@ -175,6 +175,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gchar *default_path;
   gchar *tmp_dir;
   const char *comp_name;
+  gint x,y;
 
   gobj = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_properties, construct_properties);
   obj = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG (gobj);
@@ -183,7 +184,9 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
-  icon = gtk_widget_render_icon (GTK_WIDGET (obj), XFBURN_STOCK_BURN_CD, GTK_ICON_SIZE_DIALOG, NULL);
+  gtk_icon_size_lookup (GTK_ICON_SIZE_DIALOG, &x, &y);
+  icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "stock_xfburn", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
+
   gtk_window_set_icon (GTK_WINDOW (obj), icon);
   g_object_unref (icon);
 
