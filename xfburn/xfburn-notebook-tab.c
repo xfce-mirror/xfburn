@@ -127,7 +127,7 @@ xfburn_notebook_tab_init (XfburnNotebookTab * tab)
   gtk_button_set_relief (GTK_BUTTON (priv->button_close), GTK_RELIEF_NONE);
   gtk_widget_show (priv->button_close);
 	
-  img = gtk_image_new_from_stock ("window-close", GTK_ICON_SIZE_MENU);
+  img = gtk_image_new_from_icon_name ("window-close", GTK_ICON_SIZE_MENU);
   gtk_widget_show (img);
   gtk_container_add (GTK_CONTAINER (priv->button_close), img);
   gtk_box_pack_start (hbox, priv->button_close, FALSE, FALSE, 0);

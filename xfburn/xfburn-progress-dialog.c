@@ -246,12 +246,12 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_widget_show (priv->buffer_bar);
 
   /* action buttons */
-  priv->button_stop = gtk_button_new_from_stock ("process-stop");
+  priv->button_stop = gtk_button_new_from_stock ("_Stop");
   gtk_widget_show (priv->button_stop);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), priv->button_stop, GTK_RESPONSE_CANCEL);
   g_signal_connect (G_OBJECT (priv->button_stop), "clicked", G_CALLBACK (cb_button_stop_clicked), obj);
 
-  priv->button_close = gtk_button_new_from_stock ("window-close");
+  priv->button_close = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (priv->button_close);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), priv->button_close, GTK_RESPONSE_CLOSE);
   GTK_WIDGET_SET_FLAGS (priv->button_close, GTK_CAN_DEFAULT);

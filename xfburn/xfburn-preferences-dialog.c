@@ -216,10 +216,9 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_show_human_readable, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->check_show_human_readable);
 
-  icon = gtk_widget_render_icon (GTK_WIDGET (priv->icon_bar),
-                                 "document-properties",
-                                 GTK_ICON_SIZE_DIALOG,
-                                 NULL);
+  gtk_icon_size_lookup (GTK_ICON_SIZE_DIALOG, &x, &y);
+  icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "document-properties", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
+
   gtk_list_store_append (icon_store, &iter);
   gtk_list_store_set (icon_store, &iter,
                       SETTINGS_LIST_PIXBUF_COLUMN, icon,

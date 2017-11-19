@@ -458,7 +458,7 @@ xfburn_device_list_get_refresh_button (XfburnDeviceList *devlist)
   XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
   GtkWidget *img, *button;
 
-  img = gtk_image_new_from_stock ("view-refresh", GTK_ICON_SIZE_SMALL_TOOLBAR);
+  img = gtk_image_new_from_icon_name ("view-refresh", GTK_ICON_SIZE_SMALL_TOOLBAR);
   gtk_widget_show (img);
   button = gtk_button_new ();
   gtk_container_add (GTK_CONTAINER (button), img);

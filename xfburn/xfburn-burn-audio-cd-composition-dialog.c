@@ -147,7 +147,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
-  icon = gtk_widget_render_icon (GTK_WIDGET (obj), XFBURN_STOCK_BURN_CD, GTK_ICON_SIZE_DIALOG, NULL);
+  icon = gtk_widget_render_icon (GTK_WIDGET (obj), "stock_xfburn", GTK_ICON_SIZE_DIALOG, NULL);
   gtk_window_set_icon (GTK_WINDOW (obj), icon);
   g_object_unref (icon);
 
