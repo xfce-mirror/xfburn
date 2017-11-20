@@ -343,7 +343,7 @@ main (int argc, char **argv)
   if (argc == 2 && !add_data_composition && !add_audio_composition) {
     /* exactly one filename, assume it is an image */
       image_filename = argv[1];
-  } else if (argc > 2) {
+  } else if (argc > 2 && !add_data_composition && !add_audio_composition) {
     /* several file names, for now just open up a data composition */
     /* TODO: auto-detect music files for audio compositions */
     add_data_composition = TRUE;
