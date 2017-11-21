@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2017-11-17 15:44+0000\n"
+"POT-Creation-Date: 2017-11-21 00:31+0100\n"
+"PO-Revision-Date: 2017-11-21 10:37+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -627,6 +627,16 @@ msgstr "standard"
 #: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Maks."
+
+#: ../xfburn/xfburn-device-box.c:507
+msgid "A full, but erasable disc is in the drive"
+msgstr "Der er en fuld, men sletbar disk i drevet"
+
+#: ../xfburn/xfburn-device-box.c:508
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "Vil du tømme disken, så den kan bruges til den kommende brændingsproces?"
 
 #: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
@@ -1397,9 +1407,21 @@ msgid "Data Composition"
 msgstr "Datakompilering"
 
 #: ../xfburn.desktop.in.h:2
+msgid "Disk Burning"
+msgstr "Diskbrænding"
+
+#: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
 msgstr "Cd- og dvd-brænderprogram"
 
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
 msgstr "Brænd aftryk (xfburn)"
+
+#: ../xfburn.appdata.xml.in.h:1
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Xfburn er et simpelt cd-/dvd-brændingsværktøj baseret på libburnia-biblioteker. Det kan tømme cd'er/dvd(-rw)'er, brænde og oprette iso-aftryk, lyd-cd'er, såvel som brænde personlige projekter af data til enten cd eller dvd. Den er stabil og under løbende udvikling."
