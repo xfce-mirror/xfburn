@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pjotr <pjotrvertaalt@gmail.com>, 2014-2015
+# Pjotr <pjotrvertaalt@gmail.com>, 2014-2015,2017
 # Stephan Arts <psyBSD@gmail.com>, 2006
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2017-09-23 19:02+0000\n"
+"POT-Creation-Date: 2017-11-21 00:31+0100\n"
+"PO-Revision-Date: 2017-11-21 12:15+0000\n"
 "Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/xfce/xfce-apps/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -626,6 +626,16 @@ msgstr "standaard"
 #: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Max"
+
+#: ../xfburn/xfburn-device-box.c:507
+msgid "A full, but erasable disc is in the drive"
+msgstr "Er zit een volle, maar wisbare schijf in het station"
+
+#: ../xfburn/xfburn-device-box.c:508
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "Wilt u de schijf wissen, zodat die kan worden gebruikt voor het aanstaande brandproces?"
 
 #: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
@@ -1396,9 +1406,21 @@ msgid "Data Composition"
 msgstr "Gegevensverzameling"
 
 #: ../xfburn.desktop.in.h:2
+msgid "Disk Burning"
+msgstr "Schijf branden"
+
+#: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
 msgstr "CD- en DVD-brandprogramma"
 
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
 msgstr "Brand schijfkopie (xfburn)"
+
+#: ../xfburn.appdata.xml.in.h:1
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Xfburn is een eenvoudig brandgereedschapje voor CD's en DVD's, gebaseerd op de libburnia-bibliotheekbestanden. Het kan CD/DVD(-RW)'s wissen, iso-schijfkopieën branden en maken, audio-CD's vervaardigen en persoonlijke gegevensverzamelingen branden op CD of DVD. Het is stabiel en wordt actief ontwikkeld."
