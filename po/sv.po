@@ -5,6 +5,7 @@
 # Translators:
 # Alex Nordlund <deep.alexander@gmail.com>, 2013
 # Alex Nordlund <deep.alexander@gmail.com>, 2013
+# Arve Eriksson <031299870@telia.com>, 2017
 # Daniel Nylander <po@danielnylander.se>, 2006,2008-2009
 # Påvel Nicklasson <pavel.frimixse>, 2014-2015
 # Påvel Nicklasson <pavel2@frimix.se>, 2014
@@ -13,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2017-09-19 18:05+0000\n"
-"Last-Translator: Påvel Nicklasson <pavel2@frimix.se>\n"
+"POT-Creation-Date: 2017-11-21 00:31+0100\n"
+"PO-Revision-Date: 2017-11-21 18:51+0000\n"
+"Last-Translator: Arve Eriksson <031299870@telia.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/xfce/xfce-apps/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -630,6 +631,16 @@ msgstr "standard"
 #: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Maximal"
+
+#: ../xfburn/xfburn-device-box.c:507
+msgid "A full, but erasable disc is in the drive"
+msgstr "En full men raderbar disk finns i enheten"
+
+#: ../xfburn/xfburn-device-box.c:508
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "Vill du rensa disken, så att den kan användas för den följande bränningsprocessen?"
 
 #: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
@@ -1400,9 +1411,21 @@ msgid "Data Composition"
 msgstr "Datasamling"
 
 #: ../xfburn.desktop.in.h:2
+msgid "Disk Burning"
+msgstr "Diskbränning"
+
+#: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
 msgstr "CD- och DVD-brännarprogram"
 
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
 msgstr "Bränn avbildning (xfburn)"
+
+#: ../xfburn.appdata.xml.in.h:1
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Xfburn är ett enkelt CD-/DVD-bränningsverktyg baserat på libburnia-biblioteken. Det kan rensa CD-/DVD(-RW), bränna och skapa iso-avbilder, ljud-CD, samt bränna egna datasamlingar till antingen CD eller DVD. Det är stabilt och under kontinuerlig utveckling."
