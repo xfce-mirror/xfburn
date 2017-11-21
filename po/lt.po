@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2017-10-08 21:49+0000\n"
+"POT-Creation-Date: 2017-11-21 00:31+0100\n"
+"PO-Revision-Date: 2017-11-21 20:50+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-apps/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -627,6 +627,16 @@ msgstr "numatytas"
 #: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Maksimalus"
+
+#: ../xfburn/xfburn-device-box.c:507
+msgid "A full, but erasable disc is in the drive"
+msgstr "Diskasukyje yra pilnas, tačiau ištrinamas diskas"
+
+#: ../xfburn/xfburn-device-box.c:508
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "Ar norite ištrinti diską, kad jis galėtų būti naudojamas būsimam įrašymo procesui?"
 
 #: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
@@ -1397,9 +1407,21 @@ msgid "Data Composition"
 msgstr "Duomenų projektas"
 
 #: ../xfburn.desktop.in.h:2
+msgid "Disk Burning"
+msgstr "Rašymas į diską"
+
+#: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
 msgstr "CD ir DVD įrašymo programa"
 
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
 msgstr "Rašyti į diską (xfburn)"
+
+#: ../xfburn.appdata.xml.in.h:1
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Xfburn yra paprastas CD/DVD įrašymo įrankis, pagrįstas libburnia bibliotekomis. Jis gali ištrinti CD/DVD(-RW) diskus, įrašyti ir sukurti iso atvaizdžius, garso CD diskus, o taip pat įrašyti asmenines duomenų kompozicijas į CD arba DVD. Jis yra stabilus ir aktyviai plėtojamas."
