@@ -12,14 +12,14 @@
 # Patrick Douart <patrick.2@laposte.net>, 2009
 # Pierre Albiero <trepalum@gmail.com>, 2015
 # Urien Desterres <urien.desterres@gmail.com>, 2014-2015
-# Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2015
+# Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2017-09-23 19:02+0000\n"
-"Last-Translator: Charles Monzat <superboa@hotmail.fr>\n"
+"POT-Creation-Date: 2017-11-21 00:31+0100\n"
+"PO-Revision-Date: 2017-11-22 09:53+0000\n"
+"Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/xfce/xfce-apps/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -634,6 +634,16 @@ msgstr "Par défaut"
 #: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Max"
+
+#: ../xfburn/xfburn-device-box.c:507
+msgid "A full, but erasable disc is in the drive"
+msgstr "Un disque plein, mais effaçable est présent dans le périphérique"
+
+#: ../xfburn/xfburn-device-box.c:508
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "Voulez-vous effacer le disque afin qu’il puisse être utilisé par le prochain processus de gravure ?"
 
 #: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
@@ -1404,9 +1414,21 @@ msgid "Data Composition"
 msgstr "Composition de données"
 
 #: ../xfburn.desktop.in.h:2
+msgid "Disk Burning"
+msgstr "Gravure de disque"
+
+#: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
 msgstr "Application de gravure de CD et DVD"
 
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
 msgstr "Graver l'image (xfburn)"
+
+#: ../xfburn.appdata.xml.in.h:1
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Xfburn est un outil de gravure de CD / DVD simple basé sur les bibliothèques libburnia. Il peut effacer des CDs / DVD(-RW)s, graver et créer des images ISO, des CDs audio, ainsi que graver des compositions de données personnelles vers des CDs ou DVDs. C’est un outil stable et en cours de développement."
