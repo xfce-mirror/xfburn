@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Edin Veskovic <edin.lockedin@gmail.com>, 2017
 # Edin Veskovic <edin.lockedin@gmail.com>, 2015
 # Edin Veskovic <edin.lockedin@gmail.com>, 2014
 # Ivica  Kolić <ikoli@yahoo.com>, 2013-2014
@@ -11,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2017-09-23 19:02+0000\n"
-"Last-Translator: Ivica  Kolić <ikoli@yahoo.com>\n"
+"POT-Creation-Date: 2017-11-21 00:31+0100\n"
+"PO-Revision-Date: 2017-11-22 15:34+0000\n"
+"Last-Translator: Edin Veskovic <edin.lockedin@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/xfce/xfce-apps/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -628,6 +629,16 @@ msgstr "zadano"
 #: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Maksimalno"
+
+#: ../xfburn/xfburn-device-box.c:507
+msgid "A full, but erasable disc is in the drive"
+msgstr "Ispunjen, ali obrisiv disk nalazi se u pogonu"
+
+#: ../xfburn/xfburn-device-box.c:508
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "Želite li isprazniti disk kako bi se mogao koristiti za predstojeći proces snimanja?"
 
 #: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
@@ -1398,9 +1409,21 @@ msgid "Data Composition"
 msgstr "Kompilacija podataka"
 
 #: ../xfburn.desktop.in.h:2
+msgid "Disk Burning"
+msgstr "Snimanje na disk"
+
+#: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
 msgstr "Program za snimanje CD-a i DVD-a"
 
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
 msgstr "Snimi sliku (xfburn)"
+
+#: ../xfburn.appdata.xml.in.h:1
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Xfburn je jednostavan alat za zapisivanje podataka na CD/DVD(-RW) diskove zasnovan na libburnia programskim knjižnicama. Može isprazniti te zapisati ISO slike ili Audio CD-ove kao i osobne kompozicije podataka po diskovima. Xfburn je stabilan i u aktivnom razvoju."
