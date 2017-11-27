@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2014
+# Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2014
 # Chris Darnell <chris@cedeel.com>, 2013
 # scootergrisen, 2016-2017
 msgid ""
@@ -11,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-21 00:31+0100\n"
-"PO-Revision-Date: 2017-11-21 10:37+0000\n"
+"PO-Revision-Date: 2017-11-27 21:32+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +51,7 @@ msgstr "Kan ikke bestemme diskens status - tryk venligst retur igen."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr "CD-kopiering afsluttet."
+msgstr "Cd-kopiering afsluttet."
 
 #: ../xfburn/xfburn-global.h:43
 msgid "Data composition"
@@ -70,7 +71,7 @@ msgstr "Hurtig sletning"
 
 #: ../xfburn/xfburn-blank-dialog.c:72
 msgid "Full Blank (slow)"
-msgstr "Komplet sletning (langsom)"
+msgstr "Fuld sletning (langsom)"
 
 #: ../xfburn/xfburn-blank-dialog.c:73
 msgid "Quick Format"
@@ -78,7 +79,7 @@ msgstr "Hurtig formatering"
 
 #: ../xfburn/xfburn-blank-dialog.c:74
 msgid "Full Format"
-msgstr "Komplet formatering"
+msgstr "Fuld formatering"
 
 #: ../xfburn/xfburn-blank-dialog.c:75
 msgid "Quick Deformat"
@@ -86,15 +87,15 @@ msgstr "Hurtig deformatering"
 
 #: ../xfburn/xfburn-blank-dialog.c:76
 msgid "Full Deformat (slow)"
-msgstr "Komplet deformatering (langsom)"
+msgstr "Fuld deformatering (langsom)"
 
 #: ../xfburn/xfburn-blank-dialog.c:149
 msgid "Eject the disc"
-msgstr "Udskubning af disk"
+msgstr "Skub disken ud"
 
 #: ../xfburn/xfburn-blank-dialog.c:150
 msgid "Default value for eject checkbox"
-msgstr "Standardværdi for udskubning afkrydsningsfelt"
+msgstr "Standardværdi for skub ud-afkrydsningsfelt"
 
 #: ../xfburn/xfburn-blank-dialog.c:197
 msgid "Blank Disc"
@@ -246,12 +247,12 @@ msgstr "Skriver ISO..."
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:501
 #, c-format
 msgid "An error occured while writing ISO: %s"
-msgstr "En fejl opstod under skrivning til ISO: %s"
+msgstr "Der opstod en fejl under skrivning til ISO: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:556
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:562
 msgid "An error occurred in the burn backend."
-msgstr "En fejl opstod i det underliggende brænderprogram."
+msgstr "Der opsted en fejl i det underliggende brænderprogram."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
@@ -296,7 +297,7 @@ msgstr "Brændingstilstanden er endnu ikke understøttet."
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 #: ../xfburn/xfburn-burn-image-dialog.c:376
 msgid "An error occurred in the burn backend"
-msgstr "En fejl opstod i det underliggende brænderprogram"
+msgstr "Der opstod en fejl i det underliggende brænderprogram"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:360
 msgid "Unable to determine image size."
@@ -509,7 +510,7 @@ msgstr "%s kan ikke tilføjes projektet, da den overskrider den maksimalt tillad
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
-msgstr "%s er større end dét som niveau 2 af iso9660 tillader. Dette kan være et problem for ældre systemer eller software."
+msgstr "%s er større end tilladt af niveau 2 af iso9660. Dette kan være et problem for ældre systemer eller software."
 
 #: ../xfburn/xfburn-data-composition.c:1374
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -1268,12 +1269,12 @@ msgstr "Den grundlæggende omkoder er indbygget,\nog kræver ikke noget bibliote
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
 msgid "File %s does not have a .wav extension"
-msgstr "Filen %s har ikke en .wav filendelse"
+msgstr "Filen %s har ikke en .wav-filendelse"
 
 #: ../xfburn/xfburn-transcoder-basic.c:201
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
-msgstr "Filen %s indeholder ikke ukomprimeret PCM wavelyd"
+msgstr "Filen %s indeholder ikke ukomprimeret PCM-wavelyd"
 
 #: ../xfburn/xfburn-transcoder-basic.c:207
 #, c-format
@@ -1352,11 +1353,11 @@ msgstr "Diskstatus"
 
 #: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
 msgid "Profile no. as reported by libburn"
-msgstr "Profilnummer rapporteret af libburn"
+msgstr "Profilnummer som rapporteret af libburn"
 
 #: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
 msgid "Profile name as reported by libburn"
-msgstr "Profilnavn rapportet af libburn"
+msgstr "Profilnavn som rapporteret af libburn"
 
 #: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
 msgid "Is the disc erasable"
@@ -1388,19 +1389,19 @@ msgstr "Kan brænde Blu-ray"
 
 #: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
 msgid "libburn TAO block types"
-msgstr "libburn TAO bloktyper"
+msgstr "libburn TAO-bloktyper"
 
 #: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
 msgid "libburn SAO block types"
-msgstr "libburn SAO bloktyper"
+msgstr "libburn SAO-bloktyper"
 
 #: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
 msgid "libburn RAW block types"
-msgstr "libburn RAW bloktyper"
+msgstr "libburn RAW-bloktyper"
 
 #: ../xfburn/xfburn-device.c:298 ../xfburn/xfburn-device.c:299
 msgid "libburn PACKET block types"
-msgstr "libburn PACKET bloktyper"
+msgstr "libburn PACKET-bloktyper"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
