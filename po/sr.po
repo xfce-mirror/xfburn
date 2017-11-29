@@ -5,12 +5,13 @@
 # Translators:
 # Саша Петровић <salepetronije@gmail.com>, 2012,2014
 # Саша Петровић <salepetronije@gmail.com>, 2012,2014-2015
+# Саша Петровић <salepetronije@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2017-09-19 18:05+0000\n"
+"POT-Creation-Date: 2017-11-21 00:31+0100\n"
+"PO-Revision-Date: 2017-11-29 16:13+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/xfce/xfce-apps/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -626,6 +627,16 @@ msgstr "подразумевана"
 #: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "највећа"
+
+#: ../xfburn/xfburn-device-box.c:507
+msgid "A full, but erasable disc is in the drive"
+msgstr ""
+
+#: ../xfburn/xfburn-device-box.c:508
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "Да ли желите избрисати диск, тако да буде спреман за наредни поступак резања?"
 
 #: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
@@ -1396,9 +1407,21 @@ msgid "Data Composition"
 msgstr "Пројекат са подацима"
 
 #: ../xfburn.desktop.in.h:2
+msgid "Disk Burning"
+msgstr "Резање диска"
+
+#: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
 msgstr "Програм за резање ЦД и ДВД дискова"
 
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
 msgstr "Нарежи слику (рецко)"
+
+#: ../xfburn.appdata.xml.in.h:1
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Рецко је једноставан прибор за резање ЦД/ДВД-јева заснован на библиотеци либбурниа. Може брисати брисиве ЦД/ДВД-јеве, резати и стварати слике дискова, звучних ЦД-ја, као и резање сопствених података, ЦД-ја и ДВД-јева. Стабилан је и развија се и даље."
