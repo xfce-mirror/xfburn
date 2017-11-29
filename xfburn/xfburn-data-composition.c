@@ -309,7 +309,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 
   gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
   if (!icon_directory)
-    icon_directory = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-directory", x, 0, NULL);
+    icon_directory = gtk_icon_theme_load_icon (icon_theme, "folder", x, 0, NULL);
   if (!icon_file)
     icon_file = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-regular", x, 0, NULL);
 

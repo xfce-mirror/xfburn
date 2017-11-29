@@ -148,7 +148,7 @@ load_directory_in_browser (XfburnFsBrowser * browser, const gchar * path, GtkTre
 
   screen = gtk_widget_get_screen (GTK_WIDGET (browser));
   icon_theme = gtk_icon_theme_get_for_screen (screen);
-  icon = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-directory", x, 0, NULL);
+  icon = gtk_icon_theme_load_icon (icon_theme, "folder", x, 0, NULL);
 
   show_hidden = xfburn_settings_get_boolean ("show-hidden-files", FALSE);
 

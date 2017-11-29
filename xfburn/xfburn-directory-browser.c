@@ -251,7 +251,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   icon_theme = gtk_icon_theme_get_for_screen (screen);
 
   gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
-  icon_directory = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-directory", x, 0, NULL);
+  icon_directory = gtk_icon_theme_load_icon (icon_theme, "folder", x, 0, NULL);
   icon_file = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-regular", x, 0, NULL);
 
   show_hidden = xfburn_settings_get_boolean ("show-hidden-files", FALSE);
