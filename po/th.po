@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2014
+# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2014,2017
 # Theppitak Karoonboonyanan <theppitak@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2017-09-23 19:10+0000\n"
+"POT-Creation-Date: 2017-11-21 00:31+0100\n"
+"PO-Revision-Date: 2017-12-06 09:57+0000\n"
 "Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/xfce/xfce-apps/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -626,6 +626,16 @@ msgstr "ปริยาย"
 #: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "สูงสุด"
+
+#: ../xfburn/xfburn-device-box.c:507
+msgid "A full, but erasable disc is in the drive"
+msgstr "มีแผ่นที่เขียนเต็มแล้วแต่สามารถลบข้อมูลได้อยู่ในไดรว์"
+
+#: ../xfburn/xfburn-device-box.c:508
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "คุณต้องการล้างแผ่นเพื่อให้สามารถใช้เขียนข้อมูลได้หรือไม่?"
 
 #: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
@@ -1396,9 +1406,21 @@ msgid "Data Composition"
 msgstr "ร่างต้นฉบับแผ่นข้อมูล"
 
 #: ../xfburn.desktop.in.h:2
+msgid "Disk Burning"
+msgstr "โปรแกรมเขียนแผ่น"
+
+#: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
 msgstr "โปรแกรมเขียนซีดีและดีวีดี"
 
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
 msgstr "เขียนลงแผ่น (xfburn)"
+
+#: ../xfburn.appdata.xml.in.h:1
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Xfburn เป็นเครื่องมือเขียนแผ่นซีดี/ดีวีดีอย่างง่าย โดยอาศัยไลบรารี libburnia สามารถล้างแผ่น CD/DVD(-RW), สร้างและเขียนอิมเมจ iso, ซีดีเพลง, รวมทั้งเขียนข้อมูลใดๆ ที่เรียบเรียงไว้ลงในแผ่นซีดีหรือดีวีดีได้ โปรแกรมนี้ทำงานได้อย่างมีเสถียรภาพและมีการพัฒนาปรับปรุงอย่างสม่ำเสมอ"
