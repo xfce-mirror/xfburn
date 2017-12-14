@@ -20,6 +20,15 @@ appdatadir = $(datadir)/appdata
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 appdata_in_files = xfburn.appdata.xml.in
 
+.PHONY: ChangeLog
+
+ChangeLog: Makefile
+	(GIT_DIR=$(top_srcdir)/.git git log > .changelog.tmp \
+	&& mv .changelog.tmp ChangeLog; rm -f .changelog.tmp) \
+	|| (touch ChangeLog; echo 'Git directory not found: installing possibly empty changelog.' >&2)
+
+dist-hook: ChangeLog
+
 EXTRA_DIST = 								\
 	$(apps_in_files)						\
 	intltool-extract.in						\
