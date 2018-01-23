@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2014
-# Allan Nordhøy <epost@anotheragency.no>, 2015,2017
+# Allan Nordhøy <epost@anotheragency.no>, 2015,2017-2018
 # Harald H. <haarektrans@gmail.com>, 2014
 # Ronny K. M. Olufsen <ronny@olufsen.org>, 2013
 # Terje Uriansrud <terje@uriansrud.net>, 2010
@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 06:30+0200\n"
-"PO-Revision-Date: 2017-09-19 18:05+0000\n"
+"POT-Creation-Date: 2017-11-21 00:31+0100\n"
+"PO-Revision-Date: 2018-01-23 22:28+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/xfce/xfce-apps/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -629,6 +629,16 @@ msgstr "forvalgt"
 #: ../xfburn/xfburn-device-box.c:473
 msgid "Max"
 msgstr "Maks"
+
+#: ../xfburn/xfburn-device-box.c:507
+msgid "A full, but erasable disc is in the drive"
+msgstr "En full, men slettbar plate er i skuffen"
+
+#: ../xfburn/xfburn-device-box.c:508
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "Ønsker du å slette plata, slik at den kan brukes for den kommende brenneprosessen?"
 
 #: ../xfburn/xfburn-device-box.c:579
 msgid "Drive can't burn on the inserted disc"
@@ -1399,9 +1409,21 @@ msgid "Data Composition"
 msgstr "Datakomposisjon"
 
 #: ../xfburn.desktop.in.h:2
+msgid "Disk Burning"
+msgstr "Platebrenning"
+
+#: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
 msgstr "CD- og DVD- brenneprogram"
 
-#: ../xfburn.desktop.in.h:3
+#: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
 msgstr "Brenn avtrykk (xfburn)"
+
+#: ../xfburn.appdata.xml.in.h:1
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Xfburn er et enkelt CD/DVD-brenneverktøy basert på libburnia-bibliotekene. Det kan slette CD/DVD(-RW)-er, brenne og opprette ISO-avbildninger, lyd-CD-er, sågar også personlige samlinger med data til CD eller DVD. Det er stabilt og blir jobbet på."
