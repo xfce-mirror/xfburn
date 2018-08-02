@@ -6,20 +6,21 @@
 # Alois Nešpor <info@aloisnespor.info>, 2013
 # Alois Nešpor <info@aloisnespor.info>, 2014
 # Michal Várady <miko.vaji@gmail.com>, 2014-2015,2017
+# Pavel Borecki <pavel.borecki@gmail.com>, 2018
 # Petr Šimáček <petr.simacek@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-21 00:31+0100\n"
-"PO-Revision-Date: 2017-11-21 10:27+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
+"PO-Revision-Date: 2018-08-02 05:45+0000\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/xfce/xfce-apps/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: ../xfburn/xfburn-global.h:28
 msgid "Capacity:"
@@ -27,7 +28,7 @@ msgstr "Kapacita:"
 
 #: ../xfburn/xfburn-global.h:29
 msgid "addr:"
-msgstr "addr:"
+msgstr "adr:"
 
 #: ../xfburn/xfburn-global.h:30
 msgid "Time total:"
@@ -39,7 +40,7 @@ msgstr "délka"
 
 #: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
-msgstr "Vyprazdňování vyrovnávací paměti..."
+msgstr "Vyprazdňování vyrovnávací paměti…"
 
 #: ../xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
@@ -47,7 +48,7 @@ msgstr "Vložte zapisovatelný disk a stiskněte enter"
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr "Nelze určit stav disku - stiskněte klávesu enter pro opakování."
+msgstr "Nepodařilo se určit stav disku – stiskem enter to zkuste znovu."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
