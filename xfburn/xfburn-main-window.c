@@ -535,7 +535,7 @@ action_about (GtkAction * action, XfburnMainWindow * window)
 		  "program-name", "Xfburn",
 		  "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
 		  "version", VERSION,
-		  "comments", _("Another cd burning GUI"),
+		  "comments", _("Another CD burning GUI"),
 		  "website", "http://www.xfce.org/projects/xfburn",
 		  "copyright", "2005-2008 David Mohr, Mario Đanić, Jean-François Wauthy",
 		  "authors", auth, 
