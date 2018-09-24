@@ -4,16 +4,16 @@
 # 
 # Translators:
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
-# Igor <f2404@yandex.ru>, 2016-2017
+# Igor <f2404@yandex.ru>, 2016-2018
 # Sergey Alyoshin <alyoshin.s@gmail.com>, 2014-2015,2017
 # Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-21 00:31+0100\n"
-"PO-Revision-Date: 2018-09-14 00:16+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"POT-Creation-Date: 2018-09-24 00:31+0200\n"
+"PO-Revision-Date: 2018-09-24 17:00+0000\n"
+"Last-Translator: Igor <f2404@yandex.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/xfce/xfce-apps/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,7 +140,7 @@ msgstr "_Очистить"
 #. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:356
 msgid "The inserted disc is already blank."
-msgstr "Вставленный диск уже очищен"
+msgstr "Вставленный диск уже очищен."
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:362
@@ -169,7 +169,7 @@ msgstr "Завершено"
 #: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:496
 #: ../xfburn/xfburn-progress-dialog.c:663
 msgid "Failure"
-msgstr "Неудачно завершена"
+msgstr "Неудача"
 
 #: ../xfburn/xfburn-blank-dialog.c:461
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:624
@@ -292,7 +292,7 @@ msgstr "_Записать образ"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:296
 msgid "Burn mode is not currently implemented."
-msgstr "Режим прожига в данный момент не поддерживается"
+msgstr "Режим прожига в данный момент не поддерживается."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 #: ../xfburn/xfburn-burn-image-dialog.c:376
@@ -363,7 +363,7 @@ msgstr "Копирование CD с данными"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:123
 msgid "CD Reader device"
-msgstr "Устройство чтения компакт-дисков"
+msgstr "Устройство чтения CD"
 
 #: ../xfburn/xfburn-copy-cd-dialog.c:152
 #: ../xfburn/xfburn-copy-dvd-dialog.c:152
@@ -413,7 +413,7 @@ msgstr "Добавить"
 #: ../xfburn/xfburn-data-composition.c:192
 #: ../xfburn/xfburn-audio-composition.c:206
 msgid "Add the selected file(s) to the composition"
-msgstr "Добавить выбранный файл(ы) в проект"
+msgstr "Добавить выбранный(е) файл(ы) в проект"
 
 #: ../xfburn/xfburn-data-composition.c:194
 msgid "Create directory"
@@ -431,7 +431,7 @@ msgstr "Удалить"
 #: ../xfburn/xfburn-data-composition.c:196
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove the selected file(s) from the composition"
-msgstr "Удалить выбранный файл(ы) из проекта"
+msgstr "Удалить выбранный(е) файл(ы) из проекта"
 
 #: ../xfburn/xfburn-data-composition.c:198
 #: ../xfburn/xfburn-audio-composition.c:210
@@ -472,13 +472,13 @@ msgstr "Локальный путь"
 
 #: ../xfburn/xfburn-data-composition.c:682
 msgid "You must give a name to the file."
-msgstr "Вы должны дать имя файлу"
+msgstr "Вы должны дать имя файлу."
 
 #: ../xfburn/xfburn-data-composition.c:691
 #: ../xfburn/xfburn-data-composition.c:1205
 #: ../xfburn/xfburn-audio-composition.c:1176
 msgid "A file with the same name is already present in the composition."
-msgstr "В проекте уже есть файл с таким именем"
+msgstr "В проекте уже есть файл с таким именем."
 
 #: ../xfburn/xfburn-data-composition.c:799
 #: ../xfburn/xfburn-data-composition.c:800
@@ -530,7 +530,7 @@ msgstr "Вы собираетесь добавить в проект домаш�
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr "Файл не был добавлен, т.к. в этом каталоге уже существует файл с именем «%s»"
+msgstr "Файл не был добавлен, т.к. в этом каталоге уже существует файл с именем «%s»."
 
 #: ../xfburn/xfburn-data-composition.c:1940
 #, c-format
@@ -661,7 +661,7 @@ msgstr "Вставленный диск непригоден"
 
 #: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Cannot access drive (it might be in use)"
-msgstr "Невозможно получить доступ к приводу (возможно он используется)"
+msgstr "Невозможно получить доступ к приводу (возможно, он используется)"
 
 #: ../xfburn/xfburn-device-box.c:605 ../xfburn/xfburn-device-box.c:646
 msgid "Error determining disc"
@@ -685,7 +685,7 @@ msgstr "Автоматически"
 
 #: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
 msgid "Number of burners in the system"
-msgstr "Количество записываемых приводов в системе"
+msgstr "Количество записывающих приводов в системе"
 
 #: ../xfburn/xfburn-device-list.c:209
 msgid "Number of drives in the system"
@@ -697,7 +697,7 @@ msgstr "Количество приводов в системе (для чтен
 
 #: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
 msgid "List of devices"
-msgstr "_Список устройств"
+msgstr "Список устройств"
 
 #: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
 msgid "Currently selected device"
@@ -739,7 +739,7 @@ msgstr "%s: %s\nПопробуйте %s --help для получения спи�
 
 #: ../xfburn/xfburn-main.c:219
 msgid "Unable to initialize the burning backend."
-msgstr "Невозможно запустить процесс записи"
+msgstr "Невозможно запустить процесс записи."
 
 #: ../xfburn/xfburn-main.c:294
 msgid "No burners are currently available"
@@ -752,7 +752,7 @@ msgid ""
 "Please unmount and restart the application.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr "Возможно диск используется и поэтому недоступен. \n\nПожалуйста отмонтируйте диск и перезапустите приложение. \n\nЕсли в приводе нет диска, проверьте есть ли у вас права доступа на чтение и запись для привода."
+msgstr "Возможно диск используется и поэтому недоступен. \n\nПожалуйста, отмонтируйте диск и перезапустите приложение. \n\nЕсли в приводе нет диска, проверьте, есть ли у вас права доступа на чтение и запись для привода."
 
 #: ../xfburn/xfburn-main.c:330
 #, c-format
@@ -885,7 +885,7 @@ msgid "Toolbar Editor"
 msgstr "Редактор панели инструментов"
 
 #: ../xfburn/xfburn-main-window.c:538
-msgid "Another cd burning GUI"
+msgid "Another CD burning GUI"
 msgstr "Ещё одна графическая оболочка для записи CD"
 
 #: ../xfburn/xfburn-notebook-tab.c:108
@@ -1083,7 +1083,7 @@ msgstr "_Предупреждать при пустом списке скоро�
 
 #: ../xfburn/xfburn-preferences-dialog.c:338
 msgid "FIFO buffer size (in kb)"
-msgstr "Размер буфера FIFO (кБ):"
+msgstr "Размер буфера FIFO (кБ)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:477
 msgid "Changing this setting only takes full effect after a program restart."
@@ -1154,8 +1154,8 @@ msgid "Select command"
 msgstr "Выберите команду"
 
 #: ../xfburn/xfburn-welcome-tab.c:129
-msgid "Welcome to xfburn!"
-msgstr "Добро пожаловать в xfburn!"
+msgid "Welcome to Xfburn!"
+msgstr "Добро пожаловать в Xfburn!"
 
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:140
@@ -1172,7 +1172,7 @@ msgstr "<big>Диск с да_нными</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:145
 msgid "Create a new data disc with the files of your choosing"
-msgstr "Создать диск содержащий различные данные по вашему выбору"
+msgstr "Создать диск, содержащий различные данные по вашему выбору"
 
 #: ../xfburn/xfburn-welcome-tab.c:150
 msgid "<big>_Blank Disc</big>"
@@ -1240,7 +1240,7 @@ msgstr "Максимально доступно 99 дорожек."
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
 msgid "A problem with the burn backend occurred."
-msgstr "Возникли проблемы с программой записи дисков"
+msgstr "Возникли проблемы с программой записи дисков."
 
 #: ../xfburn/xfburn-disc-usage.c:163
 msgid "Proceed to Burn"
@@ -1248,7 +1248,7 @@ msgstr "Перейти к записи"
 
 #: ../xfburn/xfburn-disc-usage.c:203
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "Вы пытаетесь записать больше данных, чем может вместить диск!"
+msgstr "Вы пытаетесь записать больше данных, чем может вместить диск."
 
 #: ../xfburn/xfburn-transcoder-basic.c:166
 msgid "basic"
@@ -1264,7 +1264,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr "Базовый перекодировщик встроен\nв программу, и не требует внешних\nбиблиотек. Но он может обрабатывать\nтолько несжатые .wav-файлы.\n\nЕсли вы хотите записывать аудиофайлы \nдругих типов, скомпилируйте xfburn\nс поддержкой gstreamer."
+msgstr "Базовый перекодировщик встроен\nв программу и не требует внешних\nбиблиотек. Но он может обрабатывать\nтолько несжатые .wav-файлы.\n\nЕсли вы хотите записывать аудиофайлы \nдругих типов, скомпилируйте xfburn\nс поддержкой gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1308,7 +1308,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr "Перекодировщик использует библиотеки\ngstreamer для создания аудио проектов.\n\nОбычно поддерживаются все типы аудиофайлов,\nесли установлены необходимые плагины.\nЕсли формат файла не определяется,\nудостоверьтесь что установлены 'good', 'bad' и\n'ugly' пакеты плагинов gstreamer."
+msgstr "Перекодировщик использует библиотеки\ngstreamer для создания аудио проектов.\n\nОбычно поддерживаются все типы аудиофайлов,\nесли установлены необходимые плагины.\nЕсли формат файла не определяется,\nудостоверьтесь, что установлены 'good', 'bad' и\n'ugly' пакеты плагинов gstreamer."
 
 #: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
