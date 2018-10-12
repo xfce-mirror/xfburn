@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-24 00:31+0200\n"
-"PO-Revision-Date: 2018-10-11 20:43+0000\n"
+"PO-Revision-Date: 2018-10-12 10:07+0000\n"
 "Last-Translator: Charles Monzat <c.monzat@laposte.net>\n"
 "Language-Team: French (http://www.transifex.com/xfce/xfce-apps/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -300,7 +300,7 @@ msgstr "_Graver l’image"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:296
 msgid "Burn mode is not currently implemented."
-msgstr "Le mode de gravure n’est pas encore implémenté."
+msgstr "Le mode de gravure n’est pas actuellement implémenté."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 #: ../xfburn/xfburn-burn-image-dialog.c:376
@@ -511,7 +511,7 @@ msgstr "Données %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr "%s ne peut pas être ajouté à la composition car il excède la taille maximale autorisée pour un fichier par la norme ISO 9660."
+msgstr "Impossible d’ajouter %s à la composition car il excède la taille maximale autorisée (pour un fichier) par la norme ISO 9660."
 
 #: ../xfburn/xfburn-data-composition.c:1291
 #, c-format
@@ -531,7 +531,7 @@ msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr "Vous êtes sur le point d’ajouter votre répertoire personnel à la composition. Ceci risque de prendre beaucoup de temps et de ne pas tenir sur un seul disque.\n\nÊtes-vous sûr de vouloir continuer ?"
+msgstr "Vous êtes sur le point d’ajouter votre répertoire personnel à la composition. Ceci risque de prendre beaucoup de temps et de ne pas tenir sur un seul disque.\n\nVoulez-vous vraiment continuer ?"
 
 #: ../xfburn/xfburn-data-composition.c:1542
 #, c-format
@@ -572,7 +572,7 @@ msgstr "Erreur(s) lors de l’ajout de fichiers"
 
 #: ../xfburn/xfburn-device-box.c:169 ../xfburn/xfburn-device-box.c:170
 msgid "Show writers only"
-msgstr "Afficher seulement les graveurs"
+msgstr "Afficher les graveurs uniquement"
 
 #: ../xfburn/xfburn-device-box.c:173
 msgid "Show speed selection"
@@ -600,7 +600,7 @@ msgstr "La combinaison du matériel et du disque est-elle valide pour graver la 
 
 #: ../xfburn/xfburn-device-box.c:186
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "Le mode effacement affiche des messages d’état du disque différents du mode normal"
+msgstr "Le mode effacement affiche des messages d’état du disque différents du mode standard"
 
 #: ../xfburn/xfburn-device-box.c:239
 msgid "_Speed:"
@@ -608,7 +608,7 @@ msgstr "_Vitesse :"
 
 #: ../xfburn/xfburn-device-box.c:262
 msgid "Write _mode:"
-msgstr "Mode d’é_criture :"
+msgstr "_Mode d’écriture :"
 
 #: ../xfburn/xfburn-device-box.c:375
 msgid "Empty speed list"
@@ -661,7 +661,7 @@ msgstr "Désolé, le mode multisession n’est pas encore pris en charge"
 
 #: ../xfburn/xfburn-device-box.c:594
 msgid "Inserted disc is full"
-msgstr "Le disque inséré est déjà plein"
+msgstr "Le disque inséré est plein"
 
 #: ../xfburn/xfburn-device-box.c:597 ../xfburn/xfburn-device-box.c:640
 msgid "Inserted disc is unsuitable"
@@ -669,7 +669,7 @@ msgstr "Le disque inséré n’est pas utilisable"
 
 #: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
 msgid "Cannot access drive (it might be in use)"
-msgstr "Le périphérique est inaccessible (déjà utilisé)"
+msgstr "Le périphérique est inaccessible (en cours d’utilisation ?)"
 
 #: ../xfburn/xfburn-device-box.c:605 ../xfburn/xfburn-device-box.c:646
 msgid "Error determining disc"
@@ -732,7 +732,7 @@ msgstr "Système de fichiers"
 #: ../xfburn/xfburn-fs-browser.c:262
 #, c-format
 msgid "%s's home"
-msgstr "Dossier personnel de %s"
+msgstr "Répertoire personnel de %s"
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
@@ -760,7 +760,7 @@ msgid ""
 "Please unmount and restart the application.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr "Peut-être qu’un disque est en cours d’utilisation et ne peut pas être accédé.\n\nVeuillez le démonter et relancer l’application.\n\nS’il n’y a aucun disque dans le périphérique, vérifiez que votre utilisateur a les droits en lecture et écriture sur le périphérique."
+msgstr "Peut-être qu’un disque est en cours d’utilisation et ne peut pas être accessible.\n\nVeuillez le démonter puis redémarrez l’application.\n\nS’il n’y a aucun disque dans le périphérique, vérifiez que votre utilisateur possède les droits en lecture et écriture sur le périphérique."
 
 #: ../xfburn/xfburn-main.c:330
 #, c-format
@@ -818,7 +818,7 @@ msgstr "É_dition"
 
 #: ../xfburn/xfburn-main-window.c:118
 msgid "Prefere_nces"
-msgstr "Préfér_ences"
+msgstr "_Préférences"
 
 #: ../xfburn/xfburn-main-window.c:118
 msgid "Show preferences dialog"
@@ -830,15 +830,15 @@ msgstr "_Actions"
 
 #: ../xfburn/xfburn-main-window.c:121
 msgid "_View"
-msgstr "_Affichage"
+msgstr "Affic_hage"
 
 #: ../xfburn/xfburn-main-window.c:122
 msgid "Refresh"
-msgstr "Rafraîchir"
+msgstr "Actualiser"
 
 #: ../xfburn/xfburn-main-window.c:122
 msgid "Refresh file list"
-msgstr "Rafraîchir la liste des fichiers"
+msgstr "Actualiser la liste des fichiers"
 
 #: ../xfburn/xfburn-main-window.c:124
 msgid "_Help"
@@ -1091,7 +1091,7 @@ msgstr "Affich_er une alerte si la liste des vitesses est vide"
 
 #: ../xfburn/xfburn-preferences-dialog.c:338
 msgid "FIFO buffer size (in kb)"
-msgstr "Taille du tampon FIFO (en kio)"
+msgstr "Taille du tampon FIFO (en ko)"
 
 #: ../xfburn/xfburn-preferences-dialog.c:477
 msgid "Changing this setting only takes full effect after a program restart."
