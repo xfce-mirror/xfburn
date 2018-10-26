@@ -135,7 +135,7 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_box_pack_start (box, priv->frame_burn, FALSE, FALSE, BORDER);
     
   /* options */
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox);
 
   frame = xfce_create_framebox_with_content (_("Options"), vbox);
@@ -165,7 +165,7 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
   gtk_widget_show (align);
   gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
-  priv->hbox_iso = gtk_hbox_new (FALSE, 0);
+  priv->hbox_iso = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_widget_show (priv->hbox_iso);
   gtk_container_add (GTK_CONTAINER (align), priv->hbox_iso);
   gtk_widget_set_sensitive (priv->hbox_iso, FALSE);

@@ -106,7 +106,7 @@ xfburn_disc_usage_get_type (void)
       NULL
     };
 
-    disc_usage_type = g_type_register_static (GTK_TYPE_HBOX, "XfburnDiscUsage", &disc_usage_info, 0);
+    disc_usage_type = g_type_register_static (GTK_TYPE_BOX, "XfburnDiscUsage", &disc_usage_info, 0);
   }
 
   return disc_usage_type;

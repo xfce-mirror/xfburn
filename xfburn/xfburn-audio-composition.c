@@ -259,7 +259,7 @@ xfburn_audio_composition_get_type (void)
       NULL                                                /* interface_data */
     };
     
-    audio_composition_type = g_type_register_static (GTK_TYPE_VBOX, "XfburnAudioComposition", &audio_composition_info, 0);
+    audio_composition_type = g_type_register_static (GTK_TYPE_BOX, "XfburnAudioComposition", &audio_composition_info, 0);
     
     g_type_add_interface_static (audio_composition_type, XFBURN_TYPE_COMPOSITION, &composition_info);
   }
@@ -293,6 +293,8 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
   
+  gtk_orientable_set_orientation(GTK_ORIENTABLE (composition), GTK_ORIENTATION_VERTICAL);
+
   gint x, y;
 //  ExoToolbarsModel *model_toolbar;
   gint toolbar_position;
@@ -351,7 +353,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
 
   gtk_ui_manager_add_ui_from_string (priv->ui_manager, ui_string, -1, NULL);
 
-  hbox_toolbar = gtk_hbox_new (FALSE, 5);
+  hbox_toolbar = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_box_pack_start (GTK_BOX (composition), hbox_toolbar, FALSE, TRUE, 0);
   gtk_widget_show (hbox_toolbar);
   

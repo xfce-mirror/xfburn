@@ -147,7 +147,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
   gtk_window_set_icon_name (GTK_WINDOW (obj), "preferences-system");
   
-  hbox = gtk_hbox_new (FALSE, 0);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_box_pack_start (box, hbox, TRUE, TRUE, 0);
   gtk_widget_show (hbox);
 
@@ -181,12 +181,12 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_widget_show (priv->notebook);
 
   /* general tab */
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), BORDER);
   idx = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), vbox, NULL);
   gtk_widget_show (vbox);
 
-  vbox2 = gtk_vbox_new (FALSE, 0);
+  vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox2);
 
   frame = xfce_gtk_frame_box_new_with_content (_("Temporary directory"), vbox2);
@@ -201,7 +201,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox2), priv->check_clean_tmpdir, FALSE, FALSE, BORDER);
   gtk_widget_show (priv->check_clean_tmpdir);
 
-  vbox2 = gtk_vbox_new (FALSE, 0);
+  vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox2);
 
   frame = xfce_gtk_frame_box_new_with_content (_("File browser"), vbox2);
@@ -229,7 +229,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   g_object_unref (G_OBJECT (icon));
   
   /* devices tab */
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), BORDER);
   idx = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), vbox, NULL);
   gtk_widget_show (vbox);
@@ -240,7 +240,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
                               gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), 1), label);
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
 
-  vbox2 = gtk_vbox_new (FALSE, 0);
+  vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox2);
 
   frame = xfce_gtk_frame_box_new_with_content (_("Detected devices"), vbox2);
@@ -295,7 +295,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
                                                gtk_cell_renderer_toggle_new (), "active", DEVICE_LIST_COLUMN_BD,
                                                NULL);
 
-  hbox = gtk_hbox_new (FALSE, 0);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, BORDER);
   gtk_widget_show (hbox);
 
@@ -332,7 +332,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
 #endif
 
   /* fifo */
-  vbox3 = gtk_vbox_new (FALSE, 0);
+  vbox3 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox3);
 
   frame = xfce_gtk_frame_box_new_with_content (_("FIFO buffer size (in kb)"), vbox3);

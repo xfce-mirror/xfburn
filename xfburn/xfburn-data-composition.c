@@ -241,7 +241,7 @@ xfburn_data_composition_get_type (void)
       NULL                                                /* interface_data */
     };
     
-    data_composition_type = g_type_register_static (GTK_TYPE_VBOX, "XfburnDataComposition", &data_composition_info, 0);
+    data_composition_type = g_type_register_static (GTK_TYPE_BOX, "XfburnDataComposition", &data_composition_info, 0);
     
     g_type_add_interface_static (data_composition_type, XFBURN_TYPE_COMPOSITION, &composition_info);
   }
@@ -274,7 +274,9 @@ static void
 xfburn_data_composition_init (XfburnDataComposition * composition)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
-  
+
+  gtk_orientable_set_orientation(GTK_ORIENTABLE (composition), GTK_ORIENTATION_VERTICAL);
+
   gint x, y;
 //  ExoToolbarsModel *model_toolbar;
   gint toolbar_position;
@@ -324,7 +326,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 
   gtk_ui_manager_add_ui_from_string (priv->ui_manager, ui_string, -1, NULL);
 
-  hbox_toolbar = gtk_hbox_new (FALSE, 5);
+  hbox_toolbar = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_box_pack_start (GTK_BOX (composition), hbox_toolbar, FALSE, TRUE, 0);
   gtk_widget_show (hbox_toolbar);
   
@@ -348,7 +350,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 */
     
   /* volume name */
-  hbox = gtk_hbox_new (FALSE, 5);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 10);
   gtk_box_pack_start (GTK_BOX (hbox_toolbar), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
@@ -960,7 +962,7 @@ select_files (XfburnDataComposition * dc)
     if (priv->last_directory)
       gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER(priv->add_filechooser), priv->last_directory);
 
-    vbox = gtk_vbox_new (FALSE, 0);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(window), vbox);
 
     gtk_box_pack_start(GTK_BOX(vbox), priv->add_filechooser, TRUE, TRUE, 3);
@@ -969,7 +971,7 @@ select_files (XfburnDataComposition * dc)
     g_signal_connect (add_button, "clicked", G_CALLBACK(add_cb), dc);
     g_signal_connect (priv->add_filechooser, "file-activated", G_CALLBACK(add_cb), dc);
 
-    bbox = gtk_hbutton_box_new ();
+    bbox = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
     gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_END);
     gtk_box_pack_end(GTK_BOX(vbox), bbox, FALSE, FALSE, 3);
 
