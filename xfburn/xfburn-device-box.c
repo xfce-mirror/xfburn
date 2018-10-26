@@ -205,6 +205,8 @@ xfburn_device_box_constructor (GType type, guint n_construct_properties, GObject
   box = XFBURN_DEVICE_BOX (gobj);
   priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
 
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (box), GTK_ORIENTATION_VERTICAL);
+
   priv->devlist = devlist = xfburn_device_list_new ();
   priv->handler_volume_change_start = g_signal_connect (G_OBJECT (devlist), "volume-change-start", G_CALLBACK (cb_volume_change_start), box);
   priv->handler_volume_change_end   = g_signal_connect (G_OBJECT (devlist), "volume-change-end", G_CALLBACK (cb_volume_change_end), box);
