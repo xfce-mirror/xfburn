@@ -229,6 +229,7 @@ static gboolean
 is_valid_wav (const gchar *path)
 {
   int fd;
+  int hread;
   guchar header[44];
   gboolean ret;
 
@@ -239,9 +240,11 @@ is_valid_wav (const gchar *path)
     return FALSE;
   }
 
-  read (fd, header, 44);
-
-  ret = valid_wav_headers (header);
+  ret = FALSE;
+  hread = read (fd, header, 44);
+  if (hread == 44) {
+    ret = valid_wav_headers (header);
+  }
 
   close (fd);
 
@@ -311,6 +314,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   */
   
   char header[44];
+  int thead=0;
   struct burn_track *track;
 
   atrack->fd = open (atrack->inputfile, 0);
@@ -322,7 +326,15 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 
   /* advance the fd so that libburn skips the header,
    * also allows us to check for byte swapping */
-  read (atrack->fd, header, 44);
+  thead = read (atrack->fd, header, 44);
+  if( thead < 44 ) {
+    g_warning ("Could not read header from %s!", atrack->inputfile);
+    g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
+		 "%s",
+                 _(errormsg_libburn_setup));
+    return NULL;
+  }
+
 
   atrack->src = burn_fd_source_new (atrack->fd, -1 , 0);
   if (atrack->src == NULL) {

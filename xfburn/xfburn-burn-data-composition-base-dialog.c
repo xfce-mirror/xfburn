@@ -369,7 +369,7 @@ create_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog, const gchar
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);
 
   priv->image_proceed = image = gtk_image_new_from_stock (stock, GTK_ICON_SIZE_BUTTON);
-  hbox = gtk_hbox_new (FALSE, 2);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
 
   align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
 

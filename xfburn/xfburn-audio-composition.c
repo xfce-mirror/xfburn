@@ -373,9 +373,11 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   //exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "import-session", EXO_TOOLBARS_ITEM_TYPE);
 
   priv->toolbar = exo_toolbars_view_new_with_model (priv->ui_manager, model_toolbar);
+*/
+  priv->toolbar = gtk_label_new ("placeholder for Gtk3Toolbar");
   gtk_box_pack_start (GTK_BOX (hbox_toolbar), priv->toolbar, TRUE, TRUE, 0);
   gtk_widget_show (priv->toolbar);
-*/
+
     
   /* content treeview */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -395,7 +397,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), AUDIO_COMPOSITION_COLUMN_CONTENT, GTK_SORT_ASCENDING);
   */
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->content), GTK_TREE_MODEL (model));
-  gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->content), TRUE);
+  // gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->content), TRUE);
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->content));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
   gtk_widget_show (priv->content);

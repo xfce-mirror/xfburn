@@ -298,8 +298,12 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
     g_warning ("Unable to locate xfburn/xfburn-toolbars.ui !");
   }
 */
+  priv->toolbars = gtk_label_new ("placeholder for Gtk3Toolbar");
+  gtk_box_pack_start (GTK_BOX (vbox), priv->toolbars, FALSE, FALSE, 0);
+  gtk_widget_show (priv->toolbars);
+
   /* vpaned */
-  priv->vpaned = gtk_vpaned_new ();
+  priv->vpaned = gtk_paned_new (GTK_ORIENTATION_VERTICAL);
   gtk_box_pack_start (GTK_BOX (vbox), priv->vpaned, TRUE, TRUE, 0);
   gtk_widget_show (priv->vpaned);
 

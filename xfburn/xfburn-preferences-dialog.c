@@ -161,8 +161,8 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_widget_show (scrolled_window);
 
   /* icon bar */
-/*
   icon_store = gtk_list_store_new (SETTINGS_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_INT);
+/*
   priv->icon_bar = exo_icon_bar_new_with_model (GTK_TREE_MODEL (icon_store));
   exo_icon_bar_set_pixbuf_column (EXO_ICON_BAR (priv->icon_bar), SETTINGS_LIST_PIXBUF_COLUMN);
   exo_icon_bar_set_text_column (EXO_ICON_BAR (priv->icon_bar), SETTINGS_LIST_TEXT_COLUMN);
@@ -258,7 +258,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
                               G_TYPE_BOOLEAN);
   priv->treeview_devices = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store), DEVICE_LIST_COLUMN_NAME, GTK_SORT_ASCENDING);
-  gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview_devices), TRUE);
+  // gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->treeview_devices), TRUE);
   gtk_widget_show (priv->treeview_devices);
   gtk_container_add (GTK_CONTAINER (scrolled_window), priv->treeview_devices);
   g_object_unref (store);
@@ -339,7 +339,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, BORDER);
   gtk_widget_show (frame);
 
-  priv->scale_fifo = gtk_hscale_new_with_range (0.0, FIFO_MAX_SIZE, 32.0);
+  priv->scale_fifo = gtk_scale_new_with_range (GTK_ORIENTATION_HORIZONTAL, 0.0, FIFO_MAX_SIZE, 32.0);
   gtk_scale_set_value_pos (GTK_SCALE (priv->scale_fifo), GTK_POS_LEFT);
   gtk_range_set_value (GTK_RANGE (priv->scale_fifo), 0);
   gtk_box_pack_start (GTK_BOX (vbox3), priv->scale_fifo, FALSE, FALSE, BORDER/2);
@@ -347,8 +347,21 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
 
   
   /* action buttons */
-  button_close = gtk_button_new_from_stock ("gtk-close");
+  button_close = gtk_button_new ();
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL,0);
+  
+  label = gtk_image_new_from_icon_name ("gtk-close", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (label);
+  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+  label = gtk_label_new("close");
+  gtk_widget_show (label);
+  gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
+  gtk_widget_show (hbox);
+
+  gtk_container_add (GTK_CONTAINER(button_close), hbox);
   gtk_widget_show (button_close);
+  
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button_close, GTK_RESPONSE_CLOSE);
   gtk_widget_set_can_default (button_close, TRUE);
   gtk_widget_grab_focus (button_close);

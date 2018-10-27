@@ -46,9 +46,9 @@ xfburn_busy_cursor (GtkWidget * widget)
   GdkCursor *cursor;
 
   g_return_if_fail (widget != NULL);
-  cursor = gdk_cursor_new (GDK_WATCH);
+  cursor = gdk_cursor_new_for_display( gtk_widget_get_display(widget), GDK_WATCH);
   gdk_window_set_cursor (gtk_widget_get_parent_window (widget), cursor);
-  gdk_cursor_unref (cursor);
+  g_object_unref (cursor);
   gdk_flush ();
 }
 
@@ -196,7 +196,7 @@ xfburn_gtk_button_new_mixed (const gchar *stock_id, const gchar *label)
         }
     } else {
         /* fall back to a stock button */
-        button = gtk_button_new_from_stock (stock_id);
+        button = gtk_button_new_with_label (stock_id);
     }
     return button;
 }

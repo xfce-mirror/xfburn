@@ -121,7 +121,7 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
                                    directory_tree_sortfunc, NULL, NULL);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DIRECTORY_BROWSER_COLUMN_FILE, GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (browser), GTK_TREE_MODEL (model));
-  gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (browser), TRUE);
+  // gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (browser), TRUE);
 
   column_file = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column_file, _("File"));

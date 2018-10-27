@@ -166,7 +166,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   comp_name = iso_image_get_volume_id (priv->image);
   if (strcmp (comp_name, _(DATA_COMPOSITION_DEFAULT_NAME)) == 0) {
     GtkWidget *label;
-    vbox = gtk_vbox_new (FALSE, 0);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_widget_show (vbox);
 
     frame = xfce_gtk_frame_box_new_with_content (_("Composition name"), vbox);

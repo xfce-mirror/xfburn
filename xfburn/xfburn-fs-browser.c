@@ -90,7 +90,7 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
   model = gtk_tree_store_new (FS_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), FS_BROWSER_COLUMN_DIRECTORY, GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (browser), GTK_TREE_MODEL (model));
-  gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (browser), TRUE);
+  // gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (browser), TRUE);
 
   column_directory = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column_directory, _("Filesystem"));

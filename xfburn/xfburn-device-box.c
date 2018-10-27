@@ -216,7 +216,7 @@ xfburn_device_box_constructor (GType type, guint n_construct_properties, GObject
   gtk_box_pack_start (GTK_BOX (box), priv->combo_device, FALSE, FALSE, BORDER);
   
   /*
-  hbox = gtk_hbox_new (FALSE, 0);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_widget_show (hbox);
   gtk_box_pack_start (GTK_BOX (box), hbox, FALSE, FALSE, BORDER);
   */
