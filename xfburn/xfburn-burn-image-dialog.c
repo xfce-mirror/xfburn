@@ -66,7 +66,7 @@ typedef struct
 {
   GtkWidget *chooser_image;
   GtkWidget *image_label;
-  
+
   GtkWidget *device_box;
 
   GtkWidget *check_eject;
@@ -153,7 +153,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 {
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG (obj)));
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (obj);
-  
+
   GdkPixbuf *icon = NULL;
   GtkFileFilter *filter;
   GtkWidget *frame;
@@ -168,7 +168,7 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "stock_xfburn", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
   gtk_window_set_icon (GTK_WINDOW (obj), icon);
   g_object_unref (icon);
-  
+
   /* file */
   priv->chooser_image = gtk_file_chooser_button_new (_("Image to burn"), GTK_FILE_CHOOSER_ACTION_OPEN);
   gtk_widget_show (priv->chooser_image);
@@ -194,18 +194,18 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   frame = xfce_gtk_frame_box_new_with_content (_("Image to burn"), priv->chooser_image);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-  
+
   /* red label for image */
   priv->image_label = gtk_label_new ("");
   gtk_widget_show (priv->image_label);
   gtk_box_pack_start (GTK_BOX (box), priv->image_label, FALSE, FALSE, 0);
   update_image_label (GTK_FILE_CHOOSER (priv->chooser_image), obj);
   g_signal_connect (G_OBJECT (priv->chooser_image), "selection-changed", G_CALLBACK (update_image_label), obj);
-    
+
   /* devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS | SHOW_DVD_WRITERS | SHOW_MODE_SELECTION | SHOW_SPEED_SELECTION);
   gtk_widget_show (priv->device_box);
-  
+
   frame = xfce_gtk_frame_box_new_with_content (_("Burning device"), priv->device_box);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
@@ -281,7 +281,7 @@ xfburn_burn_image_dialog_finalize (GObject *object)
 /*************/
 /* internals */
 /*************/
-static gboolean 
+static gboolean
 prepare_params (ThreadBurnIsoParams *params, struct burn_drive *drive, gchar **failure_msg)
 {
   struct burn_write_opts * burn_options;
@@ -383,7 +383,7 @@ create_disc (ThreadBurnIsoParams *params, gchar **failure_msg)
     *failure_msg = _("An error occurred in the burn backend");
     return FALSE;
   }
-  
+
   burn_session_add_track (params->session, params->track, BURN_POS_END);
 
   return TRUE;
@@ -407,14 +407,14 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 
     // this assumes that an iso image can only have one track
     sectors[0] = burn_disc_get_sectors (params->disc);
-    
+
     xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Burning image..."));
 
     fifos = g_new(struct burn_source *,1);
     fifos[0] = params->fifo_src;
 
     xfburn_perform_burn_write (dialog_progress, drive_info->drive, params->write_mode, params->burn_options, DATA_BYTES_PER_SECTOR, params->disc, fifos, sectors);
- 
+
     xfburn_device_release (drive_info, params->eject);
   } else {
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Unable to grab the drive."));
@@ -432,7 +432,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 void
 burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error)
 {
-  xfce_dialog_show_error (NULL, NULL, "%s", msg_error); 
+  xfce_dialog_show_error (NULL, NULL, "%s", msg_error);
 }
 
 static void
@@ -466,7 +466,7 @@ cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer u
 
     priv->params->dialog_progress = dialog_progress;
     gtk_widget_show (dialog_progress);
-    
+
     g_thread_new ("burn_iso", (GThreadFunc) thread_burn_iso, priv->params);
   } else {
     xfburn_main_leave_window ();
@@ -480,7 +480,7 @@ update_image_label (GtkFileChooser *chooser, XfburnBurnImageDialog * dialog)
 
   if (gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser)) == NULL) {
     gtk_label_set_markup (GTK_LABEL(priv->image_label),
-                          _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"));   
+                          _("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please select an image to burn</span>"));
   } else {
     gtk_label_set_text (GTK_LABEL(priv->image_label), "");
     check_burn_button (dialog);
@@ -506,7 +506,7 @@ check_burn_button (XfburnBurnImageDialog * dialog)
   }
 }
 
-static gboolean 
+static gboolean
 check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct burn_drive *drive)
 {
   enum burn_disc_status disc_state;
@@ -525,7 +525,7 @@ check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct
   } else if (disc_state != BURN_DISC_BLANK) {
     if (disc_state == BURN_DISC_FULL)
       burn_image_dialog_error (dialog, _("Closed disc with data detected. Need blank or appendable disc"));
-    else if (disc_state == BURN_DISC_EMPTY) 
+    else if (disc_state == BURN_DISC_EMPTY)
       burn_image_dialog_error (dialog, _("No disc detected in drive"));
     else {
       burn_image_dialog_error (dialog, _("Cannot recognize state of drive and disc"));
@@ -551,7 +551,7 @@ check_media (XfburnBurnImageDialog * dialog, ThreadBurnIsoParams *params, struct
   return TRUE;
 }
 
-static void 
+static void
 cb_clicked_ok (GtkButton *button, gpointer user_data)
 {
   XfburnBurnImageDialog * dialog = (XfburnBurnImageDialog *) user_data;
@@ -582,7 +582,7 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
   device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
   speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
   write_mode = xfburn_device_box_get_mode (XFBURN_DEVICE_BOX (priv->device_box));
-      
+
   params = g_new0 (ThreadBurnIsoParams, 1);
   params->device = device;
   params->iso_path = iso_path;
@@ -592,7 +592,7 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
   params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
   params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
   params->stream_recording = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_stream_recording));
-  
+
   if (!xfburn_device_grab (device, &drive_info)) {
     burn_image_dialog_error (dialog, _("Unable to grab the drive."));
 
