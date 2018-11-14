@@ -5,12 +5,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -53,6 +53,7 @@
 #include "xfburn-burn-audio-cd-composition-dialog.h"
 #include "xfburn-transcoder.h"
 #include "xfburn-settings.h"
+#include "xfburn-main.h"
 
 #define XFBURN_AUDIO_COMPOSITION_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_AUDIO_COMPOSITION, XfburnAudioCompositionPrivate))
 
@@ -156,18 +157,18 @@ static void thread_add_files_action (ThreadAddFilesActionParams *params);
 static void thread_add_files_drag (ThreadAddFilesDragParams *params);
 
 /* thread helpers */
-static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * dc, 
-                                                   GtkTreeModel * model, const gchar * path, GtkTreeIter * iter, 
+static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * dc,
+                                                   GtkTreeModel * model, const gchar * path, GtkTreeIter * iter,
                                                    GtkTreeIter * insertion, GtkTreeViewDropPosition position);
-static gboolean thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeModel * model, const gchar * path, 
+static gboolean thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeModel * model, const gchar * path,
                                          GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
 static gboolean show_add_home_question_dialog (void);
-                                  
+
 typedef struct
 {
   gchar *filename;
   gboolean modified;
- 
+
   guint n_tracks;
 
   GList *full_paths_to_add;
@@ -181,7 +182,7 @@ typedef struct
 
   void *thread_params;
   GHashTable *warned_about;
-  
+
   GtkActionGroup *action_group;
   GtkUIManager *ui_manager;
 
@@ -257,9 +258,9 @@ xfburn_audio_composition_get_type (void)
       NULL,                                               /* interface_finalize */
       NULL                                                /* interface_data */
     };
-    
+
     audio_composition_type = g_type_register_static (GTK_TYPE_VBOX, "XfburnAudioComposition", &audio_composition_info, 0);
-    
+
     g_type_add_interface_static (audio_composition_type, XFBURN_TYPE_COMPOSITION, &composition_info);
   }
 
@@ -272,9 +273,9 @@ xfburn_audio_composition_class_init (XfburnAudioCompositionClass * klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   g_type_class_add_private (klass, sizeof (XfburnAudioCompositionPrivate));
-  
+
   parent_class = g_type_class_peek_parent (klass);
-  
+
   object_class->finalize = xfburn_audio_composition_finalize;
 }
 
@@ -291,7 +292,7 @@ static void
 xfburn_audio_composition_init (XfburnAudioComposition * composition)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
-  
+
   gint x, y;
   ExoToolbarsModel *model_toolbar;
   gint toolbar_position;
@@ -307,7 +308,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   GtkAction *action = NULL;
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
-  
+
 #if 0 /* CDTEXT */
   const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
     "<menuitem action=\"rename-artist\"/>" "<menuitem action=\"rename-title\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
@@ -328,7 +329,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
     strncpy (trans_name, xfburn_transcoder_get_name (priv->trans), MAX_NAME_LENGTH);
 
   instances++;
-  
+
   /* initialize static members */
   screen = gtk_widget_get_screen (GTK_WIDGET (composition));
   icon_theme = gtk_icon_theme_get_for_screen (screen);
@@ -353,7 +354,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   hbox_toolbar = gtk_hbox_new (FALSE, 5);
   gtk_box_pack_start (GTK_BOX (composition), hbox_toolbar, FALSE, TRUE, 0);
   gtk_widget_show (hbox_toolbar);
-  
+
   /* toolbar */
   model_toolbar = exo_toolbars_model_new ();
   exo_toolbars_model_set_actions (model_toolbar, (gchar **) toolbar_actions, G_N_ELEMENTS (toolbar_actions));
@@ -373,7 +374,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gtk_box_pack_start (GTK_BOX (hbox_toolbar), priv->toolbar, TRUE, TRUE, 0);
   gtk_widget_show (priv->toolbar);
 
-    
+
   /* content treeview */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -455,9 +456,9 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   g_signal_connect (G_OBJECT (priv->content), "button-press-event",
                     G_CALLBACK (cb_treeview_button_pressed), composition);
   g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_selection_changed), composition);
-                    
+
   /* adding progress window */
-  priv->progress = GTK_WIDGET (xfburn_adding_progress_new ()); 
+  priv->progress = GTK_WIDGET (xfburn_adding_progress_new ());
   g_signal_connect (G_OBJECT (priv->progress), "adding-done", G_CALLBACK (cb_adding_done), composition);
   gtk_window_set_transient_for (GTK_WINDOW (priv->progress), GTK_WINDOW (xfburn_main_window_get_instance ()));
   /* FIXME: progress should have a busy cursor */
@@ -477,7 +478,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
                                         GDK_ACTION_COPY | GDK_ACTION_MOVE);
   g_signal_connect (G_OBJECT (priv->content), "drag-data-received", G_CALLBACK (cb_content_drag_data_rcv),
                     composition);
-                    
+
   action = gtk_action_group_get_action (priv->action_group, "remove-file");
   gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
 
@@ -488,9 +489,9 @@ static void
 xfburn_audio_composition_finalize (GObject * object)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (object);
-  
+
   g_free (priv->filename);
-  
+
   /* free static members */
   instances--;
   if (instances == 0) {
@@ -511,7 +512,7 @@ xfburn_audio_composition_finalize (GObject * object)
      when this tab is closed, it does not take ownership of the model, which then
      must be unref'ed manually */
   g_object_unref (priv->model);
-  
+
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -544,7 +545,7 @@ generate_audio_src (XfburnAudioComposition * ac)
       XfburnAudioTrack *atrack;
       gint pos;
 
-      gtk_tree_model_get (model, &iter, 
+      gtk_tree_model_get (model, &iter,
                           AUDIO_COMPOSITION_COLUMN_POS, &pos,
                           AUDIO_COMPOSITION_COLUMN_TRACK, &atrack,
                           -1);
@@ -572,7 +573,7 @@ cb_begin_burn (XfburnDiscUsage * du, XfburnAudioComposition * dc)
   GSList *src;
 
   src = generate_audio_src (dc);
-  
+
   switch (xfburn_disc_usage_get_disc_type (du)) {
   case CD_DISC:
     dialog = xfburn_burn_audio_cd_composition_dialog_new (src);
@@ -594,14 +595,14 @@ cb_selection_changed (GtkTreeSelection *selection, XfburnAudioComposition * dc)
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   gint n_selected_rows;
   GtkAction *action = NULL;
-  
-  
+
+
   n_selected_rows = gtk_tree_selection_count_selected_rows (selection);
   if (n_selected_rows == 0) {
     action = gtk_action_group_get_action (priv->action_group, "add-file");
     gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
     action = gtk_action_group_get_action (priv->action_group, "remove-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);  
+    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
   } else if (n_selected_rows == 1) {
     action = gtk_action_group_get_action (priv->action_group, "add-file");
     gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
@@ -611,7 +612,7 @@ cb_selection_changed (GtkTreeSelection *selection, XfburnAudioComposition * dc)
     action = gtk_action_group_get_action (priv->action_group, "add-file");
     gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
     action = gtk_action_group_get_action (priv->action_group, "remove-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);     
+    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
   }
 }
 
@@ -619,10 +620,10 @@ static gboolean
 cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
-  
+
   if ((event->button == 1) && (event->type == GDK_BUTTON_PRESS)) {
     GtkTreePath *path;
-    
+
     if (gtk_tree_view_get_path_at_pos (treeview, event->x, event->y, &path, NULL, NULL, NULL)) {
       gtk_tree_path_free (path);
     } else {
@@ -631,10 +632,10 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
       selection = gtk_tree_view_get_selection (treeview);
       gtk_tree_selection_unselect_all (selection);
     }
-    
+
     return FALSE;
   }
-  
+
   if ((event->button == 3) && (event->type == GDK_BUTTON_PRESS)) {
     GtkTreeSelection *selection;
     GtkTreePath *path;
@@ -703,14 +704,14 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
 {
   GtkTreePath *current_path = NULL;
   GtkTreeIter current_iter;
-  
+
   current_path = gtk_tree_path_copy (path);
   for (;gtk_tree_path_prev (current_path););
-   
+
   if (gtk_tree_model_get_iter (model, &current_iter, current_path)) {
     do {
       gchar *current_filename = NULL;
-      
+
       if (skip_path && gtk_tree_path_compare (path, current_path) == 0) {
         gtk_tree_path_next (current_path);
         continue;
@@ -723,12 +724,12 @@ file_exists_on_same_level (GtkTreeModel * model, GtkTreePath * path, gboolean sk
         gtk_tree_path_free (current_path);
         return TRUE;
       }
-      
+
       g_free (current_filename);
       gtk_tree_path_next (current_path);
     } while (gtk_tree_model_iter_next (model, &current_iter));
   }
-  
+
   gtk_tree_path_free (current_path);
   return FALSE;
 }
@@ -738,7 +739,7 @@ static void
 cb_cell_artist_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
-  
+
   GtkTreeIter iter;
   GtkTreeModel *model;
   GtkTreePath *real_path;
@@ -757,7 +758,7 @@ static void
 cb_cell_title_edited (GtkCellRenderer * renderer, gchar * path, gchar * newtext, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
-  
+
   GtkTreeIter iter;
   GtkTreeModel *model;
   GtkTreePath *real_path;
@@ -830,7 +831,7 @@ static void
 action_rename_selection_artist (GtkAction * action, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
-  
+
   GtkTreeSelection *selection;
   GtkTreeModel *model;
   GList *list;
@@ -844,7 +845,7 @@ action_rename_selection_artist (GtkAction * action, XfburnAudioComposition * dc)
   column = gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 2);
 
   g_assert (column != NULL);
-  
+
   gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->content), path, column, TRUE);
 
   gtk_tree_path_free (path);
@@ -855,7 +856,7 @@ static void
 action_rename_selection_title (GtkAction * action, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
-  
+
   GtkTreeSelection *selection;
   GtkTreeModel *model;
   GList *list;
@@ -869,7 +870,7 @@ action_rename_selection_title (GtkAction * action, XfburnAudioComposition * dc)
   column = gtk_tree_view_get_column (GTK_TREE_VIEW (priv->content), 3);
 
   g_assert (column != NULL);
-  
+
   gtk_tree_view_set_cursor (GTK_TREE_VIEW (priv->content), path, column, TRUE);
 
   gtk_tree_path_free (path);
@@ -884,15 +885,15 @@ remove_row_reference (GtkTreeRowReference *reference, XfburnAudioCompositionPriv
   GtkTreeModel *model;
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
-  
+
   path = gtk_tree_row_reference_get_path (reference);
   if (path) {
     GtkTreeIter iter;
-    
+
     if (gtk_tree_model_get_iter (model, &iter, path)) {
       //GtkTreeIter parent, iter_temp;
       int secs = 0;
-      
+
       gtk_tree_model_get (model, &iter, AUDIO_COMPOSITION_COLUMN_LENGTH, &secs, -1);
       xfburn_disc_usage_sub_size (XFBURN_DISC_USAGE (priv->disc_usage), secs);
 
@@ -906,7 +907,7 @@ remove_row_reference (GtkTreeRowReference *reference, XfburnAudioCompositionPriv
         gtk_tree_model_get (model, &parent, AUDIO_COMPOSITION_COLUMN_SIZE, &old_size, -1);
 
         humansize = xfburn_humanreadable_filesize (old_size - size);
-        gtk_tree_store_set (GTK_TREE_STORE (model), &parent, 
+        gtk_tree_store_set (GTK_TREE_STORE (model), &parent,
                             AUDIO_COMPOSITION_COLUMN_SIZE, old_size - size, -1);
 
         iter_temp = parent;
@@ -914,14 +915,14 @@ remove_row_reference (GtkTreeRowReference *reference, XfburnAudioCompositionPriv
         g_free (humansize);
       }
       */
-      
+
       gtk_tree_store_remove (GTK_TREE_STORE (model), &iter);
       priv->n_tracks--;
     }
-    
+
     gtk_tree_path_free (path);
   }
-  
+
   gtk_tree_row_reference_free (reference);
 }
 
@@ -929,12 +930,12 @@ static void
 action_remove_selection (GtkAction * action, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
-  
+
   GtkTreeSelection *selection;
   GtkTreeModel *model;
   GList *list_paths = NULL, *el;
   GList *references = NULL;
-  
+
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->content));
   list_paths = gtk_tree_selection_get_selected_rows (selection, &model);
 
@@ -942,18 +943,18 @@ action_remove_selection (GtkAction * action, XfburnAudioComposition * dc)
   while (el) {
     GtkTreePath *path = NULL;
     GtkTreeRowReference *reference = NULL;
-  
+
     path = (GtkTreePath *) el->data;
     reference = gtk_tree_row_reference_new (model, path);
     gtk_tree_path_free (path);
-  
+
     if (reference)
       references = g_list_prepend (references, reference);
-    
+
     el = g_list_next (el);
-  } 
+  }
   g_list_free (list_paths);
-  
+
   g_list_foreach (references, (GFunc) remove_row_reference, priv);
   g_list_free (references);
 }
@@ -964,9 +965,9 @@ action_add_selected_files (GtkAction *action, XfburnAudioComposition *dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   XfburnFileBrowser *browser = xfburn_main_window_get_file_browser (xfburn_main_window_get_instance ());
-  
+
   gchar *selected_files = NULL;
-  
+
   xfburn_busy_cursor (priv->content);
   if (xfburn_settings_get_boolean("show-filebrowser", FALSE)) {
     selected_files = xfburn_file_browser_get_selection (browser);
@@ -980,6 +981,10 @@ action_add_selected_files (GtkAction *action, XfburnAudioComposition *dc)
                                           GTK_RESPONSE_ACCEPT,
                                           NULL);
     gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER(dialog), TRUE);
+
+    if(xfburn_main_has_initial_dir ()) {
+      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), xfburn_main_get_initial_dir ());
+    }
 
     if (gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT) {
         GSList *list = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
@@ -1000,7 +1005,7 @@ action_add_selected_files (GtkAction *action, XfburnAudioComposition *dc)
     }
     gtk_widget_destroy (dialog);
   }
-  
+
   if (selected_files) {
     GtkTreeSelection *selection;
     GList *selected_paths = NULL;
@@ -1012,23 +1017,23 @@ action_add_selected_files (GtkAction *action, XfburnAudioComposition *dc)
     params->dc = dc;
     params->type = -1;
     priv->path_where_insert = NULL;
-    
+
     selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->content));
     selected_paths = gtk_tree_selection_get_selected_rows (selection, NULL);
     params->model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
-    
+
     if (selected_paths) {
       priv->path_where_insert = gtk_tree_path_copy ((GtkTreePath *) (selected_paths->data));
 
       gtk_tree_model_get_iter (params->model, &params->iter_where_insert, priv->path_where_insert);
       gtk_tree_model_get (params->model, &params->iter_where_insert, AUDIO_COMPOSITION_COLUMN_TYPE, &params->type, -1);
     }
-    
+
     priv->selected_files = selected_files;
 
     priv->thread_params = params;
     g_thread_new ("audio_add_selected", (GThreadFunc) thread_add_files_action, params);
-    
+
     g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
     g_list_free (selected_paths);
   }
@@ -1038,12 +1043,12 @@ static void
 action_clear (GtkAction * action, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
-  
+
   GtkTreeModel *model;
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
   gtk_tree_store_clear (GTK_TREE_STORE (model));
-  
+
   xfburn_disc_usage_set_size (XFBURN_DISC_USAGE (priv->disc_usage), 0);
   priv->n_tracks = 0;
 }
@@ -1052,7 +1057,7 @@ static void
 action_info (GtkAction * action, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
-  
+
   xfce_dialog_show_info(NULL, NULL, "%s", xfburn_transcoder_get_description (priv->trans));
 }
 
@@ -1079,7 +1084,7 @@ cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
       gtk_tree_path_free (temp);
 
       references = g_list_prepend (references, reference);
-      
+
       row = g_list_next (row);
     }
 
@@ -1098,12 +1103,12 @@ set_modified (XfburnAudioCompositionPrivate *priv)
     XfburnMainWindow *mainwin;
     GtkUIManager *ui_manager;
     GtkActionGroup *action_group;
-  
+
     mainwin = xfburn_main_window_get_instance ();
     ui_manager = xfburn_main_window_get_ui_manager (mainwin);
-  
+
     action_group = (GtkActionGroup *) gtk_ui_manager_get_action_groups (ui_manager)->data;
-    
+
     action = gtk_action_group_get_action (action_group, "save-composition");
     gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
   */
@@ -1133,12 +1138,12 @@ notify_not_adding (XfburnAudioComposition * dc, GError *error)
 }
 
 static gboolean
-thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * dc, 
+thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * dc,
                                    GtkTreeModel * model, const gchar * path,
                                    GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
-  
+
   struct stat s;
 
   if ((stat (path, &s) == 0)) {
@@ -1151,7 +1156,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     if (!S_ISDIR (s.st_mode) && !S_ISREG (s.st_mode)) {
       return FALSE;
     }
-    
+
     //DBG ("Adding file %s (%s)", name, path);
 
     basename = g_path_get_basename (path);
@@ -1159,18 +1164,18 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       /* FIXME: is this really what we want? */
       /* don't add hidden files/directories */
 
-      g_free (basename);  
+      g_free (basename);
       return FALSE;
     }
     g_free (basename);
-    
+
     xfburn_adding_progress_pulse (XFBURN_ADDING_PROGRESS (priv->progress));
-    
+
     /* check if the filename is valid */
     gdk_threads_enter ();
     tree_path = gtk_tree_path_new_first ();
     gdk_threads_leave ();
-    
+
     gdk_threads_enter ();
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
       xfce_dialog_show_error (NULL, NULL, _("A file with the same name is already present in the composition."));
@@ -1181,7 +1186,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     }
     gtk_tree_path_free (tree_path);
     gdk_threads_leave ();
-    
+
     /* new directory */
     if (S_ISDIR (s.st_mode)) {
       GDir *dir = NULL;
@@ -1195,7 +1200,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
         g_warning ("unable to open directory : %s", error->message);
 
         g_error_free (error);
-        
+
         return FALSE;
       }
 
@@ -1206,7 +1211,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
         GtkTreeIter new_iter;
         gchar *new_path = NULL;
 
-        new_path = g_build_filename (path, filename, NULL);      
+        new_path = g_build_filename (path, filename, NULL);
         if (new_path) {
           guint64 size;
 
@@ -1214,21 +1219,21 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
             gdk_threads_enter ();
             gtk_tree_model_get (model, &new_iter, AUDIO_COMPOSITION_COLUMN_SIZE, &size, -1);
             gdk_threads_leave ();
-            total_size += size; 
+            total_size += size;
             if (iter_last == NULL)
               iter_last = g_new (GtkTreeIter, 1);
             *iter_last = new_iter;
             position = GTK_TREE_VIEW_DROP_AFTER;
             ret = TRUE;
           }
-          
+
           g_free (new_path);
         }
       }
 
       /* since we don't add the folder, the next song needs
        * to get added after the last one from this directory */
-      if (iter_last != NULL) 
+      if (iter_last != NULL)
         *iter = *iter_last;
 
       if (insertion == NULL)
@@ -1311,7 +1316,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     set_modified (priv);
     return ret;
   }
-  
+
   return FALSE;
 }
 
@@ -1333,7 +1338,7 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
     gchar * full_path = (gchar *) list_iter->data;
 
     g_message ("Adding %s to the audio composition... (might take a while)", full_path);
-    thread_add_file_to_list (params->dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
+    thread_add_file_to_list (params->dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);
 
     g_free (full_path);
   }
@@ -1378,7 +1383,7 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
     for (i=0; files[i] != NULL && files[i][0] != '\0'; i++) {
       GtkTreeIter iter;
       gchar *full_path = NULL;
-      
+
       if (g_str_has_prefix (files[i], "file://"))
         full_path = g_build_filename (&files[i][7], NULL);
       else if (g_str_has_prefix (files[i], "file:"))
@@ -1404,15 +1409,15 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
         gdk_threads_enter ();
         has_parent = gtk_tree_model_iter_parent (model, &parent, &iter_where_insert);
         gdk_threads_leave ();
-        
+
         if (has_parent)
-          thread_add_file_to_list (dc, model, full_path, &iter, &parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);  
-        else 
-          thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
+          thread_add_file_to_list (dc, model, full_path, &iter, &parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
+        else
+          thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);
       } else {
-        thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);  
+        thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);
       }
-      
+
       g_free (full_path);
 
     }
@@ -1423,13 +1428,13 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
 }
 
 static gboolean
-thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeModel * model, 
+thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeModel * model,
                          const gchar * path, GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   struct stat s;
   gboolean ret = FALSE;
-  
+
   if (xfburn_adding_progress_is_aborted (XFBURN_ADDING_PROGRESS (priv->progress))) {
     DBG ("Adding aborted");
     xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
@@ -1441,23 +1446,23 @@ thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeModel * model,
     gchar *basename = NULL;
 
     basename = g_path_get_basename (path);
-    
+
     ret = thread_add_file_to_list_with_name (basename, dc, model, path, iter, insertion, position);
-    
+
     g_free (basename);
   }
 
   return ret;
 }
 
-static GtkTreeIter * 
+static GtkTreeIter *
 copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, GtkTreeViewDropPosition position)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
-  
+
   GtkTreeModel *model;
   GtkTreeIter *iter_new = g_new0 (GtkTreeIter, 1);
-  
+
   GdkPixbuf *icon = NULL;
   gint pos = 0;
   gchar *name = NULL;
@@ -1468,26 +1473,26 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
   XfburnAudioTrack *atrack;
 
   GtkTreePath *path_level = NULL;
-  
+
   //guint n_children = 0;
   //guint i;
   GtkTreePath *path_src = NULL;
-  
+
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
-  
-  gtk_tree_model_get (model, src, 
-                      AUDIO_COMPOSITION_COLUMN_POS, &pos, 
+
+  gtk_tree_model_get (model, src,
+                      AUDIO_COMPOSITION_COLUMN_POS, &pos,
                       AUDIO_COMPOSITION_COLUMN_CONTENT, &name,
                       AUDIO_COMPOSITION_COLUMN_SIZE, &size,
-                      AUDIO_COMPOSITION_COLUMN_PATH, &path, 
-                      AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, &humanlength, 
+                      AUDIO_COMPOSITION_COLUMN_PATH, &path,
+                      AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, &humanlength,
                       AUDIO_COMPOSITION_COLUMN_TRACK, &atrack,
                       AUDIO_COMPOSITION_COLUMN_TYPE, &type,
                       -1);
-  
+
   //DBG ("dest = %p", dest);
   if (dest == NULL)
-    gtk_tree_store_append (GTK_TREE_STORE (model), iter_new, dest);                          
+    gtk_tree_store_append (GTK_TREE_STORE (model), iter_new, dest);
   else switch (position) {
     case GTK_TREE_VIEW_DROP_BEFORE:
       gtk_tree_store_insert_before (GTK_TREE_STORE (model), iter_new, NULL, dest);
@@ -1504,30 +1509,30 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
       } else {
         path_level = gtk_tree_path_new_first ();
       }
-    
+
       /*
       if (file_exists_on_same_level (model, path_level, FALSE, name)) {
         xfce_dialog_warning(NULL, _("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
         goto cleanup;
       }
       */
-      
+
       gtk_tree_path_free (path_level);
-      
-      gtk_tree_store_append (GTK_TREE_STORE (model), iter_new, dest);                          
+
+      gtk_tree_store_append (GTK_TREE_STORE (model), iter_new, dest);
       break;
   }
-  
+
   gtk_tree_store_set (GTK_TREE_STORE (model), iter_new,
-                      AUDIO_COMPOSITION_COLUMN_POS, pos, 
+                      AUDIO_COMPOSITION_COLUMN_POS, pos,
                       AUDIO_COMPOSITION_COLUMN_CONTENT, name,
                       AUDIO_COMPOSITION_COLUMN_SIZE, size,
-                      AUDIO_COMPOSITION_COLUMN_PATH, path, 
-                      AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, humanlength, 
+                      AUDIO_COMPOSITION_COLUMN_PATH, path,
+                      AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, humanlength,
                       AUDIO_COMPOSITION_COLUMN_TRACK, atrack,
                       AUDIO_COMPOSITION_COLUMN_TYPE, type,
                       -1);
-    
+
   /* copy children */
   /*
   n_children = gtk_tree_model_iter_n_children (model, src);
@@ -1542,22 +1547,22 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
   path_src = gtk_tree_model_get_path (model, src);
   if (n_children > 0 && gtk_tree_view_row_expanded (GTK_TREE_VIEW (priv->content), path_src)) {
     GtkTreePath *path_new = NULL;
-    
+
     path_new = gtk_tree_model_get_path (model, iter_new);
     gtk_tree_view_expand_row (GTK_TREE_VIEW (priv->content), path_new, FALSE);
-    
+
     gtk_tree_path_free (path_new);
   }
   */
   gtk_tree_path_free (path_src);
-  
+
 //cleanup:
   if (G_LIKELY (G_IS_OBJECT (icon)))
     g_object_unref (icon);
   g_free (name);
   g_free (humanlength);
   g_free (path);
-  
+
   return iter_new;
 }
 
@@ -1576,9 +1581,9 @@ remove_dummy_row ()
 static void
 cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guint y, GtkSelectionData * sd,
                           guint info, guint t, XfburnAudioComposition * composition)
-{    
+{
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
-  
+
   GtkTreeModel *model;
   GtkTreePath *path_where_insert = NULL;
   GtkTreeViewDropPosition position;
@@ -1586,7 +1591,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
   g_return_if_fail (sd);
   g_return_if_fail (sd->data);
-  
+
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
 
   /*
@@ -1603,9 +1608,9 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
   return;
   */
 
-  
+
   gtk_tree_view_get_dest_row_at_pos (GTK_TREE_VIEW (widget), x, y, &path_where_insert, &position);
-  
+
   xfburn_busy_cursor (priv->content);
 
   /* move a selection inside of the composition window */
@@ -1614,29 +1619,29 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     GtkTreeIter *iter = NULL;
     GtkTreeIter *iter_prev = NULL;
     AudioCompositionEntryType type_dest = -1;
-    
+
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
 
     row = selected_rows = *((GList **) sd->data);
-    
+
     if (path_where_insert) {
       iter_where_insert = g_new0 (GtkTreeIter, 1);
       gtk_tree_model_get_iter (model, iter_where_insert, path_where_insert);
       iter_prev = iter_where_insert;
-      
+
       gtk_tree_model_get (model, iter_where_insert, AUDIO_COMPOSITION_COLUMN_TYPE, &type_dest, -1);
-      
+
       if (type_dest == AUDIO_COMPOSITION_TYPE_RAW) {
         if (position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER)
           position = GTK_TREE_VIEW_DROP_AFTER;
         else if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE)
           position = GTK_TREE_VIEW_DROP_BEFORE;
-      }      
+      }
     } else {
       //position = GTK_TREE_VIEW_DROP_INTO_OR_AFTER;
       position = GTK_TREE_VIEW_DROP_AFTER;
     }
-    
+
     /* copy selection */
     while (row) {
       GtkTreePath *path_src = NULL;
@@ -1645,24 +1650,24 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       AudioCompositionEntryType type;
       guint64 size = 0;
       int secs = 0;
-      
+
       reference = (GtkTreeRowReference *) row->data;
-    
+
       path_src = gtk_tree_row_reference_get_path (reference);
       if (!path_src) {
         gtk_tree_row_reference_free (reference);
-        
+
         row = g_list_next (row);
         continue;
       }
-      
+
       /*
       DBG ("path_where_insert = %p", path_where_insert);
-      if (path_where_insert && (position == GTK_TREE_VIEW_DROP_AFTER || position == GTK_TREE_VIEW_DROP_BEFORE) 
+      if (path_where_insert && (position == GTK_TREE_VIEW_DROP_AFTER || position == GTK_TREE_VIEW_DROP_BEFORE)
           && (gtk_tree_path_get_depth (path_where_insert) == gtk_tree_path_get_depth (path_src))) {
           gtk_tree_path_free (path_src);
           gtk_tree_row_reference_free (reference);
-      
+
           row = g_list_next (row);
           continue;
       }
@@ -1672,25 +1677,25 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       gtk_tree_model_get (model, &iter_src, AUDIO_COMPOSITION_COLUMN_TYPE, &type,
                                             AUDIO_COMPOSITION_COLUMN_LENGTH, &secs,
                                             AUDIO_COMPOSITION_COLUMN_SIZE, &size, -1);
-      
+
       /* copy entry */
       if ((iter = copy_entry_to (composition, &iter_src, iter_prev, position)) != NULL) {
         GtkTreePath *path_parent = gtk_tree_path_copy (path_src);
-        
+
         if (dc->action == GDK_ACTION_MOVE) {
           /* remove source entry */
           /*
            * This shouldn't be able to happen anymore w/o folders
-          if (gtk_tree_path_up (path_parent) && path_where_insert && 
+          if (gtk_tree_path_up (path_parent) && path_where_insert &&
               !gtk_tree_path_is_descendant (path_where_insert, path_parent)) {
             // update parent size and humansize
-            GtkTreeIter iter_parent;          
+            GtkTreeIter iter_parent;
             guint64 old_size;
-            
-            gtk_tree_model_iter_parent (model, &iter_parent, &iter_src);                
+
+            gtk_tree_model_iter_parent (model, &iter_parent, &iter_src);
             gtk_tree_model_get (model, &iter_parent, AUDIO_COMPOSITION_COLUMN_SIZE, &old_size, -1);
-         
-            gtk_tree_store_set (GTK_TREE_STORE (model), &iter_parent, 
+
+            gtk_tree_store_set (GTK_TREE_STORE (model), &iter_parent,
                                 AUDIO_COMPOSITION_COLUMN_SIZE, old_size - size, -1);
           }
           */
@@ -1699,7 +1704,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         } else {
           xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), secs);
         }
-        
+
         gtk_tree_path_free (path_parent);
         g_free (iter_prev);
         iter_prev = iter;
@@ -1709,16 +1714,16 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
       gtk_tree_path_free (path_src);
       gtk_tree_row_reference_free (reference);
-      
+
       row = g_list_next (row);
     }
-    
+
     g_free (iter);
-    g_list_free (selected_rows);    
+    g_list_free (selected_rows);
     gtk_drag_finish (dc, TRUE, FALSE, t);
-    
+
     if (path_where_insert)
-      gtk_tree_path_free (path_where_insert);  
+      gtk_tree_path_free (path_where_insert);
 
     tracks_changed (composition);
     gtk_widget_hide (priv->progress);
@@ -1733,7 +1738,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     int i;
 
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
-    
+
     full_paths = (gchar *) gtk_selection_data_get_text (sd);
 
     files = g_strsplit ((gchar *) full_paths, "\n", -1);
@@ -1795,7 +1800,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       gtk_drag_finish (dc, FALSE, FALSE, t);
       cb_adding_done (XFBURN_ADDING_PROGRESS (priv->progress), composition);
     }
-  } 
+  }
   else if (sd->target == gdk_atom_intern ("text/uri-list", FALSE)) {
     GList *vfs_paths = NULL;
     GList *vfs_path;
@@ -1863,7 +1868,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       gtk_drag_finish (dc, FALSE, FALSE, t);
       xfburn_default_cursor (priv->content);
     }
-  } 
+  }
   else {
     g_warning ("Trying to receive an unsupported drag target, this should not happen.");
     gtk_drag_finish (dc, FALSE, FALSE, t);
@@ -1900,15 +1905,15 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
       gdk_threads_enter ();
       gtk_tree_model_get_iter (model, &iter_where_insert, priv->path_where_insert);
       gdk_threads_leave ();
-      
+
       if (thread_add_file_to_list (composition, model, full_path, &iter, &iter_where_insert, position)) {
-        if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE 
+        if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE
             || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER)
           gdk_threads_enter ();
           gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), priv->path_where_insert, FALSE);
           gdk_threads_leave ();
       }
-      
+
     } else  {
       thread_add_file_to_list (composition, model, full_path, &iter, NULL, position);
     }
@@ -1947,7 +1952,7 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
                         gpointer data, GError ** error)
 {
       g_error ("This method needs to get fixed, and does not work right now!");
-  
+
       /*
   LoadParserStruct * parserinfo = (LoadParserStruct *) data;
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (parserinfo->dc);
@@ -1968,8 +1973,8 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
 
       model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
       parent = g_queue_peek_head (parserinfo->queue_iter);
-          
-      add_file_to_list_with_name (attribute_values[i], parserinfo->dc, model, attribute_values[j], &iter, 
+
+      add_file_to_list_with_name (attribute_values[i], parserinfo->dc, model, attribute_values[j], &iter,
                                   parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
     }
   } else if (!strcmp (element_name, "directory")) {
@@ -1981,8 +1986,8 @@ load_composition_start (GMarkupParseContext * context, const gchar * element_nam
       GtkTreeModel *model;
 
       model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
-      
-      //add_directory_to_list (attribute_values[i], parserinfo->dc, model, attribute_values[j], &iter, parent);    
+
+      //add_directory_to_list (attribute_values[i], parserinfo->dc, model, attribute_values[j], &iter, parent);
     }
   }
       */
@@ -1992,13 +1997,13 @@ static void
 load_composition_end (GMarkupParseContext * context, const gchar * element_name, gpointer user_data, GError ** error)
 {
   LoadParserStruct *parserinfo = (LoadParserStruct *) user_data;
-  
+
   if (!parserinfo->started)
     return;
-  
+
   if (!strcmp (element_name, "xfburn-composition"))
     parserinfo->started = FALSE;
-  
+
   if (!strcmp (element_name, "directory"))
     parserinfo->queue_iter = g_queue_pop_head (parserinfo->queue_iter);
 }
@@ -2055,7 +2060,7 @@ load_from_file (XfburnComposition * composition, const gchar * filename)
   }
 
   g_queue_free (parserinfo.queue_iter);
-  
+
 cleanup:
   if (gpcontext)
     g_markup_parse_context_free (gpcontext);
@@ -2091,20 +2096,20 @@ foreach_save (GtkTreeModel * model, GtkTreePath * path, GtkTreeIter * iter, Comp
   AudioCompositionEntryType type;
 
   space = g_strnfill (gtk_tree_path_get_depth (path), '\t');
-  
+
   for (i = info->last_depth; i > gtk_tree_path_get_depth (path); i--) {
     gchar *space2 = NULL;
 
     space2 = g_strnfill (i - 1, '\t');
     fprintf (info->file_content, "%s</directory>\n", space2);
-    
+
     g_free (space2);
   }
-  
+
   gtk_tree_model_get (model, iter, AUDIO_COMPOSITION_COLUMN_CONTENT, &name,
                       AUDIO_COMPOSITION_COLUMN_PATH, &source_path,
                       AUDIO_COMPOSITION_COLUMN_TYPE, &type, -1);
-  
+
   fprintf (info->file_content, "%s", space);
   switch (type) {
   case AUDIO_COMPOSITION_TYPE_RAW:
@@ -2114,7 +2119,7 @@ foreach_save (GtkTreeModel * model, GtkTreePath * path, GtkTreeIter * iter, Comp
 
 
   info->last_depth = gtk_tree_path_get_depth (path);
-  
+
   g_free (space);
   g_free (name);
   g_free (source_path);
@@ -2130,13 +2135,13 @@ save_to_file (XfburnComposition * composition)
   GtkTreeModel *model;
   CompositionSaveInfo info;
   gint i;
-    
+
   if (!(priv->filename)) {
     priv->filename = g_strdup ("/tmp/gna");
-    
+
     g_signal_emit_by_name (G_OBJECT (composition), "name-changed", priv->filename);
   }
-  
+
   file_content = fopen (priv->filename, "w+");
   fprintf (file_content, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n");
   fprintf (file_content, "<xfburn-composition version=\"0.1\">\n");
@@ -2151,10 +2156,10 @@ save_to_file (XfburnComposition * composition)
 
     space2 = g_strnfill (i - 1, '\t');
     fprintf (info.file_content, "%s</directory>\n", space2);
-    
+
     g_free (space2);
   }
-    
+
   fprintf (file_content, "</xfburn-composition>\n");
   fclose (file_content);
 }
@@ -2168,12 +2173,12 @@ xfburn_audio_composition_new (void)
   return g_object_new (xfburn_audio_composition_get_type (), NULL);
 }
 
-void 
+void
 xfburn_audio_composition_add_files (XfburnAudioComposition *dc, GSList * filelist)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   ThreadAddFilesCLIParams *params;
-  
+
   if (filelist != NULL) {
     params = g_new (ThreadAddFilesCLIParams, 1);
 
@@ -2192,7 +2197,7 @@ void
 xfburn_audio_composition_hide_toolbar (XfburnAudioComposition * composition)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
-  
+
   gtk_widget_hide (priv->toolbar);
 }
 
@@ -2200,7 +2205,7 @@ void
 xfburn_audio_composition_show_toolbar (XfburnAudioComposition * composition)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
-  
+
   gtk_widget_show (priv->toolbar);
 }
 

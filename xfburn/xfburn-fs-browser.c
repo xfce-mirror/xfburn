@@ -30,6 +30,8 @@
 #include "xfburn-data-composition.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
+#include "xfburn-main.h"
+
 
 /* prototypes */
 static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass);
@@ -110,7 +112,7 @@ xfburn_fs_browser_init (XfburnFsBrowser * browser)
 
   g_signal_connect (G_OBJECT (browser), "row-expanded", G_CALLBACK (cb_browser_row_expanded), browser);
   g_signal_connect (G_OBJECT (browser), "row-activated", G_CALLBACK (cb_browser_row_activated), browser);
-  
+
   /* load the directory list */
   xfburn_fs_browser_refresh (browser);
 
@@ -225,7 +227,7 @@ cb_browser_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
 {
   if (info == DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN) {
     gchar *full_path = NULL;
-    
+
     full_path = xfburn_fs_browser_get_selection (browser);
     gtk_selection_data_set_text (data, full_path, -1);
     g_free (full_path);
@@ -243,7 +245,7 @@ void
 xfburn_fs_browser_refresh (XfburnFsBrowser * browser)
 {
   GtkTreeModel *model;
-  GtkTreeIter iter_home, iter_root;
+  GtkTreeIter iter_initial, iter_home, iter_root;
   int x, y;
   gchar *text;
   GdkScreen *screen;
@@ -258,11 +260,31 @@ xfburn_fs_browser_refresh (XfburnFsBrowser * browser)
 
   gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
 
+  /* load the initial dir, if set */
+  if (xfburn_main_has_initial_dir ()) {
+    text = g_path_get_basename (xfburn_main_get_initial_dir ());
+
+    screen = gtk_widget_get_screen (GTK_WIDGET (browser));
+    icon_theme = gtk_icon_theme_get_for_screen (screen);
+    icon = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-directory", x, 0, NULL);
+
+    gtk_tree_store_append (GTK_TREE_STORE (model), &iter_initial, NULL);
+    gtk_tree_store_set (GTK_TREE_STORE (model), &iter_initial,
+                        FS_BROWSER_COLUMN_ICON, icon,
+                        FS_BROWSER_COLUMN_DIRECTORY, text, FS_BROWSER_COLUMN_PATH, xfburn_main_get_initial_dir (), -1);
+    if (icon)
+      g_object_unref (icon);
+    g_free (text);
+
+    load_directory_in_browser (browser, xfburn_main_get_initial_dir (), &iter_initial);
+  }
+
+
   /* load the user's home dir */
   text = g_strdup_printf (_("%s's home"), g_get_user_name ());
 
   screen = gtk_widget_get_screen (GTK_WIDGET (browser));
-  icon_theme = gtk_icon_theme_get_for_screen (screen);  
+  icon_theme = gtk_icon_theme_get_for_screen (screen);
   icon = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-home", x, 0, NULL);
 
   gtk_tree_store_append (GTK_TREE_STORE (model), &iter_home, NULL);
@@ -286,12 +308,21 @@ xfburn_fs_browser_refresh (XfburnFsBrowser * browser)
 
   load_directory_in_browser (browser, "/", &iter_root);
 
-  /* set cursor on home dir row */
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
-  gtk_tree_selection_select_iter (selection, &iter_home);
 
-  /* expand the home dir row */
-  path = gtk_tree_model_get_path (model, &iter_home);
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
+  if (xfburn_main_has_initial_dir ()) {
+    /* set cursor on initial dir row */
+    gtk_tree_selection_select_iter (selection, &iter_initial);
+
+    /* expand the initial dir row */
+    path = gtk_tree_model_get_path (model, &iter_initial);
+  } else {
+    /* set cursor on home dir row */
+    gtk_tree_selection_select_iter (selection, &iter_home);
+
+    /* expand the home dir row */
+    path = gtk_tree_model_get_path (model, &iter_home);
+  }
   gtk_tree_view_expand_row (GTK_TREE_VIEW (browser), path, FALSE);
   gtk_tree_path_free (path);
 }
@@ -308,12 +339,12 @@ xfburn_fs_browser_get_selection (XfburnFsBrowser *browser)
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
   if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
     gchar *path = NULL;
-   
+
     gtk_tree_model_get (model, &iter, FS_BROWSER_COLUMN_PATH, &path, -1);
 
     full_path = g_strdup_printf ("file://%s", path);
     g_free (path);
   }
-  
+
   return full_path;
 }

@@ -35,6 +35,7 @@
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
 #include "xfburn-device-list.h"
+#include "xfburn-main.h"
 
 /***********/
 /* cursors */
@@ -72,7 +73,7 @@ xfburn_humanreadable_filesize (guint64 size)
 
   if (!xfburn_settings_get_boolean ("human-readable-units", TRUE))
     return g_strdup_printf ("%lu B", (long unsigned int) size);
-  
+
   /* copied from GnomeBaker */
 
   while (human_size > 1024 && unit < 4) {
@@ -124,21 +125,26 @@ xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent)
 {
   GtkWidget *dialog;
   const gchar *text;
-  
+
   text = gtk_entry_get_text (entry);
 
   dialog = gtk_file_chooser_dialog_new (_("Select command"), parent, GTK_FILE_CHOOSER_ACTION_SAVE, GTK_STOCK_CANCEL,
                                         GTK_RESPONSE_CANCEL, GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL);
+
+  if(xfburn_main_has_initial_dir ()) {
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), xfburn_main_get_initial_dir ());
+  }
+
   if (strlen (text) > 0)
     gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (dialog), text);
-  
+
   if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
     gchar *filename = NULL;
-    
+
     filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
     gtk_entry_set_text (entry, filename);
     g_free (filename);
-  } 
+  }
 
   gtk_widget_destroy (dialog);
 }
@@ -207,7 +213,7 @@ xfburn_capture_libburn_messages (void)
 {
   int ret;
 
-#ifdef DEBUG_LIBBURN 
+#ifdef DEBUG_LIBBURN
   ret = burn_msgs_set_severities ("NEVER", "DEBUG", libburn_msg_prefix);
 #else
   ret = burn_msgs_set_severities ("ALL", "NEVER", libburn_msg_prefix);
@@ -222,7 +228,7 @@ xfburn_console_libburn_messages (void)
 {
   int ret;
 
-#ifdef DEBUG_LIBBURN 
+#ifdef DEBUG_LIBBURN
   ret = burn_msgs_set_severities ("NEVER", "DEBUG", libburn_msg_prefix);
 #else
   ret = burn_msgs_set_severities ("NEVER", "FATAL", libburn_msg_prefix);
@@ -230,7 +236,7 @@ xfburn_console_libburn_messages (void)
 
   if (ret <= 0)
     g_warning ("Failed to set libburn message severities");
- 
+
 }
 
 int

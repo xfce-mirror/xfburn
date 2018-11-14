@@ -5,12 +5,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -68,29 +68,24 @@ static gboolean add_data_composition = FALSE;
 static gboolean add_audio_composition = FALSE;
 static gboolean blank = FALSE;
 static gchar *transcoder_selection = NULL;
-#if 0 /* INITIAL_DIRECTORY_OPTION */
 static gchar *initial_dir = NULL;
-#endif
 
 static GOptionEntry optionentries[] = {
-  { "burn-image", 'i', G_OPTION_FLAG_OPTIONAL_ARG /* || G_OPTION_FLAG_FILENAME */, G_OPTION_ARG_CALLBACK, &parse_option, 
+  { "burn-image", 'i', G_OPTION_FLAG_OPTIONAL_ARG /* || G_OPTION_FLAG_FILENAME */, G_OPTION_ARG_CALLBACK, &parse_option,
     "Open the burn image dialog, optionally followed by the image filename", NULL },
-  { "blank", 'b', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option, 
+  { "blank", 'b', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option,
     "Open the blank disc dialog", NULL },
-  { "data-composition", 'd', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option, 
+  { "data-composition", 'd', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option,
     "Start a data composition, optionally followed by files/directories to be added to the composition", NULL },
-  { "audio-composition", 'a', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option, 
+  { "audio-composition", 'a', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option,
     "Start an audio composition, optionally followed by files/directories to be added to the composition", NULL },
-  { "transcoder", 't', 0, G_OPTION_ARG_STRING, &transcoder_selection, 
+  { "transcoder", 't', 0, G_OPTION_ARG_STRING, &transcoder_selection,
     "Select the transcoder, run with --transcoder=list to see the available ones", NULL },
-#if 0 /* INITIAL_DIRECTORY_OPTION */
-/* Implementing this does not seem worth the effort */
-  { "directory", 'D', G_OPTION_FLAG_OPTIONAL_ARG , G_OPTION_ARG_CALLBACK, &parse_option, 
+  { "directory", 'D', G_OPTION_FLAG_OPTIONAL_ARG , G_OPTION_ARG_CALLBACK, &parse_option,
     "Start the file browser in the specified directory, or the current directory if none is specified (the default is to start in your home directory)", NULL },
-#endif
-  { "version", 'V', 0 , G_OPTION_ARG_NONE, &show_version, 
+  { "version", 'V', 0 , G_OPTION_ARG_NONE, &show_version,
     "Display program version and exit", NULL },
-  { "main", 'm', 0, G_OPTION_ARG_NONE, &show_main, 
+  { "main", 'm', 0, G_OPTION_ARG_NONE, &show_main,
     "Show main program even when other action is specified on the command line.", NULL },
   { NULL, ' ', 0, 0, NULL, NULL, NULL }
 };
@@ -105,7 +100,7 @@ xfburn_main_enter_window (void)
     window_counter++;
 }
 
-void 
+void
 xfburn_main_leave_window (void)
 {
   /* if a main window is present, then it is in control */
@@ -124,7 +119,7 @@ xfburn_main_enter_main_window (void)
   window_counter = -42;
 }
 
-#if 0 /* INITIAL_DIRECTORY_OPTION */
+
 const gchar *
 xfburn_main_get_initial_dir ()
 {
@@ -133,7 +128,15 @@ xfburn_main_get_initial_dir ()
   else
     return xfce_get_homedir ();
 }
-#endif
+
+const gboolean *
+xfburn_main_has_initial_dir ()
+{
+  if (initial_dir)
+    return TRUE;
+  else
+    return FALSE;
+}
 
 
 /* private functions */
@@ -152,13 +155,11 @@ static gboolean parse_option (const gchar *option_name, const gchar *value,
     add_audio_composition = TRUE;
   } else if (strcmp (option_name, "-b") == 0 || strcmp (option_name, "--blank") == 0) {
     blank = TRUE;
-#if 0 /* INITIAL_DIRECTORY_OPTION */
   } else if (strcmp (option_name, "-D") == 0 || strcmp (option_name, "--directory") == 0) {
     if (value == NULL)
       initial_dir = g_get_current_dir ();
     else
       initial_dir = g_strdup(value);
-#endif
   } else {
     g_set_error (error, 0, G_OPTION_ERROR_FAILED, "Invalid command line option. Please report, this is a bug.");
     return FALSE;
@@ -198,7 +199,7 @@ main (int argc, char **argv)
   g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
    */
 #endif
-  
+
   g_set_application_name (_("Xfburn"));
 
   gdk_threads_init ();
@@ -254,7 +255,7 @@ main (int argc, char **argv)
     g_print ("\tGStreamer support (built with %d.%d.%d, linked against %d.%d.%d%s)\n",
              GST_VERSION_MAJOR, GST_VERSION_MINOR, GST_VERSION_MICRO,
              gst_major, gst_minor, gst_micro, nano_str);
-             
+
 #endif
     exit (EXIT_SUCCESS);
   }
@@ -269,7 +270,7 @@ main (int argc, char **argv)
   DBG ("%s version %s for Xfce %s\n", PACKAGE, VERSION, xfce_version_string ());
 
   xfburn_settings_init ();
-  
+
 #ifdef HAVE_GUDEV
   error_msg = xfburn_udev_manager_create_global ();
   if (error_msg) {
@@ -349,7 +350,6 @@ main (int argc, char **argv)
     add_data_composition = TRUE;
   }
 
-
   if (show_main) {
     xfburn_main_enter_main_window ();
   }
@@ -392,7 +392,7 @@ main (int argc, char **argv)
     mainwin = xfburn_main_window_new ();
 
     gtk_widget_show (mainwin);
-  
+
     if (add_data_composition)
       xfburn_main_window_add_data_composition_with_files (XFBURN_MAIN_WINDOW (mainwin), argc-1, argv+1);
 
@@ -415,7 +415,7 @@ main (int argc, char **argv)
 
   xfburn_settings_flush ();
   xfburn_settings_free ();
-  
+
   burn_finish ();
 
   gdk_threads_leave ();
