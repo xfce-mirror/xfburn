@@ -46,8 +46,9 @@
 
 /* private struct */
 typedef struct {
-  GtkActionGroup *action_group;
-  GtkUIManager *ui_manager;
+  GActionGroup *action_group;
+  GActionMap *action_map;
+  GtkBuilder *ui_manager;
 
   GtkWidget *menubar;
   GtkWidget *toolbars;
@@ -96,12 +97,39 @@ static void action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * wi
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
-static const GtkActionEntry action_entries[] = {
+// upgrade to 
+static const GActionEntry action_entries[] = {
+  // { "file-menu", NULL, NULL, NULL, NULL },
+  { "new-data-composition", action_new_data_composition, NULL, NULL, NULL },
+  { "new-audio-composition", action_new_audio_composition, NULL, NULL, NULL },
+  { "close-composition", action_close, NULL, NULL, NULL },
+  { "quit", action_quit, NULL, NULL, NULL },
+  // { "edit-menu", NULL, NULL, NULL, NULL },
+  { "preferences", action_preferences, NULL, NULL, NULL },
+  // { "action-menu", NULL, NULL, NULL, NULL },
+  { "refresh", action_refresh_directorybrowser, NULL, NULL, NULL },
+  // { "help-menu", NULL, NULL, NULL, NULL },
+  { "about", action_about, NULL, NULL, NULL },
+  { "blank-disc", action_blank, NULL, NULL, NULL },
+  { "copy-data", action_copy_cd, NULL, NULL, NULL },
+  { "burn-image", action_burn_image, NULL, NULL, NULL },
+  { "burn-dvd", action_burn_dvd_image, NULL, NULL, NULL },
+};
+
+static const struct {
+  const gchar * target;
+  const gchar * accel[2];
+} accelerator[] = {
+  {"new-data-composition",{"<Control><Alt>e",NULL}},
+  {"new-audio-composition",{"<Control><Alt>A",NULL}},
+};
+
+/*static const GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL, NULL, NULL},
   /*{"new-composition", "document-new", N_("_New composition"), "", N_("Create a new composition"),},*/
   /*{"new-composition", "document-new", N_("_New composition"), NULL, N_("Create a new composition"),
     G_CALLBACK (action_new_data_composition),}, */
-  {"new-data-composition", "xfburn-new-data-composition", N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
+/*  {"new-data-composition", "xfburn-new-data-composition", N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
     G_CALLBACK (action_new_data_composition),},
   {"new-audio-composition", "xfburn-audio-cd", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
     G_CALLBACK (action_new_audio_composition),},
@@ -111,7 +139,7 @@ static const GtkActionEntry action_entries[] = {
    G_CALLBACK (action_save),},
   {"save-composition-as", "document-save"_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
    G_CALLBACK (action_save_as),},*/
-  {"close-composition", "window-close", N_("Close composition"), NULL, N_("Close composition"),
+/*  {"close-composition", "window-close", N_("Close composition"), NULL, N_("Close composition"),
    G_CALLBACK (action_close),},
   {"quit", "application-exit", N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (action_quit),},
   {"edit-menu", NULL, N_("_Edit"), NULL, NULL, NULL},
@@ -129,14 +157,14 @@ static const GtkActionEntry action_entries[] = {
   {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),
    G_CALLBACK (action_copy_cd),},
   /*{"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),}, */
-  {"burn-image", "stock_xfburn", N_("Burn Image"), NULL, N_("Burn Image"),
+/*  {"burn-image", "stock_xfburn", N_("Burn Image"), NULL, N_("Burn Image"),
    G_CALLBACK (action_burn_image),},
 /*  {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
    G_CALLBACK (action_copy_dvd),}, */
-  {"burn-dvd", "xfburn-burn-image", N_("Burn DVD Image"), NULL, N_("Burn DVD Image"),
+/*  {"burn-dvd", "xfburn-burn-image", N_("Burn DVD Image"), NULL, N_("Burn DVD Image"),
    G_CALLBACK (action_burn_dvd_image),},
 };
-
+*/
 static const GtkToggleActionEntry toggle_action_entries[] = {
   {"show-filebrowser", NULL, N_("Show file browser"), NULL, N_("Show/hide the file browser"),
    G_CALLBACK (action_show_filebrowser), TRUE,},
@@ -232,24 +260,25 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   /* create ui manager */
   priv->action_group = gtk_action_group_new ("xfburn-main-window");
   gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
-  gtk_action_group_add_actions (priv->action_group, action_entries, G_N_ELEMENTS (action_entries),
+  g_action_map_add_action_entries(priv->action_map, action_entries, G_N_ELEMENTS(action_entries), mainwin);
+  /* gtk_action_group_add_actions (priv->action_group, action_entries, G_N_ELEMENTS (action_entries),
                                 GTK_WIDGET (mainwin));
   gtk_action_group_add_toggle_actions (priv->action_group, toggle_action_entries,
                                        G_N_ELEMENTS (toggle_action_entries), GTK_WIDGET (mainwin));
 
-  priv->ui_manager = gtk_ui_manager_new ();
   gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
-
+  */
+  priv->ui_manager = gtk_builder_new ();
   xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
-  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn.ui");
+  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn.3.ui");
 
   if (G_LIKELY (file != NULL)) {
     GError *error = NULL;
-    if (gtk_ui_manager_add_ui_from_file (priv->ui_manager, file, &error) == 0) {
+    if (gtk_builder_add_from_file (priv->ui_manager, file, &error) == 0) {
       g_warning ("Unable to load %s: %s", file, error->message);
       g_error_free (error);
     }
-    gtk_ui_manager_ensure_update (priv->ui_manager);
+//    gtk_ui_manager_ensure_update (priv->ui_manager);
     g_free (file);
   }
   else {
@@ -257,16 +286,18 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   }
 
   /* accel group */
-  accel_group = gtk_ui_manager_get_accel_group (priv->ui_manager);
+ /* accel_group = gtk_ui_manager_get_accel_group (priv->ui_manager);
   gtk_window_add_accel_group (GTK_WINDOW (mainwin), accel_group);
-
+*/
   vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_container_add (GTK_CONTAINER (mainwin), vbox);
   gtk_widget_show (vbox);
 
   /* menubar */
-  priv->menubar = gtk_ui_manager_get_widget (priv->ui_manager, "/main-menu");
+  GMenu *menu_model = gtk_builder_get_object (priv->ui_manager, "main-menu");
+  priv->menubar = gtk_menu_new_from_model(menu_model);
   if (G_LIKELY (priv->menubar != NULL)) {
+    gtk_menu_attach_to_widget(priv->menubar, mainwin, NULL);
     gtk_box_pack_start (GTK_BOX (vbox), priv->menubar, FALSE, FALSE, 0);
     gtk_widget_show (priv->menubar);
   }
@@ -684,7 +715,7 @@ xfburn_main_window_get_instance (void)
 
   return instance;
 }
-
+/*
 GtkUIManager *
 xfburn_main_window_get_ui_manager (XfburnMainWindow *window)
 {
@@ -692,7 +723,7 @@ xfburn_main_window_get_ui_manager (XfburnMainWindow *window)
 
   return priv->ui_manager;
 }
-
+*/
 XfburnFileBrowser *
 xfburn_main_window_get_file_browser (XfburnMainWindow *window)
 {

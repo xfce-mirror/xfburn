@@ -1,54 +1,81 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-  Copyright (c) 2005 Jean-François Wauthy
-
-  xfburn User Interface description file
--->
-
-<ui>
-  <!-- The main menu bar -->
-  <menubar name="main-menu">
-    <menu action="file-menu">
-      <!--
-      <menuitem action="new-composition"/>
-      -->
-      <menuitem action="new-data-composition"/>
-      <menuitem action="new-audio-composition"/>
-      <!-- <menuitem action="load-composition"/> -->
-      <separator/>
-      <!--
-      <menuitem action="save-composition"/>
-      <menuitem action="save-composition-as"/>-->
-      <menuitem action="close-composition"/>
-      <separator />
-      <menuitem action="quit"/>
-    </menu>
-    <menu action="edit-menu">
-      <menuitem action="preferences"/>
-    </menu>
-    <menu action="action-menu">
-      <menuitem action="blank-disc"/>
-      <!--<menuitem action="copy-data"/>-->
-      <menuitem action="burn-image"/>
-      <placeholder name="placeholder-action-cd"/>
-      <!--
-      <separator />
-      <menuitem action="format-dvd"/>
-      <menuitem action="copy-dvd"/>
-      <menuitem action="burn-dvd"/>
-      <placeholder name="placeholder-action-dvd"/>
-      -->
-    </menu>
-    <menu action="view-menu">
-      <menuitem action="refresh"/>
-      <separator />
-      <menuitem action="show-toolbar"/>
-      <menuitem action="show-filebrowser"/>
-      <placeholder name="placeholder-show"/>
-    </menu>
-    <menu action="help-menu">
-      <menuitem action="about"/>
-    </menu>
-  </menubar>
-</ui>	  
+<interface>
+  <menu id="main-menu">
+    <submenu>
+      <attribute name="label" translatable="yes">_Files</attribute>
+      <section>
+        <item>
+          <attribute name="label">New _data composition</attribute>
+          <attribute name="action">new-data-composition</attribute>
+        </item>
+        <item>
+          <attribute name="label">New _audio composition</attribute>
+          <attribute name="action">new-audio-composition</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label">_Close composition</attribute>
+          <attribute name="action">close-composition</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label">_Quit</attribute>
+          <attribute name="action">quit</attribute>
+        </item>
+      </section>
+    </submenu>
+    <submenu>
+      <attribute name="label" translatable="yes">_Edit</attribute>
+      <section>
+        <item>
+          <attribute name="label">Prefere_nce</attribute>
+          <attribute name="action">preferences</attribute>
+        </item>
+      </section>
+    </submenu>
+    <submenu>
+      <attribute name="label" translatable="yes">_Action</attribute>
+      <section>
+        <item>
+          <attribute name="label">Blank CD-RW</attribute>
+          <attribute name="action">blank-disc</attribute>
+        </item>
+        <item>
+          <attribute name="label">Burn Image</attribute>
+          <attribute name="action">burn-image</attribute>
+        </item>
+<!--        <placeholder name="placeholder-action-cd"/>  -->
+      </section>
+    </submenu>
+    <submenu>
+      <attribute name="label" translatable="yes">_View</attribute>
+      <section>
+        <item>
+          <attribute name="label">Refresh</attribute>
+          <attribute name="action">refresh</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="label">Show Toolbars</attribute>
+          <attribute name="action">show-toolbar</attribute>
+        </item>
+        <item>
+          <attribute name="label">Show Filebrowser</attribute>
+          <attribute name="action">show-filebrowser</attribute>
+        </item>
+<!--         <placeholder name="placeholder-show"/>   -->
+      </section>
+    </submenu>
+    <submenu>
+      <attribute name="label" translatable="yes">_Help</attribute>
+      <section>
+        <item>
+          <attribute name="label">About</attribute>
+          <attribute name="action">about</attribute>
+        </item>
+      </section>
+    </submenu>
+  </menu>
+</interface>
