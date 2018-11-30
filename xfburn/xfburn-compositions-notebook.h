@@ -53,7 +53,7 @@ GType xfburn_compositions_notebook_get_type (void);
 GtkWidget *xfburn_compositions_notebook_new (void);
 
 XfburnComposition *xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebook, XfburnCompositionType type);
-void xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, GtkActionGroup *action_group);
+void xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, GActionGroup *action_group);
 
 void xfburn_compositions_notebook_close_composition (XfburnCompositionsNotebook *notebook);
 

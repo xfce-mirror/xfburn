@@ -48,7 +48,7 @@ typedef struct
 } XfburnWelcomeTabClass;
 
 GType xfburn_welcome_tab_get_type (void);
-GtkWidget *xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GtkActionGroup *action_group);
+GtkWidget *xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GActionGroup *action_group);
 
 G_END_DECLS
 
