@@ -46,7 +46,6 @@
 
 /* private struct */
 typedef struct {
-  GActionGroup *action_group;
   GSimpleActionGroup *action_map;
   GtkBuilder *ui_manager;
 
@@ -265,18 +264,11 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   priv->ui_manager = gtk_builder_new ();
   gtk_builder_set_translation_domain (priv->ui_manager, GETTEXT_PACKAGE);
 
-  priv->action_group = gtk_action_group_new ("xfburn-main-window");
   priv->action_map = g_simple_action_group_new();
 
   g_action_map_add_action_entries (priv->action_map, action_entries, G_N_ELEMENTS(action_entries), mainwin);
   g_action_map_add_action_entries (priv->action_map, toggle_action_entries, G_N_ELEMENTS(toggle_action_entries), mainwin);
-  /* gtk_action_group_add_actions (priv->action_group, action_entries, G_N_ELEMENTS (action_entries),
-                                GTK_WIDGET (mainwin));
-  gtk_action_group_add_toggle_actions (priv->action_group, toggle_action_entries,
-                                       G_N_ELEMENTS (toggle_action_entries), GTK_WIDGET (mainwin));
 
-  gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
-  */
   xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
   file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn.3.ui");
 
@@ -303,11 +295,11 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
 
   /* menubar */
   GMenuModel *menu_model = (GMenuModel*)gtk_builder_get_object (priv->ui_manager, "main-menu");
-
-  priv->menubar = gtk_menu_bar_new_from_model(menu_model);
+  
+  priv->menubar = gtk_menu_bar_new_from_model (menu_model);
   if (G_LIKELY (priv->menubar != NULL)) {
-    gtk_widget_insert_action_group(priv->menubar, "xfburn", priv->action_map);
-    gtk_box_pack_start (GTK_BOX (vbox), priv->menubar,FALSE,TRUE,5);
+    gtk_widget_insert_action_group (priv->menubar, "app", priv->action_map);
+    gtk_box_pack_start (GTK_BOX (vbox), priv->menubar, FALSE, FALSE, 0);
     gtk_widget_show (priv->menubar);
   }
 
@@ -631,7 +623,7 @@ static void
 action_show_toolbar (GAction * action, GVariant* param, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  gboolean toggle = g_variant_get_boolean  (g_action_get_state (action));
+  gboolean toggle = g_variant_get_boolean (g_action_get_state (action));
 
   xfburn_settings_set_boolean ("show-toolbar", toggle);
 
