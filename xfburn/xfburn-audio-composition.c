@@ -693,7 +693,7 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
 
     model = G_MENU_MODEL (gtk_builder_get_object (priv->ui_manager, "popup-menu"));
     menu_popup = gtk_menu_new_from_model (model);
-    gtk_widget_insert_action_group(GTK_WIDGET(menu_popup), "win", priv->action_group);
+    gtk_widget_insert_action_group(GTK_WIDGET(menu_popup), "win", G_ACTION_GROUP (priv->action_group));
     menuitem_remove = GTK_WIDGET (gtk_container_get_children (GTK_CONTAINER (menu_popup))->data);
 
     if (gtk_tree_selection_count_selected_rows (selection) >= 1)
