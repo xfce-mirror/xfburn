@@ -98,21 +98,21 @@ static void action_show_toolbar (GAction * action, GVariant*, XfburnMainWindow *
 static GtkWindowClass *parent_class = NULL;
 // upgrade to 
 static const GActionEntry action_entries[] = {
-  // { "file-menu", NULL, NULL, NULL, NULL },
-  { "new-data-composition", action_new_data_composition, NULL, NULL, NULL },
-  { "new-audio-composition", action_new_audio_composition, NULL, NULL, NULL },
-  { "close-composition", action_close, NULL, NULL, NULL },
-  { "quit", action_quit, NULL, NULL, NULL },
-  // { "edit-menu", NULL, NULL, NULL, NULL },
-  { "preferences", action_preferences, NULL, NULL, NULL },
-  // { "action-menu", NULL, NULL, NULL, NULL },
-  { "refresh", action_refresh_directorybrowser, NULL, NULL, NULL },
-  // { "help-menu", NULL, NULL, NULL, NULL },
-  { "about", action_about, NULL, NULL, NULL },
-  { "blank-disc", action_blank, NULL, NULL, NULL },
-  { "copy-data", action_copy_cd, NULL, NULL, NULL },
-  { "burn-image", action_burn_image, NULL, NULL, NULL },
-  { "burn-dvd", action_burn_dvd_image, NULL, NULL, NULL },
+  // { "file-menu", NULL},
+  { .name = "new-data-composition", .activate = (gActionCallback)action_new_data_composition },
+  { .name = "new-audio-composition", .activate = (gActionCallback)action_new_audio_composition},
+  { .name = "close-composition", .activate = (gActionCallback)action_close},
+  { .name = "quit", .activate = (gActionCallback)action_quit},
+  // { .name = "edit-menu", .activate = NULL},
+  { .name = "preferences", .activate = (gActionCallback)action_preferences},
+  // { "action-menu", NULL},
+  { .name = "refresh", .activate = (gActionCallback)action_refresh_directorybrowser},
+  // { "help-menu", .activate = NULL},
+  { .name = "about", .activate = (gActionCallback)action_about},
+  { .name = "blank-disc", .activate = (gActionCallback)action_blank},
+  { .name = "copy-data", .activate = (gActionCallback)action_copy_cd},
+  { .name = "burn-image", .activate = (gActionCallback)action_burn_image},
+  { .name = "burn-dvd", .activate = (gActionCallback)action_burn_dvd_image},
 };
 
 static const struct {
@@ -165,8 +165,8 @@ static const struct {
 };
 */
 static const GActionEntry toggle_action_entries[] = {
-  { "show-filebrowser", NULL, NULL, "true", action_show_filebrowser },
-  { "show-toolbar", NULL, NULL, "true", action_show_toolbar },
+  { .name = "show-filebrowser", .state = "false", .change_state = (gActionCallback)action_show_filebrowser },
+  { .name = "show-toolbar", .state = "true", .change_state = (gActionCallback)action_show_toolbar },
 };
 /* static const GtkToggleActionEntry toggle_action_entries[] = {
   {"show-filebrowser", NULL, N_("Show file browser"), NULL, N_("Show/hide the file browser"),
@@ -242,6 +242,26 @@ xfburn_main_window_finalize (GObject *obj)
 }
 
 static void
+add_button_to_toolbar(GtkToolbar *toolbar, const gchar *stock, const gchar *text, const gchar *action, const gchar *tooltip)
+{
+  GtkToolItem *item;
+  GtkWidget *icon;
+  GtkWidget *label;
+
+  gchar *markup = g_markup_printf_escaped("<span size=\"small\" weight=\"bold\">%s</span>", text);
+  label = gtk_label_new(NULL);
+  gtk_label_set_markup(GTK_LABEL (label), markup);
+  g_free(markup);
+
+  icon = gtk_image_new_from_icon_name (stock, 0);
+  item = gtk_tool_button_new(icon, text);
+  gtk_tool_item_set_tooltip_text(item, (tooltip == NULL) ? text : tooltip);
+  gtk_tool_button_set_label_widget(GTK_TOOL_BUTTON (item), label);
+  gtk_toolbar_insert(toolbar, item, -1);
+  gtk_actionable_set_action_name (GTK_ACTIONABLE (item), action);
+}
+
+static void
 xfburn_main_window_init (XfburnMainWindow * mainwin)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (mainwin);
@@ -266,8 +286,8 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
 
   priv->action_map = g_simple_action_group_new();
 
-  g_action_map_add_action_entries (priv->action_map, action_entries, G_N_ELEMENTS(action_entries), mainwin);
-  g_action_map_add_action_entries (priv->action_map, toggle_action_entries, G_N_ELEMENTS(toggle_action_entries), mainwin);
+  g_action_map_add_action_entries (G_ACTION_MAP (priv->action_map), action_entries, G_N_ELEMENTS(action_entries), mainwin);
+  g_action_map_add_action_entries (G_ACTION_MAP (priv->action_map), toggle_action_entries, G_N_ELEMENTS(toggle_action_entries), mainwin);
 
   xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
   file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn.3.ui");
@@ -298,7 +318,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   
   priv->menubar = gtk_menu_bar_new_from_model (menu_model);
   if (G_LIKELY (priv->menubar != NULL)) {
-    gtk_widget_insert_action_group (priv->menubar, "app", priv->action_map);
+    gtk_widget_insert_action_group (priv->menubar, "app", G_ACTION_GROUP (priv->action_map));
     gtk_box_pack_start (GTK_BOX (vbox), priv->menubar, FALSE, FALSE, 0);
     gtk_widget_show (priv->menubar);
   }
@@ -330,9 +350,34 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
     g_warning ("Unable to locate xfburn/xfburn-toolbars.ui !");
   }
 */
-  priv->toolbars = gtk_label_new ("placeholder for Gtk3Toolbar");
-  gtk_box_pack_start (GTK_BOX (vbox), priv->toolbars, FALSE, FALSE, 0);
-  gtk_widget_show (priv->toolbars);
+  priv->toolbars = gtk_toolbar_new ();
+//  gtk_orientable_set_orientation (priv->toolbars, GTK_ORIENTATION_HORIZONTAL);
+  gtk_toolbar_set_style(GTK_TOOLBAR (priv->toolbars), GTK_TOOLBAR_BOTH);
+  gtk_widget_insert_action_group (priv->toolbars, "app", G_ACTION_GROUP (priv->action_map));
+
+  add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
+    "stock_xfburn-new-data-composition", "New data composition", "app.new-data-composition", NULL);
+
+  add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
+    "stock_xfburn-audio-cd", "New audio composition", "app.new-audio-composition", NULL);
+
+  gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbars), gtk_separator_tool_item_new(), -1);
+
+  add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars), 
+    "stock_xfburn-blank-cdrw", "Blank CD-RW", "app.blank-disc", NULL);
+  
+  add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
+    "stock_xfburn", "Burn Image", "app.burn-image", NULL);
+
+  gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbars), gtk_separator_tool_item_new(), -1);
+
+  add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
+    "view-refresh", "Refresh", "app.refresh", "Refresh file list");
+
+  gtk_box_pack_start (GTK_BOX (vbox), priv->toolbars, FALSE, FALSE, 5);
+  gtk_toolbar_set_icon_size(GTK_TOOLBAR (priv->toolbars), GTK_ICON_SIZE_SMALL_TOOLBAR);
+  gtk_tool_shell_rebuild_menu(GTK_TOOL_SHELL (priv->toolbars));
+  gtk_widget_show_all (priv->toolbars);
 
   /* vpaned */
   priv->vpaned = gtk_paned_new (GTK_ORIENTATION_VERTICAL);
@@ -654,16 +699,17 @@ xfburn_main_window_new (void)
     XfburnMainWindow *win;
     XfburnMainWindowPrivate *priv;
     GAction *action;
+    GActionMap *action_map;
     GList *device = NULL;
     XfburnDeviceList *devlist;
 
     instance = win = XFBURN_MAIN_WINDOW (obj);
     priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (win);
-
+    action_map = G_ACTION_MAP (priv->action_map);
     /* load settings */
-    action = g_action_map_lookup_action (priv->action_map, "show-filebrowser");
+    action = g_action_map_lookup_action (action_map, "show-filebrowser");
     g_action_change_state(action, g_variant_new_boolean (xfburn_settings_get_boolean ("show-filebrowser", FALSE)));
-    action = g_action_map_lookup_action (priv->action_map, "show-toolbar");
+    action = g_action_map_lookup_action (action_map, "show-toolbar");
     g_action_change_state(action, g_variant_new_boolean (xfburn_settings_get_boolean ("show-toolbar", FALSE)));
    /* action = gtk_action_group_get_action (priv->action_group, "save-composition");
     gtk_action_set_sensitive (GTK_ACTION (action), FALSE);*/
@@ -690,20 +736,20 @@ xfburn_main_window_new (void)
     }
 
     if (!priv->support_cdr) {
-      action = g_action_map_lookup_action (priv->action_map, "copy-data");
-      g_simple_action_set_enabled (action, FALSE);
-      action = g_action_map_lookup_action (priv->action_map, "copy-audio");
-      g_simple_action_set_enabled (action, FALSE);
-      action = g_action_map_lookup_action (priv->action_map, "burn-image");
-      g_simple_action_set_enabled (action, FALSE);
+      action = g_action_map_lookup_action (action_map, "copy-data");
+      g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
+      action = g_action_map_lookup_action (action_map, "copy-audio");
+      g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
+      action = g_action_map_lookup_action (action_map, "burn-image");
+      g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
     }
     if (!priv->support_cdrw) {
-      action = g_action_map_lookup_action (priv->action_map, "blank-disc");
-      g_simple_action_set_enabled (action, FALSE);
+      action = g_action_map_lookup_action (action_map, "blank-disc");
+      g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
     }
 
     /* show welcome tab */
-    xfburn_compositions_notebook_add_welcome_tab (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), priv->action_map);
+    xfburn_compositions_notebook_add_welcome_tab (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), action_map);
   }
 
   return obj;

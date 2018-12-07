@@ -114,11 +114,11 @@ static gint directory_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkT
 static void set_default_name (XfburnDataComposition * dc);
 static gboolean has_default_name (XfburnDataComposition * dc);
 
-static void action_create_directory (GtkAction *, XfburnDataComposition *);
-static void action_clear (GtkAction *, XfburnDataComposition *);
-static void action_remove_selection (GtkAction *, XfburnDataComposition *);
-static void action_rename_selection (GtkAction *, XfburnDataComposition *);
-static void action_add_or_select (GtkAction *, XfburnDataComposition *);
+static void action_create_directory (GSimpleAction *, GVariant *, XfburnDataComposition *);
+static void action_clear (GSimpleAction *, GVariant *, XfburnDataComposition *);
+static void action_remove_selection (GSimpleAction *, GVariant *, XfburnDataComposition *);
+static void action_rename_selection (GSimpleAction *, GVariant *, XfburnDataComposition *);
+static void action_add_or_select (GSimpleAction *, GVariant *, XfburnDataComposition *);
 static void add_files (gchar * files, XfburnDataComposition *);
 static void add_cb (GtkWidget * widget, gpointer data);
 
@@ -167,8 +167,8 @@ typedef struct
 
   void *thread_params;
   
-  GtkActionGroup *action_group;
-  GtkUIManager *ui_manager;
+  GSimpleActionGroup *action_group;
+  GtkBuilder *ui_manager;
 
   GtkWidget *toolbar;
   GtkWidget *entry_volume_name;
@@ -189,6 +189,15 @@ typedef struct
 static GtkHPanedClass *parent_class = NULL;
 static guint instances = 0;
 
+static const GActionEntry action_entries[] = {
+  {.name = "add-file", .activate = (gActionCallback)action_add_or_select},
+  {.name = "create-dir", .activate = (gActionCallback)action_create_directory},
+  {.name = "remove-file", .activate = (gActionCallback)action_remove_selection},
+  {.name = "clear", .activate = (gActionCallback)action_clear},
+  /*{.name = "import-session", .activate = (gActionCallback)action_remove_selection},*/
+  {.name = "rename-file", .activate = (gActionCallback)action_rename_selection},
+};
+/*
 static const GtkActionEntry action_entries[] = {
   {"add-file", "list-add", N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
    G_CALLBACK (action_add_or_select),},
@@ -199,9 +208,9 @@ static const GtkActionEntry action_entries[] = {
   {"clear", "edit-clear", N_("Clear"), NULL, N_("Clear the content of the composition"),
    G_CALLBACK (action_clear),},
   /*{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),}, */
-  {"rename-file", "gtk-edit", N_("Rename"), NULL, N_("Rename the selected file"),
+/*  {"rename-file", "gtk-edit", N_("Rename"), NULL, N_("Rename the selected file"),
    G_CALLBACK (action_rename_selection),},
-};
+};*/
 
 static const gchar *toolbar_actions[] = {
   "add-file",
@@ -287,13 +296,17 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   GtkTreeViewColumn *column_file;
   GtkCellRenderer *cell_icon, *cell_file;
   GtkTreeSelection *selection;
-  GtkAction *action = NULL;
+  GAction *action = NULL;
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
   
-  const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
-    "<menuitem action=\"create-dir\"/>" "<separator/>"
-    "<menuitem action=\"rename-file\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
+  const gchar ui_string[] = "<interface><menu id=\"popup-menu\">"
+    "<section>"
+    "<item><attribute name=\"action\">win.create-dir</attribute><attribute name=\"label\">Create directory</attribute></item>"
+    "</section><section>"
+    "<item><attribute name=\"action\">win.rename-file</attribute><attribute name=\"label\">Rename</attribute></item>"
+    "<item><attribute name=\"action\">win.remove-file</attribute><attribute name=\"label\">Remove</attribute></item>"
+    "</section></menu></interface>";
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE },
@@ -316,15 +329,14 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
     icon_file = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-regular", x, 0, NULL);
 
   /* create ui manager */
-  priv->action_group = gtk_action_group_new ("xfburn-data-composition");
-  gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
-  gtk_action_group_add_actions (priv->action_group, action_entries, G_N_ELEMENTS (action_entries),
+  priv->action_group = g_simple_action_group_new ();
+  g_action_map_add_action_entries (G_ACTION_MAP (priv->action_group), action_entries, G_N_ELEMENTS (action_entries),
                                 GTK_WIDGET (composition));
 
-  priv->ui_manager = gtk_ui_manager_new ();
-  gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
-
-  gtk_ui_manager_add_ui_from_string (priv->ui_manager, ui_string, -1, NULL);
+  priv->ui_manager = gtk_builder_new ();
+  gtk_builder_set_translation_domain(priv->ui_manager, GETTEXT_PACKAGE);
+  
+  gtk_builder_add_from_string (priv->ui_manager, ui_string, -1, NULL);
 
   hbox_toolbar = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_box_pack_start (GTK_BOX (composition), hbox_toolbar, FALSE, TRUE, 0);
@@ -448,8 +460,8 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   g_signal_connect (G_OBJECT (priv->content), "drag-data-received", G_CALLBACK (cb_content_drag_data_rcv),
                     composition);
                     
-  action = gtk_action_group_get_action (priv->action_group, "remove-file");
-  gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
+  action = g_action_map_lookup_action (G_ACTION_MAP (priv->action_group), "remove-file");
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
 }
 
 static void
@@ -532,31 +544,25 @@ cb_selection_changed (GtkTreeSelection *selection, XfburnDataComposition * dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   gint n_selected_rows;
-  GtkAction *action = NULL;
-  
-  
+  GAction* action[] = {
+    g_action_map_lookup_action (G_ACTION_MAP (priv->action_group), "add-file"),
+    g_action_map_lookup_action (G_ACTION_MAP (priv->action_group), "create-dir"),
+    g_action_map_lookup_action (G_ACTION_MAP (priv->action_group), "remove-file"),
+  };
+    
   n_selected_rows = gtk_tree_selection_count_selected_rows (selection);
   if (n_selected_rows == 0) {
-    action = gtk_action_group_get_action (priv->action_group, "add-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
-    action = gtk_action_group_get_action (priv->action_group, "create-dir");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);  
-    action = gtk_action_group_get_action (priv->action_group, "remove-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);  
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (action[0]), TRUE);
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (action[1]), TRUE);
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (action[2]), FALSE);
   } else if (n_selected_rows == 1) {
-    action = gtk_action_group_get_action (priv->action_group, "add-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
-    action = gtk_action_group_get_action (priv->action_group, "create-dir");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);  
-    action = gtk_action_group_get_action (priv->action_group, "remove-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (action[0]), TRUE);
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (action[1]), TRUE);
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (action[2]), TRUE);
   } else {
-    action = gtk_action_group_get_action (priv->action_group, "add-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
-    action = gtk_action_group_get_action (priv->action_group, "create-dir");
-    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);  
-    action = gtk_action_group_get_action (priv->action_group, "remove-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);     
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (action[0]), FALSE);
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (action[1]), FALSE);
+    g_simple_action_set_enabled (G_SIMPLE_ACTION (action[2]), TRUE);
   }
 }
 
@@ -583,6 +589,7 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
   if ((event->button == 3) && (event->type == GDK_BUTTON_PRESS)) {
     GtkTreeSelection *selection;
     GtkTreePath *path;
+    GMenuModel *model;
     GtkWidget *menu_popup;
     GtkWidget *menuitem_remove;
     GtkWidget *menuitem_rename;
@@ -595,9 +602,13 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
       gtk_tree_path_free (path);
     }
 
-    menu_popup = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu");
-    menuitem_remove = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/remove-file");
-    menuitem_rename = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/rename-file");
+    model = G_MENU_MODEL (gtk_builder_get_object (priv->ui_manager, "popup-menu"));
+    menu_popup = gtk_menu_new_from_model (model);
+    gtk_widget_insert_action_group(GTK_WIDGET(menu_popup), "win", priv->action_group);
+    
+    GList *childs = gtk_container_get_children (GTK_CONTAINER (menu_popup));
+    menuitem_remove = GTK_WIDGET (childs->next->next->data);
+    menuitem_rename = GTK_WIDGET (childs->next->data);
 
     if (gtk_tree_selection_count_selected_rows (selection) >= 1)
       gtk_widget_set_sensitive (menuitem_remove, TRUE);
@@ -608,7 +619,10 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     else
       gtk_widget_set_sensitive (menuitem_rename, FALSE);
 
-    gtk_menu_popup (GTK_MENU (menu_popup), NULL, NULL, NULL, NULL, event->button, gtk_get_current_event_time ());
+    GdkRectangle r = {event->x, event->y, 1, 1};
+    gtk_menu_popup_at_rect (GTK_MENU (menu_popup),
+        gtk_widget_get_parent_window (GTK_WIDGET (treeview)),
+        &r, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);
     return TRUE;
   }
 
@@ -730,7 +744,7 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc)
 }
 
 static void
-action_rename_selection (GtkAction * action, XfburnDataComposition * dc)
+action_rename_selection (GSimpleAction *action, GVariant *param, XfburnDataComposition *dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   
@@ -754,7 +768,7 @@ action_rename_selection (GtkAction * action, XfburnDataComposition * dc)
 }
 
 static void
-action_create_directory (GtkAction * action, XfburnDataComposition * dc)
+action_create_directory (GSimpleAction *action, GVariant *param, XfburnDataComposition *dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   
@@ -875,7 +889,7 @@ remove_row_reference (GtkTreeRowReference *reference, XfburnDataCompositionPriva
 }
 
 static void
-action_remove_selection (GtkAction * action, XfburnDataComposition * dc)
+action_remove_selection (GSimpleAction *action, GVariant *param, XfburnDataComposition *dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   
@@ -985,7 +999,7 @@ select_files (XfburnDataComposition * dc)
 }
 
 static void
-action_add_or_select (GtkAction *action, XfburnDataComposition *dc)
+action_add_or_select (GSimpleAction *action, GVariant *param, XfburnDataComposition *dc)
 {
   if (xfburn_settings_get_boolean("show-filebrowser", FALSE)) {
     XfburnFileBrowser *browser = xfburn_main_window_get_file_browser (xfburn_main_window_get_instance ());
@@ -1074,7 +1088,7 @@ has_default_name (XfburnDataComposition * dc)
 }
 
 static void
-action_clear (GtkAction * action, XfburnDataComposition * dc)
+action_clear (GSimpleAction *action, GVariant *param, XfburnDataComposition *dc)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   

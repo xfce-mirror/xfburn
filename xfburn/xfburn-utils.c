@@ -49,7 +49,7 @@ xfburn_busy_cursor (GtkWidget * widget)
   cursor = gdk_cursor_new_for_display( gtk_widget_get_display(widget), GDK_WATCH);
   gdk_window_set_cursor (gtk_widget_get_parent_window (widget), cursor);
   g_object_unref (cursor);
-  gdk_flush ();
+  gdk_display_flush (gtk_widget_get_display(widget));
 }
 
 void
@@ -57,7 +57,7 @@ xfburn_default_cursor (GtkWidget * widget)
 {
   g_return_if_fail (widget != NULL);
   gdk_window_set_cursor (gtk_widget_get_parent_window (widget), NULL);
-  gdk_flush ();
+  gdk_display_flush (gtk_widget_get_display(widget));
 }
 
 /*******************/

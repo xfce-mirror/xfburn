@@ -37,6 +37,8 @@ G_BEGIN_DECLS
 #define XFBURN_IS_MAIN_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_MAIN_WINDOW))
 #define XFBURN_MAIN_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
 
+typedef void (* gActionCallback) (GSimpleAction *,GVariant *,gpointer);
+
 typedef struct 
 {
   GtkWindow window;

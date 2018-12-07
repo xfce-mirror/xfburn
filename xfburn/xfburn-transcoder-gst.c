@@ -235,7 +235,7 @@ xfburn_transcoder_gst_finalize (GObject * object)
   gst_element_set_state (priv->pipeline, GST_STATE_NULL);
 
   gst_object_unref (GST_OBJECT (priv->pipeline));
-  gst_object_unref (GST_OBJECT (priv->discoverer));
+  g_object_unref (G_OBJECT (priv->discoverer));
   priv->pipeline = NULL;
 
   G_OBJECT_CLASS (parent_class)->finalize (object);

@@ -126,14 +126,14 @@ static void save_to_file (XfburnComposition *composition);
 
 //static gint song_tree_sortfunc (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer user_data);
 
-static void action_clear (GtkAction *, XfburnAudioComposition *);
-static void action_info (GtkAction *, XfburnAudioComposition *);
-static void action_remove_selection (GtkAction *, XfburnAudioComposition *);
+static void action_clear (GSimpleAction *, GVariant*, XfburnAudioComposition *);
+static void action_info (GSimpleAction *, GVariant*, XfburnAudioComposition *);
+static void action_remove_selection (GSimpleAction *, GVariant*, XfburnAudioComposition *);
 #if 0 /* CDTEXT */
-static void action_rename_selection_artist (GtkAction *, XfburnAudioComposition *);
-static void action_rename_selection_title (GtkAction *, XfburnAudioComposition *);
+static void action_rename_selection_artist (GSimpleAction *, GVariant*, XfburnAudioComposition *);
+static void action_rename_selection_title (GSimpleAction *, GVariant*, XfburnAudioComposition *);
 #endif /* CDTEXT */
-static void action_add_selected_files (GtkAction *, XfburnAudioComposition *);
+static void action_add_selected_files (GSimpleAction *, GVariant*, XfburnAudioComposition *);
 
 static void tracks_changed (XfburnAudioComposition *ac);
 static gboolean cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, XfburnAudioComposition * dc);
@@ -183,8 +183,8 @@ typedef struct
   void *thread_params;
   GHashTable *warned_about;
   
-  GtkActionGroup *action_group;
-  GtkUIManager *ui_manager;
+  GSimpleActionGroup *action_group;
+  GtkBuilder *ui_manager;
 
   GtkWidget *toolbar;
   GtkWidget *entry_volume_name;
@@ -202,6 +202,17 @@ static GtkHPanedClass *parent_class = NULL;
 static guint instances = 0;
 static gchar *did_warn = "Did warn about this already";
 static gchar trans_name[MAX_NAME_LENGTH] = {""};
+
+static const GActionEntry actions[] = {
+  {.name = "add-file", .activate = (gActionCallback)action_add_selected_files},
+  {.name = "remove-file", .activate = (gActionCallback)action_remove_selection},
+  {.name = "clear", .activate = (gActionCallback)action_clear},
+  {.name = "transcoder-info", .activate = (gActionCallback)action_info},
+#if 0 /* CDTEXT */
+  {.name = "rename-artist", .activate = (gActionCallback)action_rename_selection_artist},
+  {.name = "rename-title", .activate = (gActionCallback)action_rename_selection_title},
+#endif /* CDTEXT */
+};
 
 static const GtkActionEntry action_entries[] = {
   {"add-file", "list-add", N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
@@ -307,7 +318,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   GtkCellRenderer *cell_artist, *cell_title;
 #endif
   GtkTreeSelection *selection;
-  GtkAction *action = NULL;
+  GSimpleAction *action = NULL;
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
   
@@ -315,7 +326,12 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
     "<menuitem action=\"rename-artist\"/>" "<menuitem action=\"rename-title\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
 #else
-  const gchar ui_string[] = "<ui> <popup name=\"popup-menu\"> <menuitem action=\"remove-file\"/>" "</popup></ui>";
+  // const gchar ui_string[] = "<ui> <popup name=\"popup-menu\"> <menuitem action=\"remove-file\"/>" "</popup></ui>";
+  const gchar ui_string[] = "<interface><menu id=\"popup-menu\">"
+    "<section>"
+    "<item><attribute name=\"label\">Remove</attribute><attribute name=\"action\">win.remove-file</attribute></item>"
+    "</section>"
+    "</menu></interface>";
 #endif /* CDTEXT */
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE } };
@@ -343,15 +359,13 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
     icon_file = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-regular", x, 0, NULL);
 
   /* create ui manager */
-  priv->action_group = gtk_action_group_new ("xfburn-audio-composition");
-  gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
-  gtk_action_group_add_actions (priv->action_group, action_entries, G_N_ELEMENTS (action_entries),
+  priv->action_group = g_simple_action_group_new();
+  g_action_map_add_action_entries (G_ACTION_MAP (priv->action_group), actions, G_N_ELEMENTS (actions),
                                 GTK_WIDGET (composition));
-
-  priv->ui_manager = gtk_ui_manager_new ();
-  gtk_ui_manager_insert_action_group (priv->ui_manager, priv->action_group, 0);
-
-  gtk_ui_manager_add_ui_from_string (priv->ui_manager, ui_string, -1, NULL);
+  priv->ui_manager = gtk_builder_new ();
+  gtk_builder_set_translation_domain (priv->ui_manager, GETTEXT_PACKAGE);
+  gtk_builder_add_from_string (priv->ui_manager, ui_string, -1, NULL);
+  gtk_widget_insert_action_group(GTK_WIDGET (composition), "win", G_ACTION_GROUP (priv->action_group));
 
   hbox_toolbar = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_box_pack_start (GTK_BOX (composition), hbox_toolbar, FALSE, TRUE, 0);
@@ -483,8 +497,8 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   g_signal_connect (G_OBJECT (priv->content), "drag-data-received", G_CALLBACK (cb_content_drag_data_rcv),
                     composition);
                     
-  action = gtk_action_group_get_action (priv->action_group, "remove-file");
-  gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
+  action = G_SIMPLE_ACTION (g_action_map_lookup_action (G_ACTION_MAP (priv->action_group), "remove-file"));
+  g_simple_action_set_enabled (action, FALSE);
 
   priv->warned_about = g_hash_table_new (g_direct_hash, g_direct_equal);
 }
@@ -598,25 +612,25 @@ cb_selection_changed (GtkTreeSelection *selection, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   gint n_selected_rows;
-  GtkAction *action = NULL;
-  
+  GSimpleAction *action = NULL;
+  GActionMap *map = G_ACTION_MAP (priv->action_group);
   
   n_selected_rows = gtk_tree_selection_count_selected_rows (selection);
   if (n_selected_rows == 0) {
-    action = gtk_action_group_get_action (priv->action_group, "add-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
-    action = gtk_action_group_get_action (priv->action_group, "remove-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);  
+    action = G_SIMPLE_ACTION (g_action_map_lookup_action (map, "add-file"));
+    g_simple_action_set_enabled (action, TRUE);
+    action = G_SIMPLE_ACTION (g_action_map_lookup_action (map, "remove-file"));
+    g_simple_action_set_enabled (action, FALSE);
   } else if (n_selected_rows == 1) {
-    action = gtk_action_group_get_action (priv->action_group, "add-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
-    action = gtk_action_group_get_action (priv->action_group, "remove-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
+    action = G_SIMPLE_ACTION (g_action_map_lookup_action (map, "add-file"));
+    g_simple_action_set_enabled (action, TRUE);
+    action = G_SIMPLE_ACTION (g_action_map_lookup_action (map, "remove-file"));
+    g_simple_action_set_enabled (action, TRUE);
   } else {
-    action = gtk_action_group_get_action (priv->action_group, "add-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
-    action = gtk_action_group_get_action (priv->action_group, "remove-file");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);     
+    action = G_SIMPLE_ACTION (g_action_map_lookup_action (map, "add-file"));
+    g_simple_action_set_enabled (action, FALSE);
+    action = G_SIMPLE_ACTION (g_action_map_lookup_action (map, "remove-file"));
+    g_simple_action_set_enabled (action, TRUE);
   }
 }
 
@@ -644,6 +658,7 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     GtkTreeSelection *selection;
     GtkTreePath *path;
     GtkWidget *menu_popup;
+    GMenuModel *model;
     GtkWidget *menuitem_remove;
 #if 0 /* CDTEXT */
     GtkWidget *menuitem_rename_artist;
@@ -658,28 +673,20 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
       gtk_tree_path_free (path);
     }
 
-    menu_popup = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu");
-    menuitem_remove = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/remove-file");
-#if 0 /* CDTEXT */
-    menuitem_rename_artist = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/rename-artist");
-    menuitem_rename_title = gtk_ui_manager_get_widget (priv->ui_manager, "/popup-menu/rename-title");
-#endif /* CDTEXT */
+    model = G_MENU_MODEL (gtk_builder_get_object (priv->ui_manager, "popup-menu"));
+    menu_popup = gtk_menu_new_from_model (model);
+    gtk_widget_insert_action_group(GTK_WIDGET(menu_popup), "win", priv->action_group);
+    menuitem_remove = GTK_WIDGET (gtk_container_get_children (GTK_CONTAINER (menu_popup))->data);
 
     if (gtk_tree_selection_count_selected_rows (selection) >= 1)
       gtk_widget_set_sensitive (menuitem_remove, TRUE);
     else
       gtk_widget_set_sensitive (menuitem_remove, FALSE);
-#if 0 /* CDTEXT */
-    if (gtk_tree_selection_count_selected_rows (selection) == 1) {
-      gtk_widget_set_sensitive (menuitem_rename_artist, TRUE);
-      gtk_widget_set_sensitive (menuitem_rename_title, TRUE);
-    } else {
-      gtk_widget_set_sensitive (menuitem_rename_artist, FALSE);
-      gtk_widget_set_sensitive (menuitem_rename_title, FALSE);
-    }
-#endif /* CDTEXT */
 
-    gtk_menu_popup (GTK_MENU (menu_popup), NULL, NULL, NULL, NULL, event->button, gtk_get_current_event_time ());
+    GdkRectangle r = {event->x, event->y, 1, 1};
+    gtk_menu_popup_at_rect (GTK_MENU (menu_popup),
+        gtk_widget_get_parent_window (GTK_WIDGET (treeview)),
+        &r, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);
     return TRUE;
   }
 
@@ -931,7 +938,7 @@ remove_row_reference (GtkTreeRowReference *reference, XfburnAudioCompositionPriv
 }
 
 static void
-action_remove_selection (GtkAction * action, XfburnAudioComposition * dc)
+action_remove_selection (GSimpleAction * action, GVariant * param, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   
@@ -965,7 +972,7 @@ action_remove_selection (GtkAction * action, XfburnAudioComposition * dc)
 
 
 static void
-action_add_selected_files (GtkAction *action, XfburnAudioComposition *dc)
+action_add_selected_files (GSimpleAction * action, GVariant * param, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   XfburnFileBrowser *browser = xfburn_main_window_get_file_browser (xfburn_main_window_get_instance ());
@@ -1044,7 +1051,7 @@ action_add_selected_files (GtkAction *action, XfburnAudioComposition *dc)
 }
 
 static void
-action_clear (GtkAction * action, XfburnAudioComposition * dc)
+action_clear (GSimpleAction * action, GVariant * param, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   
@@ -1058,7 +1065,7 @@ action_clear (GtkAction * action, XfburnAudioComposition * dc)
 }
 
 static void
-action_info (GtkAction * action, XfburnAudioComposition * dc)
+action_info (GSimpleAction * action, GVariant * param, XfburnAudioComposition * dc)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (dc);
   

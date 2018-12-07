@@ -226,7 +226,7 @@ xfburn_compositions_notebook_add_composition (XfburnCompositionsNotebook *notebo
 }
 
 void
-xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, GActionGroup *action_group)
+xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *notebook, GActionMap *action_group)
 {
   GtkWidget *welcome_tab = NULL;
   GtkWidget *label;

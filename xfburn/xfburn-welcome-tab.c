@@ -121,9 +121,13 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_box_pack_start (GTK_BOX (obj), vbox, FALSE, FALSE, BORDER);
   gtk_widget_show (vbox);
 
+  align = gtk_label_new (NULL);
+  gtk_box_pack_start (GTK_BOX (vbox), align, TRUE, TRUE, 0);
+  gtk_widget_show (align);
+
   label_welcome = gtk_label_new (_("Welcome to Xfburn!"));
-  gtk_box_pack_start (GTK_BOX (vbox), label_welcome, TRUE, FALSE, BORDER);
   gtk_widget_set_valign (GTK_WIDGET (label_welcome), GTK_ALIGN_END);
+  gtk_box_pack_start (GTK_BOX (vbox), label_welcome, FALSE, FALSE, BORDER);
   gtk_widget_show (label_welcome);
 
   table = gtk_grid_new ();
@@ -131,6 +135,13 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_grid_set_row_spacing (GTK_GRID (table), BORDER);
   gtk_grid_set_column_spacing (GTK_GRID (table), BORDER);
   gtk_widget_show (table);
+
+  align = gtk_label_new (NULL);
+  gtk_box_pack_start (GTK_BOX (vbox), align, TRUE, TRUE, 0);
+  gtk_widget_show (align);
+  align = gtk_label_new (NULL);
+  gtk_box_pack_start (GTK_BOX (vbox), align, TRUE, TRUE, 0);
+  gtk_widget_show (align);
 
   /* buttons */
   priv->button_image = create_welcome_button ("stock_xfburn", _("<big>Burn _Image</big>"), _("Burn a prepared compilation, i.e. an .ISO file"));
@@ -240,7 +251,7 @@ new_audio_cd (GtkButton *button, XfburnWelcomeTab *tab)
 /*        */
 
 GtkWidget *
-xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GActionGroup *action_group)
+xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GActionMap *action_group)
 {
   GtkWidget *obj;
 
