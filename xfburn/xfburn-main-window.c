@@ -242,26 +242,6 @@ xfburn_main_window_finalize (GObject *obj)
 }
 
 static void
-add_button_to_toolbar(GtkToolbar *toolbar, const gchar *stock, const gchar *text, const gchar *action, const gchar *tooltip)
-{
-  GtkToolItem *item;
-  GtkWidget *icon;
-  GtkWidget *label;
-
-  gchar *markup = g_markup_printf_escaped("<span size=\"small\" weight=\"bold\">%s</span>", text);
-  label = gtk_label_new(NULL);
-  gtk_label_set_markup(GTK_LABEL (label), markup);
-  g_free(markup);
-
-  icon = gtk_image_new_from_icon_name (stock, 0);
-  item = gtk_tool_button_new(icon, text);
-  gtk_tool_item_set_tooltip_text(item, (tooltip == NULL) ? text : tooltip);
-  gtk_tool_button_set_label_widget(GTK_TOOL_BUTTON (item), label);
-  gtk_toolbar_insert(toolbar, item, -1);
-  gtk_actionable_set_action_name (GTK_ACTIONABLE (item), action);
-}
-
-static void
 xfburn_main_window_init (XfburnMainWindow * mainwin)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (mainwin);
@@ -351,27 +331,26 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   }
 */
   priv->toolbars = gtk_toolbar_new ();
-//  gtk_orientable_set_orientation (priv->toolbars, GTK_ORIENTATION_HORIZONTAL);
   gtk_toolbar_set_style(GTK_TOOLBAR (priv->toolbars), GTK_TOOLBAR_BOTH);
   gtk_widget_insert_action_group (priv->toolbars, "app", G_ACTION_GROUP (priv->action_map));
 
-  add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
     "stock_xfburn-new-data-composition", "New data composition", "app.new-data-composition", NULL);
 
-  add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
     "stock_xfburn-audio-cd", "New audio composition", "app.new-audio-composition", NULL);
 
   gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbars), gtk_separator_tool_item_new(), -1);
 
-  add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars), 
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars), 
     "stock_xfburn-blank-cdrw", "Blank CD-RW", "app.blank-disc", NULL);
   
-  add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
     "stock_xfburn", "Burn Image", "app.burn-image", NULL);
 
   gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbars), gtk_separator_tool_item_new(), -1);
 
-  add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
     "view-refresh", "Refresh", "app.refresh", "Refresh file list");
 
   gtk_box_pack_start (GTK_BOX (vbox), priv->toolbars, FALSE, FALSE, 5);

@@ -388,9 +388,27 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
 
   priv->toolbar = exo_toolbars_view_new_with_model (priv->ui_manager, model_toolbar);
 */
-  priv->toolbar = gtk_label_new ("placeholder for Gtk3Toolbar");
+  priv->toolbar = gtk_toolbar_new ();
+  gtk_toolbar_set_style(GTK_TOOLBAR (priv->toolbar), GTK_TOOLBAR_BOTH);
+  gtk_widget_insert_action_group (priv->toolbar, "win", G_ACTION_GROUP (priv->action_group));
+
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
+    "list-add", "Add", "win.add-file", _("Add the selected file(s) to the composition"));
+
+  gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbar), gtk_separator_tool_item_new(), -1);
+
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
+    "list-remove", "Remove", "win.remove-file", _("Remove the selected file(s) to the composition"));
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
+    "edit-clear", "Clear", "win.clear", _("Clear the content of the composition"));
+
+  gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbar), gtk_separator_tool_item_new(), -1);
+
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
+    "help-about", "gstreamer", "win.transcoder-info", _("What file can get burned to an audio CD"));
+
   gtk_box_pack_start (GTK_BOX (hbox_toolbar), priv->toolbar, TRUE, TRUE, 0);
-  gtk_widget_show (priv->toolbar);
+  gtk_widget_show_all (priv->toolbar);
 
     
   /* content treeview */
