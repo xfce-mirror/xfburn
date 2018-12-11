@@ -91,8 +91,9 @@ static void action_burn_image (GAction *, GVariant*, XfburnMainWindow *);
 static void action_burn_dvd_image (GAction *, GVariant*, XfburnMainWindow *);
 
 static void action_refresh_directorybrowser (GAction *, GVariant*, XfburnMainWindow *);
-static void action_show_filebrowser (GAction *, GVariant*, XfburnMainWindow *);
-static void action_show_toolbar (GAction * action, GVariant*, XfburnMainWindow * window);
+static void action_show_filebrowser (GSimpleAction *, GVariant*, XfburnMainWindow *);
+static void action_show_toolbar (GSimpleAction * action, GVariant*, XfburnMainWindow * window);
+static void action_toggle_state (GSimpleAction *);
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
@@ -165,8 +166,8 @@ static const struct {
 };
 */
 static const GActionEntry toggle_action_entries[] = {
-  { .name = "show-filebrowser", .state = "false", .change_state = (gActionCallback)action_show_filebrowser },
-  { .name = "show-toolbar", .state = "true", .change_state = (gActionCallback)action_show_toolbar },
+  { .name = "show-filebrowser", .activate = (gActionCallback)action_show_filebrowser, .state = "true", .change_state = (gActionCallback)NULL },
+  { .name = "show-toolbar", .activate = (gActionCallback)action_show_toolbar , .state = "true", .change_state = (gActionCallback)NULL },
 };
 /* static const GtkToggleActionEntry toggle_action_entries[] = {
   {"show-filebrowser", NULL, N_("Show file browser"), NULL, N_("Show/hide the file browser"),
@@ -629,11 +630,13 @@ action_refresh_directorybrowser (GAction * action, GVariant* param, XfburnMainWi
 }
 
 static void
-action_show_filebrowser (GAction * action, GVariant* param, XfburnMainWindow * window)
+action_show_filebrowser (GSimpleAction * action, GVariant* param, XfburnMainWindow * window)
 {
+  action_toggle_state(action);
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  gboolean toggle = g_variant_get_boolean  (g_action_get_state (action));
-  xfburn_settings_set_boolean ("show-filebrowser", toggle);
+  GAction *file = g_action_map_lookup_action(G_ACTION_MAP(priv->action_map), "show-filebrowser");
+  gboolean toggle = g_variant_get_boolean  (g_action_get_state (file));
+  xfburn_settings_set_boolean ("show-filebrowser", !toggle);
 
   if ( toggle ) {
     gtk_widget_show (priv->file_browser);
@@ -644,12 +647,14 @@ action_show_filebrowser (GAction * action, GVariant* param, XfburnMainWindow * w
 }
 
 static void
-action_show_toolbar (GAction * action, GVariant* param, XfburnMainWindow * window)
+action_show_toolbar (GSimpleAction * action, GVariant* param, XfburnMainWindow * window)
 {
+  action_toggle_state(action);
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  gboolean toggle = g_variant_get_boolean (g_action_get_state (action));
+  GAction *tool = g_action_map_lookup_action(G_ACTION_MAP(priv->action_map), "show-toolbar");
+  gboolean toggle = g_variant_get_boolean (g_action_get_state (tool));
 
-  xfburn_settings_set_boolean ("show-toolbar", toggle);
+  xfburn_settings_set_boolean ("show-toolbar", !toggle);
 
   if ( toggle ) {
     gtk_widget_show (priv->toolbars);
@@ -657,6 +662,15 @@ action_show_toolbar (GAction * action, GVariant* param, XfburnMainWindow * windo
   else {
     gtk_widget_hide (priv->toolbars);
   }
+}
+
+static void
+action_toggle_state (GSimpleAction * action)
+{
+  GVariant *state = g_action_get_state (G_ACTION(action));
+  gboolean toggle = g_variant_get_boolean (state);
+  toggle = !(toggle);
+  g_simple_action_set_state (action, g_variant_new_boolean (toggle));
 }
 
 /******************/
