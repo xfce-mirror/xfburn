@@ -330,7 +330,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
             GtkIconInfo *icon_info = gtk_icon_theme_lookup_by_gicon (icon_theme, mime_icon, x, GTK_ICON_LOOKUP_USE_BUILTIN);
             if (icon_info != NULL) {
                 mime_icon_pixbuf = gtk_icon_info_load_icon (icon_info, NULL);
-                gtk_icon_info_free (icon_info);
+                g_object_unref (G_OBJECT (icon_info));
             }
             g_object_unref (mime_icon);
         }
