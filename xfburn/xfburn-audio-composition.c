@@ -270,7 +270,7 @@ xfburn_audio_composition_get_type (void)
       NULL                                                /* interface_data */
     };
 
-    audio_composition_type = g_type_register_static (GTK_TYPE_VBOX, "XfburnAudioComposition", &audio_composition_info, 0);
+    audio_composition_type = g_type_register_static (GTK_TYPE_BOX, "XfburnAudioComposition", &audio_composition_info, 0);
 
     g_type_add_interface_static (audio_composition_type, XFBURN_TYPE_COMPOSITION, &composition_info);
   }
