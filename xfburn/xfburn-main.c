@@ -211,6 +211,7 @@ main (int argc, char **argv)
     if (error != NULL) {
       g_print (_("%s: %s\nTry %s --help to see a full list of available command line options.\n"), PACKAGE, error->message, PACKAGE_NAME);
       g_error_free (error);
+      gdk_threads_leave ();
       return EXIT_FAILURE;
     }
   }

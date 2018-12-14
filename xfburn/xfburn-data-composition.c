@@ -1991,7 +1991,7 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
         continue;
       }
 
-      if (src != '\0') {
+      if (src != NULL && *src != '\0') {
         basename = g_path_get_basename (src);
         
         /* check if the file has been renamed */

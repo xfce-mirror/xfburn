@@ -93,7 +93,6 @@ static void action_burn_dvd_image (GAction *, GVariant*, XfburnMainWindow *);
 static void action_refresh_directorybrowser (GAction *, GVariant*, XfburnMainWindow *);
 static void action_show_filebrowser (GSimpleAction *, GVariant*, XfburnMainWindow *);
 static void action_show_toolbar (GSimpleAction * action, GVariant*, XfburnMainWindow * window);
-static void action_toggle_state (GSimpleAction *);
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
@@ -166,8 +165,8 @@ static const struct {
 };
 */
 static const GActionEntry toggle_action_entries[] = {
-  { .name = "show-filebrowser", .activate = (gActionCallback)action_show_filebrowser, .state = "true", .change_state = (gActionCallback)NULL },
-  { .name = "show-toolbar", .activate = (gActionCallback)action_show_toolbar , .state = "true", .change_state = (gActionCallback)NULL },
+  { .name = "show-filebrowser", .state = "false", .change_state = (gActionCallback)action_show_filebrowser },
+  { .name = "show-toolbar", .state = "false", .change_state = (gActionCallback)action_show_toolbar },
 };
 /* static const GtkToggleActionEntry toggle_action_entries[] = {
   {"show-filebrowser", NULL, N_("Show file browser"), NULL, N_("Show/hide the file browser"),
@@ -630,13 +629,15 @@ action_refresh_directorybrowser (GAction * action, GVariant* param, XfburnMainWi
 }
 
 static void
-action_show_filebrowser (GSimpleAction * action, GVariant* param, XfburnMainWindow * window)
+action_show_filebrowser (GSimpleAction * action, GVariant* value, XfburnMainWindow * window)
 {
-  action_toggle_state(action);
+  if(g_variant_is_of_type (value, G_VARIANT_TYPE_BOOLEAN))
+    g_simple_action_set_state (action, value);
+
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   GAction *file = g_action_map_lookup_action(G_ACTION_MAP(priv->action_map), "show-filebrowser");
   gboolean toggle = g_variant_get_boolean  (g_action_get_state (file));
-  xfburn_settings_set_boolean ("show-filebrowser", !toggle);
+  xfburn_settings_set_boolean ("show-filebrowser", toggle);
 
   if ( toggle ) {
     gtk_widget_show (priv->file_browser);
@@ -647,14 +648,15 @@ action_show_filebrowser (GSimpleAction * action, GVariant* param, XfburnMainWind
 }
 
 static void
-action_show_toolbar (GSimpleAction * action, GVariant* param, XfburnMainWindow * window)
+action_show_toolbar (GSimpleAction * action, GVariant* value, XfburnMainWindow * window)
 {
-  action_toggle_state(action);
+  if(g_variant_is_of_type (value, G_VARIANT_TYPE_BOOLEAN))
+    g_simple_action_set_state (action, value);
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   GAction *tool = g_action_map_lookup_action(G_ACTION_MAP(priv->action_map), "show-toolbar");
   gboolean toggle = g_variant_get_boolean (g_action_get_state (tool));
 
-  xfburn_settings_set_boolean ("show-toolbar", !toggle);
+  xfburn_settings_set_boolean ("show-toolbar", toggle);
 
   if ( toggle ) {
     gtk_widget_show (priv->toolbars);
@@ -664,14 +666,6 @@ action_show_toolbar (GSimpleAction * action, GVariant* param, XfburnMainWindow *
   }
 }
 
-static void
-action_toggle_state (GSimpleAction * action)
-{
-  GVariant *state = g_action_get_state (G_ACTION(action));
-  gboolean toggle = g_variant_get_boolean (state);
-  toggle = !(toggle);
-  g_simple_action_set_state (action, g_variant_new_boolean (toggle));
-}
 
 /******************/
 /* public methods */
@@ -701,9 +695,9 @@ xfburn_main_window_new (void)
     action_map = G_ACTION_MAP (priv->action_map);
     /* load settings */
     action = g_action_map_lookup_action (action_map, "show-filebrowser");
-    g_action_change_state(action, g_variant_new_boolean (xfburn_settings_get_boolean ("show-filebrowser", FALSE)));
+    g_action_change_state (action, g_variant_new_boolean (xfburn_settings_get_boolean ("show-filebrowser", FALSE)));
     action = g_action_map_lookup_action (action_map, "show-toolbar");
-    g_action_change_state(action, g_variant_new_boolean (xfburn_settings_get_boolean ("show-toolbar", FALSE)));
+    g_action_change_state (action, g_variant_new_boolean (xfburn_settings_get_boolean ("show-toolbar", FALSE)));
    /* action = gtk_action_group_get_action (priv->action_group, "save-composition");
     gtk_action_set_sensitive (GTK_ACTION (action), FALSE);*/
 

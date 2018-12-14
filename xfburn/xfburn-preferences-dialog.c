@@ -349,7 +349,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   /* action buttons */
   button_close = gtk_button_new ();
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL,0);
-  
+
   label = gtk_image_new_from_icon_name ("gtk-close", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (label);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -361,7 +361,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
 
   gtk_container_add (GTK_CONTAINER(button_close), hbox);
   gtk_widget_show (button_close);
-  
+
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button_close, GTK_RESPONSE_CLOSE);
   gtk_widget_set_can_default (button_close, TRUE);
   gtk_widget_grab_focus (button_close);
