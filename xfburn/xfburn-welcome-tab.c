@@ -191,10 +191,10 @@ create_welcome_button (const gchar *stock, const gchar *text, const gchar *secon
 
   image = gtk_image_new_from_icon_name (stock, GTK_ICON_SIZE_DIALOG);
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 20);
-  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 2);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 
   gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
-  gtk_box_pack_end (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
+  gtk_box_pack_end (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
 
   gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
