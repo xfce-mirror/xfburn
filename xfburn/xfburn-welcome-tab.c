@@ -189,12 +189,19 @@ create_welcome_button (const gchar *stock, const gchar *text, const gchar *secon
   gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);
 
-  image = gtk_image_new_from_icon_name (stock, GTK_ICON_SIZE_DIALOG);
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 20);
   vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+  
+  align = gtk_label_new (NULL);
+  gtk_box_pack_start (GTK_BOX (hbox), align, TRUE, TRUE, 0);
 
+  image = gtk_image_new_from_icon_name (stock, GTK_ICON_SIZE_DIALOG);
   gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
-  gtk_box_pack_end (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
+  // adding the lables
+  gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
+
+  align = gtk_label_new (NULL);
+  gtk_box_pack_end (GTK_BOX (hbox), align, TRUE, TRUE, 0);
 
   gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
