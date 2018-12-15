@@ -270,7 +270,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   g_action_map_add_action_entries (G_ACTION_MAP (priv->action_map), toggle_action_entries, G_N_ELEMENTS(toggle_action_entries), mainwin);
 
   xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
-  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn.3.ui");
+  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn.ui");
 
   if (G_LIKELY (file != NULL)) {
     GError *error = NULL;
