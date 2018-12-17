@@ -150,7 +150,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_box_pack_start (box, hbox, TRUE, TRUE, 0);
   gtk_widget_show (hbox);
-
+/*  // because exo icon bar isn't available disabling the side panel scrolled window
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   g_object_set (G_OBJECT (scrolled_window),
                 "hscrollbar-policy", GTK_POLICY_NEVER,
@@ -159,23 +159,21 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
                 NULL);
   gtk_box_pack_start (GTK_BOX (hbox), scrolled_window, FALSE, FALSE, 0);
   gtk_widget_show (scrolled_window);
-
+*/
   /* icon bar */
   icon_store = gtk_list_store_new (SETTINGS_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_INT);
-/*
-  priv->icon_bar = exo_icon_bar_new_with_model (GTK_TREE_MODEL (icon_store));
-  exo_icon_bar_set_pixbuf_column (EXO_ICON_BAR (priv->icon_bar), SETTINGS_LIST_PIXBUF_COLUMN);
-  exo_icon_bar_set_text_column (EXO_ICON_BAR (priv->icon_bar), SETTINGS_LIST_TEXT_COLUMN);
-  gtk_container_add (GTK_CONTAINER (scrolled_window), priv->icon_bar);
-  gtk_widget_show (priv->icon_bar);
-*/
+  // priv->icon_bar = exo_icon_view_new_with_model (GTK_TREE_MODEL (icon_store));
+  // g_object_set_property (G_OBJECT (priv->icon_bar), "pixbuf-column", &pb_col);
+  // g_object_set_property (G_OBJECT (priv->icon_bar), "text-column", &tx_col);
+  // gtk_container_add (GTK_CONTAINER (scrolled_window), priv->icon_bar);
+  // gtk_widget_show (priv->icon_bar);
 
   /* notebook */
   priv->notebook = gtk_notebook_new ();
   gtk_container_set_border_width (GTK_CONTAINER (priv->notebook), BORDER);
   g_object_set (G_OBJECT (priv->notebook),
                 "show-border", FALSE,
-                "show-tabs", FALSE,
+                "show-tabs", TRUE, // enabling the notebook tabs
                 NULL);
   gtk_box_pack_start (GTK_BOX (hbox), priv->notebook, TRUE, TRUE, BORDER);
   gtk_widget_show (priv->notebook);
@@ -234,6 +232,10 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   idx = gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), vbox, NULL);
   gtk_widget_show (vbox);
 
+  label = gtk_label_new (_("General"));
+  gtk_widget_show (label);
+  gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->notebook),
+                              gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook), 0), label);
   label = gtk_label_new (_("Devices"));
   gtk_widget_show (label);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (priv->notebook),
@@ -321,7 +323,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   if (icon)
     g_object_unref (G_OBJECT (icon));
   
-  exo_mutual_binding_new (G_OBJECT (priv->notebook), "page", G_OBJECT (priv->icon_bar), "active");
+//  exo_mutual_binding_new (G_OBJECT (priv->notebook), "page", G_OBJECT (priv->icon_bar), "active");
 
 
   /* below the device list */

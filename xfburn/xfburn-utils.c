@@ -289,11 +289,7 @@ xfburn_add_button_to_toolbar(GtkToolbar *toolbar, const gchar *stock, const gcha
   GtkWidget *icon;
   GtkWidget *label;
 
-  gchar *markup = g_markup_printf_escaped("<span size=\"small\" weight=\"bold\">%s</span>", text);
-  label = gtk_label_new(NULL);
-  gtk_label_set_markup(GTK_LABEL (label), markup);
-  g_free(markup);
-
+  label = gtk_label_new(text);
   icon = gtk_image_new_from_icon_name (stock, 0);
   item = gtk_tool_button_new(icon, text);
   gtk_tool_item_set_tooltip_text(item, (tooltip == NULL) ? text : tooltip);
