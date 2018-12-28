@@ -201,9 +201,9 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gtk_box_pack_start (box, priv->frame_device, FALSE, FALSE, BORDER);
 
   /* composition name */
-  comp_name = iso_image_get_volume_id (priv->image);
   if (priv->show_volume_name) {
     GtkWidget *label;
+    comp_name = iso_image_get_volume_id (priv->image);
     vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_widget_show (vbox);
 
