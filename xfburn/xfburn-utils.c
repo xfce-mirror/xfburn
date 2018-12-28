@@ -297,3 +297,14 @@ xfburn_add_button_to_toolbar(GtkToolbar *toolbar, const gchar *stock, const gcha
   gtk_toolbar_insert(toolbar, item, -1);
   gtk_actionable_set_action_name (GTK_ACTIONABLE (item), action);
 }
+
+/* creates a progress bar with the initial label set to text and with the label visible */
+GtkWidget *
+xfburn_create_progress_bar (const gchar *text)
+{
+  GtkProgressBar *pbar = GTK_PROGRESS_BAR (gtk_progress_bar_new ());
+  gtk_progress_bar_set_show_text (pbar, TRUE);
+  if (text != NULL && *text != '\0')
+    gtk_progress_bar_set_text (pbar, text);
+  return pbar;
+}

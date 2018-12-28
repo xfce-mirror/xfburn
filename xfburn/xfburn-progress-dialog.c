@@ -201,7 +201,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_box_pack_start (box, priv->label_action, FALSE, TRUE, BORDER);
 
   /* progress bar */
-  priv->progress_bar = gtk_progress_bar_new ();
+  priv->progress_bar = xfburn_create_progress_bar (NULL);;
   gtk_widget_show (priv->progress_bar);
   gtk_box_pack_start (box, priv->progress_bar, FALSE, FALSE, BORDER);
   gtk_progress_bar_set_pulse_step (GTK_PROGRESS_BAR (priv->progress_bar), 0.05);
@@ -230,8 +230,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
   gtk_grid_attach (GTK_GRID (table), label, 0, 0, 1, 1);
   gtk_widget_show (label);
-  priv->fifo_bar = gtk_progress_bar_new ();
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), _("unknown"));
+  priv->fifo_bar = xfburn_create_progress_bar (_("unknown"));
   gtk_grid_attach (GTK_GRID (table), priv->fifo_bar, 1, 0, 1, 1);
   gtk_widget_show (priv->fifo_bar);
 
@@ -240,8 +239,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
   gtk_grid_attach (GTK_GRID (table), label, 0, 1, 1, 1);
   gtk_widget_show (label);
-  priv->buffer_bar = gtk_progress_bar_new ();
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), _("unknown"));
+  priv->buffer_bar = xfburn_create_progress_bar (_("unknown"));
   gtk_grid_attach (GTK_GRID (table), priv->buffer_bar, 1, 1, 1, 1);
   gtk_widget_show (priv->buffer_bar);
 

@@ -115,7 +115,7 @@ xfburn_adding_progress_init (XfburnAddingProgress * win)
   gtk_widget_show (vbox);
   gtk_container_add (GTK_CONTAINER (win), vbox);
     
-  priv->progress_bar = gtk_progress_bar_new ();
+  priv->progress_bar = xfburn_create_progress_bar (NULL);
   gtk_progress_bar_set_pulse_step (GTK_PROGRESS_BAR (priv->progress_bar), 0.01);
   gtk_widget_show (priv->progress_bar);
   gtk_box_pack_start (GTK_BOX (vbox), priv->progress_bar, TRUE, TRUE, BORDER);
