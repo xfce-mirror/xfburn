@@ -6,13 +6,13 @@
 # Kristján Magnússon, 2016
 # Kristján Magnússon, 2016
 # Sveinn í Felli <sv1@fellsnet.is>, 2014
-# Sveinn í Felli <sveinki@nett.is>, 2011,2016,2018
+# Sveinn í Felli <sveinki@nett.is>, 2011,2016,2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-24 00:31+0200\n"
-"PO-Revision-Date: 2018-11-29 09:13+0000\n"
+"PO-Revision-Date: 2019-01-15 11:10+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic (http://www.transifex.com/xfce/xfce-apps/language/is/)\n"
 "MIME-Version: 1.0\n"
@@ -177,7 +177,7 @@ msgstr "Villa"
 #: ../xfburn/xfburn-burn-image-dialog.c:590
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
 msgid "Unable to grab the drive."
-msgstr ""
+msgstr "Tókst ekki að taka yfir diskadrifið."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:156
 msgid "Image"
@@ -202,7 +202,7 @@ msgstr "Heiti samsetningar"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:212
 msgid "<small>Would you like to change the default composition name?</small>"
-msgstr ""
+msgstr "<small>Viltu breyta sjálfgefnu nafni samsetningarinnar?</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:237
 #: ../xfburn/xfburn-burn-image-dialog.c:219
@@ -238,7 +238,7 @@ msgstr "_Brenna samsetningu"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
 #, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr ""
+msgstr "Gat ekki búið til ISO-móttökuskrá: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:484
 msgid "Writing ISO..."
@@ -247,22 +247,22 @@ msgstr "Skrifa ISO-diskmynd..."
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:501
 #, c-format
 msgid "An error occured while writing ISO: %s"
-msgstr ""
+msgstr "Villa kom við að skrifa ISO-diskmynd: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:556
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:562
 msgid "An error occurred in the burn backend."
-msgstr ""
+msgstr "Villa kom upp í brennslubakendanum."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
-msgstr ""
+msgstr "Skifhamur er ekki studdur í augnablikinu."
 
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:667
 msgid "Could not create ISO source structure."
-msgstr ""
+msgstr "Tókst ekki að búa til ISO-grunnuppbyggingu."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:163
 msgid "Burn image"
@@ -292,16 +292,16 @@ msgstr "_Brenna diskmynd"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:296
 msgid "Burn mode is not currently implemented."
-msgstr ""
+msgstr "Brennsluhamur er ekki útfærður."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 #: ../xfburn/xfburn-burn-image-dialog.c:376
 msgid "An error occurred in the burn backend"
-msgstr ""
+msgstr "Villa kom upp í brennslubakendanum"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:360
 msgid "Unable to determine image size."
-msgstr ""
+msgstr "Tókst ekki að ákvarða stærð diskmyndar."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:367
 msgid "Cannot open image."
@@ -315,7 +315,7 @@ msgstr "Brenni diskmynd..."
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
-msgstr ""
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Veldu diskmynd til að brenna</span>"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:516
 msgid ""
@@ -328,25 +328,25 @@ msgstr ""
 
 #: ../xfburn/xfburn-burn-image-dialog.c:522
 msgid "No disc detected in drive"
-msgstr ""
+msgstr "Enginn diskur fannst í drifinu"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:524
 msgid "Cannot recognize state of drive and disc"
-msgstr ""
+msgstr "Gat ekki lesið ástand á drifi og diski"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:536
 msgid "The selected image does not fit on the inserted disc"
-msgstr ""
+msgstr "Valin diskmynd passar ekki á diskinn sem settur var inn"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:540
 msgid "Failed to get image size"
-msgstr ""
+msgstr "Tókst ekki að ákvarða stærð diskmyndar"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:569
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr ""
+msgstr "Athugaðu hvort skráin sem þú valdir sé gild og hvort þú hafir nægar heimildir til að sýsla með þetta."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -413,7 +413,7 @@ msgstr "Bæta við"
 #: ../xfburn/xfburn-data-composition.c:192
 #: ../xfburn/xfburn-audio-composition.c:206
 msgid "Add the selected file(s) to the composition"
-msgstr ""
+msgstr "Bæta völdum skrám í samsetninguna"
 
 #: ../xfburn/xfburn-data-composition.c:194
 msgid "Create directory"
@@ -421,7 +421,7 @@ msgstr "Búa til möppu"
 
 #: ../xfburn/xfburn-data-composition.c:194
 msgid "Add a new directory to the composition"
-msgstr ""
+msgstr "Bæta nýrri möppu í samsetninguna"
 
 #: ../xfburn/xfburn-data-composition.c:196
 #: ../xfburn/xfburn-audio-composition.c:208
@@ -431,7 +431,7 @@ msgstr "Fjarlægja"
 #: ../xfburn/xfburn-data-composition.c:196
 #: ../xfburn/xfburn-audio-composition.c:208
 msgid "Remove the selected file(s) from the composition"
-msgstr ""
+msgstr "Fjarlægja valdar skrár úr samsetningunni"
 
 #: ../xfburn/xfburn-data-composition.c:198
 #: ../xfburn/xfburn-audio-composition.c:210
@@ -545,7 +545,7 @@ msgstr "%s: ekkert minni eftir"
 #: ../xfburn/xfburn-data-composition.c:1944
 #, c-format
 msgid "%s: node name not unique"
-msgstr ""
+msgstr "%s: nafn hnúts er ekki einstakt"
 
 #: ../xfburn/xfburn-data-composition.c:1946
 #, c-format
@@ -576,7 +576,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-device-box.c:177
 msgid "Show mode selection"
-msgstr ""
+msgstr "Sýna valinn ham"
 
 #: ../xfburn/xfburn-device-box.c:178
 msgid "Show mode selection combo"
@@ -631,7 +631,7 @@ msgstr "Hámark"
 
 #: ../xfburn/xfburn-device-box.c:507
 msgid "A full, but erasable disc is in the drive"
-msgstr ""
+msgstr "Fullur, en endurskifanlegur diskur er í drifinu"
 
 #: ../xfburn/xfburn-device-box.c:508
 msgid ""
@@ -924,7 +924,7 @@ msgstr "Enginn diskur fannst í drifinu."
 
 #: ../xfburn/xfburn-perform-burn.c:279
 msgid "Cannot recognize the state of the drive and disc."
-msgstr ""
+msgstr "Gat ekki lesið ástand á drifi og diski."
 
 #: ../xfburn/xfburn-perform-burn.c:286
 msgid "Formatting failed."
@@ -1180,7 +1180,7 @@ msgstr "<big>Tó_mur diskur</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:150
 msgid "Prepare the rewriteable disc for a new burn"
-msgstr ""
+msgstr "Undirbúa endurskrifanlega diskinn fyrir nýja brennslu"
 
 #: ../xfburn/xfburn-welcome-tab.c:155
 msgid "<big>_Audio CD</big>"
@@ -1192,7 +1192,7 @@ msgstr "CD-tónlistardiskur sem hægt er að spila í tölvum og hljómflutnings
 
 #: ../xfburn/xfburn-audio-composition.c:212
 msgid "What files can get burned to an audio CD?"
-msgstr ""
+msgstr "Hvaða skrár er hægt að brenna á hljóðgeisladisk (CD)?"
 
 #: ../xfburn/xfburn-audio-composition.c:216
 msgid "Rename Artist"
@@ -1200,7 +1200,7 @@ msgstr "Endurnefna flytjanda"
 
 #: ../xfburn/xfburn-audio-composition.c:216
 msgid "Rename the artist of the selected file"
-msgstr ""
+msgstr "Endurnefna flytjanda völdu skrárinnar"
 
 #: ../xfburn/xfburn-audio-composition.c:218
 msgid "Rename Title"
@@ -1208,7 +1208,7 @@ msgstr "Endurnefna titil"
 
 #: ../xfburn/xfburn-audio-composition.c:218
 msgid "Rename the title of the selected file"
-msgstr ""
+msgstr "Endurnefna titil völdu skrárinnar"
 
 #: ../xfburn/xfburn-audio-composition.c:402
 msgid "Pos"
@@ -1240,7 +1240,7 @@ msgstr "Þú getur bara brennt 99 spor."
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
 msgid "A problem with the burn backend occurred."
-msgstr ""
+msgstr "Villa kom upp í brennslubakenda."
 
 #: ../xfburn/xfburn-disc-usage.c:163
 msgid "Proceed to Burn"
@@ -1269,12 +1269,12 @@ msgstr ""
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
 msgid "File %s does not have a .wav extension"
-msgstr ""
+msgstr "Skráin %s er ekki með .wav skráarendingu"
 
 #: ../xfburn/xfburn-transcoder-basic.c:201
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
-msgstr ""
+msgstr "Skráin %s inniheldur ekki óþjappað PCM bylgjuhjlóð"
 
 #: ../xfburn/xfburn-transcoder-basic.c:207
 #, c-format
