@@ -35,6 +35,7 @@
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
 #include "xfburn-device-list.h"
+#include "xfburn-main.h"
 
 /***********/
 /* cursors */
@@ -129,6 +130,11 @@ xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent)
 
   dialog = gtk_file_chooser_dialog_new (_("Select command"), parent, GTK_FILE_CHOOSER_ACTION_SAVE, GTK_STOCK_CANCEL,
                                         GTK_RESPONSE_CANCEL, GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL);
+
+  if(xfburn_main_has_initial_dir ()) {
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), xfburn_main_get_initial_dir ());
+  }
+
   if (strlen (text) > 0)
     gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (dialog), text);
   

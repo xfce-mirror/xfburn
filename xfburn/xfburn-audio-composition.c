@@ -53,6 +53,7 @@
 #include "xfburn-burn-audio-cd-composition-dialog.h"
 #include "xfburn-transcoder.h"
 #include "xfburn-settings.h"
+#include "xfburn-main.h"
 
 #define XFBURN_AUDIO_COMPOSITION_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_AUDIO_COMPOSITION, XfburnAudioCompositionPrivate))
 
@@ -980,6 +981,10 @@ action_add_selected_files (GtkAction *action, XfburnAudioComposition *dc)
                                           GTK_RESPONSE_ACCEPT,
                                           NULL);
     gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER(dialog), TRUE);
+
+    if(xfburn_main_has_initial_dir ()) {
+      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), xfburn_main_get_initial_dir ());
+    }
 
     if (gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT) {
         GSList *list = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));

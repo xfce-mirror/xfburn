@@ -55,6 +55,7 @@
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
+#include "xfburn-main.h"
 
 #define XFBURN_DATA_COMPOSITION_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataCompositionPrivate))
 
@@ -951,6 +952,11 @@ select_files (XfburnDataComposition * dc)
     priv->add_filechooser = gtk_file_chooser_widget_new (GTK_FILE_CHOOSER_ACTION_OPEN);
 
     gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER(priv->add_filechooser), TRUE);
+
+    if(xfburn_main_has_initial_dir ()) {
+      gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER(priv->add_filechooser), xfburn_main_get_initial_dir ());
+    }
+
     if (priv->last_directory)
       gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER(priv->add_filechooser), priv->last_directory);
 

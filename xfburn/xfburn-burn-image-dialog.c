@@ -180,6 +180,10 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (priv->chooser_image), filter);
   gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (priv->chooser_image), filter);
 
+  if(xfburn_main_has_initial_dir ()) {
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (priv->chooser_image), xfburn_main_get_initial_dir ());
+  }
+
   if (last_file) {
     gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (priv->chooser_image), last_file);
   }

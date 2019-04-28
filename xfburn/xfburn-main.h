@@ -27,9 +27,8 @@ G_BEGIN_DECLS
 
 void xfburn_main_leave_window (void);
 void xfburn_main_enter_window (void);
-#if 0 /* INITIAL_DIRECTORY_OPTION */
 const gchar *xfburn_main_get_initial_dir ();
-#endif
+const gboolean *xfburn_main_has_initial_dir ();
 
 G_END_DECLS
 #endif /* __XFBURN_MAIN_H__ */
