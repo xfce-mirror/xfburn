@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-24 00:31+0200\n"
-"PO-Revision-Date: 2019-08-01 09:27+0000\n"
+"PO-Revision-Date: 2019-08-01 15:12+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -65,11 +65,11 @@ msgstr "Cancelar"
 
 #: ../xfburn/xfburn-blank-dialog.c:71
 msgid "Quick Blank"
-msgstr "Borrado rápido"
+msgstr "Baleirado rápido"
 
 #: ../xfburn/xfburn-blank-dialog.c:72
 msgid "Full Blank (slow)"
-msgstr "Borrado completo (lento)"
+msgstr "Baleirado completo (lento)"
 
 #: ../xfburn/xfburn-blank-dialog.c:73
 msgid "Quick Format"
@@ -81,11 +81,11 @@ msgstr "Formato completo"
 
 #: ../xfburn/xfburn-blank-dialog.c:75
 msgid "Quick Deformat"
-msgstr "Borrado rápido"
+msgstr "Desformatado rápido"
 
 #: ../xfburn/xfburn-blank-dialog.c:76
 msgid "Full Deformat (slow)"
-msgstr "Borrado completo (lento)"
+msgstr "Desformatado completo (lento)"
 
 #: ../xfburn/xfburn-blank-dialog.c:149
 msgid "Eject the disc"
@@ -110,7 +110,7 @@ msgstr "Dispositivo de gravación"
 
 #: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:185
 msgid "Blank mode"
-msgstr "Modo de borrado"
+msgstr "Modo de baleirado"
 
 #: ../xfburn/xfburn-blank-dialog.c:230
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:228
@@ -155,7 +155,7 @@ msgstr "O disco non é borrable."
 
 #: ../xfburn/xfburn-blank-dialog.c:414
 msgid "Blanking disc..."
-msgstr "Borrando o disco..."
+msgstr "Baleirando o disco..."
 
 #: ../xfburn/xfburn-blank-dialog.c:441
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:519
@@ -250,12 +250,12 @@ msgstr "Ocorreu un erro mentres se escribia ISO: %s"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:556
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:562
 msgid "An error occurred in the burn backend."
-msgstr "Ocorreu un erro no motor de gravación."
+msgstr "Ocorreu un erro na infraestrutura de gravación."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
 msgid "The write mode is not supported currently."
-msgstr "O modo de escritura aínda non está soportado."
+msgstr "O modo de escritura aínda non se admite."
 
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:667
@@ -295,7 +295,7 @@ msgstr "O modo de gravación aínda non está implementado."
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 #: ../xfburn/xfburn-burn-image-dialog.c:376
 msgid "An error occurred in the burn backend"
-msgstr "Ocorreu un erro no motor de gravación"
+msgstr "Ocorreu un erro na infraestrutura de gravación"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:360
 msgid "Unable to determine image size."
@@ -508,7 +508,7 @@ msgstr "Non se puido engadir %s á composición porque excede o tamaño de fiche
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
-msgstr "%s é maior que o permitido polo nivel 2 do iso9660. Isto pode ser un problema para sistemas ou aplicativos antigos."
+msgstr "%s é maior que o permitido polo nivel 2 do iso9660. Isto pode ser un problema para sistemas ou soporte lóxico antigos."
 
 #: ../xfburn/xfburn-data-composition.c:1374
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -590,7 +590,7 @@ msgstr "É a combinación de hardware e disco válida para gravar a composición
 
 #: ../xfburn/xfburn-device-box.c:186
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "O modo de borrado mostra mensaxes de estado do disco de xeito regular"
+msgstr "O modo de baleirado mostra mensaxes de estado do disco de xeito regular"
 
 #: ../xfburn/xfburn-device-box.c:239
 msgid "_Speed:"
@@ -613,11 +613,11 @@ msgid ""
 "Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr "<b>Non se puido obter a lista de velocidades desta unidade.</b>\n\nTrátase dun erro coñecido dalgunhas unidades. Por favor, informe a <i>xfburn@xfce.org</i> xunto coa mensaxe de saída para aumentar as posibilidades de que se solucione.\n\nA gravación debería funcionar, pero se aínda así hai problemas, fáganolo saber.\n\n<i>Grazas!</i>"
+msgstr "<b>Non se puido obter a lista de velocidades desta unidade.</b>\n\nTrátase dun fallo coñecido dalgunhas unidades. Se está interesado en solucionalo, bótelle un ollo á biblioteca de libburn.\n\nA gravación debería funcionar, pero se aínda así hai problemas, fáganolo saber.\n\n<i>Grazas!</i>"
 
 #: ../xfburn/xfburn-device-box.c:395
 msgid "Continue to _show this notice"
-msgstr "_Seguir mostrando este aviso"
+msgstr "Continuar amosando este avi_so"
 
 #: ../xfburn/xfburn-device-box.c:442
 msgid "default"
@@ -647,7 +647,7 @@ msgstr "A unidade está baleira"
 
 #: ../xfburn/xfburn-device-box.c:591
 msgid "Sorry, multisession is not yet supported"
-msgstr "A multisesión ainda non está soportada"
+msgstr "A multisesión aínda non se admite"
 
 #: ../xfburn/xfburn-device-box.c:594
 msgid "Inserted disc is full"
@@ -667,11 +667,11 @@ msgstr "Erro ó determinar o disco"
 
 #: ../xfburn/xfburn-device-box.c:626
 msgid "Write-once disc, no blanking possible"
-msgstr "Disco dunha soa escritura, non é posible borralo"
+msgstr "Disco dunha soa escritura, non é posible baleiralo"
 
 #: ../xfburn/xfburn-device-box.c:629
 msgid "DVD+RW does not need blanking"
-msgstr "DVD+RW non precisa borrado"
+msgstr "DVD+RW non precisa baleirado"
 
 #: ../xfburn/xfburn-device-box.c:637
 msgid "Inserted disc is already blank"
@@ -737,7 +737,7 @@ msgstr "%s: %s\nExecute %s --help para ver unha lista completa das opcións de l
 
 #: ../xfburn/xfburn-main.c:219
 msgid "Unable to initialize the burning backend."
-msgstr "Non foi posible iniciar o motor de gravación."
+msgstr "Non se puido inicializar a infraestrutura de gravación."
 
 #: ../xfburn/xfburn-main.c:294
 msgid "No burners are currently available"
@@ -844,7 +844,7 @@ msgstr "Mostrar información acerca de Xfburn"
 
 #: ../xfburn/xfburn-main-window.c:127
 msgid "Blank CD-RW"
-msgstr "Borrar CD-RW"
+msgstr "Baleirar CD-RW"
 
 #: ../xfburn/xfburn-main-window.c:129
 msgid "Copy Data CD"
@@ -1238,7 +1238,7 @@ msgstr "Só pode ter un máximo de 99 pistas."
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
 msgid "A problem with the burn backend occurred."
-msgstr "Produciuse un problema no motor de gravación."
+msgstr "Produciuse un problema na infraestrutura de gravación."
 
 #: ../xfburn/xfburn-disc-usage.c:163
 msgid "Proceed to Burn"
@@ -1262,7 +1262,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr "O transcodificador básico está\nincorporado, e non require ningunha\nlibraría. Pero só pode manexar\nficheiros .wav descomprimidos.\nSe desexa crear composicións de\nson a partir de diferentes tipos de\nficheiros de son, compíleo con\nsoporte para gstreamer."
+msgstr "O transcodificador básico está\nincorporado, e non require ningunha\nlibraría. Pero só pode manexar\nficheiros .wav descomprimidos.\nSe desexa crear composicións de\nson a partir de diferentes tipos de\nficheiros de son, compíleo con\ncompatibilidade para gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:196
 #, c-format
@@ -1306,7 +1306,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr "O transcodificador de gstreamer usa a librería\nde gstreamer para crear composicións de audio.\n\nSe os engadidos correctos están instalados\ndeberíanse soportar tódolos ficheiros de son.\nSe non se recoñece un ficheiro de son,\nasegúrese de que ten instalados os paquetes\ndos engadidos de gstreamer 'good','bad', e 'ugly'."
+msgstr "O transcodificador de gstreamer usa a librería\nde gstreamer para crear composicións de audio.\n\nSe os engadidos correctos están instalados\ndeberían admitirse todos os ficheiros de son.\nSe non se recoñece un ficheiro de son,\nasegúrese de que ten instalados os paquetes\ndos engadidos de gstreamer 'good', 'bad', e 'ugly'."
 
 #: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
@@ -1343,7 +1343,7 @@ msgstr "enderezo do dispositivo"
 
 #: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
 msgid "Burn speeds supported by the device"
-msgstr "Velocidades de gravación soportadas polo dispositivo"
+msgstr "Velocidades de gravación admitidas polo dispositivo"
 
 #: ../xfburn/xfburn-device.c:259 ../xfburn/xfburn-device.c:260
 msgid "Disc status"
@@ -1423,4 +1423,4 @@ msgid ""
 "blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
 "personal compositions of data to either CD or DVD. It is stable and under "
 "ongoing development."
-msgstr "Xfburn é unha ferramenta de gravación de CD/DVD baseada en bibliotecas libburnia. Pode gravar discos baleiros do tipo CD/DVD(-RW), gravar e crear imaxes iso, cedés de son, así como gravar composicións persoais de datos a cedé ou deuvedé. É estable e continúa en desenvolvemento."
+msgstr "Xfburn é unha ferramenta de gravación de CD/DVD baseada en bibliotecas libburnia. Pode gravar discos baleiros do tipo CD/DVD(-RW), gravar e crear imaxes iso, cedés de son, así como gravar composicións persoais de datos en cedé ou deuvedé. É estable e continúa en desenvolvemento."
