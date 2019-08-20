@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-24 00:31+0200\n"
-"PO-Revision-Date: 2019-08-19 07:30+0000\n"
+"PO-Revision-Date: 2019-08-20 20:07+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -151,7 +151,7 @@ msgstr "Non se detectou ningún disco na unidade."
 
 #: ../xfburn/xfburn-blank-dialog.c:374
 msgid "Disc is not erasable."
-msgstr "O disco non é borrable."
+msgstr "O disco non é borrábel."
 
 #: ../xfburn/xfburn-blank-dialog.c:414
 msgid "Blanking disc..."
@@ -250,7 +250,7 @@ msgstr "Ocorreu un erro mentres se escribia ISO: %s"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:556
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:562
 msgid "An error occurred in the burn backend."
-msgstr "Ocorreu un erro na infraestrutura de gravación."
+msgstr "Ocorreu un fallo na infraestrutura de gravación."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
@@ -295,7 +295,7 @@ msgstr "O modo de gravación aínda non está implementado."
 #: ../xfburn/xfburn-burn-image-dialog.c:347
 #: ../xfburn/xfburn-burn-image-dialog.c:376
 msgid "An error occurred in the burn backend"
-msgstr "Ocorreu un erro na infraestrutura de gravación"
+msgstr "Ocorreu un fallo na infraestrutura de gravación"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:360
 msgid "Unable to determine image size."
@@ -344,7 +344,7 @@ msgstr "Fallo ao obter o tamaño da imaxe"
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr "Asegúrese de que seleccionou un ficheiro válido e de que ten os permisos axeitados para acceder a el."
+msgstr "Asegúrese de que seleccionou un ficheiro correcto e de que ten os permisos axeitados para acceder a el."
 
 #: ../xfburn/xfburn-compositions-notebook.c:174
 msgid "Audio composition"
@@ -582,15 +582,15 @@ msgstr "Amosar a caixa de selección de modo"
 
 #: ../xfburn/xfburn-device-box.c:181
 msgid "Is it a valid combination"
-msgstr "A combinación é válida"
+msgstr "É unha combinación correcta?"
 
 #: ../xfburn/xfburn-device-box.c:182
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr "É a combinación de hardware e disco válida para gravar a composición?"
+msgstr "É a combinación de hardware e disco correcta para gravar a composición?"
 
 #: ../xfburn/xfburn-device-box.c:186
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr "O modo de baleirado mostra mensaxes de estado do disco de xeito regular"
+msgstr "O modo de baleirado amosa mensaxes de estado do disco de xeito regular"
 
 #: ../xfburn/xfburn-device-box.c:239
 msgid "_Speed:"
@@ -750,7 +750,7 @@ msgid ""
 "Please unmount and restart the application.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr "É posíbel que os discos estean en uso non poidan ser accedidos.\n\nDesmonte e reinicie o aplicativo.\n\nSe non hai ningún disco na unidade, comprobe que ten acceso de lectura e escritura á unidade co usuario actual."
+msgstr "É posíbel que os discos estean en uso e non poidan ser accedidos.\n\nDesmonte e reinicie a aplicación.\n\nSe non hai ningún disco na unidade, comprobe que ten acceso de lectura e escritura á unidade co usuario actual."
 
 #: ../xfburn/xfburn-main.c:330
 #, c-format
@@ -1024,7 +1024,7 @@ msgstr "Navegador de ficheiros"
 
 #: ../xfburn/xfburn-preferences-dialog.c:210
 msgid "Show _hidden files"
-msgstr "Amosar os fic_heiros ocultos"
+msgstr "Amosar os fic_heiros agochados"
 
 #: ../xfburn/xfburn-preferences-dialog.c:215
 msgid "Show human_readable filesizes"
@@ -1077,7 +1077,7 @@ msgstr "Busc_ar dispositivos"
 
 #: ../xfburn/xfburn-preferences-dialog.c:329
 msgid "Show warning on _empty speed list"
-msgstr "Amosar advertencia se lista de velocidades está baleira"
+msgstr "Amosar un aviso se a lista de velocidades está baleira"
 
 #: ../xfburn/xfburn-preferences-dialog.c:338
 msgid "FIFO buffer size (in kb)"
@@ -1182,7 +1182,7 @@ msgstr "Prepara o disco regravábel para gravalo de novo"
 
 #: ../xfburn/xfburn-welcome-tab.c:155
 msgid "<big>_Audio CD</big>"
-msgstr "<big>CD de _audio</big>"
+msgstr "<big>CD de _son</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:155
 msgid "Audio CD playable in regular stereos"
@@ -1311,7 +1311,7 @@ msgstr "O transcodificador de gstreamer usa a biblioteca\nde gstreamer para crea
 #: ../xfburn/xfburn-transcoder-gst.c:699 ../xfburn/xfburn-transcoder-gst.c:729
 #, c-format
 msgid "An error occurred while identifying '%s' with gstreamer"
-msgstr "Produciuse un erro ao identificar «%s» con gstreamer"
+msgstr "Produciuse un fallo ao identificar «%s» con gstreamer"
 
 #: ../xfburn/xfburn-transcoder-gst.c:716
 msgid "A plugin"
@@ -1411,7 +1411,7 @@ msgstr "Gravando o disco"
 
 #: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
-msgstr "Aplicativo para a gravación de CDs e DVDs"
+msgstr "Aplicación para a gravación de CDs e DVDs"
 
 #: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
