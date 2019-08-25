@@ -207,7 +207,7 @@ main (int argc, char **argv)
 
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-  if (!gtk_init_with_args (&argc, &argv, "", optionentries, GETTEXT_PACKAGE, &error)) {
+  if (!gtk_init_with_args (&argc, &argv, NULL, optionentries, GETTEXT_PACKAGE, &error)) {
     if (error != NULL) {
       g_print (_("%s: %s\nTry %s --help to see a full list of available command line options.\n"), PACKAGE, error->message, PACKAGE_NAME);
       g_error_free (error);
