@@ -748,8 +748,7 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc)
   }
 
   if (priv->full_paths_to_add) {
-    g_list_foreach (priv->full_paths_to_add, (GFunc) g_free, NULL);
-    g_list_free (priv->full_paths_to_add);
+    g_list_free_full (priv->full_paths_to_add, (GDestroyNotify) g_free);
     priv->full_paths_to_add = NULL;
   }
 
@@ -1058,8 +1057,7 @@ add_files(gchar * selected_files, XfburnDataComposition *dc)
     priv->thread_params = params;
     g_thread_new ("data_add_files", (GThreadFunc) thread_add_files_action, params);
 
-    g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
-    g_list_free (selected_paths);
+    g_list_free_full (selected_paths, (GDestroyNotify) gtk_tree_path_free);
   }
 }
 
