@@ -113,9 +113,9 @@ typedef struct {
 } ThreadAddFilesDragParams;
 
 /* prototypes */
-static void xfburn_audio_composition_class_init (XfburnAudioCompositionClass *);
+static void xfburn_audio_composition_class_init (XfburnAudioCompositionClass *, gpointer);
 static void composition_interface_init (XfburnCompositionInterface *composition, gpointer iface_data);
-static void xfburn_audio_composition_init (XfburnAudioComposition *dc);
+static void xfburn_audio_composition_init (XfburnAudioComposition *dc, gpointer);
 static void xfburn_audio_composition_finalize (GObject * object);
 
 /* internals */
@@ -279,7 +279,7 @@ xfburn_audio_composition_get_type (void)
 }
 
 static void
-xfburn_audio_composition_class_init (XfburnAudioCompositionClass * klass)
+xfburn_audio_composition_class_init (XfburnAudioCompositionClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -300,7 +300,7 @@ composition_interface_init (XfburnCompositionInterface *composition, gpointer if
 }
 
 static void
-xfburn_audio_composition_init (XfburnAudioComposition * composition)
+xfburn_audio_composition_init (XfburnAudioComposition * composition, gpointer data)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
 
