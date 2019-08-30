@@ -544,8 +544,9 @@ action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
   gint x, y;
   GdkPixbuf *icon = NULL;
   const gchar *auth[] = { "David Mohr david@mcbf.net Author/Maintainer",
-	  		  "Mario Đanić mario@libburnia-project.org Author/Maintainer",
+			  "Mario Đanić mario@libburnia-project.org Author/Maintainer",
 			  "Jean-François Wauthy pollux@xfce.org Retired author/maintainer",
+			  "Rene Kjellerup rk.katana.steel@gmail.com Author/GTK+3",
 			  NULL };
   const gchar *translators =
     "Mohamed Magdy mohamed.m.k@gmail.com ar\n"
