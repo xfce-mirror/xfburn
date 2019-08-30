@@ -99,9 +99,9 @@ typedef struct {
 } ThreadAddFilesDragParams;
 
 /* prototypes */
-static void xfburn_data_composition_class_init (XfburnDataCompositionClass *);
+static void xfburn_data_composition_class_init (XfburnDataCompositionClass *, gpointer);
 static void composition_interface_init (XfburnCompositionInterface *composition, gpointer iface_data);
-static void xfburn_data_composition_init (XfburnDataComposition *dc);
+static void xfburn_data_composition_init (XfburnDataComposition *dc, gpointer);
 static void xfburn_data_composition_finalize (GObject * object);
 
 static void show_custom_controls (XfburnComposition *composition);
@@ -135,9 +135,9 @@ static void cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc, G
 static void cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc);
 
 /* thread entry points */
-static void thread_add_files_cli (ThreadAddFilesCLIParams *params);
-static void thread_add_files_action (ThreadAddFilesActionParams *params);
-static void thread_add_files_drag (ThreadAddFilesDragParams *params);
+static gpointer thread_add_files_cli (ThreadAddFilesCLIParams *params);
+static gpointer thread_add_files_action (ThreadAddFilesActionParams *params);
+static gpointer thread_add_files_drag (ThreadAddFilesDragParams *params);
 
 /* thread helpers */
 static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc,
@@ -259,10 +259,9 @@ xfburn_data_composition_get_type (void)
 }
 
 static void
-xfburn_data_composition_class_init (XfburnDataCompositionClass * klass)
+xfburn_data_composition_class_init (XfburnDataCompositionClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
   g_type_class_add_private (klass, sizeof (XfburnDataCompositionPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
@@ -280,7 +279,7 @@ composition_interface_init (XfburnCompositionInterface *composition, gpointer if
 }
 
 static void
-xfburn_data_composition_init (XfburnDataComposition * composition)
+xfburn_data_composition_init (XfburnDataComposition * composition, gpointer data)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
 
@@ -1377,7 +1376,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
 }
 
 /* thread entry point */
-static void
+static gpointer
 thread_add_files_cli (ThreadAddFilesCLIParams *params)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (params->dc);
@@ -1400,6 +1399,7 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
   }
   g_slist_free (params->filelist);
   xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
+  return NULL;
 }
 
 static gboolean
@@ -1421,7 +1421,7 @@ show_add_home_question_dialog (void)
 }
 
 /* thread entry point */
-static void
+static gpointer
 thread_add_files_action (ThreadAddFilesActionParams *params)
 {
   XfburnDataComposition *dc = params->dc;
@@ -1503,6 +1503,7 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
   g_strfreev (files);
 
   xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
+  return NULL;
 }
 
 static gboolean
@@ -1897,7 +1898,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 }
 
 /* thread entry point */
-static void
+static gpointer
 thread_add_files_drag (ThreadAddFilesDragParams *params)
 {
   XfburnDataComposition *composition = params->composition;
