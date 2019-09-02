@@ -152,9 +152,9 @@ static void cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc, G
 static void cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc);
 
 /* thread entry points */
-static void thread_add_files_cli (ThreadAddFilesCLIParams *params);
-static void thread_add_files_action (ThreadAddFilesActionParams *params);
-static void thread_add_files_drag (ThreadAddFilesDragParams *params);
+static gpointer thread_add_files_cli (ThreadAddFilesCLIParams *params);
+static gpointer thread_add_files_action (ThreadAddFilesActionParams *params);
+static gpointer thread_add_files_drag (ThreadAddFilesDragParams *params);
 
 /* thread helpers */
 static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * dc,
@@ -838,8 +838,7 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc)
   }
 
   if (priv->full_paths_to_add) {
-    g_list_foreach (priv->full_paths_to_add, (GFunc) g_free, NULL);
-    g_list_free (priv->full_paths_to_add);
+    g_list_free_full (priv->full_paths_to_add, (GDestroyNotify)g_free);
     priv->full_paths_to_add = NULL;
   }
 
@@ -1063,8 +1062,7 @@ action_add_selected_files (GSimpleAction * action, GVariant * param, XfburnAudio
     priv->thread_params = params;
     g_thread_new ("audio_add_selected", (GThreadFunc) thread_add_files_action, params);
 
-    g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
-    g_list_free (selected_paths);
+    g_list_free_full (selected_paths, (GDestroyNotify)gtk_tree_path_free);
   }
 }
 
@@ -1350,7 +1348,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 }
 
 /* thread entry point */
-static void
+static gpointer
 thread_add_files_cli (ThreadAddFilesCLIParams *params)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (params->dc);
@@ -1373,6 +1371,7 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
   }
   g_slist_free (params->filelist);
   xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
+  return NULL;
 }
 
 static gboolean
@@ -1394,7 +1393,7 @@ show_add_home_question_dialog (void)
 }
 
 /* thread entry point */
-static void
+static gpointer
 thread_add_files_action (ThreadAddFilesActionParams *params)
 {
   XfburnAudioComposition *dc = params->dc;
@@ -1454,6 +1453,7 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
 
   g_strfreev (files);
   xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
+  return NULL;
 }
 
 static gboolean
@@ -1906,7 +1906,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 }
 
 /* thread entry point */
-static void
+static gpointer
 thread_add_files_drag (ThreadAddFilesDragParams *params)
 {
   XfburnAudioComposition *composition = params->composition;
@@ -1948,6 +1948,7 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
     }
   }
   xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
+  return NULL;
 }
 
 /****************/
