@@ -39,12 +39,12 @@ G_BEGIN_DECLS
 
 typedef struct
 {
-  GtkVBox parent;
+  GtkBox parent;
 } XfburnWelcomeTab;
 
 typedef struct
 {
-  GtkVBoxClass parent_class;
+  GtkBoxClass parent_class;
 } XfburnWelcomeTabClass;
 
 GType xfburn_welcome_tab_get_type (void);

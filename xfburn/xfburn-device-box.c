@@ -140,7 +140,7 @@ xfburn_device_box_get_type (void)
         NULL
       };
 
-      device_box_type = g_type_register_static (GTK_TYPE_VBOX, "XfburnDeviceBox", &device_box_info, 0);
+      device_box_type = g_type_register_static (GTK_TYPE_BOX, "XfburnDeviceBox", &device_box_info, 0);
     }
 
   return device_box_type;
@@ -220,7 +220,7 @@ xfburn_device_box_constructor (GType type, guint n_construct_properties, GObject
   */
 
   /* disc label */
-  priv->hbox_refresh = gtk_hbox_new (FALSE, 0);
+  priv->hbox_refresh = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_widget_show (priv->hbox_refresh);
   gtk_box_pack_start (GTK_BOX (box), priv->hbox_refresh, TRUE, TRUE, BORDER);
 
@@ -232,7 +232,7 @@ xfburn_device_box_constructor (GType type, guint n_construct_properties, GObject
   gtk_box_pack_start (GTK_BOX (priv->hbox_refresh), xfburn_device_list_get_refresh_button (devlist), FALSE, FALSE, BORDER);
 
   /* speed */
-  priv->hbox_speed_selection = gtk_hbox_new (FALSE, 0);
+  priv->hbox_speed_selection = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_widget_show (priv->hbox_speed_selection);
   gtk_box_pack_start (GTK_BOX (box), priv->hbox_speed_selection, TRUE, TRUE, BORDER);
 
@@ -255,7 +255,7 @@ xfburn_device_box_constructor (GType type, guint n_construct_properties, GObject
   }
 
   /* mode */
-  priv->hbox_mode_selection = gtk_hbox_new (FALSE, 0);
+  priv->hbox_mode_selection = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_widget_show (priv->hbox_mode_selection);
   gtk_box_pack_start (GTK_BOX (box), priv->hbox_mode_selection, FALSE, FALSE, BORDER);
 
@@ -492,6 +492,7 @@ status_label_update (XfburnDeviceBoxPrivate *priv)
   gtk_label_set_markup (GTK_LABEL(priv->status_label), text);
   g_free (text);
 }
+
 
 static gboolean
 ask_for_blanking (XfburnDeviceBoxPrivate *priv)

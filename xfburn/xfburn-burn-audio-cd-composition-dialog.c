@@ -147,7 +147,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
-  icon = gtk_widget_render_icon (GTK_WIDGET (obj), "stock_xfburn", GTK_ICON_SIZE_DIALOG, NULL);
+  icon = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(), "stock_xfburn", GTK_ICON_SIZE_DIALOG, 0, NULL);
   gtk_window_set_icon (GTK_WINDOW (obj), icon);
   g_object_unref (icon);
 
@@ -188,7 +188,7 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   */
 
   /* options */
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox);
 
   frame = xfce_gtk_frame_box_new_with_content (_("Options"), vbox);
@@ -209,13 +209,14 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   gtk_widget_show (priv->check_burnfree);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);
 
+/*
   align = gtk_alignment_new (0, 0, 0, 0);
   gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
   gtk_widget_show (align);
   gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
-
+*/
   /* action buttons */
-  button = gtk_button_new_from_stock ("_Cancel");
+  button = gtk_button_new_with_mnemonic (_("_Cancel"));
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 

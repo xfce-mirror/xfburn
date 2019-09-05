@@ -204,7 +204,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   comp_name = iso_image_get_volume_id (priv->image);
   if (priv->show_volume_name) {
     GtkWidget *label;
-    vbox = gtk_vbox_new (FALSE, 0);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_widget_show (vbox);
 
     frame = xfce_gtk_frame_box_new_with_content (_("Composition name"), vbox);
@@ -225,7 +225,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   }
 
   /* options */
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox);
 
   frame = xfce_gtk_frame_box_new_with_content (_("Options"), vbox);
@@ -256,15 +256,15 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   gtk_widget_show (priv->check_only_iso);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_only_iso, FALSE, FALSE, BORDER);
   g_signal_connect (G_OBJECT (priv->check_only_iso), "toggled", G_CALLBACK (cb_check_only_iso_toggled), obj);
-
+/*
   align = gtk_alignment_new (0, 0, 0, 0);
   gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
   gtk_widget_show (align);
   gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
-
-  priv->hbox_iso = gtk_hbox_new (FALSE, 0);
+*/
+  priv->hbox_iso = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, BORDER*4);
   gtk_widget_show (priv->hbox_iso);
-  gtk_container_add (GTK_CONTAINER (align), priv->hbox_iso);
+  gtk_container_add (GTK_CONTAINER(vbox), priv->hbox_iso);
   gtk_widget_set_sensitive (priv->hbox_iso, FALSE);
 
   priv->entry_path_iso = gtk_entry_new ();
@@ -285,7 +285,7 @@ xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_constr
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_browse_iso), obj);
 
   /* action buttons */
-  button = gtk_button_new_from_stock ("_Cancel");
+  button = gtk_button_new_with_mnemonic ("_Cancel");
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 

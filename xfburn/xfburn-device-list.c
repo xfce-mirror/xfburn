@@ -413,7 +413,7 @@ xfburn_device_list_get_device_combo (XfburnDeviceList *devlist)
   GtkListStore *store = NULL;
   GtkCellRenderer *cell;
 
-  int i, selected;
+  int i, selected=-1;
 
   store = gtk_list_store_new (DEVICE_N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER);
   combo_device = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));

@@ -193,7 +193,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
 
   /* label */
   priv->label_action = gtk_label_new ("Initializing ...");
-  gtk_misc_set_alignment (GTK_MISC (priv->label_action), 0.1, 0.0);
+  gtk_label_set_xalign(GTK_LABEL (priv->label_action), 0.1);
   gtk_label_set_justify (GTK_LABEL (priv->label_action), GTK_JUSTIFY_LEFT);
   gtk_label_set_selectable (GTK_LABEL (priv->label_action), TRUE);
   set_action_text (obj, XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Initializing..."));
@@ -207,7 +207,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_progress_bar_set_pulse_step (GTK_PROGRESS_BAR (priv->progress_bar), 0.05);
 
   /* buffers */
-  priv->hbox_buffers = gtk_hbox_new (FALSE, BORDER);
+  priv->hbox_buffers = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, BORDER);
   gtk_widget_show (priv->hbox_buffers);
   gtk_box_pack_start (box, priv->hbox_buffers, FALSE, TRUE, BORDER);
 
@@ -219,39 +219,39 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_widget_show (priv->label_speed);
   gtk_container_add (GTK_CONTAINER (frame), priv->label_speed);
 
-  table = gtk_table_new (2, 2, FALSE);
-  gtk_table_set_row_spacings (GTK_TABLE (table), BORDER);
-  gtk_table_set_col_spacings (GTK_TABLE (table), BORDER * 2);
+  table = gtk_grid_new ();
+  gtk_grid_set_row_spacing (GTK_GRID (table), BORDER);
+  gtk_grid_set_column_spacing (GTK_GRID (table), BORDER * 2);
   gtk_box_pack_start (GTK_BOX (priv->hbox_buffers), table, TRUE, TRUE, 0);
   gtk_widget_show (table);
 
   label = gtk_label_new (_("FIFO buffer:"));
-  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_label_set_yalign(GTK_LABEL(label), 0.5);
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
-  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_grid_attach (GTK_GRID (table), label, 0, 0, 1, 1);
   gtk_widget_show (label);
   priv->fifo_bar = gtk_progress_bar_new ();
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), _("unknown"));
-  gtk_table_attach (GTK_TABLE (table), priv->fifo_bar, 1, 2, 0, 1, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+  gtk_grid_attach (GTK_GRID (table), priv->fifo_bar, 1, 0, 1, 1);
   gtk_widget_show (priv->fifo_bar);
 
   label = gtk_label_new (_("Device buffer:"));
-  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_label_set_yalign(GTK_LABEL(label), 0.5);
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
-  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_grid_attach (GTK_GRID (table), label, 0, 1, 1, 1);
   gtk_widget_show (label);
   priv->buffer_bar = gtk_progress_bar_new ();
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), _("unknown"));
-  gtk_table_attach (GTK_TABLE (table), priv->buffer_bar, 1, 2, 1, 2, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
+  gtk_grid_attach (GTK_GRID (table), priv->buffer_bar, 1, 1, 1, 1);
   gtk_widget_show (priv->buffer_bar);
 
   /* action buttons */
-  priv->button_stop = gtk_button_new_from_stock ("_Stop");
+  priv->button_stop = gtk_button_new_with_mnemonic (_("_Stop"));
   gtk_widget_show (priv->button_stop);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), priv->button_stop, GTK_RESPONSE_CANCEL);
   g_signal_connect (G_OBJECT (priv->button_stop), "clicked", G_CALLBACK (cb_button_stop_clicked), obj);
 
-  priv->button_close = gtk_button_new_from_stock ("gtk-close");
+  priv->button_close = gtk_button_new_with_label ("gtk-close");
   gtk_widget_show (priv->button_close);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), priv->button_close, GTK_RESPONSE_CLOSE);
   gtk_widget_set_can_default (priv->button_close, TRUE);
@@ -414,7 +414,7 @@ xfburn_progress_dialog_show_buffers (XfburnProgressDialog * dialog, gboolean sho
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
 
-  gdk_threads_enter ();  
+  gdk_threads_enter ();
   if (show)
     gtk_widget_show (priv->hbox_buffers);
   else
@@ -426,7 +426,7 @@ void
 xfburn_progress_dialog_pulse_progress_bar (XfburnProgressDialog * dialog)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
-  
+
   gdk_threads_enter ();
   gtk_progress_bar_pulse (GTK_PROGRESS_BAR (priv->progress_bar));
   gdk_threads_leave ();
@@ -479,7 +479,7 @@ xfburn_progress_dialog_set_buffer_bar_fraction (XfburnProgressDialog * dialog, g
     text = g_strdup_printf ("%d%%", (int) (fraction));
   }
 
-  gdk_threads_enter ();  
+  gdk_threads_enter ();
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->buffer_bar), fraction / 100.0);
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), text);
   gdk_threads_leave ();
@@ -503,7 +503,7 @@ xfburn_progress_dialog_set_buffer_bar_min_fill (XfburnProgressDialog * dialog, g
     text = g_strdup_printf (_("Min. fill was %2d%%"), (int) (fraction));
   }
 
-  gdk_threads_enter ();    
+  gdk_threads_enter ();
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->buffer_bar), fraction / 100.0);
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), text);
   gdk_threads_leave ();
@@ -526,7 +526,7 @@ xfburn_progress_dialog_set_fifo_bar_fraction (XfburnProgressDialog * dialog, gdo
   } else {
     text = g_strdup_printf ("%d%%", (int) (fraction));
   }
-  
+
   gdk_threads_enter ();
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->fifo_bar), fraction / 100.0);
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), text);
@@ -607,7 +607,7 @@ xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog,
     return;
   }
 
-  gdk_threads_enter ();    
+  gdk_threads_enter ();
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->progress_bar), fraction / 100.0);
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), text);
   gdk_threads_leave ();
@@ -674,6 +674,6 @@ xfburn_progress_dialog_new (GtkWindow *parent)
   XfburnProgressDialog *obj;
   obj = XFBURN_PROGRESS_DIALOG (g_object_new (XFBURN_TYPE_PROGRESS_DIALOG, "transient-for", parent,
 					      "modal", TRUE, NULL));
-    
+
   return GTK_WIDGET (obj);
 }

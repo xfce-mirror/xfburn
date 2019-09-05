@@ -87,7 +87,7 @@ xfburn_welcome_tab_get_type (void)
       NULL
     };
 
-    type = g_type_register_static (GTK_TYPE_VBOX, "XfburnWelcomeTab", &our_info, 0);
+    type = g_type_register_static (GTK_TYPE_BOX, "XfburnWelcomeTab", &our_info, 0);
   }
 
   return type;
@@ -97,9 +97,9 @@ static void
 xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  
+
   g_type_class_add_private (klass, sizeof (XfburnWelcomeTabPrivate));
-  
+
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_welcome_tab_finalize;
@@ -117,43 +117,39 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
 
   gtk_box_set_homogeneous (GTK_BOX (obj), TRUE);
 
-  align = gtk_alignment_new (0.5, 0.5, 0.5, 0.5);
-  //gtk_container_add (GTK_CONTAINER (obj), align);
-  gtk_box_pack_start (GTK_BOX (obj), align, TRUE, TRUE, BORDER);
-  gtk_widget_show (align);
-
-  vbox = gtk_vbox_new (FALSE, BORDER);
-  gtk_container_add (GTK_CONTAINER (align), vbox);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, BORDER);
+  gtk_box_pack_start (GTK_BOX (obj), vbox, FALSE, FALSE, BORDER);
   gtk_widget_show (vbox);
 
   label_welcome = gtk_label_new (_("Welcome to Xfburn!"));
-  gtk_box_pack_start (GTK_BOX (vbox), label_welcome, FALSE, FALSE, BORDER);
+  gtk_box_pack_start (GTK_BOX (vbox), label_welcome, TRUE, FALSE, BORDER);
+  gtk_widget_set_valign (GTK_WIDGET (label_welcome), GTK_ALIGN_END);
   gtk_widget_show (label_welcome);
 
-  table = gtk_table_new (2,2,TRUE);
-  gtk_box_pack_start (GTK_BOX (vbox), table, FALSE, FALSE, BORDER);
-  gtk_table_set_row_spacings (GTK_TABLE (table), BORDER);
-  gtk_table_set_col_spacings (GTK_TABLE (table), BORDER);
+  table = gtk_grid_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), table, TRUE, TRUE, BORDER);
+  gtk_grid_set_row_spacing (GTK_GRID (table), BORDER);
+  gtk_grid_set_column_spacing (GTK_GRID (table), BORDER);
   gtk_widget_show (table);
 
   /* buttons */
   priv->button_image = create_welcome_button ("stock_xfburn", _("<big>Burn _Image</big>"), _("Burn a prepared compilation, i.e. an .ISO file"));
-  gtk_table_attach_defaults (GTK_TABLE (table), priv->button_image, 0, 1, 0, 1);
+  gtk_grid_attach (GTK_GRID (table), priv->button_image, 0, 0, 1, 1);
   gtk_widget_show (priv->button_image);
   g_signal_connect (G_OBJECT(priv->button_image), "clicked", G_CALLBACK(burn_image), obj);
 
   priv->button_data_comp = create_welcome_button ("stock_xfburn-new-data-composition", _("<big>New _Data Composition</big>"), _("Create a new data disc with the files of your choosing"));
-  gtk_table_attach_defaults (GTK_TABLE (table), priv->button_data_comp, 1, 2, 0, 1);
+  gtk_grid_attach (GTK_GRID (table), priv->button_data_comp, 1, 0, 1, 1);
   gtk_widget_show (priv->button_data_comp);
   g_signal_connect (G_OBJECT(priv->button_data_comp), "clicked", G_CALLBACK(new_data_composition), obj);
 
   priv->button_blank = create_welcome_button ("stock_xfburn-blank-cdrw", _("<big>_Blank Disc</big>"), _("Prepare the rewriteable disc for a new burn"));
-  gtk_table_attach_defaults (GTK_TABLE (table), priv->button_blank, 0, 1, 1, 2);
+  gtk_grid_attach (GTK_GRID (table), priv->button_blank, 0, 1, 1, 1);
   gtk_widget_show (priv->button_blank);
   g_signal_connect (G_OBJECT(priv->button_blank), "clicked", G_CALLBACK(blank_disc), obj);
 
   priv->button_audio_comp = create_welcome_button ("stock_xfburn-audio-cd", _("<big>_Audio CD</big>"), _("Audio CD playable in regular stereos"));
-  gtk_table_attach_defaults (GTK_TABLE (table), priv->button_audio_comp, 1, 2, 1, 2);
+  gtk_grid_attach (GTK_GRID (table), priv->button_audio_comp, 1, 1, 1, 1);
   gtk_widget_show (priv->button_audio_comp);
   g_signal_connect (G_OBJECT(priv->button_audio_comp), "clicked", G_CALLBACK(new_audio_cd), obj);
 }
@@ -182,10 +178,8 @@ create_welcome_button (const gchar *stock, const gchar *text, const gchar *secon
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);
 
   image = gtk_image_new_from_icon_name (stock, GTK_ICON_SIZE_DIALOG);
-  hbox = gtk_hbox_new (FALSE, 20);
-  vbox = gtk_vbox_new (FALSE, 2);
-
-  align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 20);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 2);
 
   gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
@@ -196,9 +190,8 @@ create_welcome_button (const gchar *stock, const gchar *text, const gchar *secon
   gtk_label_set_text (GTK_LABEL (label), secondary);
   gtk_box_pack_end (GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
-  gtk_container_add (GTK_CONTAINER (button), align);
-  gtk_container_add (GTK_CONTAINER (align), hbox);
-  gtk_widget_show_all (align);
+  gtk_container_add (GTK_CONTAINER (button), hbox);
+  gtk_widget_show_all (button);
 
   return button;
 }
@@ -229,7 +222,7 @@ static void
 new_data_composition (GtkButton *button, XfburnWelcomeTab *tab)
 {
   XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
- 
+
   xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->notebook), XFBURN_DATA_COMPOSITION);
 }
 
@@ -237,7 +230,7 @@ static void
 new_audio_cd (GtkButton *button, XfburnWelcomeTab *tab)
 {
   XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
- 
+
   xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->notebook), XFBURN_AUDIO_COMPOSITION);
 }
 
@@ -260,13 +253,13 @@ xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GtkActionGroup *ac
     /* FIXME retrieve action group from UI Manager */
     action = gtk_action_group_get_action (action_group, "burn-image");
     gtk_widget_set_sensitive (priv->button_image, gtk_action_is_sensitive (action));
-    
+
     action = gtk_action_group_get_action (action_group, "new-data-composition");
     gtk_widget_set_sensitive (priv->button_data_comp, gtk_action_is_sensitive (action));
-    
+
     action = gtk_action_group_get_action (action_group, "new-audio-composition");
     gtk_widget_set_sensitive (priv->button_audio_comp, gtk_action_is_sensitive (action));
-    
+
     action = gtk_action_group_get_action (action_group, "blank-disc");
     gtk_widget_set_sensitive (priv->button_blank, gtk_action_is_sensitive (action));
   }

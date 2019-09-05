@@ -5,12 +5,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -45,15 +45,15 @@
 #define XFBURN_MAIN_WINDOW_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowPrivate))
 
 /* private struct */
-typedef struct {  
+typedef struct {
   GtkActionGroup *action_group;
   GtkUIManager *ui_manager;
 
   GtkWidget *menubar;
   GtkWidget *toolbars;
-  
+
   GtkWidget *vpaned;
-  
+
   GtkWidget *file_browser;
   GtkWidget *compositions_notebook;
 
@@ -99,7 +99,7 @@ static GtkWindowClass *parent_class = NULL;
 static const GtkActionEntry action_entries[] = {
   {"file-menu", NULL, N_("_File"), NULL, NULL, NULL},
   /*{"new-composition", "document-new", N_("_New composition"), "", N_("Create a new composition"),},*/
-  /*{"new-composition", "document-new", N_("_New composition"), NULL, N_("Create a new composition"), 
+  /*{"new-composition", "document-new", N_("_New composition"), NULL, N_("Create a new composition"),
     G_CALLBACK (action_new_data_composition),}, */
   {"new-data-composition", "xfburn-new-data-composition", N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
     G_CALLBACK (action_new_data_composition),},
@@ -107,11 +107,11 @@ static const GtkActionEntry action_entries[] = {
     G_CALLBACK (action_new_audio_composition),},
   /*{"load-composition", "document-open", N_("Load composition"), NULL, N_("Load composition"),
    G_CALLBACK (action_load),},
-  {"save-composition", "document-save", N_("Save composition"), NULL, N_("Save composition"), 
+  {"save-composition", "document-save", N_("Save composition"), NULL, N_("Save composition"),
    G_CALLBACK (action_save),},
-  {"save-composition-as", "document-save"_AS, N_("Save composition as..."), NULL, N_("Save composition as"), 
+  {"save-composition-as", "document-save"_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
    G_CALLBACK (action_save_as),},*/
-  {"close-composition", "window-close", N_("Close composition"), NULL, N_("Close composition"), 
+  {"close-composition", "window-close", N_("Close composition"), NULL, N_("Close composition"),
    G_CALLBACK (action_close),},
   {"quit", "application-exit", N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (action_quit),},
   {"edit-menu", NULL, N_("_Edit"), NULL, NULL, NULL},
@@ -260,7 +260,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   accel_group = gtk_ui_manager_get_accel_group (priv->ui_manager);
   gtk_window_add_accel_group (GTK_WINDOW (mainwin), accel_group);
 
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_container_add (GTK_CONTAINER (mainwin), vbox);
   gtk_widget_show (vbox);
 
@@ -300,7 +300,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
 */
   /* vpaned */
   priv->vpaned = gtk_vpaned_new ();
-  gtk_container_add (GTK_CONTAINER (vbox), priv->vpaned);
+  gtk_box_pack_start (GTK_BOX (vbox), priv->vpaned, TRUE, TRUE, 0);
   gtk_widget_show (priv->vpaned);
 
   /* filebrowser */
@@ -309,12 +309,12 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   gtk_widget_show (priv->file_browser);
 
   gtk_paned_set_position (GTK_PANED (priv->file_browser), xfburn_settings_get_int ("hpaned-position", 250));
-  
+
   /* compositions notebook */
   priv->compositions_notebook = xfburn_compositions_notebook_new ();
   gtk_widget_show (priv->compositions_notebook);
   gtk_paned_pack2 (GTK_PANED (priv->vpaned), priv->compositions_notebook, TRUE, FALSE);
-  
+
   gtk_paned_set_position (GTK_PANED (priv->vpaned), xfburn_settings_get_int ("vpaned-position", 200));
 
   xfce_resource_pop_path (XFCE_RESOURCE_DATA);
@@ -361,7 +361,7 @@ cb_delete_main_window (XfburnMainWindow * mainwin, GdkEvent * event, XfburnMainW
 {
   gint x, y;
 
-  gtk_window_get_size (GTK_WINDOW (mainwin), &x, &y); 
+  gtk_window_get_size (GTK_WINDOW (mainwin), &x, &y);
   xfburn_settings_set_int ("main-window-width", x);
   xfburn_settings_set_int ("main-window-height", y);
 
@@ -377,7 +377,7 @@ static void
 action_blank (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
-  
+
   dialog = xfburn_blank_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
   gtk_dialog_run (GTK_DIALOG (dialog));
@@ -390,7 +390,7 @@ static void action_copy_cd (GtkAction *action, XfburnMainWindow *window)
   GtkWidget *dialog;
   dialog = xfburn_copy_cd_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-  gtk_dialog_run (GTK_DIALOG (dialog)); 
+  gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
   */
 }
@@ -411,10 +411,10 @@ static void
 action_copy_dvd (GtkAction * action, XfburnMainWindow * window)
 {
   GtkWidget *dialog;
-  
+
   dialog = xfburn_copy_dvd_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-  gtk_dialog_run (GTK_DIALOG (dialog)); 
+  gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 }
 */
@@ -429,7 +429,7 @@ static void
 action_load (GtkAction *action, XfburnMainWindow * window)
 {
   //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  
+
   //xfburn_data_composition_load_from_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
 }
 
@@ -437,7 +437,7 @@ static void
 action_save (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  
+
   xfburn_compositions_notebook_save_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook));
 }
 
@@ -445,7 +445,7 @@ static void
 action_save_as (GtkAction *action, XfburnMainWindow * window)
 {
   //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  
+
 }
 */
 
@@ -453,7 +453,7 @@ static void
 action_close (GtkAction *action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  
+
   xfburn_compositions_notebook_close_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook));
 }
 
@@ -467,7 +467,7 @@ static void
 action_new_audio_composition (GtkAction *action, XfburnMainWindow * window)
 {
   //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
- 
+
   xfburn_main_window_add_audio_composition_with_files (window, 0, NULL);
 }
 
@@ -540,7 +540,7 @@ action_about (GtkAction * action, XfburnMainWindow * window)
 		  "comments", _("Another CD burning GUI"),
 		  "website", "http://www.xfce.org/projects/xfburn",
 		  "copyright", "2005-2008 David Mohr, Mario Đanić, Jean-François Wauthy",
-		  "authors", auth, 
+		  "authors", auth,
 		  "translator-credits", translators,
 		  NULL);
 
@@ -555,7 +555,7 @@ action_preferences (GtkAction * action, XfburnMainWindow * window)
 
   dialog = xfburn_preferences_dialog_new ();
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-  
+
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 }
@@ -564,7 +564,7 @@ static void
 action_refresh_directorybrowser (GtkAction * action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  
+
   xfburn_file_browser_refresh (XFBURN_FILE_BROWSER (priv->file_browser));
 }
 
@@ -572,11 +572,11 @@ static void
 action_show_filebrowser (GtkToggleAction * action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  
+
   xfburn_settings_set_boolean ("show-filebrowser", gtk_toggle_action_get_active (action));
-  
+
   if (gtk_toggle_action_get_active (action)) {
-    gtk_widget_show (priv->file_browser);  
+    gtk_widget_show (priv->file_browser);
   }
   else {
     gtk_widget_hide (priv->file_browser);
@@ -587,9 +587,9 @@ static void
 action_show_toolbar (GtkToggleAction * action, XfburnMainWindow * window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  
+
   xfburn_settings_set_boolean ("show-toolbar", gtk_toggle_action_get_active (action));
-  
+
   if (gtk_toggle_action_get_active (action)) {
     gtk_widget_show (priv->toolbars);
   }
@@ -610,16 +610,16 @@ xfburn_main_window_new (void)
     g_error ("An instance of XfburnMainWindow has already been created");
     return NULL;
   }
-  
-  obj = g_object_new (xfburn_main_window_get_type (), NULL);
-  
+
+  obj = gtk_widget_new (xfburn_main_window_get_type (), NULL);
+
   if (obj) {
     XfburnMainWindow *win;
     XfburnMainWindowPrivate *priv;
     GtkAction *action;
     GList *device = NULL;
     XfburnDeviceList *devlist;
-    
+
     instance = win = XFBURN_MAIN_WINDOW (obj);
     priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (win);
 
@@ -645,9 +645,9 @@ xfburn_main_window_new (void)
       g_object_get (G_OBJECT (device_info), "cdr", &cdr, "cdrw", &cdrw, NULL);
 
       if (cdr)
-	priv->support_cdr = TRUE;
+        priv->support_cdr = TRUE;
       if (cdrw)
-	priv->support_cdrw = TRUE;
+        priv->support_cdrw = TRUE;
 
       device = g_list_next (device);
     }
@@ -685,7 +685,7 @@ GtkUIManager *
 xfburn_main_window_get_ui_manager (XfburnMainWindow *window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  
+
   return priv->ui_manager;
 }
 
@@ -693,30 +693,30 @@ XfburnFileBrowser *
 xfburn_main_window_get_file_browser (XfburnMainWindow *window)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  
+
   return XFBURN_FILE_BROWSER (priv->file_browser);
 }
 
-void 
+void
 xfburn_main_window_add_data_composition_with_files (XfburnMainWindow *window, int filec, char **filenames)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   XfburnComposition *comp;
   GSList * filelist;
- 
+
   comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_DATA_COMPOSITION);
 
   filelist = xfburn_make_abosulet_file_list (filec, filenames);
   xfburn_data_composition_add_files (XFBURN_DATA_COMPOSITION (comp), filelist);
 }
 
-void 
+void
 xfburn_main_window_add_audio_composition_with_files (XfburnMainWindow *window, int filec, char **filenames)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
   XfburnComposition *comp;
   GSList * filelist;
- 
+
   comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_AUDIO_COMPOSITION);
   filelist = xfburn_make_abosulet_file_list (filec, filenames);
   xfburn_audio_composition_add_files (XFBURN_AUDIO_COMPOSITION (comp), filelist);
