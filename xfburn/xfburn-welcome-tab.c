@@ -173,6 +173,7 @@ create_welcome_button (const gchar *stock, const gchar *text, const gchar *secon
   GtkWidget *button, *align, *image, *hbox, *label, *vbox;
 
   button = gtk_button_new ();
+  gtk_button_set_use_underline (GTK_BUTTON (button), TRUE);
   label = gtk_label_new (NULL);
   gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);

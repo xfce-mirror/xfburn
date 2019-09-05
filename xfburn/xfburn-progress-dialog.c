@@ -450,7 +450,7 @@ XfburnProgressDialogStatus
 xfburn_progress_dialog_get_status (XfburnProgressDialog * dialog)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
-  
+
   return priv->status;
 }
 

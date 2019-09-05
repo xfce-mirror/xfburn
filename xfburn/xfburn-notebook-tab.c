@@ -56,7 +56,7 @@ static void xfburn_notebook_tab_set_property (GObject *object, guint prop_id, co
 static void cb_composition_close (GtkButton *button, XfburnNotebookTab *tab);
 
 /* static member */
-static GtkHBoxClass *parent_class = NULL;
+static GtkBoxClass *parent_class = NULL;
 static guint notebook_tab_signals[LAST_SIGNAL];
 
 /************************/
@@ -81,7 +81,7 @@ xfburn_notebook_tab_get_type (void)
       NULL
     };
 
-    type = g_type_register_static (GTK_TYPE_HBOX, "XfburnNotebookTab", &our_info, 0);
+    type = g_type_register_static (GTK_TYPE_BOX, "XfburnNotebookTab", &our_info, 0);
   }
 
   return type;
@@ -117,6 +117,7 @@ xfburn_notebook_tab_init (XfburnNotebookTab * tab)
 {
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (tab);
   GtkBox *hbox = GTK_BOX (tab);
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (hbox), GTK_ORIENTATION_HORIZONTAL);
   GtkWidget *img;
   
   priv->label = gtk_label_new ("");

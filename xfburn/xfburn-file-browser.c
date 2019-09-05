@@ -55,7 +55,7 @@ static gboolean cb_focus_in_event (GtkWidget *widget, GdkEventFocus *event, Xfbu
 /***************************/
 /* XfburnFileBrowser class */
 /***************************/
-static GtkHPanedClass *parent_class = NULL;
+static GtkPanedClass *parent_class = NULL;
 
 GType
 xfburn_file_browser_get_type (void)
@@ -76,7 +76,7 @@ xfburn_file_browser_get_type (void)
       NULL
     };
 
-    file_browser_type = g_type_register_static (GTK_TYPE_HPANED, "XfburnFileBrowser", &file_browser_info, 0);
+    file_browser_type = g_type_register_static (GTK_TYPE_PANED, "XfburnFileBrowser", &file_browser_info, 0);
   }
 
   return file_browser_type;
@@ -95,6 +95,8 @@ xfburn_file_browser_init (XfburnFileBrowser * file_browser)
 {
   GtkWidget *scrolled_window;
   GtkTreeSelection *selection;
+
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (file_browser), GTK_ORIENTATION_HORIZONTAL);
 
   /* FS browser */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
