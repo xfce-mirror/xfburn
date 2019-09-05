@@ -161,13 +161,15 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_widget_show (scrolled_window);
 
   /* icon bar */
+/*
   icon_store = gtk_list_store_new (SETTINGS_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_INT);
   priv->icon_bar = exo_icon_bar_new_with_model (GTK_TREE_MODEL (icon_store));
   exo_icon_bar_set_pixbuf_column (EXO_ICON_BAR (priv->icon_bar), SETTINGS_LIST_PIXBUF_COLUMN);
   exo_icon_bar_set_text_column (EXO_ICON_BAR (priv->icon_bar), SETTINGS_LIST_TEXT_COLUMN);
   gtk_container_add (GTK_CONTAINER (scrolled_window), priv->icon_bar);
   gtk_widget_show (priv->icon_bar);
-  
+*/
+
   /* notebook */
   priv->notebook = gtk_notebook_new ();
   gtk_container_set_border_width (GTK_CONTAINER (priv->notebook), BORDER);
@@ -348,7 +350,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   button_close = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (button_close);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button_close, GTK_RESPONSE_CLOSE);
-  gtk_widget_set_can_default (button_close, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default (button_close, TRUE);
   gtk_widget_grab_focus (button_close);
   gtk_widget_grab_default (button_close);
 

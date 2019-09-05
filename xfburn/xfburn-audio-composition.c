@@ -294,7 +294,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
   
   gint x, y;
-  ExoToolbarsModel *model_toolbar;
+//  ExoToolbarsModel *model_toolbar;
   gint toolbar_position;
   GtkWidget *hbox_toolbar;
   //GtkWidget *hbox, *label;
@@ -356,7 +356,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gtk_widget_show (hbox_toolbar);
   
   /* toolbar */
-  model_toolbar = exo_toolbars_model_new ();
+/*  model_toolbar = exo_toolbars_model_new ();
   exo_toolbars_model_set_actions (model_toolbar, (gchar **) toolbar_actions, G_N_ELEMENTS (toolbar_actions));
   toolbar_position = exo_toolbars_model_add_toolbar (model_toolbar, -1, "content-toolbar");
   exo_toolbars_model_set_style (model_toolbar, GTK_TOOLBAR_BOTH, toolbar_position);
@@ -373,7 +373,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   priv->toolbar = exo_toolbars_view_new_with_model (priv->ui_manager, model_toolbar);
   gtk_box_pack_start (GTK_BOX (hbox_toolbar), priv->toolbar, TRUE, TRUE, 0);
   gtk_widget_show (priv->toolbar);
-
+*/
     
   /* content treeview */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);

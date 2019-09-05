@@ -227,7 +227,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
 
   /* options */
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox);
 
   frame = xfce_gtk_frame_box_new_with_content (_("Options"), vbox);
@@ -240,7 +240,7 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_eject, FALSE, FALSE, BORDER);
 
   /* action buttons */
-  button = gtk_button_new_from_stock ("_Cancel");
+  button = gtk_button_new_with_mnemonic ("_Cancel");
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 

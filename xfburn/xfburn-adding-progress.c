@@ -111,7 +111,7 @@ xfburn_adding_progress_init (XfburnAddingProgress * win)
   gtk_window_set_destroy_with_parent (GTK_WINDOW (win), TRUE);
   gtk_window_set_title (GTK_WINDOW (win), _("Adding files to the composition"));
   
-  vbox = gtk_vbox_new (FALSE, 5);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 5);
   gtk_widget_show (vbox);
   gtk_container_add (GTK_CONTAINER (win), vbox);
     

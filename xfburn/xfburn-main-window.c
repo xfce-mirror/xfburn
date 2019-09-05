@@ -67,7 +67,7 @@ static void xfburn_main_window_finalize (GObject *obj);
 static void xfburn_main_window_init (XfburnMainWindow *);
 
 static gboolean cb_delete_main_window (XfburnMainWindow *, GdkEvent *, XfburnMainWindowPrivate *);
-static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
+// static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 
 static void action_about (GtkAction *, XfburnMainWindow *);
 static void action_preferences (GtkAction *, XfburnMainWindow *);
@@ -272,7 +272,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   }
 
   /* toolbar */
-  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn-toolbars.ui");
+/*  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn-toolbars.ui");
 
   if (G_LIKELY (file != NULL)) {
     ExoToolbarsModel *model;
@@ -285,7 +285,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
       gtk_box_pack_start (GTK_BOX (vbox), priv->toolbars, FALSE, FALSE, 0);
       gtk_widget_show (priv->toolbars);
 
-      g_signal_connect (G_OBJECT (priv->toolbars), "customize", G_CALLBACK (cb_edit_toolbars_view), mainwin);
+//      g_signal_connect (G_OBJECT (priv->toolbars), "customize", G_CALLBACK (cb_edit_toolbars_view), mainwin);
     }
     else {
       g_warning ("Unable to load %s: %s", file, error->message);
@@ -297,7 +297,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   else {
     g_warning ("Unable to locate xfburn/xfburn-toolbars.ui !");
   }
-
+*/
   /* vpaned */
   priv->vpaned = gtk_vpaned_new ();
   gtk_container_add (GTK_CONTAINER (vbox), priv->vpaned);
@@ -321,6 +321,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
 }
 
 /* internals */
+/*
 static void
 cb_edit_toolbars_view_done (ExoToolbarsEditorDialog * dialog, ExoToolbarsView * toolbar)
 {
@@ -353,6 +354,7 @@ cb_edit_toolbars_view (ExoToolbarsView * toolbar, gpointer user_data)
 
   g_signal_connect (G_OBJECT (editor_dialog), "destroy", G_CALLBACK (cb_edit_toolbars_view_done), toolbar);
 }
+*/
 
 static gboolean
 cb_delete_main_window (XfburnMainWindow * mainwin, GdkEvent * event, XfburnMainWindowPrivate *priv)
