@@ -1907,6 +1907,9 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
 
   GtkTreeModel *model;
   GtkTreeIter iter_where_insert;
+  GtkTreeIter *iter_insert = (priv->path_where_insert) ? &iter_where_insert : NULL;
+  gboolean expand = (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
+  gboolean success = FALSE;
   GList *files = priv->full_paths_to_add;
 
   gdk_threads_enter ();
@@ -1924,21 +1927,19 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
       gdk_threads_enter ();
       gtk_tree_model_get_iter (model, &iter_where_insert, priv->path_where_insert);
       gdk_threads_leave ();
-
-      if (thread_add_file_to_list (composition, model, full_path, &iter, &iter_where_insert, position)) {
-        if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE
-            || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER) {
-          gdk_threads_enter ();
-          gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), priv->path_where_insert, FALSE);
-          gdk_threads_leave ();
-        }
-      }
-
-    } else  {
-      thread_add_file_to_list (composition, model, full_path, &iter, NULL, position);
     }
+
+    success = thread_add_file_to_list (composition, model, full_path, &iter, iter_insert, position);
+
+    if (success && expand && priv->path_where_insert) {
+      gdk_threads_enter ();
+      gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), priv->path_where_insert, FALSE);
+      gdk_threads_leave ();
+    }
+
   }
   xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
+  return NULL;
 }
 
 static void
