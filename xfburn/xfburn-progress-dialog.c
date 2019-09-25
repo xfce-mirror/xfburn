@@ -35,6 +35,7 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-global.h"
 #include "xfburn-main.h"
+#include "xfburn-utils.h"
 
 #define XFBURN_PROGRESS_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_PROGRESS_DIALOG, XfburnProgressDialogPrivate))
 
@@ -201,7 +202,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_box_pack_start (box, priv->label_action, FALSE, TRUE, BORDER);
 
   /* progress bar */
-  priv->progress_bar = xfburn_create_progress_bar (NULL);;
+  priv->progress_bar = xfburn_create_progress_bar (NULL);
   gtk_widget_show (priv->progress_bar);
   gtk_box_pack_start (box, priv->progress_bar, FALSE, FALSE, BORDER);
   gtk_progress_bar_set_pulse_step (GTK_PROGRESS_BAR (priv->progress_bar), 0.05);
