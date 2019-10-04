@@ -91,7 +91,7 @@ typedef struct
 } XfburnDeviceBoxPrivate;
 
 /* prototypes */
-static void xfburn_device_box_class_init (XfburnDeviceBoxClass *);
+static void xfburn_device_box_class_init (XfburnDeviceBoxClass *, gpointer data);
 static GObject * xfburn_device_box_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 static void xfburn_device_box_finalize (GObject * object);
 static void xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
@@ -147,7 +147,7 @@ xfburn_device_box_get_type (void)
 }
 
 static void
-xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
+xfburn_device_box_class_init (XfburnDeviceBoxClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   

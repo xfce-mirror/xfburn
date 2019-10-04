@@ -174,8 +174,7 @@ xfburn_device_list_finalize (GObject *object)
   XfburnDeviceList *devlist = XFBURN_DEVICE_LIST (object);
   XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
 
-  g_list_foreach (priv->devices, (GFunc) g_object_unref, NULL);
-  g_list_free (priv->devices);
+  g_list_free_full (priv->devices, (GDestroyNotify) g_object_unref);
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }

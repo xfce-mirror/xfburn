@@ -43,8 +43,8 @@
 /* global */
 typedef struct _Setting Setting;
   
-static void xfburn_settings_class_init (XfburnSettingsClass * klass);
-static void xfburn_settings_internal_init (XfburnSettings * settings);
+static void xfburn_settings_class_init (XfburnSettingsClass * klass, gpointer data);
+static void xfburn_settings_internal_init (XfburnSettings * settings, gpointer data);
 static void xfburn_settings_finalize (GObject * object);
 
 static void value_destroy (Setting * val);
@@ -108,7 +108,7 @@ xfburn_settings_get_type (void)
 }
 
 static void
-xfburn_settings_class_init (XfburnSettingsClass * klass)
+xfburn_settings_class_init (XfburnSettingsClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -140,7 +140,7 @@ xfburn_settings_finalize (GObject * object)
 }
 
 static void
-xfburn_settings_internal_init (XfburnSettings *settings)
+xfburn_settings_internal_init (XfburnSettings *settings, gpointer data)
 {
   XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
 

@@ -51,8 +51,8 @@ typedef struct
 } XfburnPreferencesDialogPrivate;
 
 /* prototypes */
-static void xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass);
-static void xfburn_preferences_dialog_init (XfburnPreferencesDialog * sp);
+static void xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass, gpointer data);
+static void xfburn_preferences_dialog_init (XfburnPreferencesDialog * sp, gpointer data);
 
 static void refresh_devices_list (XfburnPreferencesDialog * dialog);
 static void scan_button_clicked_cb (GtkWidget * button, gpointer user_data);
@@ -115,7 +115,7 @@ xfburn_preferences_dialog_get_type (void)
 }
 
 static void
-xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass)
+xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass, gpointer data)
 {
   g_type_class_add_private (klass, sizeof (XfburnPreferencesDialogPrivate));
   
@@ -123,7 +123,7 @@ xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass)
 }
 
 static void
-xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
+xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj, gpointer data)
 {
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG (obj)));
   XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (obj);

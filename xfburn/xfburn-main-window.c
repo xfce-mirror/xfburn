@@ -62,9 +62,9 @@ typedef struct {
 } XfburnMainWindowPrivate;
 
 /* prototypes */
-static void xfburn_main_window_class_init (XfburnMainWindowClass *);
+static void xfburn_main_window_class_init (XfburnMainWindowClass *, gpointer);
 static void xfburn_main_window_finalize (GObject *obj);
-static void xfburn_main_window_init (XfburnMainWindow *);
+static void xfburn_main_window_init (XfburnMainWindow *, gpointer);
 
 static gboolean cb_delete_main_window (XfburnMainWindow *, GdkEvent *, XfburnMainWindowPrivate *);
 // static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
@@ -223,7 +223,7 @@ xfburn_main_window_get_type (void)
 }
 
 static void
-xfburn_main_window_class_init (XfburnMainWindowClass * klass)
+xfburn_main_window_class_init (XfburnMainWindowClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -242,7 +242,7 @@ xfburn_main_window_finalize (GObject *obj)
 }
 
 static void
-xfburn_main_window_init (XfburnMainWindow * mainwin)
+xfburn_main_window_init (XfburnMainWindow * mainwin, gpointer data)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (mainwin);
 

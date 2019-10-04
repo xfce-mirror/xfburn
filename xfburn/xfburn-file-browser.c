@@ -45,8 +45,8 @@ typedef struct {
 } XfburnFileBrowserPrivate;
 
 /* prototypes */
-static void xfburn_file_browser_class_init (XfburnFileBrowserClass *);
-static void xfburn_file_browser_init (XfburnFileBrowser *);
+static void xfburn_file_browser_class_init (XfburnFileBrowserClass *, gpointer);
+static void xfburn_file_browser_init (XfburnFileBrowser *, gpointer);
 
 static void cb_fs_browser_selection_changed (GtkTreeSelection *, XfburnFileBrowser *);
 static void cb_directory_browser_row_activated (GtkWidget *, GtkTreePath *, GtkTreeViewColumn *, XfburnFileBrowser *);
@@ -83,7 +83,7 @@ xfburn_file_browser_get_type (void)
 }
 
 static void
-xfburn_file_browser_class_init (XfburnFileBrowserClass * klass)
+xfburn_file_browser_class_init (XfburnFileBrowserClass * klass, gpointer data)
 {
   g_type_class_add_private (klass, sizeof (XfburnFileBrowserPrivate));
   
@@ -91,7 +91,7 @@ xfburn_file_browser_class_init (XfburnFileBrowserClass * klass)
 }
 
 static void
-xfburn_file_browser_init (XfburnFileBrowser * file_browser)
+xfburn_file_browser_init (XfburnFileBrowser * file_browser, gpointer data)
 {
   GtkWidget *scrolled_window;
   GtkTreeSelection *selection;
@@ -159,8 +159,7 @@ cb_directory_browser_row_activated (GtkWidget * treeview, GtkTreePath * path, Gt
     gtk_tree_model_get_iter (model_dir, &iter_dir, path_dir);
     gtk_tree_model_get (model_dir, &iter_dir, DIRECTORY_BROWSER_COLUMN_FILE, &directory, -1);
 
-    g_list_foreach (selected_row, (GFunc) gtk_tree_path_free, NULL);
-    g_list_free (selected_row);
+    g_list_free_full (selected_row, (GDestroyNotify) gtk_tree_path_free);
 
     /* expand the parent directory in the FS browser */
     path_fs = gtk_tree_model_get_path (model_fs, &iter_fs);

@@ -39,8 +39,8 @@
 #include "xfburn-blank-dialog.h"
 
 /* prototypes */
-static void xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass);
-static void xfburn_welcome_tab_init (XfburnWelcomeTab * sp);
+static void xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass, gpointer data);
+static void xfburn_welcome_tab_init (XfburnWelcomeTab * sp, gpointer data);
 static void xfburn_welcome_tab_finalize (GObject * object);
 
 #define XFBURN_WELCOME_TAB_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_WELCOME_TAB, XfburnWelcomeTabPrivate))
@@ -94,7 +94,7 @@ xfburn_welcome_tab_get_type (void)
 }
 
 static void
-xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass)
+xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -106,7 +106,7 @@ xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass)
 }
 
 static void
-xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
+xfburn_welcome_tab_init (XfburnWelcomeTab * obj, gpointer data)
 {
   XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (obj);
 

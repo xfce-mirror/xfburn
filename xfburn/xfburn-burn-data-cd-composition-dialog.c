@@ -47,8 +47,8 @@ typedef struct
 } XfburnBurnDataCdCompositionDialogPrivate;
 
 /* prototypes */
-static void xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDialogClass * klass);
-static void xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog * obj);
+static void xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDialogClass * klass, gpointer data);
+static void xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog * obj, gpointer data);
 static void xfburn_burn_data_cd_composition_dialog_finalize (GObject * object);
 
 /* globals */
@@ -80,7 +80,7 @@ xfburn_burn_data_cd_composition_dialog_get_type (void)
 }
 
 static void
-xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDialogClass * klass)
+xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDialogClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -91,7 +91,7 @@ xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDi
 }
 
 static void
-xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog * obj)
+xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog * obj, gpointer data)
 {
   //XfburnBurnDataCdCompositionDialogPrivate *priv = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_GET_PRIVATE (obj);
   

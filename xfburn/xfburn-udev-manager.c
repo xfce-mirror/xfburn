@@ -41,8 +41,8 @@
 
 #include "xfburn-udev-manager.h"
 
-static void xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass);
-static void xfburn_udev_manager_init (XfburnUdevManager * obj);
+static void xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass, gpointer data);
+static void xfburn_udev_manager_init (XfburnUdevManager * obj, gpointer data);
 static void xfburn_udev_manager_finalize (GObject * object);
 
 static GObject * xfburn_udev_manager_new (void);
@@ -104,7 +104,7 @@ xfburn_udev_manager_get_type (void)
 }
 
 static void
-xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass)
+xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   
@@ -121,7 +121,7 @@ xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass)
 }
 
 static void
-xfburn_udev_manager_init (XfburnUdevManager * obj)
+xfburn_udev_manager_init (XfburnUdevManager * obj, gpointer data)
 {
   XfburnUdevManagerPrivate *priv = XFBURN_UDEV_MANAGER_GET_PRIVATE (obj);
   const gchar* const subsystems[] = { "block", NULL };

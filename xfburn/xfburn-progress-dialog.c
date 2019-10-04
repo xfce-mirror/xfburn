@@ -68,8 +68,8 @@ typedef struct
 /* globals */
 static guint signals[LAST_SIGNAL];
 
-static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass);
-static void xfburn_progress_dialog_init (XfburnProgressDialog * sp);
+static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass, gpointer data);
+static void xfburn_progress_dialog_init (XfburnProgressDialog * sp, gpointer data);
 
 static void xfburn_progress_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
 static void xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GValue * value,
@@ -147,7 +147,7 @@ xfburn_progress_dialog_get_type (void)
 }
 
 static void
-xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
+xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -182,7 +182,7 @@ xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
 }
 
 static void
-xfburn_progress_dialog_init (XfburnProgressDialog * obj)
+xfburn_progress_dialog_init (XfburnProgressDialog * obj, gpointer data)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (obj);
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG(obj)));

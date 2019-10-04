@@ -42,8 +42,8 @@ typedef struct
 
 
 /* prototypes */
-static void xfburn_compositions_notebook_class_init (XfburnCompositionsNotebookClass * klass);
-static void xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook);
+static void xfburn_compositions_notebook_class_init (XfburnCompositionsNotebookClass * klass, gpointer data);
+static void xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook, gpointer data);
 static void xfburn_compositions_notebook_finalize (GObject * object);
 
 
@@ -84,7 +84,7 @@ xfburn_compositions_notebook_get_type (void)
 }
 
 static void
-xfburn_compositions_notebook_class_init (XfburnCompositionsNotebookClass * klass)
+xfburn_compositions_notebook_class_init (XfburnCompositionsNotebookClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -109,7 +109,7 @@ cb_move_focus_out (GtkNotebook *notebook, GtkDirectionType *arg1, XfburnComposit
 }
 
 static void
-xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook)
+xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook, gpointer data)
 {
   XfburnCompositionsNotebookPrivate *priv = XFBURN_COMPOSITIONS_NOTEBOOK_GET_PRIVATE (notebook);
   

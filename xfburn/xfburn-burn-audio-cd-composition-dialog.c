@@ -68,7 +68,7 @@ enum {
 };
 
 /* prototypes */
-static void xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass);
+static void xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass, gpointer data);
 static GObject * xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 static void xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object);
 
@@ -108,7 +108,7 @@ xfburn_burn_audio_cd_composition_dialog_get_type (void)
 }
 
 static void
-xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass)
+xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -339,7 +339,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_write_opts_free (burn_options);
 }
 
-static void
+static void*
 thread_burn_composition (ThreadBurnCompositionParams * params)
 {
   GtkWidget *dialog_progress = params->dialog_progress;
@@ -418,6 +418,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
 
   /* FIXME: free track_list here? */
   g_free (params);
+  return NULL;
 }
 
 static void

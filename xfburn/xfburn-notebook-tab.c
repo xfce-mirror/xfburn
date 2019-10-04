@@ -48,8 +48,8 @@ typedef struct
 
 
 /* prototypes */
-static void xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass);
-static void xfburn_notebook_tab_init (XfburnNotebookTab * tab);
+static void xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass, gpointer data);
+static void xfburn_notebook_tab_init (XfburnNotebookTab * tab, gpointer data);
 static void xfburn_notebook_tab_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_notebook_tab_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
@@ -88,7 +88,7 @@ xfburn_notebook_tab_get_type (void)
 }
 
 static void
-xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass)
+xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -113,7 +113,7 @@ xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass)
 }
 
 static void
-xfburn_notebook_tab_init (XfburnNotebookTab * tab)
+xfburn_notebook_tab_init (XfburnNotebookTab * tab, gpointer data)
 {
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (tab);
   GtkBox *hbox = GTK_BOX (tab);

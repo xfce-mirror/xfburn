@@ -32,7 +32,7 @@
 #include "xfburn-main-window.h"
 
 /* prototypes */
-static void xfburn_audio_disc_usage_class_init (XfburnAudioDiscUsageClass *);
+static void xfburn_audio_disc_usage_class_init (XfburnAudioDiscUsageClass *, gpointer);
 
 static gboolean can_burn (XfburnDiscUsage *disc_usage);
 static void xfburn_audio_disc_usage_update_size (XfburnDiscUsage * disc_usage);
@@ -86,7 +86,7 @@ xfburn_audio_disc_usage_get_type (void)
 }
 
 static void
-xfburn_audio_disc_usage_class_init (XfburnAudioDiscUsageClass * klass)
+xfburn_audio_disc_usage_class_init (XfburnAudioDiscUsageClass * klass, gpointer data)
 {
   XfburnDiscUsageClass *pklass;
 

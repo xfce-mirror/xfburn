@@ -32,7 +32,7 @@
 #include "xfburn-main-window.h"
 
 /* prototypes */
-static void xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass *);
+static void xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass *, gpointer data);
 
 static gboolean can_burn (XfburnDiscUsage *disc_usage);
 static void xfburn_data_disc_usage_update_size (XfburnDiscUsage * disc_usage);
@@ -96,7 +96,7 @@ xfburn_data_disc_usage_get_type (void)
 }
 
 static void
-xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass * klass)
+xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass * klass, gpointer data)
 {
   XfburnDiscUsageClass *pklass;
 

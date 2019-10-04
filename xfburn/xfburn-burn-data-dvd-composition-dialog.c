@@ -48,8 +48,8 @@ typedef struct
 } XfburnBurnDataDvdCompositionDialogPrivate;
 
 /* prototypes */
-static void xfburn_burn_data_dvd_composition_dialog_class_init (XfburnBurnDataDvdCompositionDialogClass * klass);
-static void xfburn_burn_data_dvd_composition_dialog_init (XfburnBurnDataDvdCompositionDialog * obj);
+static void xfburn_burn_data_dvd_composition_dialog_class_init (XfburnBurnDataDvdCompositionDialogClass * klass, gpointer data);
+static void xfburn_burn_data_dvd_composition_dialog_init (XfburnBurnDataDvdCompositionDialog * obj, gpointer data);
 static void xfburn_burn_data_dvd_composition_dialog_finalize (GObject * object);
 
 /* globals */
@@ -81,7 +81,7 @@ xfburn_burn_data_dvd_composition_dialog_get_type (void)
 }
 
 static void
-xfburn_burn_data_dvd_composition_dialog_class_init (XfburnBurnDataDvdCompositionDialogClass * klass)
+xfburn_burn_data_dvd_composition_dialog_class_init (XfburnBurnDataDvdCompositionDialogClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -92,7 +92,7 @@ xfburn_burn_data_dvd_composition_dialog_class_init (XfburnBurnDataDvdComposition
 }
 
 static void
-xfburn_burn_data_dvd_composition_dialog_init (XfburnBurnDataDvdCompositionDialog * obj)
+xfburn_burn_data_dvd_composition_dialog_init (XfburnBurnDataDvdCompositionDialog * obj, gpointer data)
 {
   //XfburnBurnDataDvdCompositionDialogPrivate *priv = XFBURN_BURN_DATA_DVD_COMPOSITION_DIALOG_GET_PRIVATE (obj);
   

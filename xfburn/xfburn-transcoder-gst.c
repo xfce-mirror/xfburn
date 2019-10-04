@@ -64,8 +64,8 @@
 
 /** Prototypes **/
 /* class initialization */
-static void xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass);
-static void xfburn_transcoder_gst_init (XfburnTranscoderGst * obj);
+static void xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass, gpointer data);
+static void xfburn_transcoder_gst_init (XfburnTranscoderGst * obj, gpointer data);
 static void xfburn_transcoder_gst_finalize (GObject * object);
 static void transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data);
 
@@ -190,7 +190,7 @@ xfburn_transcoder_gst_get_type (void)
 }
 
 static void
-xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass)
+xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   
@@ -209,7 +209,7 @@ xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass)
 }
 
 static void
-xfburn_transcoder_gst_init (XfburnTranscoderGst * obj)
+xfburn_transcoder_gst_init (XfburnTranscoderGst * obj, gpointer data)
 {
   XfburnTranscoderGstPrivate *priv = XFBURN_TRANSCODER_GST_GET_PRIVATE (obj);
 

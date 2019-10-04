@@ -306,5 +306,5 @@ xfburn_create_progress_bar (const gchar *text)
   gtk_progress_bar_set_show_text (pbar, TRUE);
   if (text != NULL && *text != '\0')
     gtk_progress_bar_set_text (pbar, text);
-  return pbar;
+  return GTK_WIDGET (pbar);
 }

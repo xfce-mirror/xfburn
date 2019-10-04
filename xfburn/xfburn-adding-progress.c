@@ -42,8 +42,8 @@ typedef struct
 } XfburnAddingProgressPrivate;
 
 /* prototypes */
-static void xfburn_adding_progress_class_init (XfburnAddingProgressClass *);
-static void xfburn_adding_progress_init (XfburnAddingProgress *);
+static void xfburn_adding_progress_class_init (XfburnAddingProgressClass *, gpointer);
+static void xfburn_adding_progress_init (XfburnAddingProgress *, gpointer);
 static void xfburn_adding_progress_finalize (GObject * object);
 static gboolean cb_delete (GtkWidget *widget, GdkEvent *event, gpointer data);
 static gboolean cb_cancel (GtkWidget *widget, GdkEvent *event, gpointer data);
@@ -83,7 +83,7 @@ xfburn_adding_progress_get_type (void)
 }
 
 static void
-xfburn_adding_progress_class_init (XfburnAddingProgressClass * klass)
+xfburn_adding_progress_class_init (XfburnAddingProgressClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -100,7 +100,7 @@ xfburn_adding_progress_class_init (XfburnAddingProgressClass * klass)
 }
 
 static void
-xfburn_adding_progress_init (XfburnAddingProgress * win)
+xfburn_adding_progress_init (XfburnAddingProgress * win, gpointer data)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (win);
   GtkWidget *vbox, *cancel_btn;

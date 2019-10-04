@@ -44,8 +44,8 @@ typedef struct
 } XfburnDirectoryBrowserPrivate;
 
 /* prototypes */
-static void xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass *);
-static void xfburn_directory_browser_init (XfburnDirectoryBrowser *);
+static void xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass *, gpointer);
+static void xfburn_directory_browser_init (XfburnDirectoryBrowser *, gpointer);
 static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectionData *, guint, guint, gpointer);
 
 static gint directory_tree_sortfunc (GtkTreeModel *, GtkTreeIter *, GtkTreeIter *, gpointer);
@@ -95,7 +95,7 @@ xfburn_directory_browser_finalize (GObject * object)
 }
 
 static void
-xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass * klass)
+xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass * klass, gpointer data)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
@@ -106,7 +106,7 @@ xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass * klass)
 }
 
 static void
-xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
+xfburn_directory_browser_init (XfburnDirectoryBrowser * browser, gpointer data)
 {
   GtkListStore *model;
   GtkTreeViewColumn *column_file;
@@ -396,8 +396,7 @@ xfburn_directory_browser_get_selection (XfburnDirectoryBrowser * browser)
   }
 
   selected_rows = g_list_first (selected_rows);
-  g_list_foreach (selected_rows, (GFunc) gtk_tree_path_free, NULL);
-  g_list_free (selected_rows);
+  g_list_free_full (selected_rows, (GDestroyNotify) gtk_tree_path_free);
 
   return full_paths;
 }

@@ -87,8 +87,8 @@ typedef struct
 static gchar * last_file = NULL;
 
 /* prototypes */
-static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass);
-static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp);
+static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass, gpointer data);
+static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp, gpointer data);
 static void xfburn_burn_image_dialog_finalize (GObject *object);
 
 /* internal prototypes */
@@ -104,7 +104,7 @@ static void cb_clicked_ok (GtkButton * button, gpointer user_data);
 static void free_params (ThreadBurnIsoParams *params);
 static gboolean prepare_params (ThreadBurnIsoParams *params, struct burn_drive *drive, gchar **failure_msg);
 static gboolean create_disc (ThreadBurnIsoParams *params, gchar **failure_msg);
-static void thread_burn_iso (ThreadBurnIsoParams * params);
+static void* thread_burn_iso (ThreadBurnIsoParams * params);
 
 /*********************/
 /* class declaration */
@@ -137,7 +137,7 @@ xfburn_burn_image_dialog_get_type (void)
 }
 
 static void
-xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass)
+xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -149,7 +149,7 @@ xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass)
 }
 
 static void
-xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
+xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj, gpointer data)
 {
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG (obj)));
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (obj);
@@ -389,7 +389,7 @@ create_disc (ThreadBurnIsoParams *params, gchar **failure_msg)
   return TRUE;
 }
 
-static void
+static void*
 thread_burn_iso (ThreadBurnIsoParams * params)
 {
   GtkWidget *dialog_progress = params->dialog_progress;
@@ -424,6 +424,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
 
   free_params (params);
   g_free (params);
+  return NULL;
 }
 
 /**

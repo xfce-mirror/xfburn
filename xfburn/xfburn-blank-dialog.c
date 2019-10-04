@@ -91,8 +91,8 @@ typedef struct {
 
 /* internal prototypes */
 
-static void xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass);
-static void xfburn_blank_dialog_init (XfburnBlankDialog * sp);
+static void xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass, gpointer data);
+static void xfburn_blank_dialog_init (XfburnBlankDialog * sp, gpointer data);
 static void xfburn_blank_dialog_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_blank_dialog_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
@@ -101,7 +101,7 @@ static void fill_combo_mode (XfburnBlankDialog *dialog);
 //static GList * get_valid_blank_modes (XfburnDevice *device);
 static XfburnBlankMode get_selected_mode (XfburnBlankDialogPrivate *priv);
 static gboolean thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *drive_info);
-static void thread_blank (ThreadBlankParams * params);
+static void* thread_blank (ThreadBlankParams * params);
 static void xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, gpointer user_data);
 static void cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice *device, XfburnBlankDialog * dialog);
 
@@ -135,7 +135,7 @@ xfburn_blank_dialog_get_type (void)
 }
 
 static void
-xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass)
+xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -182,7 +182,7 @@ xfburn_blank_dialog_set_property (GObject *object, guint prop_id, const GValue *
 }
 
 static void
-xfburn_blank_dialog_init (XfburnBlankDialog * obj)
+xfburn_blank_dialog_init (XfburnBlankDialog * obj, gpointer data)
 {
   XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (obj);
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area((GTK_DIALOG (obj))));
@@ -455,7 +455,7 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
   return TRUE;
 }
 
-static void
+static void*
 thread_blank (ThreadBlankParams * params)
 {
   struct burn_drive_info *drive_info = NULL;
@@ -475,6 +475,7 @@ thread_blank (ThreadBlankParams * params)
   xfburn_udev_manager_send_volume_changed ();
   gdk_threads_leave ();
 #endif
+  return NULL;
 }
 
 static XfburnBlankMode

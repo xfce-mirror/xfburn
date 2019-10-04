@@ -34,8 +34,8 @@
 
 
 /* prototypes */
-static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass);
-static void xfburn_fs_browser_init (XfburnFsBrowser * sp);
+static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass, gpointer data);
+static void xfburn_fs_browser_init (XfburnFsBrowser * sp, gpointer data);
 
 static void cb_browser_row_expanded (GtkTreeView *, GtkTreeIter *, GtkTreePath *, gpointer);
 static void cb_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
@@ -72,13 +72,13 @@ xfburn_fs_browser_get_type (void)
 }
 
 static void
-xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass)
+xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass, gpointer data)
 {
   parent_class = g_type_class_peek_parent (klass);
 }
 
 static void
-xfburn_fs_browser_init (XfburnFsBrowser * browser)
+xfburn_fs_browser_init (XfburnFsBrowser * browser, gpointer data)
 {
   GtkTreeStore *model;
   GtkTreeViewColumn *column_directory;

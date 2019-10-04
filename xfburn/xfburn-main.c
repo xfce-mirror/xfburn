@@ -129,7 +129,7 @@ xfburn_main_get_initial_dir ()
     return xfce_get_homedir ();
 }
 
-const gboolean *
+gboolean
 xfburn_main_has_initial_dir ()
 {
   if (initial_dir)

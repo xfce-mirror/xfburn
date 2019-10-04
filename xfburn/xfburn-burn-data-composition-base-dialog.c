@@ -91,7 +91,7 @@ char *proceed_image[] = {
 */
 
 /* prototypes */
-static void xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBaseDialogClass * klass);
+static void xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBaseDialogClass * klass, gpointer data);
 static GObject * xfburn_burn_data_composition_base_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 static void xfburn_burn_data_composition_base_dialog_finalize (GObject * object);
 
@@ -139,7 +139,7 @@ xfburn_burn_data_composition_base_dialog_get_type (void)
 }
 
 static void
-xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBaseDialogClass * klass)
+xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBaseDialogClass * klass, gpointer data)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -458,7 +458,7 @@ typedef struct {
   gchar *iso_path;
 } ThreadWriteIsoParams;
 
-static void
+static void*
 thread_write_iso (ThreadWriteIsoParams * params)
 {
   GtkWidget *dialog_progress = params->dialog_progress;
@@ -527,6 +527,7 @@ thread_write_iso (ThreadWriteIsoParams * params)
   burn_source_free (params->src);
   g_free (params->iso_path);
   g_free (params);
+  return NULL;
 }
 
 typedef struct {
@@ -608,7 +609,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_write_opts_free (burn_options);
 }
 
-static void
+static void*
 thread_burn_composition (ThreadBurnCompositionParams * params)
 {
   GtkWidget *dialog_progress = params->dialog_progress;
@@ -636,6 +637,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   burn_source_free (params->src);
 
   g_free (params);
+  return NULL;
 }
 
 static void
