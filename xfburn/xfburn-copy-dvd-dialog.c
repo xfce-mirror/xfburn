@@ -30,7 +30,6 @@
 #include "xfburn-copy-cd-progress-dialog.h"
 #include "xfburn-create-iso-progress-dialog.h"
 #include "xfburn-device-box.h"
-#include "xfburn-stock.h"
 
 #include "xfburn-copy-dvd-dialog.h"
 

@@ -33,7 +33,6 @@
 #include "xfburn-global.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
-#include "xfburn-stock.h"
 
 #include "xfburn-device-box.h"
 #include "xfburn-burn-data-dvd-composition-dialog.h"

@@ -36,7 +36,6 @@
 #include "xfburn-global.h"
 #include "xfburn-settings.h"
 #include "xfburn-utils.h"
-#include "xfburn-stock.h"
 #include "xfburn-main-window.h"
 
 

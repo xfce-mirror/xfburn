@@ -39,7 +39,6 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-settings.h"
 #include "xfburn-main.h"
-#include "xfburn-stock.h"
 #include "xfburn-utils.h"
 
 #define XFBURN_MAIN_WINDOW_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowPrivate))

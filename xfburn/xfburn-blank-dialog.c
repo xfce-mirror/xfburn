@@ -29,7 +29,6 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-device-box.h"
 #include "xfburn-device-list.h"
-#include "xfburn-stock.h"
 #include "xfburn-udev-manager.h"
 #include "xfburn-main.h"
 

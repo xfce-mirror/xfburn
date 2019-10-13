@@ -32,7 +32,6 @@
 
 #include "xfburn-welcome-tab.h"
 
-#include "xfburn-stock.h"
 #include "xfburn-main-window.h"
 #include "xfburn-compositions-notebook.h"
 #include "xfburn-burn-image-dialog.h"

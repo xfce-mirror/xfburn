@@ -40,7 +40,6 @@
 #include "xfburn-device-list.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
-#include "xfburn-stock.h"
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-main-window.h"
 #include "xfburn-blank-dialog.h"
@@ -284,7 +283,6 @@ main (int argc, char **argv)
   }
 #endif
 
-  xfburn_stock_init ();
   devlist = xfburn_device_list_new ();
   g_object_get (devlist, "num-burners", &n_burners, NULL);
 

@@ -33,7 +33,6 @@
 #include "xfburn-utils.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-device-box.h"
-#include "xfburn-stock.h"
 #include "xfburn-settings.h"
 #include "xfburn-main.h"
 
