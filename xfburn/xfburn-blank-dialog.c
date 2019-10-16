@@ -34,7 +34,7 @@
 
 #include "xfburn-blank-dialog.h"
 
-#define XFBURN_BLANK_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BLANK_DIALOG, XfburnBlankDialogPrivate))
+#define XFBURN_BLANK_DIALOG_GET_PRIVATE(obj) (xfburn_blank_dialog_get_instance_private (obj))
 
 #define XFBURN_BLANK_DIALOG_EJECT_DEFAULT TRUE
 
@@ -90,8 +90,6 @@ typedef struct {
 
 /* internal prototypes */
 
-static void xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass, gpointer data);
-static void xfburn_blank_dialog_init (XfburnBlankDialog * sp, gpointer data);
 static void xfburn_blank_dialog_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_blank_dialog_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
@@ -106,35 +104,10 @@ static void cb_volume_changed (GtkWidget *device_box, gboolean device_changed, X
 
 static XfceTitledDialogClass *parent_class = NULL;
 
-
-
-GType
-xfburn_blank_dialog_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnBlankDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_blank_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnBlankDialog),
-      0,
-      (GInstanceInitFunc) xfburn_blank_dialog_init,
-      NULL,
-    };
-
-    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBlankDialog", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnBlankDialog, xfburn_blank_dialog, XFCE_TYPE_TITLED_DIALOG);
 
 static void
-xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass, gpointer data)
+xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -142,8 +115,6 @@ xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass, gpointer data)
   object_class->set_property = xfburn_blank_dialog_set_property;
   object_class->get_property = xfburn_blank_dialog_get_property;
   
-  g_type_class_add_private (klass, sizeof (XfburnBlankDialogPrivate));
-
   g_object_class_install_property (object_class, PROP_EJECT, 
                                    g_param_spec_boolean ("eject", _("Eject the disc"),
                                                         _("Default value for eject checkbox"), XFBURN_BLANK_DIALOG_EJECT_DEFAULT, G_PARAM_READWRITE));
@@ -152,7 +123,7 @@ xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass, gpointer data)
 static void
 xfburn_blank_dialog_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec)
 {
-  XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (object);
+  XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (XFBURN_BLANK_DIALOG (object));
 
   switch (prop_id) {
     case PROP_EJECT:
@@ -167,7 +138,7 @@ xfburn_blank_dialog_get_property (GObject *object, guint prop_id, GValue *value,
 static void
 xfburn_blank_dialog_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
 {
-  XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (object);
+  XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (XFBURN_BLANK_DIALOG (object));
   
   switch (prop_id) {
     case PROP_EJECT:
@@ -181,7 +152,7 @@ xfburn_blank_dialog_set_property (GObject *object, guint prop_id, const GValue *
 }
 
 static void
-xfburn_blank_dialog_init (XfburnBlankDialog * obj, gpointer data)
+xfburn_blank_dialog_init (XfburnBlankDialog * obj)
 {
   XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (obj);
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area((GTK_DIALOG (obj))));
@@ -352,12 +323,12 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
     usleep (1001);
 
   switch (disc_state) {
-  case BURN_DISC_BLANK:
+  case BURN_DISC_BLANK: 
     if (params->blank_mode == XFBURN_BLANK_FAST || params->blank_mode == XFBURN_BLANK_COMPLETE) {
       /* blanking can only be performed on blank discs, format and deformat are allowed to be blank ones */
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The inserted disc is already blank."));
       return FALSE;
-    }
+    } // fall through
   case BURN_DISC_FULL:
   case BURN_DISC_APPENDABLE:
     /* these ones we can blank */
@@ -530,8 +501,6 @@ xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, g
 static void
 cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice *device, XfburnBlankDialog * dialog)
 {
-  //XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (dialog);
-
   fill_combo_mode (dialog);
 }
 

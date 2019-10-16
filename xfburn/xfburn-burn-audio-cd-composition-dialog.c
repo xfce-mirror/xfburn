@@ -42,7 +42,7 @@
 #include "xfburn-audio-composition.h"
 #include "xfburn-transcoder.h"
 
-#define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, XfburnBurnAudioCdCompositionDialogPrivate))
+#define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE(obj) (xfburn_burn_audio_cd_composition_dialog_get_instance_private (XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG (obj)))
 
 typedef struct
 {
@@ -67,7 +67,6 @@ enum {
 };
 
 /* prototypes */
-static void xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass, gpointer data);
 static GObject * xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 static void xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object);
 
@@ -81,40 +80,16 @@ static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gin
 /* globals */
 static XfceTitledDialogClass *parent_class = NULL;
 
-GType
-xfburn_burn_audio_cd_composition_dialog_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnBurnAudioCdCompositionDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_burn_audio_cd_composition_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnBurnAudioCdCompositionDialog),
-      0,
-      NULL,
-      NULL
-    };
-
-    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBurnAudioCdCompositionDialog", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnBurnAudioCdCompositionDialog, xfburn_burn_audio_cd_composition_dialog, XFCE_TYPE_TITLED_DIALOG);
 
 static void
-xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass, gpointer data)
+xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  g_type_class_add_private (klass, sizeof (XfburnBurnAudioCdCompositionDialogPrivate));
   
-  object_class->constructor = xfburn_burn_audio_cd_composition_dialog_constructor;
+  // object_class->constructor = xfburn_burn_audio_cd_composition_dialog_constructor;
   object_class->finalize = xfburn_burn_audio_cd_composition_dialog_finalize;
   object_class->get_property = xfburn_burn_audio_cd_composition_dialog_get_property;
   object_class->set_property = xfburn_burn_audio_cd_composition_dialog_set_property;
@@ -124,12 +99,10 @@ xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdComposition
 				   g_param_spec_pointer ("track-list", "Track List", "Track List", G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
 }
 
-static GObject *
-xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
+static void
+xfburn_burn_audio_cd_composition_dialog_init(XfburnBurnAudioCdCompositionDialog *obj)
 {
-  GObject *gobj;
-  XfburnBurnAudioCdCompositionDialog *obj;
-  XfburnBurnAudioCdCompositionDialogPrivate *priv;
+  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE(obj);
   
   GdkPixbuf *icon = NULL;
   GtkBox *box;
@@ -139,9 +112,6 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
   GtkWidget *button;
   //const char *comp_name;
 
-  gobj = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_properties, construct_properties);
-  obj = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG (gobj);
-  priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (obj);
   box = GTK_BOX (gtk_dialog_get_content_area((GTK_DIALOG (obj))));
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
@@ -230,8 +200,6 @@ xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_constru
 
   cb_volume_changed (priv->device_box, TRUE, xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box)), obj);
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
-
-  return gobj;
 }
 
 static void

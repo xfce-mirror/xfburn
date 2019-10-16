@@ -38,69 +38,38 @@
 #include "xfburn-burn-data-cd-composition-dialog.h"
 #include "xfburn-progress-dialog.h"
 
-#define XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG, XfburnBurnDataCdCompositionDialogPrivate))
-
 typedef struct
 {
   gboolean dummy; /* An empty private struct is not allowed */
 } XfburnBurnDataCdCompositionDialogPrivate;
 
 /* prototypes */
-static void xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDialogClass * klass, gpointer data);
-static void xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog * obj, gpointer data);
+// static void xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDialogClass * klass, gpointer data);
+// static void xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog * obj, gpointer data);
 static void xfburn_burn_data_cd_composition_dialog_finalize (GObject * object);
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnBurnDataCdCompositionDialog, xfburn_burn_data_cd_composition_dialog, XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG);
 
 /* globals */
 static XfceTitledDialogClass *parent_class = NULL;
 
-GType
-xfburn_burn_data_cd_composition_dialog_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnBurnDataCdCompositionDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_burn_data_cd_composition_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnBurnDataCdCompositionDialog),
-      0,
-      (GInstanceInitFunc) xfburn_burn_data_cd_composition_dialog_init,
-      NULL
-    };
-
-    type = g_type_register_static (XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, "XfburnBurnDataCdCompositionDialog", &our_info, 0);
-  }
-
-  return type;
-}
-
 static void
-xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDialogClass * klass, gpointer data)
+xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  g_type_class_add_private (klass, sizeof (XfburnBurnDataCdCompositionDialogPrivate));
   
   object_class->finalize = xfburn_burn_data_cd_composition_dialog_finalize;
 }
 
 static void
-xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog * obj, gpointer data)
-{
-  //XfburnBurnDataCdCompositionDialogPrivate *priv = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_GET_PRIVATE (obj);
-  
+xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog * obj)
+{  
 }
 
 static void
 xfburn_burn_data_cd_composition_dialog_finalize (GObject * object)
 {
-  //XfburnBurnDataCdCompositionDialogPrivate *priv = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_GET_PRIVATE (object);
-
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
