@@ -41,7 +41,7 @@
 #include "xfburn-main.h"
 #include "xfburn-utils.h"
 
-#define XFBURN_MAIN_WINDOW_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowPrivate))
+#define XFBURN_MAIN_WINDOW_GET_PRIVATE(obj) (xfburn_main_window_get_instance_private(obj))
 
 /* private struct */
 typedef struct {
@@ -61,9 +61,9 @@ typedef struct {
 } XfburnMainWindowPrivate;
 
 /* prototypes */
-static void xfburn_main_window_class_init (XfburnMainWindowClass *, gpointer);
+G_DEFINE_TYPE_WITH_PRIVATE (XfburnMainWindow, xfburn_main_window, GTK_TYPE_WINDOW)
+
 static void xfburn_main_window_finalize (GObject *obj);
-static void xfburn_main_window_init (XfburnMainWindow *, gpointer);
 
 static gboolean cb_delete_main_window (XfburnMainWindow *, GdkEvent *, XfburnMainWindowPrivate *);
 // static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
@@ -95,7 +95,7 @@ static void action_show_toolbar (GSimpleAction * action, GVariant*, XfburnMainWi
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
-// upgrade to 
+// upgrade to
 static const GActionEntry action_entries[] = {
   // { "file-menu", NULL},
   { .name = "new-data-composition", .activate = (gActionCallback)action_new_data_composition },
@@ -196,37 +196,10 @@ static XfburnMainWindow *instance = NULL;
 /**************************/
 /* XfburnMainWindow class */
 /**************************/
-GType
-xfburn_main_window_get_type (void)
-{
-  static GType main_window_type = 0;
-
-  if (!main_window_type) {
-    static const GTypeInfo main_window_info = {
-      sizeof (XfburnMainWindowClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_main_window_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnMainWindow),
-      0,
-      (GInstanceInitFunc) xfburn_main_window_init,
-      NULL
-    };
-
-    main_window_type = g_type_register_static (GTK_TYPE_WINDOW, "XfburnMainWindow", &main_window_info, 0);
-  }
-
-  return main_window_type;
-}
-
 static void
-xfburn_main_window_class_init (XfburnMainWindowClass * klass, gpointer data)
+xfburn_main_window_class_init (XfburnMainWindowClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (XfburnMainWindowPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
 
@@ -241,7 +214,7 @@ xfburn_main_window_finalize (GObject *obj)
 }
 
 static void
-xfburn_main_window_init (XfburnMainWindow * mainwin, gpointer data)
+xfburn_main_window_init (XfburnMainWindow * mainwin)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (mainwin);
 

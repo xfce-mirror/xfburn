@@ -27,7 +27,7 @@
 #include "xfburn-adding-progress.h"
 #include "xfburn-utils.h"
 
-#define XFBURN_ADDING_PROGRESS_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_ADDING_PROGRESS, XfburnAddingProgressPrivate))
+#define XFBURN_ADDING_PROGRESS_GET_PRIVATE(obj) (xfburn_adding_progress_get_instance_private (obj))
 
 enum {
   ADDING_DONE,
@@ -42,11 +42,10 @@ typedef struct
 } XfburnAddingProgressPrivate;
 
 /* prototypes */
-static void xfburn_adding_progress_class_init (XfburnAddingProgressClass *, gpointer);
-static void xfburn_adding_progress_init (XfburnAddingProgress *, gpointer);
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnAddingProgress, xfburn_adding_progress, GTK_TYPE_WINDOW)
 static void xfburn_adding_progress_finalize (GObject * object);
-static gboolean cb_delete (GtkWidget *widget, GdkEvent *event, gpointer data);
-static gboolean cb_cancel (GtkWidget *widget, GdkEvent *event, gpointer data);
+static gboolean cb_delete (XfburnAddingProgress *widget, GdkEvent *event, gpointer data);
+static gboolean cb_cancel (XfburnAddingProgress *widget, GdkEvent *event, gpointer data);
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
@@ -56,43 +55,15 @@ static guint signals[LAST_SIGNAL];
 /* XfburnAddingProgress class */
 /******************************/
 
-GType
-xfburn_adding_progress_get_type (void)
-{
-  static GType adding_progress_type = 0;
-
-  if (!adding_progress_type)
-    {
-      static const GTypeInfo adding_progress_info = {
-        sizeof (XfburnAddingProgressClass),
-        NULL,
-        NULL,
-        (GClassInitFunc) xfburn_adding_progress_class_init,
-        NULL,
-        NULL,
-        sizeof (XfburnAddingProgress),
-        0,
-        (GInstanceInitFunc) xfburn_adding_progress_init,
-        NULL
-      };
-
-      adding_progress_type = g_type_register_static (GTK_TYPE_WINDOW, "XfburnAddingProgress", &adding_progress_info, 0);
-    }
-
-  return adding_progress_type;
-}
-
 static void
-xfburn_adding_progress_class_init (XfburnAddingProgressClass * klass, gpointer data)
+xfburn_adding_progress_class_init (XfburnAddingProgressClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (XfburnAddingProgressPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_adding_progress_finalize;
-  
+
   signals[ADDING_DONE] = g_signal_new ("adding-done", XFBURN_TYPE_ADDING_PROGRESS, G_SIGNAL_ACTION,
                                           G_STRUCT_OFFSET (XfburnAddingProgressClass, adding_done),
                                           NULL, NULL, g_cclosure_marshal_VOID__VOID,
@@ -100,7 +71,7 @@ xfburn_adding_progress_class_init (XfburnAddingProgressClass * klass, gpointer d
 }
 
 static void
-xfburn_adding_progress_init (XfburnAddingProgress * win, gpointer data)
+xfburn_adding_progress_init (XfburnAddingProgress * win)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (win);
   GtkWidget *vbox, *cancel_btn;
@@ -142,7 +113,7 @@ xfburn_adding_progress_finalize (GObject * object)
 /* internals */
 
 static gboolean
-cb_delete (GtkWidget *widget, GdkEvent *event, gpointer data)
+cb_delete (XfburnAddingProgress *widget, GdkEvent *event, gpointer data)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (widget);
   priv->aborted = TRUE;
@@ -151,7 +122,7 @@ cb_delete (GtkWidget *widget, GdkEvent *event, gpointer data)
 }
 
 static gboolean
-cb_cancel (GtkWidget *widget, GdkEvent *event, gpointer data)
+cb_cancel (XfburnAddingProgress *widget, GdkEvent *event, gpointer data)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (data);
   priv->aborted = TRUE;

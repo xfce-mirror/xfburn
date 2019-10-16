@@ -55,7 +55,7 @@
 #include "xfburn-settings.h"
 #include "xfburn-main.h"
 
-#define XFBURN_AUDIO_COMPOSITION_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_AUDIO_COMPOSITION, XfburnAudioCompositionPrivate))
+#define XFBURN_AUDIO_COMPOSITION_GET_PRIVATE(obj) (xfburn_audio_composition_get_instance_private (obj))
 
 enum
 {
@@ -113,9 +113,7 @@ typedef struct {
 } ThreadAddFilesDragParams;
 
 /* prototypes */
-static void xfburn_audio_composition_class_init (XfburnAudioCompositionClass *, gpointer);
 static void composition_interface_init (XfburnCompositionInterface *composition, gpointer iface_data);
-static void xfburn_audio_composition_init (XfburnAudioComposition *dc, gpointer);
 static void xfburn_audio_composition_finalize (GObject * object);
 
 /* internals */
@@ -245,6 +243,13 @@ static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
 /********************************/
 /* XfburnAudioComposition class */
 /********************************/
+G_DEFINE_TYPE_EXTENDED(XfburnAudioComposition,
+	xfburn_audio_composition,
+	GTK_TYPE_BOX,
+	0,
+	G_ADD_PRIVATE(XfburnAudioComposition)
+	G_IMPLEMENT_INTERFACE(XFBURN_TYPE_COMPOSITION, composition_interface_init));
+/*
 GType
 xfburn_audio_composition_get_type (void)
 {
@@ -264,10 +269,6 @@ xfburn_audio_composition_get_type (void)
       NULL
     };
 
-    static const GInterfaceInfo composition_info = {
-      (GInterfaceInitFunc) composition_interface_init,    /* interface_init */
-      NULL,                                               /* interface_finalize */
-      NULL                                                /* interface_data */
     };
 
     audio_composition_type = g_type_register_static (GTK_TYPE_BOX, "XfburnAudioComposition", &audio_composition_info, 0);
@@ -276,14 +277,12 @@ xfburn_audio_composition_get_type (void)
   }
 
   return audio_composition_type;
-}
+} */
 
 static void
-xfburn_audio_composition_class_init (XfburnAudioCompositionClass * klass, gpointer data)
+xfburn_audio_composition_class_init (XfburnAudioCompositionClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (XfburnAudioCompositionPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
 
@@ -300,7 +299,7 @@ composition_interface_init (XfburnCompositionInterface *composition, gpointer if
 }
 
 static void
-xfburn_audio_composition_init (XfburnAudioComposition * composition, gpointer data)
+xfburn_audio_composition_init (XfburnAudioComposition * composition)
 {
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
 
@@ -524,7 +523,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition, gpointer da
 static void
 xfburn_audio_composition_finalize (GObject * object)
 {
-  XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (object);
+  XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (XFBURN_AUDIO_COMPOSITION (object));
 
   g_free (priv->filename);
 
@@ -2160,7 +2159,7 @@ foreach_save (GtkTreeModel * model, GtkTreePath * path, GtkTreeIter * iter, Comp
 static void
 save_to_file (XfburnComposition * composition)
 {
-  XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
+  XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (XFBURN_AUDIO_COMPOSITION (composition));
   FILE *file_content;
   GtkTreeModel *model;
   CompositionSaveInfo info;

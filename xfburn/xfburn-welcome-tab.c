@@ -38,11 +38,7 @@
 #include "xfburn-blank-dialog.h"
 
 /* prototypes */
-static void xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass, gpointer data);
-static void xfburn_welcome_tab_init (XfburnWelcomeTab * sp, gpointer data);
 static void xfburn_welcome_tab_finalize (GObject * object);
-
-#define XFBURN_WELCOME_TAB_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_WELCOME_TAB, XfburnWelcomeTabPrivate))
 
 typedef struct {
   XfburnCompositionsNotebook *notebook;
@@ -52,6 +48,9 @@ typedef struct {
   GtkWidget *button_audio_comp;
   GtkWidget *button_blank;
 } XfburnWelcomeTabPrivate;
+
+G_DEFINE_TYPE_WITH_PRIVATE (XfburnWelcomeTab, xfburn_welcome_tab, GTK_TYPE_BOX)
+#define XFBURN_WELCOME_TAB_GET_PRIVATE(obj) (xfburn_welcome_tab_get_instance_private(obj))
 
 /* internals */
 static GtkWidget* create_welcome_button (const gchar *stock, const gchar *text, const gchar *secondary);
@@ -67,37 +66,10 @@ static void blank_disc (GtkButton *button, XfburnWelcomeTab *tab);
 /*********************/
 static GtkWidget *parent_class = NULL;
 
-GType
-xfburn_welcome_tab_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnWelcomeTabClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_welcome_tab_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnWelcomeTab),
-      0,
-      (GInstanceInitFunc) xfburn_welcome_tab_init,
-      NULL
-    };
-
-    type = g_type_register_static (GTK_TYPE_BOX, "XfburnWelcomeTab", &our_info, 0);
-  }
-
-  return type;
-}
-
 static void
-xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass, gpointer data)
+xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (XfburnWelcomeTabPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
 
@@ -105,7 +77,7 @@ xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass, gpointer data)
 }
 
 static void
-xfburn_welcome_tab_init (XfburnWelcomeTab * obj, gpointer data)
+xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
 {
   XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (obj);
 
@@ -263,7 +235,7 @@ xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GActionMap *action
 
   obj = g_object_new (XFBURN_TYPE_WELCOME_TAB, NULL);
   if (obj) {
-    XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (obj);
+    XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (XFBURN_WELCOME_TAB(obj));
     GAction *action;
 
     priv->notebook = notebook;
