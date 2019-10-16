@@ -31,7 +31,7 @@
 #include "xfburn-blank-dialog.h"
 #include "xfburn-cclosure-marshal.h"
 
-#define XFBURN_DEVICE_BOX_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBoxPrivate))
+#define XFBURN_DEVICE_BOX_GET_PRIVATE(obj) (xfburn_device_box_get_instance_private (XFBURN_DEVICE_BOX (obj)))
 
 enum {
   PROP_0,
@@ -91,8 +91,6 @@ typedef struct
 } XfburnDeviceBoxPrivate;
 
 /* prototypes */
-static void xfburn_device_box_class_init (XfburnDeviceBoxClass *, gpointer data);
-static GObject * xfburn_device_box_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 static void xfburn_device_box_finalize (GObject * object);
 static void xfburn_device_box_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
@@ -112,7 +110,7 @@ static void empty_speed_list_dialog (void);
 #endif
 
 /* globals */
-static GtkVBoxClass *parent_class = NULL;
+static GtkBoxClass *parent_class = NULL;
 
 /*************************/
 /* XfburnDeviceBox class */
@@ -120,42 +118,15 @@ static GtkVBoxClass *parent_class = NULL;
 
 static guint signals[LAST_SIGNAL];
 
-GType
-xfburn_device_box_get_type (void)
-{
-  static GType device_box_type = 0;
-
-  if (!device_box_type)
-    {
-      static const GTypeInfo device_box_info = {
-        sizeof (XfburnDeviceBoxClass),
-        NULL,
-        NULL,
-        (GClassInitFunc) xfburn_device_box_class_init,
-        NULL,
-        NULL,
-        sizeof (XfburnDeviceBox),
-        0,
-        NULL,
-        NULL
-      };
-
-      device_box_type = g_type_register_static (GTK_TYPE_BOX, "XfburnDeviceBox", &device_box_info, 0);
-    }
-
-  return device_box_type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnDeviceBox, xfburn_device_box, GTK_TYPE_BOX);
 
 static void
-xfburn_device_box_class_init (XfburnDeviceBoxClass * klass, gpointer data)
+xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   
-  g_type_class_add_private (klass, sizeof (XfburnDeviceBoxPrivate));
-
   parent_class = g_type_class_peek_parent (klass);
   
-  object_class->constructor  = xfburn_device_box_constructor;
   object_class->finalize     = xfburn_device_box_finalize;
   object_class->set_property = xfburn_device_box_set_property;
   object_class->get_property = xfburn_device_box_get_property;
@@ -187,12 +158,10 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass, gpointer data)
                                                         FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
 
-static GObject * 
-xfburn_device_box_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
+static void 
+xfburn_device_box_init (XfburnDeviceBox *box)
 {
-  GObject *gobj;
-  XfburnDeviceBox *box;
-  XfburnDeviceBoxPrivate *priv;
+  XfburnDeviceBoxPrivate *priv = xfburn_device_box_get_instance_private(box);
 
   GtkWidget *label;
   //GtkWidget *hbox;
@@ -201,10 +170,6 @@ xfburn_device_box_constructor (GType type, guint n_construct_properties, GObject
   XfburnDeviceList *devlist;
   gint n_burners;
   
-  gobj = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_properties, construct_properties);
-  box = XFBURN_DEVICE_BOX (gobj);
-  priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-
   gtk_orientable_set_orientation (GTK_ORIENTABLE (box), GTK_ORIENTATION_VERTICAL);
 
   priv->devlist = devlist = xfburn_device_list_new ();
@@ -291,8 +256,6 @@ xfburn_device_box_constructor (GType type, guint n_construct_properties, GObject
   priv->have_asked_for_blanking = FALSE;
 
   refresh_drive_info (box, xfburn_device_list_get_current_device (priv->devlist));
-
-  return gobj;
 }
 
 static void

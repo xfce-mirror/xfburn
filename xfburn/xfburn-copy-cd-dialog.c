@@ -33,7 +33,7 @@
 
 #include "xfburn-copy-cd-dialog.h"
 
-#define XFBURN_COPY_CD_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_COPY_CD_DIALOG, XfburnCopyCdDialogPrivate))
+#define XFBURN_COPY_CD_DIALOG_GET_PRIVATE(obj) (xfburn_copy_cd_dialog_get_instance_private (XFBURN_COPY_CD_DIALOG (obj)))
 
 typedef struct
 {
@@ -63,36 +63,11 @@ static void cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, X
 /*********************/
 static XfceTitledDialogClass *parent_class = NULL;
 
-GType
-xfburn_copy_cd_dialog_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnCopyCdDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_copy_cd_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnCopyCdDialog),
-      0,
-      (GInstanceInitFunc) xfburn_copy_cd_dialog_init,
-      NULL
-    };
-
-    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnCopyCdDialog", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnCopyCdDialog, xfburn_copy_cd_dialog, XFCE_TYPE_TITLED_DIALOG);
 
 static void
 xfburn_copy_cd_dialog_class_init (XfburnCopyCdDialogClass * klass)
-{
-  g_type_class_add_private (klass, sizeof (XfburnCopyCdDialogPrivate));
-  
+{  
   parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -100,7 +75,7 @@ static void
 xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
 {
   XfburnCopyCdDialogPrivate *priv = XFBURN_COPY_CD_DIALOG_GET_PRIVATE (obj);
-  GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
+  GtkBox *box = GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG (obj)));
   GtkWidget *img;
   GdkPixbuf *icon = NULL;
   GtkWidget *frame;

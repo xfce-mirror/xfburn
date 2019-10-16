@@ -39,7 +39,7 @@
 #include "xfburn-burn-image-dialog.h"
 #include "xfburn-perform-burn.h"
 
-#define XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialogPrivate))
+#define XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE(obj) (xfburn_burn_image_dialog_get_instance_private (XFBURN_BURN_IMAGE_DIALOG (obj)))
 
 typedef struct {
   GtkWidget *dialog_progress;
@@ -86,8 +86,6 @@ typedef struct
 static gchar * last_file = NULL;
 
 /* prototypes */
-static void xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass, gpointer data);
-static void xfburn_burn_image_dialog_init (XfburnBurnImageDialog * sp, gpointer data);
 static void xfburn_burn_image_dialog_finalize (GObject *object);
 
 /* internal prototypes */
@@ -110,37 +108,12 @@ static void* thread_burn_iso (ThreadBurnIsoParams * params);
 /*********************/
 static XfceTitledDialogClass *parent_class = NULL;
 
-GType
-xfburn_burn_image_dialog_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnBurnImageDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_burn_image_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnBurnImageDialog),
-      0,
-      (GInstanceInitFunc) xfburn_burn_image_dialog_init,
-      NULL
-    };
-
-    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnBurnImageDialog", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnBurnImageDialog,xfburn_burn_image_dialog, XFCE_TYPE_TITLED_DIALOG);
 
 static void
-xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass, gpointer data)
+xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (XfburnBurnImageDialogPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
 
@@ -148,7 +121,7 @@ xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass, gpointe
 }
 
 static void
-xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj, gpointer data)
+xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
 {
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG (obj)));
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (obj);

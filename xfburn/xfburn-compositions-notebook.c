@@ -32,7 +32,7 @@
 #include "xfburn-data-composition.h"
 #include "xfburn-audio-composition.h"
 
-#define XFBURN_COMPOSITIONS_NOTEBOOK_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, XfburnCompositionsNotebookPrivate))
+#define XFBURN_COMPOSITIONS_NOTEBOOK_GET_PRIVATE(obj) (xfburn_compositions_notebook_get_instance_private (obj))
 
 /* private members */
 typedef struct
@@ -42,8 +42,6 @@ typedef struct
 
 
 /* prototypes */
-static void xfburn_compositions_notebook_class_init (XfburnCompositionsNotebookClass * klass, gpointer data);
-static void xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook, gpointer data);
 static void xfburn_compositions_notebook_finalize (GObject * object);
 
 
@@ -58,37 +56,12 @@ static XfburnComposition * add_composition_with_data (XfburnCompositionsNotebook
 /* static member */
 static GtkNotebookClass *parent_class = NULL;
 
-GType
-xfburn_compositions_notebook_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnCompositionsNotebookClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_compositions_notebook_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnCompositionsNotebook),
-      0,
-      (GInstanceInitFunc) xfburn_compositions_notebook_init,
-      NULL
-    };
-
-    type = g_type_register_static (GTK_TYPE_NOTEBOOK, "XfburnCompositionsNotebook", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnCompositionsNotebook, xfburn_compositions_notebook, GTK_TYPE_NOTEBOOK);
 
 static void
-xfburn_compositions_notebook_class_init (XfburnCompositionsNotebookClass * klass, gpointer data)
+xfburn_compositions_notebook_class_init (XfburnCompositionsNotebookClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (XfburnCompositionsNotebookPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
   object_class->finalize = xfburn_compositions_notebook_finalize;
@@ -109,7 +82,7 @@ cb_move_focus_out (GtkNotebook *notebook, GtkDirectionType *arg1, XfburnComposit
 }
 
 static void
-xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook, gpointer data)
+xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook)
 {
   XfburnCompositionsNotebookPrivate *priv = XFBURN_COMPOSITIONS_NOTEBOOK_GET_PRIVATE (notebook);
   

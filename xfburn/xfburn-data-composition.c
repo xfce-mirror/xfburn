@@ -57,7 +57,7 @@
 #include "xfburn-settings.h"
 #include "xfburn-main.h"
 
-#define XFBURN_DATA_COMPOSITION_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataCompositionPrivate))
+#define XFBURN_DATA_COMPOSITION_GET_PRIVATE(obj) (xfburn_data_composition_get_instance_private (XFBURN_DATA_COMPOSITION (obj)))
 
 enum
 {
@@ -99,9 +99,7 @@ typedef struct {
 } ThreadAddFilesDragParams;
 
 /* prototypes */
-static void xfburn_data_composition_class_init (XfburnDataCompositionClass *, gpointer);
 static void composition_interface_init (XfburnCompositionInterface *composition, gpointer iface_data);
-static void xfburn_data_composition_init (XfburnDataComposition *dc, gpointer);
 static void xfburn_data_composition_finalize (GObject * object);
 
 static void show_custom_controls (XfburnComposition *composition);
@@ -225,44 +223,20 @@ static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
 /***************************/
 /* XfburnDataComposition class */
 /***************************/
-GType
-xfburn_data_composition_get_type (void)
-{
-  static GType data_composition_type = 0;
+G_DEFINE_TYPE_EXTENDED(
+  XfburnDataComposition,
+  xfburn_data_composition,
+  GTK_TYPE_BOX,
+  0,
+  G_ADD_PRIVATE (XfburnDataComposition)
+  G_IMPLEMENT_INTERFACE (XFBURN_TYPE_COMPOSITION, composition_interface_init)
+);
 
-  if (!data_composition_type) {
-    static const GTypeInfo data_composition_info = {
-      sizeof (XfburnDataCompositionClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_data_composition_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnDataComposition),
-      0,
-      (GInstanceInitFunc) xfburn_data_composition_init,
-      NULL
-    };
-
-    static const GInterfaceInfo composition_info = {
-      (GInterfaceInitFunc) composition_interface_init,    /* interface_init */
-      NULL,                                               /* interface_finalize */
-      NULL                                                /* interface_data */
-    };
-
-    data_composition_type = g_type_register_static (GTK_TYPE_BOX, "XfburnDataComposition", &data_composition_info, 0);
-
-    g_type_add_interface_static (data_composition_type, XFBURN_TYPE_COMPOSITION, &composition_info);
-  }
-
-  return data_composition_type;
-}
 
 static void
-xfburn_data_composition_class_init (XfburnDataCompositionClass * klass, gpointer data)
+xfburn_data_composition_class_init (XfburnDataCompositionClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  g_type_class_add_private (klass, sizeof (XfburnDataCompositionPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
 
@@ -279,7 +253,7 @@ composition_interface_init (XfburnCompositionInterface *composition, gpointer if
 }
 
 static void
-xfburn_data_composition_init (XfburnDataComposition * composition, gpointer data)
+xfburn_data_composition_init (XfburnDataComposition * composition)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
 

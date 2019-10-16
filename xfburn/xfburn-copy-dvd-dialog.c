@@ -33,7 +33,7 @@
 
 #include "xfburn-copy-dvd-dialog.h"
 
-#define XFBURN_COPY_DVD_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_COPY_DVD_DIALOG, XfburnCopyDvdDialogPrivate))
+#define XFBURN_COPY_DVD_DIALOG_GET_PRIVATE(obj) (xfburn_copy_dvd_dialog_get_instance_private (XFBURN_COPY_DVD_DIALOG (obj)))
 
 typedef struct
 {
@@ -49,10 +49,6 @@ typedef struct
   GtkWidget *check_dummy;
 } XfburnCopyDvdDialogPrivate;
 
-/* prototypes */
-static void xfburn_copy_dvd_dialog_class_init (XfburnCopyDvdDialogClass * klass);
-static void xfburn_copy_dvd_dialog_init (XfburnCopyDvdDialog * sp);
-
 static void cb_device_changed (XfburnDeviceBox *box, const gchar *device_name, XfburnCopyDvdDialogPrivate *priv);
 static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyDvdDialog * dialog);
 static void cb_browse_iso (GtkButton * button, XfburnCopyDvdDialog * dialog);
@@ -63,36 +59,12 @@ static void cb_dialog_response (XfburnCopyDvdDialog * dialog, gint response_id, 
 /*********************/
 static XfceTitledDialogClass *parent_class = NULL;
 
-GType
-xfburn_copy_dvd_dialog_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnCopyDvdDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_copy_dvd_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnCopyDvdDialog),
-      0,
-      (GInstanceInitFunc) xfburn_copy_dvd_dialog_init,
-      NULL
-    };
-
-    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnCopyDvdDialog", &our_info, 0);
-  }
-
-  return type;
-}
+/* prototypes */
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnCopyDvdDialog, xfburn_copy_dvd_dialog, XFCE_TYPE_TITLED_DIALOG);
 
 static void
 xfburn_copy_dvd_dialog_class_init (XfburnCopyDvdDialogClass * klass)
-{
-  g_type_class_add_private (klass, sizeof (XfburnCopyDvdDialogPrivate));
-  
+{  
   parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -100,7 +72,7 @@ static void
 xfburn_copy_dvd_dialog_init (XfburnCopyDvdDialog * obj)
 {
   XfburnCopyDvdDialogPrivate *priv = XFBURN_COPY_DVD_DIALOG_GET_PRIVATE (obj);
-  GtkBox *box = GTK_BOX (GTK_DIALOG (obj)->vbox);
+  GtkBox *box = GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (obj)));
   GtkWidget *img;
   GdkPixbuf *icon = NULL;
   GtkWidget *frame;

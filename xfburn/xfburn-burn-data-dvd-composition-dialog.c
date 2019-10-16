@@ -39,69 +39,37 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-burn-data-composition-base-dialog.h"
 
-#define XFBURN_BURN_DATA_DVD_COMPOSITION_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_BURN_DATA_DVD_COMPOSITION_DIALOG, XfburnBurnDataDvdCompositionDialogPrivate))
-
 typedef struct
 {
   gboolean dummy;
 } XfburnBurnDataDvdCompositionDialogPrivate;
 
 /* prototypes */
-static void xfburn_burn_data_dvd_composition_dialog_class_init (XfburnBurnDataDvdCompositionDialogClass * klass, gpointer data);
-static void xfburn_burn_data_dvd_composition_dialog_init (XfburnBurnDataDvdCompositionDialog * obj, gpointer data);
 static void xfburn_burn_data_dvd_composition_dialog_finalize (GObject * object);
 
 /* globals */
 static XfceTitledDialogClass *parent_class = NULL;
 
-GType
-xfburn_burn_data_dvd_composition_dialog_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnBurnDataDvdCompositionDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_burn_data_dvd_composition_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnBurnDataDvdCompositionDialog),
-      0,
-      (GInstanceInitFunc) xfburn_burn_data_dvd_composition_dialog_init,
-      NULL
-    };
-
-    type = g_type_register_static (XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, "XfburnBurnDataDvdCompositionDialog", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnBurnDataDvdCompositionDialog, xfburn_burn_data_dvd_composition_dialog, XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG);
 
 static void
-xfburn_burn_data_dvd_composition_dialog_class_init (XfburnBurnDataDvdCompositionDialogClass * klass, gpointer data)
+xfburn_burn_data_dvd_composition_dialog_class_init (XfburnBurnDataDvdCompositionDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  g_type_class_add_private (klass, sizeof (XfburnBurnDataDvdCompositionDialogPrivate));
   
   object_class->finalize = xfburn_burn_data_dvd_composition_dialog_finalize;
 }
 
 static void
-xfburn_burn_data_dvd_composition_dialog_init (XfburnBurnDataDvdCompositionDialog * obj, gpointer data)
+xfburn_burn_data_dvd_composition_dialog_init (XfburnBurnDataDvdCompositionDialog * obj)
 {
-  //XfburnBurnDataDvdCompositionDialogPrivate *priv = XFBURN_BURN_DATA_DVD_COMPOSITION_DIALOG_GET_PRIVATE (obj);
-  
 }
 
 static void
 xfburn_burn_data_dvd_composition_dialog_finalize (GObject * object)
 {
-  //XfburnBurnDataDvdCompositionDialogPrivate *priv = XFBURN_BURN_DATA_DVD_COMPOSITION_DIALOG_GET_PRIVATE (object);
-
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
