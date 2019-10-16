@@ -26,7 +26,7 @@
 
 #include "xfburn-notebook-tab.h"
 
-#define XFBURN_NOTEBOOK_TAB_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_NOTEBOOK_TAB, XfburnNotebookTabPrivate))
+#define XFBURN_NOTEBOOK_TAB_GET_PRIVATE(obj) (xfburn_notebook_tab_get_instance_private (obj))
 
 enum {
   BUTTON_CLOSE_CLICKED,
@@ -48,8 +48,6 @@ typedef struct
 
 
 /* prototypes */
-static void xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass, gpointer data);
-static void xfburn_notebook_tab_init (XfburnNotebookTab * tab, gpointer data);
 static void xfburn_notebook_tab_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 static void xfburn_notebook_tab_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
 
@@ -62,37 +60,12 @@ static guint notebook_tab_signals[LAST_SIGNAL];
 /************************/
 /* class initiliazation */
 /************************/
-GType
-xfburn_notebook_tab_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnNotebookTabClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_notebook_tab_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnNotebookTab),
-      0,
-      (GInstanceInitFunc) xfburn_notebook_tab_init,
-      NULL
-    };
-
-    type = g_type_register_static (GTK_TYPE_BOX, "XfburnNotebookTab", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnNotebookTab, xfburn_notebook_tab, GTK_TYPE_BOX);
 
 static void
-xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass, gpointer data)
+xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (XfburnNotebookTabPrivate));
 
   parent_class = g_type_class_peek_parent (klass);
   
@@ -113,7 +86,7 @@ xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass, gpointer data)
 }
 
 static void
-xfburn_notebook_tab_init (XfburnNotebookTab * tab, gpointer data)
+xfburn_notebook_tab_init (XfburnNotebookTab * tab)
 {
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (tab);
   GtkBox *hbox = GTK_BOX (tab);
@@ -139,7 +112,7 @@ xfburn_notebook_tab_init (XfburnNotebookTab * tab, gpointer data)
 static void
 xfburn_notebook_tab_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec)
 {
-  XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (object);
+  XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (XFBURN_NOTEBOOK_TAB (object));
 
   switch (prop_id) {
   case PROP_LABEL:
@@ -157,7 +130,7 @@ xfburn_notebook_tab_get_property (GObject *object, guint prop_id, GValue *value,
 static void
 xfburn_notebook_tab_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
 {
-  XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (object);
+  XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (XFBURN_NOTEBOOK_TAB (object));
   
   switch (prop_id) {
   case PROP_LABEL:

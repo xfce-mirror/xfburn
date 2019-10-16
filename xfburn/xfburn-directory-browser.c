@@ -44,8 +44,6 @@ typedef struct
 } XfburnDirectoryBrowserPrivate;
 
 /* prototypes */
-static void xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass *, gpointer);
-static void xfburn_directory_browser_init (XfburnDirectoryBrowser *, gpointer);
 static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectionData *, guint, guint, gpointer);
 
 static gint directory_tree_sortfunc (GtkTreeModel *, GtkTreeIter *, GtkTreeIter *, gpointer);
@@ -58,31 +56,7 @@ static const gchar *DIRECTORY = N_("Folder");
 /********************************/
 static ExoTreeViewClass *parent_class = NULL;
 
-GType
-xfburn_directory_browser_get_type (void)
-{
-  static GType directory_browser_type = 0;
-
-  if (!directory_browser_type) {
-    static const GTypeInfo directory_browser_info = {
-      sizeof (XfburnDirectoryBrowserClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_directory_browser_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnDirectoryBrowser),
-      0,
-      (GInstanceInitFunc) xfburn_directory_browser_init,
-      NULL
-    };
-
-    directory_browser_type =
-      g_type_register_static (EXO_TYPE_TREE_VIEW, "XfburnDirectoryBrowser", &directory_browser_info, 0);
-  }
-
-  return directory_browser_type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnDirectoryBrowser, xfburn_directory_browser, EXO_TYPE_TREE_VIEW);
 
 static void
 xfburn_directory_browser_finalize (GObject * object)
@@ -95,18 +69,17 @@ xfburn_directory_browser_finalize (GObject * object)
 }
 
 static void
-xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass * klass, gpointer data)
+xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
-  g_type_class_add_private (klass, sizeof (XfburnDirectoryBrowserPrivate));
   parent_class = g_type_class_peek_parent (klass);
   
   gobject_class->finalize = xfburn_directory_browser_finalize;
 }
 
 static void
-xfburn_directory_browser_init (XfburnDirectoryBrowser * browser, gpointer data)
+xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
 {
   GtkListStore *model;
   GtkTreeViewColumn *column_file;

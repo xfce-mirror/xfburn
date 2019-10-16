@@ -60,12 +60,6 @@ enum {
 /*****************/
 /*- class setup -*/
 /*****************/
-
-G_DEFINE_TYPE (XfburnDevice, xfburn_device, G_TYPE_OBJECT)
-
-#define GET_PRIVATE(o) \
-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFBURN_TYPE_DEVICE, XfburnDevicePrivate))
-
 typedef struct _XfburnDevicePrivate XfburnDevicePrivate;
 
 struct _XfburnDevicePrivate {
@@ -95,6 +89,11 @@ struct _XfburnDevicePrivate {
   char profile_name[80];
   int is_erasable;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE (XfburnDevice, xfburn_device, G_TYPE_OBJECT)
+
+#define GET_PRIVATE(o) \
+  (xfburn_device_get_instance_private (o))
 
 static void
 xfburn_device_get_property (GObject *object, guint property_id,
@@ -239,8 +238,6 @@ static void
 xfburn_device_class_init (XfburnDeviceClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (XfburnDevicePrivate));
 
   object_class->get_property = xfburn_device_get_property;
   object_class->set_property = xfburn_device_set_property;

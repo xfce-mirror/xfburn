@@ -32,7 +32,7 @@
 #include "xfburn-directory-browser.h"
 #include "xfburn-main.h"
 
-#define XFBURN_FILE_BROWSER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_FILE_BROWSER, XfburnFileBrowserPrivate))
+#define XFBURN_FILE_BROWSER_GET_PRIVATE(obj) (xfburn_file_browser_get_instance_private (obj))
 
 typedef enum {
   FS_BROWSER,
@@ -45,8 +45,6 @@ typedef struct {
 } XfburnFileBrowserPrivate;
 
 /* prototypes */
-static void xfburn_file_browser_class_init (XfburnFileBrowserClass *, gpointer);
-static void xfburn_file_browser_init (XfburnFileBrowser *, gpointer);
 
 static void cb_fs_browser_selection_changed (GtkTreeSelection *, XfburnFileBrowser *);
 static void cb_directory_browser_row_activated (GtkWidget *, GtkTreePath *, GtkTreeViewColumn *, XfburnFileBrowser *);
@@ -57,41 +55,16 @@ static gboolean cb_focus_in_event (GtkWidget *widget, GdkEventFocus *event, Xfbu
 /***************************/
 static GtkPanedClass *parent_class = NULL;
 
-GType
-xfburn_file_browser_get_type (void)
-{
-  static GType file_browser_type = 0;
-
-  if (!file_browser_type) {
-    static const GTypeInfo file_browser_info = {
-      sizeof (XfburnFileBrowserClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_file_browser_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnFileBrowser),
-      0,
-      (GInstanceInitFunc) xfburn_file_browser_init,
-      NULL
-    };
-
-    file_browser_type = g_type_register_static (GTK_TYPE_PANED, "XfburnFileBrowser", &file_browser_info, 0);
-  }
-
-  return file_browser_type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnFileBrowser, xfburn_file_browser, GTK_TYPE_PANED);
 
 static void
-xfburn_file_browser_class_init (XfburnFileBrowserClass * klass, gpointer data)
+xfburn_file_browser_class_init (XfburnFileBrowserClass * klass)
 {
-  g_type_class_add_private (klass, sizeof (XfburnFileBrowserPrivate));
-  
   parent_class = g_type_class_peek_parent (klass);
 }
 
 static void
-xfburn_file_browser_init (XfburnFileBrowser * file_browser, gpointer data)
+xfburn_file_browser_init (XfburnFileBrowser * file_browser)
 {
   GtkWidget *scrolled_window;
   GtkTreeSelection *selection;

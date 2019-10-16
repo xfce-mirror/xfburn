@@ -94,10 +94,10 @@ static guint signals[LAST_SIGNAL];
 /*- class setup -*/
 /*****************/
 
-G_DEFINE_TYPE (XfburnDeviceList, xfburn_device_list, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (XfburnDeviceList, xfburn_device_list, G_TYPE_OBJECT)
 
 #define GET_PRIVATE(o) \
-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), XFBURN_TYPE_DEVICE_LIST, XfburnDeviceListPrivate))
+  (xfburn_device_list_get_instance_private (XFBURN_DEVICE_LIST (o)))
 
 static void
 xfburn_device_list_get_property (GObject *object, guint property_id,
@@ -185,7 +185,6 @@ xfburn_device_list_class_init (XfburnDeviceListClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  g_type_class_add_private (klass, sizeof (XfburnDeviceListPrivate));
 
   object_class->get_property = xfburn_device_list_get_property;
   object_class->set_property = xfburn_device_list_set_property;
