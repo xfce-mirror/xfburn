@@ -64,8 +64,6 @@
 
 /** Prototypes **/
 /* class initialization */
-static void xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass, gpointer data);
-static void xfburn_transcoder_gst_init (XfburnTranscoderGst * obj, gpointer data);
 static void xfburn_transcoder_gst_finalize (GObject * object);
 static void transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data);
 
@@ -93,7 +91,7 @@ static void on_pad_added (GstElement *element, GstPad *pad, gpointer data);
 static void cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data);
 #endif
 
-#define XFBURN_TRANSCODER_GST_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_TRANSCODER_GST, XfburnTranscoderGstPrivate))
+#define XFBURN_TRANSCODER_GST_GET_PRIVATE(obj) (xfburn_transcoder_gst_get_instance_private ( XFBURN_TRANSCODER_GST (obj)))
 
 enum {
   LAST_SIGNAL,
@@ -157,44 +155,19 @@ static const gchar *errormsg_missing_plugin = "%s is missing.\n"
 static GObject *parent_class = NULL;
 //static guint signals[LAST_SIGNAL];
 
-GType
-xfburn_transcoder_gst_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnTranscoderGstClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_transcoder_gst_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnTranscoderGst),
-      0,
-      (GInstanceInitFunc) xfburn_transcoder_gst_init,
-      NULL
-    };
-    static const GInterfaceInfo trans_info = {
-      (GInterfaceInitFunc) transcoder_interface_init,
-      NULL,
-      NULL
-    };
-
-    type = g_type_register_static (G_TYPE_OBJECT, "XfburnTranscoderGst", &our_info, 0);
-
-    g_type_add_interface_static (type, XFBURN_TYPE_TRANSCODER, &trans_info);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_EXTENDED(
+  XfburnTranscoderGst,
+  xfburn_transcoder_gst,
+  G_TYPE_OBJECT,
+  0,
+  G_ADD_PRIVATE(XfburnTranscoderGst)
+  G_IMPLEMENT_INTERFACE(XFBURN_TYPE_TRANSCODER, transcoder_interface_init)
+);
 
 static void
-xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass, gpointer data)
+xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  
-  g_type_class_add_private (klass, sizeof (XfburnTranscoderGstPrivate));
   
   parent_class = g_type_class_peek_parent (klass);
 
@@ -209,7 +182,7 @@ xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass, gpointer dat
 }
 
 static void
-xfburn_transcoder_gst_init (XfburnTranscoderGst * obj, gpointer data)
+xfburn_transcoder_gst_init (XfburnTranscoderGst * obj)
 {
   XfburnTranscoderGstPrivate *priv = XFBURN_TRANSCODER_GST_GET_PRIVATE (obj);
 

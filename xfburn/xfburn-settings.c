@@ -38,13 +38,11 @@
 
 #include "xfburn-settings.h"
 
-#define XFBURN_SETTINGS_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_SETTINGS, XfburnSettingsPrivate))
+#define XFBURN_SETTINGS_GET_PRIVATE(obj) (xfburn_settings_internal_get_instance_private (XFBURN_SETTINGS (obj)))
 
 /* global */
 typedef struct _Setting Setting;
   
-static void xfburn_settings_class_init (XfburnSettingsClass * klass, gpointer data);
-static void xfburn_settings_internal_init (XfburnSettings * settings, gpointer data);
 static void xfburn_settings_finalize (GObject * object);
 
 static void value_destroy (Setting * val);
@@ -82,37 +80,18 @@ struct _Setting
 static GObjectClass *parent_class = NULL;
 static XfburnSettings *instance = NULL;
 
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnSettings, xfburn_settings_internal, G_TYPE_OBJECT);
+
 GType
-xfburn_settings_get_type (void)
+xfburn_settings_get_type(void)
 {
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnSettingsClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_settings_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnSettings),
-      0,
-      (GInstanceInitFunc) xfburn_settings_internal_init,
-      NULL
-    };
-
-    type = g_type_register_static (G_TYPE_OBJECT, "XfburnSettings", &our_info, 0);
-  }
-
-  return type;
+  return xfburn_settings_internal_get_type();
 }
 
 static void
-xfburn_settings_class_init (XfburnSettingsClass * klass, gpointer data)
+xfburn_settings_internal_class_init (XfburnSettingsClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (XfburnSettingsPrivate));
   
   parent_class = g_type_class_peek_parent (klass);
 
@@ -140,7 +119,7 @@ xfburn_settings_finalize (GObject * object)
 }
 
 static void
-xfburn_settings_internal_init (XfburnSettings *settings, gpointer data)
+xfburn_settings_internal_init (XfburnSettings *settings)
 {
   XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
 

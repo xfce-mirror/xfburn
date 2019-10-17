@@ -68,9 +68,6 @@ typedef struct
 /* globals */
 static guint signals[LAST_SIGNAL];
 
-static void xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass, gpointer data);
-static void xfburn_progress_dialog_init (XfburnProgressDialog * sp, gpointer data);
-
 static void xfburn_progress_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
 static void xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GValue * value,
                                                  GParamSpec * pspec);
@@ -121,39 +118,14 @@ xfburn_progress_dialog_status_get_type (void)
 /*                       */
 static GtkDialogClass *parent_class = NULL;
 
-GType
-xfburn_progress_dialog_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnProgressDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_progress_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnProgressDialog),
-      0,
-      (GInstanceInitFunc) xfburn_progress_dialog_init,
-      NULL
-    };
-
-    type = g_type_register_static (GTK_TYPE_DIALOG, "XfburnProgressDialog", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnProgressDialog, xfburn_progress_dialog, GTK_TYPE_DIALOG)
 
 static void
-xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass, gpointer data)
+xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-
-  g_type_class_add_private (klass, sizeof (XfburnProgressDialogPrivate));
   
   object_class->get_property = xfburn_progress_dialog_get_property;
   object_class->set_property = xfburn_progress_dialog_set_property;
@@ -182,7 +154,7 @@ xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass, gpointer d
 }
 
 static void
-xfburn_progress_dialog_init (XfburnProgressDialog * obj, gpointer data)
+xfburn_progress_dialog_init (XfburnProgressDialog * obj)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (obj);
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG(obj)));

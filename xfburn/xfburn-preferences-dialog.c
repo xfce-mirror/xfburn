@@ -30,7 +30,7 @@
 
 #define FIFO_MAX_SIZE     16384.0  /* in kb, as float */
 
-#define XFBURN_PREFERENCES_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_PREFERENCES_DIALOG, XfburnPreferencesDialogPrivate))
+#define XFBURN_PREFERENCES_DIALOG_GET_PRIVATE(obj) (xfburn_preferences_dialog_get_instance_private (XFBURN_PREFERENCES_DIALOG (obj)))
 
 typedef struct
 {
@@ -51,9 +51,6 @@ typedef struct
 } XfburnPreferencesDialogPrivate;
 
 /* prototypes */
-static void xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass, gpointer data);
-static void xfburn_preferences_dialog_init (XfburnPreferencesDialog * sp, gpointer data);
-
 static void refresh_devices_list (XfburnPreferencesDialog * dialog);
 static void scan_button_clicked_cb (GtkWidget * button, gpointer user_data);
 static void xfburn_preferences_dialog_response_cb (XfburnPreferencesDialog * dialog, guint response_id, XfburnPreferencesDialogPrivate * priv);
@@ -89,41 +86,16 @@ typedef struct
 /*********************************/
 static XfceTitledDialogClass *parent_class = NULL;
 
-GType
-xfburn_preferences_dialog_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnPreferencesDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_preferences_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnPreferencesDialog),
-      0,
-      (GInstanceInitFunc) xfburn_preferences_dialog_init,
-      NULL
-    };
-
-    type = g_type_register_static (XFCE_TYPE_TITLED_DIALOG, "XfburnPreferencesDialog", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnPreferencesDialog, xfburn_preferences_dialog, XFCE_TYPE_TITLED_DIALOG);
 
 static void
-xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass, gpointer data)
+xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass)
 {
-  g_type_class_add_private (klass, sizeof (XfburnPreferencesDialogPrivate));
-  
   parent_class = g_type_class_peek_parent (klass);
 }
 
 static void
-xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj, gpointer data)
+xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
 {
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG (obj)));
   XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (obj);

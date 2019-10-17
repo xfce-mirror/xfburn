@@ -41,15 +41,13 @@
 
 #include "xfburn-udev-manager.h"
 
-static void xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass, gpointer data);
-static void xfburn_udev_manager_init (XfburnUdevManager * obj, gpointer data);
 static void xfburn_udev_manager_finalize (GObject * object);
 
 static GObject * xfburn_udev_manager_new (void);
 
 static void cb_device_monitor_uevent(GUdevClient  *client, const gchar  *action, GUdevDevice  *udevice, XfburnUdevManager *obj);
 
-#define XFBURN_UDEV_MANAGER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_UDEV_MANAGER, XfburnUdevManagerPrivate))
+#define XFBURN_UDEV_MANAGER_GET_PRIVATE(obj) (xfburn_udev_manager_get_instance_private (XFBURN_UDEV_MANAGER (obj)))
 
 enum {
   VOLUME_CHANGED,
@@ -78,37 +76,12 @@ static XfburnUdevManager *instance = NULL;
 static XfburnProgressDialogClass *parent_class = NULL;
 static guint signals[LAST_SIGNAL];
 
-GType
-xfburn_udev_manager_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnUdevManagerClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_udev_manager_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnUdevManager),
-      0,
-      (GInstanceInitFunc) xfburn_udev_manager_init,
-      NULL
-    };
-
-    type = g_type_register_static (G_TYPE_OBJECT, "XfburnUdevManager", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnUdevManager, xfburn_udev_manager, G_TYPE_OBJECT);
 
 static void
-xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass, gpointer data)
+xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  
-  g_type_class_add_private (klass, sizeof (XfburnUdevManagerPrivate));
   
   parent_class = g_type_class_peek_parent (klass);
 
@@ -121,7 +94,7 @@ xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass, gpointer data)
 }
 
 static void
-xfburn_udev_manager_init (XfburnUdevManager * obj, gpointer data)
+xfburn_udev_manager_init (XfburnUdevManager * obj)
 {
   XfburnUdevManagerPrivate *priv = XFBURN_UDEV_MANAGER_GET_PRIVATE (obj);
   const gchar* const subsystems[] = { "block", NULL };

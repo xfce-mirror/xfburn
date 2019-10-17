@@ -249,35 +249,6 @@ G_DEFINE_TYPE_EXTENDED(XfburnAudioComposition,
 	0,
 	G_ADD_PRIVATE(XfburnAudioComposition)
 	G_IMPLEMENT_INTERFACE(XFBURN_TYPE_COMPOSITION, composition_interface_init));
-/*
-GType
-xfburn_audio_composition_get_type (void)
-{
-  static GType audio_composition_type = 0;
-
-  if (!audio_composition_type) {
-    static const GTypeInfo audio_composition_info = {
-      sizeof (XfburnAudioCompositionClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_audio_composition_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnAudioComposition),
-      0,
-      (GInstanceInitFunc) xfburn_audio_composition_init,
-      NULL
-    };
-
-    };
-
-    audio_composition_type = g_type_register_static (GTK_TYPE_BOX, "XfburnAudioComposition", &audio_composition_info, 0);
-
-    g_type_add_interface_static (audio_composition_type, XFBURN_TYPE_COMPOSITION, &composition_info);
-  }
-
-  return audio_composition_type;
-} */
 
 static void
 xfburn_audio_composition_class_init (XfburnAudioCompositionClass * klass)
