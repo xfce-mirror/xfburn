@@ -368,15 +368,16 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbar), gtk_separator_tool_item_new(), -1);
 
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "list-remove", "Remove", "win.remove-file", _("Remove the selected file(s) to the composition"));
+    "list-remove", "Remove", "win.remove-file", _("Remove the selected file(s) from the composition"));
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
     "edit-clear", "Clear", "win.clear", _("Clear the content of the composition"));
 
   gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbar), gtk_separator_tool_item_new(), -1);
 
+#ifdef HAVE_GST
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "help-about", "gstreamer", "win.transcoder-info", _("What file can get burned to an audio CD"));
-
+    "help-about", "gstreamer", "win.transcoder-info", _("What files can get burned to an audio CD?"));
+#endif
   gtk_box_pack_start (GTK_BOX (hbox_toolbar), priv->toolbar, TRUE, TRUE, 0);
   gtk_widget_show_all (priv->toolbar);
 

@@ -343,7 +343,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbar), gtk_separator_tool_item_new(), -1);
 
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "list-remove", "Remove", "win.remove-file", _("Remove the selected file(s) to the composition"));
+    "list-remove", "Remove", "win.remove-file", _("Remove the selected file(s) from the composition"));
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
     "edit-clear", "Clear", "win.clear", _("Clear the content of the composition"));
 
