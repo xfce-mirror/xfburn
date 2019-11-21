@@ -307,23 +307,23 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   gtk_widget_insert_action_group (priv->toolbars, "app", G_ACTION_GROUP (priv->action_map));
 
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
-    "stock_xfburn-new-data-composition", "New data composition", "app.new-data-composition", NULL);
+    "stock_xfburn-new-data-composition", _("New data composition"), "app.new-data-composition", NULL);
 
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
-    "stock_xfburn-audio-cd", "New audio composition", "app.new-audio-composition", NULL);
-
-  gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbars), gtk_separator_tool_item_new(), -1);
-
-  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars), 
-    "stock_xfburn-blank-cdrw", "Blank CD-RW", "app.blank-disc", NULL);
-  
-  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
-    "stock_xfburn", "Burn Image", "app.burn-image", NULL);
+    "stock_xfburn-audio-cd", _("New audio composition"), "app.new-audio-composition", NULL);
 
   gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbars), gtk_separator_tool_item_new(), -1);
 
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
-    "view-refresh", "Refresh", "app.refresh", "Refresh file list");
+    "stock_xfburn-blank-cdrw", _("Blank CD-RW"), "app.blank-disc", NULL);
+
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
+    "stock_xfburn", _("Burn Image"), "app.burn-image", NULL);
+
+  gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbars), gtk_separator_tool_item_new(), -1);
+
+  xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbars),
+    "view-refresh", _("Refresh"), "app.refresh", _("Refresh file list"));
 
   gtk_box_pack_start (GTK_BOX (vbox), priv->toolbars, FALSE, FALSE, 5);
   gtk_toolbar_set_icon_size(GTK_TOOLBAR (priv->toolbars), GTK_ICON_SIZE_SMALL_TOOLBAR);

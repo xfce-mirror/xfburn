@@ -71,21 +71,21 @@ static gchar *initial_dir = NULL;
 
 static GOptionEntry optionentries[] = {
   { "burn-image", 'i', G_OPTION_FLAG_OPTIONAL_ARG /* || G_OPTION_FLAG_FILENAME */, G_OPTION_ARG_CALLBACK, &parse_option,
-    "Open the burn image dialog, optionally followed by the image filename", NULL },
+    N_("Open the burn image dialog, optionally followed by the image filename"), NULL },
   { "blank", 'b', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option,
-    "Open the blank disc dialog", NULL },
+    N_("Open the blank disc dialog"), NULL },
   { "data-composition", 'd', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option,
-    "Start a data composition, optionally followed by files/directories to be added to the composition", NULL },
+    N_("Start a data composition, optionally followed by files/directories to be added to the composition"), NULL },
   { "audio-composition", 'a', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, &parse_option,
-    "Start an audio composition, optionally followed by files/directories to be added to the composition", NULL },
+    N_("Start an audio composition, optionally followed by files/directories to be added to the composition"), NULL },
   { "transcoder", 't', 0, G_OPTION_ARG_STRING, &transcoder_selection,
-    "Select the transcoder, run with --transcoder=list to see the available ones", NULL },
+    N_("Select the transcoder, run with --transcoder=list to see the available ones"), NULL },
   { "directory", 'D', G_OPTION_FLAG_OPTIONAL_ARG , G_OPTION_ARG_CALLBACK, &parse_option,
-    "Start the file browser in the specified directory, or the current directory if none is specified (the default is to start in your home directory)", NULL },
+    N_("Start the file browser in the specified directory, or the current directory if none is specified (the default is to start in your home directory)"), NULL },
   { "version", 'V', 0 , G_OPTION_ARG_NONE, &show_version,
-    "Display program version and exit", NULL },
+    N_("Display program version and exit"), NULL },
   { "main", 'm', 0, G_OPTION_ARG_NONE, &show_main,
-    "Show main program even when other action is specified on the command line.", NULL },
+    N_("Show main program even when other action is specified on the command line."), NULL },
   { NULL, ' ', 0, 0, NULL, NULL, NULL }
 };
 

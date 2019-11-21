@@ -128,7 +128,7 @@ xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent)
 
   text = gtk_entry_get_text (entry);
 
-  dialog = gtk_file_chooser_dialog_new (_("Select command"), parent, GTK_FILE_CHOOSER_ACTION_SAVE, "_Cancel",
+  dialog = gtk_file_chooser_dialog_new (_("Select command"), parent, GTK_FILE_CHOOSER_ACTION_SAVE, _("_Cancel"),
                                         GTK_RESPONSE_CANCEL, "document-save", GTK_RESPONSE_ACCEPT, NULL);
 
   if(xfburn_main_has_initial_dir ()) {

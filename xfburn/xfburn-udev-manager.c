@@ -486,7 +486,7 @@ xfburn_udev_manager_check_ask_umount (XfburnUdevManager *udevman, XfburnDevice *
   if (unmounted)
     g_message ("Unmounted '%s'", mp);
   else {
-    xfce_dialog_show_error (NULL, NULL, "Failed to unmount '%s'. Drive cannot be used for burning.", mp);
+    xfce_dialog_show_error (NULL, NULL, _("Failed to unmount '%s'. Drive cannot be used for burning."), mp);
     DBG ("Failed to unmount '%s'", mp);
   }
 

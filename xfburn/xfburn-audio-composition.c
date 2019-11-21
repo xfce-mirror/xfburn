@@ -292,6 +292,8 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
 
+// TODO: This string should be exported as .ui file
+// Otherwise the label text may not be included in the translations
 #if 0 /* CDTEXT */
   const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
     "<menuitem action=\"rename-artist\"/>" "<menuitem action=\"rename-title\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
@@ -299,7 +301,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   // const gchar ui_string[] = "<ui> <popup name=\"popup-menu\"> <menuitem action=\"remove-file\"/>" "</popup></ui>";
   const gchar ui_string[] = "<interface><menu id=\"popup-menu\">"
     "<section>"
-    "<item><attribute name=\"label\">Remove</attribute><attribute name=\"action\">win.remove-file</attribute></item>"
+    "<item><attribute name=\"label\" translatable=\"yes\">Remove</attribute><attribute name=\"action\">win.remove-file</attribute></item>"
     "</section>"
     "</menu></interface>";
 #endif /* CDTEXT */
@@ -363,20 +365,20 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gtk_widget_insert_action_group (priv->toolbar, "win", G_ACTION_GROUP (priv->action_group));
 
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "list-add", "Add", "win.add-file", _("Add the selected file(s) to the composition"));
+    "list-add", _("Add"), "win.add-file", _("Add the selected file(s) to the composition"));
 
   gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbar), gtk_separator_tool_item_new(), -1);
 
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "list-remove", "Remove", "win.remove-file", _("Remove the selected file(s) from the composition"));
+    "list-remove", _("Remove"), "win.remove-file", _("Remove the selected file(s) from the composition"));
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "edit-clear", "Clear", "win.clear", _("Clear the content of the composition"));
+    "edit-clear", _("Clear"), "win.clear", _("Clear the content of the composition"));
 
   gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbar), gtk_separator_tool_item_new(), -1);
 
 #ifdef HAVE_GST
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "help-about", "gstreamer", "win.transcoder-info", _("What files can get burned to an audio CD?"));
+    "help-about", _("gstreamer"), "win.transcoder-info", _("What files can get burned to an audio CD?"));
 #endif
   gtk_box_pack_start (GTK_BOX (hbox_toolbar), priv->toolbar, TRUE, TRUE, 0);
   gtk_widget_show_all (priv->toolbar);

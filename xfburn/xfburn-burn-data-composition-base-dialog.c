@@ -251,7 +251,7 @@ xfburn_burn_data_composition_base_dialog_init(XfburnBurnDataCompositionBaseDialo
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_browse_iso), obj);
 
   /* action buttons */
-  button = gtk_button_new_with_mnemonic ("_Cancel");
+  button = gtk_button_new_with_mnemonic (_("_Cancel"));
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 

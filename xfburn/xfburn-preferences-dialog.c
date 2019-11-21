@@ -328,7 +328,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_widget_show (label);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
-  label = gtk_label_new("close");
+  label = gtk_label_new_with_mnemonic (_("_Close"));
   gtk_widget_show (label);
   gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
   gtk_widget_show (hbox);

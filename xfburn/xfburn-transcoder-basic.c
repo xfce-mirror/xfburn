@@ -66,7 +66,7 @@ enum {
 
 /* globals */
 
-static const gchar *errormsg_libburn_setup = "An error occurred while setting the burning backend up";
+static const gchar *errormsg_libburn_setup = N_("An error occurred while setting the burning backend up");
 
 /*********************/
 /* class declaration */

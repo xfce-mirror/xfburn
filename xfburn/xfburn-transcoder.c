@@ -100,7 +100,7 @@ xfburn_transcoder_get_name (XfburnTranscoder *trans)
   if (iface->get_name)
     return iface->get_name (trans);
   else
-    return "none";
+    return _("none");
 }
 
 const gchar *
@@ -110,7 +110,7 @@ xfburn_transcoder_get_description (XfburnTranscoder *trans)
   if (iface->get_description)
     return iface->get_description (trans);
   else
-    return "none";
+    return _("none");
 }
 
 gboolean 

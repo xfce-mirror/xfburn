@@ -141,13 +141,13 @@ typedef struct {
 static guint64 total_size = 0;
 #endif
 
-static const gchar *errormsg_gst_setup = "An error occurred setting gstreamer up for transcoding";
-static const gchar *errormsg_libburn_setup = "An error occurred while setting the burning backend up";
-static const gchar *errormsg_missing_plugin = "%s is missing.\n"
+static const gchar *errormsg_gst_setup = N_("An error occurred setting gstreamer up for transcoding");
+static const gchar *errormsg_libburn_setup = N_("An error occurred while setting the burning backend up");
+static const gchar *errormsg_missing_plugin = N_("%s is missing.\n"
                                               "\n"
                                               "You do not have a decoder installed to handle this file.\n"
                                               "Probably you need to look at the gst-plugins-* packages\n"
-                                              "for the necessary plugins.\n";
+                                              "for the necessary plugins.\n");
 
 /*********************/
 /* class declaration */
@@ -539,7 +539,7 @@ on_pad_added (GstElement *element, GstPad *pad, gpointer data)
     GstMessage *msg;
     GstBus *bus;
 
-    gchar *error_msg = "File content has a decoder but is not audio.";
+    const gchar *error_msg = N_("File content has a decoder but is not audio.");
 
     DBG ("%s", error_msg);
     
@@ -624,9 +624,9 @@ get_discoverer_required_plugins_message (GstDiscovererInfo *info)
   plugins = (gchar **) gst_discoverer_info_get_missing_elements_installer_details (info);
 
   if (g_strv_length(plugins) == 0) {
-    str = g_string_new ("No information available on which plugin is required.");
+    str = g_string_new (_("No information available on which plugin is required."));
   } else {
-    str = g_string_new("Required plugins: ");
+    str = g_string_new (_("Required plugins: "));
     plugins_str = g_strjoinv (", ", plugins);
     g_string_append (str, plugins_str);
     g_free (plugins_str);

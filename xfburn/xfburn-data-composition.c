@@ -273,12 +273,14 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
 
+  // TODO: This string should be exported as .ui file
+  // Otherwise the label text may not be included in the translations
   const gchar ui_string[] = "<interface><menu id=\"popup-menu\">"
     "<section>"
-    "<item><attribute name=\"action\">win.create-dir</attribute><attribute name=\"label\">Create directory</attribute></item>"
+    "<item><attribute name=\"action\">win.create-dir</attribute><attribute name=\"label\" translatable=\"yes\">Create directory</attribute></item>"
     "</section><section>"
-    "<item><attribute name=\"action\">win.rename-file</attribute><attribute name=\"label\">Rename</attribute></item>"
-    "<item><attribute name=\"action\">win.remove-file</attribute><attribute name=\"label\">Remove</attribute></item>"
+    "<item><attribute name=\"action\">win.rename-file</attribute><attribute name=\"label\" translatable=\"yes\">Rename</attribute></item>"
+    "<item><attribute name=\"action\">win.remove-file</attribute><attribute name=\"label\" translatable=\"yes\">Remove</attribute></item>"
     "</section></menu></interface>";
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE } };
@@ -336,16 +338,16 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   gtk_widget_insert_action_group (priv->toolbar, "win", G_ACTION_GROUP (priv->action_group));
 
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "list-add", "Add", "win.add-file", _("Add the selected file(s) to the composition"));
+    "list-add", _("Add"), "win.add-file", _("Add the selected file(s) to the composition"));
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "folder-new", "Create directory", "win.create-dir", _("Add a new directory to the composition"));
+    "folder-new", _("Create directory"), "win.create-dir", _("Add a new directory to the composition"));
 
   gtk_toolbar_insert (GTK_TOOLBAR (priv->toolbar), gtk_separator_tool_item_new(), -1);
 
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "list-remove", "Remove", "win.remove-file", _("Remove the selected file(s) from the composition"));
+    "list-remove", _("Remove"), "win.remove-file", _("Remove the selected file(s) from the composition"));
   xfburn_add_button_to_toolbar (GTK_TOOLBAR (priv->toolbar),
-    "edit-clear", "Clear", "win.clear", _("Clear the content of the composition"));
+    "edit-clear", _("Clear"), "win.clear", _("Clear the content of the composition"));
 
   gtk_box_pack_start (GTK_BOX (hbox_toolbar), priv->toolbar, TRUE, TRUE, 0);
   gtk_widget_show_all (priv->toolbar);
