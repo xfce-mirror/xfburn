@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2014 Eric Koegel <eric.koegel@gmail.com> and Simon Steinbeiss <simon@xfce.org> -->
-<component type="desktop">
-  <id>mousepad.desktop</id>
+<component type="desktop-application">
+  <id type="desktop">org.xfce.xfburn</id>
   <metadata_license>CC-BY-3.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Xfburn</name>
@@ -17,11 +17,15 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>http://goodies.xfce.org/_media/projects/applications/xfburn-0.4.1.jpg</image>
+      <image>https://docs.xfce.org/_media/apps/xfburn-0.4.1.jpg</image>
     </screenshot>
   </screenshots>
 
-  <url type="homepage">http://goodies.xfce.org/projects/applications/xfburn</url>
+  <categories>
+    <category>Multimedia</category>
+  </categories>
+
+  <url type="homepage">https://docs.xfce.org/apps/xfburn</url>
   <url type="bugtracker">https://bugzilla.xfce.org/describecomponents.cgi?product=Xfburn</url>
 
   <updatecontact>xfce4-dev@xfce.org</updatecontact>
@@ -29,5 +33,5 @@
   <provides>
     <binary>xfburn</binary>
   </provides>
-
+  <translation type="gettext">Xfburn</translation>
 </component>

@@ -16,9 +16,9 @@ ui_DATA =  	                                                        \
 # appdata
 #
 @INTLTOOL_XML_RULE@
-appdatadir = $(datadir)/appdata
+appdatadir = $(datadir)/metainfo
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
-appdata_in_files = xfburn.appdata.xml.in
+appdata_in_files = org.xfce.xfburn.appdata.xml.in
 
 .PHONY: ChangeLog
 

@@ -571,7 +571,7 @@ action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
 		  "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
 		  "version", VERSION,
 		  "comments", _("Another cd burning GUI"),
-		  "website", "https://goodies.xfce.org/projects/applications/xfburn",
+		  "website", "https://docs.xfce.org/apps/xfburn",
 		  "copyright", "2005-2008 David Mohr, Mario Đanić, Jean-François Wauthy",
 		  "authors", auth,
 		  "translator-credits", translators,
