@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-22 12:31+0100\n"
-"PO-Revision-Date: 2019-11-23 02:57+0000\n"
+"POT-Creation-Date: 2019-11-23 18:31+0100\n"
+"PO-Revision-Date: 2019-11-25 15:49+0000\n"
 "Last-Translator: Igor <f2404@yandex.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/xfce/xfce-apps/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -780,7 +780,7 @@ msgstr ""
 
 #: ../xfburn/xfburn-main.c:86
 msgid "Display program version and exit"
-msgstr ""
+msgstr "Показать версию программы и выйти"
 
 #: ../xfburn/xfburn-main.c:88
 msgid ""
@@ -835,15 +835,15 @@ msgstr "Новый диск с данными"
 msgid "New audio composition"
 msgstr "Новый аудиодиск"
 
-#: ../xfburn/xfburn-main-window.c:318 ../xfburn.ui.h:7
+#: ../xfburn/xfburn-main-window.c:318 ../xfburn.ui.h:9
 msgid "Blank CD-RW"
 msgstr "Очистить CD-RW"
 
-#: ../xfburn/xfburn-main-window.c:321 ../xfburn.ui.h:8
+#: ../xfburn/xfburn-main-window.c:321 ../xfburn.ui.h:10
 msgid "Burn Image"
 msgstr "Записать образ"
 
-#: ../xfburn/xfburn-main-window.c:326 ../xfburn.ui.h:10
+#: ../xfburn/xfburn-main-window.c:326 ../xfburn.ui.h:12
 msgid "Refresh"
 msgstr "Обновить"
 
@@ -1246,7 +1246,7 @@ msgstr "Вы пытаетесь записать больше данных, че
 #: ../xfburn/xfburn-transcoder-basic.c:69
 #: ../xfburn/xfburn-transcoder-gst.c:145
 msgid "An error occurred while setting the burning backend up"
-msgstr ""
+msgstr "Ошибка при настройке программы записи дисков"
 
 #: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
@@ -1291,7 +1291,7 @@ msgstr "Невозможно открыть %s: %s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:144
 msgid "An error occurred setting gstreamer up for transcoding"
-msgstr ""
+msgstr "Ошибка при настройке gstreamer для перекодирования"
 
 #: ../xfburn/xfburn-transcoder-gst.c:146
 #, c-format
@@ -1321,11 +1321,11 @@ msgstr "Перекодировщик использует библиотеки\n
 
 #: ../xfburn/xfburn-transcoder-gst.c:627
 msgid "No information available on which plugin is required."
-msgstr ""
+msgstr "Нет информации о том, какой модуль необходим."
 
 #: ../xfburn/xfburn-transcoder-gst.c:629
 msgid "Required plugins: "
-msgstr ""
+msgstr "Необходимые модули:"
 
 #: ../xfburn/xfburn-transcoder-gst.c:662 ../xfburn/xfburn-transcoder-gst.c:692
 #, c-format
@@ -1429,42 +1429,50 @@ msgid "_Files"
 msgstr "_Файлы"
 
 #: ../xfburn.ui.h:2
+msgid "New _data composition"
+msgstr "Новый диск с _данными"
+
+#: ../xfburn.ui.h:3
+msgid "New _audio composition"
+msgstr "Новый _аудиодиск"
+
+#: ../xfburn.ui.h:4
 msgid "_Close composition"
 msgstr "_Закрыть проект"
 
-#: ../xfburn.ui.h:3
+#: ../xfburn.ui.h:5
 msgid "_Quit"
 msgstr "_Выйти"
 
-#: ../xfburn.ui.h:4
+#: ../xfburn.ui.h:6
 msgid "_Edit"
 msgstr "_Правка"
 
-#: ../xfburn.ui.h:5
+#: ../xfburn.ui.h:7
 msgid "Prefere_nce"
-msgstr ""
+msgstr "_Параметр"
 
-#: ../xfburn.ui.h:6
+#: ../xfburn.ui.h:8
 msgid "_Action"
 msgstr "_Действие"
 
-#: ../xfburn.ui.h:9
+#: ../xfburn.ui.h:11
 msgid "_View"
 msgstr "_Вид"
 
-#: ../xfburn.ui.h:11
-msgid "Show Toolbars"
-msgstr ""
-
-#: ../xfburn.ui.h:12
-msgid "Show Filebrowser"
-msgstr ""
-
 #: ../xfburn.ui.h:13
+msgid "Show Toolbars"
+msgstr "Показывать панели инструментов"
+
+#: ../xfburn.ui.h:14
+msgid "Show Filebrowser"
+msgstr "Показывать менеджер файлов"
+
+#: ../xfburn.ui.h:15
 msgid "_Help"
 msgstr "_Справка"
 
-#: ../xfburn.ui.h:14
+#: ../xfburn.ui.h:16
 msgid "About"
 msgstr "О программе"
 
