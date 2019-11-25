@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-15 18:31+0200\n"
-"PO-Revision-Date: 2019-10-16 07:52+0000\n"
+"POT-Creation-Date: 2019-11-23 18:31+0100\n"
+"PO-Revision-Date: 2019-11-25 08:10+0000\n"
 "Last-Translator: Edin Veskovic <edin.lockedin@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/xfce/xfce-apps/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -58,11 +58,11 @@ msgstr "Kopiranje CD-a uspješno završeno."
 msgid "Data composition"
 msgstr "Kompilacija podataka"
 
-#: ../xfburn/xfburn-adding-progress.c:112
+#: ../xfburn/xfburn-adding-progress.c:83
 msgid "Adding files to the composition"
 msgstr "Dodavanje datoteka u kompilaciju"
 
-#: ../xfburn/xfburn-adding-progress.c:125
+#: ../xfburn/xfburn-adding-progress.c:96
 msgid "Cancel"
 msgstr "Odustani"
 
@@ -90,202 +90,48 @@ msgstr "Brzo deformatiranje"
 msgid "Full Deformat (slow)"
 msgstr "Potpuno deformatiranje (sporo)"
 
-#: ../xfburn/xfburn-blank-dialog.c:148
+#: ../xfburn/xfburn-blank-dialog.c:119
 msgid "Eject the disc"
 msgstr "Izbaci disk"
 
-#: ../xfburn/xfburn-blank-dialog.c:149
+#: ../xfburn/xfburn-blank-dialog.c:120
 msgid "Default value for eject checkbox"
 msgstr "Zadana vrijednost za izbacivanje"
 
-#: ../xfburn/xfburn-blank-dialog.c:197
+#: ../xfburn/xfburn-blank-dialog.c:168
 msgid "Blank Disc"
 msgstr "Prazni disk"
 
-#: ../xfburn/xfburn-blank-dialog.c:211
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:198
-#: ../xfburn/xfburn-burn-image-dialog.c:208
-#: ../xfburn/xfburn-copy-cd-dialog.c:132
-#: ../xfburn/xfburn-copy-dvd-dialog.c:132
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:159
+#: ../xfburn/xfburn-blank-dialog.c:182
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:165
+#: ../xfburn/xfburn-burn-image-dialog.c:181
+#: ../xfburn/xfburn-copy-cd-dialog.c:107
+#: ../xfburn/xfburn-copy-dvd-dialog.c:104
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:129
 msgid "Burning device"
 msgstr "Uređaj za snimanje"
 
-#: ../xfburn/xfburn-blank-dialog.c:224 ../xfburn/xfburn-device-box.c:185
+#: ../xfburn/xfburn-blank-dialog.c:195 ../xfburn/xfburn-device-box.c:156
 msgid "Blank mode"
 msgstr "Način brisanja"
 
-#: ../xfburn/xfburn-blank-dialog.c:232
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:230
-#: ../xfburn/xfburn-burn-image-dialog.c:216
-#: ../xfburn/xfburn-copy-cd-dialog.c:140
-#: ../xfburn/xfburn-copy-dvd-dialog.c:140
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:193
+#: ../xfburn/xfburn-blank-dialog.c:203
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:197
+#: ../xfburn/xfburn-burn-image-dialog.c:189
+#: ../xfburn/xfburn-copy-cd-dialog.c:115
+#: ../xfburn/xfburn-copy-dvd-dialog.c:112
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:163
 msgid "Options"
 msgstr "Opcije"
 
-#: ../xfburn/xfburn-blank-dialog.c:236
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:234
-#: ../xfburn/xfburn-burn-image-dialog.c:220
-#: ../xfburn/xfburn-copy-cd-dialog.c:144
-#: ../xfburn/xfburn-copy-dvd-dialog.c:144
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:197
+#: ../xfburn/xfburn-blank-dialog.c:207
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:201
+#: ../xfburn/xfburn-burn-image-dialog.c:193
+#: ../xfburn/xfburn-copy-cd-dialog.c:119
+#: ../xfburn/xfburn-copy-dvd-dialog.c:116
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:167
 msgid "E_ject disk"
 msgstr "I_zbaci disk"
-
-#: ../xfburn/xfburn-blank-dialog.c:246
-msgid "_Blank"
-msgstr "_Prazan"
-
-#. blanking can only be performed on blank discs, format and deformat are
-#. allowed to be blank ones
-#: ../xfburn/xfburn-blank-dialog.c:358
-msgid "The inserted disc is already blank."
-msgstr "Ubačeni disk je već prazan"
-
-#. these ones we can blank
-#: ../xfburn/xfburn-blank-dialog.c:364
-msgid "Ready"
-msgstr "Spreman"
-
-#: ../xfburn/xfburn-blank-dialog.c:367
-msgid "No disc detected in the drive."
-msgstr "Nijedan disk nije otkriven u pogonu."
-
-#: ../xfburn/xfburn-blank-dialog.c:376
-msgid "Disc is not erasable."
-msgstr "Disk nije izbrisiv."
-
-#: ../xfburn/xfburn-blank-dialog.c:416
-msgid "Blanking disc..."
-msgstr "Brišem disk..."
-
-#: ../xfburn/xfburn-blank-dialog.c:443
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:521
-#: ../xfburn/xfburn-perform-burn.c:489
-#, c-format
-msgid "Done"
-msgstr "Gotovo"
-
-#: ../xfburn/xfburn-blank-dialog.c:446 ../xfburn/xfburn-perform-burn.c:496
-#: ../xfburn/xfburn-progress-dialog.c:665
-msgid "Failure"
-msgstr "Neuspjeh"
-
-#: ../xfburn/xfburn-blank-dialog.c:463
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:627
-#: ../xfburn/xfburn-burn-image-dialog.c:419
-#: ../xfburn/xfburn-burn-image-dialog.c:597
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
-msgid "Unable to grab the drive."
-msgstr "Ne mogu dohvatiti pogon."
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
-msgid "Image"
-msgstr "Slika"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-msgid "Show volume name"
-msgstr "Pokazuj ime volumena"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-msgid "Show a text entry for the name of the volume"
-msgstr "Pokazuj tekstualni unos za ime volumena"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:184
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:147
-msgid "Burn Composition"
-msgstr "Snimi kompilaciju"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:209
-msgid "Composition name"
-msgstr "Ime kompilacije"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:214
-msgid "<small>Would you like to change the default composition name?</small>"
-msgstr "<small>Želite li promijeniti zadano ime kompilacije?</small>"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:239
-#: ../xfburn/xfburn-burn-image-dialog.c:225
-#: ../xfburn/xfburn-copy-cd-dialog.c:149
-#: ../xfburn/xfburn-copy-dvd-dialog.c:149
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:202
-msgid "_Dummy write"
-msgstr "_Lažno pisanje"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:243
-#: ../xfburn/xfburn-burn-image-dialog.c:229
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:206
-msgid "Burn_Free"
-msgstr "Burn_Free"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:248
-#: ../xfburn/xfburn-burn-image-dialog.c:234
-msgid "Stream _Recording"
-msgstr "Snimanje _strujanja"
-
-#. create ISO ?
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:254
-#: ../xfburn/xfburn-copy-cd-dialog.c:158
-#: ../xfburn/xfburn-copy-dvd-dialog.c:158
-msgid "Only create _ISO"
-msgstr "Samo napravi _ISO"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:291
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
-msgid "_Burn Composition"
-msgstr "_Snimi kompilaciju"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:479
-#, c-format
-msgid "Could not create destination ISO file: %s"
-msgstr "Ne mogu napraviti odredišnu ISO datoteku: %s"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:486
-msgid "Writing ISO..."
-msgstr "Zapisujem ISO ..."
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:503
-#, c-format
-msgid "An error occured while writing ISO: %s"
-msgstr "Došlo je do pogreške prilikom zapisivanja ISO: %s"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:559
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:565
-msgid "An error occurred in the burn backend."
-msgstr "Došlo je do greške u pozadinskom programu snimanja."
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:588
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
-msgid "The write mode is not supported currently."
-msgstr "Pisanje trenutno nije podržano."
-
-#. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:671
-msgid "Could not create ISO source structure."
-msgstr "Ne mogu napraviti strukturu ISO izvora."
-
-#: ../xfburn/xfburn-burn-image-dialog.c:164
-msgid "Burn image"
-msgstr "Snimi sliku"
-
-#. file
-#: ../xfburn/xfburn-burn-image-dialog.c:172
-#: ../xfburn/xfburn-burn-image-dialog.c:193
-msgid "Image to burn"
-msgstr "Slika za snimanje"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:176
-msgid "All files"
-msgstr "Sve datoteke"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:180
-msgid "ISO images"
-msgstr "ISO slike"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:239
-msgid "_Quit after success"
-msgstr "_Ugasi nakon uspješnosti"
 
 #. action buttons
 #. align = gtk_alignment_new (0, 0, 0, 0);
@@ -293,98 +139,254 @@ msgstr "_Ugasi nakon uspješnosti"
 #. gtk_widget_show (align);
 #. gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
 #. action buttons
-#: ../xfburn/xfburn-burn-image-dialog.c:245
-#: ../xfburn/xfburn-copy-cd-dialog.c:190
-#: ../xfburn/xfburn-copy-dvd-dialog.c:190
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:218
+#: ../xfburn/xfburn-blank-dialog.c:213
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:254
+#: ../xfburn/xfburn-burn-image-dialog.c:218
+#: ../xfburn/xfburn-copy-cd-dialog.c:165
+#: ../xfburn/xfburn-copy-dvd-dialog.c:162 ../xfburn/xfburn-utils.c:131
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:188
 msgid "_Cancel"
 msgstr "_Odustani"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:249
+#: ../xfburn/xfburn-blank-dialog.c:217
+msgid "_Blank"
+msgstr "_Prazan"
+
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
+#: ../xfburn/xfburn-blank-dialog.c:329
+msgid "The inserted disc is already blank."
+msgstr "Ubačeni disk je već prazan"
+
+#. these ones we can blank
+#: ../xfburn/xfburn-blank-dialog.c:335
+msgid "Ready"
+msgstr "Spreman"
+
+#: ../xfburn/xfburn-blank-dialog.c:338
+msgid "No disc detected in the drive."
+msgstr "Nijedan disk nije otkriven u pogonu."
+
+#: ../xfburn/xfburn-blank-dialog.c:347
+msgid "Disc is not erasable."
+msgstr "Disk nije izbrisiv."
+
+#: ../xfburn/xfburn-blank-dialog.c:387
+msgid "Blanking disc..."
+msgstr "Brišem disk..."
+
+#: ../xfburn/xfburn-blank-dialog.c:414
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:486
+#: ../xfburn/xfburn-perform-burn.c:489
+#, c-format
+msgid "Done"
+msgstr "Gotovo"
+
+#: ../xfburn/xfburn-blank-dialog.c:417 ../xfburn/xfburn-perform-burn.c:496
+#: ../xfburn/xfburn-progress-dialog.c:637
+msgid "Failure"
+msgstr "Neuspjeh"
+
+#: ../xfburn/xfburn-blank-dialog.c:434
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:592
+#: ../xfburn/xfburn-burn-image-dialog.c:392
+#: ../xfburn/xfburn-burn-image-dialog.c:570
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:365
+msgid "Unable to grab the drive."
+msgstr "Ne mogu dohvatiti pogon."
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:128
+msgid "Image"
+msgstr "Slika"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:130
+msgid "Show volume name"
+msgstr "Pokazuj ime volumena"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:130
+msgid "Show a text entry for the name of the volume"
+msgstr "Pokazuj tekstualni unos za ime volumena"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:151
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:117
+msgid "Burn Composition"
+msgstr "Snimi kompilaciju"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:176
+msgid "Composition name"
+msgstr "Ime kompilacije"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:181
+msgid "<small>Would you like to change the default composition name?</small>"
+msgstr "<small>Želite li promijeniti zadano ime kompilacije?</small>"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
+#: ../xfburn/xfburn-burn-image-dialog.c:198
+#: ../xfburn/xfburn-copy-cd-dialog.c:124
+#: ../xfburn/xfburn-copy-dvd-dialog.c:121
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:172
+msgid "_Dummy write"
+msgstr "_Lažno pisanje"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:210
+#: ../xfburn/xfburn-burn-image-dialog.c:202
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:176
+msgid "Burn_Free"
+msgstr "Burn_Free"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:215
+#: ../xfburn/xfburn-burn-image-dialog.c:207
+msgid "Stream _Recording"
+msgstr "Snimanje _strujanja"
+
+#. create ISO ?
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:221
+#: ../xfburn/xfburn-copy-cd-dialog.c:133
+#: ../xfburn/xfburn-copy-dvd-dialog.c:130
+msgid "Only create _ISO"
+msgstr "Samo napravi _ISO"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:258
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:192
+msgid "_Burn Composition"
+msgstr "_Snimi kompilaciju"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:444
+#, c-format
+msgid "Could not create destination ISO file: %s"
+msgstr "Ne mogu napraviti odredišnu ISO datoteku: %s"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:451
+msgid "Writing ISO..."
+msgstr "Zapisujem ISO ..."
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:468
+#, c-format
+msgid "An error occured while writing ISO: %s"
+msgstr "Došlo je do pogreške prilikom zapisivanja ISO: %s"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:524
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:530
+msgid "An error occurred in the burn backend."
+msgstr "Došlo je do greške u pozadinskom programu snimanja."
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:553
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:296
+msgid "The write mode is not supported currently."
+msgstr "Pisanje trenutno nije podržano."
+
+#. could not create source
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:636
+msgid "Could not create ISO source structure."
+msgstr "Ne mogu napraviti strukturu ISO izvora."
+
+#: ../xfburn/xfburn-burn-image-dialog.c:137
+msgid "Burn image"
+msgstr "Snimi sliku"
+
+#. file
+#: ../xfburn/xfburn-burn-image-dialog.c:145
+#: ../xfburn/xfburn-burn-image-dialog.c:166
+msgid "Image to burn"
+msgstr "Slika za snimanje"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:149
+msgid "All files"
+msgstr "Sve datoteke"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:153
+msgid "ISO images"
+msgstr "ISO slike"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:212
+msgid "_Quit after success"
+msgstr "_Ugasi nakon uspješnosti"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:222
 msgid "_Burn image"
 msgstr "_Snimi sliku"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:302
+#: ../xfburn/xfburn-burn-image-dialog.c:275
 msgid "Burn mode is not currently implemented."
 msgstr "Način snimanja nije ispravno primjenjen"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:353
-#: ../xfburn/xfburn-burn-image-dialog.c:382
+#: ../xfburn/xfburn-burn-image-dialog.c:326
+#: ../xfburn/xfburn-burn-image-dialog.c:355
 msgid "An error occurred in the burn backend"
 msgstr "Došlo je do greške u pozadinskom programu snimanja"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:366
+#: ../xfburn/xfburn-burn-image-dialog.c:339
 msgid "Unable to determine image size."
 msgstr "Ne mogu odrediti veličinu slike"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:373
+#: ../xfburn/xfburn-burn-image-dialog.c:346
 msgid "Cannot open image."
 msgstr "Ne mogu otvoriti sliku."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:410
+#: ../xfburn/xfburn-burn-image-dialog.c:383
 msgid "Burning image..."
 msgstr "Snimam sliku..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:483
+#: ../xfburn/xfburn-burn-image-dialog.c:456
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Molim odaberite sliku za snimanje</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:523
+#: ../xfburn/xfburn-burn-image-dialog.c:496
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "Ne mogu nadodati podatke višesesijskom disku u ovom načinu pisanja (umjesto toga koristite TAO)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:527
+#: ../xfburn/xfburn-burn-image-dialog.c:500
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "Otkriven je zatvoreni disk sa podatcima. Potreban je prazan disk ili disk s mogućnošću dodavanja"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:529
+#: ../xfburn/xfburn-burn-image-dialog.c:502
 msgid "No disc detected in drive"
 msgstr "Nijedan disk nije otkriven u pogonu"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:531
+#: ../xfburn/xfburn-burn-image-dialog.c:504
 msgid "Cannot recognize state of drive and disc"
 msgstr "Ne mogu prepoznati stanje pogona i diska"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:543
+#: ../xfburn/xfburn-burn-image-dialog.c:516
 msgid "The selected image does not fit on the inserted disc"
 msgstr "Odabrana slika ne stane na umetnuti disk"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:547
+#: ../xfburn/xfburn-burn-image-dialog.c:520
 msgid "Failed to get image size"
 msgstr "Neuspjelo određivanje veličine slike"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:576
+#: ../xfburn/xfburn-burn-image-dialog.c:549
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
 msgstr "Provjerite jeste li odabrali valjanu datoteku i imate odgovarajuće dozvole za pristup."
 
-#: ../xfburn/xfburn-compositions-notebook.c:174
+#: ../xfburn/xfburn-compositions-notebook.c:147
 msgid "Audio composition"
 msgstr "Audio kompilacija"
 
-#: ../xfburn/xfburn-compositions-notebook.c:235
+#: ../xfburn/xfburn-compositions-notebook.c:208
 msgid "Welcome"
 msgstr "Dobrodošli"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:113
+#: ../xfburn/xfburn-copy-cd-dialog.c:88
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
 msgstr "Kopiraj podatkovni CD"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:124
+#: ../xfburn/xfburn-copy-cd-dialog.c:99
 msgid "CD Reader device"
 msgstr "Uređaj za čitanje CD-a"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:153
-#: ../xfburn/xfburn-copy-dvd-dialog.c:153
+#: ../xfburn/xfburn-copy-cd-dialog.c:128
+#: ../xfburn/xfburn-copy-dvd-dialog.c:125
 msgid "On the _fly"
 msgstr "U _letu"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:194
+#: ../xfburn/xfburn-copy-cd-dialog.c:169
 msgid "_Copy CD"
 msgstr "_Kopiraj CD"
 
@@ -401,15 +403,15 @@ msgstr "Pišem CD..."
 msgid "Reading CD..."
 msgstr "Čitam CD..."
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:113
+#: ../xfburn/xfburn-copy-dvd-dialog.c:85
 msgid "Copy data DVD"
 msgstr "Kopiraj podatkovni DVD"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:124
+#: ../xfburn/xfburn-copy-dvd-dialog.c:96
 msgid "DVD Reader device"
 msgstr "Uređaj za čitanje DVD-a"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:194
+#: ../xfburn/xfburn-copy-dvd-dialog.c:166
 msgid "_Copy DVD"
 msgstr "_Kopiraj DVD"
 
@@ -417,191 +419,210 @@ msgstr "_Kopiraj DVD"
 msgid "Create ISO from CD"
 msgstr "NApravi ISO sa CD-a"
 
-#: ../xfburn/xfburn-data-composition.c:365
-#: ../xfburn/xfburn-audio-composition.c:218
-#: ../xfburn/xfburn-audio-composition.c:396
-msgid "Add the selected file(s) to the composition"
-msgstr "Dodaj izabrane datoteke(u) kompilaciji"
-
-#: ../xfburn/xfburn-data-composition.c:367
-msgid "Add a new directory to the composition"
-msgstr "Dodaj novi direktorij kompilaciji"
-
-#: ../xfburn/xfburn-data-composition.c:372
-#: ../xfburn/xfburn-audio-composition.c:401
-msgid "Remove the selected file(s) to the composition"
-msgstr "Ukloni odabrane datoteke(u) na kompoziciju"
-
-#: ../xfburn/xfburn-data-composition.c:374
-#: ../xfburn/xfburn-audio-composition.c:222
-#: ../xfburn/xfburn-audio-composition.c:403
-msgid "Clear the content of the composition"
-msgstr "Očisti sadržaj kompilacije"
-
-#: ../xfburn/xfburn-data-composition.c:385
-msgid "Volume name :"
-msgstr "Ime volumena:"
-
-#: ../xfburn/xfburn-data-composition.c:419
-msgid "Contents"
-msgstr "Sadržaj"
-
-#: ../xfburn/xfburn-data-composition.c:434
-#: ../xfburn/xfburn-directory-browser.c:140
-msgid "Size"
-msgstr "Veličina"
-
-#: ../xfburn/xfburn-data-composition.c:437
-msgid "Local Path"
-msgstr "Lokalna putanja"
-
-#: ../xfburn/xfburn-data-composition.c:714
-msgid "You must give a name to the file."
-msgstr "Morate dati ime datoteci"
-
-#: ../xfburn/xfburn-data-composition.c:723
-#: ../xfburn/xfburn-data-composition.c:1240
-#: ../xfburn/xfburn-audio-composition.c:1208
-msgid "A file with the same name is already present in the composition."
-msgstr "U kompilaciji je već prisutna datoteka s istim imenom."
-
-#: ../xfburn/xfburn-data-composition.c:830
-#: ../xfburn/xfburn-data-composition.c:831
-#: ../xfburn/xfburn-data-composition.c:833
-msgid "New directory"
-msgstr "Novi direktorij"
-
-#: ../xfburn/xfburn-data-composition.c:977
-#: ../xfburn/xfburn-audio-composition.c:1005
-msgid "File(s) to add to composition"
-msgstr "Datoteka(e) za dodati u kompilaciju"
-
-#: ../xfburn/xfburn-data-composition.c:998
-#: ../xfburn/xfburn-audio-composition.c:218
-#: ../xfburn/xfburn-audio-composition.c:1008
+#: ../xfburn/xfburn-data-composition.c:341
+#: ../xfburn/xfburn-data-composition.c:974
+#: ../xfburn/xfburn-audio-composition.c:216
+#: ../xfburn/xfburn-audio-composition.c:368
+#: ../xfburn/xfburn-audio-composition.c:981
 msgid "Add"
 msgstr "Dodaj"
 
+#: ../xfburn/xfburn-data-composition.c:341
+#: ../xfburn/xfburn-audio-composition.c:216
+#: ../xfburn/xfburn-audio-composition.c:368
+msgid "Add the selected file(s) to the composition"
+msgstr "Dodaj izabrane datoteke(u) kompilaciji"
+
+#: ../xfburn/xfburn-data-composition.c:343
+msgid "Create directory"
+msgstr "Napravi direktorij"
+
+#: ../xfburn/xfburn-data-composition.c:343
+msgid "Add a new directory to the composition"
+msgstr "Dodaj novi direktorij kompilaciji"
+
+#: ../xfburn/xfburn-data-composition.c:348
+#: ../xfburn/xfburn-audio-composition.c:218
+#: ../xfburn/xfburn-audio-composition.c:373
+msgid "Remove"
+msgstr "Ukloni"
+
+#: ../xfburn/xfburn-data-composition.c:348
+#: ../xfburn/xfburn-audio-composition.c:218
+#: ../xfburn/xfburn-audio-composition.c:373
+msgid "Remove the selected file(s) from the composition"
+msgstr "Ukloni odabrane datoteke(u) s kompilacije"
+
+#: ../xfburn/xfburn-data-composition.c:350
+#: ../xfburn/xfburn-audio-composition.c:220
+#: ../xfburn/xfburn-audio-composition.c:375
+msgid "Clear"
+msgstr "Očisti"
+
+#: ../xfburn/xfburn-data-composition.c:350
+#: ../xfburn/xfburn-audio-composition.c:220
+#: ../xfburn/xfburn-audio-composition.c:375
+msgid "Clear the content of the composition"
+msgstr "Očisti sadržaj kompilacije"
+
+#: ../xfburn/xfburn-data-composition.c:361
+msgid "Volume name :"
+msgstr "Ime volumena:"
+
+#: ../xfburn/xfburn-data-composition.c:395
+msgid "Contents"
+msgstr "Sadržaj"
+
+#: ../xfburn/xfburn-data-composition.c:410
+#: ../xfburn/xfburn-directory-browser.c:113
+msgid "Size"
+msgstr "Veličina"
+
+#: ../xfburn/xfburn-data-composition.c:413
+msgid "Local Path"
+msgstr "Lokalna putanja"
+
+#: ../xfburn/xfburn-data-composition.c:690
+msgid "You must give a name to the file."
+msgstr "Morate dati ime datoteci"
+
+#: ../xfburn/xfburn-data-composition.c:699
+#: ../xfburn/xfburn-data-composition.c:1216
+#: ../xfburn/xfburn-audio-composition.c:1181
+msgid "A file with the same name is already present in the composition."
+msgstr "U kompilaciji je već prisutna datoteka s istim imenom."
+
+#: ../xfburn/xfburn-data-composition.c:806
+#: ../xfburn/xfburn-data-composition.c:807
+#: ../xfburn/xfburn-data-composition.c:809
+msgid "New directory"
+msgstr "Novi direktorij"
+
+#: ../xfburn/xfburn-data-composition.c:953
+#: ../xfburn/xfburn-audio-composition.c:978
+msgid "File(s) to add to composition"
+msgstr "Datoteka(e) za dodati u kompilaciju"
+
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:1083
+#: ../xfburn/xfburn-data-composition.c:1059
 #, c-format
 msgid "Data %s~%d"
 msgstr "Podatak %s~%d"
 
-#: ../xfburn/xfburn-data-composition.c:1319
+#: ../xfburn/xfburn-data-composition.c:1295
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr "%s ne može biti dodana kompilacije zbog toga što premašuje maksimalnu dopuštenu veličinu datoteke po iso9660 standardu."
 
-#: ../xfburn/xfburn-data-composition.c:1326
+#: ../xfburn/xfburn-data-composition.c:1302
 #, c-format
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
 msgstr "%s je veći nego što iso9660 level 2 dopušta. Ovo može biti problem za starije sustave ili aplikacije."
 
-#: ../xfburn/xfburn-data-composition.c:1410
-#: ../xfburn/xfburn-audio-composition.c:1384
+#: ../xfburn/xfburn-data-composition.c:1386
+#: ../xfburn/xfburn-audio-composition.c:1357
 msgid "Adding home directory"
 msgstr "Dodajem osobni direktorij"
 
-#: ../xfburn/xfburn-data-composition.c:1411
-#: ../xfburn/xfburn-audio-composition.c:1385
+#: ../xfburn/xfburn-data-composition.c:1387
+#: ../xfburn/xfburn-audio-composition.c:1358
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr "Odabrali ste svoj osobni direktorij za dodavanje u kompoziciju. To će vjerojatno potrajati jako dugo i biti preveliko za snimanje na jedan disk.\n\nJeste li sigurni da želite nastaviti?"
 
-#: ../xfburn/xfburn-data-composition.c:1579
+#: ../xfburn/xfburn-data-composition.c:1555
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr "Datoteka imena %s već postoji u ovom direktoriju stoga nije dodana."
 
-#: ../xfburn/xfburn-data-composition.c:1978
+#: ../xfburn/xfburn-data-composition.c:1954
 #, c-format
 msgid "%s: null pointer"
 msgstr "%s: null pokazivač"
 
-#: ../xfburn/xfburn-data-composition.c:1980
+#: ../xfburn/xfburn-data-composition.c:1956
 #, c-format
 msgid "%s: out of memory"
 msgstr "%s: nedostaje memorije"
 
-#: ../xfburn/xfburn-data-composition.c:1982
+#: ../xfburn/xfburn-data-composition.c:1958
 #, c-format
 msgid "%s: node name not unique"
 msgstr "%s: ime čvora nije jedinstveno"
 
-#: ../xfburn/xfburn-data-composition.c:1984
+#: ../xfburn/xfburn-data-composition.c:1960
 #, c-format
 msgid "%s: %s (code %X)"
 msgstr "%s: %s (code %X)"
 
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:2004
+#: ../xfburn/xfburn-data-composition.c:1980
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "Udvostruči ime datoteke '%s' za '%s'"
 
-#: ../xfburn/xfburn-data-composition.c:2069
+#: ../xfburn/xfburn-data-composition.c:2045
 msgid "Error(s) occured while adding files"
 msgstr "Došlo je greške(a) prilikom dodavanja datoteka"
 
-#: ../xfburn/xfburn-data-composition.c:2073
+#: ../xfburn/xfburn-data-composition.c:2049
 msgid "OK"
 msgstr "U redu"
 
-#: ../xfburn/xfburn-device-box.c:169 ../xfburn/xfburn-device-box.c:170
+#: ../xfburn/xfburn-device-box.c:140 ../xfburn/xfburn-device-box.c:141
 msgid "Show writers only"
 msgstr "Pokaži samo pisače"
 
-#: ../xfburn/xfburn-device-box.c:173
+#: ../xfburn/xfburn-device-box.c:144
 msgid "Show speed selection"
 msgstr "Pokaži odabir brzine"
 
-#: ../xfburn/xfburn-device-box.c:174
+#: ../xfburn/xfburn-device-box.c:145
 msgid "Show speed selection combo"
 msgstr "Pokaži kombinaciju odabira brzine"
 
-#: ../xfburn/xfburn-device-box.c:177
+#: ../xfburn/xfburn-device-box.c:148
 msgid "Show mode selection"
 msgstr "Požai odabir načina"
 
-#: ../xfburn/xfburn-device-box.c:178
+#: ../xfburn/xfburn-device-box.c:149
 msgid "Show mode selection combo"
 msgstr "Pokaži kombinaciju odabira načina"
 
-#: ../xfburn/xfburn-device-box.c:181
+#: ../xfburn/xfburn-device-box.c:152
 msgid "Is it a valid combination"
 msgstr "To je valjana kombinacija"
 
-#: ../xfburn/xfburn-device-box.c:182
+#: ../xfburn/xfburn-device-box.c:153
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "Je li kombinacija hardvera i diska valjana za snimanje kompilacije?"
 
-#: ../xfburn/xfburn-device-box.c:186
+#: ../xfburn/xfburn-device-box.c:157
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "Način brisanja pokazuje drugačiji status diska od regularnog načina"
 
-#: ../xfburn/xfburn-device-box.c:241
+#: ../xfburn/xfburn-device-box.c:206
 msgid "_Speed:"
 msgstr "_Brzina:"
 
-#: ../xfburn/xfburn-device-box.c:264
+#: ../xfburn/xfburn-device-box.c:229
 msgid "Write _mode:"
 msgstr "Način _pisanja"
 
-#: ../xfburn/xfburn-device-box.c:377
+#: ../xfburn/xfburn-device-box.c:340
 msgid "Empty speed list"
 msgstr "Prazna lista brzina"
 
-#: ../xfburn/xfburn-device-box.c:386
+#: ../xfburn/xfburn-device-box.c:349
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -612,102 +633,102 @@ msgid ""
 "<i>Thank you!</i>"
 msgstr "<b>Neuspjelo dobavljanje liste brzina pogona.</b>\n\nOvo je poznata greška pogona. Ako ste zainteresirani za popravljanje pogledajte libburn knižnicu funkcija.\n\nPisanje bi trebalo raditi, ali ako bude problema molimo da nas obavijestite.\n\n<i>Hvala!</i>"
 
-#: ../xfburn/xfburn-device-box.c:397
+#: ../xfburn/xfburn-device-box.c:360
 msgid "Continue to _show this notice"
 msgstr "Nastavi _pokazivati ovu obavijest"
 
-#: ../xfburn/xfburn-device-box.c:444
+#: ../xfburn/xfburn-device-box.c:407
 msgid "default"
 msgstr "zadano"
 
-#: ../xfburn/xfburn-device-box.c:475
+#: ../xfburn/xfburn-device-box.c:438
 msgid "Max"
 msgstr "Maksimalno"
 
-#: ../xfburn/xfburn-device-box.c:510
+#: ../xfburn/xfburn-device-box.c:473
 msgid "A full, but erasable disc is in the drive"
 msgstr "Ispunjen, ali obrisiv disk nalazi se u pogonu"
 
-#: ../xfburn/xfburn-device-box.c:511
+#: ../xfburn/xfburn-device-box.c:474
 msgid ""
 "Do you want to blank the disc, so that it can be used for the upcoming burn "
 "process?"
 msgstr "Želite li isprazniti disk kako bi se mogao koristiti za predstojeći proces snimanja?"
 
-#: ../xfburn/xfburn-device-box.c:582
+#: ../xfburn/xfburn-device-box.c:545
 msgid "Drive can't burn on the inserted disc"
 msgstr "Pogon se ne može snimiti na umetnutom disku"
 
-#: ../xfburn/xfburn-device-box.c:591 ../xfburn/xfburn-device-box.c:637
+#: ../xfburn/xfburn-device-box.c:554 ../xfburn/xfburn-device-box.c:600
 msgid "Drive is empty"
 msgstr "Pogon je prazan"
 
-#: ../xfburn/xfburn-device-box.c:594
+#: ../xfburn/xfburn-device-box.c:557
 msgid "Sorry, multisession is not yet supported"
 msgstr "Ispričavamo se, višesesijsko snimanje još nije podržano."
 
-#: ../xfburn/xfburn-device-box.c:597
+#: ../xfburn/xfburn-device-box.c:560
 msgid "Inserted disc is full"
 msgstr "Ubačeni disk je pun"
 
-#: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
+#: ../xfburn/xfburn-device-box.c:563 ../xfburn/xfburn-device-box.c:606
 msgid "Inserted disc is unsuitable"
 msgstr "Umetnuti disk je neprikladan"
 
-#: ../xfburn/xfburn-device-box.c:603 ../xfburn/xfburn-device-box.c:646
+#: ../xfburn/xfburn-device-box.c:566 ../xfburn/xfburn-device-box.c:609
 msgid "Cannot access drive (it might be in use)"
 msgstr "Nije moguće pristupiti disku (možda je u uporabi)"
 
-#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:649
+#: ../xfburn/xfburn-device-box.c:571 ../xfburn/xfburn-device-box.c:612
 msgid "Error determining disc"
 msgstr "Greška u određivanju diska"
 
-#: ../xfburn/xfburn-device-box.c:629
+#: ../xfburn/xfburn-device-box.c:592
 msgid "Write-once disc, no blanking possible"
 msgstr "Piši jednom disk, brisanje nije moguće"
 
-#: ../xfburn/xfburn-device-box.c:632
+#: ../xfburn/xfburn-device-box.c:595
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW ne treba brisanje"
 
-#: ../xfburn/xfburn-device-box.c:640
+#: ../xfburn/xfburn-device-box.c:603
 msgid "Inserted disc is already blank"
 msgstr "Ubačeni disk je prazan"
 
-#: ../xfburn/xfburn-device-box.c:676
+#: ../xfburn/xfburn-device-box.c:639
 msgid "Auto"
 msgstr "Auto"
 
-#: ../xfburn/xfburn-device-list.c:205 ../xfburn/xfburn-device-list.c:206
+#: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
 msgstr "Broj snimača u sustavu"
 
-#: ../xfburn/xfburn-device-list.c:208
+#: ../xfburn/xfburn-device-list.c:207
 msgid "Number of drives in the system"
 msgstr "Broj pogona u sustavu"
 
-#: ../xfburn/xfburn-device-list.c:209
+#: ../xfburn/xfburn-device-list.c:208
 msgid "Number of drives in the system (readers and writers)"
 msgstr "Broj pogona u sustavu (čitača i pisača)"
 
-#: ../xfburn/xfburn-device-list.c:211 ../xfburn/xfburn-device-list.c:212
+#: ../xfburn/xfburn-device-list.c:210 ../xfburn/xfburn-device-list.c:211
 msgid "List of devices"
 msgstr "Lista uređaja"
 
-#: ../xfburn/xfburn-device-list.c:214 ../xfburn/xfburn-device-list.c:215
+#: ../xfburn/xfburn-device-list.c:213 ../xfburn/xfburn-device-list.c:214
 msgid "Currently selected device"
 msgstr "Trenutno odabrani uređaj"
 
 #. globals
-#: ../xfburn/xfburn-directory-browser.c:54
+#: ../xfburn/xfburn-directory-browser.c:52
 msgid "Folder"
 msgstr "Mapa"
 
-#: ../xfburn/xfburn-directory-browser.c:127
+#: ../xfburn/xfburn-directory-browser.c:100
 msgid "File"
 msgstr "Datoteka"
 
-#: ../xfburn/xfburn-directory-browser.c:142
+#: ../xfburn/xfburn-directory-browser.c:115
 msgid "Type"
 msgstr "Tip"
 
@@ -720,6 +741,52 @@ msgstr "Datotečni sustav"
 #, c-format
 msgid "%s's home"
 msgstr "%sov osobni direktorij"
+
+#: ../xfburn/xfburn-udev-manager.c:489
+#, c-format
+msgid "Failed to unmount '%s'. Drive cannot be used for burning."
+msgstr "Neuspjelo izbacivanje '%s'. Pogon ne može biti korišten za snimanje."
+
+#. || G_OPTION_FLAG_FILENAME
+#: ../xfburn/xfburn-main.c:74
+msgid "Open the burn image dialog, optionally followed by the image filename"
+msgstr "Otvori dijalog za snimanje slike, izborno popraćen imenom slike."
+
+#: ../xfburn/xfburn-main.c:76
+msgid "Open the blank disc dialog"
+msgstr "Otvori dijalog praznog diska"
+
+#: ../xfburn/xfburn-main.c:78
+msgid ""
+"Start a data composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr "Pokreni podatkovnu kompoziciju, izborno praćenu datotekama/direktorijima koji će biti dodani u kompoziciju."
+
+#: ../xfburn/xfburn-main.c:80
+msgid ""
+"Start an audio composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr "Pokreni audio kompoziciju, izborno praćenu datotekama/direktorijima koji će biti dodani u kompoziciju."
+
+#: ../xfburn/xfburn-main.c:82
+msgid ""
+"Select the transcoder, run with --transcoder=list to see the available ones"
+msgstr "Odaberite transkoder, pokrenite s --transcoder=list da bi vidjeli dostupne"
+
+#: ../xfburn/xfburn-main.c:84
+msgid ""
+"Start the file browser in the specified directory, or the current directory "
+"if none is specified (the default is to start in your home directory)"
+msgstr "Pokrenite preglednik datoteka u određenom direktoriju ili trenutnom ako nijedan nije određen (zadan je vaš kućni direktorij)"
+
+#: ../xfburn/xfburn-main.c:86
+msgid "Display program version and exit"
+msgstr "Pokaži verziju programa i izađi"
+
+#: ../xfburn/xfburn-main.c:88
+msgid ""
+"Show main program even when other action is specified on the command line."
+msgstr "Pokaži glavni program iako je druga akcija određena u komandnoj liniji."
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
@@ -761,23 +828,47 @@ msgstr "Neuspjela inicijalizacija %s transkodera: %s\n\t(povratak na osnovnu imp
 msgid "Image file '%s' does not exist."
 msgstr "Slikovna datoteka '%s' ne postoji"
 
-#: ../xfburn/xfburn-main-window.c:600
+#: ../xfburn/xfburn-main-window.c:310
+msgid "New data composition"
+msgstr "Nova kompilacija podataka"
+
+#: ../xfburn/xfburn-main-window.c:313
+msgid "New audio composition"
+msgstr "Nova audio kompilacija"
+
+#: ../xfburn/xfburn-main-window.c:318 ../xfburn.ui.h:9
+msgid "Blank CD-RW"
+msgstr "Prazan CD-RW"
+
+#: ../xfburn/xfburn-main-window.c:321 ../xfburn.ui.h:10
+msgid "Burn Image"
+msgstr "Snimi sliku"
+
+#: ../xfburn/xfburn-main-window.c:326 ../xfburn.ui.h:12
+msgid "Refresh"
+msgstr "Osvježi"
+
+#: ../xfburn/xfburn-main-window.c:326
+msgid "Refresh file list"
+msgstr "Osvježi listu datoteka"
+
+#: ../xfburn/xfburn-main-window.c:573
 msgid "Another cd burning GUI"
 msgstr "Još jedno grafičko sučelje za snimanje cd-a"
 
-#: ../xfburn/xfburn-notebook-tab.c:108
+#: ../xfburn/xfburn-notebook-tab.c:81
 msgid "Label"
 msgstr "Naljepnica"
 
-#: ../xfburn/xfburn-notebook-tab.c:108
+#: ../xfburn/xfburn-notebook-tab.c:81
 msgid "The text of the label"
 msgstr "Tekst naljepnice"
 
-#: ../xfburn/xfburn-notebook-tab.c:111
+#: ../xfburn/xfburn-notebook-tab.c:84
 msgid "Show close button"
 msgstr "Pokaži gumb za zatvaranje"
 
-#: ../xfburn/xfburn-notebook-tab.c:111
+#: ../xfburn/xfburn-notebook-tab.c:84
 msgid "Determine whether the close button is visible"
 msgstr "Odredi je li gumb za zatvaranje vidljiv"
 
@@ -880,155 +971,165 @@ msgstr "vidi konzolu"
 msgid "User Aborted"
 msgstr " Prekinuo korisnik"
 
-#: ../xfburn/xfburn-preferences-dialog.c:144
+#: ../xfburn/xfburn-preferences-dialog.c:116
 msgid "Preferences"
 msgstr "Osobitosti"
 
-#: ../xfburn/xfburn-preferences-dialog.c:145
+#: ../xfburn/xfburn-preferences-dialog.c:117
 msgid "Tune how Xfburn behaves"
 msgstr "Prilagodi kako se Xfburn ponaša"
 
-#: ../xfburn/xfburn-preferences-dialog.c:190
-#: ../xfburn/xfburn-preferences-dialog.c:194
+#: ../xfburn/xfburn-preferences-dialog.c:162
+#: ../xfburn/xfburn-preferences-dialog.c:166
 msgid "Temporary directory"
 msgstr "Privremeni direktorij"
 
-#: ../xfburn/xfburn-preferences-dialog.c:198
+#: ../xfburn/xfburn-preferences-dialog.c:170
 msgid "_Clean temporary directory on exit"
 msgstr "_Očisti privremeni direktorij i izađi"
 
-#: ../xfburn/xfburn-preferences-dialog.c:205
+#: ../xfburn/xfburn-preferences-dialog.c:177
 msgid "File browser"
 msgstr "Preglednik datoteka"
 
-#: ../xfburn/xfburn-preferences-dialog.c:209
+#: ../xfburn/xfburn-preferences-dialog.c:181
 msgid "Show _hidden files"
 msgstr "Pokaži _skrivene datoteke"
 
-#: ../xfburn/xfburn-preferences-dialog.c:214
+#: ../xfburn/xfburn-preferences-dialog.c:186
 msgid "Show human_readable filesizes"
 msgstr "Pokaži či_tljivu veličinu datoteke"
 
-#: ../xfburn/xfburn-preferences-dialog.c:224
-#: ../xfburn/xfburn-preferences-dialog.c:235
+#: ../xfburn/xfburn-preferences-dialog.c:196
+#: ../xfburn/xfburn-preferences-dialog.c:207
 msgid "General"
 msgstr "Općenito"
 
-#: ../xfburn/xfburn-preferences-dialog.c:239
-#: ../xfburn/xfburn-preferences-dialog.c:320
+#: ../xfburn/xfburn-preferences-dialog.c:211
+#: ../xfburn/xfburn-preferences-dialog.c:292
 msgid "Devices"
 msgstr "Uređaji"
 
-#: ../xfburn/xfburn-preferences-dialog.c:248
+#: ../xfburn/xfburn-preferences-dialog.c:220
 msgid "Detected devices"
 msgstr "Otkriveni uređaji"
 
-#: ../xfburn/xfburn-preferences-dialog.c:270
+#: ../xfburn/xfburn-preferences-dialog.c:242
 msgid "Name"
 msgstr "Ime"
 
-#: ../xfburn/xfburn-preferences-dialog.c:283
+#: ../xfburn/xfburn-preferences-dialog.c:255
 msgid "Node"
 msgstr "Čvor"
 
-#: ../xfburn/xfburn-preferences-dialog.c:285
+#: ../xfburn/xfburn-preferences-dialog.c:257
 msgid "Write CD-R"
 msgstr "Piši CD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:287
+#: ../xfburn/xfburn-preferences-dialog.c:259
 msgid "Write CD-RW"
 msgstr "Piši CD-RW"
 
-#: ../xfburn/xfburn-preferences-dialog.c:290
+#: ../xfburn/xfburn-preferences-dialog.c:262
 msgid "Write DVD-R"
 msgstr "Piši DVD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:293
+#: ../xfburn/xfburn-preferences-dialog.c:265
 msgid "Write DVD-RAM"
 msgstr "Piši DVD-RAM"
 
-#: ../xfburn/xfburn-preferences-dialog.c:296
+#: ../xfburn/xfburn-preferences-dialog.c:268
 msgid "Write Blu-ray"
 msgstr "Snimi Blu-ray"
 
-#: ../xfburn/xfburn-preferences-dialog.c:304
+#: ../xfburn/xfburn-preferences-dialog.c:276
 msgid "Sc_an for devices"
 msgstr "Ske_niraj uređaje"
 
-#: ../xfburn/xfburn-preferences-dialog.c:331
+#: ../xfburn/xfburn-preferences-dialog.c:303
 msgid "Show warning on _empty speed list"
 msgstr "Pokaži upozor_enje kada je lista brzina prazna"
 
-#: ../xfburn/xfburn-preferences-dialog.c:340
+#: ../xfburn/xfburn-preferences-dialog.c:312
 msgid "FIFO buffer size (in kb)"
 msgstr "Veličina FIFO međuspremnika (u kb)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:492
+#: ../xfburn/xfburn-preferences-dialog.c:331
+msgid "_Close"
+msgstr "_Zatvori"
+
+#: ../xfburn/xfburn-preferences-dialog.c:464
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "Efekt promijene ove opcije bit će vidljiv nakon ponovnog pokretanja programa."
 
-#: ../xfburn/xfburn-progress-dialog.c:200
-#: ../xfburn/xfburn-progress-dialog.c:555
+#. label
+#: ../xfburn/xfburn-progress-dialog.c:168
+#: ../xfburn/xfburn-progress-dialog.c:172
+#: ../xfburn/xfburn-progress-dialog.c:527
 msgid "Initializing..."
 msgstr "Inicijalizacija..."
 
-#: ../xfburn/xfburn-progress-dialog.c:215
+#: ../xfburn/xfburn-progress-dialog.c:187
 msgid "Estimated writing speed:"
 msgstr "Očekivana brzina pisanja:"
 
-#: ../xfburn/xfburn-progress-dialog.c:218
-#: ../xfburn/xfburn-progress-dialog.c:234
-#: ../xfburn/xfburn-progress-dialog.c:243
-#: ../xfburn/xfburn-progress-dialog.c:334
-#: ../xfburn/xfburn-progress-dialog.c:478
-#: ../xfburn/xfburn-progress-dialog.c:502
-#: ../xfburn/xfburn-progress-dialog.c:526
+#: ../xfburn/xfburn-progress-dialog.c:190
+#: ../xfburn/xfburn-progress-dialog.c:206
+#: ../xfburn/xfburn-progress-dialog.c:215
+#: ../xfburn/xfburn-progress-dialog.c:306
+#: ../xfburn/xfburn-progress-dialog.c:450
+#: ../xfburn/xfburn-progress-dialog.c:474
+#: ../xfburn/xfburn-progress-dialog.c:498
 msgid "unknown"
 msgstr "nepoznato"
 
-#: ../xfburn/xfburn-progress-dialog.c:229
+#: ../xfburn/xfburn-progress-dialog.c:201
 msgid "FIFO buffer:"
 msgstr "FIFO međuspremnik:"
 
-#: ../xfburn/xfburn-progress-dialog.c:238
+#: ../xfburn/xfburn-progress-dialog.c:210
 msgid "Device buffer:"
 msgstr "Međuspremnik uređaja:"
 
 #. action buttons
-#: ../xfburn/xfburn-progress-dialog.c:248
+#: ../xfburn/xfburn-progress-dialog.c:220
 msgid "_Stop"
 msgstr "_Stop"
 
-#: ../xfburn/xfburn-progress-dialog.c:376
+#: ../xfburn/xfburn-progress-dialog.c:227
+msgid "Close"
+msgstr "Zatvori"
+
+#: ../xfburn/xfburn-progress-dialog.c:348
 msgid "Are you sure you want to abort?"
 msgstr "Jeste li sigurni da želite prekinuti?"
 
-#: ../xfburn/xfburn-progress-dialog.c:504
+#: ../xfburn/xfburn-progress-dialog.c:476
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "Min. popuna je bila %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:572
+#: ../xfburn/xfburn-progress-dialog.c:544
 msgid "Aborted"
 msgstr "Prekinut"
 
-#: ../xfburn/xfburn-progress-dialog.c:575
+#: ../xfburn/xfburn-progress-dialog.c:547
 msgid "Formatted."
 msgstr "Formatirano."
 
-#: ../xfburn/xfburn-progress-dialog.c:584
+#: ../xfburn/xfburn-progress-dialog.c:556
 msgid "Failed"
 msgstr "Nije uspjelo"
 
-#: ../xfburn/xfburn-progress-dialog.c:587
+#: ../xfburn/xfburn-progress-dialog.c:559
 msgid "Cancelled"
 msgstr "Odgođeno"
 
-#: ../xfburn/xfburn-progress-dialog.c:590
+#: ../xfburn/xfburn-progress-dialog.c:562
 msgid "Completed"
 msgstr "Dovršeno"
 
-#: ../xfburn/xfburn-progress-dialog.c:628
+#: ../xfburn/xfburn-progress-dialog.c:600
 msgid "Aborting..."
 msgstr "Prekidam ..."
 
@@ -1036,108 +1137,101 @@ msgstr "Prekidam ..."
 msgid "Select command"
 msgstr "Odaberi naredbu"
 
-#: ../xfburn/xfburn-welcome-tab.c:127
+#: ../xfburn/xfburn-welcome-tab.c:99
 msgid "Welcome to Xfburn!"
 msgstr "Dobrodošli u Xfburn!"
 
 #. buttons
-#: ../xfburn/xfburn-welcome-tab.c:146
+#: ../xfburn/xfburn-welcome-tab.c:118
 msgid "<big>Burn _Image</big>"
 msgstr "<big>Snimi _sliku</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:146
+#: ../xfburn/xfburn-welcome-tab.c:118
 msgid "Burn a prepared compilation, i.e. an .ISO file"
 msgstr "Snimi pripremljenu kompilaciju, odnosno ISO datoteku"
 
-#: ../xfburn/xfburn-welcome-tab.c:151
+#: ../xfburn/xfburn-welcome-tab.c:123
 msgid "<big>New _Data Composition</big>"
 msgstr "<big>Nova kompilacija po_dataka</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:151
+#: ../xfburn/xfburn-welcome-tab.c:123
 msgid "Create a new data disc with the files of your choosing"
 msgstr "Napravite novi podatkovni disk sa datotekama po vašem izboru"
 
-#: ../xfburn/xfburn-welcome-tab.c:156
+#: ../xfburn/xfburn-welcome-tab.c:128
 msgid "<big>_Blank Disc</big>"
 msgstr "<big>_Prazni disk</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:156
+#: ../xfburn/xfburn-welcome-tab.c:128
 msgid "Prepare the rewriteable disc for a new burn"
 msgstr "Pripremi izbrisiv disk za novo snimanje"
 
-#: ../xfburn/xfburn-welcome-tab.c:161
+#: ../xfburn/xfburn-welcome-tab.c:133
 msgid "<big>_Audio CD</big>"
 msgstr "<big>_Audio CD</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:161
+#: ../xfburn/xfburn-welcome-tab.c:133
 msgid "Audio CD playable in regular stereos"
 msgstr "Audio CD koji može svirati u uobičajenim stereo uređajima"
 
-#: ../xfburn/xfburn-audio-composition.c:220
-msgid "Remove"
-msgstr "Ukloni"
-
-#: ../xfburn/xfburn-audio-composition.c:220
-msgid "Remove the selected file(s) from the composition"
-msgstr "Ukloni odabrane datoteke(u) s kompilacije"
-
 #: ../xfburn/xfburn-audio-composition.c:222
-msgid "Clear"
-msgstr "Očisti"
-
-#: ../xfburn/xfburn-audio-composition.c:224
+#: ../xfburn/xfburn-audio-composition.c:381
 msgid "What files can get burned to an audio CD?"
 msgstr "Koje datoteke mogu biti snimljene na audio CD?"
 
-#: ../xfburn/xfburn-audio-composition.c:228
+#: ../xfburn/xfburn-audio-composition.c:226
 msgid "Rename Artist"
 msgstr "Preimenuj umjetnika"
 
-#: ../xfburn/xfburn-audio-composition.c:228
+#: ../xfburn/xfburn-audio-composition.c:226
 msgid "Rename the artist of the selected file"
 msgstr "Preimenuj umjetnika na odabranoj datoteci"
 
-#: ../xfburn/xfburn-audio-composition.c:230
+#: ../xfburn/xfburn-audio-composition.c:228
 msgid "Rename Title"
 msgstr "Preimenuj naslov"
 
-#: ../xfburn/xfburn-audio-composition.c:230
+#: ../xfburn/xfburn-audio-composition.c:228
 msgid "Rename the title of the selected file"
 msgstr "Preimenuj naslov odabrane datoteke"
 
-#: ../xfburn/xfburn-audio-composition.c:408
-msgid "What file can get burned to an audio CD"
-msgstr "Koja datoteka može biti snimljena na audio CD?"
+#. Note to translators: you can probably keep this as gstreamer,
+#. * unless you have a good reason to call it by another name that
+#. * the user would understand better
+#: ../xfburn/xfburn-audio-composition.c:381
+#: ../xfburn/xfburn-transcoder-gst.c:579
+msgid "gstreamer"
+msgstr "gstreamer"
 
-#: ../xfburn/xfburn-audio-composition.c:439
+#: ../xfburn/xfburn-audio-composition.c:412
 msgid "Pos"
 msgstr "Poz"
 
-#: ../xfburn/xfburn-audio-composition.c:441
+#: ../xfburn/xfburn-audio-composition.c:414
 msgid "Length"
 msgstr "Dužina"
 
-#: ../xfburn/xfburn-audio-composition.c:447
+#: ../xfburn/xfburn-audio-composition.c:420
 msgid "Artist"
 msgstr "Umjetnik"
 
-#: ../xfburn/xfburn-audio-composition.c:460
+#: ../xfburn/xfburn-audio-composition.c:433
 msgid "Title"
 msgstr "Naslov"
 
-#: ../xfburn/xfburn-audio-composition.c:471
+#: ../xfburn/xfburn-audio-composition.c:444
 msgid "Filename"
 msgstr "Ime datoteke"
 
-#: ../xfburn/xfburn-audio-composition.c:618
+#: ../xfburn/xfburn-audio-composition.c:591
 msgid "Cannot burn audio onto a DVD."
 msgstr "Ne mogu snimiti audio na DVD"
 
-#: ../xfburn/xfburn-audio-composition.c:1292
+#: ../xfburn/xfburn-audio-composition.c:1265
 msgid "You can only have a maximum of 99 tracks."
 msgstr "MOžete imati maksimalno 99 zapisa."
 
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:279
 msgid "A problem with the burn backend occurred."
 msgstr "Problem u pozadinskom programu snimanja."
 
@@ -1149,11 +1243,17 @@ msgstr "Nastavi sa snimanjem"
 msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "Pokušavate na disk snimiti više nego što može držati."
 
-#: ../xfburn/xfburn-transcoder-basic.c:166
+#. globals
+#: ../xfburn/xfburn-transcoder-basic.c:69
+#: ../xfburn/xfburn-transcoder-gst.c:145
+msgid "An error occurred while setting the burning backend up"
+msgstr "Došlo je do greške u postavljanju pozadinskog programa snimača"
+
+#: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
 msgstr "osnovni"
 
-#: ../xfburn/xfburn-transcoder-basic.c:172
+#: ../xfburn/xfburn-transcoder-basic.c:135
 msgid ""
 "The basic transcoder is built in,\n"
 "and does not require any library.\n"
@@ -1165,39 +1265,50 @@ msgid ""
 "gstreamer support."
 msgstr "Osnovni transkoder je ugrađen i\nne treba nikakve dodatne knjižnice,\nali može rukovati samo nekompresiranim\n.wav datotekama.\nAko želite kreirati glazbenu kompilaciju\nsastavljenu od drugih audio datoteka\nmolimo da kompajlirate s gstreamer\npodrškom."
 
-#: ../xfburn/xfburn-transcoder-basic.c:196
+#: ../xfburn/xfburn-transcoder-basic.c:159
 #, c-format
 msgid "File %s does not have a .wav extension"
 msgstr "Datoteka %s nema .wav proširenje"
 
-#: ../xfburn/xfburn-transcoder-basic.c:201
+#: ../xfburn/xfburn-transcoder-basic.c:164
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
 msgstr "Datoteka %s ne sadrži nekompresirani PCM wave audio"
 
-#: ../xfburn/xfburn-transcoder-basic.c:207
+#: ../xfburn/xfburn-transcoder-basic.c:170
 #, c-format
 msgid "Could not stat %s: %s"
 msgstr "Ne mogu navesti %s: %s"
 
-#: ../xfburn/xfburn-transcoder-basic.c:239
+#: ../xfburn/xfburn-transcoder-basic.c:202
 #, c-format
 msgid "Could not open %s."
 msgstr "Ne mogu otvoriti %s."
 
-#: ../xfburn/xfburn-transcoder-basic.c:323
+#: ../xfburn/xfburn-transcoder-basic.c:281
 #, c-format
 msgid "Could not open %s: %s"
 msgstr "Ne mogu otvoriti %s: %s"
 
-#. Note to translators: you can probably keep this as gstreamer,
-#. * unless you have a good reason to call it by another name that
-#. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:606
-msgid "gstreamer"
-msgstr "gstreamer"
+#: ../xfburn/xfburn-transcoder-gst.c:144
+msgid "An error occurred setting gstreamer up for transcoding"
+msgstr "Došlo je do greške pri postavljanju gstreamera za transkodiranje"
 
-#: ../xfburn/xfburn-transcoder-gst.c:612
+#: ../xfburn/xfburn-transcoder-gst.c:146
+#, c-format
+msgid ""
+"%s is missing.\n"
+"\n"
+"You do not have a decoder installed to handle this file.\n"
+"Probably you need to look at the gst-plugins-* packages\n"
+"for the necessary plugins.\n"
+msgstr "%s nedostaje.\n\nNije instaliran dekoder za rukovanje ovom datotekom.\nVjerojatno morate potražiti pod gst-plugins-* paketima\nza potrebne dodatke.\n"
+
+#: ../xfburn/xfburn-transcoder-gst.c:542
+msgid "File content has a decoder but is not audio."
+msgstr "Sadržaj datoteke sadrži dekoder, ali nije audio."
+
+#: ../xfburn/xfburn-transcoder-gst.c:585
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1209,24 +1320,36 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "Gstreamer traskoder koristi gstreamer knjižnicu\nza kreiranje audio kompilacija.\n\nU osnovi bi sve audio datoteke trebale biti\npodržane ako je instaliran potreban dodatak.\nU slučaju da audio datoteka nije prepoznata\nbudite sigurni da su instalirani 'good', 'bad' i\n'ugly' gstreamer dodatci."
 
-#: ../xfburn/xfburn-transcoder-gst.c:689 ../xfburn/xfburn-transcoder-gst.c:719
+#: ../xfburn/xfburn-transcoder-gst.c:627
+msgid "No information available on which plugin is required."
+msgstr "Nema informacija o potrebnom priključku."
+
+#: ../xfburn/xfburn-transcoder-gst.c:629
+msgid "Required plugins: "
+msgstr "Potreban priključak:"
+
+#: ../xfburn/xfburn-transcoder-gst.c:662 ../xfburn/xfburn-transcoder-gst.c:692
 #, c-format
 msgid "An error occurred while identifying '%s' with gstreamer"
 msgstr "Došlo je do greške prilikom identifikacije '%s' s gstreamerom"
 
-#: ../xfburn/xfburn-transcoder-gst.c:706
+#: ../xfburn/xfburn-transcoder-gst.c:679
 msgid "A plugin"
 msgstr "Priključak"
 
-#: ../xfburn/xfburn-transcoder-gst.c:841
+#: ../xfburn/xfburn-transcoder-gst.c:814
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "Gstreamer nije pokrenuo transkodiranje (vrijeme je isteklo)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:876
+#: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "Neuspjela promijena pjesama prilikom transkodiranja"
+
+#: ../xfburn/xfburn-transcoder.c:103 ../xfburn/xfburn-transcoder.c:113
+msgid "none"
+msgstr "nijedan"
 
 #: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
@@ -1234,73 +1357,125 @@ msgstr "Neuspjela promijena pjesama prilikom transkodiranja"
 msgid "not implemented"
 msgstr "ne primjenjeno"
 
-#: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
+#: ../xfburn/xfburn-device.c:247 ../xfburn/xfburn-device.c:248
 msgid "Display name"
 msgstr "Prikaži ime"
 
-#: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
+#: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
 msgid "Device address"
 msgstr "Adresa uređaja"
 
-#: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
+#: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
 msgid "Burn speeds supported by the device"
 msgstr "Brzine snimanja koje uređaj podržava"
 
-#: ../xfburn/xfburn-device.c:259 ../xfburn/xfburn-device.c:260
+#: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
 msgid "Disc status"
 msgstr "Status diska"
 
-#: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
+#: ../xfburn/xfburn-device.c:259 ../xfburn/xfburn-device.c:260
 msgid "Profile no. as reported by libburn"
 msgstr "Broj profila kako ga je prijavio libburn"
 
-#: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
+#: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
 msgid "Profile name as reported by libburn"
 msgstr "Ime profila kako ga je prijavio libburn"
 
-#: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
+#: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
 msgid "Is the disc erasable"
 msgstr "Je li disk izbrisiv"
 
-#: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
+#: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
 msgid "Can burn CDR"
 msgstr "Može snimati CDR"
 
-#: ../xfburn/xfburn-device.c:274 ../xfburn/xfburn-device.c:275
+#: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
 msgid "Can burn CDRW"
 msgstr "Može snimati CDRW"
 
-#: ../xfburn/xfburn-device.c:277 ../xfburn/xfburn-device.c:278
+#: ../xfburn/xfburn-device.c:274 ../xfburn/xfburn-device.c:275
 msgid "Can burn DVDR"
 msgstr "Može snimati DVDR"
 
-#: ../xfburn/xfburn-device.c:280 ../xfburn/xfburn-device.c:281
+#: ../xfburn/xfburn-device.c:277 ../xfburn/xfburn-device.c:278
 msgid "Can burn DVDPLUSR"
 msgstr "Može snimati DVDPLUSR"
 
-#: ../xfburn/xfburn-device.c:283 ../xfburn/xfburn-device.c:284
+#: ../xfburn/xfburn-device.c:280 ../xfburn/xfburn-device.c:281
 msgid "Can burn DVDRAM"
 msgstr "Može snimati DVDRAM"
 
-#: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
+#: ../xfburn/xfburn-device.c:283 ../xfburn/xfburn-device.c:284
 msgid "Can burn Blu-ray"
 msgstr "Može snimati Blu-ray"
 
-#: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
+#: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
 msgid "libburn TAO block types"
 msgstr "libburn TAO tip blokova"
 
-#: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
+#: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
 msgid "libburn SAO block types"
 msgstr "libburn SAO tip blokova"
 
-#: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
+#: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
 msgid "libburn RAW block types"
 msgstr "libburn RAW tip blokova"
 
-#: ../xfburn/xfburn-device.c:298 ../xfburn/xfburn-device.c:299
+#: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
 msgid "libburn PACKET block types"
 msgstr "libburn PACKET tip blokova"
+
+#: ../xfburn.ui.h:1
+msgid "_Files"
+msgstr "_Datoteke"
+
+#: ../xfburn.ui.h:2
+msgid "New _data composition"
+msgstr "Nova _podatkovna kompozicija"
+
+#: ../xfburn.ui.h:3
+msgid "New _audio composition"
+msgstr "Nova _audio kompozicija"
+
+#: ../xfburn.ui.h:4
+msgid "_Close composition"
+msgstr "_Zatvori kompoziciju"
+
+#: ../xfburn.ui.h:5
+msgid "_Quit"
+msgstr "_Odustani"
+
+#: ../xfburn.ui.h:6
+msgid "_Edit"
+msgstr "_Uredi"
+
+#: ../xfburn.ui.h:7
+msgid "Prefere_nce"
+msgstr "Osobi_tost"
+
+#: ../xfburn.ui.h:8
+msgid "_Action"
+msgstr "_Akcija"
+
+#: ../xfburn.ui.h:11
+msgid "_View"
+msgstr "_Pogled"
+
+#: ../xfburn.ui.h:13
+msgid "Show Toolbars"
+msgstr "Pokaži alatne trake"
+
+#: ../xfburn.ui.h:14
+msgid "Show Filebrowser"
+msgstr "Pokaži preglednik datoteka"
+
+#: ../xfburn.ui.h:15
+msgid "_Help"
+msgstr "_Pomoć"
+
+#: ../xfburn.ui.h:16
+msgid "About"
+msgstr "O programu"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
