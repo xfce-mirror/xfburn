@@ -3,13 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Cally Mal <zhouxiaobo.500@gmail.com>, 2014
 # Chipong Luo <chipong.luo@yahoo.com>, 2011-2012
 # Hunt Xu <huntxu@live.cn>, 2009-2010
 # longer.zhao@gmail.com, 2008
+# Mingcong Bai <jeffbai@aosc.xyz>, 2015
+# SamHX <samzh@outlook.com>, 2017
 # SamHX <samzh@outlook.com>, 2017
 # 玉堂白鹤 <yjwork@qq.com>, 2014
 # Cally Mal <zhouxiaobo.500@gmail.com>, 2014
-# 玉堂白鹤 <yjwork@qq.com>, 2018-2019
+# 玉堂白鹤 <yjwork@qq.com>, 2014,2018-2019
 # Mingcong Bai <jeffbai@aosc.xyz>, 2015
 # 赵正龙 <longer.zhao@gmail.com>, 2008
 msgid ""
@@ -17,7 +20,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-23 18:31+0100\n"
-"PO-Revision-Date: 2019-11-27 06:29+0000\n"
+"PO-Revision-Date: 2019-11-28 02:03+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +67,7 @@ msgstr "数据项目"
 
 #: ../xfburn/xfburn-adding-progress.c:83
 msgid "Adding files to the composition"
-msgstr "在项目中添加文件..."
+msgstr "在项目中添加文件"
 
 #: ../xfburn/xfburn-adding-progress.c:96
 msgid "Cancel"
@@ -657,7 +660,7 @@ msgstr "一个完整的，但可擦除的光盘在驱动器中"
 msgid ""
 "Do you want to blank the disc, so that it can be used for the upcoming burn "
 "process?"
-msgstr "您是否想要擦除该光盘，以便其能被接下来的烧录过程使用？"
+msgstr "您是否想要擦除该光盘，以便其能被接下来的刻录过程使用？"
 
 #: ../xfburn/xfburn-device-box.c:545
 msgid "Drive can't burn on the inserted disc"
@@ -754,7 +757,7 @@ msgstr "无法卸载 '%s'。驱动器不能用于刻录。"
 #. || G_OPTION_FLAG_FILENAME
 #: ../xfburn/xfburn-main.c:74
 msgid "Open the burn image dialog, optionally followed by the image filename"
-msgstr "打开烧录镜像对话框，可以选择跟随镜像文件名"
+msgstr "打开刻录镜像对话框，可以选择跟随镜像文件名"
 
 #: ../xfburn/xfburn-main.c:76
 msgid "Open the blank disc dialog"
@@ -764,24 +767,24 @@ msgstr "打开空白光盘对话框"
 msgid ""
 "Start a data composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "开始数据项目，可以选择在其后添加想要添加到项目中的文件或目录"
 
 #: ../xfburn/xfburn-main.c:80
 msgid ""
 "Start an audio composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "开始音频项目，可以选择在其后添加想要添加到项目中的文件或目录"
 
 #: ../xfburn/xfburn-main.c:82
 msgid ""
 "Select the transcoder, run with --transcoder=list to see the available ones"
-msgstr ""
+msgstr "选择解码器，使用 --transcoder=list 查看可用的解码器"
 
 #: ../xfburn/xfburn-main.c:84
 msgid ""
 "Start the file browser in the specified directory, or the current directory "
 "if none is specified (the default is to start in your home directory)"
-msgstr ""
+msgstr "在指定目录中启动文件浏览器，如果未指定，则在当前目录中启动(默认为在主文件夹中启动)"
 
 #: ../xfburn/xfburn-main.c:86
 msgid "Display program version and exit"
@@ -790,7 +793,7 @@ msgstr "显示程序版本信息并退出"
 #: ../xfburn/xfburn-main.c:88
 msgid ""
 "Show main program even when other action is specified on the command line."
-msgstr ""
+msgstr "即使在命令行上指定了其他操作，也要显示主程序。"
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
@@ -842,7 +845,7 @@ msgstr "新建音频项目"
 
 #: ../xfburn/xfburn-main-window.c:318 ../xfburn.ui.h:9
 msgid "Blank CD-RW"
-msgstr "擦除 CD-RW"
+msgstr "空白 CD-RW"
 
 #: ../xfburn/xfburn-main-window.c:321 ../xfburn.ui.h:10
 msgid "Burn Image"
@@ -1251,7 +1254,7 @@ msgstr "您正试图刻录超过光盘能容纳的数据。"
 #: ../xfburn/xfburn-transcoder-basic.c:69
 #: ../xfburn/xfburn-transcoder-gst.c:145
 msgid "An error occurred while setting the burning backend up"
-msgstr ""
+msgstr "设置刻录后端时发生错误"
 
 #: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
@@ -1296,7 +1299,7 @@ msgstr "未能打开 %s：%s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:144
 msgid "An error occurred setting gstreamer up for transcoding"
-msgstr ""
+msgstr "设置 gstreamer 转码时发生错误"
 
 #: ../xfburn/xfburn-transcoder-gst.c:146
 #, c-format
@@ -1310,7 +1313,7 @@ msgstr "%s 丢失。\n\n您没有安装处理此文件的解码器。\n您可能
 
 #: ../xfburn/xfburn-transcoder-gst.c:542
 msgid "File content has a decoder but is not audio."
-msgstr ""
+msgstr "文件内容有解码器但不是音频。"
 
 #: ../xfburn/xfburn-transcoder-gst.c:585
 msgid ""
@@ -1326,7 +1329,7 @@ msgstr "gstreamer 解码器使用 gstreamer 库文件\n创建音频项目。\n\n
 
 #: ../xfburn/xfburn-transcoder-gst.c:627
 msgid "No information available on which plugin is required."
-msgstr ""
+msgstr "没有需要哪个插件的信息。"
 
 #: ../xfburn/xfburn-transcoder-gst.c:629
 msgid "Required plugins: "
@@ -1344,12 +1347,12 @@ msgstr "插件"
 #: ../xfburn/xfburn-transcoder-gst.c:814
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
-msgstr "Gstreamer 不想开始译码(超时)"
+msgstr "Gstreamer 不想开始转码(超时)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
 msgid "Failed to change songs while transcoding"
-msgstr "无法在解码时更改歌曲"
+msgstr "无法在转码时更改歌曲"
 
 #: ../xfburn/xfburn-transcoder.c:103 ../xfburn/xfburn-transcoder.c:113
 msgid "none"
@@ -1487,7 +1490,7 @@ msgstr "数据项目"
 
 #: ../xfburn.desktop.in.h:2
 msgid "Disk Burning"
-msgstr "光盘烧录"
+msgstr "光盘刻录"
 
 #: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
@@ -1503,4 +1506,4 @@ msgid ""
 "blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
 "personal compositions of data to either CD or DVD. It is stable and under "
 "ongoing development."
-msgstr "Xfburn是一个简易的基于libburnia库的CD/DVD烧录工具。它能够擦除CD/DVD(-RW)光盘、烧录和生成ISO镜像与音乐CD，也能将个人的创作数据烧录至CD或DVD中。它处于稳定而持续的发展中。"
+msgstr "Xfburn是一个简易的基于libburnia库的CD/DVD刻录工具。它能够擦除CD/DVD(-RW)光盘、刻录和生成ISO镜像与音乐CD，也能将个人的创作数据刻录至CD或DVD中。它处于稳定而持续的发展中。"
