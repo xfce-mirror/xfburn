@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-17 06:31+0200\n"
-"PO-Revision-Date: 2019-11-03 07:43+0000\n"
+"POT-Creation-Date: 2019-11-23 18:31+0100\n"
+"PO-Revision-Date: 2019-11-30 15:19+0000\n"
 "Last-Translator: Kjell Cato Heskjestad <cato@heskjestad.xyz>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/xfce/xfce-apps/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -134,6 +134,21 @@ msgstr "Innstillinger"
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:167
 msgid "E_ject disk"
 msgstr "_Løs ut disk"
+
+#. action buttons
+#. align = gtk_alignment_new (0, 0, 0, 0);
+#. gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
+#. gtk_widget_show (align);
+#. gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
+#. action buttons
+#: ../xfburn/xfburn-blank-dialog.c:213
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:254
+#: ../xfburn/xfburn-burn-image-dialog.c:218
+#: ../xfburn/xfburn-copy-cd-dialog.c:165
+#: ../xfburn/xfburn-copy-dvd-dialog.c:162 ../xfburn/xfburn-utils.c:131
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:188
+msgid "_Cancel"
+msgstr "_Avbryt"
 
 #: ../xfburn/xfburn-blank-dialog.c:217
 msgid "_Blank"
@@ -289,19 +304,6 @@ msgstr "ISO-avtrykk"
 msgid "_Quit after success"
 msgstr "_Avslutt etter vellykket"
 
-#. action buttons
-#. align = gtk_alignment_new (0, 0, 0, 0);
-#. gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
-#. gtk_widget_show (align);
-#. gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
-#. action buttons
-#: ../xfburn/xfburn-burn-image-dialog.c:218
-#: ../xfburn/xfburn-copy-cd-dialog.c:165
-#: ../xfburn/xfburn-copy-dvd-dialog.c:162
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:188
-msgid "_Cancel"
-msgstr "_Avbryt"
-
 #: ../xfburn/xfburn-burn-image-dialog.c:222
 msgid "_Burn image"
 msgstr "_Brenn avtrykk"
@@ -419,144 +421,162 @@ msgstr "_Kopier DVD"
 msgid "Create ISO from CD"
 msgstr "Lag ISO-avtrykk fra CD"
 
-#: ../xfburn/xfburn-data-composition.c:339
+#: ../xfburn/xfburn-data-composition.c:341
+#: ../xfburn/xfburn-data-composition.c:974
 #: ../xfburn/xfburn-audio-composition.c:216
-#: ../xfburn/xfburn-audio-composition.c:366
+#: ../xfburn/xfburn-audio-composition.c:368
+#: ../xfburn/xfburn-audio-composition.c:981
+msgid "Add"
+msgstr "Legg til"
+
+#: ../xfburn/xfburn-data-composition.c:341
+#: ../xfburn/xfburn-audio-composition.c:216
+#: ../xfburn/xfburn-audio-composition.c:368
 msgid "Add the selected file(s) to the composition"
 msgstr "Legg til valgte fil(er) i komposisjonen"
 
-#: ../xfburn/xfburn-data-composition.c:341
+#: ../xfburn/xfburn-data-composition.c:343
+msgid "Create directory"
+msgstr "Lag ny mappe"
+
+#: ../xfburn/xfburn-data-composition.c:343
 msgid "Add a new directory to the composition"
 msgstr "Legg til mappe i komposisjonen"
 
-#: ../xfburn/xfburn-data-composition.c:346
+#: ../xfburn/xfburn-data-composition.c:348
 #: ../xfburn/xfburn-audio-composition.c:218
-#: ../xfburn/xfburn-audio-composition.c:371
+#: ../xfburn/xfburn-audio-composition.c:373
+msgid "Remove"
+msgstr "Fjern"
+
+#: ../xfburn/xfburn-data-composition.c:348
+#: ../xfburn/xfburn-audio-composition.c:218
+#: ../xfburn/xfburn-audio-composition.c:373
 msgid "Remove the selected file(s) from the composition"
 msgstr "Fjern valgte fil(er) fra komposisjonen"
 
-#: ../xfburn/xfburn-data-composition.c:348
+#: ../xfburn/xfburn-data-composition.c:350
 #: ../xfburn/xfburn-audio-composition.c:220
-#: ../xfburn/xfburn-audio-composition.c:373
+#: ../xfburn/xfburn-audio-composition.c:375
+msgid "Clear"
+msgstr "Tøm"
+
+#: ../xfburn/xfburn-data-composition.c:350
+#: ../xfburn/xfburn-audio-composition.c:220
+#: ../xfburn/xfburn-audio-composition.c:375
 msgid "Clear the content of the composition"
 msgstr "Tøm innholdet av komposisjonen"
 
-#: ../xfburn/xfburn-data-composition.c:359
+#: ../xfburn/xfburn-data-composition.c:361
 msgid "Volume name :"
 msgstr "Volumnavn:"
 
-#: ../xfburn/xfburn-data-composition.c:393
+#: ../xfburn/xfburn-data-composition.c:395
 msgid "Contents"
 msgstr "Innhold"
 
-#: ../xfburn/xfburn-data-composition.c:408
+#: ../xfburn/xfburn-data-composition.c:410
 #: ../xfburn/xfburn-directory-browser.c:113
 msgid "Size"
 msgstr "Størrelse"
 
-#: ../xfburn/xfburn-data-composition.c:411
+#: ../xfburn/xfburn-data-composition.c:413
 msgid "Local Path"
 msgstr "Lokal sti"
 
-#: ../xfburn/xfburn-data-composition.c:688
+#: ../xfburn/xfburn-data-composition.c:690
 msgid "You must give a name to the file."
 msgstr "Du må gi navn til filen."
 
-#: ../xfburn/xfburn-data-composition.c:697
-#: ../xfburn/xfburn-data-composition.c:1214
-#: ../xfburn/xfburn-audio-composition.c:1179
+#: ../xfburn/xfburn-data-composition.c:699
+#: ../xfburn/xfburn-data-composition.c:1216
+#: ../xfburn/xfburn-audio-composition.c:1181
 msgid "A file with the same name is already present in the composition."
 msgstr "En fil med samme navn finnes allerede i komposisjonen"
 
-#: ../xfburn/xfburn-data-composition.c:804
-#: ../xfburn/xfburn-data-composition.c:805
+#: ../xfburn/xfburn-data-composition.c:806
 #: ../xfburn/xfburn-data-composition.c:807
+#: ../xfburn/xfburn-data-composition.c:809
 msgid "New directory"
 msgstr "Ny mappe"
 
-#: ../xfburn/xfburn-data-composition.c:951
-#: ../xfburn/xfburn-audio-composition.c:976
+#: ../xfburn/xfburn-data-composition.c:953
+#: ../xfburn/xfburn-audio-composition.c:978
 msgid "File(s) to add to composition"
 msgstr "Fil(er) å legge til komposisjon"
 
-#: ../xfburn/xfburn-data-composition.c:972
-#: ../xfburn/xfburn-audio-composition.c:216
-#: ../xfburn/xfburn-audio-composition.c:979
-msgid "Add"
-msgstr "Legg til"
-
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:1057
+#: ../xfburn/xfburn-data-composition.c:1059
 #, c-format
 msgid "Data %s~%d"
 msgstr "Data %s~%d"
 
-#: ../xfburn/xfburn-data-composition.c:1293
+#: ../xfburn/xfburn-data-composition.c:1295
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr "%s kan ikke legges til komposisjonen fordi den overstiger maksimal tillatt filstørrelse for ISO 9660-standarden."
 
-#: ../xfburn/xfburn-data-composition.c:1300
+#: ../xfburn/xfburn-data-composition.c:1302
 #, c-format
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
 msgstr "%s er større en hva iso9660 nivå 2 tillater. Dete kan være et problem for gamle systemer og programvare."
 
-#: ../xfburn/xfburn-data-composition.c:1384
-#: ../xfburn/xfburn-audio-composition.c:1355
+#: ../xfburn/xfburn-data-composition.c:1386
+#: ../xfburn/xfburn-audio-composition.c:1357
 msgid "Adding home directory"
 msgstr "Legger til hjemmemappe"
 
-#: ../xfburn/xfburn-data-composition.c:1385
-#: ../xfburn/xfburn-audio-composition.c:1356
+#: ../xfburn/xfburn-data-composition.c:1387
+#: ../xfburn/xfburn-audio-composition.c:1358
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr "Du er i ferd med å legge til hjemmemappen din i komposisjonen. Dette vil sannsynligvis ta lang tid, og vil ikke få plass på en disk.\n\nEr du sikker på at du vil fortsette?"
 
-#: ../xfburn/xfburn-data-composition.c:1553
+#: ../xfburn/xfburn-data-composition.c:1555
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr "Filen «%s» finnes allerede i denne mappen. Filen har ikke blitt lagt til."
 
-#: ../xfburn/xfburn-data-composition.c:1952
+#: ../xfburn/xfburn-data-composition.c:1954
 #, c-format
 msgid "%s: null pointer"
 msgstr "%s: null-peker"
 
-#: ../xfburn/xfburn-data-composition.c:1954
+#: ../xfburn/xfburn-data-composition.c:1956
 #, c-format
 msgid "%s: out of memory"
 msgstr "%s: slapp opp for minne"
 
-#: ../xfburn/xfburn-data-composition.c:1956
+#: ../xfburn/xfburn-data-composition.c:1958
 #, c-format
 msgid "%s: node name not unique"
 msgstr "%s: nodenavn er ikke unikt"
 
-#: ../xfburn/xfburn-data-composition.c:1958
+#: ../xfburn/xfburn-data-composition.c:1960
 #, c-format
 msgid "%s: %s (code %X)"
 msgstr "%s: %s (kode %X)"
 
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1978
+#: ../xfburn/xfburn-data-composition.c:1980
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "Filnavnet «%s» dupliserer «%s»"
 
-#: ../xfburn/xfburn-data-composition.c:2043
+#: ../xfburn/xfburn-data-composition.c:2045
 msgid "Error(s) occured while adding files"
 msgstr "En (eller flere) feil oppstod ved tillegging av filer"
 
-#: ../xfburn/xfburn-data-composition.c:2047
+#: ../xfburn/xfburn-data-composition.c:2049
 msgid "OK"
 msgstr "OK"
 
@@ -724,6 +744,52 @@ msgstr "Filsystem"
 msgid "%s's home"
 msgstr "%s's hjem"
 
+#: ../xfburn/xfburn-udev-manager.c:489
+#, c-format
+msgid "Failed to unmount '%s'. Drive cannot be used for burning."
+msgstr "Klarte ikke avmontere «%s». Kan ikke brenne til disken."
+
+#. || G_OPTION_FLAG_FILENAME
+#: ../xfburn/xfburn-main.c:74
+msgid "Open the burn image dialog, optionally followed by the image filename"
+msgstr "Åpne dialogvinduet «Brenn avtrykk», valgfritt etterfulgt av avtrykkets filnavn"
+
+#: ../xfburn/xfburn-main.c:76
+msgid "Open the blank disc dialog"
+msgstr "Åpne dialogvinduet «Slett disk»"
+
+#: ../xfburn/xfburn-main.c:78
+msgid ""
+"Start a data composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr "Start en datakomposisjon, valgfritt etterfulgt av filer/mapper som skal legges til komposisjonen"
+
+#: ../xfburn/xfburn-main.c:80
+msgid ""
+"Start an audio composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr "Start en lydkomposisjon, valgfritt etterfulgt av filer/mapper som skal legges til komposisjonen"
+
+#: ../xfburn/xfburn-main.c:82
+msgid ""
+"Select the transcoder, run with --transcoder=list to see the available ones"
+msgstr "Velg omkoder, kjør med --transcoder=list for å se tilgjengelige omkodere"
+
+#: ../xfburn/xfburn-main.c:84
+msgid ""
+"Start the file browser in the specified directory, or the current directory "
+"if none is specified (the default is to start in your home directory)"
+msgstr "Start filnavigasjon i angitt mappe, eller gjeldende mappe hvis ingen angis (hjemmemappa er forvalgt plassering)"
+
+#: ../xfburn/xfburn-main.c:86
+msgid "Display program version and exit"
+msgstr "Vis programmets versjonsnummer og avslutt"
+
+#: ../xfburn/xfburn-main.c:88
+msgid ""
+"Show main program even when other action is specified on the command line."
+msgstr "Vis hovedprogrammet selv om en annen handling er angitt på kommandolinja."
+
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
@@ -763,6 +829,30 @@ msgstr "Klarte ikke initialisere %s omkoder: %s\n\t(bruker i stedet basisimpleme
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "Avtrykket «%s» finnes ikke."
+
+#: ../xfburn/xfburn-main-window.c:310
+msgid "New data composition"
+msgstr "Ny datakomposisjon"
+
+#: ../xfburn/xfburn-main-window.c:313
+msgid "New audio composition"
+msgstr "_Ny lydkomposisjon"
+
+#: ../xfburn/xfburn-main-window.c:318 ../xfburn.ui.h:9
+msgid "Blank CD-RW"
+msgstr "Slett CD-RW"
+
+#: ../xfburn/xfburn-main-window.c:321 ../xfburn.ui.h:10
+msgid "Burn Image"
+msgstr "Brenn CD-avtrykk"
+
+#: ../xfburn/xfburn-main-window.c:326 ../xfburn.ui.h:12
+msgid "Refresh"
+msgstr "Oppdater"
+
+#: ../xfburn/xfburn-main-window.c:326
+msgid "Refresh file list"
+msgstr "Oppdater fillisten"
 
 #: ../xfburn/xfburn-main-window.c:573
 msgid "Another cd burning GUI"
@@ -966,10 +1056,16 @@ msgstr "Vis advarsel hvis hastighetsliste er _tom"
 msgid "FIFO buffer size (in kb)"
 msgstr "FIFO-mellomlagerstørrelse (i kb)"
 
+#: ../xfburn/xfburn-preferences-dialog.c:331
+msgid "_Close"
+msgstr "_Lukk"
+
 #: ../xfburn/xfburn-preferences-dialog.c:464
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "Endring av denne innstillingen krever omstart av programmet for å ta full effekt"
 
+#. label
+#: ../xfburn/xfburn-progress-dialog.c:168
 #: ../xfburn/xfburn-progress-dialog.c:172
 #: ../xfburn/xfburn-progress-dialog.c:527
 msgid "Initializing..."
@@ -1001,6 +1097,10 @@ msgstr "Enhetsmellomlager:"
 #: ../xfburn/xfburn-progress-dialog.c:220
 msgid "_Stop"
 msgstr "_Stopp"
+
+#: ../xfburn/xfburn-progress-dialog.c:227
+msgid "Close"
+msgstr "Lukk"
 
 #: ../xfburn/xfburn-progress-dialog.c:348
 msgid "Are you sure you want to abort?"
@@ -1076,16 +1176,8 @@ msgstr "<big>_Lyd-CD</big>"
 msgid "Audio CD playable in regular stereos"
 msgstr "Lyd-CD som kan spilles i vanlige stereoanlegg"
 
-#: ../xfburn/xfburn-audio-composition.c:218
-msgid "Remove"
-msgstr "Fjern"
-
-#: ../xfburn/xfburn-audio-composition.c:220
-msgid "Clear"
-msgstr "Tøm"
-
 #: ../xfburn/xfburn-audio-composition.c:222
-#: ../xfburn/xfburn-audio-composition.c:379
+#: ../xfburn/xfburn-audio-composition.c:381
 msgid "What files can get burned to an audio CD?"
 msgstr "Hvilke filer kan brennes til en lyd-CD?"
 
@@ -1105,31 +1197,39 @@ msgstr "Gi nytt navn på tittel"
 msgid "Rename the title of the selected file"
 msgstr "Gi nytt navn på tittel for den valgte filen"
 
-#: ../xfburn/xfburn-audio-composition.c:410
+#. Note to translators: you can probably keep this as gstreamer,
+#. * unless you have a good reason to call it by another name that
+#. * the user would understand better
+#: ../xfburn/xfburn-audio-composition.c:381
+#: ../xfburn/xfburn-transcoder-gst.c:579
+msgid "gstreamer"
+msgstr "gstreamer"
+
+#: ../xfburn/xfburn-audio-composition.c:412
 msgid "Pos"
 msgstr "Pos"
 
-#: ../xfburn/xfburn-audio-composition.c:412
+#: ../xfburn/xfburn-audio-composition.c:414
 msgid "Length"
 msgstr "Lengde"
 
-#: ../xfburn/xfburn-audio-composition.c:418
+#: ../xfburn/xfburn-audio-composition.c:420
 msgid "Artist"
 msgstr "Artist"
 
-#: ../xfburn/xfburn-audio-composition.c:431
+#: ../xfburn/xfburn-audio-composition.c:433
 msgid "Title"
 msgstr "Tittel"
 
-#: ../xfburn/xfburn-audio-composition.c:442
+#: ../xfburn/xfburn-audio-composition.c:444
 msgid "Filename"
 msgstr "Filnavn"
 
-#: ../xfburn/xfburn-audio-composition.c:589
+#: ../xfburn/xfburn-audio-composition.c:591
 msgid "Cannot burn audio onto a DVD."
 msgstr "Kan ikke brenne lyd på en DVD."
 
-#: ../xfburn/xfburn-audio-composition.c:1263
+#: ../xfburn/xfburn-audio-composition.c:1265
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Du kan kun bruke opp til 99 spor."
 
@@ -1144,6 +1244,12 @@ msgstr "Fortsett til brenning"
 #: ../xfburn/xfburn-disc-usage.c:201
 msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "Do forsøker å brenne mer data enn platen har plass til!"
+
+#. globals
+#: ../xfburn/xfburn-transcoder-basic.c:69
+#: ../xfburn/xfburn-transcoder-gst.c:145
+msgid "An error occurred while setting the burning backend up"
+msgstr "En feil oppsto under oppsett av støttesystemet for brenning"
 
 #: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
@@ -1186,12 +1292,23 @@ msgstr "Klarte ikke åpne %s."
 msgid "Could not open %s: %s"
 msgstr "Klarte ikke åpne %s: %s"
 
-#. Note to translators: you can probably keep this as gstreamer,
-#. * unless you have a good reason to call it by another name that
-#. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:579
-msgid "gstreamer"
-msgstr "gstreamer"
+#: ../xfburn/xfburn-transcoder-gst.c:144
+msgid "An error occurred setting gstreamer up for transcoding"
+msgstr "En feil oppsto under oppsett av gstreamer for omkoding"
+
+#: ../xfburn/xfburn-transcoder-gst.c:146
+#, c-format
+msgid ""
+"%s is missing.\n"
+"\n"
+"You do not have a decoder installed to handle this file.\n"
+"Probably you need to look at the gst-plugins-* packages\n"
+"for the necessary plugins.\n"
+msgstr "%s mangler.\n\nDu har ikke dekoder installert for å håndtere denne filen.\nAntakelig må du sjekke ut gst-plugins-* pakkene\nfor å finne nødvendige dekoder.\n"
+
+#: ../xfburn/xfburn-transcoder-gst.c:542
+msgid "File content has a decoder but is not audio."
+msgstr "Filinnholdet har en dekoder, men er ikke lyd."
 
 #: ../xfburn/xfburn-transcoder-gst.c:585
 msgid ""
@@ -1204,6 +1321,14 @@ msgid ""
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
 msgstr "Gstreamer omkoderen bruker gstreamer\nfunksjoner for å lage lydkomposisjoner.\n\nNær alle lydformater burde være støttet\nhvis korrekte lydplugins er installert.\nHvis en lydfil ikke kan dekodes, sørg for\nat du har alle plugins som ligger i gstreamer\npluginpakkene 'good','bad', og 'ugly' installert."
+
+#: ../xfburn/xfburn-transcoder-gst.c:627
+msgid "No information available on which plugin is required."
+msgstr "Mangler informasjon om hvilket programtillegg som kreves."
+
+#: ../xfburn/xfburn-transcoder-gst.c:629
+msgid "Required plugins: "
+msgstr "Nødvendige programtillegg:"
 
 #: ../xfburn/xfburn-transcoder-gst.c:662 ../xfburn/xfburn-transcoder-gst.c:692
 #, c-format
@@ -1223,6 +1348,10 @@ msgstr "Gstreamer ville ikke omkode (tidsavbrudd)"
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "Klarte ikke endre sanger ved omkoding"
+
+#: ../xfburn/xfburn-transcoder.c:103 ../xfburn/xfburn-transcoder.c:113
+msgid "none"
+msgstr "ingen"
 
 #: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
@@ -1297,6 +1426,58 @@ msgstr "libburn RAW-blokktyper"
 #: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
 msgid "libburn PACKET block types"
 msgstr "libburn PACKET-blokktyper"
+
+#: ../xfburn.ui.h:1
+msgid "_Files"
+msgstr "_Filer"
+
+#: ../xfburn.ui.h:2
+msgid "New _data composition"
+msgstr "Ny _datakomposisjon"
+
+#: ../xfburn.ui.h:3
+msgid "New _audio composition"
+msgstr "Ny l_ydkomposisjon"
+
+#: ../xfburn.ui.h:4
+msgid "_Close composition"
+msgstr "_Lukk komposisjon"
+
+#: ../xfburn.ui.h:5
+msgid "_Quit"
+msgstr "_Avslutt"
+
+#: ../xfburn.ui.h:6
+msgid "_Edit"
+msgstr "_Rediger"
+
+#: ../xfburn.ui.h:7
+msgid "Prefere_nce"
+msgstr "I_nnstillinger"
+
+#: ../xfburn.ui.h:8
+msgid "_Action"
+msgstr "_Handling"
+
+#: ../xfburn.ui.h:11
+msgid "_View"
+msgstr "_Vis"
+
+#: ../xfburn.ui.h:13
+msgid "Show Toolbars"
+msgstr "Vis verktøylinjer"
+
+#: ../xfburn.ui.h:14
+msgid "Show Filebrowser"
+msgstr "Vis filnavigasjon"
+
+#: ../xfburn.ui.h:15
+msgid "_Help"
+msgstr "_Hjelp"
+
+#: ../xfburn.ui.h:16
+msgid "About"
+msgstr "Om"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
