@@ -36,7 +36,7 @@
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
 
-#define XFBURN_DIRECTORY_BROWSER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_DIRECTORY_BROWSER, XfburnDirectoryBrowserPrivate))
+#define XFBURN_DIRECTORY_BROWSER_GET_PRIVATE(obj) (xfburn_directory_browser_get_instance_private (XFBURN_DIRECTORY_BROWSER(obj)))
 
 typedef struct
 {

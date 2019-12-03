@@ -37,7 +37,7 @@
 #include "xfburn-main.h"
 #include "xfburn-utils.h"
 
-#define XFBURN_PROGRESS_DIALOG_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), XFBURN_TYPE_PROGRESS_DIALOG, XfburnProgressDialogPrivate))
+#define XFBURN_PROGRESS_DIALOG_GET_PRIVATE(obj) (xfburn_progress_dialog_get_instance_private (XFBURN_PROGRESS_DIALOG (obj)))
 
 enum {
   BURNING_DONE,
