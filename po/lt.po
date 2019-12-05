@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-22 12:31+0100\n"
-"PO-Revision-Date: 2019-11-22 20:10+0000\n"
+"POT-Creation-Date: 2019-11-23 18:31+0100\n"
+"PO-Revision-Date: 2019-12-05 12:07+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-apps/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "trukmė"
 
 #: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
-msgstr "Įrašomi podėlio duomenys..."
+msgstr "Išvalomas podėlis..."
 
 #: ../xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
@@ -743,39 +743,39 @@ msgstr "%s namai"
 #: ../xfburn/xfburn-udev-manager.c:489
 #, c-format
 msgid "Failed to unmount '%s'. Drive cannot be used for burning."
-msgstr ""
+msgstr "Nepavyko atjungti \"%s\". Diskasukis negali būti naudojamas rašymui."
 
 #. || G_OPTION_FLAG_FILENAME
 #: ../xfburn/xfburn-main.c:74
 msgid "Open the burn image dialog, optionally followed by the image filename"
-msgstr ""
+msgstr "Atverti atvaizdžio rašymo dialogą, po kurio pasirinktinai seks atvaizdžio failo pavadinimas"
 
 #: ../xfburn/xfburn-main.c:76
 msgid "Open the blank disc dialog"
-msgstr ""
+msgstr "Atverti tuščio disko dialogą"
 
 #: ../xfburn/xfburn-main.c:78
 msgid ""
 "Start a data composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "Pradėti duomenų projektą, po kurio pasirinktinai seks į projektą pridedami failai/katalogai"
 
 #: ../xfburn/xfburn-main.c:80
 msgid ""
 "Start an audio composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "Pradėti garso projektą, po kurio pasirinktinai seks į projektą pridedami failai/katalogai"
 
 #: ../xfburn/xfburn-main.c:82
 msgid ""
 "Select the transcoder, run with --transcoder=list to see the available ones"
-msgstr ""
+msgstr "Pasirinkti perkoduotoją, paleiskite su --transcoder=list norėdami matyti prieinamų perkoduotojų sąrašą"
 
 #: ../xfburn/xfburn-main.c:84
 msgid ""
 "Start the file browser in the specified directory, or the current directory "
 "if none is specified (the default is to start in your home directory)"
-msgstr ""
+msgstr "Paleisti failų naršyklę nurodytame kataloge arba, jeigu joks nėra nurodytas, esamame kataloge (pagal numatymą, paleisti failų naršyklę jūsų namų kataloge)"
 
 #: ../xfburn/xfburn-main.c:86
 msgid "Display program version and exit"
@@ -834,15 +834,15 @@ msgstr "Naujas duomenų projektas"
 msgid "New audio composition"
 msgstr "Naujas garso projektas"
 
-#: ../xfburn/xfburn-main-window.c:318 ../xfburn.ui.h:7
+#: ../xfburn/xfburn-main-window.c:318 ../xfburn.ui.h:9
 msgid "Blank CD-RW"
 msgstr "Trinti CD-RW"
 
-#: ../xfburn/xfburn-main-window.c:321 ../xfburn.ui.h:8
+#: ../xfburn/xfburn-main-window.c:321 ../xfburn.ui.h:10
 msgid "Burn Image"
 msgstr "Įrašyti atvaizdį"
 
-#: ../xfburn/xfburn-main-window.c:326 ../xfburn.ui.h:10
+#: ../xfburn/xfburn-main-window.c:326 ../xfburn.ui.h:12
 msgid "Refresh"
 msgstr "Įkelti iš naujo"
 
@@ -1245,7 +1245,7 @@ msgstr "Jūs bandote į diską įrašyti daugiau negu jame telpa."
 #: ../xfburn/xfburn-transcoder-basic.c:69
 #: ../xfburn/xfburn-transcoder-gst.c:145
 msgid "An error occurred while setting the burning backend up"
-msgstr ""
+msgstr "Nustatant rašymo vidinę pusę, įvyko klaida"
 
 #: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
@@ -1290,7 +1290,7 @@ msgstr "Nepavyko atverti %s: %s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:144
 msgid "An error occurred setting gstreamer up for transcoding"
-msgstr ""
+msgstr "Nustatant gstreamer perkodavimui, įvyko klaida"
 
 #: ../xfburn/xfburn-transcoder-gst.c:146
 #, c-format
@@ -1428,42 +1428,50 @@ msgid "_Files"
 msgstr "_Failai"
 
 #: ../xfburn.ui.h:2
+msgid "New _data composition"
+msgstr "Naujas _duomenų projektas"
+
+#: ../xfburn.ui.h:3
+msgid "New _audio composition"
+msgstr "Naujas _garso projektas"
+
+#: ../xfburn.ui.h:4
 msgid "_Close composition"
 msgstr "_Užverti projektą"
 
-#: ../xfburn.ui.h:3
+#: ../xfburn.ui.h:5
 msgid "_Quit"
 msgstr "_Išeiti"
 
-#: ../xfburn.ui.h:4
+#: ../xfburn.ui.h:6
 msgid "_Edit"
 msgstr "_Taisa"
 
-#: ../xfburn.ui.h:5
+#: ../xfburn.ui.h:7
 msgid "Prefere_nce"
 msgstr "_Nuostata"
 
-#: ../xfburn.ui.h:6
+#: ../xfburn.ui.h:8
 msgid "_Action"
 msgstr "_Veiksmas"
 
-#: ../xfburn.ui.h:9
+#: ../xfburn.ui.h:11
 msgid "_View"
 msgstr "R_odinys"
 
-#: ../xfburn.ui.h:11
+#: ../xfburn.ui.h:13
 msgid "Show Toolbars"
 msgstr "Rodyti įrankių juostas"
 
-#: ../xfburn.ui.h:12
+#: ../xfburn.ui.h:14
 msgid "Show Filebrowser"
 msgstr "Rodyti failų naršyklę"
 
-#: ../xfburn.ui.h:13
+#: ../xfburn.ui.h:15
 msgid "_Help"
 msgstr "Ž_inynas"
 
-#: ../xfburn.ui.h:14
+#: ../xfburn.ui.h:16
 msgid "About"
 msgstr "Apie"
 
