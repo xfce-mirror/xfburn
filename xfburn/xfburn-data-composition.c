@@ -273,16 +273,6 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
 
-  // TODO: This string should be exported as .ui file
-  // Otherwise the label text may not be included in the translations
-  const gchar ui_string[] = "<interface><menu id=\"popup-menu\">"
-    "<section>"
-    "<item><attribute name=\"action\">win.create-dir</attribute><attribute name=\"label\" translatable=\"yes\">Create directory</attribute></item>"
-    "</section><section>"
-    "<item><attribute name=\"action\">win.rename-file</attribute><attribute name=\"label\" translatable=\"yes\">Rename</attribute></item>"
-    "<item><attribute name=\"action\">win.remove-file</attribute><attribute name=\"label\" translatable=\"yes\">Remove</attribute></item>"
-    "</section></menu></interface>";
-
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, DATA_COMPOSITION_DND_TARGET_INSIDE },
                                 { "text/uri-list", 0, DATA_COMPOSITION_DND_TARGET_TEXT_URI_LIST },
@@ -310,8 +300,10 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 
   priv->ui_manager = gtk_builder_new ();
   gtk_builder_set_translation_domain(priv->ui_manager, GETTEXT_PACKAGE);
-  
-  gtk_builder_add_from_string (priv->ui_manager, ui_string, -1, NULL);
+
+  xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
+  gchar *popup_ui = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn-popup-menus.ui");
+  gtk_builder_add_from_file (priv->ui_manager, popup_ui, NULL);
 
   hbox_toolbar = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_box_pack_start (GTK_BOX (composition), hbox_toolbar, FALSE, TRUE, 0);
@@ -592,10 +584,10 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
       gtk_tree_path_free (path);
     }
 
-    model = G_MENU_MODEL (gtk_builder_get_object (priv->ui_manager, "popup-menu"));
+    model = G_MENU_MODEL (gtk_builder_get_object (priv->ui_manager, "data-popup-menu"));
     menu_popup = gtk_menu_new_from_model (model);
     gtk_widget_insert_action_group(GTK_WIDGET(menu_popup), "win", G_ACTION_GROUP(priv->action_group));
-    
+
     GList *childs = gtk_container_get_children (GTK_CONTAINER (menu_popup));
     menuitem_remove = GTK_WIDGET (childs->next->next->data);
     menuitem_rename = GTK_WIDGET (childs->next->data);
