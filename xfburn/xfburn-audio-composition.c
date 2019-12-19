@@ -291,20 +291,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   GSimpleAction *action = NULL;
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
-
-// TODO: This string should be exported as .ui file
-// Otherwise the label text may not be included in the translations
-#if 0 /* CDTEXT */
-  const gchar ui_string[] = "<ui> <popup name=\"popup-menu\">"
-    "<menuitem action=\"rename-artist\"/>" "<menuitem action=\"rename-title\"/>" "<menuitem action=\"remove-file\"/>" "</popup></ui>";
-#else
-  // const gchar ui_string[] = "<ui> <popup name=\"popup-menu\"> <menuitem action=\"remove-file\"/>" "</popup></ui>";
-  const gchar ui_string[] = "<interface><menu id=\"popup-menu\">"
-    "<section>"
-    "<item><attribute name=\"label\" translatable=\"yes\">Remove</attribute><attribute name=\"action\">win.remove-file</attribute></item>"
-    "</section>"
-    "</menu></interface>";
-#endif /* CDTEXT */
+  gchar *popup_ui;
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE },
@@ -324,6 +311,9 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   screen = gtk_widget_get_screen (GTK_WIDGET (composition));
   icon_theme = gtk_icon_theme_get_for_screen (screen);
 
+  xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
+  popup_ui = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn-popup-menus.ui");
+
   gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
   if (!icon_directory)
     icon_directory = gtk_icon_theme_load_icon (icon_theme, "folder", x, 0, NULL);
@@ -336,7 +326,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
                                 GTK_WIDGET (composition));
   priv->ui_manager = gtk_builder_new ();
   gtk_builder_set_translation_domain (priv->ui_manager, GETTEXT_PACKAGE);
-  gtk_builder_add_from_string (priv->ui_manager, ui_string, -1, NULL);
+  gtk_builder_add_from_file(priv->ui_manager, popup_ui, NULL);
   gtk_widget_insert_action_group(GTK_WIDGET (composition), "win", G_ACTION_GROUP (priv->action_group));
 
   hbox_toolbar = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
@@ -664,7 +654,11 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
       gtk_tree_path_free (path);
     }
 
-    model = G_MENU_MODEL (gtk_builder_get_object (priv->ui_manager, "popup-menu"));
+#if 0 /* CDTEXT */
+    model = G_MENU_MODEL (gtk_builder_get_object (priv->ui_manager, "audio-cdtext-popup-menu"));
+#else
+    model = G_MENU_MODEL (gtk_builder_get_object (priv->ui_manager, "audio-popup-menu"));
+#endif /* CDTEXT */
     menu_popup = gtk_menu_new_from_model (model);
     gtk_widget_insert_action_group(GTK_WIDGET(menu_popup), "win", G_ACTION_GROUP (priv->action_group));
     menuitem_remove = GTK_WIDGET (gtk_container_get_children (GTK_CONTAINER (menu_popup))->data);
