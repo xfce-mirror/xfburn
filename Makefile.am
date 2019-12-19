@@ -9,7 +9,8 @@ AUTOMAKE_OPTIONS = dist-bzip2
 
 uidir = $(datadir)/xfburn
 ui_DATA =  	                                                        \
-        xfburn.ui							\
+	xfburn.ui							\
+	xfburn-popup-menus.ui							\
 	xfburn-toolbars.ui
 
 #
