@@ -257,9 +257,10 @@ xfburn_udev_manager_get_devices (XfburnUdevManager *udevman, gint *drives, gint 
         name = xfburn_device_set_name (device, str_vendor, str_model);
 
         /* revision */
-	rev = g_udev_device_get_sysfs_attr(l->data, "device/rev");
-        if (rev != NULL)
-            g_object_set (G_OBJECT (device), "revision", rev, NULL);
+	rev = g_udev_device_get_sysfs_attr (l->data, "device/rev");
+        if (rev == NULL)
+          rev = g_udev_device_get_property (l->data, "ID_REVISION");
+        g_object_set (G_OBJECT (device), "revision", rev, NULL);
 
         addr = g_udev_device_get_device_file(l->data);
 #ifdef DEBUG_NULL_DEVICE
