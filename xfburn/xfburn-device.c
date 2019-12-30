@@ -33,6 +33,7 @@ enum {
   PROP_0,
   PROP_NAME,
   PROP_ADDRESS,
+  PROP_REVISION,
   PROP_ACCESSIBLE,
   PROP_SUPPORTED_SPEEDS,
   PROP_DISC_STATUS,
@@ -65,6 +66,7 @@ typedef struct _XfburnDevicePrivate XfburnDevicePrivate;
 struct _XfburnDevicePrivate {
   gchar *name;
   gchar *addr;
+  gchar *rev;
   gboolean details_known;
 
   gint buffer_size;
@@ -107,6 +109,9 @@ xfburn_device_get_property (GObject *object, guint property_id,
       break;
     case PROP_ADDRESS:
       g_value_set_string (value, priv->addr);
+      break;
+    case PROP_REVISION:
+      g_value_set_string (value, priv->rev);
       break;
     case PROP_SUPPORTED_SPEEDS:
       g_value_set_pointer (value, priv->supported_speeds);
@@ -170,6 +175,9 @@ xfburn_device_set_property (GObject *object, guint property_id,
       break;
     case PROP_ADDRESS:
       priv->addr = g_value_dup_string (value);
+      break;
+    case PROP_REVISION:
+      priv->rev = g_value_dup_string (value);
       break;
     case PROP_SUPPORTED_SPEEDS:
       priv->supported_speeds = g_value_get_pointer (value);
@@ -249,6 +257,9 @@ xfburn_device_class_init (XfburnDeviceClass *klass)
   g_object_class_install_property (object_class, PROP_ADDRESS, 
                                    g_param_spec_string ("address", _("Device address"),
                                                         _("Device address"), "", G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_REVISION, 
+                                   g_param_spec_string ("revision", _("Device revision"),
+                                                        _("Device Revision"), "", G_PARAM_READWRITE));
   g_object_class_install_property (object_class, PROP_SUPPORTED_SPEEDS, 
                                    g_param_spec_pointer ("supported-speeds", _("Burn speeds supported by the device"),
                                                         _("Burn speeds supported by the device"), G_PARAM_READABLE));

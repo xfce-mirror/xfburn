@@ -276,9 +276,14 @@ get_libburn_device_list (XfburnDeviceList *devlist)
   for (i = 0; i < priv->num_drives; i++) {
     XfburnDevice *device = xfburn_device_new ();
     const gchar *name;
-    char addr[BURN_DRIVE_ADR_LEN];;
-    
+    char addr[BURN_DRIVE_ADR_LEN];
+    char rev[5];
+
     name = xfburn_device_set_name (device, drives[i].vendor, drives[i].product);
+    strncpy (rev, drives[i].revision, 5);
+    rev[5] = '\0';
+
+    g_object_set (device, "revision", rev, NULL);
 
     xfburn_device_fillin_libburn_info (device, &drives[i]);
 

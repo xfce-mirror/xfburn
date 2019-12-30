@@ -67,6 +67,7 @@ enum
 {
   DEVICE_LIST_COLUMN_ICON,
   DEVICE_LIST_COLUMN_NAME,
+  DEVICE_LIST_COLUMN_REV,
   DEVICE_LIST_COLUMN_NODE,
   DEVICE_LIST_COLUMN_CDR,
   DEVICE_LIST_COLUMN_CDRW,
@@ -227,7 +228,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_widget_show (scrolled_window);
   gtk_box_pack_start (GTK_BOX (vbox2), scrolled_window, TRUE, TRUE, BORDER);
 
-  store = gtk_list_store_new (DEVICE_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
+  store = gtk_list_store_new (DEVICE_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN,
                               G_TYPE_BOOLEAN);
   priv->treeview_devices = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
@@ -252,6 +253,8 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_tree_view_column_set_attributes (column_name, cell_name, "text", DEVICE_LIST_COLUMN_NAME, NULL);
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (priv->treeview_devices), column_name);
+  gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Revision"),
+                                               gtk_cell_renderer_text_new (), "text", DEVICE_LIST_COLUMN_REV, NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Node"),
                                                gtk_cell_renderer_text_new (), "text", DEVICE_LIST_COLUMN_NODE, NULL);
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (priv->treeview_devices), -1, _("Write CD-R"),
@@ -417,28 +420,30 @@ refresh_devices_list (XfburnPreferencesDialog * dialog)
   while (device) {
     GtkTreeIter iter;
     XfburnDevice *device_data;
-    gchar *name, *addr;
+    gchar *name, *addr, *rev;
     gboolean cdr, cdrw, dvdr, dvdram, bd;
 
     device_data = (XfburnDevice *) device->data;
 
     g_object_get (G_OBJECT (device_data), "name", &name, "address", &addr,
-                  "cdr", &cdr, "cdrw", &cdrw, "dvdr", &dvdr, "dvdram", &dvdram,
-                  "bd", &bd, NULL);
+                  "revision", &rev, "cdr", &cdr, "cdrw", &cdrw, "dvdr", &dvdr,
+                  "dvdram", &dvdram, "bd", &bd, NULL);
 
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                         DEVICE_LIST_COLUMN_NAME, name,
+                        DEVICE_LIST_COLUMN_REV, rev,
                         DEVICE_LIST_COLUMN_NODE, addr,
                         DEVICE_LIST_COLUMN_CDR, cdr,
                         DEVICE_LIST_COLUMN_CDRW, cdrw,
-                        DEVICE_LIST_COLUMN_DVDR, dvdr, 
-                        DEVICE_LIST_COLUMN_DVDRAM, dvdram, 
+                        DEVICE_LIST_COLUMN_DVDR, dvdr,
+                        DEVICE_LIST_COLUMN_DVDRAM, dvdram,
                         DEVICE_LIST_COLUMN_BD, bd,
                         -1);
 
     g_free (name);
     g_free (addr);
+    g_free (rev);
 
     device = g_list_next (device);
   }

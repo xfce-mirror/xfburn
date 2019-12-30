@@ -232,7 +232,7 @@ xfburn_udev_manager_get_devices (XfburnUdevManager *udevman, gint *drives, gint 
 
       if (cdr || dvdr || dvdram || bdr) {
         XfburnDevice *device;
-        const gchar *addr, *name, *str_model, *str_vendor; 
+        const gchar *addr, *name, *rev, *str_model, *str_vendor;
 
         device = xfburn_device_new ();
 
@@ -253,8 +253,13 @@ xfburn_udev_manager_get_devices (XfburnUdevManager *udevman, gint *drives, gint 
           str_model = g_udev_device_get_property (l->data, "ID_MODEL");
         if (str_model == NULL)
           str_model = g_udev_device_get_sysfs_attr (l->data, "product");
-							
+
         name = xfburn_device_set_name (device, str_vendor, str_model);
+
+        /* revision */
+	rev = g_udev_device_get_sysfs_attr(l->data, "device/rev");
+        if (rev != NULL)
+            g_object_set (G_OBJECT (device), "revision", rev, NULL);
 
         addr = g_udev_device_get_device_file(l->data);
 #ifdef DEBUG_NULL_DEVICE
