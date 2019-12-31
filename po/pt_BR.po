@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-17 06:31+0200\n"
-"PO-Revision-Date: 2019-10-19 11:52+0000\n"
+"POT-Creation-Date: 2019-12-20 06:31+0100\n"
+"PO-Revision-Date: 2019-12-31 02:20+0000\n"
 "Last-Translator: Michael Martins <michaelfm21@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/xfce/xfce-apps/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -134,6 +134,21 @@ msgstr "Opções"
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:167
 msgid "E_ject disk"
 msgstr "E_jetar disco"
+
+#. action buttons
+#. align = gtk_alignment_new (0, 0, 0, 0);
+#. gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
+#. gtk_widget_show (align);
+#. gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
+#. action buttons
+#: ../xfburn/xfburn-blank-dialog.c:213
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:254
+#: ../xfburn/xfburn-burn-image-dialog.c:218
+#: ../xfburn/xfburn-copy-cd-dialog.c:165
+#: ../xfburn/xfburn-copy-dvd-dialog.c:162 ../xfburn/xfburn-utils.c:131
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:188
+msgid "_Cancel"
+msgstr "_Cancelar"
 
 #: ../xfburn/xfburn-blank-dialog.c:217
 msgid "_Blank"
@@ -289,19 +304,6 @@ msgstr "Imagens ISO"
 msgid "_Quit after success"
 msgstr "_Sair após concluir com sucesso"
 
-#. action buttons
-#. align = gtk_alignment_new (0, 0, 0, 0);
-#. gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
-#. gtk_widget_show (align);
-#. gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
-#. action buttons
-#: ../xfburn/xfburn-burn-image-dialog.c:218
-#: ../xfburn/xfburn-copy-cd-dialog.c:165
-#: ../xfburn/xfburn-copy-dvd-dialog.c:162
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:188
-msgid "_Cancel"
-msgstr "_Cancelar"
-
 #: ../xfburn/xfburn-burn-image-dialog.c:222
 msgid "_Burn image"
 msgstr "_Gravar imagem"
@@ -419,144 +421,162 @@ msgstr "_Copiar DVD"
 msgid "Create ISO from CD"
 msgstr "Criar ISO do CD"
 
-#: ../xfburn/xfburn-data-composition.c:339
+#: ../xfburn/xfburn-data-composition.c:333
+#: ../xfburn/xfburn-data-composition.c:966
 #: ../xfburn/xfburn-audio-composition.c:216
-#: ../xfburn/xfburn-audio-composition.c:366
+#: ../xfburn/xfburn-audio-composition.c:358
+#: ../xfburn/xfburn-audio-composition.c:975
+msgid "Add"
+msgstr "Adicionar"
+
+#: ../xfburn/xfburn-data-composition.c:333
+#: ../xfburn/xfburn-audio-composition.c:216
+#: ../xfburn/xfburn-audio-composition.c:358
 msgid "Add the selected file(s) to the composition"
 msgstr "Adiciona o(s) arquivo(s) selecionado(s) à composição"
 
-#: ../xfburn/xfburn-data-composition.c:341
+#: ../xfburn/xfburn-data-composition.c:335 ../xfburn-popup-menus.ui.h:1
+msgid "Create directory"
+msgstr "Criar diretório"
+
+#: ../xfburn/xfburn-data-composition.c:335
 msgid "Add a new directory to the composition"
 msgstr "Adiciona um novo diretório à composição"
 
-#: ../xfburn/xfburn-data-composition.c:346
+#: ../xfburn/xfburn-data-composition.c:340
 #: ../xfburn/xfburn-audio-composition.c:218
-#: ../xfburn/xfburn-audio-composition.c:371
+#: ../xfburn/xfburn-audio-composition.c:363 ../xfburn-popup-menus.ui.h:3
+msgid "Remove"
+msgstr "Remover"
+
+#: ../xfburn/xfburn-data-composition.c:340
+#: ../xfburn/xfburn-audio-composition.c:218
+#: ../xfburn/xfburn-audio-composition.c:363
 msgid "Remove the selected file(s) from the composition"
 msgstr "Remove o(s) arquivo(s) selecionado(s) da composição"
 
-#: ../xfburn/xfburn-data-composition.c:348
+#: ../xfburn/xfburn-data-composition.c:342
 #: ../xfburn/xfburn-audio-composition.c:220
-#: ../xfburn/xfburn-audio-composition.c:373
+#: ../xfburn/xfburn-audio-composition.c:365
+msgid "Clear"
+msgstr "Limpar"
+
+#: ../xfburn/xfburn-data-composition.c:342
+#: ../xfburn/xfburn-audio-composition.c:220
+#: ../xfburn/xfburn-audio-composition.c:365
 msgid "Clear the content of the composition"
 msgstr "Limpa o conteúdo da composição"
 
-#: ../xfburn/xfburn-data-composition.c:359
+#: ../xfburn/xfburn-data-composition.c:353
 msgid "Volume name :"
 msgstr "Nome do volume :"
 
-#: ../xfburn/xfburn-data-composition.c:393
+#: ../xfburn/xfburn-data-composition.c:387
 msgid "Contents"
 msgstr "Conteúdo"
 
-#: ../xfburn/xfburn-data-composition.c:408
+#: ../xfburn/xfburn-data-composition.c:402
 #: ../xfburn/xfburn-directory-browser.c:113
 msgid "Size"
 msgstr "Tamanho"
 
-#: ../xfburn/xfburn-data-composition.c:411
+#: ../xfburn/xfburn-data-composition.c:405
 msgid "Local Path"
 msgstr "Caminho local"
 
-#: ../xfburn/xfburn-data-composition.c:688
+#: ../xfburn/xfburn-data-composition.c:682
 msgid "You must give a name to the file."
 msgstr "Você deve dar um nome ao arquivo."
 
-#: ../xfburn/xfburn-data-composition.c:697
-#: ../xfburn/xfburn-data-composition.c:1214
-#: ../xfburn/xfburn-audio-composition.c:1179
+#: ../xfburn/xfburn-data-composition.c:691
+#: ../xfburn/xfburn-data-composition.c:1208
+#: ../xfburn/xfburn-audio-composition.c:1175
 msgid "A file with the same name is already present in the composition."
 msgstr "Um arquivo com o mesmo nome já se encontra na composição."
 
-#: ../xfburn/xfburn-data-composition.c:804
-#: ../xfburn/xfburn-data-composition.c:805
-#: ../xfburn/xfburn-data-composition.c:807
+#: ../xfburn/xfburn-data-composition.c:798
+#: ../xfburn/xfburn-data-composition.c:799
+#: ../xfburn/xfburn-data-composition.c:801
 msgid "New directory"
 msgstr "Novo diretório"
 
-#: ../xfburn/xfburn-data-composition.c:951
-#: ../xfburn/xfburn-audio-composition.c:976
+#: ../xfburn/xfburn-data-composition.c:945
+#: ../xfburn/xfburn-audio-composition.c:972
 msgid "File(s) to add to composition"
 msgstr "Arquivo(s) para adicionar à composição"
 
-#: ../xfburn/xfburn-data-composition.c:972
-#: ../xfburn/xfburn-audio-composition.c:216
-#: ../xfburn/xfburn-audio-composition.c:979
-msgid "Add"
-msgstr "Adicionar"
-
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:1057
+#: ../xfburn/xfburn-data-composition.c:1051
 #, c-format
 msgid "Data %s~%d"
 msgstr "Dados %s~%d"
 
-#: ../xfburn/xfburn-data-composition.c:1293
+#: ../xfburn/xfburn-data-composition.c:1287
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr "%s não pode ser adicionado à composição porque excede o tamanho máximo de arquivos para iso9600."
 
-#: ../xfburn/xfburn-data-composition.c:1300
+#: ../xfburn/xfburn-data-composition.c:1294
 #, c-format
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
 msgstr "%s é maior do que o permitido pelo nível 2 do iso9660. Isso pode ser um problema para softwares ou sistemas antigos."
 
-#: ../xfburn/xfburn-data-composition.c:1384
-#: ../xfburn/xfburn-audio-composition.c:1355
+#: ../xfburn/xfburn-data-composition.c:1378
+#: ../xfburn/xfburn-audio-composition.c:1351
 msgid "Adding home directory"
 msgstr "Adicionando diretório pessoal"
 
-#: ../xfburn/xfburn-data-composition.c:1385
-#: ../xfburn/xfburn-audio-composition.c:1356
+#: ../xfburn/xfburn-data-composition.c:1379
+#: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr "Você está prestes a adicionar a sua pasta pessoal à composição. É bem provável que isso demore muito e que também seja muito grande para caber em um disco.\n\nVocê tem certeza que deseja continuar?"
 
-#: ../xfburn/xfburn-data-composition.c:1553
+#: ../xfburn/xfburn-data-composition.c:1547
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr "Um arquivo chamado \"%s\" já existe neste diretório, o arquivo não foi adicionado."
 
-#: ../xfburn/xfburn-data-composition.c:1952
+#: ../xfburn/xfburn-data-composition.c:1946
 #, c-format
 msgid "%s: null pointer"
 msgstr "%s: ponteiro nulo"
 
-#: ../xfburn/xfburn-data-composition.c:1954
+#: ../xfburn/xfburn-data-composition.c:1948
 #, c-format
 msgid "%s: out of memory"
 msgstr "%s: memória insuficiente"
 
-#: ../xfburn/xfburn-data-composition.c:1956
+#: ../xfburn/xfburn-data-composition.c:1950
 #, c-format
 msgid "%s: node name not unique"
 msgstr "%s: nome de nodo não único"
 
-#: ../xfburn/xfburn-data-composition.c:1958
+#: ../xfburn/xfburn-data-composition.c:1952
 #, c-format
 msgid "%s: %s (code %X)"
 msgstr "%s: %s (código %X)"
 
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1978
+#: ../xfburn/xfburn-data-composition.c:1972
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "Duplicar o nome do arquivo \"%s\" para \"%s\""
 
-#: ../xfburn/xfburn-data-composition.c:2043
+#: ../xfburn/xfburn-data-composition.c:2037
 msgid "Error(s) occured while adding files"
 msgstr "Erro(s) ocorreu ao adicionar arquivos"
 
-#: ../xfburn/xfburn-data-composition.c:2047
+#: ../xfburn/xfburn-data-composition.c:2041
 msgid "OK"
 msgstr "OK"
 
@@ -724,6 +744,52 @@ msgstr "Sistema de arquivos"
 msgid "%s's home"
 msgstr "Pasta pessoal de %s"
 
+#: ../xfburn/xfburn-udev-manager.c:489
+#, c-format
+msgid "Failed to unmount '%s'. Drive cannot be used for burning."
+msgstr ""
+
+#. || G_OPTION_FLAG_FILENAME
+#: ../xfburn/xfburn-main.c:74
+msgid "Open the burn image dialog, optionally followed by the image filename"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:76
+msgid "Open the blank disc dialog"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:78
+msgid ""
+"Start a data composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:80
+msgid ""
+"Start an audio composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:82
+msgid ""
+"Select the transcoder, run with --transcoder=list to see the available ones"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:84
+msgid ""
+"Start the file browser in the specified directory, or the current directory "
+"if none is specified (the default is to start in your home directory)"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:86
+msgid "Display program version and exit"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:88
+msgid ""
+"Show main program even when other action is specified on the command line."
+msgstr ""
+
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
 msgstr "Xfburn"
@@ -763,6 +829,30 @@ msgstr "Falhou ao inicializar o transcodificador %s: %s\n\t(voltando para a impl
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "O arquivo de imagem \"%s\" não existe."
+
+#: ../xfburn/xfburn-main-window.c:310
+msgid "New data composition"
+msgstr "Nova composição de dados"
+
+#: ../xfburn/xfburn-main-window.c:313
+msgid "New audio composition"
+msgstr "Nova composição de áudio"
+
+#: ../xfburn/xfburn-main-window.c:318 ../xfburn.ui.h:9
+msgid "Blank CD-RW"
+msgstr "Apagar CD-RW"
+
+#: ../xfburn/xfburn-main-window.c:321 ../xfburn.ui.h:10
+msgid "Burn Image"
+msgstr "Gravar imagem"
+
+#: ../xfburn/xfburn-main-window.c:326 ../xfburn.ui.h:12
+msgid "Refresh"
+msgstr "Atualizar"
+
+#: ../xfburn/xfburn-main-window.c:326
+msgid "Refresh file list"
+msgstr "Atualizar lista de arquivos"
 
 #: ../xfburn/xfburn-main-window.c:573
 msgid "Another cd burning GUI"
@@ -966,10 +1056,16 @@ msgstr "Mostrar _aviso quando a lista de velocidades estiver vazia"
 msgid "FIFO buffer size (in kb)"
 msgstr "Tamanho do buffer FIFO (em KB)"
 
+#: ../xfburn/xfburn-preferences-dialog.c:331
+msgid "_Close"
+msgstr "F_echar"
+
 #: ../xfburn/xfburn-preferences-dialog.c:464
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "As modificações desta configuração só terão efeito após a reinicialização do programa."
 
+#. label
+#: ../xfburn/xfburn-progress-dialog.c:168
 #: ../xfburn/xfburn-progress-dialog.c:172
 #: ../xfburn/xfburn-progress-dialog.c:527
 msgid "Initializing..."
@@ -1001,6 +1097,10 @@ msgstr "Buffer do dispositivo:"
 #: ../xfburn/xfburn-progress-dialog.c:220
 msgid "_Stop"
 msgstr "_Parar"
+
+#: ../xfburn/xfburn-progress-dialog.c:227
+msgid "Close"
+msgstr "Fechar"
 
 #: ../xfburn/xfburn-progress-dialog.c:348
 msgid "Are you sure you want to abort?"
@@ -1076,20 +1176,12 @@ msgstr "<big>CD de á_udio</big>"
 msgid "Audio CD playable in regular stereos"
 msgstr "CD de áudio reproduzível em equipamentos de som comuns"
 
-#: ../xfburn/xfburn-audio-composition.c:218
-msgid "Remove"
-msgstr "Remover"
-
-#: ../xfburn/xfburn-audio-composition.c:220
-msgid "Clear"
-msgstr "Limpar"
-
 #: ../xfburn/xfburn-audio-composition.c:222
-#: ../xfburn/xfburn-audio-composition.c:379
+#: ../xfburn/xfburn-audio-composition.c:371
 msgid "What files can get burned to an audio CD?"
 msgstr "Quais arquivos podem ser gravados em um CD de áudio?"
 
-#: ../xfburn/xfburn-audio-composition.c:226
+#: ../xfburn/xfburn-audio-composition.c:226 ../xfburn-popup-menus.ui.h:4
 msgid "Rename Artist"
 msgstr "Renomear artista"
 
@@ -1097,7 +1189,7 @@ msgstr "Renomear artista"
 msgid "Rename the artist of the selected file"
 msgstr "Renomeia o artista do arquivo selecionado"
 
-#: ../xfburn/xfburn-audio-composition.c:228
+#: ../xfburn/xfburn-audio-composition.c:228 ../xfburn-popup-menus.ui.h:5
 msgid "Rename Title"
 msgstr "Renomear título"
 
@@ -1105,31 +1197,39 @@ msgstr "Renomear título"
 msgid "Rename the title of the selected file"
 msgstr "Renomeia o título do arquivo selecionado"
 
-#: ../xfburn/xfburn-audio-composition.c:410
+#. Note to translators: you can probably keep this as gstreamer,
+#. * unless you have a good reason to call it by another name that
+#. * the user would understand better
+#: ../xfburn/xfburn-audio-composition.c:371
+#: ../xfburn/xfburn-transcoder-gst.c:579
+msgid "gstreamer"
+msgstr "gstreamer"
+
+#: ../xfburn/xfburn-audio-composition.c:402
 msgid "Pos"
 msgstr "Pos"
 
-#: ../xfburn/xfburn-audio-composition.c:412
+#: ../xfburn/xfburn-audio-composition.c:404
 msgid "Length"
 msgstr "Comprimento"
 
-#: ../xfburn/xfburn-audio-composition.c:418
+#: ../xfburn/xfburn-audio-composition.c:410
 msgid "Artist"
 msgstr "Artista"
 
-#: ../xfburn/xfburn-audio-composition.c:431
+#: ../xfburn/xfburn-audio-composition.c:423
 msgid "Title"
 msgstr "Título"
 
-#: ../xfburn/xfburn-audio-composition.c:442
+#: ../xfburn/xfburn-audio-composition.c:434
 msgid "Filename"
 msgstr "Arquivo"
 
-#: ../xfburn/xfburn-audio-composition.c:589
+#: ../xfburn/xfburn-audio-composition.c:581
 msgid "Cannot burn audio onto a DVD."
 msgstr "Não é possível gravar áudio em um DVD."
 
-#: ../xfburn/xfburn-audio-composition.c:1263
+#: ../xfburn/xfburn-audio-composition.c:1259
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Você tem somente um máximo de 99 trilhas."
 
@@ -1144,6 +1244,12 @@ msgstr "Iniciar a gravação"
 #: ../xfburn/xfburn-disc-usage.c:201
 msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "Você está tentando gravar mais dados do que o disco pode suportar."
+
+#. globals
+#: ../xfburn/xfburn-transcoder-basic.c:69
+#: ../xfburn/xfburn-transcoder-gst.c:145
+msgid "An error occurred while setting the burning backend up"
+msgstr ""
 
 #: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
@@ -1186,12 +1292,23 @@ msgstr "Não foi possível abrir %s."
 msgid "Could not open %s: %s"
 msgstr "Não foi possível abrir %s: %s"
 
-#. Note to translators: you can probably keep this as gstreamer,
-#. * unless you have a good reason to call it by another name that
-#. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:579
-msgid "gstreamer"
-msgstr "gstreamer"
+#: ../xfburn/xfburn-transcoder-gst.c:144
+msgid "An error occurred setting gstreamer up for transcoding"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:146
+#, c-format
+msgid ""
+"%s is missing.\n"
+"\n"
+"You do not have a decoder installed to handle this file.\n"
+"Probably you need to look at the gst-plugins-* packages\n"
+"for the necessary plugins.\n"
+msgstr "%s está faltando.\nVocê não tem um decodificador instalado para manipular este arquivo.\nProvavelmente necessite procurar pelos plug-ins necessários nos\npacotes gst-plugins-*\n"
+
+#: ../xfburn/xfburn-transcoder-gst.c:542
+msgid "File content has a decoder but is not audio."
+msgstr ""
 
 #: ../xfburn/xfburn-transcoder-gst.c:585
 msgid ""
@@ -1204,6 +1321,14 @@ msgid ""
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
 msgstr "O transcoder gstreamer usa a biblioteca\ngstreamer para criar composições de áudio.\n\nEssencialmente todos os tipos de áudio deveriam\nser suportados uma vez que os plug-ins corretos\nestejam instalados. Se um arquivo de áudio não é\nreconhecido, certifique-se que tem os pacotes\nde plug-ins \"good\", \"bad\" e \"ugly\"\ndo gstreamer instalados."
+
+#: ../xfburn/xfburn-transcoder-gst.c:627
+msgid "No information available on which plugin is required."
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:629
+msgid "Required plugins: "
+msgstr ""
 
 #: ../xfburn/xfburn-transcoder-gst.c:662 ../xfburn/xfburn-transcoder-gst.c:692
 #, c-format
@@ -1223,6 +1348,10 @@ msgstr "O gstreamer não quer iniciar a transcodificação (tempo excedido)"
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "Falhou ao alterar músicas enquanto transcodificava"
+
+#: ../xfburn/xfburn-transcoder.c:103 ../xfburn/xfburn-transcoder.c:113
+msgid "none"
+msgstr "nenhum"
 
 #: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
@@ -1298,6 +1427,62 @@ msgstr "tipos de blocos libburn RAW"
 msgid "libburn PACKET block types"
 msgstr "tipos de blocos libburn PACKET"
 
+#: ../xfburn.ui.h:1
+msgid "_Files"
+msgstr ""
+
+#: ../xfburn.ui.h:2
+msgid "New _data composition"
+msgstr ""
+
+#: ../xfburn.ui.h:3
+msgid "New _audio composition"
+msgstr ""
+
+#: ../xfburn.ui.h:4
+msgid "_Close composition"
+msgstr ""
+
+#: ../xfburn.ui.h:5
+msgid "_Quit"
+msgstr "_Sair"
+
+#: ../xfburn.ui.h:6
+msgid "_Edit"
+msgstr "_Editar"
+
+#: ../xfburn.ui.h:7
+msgid "Prefere_nce"
+msgstr ""
+
+#: ../xfburn.ui.h:8
+msgid "_Action"
+msgstr "_Ação"
+
+#: ../xfburn.ui.h:11
+msgid "_View"
+msgstr "_Ver"
+
+#: ../xfburn.ui.h:13
+msgid "Show Toolbars"
+msgstr ""
+
+#: ../xfburn.ui.h:14
+msgid "Show Filebrowser"
+msgstr ""
+
+#: ../xfburn.ui.h:15
+msgid "_Help"
+msgstr "Ajuda"
+
+#: ../xfburn.ui.h:16
+msgid "About"
+msgstr "Sobre"
+
+#: ../xfburn-popup-menus.ui.h:2
+msgid "Rename"
+msgstr "Renomear"
+
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
 msgstr "Composição de dados"
@@ -1314,7 +1499,7 @@ msgstr "Aplicativo de gravação de CD e DVD"
 msgid "Burn Image (xfburn)"
 msgstr "Gravar Imagem (xfburn)"
 
-#: ../xfburn.appdata.xml.in.h:1
+#: ../org.xfce.xfburn.appdata.xml.in.h:1
 msgid ""
 "Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
 "blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
