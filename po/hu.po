@@ -6,15 +6,15 @@
 # Balázs Meskó <meskobalazs@gmail.com>, 2018
 # Benedek Imre <nucleo@indamail.hu>, 2014
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009
-# Gábor P., 2019
+# Gábor P., 2019-2020
 # gyeben <gyonkibendeguz@gmail.com>, 2016
 # Nagy Gábor <jackson.gabor@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-15 18:31+0200\n"
-"PO-Revision-Date: 2019-10-16 11:56+0000\n"
+"POT-Creation-Date: 2019-12-20 06:31+0100\n"
+"PO-Revision-Date: 2020-01-09 13:20+0000\n"
 "Last-Translator: Gábor P.\n"
 "Language-Team: Hungarian (http://www.transifex.com/xfce/xfce-apps/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -59,11 +59,11 @@ msgstr "A CD másolás sikeresen befejeződött."
 msgid "Data composition"
 msgstr "Adat-összeállítás"
 
-#: ../xfburn/xfburn-adding-progress.c:112
+#: ../xfburn/xfburn-adding-progress.c:83
 msgid "Adding files to the composition"
 msgstr "Fájlok hozzáadása az összeállításhoz"
 
-#: ../xfburn/xfburn-adding-progress.c:125
+#: ../xfburn/xfburn-adding-progress.c:96
 msgid "Cancel"
 msgstr "Törlés"
 
@@ -91,202 +91,48 @@ msgstr "Gyors formázás-visszavonás"
 msgid "Full Deformat (slow)"
 msgstr "Teljes formázás-visszavonás (lassú)"
 
-#: ../xfburn/xfburn-blank-dialog.c:148
+#: ../xfburn/xfburn-blank-dialog.c:119
 msgid "Eject the disc"
 msgstr "Lemez kiadása"
 
-#: ../xfburn/xfburn-blank-dialog.c:149
+#: ../xfburn/xfburn-blank-dialog.c:120
 msgid "Default value for eject checkbox"
 msgstr "Kiadás jelölőnégyzet alapértelmezett értéke"
 
-#: ../xfburn/xfburn-blank-dialog.c:197
+#: ../xfburn/xfburn-blank-dialog.c:168
 msgid "Blank Disc"
 msgstr "Lemez törlése"
 
-#: ../xfburn/xfburn-blank-dialog.c:211
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:198
-#: ../xfburn/xfburn-burn-image-dialog.c:208
-#: ../xfburn/xfburn-copy-cd-dialog.c:132
-#: ../xfburn/xfburn-copy-dvd-dialog.c:132
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:159
+#: ../xfburn/xfburn-blank-dialog.c:182
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:165
+#: ../xfburn/xfburn-burn-image-dialog.c:181
+#: ../xfburn/xfburn-copy-cd-dialog.c:107
+#: ../xfburn/xfburn-copy-dvd-dialog.c:104
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:129
 msgid "Burning device"
 msgstr "Íróeszköz"
 
-#: ../xfburn/xfburn-blank-dialog.c:224 ../xfburn/xfburn-device-box.c:185
+#: ../xfburn/xfburn-blank-dialog.c:195 ../xfburn/xfburn-device-box.c:156
 msgid "Blank mode"
 msgstr "Törlési mód"
 
-#: ../xfburn/xfburn-blank-dialog.c:232
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:230
-#: ../xfburn/xfburn-burn-image-dialog.c:216
-#: ../xfburn/xfburn-copy-cd-dialog.c:140
-#: ../xfburn/xfburn-copy-dvd-dialog.c:140
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:193
+#: ../xfburn/xfburn-blank-dialog.c:203
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:197
+#: ../xfburn/xfburn-burn-image-dialog.c:189
+#: ../xfburn/xfburn-copy-cd-dialog.c:115
+#: ../xfburn/xfburn-copy-dvd-dialog.c:112
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:163
 msgid "Options"
 msgstr "Beállítások"
 
-#: ../xfburn/xfburn-blank-dialog.c:236
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:234
-#: ../xfburn/xfburn-burn-image-dialog.c:220
-#: ../xfburn/xfburn-copy-cd-dialog.c:144
-#: ../xfburn/xfburn-copy-dvd-dialog.c:144
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:197
+#: ../xfburn/xfburn-blank-dialog.c:207
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:201
+#: ../xfburn/xfburn-burn-image-dialog.c:193
+#: ../xfburn/xfburn-copy-cd-dialog.c:119
+#: ../xfburn/xfburn-copy-dvd-dialog.c:116
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:167
 msgid "E_ject disk"
 msgstr "Lemez kia_dása"
-
-#: ../xfburn/xfburn-blank-dialog.c:246
-msgid "_Blank"
-msgstr "_Törlés"
-
-#. blanking can only be performed on blank discs, format and deformat are
-#. allowed to be blank ones
-#: ../xfburn/xfburn-blank-dialog.c:358
-msgid "The inserted disc is already blank."
-msgstr "A behelyezett lemez már üres."
-
-#. these ones we can blank
-#: ../xfburn/xfburn-blank-dialog.c:364
-msgid "Ready"
-msgstr "Kész"
-
-#: ../xfburn/xfburn-blank-dialog.c:367
-msgid "No disc detected in the drive."
-msgstr "Nem található lemez a meghajtóban."
-
-#: ../xfburn/xfburn-blank-dialog.c:376
-msgid "Disc is not erasable."
-msgstr "A lemez nem törölhető."
-
-#: ../xfburn/xfburn-blank-dialog.c:416
-msgid "Blanking disc..."
-msgstr "Lemez törlése…"
-
-#: ../xfburn/xfburn-blank-dialog.c:443
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:521
-#: ../xfburn/xfburn-perform-burn.c:489
-#, c-format
-msgid "Done"
-msgstr "Kész"
-
-#: ../xfburn/xfburn-blank-dialog.c:446 ../xfburn/xfburn-perform-burn.c:496
-#: ../xfburn/xfburn-progress-dialog.c:665
-msgid "Failure"
-msgstr "Hiba"
-
-#: ../xfburn/xfburn-blank-dialog.c:463
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:627
-#: ../xfburn/xfburn-burn-image-dialog.c:419
-#: ../xfburn/xfburn-burn-image-dialog.c:597
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
-msgid "Unable to grab the drive."
-msgstr "A meghajtó nem ragadható meg."
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
-msgid "Image"
-msgstr "Lemezkép"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-msgid "Show volume name"
-msgstr "Kötetnév megjelenítése"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
-msgid "Show a text entry for the name of the volume"
-msgstr "Szövegbeviteli mező megjelenítése a kötet nevéhez"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:184
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:147
-msgid "Burn Composition"
-msgstr "Összeállítás írása"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:209
-msgid "Composition name"
-msgstr "Összeállítás neve"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:214
-msgid "<small>Would you like to change the default composition name?</small>"
-msgstr "<small>Szeretné módosítani az alapértelmezett összeállításnevet?</small>"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:239
-#: ../xfburn/xfburn-burn-image-dialog.c:225
-#: ../xfburn/xfburn-copy-cd-dialog.c:149
-#: ../xfburn/xfburn-copy-dvd-dialog.c:149
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:202
-msgid "_Dummy write"
-msgstr "Szi_mulációs írás"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:243
-#: ../xfburn/xfburn-burn-image-dialog.c:229
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:206
-msgid "Burn_Free"
-msgstr "Burn_Free"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:248
-#: ../xfburn/xfburn-burn-image-dialog.c:234
-msgid "Stream _Recording"
-msgstr "Adatfolyam _Felvétele"
-
-#. create ISO ?
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:254
-#: ../xfburn/xfburn-copy-cd-dialog.c:158
-#: ../xfburn/xfburn-copy-dvd-dialog.c:158
-msgid "Only create _ISO"
-msgstr "Csak _ISO létrehozása"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:291
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
-msgid "_Burn Composition"
-msgstr "Össz_eállítás írása"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:479
-#, c-format
-msgid "Could not create destination ISO file: %s"
-msgstr "Nem hozható létre a cél ISO fájl: %s"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:486
-msgid "Writing ISO..."
-msgstr "ISO írása…"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:503
-#, c-format
-msgid "An error occured while writing ISO: %s"
-msgstr "Hiba történt az ISO írásakor: %s"
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:559
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:565
-msgid "An error occurred in the burn backend."
-msgstr "Hiba történt az író háttérprogramban."
-
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:588
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
-msgid "The write mode is not supported currently."
-msgstr "Az írási mód jelenleg nem támogatott."
-
-#. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:671
-msgid "Could not create ISO source structure."
-msgstr "Az ISO forrásstruktúra nem hozható létre."
-
-#: ../xfburn/xfburn-burn-image-dialog.c:164
-msgid "Burn image"
-msgstr "Lemezkép írása"
-
-#. file
-#: ../xfburn/xfburn-burn-image-dialog.c:172
-#: ../xfburn/xfburn-burn-image-dialog.c:193
-msgid "Image to burn"
-msgstr "Kiírandó lemezkép"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:176
-msgid "All files"
-msgstr "Minden fájl"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:180
-msgid "ISO images"
-msgstr "ISO lemezképek"
-
-#: ../xfburn/xfburn-burn-image-dialog.c:239
-msgid "_Quit after success"
-msgstr "_Kilépés sikeres befejezés után"
 
 #. action buttons
 #. align = gtk_alignment_new (0, 0, 0, 0);
@@ -294,98 +140,254 @@ msgstr "_Kilépés sikeres befejezés után"
 #. gtk_widget_show (align);
 #. gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
 #. action buttons
-#: ../xfburn/xfburn-burn-image-dialog.c:245
-#: ../xfburn/xfburn-copy-cd-dialog.c:190
-#: ../xfburn/xfburn-copy-dvd-dialog.c:190
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:218
+#: ../xfburn/xfburn-blank-dialog.c:213
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:254
+#: ../xfburn/xfburn-burn-image-dialog.c:218
+#: ../xfburn/xfburn-copy-cd-dialog.c:165
+#: ../xfburn/xfburn-copy-dvd-dialog.c:162 ../xfburn/xfburn-utils.c:131
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:188
 msgid "_Cancel"
 msgstr "_Mégse"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:249
+#: ../xfburn/xfburn-blank-dialog.c:217
+msgid "_Blank"
+msgstr "_Törlés"
+
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
+#: ../xfburn/xfburn-blank-dialog.c:329
+msgid "The inserted disc is already blank."
+msgstr "A behelyezett lemez már üres."
+
+#. these ones we can blank
+#: ../xfburn/xfburn-blank-dialog.c:335
+msgid "Ready"
+msgstr "Kész"
+
+#: ../xfburn/xfburn-blank-dialog.c:338
+msgid "No disc detected in the drive."
+msgstr "Nem található lemez a meghajtóban."
+
+#: ../xfburn/xfburn-blank-dialog.c:347
+msgid "Disc is not erasable."
+msgstr "A lemez nem törölhető."
+
+#: ../xfburn/xfburn-blank-dialog.c:387
+msgid "Blanking disc..."
+msgstr "Lemez törlése…"
+
+#: ../xfburn/xfburn-blank-dialog.c:414
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:486
+#: ../xfburn/xfburn-perform-burn.c:489
+#, c-format
+msgid "Done"
+msgstr "Kész"
+
+#: ../xfburn/xfburn-blank-dialog.c:417 ../xfburn/xfburn-perform-burn.c:496
+#: ../xfburn/xfburn-progress-dialog.c:637
+msgid "Failure"
+msgstr "Hiba"
+
+#: ../xfburn/xfburn-blank-dialog.c:434
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:592
+#: ../xfburn/xfburn-burn-image-dialog.c:392
+#: ../xfburn/xfburn-burn-image-dialog.c:570
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:365
+msgid "Unable to grab the drive."
+msgstr "A meghajtó nem ragadható meg."
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:128
+msgid "Image"
+msgstr "Lemezkép"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:130
+msgid "Show volume name"
+msgstr "Kötetnév megjelenítése"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:130
+msgid "Show a text entry for the name of the volume"
+msgstr "Szövegbeviteli mező megjelenítése a kötet nevéhez"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:151
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:117
+msgid "Burn Composition"
+msgstr "Összeállítás írása"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:176
+msgid "Composition name"
+msgstr "Összeállítás neve"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:181
+msgid "<small>Would you like to change the default composition name?</small>"
+msgstr "<small>Szeretné módosítani az alapértelmezett összeállításnevet?</small>"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
+#: ../xfburn/xfburn-burn-image-dialog.c:198
+#: ../xfburn/xfburn-copy-cd-dialog.c:124
+#: ../xfburn/xfburn-copy-dvd-dialog.c:121
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:172
+msgid "_Dummy write"
+msgstr "Szi_mulációs írás"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:210
+#: ../xfburn/xfburn-burn-image-dialog.c:202
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:176
+msgid "Burn_Free"
+msgstr "Burn_Free"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:215
+#: ../xfburn/xfburn-burn-image-dialog.c:207
+msgid "Stream _Recording"
+msgstr "Adatfolyam _Felvétele"
+
+#. create ISO ?
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:221
+#: ../xfburn/xfburn-copy-cd-dialog.c:133
+#: ../xfburn/xfburn-copy-dvd-dialog.c:130
+msgid "Only create _ISO"
+msgstr "Csak _ISO létrehozása"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:258
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:192
+msgid "_Burn Composition"
+msgstr "Össz_eállítás írása"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:444
+#, c-format
+msgid "Could not create destination ISO file: %s"
+msgstr "Nem hozható létre a cél ISO fájl: %s"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:451
+msgid "Writing ISO..."
+msgstr "ISO írása…"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:468
+#, c-format
+msgid "An error occured while writing ISO: %s"
+msgstr "Hiba történt az ISO írásakor: %s"
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:524
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:530
+msgid "An error occurred in the burn backend."
+msgstr "Hiba történt az író háttérprogramban."
+
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:553
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:296
+msgid "The write mode is not supported currently."
+msgstr "Az írási mód jelenleg nem támogatott."
+
+#. could not create source
+#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:636
+msgid "Could not create ISO source structure."
+msgstr "Az ISO forrásstruktúra nem hozható létre."
+
+#: ../xfburn/xfburn-burn-image-dialog.c:137
+msgid "Burn image"
+msgstr "Lemezkép írása"
+
+#. file
+#: ../xfburn/xfburn-burn-image-dialog.c:145
+#: ../xfburn/xfburn-burn-image-dialog.c:166
+msgid "Image to burn"
+msgstr "Kiírandó lemezkép"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:149
+msgid "All files"
+msgstr "Minden fájl"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:153
+msgid "ISO images"
+msgstr "ISO lemezképek"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:212
+msgid "_Quit after success"
+msgstr "_Kilépés sikeres befejezés után"
+
+#: ../xfburn/xfburn-burn-image-dialog.c:222
 msgid "_Burn image"
 msgstr "_Lemezkép írása"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:302
+#: ../xfburn/xfburn-burn-image-dialog.c:275
 msgid "Burn mode is not currently implemented."
 msgstr "Az írási mód jelenleg nincs megvalósítva."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:353
-#: ../xfburn/xfburn-burn-image-dialog.c:382
+#: ../xfburn/xfburn-burn-image-dialog.c:326
+#: ../xfburn/xfburn-burn-image-dialog.c:355
 msgid "An error occurred in the burn backend"
 msgstr "Hiba történt az író háttérprogramban"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:366
+#: ../xfburn/xfburn-burn-image-dialog.c:339
 msgid "Unable to determine image size."
 msgstr "A lemezkép mérete nem állapítható meg."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:373
+#: ../xfburn/xfburn-burn-image-dialog.c:346
 msgid "Cannot open image."
 msgstr "A lemezkép nem nyitható meg."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:410
+#: ../xfburn/xfburn-burn-image-dialog.c:383
 msgid "Burning image..."
 msgstr "Lemezkép írása…"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:483
+#: ../xfburn/xfburn-burn-image-dialog.c:456
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Válassza ki a kiírandó lemezképet</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:523
+#: ../xfburn/xfburn-burn-image-dialog.c:496
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "Ebben a módban nem lehet adatokat fűzni a több szakaszos lemezhez (használja a TAO-t)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:527
+#: ../xfburn/xfburn-burn-image-dialog.c:500
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "Adatokat tartalmazó lezárt lemez észlelve. Üres vagy lezáratlan lemez szükséges."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:529
+#: ../xfburn/xfburn-burn-image-dialog.c:502
 msgid "No disc detected in drive"
 msgstr "Nem található lemez a meghajtóban."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:531
+#: ../xfburn/xfburn-burn-image-dialog.c:504
 msgid "Cannot recognize state of drive and disc"
 msgstr "Nem ismerhető fel a meghajtó és lemez állapota"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:543
+#: ../xfburn/xfburn-burn-image-dialog.c:516
 msgid "The selected image does not fit on the inserted disc"
 msgstr "A kiválasztott lemezkép nem fér el a behelyezett lemezen"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:547
+#: ../xfburn/xfburn-burn-image-dialog.c:520
 msgid "Failed to get image size"
 msgstr "A lemezkép méretének lekérése meghiúsult"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:576
+#: ../xfburn/xfburn-burn-image-dialog.c:549
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
 msgstr "Győződjön meg róla, hogy érvényes fájlt választott és jogosult az elérésére."
 
-#: ../xfburn/xfburn-compositions-notebook.c:174
+#: ../xfburn/xfburn-compositions-notebook.c:147
 msgid "Audio composition"
 msgstr "Hangösszeállítás"
 
-#: ../xfburn/xfburn-compositions-notebook.c:235
+#: ../xfburn/xfburn-compositions-notebook.c:208
 msgid "Welcome"
 msgstr "Üdvözlet"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:113
+#: ../xfburn/xfburn-copy-cd-dialog.c:88
 #: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
 msgstr "Adat CD másolása"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:124
+#: ../xfburn/xfburn-copy-cd-dialog.c:99
 msgid "CD Reader device"
 msgstr "CD-olvasó eszköz"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:153
-#: ../xfburn/xfburn-copy-dvd-dialog.c:153
+#: ../xfburn/xfburn-copy-cd-dialog.c:128
+#: ../xfburn/xfburn-copy-dvd-dialog.c:125
 msgid "On the _fly"
 msgstr "_Menet közben"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:194
+#: ../xfburn/xfburn-copy-cd-dialog.c:169
 msgid "_Copy CD"
 msgstr "_CD másolása"
 
@@ -402,15 +404,15 @@ msgstr "CD írása…"
 msgid "Reading CD..."
 msgstr "CD írása…"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:113
+#: ../xfburn/xfburn-copy-dvd-dialog.c:85
 msgid "Copy data DVD"
 msgstr "Adat DVD másolása"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:124
+#: ../xfburn/xfburn-copy-dvd-dialog.c:96
 msgid "DVD Reader device"
 msgstr "DVD-olvasó eszköz"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:194
+#: ../xfburn/xfburn-copy-dvd-dialog.c:166
 msgid "_Copy DVD"
 msgstr "_DVD másolása"
 
@@ -418,191 +420,210 @@ msgstr "_DVD másolása"
 msgid "Create ISO from CD"
 msgstr "ISO létrehozása CD-ből"
 
-#: ../xfburn/xfburn-data-composition.c:365
-#: ../xfburn/xfburn-audio-composition.c:218
-#: ../xfburn/xfburn-audio-composition.c:396
-msgid "Add the selected file(s) to the composition"
-msgstr "A kiválasztott fájlok hozzáadása az összeállításhoz"
-
-#: ../xfburn/xfburn-data-composition.c:367
-msgid "Add a new directory to the composition"
-msgstr "Új könyvtár hozzáadása az összeállításhoz"
-
-#: ../xfburn/xfburn-data-composition.c:372
-#: ../xfburn/xfburn-audio-composition.c:401
-msgid "Remove the selected file(s) to the composition"
-msgstr ""
-
-#: ../xfburn/xfburn-data-composition.c:374
-#: ../xfburn/xfburn-audio-composition.c:222
-#: ../xfburn/xfburn-audio-composition.c:403
-msgid "Clear the content of the composition"
-msgstr "Az összeállítás tartalmának törlése"
-
-#: ../xfburn/xfburn-data-composition.c:385
-msgid "Volume name :"
-msgstr "Kötet neve:"
-
-#: ../xfburn/xfburn-data-composition.c:419
-msgid "Contents"
-msgstr "Tartalom"
-
-#: ../xfburn/xfburn-data-composition.c:434
-#: ../xfburn/xfburn-directory-browser.c:140
-msgid "Size"
-msgstr "Méret"
-
-#: ../xfburn/xfburn-data-composition.c:437
-msgid "Local Path"
-msgstr "Helyi útvonal"
-
-#: ../xfburn/xfburn-data-composition.c:714
-msgid "You must give a name to the file."
-msgstr "Meg kell adnia a fájl nevét."
-
-#: ../xfburn/xfburn-data-composition.c:723
-#: ../xfburn/xfburn-data-composition.c:1240
-#: ../xfburn/xfburn-audio-composition.c:1208
-msgid "A file with the same name is already present in the composition."
-msgstr "Már létezik ugyanilyen nevű fájl az összeállításban."
-
-#: ../xfburn/xfburn-data-composition.c:830
-#: ../xfburn/xfburn-data-composition.c:831
-#: ../xfburn/xfburn-data-composition.c:833
-msgid "New directory"
-msgstr "Új könyvtár"
-
-#: ../xfburn/xfburn-data-composition.c:977
-#: ../xfburn/xfburn-audio-composition.c:1005
-msgid "File(s) to add to composition"
-msgstr "Ezen fájlok hozzáadása az összeállításhoz"
-
-#: ../xfburn/xfburn-data-composition.c:998
-#: ../xfburn/xfburn-audio-composition.c:218
-#: ../xfburn/xfburn-audio-composition.c:1008
+#: ../xfburn/xfburn-data-composition.c:333
+#: ../xfburn/xfburn-data-composition.c:966
+#: ../xfburn/xfburn-audio-composition.c:216
+#: ../xfburn/xfburn-audio-composition.c:358
+#: ../xfburn/xfburn-audio-composition.c:975
 msgid "Add"
 msgstr "Hozzáadás"
 
+#: ../xfburn/xfburn-data-composition.c:333
+#: ../xfburn/xfburn-audio-composition.c:216
+#: ../xfburn/xfburn-audio-composition.c:358
+msgid "Add the selected file(s) to the composition"
+msgstr "A kiválasztott fájlok hozzáadása az összeállításhoz"
+
+#: ../xfburn/xfburn-data-composition.c:335 ../xfburn-popup-menus.ui.h:1
+msgid "Create directory"
+msgstr "Könyvtár létrehozása"
+
+#: ../xfburn/xfburn-data-composition.c:335
+msgid "Add a new directory to the composition"
+msgstr "Új könyvtár hozzáadása az összeállításhoz"
+
+#: ../xfburn/xfburn-data-composition.c:340
+#: ../xfburn/xfburn-audio-composition.c:218
+#: ../xfburn/xfburn-audio-composition.c:363 ../xfburn-popup-menus.ui.h:3
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: ../xfburn/xfburn-data-composition.c:340
+#: ../xfburn/xfburn-audio-composition.c:218
+#: ../xfburn/xfburn-audio-composition.c:363
+msgid "Remove the selected file(s) from the composition"
+msgstr "A kiválasztott fájlok eltávolítása az összeállításból"
+
+#: ../xfburn/xfburn-data-composition.c:342
+#: ../xfburn/xfburn-audio-composition.c:220
+#: ../xfburn/xfburn-audio-composition.c:365
+msgid "Clear"
+msgstr "Törlés"
+
+#: ../xfburn/xfburn-data-composition.c:342
+#: ../xfburn/xfburn-audio-composition.c:220
+#: ../xfburn/xfburn-audio-composition.c:365
+msgid "Clear the content of the composition"
+msgstr "Az összeállítás tartalmának törlése"
+
+#: ../xfburn/xfburn-data-composition.c:353
+msgid "Volume name :"
+msgstr "Kötet neve:"
+
+#: ../xfburn/xfburn-data-composition.c:387
+msgid "Contents"
+msgstr "Tartalom"
+
+#: ../xfburn/xfburn-data-composition.c:402
+#: ../xfburn/xfburn-directory-browser.c:113
+msgid "Size"
+msgstr "Méret"
+
+#: ../xfburn/xfburn-data-composition.c:405
+msgid "Local Path"
+msgstr "Helyi útvonal"
+
+#: ../xfburn/xfburn-data-composition.c:682
+msgid "You must give a name to the file."
+msgstr "Meg kell adnia a fájl nevét."
+
+#: ../xfburn/xfburn-data-composition.c:691
+#: ../xfburn/xfburn-data-composition.c:1208
+#: ../xfburn/xfburn-audio-composition.c:1175
+msgid "A file with the same name is already present in the composition."
+msgstr "Már létezik ugyanilyen nevű fájl az összeállításban."
+
+#: ../xfburn/xfburn-data-composition.c:798
+#: ../xfburn/xfburn-data-composition.c:799
+#: ../xfburn/xfburn-data-composition.c:801
+msgid "New directory"
+msgstr "Új könyvtár"
+
+#: ../xfburn/xfburn-data-composition.c:945
+#: ../xfburn/xfburn-audio-composition.c:972
+msgid "File(s) to add to composition"
+msgstr "Ezen fájlok hozzáadása az összeállításhoz"
+
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:1083
+#: ../xfburn/xfburn-data-composition.c:1051
 #, c-format
 msgid "Data %s~%d"
 msgstr "Adatok %s–%d"
 
-#: ../xfburn/xfburn-data-composition.c:1319
+#: ../xfburn/xfburn-data-composition.c:1287
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr "%s nem adható hozzá az összeállításhoz, mivel az meghaladná az iso9660-ban engedélyezett maximális fájlméretet."
 
-#: ../xfburn/xfburn-data-composition.c:1326
+#: ../xfburn/xfburn-data-composition.c:1294
 #, c-format
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
 msgstr "%s nagyobb, mint amit az ISO9660 2 szint lehetővé tesz. A probléma oka lehet a régi rendszer vagy szoftver."
 
-#: ../xfburn/xfburn-data-composition.c:1410
-#: ../xfburn/xfburn-audio-composition.c:1384
+#: ../xfburn/xfburn-data-composition.c:1378
+#: ../xfburn/xfburn-audio-composition.c:1351
 msgid "Adding home directory"
 msgstr "Saját könyvtár hozzáadása"
 
-#: ../xfburn/xfburn-data-composition.c:1411
-#: ../xfburn/xfburn-audio-composition.c:1385
+#: ../xfburn/xfburn-data-composition.c:1379
+#: ../xfburn/xfburn-audio-composition.c:1352
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr "A saját könyvtárát készül hozzáadni az összeállításhoz. Ez valószínűleg sokáig fog tartani és túl nagy lehet ahhoz, hogy ráférjen egy lemezre.\nBiztosan folytatja?"
 
-#: ../xfburn/xfburn-data-composition.c:1579
+#: ../xfburn/xfburn-data-composition.c:1547
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr "Már létezik „%s” nevű fájl a könyvtárban, a fájl nem került hozzáadásra."
 
-#: ../xfburn/xfburn-data-composition.c:1978
+#: ../xfburn/xfburn-data-composition.c:1946
 #, c-format
 msgid "%s: null pointer"
 msgstr "%s: null mutató"
 
-#: ../xfburn/xfburn-data-composition.c:1980
+#: ../xfburn/xfburn-data-composition.c:1948
 #, c-format
 msgid "%s: out of memory"
 msgstr "%s kevés a memória"
 
-#: ../xfburn/xfburn-data-composition.c:1982
+#: ../xfburn/xfburn-data-composition.c:1950
 #, c-format
 msgid "%s: node name not unique"
 msgstr "%s: a csomópont neve nem egyedi"
 
-#: ../xfburn/xfburn-data-composition.c:1984
+#: ../xfburn/xfburn-data-composition.c:1952
 #, c-format
 msgid "%s: %s (code %X)"
 msgstr "%s: %s (code %X)"
 
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:2004
+#: ../xfburn/xfburn-data-composition.c:1972
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "Többszörös fájlnév („%s”) a következőhöz: „%s”"
 
-#: ../xfburn/xfburn-data-composition.c:2069
+#: ../xfburn/xfburn-data-composition.c:2037
 msgid "Error(s) occured while adding files"
 msgstr "Hiba történt a fájl(ok) hozzáadásakor"
 
-#: ../xfburn/xfburn-data-composition.c:2073
+#: ../xfburn/xfburn-data-composition.c:2041
 msgid "OK"
 msgstr "OK"
 
-#: ../xfburn/xfburn-device-box.c:169 ../xfburn/xfburn-device-box.c:170
+#: ../xfburn/xfburn-device-box.c:140 ../xfburn/xfburn-device-box.c:141
 msgid "Show writers only"
 msgstr "Csak az írók megjelenítése"
 
-#: ../xfburn/xfburn-device-box.c:173
+#: ../xfburn/xfburn-device-box.c:144
 msgid "Show speed selection"
 msgstr "Sebességválasztás megjelenítése"
 
-#: ../xfburn/xfburn-device-box.c:174
+#: ../xfburn/xfburn-device-box.c:145
 msgid "Show speed selection combo"
 msgstr "Sebességválasztás lista megjelenítése"
 
-#: ../xfburn/xfburn-device-box.c:177
+#: ../xfburn/xfburn-device-box.c:148
 msgid "Show mode selection"
 msgstr "Módválasztás megjelenítése"
 
-#: ../xfburn/xfburn-device-box.c:178
+#: ../xfburn/xfburn-device-box.c:149
 msgid "Show mode selection combo"
 msgstr "Módválasztás lista megjelenítése"
 
-#: ../xfburn/xfburn-device-box.c:181
+#: ../xfburn/xfburn-device-box.c:152
 msgid "Is it a valid combination"
 msgstr "Érvényes kombináció?"
 
-#: ../xfburn/xfburn-device-box.c:182
+#: ../xfburn/xfburn-device-box.c:153
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "A hardver és a lemez kombinációja érvényes az összeállítás kiírásához?"
 
-#: ../xfburn/xfburn-device-box.c:186
+#: ../xfburn/xfburn-device-box.c:157
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "A törlési mód a szabályos módtól eltérő lemezállapot-üzeneteket mutat"
 
-#: ../xfburn/xfburn-device-box.c:241
+#: ../xfburn/xfburn-device-box.c:206
 msgid "_Speed:"
 msgstr "_Sebesség:"
 
-#: ../xfburn/xfburn-device-box.c:264
+#: ../xfburn/xfburn-device-box.c:229
 msgid "Write _mode:"
 msgstr "Írási mó_d:"
 
-#: ../xfburn/xfburn-device-box.c:377
+#: ../xfburn/xfburn-device-box.c:340
 msgid "Empty speed list"
 msgstr "Üres sebességlista"
 
-#: ../xfburn/xfburn-device-box.c:386
+#: ../xfburn/xfburn-device-box.c:349
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -613,102 +634,102 @@ msgid ""
 "<i>Thank you!</i>"
 msgstr "<b>A meghajtó sebességlistája nem kérhető le.</b>\n\nEz egy ismert hiba, amely egyes meghajtókkal fordul elő. A javítás érdekében jelentse az <i>xfburn@xfce.org</i> címen a konzolos kimenettel együtt.\n\nAz írásnak így is működnie kell, de ha problémákat tapasztal, kérjük tudassa.\n\n<i>Köszönjük!</i>"
 
-#: ../xfburn/xfburn-device-box.c:397
+#: ../xfburn/xfburn-device-box.c:360
 msgid "Continue to _show this notice"
 msgstr "Ez a megjegyzés jelenjen meg _később is"
 
-#: ../xfburn/xfburn-device-box.c:444
+#: ../xfburn/xfburn-device-box.c:407
 msgid "default"
 msgstr "alapértelmezett"
 
-#: ../xfburn/xfburn-device-box.c:475
+#: ../xfburn/xfburn-device-box.c:438
 msgid "Max"
 msgstr "Maximum"
 
-#: ../xfburn/xfburn-device-box.c:510
+#: ../xfburn/xfburn-device-box.c:473
 msgid "A full, but erasable disc is in the drive"
 msgstr "Egy teli, de törölhető lemez van a meghajtóban"
 
-#: ../xfburn/xfburn-device-box.c:511
+#: ../xfburn/xfburn-device-box.c:474
 msgid ""
 "Do you want to blank the disc, so that it can be used for the upcoming burn "
 "process?"
 msgstr "Üríti a lemezt, hogy a következő írási folyamathoz használhassa?"
 
-#: ../xfburn/xfburn-device-box.c:582
+#: ../xfburn/xfburn-device-box.c:545
 msgid "Drive can't burn on the inserted disc"
 msgstr "A meghajtó nem tud a behelyezett lemezre írni"
 
-#: ../xfburn/xfburn-device-box.c:591 ../xfburn/xfburn-device-box.c:637
+#: ../xfburn/xfburn-device-box.c:554 ../xfburn/xfburn-device-box.c:600
 msgid "Drive is empty"
 msgstr "A meghajtó üres"
 
-#: ../xfburn/xfburn-device-box.c:594
+#: ../xfburn/xfburn-device-box.c:557
 msgid "Sorry, multisession is not yet supported"
 msgstr "Elnézést, a több szakaszos írás használata még nem támogatott"
 
-#: ../xfburn/xfburn-device-box.c:597
+#: ../xfburn/xfburn-device-box.c:560
 msgid "Inserted disc is full"
 msgstr "A behelyezett lemez tele van"
 
-#: ../xfburn/xfburn-device-box.c:600 ../xfburn/xfburn-device-box.c:643
+#: ../xfburn/xfburn-device-box.c:563 ../xfburn/xfburn-device-box.c:606
 msgid "Inserted disc is unsuitable"
 msgstr "A behelyezett lemez nem megfelelő"
 
-#: ../xfburn/xfburn-device-box.c:603 ../xfburn/xfburn-device-box.c:646
+#: ../xfburn/xfburn-device-box.c:566 ../xfburn/xfburn-device-box.c:609
 msgid "Cannot access drive (it might be in use)"
 msgstr "Nem érhető el a meghajtó (használatban lehet)"
 
-#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:649
+#: ../xfburn/xfburn-device-box.c:571 ../xfburn/xfburn-device-box.c:612
 msgid "Error determining disc"
 msgstr "Hiba a lemez meghatározásakor"
 
-#: ../xfburn/xfburn-device-box.c:629
+#: ../xfburn/xfburn-device-box.c:592
 msgid "Write-once disc, no blanking possible"
 msgstr "Egyszer írható lemez, a törlés nem lehetséges"
 
-#: ../xfburn/xfburn-device-box.c:632
+#: ../xfburn/xfburn-device-box.c:595
 msgid "DVD+RW does not need blanking"
 msgstr "A DVD+RW-t nem kell törölni"
 
-#: ../xfburn/xfburn-device-box.c:640
+#: ../xfburn/xfburn-device-box.c:603
 msgid "Inserted disc is already blank"
 msgstr "A behelyezett lemez már üres"
 
-#: ../xfburn/xfburn-device-box.c:676
+#: ../xfburn/xfburn-device-box.c:639
 msgid "Auto"
 msgstr "Automatikus"
 
-#: ../xfburn/xfburn-device-list.c:205 ../xfburn/xfburn-device-list.c:206
+#: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
 msgstr "Írók száma a rendszerben"
 
-#: ../xfburn/xfburn-device-list.c:208
+#: ../xfburn/xfburn-device-list.c:207
 msgid "Number of drives in the system"
 msgstr "Meghajtók száma a rendszerben"
 
-#: ../xfburn/xfburn-device-list.c:209
+#: ../xfburn/xfburn-device-list.c:208
 msgid "Number of drives in the system (readers and writers)"
 msgstr "Meghajtók száma a rendszerben (olvasók és írók)"
 
-#: ../xfburn/xfburn-device-list.c:211 ../xfburn/xfburn-device-list.c:212
+#: ../xfburn/xfburn-device-list.c:210 ../xfburn/xfburn-device-list.c:211
 msgid "List of devices"
 msgstr "Eszközlista"
 
-#: ../xfburn/xfburn-device-list.c:214 ../xfburn/xfburn-device-list.c:215
+#: ../xfburn/xfburn-device-list.c:213 ../xfburn/xfburn-device-list.c:214
 msgid "Currently selected device"
 msgstr "Jelenleg kiválasztott eszköz"
 
 #. globals
-#: ../xfburn/xfburn-directory-browser.c:54
+#: ../xfburn/xfburn-directory-browser.c:52
 msgid "Folder"
 msgstr "Mappa"
 
-#: ../xfburn/xfburn-directory-browser.c:127
+#: ../xfburn/xfburn-directory-browser.c:100
 msgid "File"
 msgstr "Fájl"
 
-#: ../xfburn/xfburn-directory-browser.c:142
+#: ../xfburn/xfburn-directory-browser.c:115
 msgid "Type"
 msgstr "Típus"
 
@@ -721,6 +742,52 @@ msgstr "Fájlrendszer"
 #, c-format
 msgid "%s's home"
 msgstr "%s mappája"
+
+#: ../xfburn/xfburn-udev-manager.c:489
+#, c-format
+msgid "Failed to unmount '%s'. Drive cannot be used for burning."
+msgstr ""
+
+#. || G_OPTION_FLAG_FILENAME
+#: ../xfburn/xfburn-main.c:74
+msgid "Open the burn image dialog, optionally followed by the image filename"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:76
+msgid "Open the blank disc dialog"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:78
+msgid ""
+"Start a data composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:80
+msgid ""
+"Start an audio composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:82
+msgid ""
+"Select the transcoder, run with --transcoder=list to see the available ones"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:84
+msgid ""
+"Start the file browser in the specified directory, or the current directory "
+"if none is specified (the default is to start in your home directory)"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:86
+msgid "Display program version and exit"
+msgstr ""
+
+#: ../xfburn/xfburn-main.c:88
+msgid ""
+"Show main program even when other action is specified on the command line."
+msgstr ""
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
@@ -762,23 +829,47 @@ msgstr "A(z) %s átkódoló előkészítése meghiúsult: %s\n\t(visszalépés a
 msgid "Image file '%s' does not exist."
 msgstr "A lemezképfájl („%s”) nem létezik."
 
-#: ../xfburn/xfburn-main-window.c:600
+#: ../xfburn/xfburn-main-window.c:310
+msgid "New data composition"
+msgstr "Új adat-összeállítás"
+
+#: ../xfburn/xfburn-main-window.c:313
+msgid "New audio composition"
+msgstr "Új hangösszeállítás"
+
+#: ../xfburn/xfburn-main-window.c:318 ../xfburn.ui.h:9
+msgid "Blank CD-RW"
+msgstr "CD-RW törlése"
+
+#: ../xfburn/xfburn-main-window.c:321 ../xfburn.ui.h:10
+msgid "Burn Image"
+msgstr "Lemezkép írása"
+
+#: ../xfburn/xfburn-main-window.c:326 ../xfburn.ui.h:12
+msgid "Refresh"
+msgstr "Frissítés"
+
+#: ../xfburn/xfburn-main-window.c:326
+msgid "Refresh file list"
+msgstr "Fájllista frissítése"
+
+#: ../xfburn/xfburn-main-window.c:573
 msgid "Another cd burning GUI"
 msgstr "Még egy CD-író felület"
 
-#: ../xfburn/xfburn-notebook-tab.c:108
+#: ../xfburn/xfburn-notebook-tab.c:81
 msgid "Label"
 msgstr "Címke"
 
-#: ../xfburn/xfburn-notebook-tab.c:108
+#: ../xfburn/xfburn-notebook-tab.c:81
 msgid "The text of the label"
 msgstr "A címke szövege"
 
-#: ../xfburn/xfburn-notebook-tab.c:111
+#: ../xfburn/xfburn-notebook-tab.c:84
 msgid "Show close button"
 msgstr "Bezárás gomb megjelenítése"
 
-#: ../xfburn/xfburn-notebook-tab.c:111
+#: ../xfburn/xfburn-notebook-tab.c:84
 msgid "Determine whether the close button is visible"
 msgstr "A Bezárás gomb látható-e?"
 
@@ -881,155 +972,165 @@ msgstr "lásd a konzolt"
 msgid "User Aborted"
 msgstr "Felhasználói megszakítás"
 
-#: ../xfburn/xfburn-preferences-dialog.c:144
+#: ../xfburn/xfburn-preferences-dialog.c:116
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: ../xfburn/xfburn-preferences-dialog.c:145
+#: ../xfburn/xfburn-preferences-dialog.c:117
 msgid "Tune how Xfburn behaves"
 msgstr "Az Xfburn viselkedésének hangolása"
 
-#: ../xfburn/xfburn-preferences-dialog.c:190
-#: ../xfburn/xfburn-preferences-dialog.c:194
+#: ../xfburn/xfburn-preferences-dialog.c:162
+#: ../xfburn/xfburn-preferences-dialog.c:166
 msgid "Temporary directory"
 msgstr "Átmeneti könyvtár"
 
-#: ../xfburn/xfburn-preferences-dialog.c:198
+#: ../xfburn/xfburn-preferences-dialog.c:170
 msgid "_Clean temporary directory on exit"
 msgstr "Átmeneti könyvtár _törlése kilépéskor"
 
-#: ../xfburn/xfburn-preferences-dialog.c:205
+#: ../xfburn/xfburn-preferences-dialog.c:177
 msgid "File browser"
 msgstr "Fájlböngésző"
 
-#: ../xfburn/xfburn-preferences-dialog.c:209
+#: ../xfburn/xfburn-preferences-dialog.c:181
 msgid "Show _hidden files"
 msgstr "_Rejtett fájlok megjelenítése"
 
-#: ../xfburn/xfburn-preferences-dialog.c:214
+#: ../xfburn/xfburn-preferences-dialog.c:186
 msgid "Show human_readable filesizes"
 msgstr "Emberek által _olvasható fájlméretek megjelenítése"
 
-#: ../xfburn/xfburn-preferences-dialog.c:224
-#: ../xfburn/xfburn-preferences-dialog.c:235
+#: ../xfburn/xfburn-preferences-dialog.c:196
+#: ../xfburn/xfburn-preferences-dialog.c:207
 msgid "General"
 msgstr "Általános"
 
-#: ../xfburn/xfburn-preferences-dialog.c:239
-#: ../xfburn/xfburn-preferences-dialog.c:320
+#: ../xfburn/xfburn-preferences-dialog.c:211
+#: ../xfburn/xfburn-preferences-dialog.c:292
 msgid "Devices"
 msgstr "Eszközök"
 
-#: ../xfburn/xfburn-preferences-dialog.c:248
+#: ../xfburn/xfburn-preferences-dialog.c:220
 msgid "Detected devices"
 msgstr "Felismert eszközök"
 
-#: ../xfburn/xfburn-preferences-dialog.c:270
+#: ../xfburn/xfburn-preferences-dialog.c:242
 msgid "Name"
 msgstr "Név"
 
-#: ../xfburn/xfburn-preferences-dialog.c:283
+#: ../xfburn/xfburn-preferences-dialog.c:255
 msgid "Node"
 msgstr "Csomópont"
 
-#: ../xfburn/xfburn-preferences-dialog.c:285
+#: ../xfburn/xfburn-preferences-dialog.c:257
 msgid "Write CD-R"
 msgstr "CD-R írása"
 
-#: ../xfburn/xfburn-preferences-dialog.c:287
+#: ../xfburn/xfburn-preferences-dialog.c:259
 msgid "Write CD-RW"
 msgstr "CD-RW írása"
 
-#: ../xfburn/xfburn-preferences-dialog.c:290
+#: ../xfburn/xfburn-preferences-dialog.c:262
 msgid "Write DVD-R"
 msgstr "DVD-R írása"
 
-#: ../xfburn/xfburn-preferences-dialog.c:293
+#: ../xfburn/xfburn-preferences-dialog.c:265
 msgid "Write DVD-RAM"
 msgstr "DVD-RAM írása"
 
-#: ../xfburn/xfburn-preferences-dialog.c:296
+#: ../xfburn/xfburn-preferences-dialog.c:268
 msgid "Write Blu-ray"
 msgstr "Blu-ray Írása"
 
-#: ../xfburn/xfburn-preferences-dialog.c:304
+#: ../xfburn/xfburn-preferences-dialog.c:276
 msgid "Sc_an for devices"
 msgstr "Eszközök _keresése"
 
-#: ../xfburn/xfburn-preferences-dialog.c:331
+#: ../xfburn/xfburn-preferences-dialog.c:303
 msgid "Show warning on _empty speed list"
 msgstr "_Figyelmeztetés megjelenítése, ha üres a sebességlista"
 
-#: ../xfburn/xfburn-preferences-dialog.c:340
+#: ../xfburn/xfburn-preferences-dialog.c:312
 msgid "FIFO buffer size (in kb)"
 msgstr "FIFO puffer mérete (Kb-ban)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:492
+#: ../xfburn/xfburn-preferences-dialog.c:331
+msgid "_Close"
+msgstr "_Bezárás"
+
+#: ../xfburn/xfburn-preferences-dialog.c:464
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "Ezen beállítás módosítása csak a program újraindítása után lép életbe."
 
-#: ../xfburn/xfburn-progress-dialog.c:200
-#: ../xfburn/xfburn-progress-dialog.c:555
+#. label
+#: ../xfburn/xfburn-progress-dialog.c:168
+#: ../xfburn/xfburn-progress-dialog.c:172
+#: ../xfburn/xfburn-progress-dialog.c:527
 msgid "Initializing..."
 msgstr "Előkészítés…"
 
-#: ../xfburn/xfburn-progress-dialog.c:215
+#: ../xfburn/xfburn-progress-dialog.c:187
 msgid "Estimated writing speed:"
 msgstr "Becsült írási sebesség:"
 
-#: ../xfburn/xfburn-progress-dialog.c:218
-#: ../xfburn/xfburn-progress-dialog.c:234
-#: ../xfburn/xfburn-progress-dialog.c:243
-#: ../xfburn/xfburn-progress-dialog.c:334
-#: ../xfburn/xfburn-progress-dialog.c:478
-#: ../xfburn/xfburn-progress-dialog.c:502
-#: ../xfburn/xfburn-progress-dialog.c:526
+#: ../xfburn/xfburn-progress-dialog.c:190
+#: ../xfburn/xfburn-progress-dialog.c:206
+#: ../xfburn/xfburn-progress-dialog.c:215
+#: ../xfburn/xfburn-progress-dialog.c:306
+#: ../xfburn/xfburn-progress-dialog.c:450
+#: ../xfburn/xfburn-progress-dialog.c:474
+#: ../xfburn/xfburn-progress-dialog.c:498
 msgid "unknown"
 msgstr "ismeretlen"
 
-#: ../xfburn/xfburn-progress-dialog.c:229
+#: ../xfburn/xfburn-progress-dialog.c:201
 msgid "FIFO buffer:"
 msgstr "FIFO puffer:"
 
-#: ../xfburn/xfburn-progress-dialog.c:238
+#: ../xfburn/xfburn-progress-dialog.c:210
 msgid "Device buffer:"
 msgstr "Eszközpuffer:"
 
 #. action buttons
-#: ../xfburn/xfburn-progress-dialog.c:248
+#: ../xfburn/xfburn-progress-dialog.c:220
 msgid "_Stop"
 msgstr "_Leállítás"
 
-#: ../xfburn/xfburn-progress-dialog.c:376
+#: ../xfburn/xfburn-progress-dialog.c:227
+msgid "Close"
+msgstr "Bezárás"
+
+#: ../xfburn/xfburn-progress-dialog.c:348
 msgid "Are you sure you want to abort?"
 msgstr "Biztosan meg akarja szakítani a folyamatot?"
 
-#: ../xfburn/xfburn-progress-dialog.c:504
+#: ../xfburn/xfburn-progress-dialog.c:476
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "Minimális feltöltés: %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:572
+#: ../xfburn/xfburn-progress-dialog.c:544
 msgid "Aborted"
 msgstr "Megszakítva"
 
-#: ../xfburn/xfburn-progress-dialog.c:575
+#: ../xfburn/xfburn-progress-dialog.c:547
 msgid "Formatted."
 msgstr "Formázott."
 
-#: ../xfburn/xfburn-progress-dialog.c:584
+#: ../xfburn/xfburn-progress-dialog.c:556
 msgid "Failed"
 msgstr "Sikertelen"
 
-#: ../xfburn/xfburn-progress-dialog.c:587
+#: ../xfburn/xfburn-progress-dialog.c:559
 msgid "Cancelled"
 msgstr "Megszakítva"
 
-#: ../xfburn/xfburn-progress-dialog.c:590
+#: ../xfburn/xfburn-progress-dialog.c:562
 msgid "Completed"
 msgstr "Befejezve"
 
-#: ../xfburn/xfburn-progress-dialog.c:628
+#: ../xfburn/xfburn-progress-dialog.c:600
 msgid "Aborting..."
 msgstr "Megszakítás…"
 
@@ -1037,108 +1138,101 @@ msgstr "Megszakítás…"
 msgid "Select command"
 msgstr "Válasszon parancsot"
 
-#: ../xfburn/xfburn-welcome-tab.c:127
+#: ../xfburn/xfburn-welcome-tab.c:99
 msgid "Welcome to Xfburn!"
 msgstr "Üdvözli az Xfburn!"
 
 #. buttons
-#: ../xfburn/xfburn-welcome-tab.c:146
+#: ../xfburn/xfburn-welcome-tab.c:118
 msgid "<big>Burn _Image</big>"
 msgstr "<big>_Lemezkép írása</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:146
+#: ../xfburn/xfburn-welcome-tab.c:118
 msgid "Burn a prepared compilation, i.e. an .ISO file"
 msgstr "Előkészített összeállítás írása, például .ISO fájl"
 
-#: ../xfburn/xfburn-welcome-tab.c:151
+#: ../xfburn/xfburn-welcome-tab.c:123
 msgid "<big>New _Data Composition</big>"
 msgstr "<big>Új _adat-összeállítás</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:151
+#: ../xfburn/xfburn-welcome-tab.c:123
 msgid "Create a new data disc with the files of your choosing"
 msgstr "Új adatlemez készítése kiválasztott fájlokkal"
 
-#: ../xfburn/xfburn-welcome-tab.c:156
+#: ../xfburn/xfburn-welcome-tab.c:128
 msgid "<big>_Blank Disc</big>"
 msgstr "<big>Lemez _törlése</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:156
+#: ../xfburn/xfburn-welcome-tab.c:128
 msgid "Prepare the rewriteable disc for a new burn"
 msgstr "Újraírható lemez előkészítése új íráshoz"
 
-#: ../xfburn/xfburn-welcome-tab.c:161
+#: ../xfburn/xfburn-welcome-tab.c:133
 msgid "<big>_Audio CD</big>"
 msgstr "<big>_Hang-CD</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:161
+#: ../xfburn/xfburn-welcome-tab.c:133
 msgid "Audio CD playable in regular stereos"
 msgstr "Normál lejátszókban használható hang-CD"
 
-#: ../xfburn/xfburn-audio-composition.c:220
-msgid "Remove"
-msgstr "Eltávolítás"
-
-#: ../xfburn/xfburn-audio-composition.c:220
-msgid "Remove the selected file(s) from the composition"
-msgstr "A kiválasztott fájlok eltávolítása az összeállításból"
-
 #: ../xfburn/xfburn-audio-composition.c:222
-msgid "Clear"
-msgstr "Törlés"
-
-#: ../xfburn/xfburn-audio-composition.c:224
+#: ../xfburn/xfburn-audio-composition.c:371
 msgid "What files can get burned to an audio CD?"
 msgstr "Milyen fájlok írhatók hang-CD-re?"
 
-#: ../xfburn/xfburn-audio-composition.c:228
+#: ../xfburn/xfburn-audio-composition.c:226 ../xfburn-popup-menus.ui.h:4
 msgid "Rename Artist"
 msgstr "Előadó átnevezése"
 
-#: ../xfburn/xfburn-audio-composition.c:228
+#: ../xfburn/xfburn-audio-composition.c:226
 msgid "Rename the artist of the selected file"
 msgstr "A kijelölt fájl előadójának átnevezése"
 
-#: ../xfburn/xfburn-audio-composition.c:230
+#: ../xfburn/xfburn-audio-composition.c:228 ../xfburn-popup-menus.ui.h:5
 msgid "Rename Title"
 msgstr "Cím átnevezése"
 
-#: ../xfburn/xfburn-audio-composition.c:230
+#: ../xfburn/xfburn-audio-composition.c:228
 msgid "Rename the title of the selected file"
 msgstr "A kijelölt fájl címének átnevezése"
 
-#: ../xfburn/xfburn-audio-composition.c:408
-msgid "What file can get burned to an audio CD"
-msgstr ""
+#. Note to translators: you can probably keep this as gstreamer,
+#. * unless you have a good reason to call it by another name that
+#. * the user would understand better
+#: ../xfburn/xfburn-audio-composition.c:371
+#: ../xfburn/xfburn-transcoder-gst.c:579
+msgid "gstreamer"
+msgstr "GStreamer"
 
-#: ../xfburn/xfburn-audio-composition.c:439
+#: ../xfburn/xfburn-audio-composition.c:402
 msgid "Pos"
 msgstr "Poz"
 
-#: ../xfburn/xfburn-audio-composition.c:441
+#: ../xfburn/xfburn-audio-composition.c:404
 msgid "Length"
 msgstr "Hossz"
 
-#: ../xfburn/xfburn-audio-composition.c:447
+#: ../xfburn/xfburn-audio-composition.c:410
 msgid "Artist"
 msgstr "Előadó"
 
-#: ../xfburn/xfburn-audio-composition.c:460
+#: ../xfburn/xfburn-audio-composition.c:423
 msgid "Title"
 msgstr "Cím"
 
-#: ../xfburn/xfburn-audio-composition.c:471
+#: ../xfburn/xfburn-audio-composition.c:434
 msgid "Filename"
 msgstr "Fájlnév"
 
-#: ../xfburn/xfburn-audio-composition.c:618
+#: ../xfburn/xfburn-audio-composition.c:581
 msgid "Cannot burn audio onto a DVD."
 msgstr "Nem írható hang DVD-re."
 
-#: ../xfburn/xfburn-audio-composition.c:1292
+#: ../xfburn/xfburn-audio-composition.c:1259
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Legfeljebb 99 sáv írható."
 
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
+#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:279
 msgid "A problem with the burn backend occurred."
 msgstr "Hiba történt az író háttérprogramban."
 
@@ -1150,11 +1244,17 @@ msgstr "Tovább az írásra"
 msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "A lemezre a kapacitásánál többet készül írni."
 
-#: ../xfburn/xfburn-transcoder-basic.c:166
+#. globals
+#: ../xfburn/xfburn-transcoder-basic.c:69
+#: ../xfburn/xfburn-transcoder-gst.c:145
+msgid "An error occurred while setting the burning backend up"
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
 msgstr "alapszintű"
 
-#: ../xfburn/xfburn-transcoder-basic.c:172
+#: ../xfburn/xfburn-transcoder-basic.c:135
 msgid ""
 "The basic transcoder is built in,\n"
 "and does not require any library.\n"
@@ -1166,39 +1266,50 @@ msgid ""
 "gstreamer support."
 msgstr "Az alapszintű átkódoló beépített és nem\nigényel programkönyvtárat. Azonban csak\ntömörítetlen .wav fájlokat kezel.\nHa más típusú hangfájlokból szeretne\nhangösszeállításokat készíteni, fordítsa\na programot GStreamer támogatással."
 
-#: ../xfburn/xfburn-transcoder-basic.c:196
+#: ../xfburn/xfburn-transcoder-basic.c:159
 #, c-format
 msgid "File %s does not have a .wav extension"
 msgstr "A fájl (%s) nem .wav kiterjesztésű"
 
-#: ../xfburn/xfburn-transcoder-basic.c:201
+#: ../xfburn/xfburn-transcoder-basic.c:164
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
 msgstr "A fájl (%s) nem tömörítetlen PCM hangot tartalmaz"
 
-#: ../xfburn/xfburn-transcoder-basic.c:207
+#: ../xfburn/xfburn-transcoder-basic.c:170
 #, c-format
 msgid "Could not stat %s: %s"
 msgstr "%s nem érhető el: %s"
 
-#: ../xfburn/xfburn-transcoder-basic.c:239
+#: ../xfburn/xfburn-transcoder-basic.c:202
 #, c-format
 msgid "Could not open %s."
 msgstr "%s nem nyitható meg."
 
-#: ../xfburn/xfburn-transcoder-basic.c:323
+#: ../xfburn/xfburn-transcoder-basic.c:281
 #, c-format
 msgid "Could not open %s: %s"
 msgstr "%s nem nyitható meg: %s"
 
-#. Note to translators: you can probably keep this as gstreamer,
-#. * unless you have a good reason to call it by another name that
-#. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:606
-msgid "gstreamer"
-msgstr "GStreamer"
+#: ../xfburn/xfburn-transcoder-gst.c:144
+msgid "An error occurred setting gstreamer up for transcoding"
+msgstr ""
 
-#: ../xfburn/xfburn-transcoder-gst.c:612
+#: ../xfburn/xfburn-transcoder-gst.c:146
+#, c-format
+msgid ""
+"%s is missing.\n"
+"\n"
+"You do not have a decoder installed to handle this file.\n"
+"Probably you need to look at the gst-plugins-* packages\n"
+"for the necessary plugins.\n"
+msgstr "%s hiányzik.\n\nNincs dekódoló telepítve ezen fájl kezeléséhez.\nA szükséges bővítményekért nézze meg a gst-plugins-* csomagokat.\n"
+
+#: ../xfburn/xfburn-transcoder-gst.c:542
+msgid "File content has a decoder but is not audio."
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:585
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1210,24 +1321,36 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "A GStreamer átkódoló a GStreamer függvénytárat\nhasználja a hangösszeállítások készítéséhez.\n\nAlapvetően minden hangfájl támogatott, feltéve hogy\na megfelelő bővítmények telepítve vannak. Ha egy\nhangfájl nem ismerhető fel, győződjön meg róla, hogy\na „good”, „bad” és „ugly” GStreamer bővítménycsomagok\ntelepítve vannak."
 
-#: ../xfburn/xfburn-transcoder-gst.c:689 ../xfburn/xfburn-transcoder-gst.c:719
+#: ../xfburn/xfburn-transcoder-gst.c:627
+msgid "No information available on which plugin is required."
+msgstr ""
+
+#: ../xfburn/xfburn-transcoder-gst.c:629
+msgid "Required plugins: "
+msgstr "Szükséges bővítmények:"
+
+#: ../xfburn/xfburn-transcoder-gst.c:662 ../xfburn/xfburn-transcoder-gst.c:692
 #, c-format
 msgid "An error occurred while identifying '%s' with gstreamer"
 msgstr "Hiba történt a(z) '%s' gstreamerrel történő azonosításakor"
 
-#: ../xfburn/xfburn-transcoder-gst.c:706
+#: ../xfburn/xfburn-transcoder-gst.c:679
 msgid "A plugin"
 msgstr "Egy bővítmény"
 
-#: ../xfburn/xfburn-transcoder-gst.c:841
+#: ../xfburn/xfburn-transcoder-gst.c:814
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "A GStreamer nem tudta elkezdeni az átkódolást (időtúllépés)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:876
+#: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
 msgid "Failed to change songs while transcoding"
 msgstr "A számok váltása meghiúsult átkódoláskor"
+
+#: ../xfburn/xfburn-transcoder.c:103 ../xfburn/xfburn-transcoder.c:113
+msgid "none"
+msgstr "nincs"
 
 #: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
 #: ../xfburn/xfburn-transcoder.c:163
@@ -1235,73 +1358,129 @@ msgstr "A számok váltása meghiúsult átkódoláskor"
 msgid "not implemented"
 msgstr "nincs megvalósítva"
 
-#: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
+#: ../xfburn/xfburn-device.c:247 ../xfburn/xfburn-device.c:248
 msgid "Display name"
 msgstr "Megjelenítendő név"
 
-#: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
+#: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
 msgid "Device address"
 msgstr "Eszköz címe"
 
-#: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
+#: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
 msgid "Burn speeds supported by the device"
 msgstr "Az eszköz által támogatott írási sebességek"
 
-#: ../xfburn/xfburn-device.c:259 ../xfburn/xfburn-device.c:260
+#: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
 msgid "Disc status"
 msgstr "Lemez állapota"
 
-#: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
+#: ../xfburn/xfburn-device.c:259 ../xfburn/xfburn-device.c:260
 msgid "Profile no. as reported by libburn"
 msgstr "A libburn által jelentett profilszám"
 
-#: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
+#: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
 msgid "Profile name as reported by libburn"
 msgstr "A libburn által jelentett profilnév"
 
-#: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
+#: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
 msgid "Is the disc erasable"
 msgstr "A lemez törölhető"
 
-#: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
+#: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
 msgid "Can burn CDR"
 msgstr "Képes CD-R írására"
 
-#: ../xfburn/xfburn-device.c:274 ../xfburn/xfburn-device.c:275
+#: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
 msgid "Can burn CDRW"
 msgstr "Képes CD-RW írására"
 
-#: ../xfburn/xfburn-device.c:277 ../xfburn/xfburn-device.c:278
+#: ../xfburn/xfburn-device.c:274 ../xfburn/xfburn-device.c:275
 msgid "Can burn DVDR"
 msgstr "Képes DVD-R írására"
 
-#: ../xfburn/xfburn-device.c:280 ../xfburn/xfburn-device.c:281
+#: ../xfburn/xfburn-device.c:277 ../xfburn/xfburn-device.c:278
 msgid "Can burn DVDPLUSR"
 msgstr "Képes DVD+R írására"
 
-#: ../xfburn/xfburn-device.c:283 ../xfburn/xfburn-device.c:284
+#: ../xfburn/xfburn-device.c:280 ../xfburn/xfburn-device.c:281
 msgid "Can burn DVDRAM"
 msgstr "Képes DVDRAM írására"
 
-#: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
+#: ../xfburn/xfburn-device.c:283 ../xfburn/xfburn-device.c:284
 msgid "Can burn Blu-ray"
 msgstr "Képes Blu-ray írására"
 
-#: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
+#: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
 msgid "libburn TAO block types"
 msgstr "libburn TAO blokktípusok"
 
-#: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
+#: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
 msgid "libburn SAO block types"
 msgstr "libburn SAO blokktípusok"
 
-#: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
+#: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
 msgid "libburn RAW block types"
 msgstr "libburn RAW blokktípusok"
 
-#: ../xfburn/xfburn-device.c:298 ../xfburn/xfburn-device.c:299
+#: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
 msgid "libburn PACKET block types"
 msgstr "libburn PACKET blokktípusok"
+
+#: ../xfburn.ui.h:1
+msgid "_Files"
+msgstr "_Fájlok"
+
+#: ../xfburn.ui.h:2
+msgid "New _data composition"
+msgstr "Új _adat-összeállítás"
+
+#: ../xfburn.ui.h:3
+msgid "New _audio composition"
+msgstr "Új _hangösszeállítás"
+
+#: ../xfburn.ui.h:4
+msgid "_Close composition"
+msgstr "Összeállítás le_zárása"
+
+#: ../xfburn.ui.h:5
+msgid "_Quit"
+msgstr "_Kilépés"
+
+#: ../xfburn.ui.h:6
+msgid "_Edit"
+msgstr "S_zerkesztés"
+
+#: ../xfburn.ui.h:7
+msgid "Prefere_nce"
+msgstr "_Beállítás"
+
+#: ../xfburn.ui.h:8
+msgid "_Action"
+msgstr "_Művelet"
+
+#: ../xfburn.ui.h:11
+msgid "_View"
+msgstr "_Nézet"
+
+#: ../xfburn.ui.h:13
+msgid "Show Toolbars"
+msgstr "Eszköztárak megjelenítése"
+
+#: ../xfburn.ui.h:14
+msgid "Show Filebrowser"
+msgstr "Fájlböngésző megjelenítése"
+
+#: ../xfburn.ui.h:15
+msgid "_Help"
+msgstr "_Súgó"
+
+#: ../xfburn.ui.h:16
+msgid "About"
+msgstr "Névjegy"
+
+#: ../xfburn-popup-menus.ui.h:2
+msgid "Rename"
+msgstr "Átnevezés"
 
 #: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
 msgid "Data Composition"
@@ -1319,7 +1498,7 @@ msgstr "CD- és DVD-író alkalmazás"
 msgid "Burn Image (xfburn)"
 msgstr "Lemezkép írása"
 
-#: ../xfburn.appdata.xml.in.h:1
+#: ../org.xfce.xfburn.appdata.xml.in.h:1
 msgid ""
 "Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
 "blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
