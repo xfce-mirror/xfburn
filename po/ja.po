@@ -7,13 +7,13 @@
 # Hao Chen <hao.chen.jobs@gmail.com>, 2013
 # Masato HASHIMOTO <cabezon.hashimoto@gmail.com>, 2008,2012
 # Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2016-2019
-# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-20 06:31+0100\n"
-"PO-Revision-Date: 2019-12-25 11:15+0000\n"
+"POT-Creation-Date: 2020-01-28 00:32+0100\n"
+"PO-Revision-Date: 2020-01-30 18:29+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese (http://www.transifex.com/xfce/xfce-apps/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -742,7 +742,7 @@ msgstr "ファイルシステム"
 msgid "%s's home"
 msgstr "%s のホームフォルダー"
 
-#: ../xfburn/xfburn-udev-manager.c:489
+#: ../xfburn/xfburn-udev-manager.c:495
 #, c-format
 msgid "Failed to unmount '%s'. Drive cannot be used for burning."
 msgstr "'%s' のアンマウントに失敗しました。ドライブは書き込みに使用できません。"
@@ -971,94 +971,98 @@ msgstr "コンソールを参照してください"
 msgid "User Aborted"
 msgstr "中止しました"
 
-#: ../xfburn/xfburn-preferences-dialog.c:116
+#: ../xfburn/xfburn-preferences-dialog.c:117
 msgid "Preferences"
 msgstr "設定"
 
-#: ../xfburn/xfburn-preferences-dialog.c:117
+#: ../xfburn/xfburn-preferences-dialog.c:118
 msgid "Tune how Xfburn behaves"
 msgstr "Xfburn の振る舞いを調整します"
 
-#: ../xfburn/xfburn-preferences-dialog.c:162
-#: ../xfburn/xfburn-preferences-dialog.c:166
+#: ../xfburn/xfburn-preferences-dialog.c:163
+#: ../xfburn/xfburn-preferences-dialog.c:167
 msgid "Temporary directory"
 msgstr "作業用フォルダー"
 
-#: ../xfburn/xfburn-preferences-dialog.c:170
+#: ../xfburn/xfburn-preferences-dialog.c:171
 msgid "_Clean temporary directory on exit"
 msgstr "終了時に作業用フォルダーを掃除する(_C)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:177
+#: ../xfburn/xfburn-preferences-dialog.c:178
 msgid "File browser"
 msgstr "ファイルブラウザー"
 
-#: ../xfburn/xfburn-preferences-dialog.c:181
+#: ../xfburn/xfburn-preferences-dialog.c:182
 msgid "Show _hidden files"
 msgstr "隠しファイルを表示する(_H)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:186
+#: ../xfburn/xfburn-preferences-dialog.c:187
 msgid "Show human_readable filesizes"
 msgstr "認識可能なファイルサイズを表示する(_R)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:196
-#: ../xfburn/xfburn-preferences-dialog.c:207
+#: ../xfburn/xfburn-preferences-dialog.c:197
+#: ../xfburn/xfburn-preferences-dialog.c:208
 msgid "General"
 msgstr "一般"
 
-#: ../xfburn/xfburn-preferences-dialog.c:211
-#: ../xfburn/xfburn-preferences-dialog.c:292
+#: ../xfburn/xfburn-preferences-dialog.c:212
+#: ../xfburn/xfburn-preferences-dialog.c:295
 msgid "Devices"
 msgstr "デバイス"
 
-#: ../xfburn/xfburn-preferences-dialog.c:220
+#: ../xfburn/xfburn-preferences-dialog.c:221
 msgid "Detected devices"
 msgstr "検出されたデバイス"
 
-#: ../xfburn/xfburn-preferences-dialog.c:242
+#: ../xfburn/xfburn-preferences-dialog.c:243
 msgid "Name"
 msgstr "名前"
 
-#: ../xfburn/xfburn-preferences-dialog.c:255
+#: ../xfburn/xfburn-preferences-dialog.c:256
+msgid "Revision"
+msgstr "リビジョン"
+
+#: ../xfburn/xfburn-preferences-dialog.c:258
 msgid "Node"
 msgstr "ノード"
 
-#: ../xfburn/xfburn-preferences-dialog.c:257
+#: ../xfburn/xfburn-preferences-dialog.c:260
 msgid "Write CD-R"
 msgstr "CD-R に書き出す"
 
-#: ../xfburn/xfburn-preferences-dialog.c:259
+#: ../xfburn/xfburn-preferences-dialog.c:262
 msgid "Write CD-RW"
 msgstr "CD-RW に書き出す"
 
-#: ../xfburn/xfburn-preferences-dialog.c:262
+#: ../xfburn/xfburn-preferences-dialog.c:265
 msgid "Write DVD-R"
 msgstr "DVD-R に書き出す"
 
-#: ../xfburn/xfburn-preferences-dialog.c:265
+#: ../xfburn/xfburn-preferences-dialog.c:268
 msgid "Write DVD-RAM"
 msgstr "DVD-RAM に書き出す"
 
-#: ../xfburn/xfburn-preferences-dialog.c:268
+#: ../xfburn/xfburn-preferences-dialog.c:271
 msgid "Write Blu-ray"
 msgstr "Blu-ray に書き出す"
 
-#: ../xfburn/xfburn-preferences-dialog.c:276
+#: ../xfburn/xfburn-preferences-dialog.c:279
 msgid "Sc_an for devices"
 msgstr "デバイスをスキャン(_A)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:303
+#: ../xfburn/xfburn-preferences-dialog.c:306
 msgid "Show warning on _empty speed list"
 msgstr "速度リストが空のとき警告を表示する(_E)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:312
+#: ../xfburn/xfburn-preferences-dialog.c:315
 msgid "FIFO buffer size (in kb)"
 msgstr "FIFO バッファーサイズ (KB)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:331
+#: ../xfburn/xfburn-preferences-dialog.c:334
 msgid "_Close"
 msgstr "閉じる(_C)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:464
+#: ../xfburn/xfburn-preferences-dialog.c:469
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "この設定の変更はプログラムの再起動後にすべて反映されます。"
 
@@ -1357,71 +1361,79 @@ msgstr "なし"
 msgid "not implemented"
 msgstr "実装されていません"
 
-#: ../xfburn/xfburn-device.c:247 ../xfburn/xfburn-device.c:248
+#: ../xfburn/xfburn-device.c:255 ../xfburn/xfburn-device.c:256
 msgid "Display name"
 msgstr "表示名"
 
-#: ../xfburn/xfburn-device.c:250 ../xfburn/xfburn-device.c:251
+#: ../xfburn/xfburn-device.c:258 ../xfburn/xfburn-device.c:259
 msgid "Device address"
 msgstr "デバイスアドレス"
 
-#: ../xfburn/xfburn-device.c:253 ../xfburn/xfburn-device.c:254
+#: ../xfburn/xfburn-device.c:261
+msgid "Device revision"
+msgstr "デバイスリビジョン"
+
+#: ../xfburn/xfburn-device.c:262
+msgid "Device Revision"
+msgstr "デバイスリビジョン"
+
+#: ../xfburn/xfburn-device.c:264 ../xfburn/xfburn-device.c:265
 msgid "Burn speeds supported by the device"
 msgstr "デバイスがサポートする焼き込み速度"
 
-#: ../xfburn/xfburn-device.c:256 ../xfburn/xfburn-device.c:257
+#: ../xfburn/xfburn-device.c:267 ../xfburn/xfburn-device.c:268
 msgid "Disc status"
 msgstr "ディスクの状態"
 
-#: ../xfburn/xfburn-device.c:259 ../xfburn/xfburn-device.c:260
+#: ../xfburn/xfburn-device.c:270 ../xfburn/xfburn-device.c:271
 msgid "Profile no. as reported by libburn"
 msgstr "libburn が報告したプロファイル番号"
 
-#: ../xfburn/xfburn-device.c:262 ../xfburn/xfburn-device.c:263
+#: ../xfburn/xfburn-device.c:273 ../xfburn/xfburn-device.c:274
 msgid "Profile name as reported by libburn"
 msgstr "libburn が報告したプロファイル名"
 
-#: ../xfburn/xfburn-device.c:265 ../xfburn/xfburn-device.c:266
+#: ../xfburn/xfburn-device.c:276 ../xfburn/xfburn-device.c:277
 msgid "Is the disc erasable"
 msgstr "ディスクの消去の可否"
 
-#: ../xfburn/xfburn-device.c:268 ../xfburn/xfburn-device.c:269
+#: ../xfburn/xfburn-device.c:279 ../xfburn/xfburn-device.c:280
 msgid "Can burn CDR"
 msgstr "CD-R へ焼き込み可能"
 
-#: ../xfburn/xfburn-device.c:271 ../xfburn/xfburn-device.c:272
+#: ../xfburn/xfburn-device.c:282 ../xfburn/xfburn-device.c:283
 msgid "Can burn CDRW"
 msgstr "CD-RW へ焼き込み可能"
 
-#: ../xfburn/xfburn-device.c:274 ../xfburn/xfburn-device.c:275
+#: ../xfburn/xfburn-device.c:285 ../xfburn/xfburn-device.c:286
 msgid "Can burn DVDR"
 msgstr "DVD-R へ焼き込み可能"
 
-#: ../xfburn/xfburn-device.c:277 ../xfburn/xfburn-device.c:278
+#: ../xfburn/xfburn-device.c:288 ../xfburn/xfburn-device.c:289
 msgid "Can burn DVDPLUSR"
 msgstr "DVD+R へ焼き込み可能"
 
-#: ../xfburn/xfburn-device.c:280 ../xfburn/xfburn-device.c:281
+#: ../xfburn/xfburn-device.c:291 ../xfburn/xfburn-device.c:292
 msgid "Can burn DVDRAM"
 msgstr "DVD-RAM へ焼き込み可能"
 
-#: ../xfburn/xfburn-device.c:283 ../xfburn/xfburn-device.c:284
+#: ../xfburn/xfburn-device.c:294 ../xfburn/xfburn-device.c:295
 msgid "Can burn Blu-ray"
 msgstr "Blu-ray へ焼き込み可能"
 
-#: ../xfburn/xfburn-device.c:286 ../xfburn/xfburn-device.c:287
+#: ../xfburn/xfburn-device.c:297 ../xfburn/xfburn-device.c:298
 msgid "libburn TAO block types"
 msgstr "libburn TAO ブロックタイプ"
 
-#: ../xfburn/xfburn-device.c:289 ../xfburn/xfburn-device.c:290
+#: ../xfburn/xfburn-device.c:300 ../xfburn/xfburn-device.c:301
 msgid "libburn SAO block types"
 msgstr "libburn SAO ブロックタイプ"
 
-#: ../xfburn/xfburn-device.c:292 ../xfburn/xfburn-device.c:293
+#: ../xfburn/xfburn-device.c:303 ../xfburn/xfburn-device.c:304
 msgid "libburn RAW block types"
 msgstr "libburn RAW ブロックタイプ"
 
-#: ../xfburn/xfburn-device.c:295 ../xfburn/xfburn-device.c:296
+#: ../xfburn/xfburn-device.c:306 ../xfburn/xfburn-device.c:307
 msgid "libburn PACKET block types"
 msgstr "libburn PACKET ブロックタイプ"
 
