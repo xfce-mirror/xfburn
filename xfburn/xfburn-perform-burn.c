@@ -126,22 +126,22 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
       xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_STOPPING);
     }
 
- 
+
     //DBG ("Formatting (%.f%%)", percent);
- 
+
     usleep (500000);
   }
 
   /* Check for success */
   if (burn_drive_wrote_well (drive)) {
     DBG ("Formatting done");
- 
+
     if (stopping) {
       return 0;
     }
-    
+
     percent = 100.0;
- 
+
     xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress),
                                                       percent);
   } else {
@@ -163,7 +163,7 @@ xfburn_perform_burn_init (struct burn_disc **disc, struct burn_session **session
 }
 */
 gboolean
-xfburn_set_write_mode (struct burn_write_opts *opts, XfburnWriteMode write_mode, struct burn_disc *disc, 
+xfburn_set_write_mode (struct burn_write_opts *opts, XfburnWriteMode write_mode, struct burn_disc *disc,
                        XfburnWriteMode fallback)
 {
   g_assert (fallback != WRITE_MODE_AUTO);
@@ -183,7 +183,7 @@ xfburn_set_write_mode (struct burn_write_opts *opts, XfburnWriteMode write_mode,
       DBG("Automatically selected burn mode %d", mode);
 
       // write mode set, we're done
-      
+
       return TRUE;
 
     } else {
@@ -225,8 +225,8 @@ xfburn_set_write_mode (struct burn_write_opts *opts, XfburnWriteMode write_mode,
 }
 
 void
-xfburn_perform_burn_write (GtkWidget *dialog_progress, 
-                           struct burn_drive *drive, XfburnWriteMode write_mode, struct burn_write_opts *burn_options, int sector_size, 
+xfburn_perform_burn_write (GtkWidget *dialog_progress,
+                           struct burn_drive *drive, XfburnWriteMode write_mode, struct burn_write_opts *burn_options, int sector_size,
                            struct burn_disc *disc, struct burn_source **fifos, int *track_sectors)
 {
   enum burn_disc_status disc_state;
@@ -254,7 +254,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
   while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
     usleep(100001);
- 
+
   /* retrieve media type, so we can convert from 'kb/s' into 'x' rating */
   if (burn_disc_get_profile(drive, &media_no, media_name) == 1) {
     factor = xfburn_media_profile_to_kb (media_no);
@@ -272,7 +272,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   } else if (disc_state != BURN_DISC_BLANK) {
     if (disc_state == BURN_DISC_FULL)
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Closed disc with data detected, a blank or appendable disc is needed."));
-    else if (disc_state == BURN_DISC_EMPTY) 
+    else if (disc_state == BURN_DISC_EMPTY)
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No disc detected in drive."));
     else {
       g_warning ("Cannot recognize state of drive and disc: disc_state = %d", disc_state);
@@ -312,7 +312,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
    * Hopefully this means the drive won't be left in a burning state if we catch a signal */
   burn_set_signal_handling ("xfburn", NULL, 0);
 
-  burn_disc_write (burn_options, disc); 
+  burn_disc_write (burn_options, disc);
 
   while (burn_drive_get_status (drive, NULL) == BURN_DRIVE_SPAWNING)
     usleep(1002);
@@ -376,7 +376,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
         cur_speed = ((gdouble) ((gdouble)(glong)progress.sector * 2048L) / (gdouble) (time_now - time_start)) / ((gdouble) (factor * 1000.0));
         //DBG ("(%f / %f) / %f = %f\n", (gdouble) ((gdouble)(glong)progress.sector * 2048L), (gdouble) (time_now - time_start), ((gdouble) (factor * 1000.0)), cur_speed);
-	xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), 
+	xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress),
 						  cur_speed);
 
         if (fifos != NULL) {
@@ -418,45 +418,45 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
       }
       break;
     case BURN_DRIVE_WRITING_LEADIN:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
+      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress),
 						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Writing Lead-In..."));
       xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
+      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
       break;
     case BURN_DRIVE_WRITING_LEADOUT:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
+      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress),
 						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Writing Lead-Out..."));
       xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
+      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
       break;
     case BURN_DRIVE_WRITING_PREGAP:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
+      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress),
 						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Writing pregap..."));
       xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
+      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
       break;
     case BURN_DRIVE_CLOSING_TRACK:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
+      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress),
 						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Closing track..."));
       xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
+      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
       break;
     case BURN_DRIVE_CLOSING_SESSION:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
+      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress),
 						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Closing session..."));
       xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
+      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
       break;
     case BURN_DRIVE_FORMATTING:
-      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), 
+      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress),
 						   XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Formatting..."));
       xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
-      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1); 
+      xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
       break;
     default:
       DBG ("Status %d not supported", status);
       break;
-    }    
+    }
     usleep (500000);
   }
 

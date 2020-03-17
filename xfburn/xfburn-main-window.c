@@ -267,7 +267,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
 
   /* menubar */
   GMenuModel *menu_model = (GMenuModel*)gtk_builder_get_object (priv->ui_manager, "main-menu");
-  
+
   priv->menubar = gtk_menu_bar_new_from_model (menu_model);
   if (G_LIKELY (priv->menubar != NULL)) {
     gtk_widget_insert_action_group (priv->menubar, "app", G_ACTION_GROUP (priv->action_map));

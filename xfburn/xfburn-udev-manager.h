@@ -48,7 +48,7 @@ typedef struct
 typedef struct
 {
   XfburnProgressDialogClass parent_class;
-  
+
   void (*volume_changed) (XfburnUdevManager *udevman);
 } XfburnUdevManagerClass;
 

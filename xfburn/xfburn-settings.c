@@ -42,7 +42,7 @@
 
 /* global */
 typedef struct _Setting Setting;
-  
+
 static void xfburn_settings_finalize (GObject * object);
 
 static void value_destroy (Setting * val);
@@ -92,7 +92,7 @@ static void
 xfburn_settings_internal_class_init (XfburnSettingsClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  
+
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_settings_finalize;
@@ -107,11 +107,11 @@ xfburn_settings_finalize (GObject * object)
   cobj = XFBURN_SETTINGS (object);
 
   priv = XFBURN_SETTINGS_GET_PRIVATE (cobj);
-  
+
   if (instance) {
     instance = NULL;
   }
-  
+
   if (G_LIKELY (priv->settings))
     g_hash_table_destroy (priv->settings);
   if (G_LIKELY (priv->full_path))
@@ -164,7 +164,7 @@ static void
 save_settings (XfburnSettingsPrivate *priv)
 {
   FILE *file_settings;
-  
+
   file_settings = fopen (priv->full_path, "w+");
 
   fprintf (file_settings, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n");
@@ -196,10 +196,10 @@ load_settings_start (GMarkupParseContext * context, const gchar * element_name,
                      gpointer user_data, GError ** error)
 {
   gboolean *started = (gboolean *) user_data;
-  
+
   if (!(*started) && !strcmp (element_name, "xfburn-settings"))
     *started = TRUE;
-  else if (!(*started)) 
+  else if (!(*started))
     return;
 
   if (!strcmp (element_name, "setting")) {
@@ -227,7 +227,7 @@ static void
 load_settings_end (GMarkupParseContext * context, const gchar * element_name, gpointer user_data, GError ** error)
 {
   gboolean *started = (gboolean *) user_data;
-  
+
   if (!strcmp (element_name, "xfburn-settings"))
     *started = FALSE;
 }
@@ -312,7 +312,7 @@ get_instance (void)
 	return instance;
   else
 	g_critical ("XfburnSettings hasn't been initialized");
-  
+
   return NULL;
 }
 
@@ -324,9 +324,9 @@ xfburn_settings_init (void)
 {
   if (G_LIKELY (instance == NULL)) {
 	XfburnSettingsPrivate *priv;
-	
+
 	instance = XFBURN_SETTINGS (g_object_new (XFBURN_TYPE_SETTINGS, NULL));
-	
+
 	if (instance) {
 	  priv = XFBURN_SETTINGS_GET_PRIVATE (instance);
 	  load_settings (priv);
@@ -341,7 +341,7 @@ xfburn_settings_flush (void)
 {
   XfburnSettings *settings = get_instance ();
   XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
-  
+
   save_settings (priv);
 }
 
@@ -349,7 +349,7 @@ void
 xfburn_settings_free (void)
 {
   XfburnSettings *settings = get_instance ();
- 
+
   g_object_unref (settings);
 }
 

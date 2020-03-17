@@ -1,20 +1,20 @@
 /*
  *  Copyright (C) 2009 David Mohr <david@mcbf.net>
- *  
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- *  
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU Library General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *  
+ *
  */
 
 #ifdef	HAVE_CONFIG_H
@@ -71,7 +71,7 @@ struct _XfburnDevicePrivate {
 
   gint buffer_size;
   gboolean dummy_write;
-  
+
   gboolean cdr;
   gboolean cdrw;
   gboolean dvdr;
@@ -251,58 +251,58 @@ xfburn_device_class_init (XfburnDeviceClass *klass)
   object_class->set_property = xfburn_device_set_property;
   object_class->finalize = xfburn_device_finalize;
 
-  g_object_class_install_property (object_class, PROP_NAME, 
+  g_object_class_install_property (object_class, PROP_NAME,
                                    g_param_spec_string ("name", _("Display name"),
                                                         _("Display name"), NULL, G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_ADDRESS, 
+  g_object_class_install_property (object_class, PROP_ADDRESS,
                                    g_param_spec_string ("address", _("Device address"),
                                                         _("Device address"), "", G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_REVISION, 
+  g_object_class_install_property (object_class, PROP_REVISION,
                                    g_param_spec_string ("revision", _("Device revision"),
                                                         _("Device Revision"), "", G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_SUPPORTED_SPEEDS, 
+  g_object_class_install_property (object_class, PROP_SUPPORTED_SPEEDS,
                                    g_param_spec_pointer ("supported-speeds", _("Burn speeds supported by the device"),
                                                         _("Burn speeds supported by the device"), G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_DISC_STATUS, 
+  g_object_class_install_property (object_class, PROP_DISC_STATUS,
                                    g_param_spec_int ("disc-status", _("Disc status"),
                                                      _("Disc status"), 0, 6, 0, G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_PROFILE_NO, 
+  g_object_class_install_property (object_class, PROP_PROFILE_NO,
                                    g_param_spec_int ("profile-no", _("Profile no. as reported by libburn"),
                                                      _("Profile no. as reported by libburn"), 0, 0xffff, 0, G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_PROFILE_NAME, 
+  g_object_class_install_property (object_class, PROP_PROFILE_NAME,
                                    g_param_spec_string ("profile-name", _("Profile name as reported by libburn"),
                                                         _("Profile name as reported by libburn"), "", G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_ERASABLE, 
+  g_object_class_install_property (object_class, PROP_ERASABLE,
                                    g_param_spec_boolean ("erasable", _("Is the disc erasable"),
                                                         _("Is the disc erasable"), FALSE, G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_CDR, 
+  g_object_class_install_property (object_class, PROP_CDR,
                                    g_param_spec_boolean ("cdr", _("Can burn CDR"),
                                                         _("Can burn CDR"), FALSE, G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_CDRW, 
+  g_object_class_install_property (object_class, PROP_CDRW,
                                    g_param_spec_boolean ("cdrw", _("Can burn CDRW"),
                                                         _("Can burn CDRW"), FALSE, G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_DVDR, 
+  g_object_class_install_property (object_class, PROP_DVDR,
                                    g_param_spec_boolean ("dvdr", _("Can burn DVDR"),
                                                         _("Can burn DVDR"), FALSE, G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_DVDPLUSR, 
+  g_object_class_install_property (object_class, PROP_DVDPLUSR,
                                    g_param_spec_boolean ("dvdplusr", _("Can burn DVDPLUSR"),
                                                         _("Can burn DVDPLUSR"), FALSE, G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_DVDRAM, 
+  g_object_class_install_property (object_class, PROP_DVDRAM,
                                    g_param_spec_boolean ("dvdram", _("Can burn DVDRAM"),
                                                         _("Can burn DVDRAM"), FALSE, G_PARAM_READWRITE));
   g_object_class_install_property (object_class, PROP_BD,
                                    g_param_spec_boolean ("bd", _("Can burn Blu-ray"),
                                                         _("Can burn Blu-ray"), FALSE, G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_TAO_BLOCK_TYPES, 
+  g_object_class_install_property (object_class, PROP_TAO_BLOCK_TYPES,
                                    g_param_spec_int ("tao-block-types", _("libburn TAO block types"),
                                                      _("libburn TAO block types"), 0, G_MAXINT, 0, G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_SAO_BLOCK_TYPES, 
+  g_object_class_install_property (object_class, PROP_SAO_BLOCK_TYPES,
                                    g_param_spec_int ("sao-block-types", _("libburn SAO block types"),
                                                      _("libburn SAO block types"), 0, G_MAXINT, 0, G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_RAW_BLOCK_TYPES, 
+  g_object_class_install_property (object_class, PROP_RAW_BLOCK_TYPES,
                                    g_param_spec_int ("raw-block-types", _("libburn RAW block types"),
                                                      _("libburn RAW block types"), 0, G_MAXINT, 0, G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_PACKET_BLOCK_TYPES, 
+  g_object_class_install_property (object_class, PROP_PACKET_BLOCK_TYPES,
                                    g_param_spec_int ("packet-block-types", _("libburn PACKET block types"),
                                                      _("libburn PACKET block types"), 0, G_MAXINT, 0, G_PARAM_READABLE));
 }
@@ -383,23 +383,23 @@ refresh_speed_list (XfburnDevice * device, struct burn_drive_info *drive_info)
 
   /* fill new list */
   ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
-  /* speed_list = NULL; DEBUG */ 
+  /* speed_list = NULL; DEBUG */
 
   if (ret > 0 && speed_list != NULL) {
     struct burn_speed_descriptor *el = speed_list;
 
     while (el) {
       gint speed = el->write_speed;
-      
+
       /* FIXME: why do we need no_speed_duplicate? */
       if (speed > 0 && no_speed_duplicate (priv->supported_speeds, speed)) {
           priv->supported_speeds = g_slist_prepend (priv->supported_speeds, GINT_TO_POINTER (speed));
-      } 
+      }
 
       el = el->next;
     }
 
-    burn_drive_free_speedlist (&speed_list); 
+    burn_drive_free_speedlist (&speed_list);
     priv->supported_speeds = g_slist_sort (priv->supported_speeds, &cmp_ints);
   } else if (ret == 0 || speed_list == NULL) {
     g_warning ("reported speed list is empty for device:");
@@ -428,7 +428,7 @@ xfburn_device_fillin_libburn_info (XfburnDevice *device, struct burn_drive_info 
 
   priv->dvdr = drive->write_dvdr;
   priv->dvdram = drive->write_dvdram;
-  
+
   priv->buffer_size = drive->buffer_size;
   priv->dummy_write = drive->write_simulate;
 
@@ -527,7 +527,7 @@ xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info)
   return ret;
 }
 
-gboolean 
+gboolean
 xfburn_device_release (struct burn_drive_info *drive_info, gboolean eject)
 {
   int ret;
@@ -572,7 +572,7 @@ xfburn_device_can_burn (XfburnDevice *device)
   return CAN_BURN (priv);
 }
 
-gboolean 
+gboolean
 xfburn_device_can_dummy_write (XfburnDevice *device)
 {
   XfburnDevicePrivate *priv = GET_PRIVATE (device);

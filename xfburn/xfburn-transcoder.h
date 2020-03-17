@@ -55,7 +55,7 @@ typedef struct
   gboolean (*prepare) (XfburnTranscoder *trans, GError **error);
   void (*finish) (XfburnTranscoder *trans);
   gboolean (*free_burning_resources) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
-  
+
 } XfburnTranscoderInterface;
 
 GType xfburn_transcoder_get_type (void);

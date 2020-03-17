@@ -36,7 +36,7 @@ typedef struct
 {
   GtkWidget *notebook;
   GtkWidget *icon_bar;
-  
+
   GtkWidget *chooser_button;
   GtkWidget *check_clean_tmpdir;
   GtkWidget *check_show_hidden;
@@ -100,7 +100,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
 {
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area(GTK_DIALOG (obj)));
   XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (obj);
-  
+
   GtkWidget *vbox, *vbox2, *vbox3, *hbox;
   GtkWidget *label;
   GtkWidget *frame;
@@ -113,13 +113,13 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   GtkCellRenderer *cell_icon, *cell_name;
   GtkWidget *button_close;
   gint idx;
-  
+
   gtk_window_set_title (GTK_WINDOW (obj), _("Preferences"));
   xfce_titled_dialog_set_subtitle (XFCE_TITLED_DIALOG (obj), _("Tune how Xfburn behaves"));
   gtk_window_set_default_size (GTK_WINDOW (obj), 775, 400);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
   gtk_window_set_icon_name (GTK_WINDOW (obj), "preferences-system");
-  
+
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_box_pack_start (box, hbox, TRUE, TRUE, 0);
   gtk_widget_show (hbox);
@@ -198,7 +198,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
                       SETTINGS_LIST_INDEX_COLUMN, idx,
                       -1);
   g_object_unref (G_OBJECT (icon));
-  
+
   /* devices tab */
   vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), BORDER);
@@ -237,7 +237,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_widget_show (priv->treeview_devices);
   gtk_container_add (GTK_CONTAINER (scrolled_window), priv->treeview_devices);
   g_object_unref (store);
-  
+
   /* add columns */
   column_name = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column_name, _("Name"));
@@ -288,7 +288,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   if (!icon)
     icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-optical", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
 
-  
+
   gtk_list_store_append (icon_store, &iter);
   gtk_list_store_set (icon_store, &iter,
                       SETTINGS_LIST_PIXBUF_COLUMN, icon,
@@ -297,7 +297,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
                       -1);
   if (icon)
     g_object_unref (G_OBJECT (icon));
-  
+
 //  exo_mutual_binding_new (G_OBJECT (priv->notebook), "page", G_OBJECT (priv->icon_bar), "active");
 
 
@@ -322,7 +322,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_box_pack_start (GTK_BOX (vbox3), priv->scale_fifo, FALSE, FALSE, BORDER/2);
   gtk_widget_show (priv->scale_fifo);
 
-  
+
   /* action buttons */
   button_close = gtk_button_new ();
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL,0);
@@ -382,22 +382,22 @@ xfburn_preferences_dialog_save_settings (XfburnPreferencesDialog *dialog)
 {
   XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (dialog);
   gchar *temp_dir;
-  
+
   temp_dir = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_button));
   xfburn_settings_set_string ("temporary-dir", temp_dir);
   g_free (temp_dir);
-  
-  xfburn_settings_set_boolean ("clean-temporary-dir", 
+
+  xfburn_settings_set_boolean ("clean-temporary-dir",
                                gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_clean_tmpdir)));
-  xfburn_settings_set_boolean ("show-hidden-files", 
+  xfburn_settings_set_boolean ("show-hidden-files",
                                gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_show_hidden)));
-  xfburn_settings_set_boolean ("human-readable-units", 
+  xfburn_settings_set_boolean ("human-readable-units",
                                gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_show_human_readable)));
 #if 0
-  xfburn_settings_set_boolean ("show-empty-speed-list-notice", 
+  xfburn_settings_set_boolean ("show-empty-speed-list-notice",
                                gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_empty_speed_list)));
 #endif
-  xfburn_settings_set_int ("fifo-size", 
+  xfburn_settings_set_int ("fifo-size",
                                ((((int) gtk_range_get_value (GTK_RANGE (priv->scale_fifo)) / 32) * 32))); /* this should round to multiples of 1024 */
 }
 
@@ -463,7 +463,7 @@ scan_button_clicked_cb (GtkWidget * button, gpointer user_data)
   refresh_devices_list (user_data);
 }
 
-static void 
+static void
 cb_show_hidden_clicked (GtkButton * Button, gpointer user_data)
 {
   xfce_dialog_show_warning(NULL, NULL, _("Changing this setting only takes full effect after a program restart."));

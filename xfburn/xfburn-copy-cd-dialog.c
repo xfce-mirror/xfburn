@@ -67,7 +67,7 @@ G_DEFINE_TYPE_WITH_PRIVATE(XfburnCopyCdDialog, xfburn_copy_cd_dialog, XFCE_TYPE_
 
 static void
 xfburn_copy_cd_dialog_class_init (XfburnCopyCdDialogClass * klass)
-{  
+{
   parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -95,7 +95,7 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   /* reader devices list */
   priv->device_box_src = xfburn_device_box_new (FALSE, FALSE);
   gtk_widget_show (priv->device_box_src);
-  
+
   frame = xfce_create_framebox_with_content (_("CD Reader device"), priv->device_box_src);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
@@ -107,7 +107,7 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
   priv->frame_burn = xfce_create_framebox_with_content (_("Burning device"), priv->device_box_dest);
   gtk_widget_show (priv->frame_burn);
   gtk_box_pack_start (box, priv->frame_burn, FALSE, FALSE, BORDER);
-    
+
   /* options */
   vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox);
@@ -175,10 +175,10 @@ xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * obj)
 
   g_signal_connect (G_OBJECT (priv->device_box_src), "device-changed", G_CALLBACK (cb_device_changed), priv);
   g_signal_connect (G_OBJECT (priv->device_box_dest), "device-changed", G_CALLBACK (cb_device_changed), priv);
-  
+
   /* check if the selected devices are the same */
   cb_device_changed (XFBURN_DEVICE_BOX (priv->device_box_dest), NULL, priv);
-  
+
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
 }
 
@@ -188,11 +188,11 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyCdDialog * dialog
 {
   XfburnCopyCdDialogPrivate *priv = XFBURN_COPY_CD_DIALOG_GET_PRIVATE (dialog);
   gboolean sensitive = gtk_toggle_button_get_active (button);
-  
+
   gtk_widget_set_sensitive (priv->hbox_iso, sensitive);
-  
+
   gtk_widget_set_sensitive (priv->frame_burn, !sensitive);
-  
+
   gtk_widget_set_sensitive (priv->check_eject, !sensitive);
   gtk_widget_set_sensitive (priv->check_dummy, !sensitive);
   gtk_widget_set_sensitive (priv->check_onthefly, !sensitive);
@@ -202,16 +202,16 @@ static void
 cb_device_changed (XfburnDeviceBox *box, const gchar *device_name, XfburnCopyCdDialogPrivate *priv)
 {
   gchar *source_device_name = NULL, *dest_device_name = NULL;
-  
+
   source_device_name = xfburn_device_box_get_selected (XFBURN_DEVICE_BOX (priv->device_box_src));
   dest_device_name = xfburn_device_box_get_selected (XFBURN_DEVICE_BOX (priv->device_box_dest));
-  
+
   if (source_device_name && dest_device_name && !strcmp (source_device_name, dest_device_name)) {
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_onthefly), FALSE);
     gtk_widget_set_sensitive (priv->check_onthefly, FALSE);
   } else
     gtk_widget_set_sensitive (priv->check_onthefly, TRUE);
-  
+
   g_free (source_device_name);
   g_free (dest_device_name);
 }
@@ -220,7 +220,7 @@ static void
 cb_browse_iso (GtkButton * button, XfburnCopyCdDialog * dialog)
 {
   XfburnCopyCdDialogPrivate *priv = XFBURN_COPY_CD_DIALOG_GET_PRIVATE (dialog);
-  
+
   xfburn_browse_for_file (GTK_ENTRY (priv->entry_path_iso), GTK_WINDOW (dialog));
 }
 

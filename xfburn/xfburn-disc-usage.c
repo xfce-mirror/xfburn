@@ -6,18 +6,18 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-/* 
+/*
  * This is an instantiable base class for the disc usage.
  *
  * Every composition type should extend it, but for testing it can be used
@@ -163,7 +163,7 @@ xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObject
   gtk_widget_set_sensitive (disc_usage->button, FALSE);
   gtk_widget_show (disc_usage->button);
   g_signal_connect (G_OBJECT (disc_usage->button), "clicked", G_CALLBACK (cb_button_clicked), disc_usage);
-  
+
   g_signal_connect (G_OBJECT (disc_usage->combo), "changed", G_CALLBACK (cb_combo_changed), disc_usage);
 
   class->update_size (disc_usage);
@@ -172,7 +172,7 @@ xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObject
 }
 
 /* internals */
-static void 
+static void
 update_size_default (XfburnDiscUsage *du)
 {
   gchar *size;
@@ -184,13 +184,13 @@ update_size_default (XfburnDiscUsage *du)
   g_free (size);
 }
 
-static gboolean 
+static gboolean
 can_burn_default (XfburnDiscUsage *du)
 {
   return TRUE;
 }
 
-static void 
+static void
 cb_button_clicked (GtkButton *button, XfburnDiscUsage *du)
 {
   XfburnDiscUsageClass *class = XFBURN_DISC_USAGE_GET_CLASS (du);

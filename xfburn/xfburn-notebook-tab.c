@@ -68,20 +68,20 @@ xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  
+
   object_class->set_property = xfburn_notebook_tab_set_property;
   object_class->get_property = xfburn_notebook_tab_get_property;
-  
+
   notebook_tab_signals[BUTTON_CLOSE_CLICKED] = g_signal_new ("button-close-clicked",
                                                              G_TYPE_FROM_CLASS (object_class), G_SIGNAL_ACTION,
                                                              G_STRUCT_OFFSET (XfburnNotebookTabClass, button_close_clicked),
                                                              NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
-  
-  g_object_class_install_property (object_class, PROP_LABEL, 
-                                   g_param_spec_string ("label", _("Label"), _("The text of the label"), 
+
+  g_object_class_install_property (object_class, PROP_LABEL,
+                                   g_param_spec_string ("label", _("Label"), _("The text of the label"),
                                                         NULL, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-  g_object_class_install_property (object_class, PROP_SHOW_BUTTON_CLOSE, 
-                                   g_param_spec_boolean ("show-button-close", _("Show close button"), _("Determine whether the close button is visible"), 
+  g_object_class_install_property (object_class, PROP_SHOW_BUTTON_CLOSE,
+                                   g_param_spec_boolean ("show-button-close", _("Show close button"), _("Determine whether the close button is visible"),
                                                         TRUE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
 
@@ -92,15 +92,15 @@ xfburn_notebook_tab_init (XfburnNotebookTab * tab)
   GtkBox *hbox = GTK_BOX (tab);
   gtk_orientable_set_orientation (GTK_ORIENTABLE (hbox), GTK_ORIENTATION_HORIZONTAL);
   GtkWidget *img;
-  
+
   priv->label = gtk_label_new ("");
   gtk_widget_show (priv->label);
   gtk_box_pack_start (hbox, priv->label, TRUE, TRUE, 0);
-    
+
   priv->button_close = gtk_button_new ();
   gtk_button_set_relief (GTK_BUTTON (priv->button_close), GTK_RELIEF_NONE);
   gtk_widget_show (priv->button_close);
-	
+
   img = gtk_image_new_from_icon_name ("window-close", GTK_ICON_SIZE_MENU);
   gtk_widget_show (img);
   gtk_container_add (GTK_CONTAINER (priv->button_close), img);
@@ -131,7 +131,7 @@ static void
 xfburn_notebook_tab_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
 {
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (XFBURN_NOTEBOOK_TAB (object));
-  
+
   switch (prop_id) {
   case PROP_LABEL:
     gtk_label_set_text (GTK_LABEL (priv->label), g_value_get_string (value));
@@ -141,14 +141,14 @@ xfburn_notebook_tab_set_property (GObject *object, guint prop_id, const GValue *
       gtk_widget_show (priv->button_close);
     else
       gtk_widget_hide (priv->button_close);
-	
+
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     break;
   }
 }
-                                          
+
 /*************/
 /* internals */
 /*************/
@@ -166,7 +166,7 @@ xfburn_notebook_tab_new (const gchar *label, gboolean show_button_close)
 {
   GtkWidget *obj;
 
-  obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_NOTEBOOK_TAB, "homogeneous", FALSE, 
+  obj = GTK_WIDGET (g_object_new (XFBURN_TYPE_NOTEBOOK_TAB, "homogeneous", FALSE,
 				  "label", label, "show-button-close", show_button_close, NULL));
 
   return obj;
@@ -176,7 +176,7 @@ void
 xfburn_notebook_tab_set_label (XfburnNotebookTab *tab, const gchar *label)
 {
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (tab);
-  
+
   gtk_label_set_text (GTK_LABEL (priv->label), label);
 }
 
@@ -184,7 +184,7 @@ void
 xfburn_notebook_tab_show_button_close (XfburnNotebookTab *tab)
 {
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (tab);
-  
+
   gtk_widget_show (priv->button_close);
 }
 
@@ -192,6 +192,6 @@ void
 xfburn_notebook_tab_show_button_hide (XfburnNotebookTab *tab)
 {
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (tab);
-  
+
   gtk_widget_hide (priv->button_close);
 }

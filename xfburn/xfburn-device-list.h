@@ -53,7 +53,7 @@ typedef struct {
 
 typedef struct {
   GObjectClass parent_class;
-  
+
   void (*volume_changed) (XfburnDeviceList *devlist, guint device_changed, XfburnDevice *device);
 } XfburnDeviceListClass;
 

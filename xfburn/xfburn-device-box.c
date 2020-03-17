@@ -6,12 +6,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -67,11 +67,11 @@ typedef struct
   gboolean show_mode_selection;
   gboolean valid_disc;
   gboolean blank_mode;
-  
+
 
   GtkWidget *hbox_refresh;
   GtkWidget *disc_label;
-  
+
   GtkWidget *hbox_speed_selection;
   GtkWidget *combo_speed;
 
@@ -86,7 +86,7 @@ typedef struct
 
   gulong handler_volume_change_start;
   gulong handler_volume_change_end;
-  
+
   XfburnDeviceList *devlist;
 } XfburnDeviceBoxPrivate;
 
@@ -124,41 +124,41 @@ static void
 xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  
+
   parent_class = g_type_class_peek_parent (klass);
-  
+
   object_class->finalize     = xfburn_device_box_finalize;
   object_class->set_property = xfburn_device_box_set_property;
   object_class->get_property = xfburn_device_box_get_property;
-  
+
   signals[VOLUME_CHANGED] = g_signal_new ("volume_changed", XFBURN_TYPE_DEVICE_BOX, G_SIGNAL_ACTION,
                                           G_STRUCT_OFFSET (XfburnDeviceBoxClass, volume_changed),
                                           NULL, NULL, xfburn_cclosure_marshal_VOID__BOOLEAN_OBJECT,
                                           G_TYPE_NONE, 2, G_TYPE_BOOLEAN, XFBURN_TYPE_DEVICE);
-    
-  g_object_class_install_property (object_class, PROP_SHOW_WRITERS_ONLY, 
+
+  g_object_class_install_property (object_class, PROP_SHOW_WRITERS_ONLY,
                                    g_param_spec_boolean ("show-writers-only", _("Show writers only"),
                                                         _("Show writers only"),
                                                         FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
-  g_object_class_install_property (object_class, PROP_SHOW_SPEED_SELECTION, 
+  g_object_class_install_property (object_class, PROP_SHOW_SPEED_SELECTION,
                                    g_param_spec_boolean ("show-speed-selection", _("Show speed selection"),
-                                                        _("Show speed selection combo"), 
+                                                        _("Show speed selection combo"),
                                                         FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
-  g_object_class_install_property (object_class, PROP_SHOW_MODE_SELECTION, 
+  g_object_class_install_property (object_class, PROP_SHOW_MODE_SELECTION,
                                    g_param_spec_boolean ("show-mode-selection", _("Show mode selection"),
-                                                        _("Show mode selection combo"), 
+                                                        _("Show mode selection combo"),
                                                         FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
-  g_object_class_install_property (object_class, PROP_VALID, 
+  g_object_class_install_property (object_class, PROP_VALID,
                                    g_param_spec_boolean ("valid", _("Is it a valid combination"),
-                                                        _("Is the combination of hardware and disc valid to burn the composition?"), 
+                                                        _("Is the combination of hardware and disc valid to burn the composition?"),
                                                         FALSE, G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_BLANK_MODE, 
+  g_object_class_install_property (object_class, PROP_BLANK_MODE,
                                    g_param_spec_boolean ("blank-mode", _("Blank mode"),
-                                                        _("The blank mode shows different disc status messages than regular mode"), 
+                                                        _("The blank mode shows different disc status messages than regular mode"),
                                                         FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
 
-static void 
+static void
 xfburn_device_box_init (XfburnDeviceBox *box)
 {
   XfburnDeviceBoxPrivate *priv = xfburn_device_box_get_instance_private(box);
@@ -169,7 +169,7 @@ xfburn_device_box_init (XfburnDeviceBox *box)
   GtkCellRenderer *cell;
   XfburnDeviceList *devlist;
   gint n_burners;
-  
+
   gtk_orientable_set_orientation (GTK_ORIENTABLE (box), GTK_ORIENTATION_VERTICAL);
 
   priv->devlist = devlist = xfburn_device_list_new ();
@@ -179,7 +179,7 @@ xfburn_device_box_init (XfburnDeviceBox *box)
   /* devices */
   priv->combo_device = xfburn_device_list_get_device_combo (devlist);
   gtk_box_pack_start (GTK_BOX (box), priv->combo_device, FALSE, FALSE, BORDER);
-  
+
   /*
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_widget_show (hbox);
@@ -302,7 +302,7 @@ static void
 xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (object);
-  
+
   switch (prop_id) {
     case PROP_SHOW_WRITERS_ONLY:
       priv->show_writers_only = g_value_get_boolean (value);
@@ -365,7 +365,7 @@ empty_speed_list_dialog (void)
 
   switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
     case GTK_RESPONSE_CLOSE:
-      xfburn_settings_set_boolean ("show-empty-speed-list-notice", 
+      xfburn_settings_set_boolean ("show-empty-speed-list-notice",
                                    gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (check_show_notice)));
       break;
     default:
@@ -497,7 +497,7 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
   if (device == NULL)
     return FALSE;
 
-  g_object_get (G_OBJECT (device), "disc-status", &disc_status, "profile-no", &profile_no, 
+  g_object_get (G_OBJECT (device), "disc-status", &disc_status, "profile-no", &profile_no,
                                    "erasable", &is_erasable, "profile-name", &profile_name,
                                    NULL);
   if (profile_name != NULL) {
@@ -544,7 +544,7 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
     if (!priv->valid_disc) {
         priv->status_text = _("Drive can't burn on the inserted disc");
     } else {
-      priv->valid_disc = (disc_status == BURN_DISC_BLANK); 
+      priv->valid_disc = (disc_status == BURN_DISC_BLANK);
       /* Not sure if we support appending yet, so let's disable it for the time being
        * || (disc_status == BURN_DISC_APPENDABLE); */
 
@@ -638,7 +638,7 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
   gtk_list_store_append (GTK_LIST_STORE (model), &iter);
   gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, _("Auto"), MODE_VALUE_COLUMN, WRITE_MODE_AUTO, -1);
 
-  if (device) 
+  if (device)
     g_object_get (G_OBJECT (device), "tao-block-types", &block_types, NULL);
 
   if (block_types) {
@@ -646,7 +646,7 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "TAO", MODE_VALUE_COLUMN, WRITE_MODE_TAO, -1);
   }
 
-  if (device) 
+  if (device)
     g_object_get (G_OBJECT (device), "sao-block-types", &block_types, NULL);
   if (block_types & BURN_BLOCK_SAO) {
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
@@ -672,7 +672,7 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "packet", MODE_VALUE_COLUMN, WRITE_MODE_PACKET, -1);
   }
   */
-  
+
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_mode), 0);
 }
 
@@ -700,7 +700,7 @@ cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, Xfburn
   g_signal_emit (box, signals[VOLUME_CHANGED], 0, device_changed, device);
 }
 
-static void 
+static void
 refresh_drive_info (XfburnDeviceBox *box, XfburnDevice *device)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
@@ -738,13 +738,13 @@ xfburn_device_box_new (XfburnDeviceBoxFlags flags)
 {
   GtkWidget *obj;
 
-  obj = g_object_new (xfburn_device_box_get_type (), 
-		      "show-writers-only", ((flags & SHOW_CD_WRITERS) != 0), 
-                      "show-speed-selection", ((flags & SHOW_SPEED_SELECTION) != 0), 
+  obj = g_object_new (xfburn_device_box_get_type (),
+		      "show-writers-only", ((flags & SHOW_CD_WRITERS) != 0),
+                      "show-speed-selection", ((flags & SHOW_SPEED_SELECTION) != 0),
 		      "show-mode-selection", ((flags & SHOW_MODE_SELECTION) != 0),
 		      "blank-mode", ((flags & BLANK_MODE) != 0),
                       NULL);
-  
+
   return obj;
 }
 
@@ -752,7 +752,7 @@ gint
 xfburn_device_box_get_speed (XfburnDeviceBox *box)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-  
+
   GtkTreeModel *model;
   GtkTreeIter iter;
   gint speed = -1;
@@ -783,7 +783,7 @@ XfburnWriteMode
 xfburn_device_box_get_mode (XfburnDeviceBox *box)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
-  
+
   GtkTreeModel *model;
   GtkTreeIter iter;
   gint mode = -1;

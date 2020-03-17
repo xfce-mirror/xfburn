@@ -1622,7 +1622,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
     row = selected_rows = *((GList **) gtk_selection_data_get_data(sd));
 
-    if (path_where_insert) {      
+    if (path_where_insert) {
       gtk_tree_model_get_iter (model, &iter_where_insert, path_where_insert);
       iter = &iter_where_insert;
 
@@ -1699,7 +1699,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
           g_free (parent_humansize);
         }
 
-        if (gdk_drag_context_get_actions(dc) == GDK_ACTION_MOVE) {       
+        if (gdk_drag_context_get_actions(dc) == GDK_ACTION_MOVE) {
           /* remove source entry */
           if (gtk_tree_path_up (path_parent) && path_where_insert &&
               !gtk_tree_path_is_descendant (path_where_insert, path_parent)) {

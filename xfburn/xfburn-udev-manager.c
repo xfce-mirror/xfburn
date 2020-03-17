@@ -52,7 +52,7 @@ static void cb_device_monitor_uevent(GUdevClient  *client, const gchar  *action,
 enum {
   VOLUME_CHANGED,
   LAST_SIGNAL,
-}; 
+};
 
 typedef struct {
   GUdevClient *client;
@@ -82,7 +82,7 @@ static void
 xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  
+
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_udev_manager_finalize;
@@ -199,7 +199,7 @@ xfburn_udev_manager_send_volume_changed (void)
   //gdk_threads_leave ();
 }
 
-GList * 
+GList *
 xfburn_udev_manager_get_devices (XfburnUdevManager *udevman, gint *drives, gint *burners)
 {
   XfburnUdevManagerPrivate *priv = XFBURN_UDEV_MANAGER_GET_PRIVATE (udevman);
@@ -300,7 +300,7 @@ xfburn_udev_manager_gio_operation_end (gpointer callback_data)
     return;
   if (!g_main_loop_is_running (operation->loop))
     return;
-  g_main_loop_quit (operation->loop);	
+  g_main_loop_quit (operation->loop);
 }
 
 static void
@@ -334,7 +334,7 @@ cb_device_umount_finish (GObject *source,
       op->error = NULL;
       op->result = TRUE;
     }
-    /* Since there was an error. The "unmounted" signal won't be 
+    /* Since there was an error. The "unmounted" signal won't be
      * emitted by GVolumeMonitor and therefore we'd get stuck if
      * we didn't get out of the loop. */
     xfburn_udev_manager_gio_operation_end (op);
@@ -464,7 +464,7 @@ xfburn_udev_manager_check_ask_umount (XfburnUdevManager *udevman, XfburnDevice *
       if (op->error->code == G_IO_ERROR_FAILED_HANDLED) {
         DBG("Error already handled and displayed by GIO");
 
-        /* means we shouldn't display any error message since 
+        /* means we shouldn't display any error message since
          * that was already done */
         g_error_free (op->error);
         op->error = NULL;

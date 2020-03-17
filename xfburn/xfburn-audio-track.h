@@ -47,8 +47,8 @@ typedef struct
   struct burn_source *src;
 
   /* implementations will add extra data here */
-  GType type; 
-  gpointer data; 
+  GType type;
+  gpointer data;
 } XfburnAudioTrack;
 
 GType xfburn_audio_track_get_type (void);

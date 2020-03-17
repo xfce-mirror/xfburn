@@ -5,12 +5,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -42,7 +42,7 @@ xfburn_composition_base_init (gpointer g_iface)
                                                       G_STRUCT_OFFSET (XfburnCompositionInterface, name_changed),
                                                       NULL, NULL, g_cclosure_marshal_VOID__STRING,
                                                       G_TYPE_NONE, 1, G_TYPE_STRING);
-    
+
     initialized = TRUE;
   }
 }
@@ -65,10 +65,10 @@ xfburn_composition_get_type (void)
       NULL,                          /* instance_init */
       NULL
     };
-    
+
     type = g_type_register_static (G_TYPE_INTERFACE, "XfburnComposition", &info, 0);
   }
-  
+
   return type;
 }
 
