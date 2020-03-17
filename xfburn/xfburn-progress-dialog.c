@@ -325,7 +325,7 @@ set_action_text (XfburnProgressDialog * dialog, XfburnProgressDialogStatus statu
 
   gtk_label_set_markup (GTK_LABEL (priv->label_action), temp);
 
-  g_free (temp);  
+  g_free (temp);
 }
 
 static void

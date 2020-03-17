@@ -229,40 +229,40 @@ cb_dialog_response (XfburnCopyDvdDialog * dialog, gint response_id, XfburnCopyDv
     XfburnDevice *device_burn;
     XfburnDevice *device_read;
     GtkWidget *dialog_progress = NULL;
-  
+
     device_read = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box_src));
-        
+
     if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
-      command = g_strconcat ("readcd dev=", device_read->node_path, " f=", 
+      command = g_strconcat ("readcd dev=", device_read->node_path, " f=",
                              gtk_entry_get_text (GTK_ENTRY (priv->entry_path_iso)), NULL);
-      
+
       //      dialog_progress = xfburn_create_iso_progress_dialog_new ();
     } else {
       gint speed;
       gchar *source_device = NULL;
-      
+
       device_burn = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box_dest));
       speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box_dest));
-      
+
       if (device_burn != device_read)
         source_device = g_strconcat (" --source-device ", device_read->node_path, NULL);
       else
         source_device = g_strdup ("");
-      
-      command = g_strconcat ("cdrdao copy -n -v 2", source_device, 
-                             " --device ", device_burn->node_path, " --speed ", speed, 
+
+      command = g_strconcat ("cdrdao copy -n -v 2", source_device,
+                             " --device ", device_burn->node_path, " --speed ", speed,
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " --eject" : "",
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " --simulate" : "",
                              device_burn != device_read && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_onthefly)) ? " --on-the-fly" : "",
-                             " --datafile /tmp/xfburn.bin", NULL);
+                             " --datafile /var/tmp/xfburn.bin", NULL);
       g_free (source_device);
-      
+
       //      dialog_progress = xfburn_copy_cd_progress_dialog_new ();
     }
-  
+
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
     gtk_widget_hide (GTK_WIDGET (dialog));
-        
+
     g_object_set_data (G_OBJECT (dialog_progress), "command", command);
     gtk_dialog_run (GTK_DIALOG (dialog_progress));
 

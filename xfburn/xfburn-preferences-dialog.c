@@ -345,24 +345,24 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   gtk_widget_grab_default (button_close);
 
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (xfburn_preferences_dialog_response_cb), priv);
-  
+
   refresh_devices_list (obj);
-  
+
   g_object_unref (icon_store);
 }
 
 /* internals */
 static void
-xfburn_preferences_dialog_load_settings (XfburnPreferencesDialog * dialog) 
+xfburn_preferences_dialog_load_settings (XfburnPreferencesDialog * dialog)
 {
   XfburnPreferencesDialogPrivate *priv = XFBURN_PREFERENCES_DIALOG_GET_PRIVATE (dialog);
-  
+
   gchar *temp_dir;
-  
-  temp_dir = xfburn_settings_get_string ("temporary-dir", "/tmp");
+
+  temp_dir = xfburn_settings_get_string ("temporary-dir", "/var/tmp");
   gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (priv->chooser_button), temp_dir);
   g_free (temp_dir);
-  
+
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_clean_tmpdir),
                                 xfburn_settings_get_boolean ("clean-temporary-dir", TRUE));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_show_hidden),
