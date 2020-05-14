@@ -134,9 +134,11 @@ instructions:
    $ kill -SEGV `pidof xfburn` 
    ```
 4) Get a backtrace from the coredump:
+   ```
    $ gdb xfburn/xfburn core.32270 --batch -ex 'thread apply all bt' > xfburn.backtrace
+   ```
    (Note that sometimes the core.xxxxxx file is just called core, and that 32270 is
-    just an arbitrary number - yours will be different)
+    just an arbitrary number which was the process id - yours will be different)
 5) Open up a bug report at our [issue tracker](https://bugzilla.xfce.org/) for xfburn, and add
    both the xfburn.output and the xfburn.backtrace files to it. Done!
    There is no need to attach the core dump, as it is heavily system dependent.
