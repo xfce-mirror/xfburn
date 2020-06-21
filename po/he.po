@@ -7,14 +7,15 @@
 # Elishai Eliyahu <e1907@mm.st>, 2016-2018,2020
 # GenghisKhan <genghiskhan@gmx.ca>, 2016
 # koby vurgaft <slipperygate@gmail.com>, 2013
+# Omer, 2020
 # Yuval Tanny <tanai@int.gov.il>, 2006-2007
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-28 00:32+0100\n"
-"PO-Revision-Date: 2020-02-02 19:34+0000\n"
-"Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
+"PO-Revision-Date: 2020-06-21 13:30+0000\n"
+"Last-Translator: Omer\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,11 +85,11 @@ msgstr "אתחול מלא"
 
 #: ../xfburn/xfburn-blank-dialog.c:74
 msgid "Quick Deformat"
-msgstr "א-פורמט מהיר"
+msgstr "פרמוט מהיר"
 
 #: ../xfburn/xfburn-blank-dialog.c:75
 msgid "Full Deformat (slow)"
-msgstr "א-פורמט מלא (איטי)"
+msgstr "ביטול מלא לפרמוט (איטי)"
 
 #: ../xfburn/xfburn-blank-dialog.c:119
 msgid "Eject the disc"
@@ -156,7 +157,7 @@ msgstr "_מחק"
 #. allowed to be blank ones
 #: ../xfburn/xfburn-blank-dialog.c:329
 msgid "The inserted disc is already blank."
-msgstr "התקליטור שהוכנס כבר מרוקן."
+msgstr "התקליטור שהוכנס כבר ריק."
 
 #. these ones we can blank
 #: ../xfburn/xfburn-blank-dialog.c:335
@@ -185,7 +186,7 @@ msgstr "סיים"
 #: ../xfburn/xfburn-blank-dialog.c:417 ../xfburn/xfburn-perform-burn.c:496
 #: ../xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
-msgstr "כשל"
+msgstr "כישלון"
 
 #: ../xfburn/xfburn-blank-dialog.c:434
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:592
@@ -508,7 +509,7 @@ msgstr "קבצים להוסיף ליצירה"
 #: ../xfburn/xfburn-data-composition.c:1051
 #, c-format
 msgid "Data %s~%d"
-msgstr "Data %s~%d"
+msgstr "נתונים %s~%d"
 
 #: ../xfburn/xfburn-data-composition.c:1287
 #, c-format
@@ -527,7 +528,7 @@ msgstr "%s הוא גדול יותר ממה שתקן מערכת קבצים iso966
 #: ../xfburn/xfburn-data-composition.c:1378
 #: ../xfburn/xfburn-audio-composition.c:1351
 msgid "Adding home directory"
-msgstr "מוסיף את תיקיית הבית"
+msgstr "כעת מוסיף את ספריית הבית"
 
 #: ../xfburn/xfburn-data-composition.c:1379
 #: ../xfburn/xfburn-audio-composition.c:1352
@@ -643,7 +644,7 @@ msgstr "ברירת מחדל"
 
 #: ../xfburn/xfburn-device-box.c:438
 msgid "Max"
-msgstr "Max"
+msgstr "מרבי"
 
 #: ../xfburn/xfburn-device-box.c:473
 msgid "A full, but erasable disc is in the drive"
@@ -830,7 +831,7 @@ msgstr "קובץ דמות '%s' לא קיים."
 
 #: ../xfburn/xfburn-main-window.c:310
 msgid "New data composition"
-msgstr "יצירת מידע חדשה"
+msgstr "יצירת נתונים חדשה"
 
 #: ../xfburn/xfburn-main-window.c:313
 msgid "New audio composition"
@@ -969,7 +970,7 @@ msgstr "ראה לוח בקרה"
 
 #: ../xfburn/xfburn-perform-burn.c:493
 msgid "User Aborted"
-msgstr "ננטש ע\"י משתמש"
+msgstr "המשתמש ביטל"
 
 #: ../xfburn/xfburn-preferences-dialog.c:117
 msgid "Preferences"
@@ -977,7 +978,7 @@ msgstr "העדפות"
 
 #: ../xfburn/xfburn-preferences-dialog.c:118
 msgid "Tune how Xfburn behaves"
-msgstr "התאם את האופן בו Xfburn מתנהג"
+msgstr "התאם את האופן בו צורב אקס-אף מתנהג"
 
 #: ../xfburn/xfburn-preferences-dialog.c:163
 #: ../xfburn/xfburn-preferences-dialog.c:167
@@ -1106,7 +1107,7 @@ msgstr "סגור"
 
 #: ../xfburn/xfburn-progress-dialog.c:348
 msgid "Are you sure you want to abort?"
-msgstr "האם אתה בטוח שאתה רוצה לנטוש?"
+msgstr "האם אתה בטוח שברצונך לבטל?"
 
 #: ../xfburn/xfburn-progress-dialog.c:476
 #, c-format
@@ -1148,7 +1149,7 @@ msgstr "ברוך הבא אל Xfburn !"
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:118
 msgid "<big>Burn _Image</big>"
-msgstr "<big>צרוב דמות</big>"
+msgstr "<big>צרוב _דמות</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:118
 msgid "Burn a prepared compilation, i.e. an .ISO file"
@@ -1156,7 +1157,7 @@ msgstr "צרוב אוסף מוכן, ז.א. קובץ ISO."
 
 #: ../xfburn/xfburn-welcome-tab.c:123
 msgid "<big>New _Data Composition</big>"
-msgstr "<big>יצירת מידע חדשה</big>"
+msgstr "<big>יצירת _נתונים חדשה</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:123
 msgid "Create a new data disc with the files of your choosing"
@@ -1363,7 +1364,7 @@ msgstr "לא מיושם"
 
 #: ../xfburn/xfburn-device.c:255 ../xfburn/xfburn-device.c:256
 msgid "Display name"
-msgstr "שם מסך"
+msgstr "שם צג"
 
 #: ../xfburn/xfburn-device.c:258 ../xfburn/xfburn-device.c:259
 msgid "Device address"
@@ -1443,7 +1444,7 @@ msgstr "_קבצים"
 
 #: ../xfburn.ui.h:2
 msgid "New _data composition"
-msgstr "יצירת _מידע חדשה"
+msgstr "יצירת _נתונים חדשה"
 
 #: ../xfburn.ui.h:3
 msgid "New _audio composition"
@@ -1459,7 +1460,7 @@ msgstr "_הפסק"
 
 #: ../xfburn.ui.h:6
 msgid "_Edit"
-msgstr "ע_ריכה"
+msgstr "_עריכה"
 
 #: ../xfburn.ui.h:7
 msgid "Prefere_nce"
@@ -1515,4 +1516,4 @@ msgid ""
 "blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
 "personal compositions of data to either CD or DVD. It is stable and under "
 "ongoing development."
-msgstr "Xfburn הוא כלי צריבת CD/DVD פשוט המבוסס על ספריות libburnia. הוא יכול למחוק CD/DVD(-RW), לצרוב וליצור תמונות איזו, דיסקי אודיו, וגם לצרוב אוספי מידע אישיים ל-CD או DVD. הוא יציב ותחת פיתוח מתמשך. "
+msgstr "Xfburn הוא כלי פשוט לצריבת CD/DVD המבוסס על ספריות libburnia. הוא יכול לרוקן CD/DVD(-RW), לצרוב וגם ליצור דמויות iso, תקליטורי שמע, וגם לצרוב אוספי מידע אישיים או נתונים לתוך CD או לתוך DVD. הוא יציב ותחת פיתוך מתמשך."
