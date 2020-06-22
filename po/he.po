@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-28 00:32+0100\n"
-"PO-Revision-Date: 2020-06-21 13:30+0000\n"
+"PO-Revision-Date: 2020-06-22 17:32+0000\n"
 "Last-Translator: Omer\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -367,7 +367,7 @@ msgstr "וודא שבחרת קובץ תקני ושיש לך את ההרשאות 
 
 #: ../xfburn/xfburn-compositions-notebook.c:147
 msgid "Audio composition"
-msgstr "עריכת אודיו"
+msgstr "עריכת קבצי שמע"
 
 #: ../xfburn/xfburn-compositions-notebook.c:208
 msgid "Welcome"
@@ -767,7 +767,7 @@ msgstr "התחל יצירת מידע, עם אפשרות לקבצים/ספריו�
 msgid ""
 "Start an audio composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr "התחל יצירת אודיו, עם אפשרות לקבצים/ספריות להוספה ליצירה בהמשך"
+msgstr "התחל יצירת שמע, עם אפשרות לקבצים/ספריות להוספה ליצירה בהמשך"
 
 #: ../xfburn/xfburn-main.c:82
 msgid ""
@@ -835,7 +835,7 @@ msgstr "יצירת נתונים חדשה"
 
 #: ../xfburn/xfburn-main-window.c:313
 msgid "New audio composition"
-msgstr "יצירה אודיו חדשה"
+msgstr "יצירת שמע חדשה"
 
 #: ../xfburn/xfburn-main-window.c:318 ../xfburn.ui.h:9
 msgid "Blank CD-RW"
@@ -1173,16 +1173,16 @@ msgstr "מכין את התקליטור הניתן לכתיבה חוזרת לצו
 
 #: ../xfburn/xfburn-welcome-tab.c:133
 msgid "<big>_Audio CD</big>"
-msgstr "<big>תקליטור _אודיו</big>"
+msgstr "<big>תקליטור _שמע</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:133
 msgid "Audio CD playable in regular stereos"
-msgstr "תקליטור אודיו לנגינה במערכות סטריאו רגילות"
+msgstr "תקליטור שמע לנגינה במערכות סטריאו רגילות"
 
 #: ../xfburn/xfburn-audio-composition.c:222
 #: ../xfburn/xfburn-audio-composition.c:371
 msgid "What files can get burned to an audio CD?"
-msgstr "אילו קבצים יכולים להיצרב לתקליטור אודיו?"
+msgstr "אילו קבצים יכולים להיצרב לתקליטור שמע?"
 
 #: ../xfburn/xfburn-audio-composition.c:226 ../xfburn-popup-menus.ui.h:4
 msgid "Rename Artist"
@@ -1230,7 +1230,7 @@ msgstr "שם קובץ"
 
 #: ../xfburn/xfburn-audio-composition.c:581
 msgid "Cannot burn audio onto a DVD."
-msgstr "לא יכול לצרוב אודיו על DVD."
+msgstr "לא יכול לצרוב שמע על DVD."
 
 #: ../xfburn/xfburn-audio-composition.c:1259
 msgid "You can only have a maximum of 99 tracks."
@@ -1268,7 +1268,7 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr "הטרנסקודר הבסיסי הוא מובנה,\nולא דורש שום ספריה.\nאבל הוא יכול לטפל בקבצי wav. לא דחוסים בלבד.\nאם אתה מעונין ליצור יצירות\nאודיו מסוגים שונים של\nקבצי אודיו, אנא בצע הדרה עם\nתמיכת gstreamer."
+msgstr "הטרנסקודר הבסיסי הוא מובנה,\nולא דורש שום ספריה.\nאבל הוא יכול לטפל בקבצי wav. לא דחוסים בלבד.\nאם אתה מעונין ליצור יצירות\nשמע מסוגים שונים של\nקבצי שמע, אנא בצע הדרה עם\nתמיכת gstreamer."
 
 #: ../xfburn/xfburn-transcoder-basic.c:159
 #, c-format
@@ -1311,7 +1311,7 @@ msgstr "%s חסר.\n\nאין לך מפענח מותקן כדי לטפל בקוב
 
 #: ../xfburn/xfburn-transcoder-gst.c:542
 msgid "File content has a decoder but is not audio."
-msgstr "תכולת הקובץ כוללת מפענח אבל הוא לא אודיו."
+msgstr "תכולת הקובץ כוללת מפענח אבל הוא לא שמע."
 
 #: ../xfburn/xfburn-transcoder-gst.c:585
 msgid ""
@@ -1323,7 +1323,7 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr "טרנסקודר gstreamer משתמש בספריית\ngstreamer ליצירת יצירות אודיו.\n\nלמעשה כל קבצי האודיו צריכים להיות נתמכים\nבהינתן שהתוספים הנכונים מותקנים.\nאם קובץ אודיו לא מזוהה, וודא\nשחבילות תוסף gstreamer 'הטובה', 'הרעה' ו-'המכוערת'\nמותקנות."
+msgstr "טרנסקודר gstreamer משתמש בספריית\ngstreamer ליצירת יצירות שמע.\n\nלמעשה כל קבצי השמע צריכים להיות נתמכים\nבהינתן שהתוספים הנכונים מותקנים.\nאם קובץ השמע לא מזוהה, וודא\nשחבילות תוסף gstreamer \"הטובה\", \"הרעה\" ו\"המכוערת\"\nמותקנות."
 
 #: ../xfburn/xfburn-transcoder-gst.c:627
 msgid "No information available on which plugin is required."
@@ -1345,12 +1345,12 @@ msgstr "תוסף"
 #: ../xfburn/xfburn-transcoder-gst.c:814
 #, c-format
 msgid "Gstreamer did not want to start transcoding (timed out)"
-msgstr "Gstreamer לא רצה להתחיל פעולת transcoding (זמן עבר)"
+msgstr "Gstreamer לא רצה להתחיל פעולת טראנסקודינג (הזמן עבר)"
 
 #: ../xfburn/xfburn-transcoder-gst.c:849
 #, c-format
 msgid "Failed to change songs while transcoding"
-msgstr "נכשל להחליף שירים במהלך פעולת transcoding "
+msgstr "נכשל להחליף שירים במהלך פעולת טראנסקודינג"
 
 #: ../xfburn/xfburn-transcoder.c:103 ../xfburn/xfburn-transcoder.c:113
 msgid "none"
@@ -1448,7 +1448,7 @@ msgstr "יצירת _נתונים חדשה"
 
 #: ../xfburn.ui.h:3
 msgid "New _audio composition"
-msgstr "יצירת _אודיו חדשה"
+msgstr "יצירת _שמע חדשה"
 
 #: ../xfburn.ui.h:4
 msgid "_Close composition"
