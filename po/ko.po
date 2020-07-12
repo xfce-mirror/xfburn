@@ -6,15 +6,15 @@
 # ByungHyun Choi<byunghyun.choi@debianusers.org>, 2006
 # jason jang <hl1sxa@gmail.com>, 2014
 # 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>, 2017
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2014-2015,2018-2019
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2014-2015,2018-2020
 # Sung Jin Gang <ujuc@ujuc.kr>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-28 00:32+0100\n"
-"PO-Revision-Date: 2020-01-27 23:32+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2020-07-12 13:01+0000\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/xfce/xfce-apps/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -745,48 +745,48 @@ msgstr "%s의 내 폴더"
 #: ../xfburn/xfburn-udev-manager.c:495
 #, c-format
 msgid "Failed to unmount '%s'. Drive cannot be used for burning."
-msgstr ""
+msgstr "'%s' 마운트 해제 실패. 미디어를 굽는 목적으로 드라이브를 사용할 수 없습니다."
 
 #. || G_OPTION_FLAG_FILENAME
 #: ../xfburn/xfburn-main.c:74
 msgid "Open the burn image dialog, optionally followed by the image filename"
-msgstr ""
+msgstr "이미지 파일 이름에 따라 이미지 굽기 대화상자를 엽니다. "
 
 #: ../xfburn/xfburn-main.c:76
 msgid "Open the blank disc dialog"
-msgstr ""
+msgstr "빈 디스크 대화상자를 엽니다"
 
 #: ../xfburn/xfburn-main.c:78
 msgid ""
 "Start a data composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "데이터 구성을 시작합니다. 파일/디렉터리에 따라 구성에 추가할 수도 있습니다."
 
 #: ../xfburn/xfburn-main.c:80
 msgid ""
 "Start an audio composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "오디오 구성을 시작합니다. 파일/디렉터리에 따라 구성에 추가할 수도 있습니다."
 
 #: ../xfburn/xfburn-main.c:82
 msgid ""
 "Select the transcoder, run with --transcoder=list to see the available ones"
-msgstr ""
+msgstr "트랜스코더를 선택합니다. --transcoder=list로 실행하면 사용할 수 있는 목록을 볼 수 있습니다"
 
 #: ../xfburn/xfburn-main.c:84
 msgid ""
 "Start the file browser in the specified directory, or the current directory "
 "if none is specified (the default is to start in your home directory)"
-msgstr ""
+msgstr "지정 디렉터리, 또는 디렉터리를 지정하지 않았을 경우 현재 디렉터리에서 파일 탐색기를 시작합니다(내 폴더에서 시작이 기본 값)"
 
 #: ../xfburn/xfburn-main.c:86
 msgid "Display program version and exit"
-msgstr ""
+msgstr "프로그램 버전을 나타낸 후 나갑니다"
 
 #: ../xfburn/xfburn-main.c:88
 msgid ""
 "Show main program even when other action is specified on the command line."
-msgstr ""
+msgstr "명령행에 다른 동작을 지정하더라도 메인 프로그램을 표시합니다."
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 msgid "Xfburn"
@@ -1020,7 +1020,7 @@ msgstr "이름"
 
 #: ../xfburn/xfburn-preferences-dialog.c:256
 msgid "Revision"
-msgstr ""
+msgstr "리비전"
 
 #: ../xfburn/xfburn-preferences-dialog.c:258
 msgid "Node"
@@ -1251,7 +1251,7 @@ msgstr "디스크 용량을 초과한 데이터를 기록하려고 하고 있습
 #: ../xfburn/xfburn-transcoder-basic.c:69
 #: ../xfburn/xfburn-transcoder-gst.c:145
 msgid "An error occurred while setting the burning backend up"
-msgstr ""
+msgstr "굽기 백엔드를 설정하는 중 오류가 발생했습니다"
 
 #: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
@@ -1296,7 +1296,7 @@ msgstr "%s을(를) 열 수 없습니다: %s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:144
 msgid "An error occurred setting gstreamer up for transcoding"
-msgstr ""
+msgstr "지스트리머 트랜스코딩 설정 중 오류가 발생했습니다"
 
 #: ../xfburn/xfburn-transcoder-gst.c:146
 #, c-format
@@ -1310,7 +1310,7 @@ msgstr "%s이(가) 빠져있습니다.\n\n이 파일을 다루기 위한 디코�
 
 #: ../xfburn/xfburn-transcoder-gst.c:542
 msgid "File content has a decoder but is not audio."
-msgstr ""
+msgstr "파일 내용에 디코더가 있지만 오디오는 아닙니다."
 
 #: ../xfburn/xfburn-transcoder-gst.c:585
 msgid ""
@@ -1326,11 +1326,11 @@ msgstr "gstreamer 변환코더는 음악 구성을 만드는\ngstreamer 라이�
 
 #: ../xfburn/xfburn-transcoder-gst.c:627
 msgid "No information available on which plugin is required."
-msgstr ""
+msgstr "필요한 플러그인의 정보가 없습니다."
 
 #: ../xfburn/xfburn-transcoder-gst.c:629
 msgid "Required plugins: "
-msgstr ""
+msgstr "필요 플러그인:"
 
 #: ../xfburn/xfburn-transcoder-gst.c:662 ../xfburn/xfburn-transcoder-gst.c:692
 #, c-format
@@ -1371,11 +1371,11 @@ msgstr "장치 주소"
 
 #: ../xfburn/xfburn-device.c:261
 msgid "Device revision"
-msgstr ""
+msgstr "장치 리비전"
 
 #: ../xfburn/xfburn-device.c:262
 msgid "Device Revision"
-msgstr ""
+msgstr "장치 리비전"
 
 #: ../xfburn/xfburn-device.c:264 ../xfburn/xfburn-device.c:265
 msgid "Burn speeds supported by the device"
@@ -1439,19 +1439,19 @@ msgstr "libburn PACKET 블록 유형"
 
 #: ../xfburn.ui.h:1
 msgid "_Files"
-msgstr ""
+msgstr "파일(_F)"
 
 #: ../xfburn.ui.h:2
 msgid "New _data composition"
-msgstr ""
+msgstr "새 데이터 구성(_D)"
 
 #: ../xfburn.ui.h:3
 msgid "New _audio composition"
-msgstr ""
+msgstr "새 오디오 구성(_A)"
 
 #: ../xfburn.ui.h:4
 msgid "_Close composition"
-msgstr ""
+msgstr "구성 닫기(_C)"
 
 #: ../xfburn.ui.h:5
 msgid "_Quit"
@@ -1463,7 +1463,7 @@ msgstr "편집(_E)"
 
 #: ../xfburn.ui.h:7
 msgid "Prefere_nce"
-msgstr ""
+msgstr "기본 설정(_N)"
 
 #: ../xfburn.ui.h:8
 msgid "_Action"
@@ -1475,11 +1475,11 @@ msgstr "보기(_V)"
 
 #: ../xfburn.ui.h:13
 msgid "Show Toolbars"
-msgstr ""
+msgstr "도구 모음 표"
 
 #: ../xfburn.ui.h:14
 msgid "Show Filebrowser"
-msgstr ""
+msgstr "파일 탐색기 표시"
 
 #: ../xfburn.ui.h:15
 msgid "_Help"
