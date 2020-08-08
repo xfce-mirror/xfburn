@@ -47,7 +47,7 @@ typedef struct
 typedef struct
 {
   GObjectClass parent_class;
-  
+
 } XfburnTranscoderGstClass;
 
 GType xfburn_transcoder_gst_get_type (void);

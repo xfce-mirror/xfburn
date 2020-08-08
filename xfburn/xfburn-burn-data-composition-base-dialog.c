@@ -118,7 +118,7 @@ xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBa
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  
+
   object_class->finalize = xfburn_burn_data_composition_base_dialog_finalize;
   object_class->get_property = xfburn_burn_data_composition_base_dialog_get_property;
   object_class->set_property = xfburn_burn_data_composition_base_dialog_set_property;
@@ -315,7 +315,7 @@ xfburn_burn_data_composition_base_dialog_finalize (GObject * object)
   XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (object);
 
   iso_image_unref (priv->image);
-  
+
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -347,7 +347,7 @@ create_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog, const gchar
   return button;
 }
 
-void 
+void
 update_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog)
 {
   XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
@@ -365,7 +365,7 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBa
 
   gtk_widget_set_sensitive (priv->frame_device, !gtk_toggle_button_get_active (button));
   xfburn_device_box_set_sensitive (XFBURN_DEVICE_BOX (priv->device_box), !gtk_toggle_button_get_active (button));
-  
+
   gtk_widget_set_sensitive (priv->hbox_iso, gtk_toggle_button_get_active (button));
   gtk_widget_set_sensitive (priv->check_eject, !gtk_toggle_button_get_active (button));
   gtk_widget_set_sensitive (priv->check_burnfree, !gtk_toggle_button_get_active (button));
@@ -391,7 +391,7 @@ static void
 cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
 {
   XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
-  
+
   xfburn_browse_for_file (GTK_ENTRY (priv->entry_path_iso), GTK_WINDOW (dialog));
 }
 
@@ -462,9 +462,9 @@ thread_write_iso (ThreadWriteIsoParams * params)
       /* an error occured while writing */
       gchar err[256];
       gchar *error_msg = NULL;
-      
+
       strerror_r (errno, err, 256);
-    
+
       error_msg = g_strdup_printf (_("An error occured while writing ISO: %s"), err);
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), error_msg);
       g_free (error_msg);
@@ -507,7 +507,7 @@ typedef struct {
   gboolean stream_recording;
 } ThreadBurnCompositionParams;
 
-static void 
+static void
 thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_drive *drive,
                            struct burn_disc *disc, struct burn_session *session, struct burn_track *track)
 {
@@ -530,7 +530,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("An error occurred in the burn backend."));
     return;
   }
-  
+
   burn_session_add_track (session, track, BURN_POS_END);
 
   burn_options = burn_write_opts_new (drive);
@@ -643,7 +643,7 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
     dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
     gtk_widget_hide (GTK_WIDGET (dialog));
-    
+
     gtk_widget_show (dialog_progress);
 
     if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
@@ -694,6 +694,6 @@ xfburn_burn_data_composition_base_dialog_new (IsoImage *image)
   XfburnBurnDataCompositionBaseDialog *obj;
 
   obj = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG (g_object_new (XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, "image", image, NULL));
-  
+
   return GTK_WIDGET (obj);
 }

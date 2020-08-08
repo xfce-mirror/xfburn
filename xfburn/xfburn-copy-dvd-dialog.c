@@ -64,7 +64,7 @@ G_DEFINE_TYPE_WITH_PRIVATE(XfburnCopyDvdDialog, xfburn_copy_dvd_dialog, XFCE_TYP
 
 static void
 xfburn_copy_dvd_dialog_class_init (XfburnCopyDvdDialogClass * klass)
-{  
+{
   parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -92,7 +92,7 @@ xfburn_copy_dvd_dialog_init (XfburnCopyDvdDialog * obj)
   /* reader devices list */
   priv->device_box_src = xfburn_device_box_new (SHOW_DVD_READERS);
   gtk_widget_show (priv->device_box_src);
-  
+
   frame = xfce_create_framebox_with_content (_("DVD Reader device"), priv->device_box_src);
   gtk_widget_show (frame);
   gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
@@ -104,7 +104,7 @@ xfburn_copy_dvd_dialog_init (XfburnCopyDvdDialog * obj)
   priv->frame_burn = xfce_create_framebox_with_content (_("Burning device"), priv->device_box_dest);
   gtk_widget_show (priv->frame_burn);
   gtk_box_pack_start (box, priv->frame_burn, FALSE, FALSE, BORDER);
-    
+
   /* options */
   vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox);
@@ -172,10 +172,10 @@ xfburn_copy_dvd_dialog_init (XfburnCopyDvdDialog * obj)
 
   g_signal_connect (G_OBJECT (priv->device_box_src), "device-changed", G_CALLBACK (cb_device_changed), priv);
   g_signal_connect (G_OBJECT (priv->device_box_dest), "device-changed", G_CALLBACK (cb_device_changed), priv);
-  
+
   /* check if the selected devices are the same */
   cb_device_changed (XFBURN_DEVICE_BOX (priv->device_box_dest), NULL, priv);
-  
+
   g_signal_connect (G_OBJECT (obj), "response", G_CALLBACK (cb_dialog_response), priv);
 }
 
@@ -185,11 +185,11 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyDvdDialog * dialo
 {
   XfburnCopyDvdDialogPrivate *priv = XFBURN_COPY_DVD_DIALOG_GET_PRIVATE (dialog);
   gboolean sensitive = gtk_toggle_button_get_active (button);
-  
+
   gtk_widget_set_sensitive (priv->hbox_iso, sensitive);
-  
+
   gtk_widget_set_sensitive (priv->frame_burn, !sensitive);
-  
+
   gtk_widget_set_sensitive (priv->check_eject, !sensitive);
   gtk_widget_set_sensitive (priv->check_dummy, !sensitive);
   gtk_widget_set_sensitive (priv->check_onthefly, !sensitive);
@@ -199,16 +199,16 @@ static void
 cb_device_changed (XfburnDeviceBox *box, const gchar *device_name, XfburnCopyDvdDialogPrivate *priv)
 {
   gchar *source_device_name = NULL, *dest_device_name = NULL;
-  
+
   source_device_name = xfburn_device_box_get_selected (XFBURN_DEVICE_BOX (priv->device_box_src));
   dest_device_name = xfburn_device_box_get_selected (XFBURN_DEVICE_BOX (priv->device_box_dest));
-  
+
   if (source_device_name && dest_device_name && !strcmp (source_device_name, dest_device_name)) {
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_onthefly), FALSE);
     gtk_widget_set_sensitive (priv->check_onthefly, FALSE);
   } else
     gtk_widget_set_sensitive (priv->check_onthefly, TRUE);
-  
+
   g_free (source_device_name);
   g_free (dest_device_name);
 }
@@ -217,7 +217,7 @@ static void
 cb_browse_iso (GtkButton * button, XfburnCopyDvdDialog * dialog)
 {
   XfburnCopyDvdDialogPrivate *priv = XFBURN_COPY_DVD_DIALOG_GET_PRIVATE (dialog);
-  
+
   xfburn_browse_for_file (GTK_ENTRY (priv->entry_path_iso), GTK_WINDOW (dialog));
 }
 
@@ -229,40 +229,40 @@ cb_dialog_response (XfburnCopyDvdDialog * dialog, gint response_id, XfburnCopyDv
     XfburnDevice *device_burn;
     XfburnDevice *device_read;
     GtkWidget *dialog_progress = NULL;
-  
+
     device_read = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box_src));
-        
+
     if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
-      command = g_strconcat ("readcd dev=", device_read->node_path, " f=", 
+      command = g_strconcat ("readcd dev=", device_read->node_path, " f=",
                              gtk_entry_get_text (GTK_ENTRY (priv->entry_path_iso)), NULL);
-      
+
       //      dialog_progress = xfburn_create_iso_progress_dialog_new ();
     } else {
       gint speed;
       gchar *source_device = NULL;
-      
+
       device_burn = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box_dest));
       speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box_dest));
-      
+
       if (device_burn != device_read)
         source_device = g_strconcat (" --source-device ", device_read->node_path, NULL);
       else
         source_device = g_strdup ("");
-      
-      command = g_strconcat ("cdrdao copy -n -v 2", source_device, 
-                             " --device ", device_burn->node_path, " --speed ", speed, 
+
+      command = g_strconcat ("cdrdao copy -n -v 2", source_device,
+                             " --device ", device_burn->node_path, " --speed ", speed,
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)) ? " --eject" : "",
                              gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)) ? " --simulate" : "",
                              device_burn != device_read && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_onthefly)) ? " --on-the-fly" : "",
-                             " --datafile /tmp/xfburn.bin", NULL);
+                             " --datafile /var/tmp/xfburn.bin", NULL);
       g_free (source_device);
-      
+
       //      dialog_progress = xfburn_copy_cd_progress_dialog_new ();
     }
-  
+
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
     gtk_widget_hide (GTK_WIDGET (dialog));
-        
+
     g_object_set_data (G_OBJECT (dialog_progress), "command", command);
     gtk_dialog_run (GTK_DIALOG (dialog_progress));
 

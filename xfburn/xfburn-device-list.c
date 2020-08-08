@@ -199,17 +199,17 @@ xfburn_device_list_class_init (XfburnDeviceListClass *klass)
                                           G_STRUCT_OFFSET (XfburnDeviceListClass, volume_changed),
                                           NULL, NULL, xfburn_cclosure_marshal_VOID__BOOLEAN_OBJECT,
                                           G_TYPE_NONE, 2, G_TYPE_BOOLEAN, XFBURN_TYPE_DEVICE);
-    
-  g_object_class_install_property (object_class, PROP_NUM_BURNERS, 
+
+  g_object_class_install_property (object_class, PROP_NUM_BURNERS,
                                    g_param_spec_int ("num-burners", _("Number of burners in the system"),
                                                      _("Number of burners in the system"), 0, G_MAXINT, 0, G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_NUM_DRIVES, 
+  g_object_class_install_property (object_class, PROP_NUM_DRIVES,
                                    g_param_spec_int ("num-drives", _("Number of drives in the system"),
                                                      _("Number of drives in the system (readers and writers)"), 0, G_MAXINT, 0, G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_DEVICES, 
+  g_object_class_install_property (object_class, PROP_DEVICES,
                                    g_param_spec_pointer ("devices", _("List of devices"),
                                                          _("List of devices"), G_PARAM_READABLE));
-  g_object_class_install_property (object_class, PROP_CURRENT_DEVICE, 
+  g_object_class_install_property (object_class, PROP_CURRENT_DEVICE,
                                    g_param_spec_object ("current-device", _("Currently selected device"),
                                                         _("Currently selected device"), XFBURN_TYPE_DEVICE, G_PARAM_READWRITE));
 
@@ -256,7 +256,7 @@ get_libburn_device_list (XfburnDeviceList *devlist)
 
   struct burn_drive_info *drives;
   guint i;
-  gint ret; 
+  gint ret;
   guint num_drives;
 
   DBG ("Before scanning for drives");
@@ -287,7 +287,7 @@ get_libburn_device_list (XfburnDeviceList *devlist)
 
     xfburn_device_fillin_libburn_info (device, &drives[i]);
 
-    
+
     ret = burn_drive_d_get_adr (drives[i].drive, addr);
     if (ret <= 0)
       g_error ("Unable to get drive %s address (ret=%d). Please report this problem to libburn-hackers@pykix.org", name, ret);

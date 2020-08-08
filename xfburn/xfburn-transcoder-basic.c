@@ -62,7 +62,7 @@ static gboolean needs_swap (char header[44]);
 
 enum {
   LAST_SIGNAL,
-}; 
+};
 
 /* globals */
 
@@ -86,7 +86,7 @@ static void
 xfburn_transcoder_basic_class_init (XfburnTranscoderBasicClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-    
+
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_transcoder_basic_finalize;
@@ -123,13 +123,13 @@ transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data
 /* internals */
 /*           */
 
-static const gchar * 
+static const gchar *
 get_name (XfburnTranscoder *trans)
 {
   return _("basic");
 }
 
-static const gchar * 
+static const gchar *
 get_description (XfburnTranscoder *trans)
 {
   return _("The basic transcoder is built in,\n"
@@ -179,7 +179,7 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
   return TRUE;
 }
 
-static gboolean 
+static gboolean
 has_audio_ext (const gchar *path)
 {
   int len = strlen (path);
@@ -188,7 +188,7 @@ has_audio_ext (const gchar *path)
   return (strcmp (ext, "wav") == 0);
 }
 
-static gboolean 
+static gboolean
 is_valid_wav (const gchar *path)
 {
   int fd;
@@ -304,13 +304,13 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
   }
 
   track = burn_track_create ();
-  
+
   if (burn_track_set_source (track, atrack->src) != BURN_SOURCE_OK) {
     g_warning ("Could not add source to track %s!", atrack->inputfile);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
 		 "%s",
                  _(errormsg_libburn_setup));
-                 
+
     return NULL;
   }
 
@@ -327,7 +327,7 @@ needs_swap (char header[44])
 {
   if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F' && header[3] == 'X')
     return TRUE;
-  else 
+  else
     return FALSE;
 }
 

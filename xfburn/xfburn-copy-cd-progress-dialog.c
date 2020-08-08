@@ -85,7 +85,7 @@ static void
 cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output, gpointer data)
 {
   static gint readcd_end = -1;
-  
+
   if (strstr (output, CDRDAO_DONE)) {
     xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog), XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED);
   }
@@ -111,10 +111,10 @@ cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * output, gpoint
     gint done, total, buffer1, buffer2;
     gint min, sec, cent;
     gdouble fraction;
-    
+
     if (sscanf (output, "Wrote %d %*s %d %*s %*s %d%% %d%%", &done, &total, &buffer1, &buffer2) == 4) {
       gchar *command;
-            
+
       command = g_object_get_data (G_OBJECT (dialog), "command");
       if (strstr (command, "on-the-fly")) {
         fraction = ((gdouble) done) / total;

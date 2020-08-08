@@ -58,13 +58,13 @@ xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDi
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  
+
   object_class->finalize = xfburn_burn_data_cd_composition_dialog_finalize;
 }
 
 static void
 xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog * obj)
-{  
+{
 }
 
 static void
@@ -82,9 +82,9 @@ xfburn_burn_data_cd_composition_dialog_new (IsoImage *image, gboolean has_defaul
 {
   XfburnBurnDataCdCompositionDialog *obj;
 
-  obj = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG, "image", image, 
+  obj = XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG, "image", image,
                                                                                                            "show-volume-name", has_default_name,
                                                                                                            NULL));
-  
+
   return GTK_WIDGET (obj);
 }

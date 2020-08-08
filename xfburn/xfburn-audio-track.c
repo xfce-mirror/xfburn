@@ -41,7 +41,7 @@ xfburn_audio_track_get_type (void)
 }
 
 
-gpointer 
+gpointer
 audio_track_copy (gpointer boxed)
 {
   XfburnAudioTrack *atrack = XFBURN_AUDIO_TRACK (boxed);
@@ -60,7 +60,7 @@ audio_track_copy (gpointer boxed)
   return copy;
 }
 
-void 
+void
 audio_track_free (gpointer boxed)
 {
   XfburnAudioTrack *atrack = XFBURN_AUDIO_TRACK (boxed);

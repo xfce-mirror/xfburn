@@ -52,7 +52,7 @@
 #include "xfburn-audio-track-gst.h"
 
 
-/* 
+/*
  * Don't define it for no debugging output (don't set to 0, I was too lazy to clean up).
  * Set DEBUG_GST >= 1 to be able to inspect the data just before it gets to the fd,
  *                    and to get a lot more gst debugging output.
@@ -95,7 +95,7 @@ static void cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data);
 
 enum {
   LAST_SIGNAL,
-}; 
+};
 
 typedef enum {
   XFBURN_TRANSCODER_GST_STATE_IDLE,
@@ -168,7 +168,7 @@ static void
 xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  
+
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_transcoder_gst_finalize;
@@ -231,7 +231,7 @@ transcoder_interface_init (XfburnTranscoderInterface *iface, gpointer iface_data
 /* internals */
 /*           */
 
-static void 
+static void
 create_pipeline (XfburnTranscoderGst *trans)
 {
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
@@ -321,7 +321,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   g_signal_connect (decoder, "pad-added", G_CALLBACK (on_pad_added), trans);
 }
 
-static void 
+static void
 delete_pipeline (XfburnTranscoderGst *trans)
 {
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
@@ -331,7 +331,7 @@ delete_pipeline (XfburnTranscoderGst *trans)
 #endif
   if (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE)
     g_warning ("Failed to change state to null, deleting pipeline anyways");
-  
+
   /* give gstreamer a chance to do something
    * this might not be necessary, but shouldn't hurt */
   g_thread_yield ();
@@ -340,7 +340,7 @@ delete_pipeline (XfburnTranscoderGst *trans)
   priv->pipeline = NULL;
 }
 
-static void 
+static void
 recreate_pipeline (XfburnTranscoderGst *trans)
 {
   delete_pipeline (trans);
@@ -495,7 +495,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 
           g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_MISSING_PLUGIN,
                        _(errormsg_missing_plugin),
-                        gst_missing_plugin_message_get_description (msg)); 
+                        gst_missing_plugin_message_get_description (msg));
       }
     }
     default:
@@ -542,14 +542,14 @@ on_pad_added (GstElement *element, GstPad *pad, gpointer data)
     const gchar *error_msg = N_("File content has a decoder but is not audio.");
 
     DBG ("%s", error_msg);
-    
+
     gst_caps_unref (caps);
     gst_object_unref (audiopad);
 
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_NO_AUDIO,
 		    "%s",
                  _(error_msg));
-    
+
     msg_struct = gst_structure_new_empty ("no-audio-content");
 
     msg = gst_message_new_application (GST_OBJECT (element), msg_struct);
@@ -570,7 +570,7 @@ on_pad_added (GstElement *element, GstPad *pad, gpointer data)
 }
 
 
-static const gchar * 
+static const gchar *
 get_name (XfburnTranscoder *trans)
 {
   /* Note to translators: you can probably keep this as gstreamer,
@@ -579,7 +579,7 @@ get_name (XfburnTranscoder *trans)
   return _("gstreamer");
 }
 
-static const gchar * 
+static const gchar *
 get_description (XfburnTranscoder *trans)
 {
   return _("The gstreamer transcoder uses the gstreamer\n"
@@ -724,7 +724,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 {
   XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (gst);
-  
+
   struct burn_track *track;
 
   XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (atrack);
@@ -751,7 +751,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
     close (pipe_fd[0]);  close (pipe_fd[1]);
     return NULL;
   }
-  
+
   /* install fifo,
     * its size will be a bit bigger in audio mode but that shouldn't matter */
   src_fifo = burn_fifo_source_new (atrack->src, AUDIO_BYTES_PER_SECTOR, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
@@ -760,7 +760,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 
 
   track = burn_track_create ();
-  
+
   if (burn_track_set_source (track, atrack->src) != BURN_SOURCE_OK) {
     g_warning ("Could not add source to track %s.", atrack->inputfile);
     g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_BURN_SOURCE,
@@ -856,7 +856,7 @@ transcode_next_track (XfburnTranscoderGst *trans, GError **error)
   return TRUE;
 }
 
-static void 
+static void
 finish (XfburnTranscoder *trans)
 {
   XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
@@ -890,7 +890,7 @@ finish (XfburnTranscoder *trans)
     recreate_pipeline (gst);
     return;
   }
-  
+
   if ((state != GST_STATE_READY) &&
       (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE)) {
     DBG ("Could not make pipeline ready, recreating it");
@@ -903,7 +903,7 @@ finish (XfburnTranscoder *trans)
 }
 
 
-static gboolean 
+static gboolean
 is_initialized (XfburnTranscoder *trans, GError **error)
 {
   XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);

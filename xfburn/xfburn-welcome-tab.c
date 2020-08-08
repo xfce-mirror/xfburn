@@ -162,7 +162,7 @@ create_welcome_button (const gchar *stock, const gchar *text, const gchar *secon
 
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 20);
   vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-  
+
   align = gtk_label_new (NULL);
   gtk_box_pack_start (GTK_BOX (hbox), align, TRUE, TRUE, 0);
 

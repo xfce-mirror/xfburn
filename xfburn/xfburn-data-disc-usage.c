@@ -5,12 +5,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -103,7 +103,7 @@ xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass * klass, gpointer da
 
   /* override virtual methods */
   pklass = XFBURN_DISC_USAGE_CLASS(klass);
-  
+
   pklass->labels      = datadiscsizes;
   pklass->num_labels  = G_N_ELEMENTS (datadiscsizes);
   pklass->update_size = xfburn_data_disc_usage_update_size;
@@ -138,7 +138,7 @@ xfburn_data_disc_usage_update_size (XfburnDiscUsage * disc_usage)
 static gboolean
 can_burn (XfburnDiscUsage *disc_usage)
 {
-  if (disc_usage->size == 0 || 
+  if (disc_usage->size == 0 ||
       disc_usage->size > datadiscsizes[gtk_combo_box_get_active (GTK_COMBO_BOX (disc_usage->combo))].size)
     return FALSE;
   else

@@ -48,7 +48,7 @@ typedef struct
   GtkWidget *device_box;
   GtkWidget *combo_type;
   GtkWidget *button_blank;
-  
+
   GtkWidget *check_eject;
   gboolean eject;
 } XfburnBlankDialogPrivate;
@@ -66,7 +66,7 @@ typedef enum {
   XFBURN_BLANK_MODE_LAST,
 } XfburnBlankMode;
 
-static char * blank_mode_names[] = { 
+static char * blank_mode_names[] = {
     N_("Quick Blank"),
     N_("Full Blank (slow)"),
     N_("Quick Format"),
@@ -114,8 +114,8 @@ xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass)
   parent_class = g_type_class_peek_parent (klass);
   object_class->set_property = xfburn_blank_dialog_set_property;
   object_class->get_property = xfburn_blank_dialog_get_property;
-  
-  g_object_class_install_property (object_class, PROP_EJECT, 
+
+  g_object_class_install_property (object_class, PROP_EJECT,
                                    g_param_spec_boolean ("eject", _("Eject the disc"),
                                                         _("Default value for eject checkbox"), XFBURN_BLANK_DIALOG_EJECT_DEFAULT, G_PARAM_READWRITE));
 }
@@ -139,7 +139,7 @@ static void
 xfburn_blank_dialog_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
 {
   XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (XFBURN_BLANK_DIALOG (object));
-  
+
   switch (prop_id) {
     case PROP_EJECT:
       priv->eject = g_value_get_boolean (value);
@@ -164,10 +164,10 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
 
   GtkListStore *store = NULL;
   GtkCellRenderer *cell;
-  
+
   gtk_window_set_title (GTK_WINDOW (obj), _("Blank Disc"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
-  
+
   gtk_icon_size_lookup (GTK_ICON_SIZE_DIALOG, &x, &y);
   icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "stock_xfburn-blank-cdrw", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
 
@@ -259,7 +259,7 @@ static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
 
   g_object_get (G_OBJECT (xfburn_device_list_get_current_device (devlist)), "profile-no", &profile_no, "erasable", &erasable, "disc-status", &disc_state, NULL);
   g_object_unref (devlist);
-  
+
   if (profile_no == 0x13) {
     /* in 0x14 no blanking is needed, we can only deformat */
     if (mode == XFBURN_DEFORMAT_FAST || mode == XFBURN_DEFORMAT_COMPLETE)
@@ -323,7 +323,7 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
     usleep (1001);
 
   switch (disc_state) {
-  case BURN_DISC_BLANK: 
+  case BURN_DISC_BLANK:
     if (params->blank_mode == XFBURN_BLANK_FAST || params->blank_mode == XFBURN_BLANK_COMPLETE) {
       /* blanking can only be performed on blank discs, format and deformat are allowed to be blank ones */
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The inserted disc is already blank."));
@@ -353,7 +353,7 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
 
   if (ret <= 0)
     g_warning ("Failed to set libburn message severities, burn errors might not get detected!");
- 
+
   switch (params->blank_mode) {
     case XFBURN_BLANK_FAST:
       //DBG ("blank_fast");
@@ -390,7 +390,7 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
     //DBG ("drive_state = %d", drive_state);
     if(progress.sectors>0 && progress.sector>=0) {
       gdouble percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
-      
+
       xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
     }
     usleep(500000);
@@ -436,7 +436,7 @@ thread_blank (ThreadBlankParams * params)
     thread_blank_perform_blank (params, drive_info);
     xfburn_device_release (drive_info, params->eject);
   }
- 
+
   g_free (params);
 
 #ifdef HAVE_GUDEV
@@ -479,7 +479,7 @@ xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, g
 
     device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
 
-        
+
     dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     g_object_set (dialog_progress, "animate", TRUE, NULL);
 
@@ -491,13 +491,13 @@ xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, g
     params->dialog_progress = dialog_progress;
     params->device = device;
     params->blank_mode = get_selected_mode (priv);
-    params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject)); 
+    params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));
     g_thread_new ("xfburn_blank", (GThreadFunc) thread_blank, params);
   } else {
     xfburn_main_leave_window ();
   }
 }
-   
+
 static void
 cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice *device, XfburnBlankDialog * dialog)
 {

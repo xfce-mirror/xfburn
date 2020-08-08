@@ -38,7 +38,7 @@ typedef struct
 typedef struct
 {
   GtkHBoxClass parent_class;
-  
+
   void (*button_close_clicked) (XfburnNotebookTab *tab);
 } XfburnNotebookTabClass;
 

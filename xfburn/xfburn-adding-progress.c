@@ -5,12 +5,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -75,23 +75,23 @@ xfburn_adding_progress_init (XfburnAddingProgress * win)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (win);
   GtkWidget *vbox, *cancel_btn;
-  
+
   gtk_window_set_resizable (GTK_WINDOW (win), FALSE);
 
   gtk_window_set_icon_name (GTK_WINDOW (win), "list-add");
   gtk_window_set_destroy_with_parent (GTK_WINDOW (win), TRUE);
   gtk_window_set_title (GTK_WINDOW (win), _("Adding files to the composition"));
-  
+
   vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 5);
   gtk_widget_show (vbox);
   gtk_container_add (GTK_CONTAINER (win), vbox);
-    
+
   priv->progress_bar = xfburn_create_progress_bar (NULL);
   gtk_progress_bar_set_pulse_step (GTK_PROGRESS_BAR (priv->progress_bar), 0.01);
   gtk_widget_show (priv->progress_bar);
   gtk_box_pack_start (GTK_BOX (vbox), priv->progress_bar, TRUE, TRUE, BORDER);
 
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->progress_bar), 0.5);  
+  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->progress_bar), 0.5);
 
   cancel_btn = gtk_button_new_with_label (_("Cancel"));
   gtk_box_pack_start (GTK_BOX (vbox), cancel_btn, TRUE, TRUE, BORDER);
@@ -156,7 +156,7 @@ void
 xfburn_adding_progress_pulse (XfburnAddingProgress *adding_progress)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (adding_progress);
-  
+
   gdk_threads_enter ();
   //DBG ("pulse");
   gtk_progress_bar_pulse (GTK_PROGRESS_BAR (priv->progress_bar));
@@ -167,7 +167,7 @@ void
 xfburn_adding_progress_done (XfburnAddingProgress *adding_progress)
 {
   //XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (adding_progress);
-  
+
   gdk_threads_enter ();
   g_signal_emit (G_OBJECT (adding_progress), signals[ADDING_DONE], 0);
   gdk_threads_leave ();
@@ -177,7 +177,7 @@ gboolean
 xfburn_adding_progress_is_aborted (XfburnAddingProgress *adding_progress)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (adding_progress);
-  
+
   return priv->aborted;
 }
 

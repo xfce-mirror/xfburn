@@ -5,12 +5,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -40,7 +40,7 @@ typedef enum {
 } HasFocusWidgetType;
 
 /* private struct */
-typedef struct {  
+typedef struct {
   HasFocusWidgetType has_focus;
 } XfburnFileBrowserPrivate;
 
@@ -96,12 +96,12 @@ xfburn_file_browser_init (XfburnFileBrowser * file_browser)
   xfburn_directory_browser_load_path (XFBURN_DIRECTORY_BROWSER (file_browser->directory_browser), xfce_get_homedir ());
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (file_browser->fs_browser));
-  
+
   g_signal_connect (G_OBJECT (selection), "changed", G_CALLBACK (cb_fs_browser_selection_changed), file_browser);
 
   g_signal_connect (G_OBJECT (file_browser->directory_browser), "row-activated",
                     G_CALLBACK (cb_directory_browser_row_activated), file_browser);
-                    
+
   g_signal_connect (G_OBJECT (file_browser->fs_browser), "focus-in-event", G_CALLBACK (cb_focus_in_event), file_browser);
   g_signal_connect (G_OBJECT (file_browser->directory_browser), "focus-in-event", G_CALLBACK (cb_focus_in_event), file_browser);
 }
@@ -143,17 +143,17 @@ cb_directory_browser_row_activated (GtkWidget * treeview, GtkTreePath * path, Gt
         gchar *temp = NULL;
 
         gtk_tree_model_get (model_fs, &iter, FS_BROWSER_COLUMN_DIRECTORY, &temp, -1);
-        
+
         if (temp && !strcmp (temp, directory)) {
           found = TRUE;
           g_free (temp);
           break;
         }
-      
+
         g_free (temp);
       } while (gtk_tree_model_iter_next (model_fs, &iter));
     }
-        
+
     /* select the current directory in the FS browser */
     if (found) {
       gtk_tree_selection_select_iter (selection_fs, &iter);
@@ -178,17 +178,17 @@ cb_fs_browser_selection_changed (GtkTreeSelection * selection, XfburnFileBrowser
   }
 }
 
-static gboolean 
+static gboolean
 cb_focus_in_event (GtkWidget *widget, GdkEventFocus *event, XfburnFileBrowser *file_browser)
 {
   XfburnFileBrowserPrivate *priv = XFBURN_FILE_BROWSER_GET_PRIVATE (file_browser);
-  
+
   if (widget == file_browser->fs_browser) {
     priv->has_focus = FS_BROWSER;
   } else if (widget == file_browser->directory_browser) {
     priv->has_focus = DIRECTORY_BROWSER;
   }
-  
+
   return FALSE;
 }
 
@@ -212,11 +212,11 @@ gchar *
 xfburn_file_browser_get_selection (XfburnFileBrowser *browser)
 {
   XfburnFileBrowserPrivate *priv = XFBURN_FILE_BROWSER_GET_PRIVATE (browser);
-  
+
   if (priv->has_focus == FS_BROWSER)
     return xfburn_fs_browser_get_selection (XFBURN_FS_BROWSER (browser->fs_browser));
   else if (priv->has_focus == DIRECTORY_BROWSER)
     return xfburn_directory_browser_get_selection (XFBURN_DIRECTORY_BROWSER (browser->directory_browser));
-  
+
   return NULL;
 }

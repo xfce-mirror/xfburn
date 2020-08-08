@@ -5,12 +5,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -64,7 +64,7 @@ xfburn_directory_browser_finalize (GObject * object)
   XfburnDirectoryBrowserPrivate *priv = XFBURN_DIRECTORY_BROWSER_GET_PRIVATE (object);
 
   g_free (priv->current_path);
-  
+
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -74,7 +74,7 @@ xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass * klass)
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  
+
   gobject_class->finalize = xfburn_directory_browser_finalize;
 }
 
@@ -87,7 +87,7 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
   GtkTreeSelection *selection;
 
   GtkTargetEntry gte[] = { {"text/plain;charset=utf-8", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN} };
-    
+
   model = gtk_list_store_new (DIRECTORY_BROWSER_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING);
   gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model), DIRECTORY_BROWSER_COLUMN_FILE,
@@ -115,20 +115,20 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
   gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (browser), -1, _("Type"), gtk_cell_renderer_text_new (),
                                                "text", DIRECTORY_BROWSER_COLUMN_TYPE, NULL);
 
-  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (browser), 
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
   				      (DIRECTORY_BROWSER_COLUMN_FILE - 1)), 1);
-  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (browser), 
+  gtk_tree_view_column_set_resizable (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
                                       (DIRECTORY_BROWSER_COLUMN_HUMANSIZE - 1)), 1);
-  
+
   gtk_tree_view_column_set_fixed_width (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
                                         (DIRECTORY_BROWSER_COLUMN_FILE - 1)), 500);
   gtk_tree_view_column_set_fixed_width (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
                                         (DIRECTORY_BROWSER_COLUMN_HUMANSIZE - 1)), 100);
- 
+
   gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
-                                      (DIRECTORY_BROWSER_COLUMN_FILE - 1)), 100); 
+                                      (DIRECTORY_BROWSER_COLUMN_FILE - 1)), 100);
   gtk_tree_view_column_set_min_width (gtk_tree_view_get_column (GTK_TREE_VIEW (browser),
-                                      (DIRECTORY_BROWSER_COLUMN_HUMANSIZE - 1)), 60); 
+                                      (DIRECTORY_BROWSER_COLUMN_HUMANSIZE - 1)), 60);
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (browser));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
@@ -194,7 +194,7 @@ void
 xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gchar * path)
 {
   XfburnDirectoryBrowserPrivate *priv = XFBURN_DIRECTORY_BROWSER_GET_PRIVATE (browser);
-  
+
   GtkTreeModel *model;
   GDir *dir;
   GError *error = NULL;
@@ -205,18 +205,18 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
   gboolean show_hidden;
-  
+
   dir = g_dir_open (path, 0, &error);
   if (!dir) {
     g_warning ("unable to open the %s directory : %s", path, error->message);
     g_error_free (error);
     return;
   }
-  
+
   temp = g_strdup (path);
   g_free (priv->current_path);
   priv->current_path = temp;
- 
+
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (browser));
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
@@ -257,7 +257,7 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
       gchar *path_utf8;
       GError *conv_error = NULL;
 
-      /* from the g_dir_read_name () docs: most of the time Linux stores 
+      /* from the g_dir_read_name () docs: most of the time Linux stores
          filenames in utf8, but older versions might not, so convert here */
 
       path_utf8 = g_filename_to_utf8 (full_path, -1, NULL, NULL, &conv_error);
@@ -269,12 +269,12 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
         if (conv_error)
           g_error_free (conv_error);
       }
-      
+
       humansize = xfburn_humanreadable_filesize (s.st_size);
-      
+
       if ((s.st_mode & S_IFDIR)) {
         GtkTreeIter iter;
-        
+
         gtk_list_store_append (GTK_LIST_STORE (model), &iter);
         gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                             DIRECTORY_BROWSER_COLUMN_ICON, icon_directory,
@@ -330,11 +330,11 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
 }
 
 void
-xfburn_directory_browser_refresh (XfburnDirectoryBrowser * browser) 
+xfburn_directory_browser_refresh (XfburnDirectoryBrowser * browser)
 {
   XfburnDirectoryBrowserPrivate *priv = XFBURN_DIRECTORY_BROWSER_GET_PRIVATE (browser);
   gchar *temp;
-  
+
   temp = g_strdup (priv->current_path);
   xfburn_directory_browser_load_path (browser, (const gchar*) temp);
   g_free (temp);
@@ -356,7 +356,7 @@ xfburn_directory_browser_get_selection (XfburnDirectoryBrowser * browser)
     GtkTreeIter iter;
     gchar *current_path = NULL;
     gchar *temp = NULL;
-    
+
     gtk_tree_model_get_iter (model, &iter, (GtkTreePath *) selected_rows->data);
     gtk_tree_model_get (model, &iter, DIRECTORY_BROWSER_COLUMN_PATH, &current_path, -1);
 

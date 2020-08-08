@@ -53,7 +53,7 @@ typedef struct
   int ani_index;
   gboolean stop;
   gboolean quit;
-  
+
   GtkWidget *label_action;
   GtkWidget *progress_bar;
   GtkWidget *hbox_buffers;
@@ -126,7 +126,7 @@ xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  
+
   object_class->get_property = xfburn_progress_dialog_get_property;
   object_class->set_property = xfburn_progress_dialog_set_property;
 
@@ -306,7 +306,7 @@ set_writing_speed (XfburnProgressDialog * dialog, gfloat speed)
     temp = g_strdup_printf ("<b><i>%s</i></b>", _("unknown"));
   else
     temp = g_strdup_printf ("<b><i>%.1f x</i></b>", speed);
-  
+
   gtk_label_set_markup (GTK_LABEL (priv->label_speed), temp);
 
   g_free (temp);
@@ -325,7 +325,7 @@ set_action_text (XfburnProgressDialog * dialog, XfburnProgressDialogStatus statu
 
   gtk_label_set_markup (GTK_LABEL (priv->label_action), temp);
 
-  g_free (temp);  
+  g_free (temp);
 }
 
 static void
@@ -606,7 +606,7 @@ xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgress
     gdk_threads_leave ();
 
     xfburn_progress_dialog_set_progress_bar_fraction (dialog, 100.0);
-    
+
   }
 }
 

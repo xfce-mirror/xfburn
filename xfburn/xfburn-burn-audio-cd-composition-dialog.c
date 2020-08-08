@@ -88,7 +88,7 @@ xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdComposition
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  
+
   // object_class->constructor = xfburn_burn_audio_cd_composition_dialog_constructor;
   object_class->finalize = xfburn_burn_audio_cd_composition_dialog_finalize;
   object_class->get_property = xfburn_burn_audio_cd_composition_dialog_get_property;
@@ -103,7 +103,7 @@ static void
 xfburn_burn_audio_cd_composition_dialog_init(XfburnBurnAudioCdCompositionDialog *obj)
 {
   XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE(obj);
-  
+
   GdkPixbuf *icon = NULL;
   GtkBox *box;
   GtkWidget *frame;
@@ -263,9 +263,9 @@ typedef struct {
   gboolean burnfree;
 } ThreadBurnCompositionParams;
 
-static void 
+static void
 thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_drive *drive,
-                           struct burn_disc *disc, struct burn_session *session, int n_tracks, 
+                           struct burn_disc *disc, struct burn_session *session, int n_tracks,
                            int track_sectors[], struct burn_track **tracks, struct burn_source **srcs)
 {
   GtkWidget *dialog_progress = params->dialog_progress;
@@ -412,7 +412,7 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
     dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));
     gtk_widget_hide (GTK_WIDGET (dialog));
-    
+
     gtk_widget_show (dialog_progress);
 
     device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
@@ -441,6 +441,6 @@ xfburn_burn_audio_cd_composition_dialog_new (GSList *track_list)
   XfburnBurnAudioCdCompositionDialog *obj;
 
   obj = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, "track-list", track_list, NULL));
-  
+
   return GTK_WIDGET (obj);
 }

@@ -5,12 +5,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -35,12 +35,12 @@ G_BEGIN_DECLS
 #define XFBURN_IS_ADDING_PROGRESS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_ADDING_PROGRESS))
 #define XFBURN_ADDING_PROGRESS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_ADDING_PROGRESS, XfburnAddingProgressClass))
 
-typedef struct 
+typedef struct
 {
   GtkWindow window;
 } XfburnAddingProgress;
 
-typedef struct 
+typedef struct
 {
   GtkWindowClass parent_class;
   void (*adding_done) (XfburnAddingProgress *progress, XfburnDataComposition *dc);

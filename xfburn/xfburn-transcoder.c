@@ -33,7 +33,7 @@ static void xfburn_transcoder_base_init (XfburnTranscoderInterface * iface);
 /*
 enum {
   LAST_SIGNAL,
-}; 
+};
 */
 
 XfburnTranscoder *transcoder = NULL;
@@ -73,7 +73,7 @@ static void
 xfburn_transcoder_base_init (XfburnTranscoderInterface * iface)
 {
   static gboolean initialized = FALSE;
-  
+
   if (!initialized) {
     /*
     signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_TRANSCODER, G_SIGNAL_ACTION,
@@ -113,13 +113,13 @@ xfburn_transcoder_get_description (XfburnTranscoder *trans)
     return _("none");
 }
 
-gboolean 
+gboolean
 xfburn_transcoder_is_initialized (XfburnTranscoder *trans, GError **error)
 {
   XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
   if (iface->is_initialized)
     return iface->is_initialized (trans, error);
-  
+
   g_warning ("Falling back to base implementation for xfburn_transcoder_is_initialized, which always says false.");
   g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, _("not implemented"));
   return FALSE;
@@ -138,15 +138,15 @@ xfburn_transcoder_get_audio_track (XfburnTranscoder *trans, const gchar *fn, GEr
     atrack->pos = -1;
 
     valid_track = iface->get_audio_track (trans, atrack, error);
-    
+
     if (valid_track)
       return atrack;
-    
+
     /* not a valid track, clean up */
     g_boxed_free (XFBURN_TYPE_AUDIO_TRACK, atrack);
     return NULL;
   }
-  
+
   g_warning ("Falling back to base implementation for xfburn_transcoder_get_audio_track, which always says false.");
   g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, _("not implemented"));
   return NULL;
@@ -158,7 +158,7 @@ xfburn_transcoder_create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *
   XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
   if (iface->create_burn_track)
     return iface->create_burn_track (trans, atrack, error);
-  
+
   g_warning ("Falling back to empty base implementation for xfburn_transcoder_create_burn_track.");
   g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_NOT_IMPLEMENTED, _("not implemented"));
   return NULL;
@@ -171,7 +171,7 @@ xfburn_transcoder_prepare (XfburnTranscoder *trans, GError **error)
 
   if (iface->prepare)
     return iface->prepare (trans, error);
-  
+
   /* this function is not required by the interface */
   return TRUE;
 }
@@ -183,7 +183,7 @@ xfburn_transcoder_finish (XfburnTranscoder *trans)
 
   if (iface->finish)
     iface->finish (trans);
-  
+
   /* this function is not required by the interface */
 }
 
@@ -199,7 +199,7 @@ xfburn_transcoder_free_burning_resources (XfburnTranscoder *trans, XfburnAudioTr
   /* allow for additional resource deallocation */
   if (iface->free_burning_resources)
     return iface->free_burning_resources (trans, atrack, error);
-  
+
   /* this function is not required by the interface */
   return TRUE;
 }
@@ -218,7 +218,7 @@ xfburn_transcoder_free_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack)
     g_free (atrack->title);
 }
 
-void 
+void
 xfburn_transcoder_set_global (XfburnTranscoder *trans)
 {
   transcoder = trans;

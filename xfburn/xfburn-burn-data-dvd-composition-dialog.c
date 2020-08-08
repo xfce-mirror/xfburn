@@ -58,7 +58,7 @@ xfburn_burn_data_dvd_composition_dialog_class_init (XfburnBurnDataDvdComposition
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   parent_class = g_type_class_peek_parent (klass);
-  
+
   object_class->finalize = xfburn_burn_data_dvd_composition_dialog_finalize;
 }
 
@@ -82,6 +82,6 @@ xfburn_burn_data_dvd_composition_dialog_new (IsoImage *image)
   XfburnBurnDataDvdCompositionDialog *obj;
 
   obj = XFBURN_BURN_DATA_DVD_COMPOSITION_DIALOG (g_object_new (XFBURN_TYPE_BURN_DATA_DVD_COMPOSITION_DIALOG, "image", image, NULL));
-  
+
   return GTK_WIDGET (obj);
 }
