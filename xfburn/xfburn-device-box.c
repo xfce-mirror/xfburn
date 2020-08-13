@@ -749,10 +749,10 @@ xfburn_device_box_new (XfburnDeviceBoxFlags flags)
   GtkWidget *obj;
 
   obj = g_object_new (xfburn_device_box_get_type (),
-		      "blank-mode", ((flags & BLANK_MODE) != 0),
-		      "show-writers-only", ((flags & SHOW_CD_WRITERS) != 0),
-          "show-speed-selection", ((flags & SHOW_SPEED_SELECTION) != 0),
-		      "show-mode-selection", ((flags & SHOW_MODE_SELECTION) != 0),
+                      "show-writers-only", ((flags & SHOW_CD_WRITERS) != 0),
+                      "show-speed-selection", ((flags & SHOW_SPEED_SELECTION) != 0),
+                      "show-mode-selection", ((flags & SHOW_MODE_SELECTION) != 0),
+                      "blank-mode", ((flags & BLANK_MODE) != 0),
                       NULL);
 
   return obj;
