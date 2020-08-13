@@ -126,10 +126,11 @@ help greatly in debugging the problem. It does require you to build xfburn from
 the sources, and to install gdb. If you can handle that, here are the exact
 instructions:
 
-1) Rebuild xfburn with debugging support - grab the sources, and run:
+1) Rebuild xfburn with debugging support - grab the sources, and run (you can update 
+   `-j4` to match your core count):
    ```
    $ autoconf
-   $ ./configure --enable-debug=full && make clean all
+   $ ./configure && make clean all -j4
    ```
 2) Enable core dumps, then run xfburn until it hangs, or crashes:
    ```
