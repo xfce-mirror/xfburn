@@ -81,6 +81,11 @@ Let the **highly recommended** part be highlighted once more. Of course
 gstreamer will not matter if you do not plan on burning audio CDs, but the
 other two libraries will come in handy in almost all situations.
 
+Optional, for maintenance 
+-------------------------
+ * libxslt (for creating docs)
+
+
 The author works with both hal and thunar-vfs enabled, so there might be the
 occasional bug that breaks compilation without these components. Xfburn should
 work without these optional components, but it is not well tested at all.
@@ -123,6 +128,7 @@ instructions:
 
 1) Rebuild xfburn with debugging support - grab the sources, and run:
    ```
+   $ autoconf
    $ ./configure --enable-debug=full && make clean all
    ```
 2) Enable core dumps, then run xfburn until it hangs, or crashes:
