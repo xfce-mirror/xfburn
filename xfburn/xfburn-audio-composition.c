@@ -199,7 +199,7 @@ typedef struct
 static GtkHPanedClass *parent_class = NULL;
 static guint instances = 0;
 static gchar *did_warn = "Did warn about this already";
-static gchar trans_name[MAX_NAME_LENGTH] = {""};
+static gchar trans_name[MAX_NAME_LENGTH+1] = {""};
 
 static const GActionEntry actions[] = {
   {.name = "add-file", .activate = (gActionCallback)action_add_selected_files},
@@ -272,11 +272,9 @@ composition_interface_init (XfburnCompositionInterface *composition, gpointer if
 static void
 xfburn_audio_composition_init (XfburnAudioComposition * composition)
 {
+  gint x, y;
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
 
-  gtk_orientable_set_orientation(GTK_ORIENTABLE (composition), GTK_ORIENTATION_VERTICAL);
-
-  gint x, y;
 //  ExoToolbarsModel *model_toolbar;
   gint toolbar_position;
   GtkWidget *hbox_toolbar;
@@ -292,6 +290,8 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   GdkScreen *screen;
   GtkIconTheme *icon_theme;
   gchar *popup_ui;
+
+  gtk_orientable_set_orientation(GTK_ORIENTABLE (composition), GTK_ORIENTATION_VERTICAL);
 
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE },
@@ -1904,10 +1904,11 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
 
       if (thread_add_file_to_list (composition, model, full_path, &iter, &iter_where_insert, position)) {
         if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE
-            || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER)
+            || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER) {
           gdk_threads_enter ();
           gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), priv->path_where_insert, FALSE);
           gdk_threads_leave ();
+        }
       }
 
     } else  {
