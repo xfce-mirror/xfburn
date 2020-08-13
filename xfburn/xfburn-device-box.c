@@ -163,8 +163,9 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
 static GObject *
 xfburn_device_box_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
 {
-  GObject *gobj;
-  gobj = G_OBJECT_CLASS (parent_class)->constructor(type, n_construct_properties, construct_properties);
+  GObject *gobj = G_OBJECT_CLASS (parent_class)->constructor(type, n_construct_properties, construct_properties);
+  XfburnDeviceBoxPrivate *priv = xfburn_device_box_get_instance_private(XFBURN_DEVICE_BOX(gobj));
+  refresh_drive_info (XFBURN_DEVICE_BOX(gobj), xfburn_device_list_get_current_device (priv->devlist));
   return gobj;
 }
 
@@ -265,7 +266,6 @@ xfburn_device_box_init (XfburnDeviceBox *box)
 
   priv->have_asked_for_blanking = FALSE;
 
-  refresh_drive_info (box, xfburn_device_list_get_current_device (priv->devlist));
 }
 
 static void
@@ -749,10 +749,10 @@ xfburn_device_box_new (XfburnDeviceBoxFlags flags)
   GtkWidget *obj;
 
   obj = g_object_new (xfburn_device_box_get_type (),
-		      "show-writers-only", ((flags & SHOW_CD_WRITERS) != 0),
-                      "show-speed-selection", ((flags & SHOW_SPEED_SELECTION) != 0),
-		      "show-mode-selection", ((flags & SHOW_MODE_SELECTION) != 0),
 		      "blank-mode", ((flags & BLANK_MODE) != 0),
+		      "show-writers-only", ((flags & SHOW_CD_WRITERS) != 0),
+          "show-speed-selection", ((flags & SHOW_SPEED_SELECTION) != 0),
+		      "show-mode-selection", ((flags & SHOW_MODE_SELECTION) != 0),
                       NULL);
 
   return obj;
