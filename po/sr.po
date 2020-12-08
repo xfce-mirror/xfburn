@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-08-11 22:46+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2020-12-08 20:30+0000\n"
+"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/xfce/xfce-apps/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -263,12 +263,12 @@ msgstr "Уписујем слику ИСО-а..."
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:468
 #, c-format
 msgid "An error occured while writing ISO: %s"
-msgstr "Дошло је до грешке приликом уписа ISO слике: %s  "
+msgstr "Дошло је до грешке приликом уписа ИСО-слике: %s"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:524
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:530
 msgid "An error occurred in the burn backend."
-msgstr "Дошло је до грешке у позадинском програму за резање"
+msgstr "Дошло је до грешке у позадинском програму за резање."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:553
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:296
@@ -278,7 +278,7 @@ msgstr "Начин уписа тренутно није подржан."
 #. could not create source
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:636
 msgid "Could not create ISO source structure."
-msgstr "Не успевам да направим изворну грађу за ISO"
+msgstr "Не успевам да направим изворну грађу за ИСО."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:137
 msgid "Burn image"
@@ -313,7 +313,7 @@ msgstr "Начин резања тренутно није подржан."
 #: ../xfburn/xfburn-burn-image-dialog.c:326
 #: ../xfburn/xfburn-burn-image-dialog.c:355
 msgid "An error occurred in the burn backend"
-msgstr "Дошло је до грешке у позадинском програму за резање."
+msgstr "Дошло је до грешке у позадинском програму за резање"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:339
 msgid "Unable to determine image size."
@@ -340,19 +340,19 @@ msgstr "Нисам успео да додам податке на диск са 
 
 #: ../xfburn/xfburn-burn-image-dialog.c:500
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr "Затворен диск са подацима. Потребан је празан или уписив диск."
+msgstr "Затворен диск са подацима. Потребан је празан или уписив диск"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:502
 msgid "No disc detected in drive"
-msgstr "Нема препознатих дискова у уређају."
+msgstr "Нема препознатих дискова у уређају"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:504
 msgid "Cannot recognize state of drive and disc"
-msgstr "Нисам успео да препознам стање уређаја и диска."
+msgstr "Нисам успео да препознам стање уређаја и диска"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:516
 msgid "The selected image does not fit on the inserted disc"
-msgstr "Изабрана слика не стаје на убачени диск."
+msgstr "Изабрана слика не стаје на убачени диск"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:520
 msgid "Failed to get image size"
@@ -467,7 +467,7 @@ msgstr "Очисти садржај скупа"
 
 #: ../xfburn/xfburn-data-composition.c:353
 msgid "Volume name :"
-msgstr "Назив пројекта"
+msgstr "Назив пројекта :"
 
 #: ../xfburn/xfburn-data-composition.c:387
 msgid "Contents"
@@ -647,7 +647,7 @@ msgstr "највећа"
 
 #: ../xfburn/xfburn-device-box.c:483
 msgid "A full, but erasable disc is in the drive"
-msgstr "Пун пиши-бриши диск је у уређају."
+msgstr "Пун пиши-бриши диск је у уређају"
 
 #: ../xfburn/xfburn-device-box.c:484
 msgid ""
@@ -693,7 +693,7 @@ msgstr "ДВД-РВ нема потреба за брисањем"
 
 #: ../xfburn/xfburn-device-box.c:613
 msgid "Inserted disc is already blank"
-msgstr "Убачени диск је већ празан."
+msgstr "Убачени диск је већ празан"
 
 #: ../xfburn/xfburn-device-box.c:649
 msgid "Auto"
@@ -881,7 +881,7 @@ msgstr "Обликујем..."
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
-msgstr "Нисам успео да додам податке на вишесесијски диск у овом начину рада (мето њега употреби ТАО) "
+msgstr "Нисам успео да додам податке на вишеседнички диск у овом начину рада (место њега употреби ТАО) "
 
 #: ../xfburn/xfburn-perform-burn.c:274
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
@@ -1136,7 +1136,7 @@ msgstr "Завршено"
 
 #: ../xfburn/xfburn-progress-dialog.c:600
 msgid "Aborting..."
-msgstr "Прекидам"
+msgstr "Прекидам..."
 
 #: ../xfburn/xfburn-utils.c:131
 msgid "Select command"
@@ -1144,7 +1144,7 @@ msgstr "Изабери наредбу"
 
 #: ../xfburn/xfburn-welcome-tab.c:99
 msgid "Welcome to Xfburn!"
-msgstr "Добродошли код Рецка"
+msgstr "Добродошли код Рецка!"
 
 #. buttons
 #: ../xfburn/xfburn-welcome-tab.c:118
@@ -1198,7 +1198,7 @@ msgstr "Преименуј наслов"
 
 #: ../xfburn/xfburn-audio-composition.c:228
 msgid "Rename the title of the selected file"
-msgstr "преименује наслов одабране датотеке"
+msgstr "преименуј наслов одабране датотеке"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1331,7 +1331,7 @@ msgstr "Није доступан податак који прикључак ј�
 
 #: ../xfburn/xfburn-transcoder-gst.c:629
 msgid "Required plugins: "
-msgstr "Потребни прикључци:"
+msgstr "Потребни прикључци: "
 
 #: ../xfburn/xfburn-transcoder-gst.c:662 ../xfburn/xfburn-transcoder-gst.c:692
 #, c-format
@@ -1392,7 +1392,7 @@ msgstr "Број профила по извештају либбурна"
 
 #: ../xfburn/xfburn-device.c:273 ../xfburn/xfburn-device.c:274
 msgid "Profile name as reported by libburn"
-msgstr "Име профила по libburn извештају "
+msgstr "Име профила по извештају либбурна"
 
 #: ../xfburn/xfburn-device.c:276 ../xfburn/xfburn-device.c:277
 msgid "Is the disc erasable"
@@ -1416,7 +1416,7 @@ msgstr "Нисам успео да нарежем ДВДПЛУСР"
 
 #: ../xfburn/xfburn-device.c:291 ../xfburn/xfburn-device.c:292
 msgid "Can burn DVDRAM"
-msgstr "не могу резати ДВДРАМ"
+msgstr "Нисам успео да режем ДВДРАМ"
 
 #: ../xfburn/xfburn-device.c:294 ../xfburn/xfburn-device.c:295
 msgid "Can burn Blu-ray"
@@ -1424,19 +1424,19 @@ msgstr "Нисам успео да нарежем Блу-реј"
 
 #: ../xfburn/xfburn-device.c:297 ../xfburn/xfburn-device.c:298
 msgid "libburn TAO block types"
-msgstr "Врсте ТАО блока „libburn“"
+msgstr "Врсте ТАО блока либбруна"
 
 #: ../xfburn/xfburn-device.c:300 ../xfburn/xfburn-device.c:301
 msgid "libburn SAO block types"
-msgstr "Врсте САО блока „libburn“"
+msgstr "Врсте САО блока либбурна"
 
 #: ../xfburn/xfburn-device.c:303 ../xfburn/xfburn-device.c:304
 msgid "libburn RAW block types"
-msgstr "Врсте РАВ блока „libburn“"
+msgstr "Врсте РАВ блока либбурна"
 
 #: ../xfburn/xfburn-device.c:306 ../xfburn/xfburn-device.c:307
 msgid "libburn PACKET block types"
-msgstr "Врсте ПАКЕТ блока „libburn“"
+msgstr "Врсте ПАКЕТ блока либбурна"
 
 #: ../xfburn.ui.h:1
 msgid "_Files"
@@ -1512,7 +1512,7 @@ msgstr "Нарежи слику (рецко)"
 
 #: ../org.xfce.xfburn.appdata.xml.in.h:2
 msgid "A simple CD burning tool"
-msgstr ""
+msgstr "Једноставан прибор за резање дискова"
 
 #: ../org.xfce.xfburn.appdata.xml.in.h:3
 msgid ""
