@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-10-29 22:18+0000\n"
+"PO-Revision-Date: 2020-12-28 19:33+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/xfce-apps/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -265,7 +265,7 @@ msgstr "Viga ISO kirjutamisel: %s"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:524
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:530
 msgid "An error occurred in the burn backend."
-msgstr ""
+msgstr "Plaadile kirjutamise taustateenuses tekkis viga."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:553
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:296
@@ -310,7 +310,7 @@ msgstr "Kirjutusrežiim pole veel toetatud"
 #: ../xfburn/xfburn-burn-image-dialog.c:326
 #: ../xfburn/xfburn-burn-image-dialog.c:355
 msgid "An error occurred in the burn backend"
-msgstr ""
+msgstr "Plaadile kirjutamise taustateenuses tekkis viga"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:339
 msgid "Unable to determine image size."
@@ -747,7 +747,7 @@ msgstr "Seadet '%s' ei õnnestunud lahti haakida. Ketast ei saa kasutada kirjuta
 #. || G_OPTION_FLAG_FILENAME
 #: ../xfburn/xfburn-main.c:74
 msgid "Open the burn image dialog, optionally followed by the image filename"
-msgstr ""
+msgstr "Ava tõmmise kirjutamise dialoogiaken, kuhu võid lisada ka tõmmisefaili nime"
 
 #: ../xfburn/xfburn-main.c:76
 msgid "Open the blank disc dialog"
@@ -799,7 +799,7 @@ msgstr "%s: %s\nKäsk %s --help järjestab kõik käsurea valikuid.\n"
 
 #: ../xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
-msgstr ""
+msgstr "Plaadile kirjutamise taustateenuses käivitamisel viga."
 
 #: ../xfburn/xfburn-main.c:294
 msgid "No burners are currently available"
@@ -894,16 +894,16 @@ msgstr "Seadme ja andmekandja oleku tuvastamine ebaõnnestus."
 
 #: ../xfburn/xfburn-perform-burn.c:286
 msgid "Formatting failed."
-msgstr ""
+msgstr "Vormindamine ei õnnestunud."
 
 #: ../xfburn/xfburn-perform-burn.c:304
 msgid "There is not enough space available on the inserted disc."
-msgstr ""
+msgstr "Sisestatud plaadil pole piisavalt ruumi."
 
 #: ../xfburn/xfburn-perform-burn.c:349
 #, c-format
 msgid "Burning track %2d/%d..."
-msgstr ""
+msgstr "Kirjutan rada %2d/%d..."
 
 #: ../xfburn/xfburn-perform-burn.c:353 ../xfburn/xfburn-perform-burn.c:417
 msgid "Burning composition..."
@@ -963,7 +963,7 @@ msgstr "Sessiooni sulgemine..."
 
 #: ../xfburn/xfburn-perform-burn.c:465
 msgid "see console"
-msgstr ""
+msgstr "lisateavet leiad konsoolilt"
 
 #: ../xfburn/xfburn-perform-burn.c:493
 msgid "User Aborted"
@@ -1117,7 +1117,7 @@ msgstr "Katketasin tegevuse"
 
 #: ../xfburn/xfburn-progress-dialog.c:547
 msgid "Formatted."
-msgstr ""
+msgstr "Vormindatud."
 
 #: ../xfburn/xfburn-progress-dialog.c:556
 msgid "Failed"
@@ -1133,7 +1133,7 @@ msgstr "Valmis"
 
 #: ../xfburn/xfburn-progress-dialog.c:600
 msgid "Aborting..."
-msgstr ""
+msgstr "Katkestan..."
 
 #: ../xfburn/xfburn-utils.c:131
 msgid "Select command"
@@ -1183,19 +1183,19 @@ msgstr "Missuguseid faile saab salvestada heliplaadile?"
 
 #: ../xfburn/xfburn-audio-composition.c:226 ../xfburn-popup-menus.ui.h:4
 msgid "Rename Artist"
-msgstr ""
+msgstr "Muuda esitaja nime"
 
 #: ../xfburn/xfburn-audio-composition.c:226
 msgid "Rename the artist of the selected file"
-msgstr ""
+msgstr "Muuda valitud failis esitaja nime"
 
 #: ../xfburn/xfburn-audio-composition.c:228 ../xfburn-popup-menus.ui.h:5
 msgid "Rename Title"
-msgstr ""
+msgstr "Muuda pealkirja"
 
 #: ../xfburn/xfburn-audio-composition.c:228
 msgid "Rename the title of the selected file"
-msgstr ""
+msgstr "Muuda valitud failis pealkirja"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1203,7 +1203,7 @@ msgstr ""
 #: ../xfburn/xfburn-audio-composition.c:371
 #: ../xfburn/xfburn-transcoder-gst.c:579
 msgid "gstreamer"
-msgstr ""
+msgstr "gstreamer"
 
 #: ../xfburn/xfburn-audio-composition.c:402
 msgid "Pos"
@@ -1231,11 +1231,11 @@ msgstr "DVD-plaadist ei saa heliplaati teha."
 
 #: ../xfburn/xfburn-audio-composition.c:1259
 msgid "You can only have a maximum of 99 tracks."
-msgstr ""
+msgstr "Siin võib olla kuni 99 pala."
 
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:279
 msgid "A problem with the burn backend occurred."
-msgstr ""
+msgstr "Plaadile kirjutamise taustateenuses tekkis viga."
 
 #: ../xfburn/xfburn-disc-usage.c:161
 msgid "Proceed to Burn"
@@ -1243,13 +1243,13 @@ msgstr "Jätka salvestamisega plaadile"
 
 #: ../xfburn/xfburn-disc-usage.c:201
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr ""
+msgstr "Sa üritad plaadile rohkem kirjutada, kui sinna mahub."
 
 #. globals
 #: ../xfburn/xfburn-transcoder-basic.c:69
 #: ../xfburn/xfburn-transcoder-gst.c:145
 msgid "An error occurred while setting the burning backend up"
-msgstr ""
+msgstr "Plaadile kirjutamise taustateenuse töölepanekul tekkis viga"
 
 #: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
@@ -1285,12 +1285,12 @@ msgstr ""
 #: ../xfburn/xfburn-transcoder-basic.c:202
 #, c-format
 msgid "Could not open %s."
-msgstr ""
+msgstr "%s avamine ei õnnestunud."
 
 #: ../xfburn/xfburn-transcoder-basic.c:281
 #, c-format
 msgid "Could not open %s: %s"
-msgstr ""
+msgstr "%s avamine ei õnnestunud: %s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:144
 msgid "An error occurred setting gstreamer up for transcoding"
@@ -1421,19 +1421,19 @@ msgstr "Oskab kirjutada Blu-ray-plaadile"
 
 #: ../xfburn/xfburn-device.c:297 ../xfburn/xfburn-device.c:298
 msgid "libburn TAO block types"
-msgstr ""
+msgstr "libburn TAO blokitüübid"
 
 #: ../xfburn/xfburn-device.c:300 ../xfburn/xfburn-device.c:301
 msgid "libburn SAO block types"
-msgstr ""
+msgstr "libburn SAO blokitüübid"
 
 #: ../xfburn/xfburn-device.c:303 ../xfburn/xfburn-device.c:304
 msgid "libburn RAW block types"
-msgstr ""
+msgstr "libburn RAW blokitüübid"
 
 #: ../xfburn/xfburn-device.c:306 ../xfburn/xfburn-device.c:307
 msgid "libburn PACKET block types"
-msgstr ""
+msgstr "libburn PACKET blokitüübid"
 
 #: ../xfburn.ui.h:1
 msgid "_Files"
@@ -1497,7 +1497,7 @@ msgstr "Andmekogumik"
 
 #: ../xfburn.desktop.in.h:2
 msgid "Disk Burning"
-msgstr ""
+msgstr "Andmekandjate kirjutamine"
 
 #: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
@@ -1505,11 +1505,11 @@ msgstr "Rakendus CD- ja DVD-plaatide kirjutamiseks"
 
 #: ../xfburn.desktop.in.h:4
 msgid "Burn Image (xfburn)"
-msgstr ""
+msgstr "Kirjuta tõmmis (xfburn)"
 
 #: ../org.xfce.xfburn.appdata.xml.in.h:2
 msgid "A simple CD burning tool"
-msgstr ""
+msgstr "Lihtne tarvik CD-plaatide kirjutamiseks"
 
 #: ../org.xfce.xfburn.appdata.xml.in.h:3
 msgid ""
