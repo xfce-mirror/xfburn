@@ -4,15 +4,15 @@
 # 
 # Translators:
 # beriain, 2018
-# beriain, 2019
+# beriain, 2019,2021
 # Piarres Beobide <pi@beobide.net>, 2005-2009,2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-08-11 22:46+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2021-01-22 17:06+0000\n"
+"Last-Translator: beriain\n"
 "Language-Team: Basque (http://www.transifex.com/xfce/xfce-apps/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -230,12 +230,12 @@ msgstr "_Gezurrezko grabatzea"
 #: ../xfburn/xfburn-burn-image-dialog.c:202
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:176
 msgid "Burn_Free"
-msgstr "Grabaketa_Librea"
+msgstr "Grabaketa _Librea"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:215
 #: ../xfburn/xfburn-burn-image-dialog.c:207
 msgid "Stream _Recording"
-msgstr ""
+msgstr "Jario g_rabaketa"
 
 #. create ISO ?
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:221
@@ -280,7 +280,7 @@ msgstr "Ezin da ISO jatorri egitura sortu."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:137
 msgid "Burn image"
-msgstr "Gra_batu irudia"
+msgstr "Grabatu irudia"
 
 #. file
 #: ../xfburn/xfburn-burn-image-dialog.c:145
@@ -520,7 +520,7 @@ msgstr "%s ezin da konposiziora gehitu, iso9660 formatuko fitxategi tamaina muga
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
-msgstr ""
+msgstr "%s iso9660ren 2. mailak onartzen duena baino luzeagoa da. Hau arazo bat izan daiteke sistema edo software zaharretan."
 
 #: ../xfburn/xfburn-data-composition.c:1378
 #: ../xfburn/xfburn-audio-composition.c:1351
@@ -545,22 +545,22 @@ msgstr "Badago dagoeneko \"%s\" izeneko fitxategi bat direktorio horretan, fitxa
 #: ../xfburn/xfburn-data-composition.c:1946
 #, c-format
 msgid "%s: null pointer"
-msgstr ""
+msgstr "%s: erakusle baliogabea"
 
 #: ../xfburn/xfburn-data-composition.c:1948
 #, c-format
 msgid "%s: out of memory"
-msgstr ""
+msgstr "%s: memoriarik gabe"
 
 #: ../xfburn/xfburn-data-composition.c:1950
 #, c-format
 msgid "%s: node name not unique"
-msgstr ""
+msgstr "%s: nodoaren izena ez da bakarra"
 
 #: ../xfburn/xfburn-data-composition.c:1952
 #, c-format
 msgid "%s: %s (code %X)"
-msgstr ""
+msgstr "%s: %s (kodea %X)"
 
 #. The first string is the renamed name, the second one the original name
 #: ../xfburn/xfburn-data-composition.c:1972
@@ -651,7 +651,7 @@ msgstr "Disko bete, baina ezabagarri bat dago unitatean"
 msgid ""
 "Do you want to blank the disc, so that it can be used for the upcoming burn "
 "process?"
-msgstr ""
+msgstr "Diskoa hustu nahi duzu, hurrengo grabatze prozesuan erabili ahal izateko?"
 
 #: ../xfburn/xfburn-device-box.c:555
 msgid "Drive can't burn on the inserted disc"
@@ -743,48 +743,48 @@ msgstr "%s-ren etxea"
 #: ../xfburn/xfburn-udev-manager.c:495
 #, c-format
 msgid "Failed to unmount '%s'. Drive cannot be used for burning."
-msgstr ""
+msgstr "'%s' desmuntatzeak huts egin du. Diskoa ezin da grabatzeko erabili."
 
 #. || G_OPTION_FLAG_FILENAME
 #: ../xfburn/xfburn-main.c:74
 msgid "Open the burn image dialog, optionally followed by the image filename"
-msgstr ""
+msgstr "Irudia grabatzeko leihoa ireki, aukeran irudiaren fitxategi izenaz jarraituz"
 
 #: ../xfburn/xfburn-main.c:76
 msgid "Open the blank disc dialog"
-msgstr ""
+msgstr "Diskoa husteko leihoa ireki"
 
 #: ../xfburn/xfburn-main.c:78
 msgid ""
 "Start a data composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "Datuen konposizio bat hasi, aukeran konposiziora gehitu behar diren fitxategiekin/direktorioekin jarraituz"
 
 #: ../xfburn/xfburn-main.c:80
 msgid ""
 "Start an audio composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "Audio konposizio bat hasi, aukeran konposiziora gehitu behar diren fitxategiekin/direktorioekin jarraituz"
 
 #: ../xfburn/xfburn-main.c:82
 msgid ""
 "Select the transcoder, run with --transcoder=list to see the available ones"
-msgstr ""
+msgstr "Transkodegailua hautatu, exekutatu --transcoder=list aukerarekin eskuragarri daudenak ikusteko"
 
 #: ../xfburn/xfburn-main.c:84
 msgid ""
 "Start the file browser in the specified directory, or the current directory "
 "if none is specified (the default is to start in your home directory)"
-msgstr ""
+msgstr "Fitxategi arakatzailea hasi zehaztutako direktorioan, edo oraingo direktorioan bat ere ez zehazten ez bada(lehenetsia zure etxeko direktorioan hastea da)"
 
 #: ../xfburn/xfburn-main.c:86
 msgid "Display program version and exit"
-msgstr ""
+msgstr "Programaren bertsioa erakutsi eta irten"
 
 #: ../xfburn/xfburn-main.c:88
 msgid ""
 "Show main program even when other action is specified on the command line."
-msgstr ""
+msgstr "Programa nagusia erakutsi naiz eta beste ekintza bat adierazi komando lerroan."
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 #: ../org.xfce.xfburn.appdata.xml.in.h:1
@@ -1019,7 +1019,7 @@ msgstr "Izena"
 
 #: ../xfburn/xfburn-preferences-dialog.c:256
 msgid "Revision"
-msgstr ""
+msgstr "Berrikusketa"
 
 #: ../xfburn/xfburn-preferences-dialog.c:258
 msgid "Node"
@@ -1250,7 +1250,7 @@ msgstr "Diskoak eduki dezakeena baino datu gehiago grabatzen saiatzen ari zara."
 #: ../xfburn/xfburn-transcoder-basic.c:69
 #: ../xfburn/xfburn-transcoder-gst.c:145
 msgid "An error occurred while setting the burning backend up"
-msgstr ""
+msgstr "Akats bat gertatu da grabatzeko backend-a ezartzerakoan"
 
 #: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
@@ -1295,7 +1295,7 @@ msgstr "Ezin da %s ireki: %s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:144
 msgid "An error occurred setting gstreamer up for transcoding"
-msgstr ""
+msgstr "Akats bat gertatu da gstreamer transkodetzeko ezartzerakoan"
 
 #: ../xfburn/xfburn-transcoder-gst.c:146
 #, c-format
@@ -1309,7 +1309,7 @@ msgstr "%s falta da.\n\nEz duzu fitxategi hau kudeatzeko deskodetzailea.\nZiurre
 
 #: ../xfburn/xfburn-transcoder-gst.c:542
 msgid "File content has a decoder but is not audio."
-msgstr ""
+msgstr "Fitxategiaren edukia deskodegailua dauka baina ez da audioa."
 
 #: ../xfburn/xfburn-transcoder-gst.c:585
 msgid ""
@@ -1325,7 +1325,7 @@ msgstr "Gstreamer transkodetzaileak gstreamer liburutegia\nerabiltzen du audio k
 
 #: ../xfburn/xfburn-transcoder-gst.c:627
 msgid "No information available on which plugin is required."
-msgstr ""
+msgstr "Ez dago eskuragarri zein plugin beharrezkoa den inguruko informazioa."
 
 #: ../xfburn/xfburn-transcoder-gst.c:629
 msgid "Required plugins: "
@@ -1370,11 +1370,11 @@ msgstr "Gailu helbideak"
 
 #: ../xfburn/xfburn-device.c:261
 msgid "Device revision"
-msgstr ""
+msgstr "Gailu berrikusketa"
 
 #: ../xfburn/xfburn-device.c:262
 msgid "Device Revision"
-msgstr ""
+msgstr "Gailu berrikusketa"
 
 #: ../xfburn/xfburn-device.c:264 ../xfburn/xfburn-device.c:265
 msgid "Burn speeds supported by the device"
@@ -1498,7 +1498,7 @@ msgstr "Datu konposizioa"
 
 #: ../xfburn.desktop.in.h:2
 msgid "Disk Burning"
-msgstr ""
+msgstr "Disko grabazioa"
 
 #: ../xfburn.desktop.in.h:3
 msgid "CD and DVD burning application"
@@ -1510,7 +1510,7 @@ msgstr "Grabatu irudia (xfburn)"
 
 #: ../org.xfce.xfburn.appdata.xml.in.h:2
 msgid "A simple CD burning tool"
-msgstr ""
+msgstr "CDak grabatzeko tresna sinple bat"
 
 #: ../org.xfce.xfburn.appdata.xml.in.h:3
 msgid ""
@@ -1518,4 +1518,4 @@ msgid ""
 "blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
 "personal compositions of data to either CD or DVD. It is stable and under "
 "ongoing development."
-msgstr ""
+msgstr "Xfburn CD/DVDak grabatzeko tresna sinple bat da, libburnia liburutegietan oinarritutakoa. CD/DVD(-RW)ak hustu ditzake, iso irudiak eta audio CDak grabatu eta sortu ditzake, baita konposizio pertsonalak CDtan edo DVDtan grabatu ditzake. Egonkorra da eta aribidean garatua izaten ari da."
