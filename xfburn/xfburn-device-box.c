@@ -646,21 +646,21 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
   gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-  gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, _("Auto"), MODE_VALUE_COLUMN, WRITE_MODE_AUTO, -1);
+  gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, _("Automatic"), MODE_VALUE_COLUMN, WRITE_MODE_AUTO, -1);
 
   if (device)
     g_object_get (G_OBJECT (device), "tao-block-types", &block_types, NULL);
 
   if (block_types) {
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "TAO", MODE_VALUE_COLUMN, WRITE_MODE_TAO, -1);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, _("With Track Gaps / Track-At-Once (TAO)"), MODE_VALUE_COLUMN, WRITE_MODE_TAO, -1);
   }
 
   if (device)
     g_object_get (G_OBJECT (device), "sao-block-types", &block_types, NULL);
   if (block_types & BURN_BLOCK_SAO) {
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "SAO", MODE_VALUE_COLUMN, WRITE_MODE_SAO, -1);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, _("Multi Session / Session-At-Once (SAO)"), MODE_VALUE_COLUMN, WRITE_MODE_SAO, -1);
   }
   /*
    * RAW modes are not supported by libburn yet
