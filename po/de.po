@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Andreas Eitel <github-aneitel@online.de>, 2019-2020
+# Andreas Eitel <github-aneitel@online.de>, 2019-2021
 # David Mohr <david@mcbf.net>, 2008,2010
 # David Mohr <squisher@xfce.org>, 2010
 # Harald Judt <h.judt@gmx.at>, 2014
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-08-13 14:48+0000\n"
+"POT-Creation-Date: 2021-01-26 00:47+0100\n"
+"PO-Revision-Date: 2021-01-26 21:13+0000\n"
 "Last-Translator: Andreas Eitel <github-aneitel@online.de>\n"
 "Language-Team: German (http://www.transifex.com/xfce/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -613,11 +613,11 @@ msgstr "ist die Kombination von Hardware und Medium geeignet für die Zusammenst
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "Im Löschmodus werden andere Statusnachrichten angezeigt"
 
-#: ../xfburn/xfburn-device-box.c:216
+#: ../xfburn/xfburn-device-box.c:217
 msgid "_Speed:"
 msgstr "_Geschwindigkeit:"
 
-#: ../xfburn/xfburn-device-box.c:239
+#: ../xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
 msgstr "Schreib_modus:"
 
@@ -699,8 +699,16 @@ msgid "Inserted disc is already blank"
 msgstr "Das Medium ist schon leer"
 
 #: ../xfburn/xfburn-device-box.c:649
-msgid "Auto"
+msgid "Automatic"
 msgstr "Automatisch"
+
+#: ../xfburn/xfburn-device-box.c:656
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "Mit Spurlücken / Track-At-Once (TAO)"
+
+#: ../xfburn/xfburn-device-box.c:663
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "Mehrfachsitzung / Session-At-Once (SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
