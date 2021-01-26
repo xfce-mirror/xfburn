@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
-# Casper casper, 2019-2020
+# Casper casper, 2019-2021
 # Diego Rodríguez <dieymir@yahoo.es>, 2007
 # gabrieltandil <gabriel.tandil@gmail.com>, 2015
 # gabrieltandil <gabriel.tandil@gmail.com>, 2015
@@ -12,13 +12,14 @@
 # Jaime Marquínez Ferrándiz, 2019
 # prflr88 <prflr88@gmail.com>, 2017
 # prflr88 <prflr88@gmail.com>, 2013-2014
+# Toni Estévez <toni.estevez@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-08-25 14:25+0000\n"
-"Last-Translator: Casper casper\n"
+"POT-Creation-Date: 2021-01-26 00:47+0100\n"
+"PO-Revision-Date: 2021-01-26 19:42+0000\n"
+"Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-apps/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,19 +45,19 @@ msgstr "duración"
 
 #: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
-msgstr "Vaciando caché…"
+msgstr "Vaciando la caché…"
 
 #: ../xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
-msgstr "Por favor introduzca un disco grabable y pulse «Entrar»."
+msgstr "Inserte un disco grabable y pulse Entrar."
 
 #: ../xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr "No se pudo determinar el estado del disco - Pulse «Entrar» para intentarlo nuevamente."
+msgstr "No se ha podido determinar el estado del disco: pulse Entrar para volver a intentarlo."
 
 #: ../xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr "La copia del CD terminó correctamente."
+msgstr "La copia del CD ha finalizado correctamente."
 
 #: ../xfburn/xfburn-global.h:43
 msgid "Data composition"
@@ -96,7 +97,7 @@ msgstr "Quitar formato completo (lento)"
 
 #: ../xfburn/xfburn-blank-dialog.c:119
 msgid "Eject the disc"
-msgstr "Expulsar disco"
+msgstr "Expulsar el disco"
 
 #: ../xfburn/xfburn-blank-dialog.c:120
 msgid "Default value for eject checkbox"
@@ -614,11 +615,11 @@ msgstr "¿Es la combinación de hardware y disco válida para grabar la composic
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "El modo de borrado muestra mensajes de estado de disco diferentes al modo normal"
 
-#: ../xfburn/xfburn-device-box.c:216
+#: ../xfburn/xfburn-device-box.c:217
 msgid "_Speed:"
 msgstr "_Velocidad:"
 
-#: ../xfburn/xfburn-device-box.c:239
+#: ../xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
 msgstr "_Modo de escritura:"
 
@@ -700,8 +701,16 @@ msgid "Inserted disc is already blank"
 msgstr "El disco introducido ya está vacío"
 
 #: ../xfburn/xfburn-device-box.c:649
-msgid "Auto"
-msgstr "Auto"
+msgid "Automatic"
+msgstr "Automático"
+
+#: ../xfburn/xfburn-device-box.c:656
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "Con separaciones de pista / grabación pista a pista (TAO)"
+
+#: ../xfburn/xfburn-device-box.c:663
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "Multisesión / grabación por sesiones (SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
