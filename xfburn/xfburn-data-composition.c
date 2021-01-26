@@ -205,18 +205,18 @@ static const GtkActionEntry action_entries[] = {
    G_CALLBACK (action_remove_selection),},
   {"clear", "edit-clear", N_("Clear"), NULL, N_("Clear the content of the composition"),
    G_CALLBACK (action_clear),},
-  /*{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),}, */
-/*  {"rename-file", "gtk-edit", N_("Rename"), NULL, N_("Rename the selected file"),
+  //{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
+  {"rename-file", "gtk-edit", N_("Rename"), NULL, N_("Rename the selected file"),
    G_CALLBACK (action_rename_selection),},
 };*/
 
-static const gchar *toolbar_actions[] = {
+/*static const gchar *toolbar_actions[] = {
   "add-file",
   "remove-file",
   "create-dir",
   "clear",
   "import-session",
-};
+};*/
 
 static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
 
@@ -257,11 +257,10 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
 
-  gtk_orientable_set_orientation(GTK_ORIENTABLE (composition), GTK_ORIENTATION_VERTICAL);
-
   gint x, y;
-//  ExoToolbarsModel *model_toolbar;
-  gint toolbar_position;
+  //ExoToolbarsModel *model_toolbar;
+  //gint toolbar_position;
+  gchar *popup_ui;
   GtkWidget *hbox_toolbar;
   GtkWidget *hbox, *label;
   GtkWidget *scrolled_window;
@@ -278,6 +277,8 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
                                 { "text/uri-list", 0, DATA_COMPOSITION_DND_TARGET_TEXT_URI_LIST },
                                 { "text/plain;charset=utf-8", 0, DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN },
                               };
+
+  gtk_orientable_set_orientation(GTK_ORIENTABLE (composition), GTK_ORIENTATION_VERTICAL);
 
   priv->full_paths_to_add = NULL;
 
@@ -302,7 +303,7 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   gtk_builder_set_translation_domain(priv->ui_manager, GETTEXT_PACKAGE);
 
   xfce_resource_push_path (XFCE_RESOURCE_DATA, DATADIR);
-  gchar *popup_ui = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn-popup-menus.ui");
+  popup_ui = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn-popup-menus.ui");
   gtk_builder_add_from_file (priv->ui_manager, popup_ui, NULL);
 
   hbox_toolbar = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
@@ -575,6 +576,8 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     GtkWidget *menu_popup;
     GtkWidget *menuitem_remove;
     GtkWidget *menuitem_rename;
+    GList *childs;
+    GdkRectangle r = {event->x, event->y, 1, 1};
 
     selection = gtk_tree_view_get_selection (treeview);
 
@@ -588,7 +591,7 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     menu_popup = gtk_menu_new_from_model (model);
     gtk_widget_insert_action_group(GTK_WIDGET(menu_popup), "win", G_ACTION_GROUP(priv->action_group));
 
-    GList *childs = gtk_container_get_children (GTK_CONTAINER (menu_popup));
+    childs = gtk_container_get_children (GTK_CONTAINER (menu_popup));
     menuitem_remove = GTK_WIDGET (childs->next->next->data);
     menuitem_rename = GTK_WIDGET (childs->next->data);
 
@@ -601,7 +604,6 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     else
       gtk_widget_set_sensitive (menuitem_rename, FALSE);
 
-    GdkRectangle r = {event->x, event->y, 1, 1};
     gtk_menu_popup_at_rect (GTK_MENU (menu_popup),
         gtk_widget_get_parent_window (GTK_WIDGET (treeview)),
         &r, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);
@@ -1942,11 +1944,11 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
       if (r < 0) {
         char * msg;
 
-        if (r == ISO_NULL_POINTER)
+        if ((guint) r == ISO_NULL_POINTER)
           g_error (_("%s: null pointer"), src);
-        else if (r == ISO_OUT_OF_MEM)
+        else if ((guint) r == ISO_OUT_OF_MEM)
           g_error (_("%s: out of memory"), src);
-        else if (r == ISO_NODE_NAME_NOT_UNIQUE)
+        else if ((guint) r == ISO_NODE_NAME_NOT_UNIQUE)
           msg = g_strdup_printf (_("%s: node name not unique"), src);
         else
           msg = g_strdup_printf (_("%s: %s (code %X)"), src, iso_error_to_msg(r), r);

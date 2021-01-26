@@ -452,7 +452,7 @@ refresh_devices_list (XfburnPreferencesDialog * dialog)
 static void
 xfburn_preferences_dialog_response_cb (XfburnPreferencesDialog * dialog, guint response_id, XfburnPreferencesDialogPrivate * priv)
 {
-  if (response_id == GTK_RESPONSE_CLOSE) {
+  if ((gint) response_id == GTK_RESPONSE_CLOSE) {
     xfburn_preferences_dialog_save_settings (dialog);
   }
 }

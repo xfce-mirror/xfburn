@@ -212,7 +212,8 @@ static const GActionEntry actions[] = {
 #endif /* CDTEXT */
 };
 
-static const GtkActionEntry action_entries[] = {
+/* unused, including in the commented code, but contains translated strings, so kept with a G_GNUC_UNUSED */
+G_GNUC_UNUSED static const GtkActionEntry action_entries[] = {
   {"add-file", "list-add", N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
    G_CALLBACK (action_add_selected_files),},
   {"remove-file", "list-remove", N_("Remove"), NULL, N_("Remove the selected file(s) from the composition"),
@@ -230,13 +231,13 @@ static const GtkActionEntry action_entries[] = {
 #endif /* CDTEXT */
 };
 
-static const gchar *toolbar_actions[] = {
+/*static const gchar *toolbar_actions[] = {
   "add-file",
   "remove-file",
   "clear",
   "import-session",
   "transcoder-info",
-};
+};*/
 
 static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
 
@@ -275,8 +276,8 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gint x, y;
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
 
-//  ExoToolbarsModel *model_toolbar;
-  gint toolbar_position;
+  //ExoToolbarsModel *model_toolbar;
+  //gint toolbar_position;
   GtkWidget *hbox_toolbar;
   //GtkWidget *hbox, *label;
   GtkWidget *scrolled_window;
@@ -291,13 +292,13 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   GtkIconTheme *icon_theme;
   gchar *popup_ui;
 
-  gtk_orientable_set_orientation(GTK_ORIENTABLE (composition), GTK_ORIENTATION_VERTICAL);
-
   GtkTargetEntry gte_src[] =  { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE } };
   GtkTargetEntry gte_dest[] = { { "XFBURN_TREE_PATHS", GTK_TARGET_SAME_WIDGET, AUDIO_COMPOSITION_DND_TARGET_INSIDE },
                                 { "text/plain;charset=utf-8", 0, AUDIO_COMPOSITION_DND_TARGET_TEXT_PLAIN },
                                 { "text/uri-list", 0, AUDIO_COMPOSITION_DND_TARGET_TEXT_URI_LIST },
                               };
+
+  gtk_orientable_set_orientation(GTK_ORIENTABLE (composition), GTK_ORIENTATION_VERTICAL);
 
   priv->full_paths_to_add = NULL;
   priv->trans = xfburn_transcoder_get_global ();
@@ -645,6 +646,7 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     GtkWidget *menuitem_rename_artist;
     GtkWidget *menuitem_rename_title;
 #endif /* CDTEXT */
+    GdkRectangle r = {event->x, event->y, 1, 1};
 
     selection = gtk_tree_view_get_selection (treeview);
 
@@ -668,7 +670,6 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
     else
       gtk_widget_set_sensitive (menuitem_remove, FALSE);
 
-    GdkRectangle r = {event->x, event->y, 1, 1};
     gtk_menu_popup_at_rect (GTK_MENU (menu_popup),
         gtk_widget_get_parent_window (GTK_WIDGET (treeview)),
         &r, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);

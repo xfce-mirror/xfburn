@@ -90,8 +90,9 @@ xfburn_notebook_tab_init (XfburnNotebookTab * tab)
 {
   XfburnNotebookTabPrivate *priv = XFBURN_NOTEBOOK_TAB_GET_PRIVATE (tab);
   GtkBox *hbox = GTK_BOX (tab);
-  gtk_orientable_set_orientation (GTK_ORIENTABLE (hbox), GTK_ORIENTATION_HORIZONTAL);
   GtkWidget *img;
+
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (hbox), GTK_ORIENTATION_HORIZONTAL);
 
   priv->label = gtk_label_new ("");
   gtk_widget_show (priv->label);
