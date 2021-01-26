@@ -75,10 +75,7 @@ xfburn_compositions_notebook_finalize (GObject * object)
 static void
 cb_move_focus_out (GtkNotebook *notebook, GtkDirectionType *arg1, XfburnCompositionsNotebookPrivate *priv)
 {
-  guint page_num;
-
-  page_num = gtk_notebook_get_current_page (notebook);
-  DBG ("%d", page_num);
+  DBG ("%d", gtk_notebook_get_current_page (notebook));
 }
 
 static void

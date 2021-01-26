@@ -120,7 +120,7 @@ xfburn_main_enter_main_window (void)
 
 
 const gchar *
-xfburn_main_get_initial_dir ()
+xfburn_main_get_initial_dir (void)
 {
   if (initial_dir)
     return initial_dir;
@@ -129,7 +129,7 @@ xfburn_main_get_initial_dir ()
 }
 
 gboolean
-xfburn_main_has_initial_dir ()
+xfburn_main_has_initial_dir (void)
 {
   if (initial_dir)
     return TRUE;
@@ -191,7 +191,7 @@ main (int argc, char **argv)
   XfburnTranscoder *transcoder;
   XfburnDeviceList *devlist;
 
-#if DEBUG > 0
+#ifdef DEBUG
   /* I have to disable this until GtkTreeView gets fixed,
    * and doesn't complain anymore when a DnD doesn't add any
    * rows
@@ -269,7 +269,7 @@ main (int argc, char **argv)
 
   DBG ("%s version %s for Xfce %s\n", PACKAGE, VERSION, xfce_version_string ());
 
-  xfburn_settings_init ();
+  xfburn_settings_init_external ();
 
 #ifdef HAVE_GUDEV
   error_msg = xfburn_udev_manager_create_global ();

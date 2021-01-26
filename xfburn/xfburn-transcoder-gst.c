@@ -87,7 +87,7 @@ static gboolean is_initialized (XfburnTranscoder *trans, GError **error);
 static gboolean bus_call (GstBus *bus, GstMessage *msg, gpointer data);
 static void on_pad_added (GstElement *element, GstPad *pad, gpointer data);
 
-#ifdef DEBUG_GST
+#if DEBUG_GST > 2
 static void cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data);
 #endif
 
@@ -137,7 +137,7 @@ typedef struct {
 #define XFBURN_AUDIO_TRACK_GET_GST(atrack) ((XfburnAudioTrackGst *) (atrack)->data)
 
 /* globals */
-#if DEBUG_GST > 0 && DEBUG > 0
+#if DEBUG_GST > 0 && defined (DEBUG)
 static guint64 total_size = 0;
 #endif
 
@@ -237,7 +237,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (trans);
 
   GstElement *pipeline, *source, *decoder, *resample, *conv1, *conv2, *sink;
-#if DEBUG_GST > 0 && DEBUG > 0
+#if DEBUG_GST > 0 && defined (DEBUG)
   GstElement *id;
 #endif
   GstBus *bus;
@@ -252,7 +252,7 @@ create_pipeline (XfburnTranscoderGst *trans)
   priv->conv1    = conv1    = gst_element_factory_make ("audioconvert",  "converter1");
   priv->resample = resample = gst_element_factory_make ("audioresample", "resampler");
   priv->conv2    = conv2    = gst_element_factory_make ("audioconvert",  "converter2");
-#if DEBUG_GST > 0 && DEBUG > 0
+#if DEBUG_GST > 0 && defined (DEBUG)
                   id       = gst_element_factory_make ("identity",      "debugging-identity");
 #endif
   priv->sink    = sink     = gst_element_factory_make ("fdsink",        "audio-output");
@@ -266,7 +266,7 @@ create_pipeline (XfburnTranscoderGst *trans)
     return;
   }
 
-#if DEBUG_GST > 0 && DEBUG > 0
+#if DEBUG_GST > 0 && defined (DEBUG)
   if (!id) {
     g_warning ("The debug identity element could not be created");
     g_set_error (&(priv->error), XFBURN_ERROR, XFBURN_ERROR_GST_CREATION,
@@ -284,7 +284,7 @@ create_pipeline (XfburnTranscoderGst *trans)
 
   gst_bin_add_many (GST_BIN (pipeline),
                     source, decoder, conv1, resample, conv2, sink, NULL);
-#if DEBUG_GST > 0 && DEBUG > 0
+#if DEBUG_GST > 0 && defined (DEBUG)
   gst_bin_add (GST_BIN (pipeline), id);
 #endif
 
@@ -299,7 +299,7 @@ create_pipeline (XfburnTranscoderGst *trans)
             "format", G_TYPE_STRING, "S16LE",
             NULL);
 
-#if DEBUG_GST > 0 && DEBUG > 0
+#if DEBUG_GST > 0 && defined (DEBUG)
   // TODO without the filter it does work but I'm not sure the audio format is correct
   if (!gst_element_link_filtered (conv2, id, caps)) {
 #else
@@ -313,7 +313,7 @@ create_pipeline (XfburnTranscoderGst *trans)
     return;
   }
   gst_caps_unref (caps);
-#if DEBUG_GST > 0 && DEBUG > 0
+#if DEBUG_GST > 2 && defined (DEBUG)
   gst_element_link (id, sink);
   g_signal_connect (id, "handoff", G_CALLBACK (cb_handoff), id);
 #endif
@@ -384,7 +384,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
       XfburnAudioTrackGst *gtrack = XFBURN_AUDIO_TRACK_GET_GST (priv->curr_track);
 
 #if DEBUG_GST > 0
-  #if DEBUG > 0
+  #if defined (DEBUG)
       DBG ("End of stream, wrote %.0f bytes", (gfloat) total_size);
   #else
       g_message ("End of stream.");
@@ -497,6 +497,8 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
                        _(errormsg_missing_plugin),
                         gst_missing_plugin_message_get_description (msg));
       }
+
+      break;
     }
     default:
 #if DEBUG_GST == 1
@@ -592,7 +594,7 @@ get_description (XfburnTranscoder *trans)
            "gstreamer plugin packages installed.");
 }
 
-#if DEBUG_GST > 0 && DEBUG > 0
+#if DEBUG_GST > 2 && defined (DEBUG)
 
 /* this function can inspect the data just before it is passed on
    to the fd for processing by libburn */
@@ -600,19 +602,17 @@ static void
 cb_handoff (GstElement *element, GstBuffer *buffer, gpointer data)
 {
   guint size = gst_buffer_get_size (buffer);
-#if DEBUG_GST > 2
   static int i = 0;
   const int step = 30;
-#endif
 
   total_size += size;
-#if DEBUG_GST > 2
   if (++i % step == 0)
     DBG ("gstreamer just processed ~%6d bytes (%8.0f bytes total).", size*step, (float)total_size);
-#endif
 }
 
 #endif
+
+#ifdef DEBUG
 
 static gchar *
 get_discoverer_required_plugins_message (GstDiscovererInfo *info)
@@ -634,6 +634,8 @@ get_discoverer_required_plugins_message (GstDiscovererInfo *info)
 
   return g_string_free (str, FALSE);
 }
+
+#endif
 
 static gboolean
 get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
