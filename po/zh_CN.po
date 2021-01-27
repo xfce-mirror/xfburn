@@ -12,15 +12,15 @@
 # SamHX <samzh@outlook.com>, 2017
 # 玉堂白鹤 <yjwork@qq.com>, 2014
 # Xiaobo Zhou <zhouxiaobo.500@gmail.com>, 2014
-# 玉堂白鹤 <yjwork@qq.com>, 2014,2018-2020
+# 玉堂白鹤 <yjwork@qq.com>, 2014,2018-2021
 # Mingcong Bai <jeffbai@aosc.xyz>, 2015
 # 赵正龙 <longer.zhao@gmail.com>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-08-13 06:53+0000\n"
+"POT-Creation-Date: 2021-01-26 00:47+0100\n"
+"PO-Revision-Date: 2021-01-27 06:23+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfce-apps/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -617,11 +617,11 @@ msgstr "刻录项目的硬件和光盘组件是有效的吗？"
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "与正常模式相比擦除模式显示不同的光盘状态信息"
 
-#: ../xfburn/xfburn-device-box.c:216
+#: ../xfburn/xfburn-device-box.c:217
 msgid "_Speed:"
 msgstr "速度(_S)："
 
-#: ../xfburn/xfburn-device-box.c:239
+#: ../xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
 msgstr "写入模式(_M)："
 
@@ -703,8 +703,16 @@ msgid "Inserted disc is already blank"
 msgstr "插入的光盘已经是空白的"
 
 #: ../xfburn/xfburn-device-box.c:649
-msgid "Auto"
+msgid "Automatic"
 msgstr "自动"
+
+#: ../xfburn/xfburn-device-box.c:656
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "有轨道间隙/一次性轨道刻录 (TAO)"
+
+#: ../xfburn/xfburn-device-box.c:663
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "多区段/区段一次性刻录 (SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
