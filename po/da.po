@@ -6,13 +6,13 @@
 # Aputsiak Niels Janussen <aj@isit.gl>, 2014
 # Aputsiak Niels Janussen <aj@isit.gl>, 2014
 # Chris Darnell <chris@cedeel.com>, 2013
-# scootergrisen, 2016-2020
+# scootergrisen, 2016-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-11-17 00:02+0000\n"
+"POT-Creation-Date: 2021-01-26 00:47+0100\n"
+"PO-Revision-Date: 2021-01-28 00:14+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -609,11 +609,11 @@ msgstr "Er kombinationen af hardware og disk gyldig for at brænde samlingen?"
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "Sletningstilstanden viser nogle andre diskstatusmeddelelser end normal tilstand"
 
-#: ../xfburn/xfburn-device-box.c:216
+#: ../xfburn/xfburn-device-box.c:217
 msgid "_Speed:"
 msgstr "_Hastighed:"
 
-#: ../xfburn/xfburn-device-box.c:239
+#: ../xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
 msgstr "Skrivnings_tilstand:"
 
@@ -695,8 +695,16 @@ msgid "Inserted disc is already blank"
 msgstr "Indsatte disk er allerede tom"
 
 #: ../xfburn/xfburn-device-box.c:649
-msgid "Auto"
+msgid "Automatic"
 msgstr "Automatisk"
+
+#: ../xfburn/xfburn-device-box.c:656
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "Med mellemrum mellem spor/Track-At-Once (TAO)"
+
+#: ../xfburn/xfburn-device-box.c:663
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "Multisession/Session-At-Once (SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
@@ -953,7 +961,7 @@ msgstr "Skriver lead-out ..."
 
 #: ../xfburn/xfburn-perform-burn.c:434
 msgid "Writing pregap..."
-msgstr "Skriver pregap ..."
+msgstr "Skriver præmellemrum ..."
 
 #: ../xfburn/xfburn-perform-burn.c:440
 msgid "Closing track..."
