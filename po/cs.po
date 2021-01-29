@@ -5,15 +5,15 @@
 # Translators:
 # Alois Nešpor <info@aloisnespor.info>, 2013
 # Alois Nešpor <info@aloisnespor.info>, 2014
-# Michal Várady <miko.vaji@gmail.com>, 2014-2015,2017,2019-2020
+# Michal Várady <miko.vaji@gmail.com>, 2014-2015,2017,2019-2021
 # Pavel Borecki <pavel.borecki@gmail.com>, 2018
 # Petr Šimáček <petr.simacek@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-12-30 20:39+0000\n"
+"POT-Creation-Date: 2021-01-26 00:47+0100\n"
+"PO-Revision-Date: 2021-01-29 00:33+0000\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/xfce/xfce-apps/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -610,11 +610,11 @@ msgstr "Umožňuje kombinace hardwaru a disku vypálit kompozici?"
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "Režim mazání zobrazuje jiná stavová hlášení než běžný režim"
 
-#: ../xfburn/xfburn-device-box.c:216
+#: ../xfburn/xfburn-device-box.c:217
 msgid "_Speed:"
 msgstr "_Rychlost:"
 
-#: ../xfburn/xfburn-device-box.c:239
+#: ../xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
 msgstr "Reži_m zápisu:"
 
@@ -696,8 +696,16 @@ msgid "Inserted disc is already blank"
 msgstr "Vložený disk je již prázdný"
 
 #: ../xfburn/xfburn-device-box.c:649
-msgid "Auto"
-msgstr "Automaticky"
+msgid "Automatic"
+msgstr "Automatické"
+
+#: ../xfburn/xfburn-device-box.c:656
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "S mezerami oddělujícími stopy / Track-At-Once (TAO)"
+
+#: ../xfburn/xfburn-device-box.c:663
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "Multi Session (více sekcí) / Session-At-Once (SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
