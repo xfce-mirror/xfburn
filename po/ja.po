@@ -7,14 +7,14 @@
 # Hao Chen <hao.chen.jobs@gmail.com>, 2013
 # Masato HASHIMOTO <cabezon.hashimoto@gmail.com>, 2008,2012
 # Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2016-2020
-# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019-2020
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-08-12 02:10+0000\n"
-"Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
+"POT-Creation-Date: 2021-01-26 00:47+0100\n"
+"PO-Revision-Date: 2021-01-29 05:59+0000\n"
+"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>\n"
 "Language-Team: Japanese (http://www.transifex.com/xfce/xfce-apps/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -610,11 +610,11 @@ msgstr "これはコンポジションを焼き込むハードウェアとディ
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "消去モードは通常モードとは異なるディスク状態メッセージを表示します"
 
-#: ../xfburn/xfburn-device-box.c:216
+#: ../xfburn/xfburn-device-box.c:217
 msgid "_Speed:"
 msgstr "速度(_S):"
 
-#: ../xfburn/xfburn-device-box.c:239
+#: ../xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
 msgstr "書き込みモード(_M):"
 
@@ -696,8 +696,16 @@ msgid "Inserted disc is already blank"
 msgstr "挿入されたディスクはすでに消去されています"
 
 #: ../xfburn/xfburn-device-box.c:649
-msgid "Auto"
+msgid "Automatic"
 msgstr "自動"
+
+#: ../xfburn/xfburn-device-box.c:656
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "トラックギャップあり / トラックアットワンス (TAO)"
+
+#: ../xfburn/xfburn-device-box.c:663
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "マルチセッション / セッションアットワンス (SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
