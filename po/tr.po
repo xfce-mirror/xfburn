@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Demiray Muhterem <mdemiray@msn.com>, 2018-2019
-# Emin Tufan Çetin <etcetin@gmail.com>, 2020
+# Emin Tufan Çetin <etcetin@gmail.com>, 2020-2021
 # Emin Tufan Çetin <etcetin@gmail.com>, 2020
 # Necdet Yücel <necdetyucel@gmail.com>, 2014-2015,2017
 # Recep, 2014
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-11-20 09:46+0000\n"
+"POT-Creation-Date: 2021-01-26 00:47+0100\n"
+"PO-Revision-Date: 2021-01-29 17:35+0000\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/xfce/xfce-apps/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -613,11 +613,11 @@ msgstr "Donanım ve disk kombinasyonu derlemeyi yazmak için geçerli mi? "
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "Boşaltma kipi, düzenli kipten daha başka disk durumu iletileri göstermektedir"
 
-#: ../xfburn/xfburn-device-box.c:216
+#: ../xfburn/xfburn-device-box.c:217
 msgid "_Speed:"
 msgstr "_Hız:"
 
-#: ../xfburn/xfburn-device-box.c:239
+#: ../xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
 msgstr "Yazma _kipi:"
 
@@ -699,8 +699,16 @@ msgid "Inserted disc is already blank"
 msgstr "Yerleştirdiğiniz disk zaten boş"
 
 #: ../xfburn/xfburn-device-box.c:649
-msgid "Auto"
+msgid "Automatic"
 msgstr "Kendiliğinden"
+
+#: ../xfburn/xfburn-device-box.c:656
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "Parça Boşluklarıyla / Track-At-Once (TAO)"
+
+#: ../xfburn/xfburn-device-box.c:663
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "Çoklu Oturum / Session-At-Once (SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
