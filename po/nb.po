@@ -7,15 +7,15 @@
 # Allan Nordhøy <epost@anotheragency.no>, 2015,2017-2018
 # Åsmund Berg Holm <berg.holm@outlook.com>, 2018
 # Harald H. <haarektrans@gmail.com>, 2014
-# Kjell Cato Heskjestad <cato@heskjestad.xyz>, 2019-2020
+# Kjell Cato Heskjestad <cato@heskjestad.xyz>, 2019-2021
 # b968a88efa3f7fe258997f7ec785f954, 2013
 # Terje Uriansrud <terje@uriansrud.net>, 2010
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-08-13 17:19+0000\n"
+"POT-Creation-Date: 2021-01-26 00:47+0100\n"
+"PO-Revision-Date: 2021-01-30 05:59+0000\n"
 "Last-Translator: Kjell Cato Heskjestad <cato@heskjestad.xyz>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/xfce/xfce-apps/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -612,11 +612,11 @@ msgstr "Er kombinasjonen av maskinvare og disk gyldig for å brenne komposisjone
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "Slettemodus viser andre statusmeldinger enn vanlig modus"
 
-#: ../xfburn/xfburn-device-box.c:216
+#: ../xfburn/xfburn-device-box.c:217
 msgid "_Speed:"
 msgstr "_Hastighet:"
 
-#: ../xfburn/xfburn-device-box.c:239
+#: ../xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
 msgstr "Skrive_modus:"
 
@@ -698,8 +698,16 @@ msgid "Inserted disc is already blank"
 msgstr "Gjeldende disk er allerede slettet"
 
 #: ../xfburn/xfburn-device-box.c:649
-msgid "Auto"
-msgstr "Auto"
+msgid "Automatic"
+msgstr "Automatisk"
+
+#: ../xfburn/xfburn-device-box.c:656
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "Med opphold mellom spor («Track-At-Once» – TAO)"
+
+#: ../xfburn/xfburn-device-box.c:663
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "Flerøkters («Session-At-Once – SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
