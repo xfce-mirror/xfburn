@@ -195,28 +195,6 @@ static const GActionEntry action_entries[] = {
   /*{.name = "import-session", .activate = (gActionCallback)action_remove_selection},*/
   {.name = "rename-file", .activate = (gActionCallback)action_rename_selection},
 };
-/*
-static const GtkActionEntry action_entries[] = {
-  {"add-file", "list-add", N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
-   G_CALLBACK (action_add_or_select),},
-  {"create-dir", "document-new", N_("Create directory"), NULL, N_("Add a new directory to the composition"),
-   G_CALLBACK (action_create_directory),},
-  {"remove-file", "list-remove", N_("Remove"), NULL, N_("Remove the selected file(s) from the composition"),
-   G_CALLBACK (action_remove_selection),},
-  {"clear", "edit-clear", N_("Clear"), NULL, N_("Clear the content of the composition"),
-   G_CALLBACK (action_clear),},
-  //{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-  {"rename-file", "gtk-edit", N_("Rename"), NULL, N_("Rename the selected file"),
-   G_CALLBACK (action_rename_selection),},
-};*/
-
-/*static const gchar *toolbar_actions[] = {
-  "add-file",
-  "remove-file",
-  "create-dir",
-  "clear",
-  "import-session",
-};*/
 
 static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
 
@@ -258,8 +236,6 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
 
   gint x, y;
-  //ExoToolbarsModel *model_toolbar;
-  //gint toolbar_position;
   gchar *popup_ui;
   GtkWidget *hbox_toolbar;
   GtkWidget *hbox, *label;
