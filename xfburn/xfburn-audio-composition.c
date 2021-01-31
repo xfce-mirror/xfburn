@@ -212,33 +212,6 @@ static const GActionEntry actions[] = {
 #endif /* CDTEXT */
 };
 
-/* unused, including in the commented code, but contains translated strings, so kept with a G_GNUC_UNUSED */
-G_GNUC_UNUSED static const GtkActionEntry action_entries[] = {
-  {"add-file", "list-add", N_("Add"), NULL, N_("Add the selected file(s) to the composition"),
-   G_CALLBACK (action_add_selected_files),},
-  {"remove-file", "list-remove", N_("Remove"), NULL, N_("Remove the selected file(s) from the composition"),
-   G_CALLBACK (action_remove_selection),},
-  {"clear", "edit-clear", N_("Clear"), NULL, N_("Clear the content of the composition"),
-   G_CALLBACK (action_clear),},
-  {"transcoder-info", "dialog-information", trans_name, NULL, N_("What files can get burned to an audio CD?"),
-   G_CALLBACK (action_info),},
-  //{"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import existing session"),},
-#if 0 /* CDTEXT */
-  {"rename-artist", "gtk-edit", N_("Rename Artist"), NULL, N_("Rename the artist of the selected file"),
-   G_CALLBACK (action_rename_selection_artist),},
-  {"rename-title", "gtk-edit", N_("Rename Title"), NULL, N_("Rename the title of the selected file"),
-   G_CALLBACK (action_rename_selection_title),},
-#endif /* CDTEXT */
-};
-
-/*static const gchar *toolbar_actions[] = {
-  "add-file",
-  "remove-file",
-  "clear",
-  "import-session",
-  "transcoder-info",
-};*/
-
 static GdkPixbuf *icon_directory = NULL, *icon_file = NULL;
 
 /********************************/
@@ -276,10 +249,7 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gint x, y;
   XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
 
-  //ExoToolbarsModel *model_toolbar;
-  //gint toolbar_position;
   GtkWidget *hbox_toolbar;
-  //GtkWidget *hbox, *label;
   GtkWidget *scrolled_window;
   GtkTreeStore *model;
 #if 0 /* CDTEXT */
