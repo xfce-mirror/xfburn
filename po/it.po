@@ -7,15 +7,15 @@
 # Davide Truffa <davide.truffa@gmail.com>, 2015
 # David Paleino <d.paleino@gmail.com>, 2007
 # Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2018
-# Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2019-2020
+# Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2019-2021
 # Salvatore Caputo <salvatorexfce@gmail.com>, 2014
 # Vincenzo Reale <vinx.reale@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-12 00:46+0200\n"
-"PO-Revision-Date: 2020-08-12 09:27+0000\n"
+"POT-Creation-Date: 2021-01-26 00:47+0100\n"
+"PO-Revision-Date: 2021-01-31 14:50+0000\n"
 "Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -612,11 +612,11 @@ msgstr "La combinazione di disco e dispositivo è valida per la masterizzazione 
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "La modalità a vuoto mostra degli stati del disco diversi rispetto alla modalità regolare"
 
-#: ../xfburn/xfburn-device-box.c:216
+#: ../xfburn/xfburn-device-box.c:217
 msgid "_Speed:"
 msgstr "_Velocità:"
 
-#: ../xfburn/xfburn-device-box.c:239
+#: ../xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
 msgstr "_Modalità di scrittura:"
 
@@ -698,8 +698,16 @@ msgid "Inserted disc is already blank"
 msgstr "Il disco inserito è già vuoto"
 
 #: ../xfburn/xfburn-device-box.c:649
-msgid "Auto"
+msgid "Automatic"
 msgstr "Automatico"
+
+#: ../xfburn/xfburn-device-box.c:656
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "Con lo spazio tra le tracce / Track-At-Once (TAO)"
+
+#: ../xfburn/xfburn-device-box.c:663
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "Sessioni multiple / Session-At-Once (SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
