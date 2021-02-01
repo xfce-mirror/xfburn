@@ -116,7 +116,7 @@ Bugs & Feedback
 Any comments are welcome! We aim to make xfburn a very easily usable program.
 So if you think something could be implemented differently, feel free to speak
 up and it will be considered. Please send all feedbacks to xfburn@xfce.org, or
-use the xfce mailing lists. Bugs are best placed in the [xfce bugtracker](https://bugzilla.xfce.org/).
+use the xfce mailing lists. Bugs are best placed in the [xfce bugtracker](https://gitlab.xfce.org/apps/xfburn/).
 
 Debugging
 ---------
@@ -146,7 +146,7 @@ instructions:
    ```
    (Note that sometimes the core.xxxxxx file is just called core, and that 32270 is
     just an arbitrary number which was the process id - yours will be different)
-5) Open up a bug report at our [issue tracker](https://bugzilla.xfce.org/) for xfburn, and add
+5) Open up a bug report at our [issue tracker](https://gitlab.xfce.org/apps/xfburn/) for xfburn, and add
    both the xfburn.output and the xfburn.backtrace files to it. Done!
    There is no need to attach the core dump, as it is heavily system dependent.
 
