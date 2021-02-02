@@ -67,7 +67,6 @@ enum {
 };
 
 /* prototypes */
-static GObject * xfburn_burn_audio_cd_composition_dialog_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 static void xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object);
 
 static void xfburn_burn_audio_cd_composition_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
@@ -108,9 +107,7 @@ xfburn_burn_audio_cd_composition_dialog_init(XfburnBurnAudioCdCompositionDialog 
   GtkBox *box;
   GtkWidget *frame;
   GtkWidget *vbox;
-  GtkWidget *align;
   GtkWidget *button;
-  //const char *comp_name;
 
   box = GTK_BOX (gtk_dialog_get_content_area((GTK_DIALOG (obj))));
 

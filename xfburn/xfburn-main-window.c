@@ -114,81 +114,9 @@ static const GActionEntry action_entries[] = {
   { .name = "burn-dvd", .activate = (gActionCallback)action_burn_dvd_image},
 };
 
-static const struct {
-  const gchar * target;
-  const gchar * accel[2];
-} accelerator[] = {
-  {"new-data-composition",{"<Control><Alt>e",NULL}},
-  {"new-audio-composition",{"<Control><Alt>A",NULL}},
-};
-
-/*static const GtkActionEntry action_entries[] = {
-  {"file-menu", NULL, N_("_File"), NULL, NULL, NULL},
-  /*{"new-composition", "document-new", N_("_New composition"), "", N_("Create a new composition"),},*/
-  /*{"new-composition", "document-new", N_("_New composition"), NULL, N_("Create a new composition"),
-    G_CALLBACK (action_new_data_composition),}, */
-/*  {"new-data-composition", "xfburn-new-data-composition", N_("New data composition"), "<Control><Alt>e", N_("New data composition"),
-    G_CALLBACK (action_new_data_composition),},
-  {"new-audio-composition", "xfburn-audio-cd", N_("New audio composition"), "<Control><Alt>A", N_("New audio composition"),
-    G_CALLBACK (action_new_audio_composition),},
-  /*{"load-composition", "document-open", N_("Load composition"), NULL, N_("Load composition"),
-   G_CALLBACK (action_load),},
-  {"save-composition", "document-save", N_("Save composition"), NULL, N_("Save composition"),
-   G_CALLBACK (action_save),},
-  {"save-composition-as", "document-save"_AS, N_("Save composition as..."), NULL, N_("Save composition as"),
-   G_CALLBACK (action_save_as),},*/
-/*  {"close-composition", "window-close", N_("Close composition"), NULL, N_("Close composition"),
-   G_CALLBACK (action_close),},
-  {"quit", "application-exit", N_("_Quit"), NULL, N_("Quit Xfburn"), G_CALLBACK (action_quit),},
-  {"edit-menu", NULL, N_("_Edit"), NULL, NULL, NULL},
-  {"preferences", "preferences-system", N_("Prefere_nces"), NULL, N_("Show preferences dialog"),
-   G_CALLBACK (action_preferences),},
-  {"action-menu", NULL, N_("_Actions"), NULL, NULL, NULL},
-  {"view-menu", NULL, N_("_View"), NULL, NULL, NULL},
-  {"refresh", "view-refresh", N_("Refresh"), NULL, N_("Refresh file list"),
-   G_CALLBACK (action_refresh_directorybrowser),},
-  {"help-menu", NULL, N_("_Help"), NULL, NULL, NULL},
-  {"about", "gtk-about", N_("_About"), NULL, N_("Display information about Xfburn"),
-   G_CALLBACK (action_about),},
-  {"blank-disc", "xfburn-blank-cdrw", N_("Blank CD-RW"), NULL, N_("Blank CD-RW"),
-   G_CALLBACK (action_blank),},
-  {"copy-data", "xfburn-data-copy", N_("Copy Data CD"), NULL, N_("Copy Data CD"),
-   G_CALLBACK (action_copy_cd),},
-  /*{"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy Audio CD"),}, */
-/*  {"burn-image", "stock_xfburn", N_("Burn Image"), NULL, N_("Burn Image"),
-   G_CALLBACK (action_burn_image),},
-/*  {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
-   G_CALLBACK (action_copy_dvd),}, */
-/*  {"burn-dvd", "xfburn-burn-image", N_("Burn DVD Image"), NULL, N_("Burn DVD Image"),
-   G_CALLBACK (action_burn_dvd_image),},
-};
-*/
 static const GActionEntry toggle_action_entries[] = {
   { .name = "show-filebrowser", .state = "false", .change_state = (gActionCallback)action_show_filebrowser },
   { .name = "show-toolbar", .state = "false", .change_state = (gActionCallback)action_show_toolbar },
-};
-/* static const GtkToggleActionEntry toggle_action_entries[] = {
-  {"show-filebrowser", NULL, N_("Show file browser"), NULL, N_("Show/hide the file browser"),
-   G_CALLBACK (action_show_filebrowser), TRUE,},
-  {"show-toolbar", NULL, N_("Show toolbar"), NULL, N_("Show/hide the toolbar"),
-   G_CALLBACK (action_show_toolbar), TRUE,},
-}; */
-
-static const gchar *toolbar_actions[] = {
-  "new-data-composition",
-  "new-audio-composition",
-/*  "load-composition",
-  "save-composition",
-  "close-composition",*/
-  "blank-disc",
-  "copy-data",
-  //"copy-audio",
-  "burn-image",
-  "copy-dvd",
-  "burn-dvd",
-  "refresh",
-  "about",
-  "preferences",
 };
 
 static XfburnMainWindow *instance = NULL;
@@ -218,10 +146,10 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
 {
   XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (mainwin);
 
-  GtkAccelGroup *accel_group;
   gchar *file;
 
   GtkWidget *vbox;
+  GMenuModel *menu_model;
 
   /* the window itself */
   gtk_window_set_position (GTK_WINDOW (mainwin), GTK_WIN_POS_CENTER_ON_PARENT);
@@ -266,7 +194,7 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   gtk_widget_show (vbox);
 
   /* menubar */
-  GMenuModel *menu_model = (GMenuModel*)gtk_builder_get_object (priv->ui_manager, "main-menu");
+  menu_model = (GMenuModel*)gtk_builder_get_object (priv->ui_manager, "main-menu");
 
   priv->menubar = gtk_menu_bar_new_from_model (menu_model);
   if (G_LIKELY (priv->menubar != NULL)) {
@@ -604,12 +532,15 @@ action_refresh_directorybrowser (GAction * action, GVariant* param, XfburnMainWi
 static void
 action_show_filebrowser (GSimpleAction * action, GVariant* value, XfburnMainWindow * window)
 {
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  GAction *file;
+  gboolean toggle;
+
   if(g_variant_is_of_type (value, G_VARIANT_TYPE_BOOLEAN))
     g_simple_action_set_state (action, value);
 
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  GAction *file = g_action_map_lookup_action(G_ACTION_MAP(priv->action_map), "show-filebrowser");
-  gboolean toggle = g_variant_get_boolean  (g_action_get_state (file));
+  file = g_action_map_lookup_action(G_ACTION_MAP(priv->action_map), "show-filebrowser");
+  toggle = g_variant_get_boolean  (g_action_get_state (file));
   xfburn_settings_set_boolean ("show-filebrowser", toggle);
 
   if ( toggle ) {
@@ -623,11 +554,15 @@ action_show_filebrowser (GSimpleAction * action, GVariant* value, XfburnMainWind
 static void
 action_show_toolbar (GSimpleAction * action, GVariant* value, XfburnMainWindow * window)
 {
+  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
+  GAction *tool;
+  gboolean toggle;
+
   if(g_variant_is_of_type (value, G_VARIANT_TYPE_BOOLEAN))
     g_simple_action_set_state (action, value);
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-  GAction *tool = g_action_map_lookup_action(G_ACTION_MAP(priv->action_map), "show-toolbar");
-  gboolean toggle = g_variant_get_boolean (g_action_get_state (tool));
+
+  tool = g_action_map_lookup_action(G_ACTION_MAP(priv->action_map), "show-toolbar");
+  toggle = g_variant_get_boolean (g_action_get_state (tool));
 
   xfburn_settings_set_boolean ("show-toolbar", toggle);
 

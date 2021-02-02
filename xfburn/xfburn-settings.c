@@ -38,7 +38,7 @@
 
 #include "xfburn-settings.h"
 
-#define XFBURN_SETTINGS_GET_PRIVATE(obj) (xfburn_settings_internal_get_instance_private (XFBURN_SETTINGS (obj)))
+#define XFBURN_SETTINGS_GET_PRIVATE(obj) (xfburn_settings_get_instance_private (XFBURN_SETTINGS (obj)))
 
 /* global */
 typedef struct _Setting Setting;
@@ -80,16 +80,10 @@ struct _Setting
 static GObjectClass *parent_class = NULL;
 static XfburnSettings *instance = NULL;
 
-G_DEFINE_TYPE_WITH_PRIVATE(XfburnSettings, xfburn_settings_internal, G_TYPE_OBJECT);
-
-GType
-xfburn_settings_get_type(void)
-{
-  return xfburn_settings_internal_get_type();
-}
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnSettings, xfburn_settings, G_TYPE_OBJECT);
 
 static void
-xfburn_settings_internal_class_init (XfburnSettingsClass * klass)
+xfburn_settings_class_init (XfburnSettingsClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
@@ -119,7 +113,7 @@ xfburn_settings_finalize (GObject * object)
 }
 
 static void
-xfburn_settings_internal_init (XfburnSettings *settings)
+xfburn_settings_init (XfburnSettings *settings)
 {
   XfburnSettingsPrivate *priv = XFBURN_SETTINGS_GET_PRIVATE (settings);
 
@@ -320,7 +314,7 @@ get_instance (void)
 /* public methods */
 /******************/
 void
-xfburn_settings_init (void)
+xfburn_settings_init_external (void)
 {
   if (G_LIKELY (instance == NULL)) {
 	XfburnSettingsPrivate *priv;

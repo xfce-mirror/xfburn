@@ -255,8 +255,7 @@ get_libburn_device_list (XfburnDeviceList *devlist)
   XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
 
   struct burn_drive_info *drives;
-  guint i;
-  gint ret;
+  gint i, ret;
   guint num_drives;
 
   DBG ("Before scanning for drives");

@@ -48,7 +48,7 @@ typedef struct
 
 GType xfburn_settings_get_type (void);
 
-void xfburn_settings_init (void);
+void xfburn_settings_init_external (void);
 void xfburn_settings_free (void);
 void xfburn_settings_flush (void);
 

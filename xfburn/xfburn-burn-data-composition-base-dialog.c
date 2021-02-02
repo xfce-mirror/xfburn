@@ -139,7 +139,6 @@ xfburn_burn_data_composition_base_dialog_init(XfburnBurnDataCompositionBaseDialo
   GtkWidget *img;
   GtkWidget *frame;
   GtkWidget *vbox;
-  GtkWidget *align;
   GtkWidget *button;
   gchar *default_path;
   gchar *tmp_dir;
