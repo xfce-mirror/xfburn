@@ -709,7 +709,7 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc)
 
 /**
  * Handle the key-press-event on the data composition interface.
- * 
+ *
  * If the delete key was pressed, remove the currently-selected item.
  */
 static void
