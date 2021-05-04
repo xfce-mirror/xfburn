@@ -131,6 +131,7 @@ static void cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, g
 static void cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc, GtkSelectionData * data, guint info,
                                       guint timestamp, XfburnDataComposition * content);
 static void cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc);
+static void cb_key_press_event (GtkWidget * widget, GdkEvent * event, XfburnDataComposition * content);
 
 /* thread entry points */
 static gpointer thread_add_files_cli (ThreadAddFilesCLIParams *params);
@@ -421,6 +422,10 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
 
   action = g_action_map_lookup_action (G_ACTION_MAP (priv->action_group), "remove-file");
   g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
+
+  /* map delete key to remove file action */
+  g_signal_connect (G_OBJECT (priv->content), "key-press-event", G_CALLBACK (cb_key_press_event),
+                    composition);
 }
 
 static void
@@ -700,6 +705,16 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc)
 
   g_free (priv->thread_params);
   xfburn_default_cursor (priv->content);
+}
+
+static void
+cb_key_press_event (GtkWidget * widget, GdkEvent * event, XfburnDataComposition * content)
+{
+  guint keycode;
+
+  gdk_event_get_keyval (event, &keycode);
+
+  printf("code: %x\n", keycode);
 }
 
 static void
