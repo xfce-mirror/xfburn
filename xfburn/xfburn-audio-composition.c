@@ -799,7 +799,7 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc)
 
 /**
  * Handle the key-press-event on the audio composition interface.
- * 
+ *
  * If the delete key was pressed, remove the currently-selected item.
  */
 static void
