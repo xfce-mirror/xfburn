@@ -131,7 +131,7 @@ static void cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, g
 static void cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc, GtkSelectionData * data, guint info,
                                       guint timestamp, XfburnDataComposition * content);
 static void cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc);
-static void cb_key_press_event (GtkWidget * widget, GdkEvent * event, XfburnDataComposition * content);
+static void cb_key_press_event (GtkWidget * widget, GdkEvent * event, XfburnDataComposition * composition);
 
 /* thread entry points */
 static gpointer thread_add_files_cli (ThreadAddFilesCLIParams *params);
@@ -707,14 +707,22 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc)
   xfburn_default_cursor (priv->content);
 }
 
+/**
+ * Handle the key-press-event on the data composition interface.
+ * 
+ * If the delete key was pressed, remove the currently-selected item.
+ */
 static void
-cb_key_press_event (GtkWidget * widget, GdkEvent * event, XfburnDataComposition * content)
+cb_key_press_event (GtkWidget *widget, GdkEvent *event, XfburnDataComposition *composition)
 {
-  guint keycode;
+  XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (composition);
+  guint keyval;
 
-  gdk_event_get_keyval (event, &keycode);
+  gdk_event_get_keyval (event, &keyval);
 
-  printf("code: %x\n", keycode);
+  if (keyval == GDK_KEY_Delete) {
+    g_action_group_activate_action (G_ACTION_GROUP (priv->action_group), "remove-file", NULL);
+  }
 }
 
 static void
