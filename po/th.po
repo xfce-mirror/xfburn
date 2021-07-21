@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2014,2017,2019
+# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2014,2017,2019,2021
 # Theppitak Karoonboonyanan <theppitak@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-02 12:48+0100\n"
-"PO-Revision-Date: 2021-02-02 11:48+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2021-07-21 14:57+0000\n"
+"Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/xfce/xfce-apps/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -595,7 +595,7 @@ msgstr "เป็นคู่ที่เข้ากันได้หรือ
 
 #: ../xfburn/xfburn-device-box.c:155
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr "ฮาร์ดแวร์และแผ่นสามารถใช้เขียนร่างต้นฉบับได้หรือไม่"
+msgstr "ฮาร์ดแวร์กับแผ่นสามารถใช้เขียนร่างต้นฉบับได้หรือไม่?"
 
 #: ../xfburn/xfburn-device-box.c:159
 msgid "The blank mode shows different disc status messages than regular mode"
@@ -692,11 +692,11 @@ msgstr "อัตโนมัติ"
 
 #: ../xfburn/xfburn-device-box.c:656
 msgid "With Track Gaps / Track-At-Once (TAO)"
-msgstr ""
+msgstr "มีช่องว่างระหว่างร่อง / Track-At-Once (TAO)"
 
 #: ../xfburn/xfburn-device-box.c:663
 msgid "Multi Session / Session-At-Once (SAO)"
-msgstr ""
+msgstr "เขียนหลายวาระ / Session-At-Once (SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
@@ -744,48 +744,48 @@ msgstr "บ้านของ %s"
 #: ../xfburn/xfburn-udev-manager.c:495
 #, c-format
 msgid "Failed to unmount '%s'. Drive cannot be used for burning."
-msgstr ""
+msgstr "เลิกเมานท์ '%s' ไม่สำเร็จ ไม่สามารถใช้ไดรว์ในการเขียนแผ่นได้"
 
 #. || G_OPTION_FLAG_FILENAME
 #: ../xfburn/xfburn-main.c:74
 msgid "Open the burn image dialog, optionally followed by the image filename"
-msgstr ""
+msgstr "เปิดกล่องโต้ตอบเขียนอิมเมจ โดยอาจตามด้วยชื่อแฟ้มอิมเมจได้"
 
 #: ../xfburn/xfburn-main.c:76
 msgid "Open the blank disc dialog"
-msgstr ""
+msgstr "เปิดกล่องโต้ตอบล้างแผ่น"
 
 #: ../xfburn/xfburn-main.c:78
 msgid ""
 "Start a data composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "เปิดหน้าต่างร่างต้นฉบับข้อมูล โดยอาจตามด้วยแฟ้ม/ไดเรกทอรีที่จะเพิ่มลงในร่างได้"
 
 #: ../xfburn/xfburn-main.c:80
 msgid ""
 "Start an audio composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "เปิดหน้าต่างร่างต้นฉบับแผ่นเพลง โดยอาจตามด้วยแฟ้ม/ไดเรกทอรีที่จะเพิ่มลงในร่างได้"
 
 #: ../xfburn/xfburn-main.c:82
 msgid ""
 "Select the transcoder, run with --transcoder=list to see the available ones"
-msgstr ""
+msgstr "เลือกตัวแปลงรหัส ใช้ตัวเลือก --transcoder=list หากต้องการดูรายชื่อตัวแปลงรหัสที่มี"
 
 #: ../xfburn/xfburn-main.c:84
 msgid ""
 "Start the file browser in the specified directory, or the current directory "
 "if none is specified (the default is to start in your home directory)"
-msgstr ""
+msgstr "เปิดช่องท่องดูแฟ้มในไดเรกทอรีที่กำหนด หรือในไดเรกทอรีปัจจุบันถ้าไม่ระบุ (ค่าปริยายคือเปิดไดเรกทอรีบ้านของคุณ)"
 
 #: ../xfburn/xfburn-main.c:86
 msgid "Display program version and exit"
-msgstr ""
+msgstr "แสดงรุ่นของโปรแกรมแล้วจบการทำงาน"
 
 #: ../xfburn/xfburn-main.c:88
 msgid ""
 "Show main program even when other action is specified on the command line."
-msgstr ""
+msgstr "แสดงโปรแกรมหลักแม้จะมีการระบุการกระทำอื่นในบรรทัดคำสั่ง"
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 #: ../org.xfce.xfburn.appdata.xml.in.h:1
@@ -830,11 +830,11 @@ msgstr "แฟ้มอิมเมจ '%s' ไม่มีอยู่"
 
 #: ../xfburn/xfburn-main-window.c:238
 msgid "New data composition"
-msgstr "ร่างต้นฉบับแผ่นข้อมูลใหม่"
+msgstr "ร่างแผ่นข้อมูลใหม่"
 
 #: ../xfburn/xfburn-main-window.c:241
 msgid "New audio composition"
-msgstr "ร่างต้นฉบับแผ่นเพลงใหม่"
+msgstr "ร่างแผ่นเพลงใหม่"
 
 #: ../xfburn/xfburn-main-window.c:246 ../xfburn.ui.h:9
 msgid "Blank CD-RW"
@@ -1020,7 +1020,7 @@ msgstr "ชื่อ"
 
 #: ../xfburn/xfburn-preferences-dialog.c:256
 msgid "Revision"
-msgstr ""
+msgstr "รุ่น"
 
 #: ../xfburn/xfburn-preferences-dialog.c:258
 msgid "Node"
@@ -1098,7 +1098,7 @@ msgstr "บัฟเฟอร์ของอุปกรณ์:"
 #. action buttons
 #: ../xfburn/xfburn-progress-dialog.c:220
 msgid "_Stop"
-msgstr ""
+msgstr "_หยุด"
 
 #: ../xfburn/xfburn-progress-dialog.c:227
 msgid "Close"
@@ -1234,7 +1234,7 @@ msgstr "คุณกำลังพยายามเขียนข้อมู
 #: ../xfburn/xfburn-transcoder-basic.c:69
 #: ../xfburn/xfburn-transcoder-gst.c:145
 msgid "An error occurred while setting the burning backend up"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะตั้งค่าและเปิดทำงานแบกเอนด์เขียนแผ่น"
 
 #: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
@@ -1279,7 +1279,7 @@ msgstr "ไม่สามารถเปิด %s: %s"
 
 #: ../xfburn/xfburn-transcoder-gst.c:144
 msgid "An error occurred setting gstreamer up for transcoding"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะตั้งค่าและเปิดทำงาน gstreamer เพื่อแปลงรหัส"
 
 #: ../xfburn/xfburn-transcoder-gst.c:146
 #, c-format
@@ -1293,7 +1293,7 @@ msgstr "%s ขาดหายไป\n\nคุณไม่ได้ติดต�
 
 #: ../xfburn/xfburn-transcoder-gst.c:544
 msgid "File content has a decoder but is not audio."
-msgstr ""
+msgstr "เนื้อหาแฟ้มมีตัวอ่านรหัสที่อ่านได้ แต่ไม่ได้เป็นข้อมูลเสียง"
 
 #: ../xfburn/xfburn-transcoder-gst.c:587
 msgid ""
@@ -1309,11 +1309,11 @@ msgstr "ตัวแปลงรหัส gstreamer ใช้ไลบราร�
 
 #: ../xfburn/xfburn-transcoder-gst.c:627
 msgid "No information available on which plugin is required."
-msgstr ""
+msgstr "ไม่มีข้อมูลว่าต้องใช้ปลั๊กอินใด"
 
 #: ../xfburn/xfburn-transcoder-gst.c:629
 msgid "Required plugins: "
-msgstr ""
+msgstr "ปลั๊กอินที่ต้องใช้: "
 
 #: ../xfburn/xfburn-transcoder-gst.c:664 ../xfburn/xfburn-transcoder-gst.c:694
 #, c-format
@@ -1322,7 +1322,7 @@ msgstr "เกิดข้อผิดพลาดขณะตรวจหาอ
 
 #: ../xfburn/xfburn-transcoder-gst.c:681
 msgid "A plugin"
-msgstr ""
+msgstr "ปลั๊กอินหนึ่ง"
 
 #: ../xfburn/xfburn-transcoder-gst.c:816
 #, c-format
@@ -1354,11 +1354,11 @@ msgstr "ที่อยู่ของอุปกรณ์"
 
 #: ../xfburn/xfburn-device.c:261
 msgid "Device revision"
-msgstr ""
+msgstr "รุ่นของอุปกรณ์"
 
 #: ../xfburn/xfburn-device.c:262
 msgid "Device Revision"
-msgstr ""
+msgstr "รุ่นของอุปกรณ์"
 
 #: ../xfburn/xfburn-device.c:264 ../xfburn/xfburn-device.c:265
 msgid "Burn speeds supported by the device"
@@ -1422,19 +1422,19 @@ msgstr "ชนิดบล็อค PACKET ของ libburn"
 
 #: ../xfburn.ui.h:1
 msgid "_Files"
-msgstr ""
+msgstr "แ_ฟ้ม"
 
 #: ../xfburn.ui.h:2
 msgid "New _data composition"
-msgstr ""
+msgstr "ร่างต้นฉบับแผ่น_ข้อมูลใหม่"
 
 #: ../xfburn.ui.h:3
 msgid "New _audio composition"
-msgstr ""
+msgstr "ร่างต้นฉบับแผ่นเ_พลงใหม่"
 
 #: ../xfburn.ui.h:4
 msgid "_Close composition"
-msgstr ""
+msgstr "_ปิดร่างต้นฉบับ"
 
 #: ../xfburn.ui.h:5
 msgid "_Quit"
@@ -1446,7 +1446,7 @@ msgstr "แ_ก้ไข"
 
 #: ../xfburn.ui.h:7
 msgid "Prefere_nce"
-msgstr ""
+msgstr "_ปรับแต่ง"
 
 #: ../xfburn.ui.h:8
 msgid "_Action"
@@ -1458,11 +1458,11 @@ msgstr "มุ_มมอง"
 
 #: ../xfburn.ui.h:13
 msgid "Show Toolbars"
-msgstr ""
+msgstr "แสดงแถบเครื่องมือ"
 
 #: ../xfburn.ui.h:14
 msgid "Show Filebrowser"
-msgstr ""
+msgstr "แสดงช่องท่องดูแฟ้ม"
 
 #: ../xfburn.ui.h:15
 msgid "_Help"
@@ -1502,7 +1502,7 @@ msgstr "เขียนลงแผ่น (xfburn)"
 
 #: ../org.xfce.xfburn.appdata.xml.in.h:2
 msgid "A simple CD burning tool"
-msgstr ""
+msgstr "เครื่องมือเขียนแผ่นซีดีอย่างง่าย"
 
 #: ../org.xfce.xfburn.appdata.xml.in.h:3
 msgid ""
