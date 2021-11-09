@@ -3,7 +3,7 @@ xfburn
 
 Version 0.6.2, 2020-03-07
 
-[xfburn's website](https://docs.xfce.org/apps/xfburn/)
+[xfburn's website](https://docs.xfce.org/apps/xfburn/start)
 
 An easy to use burning software for the xfce desktop environment (but of
 course will work with others). It uses libburn and libisofs as a backend, in
