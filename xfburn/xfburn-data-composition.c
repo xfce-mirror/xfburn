@@ -557,12 +557,6 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
 
     selection = gtk_tree_view_get_selection (treeview);
 
-    if (gtk_tree_view_get_path_at_pos (treeview, event->x, event->y, &path, NULL, NULL, NULL)) {
-      gtk_tree_selection_unselect_all (selection);
-      gtk_tree_selection_select_path (selection, path);
-      gtk_tree_path_free (path);
-    }
-
     model = G_MENU_MODEL (gtk_builder_get_object (priv->ui_manager, "data-popup-menu"));
     menu_popup = gtk_menu_new_from_model (model);
     gtk_widget_insert_action_group(GTK_WIDGET(menu_popup), "win", G_ACTION_GROUP(priv->action_group));
