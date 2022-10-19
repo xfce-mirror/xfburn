@@ -40,7 +40,7 @@ guint64 xfburn_calc_dirsize (const gchar *);
 GSList * xfburn_make_abosulet_file_list (gint count, gchar *filenames[]);
 
 void xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent);
-gchar *xfburn_browse_for_files (void);
+gchar *xfburn_browse_for_files (gboolean allow_directories);
 
 gboolean xfburn_ask_yes_no (GtkMessageType type, const gchar *primary_text, const gchar *secondary_text);
 GtkWidget * xfburn_gtk_button_new_mixed (const gchar *stock_id, const gchar *label);

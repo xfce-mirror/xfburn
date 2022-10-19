@@ -155,18 +155,24 @@ xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent)
  * 
  * Returns a caller-freed string containing the path to each selected file,
  * separated by newlines, or NULL if nothing was selected.
+ * 
+ * If allow_directories is TRUE, both files and directories may be selected.
  */
 gchar *
-xfburn_browse_for_files (void)
+xfburn_browse_for_files (gboolean allow_directories)
 {
+  /* The stock file chooser only allows selecting files *or* folders,
+     but this can be gotten around if defining our own button
+     instead of using GTK_RESPONSE_ACCEPT. */
+  const gint XFBURN_RESPONSE_ADD_ANYTHING = 0;
+  gint response;
   GtkWidget *dialog;
   gchar *selected_files = NULL;
 
   dialog = gtk_file_chooser_dialog_new (_("File(s) to add to composition"),
                                         GTK_WINDOW (xfburn_main_window_get_instance ()),
                                         GTK_FILE_CHOOSER_ACTION_OPEN,
-                                        _("Add"),
-                                        GTK_RESPONSE_ACCEPT,
+                                        NULL,
                                         NULL);
   gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER (dialog), TRUE);
 
@@ -174,7 +180,15 @@ xfburn_browse_for_files (void)
     gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), xfburn_main_get_initial_dir ());
   }
 
-  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
+  if (allow_directories) {
+    gtk_dialog_add_button (GTK_DIALOG (dialog), _("Add"), XFBURN_RESPONSE_ADD_ANYTHING);
+  } else {
+    gtk_dialog_add_button (GTK_DIALOG (dialog), _("Add"), GTK_RESPONSE_ACCEPT);
+  }
+
+  response = gtk_dialog_run (GTK_DIALOG (dialog));
+
+  if (response == GTK_RESPONSE_ACCEPT || response == XFBURN_RESPONSE_ADD_ANYTHING) {
     GSList *list = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
     GString *str = g_string_new (NULL);
     GSList *curr;

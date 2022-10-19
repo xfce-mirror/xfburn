@@ -887,7 +887,7 @@ action_add_or_select (GSimpleAction *action, GVariant *param, XfburnDataComposit
 
     add_files (xfburn_file_browser_get_selection (browser), dc);
   } else {
-    add_files (xfburn_browse_for_files (), dc);
+    add_files (xfburn_browse_for_files (TRUE), dc);
   }
 }
 

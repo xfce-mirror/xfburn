@@ -938,7 +938,7 @@ action_add_selected_files (GSimpleAction * action, GVariant * param, XfburnAudio
   if (xfburn_settings_get_boolean("show-filebrowser", FALSE)) {
     selected_files = xfburn_file_browser_get_selection (browser);
   } else {
-    selected_files = xfburn_browse_for_files ();
+    selected_files = xfburn_browse_for_files (FALSE);
   }
 
   if (selected_files) {
