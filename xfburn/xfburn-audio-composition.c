@@ -1618,28 +1618,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       if ((iter = copy_entry_to (composition, &iter_src, iter_prev, position)) != NULL) {
         GtkTreePath *path_parent = gtk_tree_path_copy (path_src);
 
-        if (gdk_drag_context_get_actions(dc) == GDK_ACTION_MOVE) {
-          /* remove source entry */
-          /*
-           * This shouldn't be able to happen anymore w/o folders
-          if (gtk_tree_path_up (path_parent) && path_where_insert &&
-              !gtk_tree_path_is_descendant (path_where_insert, path_parent)) {
-            // update parent size and humansize
-            GtkTreeIter iter_parent;
-            guint64 old_size;
-
-            gtk_tree_model_iter_parent (model, &iter_parent, &iter_src);
-            gtk_tree_model_get (model, &iter_parent, AUDIO_COMPOSITION_COLUMN_SIZE, &old_size, -1);
-
-            gtk_tree_store_set (GTK_TREE_STORE (model), &iter_parent,
-                                AUDIO_COMPOSITION_COLUMN_SIZE, old_size - size, -1);
-          }
-          */
-          gtk_tree_store_remove (GTK_TREE_STORE (model), &iter_src);
-
-        } else {
-          xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), secs);
-        }
+        gtk_tree_store_remove (GTK_TREE_STORE (model), &iter_src);
 
         gtk_tree_path_free (path_parent);
         g_free (iter_prev);
