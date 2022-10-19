@@ -189,7 +189,7 @@ xfburn_device_set_property (GObject *object, guint property_id,
       priv->profile_no = g_value_get_int (value);
       break;
     case PROP_PROFILE_NAME:
-      strncpy (priv->profile_name, g_value_get_string(value), 80);
+      g_strlcpy (priv->profile_name, g_value_get_string(value), 80);
       break;
     case PROP_ERASABLE:
       priv->is_erasable = g_value_get_boolean (value);

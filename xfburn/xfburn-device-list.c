@@ -279,8 +279,7 @@ get_libburn_device_list (XfburnDeviceList *devlist)
     char rev[5];
 
     name = xfburn_device_set_name (device, drives[i].vendor, drives[i].product);
-    strncpy (rev, drives[i].revision, 5);
-    rev[5] = '\0';
+    g_strlcpy (rev, drives[i].revision, 5);
 
     g_object_set (device, "revision", rev, NULL);
 
