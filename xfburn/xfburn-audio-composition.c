@@ -1425,6 +1425,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
   GdkPixbuf *icon = NULL;
   gint pos = 0;
   gchar *name = NULL;
+  gint length = 0;
   guint64 size = 0;
   gchar *path = NULL;
   gchar *humanlength;
@@ -1442,6 +1443,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
   gtk_tree_model_get (model, src,
                       AUDIO_COMPOSITION_COLUMN_POS, &pos,
                       AUDIO_COMPOSITION_COLUMN_CONTENT, &name,
+                      AUDIO_COMPOSITION_COLUMN_LENGTH, &length,
                       AUDIO_COMPOSITION_COLUMN_SIZE, &size,
                       AUDIO_COMPOSITION_COLUMN_PATH, &path,
                       AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, &humanlength,
@@ -1485,6 +1487,7 @@ copy_entry_to (XfburnAudioComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, 
   gtk_tree_store_set (GTK_TREE_STORE (model), iter_new,
                       AUDIO_COMPOSITION_COLUMN_POS, pos,
                       AUDIO_COMPOSITION_COLUMN_CONTENT, name,
+                      AUDIO_COMPOSITION_COLUMN_LENGTH, length,
                       AUDIO_COMPOSITION_COLUMN_SIZE, size,
                       AUDIO_COMPOSITION_COLUMN_PATH, path,
                       AUDIO_COMPOSITION_COLUMN_HUMANLENGTH, humanlength,
