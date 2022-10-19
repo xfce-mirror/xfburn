@@ -148,6 +148,7 @@ static void cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, g
 static void cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc, GtkSelectionData * data, guint info,
                                       guint timestamp, XfburnAudioComposition * content);
 static void cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc);
+static void cb_key_press_event (GtkWidget *widget, GdkEvent *event, XfburnAudioComposition *composition);
 
 /* thread entry points */
 static gpointer thread_add_files_cli (ThreadAddFilesCLIParams *params);
@@ -453,6 +454,10 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   g_simple_action_set_enabled (action, FALSE);
 
   priv->warned_about = g_hash_table_new (g_direct_hash, g_direct_equal);
+
+  /* map delete key to remove file action */
+  g_signal_connect (G_OBJECT (priv->content), "key-press-event", G_CALLBACK (cb_key_press_event),
+                    composition);
 }
 
 static void
@@ -790,6 +795,24 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc)
   tracks_changed (dc);
 
   xfburn_default_cursor (priv->content);
+}
+
+/**
+ * Handle the key-press-event on the audio composition interface.
+ *
+ * If the delete key was pressed, remove the currently-selected item.
+ */
+static void
+cb_key_press_event (GtkWidget *widget, GdkEvent *event, XfburnAudioComposition *composition)
+{
+  XfburnAudioCompositionPrivate *priv = XFBURN_AUDIO_COMPOSITION_GET_PRIVATE (composition);
+  guint keyval;
+
+  gdk_event_get_keyval (event, &keyval);
+
+  if (keyval == GDK_KEY_Delete) {
+    g_action_group_activate_action (G_ACTION_GROUP (priv->action_group), "remove-file", NULL);
+  }
 }
 
 #if 0 /* CDTEXT */
