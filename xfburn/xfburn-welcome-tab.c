@@ -115,7 +115,7 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_widget_show (align);
 
   /* buttons */
-  priv->button_image = create_welcome_button ("stock_xfburn", _("<big>Burn _Image</big>"), _("Burn a prepared compilation, i.e. an .ISO file"));
+  priv->button_image = create_welcome_button ("stock_xfburn", _("<big>Burn _Image</big>"), _("Burn a prepared composition, i.e. an .ISO file"));
   gtk_grid_attach (GTK_GRID (table), priv->button_image, 0, 0, 1, 1);
   gtk_widget_show (priv->button_image);
   g_signal_connect (G_OBJECT(priv->button_image), "clicked", G_CALLBACK(burn_image), obj);
