@@ -45,7 +45,7 @@ typedef struct
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnAddingProgress, xfburn_adding_progress, GTK_TYPE_WINDOW)
 static void xfburn_adding_progress_finalize (GObject * object);
 static gboolean cb_delete (XfburnAddingProgress *widget, GdkEvent *event, gpointer data);
-static gboolean cb_cancel (XfburnAddingProgress *widget, GdkEvent *event, gpointer data);
+static gboolean cb_cancel (GtkButton *widget, gpointer data);
 
 /* globals */
 static GtkWindowClass *parent_class = NULL;
@@ -123,7 +123,7 @@ cb_delete (XfburnAddingProgress *widget, GdkEvent *event, gpointer data)
 }
 
 static gboolean
-cb_cancel (XfburnAddingProgress *widget, GdkEvent *event, gpointer data)
+cb_cancel (GtkButton *widget, gpointer data)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (data);
   priv->aborted = TRUE;
