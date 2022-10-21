@@ -633,8 +633,6 @@ xfburn_main_window_new (void)
     if (!priv->support_cdr) {
       action = g_action_map_lookup_action (action_map, "copy-data");
       g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
-      action = g_action_map_lookup_action (action_map, "copy-audio");
-      g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
       action = g_action_map_lookup_action (action_map, "burn-image");
       g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
     }
