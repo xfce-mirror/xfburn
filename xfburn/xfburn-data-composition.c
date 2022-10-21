@@ -1729,6 +1729,9 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
     if (G_LIKELY (vfs_paths != NULL)) {
       ThreadAddFilesDragParams *params;
       priv->full_paths_to_add = NULL;
+
+      xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
+
       for (vfs_path = vfs_paths; vfs_path != NULL; vfs_path = g_list_next (vfs_path)) {
 	GFile *path = vfs_path->data;
 	if (path == NULL)
