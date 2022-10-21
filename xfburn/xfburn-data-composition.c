@@ -16,7 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifdef	HAVE_CONFIG_H
+#ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
 
@@ -1460,7 +1460,7 @@ copy_entry_to (XfburnDataComposition *dc, GtkTreeIter *src, GtkTreeIter *dest, G
       }
 
       if (file_exists_on_same_level (model, path_level, FALSE, name)) {
-	xfce_dialog_show_warning(NULL, NULL, _("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
+        xfce_dialog_show_warning(NULL, NULL, _("A file named \"%s\" already exists in this directory, the file hasn't been added."), name);
         goto cleanup;
       }
 
@@ -1732,13 +1732,13 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
       xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
 
       for (vfs_path = vfs_paths; vfs_path != NULL; vfs_path = g_list_next (vfs_path)) {
-	GFile *path = vfs_path->data;
-	if (path == NULL)
+        GFile *path = vfs_path->data;
+        if (path == NULL)
           continue;
-	/* unable to handle non-local files */
-	if (G_UNLIKELY (!g_file_has_uri_scheme (path, "file"))) {
+        /* unable to handle non-local files */
+        if (G_UNLIKELY (!g_file_has_uri_scheme (path, "file"))) {
             g_object_unref (path);
-	    continue;
+            continue;
         }
         full_path = g_file_get_path (path);
         /* if there is no local path, use the URI (which always works) */
@@ -1833,88 +1833,88 @@ static void
 fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * parent, GtkTreeIter *iter, GSList **errors)
 {
   do {
-      DataCompositionEntryType type;
-      gchar *name = NULL;
-      gchar *src = NULL;
-      IsoNode *node = NULL;
-      IsoDir *dir = NULL;
-      int r;
-      gchar *basename;
+    DataCompositionEntryType type;
+    gchar *name = NULL;
+    gchar *src = NULL;
+    IsoNode *node = NULL;
+    IsoDir *dir = NULL;
+    int r;
+    gchar *basename;
 
-      gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_TYPE, &type,
-			  DATA_COMPOSITION_COLUMN_CONTENT, &name, DATA_COMPOSITION_COLUMN_PATH, &src, -1);
+    gtk_tree_model_get (model, iter, DATA_COMPOSITION_COLUMN_TYPE, &type,
+                        DATA_COMPOSITION_COLUMN_CONTENT, &name, DATA_COMPOSITION_COLUMN_PATH, &src, -1);
 
-      if (type == DATA_COMPOSITION_TYPE_DIRECTORY && src == NULL) {
-        /* a directory which the user added for this composition */
-        r = iso_tree_add_new_dir (parent, name, &dir);
-        node = (IsoNode *) dir;
+    if (type == DATA_COMPOSITION_TYPE_DIRECTORY && src == NULL) {
+      /* a directory which the user added for this composition */
+      r = iso_tree_add_new_dir (parent, name, &dir);
+      node = (IsoNode *) dir;
 
-        /* if the new directory is part of the root of the iso,
-         * then its owner will be set to root:root. Not sure what a better
-         * default could be, so I'll just leave it like that. */
-      } else {
-        /* something existing on the filesystem, creating a node
-         * will copy its attributes */
-        r = iso_tree_add_node (image, parent, src, &node);
-      }
+      /* if the new directory is part of the root of the iso,
+        * then its owner will be set to root:root. Not sure what a better
+        * default could be, so I'll just leave it like that. */
+    } else {
+      /* something existing on the filesystem, creating a node
+        * will copy its attributes */
+      r = iso_tree_add_node (image, parent, src, &node);
+    }
 
-      if (r < 0) {
-        char * msg;
+    if (r < 0) {
+      char * msg;
 
-        if ((guint) r == ISO_NULL_POINTER)
-          g_error (_("%s: null pointer"), src);
-        else if ((guint) r == ISO_OUT_OF_MEM)
-          g_error (_("%s: out of memory"), src);
-        else if ((guint) r == ISO_NODE_NAME_NOT_UNIQUE)
-          msg = g_strdup_printf (_("%s: node name not unique"), src);
-        else
-          msg = g_strdup_printf (_("%s: %s (code %X)"), src, iso_error_to_msg(r), r);
+      if ((guint) r == ISO_NULL_POINTER)
+        g_error (_("%s: null pointer"), src);
+      else if ((guint) r == ISO_OUT_OF_MEM)
+        g_error (_("%s: out of memory"), src);
+      else if ((guint) r == ISO_NODE_NAME_NOT_UNIQUE)
+        msg = g_strdup_printf (_("%s: node name not unique"), src);
+      else
+        msg = g_strdup_printf (_("%s: %s (code %X)"), src, iso_error_to_msg(r), r);
 
-        g_warning ("%s", msg);
-        *errors = g_slist_prepend (*errors, msg);
-
-        g_free (name);
-        g_free (src);
-        continue;
-      }
-
-      if (src != NULL && *src != '\0') {
-        basename = g_path_get_basename (src);
-
-        /* check if the file has been renamed */
-        if (strcmp (basename, name) != 0) {
-          /* rename the iso_node */
-          r = iso_node_set_name (node, name);
-
-          if (r == 0) {
-            /* The first string is the renamed name, the second one the original name */
-            xfce_dialog_show_warning(NULL, NULL, _("Duplicate filename '%s' for '%s'"), name, src);
-
-            g_free (basename);
-            g_free (name);
-            g_free (src);
-
-            continue;
-          }
-        }
-
-        g_free (basename);
-      }
+      g_warning ("%s", msg);
+      *errors = g_slist_prepend (*errors, msg);
 
       g_free (name);
       g_free (src);
+      continue;
+    }
 
-      if (type == DATA_COMPOSITION_TYPE_DIRECTORY && gtk_tree_model_iter_has_child (model, iter)) {
-	GtkTreeIter child;
+    if (src != NULL && *src != '\0') {
+      basename = g_path_get_basename (src);
 
-        if (iso_node_get_type(node) != LIBISO_DIR)
-            g_error ("Expected %s to be a directory, but it isn't...\n", src);
+      /* check if the file has been renamed */
+      if (strcmp (basename, name) != 0) {
+        /* rename the iso_node */
+        r = iso_node_set_name (node, name);
 
-        dir = (IsoDir *)node;
+        if (r == 0) {
+          /* The first string is the renamed name, the second one the original name */
+          xfce_dialog_show_warning(NULL, NULL, _("Duplicate filename '%s' for '%s'"), name, src);
 
-	gtk_tree_model_iter_children (model, &child, iter);
-	fill_image_with_composition (model, image, dir, &child, errors);
+          g_free (basename);
+          g_free (name);
+          g_free (src);
+
+          continue;
+        }
       }
+
+      g_free (basename);
+    }
+
+    g_free (name);
+    g_free (src);
+
+    if (type == DATA_COMPOSITION_TYPE_DIRECTORY && gtk_tree_model_iter_has_child (model, iter)) {
+      GtkTreeIter child;
+
+      if (iso_node_get_type(node) != LIBISO_DIR)
+        g_error ("Expected %s to be a directory, but it isn't...\n", src);
+
+      dir = (IsoDir *)node;
+
+      gtk_tree_model_iter_children (model, &child, iter);
+      fill_image_with_composition (model, image, dir, &child, errors);
+    }
   } while (gtk_tree_model_iter_next (model, iter));
 }
 
@@ -1966,7 +1966,7 @@ generate_iso_image (XfburnDataComposition * dc)
       gtk_label_set_markup(GTK_LABEL (label), title);
       g_free (title);
 
-	  gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area(GTK_DIALOG(dialog))), label);
+      gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area(GTK_DIALOG(dialog))), label);
 
       textview = gtk_text_view_new ();
       buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
