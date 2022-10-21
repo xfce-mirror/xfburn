@@ -551,7 +551,6 @@ cb_treeview_button_pressed (GtkTreeView * treeview, GdkEventButton * event, Xfbu
 
   if ((event->button == 3) && (event->type == GDK_BUTTON_PRESS)) {
     GtkTreeSelection *selection;
-    GtkTreePath *path;
     GMenuModel *model;
     GtkWidget *menu_popup;
     GtkWidget *menuitem_remove;
