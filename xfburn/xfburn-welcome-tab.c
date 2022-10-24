@@ -105,6 +105,7 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
   gtk_box_pack_start (GTK_BOX (vbox), table, TRUE, TRUE, BORDER);
   gtk_grid_set_row_spacing (GTK_GRID (table), BORDER);
   gtk_grid_set_column_spacing (GTK_GRID (table), BORDER);
+  gtk_grid_set_column_homogeneous (GTK_GRID (table), TRUE);
   gtk_widget_show (table);
 
   align = gtk_label_new (NULL);
@@ -178,6 +179,7 @@ create_welcome_button (const gchar *stock, const gchar *text, const gchar *secon
 
   label = gtk_label_new (NULL);
   gtk_label_set_text (GTK_LABEL (label), secondary);
+  gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
   gtk_box_pack_end (GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
   gtk_container_add (GTK_CONTAINER (button), hbox);
