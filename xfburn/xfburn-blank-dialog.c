@@ -156,23 +156,16 @@ xfburn_blank_dialog_init (XfburnBlankDialog * obj)
 {
   XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (obj);
   GtkBox *box = GTK_BOX (gtk_dialog_get_content_area((GTK_DIALOG (obj))));
-  GdkPixbuf *icon = NULL;
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *button;
-  gint x,y;
 
   GtkListStore *store = NULL;
   GtkCellRenderer *cell;
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Blank Disc"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
-
-  gtk_icon_size_lookup (GTK_ICON_SIZE_DIALOG, &x, &y);
-  icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "stock_xfburn-blank-cdrw", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
-
-  gtk_window_set_icon (GTK_WINDOW (obj), icon);
-  g_object_unref (icon);
+  gtk_window_set_icon_name (GTK_WINDOW (obj), "stock_xfburn-blank-cdrw");
 
   /* devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CDRW_WRITERS | BLANK_MODE);
