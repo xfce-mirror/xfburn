@@ -103,7 +103,6 @@ xfburn_burn_audio_cd_composition_dialog_init(XfburnBurnAudioCdCompositionDialog 
 {
   XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE(obj);
 
-  GdkPixbuf *icon = NULL;
   GtkBox *box;
   GtkWidget *frame;
   GtkWidget *vbox;
@@ -113,9 +112,7 @@ xfburn_burn_audio_cd_composition_dialog_init(XfburnBurnAudioCdCompositionDialog 
 
   gtk_window_set_title (GTK_WINDOW (obj), _("Burn Composition"));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (obj), TRUE);
-  icon = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(), "stock_xfburn", GTK_ICON_SIZE_DIALOG, 0, NULL);
-  gtk_window_set_icon (GTK_WINDOW (obj), icon);
-  g_object_unref (icon);
+  gtk_window_set_icon_name (GTK_WINDOW (obj), "stock_xfburn");
 
   /* burning devices list */
   priv->device_box = xfburn_device_box_new (SHOW_CD_WRITERS | SHOW_CDRW_WRITERS |
