@@ -398,14 +398,13 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
-  if (device) {
-    g_object_get (G_OBJECT (device),
-                  "profile-no", &profile_no,
-                  "supported-speeds", &el,
-                  NULL);
-  } else {
+  if (device == NULL)
     return;
-  }
+
+  g_object_get (G_OBJECT (device),
+                "profile-no", &profile_no,
+                "supported-speeds", &el,
+                NULL);
 
   if (el == NULL) {
     /* a valid disc is in the drive, but no speed list is present */
