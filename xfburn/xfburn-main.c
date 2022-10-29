@@ -294,7 +294,6 @@ main (int argc, char **argv)
                                     ((const gchar *) _("No burners are currently available")));
     gtk_message_dialog_format_secondary_text (dialog,
                                     _("Possibly the disc(s) are in use, and cannot get accessed.\n\n"
-                                      "Please unmount and restart the application.\n\n"
                                       "If no disc is in the drive, check that you have read and write access to the drive with the current user."));
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (GTK_WIDGET (dialog));
