@@ -452,13 +452,13 @@ thread_write_iso (ThreadWriteIsoParams * params)
   /* FIXME: is size really always 2048? */
   while (read_fn (params->src, buf, 2048) == 2048) {
     if (write (fd, buf, 2048) < 2048) {
-      /* an error occured while writing */
+      /* an error occurred while writing */
       gchar err[256];
       gchar *error_msg = NULL;
 
       strerror_r (errno, err, 256);
 
-      error_msg = g_strdup_printf (_("An error occured while writing ISO: %s"), err);
+      error_msg = g_strdup_printf (_("An error occurred while writing ISO: %s"), err);
       xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), error_msg);
       g_free (error_msg);
       goto cleanup;

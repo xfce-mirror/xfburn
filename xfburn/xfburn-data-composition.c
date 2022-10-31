@@ -1953,7 +1953,7 @@ generate_iso_image (XfburnDataComposition * dc)
 
       g_slist_foreach (errors, (GFunc) concat_free, &combined_msg);
 
-      title = _("Error(s) occured while adding files");
+      title = _("Error(s) occurred while adding files");
       dialog = gtk_dialog_new_with_buttons (title,
                                             GTK_WINDOW (mainwin),
                                             GTK_DIALOG_DESTROY_WITH_PARENT,
