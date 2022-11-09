@@ -68,6 +68,7 @@ static void xfburn_main_window_finalize (GObject *obj);
 static gboolean cb_delete_main_window (XfburnMainWindow *, GdkEvent *, XfburnMainWindowPrivate *);
 // static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 
+static void action_contents (GAction *, GVariant*, XfburnMainWindow *);
 static void action_about (GAction *, GVariant*, XfburnMainWindow *);
 static void action_preferences (GAction *, GVariant*, XfburnMainWindow *);
 
@@ -107,6 +108,7 @@ static const GActionEntry action_entries[] = {
   // { "action-menu", NULL},
   { .name = "refresh", .activate = (gActionCallback)action_refresh_directorybrowser},
   // { "help-menu", .activate = NULL},
+  { .name = "contents", .activate = (gActionCallback)action_contents },
   { .name = "about", .activate = (gActionCallback)action_about},
   { .name = "blank-disc", .activate = (gActionCallback)action_blank},
   { .name = "copy-data", .activate = (gActionCallback)action_copy_cd},
@@ -436,6 +438,12 @@ action_quit (GAction * action, GVariant* param, XfburnMainWindow * window)
 {
   // if (xfce_confirm (_("Are sure you want to quit?"), "application-exit", _("_Quit")))
   gtk_main_quit ();
+}
+
+static void
+action_contents (GAction *action, GVariant *param, XfburnMainWindow *window)
+{
+  xfce_dialog_show_help (GTK_WINDOW (window), "xfburn", "start", "");
 }
 
 static void
