@@ -362,10 +362,25 @@ static void
 refresh (XfburnDeviceList *devlist)
 {
   XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
+#ifdef HAVE_GUDEV
+  XfburnUdevManager *udevman = xfburn_udev_manager_get_global ();
+#endif
 
   g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_START], 0, FALSE);
   usleep (1000001);
-  xfburn_device_refresh_info (priv->curr_device, TRUE);
+#ifdef HAVE_GUDEV
+  priv->devices = xfburn_udev_manager_get_devices (udevman, &priv->num_drives, &priv->num_burners);
+#else
+  get_libburn_device_list (devlist);
+#endif
+
+  if (priv->num_burners > 0) {
+    priv->curr_device = XFBURN_DEVICE (priv->devices->data);
+    xfburn_device_refresh_info (priv->curr_device, TRUE);
+  } else {
+    priv->curr_device = NULL;
+  }
+
   g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_END], 0, FALSE, priv->curr_device);
 }
 
@@ -404,29 +419,24 @@ xfburn_device_list_lookup_by_name (XfburnDeviceList *devlist, const gchar * name
   return NULL;
 }
 
-GtkWidget *
-xfburn_device_list_get_device_combo (XfburnDeviceList *devlist)
+/**
+ * Replace all devices in the device combo drop-down menu.
+ */
+void
+xfburn_device_list_refresh_device_combo (XfburnDeviceList *devlist, GtkWidget *combo_device)
 {
   XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
+  GtkListStore *store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (combo_device)));
+  GList *device = priv->devices;
+  int i = 0;
+  int selected = -1;
 
-  GtkWidget *combo_device;
-  GList *device = NULL;
-  GtkListStore *store = NULL;
-  GtkCellRenderer *cell;
+  /* Temporarily disconnect this signal handler to prevent an infinite loop
+     (cb_combo_device_changed calling this function, which calls that). */
+  g_signal_handlers_disconnect_by_func (G_OBJECT (combo_device), G_CALLBACK (cb_combo_device_changed), devlist);
 
-  int i, selected=-1;
+  gtk_list_store_clear (store);
 
-  store = gtk_list_store_new (DEVICE_N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER);
-  combo_device = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
-  g_object_unref (store);
-
-  cell = gtk_cell_renderer_text_new ();
-  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo_device), cell, TRUE);
-  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combo_device), cell, "text", DEVICE_NAME_COLUMN, NULL);
-  gtk_widget_show (combo_device);
-
-  device = priv->devices;
-  i = 0;
   while (device) {
     XfburnDevice *device_data = (XfburnDevice *) device->data;
     GtkTreeIter iter;
@@ -437,18 +447,39 @@ xfburn_device_list_get_device_combo (XfburnDeviceList *devlist)
     gtk_list_store_append (store, &iter);
     gtk_list_store_set (store, &iter, DEVICE_NAME_COLUMN, name, DEVICE_POINTER_COLUMN, device_data, -1);
 
-    if (device_data == priv->curr_device)
-        selected = i;
+    if (device_data == priv->curr_device) {
+      selected = i;
+    }
 
     device = g_list_next (device);
     i++;
   }
-  /* FIXME: this might have to change once reading devices need to get selected as well */
+
   gtk_widget_set_sensitive (combo_device, priv->num_drives > 0);
 
   gtk_combo_box_set_active (GTK_COMBO_BOX (combo_device), selected);
 
+  /* Reconnect the signal handler. */
   g_signal_connect (G_OBJECT (combo_device), "changed", G_CALLBACK (cb_combo_device_changed), devlist);
+}
+
+GtkWidget *
+xfburn_device_list_get_device_combo (XfburnDeviceList *devlist)
+{
+  GtkWidget *combo_device;
+  GtkListStore *store = NULL;
+  GtkCellRenderer *cell;
+
+  store = gtk_list_store_new (DEVICE_N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER);
+  combo_device = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
+  g_object_unref (store);
+
+  cell = gtk_cell_renderer_text_new ();
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo_device), cell, TRUE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combo_device), cell, "text", DEVICE_NAME_COLUMN, NULL);
+  gtk_widget_show (combo_device);
+
+  xfburn_device_list_refresh_device_combo (devlist, combo_device);
 
   return combo_device;
 }
@@ -456,7 +487,6 @@ xfburn_device_list_get_device_combo (XfburnDeviceList *devlist)
 GtkWidget *
 xfburn_device_list_get_refresh_button (XfburnDeviceList *devlist)
 {
-  XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
   GtkWidget *img, *button;
 
   img = gtk_image_new_from_icon_name ("view-refresh", GTK_ICON_SIZE_SMALL_TOOLBAR);
@@ -464,7 +494,6 @@ xfburn_device_list_get_refresh_button (XfburnDeviceList *devlist)
   button = gtk_button_new ();
   gtk_container_add (GTK_CONTAINER (button), img);
   gtk_widget_show (button);
-  gtk_widget_set_sensitive (button, priv->num_burners > 0);
 
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_refresh_clicked), devlist);
 
