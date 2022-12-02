@@ -224,12 +224,14 @@ static void fill_combo_mode (XfburnBlankDialog *dialog)
   XfburnBlankDialogPrivate *priv = XFBURN_BLANK_DIALOG_GET_PRIVATE (dialog);
   XfburnBlankMode mode = XFBURN_BLANK_FAST;
   GtkTreeModel *model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_type));
+  XfburnDeviceList *devlist = xfburn_device_list_new ();
+  XfburnDevice *device = xfburn_device_list_get_current_device (devlist);
   int n = 0;
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
   while (mode < XFBURN_BLANK_MODE_LAST) {
-    if (is_valid_blank_mode (NULL, mode)) {
+    if (is_valid_blank_mode (device, mode)) {
       GtkTreeIter iter;
 
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
@@ -240,6 +242,7 @@ static void fill_combo_mode (XfburnBlankDialog *dialog)
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_type), 0);
   gtk_widget_set_sensitive (priv->button_blank, n > 0);
+  g_object_unref (devlist);
 }
 
 static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
@@ -248,10 +251,11 @@ static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
   gboolean erasable = FALSE;
   enum burn_disc_status disc_state;
 
-  XfburnDeviceList *devlist = xfburn_device_list_new ();
+  if (device == NULL) {
+    return FALSE;
+  }
 
-  g_object_get (G_OBJECT (xfburn_device_list_get_current_device (devlist)), "profile-no", &profile_no, "erasable", &erasable, "disc-status", &disc_state, NULL);
-  g_object_unref (devlist);
+  g_object_get (G_OBJECT (device), "profile-no", &profile_no, "erasable", &erasable, "disc-status", &disc_state, NULL);
 
   if (profile_no == 0x13) {
     /* in 0x14 no blanking is needed, we can only deformat */
@@ -262,7 +266,7 @@ static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
   }
 
   if (profile_no == 0x14 && (mode == XFBURN_FORMAT_FAST || mode == XFBURN_FORMAT_COMPLETE))
-      return TRUE;
+    return TRUE;
 
   if (erasable && (disc_state != BURN_DISC_BLANK) && (mode == XFBURN_BLANK_FAST || mode == XFBURN_BLANK_COMPLETE))
     return TRUE;

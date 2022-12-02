@@ -396,14 +396,15 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
   int factor;
   GtkTreeIter iter_max;
 
-  if (device) {
-    g_object_get (G_OBJECT (device),
-                  "profile-no", &profile_no,
-                  "supported-speeds", &el,
-                  NULL);
-  }
-
   gtk_list_store_clear (GTK_LIST_STORE (model));
+
+  if (device == NULL)
+    return;
+
+  g_object_get (G_OBJECT (device),
+                "profile-no", &profile_no,
+                "supported-speeds", &el,
+                NULL);
 
   if (el == NULL) {
     /* a valid disc is in the drive, but no speed list is present */
@@ -500,12 +501,13 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
   int profile_no = 0;
   gchar *profile_name = NULL;
   gboolean is_erasable = FALSE;
-  XfburnDevice *device = NULL;
+  XfburnDevice *device = xfburn_device_list_get_current_device (priv->devlist);
 
-  g_object_get (G_OBJECT (priv->devlist), "current-device", &device, NULL);
-
-  if (device == NULL)
-    return FALSE;
+  if (device == NULL) {
+    gtk_widget_set_sensitive (priv->combo_speed, FALSE);
+    priv->valid_disc = FALSE;
+    return priv->valid_disc;
+  }
 
   g_object_get (G_OBJECT (device), "disc-status", &disc_status, "profile-no", &profile_no,
                                    "erasable", &is_erasable, "profile-name", &profile_name,
@@ -683,6 +685,7 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
   }
   */
 
+  gtk_widget_set_sensitive (priv->combo_mode, device != NULL);
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_mode), 0);
 }
 
@@ -696,12 +699,12 @@ cb_volume_change_start (XfburnDeviceList *devlist, gboolean device_changed, Xfbu
 static void
 cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnDeviceBox *box)
 {
+  XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (box);
+
   g_return_if_fail (XFBURN_IS_DEVICE_LIST (devlist));
-  g_return_if_fail (XFBURN_IS_DEVICE (device));
   g_return_if_fail (XFBURN_IS_DEVICE_BOX (box));
 
-  /* FIXME: adjust selected device?  */
-
+  xfburn_device_list_refresh_device_combo (devlist, priv->combo_device);
   refresh_drive_info (box, device);
 
   if (gtk_widget_get_realized (GTK_WIDGET (box)))
