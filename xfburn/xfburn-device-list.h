@@ -100,5 +100,6 @@ gchar * xfburn_device_list_get_selected (XfburnDeviceList *devlist);
 GtkWidget * xfburn_device_list_get_refresh_button (XfburnDeviceList *devlist);
 GtkWidget * xfburn_device_list_get_device_combo (XfburnDeviceList *devlist);
 XfburnDevice * xfburn_device_list_get_current_device (XfburnDeviceList *devlist);
+void xfburn_device_list_refresh_device_combo (XfburnDeviceList *devlist, GtkWidget *combo_device);
 
 #endif /* __XFBURN_DEVICE_LIST_H__ */
