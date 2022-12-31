@@ -441,8 +441,6 @@ action_quit (GAction * action, GVariant* param, XfburnMainWindow * window)
 static void
 action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
 {
-  gint x, y;
-  GdkPixbuf *icon = NULL;
   const gchar *auth[] = { "David Mohr david@mcbf.net Author/Maintainer",
 			  "Mario Đanić mario@libburnia-project.org Author/Maintainer",
 			  "Jean-François Wauthy pollux@xfce.org Retired author/maintainer",
@@ -482,19 +480,12 @@ action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
     "正龙 赵 longer.zhao@gmail.com zh_CN\n"
     "Cosmo Chene cosmolax@gmail.com zh_TW\n";
 
-  gtk_icon_size_lookup (GTK_ICON_SIZE_DIALOG, &x, &y);
-  icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-optical", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
-  if (!icon)
-    icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-cdrom", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
-  if (!icon)
-    icon = gtk_icon_theme_load_icon ( gtk_icon_theme_get_default(), "media-optical", x, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
-
 #if !GTK_CHECK_VERSION (2, 18, 0)
   gtk_about_dialog_set_email_hook (exo_gtk_url_about_dialog_hook, NULL, NULL);
   gtk_about_dialog_set_url_hook (exo_gtk_url_about_dialog_hook, NULL, NULL);
 #endif
   gtk_show_about_dialog(GTK_WINDOW (window),
-		  "logo", icon,
+		  "logo-icon-name", "media-optical",
 		  "program-name", "Xfburn",
 		  "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
 		  "version", VERSION,
@@ -504,9 +495,6 @@ action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
 		  "authors", auth,
 		  "translator-credits", translators,
 		  NULL);
-
-  if (G_LIKELY (icon != NULL))
-    g_object_unref (G_OBJECT (icon));
 }
 
 static void
