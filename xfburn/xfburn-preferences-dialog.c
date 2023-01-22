@@ -327,7 +327,7 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   button_close = gtk_button_new ();
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL,0);
 
-  label = gtk_image_new_from_icon_name ("gtk-close", GTK_ICON_SIZE_BUTTON);
+  label = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_BUTTON);
   gtk_widget_show (label);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 
