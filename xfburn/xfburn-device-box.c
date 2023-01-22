@@ -350,7 +350,7 @@ empty_speed_list_dialog (void)
   dialog = (GtkDialog *) gtk_dialog_new_with_buttons (_("Empty speed list"),
                                   NULL,
                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-                                  "window-close",
+                                  "window-close-symbolic",
                                   GTK_RESPONSE_CLOSE,
                                   NULL);
 

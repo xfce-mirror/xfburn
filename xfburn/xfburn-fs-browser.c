@@ -285,7 +285,7 @@ xfburn_fs_browser_refresh (XfburnFsBrowser * browser)
 
   screen = gtk_widget_get_screen (GTK_WIDGET (browser));
   icon_theme = gtk_icon_theme_get_for_screen (screen);
-  icon = gtk_icon_theme_load_icon (icon_theme, "gnome-fs-home", x, 0, NULL);
+  icon = gtk_icon_theme_load_icon (icon_theme, "user-home", x, 0, NULL);
 
   gtk_tree_store_append (GTK_TREE_STORE (model), &iter_home, NULL);
   gtk_tree_store_set (GTK_TREE_STORE (model), &iter_home,
@@ -298,7 +298,7 @@ xfburn_fs_browser_refresh (XfburnFsBrowser * browser)
   load_directory_in_browser (browser, xfce_get_homedir (), &iter_home);
 
   /* load the fs root */
-  icon = gtk_icon_theme_load_icon (icon_theme, "gnome-dev-harddisk", x, 0, NULL);
+  icon = gtk_icon_theme_load_icon (icon_theme, "drive-harddisk", x, 0, NULL);
   gtk_tree_store_append (GTK_TREE_STORE (model), &iter_root, NULL);
   gtk_tree_store_set (GTK_TREE_STORE (model), &iter_root,
                       FS_BROWSER_COLUMN_ICON, icon,

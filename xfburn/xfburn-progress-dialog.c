@@ -223,7 +223,7 @@ xfburn_progress_dialog_init (XfburnProgressDialog * obj)
   gtk_widget_set_sensitive (priv->button_stop, TRUE);
   g_signal_connect (G_OBJECT (priv->button_stop), "clicked", G_CALLBACK (cb_button_stop_clicked), obj);
 
-  priv->button_close = gtk_button_new_from_icon_name ("gtk-close", GTK_ICON_SIZE_BUTTON);
+  priv->button_close = gtk_button_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_BUTTON);
   gtk_button_set_label (GTK_BUTTON (priv->button_close), _("Close"));
   gtk_widget_show (priv->button_close);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), priv->button_close, GTK_RESPONSE_CLOSE);
