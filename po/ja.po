@@ -6,15 +6,15 @@
 # Daichi Kawahata <daichi@xfce.org>, 2005
 # Hao Chen <hao.chen.jobs@gmail.com>, 2013
 # Masato HASHIMOTO <cabezon.hashimoto@gmail.com>, 2008,2012
-# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2016-2020
+# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2016-2020,2023
 # UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 15:01+0100\n"
+"POT-Creation-Date: 2023-02-24 12:52+0100\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
-"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2019-2022\n"
+"Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2016-2020,2023\n"
 "Language-Team: Japanese (http://www.transifex.com/xfce/xfce-apps/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,40 +154,40 @@ msgstr "消去する(_B)"
 
 #. blanking can only be performed on blank discs, format and deformat are
 #. allowed to be blank ones
-#: ../xfburn/xfburn-blank-dialog.c:322
+#: ../xfburn/xfburn-blank-dialog.c:326
 msgid "The inserted disc is already blank."
 msgstr "挿入されたディスクはすでに空です。"
 
 #. these ones we can blank
-#: ../xfburn/xfburn-blank-dialog.c:328
+#: ../xfburn/xfburn-blank-dialog.c:332
 msgid "Ready"
 msgstr "準備 OK"
 
-#: ../xfburn/xfburn-blank-dialog.c:331
+#: ../xfburn/xfburn-blank-dialog.c:335
 msgid "No disc detected in the drive."
 msgstr "ドライブにディスクを検出できませんでした。"
 
-#: ../xfburn/xfburn-blank-dialog.c:340
+#: ../xfburn/xfburn-blank-dialog.c:344
 msgid "Disc is not erasable."
 msgstr "消去できないメディアです。"
 
-#: ../xfburn/xfburn-blank-dialog.c:380
+#: ../xfburn/xfburn-blank-dialog.c:384
 msgid "Blanking disc..."
 msgstr "ディスクの中身を消去しています..."
 
-#: ../xfburn/xfburn-blank-dialog.c:407
+#: ../xfburn/xfburn-blank-dialog.c:411
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:479
 #: ../xfburn/xfburn-perform-burn.c:489
 #, c-format
 msgid "Done"
 msgstr "完了しました"
 
-#: ../xfburn/xfburn-blank-dialog.c:410 ../xfburn/xfburn-perform-burn.c:496
+#: ../xfburn/xfburn-blank-dialog.c:414 ../xfburn/xfburn-perform-burn.c:496
 #: ../xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
 msgstr "失敗しました"
 
-#: ../xfburn/xfburn-blank-dialog.c:427
+#: ../xfburn/xfburn-blank-dialog.c:431
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-image-dialog.c:387
 #: ../xfburn/xfburn-burn-image-dialog.c:565
@@ -624,73 +624,73 @@ msgstr "<b>このデバイスの速度リストを取得できません。</b>\n
 msgid "Continue to _show this notice"
 msgstr "このお知らせを今後も表示する(_S)"
 
-#: ../xfburn/xfburn-device-box.c:417
+#: ../xfburn/xfburn-device-box.c:418
 msgid "default"
 msgstr "デフォルト"
 
-#: ../xfburn/xfburn-device-box.c:448
+#: ../xfburn/xfburn-device-box.c:449
 msgid "Max"
 msgstr "最大"
 
-#: ../xfburn/xfburn-device-box.c:483
+#: ../xfburn/xfburn-device-box.c:484
 msgid "A full, but erasable disc is in the drive"
 msgstr "ディスクが満杯です。しかしドライブには消去可能なディスクが入っています。"
 
-#: ../xfburn/xfburn-device-box.c:484
+#: ../xfburn/xfburn-device-box.c:485
 msgid ""
 "Do you want to blank the disc, so that it can be used for the upcoming burn "
 "process?"
 msgstr "ディスクを初期化し、次回の書き込み処理に使用できるようにしますか?"
 
-#: ../xfburn/xfburn-device-box.c:555
+#: ../xfburn/xfburn-device-box.c:557
 msgid "Drive can't burn on the inserted disc"
 msgstr "デバイスは挿入されたディスクに焼き込むことができません"
 
-#: ../xfburn/xfburn-device-box.c:564 ../xfburn/xfburn-device-box.c:610
+#: ../xfburn/xfburn-device-box.c:566 ../xfburn/xfburn-device-box.c:612
 msgid "Drive is empty"
 msgstr "デバイスが空です"
 
-#: ../xfburn/xfburn-device-box.c:567
+#: ../xfburn/xfburn-device-box.c:569
 msgid "Sorry, multisession is not yet supported"
 msgstr "もうしわけありません、マルチセッションはまだサポートされていません"
 
-#: ../xfburn/xfburn-device-box.c:570
+#: ../xfburn/xfburn-device-box.c:572
 msgid "Inserted disc is full"
 msgstr "挿入されたディスクがいっぱいです"
 
-#: ../xfburn/xfburn-device-box.c:573 ../xfburn/xfburn-device-box.c:616
+#: ../xfburn/xfburn-device-box.c:575 ../xfburn/xfburn-device-box.c:618
 msgid "Inserted disc is unsuitable"
 msgstr "挿入されたディスクが適切ではありません"
 
-#: ../xfburn/xfburn-device-box.c:576 ../xfburn/xfburn-device-box.c:619
+#: ../xfburn/xfburn-device-box.c:578 ../xfburn/xfburn-device-box.c:621
 msgid "Cannot access drive (it might be in use)"
 msgstr "ドライブにアクセスできません (おそらく使用中です)"
 
-#: ../xfburn/xfburn-device-box.c:581 ../xfburn/xfburn-device-box.c:622
+#: ../xfburn/xfburn-device-box.c:583 ../xfburn/xfburn-device-box.c:624
 msgid "Error determining disc"
 msgstr "ディスクの決定エラー"
 
-#: ../xfburn/xfburn-device-box.c:602
+#: ../xfburn/xfburn-device-box.c:604
 msgid "Write-once disc, no blanking possible"
 msgstr "ライトワンスディスクは消去できません"
 
-#: ../xfburn/xfburn-device-box.c:605
+#: ../xfburn/xfburn-device-box.c:607
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW は消去の必要はありません"
 
-#: ../xfburn/xfburn-device-box.c:613
+#: ../xfburn/xfburn-device-box.c:615
 msgid "Inserted disc is already blank"
 msgstr "挿入されたディスクはすでに消去されています"
 
-#: ../xfburn/xfburn-device-box.c:649
+#: ../xfburn/xfburn-device-box.c:651
 msgid "Automatic"
 msgstr "自動"
 
-#: ../xfburn/xfburn-device-box.c:656
+#: ../xfburn/xfburn-device-box.c:658
 msgid "With Track Gaps / Track-At-Once (TAO)"
 msgstr "トラックギャップあり / トラックアットワンス (TAO)"
 
-#: ../xfburn/xfburn-device-box.c:663
+#: ../xfburn/xfburn-device-box.c:665
 msgid "Multi Session / Session-At-Once (SAO)"
 msgstr "マルチセッション / セッションアットワンス (SAO)"
 
@@ -807,48 +807,46 @@ msgstr "現在有効なバーナがありません"
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
-"Please unmount and restart the application.\n"
-"\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr "おそらくディスクは使用中であり、アクセスできません。\n\nアンマウントしてアプリケーションを再起動してください。\n\nメディアが挿入されていないならば現在のユーザーがドライブへの読み込み/書き込み権を与えられているかどうか確認してください。"
+msgstr "おそらくディスクは使用中であり、アクセスできません。\n\nメディアが挿入されていないなら、現在のユーザーがドライブへの読み込み/書き込み権を与えられているか確認してください。"
 
-#: ../xfburn/xfburn-main.c:330
+#: ../xfburn/xfburn-main.c:329
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr "%s トランスコーダーの初期化に失敗しました: %s\n\t(基本実装にフォールバックします)"
 
-#: ../xfburn/xfburn-main.c:373
+#: ../xfburn/xfburn-main.c:372
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "イメージファイル '%s' は存在しません。"
 
-#: ../xfburn/xfburn-main-window.c:238
+#: ../xfburn/xfburn-main-window.c:235
 msgid "New data composition"
 msgstr "新規データコンポジション"
 
-#: ../xfburn/xfburn-main-window.c:241
+#: ../xfburn/xfburn-main-window.c:238
 msgid "New audio composition"
 msgstr "新規オーディオコンポジション"
 
-#: ../xfburn/xfburn-main-window.c:246 ../xfburn.ui.h:9
+#: ../xfburn/xfburn-main-window.c:243 ../xfburn.ui.h:9
 msgid "Blank CD-RW"
 msgstr "CD-RW を消去"
 
-#: ../xfburn/xfburn-main-window.c:249 ../xfburn.ui.h:10
+#: ../xfburn/xfburn-main-window.c:246 ../xfburn.ui.h:10
 msgid "Burn Image"
 msgstr "イメージを焼く"
 
-#: ../xfburn/xfburn-main-window.c:254 ../xfburn.ui.h:12
+#: ../xfburn/xfburn-main-window.c:251 ../xfburn.ui.h:12
 msgid "Refresh"
 msgstr "更新"
 
-#: ../xfburn/xfburn-main-window.c:254
+#: ../xfburn/xfburn-main-window.c:251
 msgid "Refresh file list"
 msgstr "ファイルのリストを更新します"
 
-#: ../xfburn/xfburn-main-window.c:501
+#: ../xfburn/xfburn-main-window.c:489
 msgid "Another cd burning GUI"
 msgstr "CD 作成ツール"
 
