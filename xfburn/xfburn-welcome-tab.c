@@ -238,22 +238,8 @@ xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GActionMap *action
   obj = g_object_new (XFBURN_TYPE_WELCOME_TAB, NULL);
   if (obj) {
     XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (XFBURN_WELCOME_TAB(obj));
-    GAction *action;
 
     priv->notebook = notebook;
-
-    /* FIXME retrieve action group from UI Manager */
-    action = g_action_map_lookup_action (action_group, "burn-image");
-    gtk_widget_set_sensitive (priv->button_image, g_action_get_enabled (action));
-
-    action = g_action_map_lookup_action (action_group, "new-data-composition");
-    gtk_widget_set_sensitive (priv->button_data_comp, g_action_get_enabled (action));
-
-    action = g_action_map_lookup_action (action_group, "new-audio-composition");
-    gtk_widget_set_sensitive (priv->button_audio_comp, g_action_get_enabled (action));
-
-    action = g_action_map_lookup_action (action_group, "blank-disc");
-    gtk_widget_set_sensitive (priv->button_blank, g_action_get_enabled (action));
   }
 
   return obj;

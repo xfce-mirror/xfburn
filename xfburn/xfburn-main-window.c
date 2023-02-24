@@ -55,9 +55,6 @@ typedef struct {
 
   GtkWidget *file_browser;
   GtkWidget *compositions_notebook;
-
-  gboolean support_cdr;
-  gboolean support_cdrw;
 } XfburnMainWindowPrivate;
 
 /* prototypes */
@@ -583,8 +580,6 @@ xfburn_main_window_new (void)
     XfburnMainWindowPrivate *priv;
     GAction *action;
     GActionMap *action_map;
-    GList *device = NULL;
-    XfburnDeviceList *devlist;
 
     instance = win = XFBURN_MAIN_WINDOW (obj);
     priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (win);
@@ -596,38 +591,6 @@ xfburn_main_window_new (void)
     g_action_change_state (action, g_variant_new_boolean (xfburn_settings_get_boolean ("show-toolbar", FALSE)));
    /* action = gtk_action_group_get_action (priv->action_group, "save-composition");
     gtk_action_set_sensitive (GTK_ACTION (action), FALSE);*/
-
-    /* disable action that cannot be used due to device */
-
-    devlist = xfburn_device_list_new ();
-    g_object_get (G_OBJECT (devlist), "devices", &device, NULL);
-    g_object_unref (devlist);
-
-    /* FIXME: this is really outdated behavior. Needs to get rewritten */
-    while (device != NULL) {
-      XfburnDevice *device_info = (XfburnDevice *) device->data;
-      gboolean cdr, cdrw;
-
-      g_object_get (G_OBJECT (device_info), "cdr", &cdr, "cdrw", &cdrw, NULL);
-
-      if (cdr)
-        priv->support_cdr = TRUE;
-      if (cdrw)
-        priv->support_cdrw = TRUE;
-
-      device = g_list_next (device);
-    }
-
-    if (!priv->support_cdr) {
-      action = g_action_map_lookup_action (action_map, "copy-data");
-      g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
-      action = g_action_map_lookup_action (action_map, "burn-image");
-      g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
-    }
-    if (!priv->support_cdrw) {
-      action = g_action_map_lookup_action (action_map, "blank-disc");
-      g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
-    }
 
     /* show welcome tab */
     xfburn_compositions_notebook_add_welcome_tab (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), action_map);
@@ -684,20 +647,4 @@ xfburn_main_window_add_audio_composition_with_files (XfburnMainWindow *window, i
   comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_AUDIO_COMPOSITION);
   filelist = xfburn_make_abosulet_file_list (filec, filenames);
   xfburn_audio_composition_add_files (XFBURN_AUDIO_COMPOSITION (comp), filelist);
-}
-
-gboolean
-xfburn_main_window_support_cdr (XfburnMainWindow *window)
-{
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-
-  return priv->support_cdr;
-}
-
-gboolean
-xfburn_main_window_support_cdrw (XfburnMainWindow *window)
-{
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-
-  return priv->support_cdrw;
 }
