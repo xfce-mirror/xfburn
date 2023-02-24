@@ -5,7 +5,7 @@
 # Translators:
 # Andre Miranda <andre42m@gmail.com>, 2017-2018,2022
 # Andre Miranda <andre42m@gmail.com>, 2014
-# C. E., 2020
+# Giálisson Rocha, 2020
 # Henrique P. Machado <zehrique@gmail.com>, 2008
 # Lucas Wilm <lucaswilm@gmail.com>, 2020
 # Michael Martins <michaelfm21@gmail.com>, 2015
@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 15:01+0100\n"
+"POT-Creation-Date: 2023-02-24 12:52+0100\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
 "Last-Translator: Andre Miranda <andre42m@gmail.com>, 2017-2018,2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/xfce/xfce-apps/language/pt_BR/)\n"
@@ -159,40 +159,40 @@ msgstr "_Apagar"
 
 #. blanking can only be performed on blank discs, format and deformat are
 #. allowed to be blank ones
-#: ../xfburn/xfburn-blank-dialog.c:322
+#: ../xfburn/xfburn-blank-dialog.c:326
 msgid "The inserted disc is already blank."
 msgstr "O disco inserido já está em branco."
 
 #. these ones we can blank
-#: ../xfburn/xfburn-blank-dialog.c:328
+#: ../xfburn/xfburn-blank-dialog.c:332
 msgid "Ready"
 msgstr "Pronto"
 
-#: ../xfburn/xfburn-blank-dialog.c:331
+#: ../xfburn/xfburn-blank-dialog.c:335
 msgid "No disc detected in the drive."
 msgstr "Nenhum disco detectado no drive."
 
-#: ../xfburn/xfburn-blank-dialog.c:340
+#: ../xfburn/xfburn-blank-dialog.c:344
 msgid "Disc is not erasable."
 msgstr "A mídia não pode ser apagada."
 
-#: ../xfburn/xfburn-blank-dialog.c:380
+#: ../xfburn/xfburn-blank-dialog.c:384
 msgid "Blanking disc..."
 msgstr "Apagando disco..."
 
-#: ../xfburn/xfburn-blank-dialog.c:407
+#: ../xfburn/xfburn-blank-dialog.c:411
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:479
 #: ../xfburn/xfburn-perform-burn.c:489
 #, c-format
 msgid "Done"
 msgstr "Pronto"
 
-#: ../xfburn/xfburn-blank-dialog.c:410 ../xfburn/xfburn-perform-burn.c:496
+#: ../xfburn/xfburn-blank-dialog.c:414 ../xfburn/xfburn-perform-burn.c:496
 #: ../xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
 msgstr "Falha"
 
-#: ../xfburn/xfburn-blank-dialog.c:427
+#: ../xfburn/xfburn-blank-dialog.c:431
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
 #: ../xfburn/xfburn-burn-image-dialog.c:387
 #: ../xfburn/xfburn-burn-image-dialog.c:565
@@ -629,73 +629,73 @@ msgstr "<b>Não foi possível obter a lista de velocidades da unidade de disco.<
 msgid "Continue to _show this notice"
 msgstr "Continuar mo_strando este aviso"
 
-#: ../xfburn/xfburn-device-box.c:417
+#: ../xfburn/xfburn-device-box.c:418
 msgid "default"
 msgstr "padrão"
 
-#: ../xfburn/xfburn-device-box.c:448
+#: ../xfburn/xfburn-device-box.c:449
 msgid "Max"
 msgstr "Máx"
 
-#: ../xfburn/xfburn-device-box.c:483
+#: ../xfburn/xfburn-device-box.c:484
 msgid "A full, but erasable disc is in the drive"
 msgstr "Um disco cheio, mas que pode ser apagado, está no drive"
 
-#: ../xfburn/xfburn-device-box.c:484
+#: ../xfburn/xfburn-device-box.c:485
 msgid ""
 "Do you want to blank the disc, so that it can be used for the upcoming burn "
 "process?"
 msgstr "Deseja apagar o disco para que possa utilizá-lo na gravação a seguir?"
 
-#: ../xfburn/xfburn-device-box.c:555
+#: ../xfburn/xfburn-device-box.c:557
 msgid "Drive can't burn on the inserted disc"
 msgstr "O drive não pode gravar no disco inserido"
 
-#: ../xfburn/xfburn-device-box.c:564 ../xfburn/xfburn-device-box.c:610
+#: ../xfburn/xfburn-device-box.c:566 ../xfburn/xfburn-device-box.c:612
 msgid "Drive is empty"
 msgstr "O drive está vazio"
 
-#: ../xfburn/xfburn-device-box.c:567
+#: ../xfburn/xfburn-device-box.c:569
 msgid "Sorry, multisession is not yet supported"
 msgstr "Desculpe, não há suporte a multissessão"
 
-#: ../xfburn/xfburn-device-box.c:570
+#: ../xfburn/xfburn-device-box.c:572
 msgid "Inserted disc is full"
 msgstr "O disco inserido está cheio"
 
-#: ../xfburn/xfburn-device-box.c:573 ../xfburn/xfburn-device-box.c:616
+#: ../xfburn/xfburn-device-box.c:575 ../xfburn/xfburn-device-box.c:618
 msgid "Inserted disc is unsuitable"
 msgstr "O disco inserido não é apropriado"
 
-#: ../xfburn/xfburn-device-box.c:576 ../xfburn/xfburn-device-box.c:619
+#: ../xfburn/xfburn-device-box.c:578 ../xfburn/xfburn-device-box.c:621
 msgid "Cannot access drive (it might be in use)"
 msgstr "Não foi possível acessar o drive (talvez esteja em uso)"
 
-#: ../xfburn/xfburn-device-box.c:581 ../xfburn/xfburn-device-box.c:622
+#: ../xfburn/xfburn-device-box.c:583 ../xfburn/xfburn-device-box.c:624
 msgid "Error determining disc"
 msgstr "Erro ao determinar o disco"
 
-#: ../xfburn/xfburn-device-box.c:602
+#: ../xfburn/xfburn-device-box.c:604
 msgid "Write-once disc, no blanking possible"
 msgstr "Disco de escrita única, não é possível apagar"
 
-#: ../xfburn/xfburn-device-box.c:605
+#: ../xfburn/xfburn-device-box.c:607
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW não precisa ser apagado"
 
-#: ../xfburn/xfburn-device-box.c:613
+#: ../xfburn/xfburn-device-box.c:615
 msgid "Inserted disc is already blank"
 msgstr "O disco inserido já está em branco"
 
-#: ../xfburn/xfburn-device-box.c:649
+#: ../xfburn/xfburn-device-box.c:651
 msgid "Automatic"
 msgstr "Automático"
 
-#: ../xfburn/xfburn-device-box.c:656
+#: ../xfburn/xfburn-device-box.c:658
 msgid "With Track Gaps / Track-At-Once (TAO)"
 msgstr "Com intervalos de faixa / Track-At-Once (TAO)"
 
-#: ../xfburn/xfburn-device-box.c:663
+#: ../xfburn/xfburn-device-box.c:665
 msgid "Multi Session / Session-At-Once (SAO)"
 msgstr "Multi-sessão / Session-At-Once (SAO)"
 
@@ -812,48 +812,46 @@ msgstr "Nenhum gravador está disponível no momento"
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
-"Please unmount and restart the application.\n"
-"\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr "Provavelmente o(s) disco(s) está(ão) em uso e não pode(m) ser acessado(s).\n\nPor favor, desmonte-o(s) e reinicie o aplicativo.\n\nSe nenhuma mídia está inserida, verifique se você tem acesso de leitura e gravação no drive com o usuário atual."
+msgstr ""
 
-#: ../xfburn/xfburn-main.c:330
+#: ../xfburn/xfburn-main.c:329
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr "Falhou ao inicializar o transcodificador %s: %s\n\t(voltando para a implementação básica)"
 
-#: ../xfburn/xfburn-main.c:373
+#: ../xfburn/xfburn-main.c:372
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "O arquivo de imagem \"%s\" não existe."
 
-#: ../xfburn/xfburn-main-window.c:238
+#: ../xfburn/xfburn-main-window.c:235
 msgid "New data composition"
 msgstr "Nova composição de dados"
 
-#: ../xfburn/xfburn-main-window.c:241
+#: ../xfburn/xfburn-main-window.c:238
 msgid "New audio composition"
 msgstr "Nova composição de áudio"
 
-#: ../xfburn/xfburn-main-window.c:246 ../xfburn.ui.h:9
+#: ../xfburn/xfburn-main-window.c:243 ../xfburn.ui.h:9
 msgid "Blank CD-RW"
 msgstr "Apagar CD-RW"
 
-#: ../xfburn/xfburn-main-window.c:249 ../xfburn.ui.h:10
+#: ../xfburn/xfburn-main-window.c:246 ../xfburn.ui.h:10
 msgid "Burn Image"
 msgstr "Gravar imagem"
 
-#: ../xfburn/xfburn-main-window.c:254 ../xfburn.ui.h:12
+#: ../xfburn/xfburn-main-window.c:251 ../xfburn.ui.h:12
 msgid "Refresh"
 msgstr "Atualizar"
 
-#: ../xfburn/xfburn-main-window.c:254
+#: ../xfburn/xfburn-main-window.c:251
 msgid "Refresh file list"
 msgstr "Atualizar lista de arquivos"
 
-#: ../xfburn/xfburn-main-window.c:501
+#: ../xfburn/xfburn-main-window.c:489
 msgid "Another cd burning GUI"
 msgstr "Mais uma interface gráfica de gravação de CD"
 
