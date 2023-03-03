@@ -1,5 +1,51 @@
-0.6.2
-======
+xfburn 0.7.0 (2023-03-03)
+============-------------
+- Add MIME types to open blank and audio CDs
+- Automatically update burner list as burners are plugged and unplugged
+- Change default temporary directory to /var/tmp
+- Improve text of write modes
+- Replace some icons with symbolic versions that better respect light/dark mode
+- Support delete key in audio compositions
+- Fix adding progress dialog not appearing after dragging files
+- Fix adding progress dialog cancel button not working
+- Fix adding progress dialog not being modal
+- Fix assertion failure when burner not present
+- Fix composition term not being used consistently
+- Fix crash when adding files to a data composition
+- Fix dragged audio composition tracks being copied instead of moved
+- Fix excessive minimum width of main window
+- Fix icons not appearing on dialogs
+- Fix intltool lock file bug in `make distcheck`
+- Fix multiple selection being instantly deselected upon right click
+- Fix multithreading issue when initializing an audio composition
+- Fix out-of-date address in COPYING
+- Fix project homepage URL
+- Fix removed audio composition tracks not reducing total composition length
+- Fix some compilation warnings
+- Fix typo in burn failure dialog
+- Fix XSLT processor warnings
+- Add basic GitLab pipeline
+- Add Markdown version of the README
+- Add more translatable content to the AppStream/AppData
+- Bump GLib minimum required to 2.38
+- Modernize build system
+- Resolve AppStream warnings from Debian
+- Strip trailing whitespace like as in Debian's build process
+- Update bug tracker links in readme
+- Update information on how to build xfburn
+- Translation Updates:
+  Albanian, Arabic, Armenian (Armenia), Basque, Belarusian, Bulgarian,
+  Catalan, Chinese (China), Chinese (Taiwan), Croatian, Czech, Danish,
+  Dutch, Eastern Armenian, English (Australia), English (United
+  Kingdom), Estonian, Finnish, French, Galician, German, Greek, Hebrew,
+  Hungarian, Icelandic, Indonesian, Interlingue, Italian, Japanese,
+  Kazakh, Korean, Lithuanian, Malay, Norwegian Bokmål, Norwegian
+  Nynorsk, Occitan (post 1500), Polish, Portuguese, Portuguese
+  (Brazil), Russian, Serbian, Sinhala, Slovak, Slovenian, Spanish,
+  Swedish, Telugu, Thai, Turkish, Ukrainian, Uyghur
+
+xfburn 0.6.2 (2020-03-07)
+======-------------------
 - displaying device revision information in the device dialog
 - Made popup context menu translatable
 - Code clean up for deprecated Glib/Gtk+ Widget definitions

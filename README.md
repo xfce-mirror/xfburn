@@ -1,7 +1,7 @@
 xfburn
 ======
 
-Version 0.6.2, 2020-03-07
+Version 0.7.0, 2023-03-03
 
 [xfburn's website](https://docs.xfce.org/apps/xfburn/start)
 
