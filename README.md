@@ -5,10 +5,10 @@ Version 0.7.0, 2023-03-03
 
 [xfburn's website](https://docs.xfce.org/apps/xfburn/start)
 
-An easy to use burning software for the xfce desktop environment (but of
+An easy to use burning software for the Xfce desktop environment (but of
 course will work with others). It uses libburn and libisofs as a backend, in
 difference to most other GUI programs at the moment. Visit
-http://www.libburnia-project.org/ for more information about these libraries.
+https://dev.lovelyhq.com/libburnia/web/wiki for more information about these libraries.
 
 Functionality
 =============
@@ -25,7 +25,7 @@ Currently implemented is:
  * Blank discs
  * Format and deformat DVD-RW discs
 
-At this time there is no multisession support.
+At this time there is no multi-session support.
 
 Note: Stream Recording disables error management for BD only, which increases
 the burning speed. Using it seems to be the best option since discs with
@@ -42,7 +42,7 @@ gstreamer plugin is present.
 The basic transcoder:
 - - - - - - - - - - -
 Only CD-quality, uncompressed (PCM) Wave files can be added to an audio
-compilation. Use i.e.  your favority audio player with a disc writer output
+compilation. Use i.e. your favorite audio player with a disc writer output
 mode / plugin to decompress your existing audio files. If .wav files are added
 to the compilation, their headers get checked to make sure they are of the
 right format. Note that this check is not very well tested (in particular it's
@@ -115,8 +115,8 @@ Bugs & Feedback
 
 Any comments are welcome! We aim to make xfburn a very easily usable program.
 So if you think something could be implemented differently, feel free to speak
-up and it will be considered. Please send all feedbacks to xfburn@xfce.org, or
-use the xfce mailing lists. Bugs are best placed in the [xfce bugtracker](https://gitlab.xfce.org/apps/xfburn/).
+up and it will be considered. Please send any feedback to xfburn@xfce.org, or
+use the Xfce mailing lists. Bugs are best placed in the [Xfce bugtracker](https://gitlab.xfce.org/apps/xfburn/).
 
 Debugging
 ---------
@@ -136,7 +136,7 @@ instructions:
    ```
    $ ulimit -c unlimited; xfburn/xfburn 2>&1 | tee xfburn.output
    ```
-3) From another terminal, kill xfburn (only if it hasn't crashed already, of coures)
+3) From another terminal, kill xfburn (only if it hasn't crashed already, of course)
    ```
    $ kill -SEGV `pidof xfburn` 
    ```
