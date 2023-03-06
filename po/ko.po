@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-24 12:52+0100\n"
+"POT-Creation-Date: 2023-03-06 12:49+0100\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2014-2015,2018-2020,2022\n"
 "Language-Team: Korean (http://www.transifex.com/xfce/xfce-apps/language/ko/)\n"
@@ -104,7 +104,7 @@ msgstr "빈 디스크"
 
 #: ../xfburn/xfburn-blank-dialog.c:175
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
-#: ../xfburn/xfburn-burn-image-dialog.c:176
+#: ../xfburn/xfburn-burn-image-dialog.c:178
 #: ../xfburn/xfburn-copy-cd-dialog.c:107
 #: ../xfburn/xfburn-copy-dvd-dialog.c:104
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:123
@@ -117,7 +117,7 @@ msgstr "빈 상태"
 
 #: ../xfburn/xfburn-blank-dialog.c:196
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:190
-#: ../xfburn/xfburn-burn-image-dialog.c:184
+#: ../xfburn/xfburn-burn-image-dialog.c:186
 #: ../xfburn/xfburn-copy-cd-dialog.c:115
 #: ../xfburn/xfburn-copy-dvd-dialog.c:112
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
@@ -126,7 +126,7 @@ msgstr "옵션"
 
 #: ../xfburn/xfburn-blank-dialog.c:200
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:194
-#: ../xfburn/xfburn-burn-image-dialog.c:188
+#: ../xfburn/xfburn-burn-image-dialog.c:190
 #: ../xfburn/xfburn-copy-cd-dialog.c:119
 #: ../xfburn/xfburn-copy-dvd-dialog.c:116
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:161
@@ -141,7 +141,7 @@ msgstr "디스크 꺼내기(_J)"
 #. action buttons
 #: ../xfburn/xfburn-blank-dialog.c:206
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:247
-#: ../xfburn/xfburn-burn-image-dialog.c:213
+#: ../xfburn/xfburn-burn-image-dialog.c:215
 #: ../xfburn/xfburn-copy-cd-dialog.c:165
 #: ../xfburn/xfburn-copy-dvd-dialog.c:162 ../xfburn/xfburn-utils.c:132
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:182
@@ -189,8 +189,8 @@ msgstr "실패"
 
 #: ../xfburn/xfburn-blank-dialog.c:431
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
-#: ../xfburn/xfburn-burn-image-dialog.c:387
-#: ../xfburn/xfburn-burn-image-dialog.c:565
+#: ../xfburn/xfburn-burn-image-dialog.c:389
+#: ../xfburn/xfburn-burn-image-dialog.c:567
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:359
 msgid "Unable to grab the drive."
 msgstr "드라이브를 잡을 수 없습니다."
@@ -221,7 +221,7 @@ msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "<small>기본 구성 이름을 바꾸시렵니까?</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:199
-#: ../xfburn/xfburn-burn-image-dialog.c:193
+#: ../xfburn/xfburn-burn-image-dialog.c:195
 #: ../xfburn/xfburn-copy-cd-dialog.c:124
 #: ../xfburn/xfburn-copy-dvd-dialog.c:121
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:166
@@ -229,13 +229,13 @@ msgid "_Dummy write"
 msgstr "더미 기록(_D)"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:203
-#: ../xfburn/xfburn-burn-image-dialog.c:197
+#: ../xfburn/xfburn-burn-image-dialog.c:199
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:170
 msgid "Burn_Free"
 msgstr "자유 기록(_F)"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:208
-#: ../xfburn/xfburn-burn-image-dialog.c:202
+#: ../xfburn/xfburn-burn-image-dialog.c:204
 msgid "Stream _Recording"
 msgstr "스트림 기록(_R)"
 
@@ -286,7 +286,7 @@ msgstr "이미지 기록하기"
 
 #. file
 #: ../xfburn/xfburn-burn-image-dialog.c:140
-#: ../xfburn/xfburn-burn-image-dialog.c:161
+#: ../xfburn/xfburn-burn-image-dialog.c:163
 msgid "Image to burn"
 msgstr "기록할 이미지"
 
@@ -295,70 +295,70 @@ msgid "All files"
 msgstr "모든 파일"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:148
-msgid "ISO images"
-msgstr "ISO 이미지"
+msgid "Disc images"
+msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:207
+#: ../xfburn/xfburn-burn-image-dialog.c:209
 msgid "_Quit after success"
 msgstr "성공적으로 완료한 후 끝내기(_Q)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:217
+#: ../xfburn/xfburn-burn-image-dialog.c:219
 msgid "_Burn image"
 msgstr "이미지 기록(_B)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:270
+#: ../xfburn/xfburn-burn-image-dialog.c:272
 msgid "Burn mode is not currently implemented."
 msgstr "아직 기록모드를 구현하지 않았습니다."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:321
-#: ../xfburn/xfburn-burn-image-dialog.c:350
+#: ../xfburn/xfburn-burn-image-dialog.c:323
+#: ../xfburn/xfburn-burn-image-dialog.c:352
 msgid "An error occurred in the burn backend"
 msgstr "기록 백엔드에서 오류가 발생했습니다"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:334
+#: ../xfburn/xfburn-burn-image-dialog.c:336
 msgid "Unable to determine image size."
 msgstr "이미지 크기를 결정할 수 없습니다."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:341
+#: ../xfburn/xfburn-burn-image-dialog.c:343
 msgid "Cannot open image."
 msgstr "이미지를 열 수 없습니다."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:378
+#: ../xfburn/xfburn-burn-image-dialog.c:380
 msgid "Burning image..."
 msgstr "이미지 기록중..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:451
+#: ../xfburn/xfburn-burn-image-dialog.c:453
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">기록할 이미지를 선택하십시오</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:491
+#: ../xfburn/xfburn-burn-image-dialog.c:493
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "현재의 기록모드로는 다중세션 디스크에 데이터를 추가할 수 없습니다:(대신 TAO를 사용하십시오)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:495
+#: ../xfburn/xfburn-burn-image-dialog.c:497
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "데이터가 들어있는 닫힌 디스크를 감지했습니다. 비었거나 세션을 덧붙일 수 있는 디스크가 필요합니다"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:497
+#: ../xfburn/xfburn-burn-image-dialog.c:499
 msgid "No disc detected in drive"
 msgstr "드라이브에 디스크가 없습니다"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:499
+#: ../xfburn/xfburn-burn-image-dialog.c:501
 msgid "Cannot recognize state of drive and disc"
 msgstr "드라이브와 디스크의 상태를 알 수 없습니다"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:513
 msgid "The selected image does not fit on the inserted disc"
 msgstr "선택한 이미지는 삽입한 디스크에 맞지 않습니다"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:515
+#: ../xfburn/xfburn-burn-image-dialog.c:517
 msgid "Failed to get image size"
 msgstr "이미지 크기를 가져오는데 실패했습니다"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:544
+#: ../xfburn/xfburn-burn-image-dialog.c:546
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
