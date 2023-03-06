@@ -28,6 +28,7 @@
 #include <string.h>
 #endif
 
+#include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -160,6 +161,11 @@ save_settings (XfburnSettingsPrivate *priv)
   FILE *file_settings;
 
   file_settings = fopen (priv->full_path, "w+");
+
+  if (!file_settings) {
+    g_warning ("Cannot save settings at %s (%s)", priv->full_path, g_strerror (errno));
+    return;
+  }
 
   fprintf (file_settings, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n");
   fprintf (file_settings, "<xfburn-settings>\n");
