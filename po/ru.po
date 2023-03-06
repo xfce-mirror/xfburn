@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-24 12:52+0100\n"
+"POT-Creation-Date: 2023-03-06 12:49+0100\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
 "Last-Translator: Andrei Stepanov, 2023\n"
 "Language-Team: Russian (http://www.transifex.com/xfce/xfce-apps/language/ru/)\n"
@@ -105,7 +105,7 @@ msgstr "Очистка диска"
 
 #: ../xfburn/xfburn-blank-dialog.c:175
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
-#: ../xfburn/xfburn-burn-image-dialog.c:176
+#: ../xfburn/xfburn-burn-image-dialog.c:178
 #: ../xfburn/xfburn-copy-cd-dialog.c:107
 #: ../xfburn/xfburn-copy-dvd-dialog.c:104
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:123
@@ -118,7 +118,7 @@ msgstr "Тип очистки"
 
 #: ../xfburn/xfburn-blank-dialog.c:196
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:190
-#: ../xfburn/xfburn-burn-image-dialog.c:184
+#: ../xfburn/xfburn-burn-image-dialog.c:186
 #: ../xfburn/xfburn-copy-cd-dialog.c:115
 #: ../xfburn/xfburn-copy-dvd-dialog.c:112
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
@@ -127,7 +127,7 @@ msgstr "Настройки"
 
 #: ../xfburn/xfburn-blank-dialog.c:200
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:194
-#: ../xfburn/xfburn-burn-image-dialog.c:188
+#: ../xfburn/xfburn-burn-image-dialog.c:190
 #: ../xfburn/xfburn-copy-cd-dialog.c:119
 #: ../xfburn/xfburn-copy-dvd-dialog.c:116
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:161
@@ -142,7 +142,7 @@ msgstr "_Извлечь диск"
 #. action buttons
 #: ../xfburn/xfburn-blank-dialog.c:206
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:247
-#: ../xfburn/xfburn-burn-image-dialog.c:213
+#: ../xfburn/xfburn-burn-image-dialog.c:215
 #: ../xfburn/xfburn-copy-cd-dialog.c:165
 #: ../xfburn/xfburn-copy-dvd-dialog.c:162 ../xfburn/xfburn-utils.c:132
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:182
@@ -190,8 +190,8 @@ msgstr "Неудача"
 
 #: ../xfburn/xfburn-blank-dialog.c:431
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
-#: ../xfburn/xfburn-burn-image-dialog.c:387
-#: ../xfburn/xfburn-burn-image-dialog.c:565
+#: ../xfburn/xfburn-burn-image-dialog.c:389
+#: ../xfburn/xfburn-burn-image-dialog.c:567
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:359
 msgid "Unable to grab the drive."
 msgstr "Невозможно захватить привод."
@@ -222,7 +222,7 @@ msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "<small>Хотите изменить название проекта по умолчанию?</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:199
-#: ../xfburn/xfburn-burn-image-dialog.c:193
+#: ../xfburn/xfburn-burn-image-dialog.c:195
 #: ../xfburn/xfburn-copy-cd-dialog.c:124
 #: ../xfburn/xfburn-copy-dvd-dialog.c:121
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:166
@@ -230,13 +230,13 @@ msgid "_Dummy write"
 msgstr "Си_мулировать запись"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:203
-#: ../xfburn/xfburn-burn-image-dialog.c:197
+#: ../xfburn/xfburn-burn-image-dialog.c:199
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:170
 msgid "Burn_Free"
 msgstr "Burn_Free"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:208
-#: ../xfburn/xfburn-burn-image-dialog.c:202
+#: ../xfburn/xfburn-burn-image-dialog.c:204
 msgid "Stream _Recording"
 msgstr "Потоковая за_пись"
 
@@ -287,7 +287,7 @@ msgstr "Записать образ"
 
 #. file
 #: ../xfburn/xfburn-burn-image-dialog.c:140
-#: ../xfburn/xfburn-burn-image-dialog.c:161
+#: ../xfburn/xfburn-burn-image-dialog.c:163
 msgid "Image to burn"
 msgstr "Образ для записи"
 
@@ -296,70 +296,70 @@ msgid "All files"
 msgstr "Все файлы"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:148
-msgid "ISO images"
-msgstr "ISO образы"
+msgid "Disc images"
+msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:207
+#: ../xfburn/xfburn-burn-image-dialog.c:209
 msgid "_Quit after success"
 msgstr "_Выйти после удачной записи"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:217
+#: ../xfburn/xfburn-burn-image-dialog.c:219
 msgid "_Burn image"
 msgstr "_Записать образ"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:270
+#: ../xfburn/xfburn-burn-image-dialog.c:272
 msgid "Burn mode is not currently implemented."
 msgstr "Режим прожига в данный момент не поддерживается."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:321
-#: ../xfburn/xfburn-burn-image-dialog.c:350
+#: ../xfburn/xfburn-burn-image-dialog.c:323
+#: ../xfburn/xfburn-burn-image-dialog.c:352
 msgid "An error occurred in the burn backend"
 msgstr "В программе записи дисков произошла ошибка"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:334
+#: ../xfburn/xfburn-burn-image-dialog.c:336
 msgid "Unable to determine image size."
 msgstr "Невозможно определить размер образа."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:341
+#: ../xfburn/xfburn-burn-image-dialog.c:343
 msgid "Cannot open image."
 msgstr "Невозможно открыть образ."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:378
+#: ../xfburn/xfburn-burn-image-dialog.c:380
 msgid "Burning image..."
 msgstr "Запись образа..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:451
+#: ../xfburn/xfburn-burn-image-dialog.c:453
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Пожалуйста, выберите образ для записи</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:491
+#: ../xfburn/xfburn-burn-image-dialog.c:493
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "Невозможно добавить данные к мультисессионному диску в этом режиме записи (используйте TAO)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:495
+#: ../xfburn/xfburn-burn-image-dialog.c:497
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "Обнаружен завершённый диск с данными. Требуется чистый или не завершённый диск."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:497
+#: ../xfburn/xfburn-burn-image-dialog.c:499
 msgid "No disc detected in drive"
 msgstr "В приводе не обнаружено диска"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:499
+#: ../xfburn/xfburn-burn-image-dialog.c:501
 msgid "Cannot recognize state of drive and disc"
 msgstr "Невозможно определить состояние привода и диска"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:513
 msgid "The selected image does not fit on the inserted disc"
 msgstr "Размер образа превышает размер диска"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:515
+#: ../xfburn/xfburn-burn-image-dialog.c:517
 msgid "Failed to get image size"
 msgstr "Невозможно определить размер образа"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:544
+#: ../xfburn/xfburn-burn-image-dialog.c:546
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
