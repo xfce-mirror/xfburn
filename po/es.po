@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-24 12:52+0100\n"
+"POT-Creation-Date: 2023-03-06 12:49+0100\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>, 2021-2023\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-apps/language/es/)\n"
@@ -111,7 +111,7 @@ msgstr "Borrar el disco"
 
 #: ../xfburn/xfburn-blank-dialog.c:175
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
-#: ../xfburn/xfburn-burn-image-dialog.c:176
+#: ../xfburn/xfburn-burn-image-dialog.c:178
 #: ../xfburn/xfburn-copy-cd-dialog.c:107
 #: ../xfburn/xfburn-copy-dvd-dialog.c:104
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:123
@@ -124,7 +124,7 @@ msgstr "Tipo de borrado"
 
 #: ../xfburn/xfburn-blank-dialog.c:196
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:190
-#: ../xfburn/xfburn-burn-image-dialog.c:184
+#: ../xfburn/xfburn-burn-image-dialog.c:186
 #: ../xfburn/xfburn-copy-cd-dialog.c:115
 #: ../xfburn/xfburn-copy-dvd-dialog.c:112
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
@@ -133,7 +133,7 @@ msgstr "Opciones"
 
 #: ../xfburn/xfburn-blank-dialog.c:200
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:194
-#: ../xfburn/xfburn-burn-image-dialog.c:188
+#: ../xfburn/xfburn-burn-image-dialog.c:190
 #: ../xfburn/xfburn-copy-cd-dialog.c:119
 #: ../xfburn/xfburn-copy-dvd-dialog.c:116
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:161
@@ -148,7 +148,7 @@ msgstr "_Expulsar el disco"
 #. action buttons
 #: ../xfburn/xfburn-blank-dialog.c:206
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:247
-#: ../xfburn/xfburn-burn-image-dialog.c:213
+#: ../xfburn/xfburn-burn-image-dialog.c:215
 #: ../xfburn/xfburn-copy-cd-dialog.c:165
 #: ../xfburn/xfburn-copy-dvd-dialog.c:162 ../xfburn/xfburn-utils.c:132
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:182
@@ -196,8 +196,8 @@ msgstr "Error"
 
 #: ../xfburn/xfburn-blank-dialog.c:431
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
-#: ../xfburn/xfburn-burn-image-dialog.c:387
-#: ../xfburn/xfburn-burn-image-dialog.c:565
+#: ../xfburn/xfburn-burn-image-dialog.c:389
+#: ../xfburn/xfburn-burn-image-dialog.c:567
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:359
 msgid "Unable to grab the drive."
 msgstr "No se puede acceder a la unidad."
@@ -228,7 +228,7 @@ msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "<small>¿Quiere cambiar el nombre predeterminado de la composición?</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:199
-#: ../xfburn/xfburn-burn-image-dialog.c:193
+#: ../xfburn/xfburn-burn-image-dialog.c:195
 #: ../xfburn/xfburn-copy-cd-dialog.c:124
 #: ../xfburn/xfburn-copy-dvd-dialog.c:121
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:166
@@ -236,13 +236,13 @@ msgid "_Dummy write"
 msgstr "Grabación _simulada"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:203
-#: ../xfburn/xfburn-burn-image-dialog.c:197
+#: ../xfburn/xfburn-burn-image-dialog.c:199
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:170
 msgid "Burn_Free"
 msgstr "_Protección contra la falta de datos en el búfer"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:208
-#: ../xfburn/xfburn-burn-image-dialog.c:202
+#: ../xfburn/xfburn-burn-image-dialog.c:204
 msgid "Stream _Recording"
 msgstr "Grabación _directa"
 
@@ -293,7 +293,7 @@ msgstr "Grabar una imagen"
 
 #. file
 #: ../xfburn/xfburn-burn-image-dialog.c:140
-#: ../xfburn/xfburn-burn-image-dialog.c:161
+#: ../xfburn/xfburn-burn-image-dialog.c:163
 msgid "Image to burn"
 msgstr "Imagen para grabar"
 
@@ -302,70 +302,70 @@ msgid "All files"
 msgstr "Todos los archivos"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:148
-msgid "ISO images"
-msgstr "Archivos ISO"
+msgid "Disc images"
+msgstr ""
 
-#: ../xfburn/xfburn-burn-image-dialog.c:207
+#: ../xfburn/xfburn-burn-image-dialog.c:209
 msgid "_Quit after success"
 msgstr "_Salir al finalizar correctamente"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:217
+#: ../xfburn/xfburn-burn-image-dialog.c:219
 msgid "_Burn image"
 msgstr "_Grabar la imagen"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:270
+#: ../xfburn/xfburn-burn-image-dialog.c:272
 msgid "Burn mode is not currently implemented."
 msgstr "El modo de grabación todavía no se ha implementado."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:321
-#: ../xfburn/xfburn-burn-image-dialog.c:350
+#: ../xfburn/xfburn-burn-image-dialog.c:323
+#: ../xfburn/xfburn-burn-image-dialog.c:352
 msgid "An error occurred in the burn backend"
 msgstr "Se ha producido un error en el motor de grabación"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:334
+#: ../xfburn/xfburn-burn-image-dialog.c:336
 msgid "Unable to determine image size."
 msgstr "No se puede determinar el tamaño de la imagen."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:341
+#: ../xfburn/xfburn-burn-image-dialog.c:343
 msgid "Cannot open image."
 msgstr "No se puede abrir la imagen."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:378
+#: ../xfburn/xfburn-burn-image-dialog.c:380
 msgid "Burning image..."
 msgstr "Grabando la imagen..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:451
+#: ../xfburn/xfburn-burn-image-dialog.c:453
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Seleccione una imagen para grabar</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:491
+#: ../xfburn/xfburn-burn-image-dialog.c:493
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "No se pueden añadir datos a un disco multisesión en este modo de grabación (use el modo TAO)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:495
+#: ../xfburn/xfburn-burn-image-dialog.c:497
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "Se ha detectado un disco cerrado con datos. Se necesita un disco vacío o al que se puedan añadir datos"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:497
+#: ../xfburn/xfburn-burn-image-dialog.c:499
 msgid "No disc detected in drive"
 msgstr "No se ha detectado ningún disco en la unidad"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:499
+#: ../xfburn/xfburn-burn-image-dialog.c:501
 msgid "Cannot recognize state of drive and disc"
 msgstr "No se puede determinar el estado de la unidad ni del disco"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: ../xfburn/xfburn-burn-image-dialog.c:513
 msgid "The selected image does not fit on the inserted disc"
 msgstr "La imagen seleccionada no cabe en el disco insertado"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:515
+#: ../xfburn/xfburn-burn-image-dialog.c:517
 msgid "Failed to get image size"
 msgstr "No se ha podido obtener el tamaño de la imagen"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:544
+#: ../xfburn/xfburn-burn-image-dialog.c:546
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
