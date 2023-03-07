@@ -399,9 +399,7 @@ xfburn_progress_dialog_pulse_progress_bar (XfburnProgressDialog * dialog)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
 
-  gdk_threads_enter ();
-  gtk_progress_bar_pulse (GTK_PROGRESS_BAR (priv->progress_bar));
-  gdk_threads_leave ();
+  safe_gtk_progress_bar_pulse (GTK_PROGRESS_BAR (priv->progress_bar));
 }
 
 /* getters */
@@ -451,10 +449,8 @@ xfburn_progress_dialog_set_buffer_bar_fraction (XfburnProgressDialog * dialog, g
     text = g_strdup_printf ("%d%%", (int) (fraction));
   }
 
-  gdk_threads_enter ();
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->buffer_bar), fraction / 100.0);
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), text);
-  gdk_threads_leave ();
+  safe_gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->buffer_bar), fraction / 100.0);
+  safe_gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), text);
 
   g_free (text);
 }
@@ -475,10 +471,8 @@ xfburn_progress_dialog_set_buffer_bar_min_fill (XfburnProgressDialog * dialog, g
     text = g_strdup_printf (_("Min. fill was %2d%%"), (int) (fraction));
   }
 
-  gdk_threads_enter ();
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->buffer_bar), fraction / 100.0);
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), text);
-  gdk_threads_leave ();
+  safe_gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->buffer_bar), fraction / 100.0);
+  safe_gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->buffer_bar), text);
 
   g_free (text);
 }
@@ -499,10 +493,8 @@ xfburn_progress_dialog_set_fifo_bar_fraction (XfburnProgressDialog * dialog, gdo
     text = g_strdup_printf ("%d%%", (int) (fraction));
   }
 
-  gdk_threads_enter ();
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->fifo_bar), fraction / 100.0);
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), text);
-  gdk_threads_leave ();
+  safe_gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->fifo_bar), fraction / 100.0);
+  safe_gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), text);
 
   g_free (text);
 }
@@ -512,10 +504,8 @@ xfburn_progress_dialog_set_fifo_bar_text (XfburnProgressDialog * dialog, const g
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
 
-  gdk_threads_enter ();
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->fifo_bar), 0.0);
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), text);
-  gdk_threads_leave ();
+  safe_gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->fifo_bar), 0.0);
+  safe_gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->fifo_bar), text);
 }
 
 void
@@ -579,10 +569,8 @@ xfburn_progress_dialog_set_progress_bar_fraction (XfburnProgressDialog * dialog,
     return;
   }
 
-  gdk_threads_enter ();
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->progress_bar), fraction / 100.0);
-  gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), text);
-  gdk_threads_leave ();
+  safe_gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (priv->progress_bar), fraction / 100.0);
+  safe_gtk_progress_bar_set_text (GTK_PROGRESS_BAR (priv->progress_bar), text);
 
   g_free (text);
 }
