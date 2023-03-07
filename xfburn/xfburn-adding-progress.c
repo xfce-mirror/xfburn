@@ -25,6 +25,7 @@
 
 #include "xfburn-global.h"
 #include "xfburn-adding-progress.h"
+#include "xfburn-thread-wrappers.h"
 #include "xfburn-utils.h"
 
 #define XFBURN_ADDING_PROGRESS_GET_PRIVATE(obj) (xfburn_adding_progress_get_instance_private (obj))
@@ -132,14 +133,6 @@ cb_cancel (GtkButton *widget, gpointer data)
 }
 
 static gboolean
-cb_pulse (gpointer progress_bar)
-{
-  gtk_progress_bar_pulse (GTK_PROGRESS_BAR (progress_bar));
-
-  return G_SOURCE_REMOVE;
-}
-
-static gboolean
 cb_done (gpointer adding_progress)
 {
   g_signal_emit (G_OBJECT (adding_progress), signals[ADDING_DONE], 0);
@@ -174,7 +167,7 @@ xfburn_adding_progress_pulse (XfburnAddingProgress *adding_progress)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (adding_progress);
 
-  gdk_threads_add_idle (cb_pulse, priv->progress_bar);
+  safe_gtk_progress_bar_pulse (GTK_PROGRESS_BAR (priv->progress_bar));
 }
 
 void
