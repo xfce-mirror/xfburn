@@ -17,6 +17,14 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/*
+ * This file is organized not by public/private, but by wrapped function.
+ * Each wrapped function has the following pattern:
+ *   - a struct definition, if needed
+ *   - the callback that is run on the main thread
+ *   - the wrapper that is called on a non-main thread
+ */
+
 #include "xfburn-thread-wrappers.h"
 
 /* gtk_progress_bar_pulse */
@@ -32,6 +40,58 @@ void
 safe_gtk_progress_bar_pulse (GtkProgressBar *pbar)
 {
   gdk_threads_add_idle (cb_gtk_progress_bar_pulse, pbar);
+}
+
+/* gtk_progress_bar_set_fraction */
+
+typedef struct
+{
+  GtkProgressBar *pbar;
+  gdouble fraction;
+} SetFractionParams;
+
+static gboolean
+cb_gtk_progress_bar_set_fraction (gpointer user_data)
+{
+  SetFractionParams *params = (SetFractionParams *) user_data;
+  gtk_progress_bar_set_fraction (params->pbar, params->fraction);
+  g_free (params);
+  return G_SOURCE_REMOVE;
+}
+
+void
+safe_gtk_progress_bar_set_fraction (GtkProgressBar *pbar, gdouble fraction)
+{
+  SetFractionParams *params = g_new (SetFractionParams, 1);
+  params->pbar = pbar;
+  params->fraction = fraction;
+  gdk_threads_add_idle (cb_gtk_progress_bar_set_fraction, params);
+}
+
+/* gtk_progress_bar_set_text */
+
+typedef struct
+{
+  GtkProgressBar *pbar;
+  const gchar *text;
+} SetTextParams;
+
+static gboolean
+cb_gtk_progress_bar_set_text (gpointer user_data)
+{
+  SetTextParams *params = (SetTextParams *) user_data;
+  gtk_progress_bar_set_text (params->pbar, params->text);
+  g_free (params);
+  return G_SOURCE_REMOVE;
+}
+
+void
+safe_gtk_progress_bar_set_text (GtkProgressBar *pbar, const gchar *text)
+{
+  SetTextParams *params = g_new (SetTextParams, 1);
+  params->pbar = pbar;
+  params->text = text;
+  gdk_threads_add_idle (cb_gtk_progress_bar_set_text, params);
 }
 
 /* gtk_widget_hide */
