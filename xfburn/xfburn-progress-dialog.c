@@ -35,6 +35,7 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-global.h"
 #include "xfburn-main.h"
+#include "xfburn-thread-wrappers.h"
 #include "xfburn-utils.h"
 
 #define XFBURN_PROGRESS_DIALOG_GET_PRIVATE(obj) (xfburn_progress_dialog_get_instance_private (XFBURN_PROGRESS_DIALOG (obj)))
@@ -387,12 +388,10 @@ xfburn_progress_dialog_show_buffers (XfburnProgressDialog * dialog, gboolean sho
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
 
-  gdk_threads_enter ();
   if (show)
-    gtk_widget_show (priv->hbox_buffers);
+    safe_gtk_widget_show (priv->hbox_buffers);
   else
-    gtk_widget_hide (priv->hbox_buffers);
-  gdk_threads_leave ();
+    safe_gtk_widget_hide (priv->hbox_buffers);
 }
 
 void
