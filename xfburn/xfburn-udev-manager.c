@@ -194,9 +194,7 @@ xfburn_udev_manager_shutdown (void)
 void
 xfburn_udev_manager_send_volume_changed (void)
 {
-  //gdk_threads_enter ();
   g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
-  //gdk_threads_leave ();
 }
 
 GList *
