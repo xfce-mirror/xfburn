@@ -308,9 +308,7 @@ set_writing_speed (XfburnProgressDialog * dialog, gfloat speed)
   else
     temp = g_strdup_printf ("<b><i>%.1f x</i></b>", speed);
 
-  gtk_label_set_markup (GTK_LABEL (priv->label_speed), temp);
-
-  g_free (temp);
+  safe_gtk_label_set_markup (GTK_LABEL (priv->label_speed), temp);
 }
 
 static void
@@ -324,9 +322,7 @@ set_action_text (XfburnProgressDialog * dialog, XfburnProgressDialogStatus statu
   else
     temp = g_strdup_printf ("<b>%s</b>", text);
 
-  gtk_label_set_markup (GTK_LABEL (priv->label_action), temp);
-
-  g_free (temp);
+  safe_gtk_label_set_markup (GTK_LABEL (priv->label_action), temp);
 }
 
 static void
@@ -428,9 +424,7 @@ xfburn_progress_dialog_get_status (XfburnProgressDialog * dialog)
 void
 xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gfloat speed)
 {
-  gdk_threads_enter ();
   set_writing_speed (dialog, speed);
-  gdk_threads_leave ();
 }
 
 void
@@ -583,9 +577,7 @@ xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgress
   priv->status = status;
 
   if (status == XFBURN_PROGRESS_DIALOG_STATUS_STOPPING) {
-    gdk_threads_enter ();
     set_action_text (dialog, status, _("Aborting..."));
-    gdk_threads_leave ();
   } else if (status > XFBURN_PROGRESS_DIALOG_STATUS_META_DONE) {
     safe_gtk_widget_set_sensitive (priv->button_stop, FALSE);
     safe_gtk_widget_set_sensitive (priv->button_close, TRUE);
@@ -601,14 +593,12 @@ xfburn_progress_dialog_set_status_with_text (XfburnProgressDialog * dialog, Xfbu
 
   xfburn_progress_dialog_set_status (dialog, status);
 
-  gdk_threads_enter ();
   set_action_text (dialog, status, text);
   if (status > XFBURN_PROGRESS_DIALOG_STATUS_META_DONE) {
     safe_g_signal_emit (G_OBJECT (dialog), signals[BURNING_DONE], 0);
     if (status == XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED && priv->quit)
       g_idle_add ((GSourceFunc) gtk_main_quit, NULL );
   }
-  gdk_threads_leave ();
 }
 
 /**

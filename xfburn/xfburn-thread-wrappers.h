@@ -26,6 +26,8 @@ G_BEGIN_DECLS
 
 /* Thread-safe wrapper for g_signal_emit with minimal arguments*/
 void safe_g_signal_emit (gpointer instance, guint signal_id, GQuark detail);
+/* Thread-safe wrapper for gtk_label_set_markup */
+void safe_gtk_label_set_markup (GtkLabel *label, const gchar *str);
 /* Thread-safe wrapper for gtk_progress_bar_pulse */
 void safe_gtk_progress_bar_pulse (GtkProgressBar *pbar);
 /* Thread-safe wrapper for gtk_progress_bar_set_fraction */
