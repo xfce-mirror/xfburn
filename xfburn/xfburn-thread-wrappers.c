@@ -55,6 +55,33 @@ safe_g_signal_emit (gpointer instance, guint signal_id, GQuark detail)
   gdk_threads_add_idle (cb_g_signal_emit, params);
 }
 
+/* gtk_label_set_markup */
+
+typedef struct
+{
+  GtkLabel *label;
+  const gchar *str;
+} SetMarkupParams;
+
+static gboolean
+cb_gtk_label_set_markup (gpointer user_data)
+{
+  SetMarkupParams *params = (SetMarkupParams *) user_data;
+  gtk_label_set_markup (params->label, params->str);
+  g_free (params->str);
+  g_free (params);
+  return G_SOURCE_REMOVE;
+}
+
+void
+safe_gtk_label_set_markup (GtkLabel *label, const gchar *str)
+{
+  SetMarkupParams *params = g_new (SetMarkupParams, 1);
+  params->label = label;
+  params->str = str;
+  gdk_threads_add_idle (cb_gtk_label_set_markup, params);
+}
+
 /* gtk_progress_bar_pulse */
 
 static gboolean
