@@ -27,6 +27,34 @@
 
 #include "xfburn-thread-wrappers.h"
 
+/* g_signal_emit */
+
+typedef struct
+{
+  gpointer instance;
+  guint signal_id;
+  GQuark detail;
+} SignalEmitParams;
+
+static gboolean
+cb_g_signal_emit (gpointer user_data)
+{
+  SignalEmitParams *params = (SignalEmitParams *) user_data;
+  g_signal_emit (params->instance, params->signal_id, params->detail);
+  g_free (params);
+  return G_SOURCE_REMOVE;
+}
+
+void
+safe_g_signal_emit (gpointer instance, guint signal_id, GQuark detail)
+{
+  SignalEmitParams *params = g_new (SignalEmitParams, 1);
+  params->instance = instance;
+  params->signal_id = signal_id;
+  params->detail = detail;
+  gdk_threads_add_idle (cb_g_signal_emit, params);
+}
+
 /* gtk_progress_bar_pulse */
 
 static gboolean
