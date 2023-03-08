@@ -38,7 +38,7 @@
 #include "xfburn-global.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-device-list.h"
-
+#include "xfburn-thread-wrappers.h"
 #include "xfburn-udev-manager.h"
 
 static void xfburn_udev_manager_finalize (GObject * object);
@@ -194,7 +194,7 @@ xfburn_udev_manager_shutdown (void)
 void
 xfburn_udev_manager_send_volume_changed (void)
 {
-  g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
+  safe_g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
 }
 
 GList *
