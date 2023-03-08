@@ -36,6 +36,8 @@ void safe_gtk_progress_bar_set_text (GtkProgressBar *pbar, const gchar *text);
 void safe_gtk_tree_path_free (GtkTreePath *path);
 /* Thread-safe wrapper for gtk_widget_hide */
 void safe_gtk_widget_hide (GtkWidget *widget);
+/* Thread-safe wrapper for gtk_widget_set_sensitive */
+void safe_gtk_widget_set_sensitive (GtkWidget *widget, gboolean sensitive);
 /* Thread-safe wrapper for gtk_widget_show */
 void safe_gtk_widget_show (GtkWidget *widget);
 

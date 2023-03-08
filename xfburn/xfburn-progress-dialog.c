@@ -587,13 +587,10 @@ xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgress
     set_action_text (dialog, status, _("Aborting..."));
     gdk_threads_leave ();
   } else if (status > XFBURN_PROGRESS_DIALOG_STATUS_META_DONE) {
-    gdk_threads_enter ();
-    gtk_widget_set_sensitive (priv->button_stop, FALSE);
-    gtk_widget_set_sensitive (priv->button_close, TRUE);
-    gdk_threads_leave ();
+    safe_gtk_widget_set_sensitive (priv->button_stop, FALSE);
+    safe_gtk_widget_set_sensitive (priv->button_close, TRUE);
 
     xfburn_progress_dialog_set_progress_bar_fraction (dialog, 100.0);
-
   }
 }
 
@@ -607,7 +604,7 @@ xfburn_progress_dialog_set_status_with_text (XfburnProgressDialog * dialog, Xfbu
   gdk_threads_enter ();
   set_action_text (dialog, status, text);
   if (status > XFBURN_PROGRESS_DIALOG_STATUS_META_DONE) {
-    g_signal_emit (G_OBJECT (dialog), signals[BURNING_DONE], 0);
+    safe_g_signal_emit (G_OBJECT (dialog), signals[BURNING_DONE], 0);
     if (status == XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED && priv->quit)
       g_idle_add ((GSourceFunc) gtk_main_quit, NULL );
   }

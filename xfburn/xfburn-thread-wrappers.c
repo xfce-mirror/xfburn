@@ -152,6 +152,32 @@ safe_gtk_widget_hide (GtkWidget *widget)
   gdk_threads_add_idle (cb_gtk_widget_hide, widget);
 }
 
+/* gtk_widget_set_sensitive */
+
+typedef struct
+{
+  GtkWidget *widget;
+  gboolean sensitive;
+} SetSensitiveParams;
+
+static gboolean
+cb_gtk_widget_set_sensitive (gpointer user_data)
+{
+  SetSensitiveParams *params = (SetSensitiveParams *) user_data;
+  gtk_widget_set_sensitive (params->widget, params->sensitive);
+  g_free (params);
+  return G_SOURCE_REMOVE;
+}
+
+void
+safe_gtk_widget_set_sensitive (GtkWidget *widget, gboolean sensitive)
+{
+  SetSensitiveParams *params = g_new (SetSensitiveParams, 1);
+  params->widget = widget;
+  params->sensitive = sensitive;
+  gdk_threads_add_idle (cb_gtk_widget_set_sensitive, params);
+}
+
 /* gtk_widget_show */
 
 static gboolean
