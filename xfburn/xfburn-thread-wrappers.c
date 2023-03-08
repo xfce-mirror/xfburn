@@ -122,6 +122,21 @@ safe_gtk_progress_bar_set_text (GtkProgressBar *pbar, const gchar *text)
   gdk_threads_add_idle (cb_gtk_progress_bar_set_text, params);
 }
 
+/* gtk_tree_path_free */
+
+static gboolean
+cb_gtk_tree_path_free (gpointer path)
+{
+  gtk_tree_path_free ((GtkTreePath *) path);
+  return G_SOURCE_REMOVE;
+}
+
+void
+safe_gtk_tree_path_free (GtkTreePath *path)
+{
+  gdk_threads_add_idle (cb_gtk_tree_path_free, path);
+}
+
 /* gtk_widget_hide */
 
 static gboolean
