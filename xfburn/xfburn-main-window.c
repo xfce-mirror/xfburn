@@ -438,10 +438,11 @@ action_quit (GAction * action, GVariant* param, XfburnMainWindow * window)
 static void
 action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
 {
-  const gchar *auth[] = { "David Mohr david@mcbf.net Author/Maintainer",
-			  "Mario Đanić mario@libburnia-project.org Author/Maintainer",
-			  "Jean-François Wauthy pollux@xfce.org Retired author/maintainer",
-			  "Rene Kjellerup rk.katana.steel@gmail.com Author/GTK+3",
+  const gchar *auth[] = { "David Mohr david@mcbf.net",
+			  "Mario Đanić mario@libburnia-project.org",
+			  "Jean-François Wauthy pollux@xfce.org",
+			  "Rene Kjellerup rk.katana.steel@gmail.com",
+			  "Hunter Turcin huntertur@gmail.com",
 			  NULL };
   const gchar *translators =
     "Mohamed Magdy mohamed.m.k@gmail.com ar\n"
@@ -488,7 +489,7 @@ action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
 		  "version", VERSION,
 		  "comments", _("Another cd burning GUI"),
 		  "website", "https://docs.xfce.org/apps/xfburn/start",
-		  "copyright", "2005-2008 David Mohr, Mario Đanić, Jean-François Wauthy",
+		  "copyright", "2005-2023 Xfce development team",
 		  "authors", auth,
 		  "translator-credits", translators,
 		  NULL);
