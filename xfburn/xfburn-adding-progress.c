@@ -132,14 +132,6 @@ cb_cancel (GtkButton *widget, gpointer data)
   return TRUE;
 }
 
-static gboolean
-cb_done (gpointer adding_progress)
-{
-  g_signal_emit (G_OBJECT (adding_progress), signals[ADDING_DONE], 0);
-
-  return G_SOURCE_REMOVE;
-}
-
 /******************/
 /* public methods */
 /******************/
@@ -173,7 +165,7 @@ xfburn_adding_progress_pulse (XfburnAddingProgress *adding_progress)
 void
 xfburn_adding_progress_done (XfburnAddingProgress *adding_progress)
 {
-  gdk_threads_add_idle (cb_done, adding_progress);
+  safe_g_signal_emit (G_OBJECT (adding_progress), signals[ADDING_DONE], 0);
 }
 
 gboolean
