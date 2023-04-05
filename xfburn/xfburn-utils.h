@@ -36,7 +36,6 @@ void xfburn_busy_cursor (GtkWidget *);
 void xfburn_default_cursor (GtkWidget *);
 
 gchar *xfburn_humanreadable_filesize (guint64);
-guint64 xfburn_calc_dirsize (const gchar *);
 GSList * xfburn_make_abosulet_file_list (gint count, gchar *filenames[]);
 
 void xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent);
