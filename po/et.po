@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-06 12:49+0100\n"
+"POT-Creation-Date: 2023-05-30 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2020-2023\n"
 "Language-Team: Estonian (http://app.transifex.com/xfce/xfce-apps/language/et/)\n"
@@ -25,7 +25,7 @@ msgstr "Maht:"
 
 #: ../xfburn/xfburn-global.h:29
 msgid "addr:"
-msgstr ""
+msgstr "aadr:"
 
 #: ../xfburn/xfburn-global.h:30
 msgid "Time total:"
@@ -234,7 +234,7 @@ msgstr "Burn_Free"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:208
 #: ../xfburn/xfburn-burn-image-dialog.c:204
 msgid "Stream _Recording"
-msgstr ""
+msgstr "Meediavoo _salvestamine"
 
 #. create ISO ?
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:214
@@ -297,7 +297,7 @@ msgstr "Kettatõmmised"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:209
 msgid "_Quit after success"
-msgstr ""
+msgstr "Peale õnnestunud kirjutamist _sulge rakendus"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:219
 msgid "_Burn image"
@@ -333,7 +333,7 @@ msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Va
 #: ../xfburn/xfburn-burn-image-dialog.c:493
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "Multisessioonilist plaati pole selles kirjutusrežiimis võimalik täiendada (kasuta selle asemel TAO-režiimi)"
+msgstr "Mitmesessioonilist plaati pole selles kirjutusrežiimis võimalik täiendada (kasuta selle asemel TAO-režiimi)"
 
 #: ../xfburn/xfburn-burn-image-dialog.c:497
 msgid "Closed disc with data detected. Need blank or appendable disc"
@@ -649,7 +649,7 @@ msgstr "Kettaseade on tühi"
 
 #: ../xfburn/xfburn-device-box.c:569
 msgid "Sorry, multisession is not yet supported"
-msgstr ""
+msgstr "Vabandust, mitmesessioonilise plaadi kirjutamine pole veel toetatud"
 
 #: ../xfburn/xfburn-device-box.c:572
 msgid "Inserted disc is full"
@@ -685,11 +685,11 @@ msgstr "Vali automaatselt"
 
 #: ../xfburn/xfburn-device-box.c:658
 msgid "With Track Gaps / Track-At-Once (TAO)"
-msgstr ""
+msgstr "Kasutades radade lünki / Rada-ühe-korraga (TAO)"
 
 #: ../xfburn/xfburn-device-box.c:665
 msgid "Multi Session / Session-At-Once (SAO)"
-msgstr ""
+msgstr "Mitmesessiooniline / Sessioon ühe korraga (SAO)"
 
 #: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
@@ -752,13 +752,13 @@ msgstr "Ava tühja plaadi valikute aken"
 msgid ""
 "Start a data composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "Hakka looma andmeplaati, kuhu võid soovi korral veel lisada faile/kaustu"
 
 #: ../xfburn/xfburn-main.c:80
 msgid ""
 "Start an audio composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "Hakka looma heliplaati, kuhu võid soovi korral veel lisada faile/kaustu"
 
 #: ../xfburn/xfburn-main.c:82
 msgid ""
@@ -769,7 +769,7 @@ msgstr "Vali kodeerija, mille täpse loendi leiad rakenduse käivitamisel --tran
 msgid ""
 "Start the file browser in the specified directory, or the current directory "
 "if none is specified (the default is to start in your home directory)"
-msgstr ""
+msgstr "Käivita rakendusesisene failihaldur etteantud kaustas või kui see on määramata, siis praeguses asukohas (mis tavaliselt tähendab sinu kodukausta)"
 
 #: ../xfburn/xfburn-main.c:86
 msgid "Display program version and exit"
@@ -778,7 +778,7 @@ msgstr "Näita versiooniteavet ja sulge rakendus"
 #: ../xfburn/xfburn-main.c:88
 msgid ""
 "Show main program even when other action is specified on the command line."
-msgstr ""
+msgstr "Näita rakenduse põhilist akent isegi siis, kui käsurealt on midagi muud määratletud."
 
 #: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
 #: ../org.xfce.xfburn.appdata.xml.in.h:1
@@ -805,7 +805,7 @@ msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr ""
+msgstr "Võib-olla kettaseade(seadmed) on kasutusel ja neile puudub ligipääs.\n\nKui kettaseade on tühi, siis palun kontrolli, kas sinu kasutajal on selle seadme jaoks lugemis- ja kirjutamisõigused."
 
 #: ../xfburn/xfburn-main.c:329
 #, c-format
@@ -843,7 +843,7 @@ msgstr "Värskenda"
 msgid "Refresh file list"
 msgstr "Värskenda failide nimekirja"
 
-#: ../xfburn/xfburn-main-window.c:489
+#: ../xfburn/xfburn-main-window.c:490
 msgid "Another cd burning GUI"
 msgstr "Järjekordne CD-kirjutamise kasutajaliides"
 
@@ -861,7 +861,7 @@ msgstr "Näita sulgemise nuppu"
 
 #: ../xfburn/xfburn-notebook-tab.c:84
 msgid "Determine whether the close button is visible"
-msgstr ""
+msgstr "Määra, kas sulgemise nupp on nähtaval"
 
 #: ../xfburn/xfburn-perform-burn.c:103 ../xfburn/xfburn-perform-burn.c:452
 msgid "Formatting..."
@@ -871,7 +871,7 @@ msgstr "Vormindamine..."
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
-msgstr "Multisessioonilist plaati pole selles kirjutusrežiimis võimalik täiendada (kasuta selle asemel TAO-režiimi)."
+msgstr "Mitmesessioonilist plaati pole selles kirjutusrežiimis võimalik täiendada (kasuta selle asemel TAO-režiimi)."
 
 #: ../xfburn/xfburn-perform-burn.c:274
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
@@ -960,7 +960,7 @@ msgstr "lisateavet leiad konsoolilt"
 
 #: ../xfburn/xfburn-perform-burn.c:493
 msgid "User Aborted"
-msgstr ""
+msgstr "Kasutaja katkestas tegevuse"
 
 #: ../xfburn/xfburn-preferences-dialog.c:117
 msgid "Preferences"
@@ -1043,7 +1043,7 @@ msgstr "_Otsi seadmeid"
 
 #: ../xfburn/xfburn-preferences-dialog.c:306
 msgid "Show warning on _empty speed list"
-msgstr ""
+msgstr "Kui kiiruste loend on _tühi, siis näita hoiatust"
 
 #: ../xfburn/xfburn-preferences-dialog.c:315
 msgid "FIFO buffer size (in kb)"
@@ -1055,7 +1055,7 @@ msgstr "_Sulge"
 
 #: ../xfburn/xfburn-preferences-dialog.c:469
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr ""
+msgstr "Selle seadistuse muutmine jõustub vaid rakenduse uuesti käivitamisel."
 
 #. label
 #: ../xfburn/xfburn-progress-dialog.c:168
@@ -1093,7 +1093,7 @@ msgstr "_Peata"
 
 #: ../xfburn/xfburn-progress-dialog.c:227
 msgid "Close"
-msgstr "Sulgeda"
+msgstr "Sulge"
 
 #: ../xfburn/xfburn-progress-dialog.c:348
 msgid "Are you sure you want to abort?"
@@ -1147,7 +1147,7 @@ msgstr "<big>_Kirjuta tõmmis</big>"
 
 #: ../xfburn/xfburn-welcome-tab.c:119
 msgid "Burn a prepared composition, i.e. an .ISO file"
-msgstr ""
+msgstr "Kirjuta ettevalmistatud kogumik, näiteks .ISO fail"
 
 #: ../xfburn/xfburn-welcome-tab.c:124
 msgid "<big>New _Data Composition</big>"
@@ -1233,7 +1233,7 @@ msgstr "Plaadile kirjutamise taustateenuse töölepanekul tekkis viga"
 
 #: ../xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
-msgstr ""
+msgstr "lihtne"
 
 #: ../xfburn/xfburn-transcoder-basic.c:135
 msgid ""
@@ -1260,7 +1260,7 @@ msgstr "Failis %s ei leidu pakkimata PCM wave-tüüpi heliriba"
 #: ../xfburn/xfburn-transcoder-basic.c:170
 #, c-format
 msgid "Could not stat %s: %s"
-msgstr ""
+msgstr "%s kohta stat käsu käivitamine ei õnnestunud: %s"
 
 #: ../xfburn/xfburn-transcoder-basic.c:202
 #, c-format
@@ -1288,7 +1288,7 @@ msgstr "%s on puudu.\n\nSelle faili kasutamiseks puudub sinu arvutis sobilik kod
 
 #: ../xfburn/xfburn-transcoder-gst.c:544
 msgid "File content has a decoder but is not audio."
-msgstr ""
+msgstr "Faili sisule leidub dekooder, kuid tegemist pole helivooga."
 
 #: ../xfburn/xfburn-transcoder-gst.c:587
 msgid ""
@@ -1313,7 +1313,7 @@ msgstr "Nõutavad pistikprogrammid:"
 #: ../xfburn/xfburn-transcoder-gst.c:664 ../xfburn/xfburn-transcoder-gst.c:694
 #, c-format
 msgid "An error occurred while identifying '%s' with gstreamer"
-msgstr ""
+msgstr "„%s“ tuvastamisel gstreamer'iga tekkis viga"
 
 #: ../xfburn/xfburn-transcoder-gst.c:681
 msgid "A plugin"
