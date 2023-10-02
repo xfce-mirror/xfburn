@@ -102,4 +102,6 @@ GtkWidget * xfburn_device_list_get_device_combo (XfburnDeviceList *devlist);
 XfburnDevice * xfburn_device_list_get_current_device (XfburnDeviceList *devlist);
 void xfburn_device_list_refresh_device_combo (XfburnDeviceList *devlist, GtkWidget *combo_device);
 
+G_END_DECLS
+
 #endif /* __XFBURN_DEVICE_LIST_H__ */

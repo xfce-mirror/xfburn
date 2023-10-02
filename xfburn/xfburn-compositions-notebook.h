@@ -25,6 +25,7 @@
 #include "xfburn-composition.h"
 
 G_BEGIN_DECLS
+
 #define XFBURN_TYPE_COMPOSITIONS_NOTEBOOK         (xfburn_compositions_notebook_get_type ())
 #define XFBURN_COMPOSITIONS_NOTEBOOK(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, XfburnCompositionsNotebook))
 #define XFBURN_COMPOSITIONS_NOTEBOOK_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, XfburnCompositionsNotebookClass))
@@ -59,5 +60,7 @@ void xfburn_compositions_notebook_close_composition (XfburnCompositionsNotebook 
 
 void xfburn_compositions_notebook_load_composition (XfburnCompositionsNotebook *notebook, const gchar *file);
 void xfburn_compositions_notebook_save_composition (XfburnCompositionsNotebook *notebook);
+
+G_END_DECLS
 
 #endif /* XFBURN_COMPOSITIONS_NOTEBOOK_H */
