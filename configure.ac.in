@@ -52,7 +52,7 @@ dnl **************************************
 dnl *** Optional support for gstreamer ***
 dnl **************************************
 XDT_CHECK_OPTIONAL_PACKAGE([GST], [gstreamer-1.0], [1.0.0], [gstreamer], [GStreamer support for burning audio])
-if test x"$GST_FOUND" == x"yes"; then
+if test x"$GST_FOUND" = x"yes"; then
   XDT_CHECK_PACKAGE([GST_PBUTILS], [gstreamer-pbutils-1.0], [1.0])
 fi
 
