@@ -194,9 +194,7 @@ xfburn_udev_manager_shutdown (void)
 void
 xfburn_udev_manager_send_volume_changed (void)
 {
-  //gdk_threads_enter ();
   g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
-  //gdk_threads_leave ();
 }
 
 GList *
@@ -446,9 +444,7 @@ xfburn_udev_manager_check_ask_umount (XfburnUdevManager *udevman, XfburnDevice *
 
     op->loop = g_main_loop_new (NULL, FALSE);
 
-    GDK_THREADS_LEAVE ();
     g_main_loop_run (op->loop);
-    GDK_THREADS_ENTER ();
 
     g_main_loop_unref (op->loop);
     op->loop = NULL;
