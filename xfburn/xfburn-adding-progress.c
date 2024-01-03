@@ -150,28 +150,19 @@ xfburn_adding_progress_new (void)
   return XFBURN_ADDING_PROGRESS (obj);
 }
 
-/*
- * these functions are expected to be called from the secondary thread
- */
 void
 xfburn_adding_progress_pulse (XfburnAddingProgress *adding_progress)
 {
   XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (adding_progress);
-
-  gdk_threads_enter ();
   //DBG ("pulse");
   gtk_progress_bar_pulse (GTK_PROGRESS_BAR (priv->progress_bar));
-  gdk_threads_leave ();
 }
 
 void
 xfburn_adding_progress_done (XfburnAddingProgress *adding_progress)
 {
   //XfburnAddingProgressPrivate *priv = XFBURN_ADDING_PROGRESS_GET_PRIVATE (adding_progress);
-
-  gdk_threads_enter ();
   g_signal_emit (G_OBJECT (adding_progress), signals[ADDING_DONE], 0);
-  gdk_threads_leave ();
 }
 
 gboolean

@@ -1076,9 +1076,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
 
     /* ensure that we can only drop on top of folders, not files */
     if (insertion) {
-      gdk_threads_enter ();
       gtk_tree_model_get (model, insertion, DATA_COMPOSITION_COLUMN_TYPE, &parent_type, -1);
-      gdk_threads_leave ();
 
       if (parent_type == DATA_COMPOSITION_TYPE_FILE) {
         DBG ("Parent is file, and we're dropping into %d", position);
@@ -1096,12 +1094,10 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
       if (insertion) {
           GtkTreeIter iter_parent;
 
-          gdk_threads_enter ();
           if (gtk_tree_model_iter_parent (model, &iter_parent, insertion)) {
             parent = g_new0 (GtkTreeIter, 1);
             memcpy (parent, &iter_parent, sizeof (GtkTreeIter));
           }
-          gdk_threads_leave ();
         }
         break;
       case GTK_TREE_VIEW_DROP_INTO_OR_BEFORE:
@@ -1112,7 +1108,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
     }
 
     /* check if the filename is valid */
-    gdk_threads_enter ();
     if (parent) {
       tree_path = gtk_tree_model_get_path (model, parent);
       gtk_tree_path_down (tree_path);
@@ -1124,12 +1119,10 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
       xfce_dialog_show_error (NULL, NULL, _("A file with the same name is already present in the composition."));
 
       gtk_tree_path_free (tree_path);
-      gdk_threads_leave ();
       g_free (parent);
       return FALSE;
     }
     gtk_tree_path_free (tree_path);
-    gdk_threads_leave ();
 
     /* new directory */
     if (S_ISDIR (s.st_mode) && !S_ISLNK (s.st_mode)) {
@@ -1148,7 +1141,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
         return FALSE;
       }
 
-      gdk_threads_enter ();
       gtk_tree_store_append (GTK_TREE_STORE (model), iter, parent);
 
       gtk_tree_store_set (GTK_TREE_STORE (model), iter,
@@ -1158,7 +1150,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
                           DATA_COMPOSITION_COLUMN_PATH, path,
                           DATA_COMPOSITION_COLUMN_SIZE, (guint64) 4, -1);
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), (guint64) 4);
-      gdk_threads_leave ();
 
       while ((filename = g_dir_read_name (dir))) {
         GtkTreeIter new_iter;
@@ -1169,9 +1160,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
           guint64 size;
 
           if (thread_add_file_to_list (dc, model, new_path, &new_iter, iter, GTK_TREE_VIEW_DROP_INTO_OR_AFTER)) {
-            gdk_threads_enter ();
             gtk_tree_model_get (model, &new_iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
-            gdk_threads_leave ();
             total_size += size;
           }
 
@@ -1180,10 +1169,8 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
       }
 
       humansize = xfburn_humanreadable_filesize (total_size);
-      gdk_threads_enter ();
       gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                           DATA_COMPOSITION_COLUMN_HUMANSIZE, humansize, DATA_COMPOSITION_COLUMN_SIZE, total_size, -1);
-      gdk_threads_leave ();
 
       g_dir_close (dir);
     }
@@ -1199,19 +1186,14 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
       GtkIconInfo *icon_info = NULL;
 
       if (s.st_size > MAXIMUM_ISO_FILE_SIZE) {
-        gdk_threads_enter ();
         xfce_dialog_show_error (NULL, NULL, _("%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."), path);
-        gdk_threads_leave ();
 
         return FALSE;
       } else if (s.st_size > MAXIMUM_ISO_LEVEL_2_FILE_SIZE && !priv->large_files) {
         priv->large_files = TRUE;
-        gdk_threads_enter ();
         xfce_dialog_show_warning (NULL, NULL, _("%s is larger than what iso9660 level 2 allows. This can be a problem for old systems or software."), path);
-        gdk_threads_leave ();
       }
 
-      gdk_threads_enter ();
       screen = gtk_widget_get_screen (GTK_WIDGET (dc));
       icon_theme = gtk_icon_theme_get_for_screen (screen);
       gtk_icon_size_lookup (GTK_ICON_SIZE_SMALL_TOOLBAR, &x, &y);
@@ -1245,7 +1227,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
         g_object_unref (mime_icon);
       if (G_LIKELY (G_IS_OBJECT (file)))
         g_object_unref(file);
-      gdk_threads_leave ();
     }
     g_free (humansize);
     g_free (parent);
@@ -1267,9 +1248,7 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
   GtkTreeModel *model;
   GSList * list_iter;
 
-  gdk_threads_enter ();
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
-  gdk_threads_leave ();
 
   for (list_iter = params->filelist; list_iter != NULL; list_iter = g_slist_next (list_iter)) {
     gchar * full_path = (gchar *) list_iter->data;
@@ -1289,15 +1268,12 @@ show_add_home_question_dialog (void)
 {
   gboolean ok = TRUE;
 
-  gdk_threads_enter ();
   DBG ("Adding home directory");
   ok = xfburn_ask_yes_no (GTK_MESSAGE_WARNING, ((const gchar *) _("Adding home directory")),
                           _("You are about to add your home directory to the composition. " \
                             "This is likely to take a very long time, and also to be too big to fit on one disc.\n\n" \
                             "Are you sure you want to proceed?")
                          );
-
-  gdk_threads_leave ();
 
   return ok;
 }
@@ -1345,30 +1321,23 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
         gchar *humansize = NULL;
 
         thread_add_file_to_list (dc, model, full_path, &iter, &iter_where_insert, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
-        gdk_threads_enter ();
         gtk_tree_view_expand_row (GTK_TREE_VIEW (priv->content), path_where_insert, FALSE);
 
         /* update parent directory size */
         gtk_tree_model_get (model, &iter_where_insert, DATA_COMPOSITION_COLUMN_SIZE, &old_size, -1);
         gtk_tree_model_get (model, &iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
-        gdk_threads_leave ();
 
         humansize = xfburn_humanreadable_filesize (old_size + size);
 
-        gdk_threads_enter ();
         gtk_tree_store_set (GTK_TREE_STORE (model), &iter_where_insert,
                             DATA_COMPOSITION_COLUMN_HUMANSIZE, humansize,
                             DATA_COMPOSITION_COLUMN_SIZE, old_size + size, -1);
-        gdk_threads_leave ();
-
         g_free (humansize);
       } else if (params->type == DATA_COMPOSITION_TYPE_FILE) {
         GtkTreeIter parent;
         gboolean has_parent;
 
-        gdk_threads_enter ();
         has_parent = gtk_tree_model_iter_parent (model, &parent, &iter_where_insert);
-        gdk_threads_leave ();
 
         if (has_parent)
           thread_add_file_to_list (dc, model, full_path, &iter, &parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
@@ -1799,29 +1768,23 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
   gboolean success = FALSE;
   GList *files = priv->full_paths_to_add;
 
-  gdk_threads_enter ();
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
 
   /* remove the dummy row again */
   gtk_tree_store_remove (GTK_TREE_STORE (model), &params->iter_dummy);
-  gdk_threads_leave ();
 
   for (; files; files = g_list_next (files)) {
     gchar *full_path = (gchar *) files->data;
     GtkTreeIter iter;
 
     if (priv->path_where_insert) {
-      gdk_threads_enter ();
       gtk_tree_model_get_iter (model, &iter_where_insert, priv->path_where_insert);
-      gdk_threads_leave ();
     }
 
     success = thread_add_file_to_list (composition, model, full_path, &iter, iter_insert, position);
 
     if (success && expand && priv->path_where_insert) {
-      gdk_threads_enter ();
       gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), priv->path_where_insert, FALSE);
-      gdk_threads_leave ();
     }
 
   }
