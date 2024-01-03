@@ -1129,20 +1129,15 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     xfburn_adding_progress_pulse (XFBURN_ADDING_PROGRESS (priv->progress));
 
     /* check if the filename is valid */
-    gdk_threads_enter ();
     tree_path = gtk_tree_path_new_first ();
-    gdk_threads_leave ();
 
-    gdk_threads_enter ();
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
       xfce_dialog_show_error (NULL, NULL, _("A file with the same name is already present in the composition."));
 
       gtk_tree_path_free (tree_path);
-      gdk_threads_leave ();
       return FALSE;
     }
     gtk_tree_path_free (tree_path);
-    gdk_threads_leave ();
 
     /* new directory */
     if (S_ISDIR (s.st_mode)) {
@@ -1173,9 +1168,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
           guint64 size;
 
           if (thread_add_file_to_list (dc, model, new_path, &new_iter, iter_last, position)) {
-            gdk_threads_enter ();
             gtk_tree_model_get (model, &new_iter, AUDIO_COMPOSITION_COLUMN_SIZE, &size, -1);
-            gdk_threads_leave ();
             total_size += size;
             if (iter_last == NULL)
               iter_last = g_new (GtkTreeIter, 1);
@@ -1205,9 +1198,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
       atrack = xfburn_transcoder_get_audio_track (priv->trans, path, &error);
       if (atrack == NULL) {
-        gdk_threads_enter ();
         notify_not_adding (dc, error);
-        gdk_threads_leave ();
 
         g_error_free (error);
         return FALSE;
@@ -1218,15 +1209,12 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
         if (g_hash_table_lookup (priv->warned_about, GINT_TO_POINTER (err_code)) == NULL) {
           g_hash_table_insert (priv->warned_about, GINT_TO_POINTER (err_code), did_warn);
-          gdk_threads_enter ();
           xfce_dialog_show_error (NULL, NULL, _("You can only have a maximum of 99 tracks."));
-          gdk_threads_leave ();
         }
 
         return FALSE;
       }
 
-      gdk_threads_enter ();
       if (insertion != NULL) {
         if (position == GTK_TREE_VIEW_DROP_AFTER || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER)
           gtk_tree_store_insert_after (GTK_TREE_STORE (model), iter, NULL, insertion);
@@ -1236,7 +1224,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
           g_error ("Invalid position to drop item in!");
       } else
         gtk_tree_store_append (GTK_TREE_STORE (model), iter, NULL);
-      gdk_threads_leave ();
 
       //DBG ("length = %d", atrack->length);
       secs = atrack->length;
@@ -1244,7 +1231,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
       /* pos does not yet get recorded into atrack here, because it might
        * change still and is easier updated inside the model for now */
-      gdk_threads_enter ();
       gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                           AUDIO_COMPOSITION_COLUMN_POS, ++priv->n_tracks,
                           AUDIO_COMPOSITION_COLUMN_CONTENT, name,
@@ -1256,15 +1242,12 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
                           AUDIO_COMPOSITION_COLUMN_TITLE, "",
                           AUDIO_COMPOSITION_COLUMN_TRACK, atrack,
                           AUDIO_COMPOSITION_COLUMN_TYPE, AUDIO_COMPOSITION_TYPE_RAW, -1);
-      gdk_threads_leave ();
 
       g_free (humanlength);
       /* the tree store makes a copy of the boxed type, so we can free the original */
       g_boxed_free (XFBURN_TYPE_AUDIO_TRACK, atrack);
 
-      gdk_threads_enter ();
       xfburn_disc_usage_add_size (XFBURN_DISC_USAGE (priv->disc_usage), secs);
-      gdk_threads_leave ();
 
       ret = TRUE;
     }
@@ -1287,9 +1270,7 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
   GtkTreeModel *model;
   GSList * list_iter;
 
-  gdk_threads_enter ();
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (priv->content));
-  gdk_threads_leave ();
 
   for (list_iter = params->filelist; list_iter != NULL; list_iter = g_slist_next (list_iter)) {
     gchar * full_path = (gchar *) list_iter->data;
@@ -1309,16 +1290,12 @@ show_add_home_question_dialog (void)
 {
   gboolean ok = TRUE;
 
-  gdk_threads_enter ();
   DBG ("Adding home directory");
   ok = xfburn_ask_yes_no (GTK_MESSAGE_WARNING, ((const gchar *) _("Adding home directory")),
                           _("You are about to add your home directory to the composition. " \
                             "This is likely to take a very long time, and also to be too big to fit on one disc.\n\n" \
                             "Are you sure you want to proceed?")
                          );
-
-  gdk_threads_leave ();
-
   return ok;
 }
 
@@ -1364,9 +1341,7 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
         GtkTreeIter parent;
         gboolean has_parent;
 
-        gdk_threads_enter ();
         has_parent = gtk_tree_model_iter_parent (model, &parent, &iter_where_insert);
-        gdk_threads_leave ();
 
         if (has_parent)
           thread_add_file_to_list (dc, model, full_path, &iter, &parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
@@ -1831,28 +1806,22 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
   GtkTreeIter iter_where_insert;
   GList *files = priv->full_paths_to_add;
 
-  gdk_threads_enter ();
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (widget));
 
   /* remove the dummy row again */
   gtk_tree_store_remove (GTK_TREE_STORE (model), &params->iter_dummy);
-  gdk_threads_leave ();
 
   for (; files; files = g_list_next (files)) {
     gchar *full_path = (gchar *) files->data;
     GtkTreeIter iter;
 
     if (priv->path_where_insert) {
-      gdk_threads_enter ();
       gtk_tree_model_get_iter (model, &iter_where_insert, priv->path_where_insert);
-      gdk_threads_leave ();
 
       if (thread_add_file_to_list (composition, model, full_path, &iter, &iter_where_insert, position)) {
         if (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE
             || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER) {
-          gdk_threads_enter ();
           gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), priv->path_where_insert, FALSE);
-          gdk_threads_leave ();
         }
       }
 
