@@ -480,7 +480,6 @@ ask_for_blanking (XfburnDeviceBoxPrivate *priv)
 
   priv->have_asked_for_blanking = TRUE;
 
-  gdk_threads_enter ();
   do_blank = xfburn_ask_yes_no (GTK_MESSAGE_QUESTION, _("A full, but erasable disc is in the drive"),
                                          _("Do you want to blank the disc, so that it can be used for the upcoming burn process?"));
 
@@ -489,7 +488,6 @@ ask_for_blanking (XfburnDeviceBoxPrivate *priv)
     gtk_dialog_run (blank_dialog);
     gtk_widget_destroy (GTK_WIDGET (blank_dialog));
   }
-  gdk_threads_leave ();
   DBG ("done asking to blank");
   return FALSE;
 }
