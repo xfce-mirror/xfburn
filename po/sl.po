@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Arnold Marko <arnold.marko@gmail.com>, 2019-2021,2023
+# Arnold Marko <arnold.marko@gmail.com>, 2019-2021,2023-2024
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-30 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
-"Last-Translator: Arnold Marko <arnold.marko@gmail.com>, 2019-2021,2023\n"
+"Last-Translator: Arnold Marko <arnold.marko@gmail.com>, 2019-2021,2023-2024\n"
 "Language-Team: Slovenian (http://app.transifex.com/xfce/xfce-apps/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +92,7 @@ msgstr "Izvrzi disk"
 
 #: ../xfburn/xfburn-blank-dialog.c:120
 msgid "Default value for eject checkbox"
-msgstr "Privzeta vrednost potrjevanje izvržbe"
+msgstr "Privzeta vrednost za izmet"
 
 #: ../xfburn/xfburn-blank-dialog.c:166
 msgid "Blank Disc"
@@ -105,7 +105,7 @@ msgstr "Prazen disk"
 #: ../xfburn/xfburn-copy-dvd-dialog.c:104
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:123
 msgid "Burning device"
-msgstr "Naprava za zapisovanje"
+msgstr "Zapisovalnik"
 
 #: ../xfburn/xfburn-blank-dialog.c:188 ../xfburn/xfburn-device-box.c:158
 msgid "Blank mode"
@@ -201,7 +201,7 @@ msgstr "Prikaži ime pogona"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:130
 msgid "Show a text entry for the name of the volume"
-msgstr "Prikaži tekstovni vnos za ime pogona"
+msgstr "Prikaži vnos imena pogona"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:148
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:113
@@ -210,11 +210,11 @@ msgstr "Zapiši kompozicijo"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:169
 msgid "Composition name"
-msgstr "Ime kompozijcije"
+msgstr "Ime kompozjcije"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:174
 msgid "<small>Would you like to change the default composition name?</small>"
-msgstr "<small>Ali bi radi spremenili privzeto ime za kompozicijo?</small>"
+msgstr "<small>Ali bi radi spremenili privzeto ime kompozicije?</small>"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:199
 #: ../xfburn/xfburn-burn-image-dialog.c:195
@@ -233,7 +233,7 @@ msgstr "Prosto z_apisovanje"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:208
 #: ../xfburn/xfburn-burn-image-dialog.c:204
 msgid "Stream _Recording"
-msgstr "Snemanje _toka"
+msgstr "Snemanje pre_toka"
 
 #. create ISO ?
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:214
@@ -245,7 +245,7 @@ msgstr "Ustvari zgolj ISO"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:251
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:186
 msgid "_Burn Composition"
-msgstr "_Zapisši kompozicijo"
+msgstr "_Zapiši kompozicijo"
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:437
 #, c-format
@@ -264,7 +264,7 @@ msgstr "Pri zapisovanju ISO se je zgodila napaka: %s"
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:517
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:523
 msgid "An error occurred in the burn backend."
-msgstr "Zgodila se je napaka v podpori za zapisovanje"
+msgstr "Podpora zapisovanju je povzročila napako."
 
 #: ../xfburn/xfburn-burn-data-composition-base-dialog.c:546
 #: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:290
@@ -309,7 +309,7 @@ msgstr "Način zapisovanje trenutno ni implementiran"
 #: ../xfburn/xfburn-burn-image-dialog.c:323
 #: ../xfburn/xfburn-burn-image-dialog.c:352
 msgid "An error occurred in the burn backend"
-msgstr "Zgodila se je napaka v podpori za zapisovanje"
+msgstr "Podpora zapisovanju je povzročila napako."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:336
 msgid "Unable to determine image size."
@@ -336,7 +336,7 @@ msgstr "Ne morem dodati podatkov večkratno zapisljivemu disku v tem načinu zap
 
 #: ../xfburn/xfburn-burn-image-dialog.c:497
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr "Zaznan je bil zaprt disk s podatki. Potreben je prazen disk ali takšen, ki mu je mogoče podatke dodajati."
+msgstr "Zaznan je bil zaprt podatkovni disk. Potreben je prazen disk ali takšen, ki mu je mogoče podatke dodajati."
 
 #: ../xfburn/xfburn-burn-image-dialog.c:499
 msgid "No disc detected in drive"
@@ -472,7 +472,7 @@ msgstr "Lokalna pot"
 
 #: ../xfburn/xfburn-data-composition.c:657
 msgid "You must give a name to the file."
-msgstr "Datoteki morate dati ime."
+msgstr "Datoteko je potrebno poimenovati"
 
 #: ../xfburn/xfburn-data-composition.c:666
 #: ../xfburn/xfburn-data-composition.c:1124
@@ -498,7 +498,7 @@ msgstr "Podatki %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr "%sni mogoče dodati v kopozicijo, ker presega največjo dovoljeno velikost datoteke za iso9660."
+msgstr "%sni mogoče dodati v kompozicijo, ker presega največjo dovoljeno velikost datoteke za iso9660."
 
 #: ../xfburn/xfburn-data-composition.c:1210
 #, c-format
@@ -571,7 +571,7 @@ msgstr "Prikaži izbor hitrosti"
 
 #: ../xfburn/xfburn-device-box.c:147
 msgid "Show speed selection combo"
-msgstr "Prikaži izbiro hitrosti"
+msgstr "Prikaži izbirnik hitrosti"
 
 #: ../xfburn/xfburn-device-box.c:150
 msgid "Show mode selection"
@@ -579,7 +579,7 @@ msgstr "Prikaži izbor načina"
 
 #: ../xfburn/xfburn-device-box.c:151
 msgid "Show mode selection combo"
-msgstr "Prikaži izbiro načina"
+msgstr "Prikaži izbirnik načina"
 
 #: ../xfburn/xfburn-device-box.c:154
 msgid "Is it a valid combination"
@@ -599,7 +599,7 @@ msgstr "Hitro_st:"
 
 #: ../xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
-msgstr "Zapisovalni _modus:"
+msgstr "_Način zapisovanja:"
 
 #: ../xfburn/xfburn-device-box.c:350
 msgid "Empty speed list"
@@ -622,11 +622,11 @@ msgstr "Vedno prikaži to _sporočilo"
 
 #: ../xfburn/xfburn-device-box.c:418
 msgid "default"
-msgstr "privzeto"
+msgstr "privzeta"
 
 #: ../xfburn/xfburn-device-box.c:449
 msgid "Max"
-msgstr "maksilmalno"
+msgstr "največja"
 
 #: ../xfburn/xfburn-device-box.c:484
 msgid "A full, but erasable disc is in the drive"
@@ -636,7 +636,7 @@ msgstr "V pogonu je poln, a ponovno zapisljiv disk"
 msgid ""
 "Do you want to blank the disc, so that it can be used for the upcoming burn "
 "process?"
-msgstr "Ali bi radi spraznili disk, da bo uporaben za ponovno zapisovanje?"
+msgstr "Ali bi radi počistili disk, da bo uporaben za ponovno zapisovanje?"
 
 #: ../xfburn/xfburn-device-box.c:557
 msgid "Drive can't burn on the inserted disc"
@@ -668,7 +668,7 @@ msgstr "Napaka pri določitvi diska"
 
 #: ../xfburn/xfburn-device-box.c:604
 msgid "Write-once disc, no blanking possible"
-msgstr "Diska za enkratno zapisovane, praznjenje ni mogoče"
+msgstr "Disk za enkratno zapisovane - praznjenje ni mogoče"
 
 #: ../xfburn/xfburn-device-box.c:607
 msgid "DVD+RW does not need blanking"
