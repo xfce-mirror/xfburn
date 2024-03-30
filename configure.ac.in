@@ -25,14 +25,18 @@ AM_MAINTAINER_MODE()
 dnl check for basic programs
 AC_PROG_CC()
 AC_PROG_INSTALL()
-IT_PROG_INTLTOOL([0.35.0])
 LT_PREREQ([2.2.6])
 LT_INIT()
 
 AC_SYS_LARGEFILE
 
 dnl check for i18n support
-XDT_I18N([@LINGUAS@])
+GETTEXT_PACKAGE="$PACKAGE"
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Name of default gettext domain])
+AC_SUBST([GETTEXT_PACKAGE])
+
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
 
 dnl check for required packages
 XDT_CHECK_PACKAGE([LIBBURN], [libburn-1], [0.4.2])
