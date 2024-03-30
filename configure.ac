@@ -1,20 +1,12 @@
 dnl Version information
-m4_define([xfburn_version_major], [0])
-m4_define([xfburn_version_minor], [7])
-m4_define([xfburn_version_micro], [0])
-m4_define([xfburn_version_build], [@REVISION@])
-m4_define([xfburn_version_tag], [git])
-m4_define([xfburn_version], [xfburn_version_major().xfburn_version_minor().xfburn_version_micro()ifelse(xfburn_version_tag(), [git], [xfburn_version_tag()-xfburn_version_build()], [xfburn_version_tag()])])
-
-dnl *******************************************
-dnl *** Debugging support for GIT snapshots ***
-dnl *******************************************
-m4_define([xfburn_debug_default], [ifelse(xfburn_version_tag(), [git], [yes], [minimum])])
+XDT_VERSION_INIT([0.7.0], [git])
 
 dnl Initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>, 2008 Mario Đanić <mario@libburnia-project.org>, 2008-2015 David Mohr <david@mcbf.net>, 2019-2020 Rene Kjellerup <rk.katana.steel@gmail.com>, 2022-2023 Hunter Turcin <huntertur@gmail.com>, Copyright (c) 2004-2023 Xfce development team. All rights reserved.])
-AC_INIT([xfburn], [xfburn_version])
+AC_INIT([xfburn], [xdt_version], [https://gitlab.xfce.org/apps/xfburn])
 AC_CONFIG_SRCDIR([xfburn/xfburn-main.c])
+AC_PREREQ([2.69])
+AC_REVISION([xdt_version_build])
 
 dnl Initialize automake
 AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-bzip2 tar-ustar foreign])
@@ -25,14 +17,18 @@ AM_MAINTAINER_MODE()
 dnl check for basic programs
 AC_PROG_CC()
 AC_PROG_INSTALL()
-IT_PROG_INTLTOOL([0.35.0])
 LT_PREREQ([2.2.6])
 LT_INIT()
 
 AC_SYS_LARGEFILE
 
 dnl check for i18n support
-XDT_I18N([@LINGUAS@])
+GETTEXT_PACKAGE="$PACKAGE"
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Name of default gettext domain])
+AC_SUBST([GETTEXT_PACKAGE])
+
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
 
 dnl check for required packages
 XDT_CHECK_PACKAGE([LIBBURN], [libburn-1], [0.4.2])
@@ -58,7 +54,7 @@ fi
 
 
 dnl check for debugging support
-XDT_FEATURE_DEBUG([xfburn_debug_default])
+XDT_FEATURE_DEBUG([xdt_debug_default])
 
 AC_OUTPUT([
 Makefile
