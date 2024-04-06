@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-apps.xfburn package.
 # 
 # Translators:
 # Dotan Kamber <kamberd@yahoo.com>, 2006
@@ -14,125 +14,122 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-06 12:49+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-04-06 00:49+0200\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
 "Last-Translator: Elishai Eliyahu <elishai@mailfence.com>, 2021-2023\n"
-"Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-apps/language/he/)\n"
+"Language-Team: Hebrew (http://app.transifex.com/xfce/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 
-#: ../xfburn/xfburn-global.h:28
+#: xfburn/xfburn-global.h:28
 msgid "Capacity:"
 msgstr "קיבולת:"
 
-#: ../xfburn/xfburn-global.h:29
+#: xfburn/xfburn-global.h:29
 msgid "addr:"
 msgstr "addr:"
 
-#: ../xfburn/xfburn-global.h:30
+#: xfburn/xfburn-global.h:30
 msgid "Time total:"
 msgstr "זמן סה״כ:"
 
-#: ../xfburn/xfburn-global.h:32
+#: xfburn/xfburn-global.h:32
 msgid "length"
 msgstr "אורך"
 
-#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+#: xfburn/xfburn-global.h:33 xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
 msgstr "כעת מרוקן מטמון..."
 
-#: ../xfburn/xfburn-global.h:34
+#: xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
 msgstr "אנא הכנס תקליטור לצריבה והקש אנטר"
 
-#: ../xfburn/xfburn-global.h:35
+#: xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
 msgstr "לא יכול לקבוע את מצב התקליטור - הקש אנטר כדי נסות שוב."
 
-#: ../xfburn/xfburn-global.h:36
+#: xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
 msgstr "העתקת CD הסתיימה בהצלחה."
 
-#: ../xfburn/xfburn-global.h:43
+#: xfburn/xfburn-global.h:43
 msgid "Data composition"
 msgstr "יצירת מידע"
 
-#: ../xfburn/xfburn-adding-progress.c:83
+#: xfburn/xfburn-adding-progress.c:83
 msgid "Adding files to the composition"
 msgstr "הוספת קבצים ליצירה"
 
-#: ../xfburn/xfburn-adding-progress.c:97
+#: xfburn/xfburn-adding-progress.c:97
 msgid "Cancel"
 msgstr "ביטול"
 
-#: ../xfburn/xfburn-blank-dialog.c:70
+#: xfburn/xfburn-blank-dialog.c:70
 msgid "Quick Blank"
 msgstr "מחיקה מהירה"
 
-#: ../xfburn/xfburn-blank-dialog.c:71
+#: xfburn/xfburn-blank-dialog.c:71
 msgid "Full Blank (slow)"
 msgstr "מחיקה מלאה (אטי)"
 
-#: ../xfburn/xfburn-blank-dialog.c:72
+#: xfburn/xfburn-blank-dialog.c:72
 msgid "Quick Format"
 msgstr "אתחול מהיר"
 
-#: ../xfburn/xfburn-blank-dialog.c:73
+#: xfburn/xfburn-blank-dialog.c:73
 msgid "Full Format"
 msgstr "אתחול מלא"
 
-#: ../xfburn/xfburn-blank-dialog.c:74
+#: xfburn/xfburn-blank-dialog.c:74
 msgid "Quick Deformat"
 msgstr "פרמוט מהיר"
 
-#: ../xfburn/xfburn-blank-dialog.c:75
+#: xfburn/xfburn-blank-dialog.c:75
 msgid "Full Deformat (slow)"
 msgstr "ביטול מלא לפרמוט (איטי)"
 
-#: ../xfburn/xfburn-blank-dialog.c:119
+#: xfburn/xfburn-blank-dialog.c:119
 msgid "Eject the disc"
 msgstr "שלוף את התקליטור"
 
-#: ../xfburn/xfburn-blank-dialog.c:120
+#: xfburn/xfburn-blank-dialog.c:120
 msgid "Default value for eject checkbox"
 msgstr "ערך ברירת מחדל לצורך תיבת סימון שליפה"
 
-#: ../xfburn/xfburn-blank-dialog.c:166
+#: xfburn/xfburn-blank-dialog.c:166
 msgid "Blank Disc"
 msgstr "מחק תקליטור"
 
-#: ../xfburn/xfburn-blank-dialog.c:175
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:158
-#: ../xfburn/xfburn-burn-image-dialog.c:178
-#: ../xfburn/xfburn-copy-cd-dialog.c:107
-#: ../xfburn/xfburn-copy-dvd-dialog.c:104
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:123
+#: xfburn/xfburn-blank-dialog.c:175
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:158
+#: xfburn/xfburn-burn-image-dialog.c:178 xfburn/xfburn-copy-cd-dialog.c:107
+#: xfburn/xfburn-copy-dvd-dialog.c:104
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:123
 msgid "Burning device"
 msgstr "התקן צריבה"
 
-#: ../xfburn/xfburn-blank-dialog.c:188 ../xfburn/xfburn-device-box.c:158
+#: xfburn/xfburn-blank-dialog.c:188 xfburn/xfburn-device-box.c:158
 msgid "Blank mode"
 msgstr "מצב מחיקה"
 
-#: ../xfburn/xfburn-blank-dialog.c:196
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:190
-#: ../xfburn/xfburn-burn-image-dialog.c:186
-#: ../xfburn/xfburn-copy-cd-dialog.c:115
-#: ../xfburn/xfburn-copy-dvd-dialog.c:112
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
+#: xfburn/xfburn-blank-dialog.c:196
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:190
+#: xfburn/xfburn-burn-image-dialog.c:186 xfburn/xfburn-copy-cd-dialog.c:115
+#: xfburn/xfburn-copy-dvd-dialog.c:112
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
 msgid "Options"
 msgstr "אפשרויות"
 
-#: ../xfburn/xfburn-blank-dialog.c:200
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:194
-#: ../xfburn/xfburn-burn-image-dialog.c:190
-#: ../xfburn/xfburn-copy-cd-dialog.c:119
-#: ../xfburn/xfburn-copy-dvd-dialog.c:116
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:161
+#: xfburn/xfburn-blank-dialog.c:200
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:194
+#: xfburn/xfburn-burn-image-dialog.c:190 xfburn/xfburn-copy-cd-dialog.c:119
+#: xfburn/xfburn-copy-dvd-dialog.c:116
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:161
 msgid "E_ject disk"
 msgstr "הוצא _תקליטור"
 
@@ -142,477 +139,461 @@ msgstr "הוצא _תקליטור"
 #. gtk_widget_show (align);
 #. gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
 #. action buttons
-#: ../xfburn/xfburn-blank-dialog.c:206
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:247
-#: ../xfburn/xfburn-burn-image-dialog.c:215
-#: ../xfburn/xfburn-copy-cd-dialog.c:165
-#: ../xfburn/xfburn-copy-dvd-dialog.c:162 ../xfburn/xfburn-utils.c:132
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:182
+#: xfburn/xfburn-blank-dialog.c:206
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:247
+#: xfburn/xfburn-burn-image-dialog.c:215 xfburn/xfburn-copy-cd-dialog.c:165
+#: xfburn/xfburn-copy-dvd-dialog.c:162 xfburn/xfburn-utils.c:132
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:182
 msgid "_Cancel"
 msgstr "_בטל"
 
-#: ../xfburn/xfburn-blank-dialog.c:210
+#: xfburn/xfburn-blank-dialog.c:210
 msgid "_Blank"
 msgstr "_מחק"
 
 #. blanking can only be performed on blank discs, format and deformat are
 #. allowed to be blank ones
-#: ../xfburn/xfburn-blank-dialog.c:326
+#: xfburn/xfburn-blank-dialog.c:326
 msgid "The inserted disc is already blank."
 msgstr "התקליטור שהוכנס כבר ריק."
 
 #. these ones we can blank
-#: ../xfburn/xfburn-blank-dialog.c:332
+#: xfburn/xfburn-blank-dialog.c:332
 msgid "Ready"
 msgstr "מוכן"
 
-#: ../xfburn/xfburn-blank-dialog.c:335
+#: xfburn/xfburn-blank-dialog.c:335
 msgid "No disc detected in the drive."
 msgstr "לא אותר תקליטור בתוך הכונן."
 
-#: ../xfburn/xfburn-blank-dialog.c:344
+#: xfburn/xfburn-blank-dialog.c:344
 msgid "Disc is not erasable."
 msgstr "התקליטור אינו מחיק."
 
-#: ../xfburn/xfburn-blank-dialog.c:384
+#: xfburn/xfburn-blank-dialog.c:384
 msgid "Blanking disc..."
 msgstr "כעת מוחק תקליטור..."
 
-#: ../xfburn/xfburn-blank-dialog.c:411
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:479
-#: ../xfburn/xfburn-perform-burn.c:489
-#, c-format
+#: xfburn/xfburn-blank-dialog.c:411
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:479
+#: xfburn/xfburn-perform-burn.c:489
 msgid "Done"
 msgstr "סיים"
 
-#: ../xfburn/xfburn-blank-dialog.c:414 ../xfburn/xfburn-perform-burn.c:496
-#: ../xfburn/xfburn-progress-dialog.c:637
+#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:496
+#: xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
 msgstr "כישלון"
 
-#: ../xfburn/xfburn-blank-dialog.c:431
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:585
-#: ../xfburn/xfburn-burn-image-dialog.c:389
-#: ../xfburn/xfburn-burn-image-dialog.c:567
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:359
+#: xfburn/xfburn-blank-dialog.c:431
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:585
+#: xfburn/xfburn-burn-image-dialog.c:389 xfburn/xfburn-burn-image-dialog.c:567
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:359
 msgid "Unable to grab the drive."
 msgstr "לא ניתן ללכוד את הכונן."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:128
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:128
 msgid "Image"
 msgstr "דמות"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:130
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:130
 msgid "Show volume name"
 msgstr "הצג שם כרך"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:130
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:130
 msgid "Show a text entry for the name of the volume"
 msgstr "הצג רשומת טקסט עבור השם של הכרך"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:148
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:113
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:148
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:113
 msgid "Burn Composition"
 msgstr "צרוב יצירה"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:169
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:169
 msgid "Composition name"
 msgstr "שם יצירה"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:174
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:174
 msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "<small>האם ברצונך לשנות את שם היצירה השגרתי?</small>"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:199
-#: ../xfburn/xfburn-burn-image-dialog.c:195
-#: ../xfburn/xfburn-copy-cd-dialog.c:124
-#: ../xfburn/xfburn-copy-dvd-dialog.c:121
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:166
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:199
+#: xfburn/xfburn-burn-image-dialog.c:195 xfburn/xfburn-copy-cd-dialog.c:124
+#: xfburn/xfburn-copy-dvd-dialog.c:121
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:166
 msgid "_Dummy write"
 msgstr "כתיבה _מדומה"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:203
-#: ../xfburn/xfburn-burn-image-dialog.c:199
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:170
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:203
+#: xfburn/xfburn-burn-image-dialog.c:199
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:170
 msgid "Burn_Free"
 msgstr "צריבה _חופשית"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:208
-#: ../xfburn/xfburn-burn-image-dialog.c:204
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:208
+#: xfburn/xfburn-burn-image-dialog.c:204
 msgid "Stream _Recording"
 msgstr "הקלטת _זרם"
 
 #. create ISO ?
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:214
-#: ../xfburn/xfburn-copy-cd-dialog.c:133
-#: ../xfburn/xfburn-copy-dvd-dialog.c:130
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:214
+#: xfburn/xfburn-copy-cd-dialog.c:133 xfburn/xfburn-copy-dvd-dialog.c:130
 msgid "Only create _ISO"
 msgstr "צור _ISO בלבד"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:251
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:186
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:251
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:186
 msgid "_Burn Composition"
 msgstr "_צרוב יצירה"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:437
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:437
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "לא ניתן ליצור קובץ ISO יעד: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:444
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:444
 msgid "Writing ISO..."
 msgstr "כעת כותב ISO..."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:461
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:461
 #, c-format
 msgid "An error occurred while writing ISO: %s"
 msgstr "אירעה תקלה בעת כתיבת ISO: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:517
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:523
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:517
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:523
 msgid "An error occurred in the burn backend."
 msgstr "אירעה שגיאה במגשר העורפי של הצריבה."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:546
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:290
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:546
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:290
 msgid "The write mode is not supported currently."
 msgstr "מצב הכתיבה אינו נתמך כרגע."
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:629
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:629
 msgid "Could not create ISO source structure."
 msgstr "לא יכול ליצור מבנה מקור ISO."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:135
+#: xfburn/xfburn-burn-image-dialog.c:135
 msgid "Burn image"
 msgstr "צרוב דמות"
 
 #. file
-#: ../xfburn/xfburn-burn-image-dialog.c:140
-#: ../xfburn/xfburn-burn-image-dialog.c:163
+#: xfburn/xfburn-burn-image-dialog.c:140 xfburn/xfburn-burn-image-dialog.c:163
 msgid "Image to burn"
 msgstr "דמות לצריבה"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:144
+#: xfburn/xfburn-burn-image-dialog.c:144
 msgid "All files"
 msgstr "כל הקבצים"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:148
+#: xfburn/xfburn-burn-image-dialog.c:148
 msgid "Disc images"
 msgstr "תמונות דיסק"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:209
+#: xfburn/xfburn-burn-image-dialog.c:209
 msgid "_Quit after success"
 msgstr "_צא לאחר הצלחה"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:219
+#: xfburn/xfburn-burn-image-dialog.c:219
 msgid "_Burn image"
 msgstr "צרוב _דמות"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:272
+#: xfburn/xfburn-burn-image-dialog.c:272
 msgid "Burn mode is not currently implemented."
 msgstr "מצב צריבה אינו מיושם כרגע."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:323
-#: ../xfburn/xfburn-burn-image-dialog.c:352
+#: xfburn/xfburn-burn-image-dialog.c:323 xfburn/xfburn-burn-image-dialog.c:352
 msgid "An error occurred in the burn backend"
 msgstr "אירעה שגיאה במגשר העורפי של הצריבה"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:336
+#: xfburn/xfburn-burn-image-dialog.c:336
 msgid "Unable to determine image size."
 msgstr "לא יכול לקבוע גודל דמות."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:343
+#: xfburn/xfburn-burn-image-dialog.c:343
 msgid "Cannot open image."
 msgstr "לא ניתן לפתוח דמות."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:380
+#: xfburn/xfburn-burn-image-dialog.c:380
 msgid "Burning image..."
 msgstr "כעת צורב דמות..."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:453
+#: xfburn/xfburn-burn-image-dialog.c:453
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">אנא בחר דמות לצריבה</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:493
+#: xfburn/xfburn-burn-image-dialog.c:493
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "לא יכול להוסיף מידע לתקליטור מרובה סשנים בסוג כתיבה זה (השתמש במקום זה ב-‎‎‎TAO)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:497
+#: xfburn/xfburn-burn-image-dialog.c:497
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "תקליטור סגור עם מידע אותר. צריך תקליטור ריק או תקליטור אשר ניתן להוסיף עליו"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:499
+#: xfburn/xfburn-burn-image-dialog.c:499
 msgid "No disc detected in drive"
 msgstr "לא אותר תקליטור בתוך כונן"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:501
+#: xfburn/xfburn-burn-image-dialog.c:501
 msgid "Cannot recognize state of drive and disc"
 msgstr "לא יכול לזהות את מצב הכונן והתקליטור"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:513
+#: xfburn/xfburn-burn-image-dialog.c:513
 msgid "The selected image does not fit on the inserted disc"
 msgstr "קובץ הדמות שנבחר לא מתאים בתקליטור שהוכנס"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:517
+#: xfburn/xfburn-burn-image-dialog.c:517
 msgid "Failed to get image size"
 msgstr "נכשלה השגת גודל הדמות"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:546
+#: xfburn/xfburn-burn-image-dialog.c:546
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
 msgstr "וודא שבחרת קובץ תקני ושיש לך את ההרשאות המתאימות לגשת אליו."
 
-#: ../xfburn/xfburn-compositions-notebook.c:144
+#: xfburn/xfburn-compositions-notebook.c:144
 msgid "Audio composition"
 msgstr "הרכב שמע"
 
-#: ../xfburn/xfburn-compositions-notebook.c:205
+#: xfburn/xfburn-compositions-notebook.c:205
 msgid "Welcome"
 msgstr "ברוכים הבאים"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:88
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
+#: xfburn/xfburn-copy-cd-dialog.c:88
+#: xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
 msgstr "העתק CD מידע"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:99
+#: xfburn/xfburn-copy-cd-dialog.c:99
 msgid "CD Reader device"
 msgstr "התקן קורא CD"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:128
-#: ../xfburn/xfburn-copy-dvd-dialog.c:125
+#: xfburn/xfburn-copy-cd-dialog.c:128 xfburn/xfburn-copy-dvd-dialog.c:125
 msgid "On the _fly"
 msgstr "ב_זמן אמת"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:169
+#: xfburn/xfburn-copy-cd-dialog.c:169
 msgid "_Copy CD"
 msgstr "ה_עתק CD"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
+#: xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
 msgstr "אנא הכנס תקליטור הניתן לצריבה."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
+#: xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
 msgstr "כעת כותב CD..."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:102
+#: xfburn/xfburn-copy-cd-progress-dialog.c:140
+#: xfburn/xfburn-create-iso-progress-dialog.c:102
 msgid "Reading CD..."
 msgstr "כעת קורא CD..."
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:85
+#: xfburn/xfburn-copy-dvd-dialog.c:85
 msgid "Copy data DVD"
 msgstr "העתק DVD מידע"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:96
+#: xfburn/xfburn-copy-dvd-dialog.c:96
 msgid "DVD Reader device"
 msgstr "התקן קורא DVD"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:166
+#: xfburn/xfburn-copy-dvd-dialog.c:166
 msgid "_Copy DVD"
 msgstr "ה_עתק DVD"
 
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:117
+#: xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
 msgstr "צור ISO מתוך CD"
 
-#: ../xfburn/xfburn-data-composition.c:310 ../xfburn/xfburn-utils.c:184
-#: ../xfburn/xfburn-utils.c:186 ../xfburn/xfburn-audio-composition.c:330
+#: xfburn/xfburn-data-composition.c:310 xfburn/xfburn-utils.c:184
+#: xfburn/xfburn-utils.c:186 xfburn/xfburn-audio-composition.c:330
 msgid "Add"
 msgstr "הוסף"
 
-#: ../xfburn/xfburn-data-composition.c:310
-#: ../xfburn/xfburn-audio-composition.c:330
+#: xfburn/xfburn-data-composition.c:310 xfburn/xfburn-audio-composition.c:330
 msgid "Add the selected file(s) to the composition"
 msgstr "הוסף את הקבצים הנבחרים ליצירה"
 
-#: ../xfburn/xfburn-data-composition.c:312 ../xfburn-popup-menus.ui.h:1
+#: xfburn/xfburn-data-composition.c:312
 msgid "Create directory"
 msgstr "צור ספרייה"
 
-#: ../xfburn/xfburn-data-composition.c:312
+#: xfburn/xfburn-data-composition.c:312
 msgid "Add a new directory to the composition"
 msgstr "הוסף ספרייה חדשה ליצירה"
 
-#: ../xfburn/xfburn-data-composition.c:317
-#: ../xfburn/xfburn-audio-composition.c:335 ../xfburn-popup-menus.ui.h:3
+#: xfburn/xfburn-data-composition.c:317 xfburn/xfburn-audio-composition.c:335
 msgid "Remove"
 msgstr "הסר"
 
-#: ../xfburn/xfburn-data-composition.c:317
-#: ../xfburn/xfburn-audio-composition.c:335
+#: xfburn/xfburn-data-composition.c:317 xfburn/xfburn-audio-composition.c:335
 msgid "Remove the selected file(s) from the composition"
 msgstr "הסר את הקבצים הנבחרים מהיצירה"
 
-#: ../xfburn/xfburn-data-composition.c:319
-#: ../xfburn/xfburn-audio-composition.c:337
+#: xfburn/xfburn-data-composition.c:319 xfburn/xfburn-audio-composition.c:337
 msgid "Clear"
 msgstr "נקה"
 
-#: ../xfburn/xfburn-data-composition.c:319
-#: ../xfburn/xfburn-audio-composition.c:337
+#: xfburn/xfburn-data-composition.c:319 xfburn/xfburn-audio-composition.c:337
 msgid "Clear the content of the composition"
 msgstr "נקה את התוכן של היצירה"
 
-#: ../xfburn/xfburn-data-composition.c:330
+#: xfburn/xfburn-data-composition.c:330
 msgid "Volume name :"
 msgstr "שם כרך:"
 
-#: ../xfburn/xfburn-data-composition.c:364
+#: xfburn/xfburn-data-composition.c:364
 msgid "Contents"
 msgstr "תכנים"
 
-#: ../xfburn/xfburn-data-composition.c:379
-#: ../xfburn/xfburn-directory-browser.c:113
+#: xfburn/xfburn-data-composition.c:379 xfburn/xfburn-directory-browser.c:113
 msgid "Size"
 msgstr "גודל"
 
-#: ../xfburn/xfburn-data-composition.c:382
+#: xfburn/xfburn-data-composition.c:382
 msgid "Local Path"
 msgstr "נתיב מקומי"
 
-#: ../xfburn/xfburn-data-composition.c:657
+#: xfburn/xfburn-data-composition.c:657
 msgid "You must give a name to the file."
 msgstr "עליך לתת שם לקובץ."
 
-#: ../xfburn/xfburn-data-composition.c:666
-#: ../xfburn/xfburn-data-composition.c:1124
-#: ../xfburn/xfburn-audio-composition.c:1138
+#: xfburn/xfburn-data-composition.c:666 xfburn/xfburn-data-composition.c:1124
+#: xfburn/xfburn-audio-composition.c:1138
 msgid "A file with the same name is already present in the composition."
 msgstr "כבר ישנו קובץ בעל אותו שם ביצירה."
 
-#: ../xfburn/xfburn-data-composition.c:791
-#: ../xfburn/xfburn-data-composition.c:792
-#: ../xfburn/xfburn-data-composition.c:794
+#: xfburn/xfburn-data-composition.c:791 xfburn/xfburn-data-composition.c:792
+#: xfburn/xfburn-data-composition.c:794
 msgid "New directory"
 msgstr "ספרייה חדשה"
 
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:967
+#: xfburn/xfburn-data-composition.c:967
 #, c-format
 msgid "Data %s~%d"
 msgstr "נתונים %s~%d"
 
-#: ../xfburn/xfburn-data-composition.c:1203
+#: xfburn/xfburn-data-composition.c:1203
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr "לא ניתן להוסיף את %s ליצירה, כי הוא חורג מגודל הקובץ המירבי המותר עבור iso9660. "
 
-#: ../xfburn/xfburn-data-composition.c:1210
+#: xfburn/xfburn-data-composition.c:1210
 #, c-format
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
 msgstr "%s הוא גדול יותר ממה שתקן מערכת קבצים iso9660 רמה 2 מתיר. זו יכולה להיות בעיה עבור מערכות או תוכנות ישנות."
 
-#: ../xfburn/xfburn-data-composition.c:1294
-#: ../xfburn/xfburn-audio-composition.c:1314
+#: xfburn/xfburn-data-composition.c:1294
+#: xfburn/xfburn-audio-composition.c:1314
 msgid "Adding home directory"
 msgstr "כעת מוסיף ספריית בית"
 
-#: ../xfburn/xfburn-data-composition.c:1295
-#: ../xfburn/xfburn-audio-composition.c:1315
+#: xfburn/xfburn-data-composition.c:1295
+#: xfburn/xfburn-audio-composition.c:1315
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr "אתה עומד להוסיף את ספריית הבית שלך לעריכה. קרוב לודאי שזה יקח הרבה זמן, וגם יהיה גדול מדי להתאים לתקליטור אחד.\n\nהאם אתה בטוח שברצונך להמשיך?"
 
-#: ../xfburn/xfburn-data-composition.c:1463
+#: xfburn/xfburn-data-composition.c:1463
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr "קובץ עם השם \"%s\" קיים כבר בתיקייה זו, הקובץ לא נוסף."
 
-#: ../xfburn/xfburn-data-composition.c:1865
+#: xfburn/xfburn-data-composition.c:1865
 #, c-format
 msgid "%s: null pointer"
 msgstr "%s: סימן אפס"
 
-#: ../xfburn/xfburn-data-composition.c:1867
+#: xfburn/xfburn-data-composition.c:1867
 #, c-format
 msgid "%s: out of memory"
 msgstr "%s: זיכרון נגמר"
 
-#: ../xfburn/xfburn-data-composition.c:1869
+#: xfburn/xfburn-data-composition.c:1869
 #, c-format
 msgid "%s: node name not unique"
 msgstr "%s: שם צומת לא יחודי"
 
-#: ../xfburn/xfburn-data-composition.c:1871
+#: xfburn/xfburn-data-composition.c:1871
 #, c-format
 msgid "%s: %s (code %X)"
 msgstr "%s: %s (code %X)"
 
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1891
+#: xfburn/xfburn-data-composition.c:1891
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "שם קובץ כפול '%s' עבור '%s' "
 
-#: ../xfburn/xfburn-data-composition.c:1956
+#: xfburn/xfburn-data-composition.c:1956
 msgid "Error(s) occurred while adding files"
 msgstr "אירעו תקלות בעת הוספת קבצים"
 
-#: ../xfburn/xfburn-data-composition.c:1960
+#: xfburn/xfburn-data-composition.c:1960
 msgid "OK"
 msgstr "אישור"
 
-#: ../xfburn/xfburn-device-box.c:142 ../xfburn/xfburn-device-box.c:143
+#: xfburn/xfburn-device-box.c:142 xfburn/xfburn-device-box.c:143
 msgid "Show writers only"
 msgstr "הצג כותבים בלבד"
 
-#: ../xfburn/xfburn-device-box.c:146
+#: xfburn/xfburn-device-box.c:146
 msgid "Show speed selection"
 msgstr "הצג מבחר מהירות"
 
-#: ../xfburn/xfburn-device-box.c:147
+#: xfburn/xfburn-device-box.c:147
 msgid "Show speed selection combo"
 msgstr "הצג combo בחירת מהירות"
 
-#: ../xfburn/xfburn-device-box.c:150
+#: xfburn/xfburn-device-box.c:150
 msgid "Show mode selection"
 msgstr "הצג בחירת מצב"
 
-#: ../xfburn/xfburn-device-box.c:151
+#: xfburn/xfburn-device-box.c:151
 msgid "Show mode selection combo"
 msgstr "הצג combo בחירת מצב"
 
-#: ../xfburn/xfburn-device-box.c:154
+#: xfburn/xfburn-device-box.c:154
 msgid "Is it a valid combination"
 msgstr "האם זה צירוף חוקי"
 
-#: ../xfburn/xfburn-device-box.c:155
+#: xfburn/xfburn-device-box.c:155
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "האם צירוף החומרה והתקליטור חוקי לצריבת היצירה?"
 
-#: ../xfburn/xfburn-device-box.c:159
+#: xfburn/xfburn-device-box.c:159
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "מצב ריק מציג הודעות סטטוס תקליטור שונות מאשר מצב רגיל"
 
-#: ../xfburn/xfburn-device-box.c:217
+#: xfburn/xfburn-device-box.c:217
 msgid "_Speed:"
 msgstr "מהירות:"
 
-#: ../xfburn/xfburn-device-box.c:240
+#: xfburn/xfburn-device-box.c:240
 msgid "Write _mode:"
 msgstr "מצב כתיבה:"
 
-#: ../xfburn/xfburn-device-box.c:350
+#: xfburn/xfburn-device-box.c:350
 msgid "Empty speed list"
 msgstr "רשימת מהירות ריקה"
 
-#: ../xfburn/xfburn-device-box.c:359
+#: xfburn/xfburn-device-box.c:359
 msgid ""
 "<b>Unable to retrieve the speed list for the drive.</b>\n"
 "\n"
@@ -623,625 +604,619 @@ msgid ""
 "<i>Thank you!</i>"
 msgstr "<b>לא יכול להשיג את רשימת המהירות של הכונן.</b>\n\nזהו באג ידוע של כוננים. אם אתה מעונין לתקן אותו, אנא בדוק את ספרית libburn. \n\nהצריבה אמורה עדיין לעבוד, אבל אם בכל זאת יש בעיות, אנא יידע אותנו.\n\n<i>תודה רבה!</i> "
 
-#: ../xfburn/xfburn-device-box.c:370
+#: xfburn/xfburn-device-box.c:370
 msgid "Continue to _show this notice"
 msgstr "המשך להציג את ההודעה הזו"
 
-#: ../xfburn/xfburn-device-box.c:418
+#: xfburn/xfburn-device-box.c:418
 msgid "default"
 msgstr "ברירת מחדל"
 
-#: ../xfburn/xfburn-device-box.c:449
+#: xfburn/xfburn-device-box.c:449
 msgid "Max"
 msgstr "מרבי"
 
-#: ../xfburn/xfburn-device-box.c:484
+#: xfburn/xfburn-device-box.c:484
 msgid "A full, but erasable disc is in the drive"
 msgstr "דיסק מלא, אבל ניתן למחיקה נמצא בכונן"
 
-#: ../xfburn/xfburn-device-box.c:485
+#: xfburn/xfburn-device-box.c:485
 msgid ""
 "Do you want to blank the disc, so that it can be used for the upcoming burn "
 "process?"
 msgstr "האם אתה רוצה למחוק את הדיסק, כך שיהיה ניתן לשימוש בתהליך הצריבה הבא?"
 
-#: ../xfburn/xfburn-device-box.c:557
+#: xfburn/xfburn-device-box.c:557
 msgid "Drive can't burn on the inserted disc"
 msgstr "הכונן לא מסוגל לצרוב על התקליטור שהוכנס"
 
-#: ../xfburn/xfburn-device-box.c:566 ../xfburn/xfburn-device-box.c:612
+#: xfburn/xfburn-device-box.c:566 xfburn/xfburn-device-box.c:612
 msgid "Drive is empty"
 msgstr "הכונן ריק"
 
-#: ../xfburn/xfburn-device-box.c:569
+#: xfburn/xfburn-device-box.c:569
 msgid "Sorry, multisession is not yet supported"
 msgstr "סליחה, סשנים מרובים עדיין לא נתמכים"
 
-#: ../xfburn/xfburn-device-box.c:572
+#: xfburn/xfburn-device-box.c:572
 msgid "Inserted disc is full"
 msgstr "התקליטור שהוכנס הינו מלא"
 
-#: ../xfburn/xfburn-device-box.c:575 ../xfburn/xfburn-device-box.c:618
+#: xfburn/xfburn-device-box.c:575 xfburn/xfburn-device-box.c:618
 msgid "Inserted disc is unsuitable"
 msgstr "התקליטור שהוכנס אינו מתאים"
 
-#: ../xfburn/xfburn-device-box.c:578 ../xfburn/xfburn-device-box.c:621
+#: xfburn/xfburn-device-box.c:578 xfburn/xfburn-device-box.c:621
 msgid "Cannot access drive (it might be in use)"
 msgstr "לא יכול לגשת לכונן (יכול להיות שהוא בשימוש)"
 
-#: ../xfburn/xfburn-device-box.c:583 ../xfburn/xfburn-device-box.c:624
+#: xfburn/xfburn-device-box.c:583 xfburn/xfburn-device-box.c:624
 msgid "Error determining disc"
 msgstr "שגיאה בקביעת תקליטור"
 
-#: ../xfburn/xfburn-device-box.c:604
+#: xfburn/xfburn-device-box.c:604
 msgid "Write-once disc, no blanking possible"
 msgstr "תקליטור לכתיבה חד פעמית, מחיקה בלתי אפשרית"
 
-#: ../xfburn/xfburn-device-box.c:607
+#: xfburn/xfburn-device-box.c:607
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW לא צריך מחיקה"
 
-#: ../xfburn/xfburn-device-box.c:615
+#: xfburn/xfburn-device-box.c:615
 msgid "Inserted disc is already blank"
 msgstr "התקליטור שהוכנס כבר מרוקן"
 
-#: ../xfburn/xfburn-device-box.c:651
+#: xfburn/xfburn-device-box.c:651
 msgid "Automatic"
 msgstr "אוטומטי"
 
-#: ../xfburn/xfburn-device-box.c:658
+#: xfburn/xfburn-device-box.c:658
 msgid "With Track Gaps / Track-At-Once (TAO)"
 msgstr "With Track Gaps / Track-At-Once (TAO)"
 
-#: ../xfburn/xfburn-device-box.c:665
+#: xfburn/xfburn-device-box.c:665
 msgid "Multi Session / Session-At-Once (SAO)"
 msgstr "Multi Session / Session-At-Once (SAO)"
 
-#: ../xfburn/xfburn-device-list.c:204 ../xfburn/xfburn-device-list.c:205
+#: xfburn/xfburn-device-list.c:204 xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
 msgstr "מספר צורבים בתוך המערכת"
 
-#: ../xfburn/xfburn-device-list.c:207
+#: xfburn/xfburn-device-list.c:207
 msgid "Number of drives in the system"
 msgstr "מספר כוננים בתוך המערכת"
 
-#: ../xfburn/xfburn-device-list.c:208
+#: xfburn/xfburn-device-list.c:208
 msgid "Number of drives in the system (readers and writers)"
 msgstr "מספר כוננים בתוך המערכת (קוראים וגם כותבים)"
 
-#: ../xfburn/xfburn-device-list.c:210 ../xfburn/xfburn-device-list.c:211
+#: xfburn/xfburn-device-list.c:210 xfburn/xfburn-device-list.c:211
 msgid "List of devices"
 msgstr "רשימת התקנים"
 
-#: ../xfburn/xfburn-device-list.c:213 ../xfburn/xfburn-device-list.c:214
+#: xfburn/xfburn-device-list.c:213 xfburn/xfburn-device-list.c:214
 msgid "Currently selected device"
 msgstr "התקן נבחר נוכחי"
 
 #. globals
-#: ../xfburn/xfburn-directory-browser.c:52
+#: xfburn/xfburn-directory-browser.c:52
 msgid "Folder"
 msgstr "תיקייה"
 
-#: ../xfburn/xfburn-directory-browser.c:100
+#: xfburn/xfburn-directory-browser.c:100
 msgid "File"
 msgstr "קובץ"
 
-#: ../xfburn/xfburn-directory-browser.c:115
+#: xfburn/xfburn-directory-browser.c:115
 msgid "Type"
 msgstr "סוג"
 
-#: ../xfburn/xfburn-fs-browser.c:96 ../xfburn/xfburn-fs-browser.c:305
+#: xfburn/xfburn-fs-browser.c:96 xfburn/xfburn-fs-browser.c:305
 msgid "Filesystem"
 msgstr "מערכת קבצים"
 
 #. load the user's home dir
-#: ../xfburn/xfburn-fs-browser.c:284
+#: xfburn/xfburn-fs-browser.c:284
 #, c-format
 msgid "%s's home"
 msgstr "הבית של %s"
 
-#: ../xfburn/xfburn-udev-manager.c:495
+#: xfburn/xfburn-udev-manager.c:495
 #, c-format
 msgid "Failed to unmount '%s'. Drive cannot be used for burning."
 msgstr "נכשל ביטול עגינת %s. כונן לא ניתן לשימוש עבור צריבה."
 
 #. || G_OPTION_FLAG_FILENAME
-#: ../xfburn/xfburn-main.c:74
+#: xfburn/xfburn-main.c:74
 msgid "Open the burn image dialog, optionally followed by the image filename"
 msgstr "פתח את דו שיח צריבת תמונה, עם אפשרות לשם קובץ תמונה בהמשך"
 
-#: ../xfburn/xfburn-main.c:76
+#: xfburn/xfburn-main.c:76
 msgid "Open the blank disc dialog"
 msgstr "פתח את דו שיח מחיקת תקליטור"
 
-#: ../xfburn/xfburn-main.c:78
+#: xfburn/xfburn-main.c:78
 msgid ""
 "Start a data composition, optionally followed by files/directories to be "
 "added to the composition"
 msgstr "התחל יצירת מידע, עם אפשרות לקבצים/ספריות להוספה ליצירה בהמשך"
 
-#: ../xfburn/xfburn-main.c:80
+#: xfburn/xfburn-main.c:80
 msgid ""
 "Start an audio composition, optionally followed by files/directories to be "
 "added to the composition"
 msgstr "התחל יצירת שמע, עם אפשרות לקבצים/ספריות להוספה ליצירה בהמשך"
 
-#: ../xfburn/xfburn-main.c:82
+#: xfburn/xfburn-main.c:82
 msgid ""
 "Select the transcoder, run with --transcoder=list to see the available ones"
 msgstr "בחר את הטרנסקודר, הרץ עם --transcoder=list כדי לראות את הזמינים"
 
-#: ../xfburn/xfburn-main.c:84
+#: xfburn/xfburn-main.c:84
 msgid ""
 "Start the file browser in the specified directory, or the current directory "
 "if none is specified (the default is to start in your home directory)"
 msgstr "הפעל את דפדפן הקבצים בספריה הנבחרת, או בספריה הנוכחית אם אף אחת לא נבחרה (ברירת המחדל היא להתחיל בספריית הבית שלך)"
 
-#: ../xfburn/xfburn-main.c:86
+#: xfburn/xfburn-main.c:86
 msgid "Display program version and exit"
 msgstr "הצג גרסת תוכנה וצא"
 
-#: ../xfburn/xfburn-main.c:88
+#: xfburn/xfburn-main.c:88
 msgid ""
 "Show main program even when other action is specified on the command line."
 msgstr "הצג תוכנה ראשית גם כאשר צוינה בשורת הפקודה פעולה אחרת."
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
-#: ../org.xfce.xfburn.appdata.xml.in.h:1
+#: xfburn/xfburn-main.c:202 xfburn.desktop.in:5
+#: org.xfce.xfburn.appdata.xml.in:8
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main.c:211
+#: xfburn/xfburn-main.c:211
 #, c-format
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
 msgstr "%s: %s\nנסה %s --help לראות רשימה מלאה של אפשרויות שורות פקודה זמינות.\n\n"
 
-#: ../xfburn/xfburn-main.c:220
+#: xfburn/xfburn-main.c:220
 msgid "Unable to initialize the burning backend."
 msgstr "לא יכול להתחיל את המגשר העורפי של הצריבה."
 
-#: ../xfburn/xfburn-main.c:294
+#: xfburn/xfburn-main.c:294
 msgid "No burners are currently available"
 msgstr "אין צורבים אשר זמינים כרגע"
 
-#: ../xfburn/xfburn-main.c:296
+#: xfburn/xfburn-main.c:296
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr "כנראה הדיסק(ים) בשימוש, ולא ניתן לגשת אליהם.\n\nאם אין דיסק בכונן, בדוק שיש לך גישה לקריאה וכתיבה לכונן עם המשתמש הנוכחי."
 
-#: ../xfburn/xfburn-main.c:329
+#: xfburn/xfburn-main.c:329
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr "נכשל להתחיל %s טרנסקודר: %s \n(חוזר ליישום בסיסי)"
 
-#: ../xfburn/xfburn-main.c:372
+#: xfburn/xfburn-main.c:372
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "קובץ דמות '%s' לא קיים."
 
-#: ../xfburn/xfburn-main-window.c:235
+#: xfburn/xfburn-main-window.c:235
 msgid "New data composition"
 msgstr "יצירת נתונים חדשה"
 
-#: ../xfburn/xfburn-main-window.c:238
+#: xfburn/xfburn-main-window.c:238
 msgid "New audio composition"
 msgstr "יצירת שמע חדשה"
 
-#: ../xfburn/xfburn-main-window.c:243 ../xfburn.ui.h:9
+#: xfburn/xfburn-main-window.c:243 xfburn.ui:42
 msgid "Blank CD-RW"
 msgstr "מחק CD-RW"
 
-#: ../xfburn/xfburn-main-window.c:246 ../xfburn.ui.h:10
+#: xfburn/xfburn-main-window.c:246 xfburn.ui:46
 msgid "Burn Image"
 msgstr "צרוב דמות"
 
-#: ../xfburn/xfburn-main-window.c:251 ../xfburn.ui.h:12
+#: xfburn/xfburn-main-window.c:251 xfburn.ui:56
 msgid "Refresh"
 msgstr "רענן"
 
-#: ../xfburn/xfburn-main-window.c:251
+#: xfburn/xfburn-main-window.c:251
 msgid "Refresh file list"
 msgstr "רענן את רשימת הקבצים"
 
-#: ../xfburn/xfburn-main-window.c:489
+#: xfburn/xfburn-main-window.c:490
 msgid "Another cd burning GUI"
 msgstr "עוד ממשק צריבת תקליטורים"
 
-#: ../xfburn/xfburn-notebook-tab.c:81
+#: xfburn/xfburn-notebook-tab.c:81
 msgid "Label"
 msgstr "תווית"
 
-#: ../xfburn/xfburn-notebook-tab.c:81
+#: xfburn/xfburn-notebook-tab.c:81
 msgid "The text of the label"
 msgstr "הטקסט של התווית"
 
-#: ../xfburn/xfburn-notebook-tab.c:84
+#: xfburn/xfburn-notebook-tab.c:84
 msgid "Show close button"
 msgstr "הצג כפתור סגירה"
 
-#: ../xfburn/xfburn-notebook-tab.c:84
+#: xfburn/xfburn-notebook-tab.c:84
 msgid "Determine whether the close button is visible"
 msgstr "קבע האם כפתור סגירה גלוי"
 
-#: ../xfburn/xfburn-perform-burn.c:103 ../xfburn/xfburn-perform-burn.c:452
+#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:452
 msgid "Formatting..."
 msgstr "כעת מפרמט..."
 
-#: ../xfburn/xfburn-perform-burn.c:270
+#: xfburn/xfburn-perform-burn.c:270
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "לא יכול להוסיף מידע לתקליטור סשנים מרובים במצב כתיבה זה (השתמש ב־TAO במקום)."
 
-#: ../xfburn/xfburn-perform-burn.c:274
+#: xfburn/xfburn-perform-burn.c:274
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "תקליטור סגור עם מידע אותר, נדרש תקליטור ריק או תקליטור אשר ניתן להוסיף עליו"
 
-#: ../xfburn/xfburn-perform-burn.c:276
+#: xfburn/xfburn-perform-burn.c:276
 msgid "No disc detected in drive."
 msgstr "לא אותר תקליטור בכונן."
 
-#: ../xfburn/xfburn-perform-burn.c:279
+#: xfburn/xfburn-perform-burn.c:279
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "לא יכול לזהות את המצב של הכונן והתקליטור."
 
-#: ../xfburn/xfburn-perform-burn.c:286
+#: xfburn/xfburn-perform-burn.c:286
 msgid "Formatting failed."
 msgstr "פירמוט נכשל."
 
-#: ../xfburn/xfburn-perform-burn.c:304
+#: xfburn/xfburn-perform-burn.c:304
 msgid "There is not enough space available on the inserted disc."
 msgstr "אין מספיק מקום זמין בתקליטור שהוכנס."
 
-#: ../xfburn/xfburn-perform-burn.c:349
+#: xfburn/xfburn-perform-burn.c:349
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "כעת צורב רצועה %2d/%d..."
 
-#: ../xfburn/xfburn-perform-burn.c:353 ../xfburn/xfburn-perform-burn.c:417
+#: xfburn/xfburn-perform-burn.c:353 xfburn/xfburn-perform-burn.c:417
 msgid "Burning composition..."
 msgstr "כעת צורב יצירה..."
 
-#: ../xfburn/xfburn-perform-burn.c:386
+#: xfburn/xfburn-perform-burn.c:386
 msgid "standby"
 msgstr "המתנה"
 
-#: ../xfburn/xfburn-perform-burn.c:394
+#: xfburn/xfburn-perform-burn.c:394
 msgid "ending"
 msgstr "סיום"
 
-#: ../xfburn/xfburn-perform-burn.c:397
+#: xfburn/xfburn-perform-burn.c:397
 msgid "failing"
 msgstr "כשלון"
 
-#: ../xfburn/xfburn-perform-burn.c:400
+#: xfburn/xfburn-perform-burn.c:400
 msgid "unused"
 msgstr "לא בשימוש"
 
-#: ../xfburn/xfburn-perform-burn.c:403
+#: xfburn/xfburn-perform-burn.c:403
 msgid "abandoned"
 msgstr "נטוש"
 
-#: ../xfburn/xfburn-perform-burn.c:406
+#: xfburn/xfburn-perform-burn.c:406
 msgid "ended"
 msgstr "הסתיים"
 
-#: ../xfburn/xfburn-perform-burn.c:409
+#: xfburn/xfburn-perform-burn.c:409
 msgid "aborted"
 msgstr "ננטש"
 
-#: ../xfburn/xfburn-perform-burn.c:412
+#: xfburn/xfburn-perform-burn.c:412
 msgid "no info"
 msgstr "אין מידע"
 
-#: ../xfburn/xfburn-perform-burn.c:422
+#: xfburn/xfburn-perform-burn.c:422
 msgid "Writing Lead-In..."
 msgstr "כעת כותב Lead-In..."
 
-#: ../xfburn/xfburn-perform-burn.c:428
+#: xfburn/xfburn-perform-burn.c:428
 msgid "Writing Lead-Out..."
 msgstr "כעת כותב Lead-Out..."
 
-#: ../xfburn/xfburn-perform-burn.c:434
+#: xfburn/xfburn-perform-burn.c:434
 msgid "Writing pregap..."
 msgstr "כעת כותב pregap..."
 
-#: ../xfburn/xfburn-perform-burn.c:440
+#: xfburn/xfburn-perform-burn.c:440
 msgid "Closing track..."
 msgstr "כעת סוגר רצועה..."
 
-#: ../xfburn/xfburn-perform-burn.c:446
+#: xfburn/xfburn-perform-burn.c:446
 msgid "Closing session..."
 msgstr "כעת סוגר סשן..."
 
-#: ../xfburn/xfburn-perform-burn.c:465
+#: xfburn/xfburn-perform-burn.c:465
 msgid "see console"
 msgstr "ראה לוח בקרה"
 
-#: ../xfburn/xfburn-perform-burn.c:493
+#: xfburn/xfburn-perform-burn.c:493
 msgid "User Aborted"
 msgstr "המשתמש ביטל"
 
-#: ../xfburn/xfburn-preferences-dialog.c:117
+#: xfburn/xfburn-preferences-dialog.c:117
 msgid "Preferences"
 msgstr "העדפות"
 
-#: ../xfburn/xfburn-preferences-dialog.c:118
+#: xfburn/xfburn-preferences-dialog.c:118
 msgid "Tune how Xfburn behaves"
 msgstr "התאם את האופן בו צורב אקס־אף מתנהג"
 
-#: ../xfburn/xfburn-preferences-dialog.c:163
-#: ../xfburn/xfburn-preferences-dialog.c:167
+#: xfburn/xfburn-preferences-dialog.c:163
+#: xfburn/xfburn-preferences-dialog.c:167
 msgid "Temporary directory"
 msgstr "ספרייה זמנית"
 
-#: ../xfburn/xfburn-preferences-dialog.c:171
+#: xfburn/xfburn-preferences-dialog.c:171
 msgid "_Clean temporary directory on exit"
 msgstr "_נקה ספריה זמנית ביציאה"
 
-#: ../xfburn/xfburn-preferences-dialog.c:178
+#: xfburn/xfburn-preferences-dialog.c:178
 msgid "File browser"
 msgstr "סייר קבצים"
 
-#: ../xfburn/xfburn-preferences-dialog.c:182
+#: xfburn/xfburn-preferences-dialog.c:182
 msgid "Show _hidden files"
 msgstr "הצג _קבצים נסתרים"
 
-#: ../xfburn/xfburn-preferences-dialog.c:187
+#: xfburn/xfburn-preferences-dialog.c:187
 msgid "Show human_readable filesizes"
 msgstr "הצג _גודל קובץ בצורה נוחה לקריאה"
 
-#: ../xfburn/xfburn-preferences-dialog.c:197
-#: ../xfburn/xfburn-preferences-dialog.c:208
+#: xfburn/xfburn-preferences-dialog.c:197
+#: xfburn/xfburn-preferences-dialog.c:208
 msgid "General"
 msgstr "כללי"
 
-#: ../xfburn/xfburn-preferences-dialog.c:212
-#: ../xfburn/xfburn-preferences-dialog.c:295
+#: xfburn/xfburn-preferences-dialog.c:212
+#: xfburn/xfburn-preferences-dialog.c:295
 msgid "Devices"
 msgstr "התקנים"
 
-#: ../xfburn/xfburn-preferences-dialog.c:221
+#: xfburn/xfburn-preferences-dialog.c:221
 msgid "Detected devices"
 msgstr "התקנים שאותרו"
 
-#: ../xfburn/xfburn-preferences-dialog.c:243
+#: xfburn/xfburn-preferences-dialog.c:243
 msgid "Name"
 msgstr "שם"
 
-#: ../xfburn/xfburn-preferences-dialog.c:256
+#: xfburn/xfburn-preferences-dialog.c:256
 msgid "Revision"
 msgstr "מהדורה"
 
-#: ../xfburn/xfburn-preferences-dialog.c:258
+#: xfburn/xfburn-preferences-dialog.c:258
 msgid "Node"
 msgstr "צומת"
 
-#: ../xfburn/xfburn-preferences-dialog.c:260
+#: xfburn/xfburn-preferences-dialog.c:260
 msgid "Write CD-R"
 msgstr "כתיבת CD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:262
+#: xfburn/xfburn-preferences-dialog.c:262
 msgid "Write CD-RW"
 msgstr "כתוב CD-RW"
 
-#: ../xfburn/xfburn-preferences-dialog.c:265
+#: xfburn/xfburn-preferences-dialog.c:265
 msgid "Write DVD-R"
 msgstr "כתוב DVD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:268
+#: xfburn/xfburn-preferences-dialog.c:268
 msgid "Write DVD-RAM"
 msgstr "כתוב DVD-RAM"
 
-#: ../xfburn/xfburn-preferences-dialog.c:271
+#: xfburn/xfburn-preferences-dialog.c:271
 msgid "Write Blu-ray"
 msgstr "כתוב Blu-ray"
 
-#: ../xfburn/xfburn-preferences-dialog.c:279
+#: xfburn/xfburn-preferences-dialog.c:279
 msgid "Sc_an for devices"
 msgstr "סרוק ה_תקנים"
 
-#: ../xfburn/xfburn-preferences-dialog.c:306
+#: xfburn/xfburn-preferences-dialog.c:306
 msgid "Show warning on _empty speed list"
 msgstr "הצג אזהרה על רשימת מהירות ריקה"
 
-#: ../xfburn/xfburn-preferences-dialog.c:315
+#: xfburn/xfburn-preferences-dialog.c:315
 msgid "FIFO buffer size (in kb)"
 msgstr "גודל מאגר FIFO (בקילו בייטים)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:334
+#: xfburn/xfburn-preferences-dialog.c:334
 msgid "_Close"
 msgstr "_סגור"
 
-#: ../xfburn/xfburn-preferences-dialog.c:469
+#: xfburn/xfburn-preferences-dialog.c:469
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "שינוי הגדרה זו נכנס לתוקף מלא רק לאחר אתחול תוכנה."
 
 #. label
-#: ../xfburn/xfburn-progress-dialog.c:168
-#: ../xfburn/xfburn-progress-dialog.c:172
-#: ../xfburn/xfburn-progress-dialog.c:527
+#: xfburn/xfburn-progress-dialog.c:168 xfburn/xfburn-progress-dialog.c:172
+#: xfburn/xfburn-progress-dialog.c:527
 msgid "Initializing..."
 msgstr "כעת מאתחל..."
 
-#: ../xfburn/xfburn-progress-dialog.c:187
+#: xfburn/xfburn-progress-dialog.c:187
 msgid "Estimated writing speed:"
 msgstr "מהירות כתיבה מוערכת:"
 
-#: ../xfburn/xfburn-progress-dialog.c:190
-#: ../xfburn/xfburn-progress-dialog.c:206
-#: ../xfburn/xfburn-progress-dialog.c:215
-#: ../xfburn/xfburn-progress-dialog.c:306
-#: ../xfburn/xfburn-progress-dialog.c:450
-#: ../xfburn/xfburn-progress-dialog.c:474
-#: ../xfburn/xfburn-progress-dialog.c:498
+#: xfburn/xfburn-progress-dialog.c:190 xfburn/xfburn-progress-dialog.c:206
+#: xfburn/xfburn-progress-dialog.c:215 xfburn/xfburn-progress-dialog.c:306
+#: xfburn/xfburn-progress-dialog.c:450 xfburn/xfburn-progress-dialog.c:474
+#: xfburn/xfburn-progress-dialog.c:498
 msgid "unknown"
 msgstr "לא ידוע"
 
-#: ../xfburn/xfburn-progress-dialog.c:201
+#: xfburn/xfburn-progress-dialog.c:201
 msgid "FIFO buffer:"
 msgstr "מאגר FIFO:"
 
-#: ../xfburn/xfburn-progress-dialog.c:210
+#: xfburn/xfburn-progress-dialog.c:210
 msgid "Device buffer:"
 msgstr "מאגר התקן:"
 
 #. action buttons
-#: ../xfburn/xfburn-progress-dialog.c:220
+#: xfburn/xfburn-progress-dialog.c:220
 msgid "_Stop"
 msgstr "_עצירה"
 
-#: ../xfburn/xfburn-progress-dialog.c:227
+#: xfburn/xfburn-progress-dialog.c:227
 msgid "Close"
 msgstr "סגור"
 
-#: ../xfburn/xfburn-progress-dialog.c:348
+#: xfburn/xfburn-progress-dialog.c:348
 msgid "Are you sure you want to abort?"
 msgstr "האם אתה בטוח שברצונך לבטל?"
 
-#: ../xfburn/xfburn-progress-dialog.c:476
+#: xfburn/xfburn-progress-dialog.c:476
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "Min. fill was %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:544
+#: xfburn/xfburn-progress-dialog.c:544
 msgid "Aborted"
 msgstr "ננטש"
 
-#: ../xfburn/xfburn-progress-dialog.c:547
+#: xfburn/xfburn-progress-dialog.c:547
 msgid "Formatted."
 msgstr "פורמט."
 
-#: ../xfburn/xfburn-progress-dialog.c:556
+#: xfburn/xfburn-progress-dialog.c:556
 msgid "Failed"
 msgstr "נכשלה"
 
-#: ../xfburn/xfburn-progress-dialog.c:559
+#: xfburn/xfburn-progress-dialog.c:559
 msgid "Cancelled"
 msgstr "בוטלה"
 
-#: ../xfburn/xfburn-progress-dialog.c:562
+#: xfburn/xfburn-progress-dialog.c:562
 msgid "Completed"
 msgstr "הושלמה"
 
-#: ../xfburn/xfburn-progress-dialog.c:600
+#: xfburn/xfburn-progress-dialog.c:600
 msgid "Aborting..."
 msgstr "כעת נוטש..."
 
-#: ../xfburn/xfburn-utils.c:132
+#: xfburn/xfburn-utils.c:132
 msgid "Select command"
 msgstr "בחר פקודה"
 
-#: ../xfburn/xfburn-utils.c:172
+#: xfburn/xfburn-utils.c:172
 msgid "File(s) to add to composition"
 msgstr "קבצים להוסיף ליצירה"
 
-#: ../xfburn/xfburn-welcome-tab.c:99
+#: xfburn/xfburn-welcome-tab.c:99
 msgid "Welcome to Xfburn!"
 msgstr "ברוך הבא אל Xfburn!"
 
 #. buttons
-#: ../xfburn/xfburn-welcome-tab.c:119
+#: xfburn/xfburn-welcome-tab.c:119
 msgid "<big>Burn _Image</big>"
 msgstr "<big>צרוב _דמות</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:119
+#: xfburn/xfburn-welcome-tab.c:119
 msgid "Burn a prepared composition, i.e. an .ISO file"
 msgstr "צרוב יצירה מוכנה מראש, זאת אומרת קובץ .ISO"
 
-#: ../xfburn/xfburn-welcome-tab.c:124
+#: xfburn/xfburn-welcome-tab.c:124
 msgid "<big>New _Data Composition</big>"
 msgstr "<big>יצירת _נתונים חדשה</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:124
+#: xfburn/xfburn-welcome-tab.c:124
 msgid "Create a new data disc with the files of your choosing"
 msgstr "יוצר תקליטור מידע חדש עם קבצים לבחירתך"
 
-#: ../xfburn/xfburn-welcome-tab.c:129
+#: xfburn/xfburn-welcome-tab.c:129
 msgid "<big>_Blank Disc</big>"
 msgstr "<big>_מחק תקליטור</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:129
+#: xfburn/xfburn-welcome-tab.c:129
 msgid "Prepare the rewriteable disc for a new burn"
 msgstr "מכין את התקליטור הניתן לכתיבה חוזרת לצורך צריבה חדשה"
 
-#: ../xfburn/xfburn-welcome-tab.c:134
+#: xfburn/xfburn-welcome-tab.c:134
 msgid "<big>_Audio CD</big>"
 msgstr "<big>תקליטור _שמע</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:134
+#: xfburn/xfburn-welcome-tab.c:134
 msgid "Audio CD playable in regular stereos"
 msgstr "תקליטור שמע לנגינה במערכות סטריאו רגילות"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: ../xfburn/xfburn-audio-composition.c:343
-#: ../xfburn/xfburn-transcoder-gst.c:581
+#: xfburn/xfburn-audio-composition.c:343 xfburn/xfburn-transcoder-gst.c:581
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: ../xfburn/xfburn-audio-composition.c:343
+#: xfburn/xfburn-audio-composition.c:343
 msgid "What files can get burned to an audio CD?"
 msgstr "אילו קבצים יכולים להיצרב לתקליטור שמע?"
 
-#: ../xfburn/xfburn-audio-composition.c:374
+#: xfburn/xfburn-audio-composition.c:374
 msgid "Pos"
 msgstr "Pos"
 
-#: ../xfburn/xfburn-audio-composition.c:376
+#: xfburn/xfburn-audio-composition.c:376
 msgid "Length"
 msgstr "אורך‏"
 
-#: ../xfburn/xfburn-audio-composition.c:382
+#: xfburn/xfburn-audio-composition.c:382
 msgid "Artist"
 msgstr "אמן"
 
-#: ../xfburn/xfburn-audio-composition.c:395
+#: xfburn/xfburn-audio-composition.c:395
 msgid "Title"
 msgstr "כותרת"
 
-#: ../xfburn/xfburn-audio-composition.c:406
+#: xfburn/xfburn-audio-composition.c:406
 msgid "Filename"
 msgstr "שם קובץ"
 
-#: ../xfburn/xfburn-audio-composition.c:557
+#: xfburn/xfburn-audio-composition.c:557
 msgid "Cannot burn audio onto a DVD."
 msgstr "לא יכול לצרוב שמע על DVD."
 
-#: ../xfburn/xfburn-audio-composition.c:1222
+#: xfburn/xfburn-audio-composition.c:1222
 msgid "You can only have a maximum of 99 tracks."
 msgstr "יכול להיות לך מקסימום 99 רצועות."
 
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:273
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:273
 msgid "A problem with the burn backend occurred."
 msgstr "התרחשה בעיה עם המגשר העורפי של צריבה."
 
-#: ../xfburn/xfburn-disc-usage.c:161
+#: xfburn/xfburn-disc-usage.c:161
 msgid "Proceed to Burn"
 msgstr "המשך לצריבה"
 
-#: ../xfburn/xfburn-disc-usage.c:201
+#: xfburn/xfburn-disc-usage.c:201
 msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "אתה מנסה לצרוב יותר ממה שהתקליטור יכול להכיל."
 
 #. globals
-#: ../xfburn/xfburn-transcoder-basic.c:69
-#: ../xfburn/xfburn-transcoder-gst.c:145
+#: xfburn/xfburn-transcoder-basic.c:69 xfburn/xfburn-transcoder-gst.c:145
 msgid "An error occurred while setting the burning backend up"
 msgstr "אירעה שגיאה בעת הקמת מגשר עורפי לצריבה"
 
-#: ../xfburn/xfburn-transcoder-basic.c:129
+#: xfburn/xfburn-transcoder-basic.c:129
 msgid "basic"
 msgstr "בסיסי"
 
-#: ../xfburn/xfburn-transcoder-basic.c:135
+#: xfburn/xfburn-transcoder-basic.c:135
 msgid ""
 "The basic transcoder is built in,\n"
 "and does not require any library.\n"
@@ -1253,36 +1228,36 @@ msgid ""
 "gstreamer support."
 msgstr "הטרנסקודר הבסיסי הוא מובנה,\nולא דורש שום ספריה.\nאבל הוא יכול לטפל בקבצי wav. לא דחוסים בלבד.\nאם אתה מעונין ליצור יצירות\nשמע מסוגים שונים של\nקבצי שמע, אנא בצע הדרה עם\nתמיכת gstreamer."
 
-#: ../xfburn/xfburn-transcoder-basic.c:159
+#: xfburn/xfburn-transcoder-basic.c:159
 #, c-format
 msgid "File %s does not have a .wav extension"
 msgstr "לקובץ %s חסרה סיומת wav."
 
-#: ../xfburn/xfburn-transcoder-basic.c:164
+#: xfburn/xfburn-transcoder-basic.c:164
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
 msgstr "קובץ %s לא מכיל אודיו גל PCM לא דחוס"
 
-#: ../xfburn/xfburn-transcoder-basic.c:170
+#: xfburn/xfburn-transcoder-basic.c:170
 #, c-format
 msgid "Could not stat %s: %s"
 msgstr "לא ניתן להתחיל %s: %s "
 
-#: ../xfburn/xfburn-transcoder-basic.c:202
+#: xfburn/xfburn-transcoder-basic.c:202
 #, c-format
 msgid "Could not open %s."
 msgstr "לא ניתן לפתוח %s. "
 
-#: ../xfburn/xfburn-transcoder-basic.c:281
+#: xfburn/xfburn-transcoder-basic.c:281
 #, c-format
 msgid "Could not open %s: %s"
 msgstr "לא ניתן לפתוח %s: %s "
 
-#: ../xfburn/xfburn-transcoder-gst.c:144
+#: xfburn/xfburn-transcoder-gst.c:144
 msgid "An error occurred setting gstreamer up for transcoding"
 msgstr "אירעה שגיאה בעת הקמת gstreamer עבור טראנסקודינג"
 
-#: ../xfburn/xfburn-transcoder-gst.c:146
+#: xfburn/xfburn-transcoder-gst.c:146
 #, c-format
 msgid ""
 "%s is missing.\n"
@@ -1292,11 +1267,11 @@ msgid ""
 "for the necessary plugins.\n"
 msgstr "%s חסר.\n\nאין לך מפענח מותקן כדי לטפל בקובץ זה.\nכנראה צריך לבדוק בחבילות gst-plugins-*\nעבור התוספים הדרושים.\n"
 
-#: ../xfburn/xfburn-transcoder-gst.c:544
+#: xfburn/xfburn-transcoder-gst.c:544
 msgid "File content has a decoder but is not audio."
 msgstr "תכולת הקובץ כוללת מפענח אבל הוא לא שמע."
 
-#: ../xfburn/xfburn-transcoder-gst.c:587
+#: xfburn/xfburn-transcoder-gst.c:587
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1308,204 +1283,189 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "טרנסקודר gstreamer משתמש בספריית\ngstreamer ליצירת יצירות שמע.\n\nלמעשה כל קבצי השמע צריכים להיות נתמכים\nבהינתן שהתוספים הנכונים מותקנים.\nאם קובץ השמע לא מזוהה, וודא\nשחבילות תוסף gstreamer \"הטובה\", \"הרעה\" ו\"המכוערת\"\nמותקנות."
 
-#: ../xfburn/xfburn-transcoder-gst.c:627
+#: xfburn/xfburn-transcoder-gst.c:627
 msgid "No information available on which plugin is required."
 msgstr "אין מידע זמין לגבי התוסף הדרוש."
 
-#: ../xfburn/xfburn-transcoder-gst.c:629
+#: xfburn/xfburn-transcoder-gst.c:629
 msgid "Required plugins: "
 msgstr "תוספים דרושים:"
 
-#: ../xfburn/xfburn-transcoder-gst.c:664 ../xfburn/xfburn-transcoder-gst.c:694
+#: xfburn/xfburn-transcoder-gst.c:664 xfburn/xfburn-transcoder-gst.c:694
 #, c-format
 msgid "An error occurred while identifying '%s' with gstreamer"
 msgstr "אירעה שגיאה במהלך זיהוי '%s' עם gstreamer "
 
-#: ../xfburn/xfburn-transcoder-gst.c:681
+#: xfburn/xfburn-transcoder-gst.c:681
 msgid "A plugin"
 msgstr "תוסף"
 
-#: ../xfburn/xfburn-transcoder-gst.c:816
-#, c-format
+#: xfburn/xfburn-transcoder-gst.c:816
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "Gstreamer לא רצה להתחיל פעולת טראנסקודינג (הזמן עבר)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:851
-#, c-format
+#: xfburn/xfburn-transcoder-gst.c:851
 msgid "Failed to change songs while transcoding"
 msgstr "נכשלה החלפת שירים במהלך פעולת טראנסקודינג"
 
-#: ../xfburn/xfburn-transcoder.c:103 ../xfburn/xfburn-transcoder.c:113
+#: xfburn/xfburn-transcoder.c:103 xfburn/xfburn-transcoder.c:113
 msgid "none"
 msgstr "אף אחד"
 
-#: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
-#: ../xfburn/xfburn-transcoder.c:163
-#, c-format
+#: xfburn/xfburn-transcoder.c:124 xfburn/xfburn-transcoder.c:151
+#: xfburn/xfburn-transcoder.c:163
 msgid "not implemented"
 msgstr "לא מיושם"
 
-#: ../xfburn/xfburn-device.c:255 ../xfburn/xfburn-device.c:256
+#: xfburn/xfburn-device.c:255 xfburn/xfburn-device.c:256
 msgid "Display name"
 msgstr "שם צג"
 
-#: ../xfburn/xfburn-device.c:258 ../xfburn/xfburn-device.c:259
+#: xfburn/xfburn-device.c:258 xfburn/xfburn-device.c:259
 msgid "Device address"
 msgstr "כתובת התקן"
 
-#: ../xfburn/xfburn-device.c:261
+#: xfburn/xfburn-device.c:261
 msgid "Device revision"
 msgstr "מהדורת התקן"
 
-#: ../xfburn/xfburn-device.c:262
+#: xfburn/xfburn-device.c:262
 msgid "Device Revision"
 msgstr "מהדורת התקן"
 
-#: ../xfburn/xfburn-device.c:264 ../xfburn/xfburn-device.c:265
+#: xfburn/xfburn-device.c:264 xfburn/xfburn-device.c:265
 msgid "Burn speeds supported by the device"
 msgstr "מהירויות צריבה נתמכות על ידי ההתקן"
 
-#: ../xfburn/xfburn-device.c:267 ../xfburn/xfburn-device.c:268
+#: xfburn/xfburn-device.c:267 xfburn/xfburn-device.c:268
 msgid "Disc status"
 msgstr "מצב תקליטור"
 
-#: ../xfburn/xfburn-device.c:270 ../xfburn/xfburn-device.c:271
+#: xfburn/xfburn-device.c:270 xfburn/xfburn-device.c:271
 msgid "Profile no. as reported by libburn"
 msgstr "מס׳ פרופיל כפי שדווח ע״י libburn"
 
-#: ../xfburn/xfburn-device.c:273 ../xfburn/xfburn-device.c:274
+#: xfburn/xfburn-device.c:273 xfburn/xfburn-device.c:274
 msgid "Profile name as reported by libburn"
 msgstr "שם פרופיל כפי שדווח ע״י libburn"
 
-#: ../xfburn/xfburn-device.c:276 ../xfburn/xfburn-device.c:277
+#: xfburn/xfburn-device.c:276 xfburn/xfburn-device.c:277
 msgid "Is the disc erasable"
 msgstr "האם התקליטור מחיק"
 
-#: ../xfburn/xfburn-device.c:279 ../xfburn/xfburn-device.c:280
+#: xfburn/xfburn-device.c:279 xfburn/xfburn-device.c:280
 msgid "Can burn CDR"
 msgstr "מסוגל לצרוב CDR "
 
-#: ../xfburn/xfburn-device.c:282 ../xfburn/xfburn-device.c:283
+#: xfburn/xfburn-device.c:282 xfburn/xfburn-device.c:283
 msgid "Can burn CDRW"
 msgstr "מסוגל לצרוב CDRW "
 
-#: ../xfburn/xfburn-device.c:285 ../xfburn/xfburn-device.c:286
+#: xfburn/xfburn-device.c:285 xfburn/xfburn-device.c:286
 msgid "Can burn DVDR"
 msgstr "מסוגל לצרוב DVDR "
 
-#: ../xfburn/xfburn-device.c:288 ../xfburn/xfburn-device.c:289
+#: xfburn/xfburn-device.c:288 xfburn/xfburn-device.c:289
 msgid "Can burn DVDPLUSR"
 msgstr "מסוגל לצרוב DVDPLUSR "
 
-#: ../xfburn/xfburn-device.c:291 ../xfburn/xfburn-device.c:292
+#: xfburn/xfburn-device.c:291 xfburn/xfburn-device.c:292
 msgid "Can burn DVDRAM"
 msgstr "מסוגל לצרוב DVDRAM "
 
-#: ../xfburn/xfburn-device.c:294 ../xfburn/xfburn-device.c:295
+#: xfburn/xfburn-device.c:294 xfburn/xfburn-device.c:295
 msgid "Can burn Blu-ray"
 msgstr "מסוגל לצרוב Blu-ray "
 
-#: ../xfburn/xfburn-device.c:297 ../xfburn/xfburn-device.c:298
+#: xfburn/xfburn-device.c:297 xfburn/xfburn-device.c:298
 msgid "libburn TAO block types"
 msgstr "סוגי בלוקים libburn TAO "
 
-#: ../xfburn/xfburn-device.c:300 ../xfburn/xfburn-device.c:301
+#: xfburn/xfburn-device.c:300 xfburn/xfburn-device.c:301
 msgid "libburn SAO block types"
 msgstr "סוגי בלוקים libburn SAO "
 
-#: ../xfburn/xfburn-device.c:303 ../xfburn/xfburn-device.c:304
+#: xfburn/xfburn-device.c:303 xfburn/xfburn-device.c:304
 msgid "libburn RAW block types"
 msgstr "סוגי בלוקים libburn RAW "
 
-#: ../xfburn/xfburn-device.c:306 ../xfburn/xfburn-device.c:307
+#: xfburn/xfburn-device.c:306 xfburn/xfburn-device.c:307
 msgid "libburn PACKET block types"
 msgstr "סוגי בלוקים libburn PACKET "
 
-#: ../xfburn.ui.h:1
+#: xfburn.ui:5
 msgid "_Files"
 msgstr "_קבצים"
 
-#: ../xfburn.ui.h:2
+#: xfburn.ui:8
 msgid "New _data composition"
 msgstr "יצירת _נתונים חדשה"
 
-#: ../xfburn.ui.h:3
+#: xfburn.ui:12
 msgid "New _audio composition"
 msgstr "יצירת _שמע חדשה"
 
-#: ../xfburn.ui.h:4
+#: xfburn.ui:18
 msgid "_Close composition"
 msgstr "_סגור יצירה"
 
-#: ../xfburn.ui.h:5
+#: xfburn.ui:24
 msgid "_Quit"
 msgstr "_הפסק"
 
-#: ../xfburn.ui.h:6
+#: xfburn.ui:30
 msgid "_Edit"
 msgstr "_עריכה"
 
-#: ../xfburn.ui.h:7
+#: xfburn.ui:33
 msgid "Prefere_nce"
 msgstr "העד_פה"
 
-#: ../xfburn.ui.h:8
+#: xfburn.ui:39
 msgid "_Action"
 msgstr "_פעולה"
 
-#: ../xfburn.ui.h:11
+#: xfburn.ui:53
 msgid "_View"
 msgstr "_תצוגה"
 
-#: ../xfburn.ui.h:13
+#: xfburn.ui:62
 msgid "Show Toolbars"
 msgstr "הצג סרגלי כלים"
 
-#: ../xfburn.ui.h:14
+#: xfburn.ui:66
 msgid "Show Filebrowser"
 msgstr "הצג דפדפן קבצים"
 
-#: ../xfburn.ui.h:15
+#: xfburn.ui:73
 msgid "_Help"
 msgstr "_עזרה"
 
-#: ../xfburn.ui.h:16
+#: xfburn.ui:76
 msgid "About"
 msgstr "על אודות"
 
-#: ../xfburn-popup-menus.ui.h:2
-msgid "Rename"
-msgstr "שנה שם"
-
-#: ../xfburn-popup-menus.ui.h:4
-msgid "Rename Artist"
-msgstr "שנה שם אמן"
-
-#: ../xfburn-popup-menus.ui.h:5
-msgid "Rename Title"
-msgstr "שנה שם כותרת"
-
-#: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
+#: desktop-integration/thunar-sendto-xfburn.desktop.in:5
 msgid "Data Composition"
 msgstr "יצירת מידע"
 
-#: ../xfburn.desktop.in.h:2
+#: xfburn.desktop.in:6
 msgid "Disk Burning"
 msgstr "צריבת דיסק"
 
-#: ../xfburn.desktop.in.h:3
+#: xfburn.desktop.in:7
 msgid "CD and DVD burning application"
 msgstr "יישום צריבת CD וגם DVD"
 
-#: ../xfburn.desktop.in.h:4
+#: xfburn.desktop.in:21
 msgid "Burn Image (xfburn)"
 msgstr "צרוב דמות (צורב אקס־אף)"
 
-#: ../org.xfce.xfburn.appdata.xml.in.h:2
+#: org.xfce.xfburn.appdata.xml.in:9
 msgid "A simple CD burning tool"
 msgstr "כלי פשוט לצריבת דיסקים"
 
-#: ../org.xfce.xfburn.appdata.xml.in.h:3
+#: org.xfce.xfburn.appdata.xml.in:12
 msgid ""
 "Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
 "blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
