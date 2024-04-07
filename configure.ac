@@ -56,7 +56,7 @@ fi
 dnl check for debugging support
 XDT_FEATURE_DEBUG([xdt_debug_default])
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 icons/Makefile
 icons/16x16/Makefile
@@ -70,3 +70,4 @@ docs/Makefile
 desktop-integration/Makefile
 xfburn/Makefile
 ])
+AC_OUTPUT
