@@ -64,7 +64,9 @@ static void xfburn_main_window_finalize (GObject *obj);
 
 static gboolean cb_delete_main_window (XfburnMainWindow *, GdkEvent *, XfburnMainWindowPrivate *);
 // static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
+static gboolean cb_key_press_event (GtkWidget *widget, GdkEventKey *event);
 
+static void action_contents (GAction *, GVariant*, XfburnMainWindow *);
 static void action_about (GAction *, GVariant*, XfburnMainWindow *);
 static void action_preferences (GAction *, GVariant*, XfburnMainWindow *);
 
@@ -104,6 +106,7 @@ static const GActionEntry action_entries[] = {
   // { "action-menu", NULL},
   { .name = "refresh", .activate = (gActionCallback)action_refresh_directorybrowser},
   // { "help-menu", .activate = NULL},
+  { .name = "contents", .activate = (gActionCallback)action_contents },
   { .name = "about", .activate = (gActionCallback)action_about},
   { .name = "blank-disc", .activate = (gActionCallback)action_blank},
   { .name = "copy-data", .activate = (gActionCallback)action_copy_cd},
@@ -199,6 +202,9 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
     gtk_box_pack_start (GTK_BOX (vbox), priv->menubar, FALSE, FALSE, 0);
     gtk_widget_show (priv->menubar);
   }
+
+  /* since Xfburn does not use GtkApplication yet, use this as a workaround to simulate working accelerators */
+  g_signal_connect (G_OBJECT (mainwin), "key-press-event", G_CALLBACK (cb_key_press_event), NULL);
 
   /* toolbar */
 /*  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn-toolbars.ui");
@@ -329,6 +335,14 @@ cb_delete_main_window (XfburnMainWindow * mainwin, GdkEvent * event, XfburnMainW
   return FALSE;
 }
 
+static gboolean
+cb_key_press_event (GtkWidget *widget, GdkEventKey *event)
+{
+  xfce_dialog_show_help (GTK_WINDOW (widget), "xfburn", "start", "");
+
+  return GDK_EVENT_PROPAGATE;
+}
+
 /* actions */
 static void
 action_blank (GAction * action, GVariant* param, XfburnMainWindow * window)
@@ -436,6 +450,12 @@ action_quit (GAction * action, GVariant* param, XfburnMainWindow * window)
 }
 
 static void
+action_contents (GAction *action, GVariant *param, XfburnMainWindow *window)
+{
+  xfce_dialog_show_help (GTK_WINDOW (window), "xfburn", "start", "");
+}
+
+static void
 action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
 {
   const gchar *auth[] = { "David Mohr david@mcbf.net",
@@ -489,7 +509,7 @@ action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
 		  "version", VERSION,
 		  "comments", _("Another cd burning GUI"),
 		  "website", "https://docs.xfce.org/apps/xfburn/start",
-		  "copyright", "2005-2023 Xfce development team",
+		  "copyright", "2005-2024 Xfce development team",
 		  "authors", auth,
 		  "translator-credits", translators,
 		  NULL);
