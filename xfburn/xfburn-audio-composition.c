@@ -1580,7 +1580,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
 
-    row = selected_rows = *((GList **) gtk_selection_data_get_data(sd));
+    row = selected_rows = *((GList **) (gpointer) gtk_selection_data_get_data(sd));
 
     if (path_where_insert) {
       iter_where_insert = g_new0 (GtkTreeIter, 1);
