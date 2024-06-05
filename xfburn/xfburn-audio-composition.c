@@ -1149,7 +1149,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
       GDir *dir = NULL;
       GError *error = NULL;
       const gchar *filename = NULL;
-      guint64 total_size = 4;
       GtkTreeIter *iter_last;
 
       dir = g_dir_open (path, 0, &error);
@@ -1176,7 +1175,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
             gdk_threads_enter ();
             gtk_tree_model_get (model, &new_iter, AUDIO_COMPOSITION_COLUMN_SIZE, &size, -1);
             gdk_threads_leave ();
-            total_size += size;
             if (iter_last == NULL)
               iter_last = g_new (GtkTreeIter, 1);
             *iter_last = new_iter;
@@ -1238,7 +1236,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
         gtk_tree_store_append (GTK_TREE_STORE (model), iter, NULL);
       gdk_threads_leave ();
 
-      //DBG ("length = %d", atrack->length);
       secs = atrack->length;
       humanlength = g_strdup_printf ("%2d:%02d", secs / 60, secs % 60);
 
@@ -1268,7 +1265,6 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
 
       ret = TRUE;
     }
-    //g_free (humansize);
 
     set_modified (priv);
     return ret;
@@ -1584,7 +1580,7 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
 
     xfburn_adding_progress_show (XFBURN_ADDING_PROGRESS (priv->progress));
 
-    row = selected_rows = *((GList **) gtk_selection_data_get_data(sd));
+    row = selected_rows = *((GList **) (gpointer) gtk_selection_data_get_data(sd));
 
     if (path_where_insert) {
       iter_where_insert = g_new0 (GtkTreeIter, 1);
@@ -1889,6 +1885,7 @@ _find_attribute (const gchar ** attribute_names, const gchar * attr)
 }
 */
 
+G_GNUC_NORETURN
 static void
 load_composition_start (GMarkupParseContext * context, const gchar * element_name,
                         const gchar ** attribute_names, const gchar ** attribute_values,
@@ -2151,4 +2148,3 @@ xfburn_audio_composition_show_toolbar (XfburnAudioComposition * composition)
 
   gtk_widget_show (priv->toolbar);
 }
-
