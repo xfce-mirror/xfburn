@@ -1885,6 +1885,7 @@ _find_attribute (const gchar ** attribute_names, const gchar * attr)
 }
 */
 
+G_GNUC_NORETURN
 static void
 load_composition_start (GMarkupParseContext * context, const gchar * element_name,
                         const gchar ** attribute_names, const gchar ** attribute_values,
