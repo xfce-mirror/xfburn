@@ -1581,6 +1581,10 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
           continue;
       }
 
+      gtk_tree_model_get_iter (model, &iter_src, path_src);
+      gtk_tree_model_get (model, &iter_src, DATA_COMPOSITION_COLUMN_TYPE, &type,
+                          DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
+
       if (path_where_insert && type == DATA_COMPOSITION_TYPE_DIRECTORY
           && gtk_tree_path_is_descendant (path_where_insert, path_src)) {
 
@@ -1591,10 +1595,6 @@ cb_content_drag_data_rcv (GtkWidget * widget, GdkDragContext * dc, guint x, guin
         gtk_drag_finish (dc, FALSE, FALSE, t);
         return;
       }
-
-      gtk_tree_model_get_iter (model, &iter_src, path_src);
-      gtk_tree_model_get (model, &iter_src, DATA_COMPOSITION_COLUMN_TYPE, &type,
-                          DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
 
       /* copy entry */
       if (copy_entry_to (composition, &iter_src, iter, position)) {
@@ -2290,4 +2290,3 @@ xfburn_data_composition_show_toolbar (XfburnDataComposition * composition)
 
   gtk_widget_show (priv->toolbar);
 }
-
