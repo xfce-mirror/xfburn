@@ -246,7 +246,6 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   XfburnProgressDialogStatus final_status;
   char *final_message;
   gdouble percent = 0.0;
-  int dbg_no;
   int total_sectors, burned_sectors;
   off_t disc_size;
   int disc_sectors;
@@ -318,12 +317,10 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
     usleep(1002);
 
   time_start = time (NULL);
-  dbg_no = 0;
   burned_sectors = 0;
   while ((status = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
     time_t time_now = time (NULL);
     gboolean stop;
-    dbg_no++;
 
     switch (status) {
     case BURN_DRIVE_WRITING:
@@ -367,15 +364,9 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
 	percent = 1.0 + ((gdouble) progress.sector + burned_sectors + 1.0) / ((gdouble) total_sectors) * 98.0;
 
-        /*
-        if ((dbg_no % 16) == 0) {
-          DBG ("%.0f ; track = %d\tsector %d/%d", percent, progress.track, progress.sector, progress.sectors);
-        }
-        */
 	xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 
         cur_speed = ((gdouble) ((gdouble)(glong)progress.sector * 2048L) / (gdouble) (time_now - time_start)) / ((gdouble) (factor * 1000.0));
-        //DBG ("(%f / %f) / %f = %f\n", (gdouble) ((gdouble)(glong)progress.sector * 2048L), (gdouble) (time_now - time_start), ((gdouble) (factor * 1000.0)), cur_speed);
 	xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress),
 						  cur_speed);
 
