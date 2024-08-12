@@ -1,5 +1,5 @@
 dnl Version information
-XDT_VERSION_INIT([0.7.1], [git])
+XDT_VERSION_INIT([0.7.2])
 
 dnl Initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>, 2008 Mario Đanić <mario@libburnia-project.org>, 2008-2015 David Mohr <david@mcbf.net>, 2019-2020 Rene Kjellerup <rk.katana.steel@gmail.com>, 2022-2024 Hunter Turcin <huntertur@gmail.com>, Copyright (c) 2004-2024 Xfce development team. All rights reserved.])
