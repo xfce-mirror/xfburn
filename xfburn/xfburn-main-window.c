@@ -338,7 +338,8 @@ cb_delete_main_window (XfburnMainWindow * mainwin, GdkEvent * event, XfburnMainW
 static gboolean
 cb_key_press_event (GtkWidget *widget, GdkEventKey *event)
 {
-  xfce_dialog_show_help (GTK_WINDOW (widget), "xfburn", "start", "");
+  if (event->keyval == GDK_KEY_F1)
+    xfce_dialog_show_help (GTK_WINDOW (widget), "xfburn", "start", "");
 
   return GDK_EVENT_PROPAGATE;
 }
