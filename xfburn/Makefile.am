@@ -47,6 +47,7 @@ xfburn_headers = 							\
 	xfburn-preferences-dialog.h					\
 	xfburn-cclosure-marshal.h					\
 	xfburn-utils.h							\
+	xfburn-thread-wrappers.h \
 	xfburn-main.h
 
 xfburn_SOURCES =							\
@@ -87,6 +88,7 @@ xfburn_SOURCES =							\
 	xfburn-directory-browser.c					\
 	xfburn-preferences-dialog.c					\
 	xfburn-cclosure-marshal.c					\
+	xfburn-thread-wrappers.c \
 	xfburn-utils.c
 
 xfburn_CFLAGS =								\
