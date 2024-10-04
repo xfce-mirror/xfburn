@@ -54,7 +54,7 @@ msgstr "Proszę umieścić w napędzie płytę nadającą się do nagrania i wci
 
 #: xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr "Nie można ustalić stanu płyty - proszę wcisnąć klawisz ENTER, aby spróbować ponownie."
+msgstr "Nie można ustalić stanu płyty – proszę wcisnąć klawisz ENTER, aby spróbować ponownie."
 
 #: xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
@@ -429,7 +429,7 @@ msgstr "Utwórz katalog"
 
 #: xfburn/xfburn-data-composition.c:312
 msgid "Add a new directory to the composition"
-msgstr "Tworzy nowy katalog"
+msgstr "Dodaje nowy katalog do projektu"
 
 #: xfburn/xfburn-data-composition.c:317 xfburn/xfburn-audio-composition.c:335
 #: xfburn-popup-menus.ui:17 xfburn-popup-menus.ui:25 xfburn-popup-menus.ui:43
@@ -490,7 +490,7 @@ msgstr "Dane %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr "%s nie można dodać do projektu, ponieważ jest większa niż maksymalny dopuszczalny rozmiar pliku iso9660."
+msgstr "%s nie można dodać do projektu, ponieważ jest większa niż maksymalny dopuszczalny rozmiar pliku ISO-9660."
 
 #: xfburn/xfburn-data-composition.c:1210
 #, c-format
@@ -510,7 +510,7 @@ msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr "Masz zamiar dodać swój katalog domowy do kompozycji. Może to trwać bardzo długo, a także może okazać się zbyt duży, aby zmieścić się na jednej płycie.\n\nCzy na pewno chcesz kontynuować?"
+msgstr "Masz zamiar dodać swój katalog użytkownika do projektu. Może to trwać bardzo długo, a także może okazać się zbyt duży, aby zmieścić się na jednej płycie.\n\nCzy na pewno chcesz kontynuować?"
 
 #: xfburn/xfburn-data-composition.c:1463
 #, c-format
@@ -532,7 +532,7 @@ msgstr "%s: brak pamięci"
 #: xfburn/xfburn-data-composition.c:1869
 #, c-format
 msgid "%s: node name not unique"
-msgstr "%s: nie unikalna nazwa węzła"
+msgstr "%s: nieunikalna nazwa węzła"
 
 #: xfburn/xfburn-data-composition.c:1871
 #, c-format
@@ -571,7 +571,7 @@ msgstr "Pokaż listę trybów"
 
 #: xfburn/xfburn-device-box.c:151
 msgid "Show mode selection combo"
-msgstr "Pokaż listę prędkości"
+msgstr "Pokaż listę trybów"
 
 #: xfburn/xfburn-device-box.c:154
 msgid "Is it a valid combination"
@@ -579,7 +579,7 @@ msgstr "Czy jest to prawidłowa kombinacja"
 
 #: xfburn/xfburn-device-box.c:155
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr "Czy kombinacja sprzętu i płyty jest poprawna, aby nagrać kompozycję?"
+msgstr "Czy kombinacja sprzętu i płyty jest poprawna, aby nagrać projekt?"
 
 #: xfburn/xfburn-device-box.c:159
 msgid "The blank mode shows different disc status messages than regular mode"
@@ -606,7 +606,7 @@ msgid ""
 "Burning should still work, but if there are problems anyways, please let us know.\n"
 "\n"
 "<i>Thank you!</i>"
-msgstr "<b>Nie można uzyskać listy prędkości napędu.</b>\n\nJest to znany błąd napędów. Jeżeli jesteś zainteresowany naprawieniem go, przyjrzyj się bibliotece libburn.\n\nNagrywanie powinno działać. Jeśli jednak wystąpią problemy, daj nam znać.\n\n<i>Dziękujemy !</i>"
+msgstr "<b>Nie można uzyskać listy prędkości napędu.</b>\n\nJest to znany błąd napędów. Jeśli wykazujesz zainteresowanie naprawieniem go, przyjrzyj się bibliotece libburn.\n\nNagrywanie powinno działać. Jeśli jednak wystąpią problemy, daj nam znać.\n\n<i>Dziękujemy !</i>"
 
 #: xfburn/xfburn-device-box.c:370
 msgid "Continue to _show this notice"
@@ -648,7 +648,7 @@ msgstr "Umieszczona w napędzie płyta jest pełna"
 
 #: xfburn/xfburn-device-box.c:575 xfburn/xfburn-device-box.c:618
 msgid "Inserted disc is unsuitable"
-msgstr "Włożona płyta jest nieodpowiednia"
+msgstr "Umieszczona w napędzie płyta jest nieodpowiednia"
 
 #: xfburn/xfburn-device-box.c:578 xfburn/xfburn-device-box.c:621
 msgid "Cannot access drive (it might be in use)"
@@ -723,7 +723,7 @@ msgstr "System plików"
 #: xfburn/xfburn-fs-browser.c:284
 #, c-format
 msgid "%s's home"
-msgstr "Katalog domowy użytkownika %s"
+msgstr "Katalog użytkownika %s"
 
 #: xfburn/xfburn-udev-manager.c:495
 #, c-format
@@ -760,7 +760,7 @@ msgstr "Wybierz transkoder, uruchom z opcją --transcoder=list, aby zobaczyć do
 msgid ""
 "Start the file browser in the specified directory, or the current directory "
 "if none is specified (the default is to start in your home directory)"
-msgstr "Uruchom przeglądarkę plików w określonym lub w bieżącym katalogu, jeśli nie został określony (domyślnie jest uruchamiany w katalogu domowym)"
+msgstr "Uruchom przeglądarkę plików w określonym lub w bieżącym katalogu, jeśli nie został określony (domyślnie jest uruchamiany w katalogu użytkownika)"
 
 #: xfburn/xfburn-main.c:86
 msgid "Display program version and exit"
@@ -866,7 +866,7 @@ msgstr "Nie można dołączyć danych do dysku wielosesyjnego w tym trybie zapis
 
 #: xfburn/xfburn-perform-burn.c:274
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr "Wykryto płytę z zakończoną sesją nagrywania danych. Wymagana jest płyta czysta lub posiadająca możliwość wznowienia nagrywania."
+msgstr "Wykryto płytę z zakończoną sesją nagrywania danych. Wymagana jest płyta czysta lub z możliwością dołączenia danych."
 
 #: xfburn/xfburn-perform-burn.c:276
 msgid "No disc detected in drive."
@@ -1034,7 +1034,7 @@ msgstr "_Wyszukaj urządzenia"
 
 #: xfburn/xfburn-preferences-dialog.c:306
 msgid "Show warning on _empty speed list"
-msgstr "Pokaż ostrzeżenie _empty na szybkiej liście"
+msgstr "Pokaż ostrzeżenie przy _pustej liście prędkości"
 
 #: xfburn/xfburn-preferences-dialog.c:315
 msgid "FIFO buffer size (in kb)"
@@ -1046,7 +1046,7 @@ msgstr "_Zamknij"
 
 #: xfburn/xfburn-preferences-dialog.c:469
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr "Zmiana tego ustawienia działa w pełni dopiero po restarcie programu."
+msgstr "Zmiana tego ustawienia działa w pełni dopiero po ponownym uruchomieniu programu."
 
 #. label
 #: xfburn/xfburn-progress-dialog.c:168 xfburn/xfburn-progress-dialog.c:172
@@ -1121,7 +1121,7 @@ msgstr "Wybierz polecenie"
 
 #: xfburn/xfburn-utils.c:172
 msgid "File(s) to add to composition"
-msgstr "Plik(i) do dodania do kompozycji"
+msgstr "Plik(i) do dodania do projektu"
 
 #: xfburn/xfburn-welcome-tab.c:99
 msgid "Welcome to Xfburn!"
@@ -1158,7 +1158,7 @@ msgstr "<big>Utwórz projekt z audi_o</big>"
 
 #: xfburn/xfburn-welcome-tab.c:134
 msgid "Audio CD playable in regular stereos"
-msgstr "Tworzy nowy projekt i nagrywa płytę CD-Audio"
+msgstr "Tworzy nowy projekt i nagrywa płytę z audio"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1169,7 +1169,7 @@ msgstr "gstreamer"
 
 #: xfburn/xfburn-audio-composition.c:343
 msgid "What files can get burned to an audio CD?"
-msgstr "Jakie pliki mogą zostać wypalone na płytę CD-Audio?"
+msgstr "Jakie pliki mogą zostać nagrane na płytę z audio?"
 
 #: xfburn/xfburn-audio-composition.c:374
 msgid "Pos"
@@ -1230,12 +1230,12 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr "Podstawowy transkoder jest zawarty w\nprogramie i do działania nie wymaga \ndodatkowych bibliotek. Niestety \nobsługuje on tylko nieskompresowane \npliki w formacie .wav.\nProszę skompilować program z obsługą\nGstreamer, aby utworzyć projekt przy\nużyciu innych typów plików dźwiękowych."
+msgstr "Podstawowy transkoder jest zawarty\nw programie i do działania nie wymaga \ndodatkowych bibliotek. Niestety \nobsługuje on tylko nieskompresowane \npliki w formacie .wav.\nProszę skompilować program z obsługą\nGstreamer, aby utworzyć projekt przy\nużyciu innych typów plików dźwiękowych."
 
 #: xfburn/xfburn-transcoder-basic.c:159
 #, c-format
 msgid "File %s does not have a .wav extension"
-msgstr "Plik „%s” nie posiada rozszerzenia .wav"
+msgstr "Plik „%s” nie ma rozszerzenia .wav"
 
 #: xfburn/xfburn-transcoder-basic.c:164
 #, c-format
@@ -1427,7 +1427,7 @@ msgstr "P_referencje"
 
 #: xfburn.ui:39
 msgid "_Action"
-msgstr "_Akcja"
+msgstr "_Czynność"
 
 #: xfburn.ui:53
 msgid "_View"
@@ -1435,7 +1435,7 @@ msgstr "_Widok"
 
 #: xfburn.ui:62
 msgid "Show Toolbars"
-msgstr "Paski narzędziowe"
+msgstr "Paski narzędzi"
 
 #: xfburn.ui:66
 msgid "Show Filebrowser"
@@ -1455,7 +1455,7 @@ msgstr "Zmień nazwę"
 
 #: xfburn-popup-menus.ui:33
 msgid "Rename Artist"
-msgstr "Zmień nazwę artysty"
+msgstr "Zmień nazwę wykonawcy"
 
 #: xfburn-popup-menus.ui:37
 msgid "Rename Title"
@@ -1487,4 +1487,4 @@ msgid ""
 "blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
 "personal compositions of data to either CD or DVD. It is stable and under "
 "ongoing development."
-msgstr "Xfburn to proste narzędzie do nagrywania płyt CD/DVD oparte na bibliotekach libburnia. Może wymazywać płyty CD/DVD(-RW), nagrywać i tworzyć obrazy ISO, CD-Audio, a także nagrywać osobiste kompozycje danych na płytę CD lub DVD. Program jest stabilny i stale się rozwija."
+msgstr "Xfburn to proste narzędzie do nagrywania płyt CD/DVD oparte na bibliotekach libburnia. Może wymazywać płyty CD/DVD(-RW), nagrywać i tworzyć obrazy ISO, CD-Audio, a także nagrywać osobiste kompilacje danych na płytę CD lub DVD. Program jest stabilny i stale się rozwija."
