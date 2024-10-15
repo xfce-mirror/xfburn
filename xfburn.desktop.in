@@ -4,12 +4,13 @@ Type=Application
 Name=Xfburn
 GenericName=Disk Burning
 Comment=CD and DVD burning application
-Exec=xfburn
+Exec=xfburn %F
 TryExec=xfburn
 Icon=stock_xfburn
 MimeType=application/x-cd-image;x-content/audio-cdda;x-content/blank-cd;
 Terminal=false
 Categories=X-XFCE;GTK;DiscBurning;Archiving;AudioVideo;Utility;
+Keywords=Burn;CD;DVD;ISO;Disc;Write;Audio;Video;
 StartupNotify=true
 
 Actions=BurnImage;
