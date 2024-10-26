@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the xfce-apps.xfburn package.
 # 
 # Translators:
-# Andreas Eitel <github-aneitel@online.de>, 2019-2023
+# Andreas Eitel <github-aneitel@online.de>, 2019-2024
 # David Mohr <david@mcbf.net>, 2008,2010
 # David Mohr <squisher@xfce.org>, 2010
 # Harald Judt <h.judt@gmx.at>, 2014
@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 12:49+0200\n"
+"POT-Creation-Date: 2024-10-26 00:50+0200\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
-"Last-Translator: Andreas Eitel <github-aneitel@online.de>, 2019-2023\n"
+"Last-Translator: Andreas Eitel <github-aneitel@online.de>, 2019-2024\n"
 "Language-Team: German (http://app.transifex.com/xfce/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,11 +176,11 @@ msgstr "Medium wird geleert …"
 
 #: xfburn/xfburn-blank-dialog.c:411
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:479
-#: xfburn/xfburn-perform-burn.c:489
+#: xfburn/xfburn-perform-burn.c:480
 msgid "Done"
 msgstr "Abgeschlossen"
 
-#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:496
+#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:487
 #: xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
 msgstr "Fehlgeschlagen"
@@ -449,7 +449,7 @@ msgstr "Inhalt der Zusammenstellung leeren"
 msgid "Volume name :"
 msgstr "Datenträgerbezeichnung:"
 
-#: xfburn/xfburn-data-composition.c:364
+#: xfburn/xfburn-data-composition.c:364 xfburn.ui:76
 msgid "Contents"
 msgstr "Inhalt"
 
@@ -497,12 +497,12 @@ msgid ""
 msgstr "%s ist größer als ISO-9660-Level-2 erlaubt. Das kann ein Problem für alte Systeme oder Anwendungen sein."
 
 #: xfburn/xfburn-data-composition.c:1294
-#: xfburn/xfburn-audio-composition.c:1314
+#: xfburn/xfburn-audio-composition.c:1310
 msgid "Adding home directory"
 msgstr "Persönlichen Ordner hinzufügen"
 
 #: xfburn/xfburn-data-composition.c:1295
-#: xfburn/xfburn-audio-composition.c:1315
+#: xfburn/xfburn-audio-composition.c:1311
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
@@ -807,31 +807,31 @@ msgstr "Der %s-Umwandler konnte nicht initialisiert werden: %s\n\t(falle auf  Ba
 msgid "Image file '%s' does not exist."
 msgstr "Die Abbilddatei »%s« ist nicht vorhanden."
 
-#: xfburn/xfburn-main-window.c:235
+#: xfburn/xfburn-main-window.c:241
 msgid "New data composition"
 msgstr "Neue Datenzusammenstellung"
 
-#: xfburn/xfburn-main-window.c:238
+#: xfburn/xfburn-main-window.c:244
 msgid "New audio composition"
 msgstr "Neue Musikzusammenstellung"
 
-#: xfburn/xfburn-main-window.c:243 xfburn.ui:42
+#: xfburn/xfburn-main-window.c:249 xfburn.ui:42
 msgid "Blank CD-RW"
 msgstr "CD-RW löschen"
 
-#: xfburn/xfburn-main-window.c:246 xfburn.ui:46
+#: xfburn/xfburn-main-window.c:252 xfburn.ui:46
 msgid "Burn Image"
 msgstr "CD-Abbild brennen"
 
-#: xfburn/xfburn-main-window.c:251 xfburn.ui:56
+#: xfburn/xfburn-main-window.c:257 xfburn.ui:56
 msgid "Refresh"
 msgstr "Auffrischen"
 
-#: xfburn/xfburn-main-window.c:251
+#: xfburn/xfburn-main-window.c:257
 msgid "Refresh file list"
 msgstr "Dateiliste neu laden"
 
-#: xfburn/xfburn-main-window.c:490
+#: xfburn/xfburn-main-window.c:511
 msgid "Another cd burning GUI"
 msgstr "Noch ein CD-Brennprogramm"
 
@@ -851,102 +851,102 @@ msgstr "Knopf zum Schließen anzeigen"
 msgid "Determine whether the close button is visible"
 msgstr "Legt fest, ob der Knopf zum Schließen des Programms angezeigt werden soll"
 
-#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:452
+#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:443
 msgid "Formatting..."
 msgstr "Formatierung …"
 
-#: xfburn/xfburn-perform-burn.c:270
+#: xfburn/xfburn-perform-burn.c:269
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "Konnte die Daten nicht an das Mehrfachsitzungs-Medium anhängen (benutzen Sie TAO)"
 
-#: xfburn/xfburn-perform-burn.c:274
+#: xfburn/xfburn-perform-burn.c:273
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "Abgeschlossenes Daten-Medium erkannt, leeres oder anhängfähiges Medium erforderlich."
 
-#: xfburn/xfburn-perform-burn.c:276
+#: xfburn/xfburn-perform-burn.c:275
 msgid "No disc detected in drive."
 msgstr "Kein Medium im Laufwerk erkannt"
 
-#: xfburn/xfburn-perform-burn.c:279
+#: xfburn/xfburn-perform-burn.c:278
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "Laufwerks- und Medienstatus kann nicht ermittelt werden."
 
-#: xfburn/xfburn-perform-burn.c:286
+#: xfburn/xfburn-perform-burn.c:285
 msgid "Formatting failed."
 msgstr "Formatierung fehlgeschlagen"
 
-#: xfburn/xfburn-perform-burn.c:304
+#: xfburn/xfburn-perform-burn.c:303
 msgid "There is not enough space available on the inserted disc."
 msgstr "Das ausgewählte CD-Abbild ist zu groß für das Medium im Laufwerk."
 
-#: xfburn/xfburn-perform-burn.c:349
+#: xfburn/xfburn-perform-burn.c:346
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Titel %2d/%d wird gebrannt …"
 
-#: xfburn/xfburn-perform-burn.c:353 xfburn/xfburn-perform-burn.c:417
+#: xfburn/xfburn-perform-burn.c:350 xfburn/xfburn-perform-burn.c:408
 msgid "Burning composition..."
 msgstr "Zusammenstellung wird geschrieben …"
 
-#: xfburn/xfburn-perform-burn.c:386
+#: xfburn/xfburn-perform-burn.c:377
 msgid "standby"
 msgstr "Ruhezustand"
 
-#: xfburn/xfburn-perform-burn.c:394
+#: xfburn/xfburn-perform-burn.c:385
 msgid "ending"
 msgstr "Beende..."
 
-#: xfburn/xfburn-perform-burn.c:397
+#: xfburn/xfburn-perform-burn.c:388
 msgid "failing"
 msgstr "Fehler"
 
-#: xfburn/xfburn-perform-burn.c:400
+#: xfburn/xfburn-perform-burn.c:391
 msgid "unused"
 msgstr "unbenutzt"
 
-#: xfburn/xfburn-perform-burn.c:403
+#: xfburn/xfburn-perform-burn.c:394
 msgid "abandoned"
 msgstr "verlassen"
 
-#: xfburn/xfburn-perform-burn.c:406
+#: xfburn/xfburn-perform-burn.c:397
 msgid "ended"
 msgstr "beendet"
 
-#: xfburn/xfburn-perform-burn.c:409
+#: xfburn/xfburn-perform-burn.c:400
 msgid "aborted"
 msgstr "abgebrochen"
 
-#: xfburn/xfburn-perform-burn.c:412
+#: xfburn/xfburn-perform-burn.c:403
 msgid "no info"
 msgstr "Keine Information"
 
-#: xfburn/xfburn-perform-burn.c:422
+#: xfburn/xfburn-perform-burn.c:413
 msgid "Writing Lead-In..."
 msgstr "Lead-In wird geschrieben …"
 
-#: xfburn/xfburn-perform-burn.c:428
+#: xfburn/xfburn-perform-burn.c:419
 msgid "Writing Lead-Out..."
 msgstr "Lead-Out wird geschrieben …"
 
-#: xfburn/xfburn-perform-burn.c:434
+#: xfburn/xfburn-perform-burn.c:425
 msgid "Writing pregap..."
 msgstr "Pregap wird geschrieben …"
 
-#: xfburn/xfburn-perform-burn.c:440
+#: xfburn/xfburn-perform-burn.c:431
 msgid "Closing track..."
 msgstr "Spur wird abgeschlossen …"
 
-#: xfburn/xfburn-perform-burn.c:446
+#: xfburn/xfburn-perform-burn.c:437
 msgid "Closing session..."
 msgstr "Sitzung wird abgeschlossen …"
 
-#: xfburn/xfburn-perform-burn.c:465
+#: xfburn/xfburn-perform-burn.c:456
 msgid "see console"
 msgstr "siehe Ausgabe in der Konsole"
 
-#: xfburn/xfburn-perform-burn.c:493
+#: xfburn/xfburn-perform-burn.c:484
 msgid "User Aborted"
 msgstr "Benutzerabbruch"
 
@@ -1192,7 +1192,7 @@ msgstr "Dateiname"
 msgid "Cannot burn audio onto a DVD."
 msgstr "Musik kann nicht auf eine DVD gebrannt werden."
 
-#: xfburn/xfburn-audio-composition.c:1222
+#: xfburn/xfburn-audio-composition.c:1220
 msgid "You can only have a maximum of 99 tracks."
 msgstr "99 Titel sind das Maximum."
 
@@ -1442,7 +1442,7 @@ msgstr "Dateibrowser anzeigen"
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: xfburn.ui:76
+#: xfburn.ui:81
 msgid "About"
 msgstr "Über"
 
@@ -1470,7 +1470,11 @@ msgstr "Brenne Medium"
 msgid "CD and DVD burning application"
 msgstr "Brennprogramm für CDs und DVDs"
 
-#: xfburn.desktop.in:21
+#: xfburn.desktop.in:14
+msgid "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;"
+msgstr "Brennen;CD;DVD;ISO;Disc;Schreiben;Audio;Video;"
+
+#: xfburn.desktop.in:22
 msgid "Burn Image (xfburn)"
 msgstr "CD-Abbild brennen (xfburn)"
 
