@@ -437,10 +437,8 @@ thread_blank (ThreadBlankParams * params)
   g_free (params);
 
 #ifdef HAVE_GUDEV
-  gdk_threads_enter ();
   DBG ("blanking done!");
   xfburn_udev_manager_send_volume_changed ();
-  gdk_threads_leave ();
 #endif
   return NULL;
 }

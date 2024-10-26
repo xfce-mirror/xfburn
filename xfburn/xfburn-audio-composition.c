@@ -53,6 +53,7 @@
 #include "xfburn-burn-audio-cd-composition-dialog.h"
 #include "xfburn-transcoder.h"
 #include "xfburn-settings.h"
+#include "xfburn-thread-wrappers.h"
 #include "xfburn-main.h"
 
 #define XFBURN_AUDIO_COMPOSITION_GET_PRIVATE(obj) (xfburn_audio_composition_get_instance_private (obj))
@@ -1133,16 +1134,15 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
     tree_path = gtk_tree_path_new_first ();
     gdk_threads_leave ();
 
-    gdk_threads_enter ();
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
+      gdk_threads_enter ();
       xfce_dialog_show_error (NULL, NULL, _("A file with the same name is already present in the composition."));
-
-      gtk_tree_path_free (tree_path);
       gdk_threads_leave ();
+
+      safe_gtk_tree_path_free (tree_path);
       return FALSE;
     }
-    gtk_tree_path_free (tree_path);
-    gdk_threads_leave ();
+    safe_gtk_tree_path_free (tree_path);
 
     /* new directory */
     if (S_ISDIR (s.st_mode)) {
