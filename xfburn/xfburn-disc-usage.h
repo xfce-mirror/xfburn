@@ -42,7 +42,7 @@ typedef struct
   GtkWidget *combo;
   GtkWidget *button;
 
-  gdouble size;
+  guint64 size;
 } XfburnDiscUsage;
 
 typedef struct
@@ -71,14 +71,13 @@ typedef enum
   DVD_DISC,
 } XfburnDiscType;
 
-
 GType xfburn_disc_usage_get_type (void);
 GtkWidget *xfburn_disc_usage_new (void);
 
-gdouble xfburn_disc_usage_get_size (XfburnDiscUsage *);
-void xfburn_disc_usage_set_size (XfburnDiscUsage *, gdouble);
-void xfburn_disc_usage_add_size (XfburnDiscUsage *, gdouble);
-void xfburn_disc_usage_sub_size (XfburnDiscUsage *, gdouble);
+guint64 xfburn_disc_usage_get_size (XfburnDiscUsage *);
+void xfburn_disc_usage_set_size (XfburnDiscUsage *, guint64);
+void xfburn_disc_usage_add_size (XfburnDiscUsage *, guint64);
+void xfburn_disc_usage_sub_size (XfburnDiscUsage *, guint64);
 
 XfburnDiscType xfburn_disc_usage_get_disc_type (XfburnDiscUsage *);
 
