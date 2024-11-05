@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Daniel Muñiz Fontoira <dani@damufo.eu>, 2018-2021
+# Daniel Muñiz Fontoira <dani@damufo.eu>, 2024
 # Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>, 2006,2008-2009
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 12:49+0200\n"
+"POT-Creation-Date: 2024-10-26 00:50+0200\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
-"Last-Translator: Daniel Muñiz Fontoira <dani@damufo.eu>, 2018-2021\n"
+"Last-Translator: Daniel Muñiz Fontoira <dani@damufo.eu>, 2024\n"
 "Language-Team: Galician (http://app.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -170,11 +171,11 @@ msgstr "Baleirando o disco..."
 
 #: xfburn/xfburn-blank-dialog.c:411
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:479
-#: xfburn/xfburn-perform-burn.c:489
+#: xfburn/xfburn-perform-burn.c:480
 msgid "Done"
 msgstr "Feito"
 
-#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:496
+#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:487
 #: xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
 msgstr "Fallo"
@@ -252,7 +253,7 @@ msgstr "Escribindo ISO..."
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:461
 #, c-format
 msgid "An error occurred while writing ISO: %s"
-msgstr ""
+msgstr "Ocorreu un erro mentres se escribía ISO: %s"
 
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:517
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:523
@@ -284,7 +285,7 @@ msgstr "Tódolos ficheiros"
 
 #: xfburn/xfburn-burn-image-dialog.c:148
 msgid "Disc images"
-msgstr ""
+msgstr "Imaxes de disco"
 
 #: xfburn/xfburn-burn-image-dialog.c:209
 msgid "_Quit after success"
@@ -443,7 +444,7 @@ msgstr "Limpar o contido da composición"
 msgid "Volume name :"
 msgstr "Nome do volume:"
 
-#: xfburn/xfburn-data-composition.c:364
+#: xfburn/xfburn-data-composition.c:364 xfburn.ui:76
 msgid "Contents"
 msgstr "Contido"
 
@@ -491,12 +492,12 @@ msgid ""
 msgstr "%s é maior que o permitido polo nivel 2 do iso9660. Isto pode ser un problema para sistemas ou soporte lóxico antigos."
 
 #: xfburn/xfburn-data-composition.c:1294
-#: xfburn/xfburn-audio-composition.c:1314
+#: xfburn/xfburn-audio-composition.c:1310
 msgid "Adding home directory"
 msgstr "Engadindo o directorio persoal"
 
 #: xfburn/xfburn-data-composition.c:1295
-#: xfburn/xfburn-audio-composition.c:1315
+#: xfburn/xfburn-audio-composition.c:1311
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
@@ -538,7 +539,7 @@ msgstr "Nome de ficheiro duplicado '%s' para '%s'"
 
 #: xfburn/xfburn-data-composition.c:1956
 msgid "Error(s) occurred while adding files"
-msgstr ""
+msgstr "Producíronse fallos engadindo ficheiros"
 
 #: xfburn/xfburn-data-composition.c:1960
 msgid "OK"
@@ -787,7 +788,7 @@ msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr ""
+msgstr "É posíbel que os discos estean en uso e non poidan ser accedidos.\n\nSe non hai ningún disco na unidade, comprobe que ten acceso de lectura e escritura á unidade co usuario actual."
 
 #: xfburn/xfburn-main.c:329
 #, c-format
@@ -801,31 +802,31 @@ msgstr "Produciuse un fallo ao inicializar o transcodificador %s: %s\n\t(volvend
 msgid "Image file '%s' does not exist."
 msgstr "O ficheiro de imaxe '%s' non existe."
 
-#: xfburn/xfburn-main-window.c:235
+#: xfburn/xfburn-main-window.c:241
 msgid "New data composition"
 msgstr "Nova composición de datos"
 
-#: xfburn/xfburn-main-window.c:238
+#: xfburn/xfburn-main-window.c:244
 msgid "New audio composition"
 msgstr "Crear unha nova composición de son"
 
-#: xfburn/xfburn-main-window.c:243 xfburn.ui:42
+#: xfburn/xfburn-main-window.c:249 xfburn.ui:42
 msgid "Blank CD-RW"
 msgstr "Baleirar CD-RW"
 
-#: xfburn/xfburn-main-window.c:246 xfburn.ui:46
+#: xfburn/xfburn-main-window.c:252 xfburn.ui:46
 msgid "Burn Image"
 msgstr "Gravar Imaxe"
 
-#: xfburn/xfburn-main-window.c:251 xfburn.ui:56
+#: xfburn/xfburn-main-window.c:257 xfburn.ui:56
 msgid "Refresh"
 msgstr "Actualizar"
 
-#: xfburn/xfburn-main-window.c:251
+#: xfburn/xfburn-main-window.c:257
 msgid "Refresh file list"
 msgstr "Actualizar a lista de ficheiros"
 
-#: xfburn/xfburn-main-window.c:490
+#: xfburn/xfburn-main-window.c:511
 msgid "Another cd burning GUI"
 msgstr "Outra GUI para a gravación de CDs"
 
@@ -845,102 +846,102 @@ msgstr "Amosar o botón de pechar"
 msgid "Determine whether the close button is visible"
 msgstr "Determina se o botón de peche é visíbel ou non"
 
-#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:452
+#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:443
 msgid "Formatting..."
 msgstr "Formatando..."
 
-#: xfburn/xfburn-perform-burn.c:270
+#: xfburn/xfburn-perform-burn.c:269
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "Non se poden amecer datos ao disco multisesión neste modo de escritura (use o modo TAO no seu lugar)."
 
-#: xfburn/xfburn-perform-burn.c:274
+#: xfburn/xfburn-perform-burn.c:273
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "Detectouse un disco con datos pechado, pero precísase un disco baleiro ou que permita amecer."
 
-#: xfburn/xfburn-perform-burn.c:276
+#: xfburn/xfburn-perform-burn.c:275
 msgid "No disc detected in drive."
 msgstr "Non se detectou ningún disco na unidade."
 
-#: xfburn/xfburn-perform-burn.c:279
+#: xfburn/xfburn-perform-burn.c:278
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "Non se puido recoñecer o estado da unidade e do disco."
 
-#: xfburn/xfburn-perform-burn.c:286
+#: xfburn/xfburn-perform-burn.c:285
 msgid "Formatting failed."
 msgstr "Produciuse un fallo ao formatar."
 
-#: xfburn/xfburn-perform-burn.c:304
+#: xfburn/xfburn-perform-burn.c:303
 msgid "There is not enough space available on the inserted disc."
 msgstr "Non hai espazo dabondo dispoñíbel no disco inserido."
 
-#: xfburn/xfburn-perform-burn.c:349
+#: xfburn/xfburn-perform-burn.c:346
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Gravando a pista %2d/%d..."
 
-#: xfburn/xfburn-perform-burn.c:353 xfburn/xfburn-perform-burn.c:417
+#: xfburn/xfburn-perform-burn.c:350 xfburn/xfburn-perform-burn.c:408
 msgid "Burning composition..."
 msgstr "Gravando a composición..."
 
-#: xfburn/xfburn-perform-burn.c:386
+#: xfburn/xfburn-perform-burn.c:377
 msgid "standby"
 msgstr "en espera"
 
-#: xfburn/xfburn-perform-burn.c:394
+#: xfburn/xfburn-perform-burn.c:385
 msgid "ending"
 msgstr "rematando"
 
-#: xfburn/xfburn-perform-burn.c:397
+#: xfburn/xfburn-perform-burn.c:388
 msgid "failing"
 msgstr "fallando"
 
-#: xfburn/xfburn-perform-burn.c:400
+#: xfburn/xfburn-perform-burn.c:391
 msgid "unused"
 msgstr "sen usar"
 
-#: xfburn/xfburn-perform-burn.c:403
+#: xfburn/xfburn-perform-burn.c:394
 msgid "abandoned"
 msgstr "abandonado"
 
-#: xfburn/xfburn-perform-burn.c:406
+#: xfburn/xfburn-perform-burn.c:397
 msgid "ended"
 msgstr "finalizado"
 
-#: xfburn/xfburn-perform-burn.c:409
+#: xfburn/xfburn-perform-burn.c:400
 msgid "aborted"
 msgstr "abortado"
 
-#: xfburn/xfburn-perform-burn.c:412
+#: xfburn/xfburn-perform-burn.c:403
 msgid "no info"
 msgstr "sen información"
 
-#: xfburn/xfburn-perform-burn.c:422
+#: xfburn/xfburn-perform-burn.c:413
 msgid "Writing Lead-In..."
 msgstr "Escribindo a pista inicial..."
 
-#: xfburn/xfburn-perform-burn.c:428
+#: xfburn/xfburn-perform-burn.c:419
 msgid "Writing Lead-Out..."
 msgstr "Escribindo a pista final..."
 
-#: xfburn/xfburn-perform-burn.c:434
+#: xfburn/xfburn-perform-burn.c:425
 msgid "Writing pregap..."
 msgstr "Escribindo o silencio previo..."
 
-#: xfburn/xfburn-perform-burn.c:440
+#: xfburn/xfburn-perform-burn.c:431
 msgid "Closing track..."
 msgstr "Pechando a pista..."
 
-#: xfburn/xfburn-perform-burn.c:446
+#: xfburn/xfburn-perform-burn.c:437
 msgid "Closing session..."
 msgstr "Pechando a sesión..."
 
-#: xfburn/xfburn-perform-burn.c:465
+#: xfburn/xfburn-perform-burn.c:456
 msgid "see console"
 msgstr "ver a consola"
 
-#: xfburn/xfburn-perform-burn.c:493
+#: xfburn/xfburn-perform-burn.c:484
 msgid "User Aborted"
 msgstr "Abortado polo usuario"
 
@@ -1125,7 +1126,7 @@ msgstr "<big>Gravar _imaxe</big>"
 
 #: xfburn/xfburn-welcome-tab.c:119
 msgid "Burn a prepared composition, i.e. an .ISO file"
-msgstr ""
+msgstr "Gravar unha composición xa preparada, é dicir, un ficheiro con extensión ISO"
 
 #: xfburn/xfburn-welcome-tab.c:124
 msgid "<big>New _Data Composition</big>"
@@ -1186,7 +1187,7 @@ msgstr "Nome de ficheiro"
 msgid "Cannot burn audio onto a DVD."
 msgstr "Non se pode gravar son nun DVD."
 
-#: xfburn/xfburn-audio-composition.c:1222
+#: xfburn/xfburn-audio-composition.c:1220
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Só pode ter un máximo de 99 pistas."
 
@@ -1436,7 +1437,7 @@ msgstr "Amosar o xestor de ficheiros"
 msgid "_Help"
 msgstr "A_xuda"
 
-#: xfburn.ui:76
+#: xfburn.ui:81
 msgid "About"
 msgstr "Sobre"
 
@@ -1464,7 +1465,11 @@ msgstr "Gravando o disco"
 msgid "CD and DVD burning application"
 msgstr "Aplicación para a gravación de CDs e DVDs"
 
-#: xfburn.desktop.in:21
+#: xfburn.desktop.in:14
+msgid "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;"
+msgstr "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;disco;gravar;son;vídeo;queimar;"
+
+#: xfburn.desktop.in:22
 msgid "Burn Image (xfburn)"
 msgstr "Gravar imaxe (xfburn)"
 
