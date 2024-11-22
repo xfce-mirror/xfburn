@@ -215,7 +215,7 @@ xfburn_udev_manager_get_devices (XfburnUdevManager *udevman, gint *drives, gint 
   devices = g_udev_client_query_by_subsystem (priv->client, "block");
   for (l = devices; l != NULL; l = l->next) {
     const gchar *id_type = g_udev_device_get_property (l->data, "ID_TYPE");
-    if (g_strcmp0 (id_type, "cd") == 0) {
+    if (g_strcmp0 (id_type, "cd") == 0 || g_strcmp0 (id_type, "cd/dvd") == 0) {
       gboolean cdr = g_udev_device_get_property_as_boolean(l->data, "ID_CDROM_CD_R");
       gboolean cdrw = g_udev_device_get_property_as_boolean(l->data, "ID_CDROM_CD_RW");
       gboolean dvdr = g_udev_device_get_property_as_boolean(l->data, "ID_CDROM_DVD_R")
