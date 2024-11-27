@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 12:49+0200\n"
+"POT-Creation-Date: 2024-10-26 00:50+0200\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
 "Last-Translator: Michael Martins, 2017-2020,2024\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/xfce/xfce-apps/language/pt_BR/)\n"
@@ -179,11 +179,11 @@ msgstr "Apagando disco..."
 
 #: xfburn/xfburn-blank-dialog.c:411
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:479
-#: xfburn/xfburn-perform-burn.c:489
+#: xfburn/xfburn-perform-burn.c:480
 msgid "Done"
 msgstr "Pronto"
 
-#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:496
+#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:487
 #: xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
 msgstr "Falha"
@@ -452,7 +452,7 @@ msgstr "Limpa o conteúdo da composição"
 msgid "Volume name :"
 msgstr "Nome do volume :"
 
-#: xfburn/xfburn-data-composition.c:364
+#: xfburn/xfburn-data-composition.c:364 xfburn.ui:76
 msgid "Contents"
 msgstr "Conteúdo"
 
@@ -500,12 +500,12 @@ msgid ""
 msgstr "%s é maior do que o permitido pelo nível 2 do iso9660. Isso pode ser um problema para softwares ou sistemas antigos."
 
 #: xfburn/xfburn-data-composition.c:1294
-#: xfburn/xfburn-audio-composition.c:1314
+#: xfburn/xfburn-audio-composition.c:1310
 msgid "Adding home directory"
 msgstr "Adicionando diretório pessoal"
 
 #: xfburn/xfburn-data-composition.c:1295
-#: xfburn/xfburn-audio-composition.c:1315
+#: xfburn/xfburn-audio-composition.c:1311
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
@@ -810,31 +810,31 @@ msgstr "Falhou ao inicializar o transcodificador %s: %s\n\t(voltando para a impl
 msgid "Image file '%s' does not exist."
 msgstr "O arquivo de imagem \"%s\" não existe."
 
-#: xfburn/xfburn-main-window.c:235
+#: xfburn/xfburn-main-window.c:241
 msgid "New data composition"
 msgstr "Nova composição de dados"
 
-#: xfburn/xfburn-main-window.c:238
+#: xfburn/xfburn-main-window.c:244
 msgid "New audio composition"
 msgstr "Nova composição de áudio"
 
-#: xfburn/xfburn-main-window.c:243 xfburn.ui:42
+#: xfburn/xfburn-main-window.c:249 xfburn.ui:42
 msgid "Blank CD-RW"
 msgstr "Apagar CD-RW"
 
-#: xfburn/xfburn-main-window.c:246 xfburn.ui:46
+#: xfburn/xfburn-main-window.c:252 xfburn.ui:46
 msgid "Burn Image"
 msgstr "Gravar imagem"
 
-#: xfburn/xfburn-main-window.c:251 xfburn.ui:56
+#: xfburn/xfburn-main-window.c:257 xfburn.ui:56
 msgid "Refresh"
 msgstr "Atualizar"
 
-#: xfburn/xfburn-main-window.c:251
+#: xfburn/xfburn-main-window.c:257
 msgid "Refresh file list"
 msgstr "Atualizar lista de arquivos"
 
-#: xfburn/xfburn-main-window.c:490
+#: xfburn/xfburn-main-window.c:511
 msgid "Another cd burning GUI"
 msgstr "Mais uma interface gráfica de gravação de CD"
 
@@ -854,102 +854,102 @@ msgstr "Mostrar o botão de fechar"
 msgid "Determine whether the close button is visible"
 msgstr "Determina se o botão de fechar é visível"
 
-#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:452
+#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:443
 msgid "Formatting..."
 msgstr "Formatando..."
 
-#: xfburn/xfburn-perform-burn.c:270
+#: xfburn/xfburn-perform-burn.c:269
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "Não é possível adicionar dados ao disco de multissessão neste modo de gravação (use o modo TAO)."
 
-#: xfburn/xfburn-perform-burn.c:274
+#: xfburn/xfburn-perform-burn.c:273
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "Detectada mídia fechada e com dados. Necessária uma mídia em branco ou com sessão aberta."
 
-#: xfburn/xfburn-perform-burn.c:276
+#: xfburn/xfburn-perform-burn.c:275
 msgid "No disc detected in drive."
 msgstr "Nenhum disco detectado no drive."
 
-#: xfburn/xfburn-perform-burn.c:279
+#: xfburn/xfburn-perform-burn.c:278
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "Não é possível reconhecer o estado do drive e da mídia."
 
-#: xfburn/xfburn-perform-burn.c:286
+#: xfburn/xfburn-perform-burn.c:285
 msgid "Formatting failed."
 msgstr "Formatação falhou."
 
-#: xfburn/xfburn-perform-burn.c:304
+#: xfburn/xfburn-perform-burn.c:303
 msgid "There is not enough space available on the inserted disc."
 msgstr "Não há espaço suficiente disponível no disco inserido."
 
-#: xfburn/xfburn-perform-burn.c:349
+#: xfburn/xfburn-perform-burn.c:346
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Gravando trilha %2d/%d..."
 
-#: xfburn/xfburn-perform-burn.c:353 xfburn/xfburn-perform-burn.c:417
+#: xfburn/xfburn-perform-burn.c:350 xfburn/xfburn-perform-burn.c:408
 msgid "Burning composition..."
 msgstr "Gravando composição..."
 
-#: xfburn/xfburn-perform-burn.c:386
+#: xfburn/xfburn-perform-burn.c:377
 msgid "standby"
 msgstr "standby"
 
-#: xfburn/xfburn-perform-burn.c:394
+#: xfburn/xfburn-perform-burn.c:385
 msgid "ending"
 msgstr "finalizando"
 
-#: xfburn/xfburn-perform-burn.c:397
+#: xfburn/xfburn-perform-burn.c:388
 msgid "failing"
 msgstr "falhando"
 
-#: xfburn/xfburn-perform-burn.c:400
+#: xfburn/xfburn-perform-burn.c:391
 msgid "unused"
 msgstr "não usado"
 
-#: xfburn/xfburn-perform-burn.c:403
+#: xfburn/xfburn-perform-burn.c:394
 msgid "abandoned"
 msgstr "abandonado"
 
-#: xfburn/xfburn-perform-burn.c:406
+#: xfburn/xfburn-perform-burn.c:397
 msgid "ended"
 msgstr "finalizado"
 
-#: xfburn/xfburn-perform-burn.c:409
+#: xfburn/xfburn-perform-burn.c:400
 msgid "aborted"
 msgstr "abortado"
 
-#: xfburn/xfburn-perform-burn.c:412
+#: xfburn/xfburn-perform-burn.c:403
 msgid "no info"
 msgstr "sem informação"
 
-#: xfburn/xfburn-perform-burn.c:422
+#: xfburn/xfburn-perform-burn.c:413
 msgid "Writing Lead-In..."
 msgstr "Gravando Lead-In..."
 
-#: xfburn/xfburn-perform-burn.c:428
+#: xfburn/xfburn-perform-burn.c:419
 msgid "Writing Lead-Out..."
 msgstr "Gravando Lead-Out..."
 
-#: xfburn/xfburn-perform-burn.c:434
+#: xfburn/xfburn-perform-burn.c:425
 msgid "Writing pregap..."
 msgstr "Gravando pregap..."
 
-#: xfburn/xfburn-perform-burn.c:440
+#: xfburn/xfburn-perform-burn.c:431
 msgid "Closing track..."
 msgstr "Fechando trilha..."
 
-#: xfburn/xfburn-perform-burn.c:446
+#: xfburn/xfburn-perform-burn.c:437
 msgid "Closing session..."
 msgstr "Fechando sessão..."
 
-#: xfburn/xfburn-perform-burn.c:465
+#: xfburn/xfburn-perform-burn.c:456
 msgid "see console"
 msgstr "veja o console"
 
-#: xfburn/xfburn-perform-burn.c:493
+#: xfburn/xfburn-perform-burn.c:484
 msgid "User Aborted"
 msgstr "Cancelado pelo usuário"
 
@@ -1195,7 +1195,7 @@ msgstr "Arquivo"
 msgid "Cannot burn audio onto a DVD."
 msgstr "Não é possível gravar áudio em um DVD."
 
-#: xfburn/xfburn-audio-composition.c:1222
+#: xfburn/xfburn-audio-composition.c:1220
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Você tem somente um máximo de 99 trilhas."
 
@@ -1445,7 +1445,7 @@ msgstr "Mostrar Navegador de Arquivos"
 msgid "_Help"
 msgstr "Ajuda"
 
-#: xfburn.ui:76
+#: xfburn.ui:81
 msgid "About"
 msgstr "Sobre"
 
@@ -1473,7 +1473,11 @@ msgstr "Gravando disco"
 msgid "CD and DVD burning application"
 msgstr "Aplicativo de gravação de CD e DVD"
 
-#: xfburn.desktop.in:21
+#: xfburn.desktop.in:14
+msgid "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;"
+msgstr "Gravar;CD;DVD;ISO;Disco;Escrever;Áudio;Vídeo;"
+
+#: xfburn.desktop.in:22
 msgid "Burn Image (xfburn)"
 msgstr "Gravar Imagem (xfburn)"
 
