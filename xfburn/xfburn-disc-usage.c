@@ -177,7 +177,7 @@ update_size_default (XfburnDiscUsage *du)
 {
   gchar *size;
 
-  size = g_strdup_printf ("%.0lf", du->size);
+  size = g_strdup_printf ("%.0ld", du->size);
 
   gtk_progress_bar_set_text (GTK_PROGRESS_BAR (du->progress_bar), size);
 
@@ -228,28 +228,28 @@ cb_combo_changed (GtkComboBox * combo, XfburnDiscUsage * usage)
 }
 
 /* public methods */
-gdouble
+guint64
 xfburn_disc_usage_get_size (XfburnDiscUsage * disc_usage)
 {
   return disc_usage->size;
 }
 
 void
-xfburn_disc_usage_set_size (XfburnDiscUsage * disc_usage, gdouble size)
+xfburn_disc_usage_set_size (XfburnDiscUsage * disc_usage, guint64 size)
 {
   disc_usage->size = size;
   update_size (disc_usage, FALSE);
 }
 
 void
-xfburn_disc_usage_add_size (XfburnDiscUsage * disc_usage, gdouble size)
+xfburn_disc_usage_add_size (XfburnDiscUsage * disc_usage, guint64 size)
 {
   disc_usage->size = disc_usage->size + size;
   update_size (disc_usage, FALSE);
 }
 
 void
-xfburn_disc_usage_sub_size (XfburnDiscUsage * disc_usage, gdouble size)
+xfburn_disc_usage_sub_size (XfburnDiscUsage * disc_usage, guint64 size)
 {
   disc_usage->size = disc_usage->size - size;
   update_size (disc_usage, FALSE);
