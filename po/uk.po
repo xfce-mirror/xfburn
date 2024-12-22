@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2007-2008
-# Gordon Freeman, 2023
+# Gordon Freeman, 2023-2024
 # Maxim V. Dziumanenko <mvd@mylinux.ua>, 2006
 # Olexandr Nesterenko <nolexndr@gmail.com>, 2020
 # Yarema aka Knedlyk <yupadmin@gmail.com>, 2014-2015,2018
@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 12:49+0200\n"
+"POT-Creation-Date: 2024-10-26 00:50+0200\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
-"Last-Translator: Gordon Freeman, 2023\n"
+"Last-Translator: Gordon Freeman, 2023-2024\n"
 "Language-Team: Ukrainian (http://app.transifex.com/xfce/xfce-apps/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,11 +174,11 @@ msgstr "Стирання диску..."
 
 #: xfburn/xfburn-blank-dialog.c:411
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:479
-#: xfburn/xfburn-perform-burn.c:489
+#: xfburn/xfburn-perform-burn.c:480
 msgid "Done"
 msgstr "Завершено"
 
-#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:496
+#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:487
 #: xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
 msgstr "Помилка"
@@ -447,7 +447,7 @@ msgstr "Очистити зміст проекту"
 msgid "Volume name :"
 msgstr "Назва тому :"
 
-#: xfburn/xfburn-data-composition.c:364
+#: xfburn/xfburn-data-composition.c:364 xfburn.ui:76
 msgid "Contents"
 msgstr "Зміст"
 
@@ -495,12 +495,12 @@ msgid ""
 msgstr "%s є більше, ніж дозволяє 2 рівень iso9660. Можливо, що це проблема старої системи або програми."
 
 #: xfburn/xfburn-data-composition.c:1294
-#: xfburn/xfburn-audio-composition.c:1314
+#: xfburn/xfburn-audio-composition.c:1310
 msgid "Adding home directory"
 msgstr "Додати домашню директорію"
 
 #: xfburn/xfburn-data-composition.c:1295
-#: xfburn/xfburn-audio-composition.c:1315
+#: xfburn/xfburn-audio-composition.c:1311
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
@@ -805,31 +805,31 @@ msgstr "Невдача ініціалізаці %s перекодувальни�
 msgid "Image file '%s' does not exist."
 msgstr "Файл образу '%s' не існує"
 
-#: xfburn/xfburn-main-window.c:235
+#: xfburn/xfburn-main-window.c:241
 msgid "New data composition"
 msgstr "Новий проект з даними"
 
-#: xfburn/xfburn-main-window.c:238
+#: xfburn/xfburn-main-window.c:244
 msgid "New audio composition"
 msgstr "Новий проект з аудіо"
 
-#: xfburn/xfburn-main-window.c:243 xfburn.ui:42
+#: xfburn/xfburn-main-window.c:249 xfburn.ui:42
 msgid "Blank CD-RW"
 msgstr "Очистити CD-RW"
 
-#: xfburn/xfburn-main-window.c:246 xfburn.ui:46
+#: xfburn/xfburn-main-window.c:252 xfburn.ui:46
 msgid "Burn Image"
 msgstr "Записати образ"
 
-#: xfburn/xfburn-main-window.c:251 xfburn.ui:56
+#: xfburn/xfburn-main-window.c:257 xfburn.ui:56
 msgid "Refresh"
 msgstr "Оновити"
 
-#: xfburn/xfburn-main-window.c:251
+#: xfburn/xfburn-main-window.c:257
 msgid "Refresh file list"
 msgstr "Оновити список файлів"
 
-#: xfburn/xfburn-main-window.c:490
+#: xfburn/xfburn-main-window.c:511
 msgid "Another cd burning GUI"
 msgstr "Інший GUI інструмент для запису CD"
 
@@ -849,102 +849,102 @@ msgstr "Відображати кнопку закриття"
 msgid "Determine whether the close button is visible"
 msgstr "Визначити чи відображається кнопка закриття"
 
-#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:452
+#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:443
 msgid "Formatting..."
 msgstr "Форматування..."
 
-#: xfburn/xfburn-perform-burn.c:270
+#: xfburn/xfburn-perform-burn.c:269
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "Неможливо додати дані до мульти-сесійного диску в цьому режимі запису (використовуйте краще TAO)."
 
-#: xfburn/xfburn-perform-burn.c:274
+#: xfburn/xfburn-perform-burn.c:273
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "Виявлено закритий носій з даними. потрібен чистий диск, або диск з можливістю дозапису."
 
-#: xfburn/xfburn-perform-burn.c:276
+#: xfburn/xfburn-perform-burn.c:275
 msgid "No disc detected in drive."
 msgstr "Не виявлено диску в пристрої."
 
-#: xfburn/xfburn-perform-burn.c:279
+#: xfburn/xfburn-perform-burn.c:278
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "Неможливо розпізнати стан пристрою і носія."
 
-#: xfburn/xfburn-perform-burn.c:286
+#: xfburn/xfburn-perform-burn.c:285
 msgid "Formatting failed."
 msgstr "Форматування не вдалося"
 
-#: xfburn/xfburn-perform-burn.c:304
+#: xfburn/xfburn-perform-burn.c:303
 msgid "There is not enough space available on the inserted disc."
 msgstr "Не вистачає доступного простору на вставленому диску."
 
-#: xfburn/xfburn-perform-burn.c:349
+#: xfburn/xfburn-perform-burn.c:346
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Записати трек %2d/%d..."
 
-#: xfburn/xfburn-perform-burn.c:353 xfburn/xfburn-perform-burn.c:417
+#: xfburn/xfburn-perform-burn.c:350 xfburn/xfburn-perform-burn.c:408
 msgid "Burning composition..."
 msgstr "Запис проекту..."
 
-#: xfburn/xfburn-perform-burn.c:386
+#: xfburn/xfburn-perform-burn.c:377
 msgid "standby"
 msgstr "очікування"
 
-#: xfburn/xfburn-perform-burn.c:394
+#: xfburn/xfburn-perform-burn.c:385
 msgid "ending"
 msgstr "завершення"
 
-#: xfburn/xfburn-perform-burn.c:397
+#: xfburn/xfburn-perform-burn.c:388
 msgid "failing"
 msgstr "помилка"
 
-#: xfburn/xfburn-perform-burn.c:400
+#: xfburn/xfburn-perform-burn.c:391
 msgid "unused"
 msgstr "не використовується"
 
-#: xfburn/xfburn-perform-burn.c:403
+#: xfburn/xfburn-perform-burn.c:394
 msgid "abandoned"
 msgstr "занедбано"
 
-#: xfburn/xfburn-perform-burn.c:406
+#: xfburn/xfburn-perform-burn.c:397
 msgid "ended"
 msgstr "закінчено"
 
-#: xfburn/xfburn-perform-burn.c:409
+#: xfburn/xfburn-perform-burn.c:400
 msgid "aborted"
 msgstr "перервано"
 
-#: xfburn/xfburn-perform-burn.c:412
+#: xfburn/xfburn-perform-burn.c:403
 msgid "no info"
 msgstr "немає даних"
 
-#: xfburn/xfburn-perform-burn.c:422
+#: xfburn/xfburn-perform-burn.c:413
 msgid "Writing Lead-In..."
 msgstr "Запис Lead-In..."
 
-#: xfburn/xfburn-perform-burn.c:428
+#: xfburn/xfburn-perform-burn.c:419
 msgid "Writing Lead-Out..."
 msgstr "Запис Lead-Out..."
 
-#: xfburn/xfburn-perform-burn.c:434
+#: xfburn/xfburn-perform-burn.c:425
 msgid "Writing pregap..."
 msgstr "Запис pregap..."
 
-#: xfburn/xfburn-perform-burn.c:440
+#: xfburn/xfburn-perform-burn.c:431
 msgid "Closing track..."
 msgstr "Закривання доріжки..."
 
-#: xfburn/xfburn-perform-burn.c:446
+#: xfburn/xfburn-perform-burn.c:437
 msgid "Closing session..."
 msgstr "Закривання сесії..."
 
-#: xfburn/xfburn-perform-burn.c:465
+#: xfburn/xfburn-perform-burn.c:456
 msgid "see console"
 msgstr "дивитись консоль"
 
-#: xfburn/xfburn-perform-burn.c:493
+#: xfburn/xfburn-perform-burn.c:484
 msgid "User Aborted"
 msgstr "Перервано користувачем"
 
@@ -1190,7 +1190,7 @@ msgstr "Назва файлу"
 msgid "Cannot burn audio onto a DVD."
 msgstr "Неможливо записати аудіо на DVD."
 
-#: xfburn/xfburn-audio-composition.c:1222
+#: xfburn/xfburn-audio-composition.c:1220
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Ви можете мати максимум тільки 99 треків."
 
@@ -1440,7 +1440,7 @@ msgstr "Показувати оглядач файлів"
 msgid "_Help"
 msgstr "_Допомога"
 
-#: xfburn.ui:76
+#: xfburn.ui:81
 msgid "About"
 msgstr "Про"
 
@@ -1468,7 +1468,11 @@ msgstr "Випалювання диску"
 msgid "CD and DVD burning application"
 msgstr "Програма для запису CD та DVD"
 
-#: xfburn.desktop.in:21
+#: xfburn.desktop.in:14
+msgid "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;"
+msgstr "Записати;CD;DVD;ISO;Диск;Записати;Аудіо;Відео;"
+
+#: xfburn.desktop.in:22
 msgid "Burn Image (xfburn)"
 msgstr "Записати образ (xfburn)"
 
