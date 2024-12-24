@@ -1,0 +1,1484 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-apps.xfburn package.
+# 
+# Translators:
+# Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Apps\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-10-26 00:50+0200\n"
+"PO-Revision-Date: 2013-07-03 18:34+0000\n"
+"Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024\n"
+"Language-Team: Romanian (http://app.transifex.com/xfce/xfce-apps/language/ro/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+
+#: xfburn/xfburn-global.h:28
+msgid "Capacity:"
+msgstr "Capacitate:"
+
+#: xfburn/xfburn-global.h:29
+msgid "addr:"
+msgstr "adresa:"
+
+#: xfburn/xfburn-global.h:30
+msgid "Time total:"
+msgstr "Timpul total:"
+
+#: xfburn/xfburn-global.h:32
+msgid "length"
+msgstr "durata"
+
+#: xfburn/xfburn-global.h:33 xfburn/xfburn-copy-cd-progress-dialog.c:93
+msgid "Flushing cache..."
+msgstr "Se golește cache-ul..."
+
+#: xfburn/xfburn-global.h:34
+msgid "Please insert a recordable disc and hit enter"
+msgstr "Introduceți un disc inscriptibil și apăsați tasta «Enter»"
+
+#: xfburn/xfburn-global.h:35
+msgid "Cannot determine disc status - hit enter to try again."
+msgstr "Nu se poate determina starea discului - apăsați «Enter» pentru a încerca din nou."
+
+#: xfburn/xfburn-global.h:36
+msgid "CD copying finished successfully."
+msgstr "Copierea CD-ului s-a încheiat cu succes."
+
+#: xfburn/xfburn-global.h:43
+msgid "Data composition"
+msgstr "Compoziția datelor"
+
+#: xfburn/xfburn-adding-progress.c:83
+msgid "Adding files to the composition"
+msgstr "Se adaugă fișiere la compoziție"
+
+#: xfburn/xfburn-adding-progress.c:97
+msgid "Cancel"
+msgstr "Anulați"
+
+#: xfburn/xfburn-blank-dialog.c:70
+msgid "Quick Blank"
+msgstr "Ștergere rapidă"
+
+#: xfburn/xfburn-blank-dialog.c:71
+msgid "Full Blank (slow)"
+msgstr "Ștergere completă (lent)"
+
+#: xfburn/xfburn-blank-dialog.c:72
+msgid "Quick Format"
+msgstr "Formatare rapidă"
+
+#: xfburn/xfburn-blank-dialog.c:73
+msgid "Full Format"
+msgstr "Formatare completă"
+
+#: xfburn/xfburn-blank-dialog.c:74
+msgid "Quick Deformat"
+msgstr "De-formatare rapidă"
+
+#: xfburn/xfburn-blank-dialog.c:75
+msgid "Full Deformat (slow)"
+msgstr "De-formatare completă (lent)"
+
+#: xfburn/xfburn-blank-dialog.c:119
+msgid "Eject the disc"
+msgstr "Ejectează discul"
+
+#: xfburn/xfburn-blank-dialog.c:120
+msgid "Default value for eject checkbox"
+msgstr "Valoarea implicită pentru opțiunea de ejectare"
+
+#: xfburn/xfburn-blank-dialog.c:166
+msgid "Blank Disc"
+msgstr "Disc gol"
+
+#: xfburn/xfburn-blank-dialog.c:175
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:158
+#: xfburn/xfburn-burn-image-dialog.c:178 xfburn/xfburn-copy-cd-dialog.c:107
+#: xfburn/xfburn-copy-dvd-dialog.c:104
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:123
+msgid "Burning device"
+msgstr "Dispozitiv de inscipționare"
+
+#: xfburn/xfburn-blank-dialog.c:188 xfburn/xfburn-device-box.c:158
+msgid "Blank mode"
+msgstr "Modul de ștergere"
+
+#: xfburn/xfburn-blank-dialog.c:196
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:190
+#: xfburn/xfburn-burn-image-dialog.c:186 xfburn/xfburn-copy-cd-dialog.c:115
+#: xfburn/xfburn-copy-dvd-dialog.c:112
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
+msgid "Options"
+msgstr "Opțiuni"
+
+#: xfburn/xfburn-blank-dialog.c:200
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:194
+#: xfburn/xfburn-burn-image-dialog.c:190 xfburn/xfburn-copy-cd-dialog.c:119
+#: xfburn/xfburn-copy-dvd-dialog.c:116
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:161
+msgid "E_ject disk"
+msgstr "E_jectare disc"
+
+#. action buttons
+#. align = gtk_alignment_new (0, 0, 0, 0);
+#. gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
+#. gtk_widget_show (align);
+#. gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
+#. action buttons
+#: xfburn/xfburn-blank-dialog.c:206
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:247
+#: xfburn/xfburn-burn-image-dialog.c:215 xfburn/xfburn-copy-cd-dialog.c:165
+#: xfburn/xfburn-copy-dvd-dialog.c:162 xfburn/xfburn-utils.c:132
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:182
+msgid "_Cancel"
+msgstr "_Renunță"
+
+#: xfburn/xfburn-blank-dialog.c:210
+msgid "_Blank"
+msgstr "_Șterge"
+
+#. blanking can only be performed on blank discs, format and deformat are
+#. allowed to be blank ones
+#: xfburn/xfburn-blank-dialog.c:326
+msgid "The inserted disc is already blank."
+msgstr "Discul introdus este deja gol."
+
+#. these ones we can blank
+#: xfburn/xfburn-blank-dialog.c:332
+msgid "Ready"
+msgstr "Gata"
+
+#: xfburn/xfburn-blank-dialog.c:335
+msgid "No disc detected in the drive."
+msgstr "Nu a fost detectat niciun disc în unitate."
+
+#: xfburn/xfburn-blank-dialog.c:344
+msgid "Disc is not erasable."
+msgstr "Discul nu poate fi șters."
+
+#: xfburn/xfburn-blank-dialog.c:384
+msgid "Blanking disc..."
+msgstr "Se șterge discul..."
+
+#: xfburn/xfburn-blank-dialog.c:411
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:479
+#: xfburn/xfburn-perform-burn.c:480
+msgid "Done"
+msgstr "Finalizat"
+
+#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:487
+#: xfburn/xfburn-progress-dialog.c:637
+msgid "Failure"
+msgstr "Eșec"
+
+#: xfburn/xfburn-blank-dialog.c:431
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:585
+#: xfburn/xfburn-burn-image-dialog.c:389 xfburn/xfburn-burn-image-dialog.c:567
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:359
+msgid "Unable to grab the drive."
+msgstr "Nu se poate accesa unitatea."
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:128
+msgid "Image"
+msgstr "Imagine"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:130
+msgid "Show volume name"
+msgstr "Afișează numele volumului"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:130
+msgid "Show a text entry for the name of the volume"
+msgstr "Afișează o intrare de text pentru numele volumului"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:148
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:113
+msgid "Burn Composition"
+msgstr "Inscripționează compoziția"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:169
+msgid "Composition name"
+msgstr "Numele compoziției"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:174
+msgid "<small>Would you like to change the default composition name?</small>"
+msgstr "<small>Doriți să schimbați numele implicit al compoziției?</small>"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:199
+#: xfburn/xfburn-burn-image-dialog.c:195 xfburn/xfburn-copy-cd-dialog.c:124
+#: xfburn/xfburn-copy-dvd-dialog.c:121
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:166
+msgid "_Dummy write"
+msgstr "Scriere _simulată"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:203
+#: xfburn/xfburn-burn-image-dialog.c:199
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:170
+msgid "Burn_Free"
+msgstr "Burn_Free"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:208
+#: xfburn/xfburn-burn-image-dialog.c:204
+msgid "Stream _Recording"
+msgstr "În_registrare de flux(directă)"
+
+#. create ISO ?
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:214
+#: xfburn/xfburn-copy-cd-dialog.c:133 xfburn/xfburn-copy-dvd-dialog.c:130
+msgid "Only create _ISO"
+msgstr "Creează doar fișierul _ISO"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:251
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:186
+msgid "_Burn Composition"
+msgstr "_Inscripționează compoziția"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:437
+#, c-format
+msgid "Could not create destination ISO file: %s"
+msgstr "Nu s-a putut crea fișierul ISO de destinație: %s"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:444
+msgid "Writing ISO..."
+msgstr "Se scrie imaginea ISO..."
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:461
+#, c-format
+msgid "An error occurred while writing ISO: %s"
+msgstr "A apărut o eroare în timpul scrierii imaginii ISO: %s"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:517
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:523
+msgid "An error occurred in the burn backend."
+msgstr "A apărut o eroare în sistemul de inscripționare."
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:546
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:290
+msgid "The write mode is not supported currently."
+msgstr "Modul de scriere nu este acceptat în prezent."
+
+#. could not create source
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:629
+msgid "Could not create ISO source structure."
+msgstr "Nu s-a putut crea structura sursă ISO."
+
+#: xfburn/xfburn-burn-image-dialog.c:135
+msgid "Burn image"
+msgstr "Inscripționează o imagine"
+
+#. file
+#: xfburn/xfburn-burn-image-dialog.c:140 xfburn/xfburn-burn-image-dialog.c:163
+msgid "Image to burn"
+msgstr "Imaginea pentru inscripționare"
+
+#: xfburn/xfburn-burn-image-dialog.c:144
+msgid "All files"
+msgstr "Toate fișierele"
+
+#: xfburn/xfburn-burn-image-dialog.c:148
+msgid "Disc images"
+msgstr "Imagini de disc"
+
+#: xfburn/xfburn-burn-image-dialog.c:209
+msgid "_Quit after success"
+msgstr "_Ieși după finalizarea cu succes a operației"
+
+#: xfburn/xfburn-burn-image-dialog.c:219
+msgid "_Burn image"
+msgstr "_Inscripționează imaginea"
+
+#: xfburn/xfburn-burn-image-dialog.c:272
+msgid "Burn mode is not currently implemented."
+msgstr "Modul de inscipționare nu este implementat în prezent."
+
+#: xfburn/xfburn-burn-image-dialog.c:323 xfburn/xfburn-burn-image-dialog.c:352
+msgid "An error occurred in the burn backend"
+msgstr "A apărut o eroare în sistemul de inscripționare"
+
+#: xfburn/xfburn-burn-image-dialog.c:336
+msgid "Unable to determine image size."
+msgstr "Nu se poate determina dimensiunea imaginii."
+
+#: xfburn/xfburn-burn-image-dialog.c:343
+msgid "Cannot open image."
+msgstr "Nu se poate deschide imaginea."
+
+#: xfburn/xfburn-burn-image-dialog.c:380
+msgid "Burning image..."
+msgstr "Se inscripționează imaginea..."
+
+#: xfburn/xfburn-burn-image-dialog.c:453
+msgid ""
+"<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
+" select an image to burn</span>"
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Selectați o imagine pentru inscripționare</span>"
+
+#: xfburn/xfburn-burn-image-dialog.c:493
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO instead)"
+msgstr "Nu se pot adăuga date la discul multi-sesiune în acest mod de scriere (utilizați TAO în schimb)"
+
+#: xfburn/xfburn-burn-image-dialog.c:497
+msgid "Closed disc with data detected. Need blank or appendable disc"
+msgstr "Disc închis cu date detectate. Aveți nevoie de un disc gol sau la care se pot adăuga date"
+
+#: xfburn/xfburn-burn-image-dialog.c:499
+msgid "No disc detected in drive"
+msgstr "Nu a fost detectat niciun disc în unitate"
+
+#: xfburn/xfburn-burn-image-dialog.c:501
+msgid "Cannot recognize state of drive and disc"
+msgstr "Nu se poate recunoaște starea unității și a discului"
+
+#: xfburn/xfburn-burn-image-dialog.c:513
+msgid "The selected image does not fit on the inserted disc"
+msgstr "Imaginea selectată nu încape pe discul introdus"
+
+#: xfburn/xfburn-burn-image-dialog.c:517
+msgid "Failed to get image size"
+msgstr "Nu s-a putut obține dimensiunea imaginii"
+
+#: xfburn/xfburn-burn-image-dialog.c:546
+msgid ""
+"Make sure you selected a valid file and you have the proper permissions to "
+"access it."
+msgstr "Asigurați-vă că ați selectat un fișier valid și că aveți permisiunile necesare pentru a-l accesa."
+
+#: xfburn/xfburn-compositions-notebook.c:144
+msgid "Audio composition"
+msgstr "Compoziție audio"
+
+#: xfburn/xfburn-compositions-notebook.c:205
+msgid "Welcome"
+msgstr "Bine ați venit"
+
+#: xfburn/xfburn-copy-cd-dialog.c:88
+#: xfburn/xfburn-copy-cd-progress-dialog.c:156
+msgid "Copy data CD"
+msgstr "Copiere CD de date"
+
+#: xfburn/xfburn-copy-cd-dialog.c:99
+msgid "CD Reader device"
+msgstr "Dispozitiv de citire CD"
+
+#: xfburn/xfburn-copy-cd-dialog.c:128 xfburn/xfburn-copy-dvd-dialog.c:125
+msgid "On the _fly"
+msgstr "Inscripționare din _mers"
+
+#: xfburn/xfburn-copy-cd-dialog.c:169
+msgid "_Copy CD"
+msgstr "_Copiere CD"
+
+#: xfburn/xfburn-copy-cd-progress-dialog.c:105
+msgid "Please insert a recordable disc."
+msgstr "Introduceți un disc inscriptibil."
+
+#: xfburn/xfburn-copy-cd-progress-dialog.c:127
+msgid "Writing CD..."
+msgstr "Se scrie CD-ul..."
+
+#: xfburn/xfburn-copy-cd-progress-dialog.c:140
+#: xfburn/xfburn-create-iso-progress-dialog.c:102
+msgid "Reading CD..."
+msgstr "Se citește CD-ul..."
+
+#: xfburn/xfburn-copy-dvd-dialog.c:85
+msgid "Copy data DVD"
+msgstr "Copiere DVD de date"
+
+#: xfburn/xfburn-copy-dvd-dialog.c:96
+msgid "DVD Reader device"
+msgstr "Dispozitiv de citire DVD"
+
+#: xfburn/xfburn-copy-dvd-dialog.c:166
+msgid "_Copy DVD"
+msgstr "_Copiere DVD"
+
+#: xfburn/xfburn-create-iso-progress-dialog.c:117
+msgid "Create ISO from CD"
+msgstr "Creează o imagine ISO de pe CD"
+
+#: xfburn/xfburn-data-composition.c:310 xfburn/xfburn-utils.c:184
+#: xfburn/xfburn-utils.c:186 xfburn/xfburn-audio-composition.c:330
+msgid "Add"
+msgstr "Adaugă"
+
+#: xfburn/xfburn-data-composition.c:310 xfburn/xfburn-audio-composition.c:330
+msgid "Add the selected file(s) to the composition"
+msgstr "Adăugă fișierele selectate la compoziție"
+
+#: xfburn/xfburn-data-composition.c:312 xfburn-popup-menus.ui:7
+msgid "Create directory"
+msgstr "Creează director"
+
+#: xfburn/xfburn-data-composition.c:312
+msgid "Add a new directory to the composition"
+msgstr "Adaugă un nou director la compoziție"
+
+#: xfburn/xfburn-data-composition.c:317 xfburn/xfburn-audio-composition.c:335
+#: xfburn-popup-menus.ui:17 xfburn-popup-menus.ui:25 xfburn-popup-menus.ui:43
+msgid "Remove"
+msgstr "Elimină"
+
+#: xfburn/xfburn-data-composition.c:317 xfburn/xfburn-audio-composition.c:335
+msgid "Remove the selected file(s) from the composition"
+msgstr "Elimină fișierele selectate din compoziție"
+
+#: xfburn/xfburn-data-composition.c:319 xfburn/xfburn-audio-composition.c:337
+msgid "Clear"
+msgstr "Șterge"
+
+#: xfburn/xfburn-data-composition.c:319 xfburn/xfburn-audio-composition.c:337
+msgid "Clear the content of the composition"
+msgstr "Șterge conținutul compoziției"
+
+#: xfburn/xfburn-data-composition.c:330
+msgid "Volume name :"
+msgstr "Numele volumului:"
+
+#: xfburn/xfburn-data-composition.c:364 xfburn.ui:76
+msgid "Contents"
+msgstr "Conținutul"
+
+#: xfburn/xfburn-data-composition.c:379 xfburn/xfburn-directory-browser.c:113
+msgid "Size"
+msgstr "Dimensiune"
+
+#: xfburn/xfburn-data-composition.c:382
+msgid "Local Path"
+msgstr "Ruta locală"
+
+#: xfburn/xfburn-data-composition.c:657
+msgid "You must give a name to the file."
+msgstr "Trebuie să dați un nume fișierului."
+
+#: xfburn/xfburn-data-composition.c:666 xfburn/xfburn-data-composition.c:1124
+#: xfburn/xfburn-audio-composition.c:1138
+msgid "A file with the same name is already present in the composition."
+msgstr "Un fișier cu același nume este deja prezent în compoziție."
+
+#: xfburn/xfburn-data-composition.c:791 xfburn/xfburn-data-composition.c:792
+#: xfburn/xfburn-data-composition.c:794
+msgid "New directory"
+msgstr "Director nou"
+
+#. Note to translators: first %s is the date in "i18n" format (year-month-
+#. day), %d is a running number of compositions
+#: xfburn/xfburn-data-composition.c:967
+#, c-format
+msgid "Data %s~%d"
+msgstr "Date %s~%d"
+
+#: xfburn/xfburn-data-composition.c:1203
+#, c-format
+msgid ""
+"%s cannot be added to the composition, because it exceeds the maximum "
+"allowed file size for iso9660."
+msgstr "%s nu poate fi adăugat la compoziție, deoarece depășește dimensiunea maximă permisă a fișierului pentru iso9660."
+
+#: xfburn/xfburn-data-composition.c:1210
+#, c-format
+msgid ""
+"%s is larger than what iso9660 level 2 allows. This can be a problem for old"
+" systems or software."
+msgstr "%s este mai mare decât permite nivelul 2 iso9660. Aceasta poate fi o problemă pentru sistemele sau programele vechi."
+
+#: xfburn/xfburn-data-composition.c:1294
+#: xfburn/xfburn-audio-composition.c:1310
+msgid "Adding home directory"
+msgstr "Se adaugă directorul personal"
+
+#: xfburn/xfburn-data-composition.c:1295
+#: xfburn/xfburn-audio-composition.c:1311
+msgid ""
+"You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
+"\n"
+"Are you sure you want to proceed?"
+msgstr "Sunteți pe cale să adăugați directorul dvs. personal la compoziție. Aceasta va dura foarte mult timp și va fi prea mare pentru a încăpea pe un disc.\n\nSunteți sigur că doriți să continuați?"
+
+#: xfburn/xfburn-data-composition.c:1463
+#, c-format
+msgid ""
+"A file named \"%s\" already exists in this directory, the file hasn't been "
+"added."
+msgstr "Un fișier numit „%s” există deja în acest director, fișierul nu a fost adăugat."
+
+#: xfburn/xfburn-data-composition.c:1865
+#, c-format
+msgid "%s: null pointer"
+msgstr "%s: indicator nul"
+
+#: xfburn/xfburn-data-composition.c:1867
+#, c-format
+msgid "%s: out of memory"
+msgstr "%s: memorie epuizată"
+
+#: xfburn/xfburn-data-composition.c:1869
+#, c-format
+msgid "%s: node name not unique"
+msgstr "%s: numele nodului nu este unic"
+
+#: xfburn/xfburn-data-composition.c:1871
+#, c-format
+msgid "%s: %s (code %X)"
+msgstr "%s: %s (cod %X)"
+
+#. The first string is the renamed name, the second one the original name
+#: xfburn/xfburn-data-composition.c:1891
+#, c-format
+msgid "Duplicate filename '%s' for '%s'"
+msgstr "Nume de fișier duplicat „%s” pentru „%s”"
+
+#: xfburn/xfburn-data-composition.c:1956
+msgid "Error(s) occurred while adding files"
+msgstr "Au apărut erori în timpul adăugării fișierelor"
+
+#: xfburn/xfburn-data-composition.c:1960
+msgid "OK"
+msgstr "Ok"
+
+#: xfburn/xfburn-device-box.c:142 xfburn/xfburn-device-box.c:143
+msgid "Show writers only"
+msgstr "Afișează doar unitățile de inscripționare a discurilor"
+
+#: xfburn/xfburn-device-box.c:146
+msgid "Show speed selection"
+msgstr "Afișează selecția vitezei"
+
+#: xfburn/xfburn-device-box.c:147
+msgid "Show speed selection combo"
+msgstr "Afișează combinația de selectare a vitezei"
+
+#: xfburn/xfburn-device-box.c:150
+msgid "Show mode selection"
+msgstr "Afișează selectarea modului"
+
+#: xfburn/xfburn-device-box.c:151
+msgid "Show mode selection combo"
+msgstr "Afișează combinația de selectare a modului"
+
+#: xfburn/xfburn-device-box.c:154
+msgid "Is it a valid combination"
+msgstr "Este o combinație valabilă"
+
+#: xfburn/xfburn-device-box.c:155
+msgid "Is the combination of hardware and disc valid to burn the composition?"
+msgstr "Este combinația de hardware și disc valabilă pentru a inscripționa compoziția?"
+
+#: xfburn/xfburn-device-box.c:159
+msgid "The blank mode shows different disc status messages than regular mode"
+msgstr "Modul de ștergere afișează mesaje de stare a discului diferite față de modul obișnuit"
+
+#: xfburn/xfburn-device-box.c:217
+msgid "_Speed:"
+msgstr "_Viteza:"
+
+#: xfburn/xfburn-device-box.c:240
+msgid "Write _mode:"
+msgstr "_Modul de inscripționare:"
+
+#: xfburn/xfburn-device-box.c:350
+msgid "Empty speed list"
+msgstr "Listă de viteze goală"
+
+#: xfburn/xfburn-device-box.c:359
+msgid ""
+"<b>Unable to retrieve the speed list for the drive.</b>\n"
+"\n"
+"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
+"\n"
+"Burning should still work, but if there are problems anyways, please let us know.\n"
+"\n"
+"<i>Thank you!</i>"
+msgstr "<b>Nu se poate prelua lista de viteze pentru unitate</b>\n\nAceasta este o eroare cunoscută pentru unități. Dacă sunteți interesat să o remediați, vă rugăm să aruncați o privire la biblioteca libburn.\n\nInscripționarea ar trebui să funcționeze în continuare, dar dacă apar orice fel de probleme, vă rugăm să ne anunțați.\n\n<i>Vă mulțumim!</i>"
+
+#: xfburn/xfburn-device-box.c:370
+msgid "Continue to _show this notice"
+msgstr "Continuă să afișezi acest mesaj"
+
+#: xfburn/xfburn-device-box.c:418
+msgid "default"
+msgstr "implicită"
+
+#: xfburn/xfburn-device-box.c:449
+msgid "Max"
+msgstr "Max"
+
+#: xfburn/xfburn-device-box.c:484
+msgid "A full, but erasable disc is in the drive"
+msgstr "În unitate se află un disc plin, dar care poate fi șters"
+
+#: xfburn/xfburn-device-box.c:485
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "Doriți să ștergeți discul, astfel încât să poată fi utilizat pentru următorul proces de inscripționare?"
+
+#: xfburn/xfburn-device-box.c:557
+msgid "Drive can't burn on the inserted disc"
+msgstr "Unitatea nu poate inscripționa pe discul introdus"
+
+#: xfburn/xfburn-device-box.c:566 xfburn/xfburn-device-box.c:612
+msgid "Drive is empty"
+msgstr "Unitatea este goală"
+
+#: xfburn/xfburn-device-box.c:569
+msgid "Sorry, multisession is not yet supported"
+msgstr "Ne pare rău, multi-sesiunea nu este încă acceptată"
+
+#: xfburn/xfburn-device-box.c:572
+msgid "Inserted disc is full"
+msgstr "Discul introdus este plin"
+
+#: xfburn/xfburn-device-box.c:575 xfburn/xfburn-device-box.c:618
+msgid "Inserted disc is unsuitable"
+msgstr "Discul inserat nu este adecvat"
+
+#: xfburn/xfburn-device-box.c:578 xfburn/xfburn-device-box.c:621
+msgid "Cannot access drive (it might be in use)"
+msgstr "Nu se poate accesa unitatea (este posibil să fie în uz)"
+
+#: xfburn/xfburn-device-box.c:583 xfburn/xfburn-device-box.c:624
+msgid "Error determining disc"
+msgstr "Eroare la determinarea discului"
+
+#: xfburn/xfburn-device-box.c:604
+msgid "Write-once disc, no blanking possible"
+msgstr "Disc cu inscripționare o singură dată, fără posibilitate de ștergere"
+
+#: xfburn/xfburn-device-box.c:607
+msgid "DVD+RW does not need blanking"
+msgstr "DVD+RW nu necesită ștergere"
+
+#: xfburn/xfburn-device-box.c:615
+msgid "Inserted disc is already blank"
+msgstr "Discul introdus este deja gol"
+
+#: xfburn/xfburn-device-box.c:651
+msgid "Automatic"
+msgstr "Automat"
+
+#: xfburn/xfburn-device-box.c:658
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "Cu distanță între piste / Track-At-Once (TAO)"
+
+#: xfburn/xfburn-device-box.c:665
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "Multi-sesiune / Session-At-Once (SAO)"
+
+#: xfburn/xfburn-device-list.c:204 xfburn/xfburn-device-list.c:205
+msgid "Number of burners in the system"
+msgstr "Numărul de unități de inscripționare din sistem"
+
+#: xfburn/xfburn-device-list.c:207
+msgid "Number of drives in the system"
+msgstr "Numărul de unități din sistem"
+
+#: xfburn/xfburn-device-list.c:208
+msgid "Number of drives in the system (readers and writers)"
+msgstr "Numărul de unități din sistem (de citire și de scriere)"
+
+#: xfburn/xfburn-device-list.c:210 xfburn/xfburn-device-list.c:211
+msgid "List of devices"
+msgstr "Lista de dispozitive"
+
+#: xfburn/xfburn-device-list.c:213 xfburn/xfburn-device-list.c:214
+msgid "Currently selected device"
+msgstr "Dispozitivul selectat în prezent"
+
+#. globals
+#: xfburn/xfburn-directory-browser.c:52
+msgid "Folder"
+msgstr "Dosar"
+
+#: xfburn/xfburn-directory-browser.c:100
+msgid "File"
+msgstr "Fișier"
+
+#: xfburn/xfburn-directory-browser.c:115
+msgid "Type"
+msgstr "Tip"
+
+#: xfburn/xfburn-fs-browser.c:96 xfburn/xfburn-fs-browser.c:305
+msgid "Filesystem"
+msgstr "Sistem de fișiere"
+
+#. load the user's home dir
+#: xfburn/xfburn-fs-browser.c:284
+#, c-format
+msgid "%s's home"
+msgstr "Dosarul personal al %s"
+
+#: xfburn/xfburn-udev-manager.c:495
+#, c-format
+msgid "Failed to unmount '%s'. Drive cannot be used for burning."
+msgstr "A eșuat demontarea „%s”. Unitatea nu poate fi utilizată pentru inscripționare."
+
+#. || G_OPTION_FLAG_FILENAME
+#: xfburn/xfburn-main.c:74
+msgid "Open the burn image dialog, optionally followed by the image filename"
+msgstr "Deschide dialogul de inscripționare a imaginii, urmat opțional de numele fișierului de imagine"
+
+#: xfburn/xfburn-main.c:76
+msgid "Open the blank disc dialog"
+msgstr "Deschide fereastra de dialog pentru ștergerea discului"
+
+#: xfburn/xfburn-main.c:78
+msgid ""
+"Start a data composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr "Începe o compoziție de date, urmată opțional de fișiere/directoare care urmează să fie adăugate la compoziție"
+
+#: xfburn/xfburn-main.c:80
+msgid ""
+"Start an audio composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr "Începe o compoziție audio, urmată opțional de fișiere/directoare care urmează să fie adăugate la compoziție"
+
+#: xfburn/xfburn-main.c:82
+msgid ""
+"Select the transcoder, run with --transcoder=list to see the available ones"
+msgstr "Selectați transcodificatorul, rulați cu „--transcoder=list” pentru a le vedea pe cele disponibile"
+
+#: xfburn/xfburn-main.c:84
+msgid ""
+"Start the file browser in the specified directory, or the current directory "
+"if none is specified (the default is to start in your home directory)"
+msgstr "Pornește navigatorul de fișiere în directorul specificat sau în directorul curent, dacă nu este specificat niciunul (în mod implicit se pornește în directorul dvs. personal)"
+
+#: xfburn/xfburn-main.c:86
+msgid "Display program version and exit"
+msgstr "Afișează versiunea programului și iese"
+
+#: xfburn/xfburn-main.c:88
+msgid ""
+"Show main program even when other action is specified on the command line."
+msgstr "Afișează programul principal chiar și atunci când este specificată o altă acțiune în linia de comandă."
+
+#: xfburn/xfburn-main.c:202 xfburn.desktop.in:5
+#: org.xfce.xfburn.appdata.xml.in:8
+msgid "Xfburn"
+msgstr "Xfburn"
+
+#: xfburn/xfburn-main.c:211
+#, c-format
+msgid ""
+"%s: %s\n"
+"Try %s --help to see a full list of available command line options.\n"
+msgstr "%s: %s\nÎncercați «%s --help» pentru a vedea întreaga listă de opțiuni din linia de comandă.\n"
+
+#: xfburn/xfburn-main.c:220
+msgid "Unable to initialize the burning backend."
+msgstr "Nu s-a putut inițializa sistemul de inscripționare."
+
+#: xfburn/xfburn-main.c:294
+msgid "No burners are currently available"
+msgstr "Nu este disponibilă nicio unitate de inscripționare în acest moment"
+
+#: xfburn/xfburn-main.c:296
+msgid ""
+"Possibly the disc(s) are in use, and cannot get accessed.\n"
+"\n"
+"If no disc is in the drive, check that you have read and write access to the drive with the current user."
+msgstr "Este posibil ca discul (discurile) să fie în uz și să nu poată fi accesat(e).\n\nDacă nu există niciun disc în unitate, verificați dacă aveți acces de citire și scriere la unitate cu utilizatorul curent."
+
+#: xfburn/xfburn-main.c:329
+#, c-format
+msgid ""
+"Failed to initialize %s transcoder: %s\n"
+"\t(falling back to basic implementation)"
+msgstr "Nu s-a reușit inițializarea transcodificatorului %s: %s\n\t(se revine la implementarea de bază)"
+
+#: xfburn/xfburn-main.c:372
+#, c-format
+msgid "Image file '%s' does not exist."
+msgstr "Fișierul de imagine „%s” nu există."
+
+#: xfburn/xfburn-main-window.c:241
+msgid "New data composition"
+msgstr "Compoziție de date nouă"
+
+#: xfburn/xfburn-main-window.c:244
+msgid "New audio composition"
+msgstr "Compoziție audio nouă"
+
+#: xfburn/xfburn-main-window.c:249 xfburn.ui:42
+msgid "Blank CD-RW"
+msgstr "CD-RW gol"
+
+#: xfburn/xfburn-main-window.c:252 xfburn.ui:46
+msgid "Burn Image"
+msgstr "Inscripționează o imagine"
+
+#: xfburn/xfburn-main-window.c:257 xfburn.ui:56
+msgid "Refresh"
+msgstr "Actualizare"
+
+#: xfburn/xfburn-main-window.c:257
+msgid "Refresh file list"
+msgstr "Actualizează lista de fișiere"
+
+#: xfburn/xfburn-main-window.c:511
+msgid "Another cd burning GUI"
+msgstr "O altă interfață grafică pentru inscripționarea CD-urilor"
+
+#: xfburn/xfburn-notebook-tab.c:81
+msgid "Label"
+msgstr "Etichetă"
+
+#: xfburn/xfburn-notebook-tab.c:81
+msgid "The text of the label"
+msgstr "Textul etichetei"
+
+#: xfburn/xfburn-notebook-tab.c:84
+msgid "Show close button"
+msgstr "Afișează butonul de închidere"
+
+#: xfburn/xfburn-notebook-tab.c:84
+msgid "Determine whether the close button is visible"
+msgstr "Determină dacă butonul de închidere este vizibil"
+
+#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:443
+msgid "Formatting..."
+msgstr "Se formatează ..."
+
+#: xfburn/xfburn-perform-burn.c:269
+msgid ""
+"Cannot append data to multisession disc in this write mode (use TAO "
+"instead)."
+msgstr "Nu se pot adăuga date la discul multi-sesiune în acest mod de scriere (utilizați TAO în schimb)."
+
+#: xfburn/xfburn-perform-burn.c:273
+msgid "Closed disc with data detected, a blank or appendable disc is needed."
+msgstr "S-a detectat un disc închis cu date, este necesar un disc gol sau un disc pe care se pot adăuga date."
+
+#: xfburn/xfburn-perform-burn.c:275
+msgid "No disc detected in drive."
+msgstr "Nu a fost detectat niciun disc în unitate."
+
+#: xfburn/xfburn-perform-burn.c:278
+msgid "Cannot recognize the state of the drive and disc."
+msgstr "Nu se poate recunoaște starea unității și a discului."
+
+#: xfburn/xfburn-perform-burn.c:285
+msgid "Formatting failed."
+msgstr "Formatarea a eșuat."
+
+#: xfburn/xfburn-perform-burn.c:303
+msgid "There is not enough space available on the inserted disc."
+msgstr "Nu există suficient spațiu disponibil pe discul introdus."
+
+#: xfburn/xfburn-perform-burn.c:346
+#, c-format
+msgid "Burning track %2d/%d..."
+msgstr "Se inscripționează pista %2d/%d..."
+
+#: xfburn/xfburn-perform-burn.c:350 xfburn/xfburn-perform-burn.c:408
+msgid "Burning composition..."
+msgstr "Se inscripționează compoziția..."
+
+#: xfburn/xfburn-perform-burn.c:377
+msgid "standby"
+msgstr "în așteptare"
+
+#: xfburn/xfburn-perform-burn.c:385
+msgid "ending"
+msgstr "se finalizează"
+
+#: xfburn/xfburn-perform-burn.c:388
+msgid "failing"
+msgstr "eșec"
+
+#: xfburn/xfburn-perform-burn.c:391
+msgid "unused"
+msgstr "neutilizat"
+
+#: xfburn/xfburn-perform-burn.c:394
+msgid "abandoned"
+msgstr "abandonat"
+
+#: xfburn/xfburn-perform-burn.c:397
+msgid "ended"
+msgstr "finalizat"
+
+#: xfburn/xfburn-perform-burn.c:400
+msgid "aborted"
+msgstr "renunțare"
+
+#: xfburn/xfburn-perform-burn.c:403
+msgid "no info"
+msgstr "fără informații"
+
+#: xfburn/xfburn-perform-burn.c:413
+msgid "Writing Lead-In..."
+msgstr "Se inscripționează începutul pistei..."
+
+#: xfburn/xfburn-perform-burn.c:419
+msgid "Writing Lead-Out..."
+msgstr "Se inscripționează finalul pistei..."
+
+#: xfburn/xfburn-perform-burn.c:425
+msgid "Writing pregap..."
+msgstr "Se inscripționează spațiul dintre piste..."
+
+#: xfburn/xfburn-perform-burn.c:431
+msgid "Closing track..."
+msgstr "Se închide pista..."
+
+#: xfburn/xfburn-perform-burn.c:437
+msgid "Closing session..."
+msgstr "Se închide sesiunea..."
+
+#: xfburn/xfburn-perform-burn.c:456
+msgid "see console"
+msgstr "a se vedea consola"
+
+#: xfburn/xfburn-perform-burn.c:484
+msgid "User Aborted"
+msgstr "Operație anulată de utilizator"
+
+#: xfburn/xfburn-preferences-dialog.c:117
+msgid "Preferences"
+msgstr "Preferințe"
+
+#: xfburn/xfburn-preferences-dialog.c:118
+msgid "Tune how Xfburn behaves"
+msgstr "Ajustați modul în care se comportă Xfburn"
+
+#: xfburn/xfburn-preferences-dialog.c:163
+#: xfburn/xfburn-preferences-dialog.c:167
+msgid "Temporary directory"
+msgstr "Director temporar"
+
+#: xfburn/xfburn-preferences-dialog.c:171
+msgid "_Clean temporary directory on exit"
+msgstr "_Curăță directorul temporar la ieșire"
+
+#: xfburn/xfburn-preferences-dialog.c:178
+msgid "File browser"
+msgstr "Navigator de fișiere"
+
+#: xfburn/xfburn-preferences-dialog.c:182
+msgid "Show _hidden files"
+msgstr "Afișeză _fișierele ascunse"
+
+#: xfburn/xfburn-preferences-dialog.c:187
+msgid "Show human_readable filesizes"
+msgstr "Afișează dimensiunile fișierelor într-un format _ușor de citit"
+
+#: xfburn/xfburn-preferences-dialog.c:197
+#: xfburn/xfburn-preferences-dialog.c:208
+msgid "General"
+msgstr "Generale"
+
+#: xfburn/xfburn-preferences-dialog.c:212
+#: xfburn/xfburn-preferences-dialog.c:295
+msgid "Devices"
+msgstr "Dispozitive"
+
+#: xfburn/xfburn-preferences-dialog.c:221
+msgid "Detected devices"
+msgstr "Dispozitivele detectate"
+
+#: xfburn/xfburn-preferences-dialog.c:243
+msgid "Name"
+msgstr "Nume"
+
+#: xfburn/xfburn-preferences-dialog.c:256
+msgid "Revision"
+msgstr "Revizuirea"
+
+#: xfburn/xfburn-preferences-dialog.c:258
+msgid "Node"
+msgstr "Nod"
+
+#: xfburn/xfburn-preferences-dialog.c:260
+msgid "Write CD-R"
+msgstr "Scrie CD-R"
+
+#: xfburn/xfburn-preferences-dialog.c:262
+msgid "Write CD-RW"
+msgstr "Scrie CD-RW"
+
+#: xfburn/xfburn-preferences-dialog.c:265
+msgid "Write DVD-R"
+msgstr "Scrie DVD-R"
+
+#: xfburn/xfburn-preferences-dialog.c:268
+msgid "Write DVD-RAM"
+msgstr "Scrie DVD-RAM"
+
+#: xfburn/xfburn-preferences-dialog.c:271
+msgid "Write Blu-ray"
+msgstr "Scrie Blu-ray"
+
+#: xfburn/xfburn-preferences-dialog.c:279
+msgid "Sc_an for devices"
+msgstr "Sc_anare pentru dispozitive"
+
+#: xfburn/xfburn-preferences-dialog.c:306
+msgid "Show warning on _empty speed list"
+msgstr "Afișează avertisment în cazul unei liste de viteze _goale"
+
+#: xfburn/xfburn-preferences-dialog.c:315
+msgid "FIFO buffer size (in kb)"
+msgstr "Dimensiunea memoriei tampon FIFO (în ko)"
+
+#: xfburn/xfburn-preferences-dialog.c:334
+msgid "_Close"
+msgstr "În_chide"
+
+#: xfburn/xfburn-preferences-dialog.c:469
+msgid "Changing this setting only takes full effect after a program restart."
+msgstr "Modificarea acestei opțiuni are efect numai după repornirea programului."
+
+#. label
+#: xfburn/xfburn-progress-dialog.c:168 xfburn/xfburn-progress-dialog.c:172
+#: xfburn/xfburn-progress-dialog.c:527
+msgid "Initializing..."
+msgstr "Se inițializează..."
+
+#: xfburn/xfburn-progress-dialog.c:187
+msgid "Estimated writing speed:"
+msgstr "Viteza de scriere estimată:"
+
+#: xfburn/xfburn-progress-dialog.c:190 xfburn/xfburn-progress-dialog.c:206
+#: xfburn/xfburn-progress-dialog.c:215 xfburn/xfburn-progress-dialog.c:306
+#: xfburn/xfburn-progress-dialog.c:450 xfburn/xfburn-progress-dialog.c:474
+#: xfburn/xfburn-progress-dialog.c:498
+msgid "unknown"
+msgstr "necunoscută"
+
+#: xfburn/xfburn-progress-dialog.c:201
+msgid "FIFO buffer:"
+msgstr "Memoria tampon FIFO:"
+
+#: xfburn/xfburn-progress-dialog.c:210
+msgid "Device buffer:"
+msgstr "Memoria tampon a dispozitivului:"
+
+#. action buttons
+#: xfburn/xfburn-progress-dialog.c:220
+msgid "_Stop"
+msgstr "_Stop"
+
+#: xfburn/xfburn-progress-dialog.c:227
+msgid "Close"
+msgstr "Închide"
+
+#: xfburn/xfburn-progress-dialog.c:348
+msgid "Are you sure you want to abort?"
+msgstr "Sunteți sigur că doriți să renunțați?"
+
+#: xfburn/xfburn-progress-dialog.c:476
+#, c-format
+msgid "Min. fill was %2d%%"
+msgstr "Umplerea minimă a fost de %2d%%"
+
+#: xfburn/xfburn-progress-dialog.c:544
+msgid "Aborted"
+msgstr "Abandonată"
+
+#: xfburn/xfburn-progress-dialog.c:547
+msgid "Formatted."
+msgstr "Formatat."
+
+#: xfburn/xfburn-progress-dialog.c:556
+msgid "Failed"
+msgstr "Eșuată"
+
+#: xfburn/xfburn-progress-dialog.c:559
+msgid "Cancelled"
+msgstr "Anulată"
+
+#: xfburn/xfburn-progress-dialog.c:562
+msgid "Completed"
+msgstr "Sarcină finalizată"
+
+#: xfburn/xfburn-progress-dialog.c:600
+msgid "Aborting..."
+msgstr "Se abandonează..."
+
+#: xfburn/xfburn-utils.c:132
+msgid "Select command"
+msgstr "Selectați comanda"
+
+#: xfburn/xfburn-utils.c:172
+msgid "File(s) to add to composition"
+msgstr "Fișier(e) de adăugat la compoziție"
+
+#: xfburn/xfburn-welcome-tab.c:99
+msgid "Welcome to Xfburn!"
+msgstr "Bun venit la Xfburn!"
+
+#. buttons
+#: xfburn/xfburn-welcome-tab.c:119
+msgid "<big>Burn _Image</big>"
+msgstr "<big>Inscripționare imagine</big>"
+
+#: xfburn/xfburn-welcome-tab.c:119
+msgid "Burn a prepared composition, i.e. an .ISO file"
+msgstr "Inscripționează o compoziție pregătită, adică un fișier .ISO"
+
+#: xfburn/xfburn-welcome-tab.c:124
+msgid "<big>New _Data Composition</big>"
+msgstr "<big>Compoziție de _date nouă</big>"
+
+#: xfburn/xfburn-welcome-tab.c:124
+msgid "Create a new data disc with the files of your choosing"
+msgstr "Creează un nou disc de date cu fișierele alese"
+
+#: xfburn/xfburn-welcome-tab.c:129
+msgid "<big>_Blank Disc</big>"
+msgstr "<big>_Ștergere disc</big>"
+
+#: xfburn/xfburn-welcome-tab.c:129
+msgid "Prepare the rewriteable disc for a new burn"
+msgstr "Pregătește discul *-RW (ce poate fi reinscripționat) pentru o nouă inscripționare"
+
+#: xfburn/xfburn-welcome-tab.c:134
+msgid "<big>_Audio CD</big>"
+msgstr "<big>CD _audio</big>"
+
+#: xfburn/xfburn-welcome-tab.c:134
+msgid "Audio CD playable in regular stereos"
+msgstr "CD audio care poate fi redat în aparatele stereo obișnuite"
+
+#. Note to translators: you can probably keep this as gstreamer,
+#. * unless you have a good reason to call it by another name that
+#. * the user would understand better
+#: xfburn/xfburn-audio-composition.c:343 xfburn/xfburn-transcoder-gst.c:581
+msgid "gstreamer"
+msgstr "gstreamer"
+
+#: xfburn/xfburn-audio-composition.c:343
+msgid "What files can get burned to an audio CD?"
+msgstr "Ce fișiere pot fi inscripționate pe un CD audio?"
+
+#: xfburn/xfburn-audio-composition.c:374
+msgid "Pos"
+msgstr "Poz."
+
+#: xfburn/xfburn-audio-composition.c:376
+msgid "Length"
+msgstr "Durata"
+
+#: xfburn/xfburn-audio-composition.c:382
+msgid "Artist"
+msgstr "Artist"
+
+#: xfburn/xfburn-audio-composition.c:395
+msgid "Title"
+msgstr "Titlu"
+
+#: xfburn/xfburn-audio-composition.c:406
+msgid "Filename"
+msgstr "Nume fișier"
+
+#: xfburn/xfburn-audio-composition.c:557
+msgid "Cannot burn audio onto a DVD."
+msgstr "Nu se poate inscripționa audio pe un DVD."
+
+#: xfburn/xfburn-audio-composition.c:1220
+msgid "You can only have a maximum of 99 tracks."
+msgstr "Puteți avea doar un număr maxim de 99 de piese."
+
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:273
+msgid "A problem with the burn backend occurred."
+msgstr "A apărut o problemă cu sistemul de inscripționare."
+
+#: xfburn/xfburn-disc-usage.c:161
+msgid "Proceed to Burn"
+msgstr "Porniți inscripționarea"
+
+#: xfburn/xfburn-disc-usage.c:201
+msgid "You are trying to burn more onto the disc than it can hold."
+msgstr "Încercați să inscripționați pe disc mai mult decât poate stoca acesta."
+
+#. globals
+#: xfburn/xfburn-transcoder-basic.c:69 xfburn/xfburn-transcoder-gst.c:145
+msgid "An error occurred while setting the burning backend up"
+msgstr "A apărut o eroare în timpul configurării sistemului de inscripționare"
+
+#: xfburn/xfburn-transcoder-basic.c:129
+msgid "basic"
+msgstr "bazic"
+
+#: xfburn/xfburn-transcoder-basic.c:135
+msgid ""
+"The basic transcoder is built in,\n"
+"and does not require any library.\n"
+"But it can only handle uncompressed\n"
+".wav files.\n"
+"If you would like to create audio\n"
+"compositions from different types of\n"
+"audio files, please compile with\n"
+"gstreamer support."
+msgstr "Transcodificatorul de bază este încorporat\nși nu necesită nicio bibliotecă.\nDar poate gestiona numai fișiere .wav\nnecomprimate.\nDacă doriți să creați compoziții audio din\ndiferite tipuri de fișiere audio, vă rugăm\nsă compilați cu suportul oferit de gstreamer."
+
+#: xfburn/xfburn-transcoder-basic.c:159
+#, c-format
+msgid "File %s does not have a .wav extension"
+msgstr "Fișierul %s nu are extensia .wav"
+
+#: xfburn/xfburn-transcoder-basic.c:164
+#, c-format
+msgid "File %s does not contain uncompressed PCM wave audio"
+msgstr "Fișierul %s nu conține undă audio PCM necomprimată"
+
+#: xfburn/xfburn-transcoder-basic.c:170
+#, c-format
+msgid "Could not stat %s: %s"
+msgstr "Nu se pot obține informațiile despre %s: %s"
+
+#: xfburn/xfburn-transcoder-basic.c:202
+#, c-format
+msgid "Could not open %s."
+msgstr "Nu s-a putut deschide „%s”."
+
+#: xfburn/xfburn-transcoder-basic.c:281
+#, c-format
+msgid "Could not open %s: %s"
+msgstr "Nu s-a putut deschide „%s”: %s"
+
+#: xfburn/xfburn-transcoder-gst.c:144
+msgid "An error occurred setting gstreamer up for transcoding"
+msgstr "A apărut o eroare la configurarea gstreamer pentru transcodificare"
+
+#: xfburn/xfburn-transcoder-gst.c:146
+#, c-format
+msgid ""
+"%s is missing.\n"
+"\n"
+"You do not have a decoder installed to handle this file.\n"
+"Probably you need to look at the gst-plugins-* packages\n"
+"for the necessary plugins.\n"
+msgstr "%s lipsește.\n\nNu aveți un decodificator instalat pentru a\ngestiona acest fișier.\nProbabil că trebuie să consultați pachetele\ngst-plugins-* pentru modulele necesare\n"
+
+#: xfburn/xfburn-transcoder-gst.c:544
+msgid "File content has a decoder but is not audio."
+msgstr "Conținutul fișierului are un decodificator, dar nu este audio."
+
+#: xfburn/xfburn-transcoder-gst.c:587
+msgid ""
+"The gstreamer transcoder uses the gstreamer\n"
+"library for creating audio compositions.\n"
+"\n"
+"Essentially all audio files should be supported\n"
+"given that the correct plugins are installed.\n"
+"If an audio file is not recognized, make sure\n"
+"that you have the 'good','bad', and 'ugly'\n"
+"gstreamer plugin packages installed."
+msgstr "Transcodificatorul gstreamer utilizează\nbiblioteca gstreamer pentru crearea\ncompozițiilor audio.\n\nPractic, toate fișierele audio ar trebui\nsă fie acceptate, având în vedere că sunt\ninstalate modulele corecte.\nDacă un fișier audio nu este recunoscut,\nasigurați-vă că aveți instalate pachetele\nde module gstreamer „good”, „bad” și „ugly”."
+
+#: xfburn/xfburn-transcoder-gst.c:627
+msgid "No information available on which plugin is required."
+msgstr "Nu există informații disponibile cu privire la modulul necesar."
+
+#: xfburn/xfburn-transcoder-gst.c:629
+msgid "Required plugins: "
+msgstr "Module necesare: "
+
+#: xfburn/xfburn-transcoder-gst.c:664 xfburn/xfburn-transcoder-gst.c:694
+#, c-format
+msgid "An error occurred while identifying '%s' with gstreamer"
+msgstr "A apărut o eroare în timpul identificării „%s” cu gstreamer"
+
+#: xfburn/xfburn-transcoder-gst.c:681
+msgid "A plugin"
+msgstr "Un modul"
+
+#: xfburn/xfburn-transcoder-gst.c:816
+msgid "Gstreamer did not want to start transcoding (timed out)"
+msgstr "Gstreamer nu a mai inițiat transcodificarea (a expirat timpul)"
+
+#: xfburn/xfburn-transcoder-gst.c:851
+msgid "Failed to change songs while transcoding"
+msgstr "Schimbarea melodiilor în timpul transcodificării a eșuat"
+
+#: xfburn/xfburn-transcoder.c:103 xfburn/xfburn-transcoder.c:113
+msgid "none"
+msgstr "niciunul"
+
+#: xfburn/xfburn-transcoder.c:124 xfburn/xfburn-transcoder.c:151
+#: xfburn/xfburn-transcoder.c:163
+msgid "not implemented"
+msgstr "nu este implementat"
+
+#: xfburn/xfburn-device.c:255 xfburn/xfburn-device.c:256
+msgid "Display name"
+msgstr "Afișează numele"
+
+#: xfburn/xfburn-device.c:258 xfburn/xfburn-device.c:259
+msgid "Device address"
+msgstr "Adresa dispozitivului"
+
+#: xfburn/xfburn-device.c:261
+msgid "Device revision"
+msgstr "Numărul de revizie al dispozitivului"
+
+#: xfburn/xfburn-device.c:262
+msgid "Device Revision"
+msgstr "Numărul de revizie al dispozitivului"
+
+#: xfburn/xfburn-device.c:264 xfburn/xfburn-device.c:265
+msgid "Burn speeds supported by the device"
+msgstr "Vitezele de inscripționare acceptate de dispozitiv"
+
+#: xfburn/xfburn-device.c:267 xfburn/xfburn-device.c:268
+msgid "Disc status"
+msgstr "Starea discului"
+
+#: xfburn/xfburn-device.c:270 xfburn/xfburn-device.c:271
+msgid "Profile no. as reported by libburn"
+msgstr "Numărul profilului raportat de libburn"
+
+#: xfburn/xfburn-device.c:273 xfburn/xfburn-device.c:274
+msgid "Profile name as reported by libburn"
+msgstr "Numele profilului raportat de libburn"
+
+#: xfburn/xfburn-device.c:276 xfburn/xfburn-device.c:277
+msgid "Is the disc erasable"
+msgstr "Discul poate fi șters"
+
+#: xfburn/xfburn-device.c:279 xfburn/xfburn-device.c:280
+msgid "Can burn CDR"
+msgstr "Poate inscripționa CDR"
+
+#: xfburn/xfburn-device.c:282 xfburn/xfburn-device.c:283
+msgid "Can burn CDRW"
+msgstr "Poate inscripționa CDRW"
+
+#: xfburn/xfburn-device.c:285 xfburn/xfburn-device.c:286
+msgid "Can burn DVDR"
+msgstr "Poate inscripționa DVDR"
+
+#: xfburn/xfburn-device.c:288 xfburn/xfburn-device.c:289
+msgid "Can burn DVDPLUSR"
+msgstr "Poate inscripționa DVDPLUSR"
+
+#: xfburn/xfburn-device.c:291 xfburn/xfburn-device.c:292
+msgid "Can burn DVDRAM"
+msgstr "Poate inscripționa DVDRAM"
+
+#: xfburn/xfburn-device.c:294 xfburn/xfburn-device.c:295
+msgid "Can burn Blu-ray"
+msgstr "Poate inscripționa Blu-ray"
+
+#: xfburn/xfburn-device.c:297 xfburn/xfburn-device.c:298
+msgid "libburn TAO block types"
+msgstr "tipuri de blocuri TAO libburn"
+
+#: xfburn/xfburn-device.c:300 xfburn/xfburn-device.c:301
+msgid "libburn SAO block types"
+msgstr "tipuri de blocuri SAO libburn"
+
+#: xfburn/xfburn-device.c:303 xfburn/xfburn-device.c:304
+msgid "libburn RAW block types"
+msgstr "tipuri de blocuri RAW libburn"
+
+#: xfburn/xfburn-device.c:306 xfburn/xfburn-device.c:307
+msgid "libburn PACKET block types"
+msgstr "tipuri de blocuri PACKET libburn"
+
+#: xfburn.ui:5
+msgid "_Files"
+msgstr "_Fișiere"
+
+#: xfburn.ui:8
+msgid "New _data composition"
+msgstr "Compoziție de _date nouă"
+
+#: xfburn.ui:12
+msgid "New _audio composition"
+msgstr "Compoziție _audio nouă"
+
+#: xfburn.ui:18
+msgid "_Close composition"
+msgstr "_Închide compoziția"
+
+#: xfburn.ui:24
+msgid "_Quit"
+msgstr "_Ieșire"
+
+#: xfburn.ui:30
+msgid "_Edit"
+msgstr "_Editare"
+
+#: xfburn.ui:33
+msgid "Prefere_nce"
+msgstr "Preferi_nțe"
+
+#: xfburn.ui:39
+msgid "_Action"
+msgstr "_Acțiune"
+
+#: xfburn.ui:53
+msgid "_View"
+msgstr "_Vizualizare"
+
+#: xfburn.ui:62
+msgid "Show Toolbars"
+msgstr "Afișează barele de instrumente"
+
+#: xfburn.ui:66
+msgid "Show Filebrowser"
+msgstr "Afișează navigatorul de fișiere"
+
+#: xfburn.ui:73
+msgid "_Help"
+msgstr "_Ajutor"
+
+#: xfburn.ui:81
+msgid "About"
+msgstr "Despre"
+
+#: xfburn-popup-menus.ui:13
+msgid "Rename"
+msgstr "Redenumire"
+
+#: xfburn-popup-menus.ui:33
+msgid "Rename Artist"
+msgstr "Redenumește artistul"
+
+#: xfburn-popup-menus.ui:37
+msgid "Rename Title"
+msgstr "Redenumește titlul"
+
+#: desktop-integration/thunar-sendto-xfburn.desktop.in:5
+msgid "Data Composition"
+msgstr "Compoziția datelor"
+
+#: xfburn.desktop.in:6
+msgid "Disk Burning"
+msgstr "Inscripționarea discurilor"
+
+#: xfburn.desktop.in:7
+msgid "CD and DVD burning application"
+msgstr "Aplicație de inscripționare CD și DVD"
+
+#: xfburn.desktop.in:14
+msgid "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;"
+msgstr "inscripționare;CD;DVD;ISO;disc;scriere;audio;video;"
+
+#: xfburn.desktop.in:22
+msgid "Burn Image (xfburn)"
+msgstr "Inscripționează imaginea (xfburn)"
+
+#: org.xfce.xfburn.appdata.xml.in:9
+msgid "A simple CD burning tool"
+msgstr "Un instrument simplu de inscripționare CD"
+
+#: org.xfce.xfburn.appdata.xml.in:12
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Xfburn este un instrument simplu de inscripționare CD/DVD bazat pe bibliotecile lib*burn. Poate inscripționa CD/DVD(-RW), inscripționa și crea imagini iso, CD-uri audio, precum și inscripționa compoziții personale de date pe CD sau DVD. Este stabil și în continuă dezvoltare."
