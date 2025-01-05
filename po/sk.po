@@ -5,15 +5,15 @@
 # Translators:
 # Dušan Kazik <prescott66@gmail.com>, 2015-2021
 # 785411ef824cced88d3e197f5af1b61a_da6a977 <e5fae5b35c0c625157d991b31e113de3_956341>, 2022
-# Slavko <linux@slavino.sk>, 2015
+# Slavko <linux@slavino.sk>, 2015,2025
 # 7dcd6f74323fe8d9c477949ff8fcbb1c_c427b63 <3fcd202e3dfab15fda15b8e88e54d449_7173>, 2011-2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 12:49+0200\n"
+"POT-Creation-Date: 2024-10-26 00:50+0200\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
-"Last-Translator: 785411ef824cced88d3e197f5af1b61a_da6a977 <e5fae5b35c0c625157d991b31e113de3_956341>, 2022\n"
+"Last-Translator: Slavko <linux@slavino.sk>, 2015,2025\n"
 "Language-Team: Slovak (http://app.transifex.com/xfce/xfce-apps/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,11 +172,11 @@ msgstr "Vymazávanie disku..."
 
 #: xfburn/xfburn-blank-dialog.c:411
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:479
-#: xfburn/xfburn-perform-burn.c:489
+#: xfburn/xfburn-perform-burn.c:480
 msgid "Done"
 msgstr "Hotovo"
 
-#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:496
+#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:487
 #: xfburn/xfburn-progress-dialog.c:637
 msgid "Failure"
 msgstr "Chyba"
@@ -286,7 +286,7 @@ msgstr "Všetky súbory"
 
 #: xfburn/xfburn-burn-image-dialog.c:148
 msgid "Disc images"
-msgstr ""
+msgstr "Obrazy disku"
 
 #: xfburn/xfburn-burn-image-dialog.c:209
 msgid "_Quit after success"
@@ -445,7 +445,7 @@ msgstr "Vymaže obsah kompozície"
 msgid "Volume name :"
 msgstr "Názov zväzku:"
 
-#: xfburn/xfburn-data-composition.c:364
+#: xfburn/xfburn-data-composition.c:364 xfburn.ui:76
 msgid "Contents"
 msgstr "Obsah"
 
@@ -493,12 +493,12 @@ msgid ""
 msgstr "%s je väčší ako dovoľuje iso9660 level 2. Môže to byť problém pre staršie systémy alebo softvér."
 
 #: xfburn/xfburn-data-composition.c:1294
-#: xfburn/xfburn-audio-composition.c:1314
+#: xfburn/xfburn-audio-composition.c:1310
 msgid "Adding home directory"
 msgstr "Pridáva sa domovský adresár"
 
 #: xfburn/xfburn-data-composition.c:1295
-#: xfburn/xfburn-audio-composition.c:1315
+#: xfburn/xfburn-audio-composition.c:1311
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
@@ -789,7 +789,7 @@ msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr ""
+msgstr "Disk(y) sa pravdepodobne používa, prístup bol odmietnutý.\n\nPokiaľ sa v jednotke nenachádza žiadny disk, uistite sa, či máte prístup pre čítanie a zápis k jednotke ako súčasný používateľ."
 
 #: xfburn/xfburn-main.c:329
 #, c-format
@@ -803,31 +803,31 @@ msgstr "Inicializácia konvertora %s zlyhala: %s\n\t(prepínanie na základnú i
 msgid "Image file '%s' does not exist."
 msgstr "Súbor obrazu '%s' neexistuje."
 
-#: xfburn/xfburn-main-window.c:235
+#: xfburn/xfburn-main-window.c:241
 msgid "New data composition"
 msgstr "Nová dátová kompozícia"
 
-#: xfburn/xfburn-main-window.c:238
+#: xfburn/xfburn-main-window.c:244
 msgid "New audio composition"
 msgstr "Nová hudobná kompozícia"
 
-#: xfburn/xfburn-main-window.c:243 xfburn.ui:42
+#: xfburn/xfburn-main-window.c:249 xfburn.ui:42
 msgid "Blank CD-RW"
 msgstr "Vymazať CD-RW"
 
-#: xfburn/xfburn-main-window.c:246 xfburn.ui:46
+#: xfburn/xfburn-main-window.c:252 xfburn.ui:46
 msgid "Burn Image"
 msgstr "Vypáliť obraz"
 
-#: xfburn/xfburn-main-window.c:251 xfburn.ui:56
+#: xfburn/xfburn-main-window.c:257 xfburn.ui:56
 msgid "Refresh"
 msgstr "Obnoviť"
 
-#: xfburn/xfburn-main-window.c:251
+#: xfburn/xfburn-main-window.c:257
 msgid "Refresh file list"
 msgstr "Aktualizuje zoznam súborov"
 
-#: xfburn/xfburn-main-window.c:490
+#: xfburn/xfburn-main-window.c:511
 msgid "Another cd burning GUI"
 msgstr "Ďalší nástroj pre vypaľovanie CD"
 
@@ -847,102 +847,102 @@ msgstr "Zobraziť tlačidlo zatvoriť"
 msgid "Determine whether the close button is visible"
 msgstr "Rozpozná viditeľnosť tlačidla zatvoriť"
 
-#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:452
+#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:443
 msgid "Formatting..."
 msgstr "Formátovanie..."
 
-#: xfburn/xfburn-perform-burn.c:270
+#: xfburn/xfburn-perform-burn.c:269
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "V tomto režime zápisu nie je možné pridať ďalšie údaje na disk typu multisession (použite namiesto toho typ TAO)"
 
-#: xfburn/xfburn-perform-burn.c:274
+#: xfburn/xfburn-perform-burn.c:273
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "Bol nájdený uzatvorený disk s dátami, požaduje sa prázdny, alebo neuzatvorený disk."
 
-#: xfburn/xfburn-perform-burn.c:276
+#: xfburn/xfburn-perform-burn.c:275
 msgid "No disc detected in drive."
 msgstr "V jednotke nebol nájdený disk."
 
-#: xfburn/xfburn-perform-burn.c:279
+#: xfburn/xfburn-perform-burn.c:278
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "Nie je možné rozpoznať stav jednotky a disku."
 
-#: xfburn/xfburn-perform-burn.c:286
+#: xfburn/xfburn-perform-burn.c:285
 msgid "Formatting failed."
 msgstr "Formátovanie zlyhalo."
 
-#: xfburn/xfburn-perform-burn.c:304
+#: xfburn/xfburn-perform-burn.c:303
 msgid "There is not enough space available on the inserted disc."
 msgstr "Na vloženom disku nie je dostatok miesta."
 
-#: xfburn/xfburn-perform-burn.c:349
+#: xfburn/xfburn-perform-burn.c:346
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "Vypaľovanie stopy %2d/%d..."
 
-#: xfburn/xfburn-perform-burn.c:353 xfburn/xfburn-perform-burn.c:417
+#: xfburn/xfburn-perform-burn.c:350 xfburn/xfburn-perform-burn.c:408
 msgid "Burning composition..."
 msgstr "Vypaľovanie kompozície..."
 
-#: xfburn/xfburn-perform-burn.c:386
+#: xfburn/xfburn-perform-burn.c:377
 msgid "standby"
 msgstr "pripravené v pohotovostnom režime"
 
-#: xfburn/xfburn-perform-burn.c:394
+#: xfburn/xfburn-perform-burn.c:385
 msgid "ending"
 msgstr "dokončuje sa"
 
-#: xfburn/xfburn-perform-burn.c:397
+#: xfburn/xfburn-perform-burn.c:388
 msgid "failing"
 msgstr "zlyhanie"
 
-#: xfburn/xfburn-perform-burn.c:400
+#: xfburn/xfburn-perform-burn.c:391
 msgid "unused"
 msgstr "nepoužité"
 
-#: xfburn/xfburn-perform-burn.c:403
+#: xfburn/xfburn-perform-burn.c:394
 msgid "abandoned"
 msgstr "zrušené"
 
-#: xfburn/xfburn-perform-burn.c:406
+#: xfburn/xfburn-perform-burn.c:397
 msgid "ended"
 msgstr "ukončené"
 
-#: xfburn/xfburn-perform-burn.c:409
+#: xfburn/xfburn-perform-burn.c:400
 msgid "aborted"
 msgstr "prerušené"
 
-#: xfburn/xfburn-perform-burn.c:412
+#: xfburn/xfburn-perform-burn.c:403
 msgid "no info"
 msgstr "žiadne informácie"
 
-#: xfburn/xfburn-perform-burn.c:422
+#: xfburn/xfburn-perform-burn.c:413
 msgid "Writing Lead-In..."
 msgstr "Zapisovanie súčasti stopy \"Lead-In\"..."
 
-#: xfburn/xfburn-perform-burn.c:428
+#: xfburn/xfburn-perform-burn.c:419
 msgid "Writing Lead-Out..."
 msgstr "Zapisovanie súčasti stopy \"Lead-Out\"..."
 
-#: xfburn/xfburn-perform-burn.c:434
+#: xfburn/xfburn-perform-burn.c:425
 msgid "Writing pregap..."
 msgstr "Zapisovanie súčasti stopy \"pregap\"..."
 
-#: xfburn/xfburn-perform-burn.c:440
+#: xfburn/xfburn-perform-burn.c:431
 msgid "Closing track..."
 msgstr "Uzatváranie stopy..."
 
-#: xfburn/xfburn-perform-burn.c:446
+#: xfburn/xfburn-perform-burn.c:437
 msgid "Closing session..."
 msgstr "Uzatváranie relácie..."
 
-#: xfburn/xfburn-perform-burn.c:465
+#: xfburn/xfburn-perform-burn.c:456
 msgid "see console"
 msgstr "prezrieť konzolu"
 
-#: xfburn/xfburn-perform-burn.c:493
+#: xfburn/xfburn-perform-burn.c:484
 msgid "User Aborted"
 msgstr "Prerušené používateľom"
 
@@ -1188,7 +1188,7 @@ msgstr "Názov súboru"
 msgid "Cannot burn audio onto a DVD."
 msgstr "Hudbu nie je možné vypáliť na disk DVD."
 
-#: xfburn/xfburn-audio-composition.c:1222
+#: xfburn/xfburn-audio-composition.c:1220
 msgid "You can only have a maximum of 99 tracks."
 msgstr "Najvyšší počet stôp je 99."
 
@@ -1438,7 +1438,7 @@ msgstr "Zobraziť prehliadač súborov"
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: xfburn.ui:76
+#: xfburn.ui:81
 msgid "About"
 msgstr "O programe"
 
@@ -1466,7 +1466,11 @@ msgstr "Napaľovanie disku"
 msgid "CD and DVD burning application"
 msgstr "Aplikácia pre vypaľovanie CD a DVD"
 
-#: xfburn.desktop.in:21
+#: xfburn.desktop.in:14
+msgid "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;"
+msgstr "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;"
+
+#: xfburn.desktop.in:22
 msgid "Burn Image (xfburn)"
 msgstr "Vypáliť obraz (xfburn)"
 
