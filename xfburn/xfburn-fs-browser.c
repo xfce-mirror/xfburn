@@ -44,7 +44,7 @@ static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectio
 /*************************/
 /* XfburnFsBrowser class */
 /*************************/
-static ExoTreeViewClass *parent_class = NULL;
+static GtkTreeViewClass *parent_class = NULL;
 
 GType
 xfburn_fs_browser_get_type (void)
@@ -65,7 +65,7 @@ xfburn_fs_browser_get_type (void)
       NULL
     };
 
-    type = g_type_register_static (EXO_TYPE_TREE_VIEW, "XfburnFsBrowser", &our_info, 0);
+    type = g_type_register_static (GTK_TYPE_TREE_VIEW, "XfburnFsBrowser", &our_info, 0);
   }
 
   return type;

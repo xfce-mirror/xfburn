@@ -29,8 +29,6 @@
 
 #include <gio/gio.h>
 
-#include <exo/exo.h>
-
 #include "xfburn-directory-browser.h"
 #include "xfburn-data-composition.h"
 #include "xfburn-utils.h"
@@ -54,9 +52,9 @@ static const gchar *DIRECTORY = N_("Folder");
 /********************************/
 /* XfburnDirectoryBrowser class */
 /********************************/
-static ExoTreeViewClass *parent_class = NULL;
+static GtkTreeViewClass *parent_class = NULL;
 
-G_DEFINE_TYPE_WITH_PRIVATE(XfburnDirectoryBrowser, xfburn_directory_browser, EXO_TYPE_TREE_VIEW);
+G_DEFINE_TYPE_WITH_PRIVATE(XfburnDirectoryBrowser, xfburn_directory_browser, GTK_TYPE_TREE_VIEW);
 
 static void
 xfburn_directory_browser_finalize (GObject * object)
