@@ -24,8 +24,6 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 
-#include <exo/exo.h>
-
 #include "xfburn-main-window.h"
 #include "xfburn-device-list.h"
 #include "xfburn-preferences-dialog.h"
@@ -63,7 +61,6 @@ G_DEFINE_TYPE_WITH_PRIVATE (XfburnMainWindow, xfburn_main_window, GTK_TYPE_WINDO
 static void xfburn_main_window_finalize (GObject *obj);
 
 static gboolean cb_delete_main_window (XfburnMainWindow *, GdkEvent *, XfburnMainWindowPrivate *);
-// static void cb_edit_toolbars_view (ExoToolbarsView *, gpointer);
 static gboolean cb_key_press_event (GtkWidget *widget, GdkEventKey *event);
 
 static void action_contents (GAction *, GVariant*, XfburnMainWindow *);
@@ -207,32 +204,6 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
   g_signal_connect (G_OBJECT (mainwin), "key-press-event", G_CALLBACK (cb_key_press_event), NULL);
 
   /* toolbar */
-/*  file = xfce_resource_lookup (XFCE_RESOURCE_DATA, "xfburn/xfburn-toolbars.ui");
-
-  if (G_LIKELY (file != NULL)) {
-    ExoToolbarsModel *model;
-    GError *error = NULL;
-
-    model = exo_toolbars_model_new ();
-    exo_toolbars_model_set_actions (model, (gchar **) toolbar_actions, G_N_ELEMENTS (toolbar_actions));
-    if (exo_toolbars_model_load_from_file (model, file, &error)) {
-      priv->toolbars = exo_toolbars_view_new_with_model (priv->ui_manager, model);
-      gtk_box_pack_start (GTK_BOX (vbox), priv->toolbars, FALSE, FALSE, 0);
-      gtk_widget_show (priv->toolbars);
-
-//      g_signal_connect (G_OBJECT (priv->toolbars), "customize", G_CALLBACK (cb_edit_toolbars_view), mainwin);
-    }
-    else {
-      g_warning ("Unable to load %s: %s", file, error->message);
-      g_error_free (error);
-    }
-
-    g_free (file);
-  }
-  else {
-    g_warning ("Unable to locate xfburn/xfburn-toolbars.ui !");
-  }
-*/
   priv->toolbars = gtk_toolbar_new ();
   gtk_toolbar_set_style(GTK_TOOLBAR (priv->toolbars), GTK_TOOLBAR_BOTH);
   gtk_widget_insert_action_group (priv->toolbars, "app", G_ACTION_GROUP (priv->action_map));
@@ -284,41 +255,6 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
 }
 
 /* internals */
-/*
-static void
-cb_edit_toolbars_view_done (ExoToolbarsEditorDialog * dialog, ExoToolbarsView * toolbar)
-{
-  exo_toolbars_view_set_editing (toolbar, FALSE);
-
-  gtk_widget_destroy (GTK_WIDGET (dialog));
-}
-
-static void
-cb_edit_toolbars_view (ExoToolbarsView * toolbar, gpointer user_data)
-{
-  GtkWidget *editor_dialog;
-  ExoToolbarsModel *model;
-  GtkUIManager *ui_manager;
-  GtkWidget *toplevel;
-
-  g_return_if_fail (EXO_IS_TOOLBARS_VIEW (toolbar));
-
-  exo_toolbars_view_set_editing (toolbar, TRUE);
-
-  model = exo_toolbars_view_get_model (EXO_TOOLBARS_VIEW (toolbar));
-  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (toolbar));
-  ui_manager = exo_toolbars_view_get_ui_manager (EXO_TOOLBARS_VIEW (toolbar));
-
-  editor_dialog = exo_toolbars_editor_dialog_new_with_model (ui_manager, model);
-  gtk_window_set_destroy_with_parent (GTK_WINDOW (editor_dialog), TRUE);
-  gtk_window_set_title (GTK_WINDOW (editor_dialog), _("Toolbar Editor"));
-  gtk_window_set_transient_for (GTK_WINDOW (editor_dialog), GTK_WINDOW (toplevel));
-  gtk_widget_show (editor_dialog);
-
-  g_signal_connect (G_OBJECT (editor_dialog), "destroy", G_CALLBACK (cb_edit_toolbars_view_done), toolbar);
-}
-*/
-
 static gboolean
 cb_delete_main_window (XfburnMainWindow * mainwin, GdkEvent * event, XfburnMainWindowPrivate *priv)
 {
@@ -499,10 +435,6 @@ action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
     "正龙 赵 longer.zhao@gmail.com zh_CN\n"
     "Cosmo Chene cosmolax@gmail.com zh_TW\n";
 
-#if !GTK_CHECK_VERSION (2, 18, 0)
-  gtk_about_dialog_set_email_hook (exo_gtk_url_about_dialog_hook, NULL, NULL);
-  gtk_about_dialog_set_url_hook (exo_gtk_url_about_dialog_hook, NULL, NULL);
-#endif
   gtk_show_about_dialog(GTK_WINDOW (window),
 		  "logo-icon-name", "media-optical",
 		  "program-name", "Xfburn",

@@ -25,8 +25,6 @@
 
 #include <gtk/gtk.h>
 
-#include <exo/exo.h>
-
 G_BEGIN_DECLS
 
 #define XFBURN_TYPE_FS_BROWSER         (xfburn_fs_browser_get_type ())
@@ -38,12 +36,12 @@ G_BEGIN_DECLS
 
 typedef struct
 {
-  ExoTreeView parent;
+  GtkTreeView parent;
 } XfburnFsBrowser;
 
 typedef struct
 {
-  ExoTreeViewClass parent_class;
+  GtkTreeViewClass parent_class;
 } XfburnFsBrowserClass;
 
 enum

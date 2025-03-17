@@ -21,7 +21,6 @@
 #endif /* !HAVE_CONFIG_H */
 
 #include <libxfce4ui/libxfce4ui.h>
-#include <exo/exo.h>
 
 #include "xfburn-preferences-dialog.h"
 #include "xfburn-device-list.h"
@@ -123,23 +122,9 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_box_pack_start (box, hbox, TRUE, TRUE, 0);
   gtk_widget_show (hbox);
-/*  // because exo icon bar isn't available disabling the side panel scrolled window
-  scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-  g_object_set (G_OBJECT (scrolled_window),
-                "hscrollbar-policy", GTK_POLICY_NEVER,
-                "shadow-type", GTK_SHADOW_IN,
-                "vscrollbar-policy", GTK_POLICY_NEVER,
-                NULL);
-  gtk_box_pack_start (GTK_BOX (hbox), scrolled_window, FALSE, FALSE, 0);
-  gtk_widget_show (scrolled_window);
-*/
+
   /* icon bar */
   icon_store = gtk_list_store_new (SETTINGS_LIST_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_INT);
-  // priv->icon_bar = exo_icon_view_new_with_model (GTK_TREE_MODEL (icon_store));
-  // g_object_set_property (G_OBJECT (priv->icon_bar), "pixbuf-column", &pb_col);
-  // g_object_set_property (G_OBJECT (priv->icon_bar), "text-column", &tx_col);
-  // gtk_container_add (GTK_CONTAINER (scrolled_window), priv->icon_bar);
-  // gtk_widget_show (priv->icon_bar);
 
   /* notebook */
   priv->notebook = gtk_notebook_new ();
@@ -297,9 +282,6 @@ xfburn_preferences_dialog_init (XfburnPreferencesDialog * obj)
                       -1);
   if (icon)
     g_object_unref (G_OBJECT (icon));
-
-//  exo_mutual_binding_new (G_OBJECT (priv->notebook), "page", G_OBJECT (priv->icon_bar), "active");
-
 
   /* below the device list */
 #if 0

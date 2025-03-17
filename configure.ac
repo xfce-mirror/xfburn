@@ -13,6 +13,7 @@ AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-bzip2 tar-ustar foreign])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIRS([m4])
 AM_MAINTAINER_MODE()
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 dnl check for basic programs
 AC_PROG_CC()
@@ -39,6 +40,7 @@ XDT_CHECK_PACKAGE([LIBGIO], [gio-2.0], [2.38])
 XDT_CHECK_PACKAGE([LIBGIOUNIX], [gio-unix-2.0], [2.38])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.38])
 XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.12.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.16.0])
 XDT_CHECK_PACKAGE([EXO], [exo-2], [0.11.0])
 dnl **************************************
 dnl *** Optional support for udev ***

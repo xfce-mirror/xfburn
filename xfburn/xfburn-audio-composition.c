@@ -36,7 +36,9 @@
 
 #include <gio/gio.h>
 
+#if !LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
 #include <exo/exo.h>
+#endif
 
 #include <libisofs.h>
 
@@ -306,22 +308,6 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gtk_widget_show (hbox_toolbar);
 
   /* toolbar */
-/*  model_toolbar = exo_toolbars_model_new ();
-  exo_toolbars_model_set_actions (model_toolbar, (gchar **) toolbar_actions, G_N_ELEMENTS (toolbar_actions));
-  toolbar_position = exo_toolbars_model_add_toolbar (model_toolbar, -1, "content-toolbar");
-  exo_toolbars_model_set_style (model_toolbar, GTK_TOOLBAR_BOTH, toolbar_position);
-
-  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "add-file", EXO_TOOLBARS_ITEM_TYPE);
-  exo_toolbars_model_add_separator (model_toolbar, toolbar_position, -1);
-  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "remove-file", EXO_TOOLBARS_ITEM_TYPE);
-  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "clear", EXO_TOOLBARS_ITEM_TYPE);
-  exo_toolbars_model_add_separator (model_toolbar, toolbar_position, -1);
-  exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "transcoder-info", EXO_TOOLBARS_ITEM_TYPE);
-  //exo_toolbars_model_add_separator (model_toolbar, toolbar_position, -1);
-  //exo_toolbars_model_add_item (model_toolbar, toolbar_position, -1, "import-session", EXO_TOOLBARS_ITEM_TYPE);
-
-  priv->toolbar = exo_toolbars_view_new_with_model (priv->ui_manager, model_toolbar);
-*/
   priv->toolbar = gtk_toolbar_new ();
   gtk_toolbar_set_style(GTK_TOOLBAR (priv->toolbar), GTK_TOOLBAR_BOTH);
   gtk_widget_insert_action_group (priv->toolbar, "win", G_ACTION_GROUP (priv->action_group));
@@ -353,7 +339,11 @@ xfburn_audio_composition_init (XfburnAudioComposition * composition)
   gtk_widget_show (scrolled_window);
   gtk_box_pack_start (GTK_BOX (composition), scrolled_window, TRUE, TRUE, 0);
 
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+  priv->content = xfce_tree_view_new ();
+#else
   priv->content = exo_tree_view_new ();
+#endif
   model = gtk_tree_store_new (AUDIO_COMPOSITION_N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_STRING,
                               G_TYPE_UINT64, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_UINT, XFBURN_TYPE_AUDIO_TRACK);
   priv->model = model;
