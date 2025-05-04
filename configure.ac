@@ -34,14 +34,14 @@ AM_GNU_GETTEXT_VERSION([0.19.8])
 dnl check for required packages
 XDT_CHECK_PACKAGE([LIBBURN], [libburn-1], [0.4.2])
 XDT_CHECK_PACKAGE([LIBISOFS], [libisofs-1], [0.6.2])
-XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [3.20])
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.38])
-XDT_CHECK_PACKAGE([LIBGIO], [gio-2.0], [2.38])
-XDT_CHECK_PACKAGE([LIBGIOUNIX], [gio-unix-2.0], [2.38])
-XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.38])
-XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.12.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.16.0])
-XDT_CHECK_PACKAGE([EXO], [exo-2], [0.11.0])
+XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [3.24.0])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([LIBGIO], [gio-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([LIBGIOUNIX], [gio-unix-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.18.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.18.0])
+XDT_CHECK_PACKAGE([EXO], [exo-2], [4.18.0])
 dnl **************************************
 dnl *** Optional support for udev ***
 dnl **************************************
