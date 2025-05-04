@@ -34,8 +34,10 @@ dist-hook: ChangeLog
 
 EXTRA_DIST = 								\
 	$(apps_in_files)						\
-	$(ui_DATA)							\
-	$(appdata_in_files)
+	$(ui_DATA)								\
+	$(appdata_in_files)						\
+	meson.build								\
+	xfce-revision.h.in
 
 appsdir = $(datadir)/applications
 apps_in_files = xfburn.desktop.in
