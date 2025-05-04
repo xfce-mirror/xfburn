@@ -21,3 +21,6 @@ update-icon-cache:
 
 install-data-hook: update-icon-cache
 uninstall-hook: update-icon-cache
+
+EXTRA_DIST =							\
+	meson.build
