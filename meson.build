@@ -93,15 +93,8 @@ if cc.has_function('mmap')
 endif
 
 headers = [
-  'sys/stat.h',
-  'sys/types.h',
-  'inttypes.h',
-  'stdint.h',
-  'stdio.h',
   'stdlib.h',
   'string.h',
-  'strings.h',
-  'unistd.h',
 ]
 foreach header : headers
   if cc.check_header(header)
