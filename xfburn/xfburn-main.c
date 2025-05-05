@@ -238,7 +238,7 @@ main (int argc, char **argv)
     guint gst_major, gst_minor, gst_micro, gst_nano;
 #endif
 
-    g_print ("%s version %s for Xfce %s\n", PACKAGE, VERSION, xfce_version_string ());
+    g_print ("%s version %s for Xfce %s\n", PACKAGE, VERSION_FULL, xfce_version_string ());
     g_print ("\tbuilt with GTK+-%d.%d.%d, ", GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
     g_print ("linked with GTK+-%d.%d.%d.\n", gtk_major_version, gtk_minor_version, gtk_micro_version);
 
@@ -267,7 +267,7 @@ main (int argc, char **argv)
     return EXIT_SUCCESS;
   }
 
-  DBG ("%s version %s for Xfce %s\n", PACKAGE, VERSION, xfce_version_string ());
+  DBG ("%s version %s for Xfce %s\n", PACKAGE, VERSION_FULL, xfce_version_string ());
 
   xfburn_settings_init_external ();
 

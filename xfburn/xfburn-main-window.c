@@ -439,7 +439,7 @@ action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
 		  "logo-icon-name", "media-optical",
 		  "program-name", "Xfburn",
 		  "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
-		  "version", VERSION,
+		  "version", VERSION_FULL,
 		  "comments", _("Another cd burning GUI"),
 		  "website", "https://docs.xfce.org/apps/xfburn/start",
 		  "copyright", "2005-" COPYRIGHT_YEAR " Xfce development team",
