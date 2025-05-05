@@ -442,7 +442,7 @@ action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
 		  "version", VERSION,
 		  "comments", _("Another cd burning GUI"),
 		  "website", "https://docs.xfce.org/apps/xfburn/start",
-		  "copyright", "2005-2024 Xfce development team",
+		  "copyright", "2005-" COPYRIGHT_YEAR " Xfce development team",
 		  "authors", auth,
 		  "translator-credits", translators,
 		  NULL);

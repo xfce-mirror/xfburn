@@ -13,7 +13,7 @@ project(
 
 project_namespace = 'apps'
 pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
-feature_cflags = []
+copyright_year = '2025'
 
 cc = meson.get_compiler('c')
 fs = import('fs')
@@ -49,6 +49,7 @@ libm = cc.find_library('m', required: true)
 xsltproc = find_program('xsltproc', required: true)
 
 # optional dependencies
+feature_cflags = []
 gudev = dependency('gudev-1.0', version: dependency_versions['gudev'], required: false)
 if gudev.found()
   feature_cflags += '-DHAVE_GUDEV=1'
@@ -124,6 +125,7 @@ extra_cflags += [
   '-DVERSION_SHORT="@0@"'.format(version_short),
   '-DPACKAGE_STRING="@0@ @1@"'.format(meson.project_name(), meson.project_version()),
   '-DPACKAGE_DATADIR="@0@"'.format(pkgdatadir),
+  '-DCOPYRIGHT_YEAR="@0@"'.format(copyright_year),
   '-DPACKAGE_LOCALE_DIR="@0@"'.format(get_option('prefix') / get_option('localedir')),
   '-DPACKAGE_BUGREPORT="https://gitlab.xfce.org/@0@/@1@/-/issues"'.format(project_namespace, meson.project_name()),
   '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
