@@ -36,6 +36,7 @@ EXTRA_DIST = 								\
 	$(apps_in_files)						\
 	$(ui_DATA)								\
 	$(appdata_in_files)						\
+	meson_options.txt						\
 	meson.build								\
 	xfce-revision.h.in
 

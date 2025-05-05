@@ -48,14 +48,16 @@ endif
 libm = cc.find_library('m', required: true)
 xsltproc = find_program('xsltproc', required: true)
 
-# optional dependencies
 feature_cflags = []
-gudev = dependency('gudev-1.0', version: dependency_versions['gudev'], required: false)
+
+# Feature: 'gudev'
+gudev = dependency('gudev-1.0', version: dependency_versions['gudev'], required: get_option('gudev'))
 if gudev.found()
   feature_cflags += '-DHAVE_GUDEV=1'
 endif
 
-gst = dependency('gstreamer-1.0', version: dependency_versions['gst'], required: false)
+# Feature: 'gstreamer'
+gst = dependency('gstreamer-1.0', version: dependency_versions['gst'], required: get_option('gstreamer'))
 if gst.found()
   feature_cflags += '-DHAVE_GST=1'
   gstpbutils = dependency('gstreamer-pbutils-1.0', version: dependency_versions['gst'])
