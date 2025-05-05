@@ -152,8 +152,9 @@ missing_files = \
 	xfburn-copy-dvd-dialog.h					\
 	xfburn-create-iso-progress-dialog.c
 
-EXTRA_DIST = $(missing_files) \
-	xfburn-cclosure-marshal.list
+EXTRA_DIST = $(missing_files)		\
+	xfburn-cclosure-marshal.list	\
+	meson.build
 
 DISTCLEANFILES = $(BUILT_SOURCES)
 
