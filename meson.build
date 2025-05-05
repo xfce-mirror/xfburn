@@ -88,6 +88,23 @@ extra_cflags_check = [
   '-Wno-error=deprecated-declarations',
 ]
 
+headers = [
+  'sys/stat.h',
+  'sys/types.h',
+  'inttypes.h',
+  'stdint.h',
+  'stdio.h',
+  'stdlib.h',
+  'string.h',
+  'strings.h',
+  'unistd.h',
+]
+foreach header : headers
+  if cc.check_header(header)
+    extra_cflags += '-DHAVE_@0@=1'.format(header.underscorify().to_upper())
+  endif
+endforeach
+
 optimization = get_option('optimization')
 if get_option('debug') and optimization in ['0', 'g']
   extra_cflags_check += '-fstack-protector-strong'
