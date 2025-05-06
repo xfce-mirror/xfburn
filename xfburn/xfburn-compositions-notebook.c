@@ -49,7 +49,6 @@ static void xfburn_compositions_notebook_finalize (GObject * object);
 static void cb_switch_page (GtkNotebook *notebook, GtkWidget *page, guint page_num,
                             XfburnCompositionsNotebookPrivate *priv);
 static void cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook);
-static void cb_composition_name_changed (XfburnComposition *composition, const gchar * name, XfburnCompositionsNotebook *notebook);
 static XfburnComposition * add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositionType type, XfburnMainWindow *window);
 
 
@@ -113,20 +112,6 @@ cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook)
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)) > 1);
 }
 
-static void
-cb_composition_name_changed (XfburnComposition *composition, const gchar * name, XfburnCompositionsNotebook *notebook)
-{
-  //guint page_num;
-  GtkWidget *tab, *menu_label;
-
-  //page_num = gtk_notebook_page_num (GTK_NOTEBOOK (notebook), GTK_WIDGET (composition));
-
-  tab = gtk_notebook_get_tab_label (GTK_NOTEBOOK (notebook), GTK_WIDGET (composition));
-  xfburn_notebook_tab_set_label (XFBURN_NOTEBOOK_TAB (tab), name);
-  menu_label = gtk_notebook_get_menu_label (GTK_NOTEBOOK (notebook), GTK_WIDGET (composition));
-  gtk_label_set_text (GTK_LABEL (menu_label), name);
-}
-
 static XfburnComposition *
 add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositionType type, XfburnMainWindow *window)
 {
@@ -167,8 +152,6 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
 
     g_object_set_data (G_OBJECT (tab), "composition", composition);
     g_signal_connect (G_OBJECT (tab), "button-close-clicked", G_CALLBACK (cb_composition_close), notebook);
-
-    g_signal_connect (G_OBJECT (composition), "name-changed", G_CALLBACK (cb_composition_name_changed), notebook);
   }
 
   g_free (label_text);
@@ -219,16 +202,4 @@ xfburn_compositions_notebook_close_composition (XfburnCompositionsNotebook *note
   if (page_num > 0)
     /* don't close the welcome page */
     gtk_notebook_remove_page (GTK_NOTEBOOK (notebook), page_num);
-}
-
-void
-xfburn_compositions_notebook_save_composition (XfburnCompositionsNotebook *notebook)
-{
-  XfburnComposition *composition;
-  guint page_num;
-
-  page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (notebook));
-  composition = XFBURN_COMPOSITION (gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), page_num));
-
-  xfburn_composition_save (composition);
 }

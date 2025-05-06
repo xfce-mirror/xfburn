@@ -58,9 +58,6 @@ void xfburn_compositions_notebook_add_welcome_tab (XfburnCompositionsNotebook *n
 
 void xfburn_compositions_notebook_close_composition (XfburnCompositionsNotebook *notebook);
 
-void xfburn_compositions_notebook_load_composition (XfburnCompositionsNotebook *notebook, const gchar *file);
-void xfburn_compositions_notebook_save_composition (XfburnCompositionsNotebook *notebook);
-
 G_END_DECLS
 
 #endif /* XFBURN_COMPOSITIONS_NOTEBOOK_H */

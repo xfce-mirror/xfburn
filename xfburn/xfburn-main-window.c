@@ -73,11 +73,6 @@ static void action_preferences (GAction *, GVariant*, XfburnMainWindow *);
 static void action_new_data_composition (GAction *, GVariant*, XfburnMainWindow *);
 static void action_new_audio_composition (GAction *, GVariant*, XfburnMainWindow *);
 
-/*
-static void action_load (GtkAction *, XfburnMainWindow *);
-static void action_save (GtkAction *, XfburnMainWindow *);
-static void action_save_as (GtkAction *, XfburnMainWindow *);
-*/
 static void action_close (GAction *, GVariant*, XfburnMainWindow *);
 static void action_quit (GAction *, GVariant*, XfburnMainWindow *);
 
@@ -334,31 +329,6 @@ static void
 action_burn_dvd_image (GAction * action, GVariant* param, XfburnMainWindow * window)
 {
 }
-
-/*
-static void
-action_load (GtkAction *action, XfburnMainWindow * window)
-{
-  //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-
-  //xfburn_data_composition_load_from_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
-}
-
-static void
-action_save (GtkAction *action, XfburnMainWindow * window)
-{
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-
-  xfburn_compositions_notebook_save_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook));
-}
-
-static void
-action_save_as (GtkAction *action, XfburnMainWindow * window)
-{
-  //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-
-}
-*/
 
 static void
 action_close (GAction *action, GVariant* param, XfburnMainWindow * window)
