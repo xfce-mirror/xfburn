@@ -1,12 +1,17 @@
 dnl Version information
 XDT_VERSION_INIT([0.7.2], [git])
+m4_define([copyright_year], [2025])
 
 dnl Initialize autoconf
-AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>, 2008 Mario Đanić <mario@libburnia-project.org>, 2008-2015 David Mohr <david@mcbf.net>, 2019-2020 Rene Kjellerup <rk.katana.steel@gmail.com>, 2022-2024 Hunter Turcin <huntertur@gmail.com>, Copyright (c) 2004-2024 Xfce development team. All rights reserved.])
+AC_COPYRIGHT([Copyright (c) 2005-2008 Jean-François Wauthy <pollux@xfce.org>, 2008 Mario Đanić <mario@libburnia-project.org>, 2008-2015 David Mohr <david@mcbf.net>, 2019-2020 Rene Kjellerup <rk.katana.steel@gmail.com>, 2022-2024 Hunter Turcin <huntertur@gmail.com>, Copyright (c) 2004-copyright_year() Xfce development team. All rights reserved.])
 AC_INIT([xfburn], [xdt_version], [https://gitlab.xfce.org/apps/xfburn])
 AC_CONFIG_SRCDIR([xfburn/xfburn-main.c])
 AC_PREREQ([2.69])
 AC_REVISION([xdt_version_build])
+AC_DEFINE([VERSION_FULL], [PACKAGE_VERSION], [Alias for VERSION and PACKAGE_VERSION for meson compatibility])
+COPYRIGHT_YEAR=copyright_year()
+AC_DEFINE_UNQUOTED([COPYRIGHT_YEAR], ["$COPYRIGHT_YEAR"], [Copyright year])
+AC_SUBST([COPYRIGHT_YEAR])
 
 dnl Initialize automake
 AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-bzip2 tar-ustar foreign])
@@ -34,14 +39,14 @@ AM_GNU_GETTEXT_VERSION([0.19.8])
 dnl check for required packages
 XDT_CHECK_PACKAGE([LIBBURN], [libburn-1], [0.4.2])
 XDT_CHECK_PACKAGE([LIBISOFS], [libisofs-1], [0.6.2])
-XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [3.20])
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.38])
-XDT_CHECK_PACKAGE([LIBGIO], [gio-2.0], [2.38])
-XDT_CHECK_PACKAGE([LIBGIOUNIX], [gio-unix-2.0], [2.38])
-XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.38])
-XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.12.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.16.0])
-XDT_CHECK_PACKAGE([EXO], [exo-2], [0.11.0])
+XDT_CHECK_PACKAGE([GTK], [gtk+-3.0], [3.24.0])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([LIBGIO], [gio-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([LIBGIOUNIX], [gio-unix-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.18.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.18.0])
+XDT_CHECK_PACKAGE([EXO], [exo-2], [4.18.0])
 dnl **************************************
 dnl *** Optional support for udev ***
 dnl **************************************
