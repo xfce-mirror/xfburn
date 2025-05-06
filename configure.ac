@@ -59,8 +59,6 @@ if test x"$GST_FOUND" = x"yes"; then
   XDT_CHECK_PACKAGE([GST_PBUTILS], [gstreamer-pbutils-1.0], [1.0])
 fi
 
-dnl check for standard functions
-AC_CHECK_FUNCS([mmap])
 
 dnl check for debugging support
 XDT_FEATURE_DEBUG([xdt_debug_default])

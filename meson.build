@@ -88,10 +88,6 @@ extra_cflags_check = [
   '-Wno-error=deprecated-declarations',
 ]
 
-if cc.has_function('mmap')
-  feature_cflags += '-DHAVE_MMAP=1'
-endif
-
 headers = [
   'stdlib.h',
   'string.h',
