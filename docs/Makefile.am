@@ -10,7 +10,8 @@ if MAINTAINER_MODE
 endif
 
 EXTRA_DIST =					\
-	$(man_MANS)				\
-	xfburn.xml
+	$(man_MANS)					\
+	xfburn.xml					\
+	meson.build
 
 # vi:set ts=8 sw=8 noet ai nocindent softtabstop=0 list listchars=tab\:>- syntax=automake:

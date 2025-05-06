@@ -18,7 +18,10 @@
 
 #ifdef	HAVE_CONFIG_H
 #include <config.h>
-#endif /* !HAVE_CONFIG_H */
+#endif
+#ifdef HAVE_XFCE_REVISION_H
+#include "xfce-revision.h"
+#endif
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
@@ -439,10 +442,10 @@ action_about (GAction * action, GVariant* param, XfburnMainWindow * window)
 		  "logo-icon-name", "media-optical",
 		  "program-name", "Xfburn",
 		  "license", xfce_get_license_text (XFCE_LICENSE_TEXT_GPL),
-		  "version", VERSION,
+		  "version", VERSION_FULL,
 		  "comments", _("Another cd burning GUI"),
 		  "website", "https://docs.xfce.org/apps/xfburn/start",
-		  "copyright", "2005-2024 Xfce development team",
+		  "copyright", "2005-" COPYRIGHT_YEAR " Xfce development team",
 		  "authors", auth,
 		  "translator-credits", translators,
 		  NULL);
