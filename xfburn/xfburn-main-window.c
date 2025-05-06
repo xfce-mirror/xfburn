@@ -18,7 +18,10 @@
 
 #ifdef	HAVE_CONFIG_H
 #include <config.h>
-#endif /* !HAVE_CONFIG_H */
+#endif
+#ifdef HAVE_XFCE_REVISION_H
+#include "xfce-revision.h"
+#endif
 
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
