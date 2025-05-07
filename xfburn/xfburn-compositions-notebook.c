@@ -41,10 +41,6 @@ typedef struct
 } XfburnCompositionsNotebookPrivate;
 
 
-/* prototypes */
-static void xfburn_compositions_notebook_finalize (GObject * object);
-
-
 /* internals */
 static void cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook);
 static XfburnComposition * add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositionType type, XfburnMainWindow *window);
@@ -58,15 +54,7 @@ G_DEFINE_TYPE_WITH_PRIVATE(XfburnCompositionsNotebook, xfburn_compositions_noteb
 static void
 xfburn_compositions_notebook_class_init (XfburnCompositionsNotebookClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
   parent_class = g_type_class_peek_parent (klass);
-  object_class->finalize = xfburn_compositions_notebook_finalize;
-}
-
-static void
-xfburn_compositions_notebook_finalize (GObject * object)
-{
 }
 
 static void

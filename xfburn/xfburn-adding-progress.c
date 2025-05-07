@@ -43,7 +43,6 @@ typedef struct
 
 /* prototypes */
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnAddingProgress, xfburn_adding_progress, GTK_TYPE_WINDOW)
-static void xfburn_adding_progress_finalize (GObject * object);
 static gboolean cb_delete (XfburnAddingProgress *widget, GdkEvent *event, gpointer data);
 static gboolean cb_cancel (GtkButton *widget, gpointer data);
 
@@ -58,11 +57,7 @@ static guint signals[LAST_SIGNAL];
 static void
 xfburn_adding_progress_class_init (XfburnAddingProgressClass * klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
   parent_class = g_type_class_peek_parent (klass);
-
-  object_class->finalize = xfburn_adding_progress_finalize;
 
   signals[ADDING_DONE] = g_signal_new ("adding-done", XFBURN_TYPE_ADDING_PROGRESS, G_SIGNAL_ACTION,
                                           G_STRUCT_OFFSET (XfburnAddingProgressClass, adding_done),
@@ -102,11 +97,6 @@ xfburn_adding_progress_init (XfburnAddingProgress * win)
   priv->aborted = FALSE;
   g_signal_connect (G_OBJECT (win), "delete-event", G_CALLBACK (cb_delete), NULL);
   g_signal_connect (G_OBJECT (cancel_btn), "clicked", G_CALLBACK (cb_cancel), G_OBJECT(win));
-}
-
-static void
-xfburn_adding_progress_finalize (GObject * object)
-{
 }
 
 /* internals */
