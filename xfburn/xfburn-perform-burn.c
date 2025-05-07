@@ -97,7 +97,6 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
 
   /* The medium is unformatted */
 
-  //g_object_set (dialog_progress, "animate", TRUE, NULL);
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress),
                                                XFBURN_PROGRESS_DIALOG_STATUS_FORMATTING,
                                                _("Formatting..."));
@@ -126,9 +125,6 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
       xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_STOPPING);
     }
 
-
-    //DBG ("Formatting (%.f%%)", percent);
-
     usleep (500000);
   }
 
@@ -156,12 +152,6 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
 /**************/
 /* public API */
 /**************/
-/*
-void
-xfburn_perform_burn_init (struct burn_disc **disc, struct burn_session **session, struct burn_track **track)
-{
-}
-*/
 gboolean
 xfburn_set_write_mode (struct burn_write_opts *opts, XfburnWriteMode write_mode, struct burn_disc *disc,
                        XfburnWriteMode fallback)
@@ -215,9 +205,6 @@ xfburn_set_write_mode (struct burn_write_opts *opts, XfburnWriteMode write_mode,
     burn_write_opts_set_write_type (opts, BURN_WRITE_RAW, BURN_BLOCK_RAW96R);
     break;
   default:
-    /*
-    xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("The write mode is not supported currently."));
-    */
     return FALSE;
   }
 

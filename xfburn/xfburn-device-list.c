@@ -212,9 +212,6 @@ xfburn_device_list_class_init (XfburnDeviceListClass *klass)
   g_object_class_install_property (object_class, PROP_CURRENT_DEVICE,
                                    g_param_spec_object ("current-device", _("Currently selected device"),
                                                         _("Currently selected device"), XFBURN_TYPE_DEVICE, G_PARAM_READWRITE));
-
-  //klass->device_changed = cb_device_changed;
-  //klass->volume_changed = cb_volume_changed
 }
 
 static void
@@ -289,7 +286,6 @@ get_libburn_device_list (XfburnDeviceList *devlist)
     ret = burn_drive_d_get_adr (drives[i].drive, addr);
     if (ret <= 0)
       g_error ("Unable to get drive %s address (ret=%d). Please report this problem to libburn-hackers@pykix.org", name, ret);
-    //DBG ("device->addr = %s", device->addr);
 
     g_object_set (device, "address", addr, NULL);
 
@@ -499,25 +495,6 @@ xfburn_device_list_get_refresh_button (XfburnDeviceList *devlist)
 
   return button;
 }
-
-/*
-gchar *
-xfburn_device_list_get_selected (XfburnDeviceList *devlist)
-{
-  XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
-  GtkTreeModel *model;
-  GtkTreeIter iter;
-  gchar *name = NULL;
-  gboolean ret;
-
-  model = gtk_combo_box_get_model (GTK_COMBO_BOX (priv->combo_device));
-  ret = gtk_combo_box_get_active_iter (GTK_COMBO_BOX (priv->combo_device), &iter);
-  if (ret)
-    gtk_tree_model_get (model, &iter, DEVICE_NAME_COLUMN, &name, -1);
-
-  return name;
-}
-*/
 
 /* Note that the device is NOT ref'ed, so if the caller wants to hold on to a copy,
    g_object_ref () has to be called manually, or just use the property "current-device" */

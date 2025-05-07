@@ -359,18 +359,6 @@ refresh_disc (XfburnDevice * device, struct burn_drive_info *drive_info)
   }
   priv->is_erasable = burn_disc_erasable (drive_info->drive);
   DBG ("profile_no = 0x%x (%s), %s erasable", priv->profile_no, priv->profile_name, (priv->is_erasable ? "" : "NOT"));
-
-#if 0 /* this doesn't seem to work */
-  if (burn_disc_read_atip (drive_info->drive) == 1) {
-    int start, end;
-
-    if (burn_drive_get_start_end_lba (drive_info->drive, &start, &end, 0) == 1) {
-      DBG ("lba start = %d, end = %d", start, end);
-    } else
-      DBG ("Getting start/end lba failed");
-  } else
-    DBG ("Reading ATIP failed");
-#endif
 }
 
 static void
@@ -383,7 +371,6 @@ refresh_speed_list (XfburnDevice * device, struct burn_drive_info *drive_info)
 
   /* fill new list */
   ret = burn_drive_get_speedlist (drive_info->drive, &speed_list);
-  /* speed_list = NULL; DEBUG */
 
   if (ret > 0 && speed_list != NULL) {
     struct burn_speed_descriptor *el = speed_list;
@@ -404,7 +391,6 @@ refresh_speed_list (XfburnDevice * device, struct burn_drive_info *drive_info)
   } else if (ret == 0 || speed_list == NULL) {
     g_warning ("reported speed list is empty for device:");
     // FIXME
-    //g_warning (DEVICE_INFO_PRINTF (priv));
     g_warning ("%s can burn: %d [cdr: %d, cdrw: %d, dvdr: %d, dvdram: %d]", (priv)->name, ((priv)->cdr || (priv)->cdrw || (priv)->dvdr || (priv)->dvdram), (priv)->cdr, (priv)->cdrw, (priv)->dvdr, (priv)->dvdram);
   } else {
     /* ret < 0 */
@@ -465,7 +451,6 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
    * the drive might be busy detecting the disc */
   for (i=1; i<=max_checks; i++) {
     ret = burn_drive_scan_and_grab (drive_info, drive_addr, 0);
-    //DBG ("grab (%s)-> %d", drive_addr, ret);
     if (ret > 0)
       break;
     else if  (i < max_checks) {

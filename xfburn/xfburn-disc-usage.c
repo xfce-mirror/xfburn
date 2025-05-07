@@ -41,7 +41,6 @@
 
 /* prototypes */
 static void xfburn_disc_usage_class_init (XfburnDiscUsageClass *, gpointer);
-//static void xfburn_disc_usage_init (XfburnDiscUsage *);
 static GObject * xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 
 static void update_size_default (XfburnDiscUsage *du);
@@ -101,7 +100,7 @@ xfburn_disc_usage_get_type (void)
       NULL,
       sizeof (XfburnDiscUsage),
       0,
-      NULL, //(GInstanceInitFunc) xfburn_disc_usage_init,
+      NULL,
       NULL
     };
 

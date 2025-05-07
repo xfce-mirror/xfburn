@@ -22,27 +22,15 @@
 
 #include "xfburn-composition.h"
 
-enum {
-  NAME_CHANGED,
-  LAST_SIGNAL,
-};
-
 /*******************************************/
 /* interface definition and initialization */
 /*******************************************/
-static guint composition_signals[LAST_SIGNAL];
-
 static void
 xfburn_composition_base_init (gpointer g_iface)
 {
   static gboolean initialized = FALSE;
 
   if (!initialized) {
-    composition_signals[NAME_CHANGED] = g_signal_new ("name-changed", XFBURN_TYPE_COMPOSITION, G_SIGNAL_ACTION,
-                                                      G_STRUCT_OFFSET (XfburnCompositionInterface, name_changed),
-                                                      NULL, NULL, g_cclosure_marshal_VOID__STRING,
-                                                      G_TYPE_NONE, 1, G_TYPE_STRING);
-
     initialized = TRUE;
   }
 }
@@ -70,32 +58,4 @@ xfburn_composition_get_type (void)
   }
 
   return type;
-}
-
-/**************/
-/* public API */
-/**************/
-
-void
-xfburn_composition_show_custom_controls (XfburnComposition *composition)
-{
-  return XFBURN_COMPOSITION_GET_INTERFACE (composition)->show_custom_controls (composition);
-}
-
-void
-xfburn_composition_hide_custom_controls (XfburnComposition *composition)
-{
-  return XFBURN_COMPOSITION_GET_INTERFACE (composition)->hide_custom_controls (composition);
-}
-
-void
-xfburn_composition_load (XfburnComposition *composition, const gchar *file)
-{
-  return XFBURN_COMPOSITION_GET_INTERFACE (composition)->load (composition, file);
-}
-
-void
-xfburn_composition_save (XfburnComposition *composition)
-{
-  return XFBURN_COMPOSITION_GET_INTERFACE (composition)->save (composition);
 }

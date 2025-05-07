@@ -281,7 +281,6 @@ xfburn_progress_dialog_set_property (GObject * object, guint prop_id, const GVal
   case PROP_ANIMATE:
     priv->animate = g_value_get_boolean (value);
     priv->ani_index = 0;
-    //DBG ("Set animate to %d", priv->animate);
     break;
   case PROP_QUIT:
     priv->quit = g_value_get_boolean (value);
@@ -333,7 +332,6 @@ stop (XfburnProgressDialog *dialog)
 {
   XfburnProgressDialogPrivate *priv = XFBURN_PROGRESS_DIALOG_GET_PRIVATE (dialog);
 
-  //DBG ("setting stop");
   priv->stop = TRUE;
 }
 
