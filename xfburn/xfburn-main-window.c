@@ -77,11 +77,7 @@ static void action_close (GAction *, GVariant*, XfburnMainWindow *);
 static void action_quit (GAction *, GVariant*, XfburnMainWindow *);
 
 static void action_blank (GAction *, GVariant*, XfburnMainWindow *);
-static void action_copy_cd (GAction *, GVariant*, XfburnMainWindow *);
 static void action_burn_image (GAction *, GVariant*, XfburnMainWindow *);
-
-//static void action_copy_dvd (GtkAction *, XfburnMainWindow *);
-static void action_burn_dvd_image (GAction *, GVariant*, XfburnMainWindow *);
 
 static void action_refresh_directorybrowser (GAction *, GVariant*, XfburnMainWindow *);
 static void action_show_filebrowser (GSimpleAction *, GVariant*, XfburnMainWindow *);
@@ -101,9 +97,7 @@ static const GActionEntry action_entries[] = {
   { .name = "contents", .activate = (gActionCallback)action_contents },
   { .name = "about", .activate = (gActionCallback)action_about},
   { .name = "blank-disc", .activate = (gActionCallback)action_blank},
-  { .name = "copy-data", .activate = (gActionCallback)action_copy_cd},
   { .name = "burn-image", .activate = (gActionCallback)action_burn_image},
-  { .name = "burn-dvd", .activate = (gActionCallback)action_burn_dvd_image},
 };
 
 static const GActionEntry toggle_action_entries[] = {
@@ -282,10 +276,6 @@ action_blank (GAction * action, GVariant* param, XfburnMainWindow * window)
   gtk_widget_destroy (dialog);
 }
 
-static void action_copy_cd (GAction *action, GVariant* param, XfburnMainWindow *window)
-{
-}
-
 static void
 action_burn_image (GAction * action, GVariant* param, XfburnMainWindow * window)
 {
@@ -295,11 +285,6 @@ action_burn_image (GAction * action, GVariant* param, XfburnMainWindow * window)
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
-}
-
-static void
-action_burn_dvd_image (GAction * action, GVariant* param, XfburnMainWindow * window)
-{
 }
 
 static void

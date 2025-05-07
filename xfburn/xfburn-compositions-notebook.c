@@ -46,8 +46,6 @@ static void xfburn_compositions_notebook_finalize (GObject * object);
 
 
 /* internals */
-static void cb_switch_page (GtkNotebook *notebook, GtkWidget *page, guint page_num,
-                            XfburnCompositionsNotebookPrivate *priv);
 static void cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook);
 static XfburnComposition * add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositionType type, XfburnMainWindow *window);
 
@@ -82,7 +80,6 @@ xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook)
 {
   XfburnCompositionsNotebookPrivate *priv = XFBURN_COMPOSITIONS_NOTEBOOK_GET_PRIVATE (notebook);
 
-  g_signal_connect (G_OBJECT (notebook), "switch-page", G_CALLBACK (cb_switch_page), priv);
   g_signal_connect (G_OBJECT (notebook), "move-focus-out", G_CALLBACK (cb_move_focus_out), priv);
 }
 
@@ -93,12 +90,6 @@ xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook)
 /*************/
 /* internals */
 /*************/
-static void
-cb_switch_page (GtkNotebook *notebook, GtkWidget *page, guint page_num, XfburnCompositionsNotebookPrivate *priv)
-{
-
-}
-
 static void
 cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook)
 {

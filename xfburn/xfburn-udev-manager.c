@@ -107,8 +107,7 @@ xfburn_udev_manager_init (XfburnUdevManager * obj)
 		      G_CALLBACK (cb_device_monitor_uevent), obj);
 
     priv->volume_monitor = g_volume_monitor_get();
-    if (priv->volume_monitor != NULL) {
-    } else {
+    if (priv->volume_monitor == NULL) {
       g_warning ("Error trying to access g_volume_monitor!");
     }
   }
