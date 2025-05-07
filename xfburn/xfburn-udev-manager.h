@@ -53,7 +53,6 @@ typedef struct
 } XfburnUdevManagerClass;
 
 GType xfburn_udev_manager_get_type (void);
-//GObject *xfburn_udev_manager_new (); /* use _create_global / _get_instance instead */
 gchar *xfburn_udev_manager_create_global (void);
 XfburnUdevManager * xfburn_udev_manager_get_global (void);
 void xfburn_udev_manager_shutdown (void);

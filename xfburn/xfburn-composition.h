@@ -36,23 +36,9 @@ typedef struct _XfburnCompositon XfburnComposition; /* dummy object */
 
 typedef struct {
   GTypeInterface parent;
-
-  void (*show_custom_controls) (XfburnComposition *composition);
-  void (*hide_custom_controls) (XfburnComposition *composition);
-
-  void (*load) (XfburnComposition *composition, const gchar *file);
-  void (*save) (XfburnComposition *composition);
-
-  void (*name_changed) (XfburnComposition *composition, const gchar *name);
 } XfburnCompositionInterface;
 
 GType xfburn_composition_get_type (void);
-
-void xfburn_composition_show_custom_controls (XfburnComposition *composition);
-void xfburn_composition_hide_custom_controls (XfburnComposition *composition);
-
-void xfburn_composition_load (XfburnComposition *composition, const gchar *file);
-void xfburn_composition_save (XfburnComposition *composition);
 
 G_END_DECLS
 #endif /* __XFBURN_COMPOSITION_H__ */

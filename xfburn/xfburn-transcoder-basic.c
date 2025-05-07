@@ -72,7 +72,6 @@ static const gchar *errormsg_libburn_setup = N_("An error occurred while setting
 /* class declaration */
 /*********************/
 static GObject *parent_class = NULL;
-//static guint signals[LAST_SIGNAL];
 
 G_DEFINE_TYPE_EXTENDED(
   XfburnTranscoderBasic,
@@ -90,13 +89,6 @@ xfburn_transcoder_basic_class_init (XfburnTranscoderBasicClass * klass)
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_transcoder_basic_finalize;
-
-/*
-  signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_TRANSCODER_BASIC, G_SIGNAL_ACTION,
-                                          G_STRUCT_OFFSET (XfburnTranscoderBasicClass, volume_changed),
-                                          NULL, NULL, g_cclosure_marshal_VOID__VOID,
-                                          G_TYPE_NONE, 0);
-*/
 }
 
 static void

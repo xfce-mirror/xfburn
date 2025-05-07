@@ -107,10 +107,7 @@ xfburn_udev_manager_init (XfburnUdevManager * obj)
 		      G_CALLBACK (cb_device_monitor_uevent), obj);
 
     priv->volume_monitor = g_volume_monitor_get();
-    if (priv->volume_monitor != NULL) {
-      //g_signal_connect (G_OBJECT (priv->volume_monitor), "volume-added", G_CALLBACK (cb_volumes_changed), box);
-      //g_signal_connect (G_OBJECT (priv->volume_monitor), "volume-removed", G_CALLBACK (cb_volumes_changed), box);
-    } else {
+    if (priv->volume_monitor == NULL) {
       g_warning ("Error trying to access g_volume_monitor!");
     }
   }
@@ -194,9 +191,7 @@ xfburn_udev_manager_shutdown (void)
 void
 xfburn_udev_manager_send_volume_changed (void)
 {
-  //gdk_threads_enter ();
   g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
-  //gdk_threads_leave ();
 }
 
 GList *

@@ -106,9 +106,6 @@ static void fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device);
 
 static void cb_volume_change_start (XfburnDeviceList *devlist, gboolean device_changed, XfburnDeviceBox *box);
 static void cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnDeviceBox *box);
-#if 0
-static void empty_speed_list_dialog (void);
-#endif
 
 /* globals */
 static GtkBoxClass *parent_class = NULL;
@@ -175,7 +172,6 @@ xfburn_device_box_init (XfburnDeviceBox *box)
   XfburnDeviceBoxPrivate *priv = xfburn_device_box_get_instance_private(box);
 
   GtkWidget *label;
-  //GtkWidget *hbox;
   GtkListStore *store = NULL;
   GtkCellRenderer *cell;
   XfburnDeviceList *devlist;
@@ -190,12 +186,6 @@ xfburn_device_box_init (XfburnDeviceBox *box)
   /* devices */
   priv->combo_device = xfburn_device_list_get_device_combo (devlist);
   gtk_box_pack_start (GTK_BOX (box), priv->combo_device, FALSE, FALSE, BORDER);
-
-  /*
-  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-  gtk_widget_show (hbox);
-  gtk_box_pack_start (GTK_BOX (box), hbox, FALSE, FALSE, BORDER);
-  */
 
   /* disc label */
   priv->hbox_refresh = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
@@ -335,57 +325,6 @@ xfburn_device_box_set_property (GObject *object, guint prop_id, const GValue *va
 /*************/
 /* internals */
 /*************/
-
-#if 0
-static void
-empty_speed_list_dialog (void)
-{
-  GtkDialog *dialog;
-  GtkWidget *label;
-  GtkWidget *check_show_notice;
-
-  if (!xfburn_settings_get_boolean ("show-empty-speed-list-notice", TRUE))
-    return;
-
-  dialog = (GtkDialog *) gtk_dialog_new_with_buttons (_("Empty speed list"),
-                                  NULL,
-                                  GTK_DIALOG_DESTROY_WITH_PARENT,
-                                  "window-close-symbolic",
-                                  GTK_RESPONSE_CLOSE,
-                                  NULL);
-
-  label = gtk_label_new (NULL);
-  gtk_label_set_markup (GTK_LABEL (label),
-                        _("<b>Unable to retrieve the speed list for the drive.</b>\n\n"
-                          "This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n\n"
-                          "Burning should still work, but if there are problems anyways, please let us know.\n\n<i>Thank you!</i>")
-                        );
-  gtk_label_set_selectable (GTK_LABEL (label), TRUE);
-  gtk_label_set_width_chars (GTK_LABEL (label), 30);
-  gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
-  gtk_box_pack_start (GTK_BOX (dialog->vbox), label, TRUE, TRUE, BORDER);
-  gtk_widget_show (label);
-
-
-  check_show_notice = gtk_check_button_new_with_mnemonic (_("Continue to _show this notice"));
-  gtk_box_pack_end (GTK_BOX (dialog->vbox), check_show_notice, TRUE, TRUE, BORDER);
-  gtk_widget_show (check_show_notice);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check_show_notice), TRUE);
-
-
-  switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
-    case GTK_RESPONSE_CLOSE:
-      xfburn_settings_set_boolean ("show-empty-speed-list-notice",
-                                   gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (check_show_notice)));
-      break;
-    default:
-      /* do nothing */
-      break;
-  }
-  gtk_widget_destroy (GTK_WIDGET (dialog));
-}
-#endif
-
 static void
 fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 {
@@ -411,10 +350,6 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
     GtkTreeIter iter;
     gchar *str;
 
-#if 0
-    empty_speed_list_dialog ();
-#endif
-
     str = _("default");
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, SPEED_TEXT_COLUMN, str, SPEED_VALUE_COLUMN, -1, -1);
@@ -435,7 +370,6 @@ fill_combo_speed (XfburnDeviceBox *box, XfburnDevice *device)
 
     speed = write_speed / factor;
     str = g_strdup_printf ("%d", speed);
-    //DBG ("added speed: %d kb/s => %d x", el->write_speed, speed);
 
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, SPEED_TEXT_COLUMN, str, SPEED_VALUE_COLUMN, write_speed, -1);
@@ -457,8 +391,6 @@ status_label_update (XfburnDeviceBoxPrivate *priv)
   gboolean sensitive;
 
   sensitive = gtk_widget_get_sensitive (priv->combo_device);
-
-  //DBG ("sensitive = %d", sensitive);
 
   if (sensitive)
     text = g_strdup_printf ("<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">%s</span>", priv->status_text);
@@ -557,9 +489,6 @@ check_disc_validity (XfburnDeviceBoxPrivate *priv)
         priv->status_text = _("Drive can't burn on the inserted disc");
     } else {
       priv->valid_disc = (disc_status == BURN_DISC_BLANK);
-      /* Not sure if we support appending yet, so let's disable it for the time being
-       * || (disc_status == BURN_DISC_APPENDABLE); */
-
       if (!priv->valid_disc) {
         switch (disc_status) {
           case BURN_DISC_EMPTY:
@@ -664,26 +593,6 @@ fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device)
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
     gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, _("Multi Session / Session-At-Once (SAO)"), MODE_VALUE_COLUMN, WRITE_MODE_SAO, -1);
   }
-  /*
-   * RAW modes are not supported by libburn yet
-   *
-  if (device->raw_block_types & BURN_BLOCK_RAW16) {
-    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "RAW16", MODE_VALUE_COLUMN, WRITE_MODE_RAW16, -1);
-  }
-  if (device->raw_block_types & BURN_BLOCK_RAW96P) {
-    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "RAW96P", MODE_VALUE_COLUMN, WRITE_MODE_RAW96P, -1);
-  }
-  if (device->raw_block_types & BURN_BLOCK_RAW96R) {
-    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "RAW96R", MODE_VALUE_COLUMN, WRITE_MODE_RAW96R, -1);
-  }
-  if (device->packet_block_types) {
-    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, MODE_TEXT_COLUMN, "packet", MODE_VALUE_COLUMN, WRITE_MODE_PACKET, -1);
-  }
-  */
 
   gtk_widget_set_sensitive (priv->combo_mode, device != NULL);
   gtk_combo_box_set_active (GTK_COMBO_BOX (priv->combo_mode), 0);
@@ -727,21 +636,6 @@ refresh_drive_info (XfburnDeviceBox *box, XfburnDevice *device)
   /* FIXME: where to put this? */
   check_disc_validity (priv);
 }
-
-/*
-static void
-cb_volumes_changed (XfburnHalManager *halman, XfburnDeviceList *devlist)
-{
-  gboolean visible;
-
-  visible = GTK_WIDGET_VISIBLE (GTK_WIDGET(box));
-  //DBG ("device box visibility: %d", visible);
-  if (visible) {
-    usleep (1000001);
-    cb_speed_refresh_clicked (NULL, box);
-  }
-}
-*/
 
 /******************/
 /* public methods */
@@ -788,7 +682,6 @@ void xfburn_device_box_set_sensitive (XfburnDeviceBox *box, gboolean sensitivity
   /* why do we need to explicitly set this? It gets grayed out even
    * without this call! */
   gtk_widget_set_sensitive (priv->combo_device, sensitivity);
-  //DBG ("sensitive = %d", GTK_WIDGET_SENSITIVE (GTK_WIDGET (box)));
   status_label_update (priv);
 }
 

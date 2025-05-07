@@ -44,8 +44,6 @@ typedef struct
 } XfburnBurnDataCdCompositionDialogPrivate;
 
 /* prototypes */
-// static void xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDialogClass * klass, gpointer data);
-// static void xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog * obj, gpointer data);
 static void xfburn_burn_data_cd_composition_dialog_finalize (GObject * object);
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnBurnDataCdCompositionDialog, xfburn_burn_data_cd_composition_dialog, XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG);
 
@@ -72,9 +70,6 @@ xfburn_burn_data_cd_composition_dialog_finalize (GObject * object)
 {
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
-
-/* internals */
-/* empty for now */
 
 /* public */
 GtkWidget *

@@ -59,11 +59,6 @@ typedef struct
   GtkWidget *entry_path_iso;
   GtkWidget *check_dummy;
   GtkWidget *button_proceed;
-  /*
-   * Disabled: change button_proceed functionality
-  GtkWidget *label_proceed;
-  GtkWidget *image_proceed;
-  */
 
   gint response;
 
@@ -76,31 +71,12 @@ enum {
   PROP_SHOW_VOLUME_NAME,
 };
 
-/*
- * Disabled: change button_proceed functionality
-char *proceed_text[] = {
-  "Burn Composition",
-  "   Blank Disc   ",
-};
-
-char *proceed_image[] = {
-  "xfburn-burn-cd",
-  "xfburn-blank-cdrw",
-};
-*/
-
 /* prototypes */
 static void xfburn_burn_data_composition_base_dialog_finalize (GObject * object);
 
 static void xfburn_burn_data_composition_base_dialog_get_property (GObject * object, guint prop_id, GValue * value, GParamSpec * pspec);
 static void xfburn_burn_data_composition_base_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec);
 
-/*
- * Disabled: change button_proceed functionality
-GtkWidget * create_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog, const gchar *stock, const gchar *text);
-void update_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog);
-static void cb_proceed_clicked (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
-*/
 static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_volume_changed (XfburnDeviceBox *box, gboolean device_changed, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog);
@@ -215,12 +191,7 @@ xfburn_burn_data_composition_base_dialog_init(XfburnBurnDataCompositionBaseDialo
   gtk_widget_show (priv->check_only_iso);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_only_iso, FALSE, FALSE, BORDER);
   g_signal_connect (G_OBJECT (priv->check_only_iso), "toggled", G_CALLBACK (cb_check_only_iso_toggled), obj);
-/*
-  align = gtk_alignment_new (0, 0, 0, 0);
-  gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
-  gtk_widget_show (align);
-  gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
-*/
+
   priv->hbox_iso = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, BORDER*4);
   gtk_widget_show (priv->hbox_iso);
   gtk_container_add (GTK_CONTAINER(vbox), priv->hbox_iso);
@@ -249,15 +220,9 @@ xfburn_burn_data_composition_base_dialog_init(XfburnBurnDataCompositionBaseDialo
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_CANCEL);
 
   priv->button_proceed = button = xfce_gtk_button_new_mixed ("stock_xfburn", _("_Burn Composition"));
-  /*
-   * Disabled: change button_proceed functionality
-  button = create_proceed_button (obj, "xfburn-burn-cd", "");
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_proceed_clicked), obj);
-  */
 
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
-  //gtk_box_pack_start (GTK_BOX (GTK_DIALOG(obj)->action_area), button, TRUE, TRUE, 0);
   gtk_widget_set_can_default (button, TRUE);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
@@ -313,43 +278,6 @@ xfburn_burn_data_composition_base_dialog_finalize (GObject * object)
 }
 
 /* internals */
-/*
- * Disabled: change button_proceed functionality
-GtkWidget *
-create_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog, const gchar *stock, const gchar *text)
-{
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
-  GtkWidget *button, *align, *image, *hbox, *label;
-
-  priv->button_proceed = button = gtk_button_new ();
-  priv->label_proceed = label = gtk_label_new_with_mnemonic (text);
-  gtk_label_set_mnemonic_widget (GTK_LABEL (label), button);
-
-  priv->image_proceed = image = gtk_image_new_from_stock (stock, GTK_ICON_SIZE_BUTTON);
-  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
-
-  align = gtk_alignment_new (0.5, 0.5, 0.0, 0.0);
-
-  gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
-  gtk_box_pack_end (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-
-  gtk_container_add (GTK_CONTAINER (button), align);
-  gtk_container_add (GTK_CONTAINER (align), hbox);
-  gtk_widget_show_all (align);
-
-  return button;
-}
-
-void
-update_proceed_button (XfburnBurnDataCompositionBaseDialog * dialog)
-{
-  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
-
-  gtk_label_set_text (GTK_LABEL (priv->label_proceed), _(proceed_text[priv->response]));
-  gtk_image_set_from_stock (GTK_IMAGE (priv->image_proceed), proceed_image[priv->response], GTK_ICON_SIZE_BUTTON);
-}
-*/
-
 static void
 cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
 {
@@ -372,14 +300,6 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBa
   }
 }
 
-/*
- * Disabled: change button_proceed functionality
-static void
-cb_proceed_clicked (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
-{
-}
-*/
-
 static void
 cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
 {
@@ -396,16 +316,6 @@ cb_volume_changed (XfburnDeviceBox *box, gboolean device_changed, XfburnDevice *
 
   g_object_get (box, "valid", &valid_disc, NULL);
 
-  /*
-   * Disabled: change button_proceed functionality
-  if (!valid_disc && xfburn_device_list_get_disc_status () == BURN_DISC_FULL && xfburn_device_list_disc_is_erasable ()) {
-    priv->response = XFBURN_BURN_DATA_COMPOSITION_DIALOG_BLANK;
-    valid_disc = TRUE;
-  } else {
-    priv->response = XFBURN_BURN_DATA_COMPOSITION_DIALOG_BURN;
-  }
-  update_proceed_button (dialog);
-  */
   gtk_widget_set_sensitive (priv->button_proceed, valid_disc);
 }
 
@@ -529,10 +439,6 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
   burn_options = burn_write_opts_new (drive);
   burn_write_opts_set_perform_opc (burn_options, 0);
   burn_write_opts_set_multi (burn_options, 0);
-  /* enable this when there is some time for testing
-  DBG ("Enabling multisession");
-  burn_write_opts_set_multi(burn_options, 1);
-  */
   burn_write_opts_set_simulate(burn_options, params->dummy ? 1 : 0);
   burn_write_opts_set_underrun_proof (burn_options, params->burnfree ? 1 : 0);
   /*
@@ -620,9 +526,6 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
     iso_write_opts_set_rockridge (write_opts, 1);
     iso_write_opts_set_joliet (write_opts, 1);
     iso_write_opts_set_allow_deep_paths (write_opts, 1);
-    /* not sure if we want that
-    iso_write_opts_set_omit_version_numbers (write_opts, TRUE);
-    */
 
     if (iso_image_create_burn_source (priv->image, write_opts, &src) < 0) {
       /* could not create source */

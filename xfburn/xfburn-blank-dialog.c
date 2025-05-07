@@ -95,7 +95,6 @@ static void xfburn_blank_dialog_set_property (GObject *object, guint prop_id, co
 
 static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode);
 static void fill_combo_mode (XfburnBlankDialog *dialog);
-//static GList * get_valid_blank_modes (XfburnDevice *device);
 static XfburnBlankMode get_selected_mode (XfburnBlankDialogPrivate *priv);
 static gboolean thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *drive_info);
 static void* thread_blank (ThreadBlankParams * params);
@@ -274,22 +273,6 @@ static gboolean is_valid_blank_mode (XfburnDevice *device, XfburnBlankMode mode)
   return FALSE;
 }
 
-/*
-static GList * get_valid_blank_modes (XfburnDevice *device)
-{
-  XfburnBlankMode mode = XFBURN_BLANK_FAST;
-  GList *modes = NULL;
-
-  while (mode < XFBURN_BLANK_MODE_LAST) {
-    if (is_valid_blank_mode (device, mode))
-      modes = g_list_append (modes, GINT_TO_POINTER (mode));
-    mode++;
-  }
-
-  return modes;
-}
-*/
-
 static gboolean
 thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *drive_info)
 {
@@ -335,8 +318,6 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
     xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("No disc detected in the drive."));
     return FALSE;
   default:
-    //xfburn_progress_dialog_burning_failed (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Cannot recognize drive and disc state."));
-    //return FALSE;
     break;
   }
 
@@ -353,27 +334,21 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
 
   switch (params->blank_mode) {
     case XFBURN_BLANK_FAST:
-      //DBG ("blank_fast");
       burn_disc_erase(drive, 1);
       break;
     case XFBURN_BLANK_COMPLETE:
-      //DBG ("blank_complete");
       burn_disc_erase(drive, 0);
       break;
     case XFBURN_FORMAT_FAST:
-      //DBG ("format_fast");
       burn_disc_format(drive, 0, 0);
       break;
     case XFBURN_FORMAT_COMPLETE:
-      //DBG ("format_complete");
       burn_disc_format(drive, XFBURN_FORMAT_COMPLETE_SIZE, 1);
       break;
     case XFBURN_DEFORMAT_FAST:
-      //DBG ("deformat_fast");
       burn_disc_erase(drive, 1);
       break;
     case XFBURN_DEFORMAT_COMPLETE:
-      //DBG ("deformat_complete");
       burn_disc_erase(drive, 0);
       break;
     default:
@@ -384,7 +359,6 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Blanking disc..."));
 
   while ((drive_state = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
-    //DBG ("drive_state = %d", drive_state);
     if(progress.sectors>0 && progress.sector>=0) {
       gdouble percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
 

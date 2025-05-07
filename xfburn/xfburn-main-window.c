@@ -73,20 +73,11 @@ static void action_preferences (GAction *, GVariant*, XfburnMainWindow *);
 static void action_new_data_composition (GAction *, GVariant*, XfburnMainWindow *);
 static void action_new_audio_composition (GAction *, GVariant*, XfburnMainWindow *);
 
-/*
-static void action_load (GtkAction *, XfburnMainWindow *);
-static void action_save (GtkAction *, XfburnMainWindow *);
-static void action_save_as (GtkAction *, XfburnMainWindow *);
-*/
 static void action_close (GAction *, GVariant*, XfburnMainWindow *);
 static void action_quit (GAction *, GVariant*, XfburnMainWindow *);
 
 static void action_blank (GAction *, GVariant*, XfburnMainWindow *);
-static void action_copy_cd (GAction *, GVariant*, XfburnMainWindow *);
 static void action_burn_image (GAction *, GVariant*, XfburnMainWindow *);
-
-//static void action_copy_dvd (GtkAction *, XfburnMainWindow *);
-static void action_burn_dvd_image (GAction *, GVariant*, XfburnMainWindow *);
 
 static void action_refresh_directorybrowser (GAction *, GVariant*, XfburnMainWindow *);
 static void action_show_filebrowser (GSimpleAction *, GVariant*, XfburnMainWindow *);
@@ -101,17 +92,12 @@ static const GActionEntry action_entries[] = {
   { .name = "new-audio-composition", .activate = (gActionCallback)action_new_audio_composition},
   { .name = "close-composition", .activate = (gActionCallback)action_close},
   { .name = "quit", .activate = (gActionCallback)action_quit},
-  // { .name = "edit-menu", .activate = NULL},
   { .name = "preferences", .activate = (gActionCallback)action_preferences},
-  // { "action-menu", NULL},
   { .name = "refresh", .activate = (gActionCallback)action_refresh_directorybrowser},
-  // { "help-menu", .activate = NULL},
   { .name = "contents", .activate = (gActionCallback)action_contents },
   { .name = "about", .activate = (gActionCallback)action_about},
   { .name = "blank-disc", .activate = (gActionCallback)action_blank},
-  { .name = "copy-data", .activate = (gActionCallback)action_copy_cd},
   { .name = "burn-image", .activate = (gActionCallback)action_burn_image},
-  { .name = "burn-dvd", .activate = (gActionCallback)action_burn_dvd_image},
 };
 
 static const GActionEntry toggle_action_entries[] = {
@@ -178,17 +164,12 @@ xfburn_main_window_init (XfburnMainWindow * mainwin)
       g_warning ("Unable to load %s: %s", file, error->message);
       g_error_free (error);
     }
-//    gtk_ui_manager_ensure_update (priv->ui_manager);
     g_free (file);
   }
   else {
     g_warning ("Unable to locate xfburn/xfburn.ui !");
   }
 
-  /* accel group */
- /* accel_group = gtk_ui_manager_get_accel_group (priv->ui_manager);
-  gtk_window_add_accel_group (GTK_WINDOW (mainwin), accel_group);
-*/
   vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_container_add (GTK_CONTAINER (mainwin), vbox);
   gtk_widget_show (vbox);
@@ -295,17 +276,6 @@ action_blank (GAction * action, GVariant* param, XfburnMainWindow * window)
   gtk_widget_destroy (dialog);
 }
 
-static void action_copy_cd (GAction *action, GVariant* param, XfburnMainWindow *window)
-{
-  /*
-  GtkWidget *dialog;
-  dialog = xfburn_copy_cd_dialog_new ();
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
-  */
-}
-
 static void
 action_burn_image (GAction * action, GVariant* param, XfburnMainWindow * window)
 {
@@ -316,49 +286,6 @@ action_burn_image (GAction * action, GVariant* param, XfburnMainWindow * window)
   gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 }
-
-/*
-static void
-action_copy_dvd (GtkAction * action, XfburnMainWindow * window)
-{
-  GtkWidget *dialog;
-
-  dialog = xfburn_copy_dvd_dialog_new ();
-  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
-}
-*/
-
-static void
-action_burn_dvd_image (GAction * action, GVariant* param, XfburnMainWindow * window)
-{
-}
-
-/*
-static void
-action_load (GtkAction *action, XfburnMainWindow * window)
-{
-  //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-
-  //xfburn_data_composition_load_from_file (XFBURN_DATA_COMPOSITION (priv->data_composition), "/tmp/test.xml");
-}
-
-static void
-action_save (GtkAction *action, XfburnMainWindow * window)
-{
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-
-  xfburn_compositions_notebook_save_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook));
-}
-
-static void
-action_save_as (GtkAction *action, XfburnMainWindow * window)
-{
-  //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-
-}
-*/
 
 static void
 action_close (GAction *action, GVariant* param, XfburnMainWindow * window)
@@ -377,15 +304,12 @@ action_new_data_composition (GAction *action, GVariant* param, XfburnMainWindow 
 static void
 action_new_audio_composition (GAction *action, GVariant* param, XfburnMainWindow * window)
 {
-  //XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
-
   xfburn_main_window_add_audio_composition_with_files (window, 0, NULL);
 }
 
 static void
 action_quit (GAction * action, GVariant* param, XfburnMainWindow * window)
 {
-  // if (xfce_confirm (_("Are sure you want to quit?"), "application-exit", _("_Quit")))
   gtk_main_quit ();
 }
 
@@ -546,8 +470,6 @@ xfburn_main_window_new (void)
     g_action_change_state (action, g_variant_new_boolean (xfburn_settings_get_boolean ("show-filebrowser", FALSE)));
     action = g_action_map_lookup_action (action_map, "show-toolbar");
     g_action_change_state (action, g_variant_new_boolean (xfburn_settings_get_boolean ("show-toolbar", FALSE)));
-   /* action = gtk_action_group_get_action (priv->action_group, "save-composition");
-    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);*/
 
     /* show welcome tab */
     xfburn_compositions_notebook_add_welcome_tab (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), action_map);
@@ -564,15 +486,7 @@ xfburn_main_window_get_instance (void)
 
   return instance;
 }
-/*
-GtkUIManager *
-xfburn_main_window_get_ui_manager (XfburnMainWindow *window)
-{
-  XfburnMainWindowPrivate *priv = XFBURN_MAIN_WINDOW_GET_PRIVATE (window);
 
-  return priv->ui_manager;
-}
-*/
 XfburnFileBrowser *
 xfburn_main_window_get_file_browser (XfburnMainWindow *window)
 {

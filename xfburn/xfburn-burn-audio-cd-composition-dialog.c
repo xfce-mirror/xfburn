@@ -88,7 +88,6 @@ xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdComposition
 
   parent_class = g_type_class_peek_parent (klass);
 
-  // object_class->constructor = xfburn_burn_audio_cd_composition_dialog_constructor;
   object_class->finalize = xfburn_burn_audio_cd_composition_dialog_finalize;
   object_class->get_property = xfburn_burn_audio_cd_composition_dialog_get_property;
   object_class->set_property = xfburn_burn_audio_cd_composition_dialog_set_property;
@@ -124,32 +123,6 @@ xfburn_burn_audio_cd_composition_dialog_init(XfburnBurnAudioCdCompositionDialog 
   gtk_widget_show (priv->frame_device);
   gtk_box_pack_start (box, priv->frame_device, FALSE, FALSE, BORDER);
 
-  /* composition name */
-  /*
-  comp_name = iso_image_get_volume_id (priv->image);
-  if (strcmp (comp_name, _(DATA_COMPOSITION_DEFAULT_NAME)) == 0) {
-    GtkWidget *label;
-    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_show (vbox);
-
-    frame = xfce_gtk_frame_box_new_with_content (_("Composition name"), vbox);
-    gtk_widget_show (frame);
-    gtk_box_pack_start (box, frame, FALSE, FALSE, BORDER);
-
-    label = gtk_label_new (NULL);
-    gtk_label_set_markup (GTK_LABEL (label), _("<small>Would you like to change the default composition name?</small>"));
-    gtk_widget_show (label);
-    gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, BORDER/2);
-
-    priv->entry = gtk_entry_new ();
-    gtk_entry_set_text (GTK_ENTRY (priv->entry), comp_name);
-    gtk_box_pack_start (GTK_BOX (vbox), priv->entry, FALSE, FALSE, BORDER);
-    gtk_widget_show (priv->entry);
-  } else {
-    priv->entry = NULL;
-  }
-  */
-
   /* options */
   vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_widget_show (vbox);
@@ -172,12 +145,6 @@ xfburn_burn_audio_cd_composition_dialog_init(XfburnBurnAudioCdCompositionDialog 
   gtk_widget_show (priv->check_burnfree);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);
 
-/*
-  align = gtk_alignment_new (0, 0, 0, 0);
-  gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
-  gtk_widget_show (align);
-  gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
-*/
   /* action buttons */
   button = gtk_button_new_with_mnemonic (_("_Cancel"));
   gtk_widget_show (button);
@@ -187,7 +154,6 @@ xfburn_burn_audio_cd_composition_dialog_init(XfburnBurnAudioCdCompositionDialog 
 
   gtk_widget_show (button);
   gtk_dialog_add_action_widget (GTK_DIALOG (obj), button, GTK_RESPONSE_OK);
-  //gtk_box_pack_start (GTK_BOX (GTK_DIALOG(obj)->action_area), button, TRUE, TRUE, 0);
   gtk_widget_set_can_default (button, TRUE);
   gtk_widget_grab_focus (button);
   gtk_widget_grab_default (button);
@@ -229,8 +195,6 @@ xfburn_burn_audio_cd_composition_dialog_set_property (GObject * object, guint pr
 static void
 xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object)
 {
-  //XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (object);
-
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -274,9 +238,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
     return;
   }
 
-  //DBG ("Adding %d tracks to the session", n_tracks);
   for (i=0; i<n_tracks; i++) {
-    //DBG ("Track %d has %d sectors", i, track_sectors[i]);
     burn_session_add_track (session, tracks[i], BURN_POS_END);
   }
 
@@ -392,16 +354,6 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
     XfburnDevice *device;
     gint speed;
     XfburnWriteMode write_mode;
-    //struct burn_source * src_fifo = NULL;
-
-    /* If the name was the default, update the image volume id and volset id */
-    /*
-    if (priv->entry != NULL) {
-      const gchar * comp_name = gtk_entry_get_text (GTK_ENTRY (priv->entry));
-      iso_image_set_volume_id (priv->image, comp_name);
-      iso_image_set_volset_id (priv->image, comp_name);
-    }
-    */
 
     dialog_progress = xfburn_progress_dialog_new (GTK_WINDOW (dialog));
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));

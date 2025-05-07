@@ -241,25 +241,11 @@ load_settings (XfburnSettingsPrivate *priv)
   gboolean started = FALSE;
   GMarkupParser gmparser = { load_settings_start, load_settings_end, NULL, NULL, NULL };
   GError *err = NULL;
-#ifdef HAVE_MMAP
-  gint fd = -1;
-  void *maddr = NULL;
-#endif
 
   if (stat (priv->full_path, &st) < 0) {
     g_message ("No existing settings file, using default settings");
     goto cleanup;
   }
-
-#ifdef HAVE_MMAP
-  fd = open (priv->full_path, O_RDONLY, 0);
-  if (fd < 0)
-    goto cleanup;
-
-  maddr = mmap (NULL, st.st_size, PROT_READ, MAP_FILE | MAP_SHARED, fd, 0);
-  if (maddr)
-    file_contents = maddr;
-#endif
 
   if (!file_contents && !g_file_get_contents (priv->full_path, &file_contents, NULL, &err)) {
     if (err) {
@@ -284,14 +270,6 @@ load_settings (XfburnSettingsPrivate *priv)
 cleanup:
   if (gpcontext)
     g_markup_parse_context_free (gpcontext);
-#ifdef HAVE_MMAP
-  if (maddr) {
-    munmap (maddr, st.st_size);
-    file_contents = NULL;
-  }
-  if (fd > -1)
-    close (fd);
-#endif
   if (file_contents)
     g_free (file_contents);
 }

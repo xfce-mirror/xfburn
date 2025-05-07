@@ -153,7 +153,6 @@ static const gchar *errormsg_missing_plugin = N_("%s is missing.\n"
 /* class declaration */
 /*********************/
 static GObject *parent_class = NULL;
-//static guint signals[LAST_SIGNAL];
 
 G_DEFINE_TYPE_EXTENDED(
   XfburnTranscoderGst,
@@ -172,13 +171,6 @@ xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass)
   parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_transcoder_gst_finalize;
-
-/*
-  signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_TRANSCODER_GST, G_SIGNAL_ACTION,
-                                          G_STRUCT_OFFSET (XfburnTranscoderGstClass, volume_changed),
-                                          NULL, NULL, g_cclosure_marshal_VOID__VOID,
-                                          G_TYPE_NONE, 0);
-*/
 }
 
 static void
@@ -256,7 +248,6 @@ create_pipeline (XfburnTranscoderGst *trans)
                   id       = gst_element_factory_make ("identity",      "debugging-identity");
 #endif
   priv->sink    = sink     = gst_element_factory_make ("fdsink",        "audio-output");
-  //priv->sink    = sink     = gst_element_factory_make ("fakesink",        "audio-output");
 
   if (!pipeline || !source || !decoder || !resample || !conv1 || !conv2 || !sink) {
     g_warning ("A pipeline element could not be created");
@@ -670,10 +661,6 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
   switch (result) {
     case GST_DISCOVERER_MISSING_PLUGINS:
       g_clear_error (error);
-      /*
-      g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_DISCOVERER,
-                  _("%s: %s"), atrack->inputfile, get_discoverer_required_plugins_message (info));
-      */
       // the message is pretty useless, so print it only on the console, and create our own instead.
       DBG ("%s", get_discoverer_required_plugins_message (info));
       g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_MISSING_PLUGIN,
@@ -688,7 +675,6 @@ get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **err
       gst_discoverer_info_unref(info);
       DBG ("gst discoverer said %d", result);
       /* TODO: improve error messages */
-      //recreate_pipeline (tgst);
       if (error && *error == NULL)
         g_set_error (error, XFBURN_ERROR, XFBURN_ERROR_GST_DISCOVERER,
                      _("An error occurred while identifying '%s' with gstreamer"), atrack->inputfile);
@@ -740,8 +726,6 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 
   atrack->fd = pipe_fd[0];
 
-  //DBG ("track %d fd = %d", atrack->pos, atrack->fd);
-
   atrack->src = burn_fd_source_new (atrack->fd, -1 , gtrack->size);
   if (atrack->src == NULL) {
     g_warning ("Could not create burn_source from %s.", atrack->inputfile);
@@ -777,9 +761,6 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 
   gtrack->fd_in = pipe_fd[1];
 
-  /* FIXME: I don't think this will be necessary with gstreamer, or will it be? */
-  //burn_track_set_byte_swap (track, TRUE);
-
 #ifdef DEBUG_NULL_DEVICE
   /* stdio:/dev/null only works with MODE1 */
   burn_track_define_data (track, 0, 0, 1, BURN_MODE1);
@@ -807,7 +788,6 @@ prepare (XfburnTranscoder *trans, GError **error)
   priv->state = XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START;
   ret = transcode_next_track (gst, error);
 
-  //DBG ("Waiting for start signal");
   end_time = g_get_monotonic_time () + SIGNAL_WAIT_TIMEOUT_MS * G_TIME_SPAN_MILLISECOND;
   while (!priv->gst_done)
     if (!g_cond_wait_until (&priv->gst_cond, &priv->gst_mutex, end_time)) {
@@ -816,7 +796,6 @@ prepare (XfburnTranscoder *trans, GError **error)
                   _("Gstreamer did not want to start transcoding (timed out)"));
       return FALSE;
     }
-  //DBG ("Got the start signal");
 
   priv->state = XFBURN_TRANSCODER_GST_STATE_TRANSCODING;
 
@@ -864,12 +843,6 @@ finish (XfburnTranscoder *trans)
   XfburnTranscoderGst *gst = XFBURN_TRANSCODER_GST (trans);
   XfburnTranscoderGstPrivate *priv= XFBURN_TRANSCODER_GST_GET_PRIVATE (gst);
 
-  /*
-  GstState state;
-  GstClock *clock;
-  GstClockTime tv;
-  */
-
 #if DEBUG_GST > 0
   DBG ("Done transcoding");
 #endif
@@ -877,28 +850,6 @@ finish (XfburnTranscoder *trans)
 
   priv->curr_track = NULL;
 
-  /*
-   * gstreamer doesn't even want to work with us again after getting back into
-   * the ready state. Lame. So we just recreate the pipeline.
-   * Which doesn't help either. Oh Well.
-   * FIXME: how to get gstreamer to accept state changes again after an aborted burn run?
-  clock = gst_element_get_clock (priv->pipeline);
-  tv = gst_clock_get_time (clock);
-  g_object_unref (clock);
-  tv += STATE_CHANGE_TIMEOUT_NANOS;
-
-  if (gst_element_get_state (priv->pipeline, &state, NULL, tv) == GST_STATE_CHANGE_FAILURE) {
-    DBG ("Could not query pipeline state, recreating it");
-    recreate_pipeline (gst);
-    return;
-  }
-
-  if ((state != GST_STATE_READY) &&
-      (gst_element_set_state (priv->pipeline, GST_STATE_NULL) == GST_STATE_CHANGE_FAILURE)) {
-    DBG ("Could not make pipeline ready, recreating it");
-    recreate_pipeline (gst);
-  }
-  */
   recreate_pipeline (gst);
 
   g_mutex_unlock (&priv->gst_mutex);

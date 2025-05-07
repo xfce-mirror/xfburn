@@ -194,14 +194,6 @@ main (int argc, char **argv)
   XfburnTranscoder *transcoder;
   XfburnDeviceList *devlist;
 
-#ifdef DEBUG
-  /* I have to disable this until GtkTreeView gets fixed,
-   * and doesn't complain anymore when a DnD doesn't add any
-   * rows
-  g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
-   */
-#endif
-
   g_set_application_name (_("Xfburn"));
 
   gdk_threads_init ();
