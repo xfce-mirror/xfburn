@@ -30,19 +30,11 @@
 
 static void xfburn_transcoder_base_init (XfburnTranscoderInterface * iface);
 
-/*
-enum {
-  LAST_SIGNAL,
-};
-*/
-
 XfburnTranscoder *transcoder = NULL;
 
 /*************************/
 /* interface declaration */
 /*************************/
-//static guint signals[LAST_SIGNAL];
-
 GType
 xfburn_transcoder_get_type (void)
 {
@@ -75,12 +67,6 @@ xfburn_transcoder_base_init (XfburnTranscoderInterface * iface)
   static gboolean initialized = FALSE;
 
   if (!initialized) {
-    /*
-    signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_TRANSCODER, G_SIGNAL_ACTION,
-                                            G_STRUCT_OFFSET (XfburnTranscoderClass, volume_changed),
-                                            NULL, NULL, g_cclosure_marshal_VOID__VOID,
-                                            G_TYPE_NONE, 0);
-    */
     initialized = TRUE;
   }
 }
@@ -208,8 +194,6 @@ xfburn_transcoder_free_burning_resources (XfburnTranscoder *trans, XfburnAudioTr
 void
 xfburn_transcoder_free_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack)
 {
-  //XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
-
   g_free (atrack->inputfile);
 
   if (atrack->artist)

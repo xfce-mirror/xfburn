@@ -235,8 +235,6 @@ cb_dialog_response (XfburnCopyDvdDialog * dialog, gint response_id, XfburnCopyDv
     if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso))) {
       command = g_strconcat ("readcd dev=", device_read->node_path, " f=",
                              gtk_entry_get_text (GTK_ENTRY (priv->entry_path_iso)), NULL);
-
-      //      dialog_progress = xfburn_create_iso_progress_dialog_new ();
     } else {
       gint speed;
       gchar *source_device = NULL;
@@ -256,8 +254,6 @@ cb_dialog_response (XfburnCopyDvdDialog * dialog, gint response_id, XfburnCopyDv
                              device_burn != device_read && gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_onthefly)) ? " --on-the-fly" : "",
                              " --datafile /var/tmp/xfburn.bin", NULL);
       g_free (source_device);
-
-      //      dialog_progress = xfburn_copy_cd_progress_dialog_new ();
     }
 
     gtk_window_set_transient_for (GTK_WINDOW (dialog_progress), gtk_window_get_transient_for (GTK_WINDOW (dialog)));

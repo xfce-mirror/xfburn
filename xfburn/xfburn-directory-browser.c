@@ -92,7 +92,6 @@ xfburn_directory_browser_init (XfburnDirectoryBrowser * browser)
                                    directory_tree_sortfunc, NULL, NULL);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DIRECTORY_BROWSER_COLUMN_FILE, GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (browser), GTK_TREE_MODEL (model));
-  // gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (browser), TRUE);
 
   column_file = gtk_tree_view_column_new ();
   gtk_tree_view_column_set_title (column_file, _("File"));
@@ -242,12 +241,6 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
     }
 
     full_path = g_build_filename (path, dir_entry, NULL);
-#if 0
-    if (g_file_test (full_path, G_FILE_TEST_IS_SYMLINK)) {
-      g_free (full_path);
-      continue;
-    }
-#endif
 
     if (stat (full_path, &s) == 0) {
       gchar *humansize;

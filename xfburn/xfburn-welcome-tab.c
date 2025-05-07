@@ -140,8 +140,6 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
 static void
 xfburn_welcome_tab_finalize (GObject * object)
 {
-  //XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (object);
-
   G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 

@@ -33,7 +33,6 @@ G_BEGIN_DECLS
 #define XFBURN_TYPE_TRANSCODER         (xfburn_transcoder_get_type ())
 #define XFBURN_TRANSCODER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoder))
 #define XFBURN_IS_TRANSCODER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_TRANSCODER))
-//#define XFBURN_IS_TRANSCODER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_TRANSCODER))
 #define XFBURN_TRANSCODER_GET_INTERFACE(o) (G_TYPE_INSTANCE_GET_INTERFACE (((gpointer) o), XFBURN_TYPE_TRANSCODER, XfburnTranscoderInterface))
 
 #define XFBURN_AUDIO_TRACK_DELETE_DATA(atrack) { g_free (atrack->data); atrack->data = NULL; }

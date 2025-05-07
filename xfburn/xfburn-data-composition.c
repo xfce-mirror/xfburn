@@ -336,7 +336,6 @@ xfburn_data_composition_init (XfburnDataComposition * composition)
                                    directory_tree_sortfunc, NULL, NULL);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model), DATA_COMPOSITION_COLUMN_CONTENT, GTK_SORT_ASCENDING);
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->content), GTK_TREE_MODEL (model));
-  // gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (priv->content), TRUE);
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->content));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
   gtk_widget_show (priv->content);
@@ -1006,19 +1005,6 @@ static void
 set_modified (XfburnDataCompositionPrivate *priv)
 {
   if (!(priv->modified)) {
-    /*
-    XfburnMainWindow *mainwin;
-    GtkUIManager *ui_manager;
-    GtkActionGroup *action_group;
-
-    mainwin = xfburn_main_window_get_instance ();
-    ui_manager = xfburn_main_window_get_ui_manager (mainwin);
-
-    action_group = (GtkActionGroup *) gtk_ui_manager_get_action_groups (ui_manager)->data;
-
-    action = gtk_action_group_get_action (action_group, "save-composition");
-    gtk_action_set_sensitive (GTK_ACTION (action), TRUE);
-    */
     priv->modified = TRUE;
   }
 }
