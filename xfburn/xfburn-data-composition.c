@@ -57,6 +57,7 @@
 #include "xfburn-main-window.h"
 #include "xfburn-utils.h"
 #include "xfburn-settings.h"
+#include "xfburn-thread-wrappers.h"
 #include "xfburn-main.h"
 
 #define XFBURN_DATA_COMPOSITION_GET_PRIVATE(obj) (xfburn_data_composition_get_instance_private (XFBURN_DATA_COMPOSITION (obj)))
@@ -1110,17 +1111,18 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
     } else {
       tree_path = gtk_tree_path_new_first ();
     }
+    gdk_threads_leave ();
 
     if (file_exists_on_same_level (model, tree_path, FALSE, name)) {
+      gdk_threads_enter ();
       xfce_dialog_show_error (NULL, NULL, _("A file with the same name is already present in the composition."));
-
-      gtk_tree_path_free (tree_path);
       gdk_threads_leave ();
+
+      safe_gtk_tree_path_free (tree_path);
       g_free (parent);
       return FALSE;
     }
-    gtk_tree_path_free (tree_path);
-    gdk_threads_leave ();
+    safe_gtk_tree_path_free (tree_path);
 
     /* new directory */
     if (S_ISDIR (s.st_mode) && !S_ISLNK (s.st_mode)) {

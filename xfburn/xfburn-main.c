@@ -205,7 +205,6 @@ main (int argc, char **argv)
   g_set_application_name (_("Xfburn"));
 
   gdk_threads_init ();
-  gdk_threads_enter ();
 
   xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
@@ -213,7 +212,6 @@ main (int argc, char **argv)
     if (error != NULL) {
       g_print (_("%s: %s\nTry %s --help to see a full list of available command line options.\n"), PACKAGE, error->message, PACKAGE_NAME);
       g_error_free (error);
-      gdk_threads_leave ();
       return EXIT_FAILURE;
     }
   }
@@ -221,7 +219,6 @@ main (int argc, char **argv)
   if (!burn_initialize ()) {
     g_critical ("Unable to initialize libburn");
     xfce_dialog_show_error (NULL, NULL, _("Unable to initialize the burning backend."));
-    gdk_threads_leave ();
     return EXIT_FAILURE;
   }
 
@@ -229,7 +226,6 @@ main (int argc, char **argv)
   if (!gst_init_check (&argc, &argv, &error)) {
     g_critical ("Failed to initialize gstreamer!");
     /* I'm assuming this pretty much never happens. If it does, we should make this a soft failure and fall back to basic */
-    gdk_threads_leave ();
     burn_finish ();
     return EXIT_FAILURE;
   }
@@ -265,7 +261,6 @@ main (int argc, char **argv)
 
   if (transcoder_selection && strcmp (transcoder_selection, "list") == 0) {
     print_available_transcoders();
-    gdk_threads_leave ();
     burn_finish ();
     return EXIT_SUCCESS;
   }
@@ -278,7 +273,6 @@ main (int argc, char **argv)
   error_msg = xfburn_udev_manager_create_global ();
   if (error_msg) {
     xfce_dialog_show_error (NULL, NULL, "%s", error_msg);
-    gdk_threads_leave ();
     burn_finish ();
     return EXIT_FAILURE;
   } else {
@@ -323,7 +317,6 @@ main (int argc, char **argv)
              transcoder_selection);
     g_print ("\n");
     print_available_transcoders();
-    gdk_threads_leave ();
     burn_finish ();
     return EXIT_FAILURE;
   }
@@ -418,8 +411,6 @@ main (int argc, char **argv)
   xfburn_settings_free ();
 
   burn_finish ();
-
-  gdk_threads_leave ();
 
   return EXIT_SUCCESS;
 }
