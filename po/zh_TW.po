@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-10-26 00:50+0200\n"
+"POT-Creation-Date: 2025-05-11 12:48+0200\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2019-2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/xfce/xfce-apps/language/zh_TW/)\n"
@@ -60,11 +60,11 @@ msgstr "CD 成功複製完成。"
 msgid "Data composition"
 msgstr "燒錄資料"
 
-#: xfburn/xfburn-adding-progress.c:83
+#: xfburn/xfburn-adding-progress.c:78
 msgid "Adding files to the composition"
 msgstr "將檔案加入燒錄清單中"
 
-#: xfburn/xfburn-adding-progress.c:97
+#: xfburn/xfburn-adding-progress.c:92
 msgid "Cancel"
 msgstr "取消"
 
@@ -92,275 +92,270 @@ msgstr "快速去除格式"
 msgid "Full Deformat (slow)"
 msgstr "完整去除格式 (慢)"
 
-#: xfburn/xfburn-blank-dialog.c:119
+#: xfburn/xfburn-blank-dialog.c:118
 msgid "Eject the disc"
 msgstr "退出光碟片"
 
-#: xfburn/xfburn-blank-dialog.c:120
+#: xfburn/xfburn-blank-dialog.c:119
 msgid "Default value for eject checkbox"
 msgstr "退出勾選方框的預設值"
 
-#: xfburn/xfburn-blank-dialog.c:166
+#: xfburn/xfburn-blank-dialog.c:165
 msgid "Blank Disc"
 msgstr "抹除光碟"
 
-#: xfburn/xfburn-blank-dialog.c:175
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:158
-#: xfburn/xfburn-burn-image-dialog.c:178 xfburn/xfburn-copy-cd-dialog.c:107
+#: xfburn/xfburn-blank-dialog.c:174
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:134
+#: xfburn/xfburn-burn-image-dialog.c:182 xfburn/xfburn-copy-cd-dialog.c:107
 #: xfburn/xfburn-copy-dvd-dialog.c:104
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:123
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:122
 msgid "Burning device"
 msgstr "燒錄裝置"
 
-#: xfburn/xfburn-blank-dialog.c:188 xfburn/xfburn-device-box.c:158
+#: xfburn/xfburn-blank-dialog.c:187 xfburn/xfburn-device-box.c:155
 msgid "Blank mode"
 msgstr "抹除模式"
 
-#: xfburn/xfburn-blank-dialog.c:196
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:190
-#: xfburn/xfburn-burn-image-dialog.c:186 xfburn/xfburn-copy-cd-dialog.c:115
+#: xfburn/xfburn-blank-dialog.c:195
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:166
+#: xfburn/xfburn-burn-image-dialog.c:190 xfburn/xfburn-copy-cd-dialog.c:115
 #: xfburn/xfburn-copy-dvd-dialog.c:112
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:157
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:130
 msgid "Options"
 msgstr "選項"
 
-#: xfburn/xfburn-blank-dialog.c:200
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:194
-#: xfburn/xfburn-burn-image-dialog.c:190 xfburn/xfburn-copy-cd-dialog.c:119
+#: xfburn/xfburn-blank-dialog.c:199
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:170
+#: xfburn/xfburn-burn-image-dialog.c:194 xfburn/xfburn-copy-cd-dialog.c:119
 #: xfburn/xfburn-copy-dvd-dialog.c:116
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:161
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:134
 msgid "E_ject disk"
 msgstr "退出光碟片(_J)"
 
 #. action buttons
-#. align = gtk_alignment_new (0, 0, 0, 0);
-#. gtk_alignment_set_padding (GTK_ALIGNMENT (align), 0, 0, BORDER * 4, 0);
-#. gtk_widget_show (align);
-#. gtk_box_pack_start (GTK_BOX (vbox), align, FALSE, FALSE, 0);
-#. action buttons
-#: xfburn/xfburn-blank-dialog.c:206
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:247
-#: xfburn/xfburn-burn-image-dialog.c:215 xfburn/xfburn-copy-cd-dialog.c:165
+#: xfburn/xfburn-blank-dialog.c:205
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:218
+#: xfburn/xfburn-burn-image-dialog.c:219 xfburn/xfburn-copy-cd-dialog.c:165
 #: xfburn/xfburn-copy-dvd-dialog.c:162 xfburn/xfburn-utils.c:132
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:182
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:149
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: xfburn/xfburn-blank-dialog.c:210
+#: xfburn/xfburn-blank-dialog.c:209
 msgid "_Blank"
 msgstr "抹除(_B)"
 
 #. blanking can only be performed on blank discs, format and deformat are
 #. allowed to be blank ones
-#: xfburn/xfburn-blank-dialog.c:326
+#: xfburn/xfburn-blank-dialog.c:309
 msgid "The inserted disc is already blank."
 msgstr "放入的光碟片已被抹除。"
 
 #. these ones we can blank
-#: xfburn/xfburn-blank-dialog.c:332
+#: xfburn/xfburn-blank-dialog.c:315
 msgid "Ready"
 msgstr "準備就緒"
 
-#: xfburn/xfburn-blank-dialog.c:335
+#: xfburn/xfburn-blank-dialog.c:318
 msgid "No disc detected in the drive."
 msgstr "裝置中未偵測到光碟片。"
 
-#: xfburn/xfburn-blank-dialog.c:344
+#: xfburn/xfburn-blank-dialog.c:325
 msgid "Disc is not erasable."
 msgstr "光碟片不可抹除。"
 
-#: xfburn/xfburn-blank-dialog.c:384
+#: xfburn/xfburn-blank-dialog.c:359
 msgid "Blanking disc..."
 msgstr "抹除光碟中..."
 
-#: xfburn/xfburn-blank-dialog.c:411
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:479
-#: xfburn/xfburn-perform-burn.c:480
+#: xfburn/xfburn-blank-dialog.c:385
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:389
+#: xfburn/xfburn-perform-burn.c:467
 msgid "Done"
 msgstr "完成"
 
-#: xfburn/xfburn-blank-dialog.c:414 xfburn/xfburn-perform-burn.c:487
-#: xfburn/xfburn-progress-dialog.c:637
+#: xfburn/xfburn-blank-dialog.c:388 xfburn/xfburn-perform-burn.c:474
+#: xfburn/xfburn-progress-dialog.c:635
 msgid "Failure"
 msgstr "失敗"
 
-#: xfburn/xfburn-blank-dialog.c:431
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:585
-#: xfburn/xfburn-burn-image-dialog.c:389 xfburn/xfburn-burn-image-dialog.c:567
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:359
+#: xfburn/xfburn-blank-dialog.c:405
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:491
+#: xfburn/xfburn-burn-image-dialog.c:396 xfburn/xfburn-burn-image-dialog.c:574
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:321
 msgid "Unable to grab the drive."
 msgstr "無法抓取裝置。"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:128
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:104
 msgid "Image"
 msgstr "映像檔"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:130
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:106
 msgid "Show volume name"
 msgstr "顯示儲存體名稱"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:130
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:106
 msgid "Show a text entry for the name of the volume"
 msgstr "以文字條目顯示儲存體的的名稱"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:148
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:113
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:124
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:112
 msgid "Burn Composition"
 msgstr "燒錄清單資料"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:169
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:145
 msgid "Composition name"
 msgstr "燒錄清單名稱"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:174
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:150
 msgid "<small>Would you like to change the default composition name?</small>"
 msgstr "<small>想要變更預設的燒錄清單名稱嗎？</small>"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:199
-#: xfburn/xfburn-burn-image-dialog.c:195 xfburn/xfburn-copy-cd-dialog.c:124
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:175
+#: xfburn/xfburn-burn-image-dialog.c:199 xfburn/xfburn-copy-cd-dialog.c:124
 #: xfburn/xfburn-copy-dvd-dialog.c:121
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:166
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:139
 msgid "_Dummy write"
 msgstr "模擬燒錄(_D)"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:203
-#: xfburn/xfburn-burn-image-dialog.c:199
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:170
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:179
+#: xfburn/xfburn-burn-image-dialog.c:203
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:143
 msgid "Burn_Free"
 msgstr "防燒壞(_F)"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:208
-#: xfburn/xfburn-burn-image-dialog.c:204
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:184
+#: xfburn/xfburn-burn-image-dialog.c:208
 msgid "Stream _Recording"
 msgstr "正在擷取串流(_R)"
 
 #. create ISO ?
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:214
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:190
 #: xfburn/xfburn-copy-cd-dialog.c:133 xfburn/xfburn-copy-dvd-dialog.c:130
 msgid "Only create _ISO"
 msgstr "只建立 ISO 檔(_I)"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:251
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:186
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:222
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:153
 msgid "_Burn Composition"
 msgstr "燒錄清單資料(_B)"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:437
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:347
 #, c-format
 msgid "Could not create destination ISO file: %s"
 msgstr "無法建立目的 ISO 檔：%s"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:444
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:354
 msgid "Writing ISO..."
 msgstr "正在寫入 ISO 檔..."
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:461
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:371
 #, c-format
 msgid "An error occurred while writing ISO: %s"
 msgstr "寫入 ISO 映像檔時發生錯誤：%s"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:517
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:523
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:427
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:433
 msgid "An error occurred in the burn backend."
 msgstr "燒錄後端程式遭遇錯誤。"
 
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:546
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:290
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:452
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:252
 msgid "The write mode is not supported currently."
 msgstr "目前不支援該寫入模式。"
 
 #. could not create source
-#: xfburn/xfburn-burn-data-composition-base-dialog.c:629
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:532
 msgid "Could not create ISO source structure."
 msgstr "無法建立 ISO 來源結構。"
 
-#: xfburn/xfburn-burn-image-dialog.c:135
+#: xfburn/xfburn-burn-image-dialog.c:139
 msgid "Burn image"
 msgstr "燒錄映像檔"
 
 #. file
-#: xfburn/xfburn-burn-image-dialog.c:140 xfburn/xfburn-burn-image-dialog.c:163
+#: xfburn/xfburn-burn-image-dialog.c:144 xfburn/xfburn-burn-image-dialog.c:167
 msgid "Image to burn"
 msgstr "要燒錄的映像檔"
 
-#: xfburn/xfburn-burn-image-dialog.c:144
+#: xfburn/xfburn-burn-image-dialog.c:148
 msgid "All files"
 msgstr "所有檔案"
 
-#: xfburn/xfburn-burn-image-dialog.c:148
+#: xfburn/xfburn-burn-image-dialog.c:152
 msgid "Disc images"
 msgstr "光碟映像檔"
 
-#: xfburn/xfburn-burn-image-dialog.c:209
+#: xfburn/xfburn-burn-image-dialog.c:213
 msgid "_Quit after success"
 msgstr "成功完成後退出(_Q)"
 
-#: xfburn/xfburn-burn-image-dialog.c:219
+#: xfburn/xfburn-burn-image-dialog.c:223
 msgid "_Burn image"
 msgstr "燒錄映像檔(_B)"
 
-#: xfburn/xfburn-burn-image-dialog.c:272
+#: xfburn/xfburn-burn-image-dialog.c:279
 msgid "Burn mode is not currently implemented."
 msgstr "目前尚未能使用該燒錄模式。"
 
-#: xfburn/xfburn-burn-image-dialog.c:323 xfburn/xfburn-burn-image-dialog.c:352
+#: xfburn/xfburn-burn-image-dialog.c:330 xfburn/xfburn-burn-image-dialog.c:359
 msgid "An error occurred in the burn backend"
 msgstr "燒錄後端程式遭遇錯誤"
 
-#: xfburn/xfburn-burn-image-dialog.c:336
+#: xfburn/xfburn-burn-image-dialog.c:343
 msgid "Unable to determine image size."
 msgstr "無法判定映像檔大小。"
 
-#: xfburn/xfburn-burn-image-dialog.c:343
+#: xfburn/xfburn-burn-image-dialog.c:350
 msgid "Cannot open image."
 msgstr "無法開啟映像檔。"
 
-#: xfburn/xfburn-burn-image-dialog.c:380
+#: xfburn/xfburn-burn-image-dialog.c:387
 msgid "Burning image..."
 msgstr "正在燒錄映像檔..."
 
-#: xfburn/xfburn-burn-image-dialog.c:453
+#: xfburn/xfburn-burn-image-dialog.c:460
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
 msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">請選取要燒錄的映像檔</span>"
 
-#: xfburn/xfburn-burn-image-dialog.c:493
+#: xfburn/xfburn-burn-image-dialog.c:500
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
 msgstr "於此寫入模式無法附加資料至多區段光碟 (請改用 TAO 模式)"
 
-#: xfburn/xfburn-burn-image-dialog.c:497
+#: xfburn/xfburn-burn-image-dialog.c:504
 msgid "Closed disc with data detected. Need blank or appendable disc"
 msgstr "偵測到一張已封閉的資料光碟。需要進行抹除或需要可附加資料的光碟"
 
-#: xfburn/xfburn-burn-image-dialog.c:499
+#: xfburn/xfburn-burn-image-dialog.c:506
 msgid "No disc detected in drive"
 msgstr "裝置中未偵測到光碟片"
 
-#: xfburn/xfburn-burn-image-dialog.c:501
+#: xfburn/xfburn-burn-image-dialog.c:508
 msgid "Cannot recognize state of drive and disc"
 msgstr "無法辨別光碟機或光碟片的狀態"
 
-#: xfburn/xfburn-burn-image-dialog.c:513
+#: xfburn/xfburn-burn-image-dialog.c:520
 msgid "The selected image does not fit on the inserted disc"
 msgstr "選擇的映像檔大小超出放入光碟片的容量"
 
-#: xfburn/xfburn-burn-image-dialog.c:517
+#: xfburn/xfburn-burn-image-dialog.c:524
 msgid "Failed to get image size"
 msgstr "無法得知映像檔的大小"
 
-#: xfburn/xfburn-burn-image-dialog.c:546
+#: xfburn/xfburn-burn-image-dialog.c:553
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
 msgstr "請確認選擇的檔案有效，且有合適的許可權以存取。"
 
-#: xfburn/xfburn-compositions-notebook.c:144
+#: xfburn/xfburn-compositions-notebook.c:108
 msgid "Audio composition"
 msgstr "音訊燒錄清單"
 
-#: xfburn/xfburn-compositions-notebook.c:205
+#: xfburn/xfburn-compositions-notebook.c:167
 msgid "Welcome"
 msgstr "歡迎"
 
@@ -410,271 +405,252 @@ msgstr "複製 DVD(_C)"
 msgid "Create ISO from CD"
 msgstr "從 CD 製作 ISO 映像檔"
 
-#: xfburn/xfburn-data-composition.c:310 xfburn/xfburn-utils.c:184
-#: xfburn/xfburn-utils.c:186 xfburn/xfburn-audio-composition.c:330
+#: xfburn/xfburn-data-composition.c:288 xfburn/xfburn-utils.c:184
+#: xfburn/xfburn-utils.c:186 xfburn/xfburn-audio-composition.c:285
 msgid "Add"
 msgstr "加入"
 
-#: xfburn/xfburn-data-composition.c:310 xfburn/xfburn-audio-composition.c:330
+#: xfburn/xfburn-data-composition.c:288 xfburn/xfburn-audio-composition.c:285
 msgid "Add the selected file(s) to the composition"
 msgstr "將所選取的檔案加入燒錄清單"
 
-#: xfburn/xfburn-data-composition.c:312 xfburn-popup-menus.ui:7
+#: xfburn/xfburn-data-composition.c:290 xfburn-popup-menus.ui:7
 msgid "Create directory"
 msgstr "建立目錄"
 
-#: xfburn/xfburn-data-composition.c:312
+#: xfburn/xfburn-data-composition.c:290
 msgid "Add a new directory to the composition"
 msgstr "在此燒錄清單新增目錄"
 
-#: xfburn/xfburn-data-composition.c:317 xfburn/xfburn-audio-composition.c:335
+#: xfburn/xfburn-data-composition.c:295 xfburn/xfburn-audio-composition.c:290
 #: xfburn-popup-menus.ui:17 xfburn-popup-menus.ui:25 xfburn-popup-menus.ui:43
 msgid "Remove"
 msgstr "移除"
 
-#: xfburn/xfburn-data-composition.c:317 xfburn/xfburn-audio-composition.c:335
+#: xfburn/xfburn-data-composition.c:295 xfburn/xfburn-audio-composition.c:290
 msgid "Remove the selected file(s) from the composition"
 msgstr "將所選取的檔案從燒錄清單移除"
 
-#: xfburn/xfburn-data-composition.c:319 xfburn/xfburn-audio-composition.c:337
+#: xfburn/xfburn-data-composition.c:297 xfburn/xfburn-audio-composition.c:292
 msgid "Clear"
 msgstr "清除"
 
-#: xfburn/xfburn-data-composition.c:319 xfburn/xfburn-audio-composition.c:337
+#: xfburn/xfburn-data-composition.c:297 xfburn/xfburn-audio-composition.c:292
 msgid "Clear the content of the composition"
 msgstr "清除燒錄清單的內容"
 
-#: xfburn/xfburn-data-composition.c:330
+#: xfburn/xfburn-data-composition.c:308
 msgid "Volume name :"
 msgstr "儲存體名稱 ："
 
-#: xfburn/xfburn-data-composition.c:364 xfburn.ui:76
+#: xfburn/xfburn-data-composition.c:345 xfburn.ui:76
 msgid "Contents"
 msgstr "目錄"
 
-#: xfburn/xfburn-data-composition.c:379 xfburn/xfburn-directory-browser.c:113
+#: xfburn/xfburn-data-composition.c:360 xfburn/xfburn-directory-browser.c:110
 msgid "Size"
 msgstr "大小"
 
-#: xfburn/xfburn-data-composition.c:382
+#: xfburn/xfburn-data-composition.c:363
 msgid "Local Path"
 msgstr "本機路徑"
 
-#: xfburn/xfburn-data-composition.c:657
+#: xfburn/xfburn-data-composition.c:626
 msgid "You must give a name to the file."
 msgstr "必須賦予檔案名稱。"
 
-#: xfburn/xfburn-data-composition.c:666 xfburn/xfburn-data-composition.c:1124
-#: xfburn/xfburn-audio-composition.c:1138
+#: xfburn/xfburn-data-composition.c:635 xfburn/xfburn-data-composition.c:1080
+#: xfburn/xfburn-audio-composition.c:891
 msgid "A file with the same name is already present in the composition."
 msgstr "本燒錄清單已有相同名稱的檔案。"
 
-#: xfburn/xfburn-data-composition.c:791 xfburn/xfburn-data-composition.c:792
-#: xfburn/xfburn-data-composition.c:794
+#: xfburn/xfburn-data-composition.c:760 xfburn/xfburn-data-composition.c:761
+#: xfburn/xfburn-data-composition.c:763
 msgid "New directory"
 msgstr "新增資料夾"
 
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
-#: xfburn/xfburn-data-composition.c:967
+#: xfburn/xfburn-data-composition.c:936
 #, c-format
 msgid "Data %s~%d"
 msgstr "資料 %s~%d"
 
-#: xfburn/xfburn-data-composition.c:1203
+#: xfburn/xfburn-data-composition.c:1159
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
 msgstr "無法將 %s 加入燒錄清單，因為會超過 iso9660 格式的最大允許檔案大小。"
 
-#: xfburn/xfburn-data-composition.c:1210
+#: xfburn/xfburn-data-composition.c:1166
 #, c-format
 msgid ""
 "%s is larger than what iso9660 level 2 allows. This can be a problem for old"
 " systems or software."
 msgstr "%s 比 iso9660 level 2 標準允許的還大。這可能會對舊版的系統或是軟體造成問題。"
 
-#: xfburn/xfburn-data-composition.c:1294
-#: xfburn/xfburn-audio-composition.c:1310
+#: xfburn/xfburn-data-composition.c:1250
+#: xfburn/xfburn-audio-composition.c:1063
 msgid "Adding home directory"
 msgstr "正在加入家目錄"
 
-#: xfburn/xfburn-data-composition.c:1295
-#: xfburn/xfburn-audio-composition.c:1311
+#: xfburn/xfburn-data-composition.c:1251
+#: xfburn/xfburn-audio-composition.c:1064
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
 msgstr "您正在將您的家目錄加至燒錄清單中。這可能會花上很長的時間，而且容量可能超出一張光碟片的大小。\n\n您確定想繼續嗎？"
 
-#: xfburn/xfburn-data-composition.c:1463
+#: xfburn/xfburn-data-composition.c:1419
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
 msgstr "此資料夾已有名為「%s」的檔案，無法再次加入。"
 
-#: xfburn/xfburn-data-composition.c:1865
+#: xfburn/xfburn-data-composition.c:1821
 #, c-format
 msgid "%s: null pointer"
 msgstr "%s: 空的指針"
 
-#: xfburn/xfburn-data-composition.c:1867
+#: xfburn/xfburn-data-composition.c:1823
 #, c-format
 msgid "%s: out of memory"
 msgstr "%s: 記憶體耗盡"
 
-#: xfburn/xfburn-data-composition.c:1869
+#: xfburn/xfburn-data-composition.c:1825
 #, c-format
 msgid "%s: node name not unique"
 msgstr "%s: 非唯一的節點名稱"
 
-#: xfburn/xfburn-data-composition.c:1871
+#: xfburn/xfburn-data-composition.c:1827
 #, c-format
 msgid "%s: %s (code %X)"
 msgstr "%s: %s (代碼 %X)"
 
 #. The first string is the renamed name, the second one the original name
-#: xfburn/xfburn-data-composition.c:1891
+#: xfburn/xfburn-data-composition.c:1847
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
 msgstr "檔名「%s」重複，原名「%s」"
 
-#: xfburn/xfburn-data-composition.c:1956
+#: xfburn/xfburn-data-composition.c:1912
 msgid "Error(s) occurred while adding files"
 msgstr "新增檔案時發生錯誤"
 
-#: xfburn/xfburn-data-composition.c:1960
+#: xfburn/xfburn-data-composition.c:1916
 msgid "OK"
 msgstr "確定"
 
-#: xfburn/xfburn-device-box.c:142 xfburn/xfburn-device-box.c:143
+#: xfburn/xfburn-device-box.c:139 xfburn/xfburn-device-box.c:140
 msgid "Show writers only"
 msgstr "只顯示燒錄機"
 
-#: xfburn/xfburn-device-box.c:146
+#: xfburn/xfburn-device-box.c:143
 msgid "Show speed selection"
 msgstr "顯示速度選取項"
 
-#: xfburn/xfburn-device-box.c:147
+#: xfburn/xfburn-device-box.c:144
 msgid "Show speed selection combo"
 msgstr "顯示速度選項複合版"
 
-#: xfburn/xfburn-device-box.c:150
+#: xfburn/xfburn-device-box.c:147
 msgid "Show mode selection"
 msgstr "顯示模式選項"
 
-#: xfburn/xfburn-device-box.c:151
+#: xfburn/xfburn-device-box.c:148
 msgid "Show mode selection combo"
 msgstr "顯示模式選項複合版"
 
-#: xfburn/xfburn-device-box.c:154
+#: xfburn/xfburn-device-box.c:151
 msgid "Is it a valid combination"
 msgstr "是有效的組合嗎"
 
-#: xfburn/xfburn-device-box.c:155
+#: xfburn/xfburn-device-box.c:152
 msgid "Is the combination of hardware and disc valid to burn the composition?"
 msgstr "硬體和光碟的組合是否對燒錄清單來說有效？"
 
-#: xfburn/xfburn-device-box.c:159
+#: xfburn/xfburn-device-box.c:156
 msgid "The blank mode shows different disc status messages than regular mode"
 msgstr "抹除模式和正常模式顯示不同的光碟狀態"
 
-#: xfburn/xfburn-device-box.c:217
+#: xfburn/xfburn-device-box.c:207
 msgid "_Speed:"
 msgstr "速度(_S)："
 
-#: xfburn/xfburn-device-box.c:240
+#: xfburn/xfburn-device-box.c:230
 msgid "Write _mode:"
 msgstr "寫入模式(_M)："
 
-#: xfburn/xfburn-device-box.c:350
-msgid "Empty speed list"
-msgstr "空白速度清單"
-
-#: xfburn/xfburn-device-box.c:359
-msgid ""
-"<b>Unable to retrieve the speed list for the drive.</b>\n"
-"\n"
-"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
-"\n"
-"Burning should still work, but if there are problems anyways, please let us know.\n"
-"\n"
-"<i>Thank you!</i>"
-msgstr "<b>無法取得裝置的速度清單。</b>\n\n這是已知的臭蟲。如果您對於修正它有所興趣，請看一下 libburn 函式庫。\n\n燒錄功能應該仍可運作，但如果發生了任何問題請讓我們知道。\n\n<i>感謝您！</i> "
-
-#: xfburn/xfburn-device-box.c:370
-msgid "Continue to _show this notice"
-msgstr "繼續顯示這個提示(_S)"
-
-#: xfburn/xfburn-device-box.c:418
+#: xfburn/xfburn-device-box.c:353
 msgid "default"
 msgstr "預設"
 
-#: xfburn/xfburn-device-box.c:449
+#: xfburn/xfburn-device-box.c:383
 msgid "Max"
 msgstr "最大"
 
-#: xfburn/xfburn-device-box.c:484
+#: xfburn/xfburn-device-box.c:416
 msgid "A full, but erasable disc is in the drive"
 msgstr "在磁碟中一個完整但可抹除的碟片"
 
-#: xfburn/xfburn-device-box.c:485
+#: xfburn/xfburn-device-box.c:417
 msgid ""
 "Do you want to blank the disc, so that it can be used for the upcoming burn "
 "process?"
 msgstr "您想要抹除碟片以供接下來的燒錄動作使用嗎？"
 
-#: xfburn/xfburn-device-box.c:557
+#: xfburn/xfburn-device-box.c:489
 msgid "Drive can't burn on the inserted disc"
 msgstr "裝置無法燒錄放入的光碟片"
 
-#: xfburn/xfburn-device-box.c:566 xfburn/xfburn-device-box.c:612
+#: xfburn/xfburn-device-box.c:495 xfburn/xfburn-device-box.c:541
 msgid "Drive is empty"
 msgstr "裝置是空的"
 
-#: xfburn/xfburn-device-box.c:569
+#: xfburn/xfburn-device-box.c:498
 msgid "Sorry, multisession is not yet supported"
 msgstr "很抱歉，尚未支援多區段功能"
 
-#: xfburn/xfburn-device-box.c:572
+#: xfburn/xfburn-device-box.c:501
 msgid "Inserted disc is full"
 msgstr "放入的光碟片已滿"
 
-#: xfburn/xfburn-device-box.c:575 xfburn/xfburn-device-box.c:618
+#: xfburn/xfburn-device-box.c:504 xfburn/xfburn-device-box.c:547
 msgid "Inserted disc is unsuitable"
 msgstr "放入的光碟片不適當"
 
-#: xfburn/xfburn-device-box.c:578 xfburn/xfburn-device-box.c:621
+#: xfburn/xfburn-device-box.c:507 xfburn/xfburn-device-box.c:550
 msgid "Cannot access drive (it might be in use)"
 msgstr "無法存取裝置 (可能在使用中)"
 
-#: xfburn/xfburn-device-box.c:583 xfburn/xfburn-device-box.c:624
+#: xfburn/xfburn-device-box.c:512 xfburn/xfburn-device-box.c:553
 msgid "Error determining disc"
 msgstr "判斷光碟片時發生錯誤"
 
-#: xfburn/xfburn-device-box.c:604
+#: xfburn/xfburn-device-box.c:533
 msgid "Write-once disc, no blanking possible"
 msgstr "只能燒錄一次的光碟片，無法被抹除"
 
-#: xfburn/xfburn-device-box.c:607
+#: xfburn/xfburn-device-box.c:536
 msgid "DVD+RW does not need blanking"
 msgstr "DVD+RW 不需要抹除"
 
-#: xfburn/xfburn-device-box.c:615
+#: xfburn/xfburn-device-box.c:544
 msgid "Inserted disc is already blank"
 msgstr "放入的光碟片已是空白"
 
-#: xfburn/xfburn-device-box.c:651
+#: xfburn/xfburn-device-box.c:580
 msgid "Automatic"
 msgstr "自動"
 
-#: xfburn/xfburn-device-box.c:658
+#: xfburn/xfburn-device-box.c:587
 msgid "With Track Gaps / Track-At-Once (TAO)"
 msgstr "有軌道間隙／一次ㄧ軌 (TAO)"
 
-#: xfburn/xfburn-device-box.c:665
+#: xfburn/xfburn-device-box.c:594
 msgid "Multi Session / Session-At-Once (SAO)"
 msgstr "多區段／一次ㄧ區段 (SAO)"
 
@@ -699,138 +675,138 @@ msgid "Currently selected device"
 msgstr "目前選取的裝置"
 
 #. globals
-#: xfburn/xfburn-directory-browser.c:52
+#: xfburn/xfburn-directory-browser.c:50
 msgid "Folder"
 msgstr "資料夾"
 
-#: xfburn/xfburn-directory-browser.c:100
+#: xfburn/xfburn-directory-browser.c:97
 msgid "File"
 msgstr "檔案"
 
-#: xfburn/xfburn-directory-browser.c:115
+#: xfburn/xfburn-directory-browser.c:112
 msgid "Type"
 msgstr "類型"
 
-#: xfburn/xfburn-fs-browser.c:96 xfburn/xfburn-fs-browser.c:305
+#: xfburn/xfburn-fs-browser.c:95 xfburn/xfburn-fs-browser.c:304
 msgid "Filesystem"
 msgstr "檔案系統"
 
 #. load the user's home dir
-#: xfburn/xfburn-fs-browser.c:284
+#: xfburn/xfburn-fs-browser.c:283
 #, c-format
 msgid "%s's home"
 msgstr "%s 的家目錄"
 
-#: xfburn/xfburn-udev-manager.c:495
+#: xfburn/xfburn-udev-manager.c:490
 #, c-format
 msgid "Failed to unmount '%s'. Drive cannot be used for burning."
 msgstr "解除掛載「%s」失敗。磁碟無法用於燒錄。"
 
 #. || G_OPTION_FLAG_FILENAME
-#: xfburn/xfburn-main.c:74
+#: xfburn/xfburn-main.c:77
 msgid "Open the burn image dialog, optionally followed by the image filename"
 msgstr "開啟燒錄映像檔對話框，選擇性跟隨映像檔名稱"
 
-#: xfburn/xfburn-main.c:76
+#: xfburn/xfburn-main.c:79
 msgid "Open the blank disc dialog"
 msgstr "開啟空白光碟對話框"
 
-#: xfburn/xfburn-main.c:78
+#: xfburn/xfburn-main.c:81
 msgid ""
 "Start a data composition, optionally followed by files/directories to be "
 "added to the composition"
 msgstr "開始資料合成，選擇性跟隨要新增到合成的檔案／目錄"
 
-#: xfburn/xfburn-main.c:80
+#: xfburn/xfburn-main.c:83
 msgid ""
 "Start an audio composition, optionally followed by files/directories to be "
 "added to the composition"
 msgstr "開始音訊合成，選擇性跟隨要新增到合成的檔案／目錄"
 
-#: xfburn/xfburn-main.c:82
+#: xfburn/xfburn-main.c:85
 msgid ""
 "Select the transcoder, run with --transcoder=list to see the available ones"
 msgstr "選取轉碼器，使用 --transcoder=list 執行以檢視可用的轉碼器"
 
-#: xfburn/xfburn-main.c:84
+#: xfburn/xfburn-main.c:87
 msgid ""
 "Start the file browser in the specified directory, or the current directory "
 "if none is specified (the default is to start in your home directory)"
 msgstr "在指定的目錄（或如果沒有指定的話就是目前的目錄）中開啟檔案瀏覽器（預設為在您的家目錄中啟動）"
 
-#: xfburn/xfburn-main.c:86
+#: xfburn/xfburn-main.c:89
 msgid "Display program version and exit"
 msgstr "顯示程式版本並結束"
 
-#: xfburn/xfburn-main.c:88
+#: xfburn/xfburn-main.c:91
 msgid ""
 "Show main program even when other action is specified on the command line."
 msgstr "即便在指令行上指定了其他動作也要顯示主程式"
 
-#: xfburn/xfburn-main.c:202 xfburn.desktop.in:5
+#: xfburn/xfburn-main.c:197 xfburn.desktop.in:5
 #: org.xfce.xfburn.appdata.xml.in:8
 msgid "Xfburn"
 msgstr "Xfburn"
 
-#: xfburn/xfburn-main.c:211
+#: xfburn/xfburn-main.c:206
 #, c-format
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
 msgstr "%s: %s\n嘗試使用 %s --help 查看可使用的命令列選項.\n"
 
-#: xfburn/xfburn-main.c:220
+#: xfburn/xfburn-main.c:215
 msgid "Unable to initialize the burning backend."
 msgstr "無法初始化燒錄後端程式。"
 
-#: xfburn/xfburn-main.c:294
+#: xfburn/xfburn-main.c:289
 msgid "No burners are currently available"
 msgstr "目前沒有可用的燒錄機"
 
-#: xfburn/xfburn-main.c:296
+#: xfburn/xfburn-main.c:291
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
 msgstr "光碟片可能正在使用而無法存取。\n\n若光碟機中沒有光碟片，請檢查目前的使用者是否有讀取與寫入的存取權。"
 
-#: xfburn/xfburn-main.c:329
+#: xfburn/xfburn-main.c:324
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
 msgstr "無法初始化 %s 轉碼器：%s\n\t(退回基礎實作)"
 
-#: xfburn/xfburn-main.c:372
+#: xfburn/xfburn-main.c:367
 #, c-format
 msgid "Image file '%s' does not exist."
 msgstr "映像檔「%s」不存在。"
 
-#: xfburn/xfburn-main-window.c:241
+#: xfburn/xfburn-main-window.c:196
 msgid "New data composition"
 msgstr "新增資料燒錄清單"
 
-#: xfburn/xfburn-main-window.c:244
+#: xfburn/xfburn-main-window.c:199
 msgid "New audio composition"
 msgstr "新增音訊燒錄清單"
 
-#: xfburn/xfburn-main-window.c:249 xfburn.ui:42
+#: xfburn/xfburn-main-window.c:204 xfburn.ui:42
 msgid "Blank CD-RW"
 msgstr "抹除 CD-RW"
 
-#: xfburn/xfburn-main-window.c:252 xfburn.ui:46
+#: xfburn/xfburn-main-window.c:207 xfburn.ui:46
 msgid "Burn Image"
 msgstr "燒錄映像檔"
 
-#: xfburn/xfburn-main-window.c:257 xfburn.ui:56
+#: xfburn/xfburn-main-window.c:212 xfburn.ui:56
 msgid "Refresh"
 msgstr "重新整理"
 
-#: xfburn/xfburn-main-window.c:257
+#: xfburn/xfburn-main-window.c:212
 msgid "Refresh file list"
 msgstr "重新整理檔案清單"
 
-#: xfburn/xfburn-main-window.c:511
+#: xfburn/xfburn-main-window.c:370
 msgid "Another cd burning GUI"
 msgstr "又一個燒碟光碟的圖像化程式"
 
@@ -850,203 +826,199 @@ msgstr "顯示關閉按鈕"
 msgid "Determine whether the close button is visible"
 msgstr "是否顯示關閉按鈕"
 
-#: xfburn/xfburn-perform-burn.c:103 xfburn/xfburn-perform-burn.c:443
+#: xfburn/xfburn-perform-burn.c:102 xfburn/xfburn-perform-burn.c:430
 msgid "Formatting..."
 msgstr "正在格式化..."
 
-#: xfburn/xfburn-perform-burn.c:269
+#: xfburn/xfburn-perform-burn.c:256
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
 msgstr "在這個寫入模式無法附加資料到多區段光碟 (請改用TAO模式)。"
 
-#: xfburn/xfburn-perform-burn.c:273
+#: xfburn/xfburn-perform-burn.c:260
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
 msgstr "偵測到光碟片已有資料，需要進行抹除或需要可附加資料的光碟。"
 
-#: xfburn/xfburn-perform-burn.c:275
+#: xfburn/xfburn-perform-burn.c:262
 msgid "No disc detected in drive."
 msgstr "裝置中未偵測到光碟片。"
 
-#: xfburn/xfburn-perform-burn.c:278
+#: xfburn/xfburn-perform-burn.c:265
 msgid "Cannot recognize the state of the drive and disc."
 msgstr "無法辨別燒錄機和光碟片的狀態。"
 
-#: xfburn/xfburn-perform-burn.c:285
+#: xfburn/xfburn-perform-burn.c:272
 msgid "Formatting failed."
 msgstr "格式化失敗。"
 
-#: xfburn/xfburn-perform-burn.c:303
+#: xfburn/xfburn-perform-burn.c:290
 msgid "There is not enough space available on the inserted disc."
 msgstr "放入的光碟片空間不足。"
 
-#: xfburn/xfburn-perform-burn.c:346
+#: xfburn/xfburn-perform-burn.c:333
 #, c-format
 msgid "Burning track %2d/%d..."
 msgstr "正在燒錄軌道 %2d/%d..."
 
-#: xfburn/xfburn-perform-burn.c:350 xfburn/xfburn-perform-burn.c:408
+#: xfburn/xfburn-perform-burn.c:337 xfburn/xfburn-perform-burn.c:395
 msgid "Burning composition..."
 msgstr "正在燒錄清單資料..."
 
-#: xfburn/xfburn-perform-burn.c:377
+#: xfburn/xfburn-perform-burn.c:364
 msgid "standby"
 msgstr "待機"
 
-#: xfburn/xfburn-perform-burn.c:385
+#: xfburn/xfburn-perform-burn.c:372
 msgid "ending"
 msgstr "正結束"
 
-#: xfburn/xfburn-perform-burn.c:388
+#: xfburn/xfburn-perform-burn.c:375
 msgid "failing"
 msgstr "失敗"
 
-#: xfburn/xfburn-perform-burn.c:391
+#: xfburn/xfburn-perform-burn.c:378
 msgid "unused"
 msgstr "未使用"
 
-#: xfburn/xfburn-perform-burn.c:394
+#: xfburn/xfburn-perform-burn.c:381
 msgid "abandoned"
 msgstr "已拋棄"
 
-#: xfburn/xfburn-perform-burn.c:397
+#: xfburn/xfburn-perform-burn.c:384
 msgid "ended"
 msgstr "用完"
 
-#: xfburn/xfburn-perform-burn.c:400
+#: xfburn/xfburn-perform-burn.c:387
 msgid "aborted"
 msgstr "中止"
 
-#: xfburn/xfburn-perform-burn.c:403
+#: xfburn/xfburn-perform-burn.c:390
 msgid "no info"
 msgstr "沒有資訊"
 
-#: xfburn/xfburn-perform-burn.c:413
+#: xfburn/xfburn-perform-burn.c:400
 msgid "Writing Lead-In..."
 msgstr "正在寫入...."
 
-#: xfburn/xfburn-perform-burn.c:419
+#: xfburn/xfburn-perform-burn.c:406
 msgid "Writing Lead-Out..."
 msgstr "正在寫出..."
 
-#: xfburn/xfburn-perform-burn.c:425
+#: xfburn/xfburn-perform-burn.c:412
 msgid "Writing pregap..."
 msgstr "正在寫入預留空隙..."
 
-#: xfburn/xfburn-perform-burn.c:431
+#: xfburn/xfburn-perform-burn.c:418
 msgid "Closing track..."
 msgstr "正在關閉軌道..."
 
-#: xfburn/xfburn-perform-burn.c:437
+#: xfburn/xfburn-perform-burn.c:424
 msgid "Closing session..."
 msgstr "正在關閉區段..."
 
-#: xfburn/xfburn-perform-burn.c:456
+#: xfburn/xfburn-perform-burn.c:443
 msgid "see console"
 msgstr "查看主控臺"
 
-#: xfburn/xfburn-perform-burn.c:484
+#: xfburn/xfburn-perform-burn.c:471
 msgid "User Aborted"
 msgstr "由使用者中止"
 
-#: xfburn/xfburn-preferences-dialog.c:117
+#: xfburn/xfburn-preferences-dialog.c:113
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: xfburn/xfburn-preferences-dialog.c:118
+#: xfburn/xfburn-preferences-dialog.c:114
 msgid "Tune how Xfburn behaves"
 msgstr "調整 Xfburn 的行為"
 
-#: xfburn/xfburn-preferences-dialog.c:163
-#: xfburn/xfburn-preferences-dialog.c:167
+#: xfburn/xfburn-preferences-dialog.c:145
+#: xfburn/xfburn-preferences-dialog.c:149
 msgid "Temporary directory"
 msgstr "暫存資料夾"
 
-#: xfburn/xfburn-preferences-dialog.c:171
+#: xfburn/xfburn-preferences-dialog.c:153
 msgid "_Clean temporary directory on exit"
 msgstr "結束時清除暫存資料夾(_C)"
 
-#: xfburn/xfburn-preferences-dialog.c:178
+#: xfburn/xfburn-preferences-dialog.c:160
 msgid "File browser"
 msgstr "檔案瀏覽器"
 
-#: xfburn/xfburn-preferences-dialog.c:182
+#: xfburn/xfburn-preferences-dialog.c:164
 msgid "Show _hidden files"
 msgstr "顯示隱藏檔案(_H)"
 
-#: xfburn/xfburn-preferences-dialog.c:187
+#: xfburn/xfburn-preferences-dialog.c:169
 msgid "Show human_readable filesizes"
 msgstr "以容易理解的方式顯示檔案大小(_R)"
 
-#: xfburn/xfburn-preferences-dialog.c:197
-#: xfburn/xfburn-preferences-dialog.c:208
+#: xfburn/xfburn-preferences-dialog.c:179
+#: xfburn/xfburn-preferences-dialog.c:190
 msgid "General"
 msgstr "一般"
 
-#: xfburn/xfburn-preferences-dialog.c:212
-#: xfburn/xfburn-preferences-dialog.c:295
+#: xfburn/xfburn-preferences-dialog.c:194
+#: xfburn/xfburn-preferences-dialog.c:276
 msgid "Devices"
 msgstr "裝置"
 
-#: xfburn/xfburn-preferences-dialog.c:221
+#: xfburn/xfburn-preferences-dialog.c:203
 msgid "Detected devices"
 msgstr "偵測到的裝置"
 
-#: xfburn/xfburn-preferences-dialog.c:243
+#: xfburn/xfburn-preferences-dialog.c:224
 msgid "Name"
 msgstr "名稱"
 
-#: xfburn/xfburn-preferences-dialog.c:256
+#: xfburn/xfburn-preferences-dialog.c:237
 msgid "Revision"
 msgstr "修訂版本"
 
-#: xfburn/xfburn-preferences-dialog.c:258
+#: xfburn/xfburn-preferences-dialog.c:239
 msgid "Node"
 msgstr "節點"
 
-#: xfburn/xfburn-preferences-dialog.c:260
+#: xfburn/xfburn-preferences-dialog.c:241
 msgid "Write CD-R"
 msgstr "寫入 CD-R"
 
-#: xfburn/xfburn-preferences-dialog.c:262
+#: xfburn/xfburn-preferences-dialog.c:243
 msgid "Write CD-RW"
 msgstr "寫入 CD-RW"
 
-#: xfburn/xfburn-preferences-dialog.c:265
+#: xfburn/xfburn-preferences-dialog.c:246
 msgid "Write DVD-R"
 msgstr "寫入 DVD-R"
 
-#: xfburn/xfburn-preferences-dialog.c:268
+#: xfburn/xfburn-preferences-dialog.c:249
 msgid "Write DVD-RAM"
 msgstr "寫入 DVD-RAM"
 
-#: xfburn/xfburn-preferences-dialog.c:271
+#: xfburn/xfburn-preferences-dialog.c:252
 msgid "Write Blu-ray"
 msgstr "寫入 Blu-ray"
 
-#: xfburn/xfburn-preferences-dialog.c:279
+#: xfburn/xfburn-preferences-dialog.c:260
 msgid "Sc_an for devices"
 msgstr "掃描裝置(_A)"
 
-#: xfburn/xfburn-preferences-dialog.c:306
-msgid "Show warning on _empty speed list"
-msgstr "偵測不到速度清單時顯示警告(_E)"
-
-#: xfburn/xfburn-preferences-dialog.c:315
+#: xfburn/xfburn-preferences-dialog.c:286
 msgid "FIFO buffer size (in kb)"
 msgstr "FIFO 緩衝區大小 (單位為 kb)"
 
-#: xfburn/xfburn-preferences-dialog.c:334
+#: xfburn/xfburn-preferences-dialog.c:305
 msgid "_Close"
 msgstr "關閉(_C)"
 
-#: xfburn/xfburn-preferences-dialog.c:469
+#: xfburn/xfburn-preferences-dialog.c:432
 msgid "Changing this setting only takes full effect after a program restart."
 msgstr "改變這個設定值要在程式重新啟動後才能生效。"
 
 #. label
 #: xfburn/xfburn-progress-dialog.c:168 xfburn/xfburn-progress-dialog.c:172
-#: xfburn/xfburn-progress-dialog.c:527
+#: xfburn/xfburn-progress-dialog.c:525
 msgid "Initializing..."
 msgstr "正在初始化..."
 
@@ -1055,9 +1027,9 @@ msgid "Estimated writing speed:"
 msgstr "概估燒錄速度："
 
 #: xfburn/xfburn-progress-dialog.c:190 xfburn/xfburn-progress-dialog.c:206
-#: xfburn/xfburn-progress-dialog.c:215 xfburn/xfburn-progress-dialog.c:306
-#: xfburn/xfburn-progress-dialog.c:450 xfburn/xfburn-progress-dialog.c:474
-#: xfburn/xfburn-progress-dialog.c:498
+#: xfburn/xfburn-progress-dialog.c:215 xfburn/xfburn-progress-dialog.c:305
+#: xfburn/xfburn-progress-dialog.c:448 xfburn/xfburn-progress-dialog.c:472
+#: xfburn/xfburn-progress-dialog.c:496
 msgid "unknown"
 msgstr "不明"
 
@@ -1078,36 +1050,36 @@ msgstr "停止(_S)"
 msgid "Close"
 msgstr "關閉"
 
-#: xfburn/xfburn-progress-dialog.c:348
+#: xfburn/xfburn-progress-dialog.c:346
 msgid "Are you sure you want to abort?"
 msgstr "您是否確定要中止？"
 
-#: xfburn/xfburn-progress-dialog.c:476
+#: xfburn/xfburn-progress-dialog.c:474
 #, c-format
 msgid "Min. fill was %2d%%"
 msgstr "最小填滿量為 %2d%%"
 
-#: xfburn/xfburn-progress-dialog.c:544
+#: xfburn/xfburn-progress-dialog.c:542
 msgid "Aborted"
 msgstr "中止"
 
-#: xfburn/xfburn-progress-dialog.c:547
+#: xfburn/xfburn-progress-dialog.c:545
 msgid "Formatted."
 msgstr "已格式化。"
 
-#: xfburn/xfburn-progress-dialog.c:556
+#: xfburn/xfburn-progress-dialog.c:554
 msgid "Failed"
 msgstr "失敗"
 
-#: xfburn/xfburn-progress-dialog.c:559
+#: xfburn/xfburn-progress-dialog.c:557
 msgid "Cancelled"
 msgstr "取消"
 
-#: xfburn/xfburn-progress-dialog.c:562
+#: xfburn/xfburn-progress-dialog.c:560
 msgid "Completed"
 msgstr "完成"
 
-#: xfburn/xfburn-progress-dialog.c:600
+#: xfburn/xfburn-progress-dialog.c:598
 msgid "Aborting..."
 msgstr "正在中止..."
 
@@ -1159,51 +1131,43 @@ msgstr "可以在一般立體音響播放的音訊 CD"
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
 #. * the user would understand better
-#: xfburn/xfburn-audio-composition.c:343 xfburn/xfburn-transcoder-gst.c:581
+#: xfburn/xfburn-audio-composition.c:298 xfburn/xfburn-transcoder-gst.c:572
 msgid "gstreamer"
 msgstr "gstreamer"
 
-#: xfburn/xfburn-audio-composition.c:343
+#: xfburn/xfburn-audio-composition.c:298
 msgid "What files can get burned to an audio CD?"
 msgstr "什麼檔案可燒錄至音訊 CD？"
 
-#: xfburn/xfburn-audio-composition.c:374
+#: xfburn/xfburn-audio-composition.c:327
 msgid "Pos"
 msgstr "位置"
 
-#: xfburn/xfburn-audio-composition.c:376
+#: xfburn/xfburn-audio-composition.c:329
 msgid "Length"
 msgstr "長度"
 
-#: xfburn/xfburn-audio-composition.c:382
-msgid "Artist"
-msgstr "藝人"
-
-#: xfburn/xfburn-audio-composition.c:395
-msgid "Title"
-msgstr "標題"
-
-#: xfburn/xfburn-audio-composition.c:406
+#: xfburn/xfburn-audio-composition.c:331
 msgid "Filename"
 msgstr "檔案名稱"
 
-#: xfburn/xfburn-audio-composition.c:557
+#: xfburn/xfburn-audio-composition.c:462
 msgid "Cannot burn audio onto a DVD."
 msgstr "無法將音訊燒錄至 DVD。"
 
-#: xfburn/xfburn-audio-composition.c:1220
+#: xfburn/xfburn-audio-composition.c:973
 msgid "You can only have a maximum of 99 tracks."
 msgstr "最多只能有 99 個軌道。"
 
-#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:273
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:237
 msgid "A problem with the burn backend occurred."
 msgstr "燒錄後端程式遭遇問題。"
 
-#: xfburn/xfburn-disc-usage.c:161
+#: xfburn/xfburn-disc-usage.c:160
 msgid "Proceed to Burn"
 msgstr "繼續燒錄"
 
-#: xfburn/xfburn-disc-usage.c:201
+#: xfburn/xfburn-disc-usage.c:200
 msgid "You are trying to burn more onto the disc than it can hold."
 msgstr "要燒錄的資料大小超過光碟本身的容量！"
 
@@ -1212,11 +1176,11 @@ msgstr "要燒錄的資料大小超過光碟本身的容量！"
 msgid "An error occurred while setting the burning backend up"
 msgstr "在設定燒錄後端時遇到錯誤"
 
-#: xfburn/xfburn-transcoder-basic.c:129
+#: xfburn/xfburn-transcoder-basic.c:121
 msgid "basic"
 msgstr "基本"
 
-#: xfburn/xfburn-transcoder-basic.c:135
+#: xfburn/xfburn-transcoder-basic.c:127
 msgid ""
 "The basic transcoder is built in,\n"
 "and does not require any library.\n"
@@ -1228,27 +1192,27 @@ msgid ""
 "gstreamer support."
 msgstr "基礎轉碼器為內建，\n不需要任何函式庫。\n但它僅能處理未壓縮的\n.wav 檔案。\n若您想從不同類型的音訊檔案\n燒錄清單資料，請在編譯時\n加入 gstreamer 支援。"
 
-#: xfburn/xfburn-transcoder-basic.c:159
+#: xfburn/xfburn-transcoder-basic.c:151
 #, c-format
 msgid "File %s does not have a .wav extension"
 msgstr "%s 檔案沒有 .wav 副檔名"
 
-#: xfburn/xfburn-transcoder-basic.c:164
+#: xfburn/xfburn-transcoder-basic.c:156
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
 msgstr "%s 檔案不包含未壓縮的 PCM 波形音訊"
 
-#: xfburn/xfburn-transcoder-basic.c:170
+#: xfburn/xfburn-transcoder-basic.c:162
 #, c-format
 msgid "Could not stat %s: %s"
 msgstr "無法列出 %s 的資訊：%s"
 
-#: xfburn/xfburn-transcoder-basic.c:202
+#: xfburn/xfburn-transcoder-basic.c:194
 #, c-format
 msgid "Could not open %s."
 msgstr "無法開啟 %s。"
 
-#: xfburn/xfburn-transcoder-basic.c:281
+#: xfburn/xfburn-transcoder-basic.c:273
 #, c-format
 msgid "Could not open %s: %s"
 msgstr "無法開啟 %s：%s"
@@ -1267,11 +1231,11 @@ msgid ""
 "for the necessary plugins.\n"
 msgstr "遺失 %s。\n\n您沒有安裝處理此檔案用的解碼器。\n您很可能需要查看 gst-plugins-* 套件\n來得到需要的插件。\n"
 
-#: xfburn/xfburn-transcoder-gst.c:544
+#: xfburn/xfburn-transcoder-gst.c:535
 msgid "File content has a decoder but is not audio."
 msgstr "檔案內容有解碼器但不是音訊。"
 
-#: xfburn/xfburn-transcoder-gst.c:587
+#: xfburn/xfburn-transcoder-gst.c:578
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1283,37 +1247,37 @@ msgid ""
 "gstreamer plugin packages installed."
 msgstr "Gstreamer 轉碼器使用 gstreamer 函式庫\n來建立音訊燒錄清單資料。\n\n只要正確的插件已安裝，所有必要的音訊檔\n應該都會支援。\n若音訊檔無法被辨識出來，請確認您有安裝\n'good'、'bad'、'ugly' 等 gstreamer 插件之軟體包。"
 
-#: xfburn/xfburn-transcoder-gst.c:627
+#: xfburn/xfburn-transcoder-gst.c:618
 msgid "No information available on which plugin is required."
 msgstr "沒有需要哪個外掛程式的資訊。"
 
-#: xfburn/xfburn-transcoder-gst.c:629
+#: xfburn/xfburn-transcoder-gst.c:620
 msgid "Required plugins: "
 msgstr "需要的外掛程式："
 
-#: xfburn/xfburn-transcoder-gst.c:664 xfburn/xfburn-transcoder-gst.c:694
+#: xfburn/xfburn-transcoder-gst.c:655 xfburn/xfburn-transcoder-gst.c:680
 #, c-format
 msgid "An error occurred while identifying '%s' with gstreamer"
 msgstr "以 gstreamer 識別「%s」時遇到錯誤"
 
-#: xfburn/xfburn-transcoder-gst.c:681
+#: xfburn/xfburn-transcoder-gst.c:668
 msgid "A plugin"
 msgstr "外掛程式"
 
-#: xfburn/xfburn-transcoder-gst.c:816
+#: xfburn/xfburn-transcoder-gst.c:796
 msgid "Gstreamer did not want to start transcoding (timed out)"
 msgstr "Gstreamer 不想開始轉碼 (逾時)"
 
-#: xfburn/xfburn-transcoder-gst.c:851
+#: xfburn/xfburn-transcoder-gst.c:830
 msgid "Failed to change songs while transcoding"
 msgstr "轉碼時不能切換歌曲"
 
-#: xfburn/xfburn-transcoder.c:103 xfburn/xfburn-transcoder.c:113
+#: xfburn/xfburn-transcoder.c:89 xfburn/xfburn-transcoder.c:99
 msgid "none"
 msgstr "無"
 
-#: xfburn/xfburn-transcoder.c:124 xfburn/xfburn-transcoder.c:151
-#: xfburn/xfburn-transcoder.c:163
+#: xfburn/xfburn-transcoder.c:110 xfburn/xfburn-transcoder.c:137
+#: xfburn/xfburn-transcoder.c:149
 msgid "not implemented"
 msgstr "尚未完成"
 
