@@ -89,38 +89,6 @@ xfburn_humanreadable_filesize (guint64 size)
   return ret;
 }
 
-guint64
-xfburn_calc_dirsize (const gchar * dirname)
-{
-  /* copied from GnomeBaker */
-  guint64 size = 0;
-
-  GDir *dir = g_dir_open (dirname, 0, NULL);
-  if (dir != NULL) {
-    const gchar *name = g_dir_read_name (dir);
-    while (name != NULL) {
-      /* build up the full path to the name */
-      gchar *fullname = g_build_filename (dirname, name, NULL);
-      struct stat s;
-
-      if (stat (fullname, &s) == 0) {
-        /* see if the name is actually a directory or a regular file */
-        if (s.st_mode & S_IFDIR)
-          size += (guint64) s.st_size + xfburn_calc_dirsize (fullname);
-        else if (s.st_mode & S_IFREG)
-          size += (guint64) s.st_size;
-      }
-
-      g_free (fullname);
-      name = g_dir_read_name (dir);
-    }
-
-    g_dir_close (dir);
-  }
-
-  return size;
-}
-
 void
 xfburn_browse_for_file (GtkEntry *entry, GtkWindow *parent)
 {
