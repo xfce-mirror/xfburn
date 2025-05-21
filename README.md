@@ -126,11 +126,10 @@ help greatly in debugging the problem. It does require you to build xfburn from
 the sources, and to install gdb. If you can handle that, here are the exact
 instructions:
 
-1) Rebuild xfburn with debugging support - grab the sources, and run (you can update 
-   `-j4` to match your core count):
+1) Rebuild xfburn with debugging support - grab the sources, and run:
    ```
-   $ autoconf
-   $ ./configure && make clean all -j4
+   $ meson setup build
+   $ meson compile -C build
    ```
 2) Enable core dumps, then run xfburn until it hangs, or crashes:
    ```
