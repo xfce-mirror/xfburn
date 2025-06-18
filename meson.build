@@ -1,7 +1,7 @@
 project(
   'xfburn',
   'c',
-  version: '0.8.0',
+  version: '0.8.0-dev',
   license: 'GPL-2.0-or-later',
   meson_version: '>= 0.56.0',
   default_options: [
