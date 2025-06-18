@@ -63,6 +63,8 @@ XfburnDiscLabels datadiscsizes[] = {
   {
   G_GINT64_CONSTANT(0xba7400000), "46.5GB BD"}, /* 50 050 629 632 */
   {
+  G_GINT64_CONSTANT(0x174ea00000), "93GB BD"}, /* 100 103 356 416 */
+  {
   G_GINT64_CONSTANT(0x20000000000), "2TB"}, /* limit of libburn: 2 TiB */
 };
 
