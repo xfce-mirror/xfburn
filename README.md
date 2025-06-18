@@ -1,8 +1,6 @@
 xfburn
 ======
 
-Version 0.7.2, 2024-08-12
-
 [xfburn's website](https://docs.xfce.org/apps/xfburn/start)
 
 An easy to use burning software for the Xfce desktop environment (but of
