@@ -20,10 +20,6 @@
 #ifndef __XFBURN_WELCOME_TAB_H__
 #define __XFBURN_WELCOME_TAB_H__
 
-#ifdef	HAVE_CONFIG_H
-#include <config.h>
-#endif /* !HAVE_CONFIG_H */
-
 #include <gtk/gtk.h>
 
 #include "xfburn-compositions-notebook.h"

@@ -20,10 +20,6 @@
 #ifndef __XFBURN_PERFORM_BURN_H__
 #define __XFBURN_PERFORM_BURN_H__
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <gtk/gtk.h>
 #include <libxfce4ui/libxfce4ui.h>
 

@@ -19,10 +19,6 @@
 #ifndef __XFBURN_MAIN_WINDOW_H__
 #define __XFBURN_MAIN_WINDOW_H__
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <gtk/gtk.h>
 
 #include "xfburn-data-composition.h"

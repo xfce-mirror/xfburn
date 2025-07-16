@@ -19,10 +19,6 @@
 #ifndef __XFBURN_BLANK_DIALOG_H__
 #define __XFBURN_BLANK_DIALOG_H__
 
-#ifdef	HAVE_CONFIG_H
-#include <config.h>
-#endif /* !HAVE_CONFIG_H */
-
 #include "xfburn-global.h"
 
 #include <gtk/gtk.h>

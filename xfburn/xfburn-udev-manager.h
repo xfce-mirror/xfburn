@@ -22,10 +22,6 @@
 
 #ifdef HAVE_GUDEV
 
-#ifdef	HAVE_CONFIG_H
-#include <config.h>
-#endif /* !HAVE_CONFIG_H */
-
 #include <gtk/gtk.h>
 
 #include "xfburn-progress-dialog.h"

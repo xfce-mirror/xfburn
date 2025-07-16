@@ -19,10 +19,6 @@
 #ifndef __XFBURN_AUDIO_TRACK_GST_H__
 #define __XFBURN_AUDIO_TRACK_GST_H__
 
-#ifdef	HAVE_CONFIG_H
-#include <config.h>
-#endif /* !HAVE_CONFIG_H */
-
 #include <glib.h>
 #include <glib-object.h>
 

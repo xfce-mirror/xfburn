@@ -17,10 +17,6 @@
  *
  */
 
-#ifdef	HAVE_CONFIG_H
-#include <config.h>
-#endif /* !HAVE_CONFIG_H */
-
 #include <libxfce4util/libxfce4util.h>
 #include <unistd.h>
 

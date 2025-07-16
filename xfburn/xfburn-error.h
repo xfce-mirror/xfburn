@@ -19,10 +19,6 @@
 #ifndef __XFBURN_ERROR_H__
 #define __XFBURN_ERROR_H__
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <glib.h>
 
 typedef enum
