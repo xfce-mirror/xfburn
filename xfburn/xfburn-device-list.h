@@ -19,10 +19,6 @@
 #ifndef __XFBURN_DEVICE_LIST_H__
 #define __XFBURN_DEVICE_LIST_H__
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <glib-object.h>
 #include <libburn.h>
 

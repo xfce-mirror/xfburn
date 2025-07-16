@@ -19,10 +19,6 @@
 #ifndef __XFBURN_FILE_BROWSER_H__
 #define __XFBURN_FILE_BROWSER_H__
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS

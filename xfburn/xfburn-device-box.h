@@ -19,10 +19,6 @@
 #ifndef __XFBURN_DEVICE_BOX_H__
 #define __XFBURN_DEVICE_BOX_H__
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <gtk/gtk.h>
 
 #include "xfburn-global.h"

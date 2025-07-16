@@ -19,10 +19,6 @@
 #ifndef __XFBURN_COPY_CD_PROGRESS_DIALOG_H__
 #define __XFBURN_COPY_CD_PROGRESS_DIALOG_H__
 
-#ifdef	HAVE_CONFIG_H
-#include <config.h>
-#endif /* !HAVE_CONFIG_H */
-
 #include <gtk/gtk.h>
 
 #include "xfburn-progress-dialog.h"

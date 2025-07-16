@@ -19,10 +19,6 @@
 #ifndef __XFBURN_COMPOSITION_H__
 #define __XFBURN_COMPOSITION_H__
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif /* !HAVE_CONFIG_H */
-
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS

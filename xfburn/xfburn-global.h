@@ -19,10 +19,6 @@
 #ifndef __XFBURN_GLOBAL_H__
 #define __XFBURN_GLOBAL_H__
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #define BORDER 5
 
 #define READCD_CAPACITY N_("Capacity:")
