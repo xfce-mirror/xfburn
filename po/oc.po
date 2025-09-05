@@ -643,11 +643,11 @@ msgstr "Automatic"
 
 #: xfburn/xfburn-device-box.c:587
 msgid "With Track Gaps / Track-At-Once (TAO)"
-msgstr ""
+msgstr "Amb pausas entre las pistas / Track-At-Once (TAO)"
 
 #: xfburn/xfburn-device-box.c:594
 msgid "Multi Session / Session-At-Once (SAO)"
-msgstr ""
+msgstr "Multi Session / Session-At-Once (SAO)"
 
 #: xfburn/xfburn-device-list.c:204 xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
@@ -695,12 +695,12 @@ msgstr "Dorsièr personal de %s"
 #: xfburn/xfburn-udev-manager.c:490
 #, c-format
 msgid "Failed to unmount '%s'. Drive cannot be used for burning."
-msgstr ""
+msgstr "Fracàs del desmontatge de « %s ». Se pòt pas utilizar lo lector per gravar."
 
 #. || G_OPTION_FLAG_FILENAME
 #: xfburn/xfburn-main.c:77
 msgid "Open the burn image dialog, optionally followed by the image filename"
-msgstr ""
+msgstr "Dobrir la fenèstra per gravar un imatge, opcionalament seguida del nom de fichièr de l'imatge"
 
 #: xfburn/xfburn-main.c:79
 msgid "Open the blank disc dialog"
@@ -710,33 +710,33 @@ msgstr "Dobrir la fenèstra dels disques verges"
 msgid ""
 "Start a data composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "Començar un composicion de donadas, opcionalament seguida pels fichièrs/dorsièrs d'apondre a la composicion"
 
 #: xfburn/xfburn-main.c:83
 msgid ""
 "Start an audio composition, optionally followed by files/directories to be "
 "added to the composition"
-msgstr ""
+msgstr "Començar un composicion de àudio, opcionalament seguida pels fichièrs/dorsièrs d'apondre a la composicion"
 
 #: xfburn/xfburn-main.c:85
 msgid ""
 "Select the transcoder, run with --transcoder=list to see the available ones"
-msgstr ""
+msgstr "Seleccionatz lo transcodificador, executatz amb --transcoder=list per veire los que son disponibles"
 
 #: xfburn/xfburn-main.c:87
 msgid ""
 "Start the file browser in the specified directory, or the current directory "
 "if none is specified (the default is to start in your home directory)"
-msgstr ""
+msgstr "Lançar la navegacion pels fichièrs dins un repertòri especificat, o lo repertòri actual se pas es pas especificat (per defaut comença pel repertòri personal)"
 
 #: xfburn/xfburn-main.c:89
 msgid "Display program version and exit"
-msgstr ""
+msgstr "Afichar la version del programa e sortir"
 
 #: xfburn/xfburn-main.c:91
 msgid ""
 "Show main program even when other action is specified on the command line."
-msgstr ""
+msgstr "Afichar lo programa principal amai una autra accion es especificada en linha de comanda."
 
 #: xfburn/xfburn-main.c:197 xfburn.desktop.in:5
 #: org.xfce.xfburn.appdata.xml.in:8
@@ -763,7 +763,7 @@ msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr ""
+msgstr "Benlèu qu'un disc et en cors d'utilizacion e que pòt pas èsser accedit.\n\nSe i a pas cap de disc dins lo lector, verificatz qu'avètz los dreches en lector e escritura sul lector amb vòstre utilizaire."
 
 #: xfburn/xfburn-main.c:324
 #, c-format
@@ -1097,7 +1097,7 @@ msgstr "<big>_Gravar un imatge</big>"
 
 #: xfburn/xfburn-welcome-tab.c:119
 msgid "Burn a prepared composition, i.e. an .ISO file"
-msgstr ""
+msgstr "Gravar una composicion prèsta, p.e. un fichièr .ISO"
 
 #: xfburn/xfburn-welcome-tab.c:124
 msgid "<big>New _Data Composition</big>"
@@ -1169,7 +1169,7 @@ msgstr "Ensajatz de gravar mai de donadas que lo disc ne pòt conténer."
 #. globals
 #: xfburn/xfburn-transcoder-basic.c:69 xfburn/xfburn-transcoder-gst.c:145
 msgid "An error occurred while setting the burning backend up"
-msgstr ""
+msgstr "Una error s'es produsida en parametrant lo motor de gravadura"
 
 #: xfburn/xfburn-transcoder-basic.c:121
 msgid "basic"
@@ -1214,7 +1214,7 @@ msgstr "Impossible de dobrir %s : %s"
 
 #: xfburn/xfburn-transcoder-gst.c:144
 msgid "An error occurred setting gstreamer up for transcoding"
-msgstr ""
+msgstr "Una error s'es produsida en configurar gstreamer per la transcodificacion"
 
 #: xfburn/xfburn-transcoder-gst.c:146
 #, c-format
@@ -1224,11 +1224,11 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr "%s es mancant.\n\nAvètz pas de desencodador installat per aqueste tipe de fichièr.\nLos moduls necessaris se tròban probablament\ndins los paquets gst-plugins-*.\n"
+msgstr "%s es mancant.\n\nAvètz pas de desencodador installat per aqueste tipe de fichièr.\nLos empeutons  necessaris se tròban probablament\ndins los paquets gst-plugins-*.\n"
 
 #: xfburn/xfburn-transcoder-gst.c:535
 msgid "File content has a decoder but is not audio."
-msgstr ""
+msgstr "Lo fichièr a un descodificador mas es pas àudio."
 
 #: xfburn/xfburn-transcoder-gst.c:578
 msgid ""
@@ -1244,20 +1244,20 @@ msgstr "Lo transcodador gstreamer utiliza la bibliotèca GStreamer\nper crear de
 
 #: xfburn/xfburn-transcoder-gst.c:618
 msgid "No information available on which plugin is required."
-msgstr ""
+msgstr "Cap d'informacion pas disponibla sus l'empeuton requerit."
 
 #: xfburn/xfburn-transcoder-gst.c:620
 msgid "Required plugins: "
-msgstr ""
+msgstr "Empeutons requerits :"
 
 #: xfburn/xfburn-transcoder-gst.c:655 xfburn/xfburn-transcoder-gst.c:680
 #, c-format
 msgid "An error occurred while identifying '%s' with gstreamer"
-msgstr ""
+msgstr "Una error s'es producha al moment d’identificar « %s » amb gstreamer"
 
 #: xfburn/xfburn-transcoder-gst.c:668
 msgid "A plugin"
-msgstr ""
+msgstr "Un empeuton"
 
 #: xfburn/xfburn-transcoder-gst.c:796
 msgid "Gstreamer did not want to start transcoding (timed out)"
@@ -1286,11 +1286,11 @@ msgstr "Adreça del periferic "
 
 #: xfburn/xfburn-device.c:261
 msgid "Device revision"
-msgstr ""
+msgstr "Revision del periferic"
 
 #: xfburn/xfburn-device.c:262
 msgid "Device Revision"
-msgstr ""
+msgstr "Revision del periferic"
 
 #: xfburn/xfburn-device.c:264 xfburn/xfburn-device.c:265
 msgid "Burn speeds supported by the device"
@@ -1334,7 +1334,7 @@ msgstr "Pòt gravar un DVDRAM"
 
 #: xfburn/xfburn-device.c:294 xfburn/xfburn-device.c:295
 msgid "Can burn Blu-ray"
-msgstr ""
+msgstr "Pòt gravar un Blu-ray"
 
 #: xfburn/xfburn-device.c:297 xfburn/xfburn-device.c:298
 msgid "libburn TAO block types"
@@ -1358,11 +1358,11 @@ msgstr "_Fichièrs"
 
 #: xfburn.ui:8
 msgid "New _data composition"
-msgstr ""
+msgstr "Novèla composicion de_ donadas"
 
 #: xfburn.ui:12
 msgid "New _audio composition"
-msgstr ""
+msgstr "Novèla composicion _àudio"
 
 #: xfburn.ui:18
 msgid "_Close composition"
@@ -1390,11 +1390,11 @@ msgstr "Afichat_ge"
 
 #: xfburn.ui:62
 msgid "Show Toolbars"
-msgstr ""
+msgstr "Afichar la barra d'aisinas"
 
 #: xfburn.ui:66
 msgid "Show Filebrowser"
-msgstr ""
+msgstr "Afichar lo gestionari de fichièrs"
 
 #: xfburn.ui:73
 msgid "_Help"
@@ -1422,7 +1422,7 @@ msgstr "Composicion de donadas"
 
 #: xfburn.desktop.in:6
 msgid "Disk Burning"
-msgstr ""
+msgstr "Gravadura del disc"
 
 #: xfburn.desktop.in:7
 msgid "CD and DVD burning application"
@@ -1446,4 +1446,4 @@ msgid ""
 "blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
 "personal compositions of data to either CD or DVD. It is stable and under "
 "ongoing development."
-msgstr ""
+msgstr "Xfburn es un esplech simple per gravar de CD/DVD basat sus las bibliotècas libburnia. Pòt escafar de CD/DVD(-RW), gravar e crear d'imatges iso, de CD àudio, e tanben gravar de composicions personalas de donadas sus CD o DVD. Es estable e en cors de desvolopament."
