@@ -1,1194 +1,1181 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-apps.xfburn package.
 # 
 # Translators:
+# Loc Huynh <https://github.com/hthienloc>, 2025
 # Vinh Nguyen <kureikain@gmail.com>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-03 20:34+0200\n"
-"PO-Revision-Date: 2013-07-03 18:35+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
-"Language-Team: Vietnamese (http://www.transifex.com/projects/p/xfce/language/vi/)\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2025-05-11 12:48+0200\n"
+"PO-Revision-Date: 2013-07-03 18:34+0000\n"
+"Last-Translator: Loc Huynh <https://github.com/hthienloc>, 2025\n"
+"Language-Team: Vietnamese (http://app.transifex.com/xfce/xfce-apps/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfburn/xfburn-global.h:28
+#: xfburn/xfburn-global.h:28
 msgid "Capacity:"
-msgstr ""
+msgstr "Dung lượng:"
 
-#: ../xfburn/xfburn-global.h:29
+#: xfburn/xfburn-global.h:29
 msgid "addr:"
-msgstr ""
+msgstr "địa chỉ:"
 
-#: ../xfburn/xfburn-global.h:30
+#: xfburn/xfburn-global.h:30
 msgid "Time total:"
-msgstr ""
+msgstr "Tổng thời gian:"
 
-#: ../xfburn/xfburn-global.h:32
+#: xfburn/xfburn-global.h:32
 msgid "length"
-msgstr ""
+msgstr "độ dài"
 
-#: ../xfburn/xfburn-global.h:33 ../xfburn/xfburn-copy-cd-progress-dialog.c:93
+#: xfburn/xfburn-global.h:33 xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
-msgstr ""
+msgstr "Đang xóa bộ đệm…"
 
-#: ../xfburn/xfburn-global.h:34
+#: xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
-msgstr ""
+msgstr "Vui lòng đưa đĩa có thể ghi vào và nhấn Enter"
 
-#: ../xfburn/xfburn-global.h:35
+#: xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
-msgstr ""
+msgstr "Không xác định được trạng thái đĩa – nhấn Enter để thử lại."
 
-#: ../xfburn/xfburn-global.h:36
+#: xfburn/xfburn-global.h:36
 msgid "CD copying finished successfully."
-msgstr ""
+msgstr "Sao chép CD hoàn tất thành công."
 
-#: ../xfburn/xfburn-global.h:42
+#: xfburn/xfburn-global.h:43
 msgid "Data composition"
-msgstr ""
+msgstr "Bộ dữ liệu"
 
-#: ../xfburn/xfburn-adding-progress.c:111
+#: xfburn/xfburn-adding-progress.c:78
 msgid "Adding files to the composition"
-msgstr "Thêm các tập tin vào bộ chọn"
+msgstr "Đang thêm tập tin vào bộ dữ liệu"
 
-#: ../xfburn/xfburn-blank-dialog.c:71
+#: xfburn/xfburn-adding-progress.c:92
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+#: xfburn/xfburn-blank-dialog.c:70
 msgid "Quick Blank"
-msgstr ""
+msgstr "Xóa nhanh"
 
-#: ../xfburn/xfburn-blank-dialog.c:72
+#: xfburn/xfburn-blank-dialog.c:71
 msgid "Full Blank (slow)"
-msgstr ""
+msgstr "Xóa toàn bộ (chậm)"
 
-#: ../xfburn/xfburn-blank-dialog.c:73
+#: xfburn/xfburn-blank-dialog.c:72
 msgid "Quick Format"
 msgstr "Định dạng nhanh"
 
-#: ../xfburn/xfburn-blank-dialog.c:74
+#: xfburn/xfburn-blank-dialog.c:73
 msgid "Full Format"
 msgstr "Định dạng toàn bộ"
 
-#: ../xfburn/xfburn-blank-dialog.c:75
+#: xfburn/xfburn-blank-dialog.c:74
 msgid "Quick Deformat"
 msgstr "Xóa định dạng nhanh"
 
-#: ../xfburn/xfburn-blank-dialog.c:76
+#: xfburn/xfburn-blank-dialog.c:75
 msgid "Full Deformat (slow)"
 msgstr "Xóa định dạng toàn bộ (chậm)"
 
-#: ../xfburn/xfburn-blank-dialog.c:149
+#: xfburn/xfburn-blank-dialog.c:118
 msgid "Eject the disc"
-msgstr "Trả đĩa ra"
+msgstr "Đẩy đĩa ra"
 
-#: ../xfburn/xfburn-blank-dialog.c:150
+#: xfburn/xfburn-blank-dialog.c:119
 msgid "Default value for eject checkbox"
-msgstr "Gía trị mặc định cho hộp chọn lấy đĩa"
+msgstr "Giá trị mặc định cho hộp kiểm đẩy đĩa"
 
-#: ../xfburn/xfburn-blank-dialog.c:197
+#: xfburn/xfburn-blank-dialog.c:165
 msgid "Blank Disc"
-msgstr "Đĩa trống"
+msgstr "Xóa sạch đĩa"
 
-#: ../xfburn/xfburn-blank-dialog.c:209
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:195
-#: ../xfburn/xfburn-burn-image-dialog.c:200
-#: ../xfburn/xfburn-copy-cd-dialog.c:131
-#: ../xfburn/xfburn-copy-dvd-dialog.c:131
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:160
+#: xfburn/xfburn-blank-dialog.c:174
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:134
+#: xfburn/xfburn-burn-image-dialog.c:182 xfburn/xfburn-copy-cd-dialog.c:107
+#: xfburn/xfburn-copy-dvd-dialog.c:104
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:122
 msgid "Burning device"
 msgstr "Thiết bị ghi"
 
-#: ../xfburn/xfburn-blank-dialog.c:222 ../xfburn/xfburn-device-box.c:187
+#: xfburn/xfburn-blank-dialog.c:187 xfburn/xfburn-device-box.c:155
 msgid "Blank mode"
-msgstr "Chế độ trống"
+msgstr "Chế độ xóa"
 
-#: ../xfburn/xfburn-blank-dialog.c:230
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:227
-#: ../xfburn/xfburn-burn-image-dialog.c:208
-#: ../xfburn/xfburn-copy-cd-dialog.c:139
-#: ../xfburn/xfburn-copy-dvd-dialog.c:139
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:194
+#: xfburn/xfburn-blank-dialog.c:195
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:166
+#: xfburn/xfburn-burn-image-dialog.c:190 xfburn/xfburn-copy-cd-dialog.c:115
+#: xfburn/xfburn-copy-dvd-dialog.c:112
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:130
 msgid "Options"
 msgstr "Tùy chọn"
 
-#: ../xfburn/xfburn-blank-dialog.c:234
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:231
-#: ../xfburn/xfburn-burn-image-dialog.c:212
-#: ../xfburn/xfburn-copy-cd-dialog.c:143
-#: ../xfburn/xfburn-copy-dvd-dialog.c:143
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:198
+#: xfburn/xfburn-blank-dialog.c:199
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:170
+#: xfburn/xfburn-burn-image-dialog.c:194 xfburn/xfburn-copy-cd-dialog.c:119
+#: xfburn/xfburn-copy-dvd-dialog.c:116
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:134
 msgid "E_ject disk"
-msgstr "_Lấy đĩa ra"
+msgstr "_Đẩy đĩa ra"
 
-#: ../xfburn/xfburn-blank-dialog.c:244
+#. action buttons
+#: xfburn/xfburn-blank-dialog.c:205
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:218
+#: xfburn/xfburn-burn-image-dialog.c:219 xfburn/xfburn-copy-cd-dialog.c:165
+#: xfburn/xfburn-copy-dvd-dialog.c:162 xfburn/xfburn-utils.c:132
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:149
+msgid "_Cancel"
+msgstr "_Hủy bỏ"
+
+#: xfburn/xfburn-blank-dialog.c:209
 msgid "_Blank"
-msgstr "_Trống"
+msgstr "_Xóa sạch"
 
 #. blanking can only be performed on blank discs, format and deformat are
 #. allowed to be blank ones
-#: ../xfburn/xfburn-blank-dialog.c:356
+#: xfburn/xfburn-blank-dialog.c:309
 msgid "The inserted disc is already blank."
-msgstr "Đĩa bỏ vào đã trống"
+msgstr "Đĩa đã đưa vào hiện đã trống."
 
 #. these ones we can blank
-#: ../xfburn/xfburn-blank-dialog.c:362
+#: xfburn/xfburn-blank-dialog.c:315
 msgid "Ready"
 msgstr "Sẵn sàng"
 
-#: ../xfburn/xfburn-blank-dialog.c:365
+#: xfburn/xfburn-blank-dialog.c:318
 msgid "No disc detected in the drive."
-msgstr "Không tìm thấy đĩa trong đầu đọc đĩa"
+msgstr "Không phát hiện đĩa trong ổ."
 
-#: ../xfburn/xfburn-blank-dialog.c:374
+#: xfburn/xfburn-blank-dialog.c:325
 msgid "Disc is not erasable."
-msgstr "Đĩa không có khả năng xóa"
+msgstr "Đĩa không thể xóa được."
 
-#: ../xfburn/xfburn-blank-dialog.c:414
+#: xfburn/xfburn-blank-dialog.c:359
 msgid "Blanking disc..."
-msgstr "Đĩa trống..."
+msgstr "Đang xóa sạch đĩa…"
 
-#: ../xfburn/xfburn-blank-dialog.c:441
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:512
-#: ../xfburn/xfburn-perform-burn.c:366
-#, c-format
+#: xfburn/xfburn-blank-dialog.c:385
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:389
+#: xfburn/xfburn-perform-burn.c:467
 msgid "Done"
-msgstr "Xong"
+msgstr "Hoàn tất"
 
-#: ../xfburn/xfburn-blank-dialog.c:444 ../xfburn/xfburn-perform-burn.c:372
-#: ../xfburn/xfburn-progress-dialog.c:649
+#: xfburn/xfburn-blank-dialog.c:388 xfburn/xfburn-perform-burn.c:474
+#: xfburn/xfburn-progress-dialog.c:635
 msgid "Failure"
 msgstr "Thất bại"
 
-#: ../xfburn/xfburn-blank-dialog.c:461
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:610
-#: ../xfburn/xfburn-burn-image-dialog.c:402
-#: ../xfburn/xfburn-burn-image-dialog.c:578
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:397
+#: xfburn/xfburn-blank-dialog.c:405
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:491
+#: xfburn/xfburn-burn-image-dialog.c:396 xfburn/xfburn-burn-image-dialog.c:574
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:321
 msgid "Unable to grab the drive."
-msgstr "Không thể tìm đĩa"
+msgstr "Không chiếm được ổ đĩa."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:155
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:104
 msgid "Image"
-msgstr "Ảnh"
+msgstr "Ảnh đĩa"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:106
 msgid "Show volume name"
-msgstr "Hiển thị tên thiết bị"
+msgstr "Hiển thị tên ổ đĩa"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:157
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:106
 msgid "Show a text entry for the name of the volume"
-msgstr "Hiển thị một mục nhập văn bản cho tên thiết bị"
+msgstr "Hiển thị ô nhập tên ổ đĩa"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:183
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:148
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:124
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:112
 msgid "Burn Composition"
-msgstr "Ghi bộ chọn"
+msgstr "Ghi bộ dữ liệu"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:206
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:145
 msgid "Composition name"
-msgstr "Tên bô chọn"
+msgstr "Tên bộ dữ liệu"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:211
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:150
 msgid "<small>Would you like to change the default composition name?</small>"
-msgstr "<small>B</small>"
+msgstr "<small>Bạn có muốn thay đổi tên bộ dữ liệu mặc định không?</small>"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:236
-#: ../xfburn/xfburn-burn-image-dialog.c:217
-#: ../xfburn/xfburn-copy-cd-dialog.c:148
-#: ../xfburn/xfburn-copy-dvd-dialog.c:148
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:203
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:175
+#: xfburn/xfburn-burn-image-dialog.c:199 xfburn/xfburn-copy-cd-dialog.c:124
+#: xfburn/xfburn-copy-dvd-dialog.c:121
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:139
 msgid "_Dummy write"
-msgstr ""
+msgstr "Ghi _thử"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:240
-#: ../xfburn/xfburn-burn-image-dialog.c:221
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:207
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:179
+#: xfburn/xfburn-burn-image-dialog.c:203
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:143
 msgid "Burn_Free"
-msgstr "Ghi tự _do"
+msgstr "Ghi _tự do"
+
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:184
+#: xfburn/xfburn-burn-image-dialog.c:208
+msgid "Stream _Recording"
+msgstr "Ghi _luồng"
 
 #. create ISO ?
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:246
-#: ../xfburn/xfburn-copy-cd-dialog.c:157
-#: ../xfburn/xfburn-copy-dvd-dialog.c:157
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:190
+#: xfburn/xfburn-copy-cd-dialog.c:133 xfburn/xfburn-copy-dvd-dialog.c:130
 msgid "Only create _ISO"
 msgstr "Chỉ tạo tập tin _ISO"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:283
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:222
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:222
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:153
 msgid "_Burn Composition"
-msgstr "_Ghi bộ chọn"
+msgstr "_Ghi bộ dữ liệu"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:470
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:347
 #, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr "Không tạo được file ISO: %s"
+msgstr "Không tạo được tập tin ISO đích: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:477
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:354
 msgid "Writing ISO..."
-msgstr "Đang ghi ISO..."
+msgstr "Đang ghi ISO…"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:494
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:371
 #, c-format
-msgid "An error occured while writing ISO: %s"
-msgstr "Có lỗi xảy ra khi ghi ISO: %s"
+msgid "An error occurred while writing ISO: %s"
+msgstr "Có lỗi khi ghi ISO: %s"
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:548
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:554
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:427
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:433
 msgid "An error occurred in the burn backend."
-msgstr "Có lỗi xảy ra trong bên trong chương trình ghi"
+msgstr "Có lỗi trong backend ghi đĩa."
 
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:571
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:328
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:452
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:252
 msgid "The write mode is not supported currently."
-msgstr "Chế độ ghi hiện tại không được hỗ trợ"
+msgstr "Chế độ ghi hiện tại chưa được hỗ trợ."
 
 #. could not create source
-#: ../xfburn/xfburn-burn-data-composition-base-dialog.c:653
+#: xfburn/xfburn-burn-data-composition-base-dialog.c:532
 msgid "Could not create ISO source structure."
-msgstr "Không thể tạo cấu trúc file ISO nguồn"
+msgstr "Không tạo được cấu trúc nguồn ISO."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:161
+#: xfburn/xfburn-burn-image-dialog.c:139
 msgid "Burn image"
-msgstr "Ghi ảnh"
+msgstr "Ghi ảnh đĩa"
 
 #. file
-#: ../xfburn/xfburn-burn-image-dialog.c:168
-#: ../xfburn/xfburn-burn-image-dialog.c:185
+#: xfburn/xfburn-burn-image-dialog.c:144 xfburn/xfburn-burn-image-dialog.c:167
 msgid "Image to burn"
-msgstr "Ảnh để ghi"
+msgstr "Ảnh đĩa cần ghi"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:172
+#: xfburn/xfburn-burn-image-dialog.c:148
 msgid "All files"
-msgstr "Tất cả tập tin"
+msgstr "Mọi tập tin"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:176
-msgid "ISO images"
-msgstr "Các ảnh ISO"
+#: xfburn/xfburn-burn-image-dialog.c:152
+msgid "Disc images"
+msgstr "Ảnh đĩa"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:226
+#: xfburn/xfburn-burn-image-dialog.c:213
 msgid "_Quit after success"
-msgstr ""
+msgstr "_Thoát sau khi thành công"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:236
+#: xfburn/xfburn-burn-image-dialog.c:223
 msgid "_Burn image"
-msgstr "_Ghi ảnh"
+msgstr "_Ghi ảnh đĩa"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:285
+#: xfburn/xfburn-burn-image-dialog.c:279
 msgid "Burn mode is not currently implemented."
-msgstr "Chế độ ghi hiện tại chưa được thiết lập"
+msgstr "Chế độ ghi này chưa được triển khai."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:336
-#: ../xfburn/xfburn-burn-image-dialog.c:365
+#: xfburn/xfburn-burn-image-dialog.c:330 xfburn/xfburn-burn-image-dialog.c:359
 msgid "An error occurred in the burn backend"
-msgstr "Xảy ra lỗi bên trong chương trình ghi"
+msgstr "Có lỗi trong backend ghi đĩa"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:349
+#: xfburn/xfburn-burn-image-dialog.c:343
 msgid "Unable to determine image size."
-msgstr "Không xác định được kích thước ảnh"
+msgstr "Không xác định được kích thước ảnh đĩa."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:356
+#: xfburn/xfburn-burn-image-dialog.c:350
 msgid "Cannot open image."
-msgstr "Không thể mở tập tin ảnh"
+msgstr "Không mở được ảnh đĩa."
 
-#: ../xfburn/xfburn-burn-image-dialog.c:393
+#: xfburn/xfburn-burn-image-dialog.c:387
 msgid "Burning image..."
-msgstr "Đang ghi ảnh..."
+msgstr "Đang ghi ảnh đĩa…"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:465
+#: xfburn/xfburn-burn-image-dialog.c:460
 msgid ""
 "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Please"
 " select an image to burn</span>"
-msgstr ""
+msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Vui lòng chọn một ảnh đĩa để ghi</span>"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:505
+#: xfburn/xfburn-burn-image-dialog.c:500
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "Không thể thêm dữ liệu vào đĩa đa phiên trong chế độ ghi này (hãy sử dụng TAO)"
+msgstr "Không thể thêm dữ liệu vào đĩa đa phiên ở chế độ ghi này (hãy dùng TAO thay thế)"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:509
+#: xfburn/xfburn-burn-image-dialog.c:504
 msgid "Closed disc with data detected. Need blank or appendable disc"
-msgstr "Đĩa đã có dữ liệu. Cần đĩa trống hay đĩa có thể ghi thêm vào"
+msgstr "Phát hiện đĩa đã đóng có dữ liệu. Cần đĩa trống hoặc đĩa có thể ghi thêm"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:511
+#: xfburn/xfburn-burn-image-dialog.c:506
 msgid "No disc detected in drive"
-msgstr "Không thấy đĩa trong đầu ghi"
+msgstr "Không phát hiện đĩa trong ổ"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:513
+#: xfburn/xfburn-burn-image-dialog.c:508
 msgid "Cannot recognize state of drive and disc"
-msgstr "Không thể ghi nhận trạng thái của đầu ghi và đĩa"
+msgstr "Không nhận diện được trạng thái ổ và đĩa"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:525
+#: xfburn/xfburn-burn-image-dialog.c:520
 msgid "The selected image does not fit on the inserted disc"
-msgstr "Ảnh lựa chọn không chứa vừa trên đĩa đã đưa vào"
+msgstr "Ảnh đĩa đã chọn không vừa với đĩa hiện có"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:529
+#: xfburn/xfburn-burn-image-dialog.c:524
 msgid "Failed to get image size"
-msgstr "Ko lấy được kích thước ảnh"
+msgstr "Không lấy được kích thước ảnh đĩa"
 
-#: ../xfburn/xfburn-burn-image-dialog.c:558
+#: xfburn/xfburn-burn-image-dialog.c:553
 msgid ""
 "Make sure you selected a valid file and you have the proper permissions to "
 "access it."
-msgstr "Hãy chắc rằng bạn đã lựa chọn một tập tin hợp lệ và có quyền để truy xuất nó."
+msgstr "Hãy đảm bảo bạn đã chọn tập tin hợp lệ và có quyền truy cập tập tin đó."
 
-#: ../xfburn/xfburn-compositions-notebook.c:174
+#: xfburn/xfburn-compositions-notebook.c:108
 msgid "Audio composition"
-msgstr "Bộ chọn âm thành"
+msgstr "Bộ âm thanh"
 
-#: ../xfburn/xfburn-compositions-notebook.c:235
+#: xfburn/xfburn-compositions-notebook.c:167
 msgid "Welcome"
-msgstr "Xin chào"
+msgstr "Chào mừng"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:113
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:156
+#: xfburn/xfburn-copy-cd-dialog.c:88
+#: xfburn/xfburn-copy-cd-progress-dialog.c:156
 msgid "Copy data CD"
-msgstr "Sao chép dữ liệu đĩa CD"
+msgstr "Sao chép đĩa CD dữ liệu"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:123
+#: xfburn/xfburn-copy-cd-dialog.c:99
 msgid "CD Reader device"
 msgstr "Thiết bị đọc CD"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:152
-#: ../xfburn/xfburn-copy-dvd-dialog.c:152
+#: xfburn/xfburn-copy-cd-dialog.c:128 xfburn/xfburn-copy-dvd-dialog.c:125
 msgid "On the _fly"
-msgstr "Đg thực h_iện"
+msgstr "Ghi _trực tiếp"
 
-#: ../xfburn/xfburn-copy-cd-dialog.c:193
+#: xfburn/xfburn-copy-cd-dialog.c:169
 msgid "_Copy CD"
 msgstr "_Sao chép CD"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:105
+#: xfburn/xfburn-copy-cd-progress-dialog.c:105
 msgid "Please insert a recordable disc."
-msgstr "Hãy bỏ một đĩa có thể ghi dữ liệu vào"
+msgstr "Vui lòng đưa đĩa có thể ghi vào."
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:127
+#: xfburn/xfburn-copy-cd-progress-dialog.c:127
 msgid "Writing CD..."
-msgstr "Đang ghi CD..."
+msgstr "Đang ghi CD…"
 
-#: ../xfburn/xfburn-copy-cd-progress-dialog.c:140
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:102
+#: xfburn/xfburn-copy-cd-progress-dialog.c:140
+#: xfburn/xfburn-create-iso-progress-dialog.c:102
 msgid "Reading CD..."
-msgstr "Đang đọc CD..."
+msgstr "Đang đọc CD…"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:113
+#: xfburn/xfburn-copy-dvd-dialog.c:85
 msgid "Copy data DVD"
-msgstr ""
+msgstr "Sao chép đĩa DVD dữ liệu"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:123
+#: xfburn/xfburn-copy-dvd-dialog.c:96
 msgid "DVD Reader device"
-msgstr ""
+msgstr "Thiết bị đọc DVD"
 
-#: ../xfburn/xfburn-copy-dvd-dialog.c:193
+#: xfburn/xfburn-copy-dvd-dialog.c:166
 msgid "_Copy DVD"
-msgstr ""
+msgstr "_Sao chép DVD"
 
-#: ../xfburn/xfburn-create-iso-progress-dialog.c:117
+#: xfburn/xfburn-create-iso-progress-dialog.c:117
 msgid "Create ISO from CD"
-msgstr ""
+msgstr "Tạo ISO từ CD"
 
-#: ../xfburn/xfburn-data-composition.c:189
-#: ../xfburn/xfburn-data-composition.c:955
-#: ../xfburn/xfburn-audio-composition.c:206
-#: ../xfburn/xfburn-audio-composition.c:979
+#: xfburn/xfburn-data-composition.c:288 xfburn/xfburn-utils.c:184
+#: xfburn/xfburn-utils.c:186 xfburn/xfburn-audio-composition.c:285
 msgid "Add"
-msgstr ""
+msgstr "Thêm"
 
-#: ../xfburn/xfburn-data-composition.c:189
-#: ../xfburn/xfburn-audio-composition.c:206
+#: xfburn/xfburn-data-composition.c:288 xfburn/xfburn-audio-composition.c:285
 msgid "Add the selected file(s) to the composition"
-msgstr ""
+msgstr "Thêm (các) tập tin đã chọn vào bộ dữ liệu"
 
-#: ../xfburn/xfburn-data-composition.c:191
+#: xfburn/xfburn-data-composition.c:290 xfburn-popup-menus.ui:7
 msgid "Create directory"
-msgstr ""
+msgstr "Tạo thư mục"
 
-#: ../xfburn/xfburn-data-composition.c:191
+#: xfburn/xfburn-data-composition.c:290
 msgid "Add a new directory to the composition"
-msgstr ""
+msgstr "Thêm thư mục mới vào bộ dữ liệu"
 
-#: ../xfburn/xfburn-data-composition.c:193
-#: ../xfburn/xfburn-audio-composition.c:208
+#: xfburn/xfburn-data-composition.c:295 xfburn/xfburn-audio-composition.c:290
+#: xfburn-popup-menus.ui:17 xfburn-popup-menus.ui:25 xfburn-popup-menus.ui:43
 msgid "Remove"
-msgstr ""
+msgstr "Xóa"
 
-#: ../xfburn/xfburn-data-composition.c:193
-#: ../xfburn/xfburn-audio-composition.c:208
+#: xfburn/xfburn-data-composition.c:295 xfburn/xfburn-audio-composition.c:290
 msgid "Remove the selected file(s) from the composition"
-msgstr ""
+msgstr "Xóa (các) tập tin đã chọn khỏi bộ dữ liệu"
 
-#: ../xfburn/xfburn-data-composition.c:195
-#: ../xfburn/xfburn-audio-composition.c:210
+#: xfburn/xfburn-data-composition.c:297 xfburn/xfburn-audio-composition.c:292
 msgid "Clear"
-msgstr ""
+msgstr "Xóa sạch"
 
-#: ../xfburn/xfburn-data-composition.c:195
-#: ../xfburn/xfburn-audio-composition.c:210
+#: xfburn/xfburn-data-composition.c:297 xfburn/xfburn-audio-composition.c:292
 msgid "Clear the content of the composition"
-msgstr ""
+msgstr "Xóa sạch nội dung bộ dữ liệu"
 
-#. {"import-session", "xfburn-import-session", N_("Import"), NULL, N_("Import
-#. existing session"),},
-#: ../xfburn/xfburn-data-composition.c:198
-msgid "Rename"
-msgstr ""
-
-#: ../xfburn/xfburn-data-composition.c:198
-msgid "Rename the selected file"
-msgstr ""
-
-#: ../xfburn/xfburn-data-composition.c:352
+#: xfburn/xfburn-data-composition.c:308
 msgid "Volume name :"
-msgstr ""
+msgstr "Tên ổ đĩa:"
 
-#: ../xfburn/xfburn-data-composition.c:386
+#: xfburn/xfburn-data-composition.c:345 xfburn.ui:76
 msgid "Contents"
-msgstr ""
+msgstr "Nội dung"
 
-#: ../xfburn/xfburn-data-composition.c:401
-#: ../xfburn/xfburn-directory-browser.c:140
+#: xfburn/xfburn-data-composition.c:360 xfburn/xfburn-directory-browser.c:110
 msgid "Size"
-msgstr ""
+msgstr "Kích thước"
 
-#: ../xfburn/xfburn-data-composition.c:404
+#: xfburn/xfburn-data-composition.c:363
 msgid "Local Path"
-msgstr ""
+msgstr "Đường dẫn cục bộ"
 
-#: ../xfburn/xfburn-data-composition.c:679
+#: xfburn/xfburn-data-composition.c:626
 msgid "You must give a name to the file."
-msgstr ""
+msgstr "Bạn phải đặt tên cho tập tin."
 
-#: ../xfburn/xfburn-data-composition.c:688
-#: ../xfburn/xfburn-data-composition.c:1198
-#: ../xfburn/xfburn-audio-composition.c:1176
+#: xfburn/xfburn-data-composition.c:635 xfburn/xfburn-data-composition.c:1080
+#: xfburn/xfburn-audio-composition.c:891
 msgid "A file with the same name is already present in the composition."
-msgstr ""
+msgstr "Một tập tin cùng tên đã có trong bộ dữ liệu."
 
-#: ../xfburn/xfburn-data-composition.c:796
-#: ../xfburn/xfburn-data-composition.c:797
-#: ../xfburn/xfburn-data-composition.c:799
+#: xfburn/xfburn-data-composition.c:760 xfburn/xfburn-data-composition.c:761
+#: xfburn/xfburn-data-composition.c:763
 msgid "New directory"
-msgstr ""
-
-#: ../xfburn/xfburn-data-composition.c:941
-#: ../xfburn/xfburn-audio-composition.c:976
-msgid "File(s) to add to composition"
-msgstr ""
+msgstr "Thư mục mới"
 
 #. Note to translators: first %s is the date in "i18n" format (year-month-
 #. day), %d is a running number of compositions
-#: ../xfburn/xfburn-data-composition.c:1041
+#: xfburn/xfburn-data-composition.c:936
 #, c-format
 msgid "Data %s~%d"
-msgstr ""
+msgstr "Dữ liệu %s~%d"
 
-#: ../xfburn/xfburn-data-composition.c:1277
+#: xfburn/xfburn-data-composition.c:1159
 #, c-format
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr ""
+msgstr "Không thể thêm %s vào bộ dữ liệu vì tập tin vượt quá kích thước tối đa cho phép của chuẩn iso9660."
 
-#: ../xfburn/xfburn-data-composition.c:1362
-#: ../xfburn/xfburn-audio-composition.c:1351
+#: xfburn/xfburn-data-composition.c:1166
+#, c-format
+msgid ""
+"%s is larger than what iso9660 level 2 allows. This can be a problem for old"
+" systems or software."
+msgstr "%s lớn hơn giới hạn của iso9660 cấp 2. Điều này có thể gây vấn đề với hệ thống hoặc phần mềm cũ."
+
+#: xfburn/xfburn-data-composition.c:1250
+#: xfburn/xfburn-audio-composition.c:1063
 msgid "Adding home directory"
-msgstr ""
+msgstr "Đang thêm thư mục cá nhân"
 
-#: ../xfburn/xfburn-data-composition.c:1363
-#: ../xfburn/xfburn-audio-composition.c:1352
+#: xfburn/xfburn-data-composition.c:1251
+#: xfburn/xfburn-audio-composition.c:1064
 msgid ""
 "You are about to add your home directory to the composition. This is likely to take a very long time, and also to be too big to fit on one disc.\n"
 "\n"
 "Are you sure you want to proceed?"
-msgstr ""
+msgstr "Bạn sắp thêm toàn bộ thư mục cá nhân vào bộ dữ liệu. Quá trình này có thể mất rất lâu và dung lượng thường quá lớn để vừa một đĩa.\n\nBạn có chắc muốn tiếp tục không?"
 
-#: ../xfburn/xfburn-data-composition.c:1530
+#: xfburn/xfburn-data-composition.c:1419
 #, c-format
 msgid ""
 "A file named \"%s\" already exists in this directory, the file hasn't been "
 "added."
-msgstr ""
+msgstr "Tập tin tên \"%s\" đã tồn tại trong thư mục này, tập tin chưa được thêm."
+
+#: xfburn/xfburn-data-composition.c:1821
+#, c-format
+msgid "%s: null pointer"
+msgstr "%s: con trỏ null"
+
+#: xfburn/xfburn-data-composition.c:1823
+#, c-format
+msgid "%s: out of memory"
+msgstr "%s: hết bộ nhớ"
+
+#: xfburn/xfburn-data-composition.c:1825
+#, c-format
+msgid "%s: node name not unique"
+msgstr "%s: tên nút không duy nhất"
+
+#: xfburn/xfburn-data-composition.c:1827
+#, c-format
+msgid "%s: %s (code %X)"
+msgstr "%s: %s (mã %X)"
 
 #. The first string is the renamed name, the second one the original name
-#: ../xfburn/xfburn-data-composition.c:1945
+#: xfburn/xfburn-data-composition.c:1847
 #, c-format
 msgid "Duplicate filename '%s' for '%s'"
-msgstr ""
+msgstr "Tên tập tin trùng lặp '%s' cho '%s'"
 
-#: ../xfburn/xfburn-device-box.c:171 ../xfburn/xfburn-device-box.c:172
+#: xfburn/xfburn-data-composition.c:1912
+msgid "Error(s) occurred while adding files"
+msgstr "Có lỗi xảy ra khi thêm tập tin"
+
+#: xfburn/xfburn-data-composition.c:1916
+msgid "OK"
+msgstr "OK"
+
+#: xfburn/xfburn-device-box.c:139 xfburn/xfburn-device-box.c:140
 msgid "Show writers only"
-msgstr ""
+msgstr "Chỉ hiển thị ổ ghi"
 
-#: ../xfburn/xfburn-device-box.c:175
+#: xfburn/xfburn-device-box.c:143
 msgid "Show speed selection"
-msgstr ""
+msgstr "Hiển thị chọn tốc độ"
 
-#: ../xfburn/xfburn-device-box.c:176
+#: xfburn/xfburn-device-box.c:144
 msgid "Show speed selection combo"
-msgstr ""
+msgstr "Hiển thị hộp chọn tốc độ"
 
-#: ../xfburn/xfburn-device-box.c:179
+#: xfburn/xfburn-device-box.c:147
 msgid "Show mode selection"
-msgstr ""
+msgstr "Hiển thị chọn chế độ"
 
-#: ../xfburn/xfburn-device-box.c:180
+#: xfburn/xfburn-device-box.c:148
 msgid "Show mode selection combo"
-msgstr ""
+msgstr "Hiển thị hộp chọn chế độ"
 
-#: ../xfburn/xfburn-device-box.c:183
+#: xfburn/xfburn-device-box.c:151
 msgid "Is it a valid combination"
-msgstr ""
+msgstr "Có phải là tổ hợp hợp lệ"
 
-#: ../xfburn/xfburn-device-box.c:184
+#: xfburn/xfburn-device-box.c:152
 msgid "Is the combination of hardware and disc valid to burn the composition?"
-msgstr ""
+msgstr "Tổ hợp phần cứng và đĩa có hợp lệ để ghi bộ dữ liệu không?"
 
-#: ../xfburn/xfburn-device-box.c:188
+#: xfburn/xfburn-device-box.c:156
 msgid "The blank mode shows different disc status messages than regular mode"
-msgstr ""
+msgstr "Chế độ xóa hiển thị thông báo trạng thái đĩa khác với chế độ thường"
 
-#: ../xfburn/xfburn-device-box.c:191 ../xfburn/xfburn-device-box.c:192
-msgid "Accept only CDs as valid discs"
-msgstr ""
-
-#: ../xfburn/xfburn-device-box.c:245
+#: xfburn/xfburn-device-box.c:207
 msgid "_Speed:"
-msgstr ""
+msgstr "_Tốc độ:"
 
-#: ../xfburn/xfburn-device-box.c:268
+#: xfburn/xfburn-device-box.c:230
 msgid "Write _mode:"
-msgstr ""
+msgstr "_Chế độ ghi:"
 
-#: ../xfburn/xfburn-device-box.c:387
-msgid "Empty speed list"
-msgstr ""
-
-#: ../xfburn/xfburn-device-box.c:396
-msgid ""
-"<b>Unable to retrieve the speed list for the drive.</b>\n"
-"\n"
-"This is a known bug for drives. If you're interested in fixing it, please have a look at the libburn library.\n"
-"\n"
-"Burning should still work, but if there are problems anyways, please let us know.\n"
-"\n"
-"<i>Thank you!</i>"
-msgstr ""
-
-#: ../xfburn/xfburn-device-box.c:407
-msgid "Continue to _show this notice"
-msgstr ""
-
-#: ../xfburn/xfburn-device-box.c:452
+#: xfburn/xfburn-device-box.c:353
 msgid "default"
-msgstr ""
+msgstr "mặc định"
 
-#: ../xfburn/xfburn-device-box.c:488
+#: xfburn/xfburn-device-box.c:383
 msgid "Max"
-msgstr ""
+msgstr "Tối đa"
 
-#: ../xfburn/xfburn-device-box.c:590
+#: xfburn/xfburn-device-box.c:416
+msgid "A full, but erasable disc is in the drive"
+msgstr "Ổ đang có đĩa đầy nhưng có thể xóa được"
+
+#: xfburn/xfburn-device-box.c:417
+msgid ""
+"Do you want to blank the disc, so that it can be used for the upcoming burn "
+"process?"
+msgstr "Bạn có muốn xóa sạch đĩa để có thể dùng cho quá trình ghi sắp tới không?"
+
+#: xfburn/xfburn-device-box.c:489
 msgid "Drive can't burn on the inserted disc"
-msgstr ""
+msgstr "Ổ không thể ghi lên đĩa đang có"
 
-#: ../xfburn/xfburn-device-box.c:599 ../xfburn/xfburn-device-box.c:645
+#: xfburn/xfburn-device-box.c:495 xfburn/xfburn-device-box.c:541
 msgid "Drive is empty"
-msgstr ""
+msgstr "Ổ đang trống"
 
-#: ../xfburn/xfburn-device-box.c:602
+#: xfburn/xfburn-device-box.c:498
 msgid "Sorry, multisession is not yet supported"
-msgstr ""
+msgstr "Rất tiếc, chế độ đa phiên chưa được hỗ trợ"
 
-#: ../xfburn/xfburn-device-box.c:605
+#: xfburn/xfburn-device-box.c:501
 msgid "Inserted disc is full"
-msgstr ""
+msgstr "Đĩa đang đầy"
 
-#: ../xfburn/xfburn-device-box.c:608 ../xfburn/xfburn-device-box.c:651
+#: xfburn/xfburn-device-box.c:504 xfburn/xfburn-device-box.c:547
 msgid "Inserted disc is unsuitable"
-msgstr ""
+msgstr "Đĩa không phù hợp"
 
-#: ../xfburn/xfburn-device-box.c:611 ../xfburn/xfburn-device-box.c:654
+#: xfburn/xfburn-device-box.c:507 xfburn/xfburn-device-box.c:550
 msgid "Cannot access drive (it might be in use)"
-msgstr ""
+msgstr "Không truy cập được ổ (có thể đang được dùng)"
 
-#: ../xfburn/xfburn-device-box.c:616 ../xfburn/xfburn-device-box.c:657
+#: xfburn/xfburn-device-box.c:512 xfburn/xfburn-device-box.c:553
 msgid "Error determining disc"
-msgstr ""
+msgstr "Lỗi xác định đĩa"
 
-#: ../xfburn/xfburn-device-box.c:637
+#: xfburn/xfburn-device-box.c:533
 msgid "Write-once disc, no blanking possible"
-msgstr ""
+msgstr "Đĩa chỉ ghi một lần, không thể xóa"
 
-#: ../xfburn/xfburn-device-box.c:640
+#: xfburn/xfburn-device-box.c:536
 msgid "DVD+RW does not need blanking"
-msgstr ""
+msgstr "DVD+RW không cần xóa"
 
-#: ../xfburn/xfburn-device-box.c:648
+#: xfburn/xfburn-device-box.c:544
 msgid "Inserted disc is already blank"
-msgstr ""
+msgstr "Đĩa đã trống"
 
-#: ../xfburn/xfburn-device-box.c:684
-msgid "Auto"
-msgstr ""
+#: xfburn/xfburn-device-box.c:580
+msgid "Automatic"
+msgstr "Tự động"
 
-#: ../xfburn/xfburn-device-list.c:206 ../xfburn/xfburn-device-list.c:207
+#: xfburn/xfburn-device-box.c:587
+msgid "With Track Gaps / Track-At-Once (TAO)"
+msgstr "Có khoảng trống rãnh / Track-At-Once (TAO)"
+
+#: xfburn/xfburn-device-box.c:594
+msgid "Multi Session / Session-At-Once (SAO)"
+msgstr "Đa phiên / Session-At-Once (SAO)"
+
+#: xfburn/xfburn-device-list.c:204 xfburn/xfburn-device-list.c:205
 msgid "Number of burners in the system"
-msgstr ""
+msgstr "Số ổ ghi trong hệ thống"
 
-#: ../xfburn/xfburn-device-list.c:209
+#: xfburn/xfburn-device-list.c:207
 msgid "Number of drives in the system"
-msgstr ""
+msgstr "Số ổ đĩa trong hệ thống"
 
-#: ../xfburn/xfburn-device-list.c:210
+#: xfburn/xfburn-device-list.c:208
 msgid "Number of drives in the system (readers and writers)"
-msgstr ""
+msgstr "Số ổ đĩa trong hệ thống (ổ đọc và ổ ghi)"
 
-#: ../xfburn/xfburn-device-list.c:212 ../xfburn/xfburn-device-list.c:213
+#: xfburn/xfburn-device-list.c:210 xfburn/xfburn-device-list.c:211
 msgid "List of devices"
-msgstr ""
+msgstr "Danh sách thiết bị"
 
-#: ../xfburn/xfburn-device-list.c:215 ../xfburn/xfburn-device-list.c:216
+#: xfburn/xfburn-device-list.c:213 xfburn/xfburn-device-list.c:214
 msgid "Currently selected device"
-msgstr ""
+msgstr "Thiết bị đang chọn"
 
 #. globals
-#: ../xfburn/xfburn-directory-browser.c:54
+#: xfburn/xfburn-directory-browser.c:50
 msgid "Folder"
-msgstr ""
+msgstr "Thư mục"
 
-#: ../xfburn/xfburn-directory-browser.c:127
+#: xfburn/xfburn-directory-browser.c:97
 msgid "File"
-msgstr ""
+msgstr "Tập tin"
 
-#: ../xfburn/xfburn-directory-browser.c:142
+#: xfburn/xfburn-directory-browser.c:112
 msgid "Type"
-msgstr ""
+msgstr "Kiểu"
 
-#: ../xfburn/xfburn-fs-browser.c:94 ../xfburn/xfburn-fs-browser.c:283
+#: xfburn/xfburn-fs-browser.c:95 xfburn/xfburn-fs-browser.c:304
 msgid "Filesystem"
-msgstr ""
+msgstr "Hệ thống tập tin"
 
 #. load the user's home dir
-#: ../xfburn/xfburn-fs-browser.c:262
+#: xfburn/xfburn-fs-browser.c:283
 #, c-format
 msgid "%s's home"
-msgstr ""
+msgstr "Thư mục cá nhân của %s"
 
-#: ../xfburn/xfburn-main.c:202 ../xfburn.desktop.in.h:1
+#: xfburn/xfburn-udev-manager.c:490
+#, c-format
+msgid "Failed to unmount '%s'. Drive cannot be used for burning."
+msgstr "Gỡ bỏ gắn kết '%s' thất bại. Không thể dùng ổ để ghi."
+
+#. || G_OPTION_FLAG_FILENAME
+#: xfburn/xfburn-main.c:77
+msgid "Open the burn image dialog, optionally followed by the image filename"
+msgstr "Mở hộp thoại ghi ảnh đĩa, có thể kèm theo tên tập tin ảnh"
+
+#: xfburn/xfburn-main.c:79
+msgid "Open the blank disc dialog"
+msgstr "Mở hộp thoại xóa sạch đĩa"
+
+#: xfburn/xfburn-main.c:81
+msgid ""
+"Start a data composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr "Bắt đầu bộ dữ liệu, có thể kèm theo các tập tin/thư mục cần thêm vào bộ dữ liệu"
+
+#: xfburn/xfburn-main.c:83
+msgid ""
+"Start an audio composition, optionally followed by files/directories to be "
+"added to the composition"
+msgstr "Bắt đầu bộ âm thanh, có thể kèm theo các tập tin/thư mục cần thêm vào bộ âm thanh"
+
+#: xfburn/xfburn-main.c:85
+msgid ""
+"Select the transcoder, run with --transcoder=list to see the available ones"
+msgstr "Chọn bộ chuyển mã, chạy với --transcoder=list để xem danh sách có sẵn"
+
+#: xfburn/xfburn-main.c:87
+msgid ""
+"Start the file browser in the specified directory, or the current directory "
+"if none is specified (the default is to start in your home directory)"
+msgstr "Khởi động trình duyệt tập tin tại thư mục chỉ định, hoặc thư mục hiện tại nếu không chỉ định (mặc định là thư mục cá nhân)"
+
+#: xfburn/xfburn-main.c:89
+msgid "Display program version and exit"
+msgstr "Hiển thị phiên bản chương trình và thoát"
+
+#: xfburn/xfburn-main.c:91
+msgid ""
+"Show main program even when other action is specified on the command line."
+msgstr "Vẫn hiển thị cửa sổ chính dù đã chỉ định hành động khác trên dòng lệnh."
+
+#: xfburn/xfburn-main.c:197 xfburn.desktop.in:5
+#: org.xfce.xfburn.appdata.xml.in:8
 msgid "Xfburn"
-msgstr ""
+msgstr "Xfburn"
 
-#: ../xfburn/xfburn-main.c:212
+#: xfburn/xfburn-main.c:206
 #, c-format
 msgid ""
 "%s: %s\n"
 "Try %s --help to see a full list of available command line options.\n"
-msgstr ""
+msgstr "%s: %s\nThử %s --help để xem danh sách đầy đủ các tùy chọn dòng lệnh.\n"
 
-#: ../xfburn/xfburn-main.c:220
+#: xfburn/xfburn-main.c:215
 msgid "Unable to initialize the burning backend."
-msgstr ""
+msgstr "Không khởi tạo được backend ghi đĩa."
 
-#: ../xfburn/xfburn-main.c:295
+#: xfburn/xfburn-main.c:289
 msgid "No burners are currently available"
-msgstr ""
+msgstr "Hiện không có ổ ghi nào khả dụng"
 
-#: ../xfburn/xfburn-main.c:297
+#: xfburn/xfburn-main.c:291
 msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
-"Please unmount and restart the application.\n"
-"\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr ""
+msgstr "Có thể đĩa đang được dùng nên không truy cập được.\n\nNếu không có đĩa trong ổ, hãy kiểm tra xem người dùng hiện tại có quyền đọc/ghi ổ hay không."
 
-#: ../xfburn/xfburn-main.c:331
+#: xfburn/xfburn-main.c:324
 #, c-format
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr ""
+msgstr "Khởi tạo bộ chuyển mã %s thất bại: %s\n\t(đang quay về dùng triển khai cơ bản)"
 
-#: ../xfburn/xfburn-main.c:375
+#: xfburn/xfburn-main.c:367
 #, c-format
 msgid "Image file '%s' does not exist."
-msgstr ""
+msgstr "Tập tin ảnh '%s' không tồn tại."
 
-#: ../xfburn/xfburn-main-window.c:100
-msgid "_File"
-msgstr ""
-
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), "", N_("Create a
-#. new composition"),},
-#. {"new-composition", GTK_STOCK_NEW, N_("_New composition"), NULL, N_("Create
-#. a new composition"),
-#. G_CALLBACK (action_new_data_composition),},
-#: ../xfburn/xfburn-main-window.c:104
+#: xfburn/xfburn-main-window.c:196
 msgid "New data composition"
-msgstr ""
+msgstr "Bộ dữ liệu mới"
 
-#: ../xfburn/xfburn-main-window.c:106
+#: xfburn/xfburn-main-window.c:199
 msgid "New audio composition"
-msgstr ""
+msgstr "Bộ âm thanh mới"
 
-#. {"load-composition", GTK_STOCK_OPEN, N_("Load composition"), NULL, N_("Load
-#. composition"),
-#. G_CALLBACK (action_load),},
-#. {"save-composition", GTK_STOCK_SAVE, N_("Save composition"), NULL, N_("Save
-#. composition"),
-#. G_CALLBACK (action_save),},
-#. {"save-composition-as", GTK_STOCK_SAVE_AS, N_("Save composition as..."),
-#. NULL, N_("Save composition as"),
-#. G_CALLBACK (action_save_as),},
-#: ../xfburn/xfburn-main-window.c:114
-msgid "Close composition"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:116
-msgid "_Quit"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:116
-msgid "Quit Xfburn"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:117
-msgid "_Edit"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:118
-msgid "Prefere_nces"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:118
-msgid "Show preferences dialog"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:120
-msgid "_Actions"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:121
-msgid "_View"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:122
-msgid "Refresh"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:122
-msgid "Refresh file list"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:124
-msgid "_Help"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:125
-msgid "_About"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:125
-msgid "Display information about Xfburn"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:127
+#: xfburn/xfburn-main-window.c:204 xfburn.ui:42
 msgid "Blank CD-RW"
-msgstr ""
+msgstr "Xóa sạch CD-RW"
 
-#: ../xfburn/xfburn-main-window.c:129
-msgid "Copy Data CD"
-msgstr ""
-
-#. {"copy-audio", "xfburn-audio-copy", N_("Copy Audio CD"), NULL, N_("Copy
-#. Audio CD"),},
-#: ../xfburn/xfburn-main-window.c:132
+#: xfburn/xfburn-main-window.c:207 xfburn.ui:46
 msgid "Burn Image"
-msgstr ""
+msgstr "Ghi ảnh đĩa"
 
-#. {"copy-dvd", "xfburn-data-copy", N_("Copy DVD"), NULL, N_("Copy DVD"),
-#. G_CALLBACK (action_copy_dvd),},
-#: ../xfburn/xfburn-main-window.c:136
-msgid "Burn DVD Image"
-msgstr ""
+#: xfburn/xfburn-main-window.c:212 xfburn.ui:56
+msgid "Refresh"
+msgstr "Cập nhật"
 
-#: ../xfburn/xfburn-main-window.c:141
-msgid "Show file browser"
-msgstr ""
+#: xfburn/xfburn-main-window.c:212
+msgid "Refresh file list"
+msgstr "Cập nhật danh sách tập tin"
 
-#: ../xfburn/xfburn-main-window.c:141
-msgid "Show/hide the file browser"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:143
-msgid "Show toolbar"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:143
-msgid "Show/hide the toolbar"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:350
-msgid "Toolbar Editor"
-msgstr ""
-
-#: ../xfburn/xfburn-main-window.c:538
+#: xfburn/xfburn-main-window.c:370
 msgid "Another cd burning GUI"
-msgstr ""
+msgstr "Một giao diện ghi đĩa CD khác"
 
-#: ../xfburn/xfburn-notebook-tab.c:108
+#: xfburn/xfburn-notebook-tab.c:81
 msgid "Label"
-msgstr ""
+msgstr "Nhãn"
 
-#: ../xfburn/xfburn-notebook-tab.c:108
+#: xfburn/xfburn-notebook-tab.c:81
 msgid "The text of the label"
-msgstr ""
+msgstr "Nội dung nhãn"
 
-#: ../xfburn/xfburn-notebook-tab.c:111
+#: xfburn/xfburn-notebook-tab.c:84
 msgid "Show close button"
-msgstr ""
+msgstr "Hiển thị nút đóng"
 
-#: ../xfburn/xfburn-notebook-tab.c:111
+#: xfburn/xfburn-notebook-tab.c:84
 msgid "Determine whether the close button is visible"
-msgstr ""
+msgstr "Xác định có hiển thị nút đóng hay không"
 
-#: ../xfburn/xfburn-perform-burn.c:158
+#: xfburn/xfburn-perform-burn.c:102 xfburn/xfburn-perform-burn.c:430
+msgid "Formatting..."
+msgstr "Đang định dạng…"
+
+#: xfburn/xfburn-perform-burn.c:256
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
-msgstr ""
+msgstr "Không thể thêm dữ liệu vào đĩa đa phiên ở chế độ ghi này (hãy dùng TAO)."
 
-#: ../xfburn/xfburn-perform-burn.c:162
+#: xfburn/xfburn-perform-burn.c:260
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
-msgstr ""
+msgstr "Phát hiện đĩa đã đóng có dữ liệu, cần đĩa trống hoặc có thể ghi thêm."
 
-#: ../xfburn/xfburn-perform-burn.c:164
+#: xfburn/xfburn-perform-burn.c:262
 msgid "No disc detected in drive."
-msgstr ""
+msgstr "Không phát hiện đĩa trong ổ."
 
-#: ../xfburn/xfburn-perform-burn.c:167
+#: xfburn/xfburn-perform-burn.c:265
 msgid "Cannot recognize the state of the drive and disc."
-msgstr ""
+msgstr "Không nhận diện được trạng thái ổ và đĩa."
 
-#: ../xfburn/xfburn-perform-burn.c:180
+#: xfburn/xfburn-perform-burn.c:272
+msgid "Formatting failed."
+msgstr "Định dạng thất bại."
+
+#: xfburn/xfburn-perform-burn.c:290
 msgid "There is not enough space available on the inserted disc."
-msgstr ""
+msgstr "Không đủ dung lượng trống trên đĩa."
 
-#: ../xfburn/xfburn-perform-burn.c:225
+#: xfburn/xfburn-perform-burn.c:333
 #, c-format
 msgid "Burning track %2d/%d..."
-msgstr ""
+msgstr "Đang ghi rãnh %2d/%d…"
 
-#: ../xfburn/xfburn-perform-burn.c:229 ../xfburn/xfburn-perform-burn.c:294
+#: xfburn/xfburn-perform-burn.c:337 xfburn/xfburn-perform-burn.c:395
 msgid "Burning composition..."
-msgstr ""
+msgstr "Đang ghi bộ dữ liệu…"
 
-#: ../xfburn/xfburn-perform-burn.c:263
+#: xfburn/xfburn-perform-burn.c:364
 msgid "standby"
-msgstr ""
+msgstr "chờ"
 
-#: ../xfburn/xfburn-perform-burn.c:271
+#: xfburn/xfburn-perform-burn.c:372
 msgid "ending"
-msgstr ""
+msgstr "đang kết thúc"
 
-#: ../xfburn/xfburn-perform-burn.c:274
+#: xfburn/xfburn-perform-burn.c:375
 msgid "failing"
-msgstr ""
+msgstr "đang thất bại"
 
-#: ../xfburn/xfburn-perform-burn.c:277
+#: xfburn/xfburn-perform-burn.c:378
 msgid "unused"
-msgstr ""
+msgstr "không dùng"
 
-#: ../xfburn/xfburn-perform-burn.c:280
+#: xfburn/xfburn-perform-burn.c:381
 msgid "abandoned"
-msgstr ""
+msgstr "bị bỏ"
 
-#: ../xfburn/xfburn-perform-burn.c:283
+#: xfburn/xfburn-perform-burn.c:384
 msgid "ended"
-msgstr ""
+msgstr "đã kết thúc"
 
-#: ../xfburn/xfburn-perform-burn.c:286
+#: xfburn/xfburn-perform-burn.c:387
 msgid "aborted"
-msgstr ""
+msgstr "bị hủy"
 
-#: ../xfburn/xfburn-perform-burn.c:289 ../xfburn/xfburn-progress-dialog.c:216
-#: ../xfburn/xfburn-progress-dialog.c:233
-#: ../xfburn/xfburn-progress-dialog.c:243
-#: ../xfburn/xfburn-progress-dialog.c:332
-#: ../xfburn/xfburn-progress-dialog.c:476
-#: ../xfburn/xfburn-progress-dialog.c:500
-#: ../xfburn/xfburn-progress-dialog.c:524
+#: xfburn/xfburn-perform-burn.c:390
 msgid "no info"
-msgstr ""
+msgstr "không có thông tin"
 
-#: ../xfburn/xfburn-perform-burn.c:299
+#: xfburn/xfburn-perform-burn.c:400
 msgid "Writing Lead-In..."
-msgstr ""
+msgstr "Đang ghi Lead-In…"
 
-#: ../xfburn/xfburn-perform-burn.c:305
+#: xfburn/xfburn-perform-burn.c:406
 msgid "Writing Lead-Out..."
-msgstr ""
+msgstr "Đang ghi Lead-Out…"
 
-#: ../xfburn/xfburn-perform-burn.c:311
+#: xfburn/xfburn-perform-burn.c:412
 msgid "Writing pregap..."
-msgstr ""
+msgstr "Đang ghi khoảng trống đầu…"
 
-#: ../xfburn/xfburn-perform-burn.c:317
+#: xfburn/xfburn-perform-burn.c:418
 msgid "Closing track..."
-msgstr ""
+msgstr "Đang đóng rãnh…"
 
-#: ../xfburn/xfburn-perform-burn.c:323
+#: xfburn/xfburn-perform-burn.c:424
 msgid "Closing session..."
-msgstr ""
+msgstr "Đang đóng phiên…"
 
-#: ../xfburn/xfburn-perform-burn.c:329
-msgid "Formatting..."
-msgstr ""
-
-#: ../xfburn/xfburn-perform-burn.c:342
+#: xfburn/xfburn-perform-burn.c:443
 msgid "see console"
-msgstr ""
+msgstr "xem bảng điều khiển"
 
-#: ../xfburn/xfburn-perform-burn.c:370
+#: xfburn/xfburn-perform-burn.c:471
 msgid "User Aborted"
-msgstr ""
+msgstr "Người dùng đã hủy"
 
-#: ../xfburn/xfburn-preferences-dialog.c:143
+#: xfburn/xfburn-preferences-dialog.c:113
 msgid "Preferences"
-msgstr ""
+msgstr "Tùy chỉnh"
 
-#: ../xfburn/xfburn-preferences-dialog.c:144
+#: xfburn/xfburn-preferences-dialog.c:114
 msgid "Tune how Xfburn behaves"
-msgstr ""
+msgstr "Tinh chỉnh cách hoạt động của Xfburn"
 
-#: ../xfburn/xfburn-preferences-dialog.c:190
-#: ../xfburn/xfburn-preferences-dialog.c:194
+#: xfburn/xfburn-preferences-dialog.c:145
+#: xfburn/xfburn-preferences-dialog.c:149
 msgid "Temporary directory"
-msgstr ""
+msgstr "Thư mục tạm"
 
-#: ../xfburn/xfburn-preferences-dialog.c:198
+#: xfburn/xfburn-preferences-dialog.c:153
 msgid "_Clean temporary directory on exit"
-msgstr ""
+msgstr "_Dọn dẹp thư mục tạm khi thoát"
 
-#: ../xfburn/xfburn-preferences-dialog.c:205
+#: xfburn/xfburn-preferences-dialog.c:160
 msgid "File browser"
-msgstr ""
+msgstr "Trình duyệt tập tin"
 
-#: ../xfburn/xfburn-preferences-dialog.c:209
+#: xfburn/xfburn-preferences-dialog.c:164
 msgid "Show _hidden files"
-msgstr ""
+msgstr "Hiển thị tập tin ẩ_n"
 
-#: ../xfburn/xfburn-preferences-dialog.c:214
+#: xfburn/xfburn-preferences-dialog.c:169
 msgid "Show human_readable filesizes"
-msgstr ""
+msgstr "Hiển thị kích thước tập tin dễ đọc"
 
-#: ../xfburn/xfburn-preferences-dialog.c:225
+#: xfburn/xfburn-preferences-dialog.c:179
+#: xfburn/xfburn-preferences-dialog.c:190
 msgid "General"
-msgstr ""
+msgstr "Chung"
 
-#: ../xfburn/xfburn-preferences-dialog.c:236
-#: ../xfburn/xfburn-preferences-dialog.c:313
+#: xfburn/xfburn-preferences-dialog.c:194
+#: xfburn/xfburn-preferences-dialog.c:276
 msgid "Devices"
-msgstr ""
+msgstr "Thiết bị"
 
-#: ../xfburn/xfburn-preferences-dialog.c:245
+#: xfburn/xfburn-preferences-dialog.c:203
 msgid "Detected devices"
-msgstr ""
+msgstr "Thiết bị phát hiện"
 
-#: ../xfburn/xfburn-preferences-dialog.c:266
+#: xfburn/xfburn-preferences-dialog.c:224
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
-#: ../xfburn/xfburn-preferences-dialog.c:279
+#: xfburn/xfburn-preferences-dialog.c:237
+msgid "Revision"
+msgstr "Phiên bản"
+
+#: xfburn/xfburn-preferences-dialog.c:239
 msgid "Node"
-msgstr ""
+msgstr "Nút"
 
-#: ../xfburn/xfburn-preferences-dialog.c:281
+#: xfburn/xfburn-preferences-dialog.c:241
 msgid "Write CD-R"
-msgstr ""
+msgstr "Ghi CD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:283
+#: xfburn/xfburn-preferences-dialog.c:243
 msgid "Write CD-RW"
-msgstr ""
+msgstr "Ghi CD-RW"
 
-#: ../xfburn/xfburn-preferences-dialog.c:286
+#: xfburn/xfburn-preferences-dialog.c:246
 msgid "Write DVD-R"
-msgstr ""
+msgstr "Ghi DVD-R"
 
-#: ../xfburn/xfburn-preferences-dialog.c:289
+#: xfburn/xfburn-preferences-dialog.c:249
 msgid "Write DVD-RAM"
-msgstr ""
+msgstr "Ghi DVD-RAM"
 
-#: ../xfburn/xfburn-preferences-dialog.c:297
+#: xfburn/xfburn-preferences-dialog.c:252
+msgid "Write Blu-ray"
+msgstr "Ghi Blu-ray"
+
+#: xfburn/xfburn-preferences-dialog.c:260
 msgid "Sc_an for devices"
-msgstr ""
+msgstr "_Quét thiết bị"
 
-#: ../xfburn/xfburn-preferences-dialog.c:324
-msgid "Show warning on _empty speed list"
-msgstr ""
-
-#: ../xfburn/xfburn-preferences-dialog.c:333
+#: xfburn/xfburn-preferences-dialog.c:286
 msgid "FIFO buffer size (in kb)"
-msgstr ""
+msgstr "Kích thước bộ đệm FIFO (tính bằng KB)"
 
-#: ../xfburn/xfburn-preferences-dialog.c:471
+#: xfburn/xfburn-preferences-dialog.c:305
+msgid "_Close"
+msgstr "Đó_ng"
+
+#: xfburn/xfburn-preferences-dialog.c:432
 msgid "Changing this setting only takes full effect after a program restart."
-msgstr ""
+msgstr "Thay đổi này chỉ có hiệu lực hoàn toàn sau khi khởi động lại chương trình."
 
-#: ../xfburn/xfburn-progress-dialog.c:198
+#. label
+#: xfburn/xfburn-progress-dialog.c:168 xfburn/xfburn-progress-dialog.c:172
+#: xfburn/xfburn-progress-dialog.c:525
 msgid "Initializing..."
-msgstr ""
+msgstr "Đang khởi tạo…"
 
-#: ../xfburn/xfburn-progress-dialog.c:213
+#: xfburn/xfburn-progress-dialog.c:187
 msgid "Estimated writing speed:"
-msgstr ""
+msgstr "Tốc độ ghi ước tính:"
 
-#: ../xfburn/xfburn-progress-dialog.c:227
+#: xfburn/xfburn-progress-dialog.c:190 xfburn/xfburn-progress-dialog.c:206
+#: xfburn/xfburn-progress-dialog.c:215 xfburn/xfburn-progress-dialog.c:305
+#: xfburn/xfburn-progress-dialog.c:448 xfburn/xfburn-progress-dialog.c:472
+#: xfburn/xfburn-progress-dialog.c:496
+msgid "unknown"
+msgstr "không rõ"
+
+#: xfburn/xfburn-progress-dialog.c:201
 msgid "FIFO buffer:"
-msgstr ""
+msgstr "Bộ đệm FIFO:"
 
-#: ../xfburn/xfburn-progress-dialog.c:237
+#: xfburn/xfburn-progress-dialog.c:210
 msgid "Device buffer:"
-msgstr ""
+msgstr "Bộ đệm thiết bị:"
 
-#: ../xfburn/xfburn-progress-dialog.c:374
+#. action buttons
+#: xfburn/xfburn-progress-dialog.c:220
+msgid "_Stop"
+msgstr "_Dừng"
+
+#: xfburn/xfburn-progress-dialog.c:227
+msgid "Close"
+msgstr "Đóng"
+
+#: xfburn/xfburn-progress-dialog.c:346
 msgid "Are you sure you want to abort?"
-msgstr ""
+msgstr "Bạn có chắc muốn hủy bỏ không?"
 
-#: ../xfburn/xfburn-progress-dialog.c:502
+#: xfburn/xfburn-progress-dialog.c:474
 #, c-format
 msgid "Min. fill was %2d%%"
-msgstr ""
+msgstr "Độ đầy tối thiểu là %2d%%"
 
-#: ../xfburn/xfburn-progress-dialog.c:561
+#: xfburn/xfburn-progress-dialog.c:542
 msgid "Aborted"
-msgstr ""
+msgstr "Đã hủy"
 
-#: ../xfburn/xfburn-progress-dialog.c:570
+#: xfburn/xfburn-progress-dialog.c:545
+msgid "Formatted."
+msgstr "Đã định dạng."
+
+#: xfburn/xfburn-progress-dialog.c:554
 msgid "Failed"
-msgstr ""
+msgstr "Thất bại"
 
-#: ../xfburn/xfburn-progress-dialog.c:573
+#: xfburn/xfburn-progress-dialog.c:557
 msgid "Cancelled"
-msgstr ""
+msgstr "Đã hủy"
 
-#: ../xfburn/xfburn-progress-dialog.c:576
+#: xfburn/xfburn-progress-dialog.c:560
 msgid "Completed"
-msgstr ""
+msgstr "Hoàn thành"
 
-#: ../xfburn/xfburn-progress-dialog.c:613
+#: xfburn/xfburn-progress-dialog.c:598
 msgid "Aborting..."
-msgstr ""
+msgstr "Đang hủy…"
 
-#: ../xfburn/xfburn-utils.c:129
+#: xfburn/xfburn-utils.c:132
 msgid "Select command"
-msgstr ""
+msgstr "Chọn lệnh"
 
-#: ../xfburn/xfburn-welcome-tab.c:129
-msgid "Welcome to xfburn!"
-msgstr ""
+#: xfburn/xfburn-utils.c:172
+msgid "File(s) to add to composition"
+msgstr "Tập tin cần thêm vào bộ dữ liệu"
+
+#: xfburn/xfburn-welcome-tab.c:99
+msgid "Welcome to Xfburn!"
+msgstr "Chào mừng đến với Xfburn!"
 
 #. buttons
-#: ../xfburn/xfburn-welcome-tab.c:140
+#: xfburn/xfburn-welcome-tab.c:119
 msgid "<big>Burn _Image</big>"
-msgstr ""
+msgstr "<big>Ghi _ảnh đĩa</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:140
-msgid "Burn a prepared compilation, i.e. an .ISO file"
-msgstr ""
+#: xfburn/xfburn-welcome-tab.c:119
+msgid "Burn a prepared composition, i.e. an .ISO file"
+msgstr "Ghi một ảnh đĩa đã chuẩn bị, ví dụ tập tin .ISO"
 
-#: ../xfburn/xfburn-welcome-tab.c:145
+#: xfburn/xfburn-welcome-tab.c:124
 msgid "<big>New _Data Composition</big>"
-msgstr ""
+msgstr "<big>Bộ _dữ liệu mới</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:145
+#: xfburn/xfburn-welcome-tab.c:124
 msgid "Create a new data disc with the files of your choosing"
-msgstr ""
+msgstr "Tạo đĩa dữ liệu mới với các tập tin bạn chọn"
 
-#: ../xfburn/xfburn-welcome-tab.c:150
+#: xfburn/xfburn-welcome-tab.c:129
 msgid "<big>_Blank Disc</big>"
-msgstr ""
+msgstr "<big>_Xóa sạch đĩa</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:150
+#: xfburn/xfburn-welcome-tab.c:129
 msgid "Prepare the rewriteable disc for a new burn"
-msgstr ""
+msgstr "Chuẩn bị đĩa ghi lại được cho lần ghi mới"
 
-#: ../xfburn/xfburn-welcome-tab.c:155
+#: xfburn/xfburn-welcome-tab.c:134
 msgid "<big>_Audio CD</big>"
-msgstr ""
+msgstr "<big>Đĩa _âm thanh</big>"
 
-#: ../xfburn/xfburn-welcome-tab.c:155
+#: xfburn/xfburn-welcome-tab.c:134
 msgid "Audio CD playable in regular stereos"
-msgstr ""
+msgstr "Đĩa CD âm thanh có thể phát trên dàn âm thanh thông thường"
 
-#: ../xfburn/xfburn-audio-composition.c:212
+#. Note to translators: you can probably keep this as gstreamer,
+#. * unless you have a good reason to call it by another name that
+#. * the user would understand better
+#: xfburn/xfburn-audio-composition.c:298 xfburn/xfburn-transcoder-gst.c:572
+msgid "gstreamer"
+msgstr "gstreamer"
+
+#: xfburn/xfburn-audio-composition.c:298
 msgid "What files can get burned to an audio CD?"
-msgstr ""
+msgstr "Những định dạng tập tin nào có thể ghi vào đĩa CD âm thanh?"
 
-#: ../xfburn/xfburn-audio-composition.c:216
-msgid "Rename Artist"
-msgstr ""
-
-#: ../xfburn/xfburn-audio-composition.c:216
-msgid "Rename the artist of the selected file"
-msgstr ""
-
-#: ../xfburn/xfburn-audio-composition.c:218
-msgid "Rename Title"
-msgstr ""
-
-#: ../xfburn/xfburn-audio-composition.c:218
-msgid "Rename the title of the selected file"
-msgstr ""
-
-#: ../xfburn/xfburn-audio-composition.c:402
+#: xfburn/xfburn-audio-composition.c:327
 msgid "Pos"
-msgstr ""
+msgstr "Vị trí"
 
-#: ../xfburn/xfburn-audio-composition.c:404
+#: xfburn/xfburn-audio-composition.c:329
 msgid "Length"
-msgstr ""
+msgstr "Độ dài"
 
-#: ../xfburn/xfburn-audio-composition.c:410
-msgid "Artist"
-msgstr ""
-
-#: ../xfburn/xfburn-audio-composition.c:423
-msgid "Title"
-msgstr ""
-
-#: ../xfburn/xfburn-audio-composition.c:434
+#: xfburn/xfburn-audio-composition.c:331
 msgid "Filename"
 msgstr "Tên tập tin"
 
-#: ../xfburn/xfburn-audio-composition.c:581
+#: xfburn/xfburn-audio-composition.c:462
 msgid "Cannot burn audio onto a DVD."
-msgstr "Không thể ghi âm thanh vào một đĩa DVD"
+msgstr "Không thể ghi âm thanh vào đĩa DVD."
 
-#: ../xfburn/xfburn-audio-composition.c:1260
+#: xfburn/xfburn-audio-composition.c:973
 msgid "You can only have a maximum of 99 tracks."
-msgstr "Bạn chỉ có thể có nhiều nhất 99 bài hát"
+msgstr "Bạn chỉ có thể có tối đa 99 rãnh."
 
-#: ../xfburn/xfburn-burn-audio-cd-composition-dialog.c:311
+#: xfburn/xfburn-burn-audio-cd-composition-dialog.c:237
 msgid "A problem with the burn backend occurred."
-msgstr "Đã có sự cố với lõi của chương trình ghi"
+msgstr "Có lỗi xảy ra với backend ghi đĩa."
 
-#: ../xfburn/xfburn-disc-usage.c:163
+#: xfburn/xfburn-disc-usage.c:160
 msgid "Proceed to Burn"
 msgstr "Tiến hành ghi"
 
-#: ../xfburn/xfburn-disc-usage.c:203
+#: xfburn/xfburn-disc-usage.c:200
 msgid "You are trying to burn more onto the disc than it can hold."
-msgstr "Bạn đang cố ghi nhiều dữ liệu hơn đĩa có thể lưu trữ"
+msgstr "Bạn đang cố ghi nhiều dữ liệu hơn dung lượng đĩa cho phép."
 
-#: ../xfburn/xfburn-transcoder-basic.c:166
+#. globals
+#: xfburn/xfburn-transcoder-basic.c:69 xfburn/xfburn-transcoder-gst.c:145
+msgid "An error occurred while setting the burning backend up"
+msgstr "Có lỗi khi khởi tạo backend ghi đĩa"
+
+#: xfburn/xfburn-transcoder-basic.c:121
 msgid "basic"
 msgstr "cơ bản"
 
-#: ../xfburn/xfburn-transcoder-basic.c:172
+#: xfburn/xfburn-transcoder-basic.c:127
 msgid ""
 "The basic transcoder is built in,\n"
 "and does not require any library.\n"
@@ -1198,34 +1185,38 @@ msgid ""
 "compositions from different types of\n"
 "audio files, please compile with\n"
 "gstreamer support."
-msgstr ""
+msgstr "Bộ chuyển mã cơ bản được tích hợp sẵn,\nkhông yêu cầu thư viện ngoài.\nTuy nhiên nó chỉ hỗ trợ tập tin .wav\nkhông nén.\nNếu bạn muốn tạo bộ âm thanh từ\nnhiều định dạng khác nhau, hãy biên dịch\nvới hỗ trợ gstreamer."
 
-#: ../xfburn/xfburn-transcoder-basic.c:196
+#: xfburn/xfburn-transcoder-basic.c:151
 #, c-format
 msgid "File %s does not have a .wav extension"
-msgstr "Tập tin %s khoogn có phần mở rộng .wav"
+msgstr "Tập tin %s không có phần mở rộng .wav"
 
-#: ../xfburn/xfburn-transcoder-basic.c:201
+#: xfburn/xfburn-transcoder-basic.c:156
 #, c-format
 msgid "File %s does not contain uncompressed PCM wave audio"
-msgstr ""
+msgstr "Tập tin %s không chứa âm thanh wave PCM không nén"
 
-#: ../xfburn/xfburn-transcoder-basic.c:207
+#: xfburn/xfburn-transcoder-basic.c:162
 #, c-format
 msgid "Could not stat %s: %s"
-msgstr ""
+msgstr "Không lấy được thông tin %s: %s"
 
-#: ../xfburn/xfburn-transcoder-basic.c:238
+#: xfburn/xfburn-transcoder-basic.c:194
 #, c-format
 msgid "Could not open %s."
-msgstr "Không thể mở %s."
+msgstr "Không mở được %s."
 
-#: ../xfburn/xfburn-transcoder-basic.c:319
+#: xfburn/xfburn-transcoder-basic.c:273
 #, c-format
 msgid "Could not open %s: %s"
-msgstr "Không thể mở %s: %s"
+msgstr "Không mở được %s: %s"
 
-#: ../xfburn/xfburn-transcoder-gst.c:631
+#: xfburn/xfburn-transcoder-gst.c:144
+msgid "An error occurred setting gstreamer up for transcoding"
+msgstr "Có lỗi khi thiết lập gstreamer để chuyển mã"
+
+#: xfburn/xfburn-transcoder-gst.c:146
 #, c-format
 msgid ""
 "%s is missing.\n"
@@ -1233,16 +1224,13 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr ""
+msgstr "Thiếu %s.\n\nBạn chưa cài bộ giải mã cho định dạng này.\nCó thể cần cài các gói gst-plugins-* để có\ncác plugin cần thiết.\n"
 
-#. Note to translators: you can probably keep this as gstreamer,
-#. * unless you have a good reason to call it by another name that
-#. * the user would understand better
-#: ../xfburn/xfburn-transcoder-gst.c:720
-msgid "gstreamer"
-msgstr "gstreamer"
+#: xfburn/xfburn-transcoder-gst.c:535
+msgid "File content has a decoder but is not audio."
+msgstr "Tập tin có bộ giải mã nhưng không phải âm thanh."
 
-#: ../xfburn/xfburn-transcoder-gst.c:726
+#: xfburn/xfburn-transcoder-gst.c:578
 msgid ""
 "The gstreamer transcoder uses the gstreamer\n"
 "library for creating audio compositions.\n"
@@ -1252,111 +1240,210 @@ msgid ""
 "If an audio file is not recognized, make sure\n"
 "that you have the 'good','bad', and 'ugly'\n"
 "gstreamer plugin packages installed."
-msgstr ""
+msgstr "Bộ chuyển mã gstreamer dùng thư viện gstreamer\nđể tạo bộ âm thanh.\n\nVề cơ bản mọi định dạng âm thanh đều được hỗ trợ\nnếu cài đúng plugin.\nNếu tập tin âm thanh không được nhận diện, hãy\nkiểm tra đã cài các gói plugin gstreamer\n'good', 'bad' và 'ugly' chưa."
 
-#: ../xfburn/xfburn-transcoder-gst.c:791
-#, c-format
-msgid "Gstreamer did not like this file (detection timed out)"
-msgstr ""
+#: xfburn/xfburn-transcoder-gst.c:618
+msgid "No information available on which plugin is required."
+msgstr "Không có thông tin về plugin cần thiết."
 
-#: ../xfburn/xfburn-transcoder-gst.c:800
-#, c-format
-msgid ""
-"%s\n"
-"\n"
-"is not an audio file:\n"
-"\n"
-"%s"
-msgstr ""
+#: xfburn/xfburn-transcoder-gst.c:620
+msgid "Required plugins: "
+msgstr "Plugin cần thiết: "
 
-#: ../xfburn/xfburn-transcoder-gst.c:915
+#: xfburn/xfburn-transcoder-gst.c:655 xfburn/xfburn-transcoder-gst.c:680
 #, c-format
+msgid "An error occurred while identifying '%s' with gstreamer"
+msgstr "Có lỗi khi xác định '%s' bằng gstreamer"
+
+#: xfburn/xfburn-transcoder-gst.c:668
+msgid "A plugin"
+msgstr "Một plugin"
+
+#: xfburn/xfburn-transcoder-gst.c:796
 msgid "Gstreamer did not want to start transcoding (timed out)"
-msgstr ""
+msgstr "Gstreamer không khởi động chuyển mã (hết thời gian chờ)"
 
-#: ../xfburn/xfburn-transcoder-gst.c:950
-#, c-format
+#: xfburn/xfburn-transcoder-gst.c:830
 msgid "Failed to change songs while transcoding"
-msgstr "Thất bại đổi bài hát trong khi giải mã"
+msgstr "Không đổi được bài hát trong khi chuyển mã"
 
-#: ../xfburn/xfburn-transcoder.c:124 ../xfburn/xfburn-transcoder.c:151
-#: ../xfburn/xfburn-transcoder.c:163
-#, c-format
+#: xfburn/xfburn-transcoder.c:89 xfburn/xfburn-transcoder.c:99
+msgid "none"
+msgstr "không có"
+
+#: xfburn/xfburn-transcoder.c:110 xfburn/xfburn-transcoder.c:137
+#: xfburn/xfburn-transcoder.c:149
 msgid "not implemented"
-msgstr "chưa được làm"
+msgstr "chưa triển khai"
 
-#: ../xfburn/xfburn-device.c:242 ../xfburn/xfburn-device.c:243
+#: xfburn/xfburn-device.c:255 xfburn/xfburn-device.c:256
 msgid "Display name"
 msgstr "Tên hiển thị"
 
-#: ../xfburn/xfburn-device.c:245 ../xfburn/xfburn-device.c:246
+#: xfburn/xfburn-device.c:258 xfburn/xfburn-device.c:259
 msgid "Device address"
 msgstr "Địa chỉ thiết bị"
 
-#: ../xfburn/xfburn-device.c:248 ../xfburn/xfburn-device.c:249
+#: xfburn/xfburn-device.c:261
+msgid "Device revision"
+msgstr "Phiên bản thiết bị"
+
+#: xfburn/xfburn-device.c:262
+msgid "Device Revision"
+msgstr "Phiên bản thiết bị"
+
+#: xfburn/xfburn-device.c:264 xfburn/xfburn-device.c:265
 msgid "Burn speeds supported by the device"
-msgstr "Tốc độ ghi được hỗ trợ bởi thiết bị"
+msgstr "Tốc độ ghi được thiết bị hỗ trợ"
 
-#: ../xfburn/xfburn-device.c:251 ../xfburn/xfburn-device.c:252
+#: xfburn/xfburn-device.c:267 xfburn/xfburn-device.c:268
 msgid "Disc status"
-msgstr "Tình trạng đĩa"
+msgstr "Trạng thái đĩa"
 
-#: ../xfburn/xfburn-device.c:254 ../xfburn/xfburn-device.c:255
+#: xfburn/xfburn-device.c:270 xfburn/xfburn-device.c:271
 msgid "Profile no. as reported by libburn"
-msgstr ""
+msgstr "Số profile do libburn báo cáo"
 
-#: ../xfburn/xfburn-device.c:257 ../xfburn/xfburn-device.c:258
+#: xfburn/xfburn-device.c:273 xfburn/xfburn-device.c:274
 msgid "Profile name as reported by libburn"
-msgstr ""
+msgstr "Tên profile do libburn báo cáo"
 
-#: ../xfburn/xfburn-device.c:260 ../xfburn/xfburn-device.c:261
+#: xfburn/xfburn-device.c:276 xfburn/xfburn-device.c:277
 msgid "Is the disc erasable"
-msgstr "Có phải là đĩa xóa được không"
+msgstr "Đĩa có thể xóa được không"
 
-#: ../xfburn/xfburn-device.c:263 ../xfburn/xfburn-device.c:264
+#: xfburn/xfburn-device.c:279 xfburn/xfburn-device.c:280
 msgid "Can burn CDR"
 msgstr "Có thể ghi CDR"
 
-#: ../xfburn/xfburn-device.c:266 ../xfburn/xfburn-device.c:267
+#: xfburn/xfburn-device.c:282 xfburn/xfburn-device.c:283
 msgid "Can burn CDRW"
 msgstr "Có thể ghi CDRW"
 
-#: ../xfburn/xfburn-device.c:269 ../xfburn/xfburn-device.c:270
+#: xfburn/xfburn-device.c:285 xfburn/xfburn-device.c:286
 msgid "Can burn DVDR"
 msgstr "Có thể ghi DVDR"
 
-#: ../xfburn/xfburn-device.c:272 ../xfburn/xfburn-device.c:273
+#: xfburn/xfburn-device.c:288 xfburn/xfburn-device.c:289
 msgid "Can burn DVDPLUSR"
-msgstr "Có thể ghi DVDPLUS"
+msgstr "Có thể ghi DVD+R"
 
-#: ../xfburn/xfburn-device.c:275 ../xfburn/xfburn-device.c:276
+#: xfburn/xfburn-device.c:291 xfburn/xfburn-device.c:292
 msgid "Can burn DVDRAM"
 msgstr "Có thể ghi DVDRAM"
 
-#: ../xfburn/xfburn-device.c:278 ../xfburn/xfburn-device.c:279
+#: xfburn/xfburn-device.c:294 xfburn/xfburn-device.c:295
+msgid "Can burn Blu-ray"
+msgstr "Có thể ghi Blu-ray"
+
+#: xfburn/xfburn-device.c:297 xfburn/xfburn-device.c:298
 msgid "libburn TAO block types"
-msgstr ""
+msgstr "Kiểu khối TAO của libburn"
 
-#: ../xfburn/xfburn-device.c:281 ../xfburn/xfburn-device.c:282
+#: xfburn/xfburn-device.c:300 xfburn/xfburn-device.c:301
 msgid "libburn SAO block types"
-msgstr ""
+msgstr "Kiểu khối SAO của libburn"
 
-#: ../xfburn/xfburn-device.c:284 ../xfburn/xfburn-device.c:285
+#: xfburn/xfburn-device.c:303 xfburn/xfburn-device.c:304
 msgid "libburn RAW block types"
-msgstr ""
+msgstr "Kiểu khối RAW của libburn"
 
-#: ../xfburn/xfburn-device.c:287 ../xfburn/xfburn-device.c:288
+#: xfburn/xfburn-device.c:306 xfburn/xfburn-device.c:307
 msgid "libburn PACKET block types"
-msgstr ""
+msgstr "Kiểu khối PACKET của libburn"
 
-#: ../desktop-integration/thunar-sendto-xfburn.desktop.in.h:1
+#: xfburn.ui:5
+msgid "_Files"
+msgstr "_Tập tin"
+
+#: xfburn.ui:8
+msgid "New _data composition"
+msgstr "Bộ _dữ liệu mới"
+
+#: xfburn.ui:12
+msgid "New _audio composition"
+msgstr "Bộ _âm thanh mới"
+
+#: xfburn.ui:18
+msgid "_Close composition"
+msgstr "Đón_g bộ dữ liệu"
+
+#: xfburn.ui:24
+msgid "_Quit"
+msgstr "_Thoát"
+
+#: xfburn.ui:30
+msgid "_Edit"
+msgstr "_Chỉnh sửa"
+
+#: xfburn.ui:33
+msgid "Prefere_nce"
+msgstr "_Tùy chọn"
+
+#: xfburn.ui:39
+msgid "_Action"
+msgstr "_Hành động"
+
+#: xfburn.ui:53
+msgid "_View"
+msgstr "_Xem"
+
+#: xfburn.ui:62
+msgid "Show Toolbars"
+msgstr "Hiển thị thanh công cụ"
+
+#: xfburn.ui:66
+msgid "Show Filebrowser"
+msgstr "Hiển thị trình duyệt tập tin"
+
+#: xfburn.ui:73
+msgid "_Help"
+msgstr "Trợ _giúp"
+
+#: xfburn.ui:81
+msgid "About"
+msgstr "Giới thiệu"
+
+#: xfburn-popup-menus.ui:13
+msgid "Rename"
+msgstr "Đổi tên"
+
+#: xfburn-popup-menus.ui:33
+msgid "Rename Artist"
+msgstr "Đổi tên nghệ sĩ"
+
+#: xfburn-popup-menus.ui:37
+msgid "Rename Title"
+msgstr "Đổi tên bài hát"
+
+#: desktop-integration/thunar-sendto-xfburn.desktop.in:5
 msgid "Data Composition"
-msgstr ""
+msgstr "Bộ dữ liệu"
 
-#: ../xfburn.desktop.in.h:2
+#: xfburn.desktop.in:6
+msgid "Disk Burning"
+msgstr "Ghi đĩa"
+
+#: xfburn.desktop.in:7
 msgid "CD and DVD burning application"
 msgstr "Ứng dụng ghi đĩa CD và DVD"
 
-#: ../xfburn.desktop.in.h:3
+#: xfburn.desktop.in:14
+msgid "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;"
+msgstr "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;ghi;đĩa;âm thanh;video;"
+
+#: xfburn.desktop.in:22
 msgid "Burn Image (xfburn)"
-msgstr "Ghi tập tin ảnh (xfburn)"
+msgstr "Ghi ảnh đĩa (xfburn)"
+
+#: org.xfce.xfburn.appdata.xml.in:9
+msgid "A simple CD burning tool"
+msgstr "Công cụ ghi đĩa CD đơn giản"
+
+#: org.xfce.xfburn.appdata.xml.in:12
+msgid ""
+"Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can "
+"blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
+"personal compositions of data to either CD or DVD. It is stable and under "
+"ongoing development."
+msgstr "Xfburn là công cụ ghi CD/DVD đơn giản dựa trên thư viện libburnia. Nó có thể xóa sạch đĩa CD/DVD(-RW), ghi và tạo ảnh ISO, đĩa CD âm thanh, cũng như ghi bộ dữ liệu cá nhân vào CD hoặc DVD. Ứng dụng ổn định và đang được phát triển liên tục."
