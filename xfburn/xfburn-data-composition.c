@@ -74,6 +74,16 @@ typedef enum
   DATA_COMPOSITION_TYPE_DIRECTORY
 } DataCompositionEntryType;
 
+/* Return codes for the thread_add_file methods. */
+typedef enum
+{
+  /* The file addition was a success. */
+  ADD_FILE_SUCCESS,
+  /* No file was added. */
+  ADD_FILE_FAILURE,
+  /* The user wants to abort; clean up and stop adding files. */
+  ADD_FILE_ABORT,
+} AddFileStatus;
 
 /* thread parameters */
 typedef struct {
@@ -131,11 +141,11 @@ static gpointer thread_add_files_action (ThreadAddFilesActionParams *params);
 static gpointer thread_add_files_drag (ThreadAddFilesDragParams *params);
 
 /* thread helpers */
-static gboolean thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc,
-                                                   GtkTreeModel * model, const gchar * path, GtkTreeIter * iter,
-                                                   GtkTreeIter * insertion, GtkTreeViewDropPosition position);
-static gboolean thread_add_file_to_list (XfburnDataComposition * dc, GtkTreeModel * model, const gchar * path,
-                                         GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
+static AddFileStatus thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc,
+                                                        GtkTreeModel * model, const gchar * path, GtkTreeIter * iter,
+                                                        GtkTreeIter * insertion, GtkTreeViewDropPosition position);
+static AddFileStatus thread_add_file_to_list (XfburnDataComposition * dc, GtkTreeModel * model, const gchar * path,
+                                              GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
 static void concat_free (char * msg, char ** combined_msg);
 static IsoImage * generate_iso_image (XfburnDataComposition * dc);
 static gboolean show_add_home_question_dialog (void);
@@ -1005,7 +1015,7 @@ set_modified (XfburnDataCompositionPrivate *priv)
   }
 }
 
-static gboolean
+static AddFileStatus
 thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc,
                                    GtkTreeModel * model, const gchar * path,
                                    GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position)
@@ -1019,9 +1029,10 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
     GtkTreeIter *parent = NULL;
     GtkTreePath *tree_path = NULL;
     int parent_type = 0;
+    AddFileStatus status = ADD_FILE_SUCCESS;
 
     if (!(S_ISDIR (s.st_mode) ||S_ISREG (s.st_mode) || S_ISCHR(s.st_mode) || S_ISBLK(s.st_mode) || S_ISLNK (s.st_mode))) {
-      return FALSE;
+      return ADD_FILE_FAILURE;
     }
 
     xfburn_adding_progress_pulse (XFBURN_ADDING_PROGRESS (priv->progress));
@@ -1078,7 +1089,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
       gtk_tree_path_free (tree_path);
       gdk_threads_leave ();
       g_free (parent);
-      return FALSE;
+      return ADD_FILE_FAILURE;
     }
     gtk_tree_path_free (tree_path);
     gdk_threads_leave ();
@@ -1097,7 +1108,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
         g_error_free (error);
         g_free (parent);
 
-        return FALSE;
+        return ADD_FILE_FAILURE;
       }
 
       gdk_threads_enter ();
@@ -1120,11 +1131,17 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
         if (new_path) {
           guint64 size;
 
-          if (thread_add_file_to_list (dc, model, new_path, &new_iter, iter, GTK_TREE_VIEW_DROP_INTO_OR_AFTER)) {
+          status = thread_add_file_to_list (dc, model, new_path, &new_iter, iter, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
+
+          if (status != ADD_FILE_FAILURE) {
             gdk_threads_enter ();
             gtk_tree_model_get (model, &new_iter, DATA_COMPOSITION_COLUMN_SIZE, &size, -1);
             gdk_threads_leave ();
             total_size += size;
+          }
+
+          if (status == ADD_FILE_ABORT) {
+            break;
           }
 
           g_free (new_path);
@@ -1155,7 +1172,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
         xfce_dialog_show_error (NULL, NULL, _("%s cannot be added to the composition, because it exceeds the maximum allowed file size for iso9660."), path);
         gdk_threads_leave ();
 
-        return FALSE;
+        return ADD_FILE_FAILURE;
       } else if (s.st_size > MAXIMUM_ISO_LEVEL_2_FILE_SIZE && !priv->large_files) {
         priv->large_files = TRUE;
         gdk_threads_enter ();
@@ -1203,10 +1220,10 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
     g_free (parent);
 
     set_modified (priv);
-    return TRUE;
+    return status;
   }
 
-  return FALSE;
+  return ADD_FILE_FAILURE;
 }
 
 /* thread entry point */
@@ -1225,11 +1242,15 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
 
   for (list_iter = params->filelist; list_iter != NULL; list_iter = g_slist_next (list_iter)) {
     gchar * full_path = (gchar *) list_iter->data;
+    AddFileStatus status = thread_add_file_to_list (params->dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);
 
     g_message ("Adding %s to the data composition... (might take a while)", full_path);
-    thread_add_file_to_list (params->dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);
 
     g_free (full_path);
+
+    if (status == ADD_FILE_ABORT) {
+      break;
+    }
   }
   g_slist_free (params->filelist);
   xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
@@ -1273,6 +1294,7 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
     for (i=0; files[i] != NULL && files[i][0] != '\0'; i++) {
       GtkTreeIter iter;
       gchar *full_path = NULL;
+      AddFileStatus status;
 
       if (g_str_has_prefix (files[i], "file://"))
         full_path = g_build_filename (&files[i][7], NULL);
@@ -1296,7 +1318,7 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
         guint64 old_size, size;
         gchar *humansize = NULL;
 
-        thread_add_file_to_list (dc, model, full_path, &iter, &iter_where_insert, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
+        status = thread_add_file_to_list (dc, model, full_path, &iter, &iter_where_insert, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
         gdk_threads_enter ();
         gtk_tree_view_expand_row (GTK_TREE_VIEW (priv->content), path_where_insert, FALSE);
 
@@ -1323,14 +1345,18 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
         gdk_threads_leave ();
 
         if (has_parent)
-          thread_add_file_to_list (dc, model, full_path, &iter, &parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
+          status = thread_add_file_to_list (dc, model, full_path, &iter, &parent, GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
         else
-          thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);
+          status = thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);
       } else {
-        thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);
+        status = thread_add_file_to_list (dc, model, full_path, &iter, NULL, GTK_TREE_VIEW_DROP_AFTER);
       }
 
       g_free (full_path);
+
+      if (status == ADD_FILE_ABORT) {
+        break;
+      }
     }
   /* end if files */
 
@@ -1340,19 +1366,17 @@ thread_add_files_action (ThreadAddFilesActionParams *params)
   return NULL;
 }
 
-static gboolean
+static AddFileStatus
 thread_add_file_to_list (XfburnDataComposition * dc, GtkTreeModel * model,
                          const gchar * path, GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position)
 {
   XfburnDataCompositionPrivate *priv = XFBURN_DATA_COMPOSITION_GET_PRIVATE (dc);
   struct stat s;
-  gboolean ret = FALSE;
+  AddFileStatus ret = ADD_FILE_FAILURE;
 
   if (xfburn_adding_progress_is_aborted (XFBURN_ADDING_PROGRESS (priv->progress))) {
     DBG ("Adding aborted");
-    xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
-    /* FIXME: does this properly release the resources allocated in this thread? */
-    g_thread_exit (NULL);
+    return ADD_FILE_ABORT;
   }
 
   if ((stat (path, &s) == 0)) {
@@ -1748,7 +1772,7 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
   GtkTreeIter iter_where_insert;
   GtkTreeIter *iter_insert = (priv->path_where_insert) ? &iter_where_insert : NULL;
   gboolean expand = (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
-  gboolean success = FALSE;
+  AddFileStatus status = ADD_FILE_FAILURE;
   GList *files = priv->full_paths_to_add;
 
   gdk_threads_enter ();
@@ -1768,14 +1792,17 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
       gdk_threads_leave ();
     }
 
-    success = thread_add_file_to_list (composition, model, full_path, &iter, iter_insert, position);
+    status = thread_add_file_to_list (composition, model, full_path, &iter, iter_insert, position);
 
-    if (success && expand && priv->path_where_insert) {
+    if (status != ADD_FILE_FAILURE && expand && priv->path_where_insert) {
       gdk_threads_enter ();
       gtk_tree_view_expand_row (GTK_TREE_VIEW (widget), priv->path_where_insert, FALSE);
       gdk_threads_leave ();
     }
-
+    
+    if (status == ADD_FILE_ABORT) {
+      break;
+    }
   }
   xfburn_adding_progress_done (XFBURN_ADDING_PROGRESS (priv->progress));
   return NULL;
