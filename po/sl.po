@@ -5,6 +5,7 @@
 # Translators:
 # Dejweed, 2025
 # Arnold Marko <arnold.marko@gmail.com>, 2019-2021,2023-2024
+# Dejweed, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
@@ -144,7 +145,7 @@ msgstr "_Sprazni"
 #. allowed to be blank ones
 #: xfburn/xfburn-blank-dialog.c:309
 msgid "The inserted disc is already blank."
-msgstr "Vstavljeni disk je že prazen"
+msgstr "Vstavljeni disk je že prazen."
 
 #. these ones we can blank
 #: xfburn/xfburn-blank-dialog.c:315
@@ -228,7 +229,7 @@ msgstr "Snemanje pre_toka"
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:190
 #: xfburn/xfburn-copy-cd-dialog.c:133 xfburn/xfburn-copy-dvd-dialog.c:130
 msgid "Only create _ISO"
-msgstr "Ustvari zgolj ISO"
+msgstr "Ustvari zgolj _ISO"
 
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:222
 #: xfburn/xfburn-burn-audio-cd-composition-dialog.c:153
@@ -238,7 +239,7 @@ msgstr "_Zapiši kompozicijo"
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:347
 #, c-format
 msgid "Could not create destination ISO file: %s"
-msgstr "Ne bilo mogoče ustvariti ciljne ISO datoteke: %s"
+msgstr "Ni bilo mogoče ustvariti ciljne ISO datoteke: %s"
 
 #: xfburn/xfburn-burn-data-composition-base-dialog.c:354
 msgid "Writing ISO..."
@@ -452,7 +453,7 @@ msgstr "Lokalna pot"
 
 #: xfburn/xfburn-data-composition.c:626
 msgid "You must give a name to the file."
-msgstr "Datoteko je potrebno poimenovati"
+msgstr "Datoteko je potrebno poimenovati."
 
 #: xfburn/xfburn-data-composition.c:635 xfburn/xfburn-data-composition.c:1080
 #: xfburn/xfburn-audio-composition.c:891
@@ -476,7 +477,7 @@ msgstr "Podatki %s~%d"
 msgid ""
 "%s cannot be added to the composition, because it exceeds the maximum "
 "allowed file size for iso9660."
-msgstr "%sni mogoče dodati v kompozicijo, ker presega največjo dovoljeno velikost datoteke za iso9660."
+msgstr "%s ni mogoče dodati v kompozicijo, ker presega največjo dovoljeno velikost datoteke za iso9660."
 
 #: xfburn/xfburn-data-composition.c:1166
 #, c-format
@@ -523,7 +524,7 @@ msgstr "%s: ime vozlišča ni unikatno"
 #: xfburn/xfburn-data-composition.c:1827
 #, c-format
 msgid "%s: %s (code %X)"
-msgstr "%s:%s (koda %X)"
+msgstr "%s: %s (koda %X)"
 
 #. The first string is the renamed name, the second one the original name
 #: xfburn/xfburn-data-composition.c:1847
@@ -672,7 +673,7 @@ msgstr "Trenutno izbrana naprava"
 #. globals
 #: xfburn/xfburn-directory-browser.c:50
 msgid "Folder"
-msgstr "pa"
+msgstr "Mapa"
 
 #: xfburn/xfburn-directory-browser.c:97
 msgid "File"
@@ -690,7 +691,7 @@ msgstr "Datotečni sistem"
 #: xfburn/xfburn-fs-browser.c:283
 #, c-format
 msgid "%s's home"
-msgstr "Domača mapa za %s"
+msgstr "Domača mapa uporabnika %s"
 
 #: xfburn/xfburn-udev-manager.c:490
 #, c-format
@@ -763,7 +764,7 @@ msgid ""
 "Possibly the disc(s) are in use, and cannot get accessed.\n"
 "\n"
 "If no disc is in the drive, check that you have read and write access to the drive with the current user."
-msgstr "Disk je verjetno v rabi in dostop do njega ni mogoč.Če diska ni v pogonu, preverite ali ima trenutni uporabnik dostop za branje in pisanje na pogon."
+msgstr "Disk je verjetno v rabi in dostop do njega ni mogoč.\n\nČe diska ni v pogonu, preverite, da imate pravice za branje in pisanje na pogon."
 
 #: xfburn/xfburn-main.c:324
 #, c-format
@@ -1093,15 +1094,15 @@ msgstr "Dobrodošli v Xfburn!"
 #. buttons
 #: xfburn/xfburn-welcome-tab.c:119
 msgid "<big>Burn _Image</big>"
-msgstr "</big>Zapiši _posnetek</big>"
+msgstr "<big>Zapiši _posnetek</big>"
 
 #: xfburn/xfburn-welcome-tab.c:119
 msgid "Burn a prepared composition, i.e. an .ISO file"
-msgstr "Zapisši pripravljeno kompozicijo, to je .ISO datoteko"
+msgstr "Zapiši pripravljeno kompozicijo, torej .ISO datoteko"
 
 #: xfburn/xfburn-welcome-tab.c:124
 msgid "<big>New _Data Composition</big>"
-msgstr "<big>Nova po_datkovna kompozicija</big>"
+msgstr "<big>Nova p_odatkovna kompozicija</big>"
 
 #: xfburn/xfburn-welcome-tab.c:124
 msgid "Create a new data disc with the files of your choosing"
@@ -1109,7 +1110,7 @@ msgstr "Ustvari nov podatkovni disk iz izbranih datotek"
 
 #: xfburn/xfburn-welcome-tab.c:129
 msgid "<big>_Blank Disc</big>"
-msgstr "<big>Pra_zen disk</big>"
+msgstr "<big>P_razen disk</big>"
 
 #: xfburn/xfburn-welcome-tab.c:129
 msgid "Prepare the rewriteable disc for a new burn"
@@ -1121,7 +1122,7 @@ msgstr "<big>_Zvočni CD</big>"
 
 #: xfburn/xfburn-welcome-tab.c:134
 msgid "Audio CD playable in regular stereos"
-msgstr "Zvočni CD, ki ga je moč predvajati v navadnih predvajalnikih CD plošč"
+msgstr "Zvočni CD, ki ga je možno predvajate v navadnih CD predvajalnikih"
 
 #. Note to translators: you can probably keep this as gstreamer,
 #. * unless you have a good reason to call it by another name that
@@ -1148,7 +1149,7 @@ msgstr "Ime datoteke"
 
 #: xfburn/xfburn-audio-composition.c:462
 msgid "Cannot burn audio onto a DVD."
-msgstr "Ne morem zapisati zvoka na DVD-"
+msgstr "Ne morem zapisati zvoka na DVD."
 
 #: xfburn/xfburn-audio-composition.c:973
 msgid "You can only have a maximum of 99 tracks."
@@ -1169,7 +1170,7 @@ msgstr "Na disk želite zapisati več, kot je njegova velikost."
 #. globals
 #: xfburn/xfburn-transcoder-basic.c:69 xfburn/xfburn-transcoder-gst.c:145
 msgid "An error occurred while setting the burning backend up"
-msgstr "Zgodila se je napaka pri rabi podporne programske opreme."
+msgstr "Zgodila se je napaka pri rabi podporne programske opreme"
 
 #: xfburn/xfburn-transcoder-basic.c:121
 msgid "basic"
@@ -1190,7 +1191,7 @@ msgstr "Osnovni kodirnik je vgrajen\nin ne potrebuje dodatnih knjižnic.\nVendar
 #: xfburn/xfburn-transcoder-basic.c:151
 #, c-format
 msgid "File %s does not have a .wav extension"
-msgstr "Daoteka %s nima končnice .wav"
+msgstr "Datoteka %s nima končnice .wav"
 
 #: xfburn/xfburn-transcoder-basic.c:156
 #, c-format
@@ -1228,7 +1229,7 @@ msgstr "Manjka %s\n\nZa rabo te datoteke ni dekodirnika.\nVerjetno morate namest
 
 #: xfburn/xfburn-transcoder-gst.c:535
 msgid "File content has a decoder but is not audio."
-msgstr "Vsebina datoteke ima dekosder a ni zvok."
+msgstr "Vsebina datoteke ima dekoder, vendar ni zvok."
 
 #: xfburn/xfburn-transcoder-gst.c:578
 msgid ""
@@ -1248,7 +1249,7 @@ msgstr "Ni podatka o potrebnem vtičniku."
 
 #: xfburn/xfburn-transcoder-gst.c:620
 msgid "Required plugins: "
-msgstr "Zahtevani vtičniki:"
+msgstr "Zahtevani vtičniki: "
 
 #: xfburn/xfburn-transcoder-gst.c:655 xfburn/xfburn-transcoder-gst.c:680
 #, c-format
@@ -1294,7 +1295,7 @@ msgstr "Izvedba naprave"
 
 #: xfburn/xfburn-device.c:264 xfburn/xfburn-device.c:265
 msgid "Burn speeds supported by the device"
-msgstr "Podpte hitrost zapisovanja za napravo"
+msgstr "Podprte hitrost zapisovanja za napravo"
 
 #: xfburn/xfburn-device.c:267 xfburn/xfburn-device.c:268
 msgid "Disc status"
@@ -1302,7 +1303,7 @@ msgstr "Status diska"
 
 #: xfburn/xfburn-device.c:270 xfburn/xfburn-device.c:271
 msgid "Profile no. as reported by libburn"
-msgstr "št. profila, kot jo je sporočil libburn"
+msgstr "Št. profila, kot jo je sporočil libburn"
 
 #: xfburn/xfburn-device.c:273 xfburn/xfburn-device.c:274
 msgid "Profile name as reported by libburn"
@@ -1310,7 +1311,7 @@ msgstr "Ime profila, kot ga je sporočil libburn"
 
 #: xfburn/xfburn-device.c:276 xfburn/xfburn-device.c:277
 msgid "Is the disc erasable"
-msgstr "Ali je disk izbrisljiv?"
+msgstr "Ali je disk izbrisljiv"
 
 #: xfburn/xfburn-device.c:279 xfburn/xfburn-device.c:280
 msgid "Can burn CDR"
@@ -1358,7 +1359,7 @@ msgstr "Da_toteke"
 
 #: xfburn.ui:8
 msgid "New _data composition"
-msgstr "Nova po_datkovna kompozicija"
+msgstr "Nova p_odatkovna kompozicija"
 
 #: xfburn.ui:12
 msgid "New _audio composition"
@@ -1386,7 +1387,7 @@ msgstr "_Dejanje"
 
 #: xfburn.ui:53
 msgid "_View"
-msgstr "_Pogled"
+msgstr "Po_gled"
 
 #: xfburn.ui:62
 msgid "Show Toolbars"
@@ -1398,7 +1399,7 @@ msgstr "Prikaži brskalnik datotek"
 
 #: xfburn.ui:73
 msgid "_Help"
-msgstr "_Pomoč"
+msgstr "Po_moč"
 
 #: xfburn.ui:81
 msgid "About"
@@ -1426,7 +1427,7 @@ msgstr "Zapisovanje diska"
 
 #: xfburn.desktop.in:7
 msgid "CD and DVD burning application"
-msgstr "Program za zapisovanje CD in DVD plošč"
+msgstr "Program za zapisovanje CD in DVD zgoščenk"
 
 #: xfburn.desktop.in:14
 msgid "Burn;CD;DVD;ISO;Disc;Write;Audio;Video;"
@@ -1446,4 +1447,4 @@ msgid ""
 "blank CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn "
 "personal compositions of data to either CD or DVD. It is stable and under "
 "ongoing development."
-msgstr "Xfburn je preprosto orodje za zapisovanje CD in DVD plošč, ki temelji na knjižnicah libburnia. Zna pobrisati CD/DVD(-RW)-je, zapisovati, ustvarjati ISO posnetke, zvočne CDje, kot tudi zapisovati osebne podatkovne zbirke na CD ali DVD. Je stabilen in se neprenehoma razvija."
+msgstr "Xfburn je preprosto orodje za zapisovanje CD in DVD zgoščenk, ki temelji na knjižnicah libburnia. Zna pobrisati CD/DVD(-RW)-je, zapisovati in ustvarjati ISO posnetke, zvočne CDje, kot tudi zapisovati osebne podatkovne zbirke na CD ali DVD. Je stabilen in se nenehno razvija."
