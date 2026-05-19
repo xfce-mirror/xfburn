@@ -107,6 +107,8 @@ xfburn_settings_finalize (GObject * object)
     g_hash_table_destroy (priv->settings);
   if (G_LIKELY (priv->full_path))
     g_free (priv->full_path);
+
+  G_OBJECT_CLASS (xfburn_settings_parent_class)->finalize (object);
 }
 
 static void

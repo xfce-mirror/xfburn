@@ -122,6 +122,8 @@ xfburn_main_window_finalize (GObject *obj)
 {
   if (instance)
     instance = NULL;
+
+  G_OBJECT_CLASS (xfburn_main_window_parent_class)->finalize (obj);
 }
 
 static void
