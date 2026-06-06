@@ -5,7 +5,7 @@
 # Translators:
 # Alois Nešpor <info@aloisnespor.info>, 2013
 # Alois Nešpor <info@aloisnespor.info>, 2014
-# Michal Várady <miko.vaji@gmail.com>, 2014-2015,2017,2019-2022,2024
+# Michal Várady <miko.vaji@gmail.com>, 2014-2015,2017,2019-2022,2024,2026
 # Pavel Borecki <pavel.borecki@gmail.com>, 2018
 # Petr Šimáček <petr.simacek@gmail.com>, 2015
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-05-11 12:48+0200\n"
 "PO-Revision-Date: 2013-07-03 18:34+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2014-2015,2017,2019-2022,2024\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2014-2015,2017,2019-2022,2024,2026\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce-apps/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,11 +40,11 @@ msgstr "délka"
 
 #: xfburn/xfburn-global.h:33 xfburn/xfburn-copy-cd-progress-dialog.c:93
 msgid "Flushing cache..."
-msgstr "Vyprazdňování vyrovnávací paměti…"
+msgstr "Vyprazdňování vyrovnávací paměti..."
 
 #: xfburn/xfburn-global.h:34
 msgid "Please insert a recordable disc and hit enter"
-msgstr "Vložte zapisovatelný disk a stiskněte enter"
+msgstr "Vložte zapisovatelný disk a stiskněte klávesu Enter"
 
 #: xfburn/xfburn-global.h:35
 msgid "Cannot determine disc status - hit enter to try again."
@@ -84,11 +84,11 @@ msgstr "Kompletní formátování"
 
 #: xfburn/xfburn-blank-dialog.c:74
 msgid "Quick Deformat"
-msgstr "Rychlé deformátování"
+msgstr "Rychlé převedení do sekvenčního režimu"
 
 #: xfburn/xfburn-blank-dialog.c:75
 msgid "Full Deformat (slow)"
-msgstr "Kompletní deformátování (pomalé)"
+msgstr "Úplné převedení do sekvenčního režimu (pomalé)"
 
 #: xfburn/xfburn-blank-dialog.c:118
 msgid "Eject the disc"
@@ -141,7 +141,7 @@ msgstr "_Zrušit"
 
 #: xfburn/xfburn-blank-dialog.c:209
 msgid "_Blank"
-msgstr "_Prázdné"
+msgstr "_Smazat"
 
 #. blanking can only be performed on blank discs, format and deformat are
 #. allowed to be blank ones
@@ -321,7 +321,7 @@ msgstr "<span weight=\"bold\" foreground=\"darkred\" stretch=\"semiexpanded\">Zv
 #: xfburn/xfburn-burn-image-dialog.c:500
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO instead)"
-msgstr "V tomto režimu zápisu nelze přidat další data na disk typu multisession (použijte místo něj TAO)"
+msgstr "V tomto režimu zápisu nelze přidat data na disk s více relacemi (použijte místo něj TAO)"
 
 #: xfburn/xfburn-burn-image-dialog.c:504
 msgid "Closed disc with data detected. Need blank or appendable disc"
@@ -337,7 +337,7 @@ msgstr "Nelze rozpoznat stav jednotky a disku"
 
 #: xfburn/xfburn-burn-image-dialog.c:520
 msgid "The selected image does not fit on the inserted disc"
-msgstr "Vybranou bitovou kopii nelze uložit na vložený disk"
+msgstr "Vybraná bitová kopie se na vložený disk nevejde"
 
 #: xfburn/xfburn-burn-image-dialog.c:524
 msgid "Failed to get image size"
@@ -491,7 +491,7 @@ msgstr "%s je větší než umožňuje norma ISO 9660 Level 2. To může způsob
 #: xfburn/xfburn-data-composition.c:1250
 #: xfburn/xfburn-audio-composition.c:1063
 msgid "Adding home directory"
-msgstr "Přídává se domovský adresář"
+msgstr "Přidává se domovský adresář"
 
 #: xfburn/xfburn-data-composition.c:1251
 #: xfburn/xfburn-audio-composition.c:1064
@@ -610,7 +610,7 @@ msgstr "Jednotka je prázdná!"
 
 #: xfburn/xfburn-device-box.c:498
 msgid "Sorry, multisession is not yet supported"
-msgstr "Omlouváme se, ale multisession zatím není podporován"
+msgstr "Disky s více relacemi zatím nejsou podporovány"
 
 #: xfburn/xfburn-device-box.c:501
 msgid "Inserted disc is full"
@@ -634,7 +634,7 @@ msgstr "Toto je disk pouze pro jeden zápis, mazání není možné"
 
 #: xfburn/xfburn-device-box.c:536
 msgid "DVD+RW does not need blanking"
-msgstr "Disk DVD-RW není nutné mazat"
+msgstr "Disk DVD+RW není nutné mazat"
 
 #: xfburn/xfburn-device-box.c:544
 msgid "Inserted disc is already blank"
@@ -773,7 +773,7 @@ msgstr "Disk se pravděpodobně používá, přístup byl odepřen.\n\nPokud se 
 msgid ""
 "Failed to initialize %s transcoder: %s\n"
 "\t(falling back to basic implementation)"
-msgstr "Inicializace převodníku %s se nezdařila : %s\n\t(přepínání na základní implementaci)"
+msgstr "Inicializace převodníku %s se nezdařila: %s\n\t(přepíná se na základní implementaci)"
 
 #: xfburn/xfburn-main.c:367
 #, c-format
@@ -832,7 +832,7 @@ msgstr "Formátování..."
 msgid ""
 "Cannot append data to multisession disc in this write mode (use TAO "
 "instead)."
-msgstr "V tomto režimu zápisu nelze přidat další data na disk typu multisession (použijte místo něj režim TAO)."
+msgstr "V tomto režimu zápisu nelze přidat data na disk s více relacemi (použijte místo něj TAO)"
 
 #: xfburn/xfburn-perform-burn.c:260
 msgid "Closed disc with data detected, a blank or appendable disc is needed."
@@ -852,7 +852,7 @@ msgstr "Formátování se nezdařilo."
 
 #: xfburn/xfburn-perform-burn.c:290
 msgid "There is not enough space available on the inserted disc."
-msgstr "Na vloženému disku není dostatek místa."
+msgstr "Na vloženém disku není dostatek místa."
 
 #: xfburn/xfburn-perform-burn.c:333
 #, c-format
@@ -913,7 +913,7 @@ msgstr "Uzavírání stopy..."
 
 #: xfburn/xfburn-perform-burn.c:424
 msgid "Closing session..."
-msgstr "Uzavírání session..."
+msgstr "Uzavírání relace..."
 
 #: xfburn/xfburn-perform-burn.c:443
 msgid "see console"
@@ -988,7 +988,7 @@ msgstr "Zápis CD-RW"
 
 #: xfburn/xfburn-preferences-dialog.c:246
 msgid "Write DVD-R"
-msgstr "Zápis DVD-RW"
+msgstr "Zápis DVD-R"
 
 #: xfburn/xfburn-preferences-dialog.c:249
 msgid "Write DVD-RAM"
@@ -1033,7 +1033,7 @@ msgstr "neznámý"
 
 #: xfburn/xfburn-progress-dialog.c:201
 msgid "FIFO buffer:"
-msgstr "Vyrovnávací pamět FIFO:"
+msgstr "Vyrovnávací paměť FIFO:"
 
 #: xfburn/xfburn-progress-dialog.c:210
 msgid "Device buffer:"
@@ -1227,7 +1227,7 @@ msgid ""
 "You do not have a decoder installed to handle this file.\n"
 "Probably you need to look at the gst-plugins-* packages\n"
 "for the necessary plugins.\n"
-msgstr "%s není přítomen.\n\nNení nainstalován dekodér pro práci s tímto souborem.\nPravděpodobně bude nutné získat zásuvné moduly\nv balíčcích gst-plugins-* \n"
+msgstr "%s není přítomen.\n\nNení nainstalován dekodér pro práci s tímto souborem.\nPravděpodobně bude nutné získat zásuvné moduly\nv balíčcích gst-plugins-*\n"
 
 #: xfburn/xfburn-transcoder-gst.c:535
 msgid "File content has a decoder but is not audio."
@@ -1437,7 +1437,7 @@ msgstr "vypalování;CD;DVD;ISO;disk;zápis;audio;video"
 
 #: xfburn.desktop.in:22
 msgid "Burn Image (xfburn)"
-msgstr "Vypálit bitovou kopii (fxburn)"
+msgstr "Vypálit bitovou kopii disku (Xfburn)"
 
 #: org.xfce.xfburn.appdata.xml.in:9
 msgid "A simple CD burning tool"
