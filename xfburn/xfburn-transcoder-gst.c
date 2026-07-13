@@ -412,7 +412,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODE_START:
         case XFBURN_TRANSCODER_GST_STATE_TRANSCODING:
-          g_error ("Gstreamer error while transcoding: %s", error->message);
+          g_critical ("Gstreamer error while transcoding: %s", error->message);
           g_error_free (error);
           break;
       }
