@@ -66,7 +66,7 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
     DBG("Pretending DVD+RW is a BD RE");
     profile = 0x43;           /* Pretend (for this function only) to be BD-RE */
     format_flag |= 16;        /* Re-format already formatted medium */
-    strcpy(profile_name, "DVD+RW as BD-RE");
+    g_strlcpy (profile_name, "DVD+RW as BD-RE", sizeof (profile_name));
   }
 #endif
 
@@ -436,7 +436,7 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 
   /* no error message by default */
 #ifdef DEBUG_LIBBURN
-  strcpy (msg_text, _("see console"));
+  g_strlcpy (msg_text, _("see console"), sizeof (msg_text));
 #else
   msg_text[0] = '\0';
 #endif
