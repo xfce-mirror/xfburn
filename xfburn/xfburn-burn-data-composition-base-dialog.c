@@ -44,7 +44,6 @@ typedef struct _XfburnBurnDataCompositionBaseDialogPrivate
 
   GtkWidget *frame_device;
   GtkWidget *device_box;
-  GtkWidget *combo_mode;
 
   GtkWidget *entry;
   GtkWidget *check_eject;
@@ -55,8 +54,6 @@ typedef struct _XfburnBurnDataCompositionBaseDialogPrivate
   GtkWidget *entry_path_iso;
   GtkWidget *check_dummy;
   GtkWidget *button_proceed;
-
-  gint response;
 
   gboolean show_volume_name;
 } XfburnBurnDataCompositionBaseDialogPrivate;

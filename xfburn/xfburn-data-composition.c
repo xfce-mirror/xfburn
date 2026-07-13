@@ -151,11 +151,6 @@ typedef struct _XfburnDataCompositionPrivate
   gchar *selected_files;
   GtkTreePath *path_where_insert;
 
-  GdkDragContext * dc;
-  gboolean success;
-  gboolean del;
-  guint32 time;
-
   void *thread_params;
 
   GSimpleActionGroup *action_group;
@@ -167,9 +162,6 @@ typedef struct _XfburnDataCompositionPrivate
   GtkWidget *disc_usage;
   GtkWidget *progress;
   GtkTreeStore *model;
-  GtkWidget *add_filechooser;
-  gchar * last_directory;
-  GtkWidget *add_window;
 
   gchar *default_vol_name;
 

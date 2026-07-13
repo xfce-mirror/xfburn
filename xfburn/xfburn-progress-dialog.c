@@ -44,7 +44,6 @@ enum {
 typedef struct _XfburnProgressDialogPrivate
 {
   XfburnProgressDialogStatus status;
-  int fd_stdin;
   gboolean animate;
   int ani_index;
   gboolean stop;

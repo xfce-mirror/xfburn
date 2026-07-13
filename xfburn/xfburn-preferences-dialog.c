@@ -30,7 +30,6 @@
 typedef struct _XfburnPreferencesDialogPrivate
 {
   GtkWidget *notebook;
-  GtkWidget *icon_bar;
 
   GtkWidget *chooser_button;
   GtkWidget *check_clean_tmpdir;
@@ -73,11 +72,6 @@ enum
   DEVICE_LIST_COLUMN_BD,
   DEVICE_LIST_N_COLUMNS
 };
-
-typedef struct
-{
-  XfburnPreferencesDialog *object;
-} XfburnPreferencesDialogSignal;
 
 /*********************************/
 /* XfburnPreferencesDialog class */

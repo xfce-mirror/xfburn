@@ -46,15 +46,11 @@ typedef struct _XfburnBurnAudioCdCompositionDialogPrivate
 
   GtkWidget *frame_device;
   GtkWidget *device_box;
-  GtkWidget *combo_mode;
 
-  GtkWidget *entry;
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
   GtkWidget *check_dummy;
   GtkWidget *button_proceed;
-
-  gint response;
 } XfburnBurnAudioCdCompositionDialogPrivate;
 
 struct _XfburnBurnAudioCdCompositionDialog

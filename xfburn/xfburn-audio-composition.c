@@ -153,11 +153,6 @@ typedef struct _XfburnAudioCompositionPrivate
   gchar *selected_files;
   GtkTreePath *path_where_insert;
 
-  GdkDragContext * dc;
-  gboolean success;
-  gboolean del;
-  guint32 time;
-
   void *thread_params;
   GHashTable *warned_about;
 
@@ -165,7 +160,6 @@ typedef struct _XfburnAudioCompositionPrivate
   GtkBuilder *ui_manager;
 
   GtkWidget *toolbar;
-  GtkWidget *entry_volume_name;
   GtkWidget *content;
   GtkWidget *disc_usage;
   GtkWidget *progress;
