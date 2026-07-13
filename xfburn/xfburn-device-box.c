@@ -121,7 +121,7 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
   object_class->set_property = xfburn_device_box_set_property;
   object_class->get_property = xfburn_device_box_get_property;
 
-  signals[VOLUME_CHANGED] = g_signal_new ("volume_changed", XFBURN_TYPE_DEVICE_BOX, G_SIGNAL_ACTION,
+  signals[VOLUME_CHANGED] = g_signal_new ("volume-changed", XFBURN_TYPE_DEVICE_BOX, G_SIGNAL_ACTION,
                                           G_STRUCT_OFFSET (XfburnDeviceBoxClass, volume_changed),
                                           NULL, NULL, xfburn_cclosure_marshal_VOID__BOOLEAN_OBJECT,
                                           G_TYPE_NONE, 2, G_TYPE_BOOLEAN, XFBURN_TYPE_DEVICE);
