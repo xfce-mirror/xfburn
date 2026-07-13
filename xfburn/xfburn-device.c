@@ -346,7 +346,6 @@ static void
 refresh_disc (XfburnDevice * device, struct burn_drive_info *drive_info)
 {
   XfburnDevicePrivate *priv = GET_PRIVATE (device);
-  gint ret;
 
   /* check if there is a disc in the drive */
   while ((priv->disc_status = burn_disc_get_status (drive_info->drive)) == BURN_DISC_UNREADY)
@@ -354,7 +353,7 @@ refresh_disc (XfburnDevice * device, struct burn_drive_info *drive_info)
 
   DBG ("disc_status = %d", priv->disc_status);
 
-  if ((ret = burn_disc_get_profile(drive_info->drive, &(priv->profile_no), priv->profile_name)) != 1) {
+  if (burn_disc_get_profile(drive_info->drive, &(priv->profile_no), priv->profile_name) != 1) {
     g_warning ("no profile could be retrieved");
   }
   priv->is_erasable = burn_disc_erasable (drive_info->drive);

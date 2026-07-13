@@ -1732,7 +1732,7 @@ thread_add_files_drag (ThreadAddFilesDragParams *params)
   GtkTreeIter iter_where_insert;
   GtkTreeIter *iter_insert = (priv->path_where_insert) ? &iter_where_insert : NULL;
   gboolean expand = (position == GTK_TREE_VIEW_DROP_INTO_OR_BEFORE || position == GTK_TREE_VIEW_DROP_INTO_OR_AFTER);
-  gboolean success = FALSE;
+  gboolean success;
   GList *files = priv->full_paths_to_add;
 
   gdk_threads_enter ();

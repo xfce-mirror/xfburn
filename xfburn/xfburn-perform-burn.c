@@ -103,7 +103,6 @@ xfburn_auto_format(GtkWidget *dialog_progress, struct burn_drive *drive)
 #endif
 
   /* Apply formatting */
-  percent = 0.0;
   burn_disc_format (drive, 0, format_flag);
   while (burn_drive_get_status (drive, &p) != BURN_DRIVE_IDLE) {
     if (p.sectors > 0 && p.sector >= 0) {

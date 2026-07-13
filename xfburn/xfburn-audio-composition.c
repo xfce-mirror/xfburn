@@ -837,7 +837,7 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnAudioComposition * d
   if ((stat (path, &s) == 0)) {
     gchar *basename = NULL;
     gchar *humanlength = NULL;
-    int secs = 0;
+    int secs;
     GtkTreePath *tree_path = NULL;
     gboolean ret = FALSE;
 
