@@ -51,10 +51,10 @@ static gboolean is_initialized (XfburnTranscoder *trans, GError **error);
 static gboolean get_audio_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 static gboolean has_audio_ext (const gchar *path);
 static gboolean is_valid_wav (const gchar *path);
-static gboolean valid_wav_headers (guchar header[44]);
+static gboolean valid_wav_headers (const guchar header[44]);
 
 static struct burn_track * create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
-static gboolean needs_swap (char header[44]);
+static gboolean needs_swap (const char header[44]);
 
 enum {
   LAST_SIGNAL,
@@ -213,7 +213,7 @@ is_valid_wav (const gchar *path)
  * FIXME: this works on x86, and does not consider endianness!
  */
 static gboolean
-valid_wav_headers (guchar header[44])
+valid_wav_headers (const guchar header[44])
 {
   /* check if first 4 bytes are RIFF or RIFX */
   if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F') {
@@ -313,7 +313,7 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
 }
 
 static gboolean
-needs_swap (char header[44])
+needs_swap (const char header[44])
 {
   if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F' && header[3] == 'X')
     return TRUE;
