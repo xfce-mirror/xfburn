@@ -244,7 +244,7 @@ cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, XfburnCopyCdD
       gchar *source_device = NULL;
 
       device_burn = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box_dest));
-      speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box_dest));
+      speed = g_strdup_printf ("%d", xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box_dest)));
 
       if (device_burn != device_read)
         source_device = g_strconcat (" --source-device ", device_read->node_path, NULL);
