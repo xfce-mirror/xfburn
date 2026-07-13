@@ -325,8 +325,7 @@ delete_pipeline (XfburnTranscoderGst *trans)
    * this might not be necessary, but shouldn't hurt */
   g_thread_yield ();
 
-  g_object_unref (priv->pipeline);
-  priv->pipeline = NULL;
+  g_clear_object (&priv->pipeline);
 }
 
 static void

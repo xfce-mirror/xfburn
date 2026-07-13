@@ -385,18 +385,11 @@ xfburn_audio_composition_finalize (GObject * object)
   /* free static members */
   instances--;
   if (instances == 0) {
-    if (icon_directory) {
-      g_object_unref (icon_directory);
-      icon_directory = NULL;
-    }
-    if (icon_file) {
-      g_object_unref (icon_file);
-      icon_file = NULL;
-    }
+    g_clear_object (&icon_directory);
+    g_clear_object (&icon_file);
   }
 
-  g_object_unref (priv->trans);
-  priv->trans = NULL;
+  g_clear_object (&priv->trans);
 
   /* while the content treeview is part of the GUI and is automatically destroyed
      when this tab is closed, it does not take ownership of the model, which then
@@ -608,25 +601,10 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnAudioComposition *dc)
 
   gtk_widget_hide (priv->progress);
 
-  if (priv->selected_files) {
-    g_free (priv->selected_files);
-    priv->selected_files = NULL;
-  }
-
-  if (priv->path_where_insert) {
-    gtk_tree_path_free (priv->path_where_insert);
-    priv->path_where_insert = NULL;
-  }
-
-  if (priv->full_paths_to_add) {
-    g_list_free_full (priv->full_paths_to_add, (GDestroyNotify)g_free);
-    priv->full_paths_to_add = NULL;
-  }
-
-  if (priv->thread_params) {
-    g_free (priv->thread_params);
-    priv->thread_params = NULL;
-  }
+  g_clear_pointer (&priv->selected_files, g_free);
+  g_clear_pointer (&priv->path_where_insert, gtk_tree_path_free);
+  g_clear_list (&priv->full_paths_to_add, g_free);
+  g_clear_pointer (&priv->thread_params, g_free);
 
   g_hash_table_remove_all (priv->warned_about);
 

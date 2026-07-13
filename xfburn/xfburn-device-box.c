@@ -254,8 +254,8 @@ xfburn_device_box_finalize (GObject * object)
 {
   XfburnDeviceBoxPrivate *priv = XFBURN_DEVICE_BOX_GET_PRIVATE (object);
 
-  g_signal_handler_disconnect (priv->devlist, priv->handler_volume_change_start);
-  g_signal_handler_disconnect (priv->devlist, priv->handler_volume_change_end);
+  g_clear_signal_handler (&priv->handler_volume_change_start, priv->devlist);
+  g_clear_signal_handler (&priv->handler_volume_change_end, priv->devlist);
 
   g_object_unref (G_OBJECT (priv->devlist));
 

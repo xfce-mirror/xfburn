@@ -416,14 +416,8 @@ xfburn_data_composition_finalize (GObject * object)
   /* free static members */
   instances--;
   if (instances == 0) {
-    if (icon_directory) {
-      g_object_unref (icon_directory);
-      icon_directory = NULL;
-    }
-    if (icon_file) {
-      g_object_unref (icon_file);
-      icon_file = NULL;
-    }
+    g_clear_object (&icon_directory);
+    g_clear_object (&icon_file);
   }
 
   g_object_unref (priv->model);
@@ -647,20 +641,9 @@ cb_adding_done (XfburnAddingProgress *progress, XfburnDataComposition *dc)
 
   gtk_widget_hide (priv->progress);
 
-  if (priv->selected_files) {
-    g_free (priv->selected_files);
-    priv->selected_files = NULL;
-  }
-
-  if (priv->path_where_insert) {
-    gtk_tree_path_free (priv->path_where_insert);
-    priv->path_where_insert = NULL;
-  }
-
-  if (priv->full_paths_to_add) {
-    g_list_free_full (priv->full_paths_to_add, (GDestroyNotify) g_free);
-    priv->full_paths_to_add = NULL;
-  }
+  g_clear_pointer (&priv->selected_files, g_free);
+  g_clear_pointer (&priv->path_where_insert, gtk_tree_path_free);
+  g_clear_list (&priv->full_paths_to_add, g_free);
 
   g_free (priv->thread_params);
   xfburn_default_cursor (priv->content);

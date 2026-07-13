@@ -178,8 +178,7 @@ xfburn_udev_manager_shutdown (void)
 {
   if (G_UNLIKELY (instance == NULL))
     g_error ("There is no instance of a udev manager!");
-  g_object_unref (instance);
-  instance = NULL;
+  g_clear_object (&instance);
 }
 
 void
@@ -319,8 +318,7 @@ cb_device_umount_finish (GObject *source,
   if (op->error) {
     if (op->error->code == G_IO_ERROR_NOT_MOUNTED) {
       /* That can happen sometimes */
-      g_error_free (op->error);
-      op->error = NULL;
+      g_clear_error (&op->error);
       op->result = TRUE;
     }
     /* Since there was an error. The "unmounted" signal won't be
@@ -392,8 +390,7 @@ xfburn_udev_manager_check_ask_umount (XfburnUdevManager *udevman, XfburnDevice *
       if (match)
         break;
     }
-    g_object_unref (mount);
-    mount = NULL;
+    g_clear_object (&mount);
   }
   g_list_free (mounts);
 
@@ -439,13 +436,8 @@ xfburn_udev_manager_check_ask_umount (XfburnUdevManager *udevman, XfburnDevice *
     g_main_loop_run (op->loop);
     GDK_THREADS_ENTER ();
 
-    g_main_loop_unref (op->loop);
-    op->loop = NULL;
-
-    if (op->timeout_id) {
-      g_source_remove (op->timeout_id);
-      op->timeout_id = 0;
-    }
+    g_clear_pointer (&op->loop, g_main_loop_unref);
+    g_clear_handle_id (&op->timeout_id, g_source_remove);
 
     if (op->error) {
       g_warning ("Medium op finished with an error: %s", op->error->message);
@@ -455,8 +447,7 @@ xfburn_udev_manager_check_ask_umount (XfburnUdevManager *udevman, XfburnDevice *
 
         /* means we shouldn't display any error message since
          * that was already done */
-        g_error_free (op->error);
-        op->error = NULL;
+        g_clear_error (&op->error);
       } else
         g_error_free (op->error);
 

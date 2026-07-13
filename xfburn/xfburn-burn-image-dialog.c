@@ -246,7 +246,7 @@ xfburn_burn_image_dialog_finalize (GObject *object)
   XfburnBurnImageDialog *dialog = XFBURN_BURN_IMAGE_DIALOG (object);
   XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
 
-  g_signal_handler_disconnect (priv->devlist, priv->handler_volchange);
+  g_clear_signal_handler (&priv->handler_volchange, priv->devlist);
   g_object_unref (priv->devlist);
 
   G_OBJECT_CLASS (xfburn_burn_image_dialog_parent_class)->finalize (object);

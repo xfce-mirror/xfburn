@@ -491,8 +491,7 @@ xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info)
   priv->is_erasable = 0;
 
   /* empty previous speed list */
-  g_slist_free (priv->supported_speeds);
-  priv->supported_speeds = NULL;
+  g_clear_slist (&priv->supported_speeds, NULL);
 
   if (!xfburn_device_grab (device, &drive_info)) {
     ret = FALSE;
