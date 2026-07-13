@@ -442,7 +442,7 @@ cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer u
     priv->params->dialog_progress = dialog_progress;
     gtk_widget_show (dialog_progress);
 
-    g_thread_new ("burn_iso", (GThreadFunc) thread_burn_iso, priv->params);
+    g_thread_unref (g_thread_new ("burn_iso", (GThreadFunc) thread_burn_iso, priv->params));
   } else {
     xfburn_main_leave_window ();
   }

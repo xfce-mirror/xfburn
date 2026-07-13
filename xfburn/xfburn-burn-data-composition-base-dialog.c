@@ -538,7 +538,7 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
       params->dialog_progress = dialog_progress;
       params->src = src;
       params->iso_path = g_strdup (gtk_entry_get_text (GTK_ENTRY (priv->entry_path_iso)));
-      g_thread_new ("burn_iso", (GThreadFunc) thread_write_iso, params);
+      g_thread_unref (g_thread_new ("burn_iso", (GThreadFunc) thread_write_iso, params));
     }
     else {
       ThreadBurnCompositionParams *params = NULL;
@@ -566,7 +566,7 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
       params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
       params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
       params->stream_recording = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_stream_recording));
-      g_thread_new ("burn_composition", (GThreadFunc) thread_burn_composition, params);
+      g_thread_unref (g_thread_new ("burn_composition", (GThreadFunc) thread_burn_composition, params));
     }
   }
 }
