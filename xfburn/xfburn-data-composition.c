@@ -731,7 +731,7 @@ action_create_directory (GSimpleAction *action, GVariant *param, XfburnDataCompo
 
   inserted_path = gtk_tree_model_get_path (model, &iter_directory);
   if (file_exists_on_same_level (model, inserted_path, TRUE, _("New directory")))
-    directory_text = g_strdup_printf ("%s %d", _("New directory"), ++(priv->n_new_directory));
+    directory_text = g_strdup_printf ("%s %u", _("New directory"), ++(priv->n_new_directory));
   else
     directory_text = g_strdup (_("New directory"));
   gtk_tree_path_free (inserted_path);

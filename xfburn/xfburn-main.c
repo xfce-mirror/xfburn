@@ -244,7 +244,7 @@ main (int argc, char **argv)
     else
       nano_str = "";
 
-    g_print ("\tGStreamer support (built with %d.%d.%d, linked against %d.%d.%d%s)\n",
+    g_print ("\tGStreamer support (built with %d.%d.%d, linked against %u.%u.%u%s)\n",
              GST_VERSION_MAJOR, GST_VERSION_MINOR, GST_VERSION_MICRO,
              gst_major, gst_minor, gst_micro, nano_str);
 

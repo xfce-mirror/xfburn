@@ -90,11 +90,11 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
   switch (type) {
     case XFBURN_COMPOSITION_DATA:
       composition = xfburn_data_composition_new ();
-      label_text = g_strdup_printf ("%s %d", _(DATA_COMPOSITION_DEFAULT_NAME), ++i);
+      label_text = g_strdup_printf ("%s %u", _(DATA_COMPOSITION_DEFAULT_NAME), ++i);
       break;
     case XFBURN_COMPOSITION_AUDIO:
       composition = xfburn_audio_composition_new ();
-      label_text = g_strdup_printf ("%s %d", _("Audio composition"), ++i);
+      label_text = g_strdup_printf ("%s %u", _("Audio composition"), ++i);
       break;
   }
 
