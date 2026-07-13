@@ -42,7 +42,8 @@
 #define XFBURN_MAIN_WINDOW_GET_PRIVATE(obj) (xfburn_main_window_get_instance_private(obj))
 
 /* private struct */
-typedef struct {
+typedef struct _XfburnMainWindowPrivate
+{
   GSimpleActionGroup *action_map;
   GtkBuilder *ui_manager;
 
@@ -54,6 +55,11 @@ typedef struct {
   GtkWidget *file_browser;
   GtkWidget *compositions_notebook;
 } XfburnMainWindowPrivate;
+
+struct _XfburnMainWindow
+{
+  GtkWindow window;
+};
 
 /* prototypes */
 G_DEFINE_TYPE_WITH_PRIVATE (XfburnMainWindow, xfburn_main_window, GTK_TYPE_WINDOW)
@@ -80,8 +86,6 @@ static void action_refresh_directorybrowser (GAction *, GVariant*, XfburnMainWin
 static void action_show_filebrowser (GSimpleAction *, GVariant*, XfburnMainWindow *);
 static void action_show_toolbar (GSimpleAction * action, GVariant*, XfburnMainWindow * window);
 
-/* globals */
-static GtkWindowClass *parent_class = NULL;
 // upgrade to
 static const GActionEntry action_entries[] = {
   // { "file-menu", NULL},
@@ -111,8 +115,6 @@ static void
 xfburn_main_window_class_init (XfburnMainWindowClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_main_window_finalize;
 }
@@ -501,7 +503,7 @@ xfburn_main_window_add_data_composition_with_files (XfburnMainWindow *window, in
   XfburnComposition *comp;
   GSList * filelist;
 
-  comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_DATA_COMPOSITION);
+  comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_COMPOSITION_DATA);
 
   filelist = xfburn_make_abosulet_file_list (filec, filenames);
   xfburn_data_composition_add_files (XFBURN_DATA_COMPOSITION (comp), filelist);
@@ -514,7 +516,7 @@ xfburn_main_window_add_audio_composition_with_files (XfburnMainWindow *window, i
   XfburnComposition *comp;
   GSList * filelist;
 
-  comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_AUDIO_COMPOSITION);
+  comp = xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->compositions_notebook), XFBURN_COMPOSITION_AUDIO);
   filelist = xfburn_make_abosulet_file_list (filec, filenames);
   xfburn_audio_composition_add_files (XFBURN_AUDIO_COMPOSITION (comp), filelist);
 }

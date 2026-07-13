@@ -35,25 +35,20 @@
 #include "xfburn-progress-dialog.h"
 #include "xfburn-burn-data-composition-base-dialog.h"
 
-typedef struct
+struct _XfburnBurnDataDvdCompositionDialog
 {
-  gboolean dummy;
-} XfburnBurnDataDvdCompositionDialogPrivate;
+  XfburnBurnDataCompositionBaseDialog parent;
+};
 
 /* prototypes */
 static void xfburn_burn_data_dvd_composition_dialog_finalize (GObject * object);
 
-/* globals */
-static XfceTitledDialogClass *parent_class = NULL;
-
-G_DEFINE_TYPE_WITH_PRIVATE(XfburnBurnDataDvdCompositionDialog, xfburn_burn_data_dvd_composition_dialog, XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG);
+G_DEFINE_TYPE(XfburnBurnDataDvdCompositionDialog, xfburn_burn_data_dvd_composition_dialog, XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG);
 
 static void
 xfburn_burn_data_dvd_composition_dialog_class_init (XfburnBurnDataDvdCompositionDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_burn_data_dvd_composition_dialog_finalize;
 }
@@ -66,7 +61,7 @@ xfburn_burn_data_dvd_composition_dialog_init (XfburnBurnDataDvdCompositionDialog
 static void
 xfburn_burn_data_dvd_composition_dialog_finalize (GObject * object)
 {
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_burn_data_dvd_composition_dialog_parent_class)->finalize (object);
 }
 
 /* internals */

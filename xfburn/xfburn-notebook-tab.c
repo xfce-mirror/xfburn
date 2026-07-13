@@ -36,7 +36,7 @@ enum {
 };
 
 /* private members */
-typedef struct
+typedef struct _XfburnNotebookTabPrivate
 {
   GtkWidget *label;
   GtkWidget *button_close;
@@ -50,7 +50,6 @@ static void xfburn_notebook_tab_set_property (GObject *object, guint prop_id, co
 static void cb_composition_close (GtkButton *button, XfburnNotebookTab *tab);
 
 /* static member */
-static GtkBoxClass *parent_class = NULL;
 static guint notebook_tab_signals[LAST_SIGNAL];
 
 /************************/
@@ -62,8 +61,6 @@ static void
 xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->set_property = xfburn_notebook_tab_set_property;
   object_class->get_property = xfburn_notebook_tab_get_property;

@@ -28,25 +28,9 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_TRANSCODER_GST         (xfburn_transcoder_gst_get_type ())
-#define XFBURN_TRANSCODER_GST(o)           (G_TYPE_CHECK_INSTANCE_CAST (((gpointer) o), XFBURN_TYPE_TRANSCODER_GST, XfburnTranscoderGst))
-#define XFBURN_TRANSCODER_GST_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_TRANSCODER_GST, XfburnTranscoderGstClass))
-#define XFBURN_IS_TRANSCODER_GST(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_TRANSCODER_GST))
-#define XFBURN_IS_TRANSCODER_GST_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_TRANSCODER_GST))
-#define XFBURN_TRANSCODER_GST_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_TRANSCODER_GST, XfburnTranscoderGstClass))
+#define XFBURN_TYPE_TRANSCODER_GST (xfburn_transcoder_gst_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnTranscoderGst, xfburn_transcoder_gst, XFBURN, TRANSCODER_GST, GObject)
 
-typedef struct
-{
-  GObject parent;
-} XfburnTranscoderGst;
-
-typedef struct
-{
-  GObjectClass parent_class;
-
-} XfburnTranscoderGstClass;
-
-GType xfburn_transcoder_gst_get_type (void);
 GObject *xfburn_transcoder_gst_new (void);
 
 G_END_DECLS

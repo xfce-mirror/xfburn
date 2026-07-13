@@ -26,30 +26,14 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_COMPOSITIONS_NOTEBOOK         (xfburn_compositions_notebook_get_type ())
-#define XFBURN_COMPOSITIONS_NOTEBOOK(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, XfburnCompositionsNotebook))
-#define XFBURN_COMPOSITIONS_NOTEBOOK_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, XfburnCompositionsNotebookClass))
-#define XFBURN_IS_COMPOSITIONS_NOTEBOOK(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK))
-#define XFBURN_IS_COMPOSITIONS_NOTEBOOK_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK))
-#define XFBURN_COMPOSITIONS_NOTEBOOK_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_COMPOSITIONS_NOTEBOOK, XfburnCompositionsNotebookClass))
-
-typedef struct
-{
-  GtkNotebook parent;
-} XfburnCompositionsNotebook;
-
-typedef struct
-{
-  GtkNotebookClass parent_class;
-} XfburnCompositionsNotebookClass;
+#define XFBURN_TYPE_COMPOSITIONS_NOTEBOOK (xfburn_compositions_notebook_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnCompositionsNotebook, xfburn_compositions_notebook, XFBURN, COMPOSITIONS_NOTEBOOK, GtkNotebook)
 
 typedef enum
 {
-  XFBURN_DATA_COMPOSITION,
-  XFBURN_AUDIO_COMPOSITION,
+  XFBURN_COMPOSITION_DATA,
+  XFBURN_COMPOSITION_AUDIO,
 } XfburnCompositionType;
-
-GType xfburn_compositions_notebook_get_type (void);
 
 GtkWidget *xfburn_compositions_notebook_new (void);
 

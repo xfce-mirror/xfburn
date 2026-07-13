@@ -35,17 +35,11 @@
 #include "xfburn-main-window.h"
 
 
-/* prototypes */
-static void xfburn_disc_usage_class_init (XfburnDiscUsageClass *, gpointer);
-static GObject * xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
 
 static void update_size_default (XfburnDiscUsage *du);
 static gboolean can_burn_default (XfburnDiscUsage *du);
 static void cb_button_clicked (GtkButton *, XfburnDiscUsage *);
 static void cb_combo_changed (GtkComboBox *, XfburnDiscUsage *);
-
-/* globals */
-static GtkHBoxClass *parent_class = NULL;
 
 #define DEFAULT_DISK_SIZE_LABEL 2
 #define LAST_CD_LABEL 4
@@ -77,44 +71,16 @@ enum
 
 static guint signals[LAST_SIGNAL];
 
-/*******************************/
-/* XfburnDiscUsage class */
-/*******************************/
-
-GType
-xfburn_disc_usage_get_type (void)
+typedef struct _XfburnDiscUsagePrivate
 {
-  static GType disc_usage_type = 0;
+} XfburnDiscUsagePrivate;
 
-  if (!disc_usage_type) {
-    static const GTypeInfo disc_usage_info = {
-      sizeof (XfburnDiscUsageClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_disc_usage_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnDiscUsage),
-      0,
-      NULL,
-      NULL
-    };
-
-    disc_usage_type = g_type_register_static (GTK_TYPE_BOX, "XfburnDiscUsage", &disc_usage_info, 0);
-  }
-
-  return disc_usage_type;
-}
+G_DEFINE_TYPE (XfburnDiscUsage, xfburn_disc_usage, G_TYPE_OBJECT)
 
 static void
-xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass, gpointer data)
+xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass)
 {
-  GObjectClass *gobject_class;
-
-  parent_class = g_type_class_peek_parent (klass);
-
-  gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->constructor = xfburn_disc_usage_constructor;
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
   signals[BEGIN_BURN] = g_signal_new ("begin-burn", G_TYPE_FROM_CLASS (gobject_class), G_SIGNAL_ACTION,
                                       G_STRUCT_OFFSET (XfburnDiscUsageClass, begin_burn),
@@ -127,17 +93,10 @@ xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass, gpointer data)
   klass->num_labels = G_N_ELEMENTS (testdiscsizes);
 }
 
-static GObject *
-xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
+static void
+xfburn_disc_usage_init (XfburnDiscUsage* disc_usage)
 {
-  GObject *gobj;
-  XfburnDiscUsage *disc_usage;
-  XfburnDiscUsageClass *class;
-  int i;
-
-  gobj = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_properties, construct_properties);
-  disc_usage = XFBURN_DISC_USAGE (gobj);
-  class = XFBURN_DISC_USAGE_GET_CLASS (disc_usage);
+  XfburnDiscUsageClass *class = XFBURN_DISC_USAGE_GET_CLASS (disc_usage);
 
   disc_usage->size = 0;
 
@@ -146,7 +105,7 @@ xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObject
   gtk_widget_show (disc_usage->progress_bar);
 
   disc_usage->combo = gtk_combo_box_text_new ();
-  for (i = 0; i < class->num_labels; i++) {
+  for (int i = 0; i < class->num_labels; i++) {
     gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (disc_usage->combo), class->labels[i].label);
   }
   gtk_combo_box_set_active (GTK_COMBO_BOX (disc_usage->combo), DEFAULT_DISK_SIZE_LABEL);
@@ -162,8 +121,6 @@ xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObject
   g_signal_connect (G_OBJECT (disc_usage->combo), "changed", G_CALLBACK (cb_combo_changed), disc_usage);
 
   class->update_size (disc_usage);
-
-  return gobj;
 }
 
 /* internals */

@@ -21,37 +21,8 @@
 /*******************************************/
 /* interface definition and initialization */
 /*******************************************/
+
+G_DEFINE_INTERFACE (XfburnComposition, xfburn_composition, G_TYPE_OBJECT)
+
 static void
-xfburn_composition_base_init (gpointer g_iface)
-{
-  static gboolean initialized = FALSE;
-
-  if (!initialized) {
-    initialized = TRUE;
-  }
-}
-
-GType
-xfburn_composition_get_type (void)
-{
-  static GType type = 0;
-
-  if (type == 0) {
-    static const GTypeInfo info = {
-      sizeof (XfburnCompositionInterface),
-      xfburn_composition_base_init,  /* base_init */
-      NULL,                          /* base_finalize */
-      NULL,                          /* class_init */
-      NULL,                          /* class_finalize */
-      NULL,                          /* class_data */
-      0,
-      0,                             /* n_preallocs */
-      NULL,                          /* instance_init */
-      NULL
-    };
-
-    type = g_type_register_static (G_TYPE_INTERFACE, "XfburnComposition", &info, 0);
-  }
-
-  return type;
-}
+xfburn_composition_default_init (XfburnCompositionInterface *g_iface) {}

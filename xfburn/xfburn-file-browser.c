@@ -36,7 +36,8 @@ typedef enum {
 } HasFocusWidgetType;
 
 /* private struct */
-typedef struct {
+typedef struct _XfburnFileBrowserPrivate
+{
   HasFocusWidgetType has_focus;
 } XfburnFileBrowserPrivate;
 
@@ -49,14 +50,12 @@ static gboolean cb_focus_in_event (GtkWidget *widget, GdkEventFocus *event, Xfbu
 /***************************/
 /* XfburnFileBrowser class */
 /***************************/
-static GtkPanedClass *parent_class = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnFileBrowser, xfburn_file_browser, GTK_TYPE_PANED);
 
 static void
 xfburn_file_browser_class_init (XfburnFileBrowserClass * klass)
 {
-  parent_class = g_type_class_peek_parent (klass);
 }
 
 static void

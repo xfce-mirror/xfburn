@@ -23,22 +23,8 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_FS_BROWSER         (xfburn_fs_browser_get_type ())
-#define XFBURN_FS_BROWSER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_FS_BROWSER, XfburnFsBrowser))
-#define XFBURN_FS_BROWSER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_FS_BROWSER, XfburnFsBrowserClass))
-#define XFBURN_IS_FS_BROWSER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_FS_BROWSER))
-#define XFBURN_IS_FS_BROWSER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_FS_BROWSER))
-#define XFBURN_FS_BROWSER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_FS_BROWSER, XfburnFsBrowserClass))
-
-typedef struct
-{
-  GtkTreeView parent;
-} XfburnFsBrowser;
-
-typedef struct
-{
-  GtkTreeViewClass parent_class;
-} XfburnFsBrowserClass;
+#define XFBURN_TYPE_FS_BROWSER (xfburn_fs_browser_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnFsBrowser, xfburn_fs_browser, XFBURN, FS_BROWSER, GtkTreeView)
 
 enum
 {
@@ -47,8 +33,6 @@ enum
   FS_BROWSER_COLUMN_PATH,
   FS_BROWSER_N_COLUMNS
 };
-
-GType xfburn_fs_browser_get_type (void);
 
 GtkWidget *xfburn_fs_browser_new (void);
 

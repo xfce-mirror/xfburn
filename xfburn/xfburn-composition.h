@@ -23,18 +23,13 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_COMPOSITION                (xfburn_composition_get_type ())
-#define XFBURN_COMPOSITION(obj)                (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_COMPOSITION, XfburnComposition))
-#define XFBURN_IS_COMPOSITION(obj)             (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_COMPOSITION))
-#define XFBURN_COMPOSITION_GET_INTERFACE(inst) (G_TYPE_INSTANCE_GET_INTERFACE ((inst), XFBURN_TYPE_COMPOSITION, XfburnCompositionInterface))
+#define XFBURN_TYPE_COMPOSITION (xfburn_composition_get_type ())
+G_DECLARE_INTERFACE (XfburnComposition, xfburn_composition, XFBURN, COMPOSITION, GObject)
 
-typedef struct _XfburnCompositon XfburnComposition; /* dummy object */
-
-typedef struct {
+struct _XfburnCompositionInterface
+{
   GTypeInterface parent;
-} XfburnCompositionInterface;
-
-GType xfburn_composition_get_type (void);
+};
 
 G_END_DECLS
 #endif /* __XFBURN_COMPOSITION_H__ */

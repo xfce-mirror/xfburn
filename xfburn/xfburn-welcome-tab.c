@@ -36,7 +36,8 @@
 /* prototypes */
 static void xfburn_welcome_tab_finalize (GObject * object);
 
-typedef struct {
+typedef struct _XfburnWelcomeTabPrivate
+{
   XfburnCompositionsNotebook *notebook;
 
   GtkWidget *button_image;
@@ -44,6 +45,11 @@ typedef struct {
   GtkWidget *button_audio_comp;
   GtkWidget *button_blank;
 } XfburnWelcomeTabPrivate;
+
+struct _XfburnWelcomeTab
+{
+  GtkBox parent;
+};
 
 G_DEFINE_TYPE_WITH_PRIVATE (XfburnWelcomeTab, xfburn_welcome_tab, GTK_TYPE_BOX)
 #define XFBURN_WELCOME_TAB_GET_PRIVATE(obj) (xfburn_welcome_tab_get_instance_private(obj))
@@ -60,14 +66,11 @@ static void blank_disc (GtkButton *button, XfburnWelcomeTab *tab);
 /*********************/
 /* class declaration */
 /*********************/
-static GtkWidget *parent_class = NULL;
 
 static void
 xfburn_welcome_tab_class_init (XfburnWelcomeTabClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_welcome_tab_finalize;
 }
@@ -136,7 +139,7 @@ xfburn_welcome_tab_init (XfburnWelcomeTab * obj)
 static void
 xfburn_welcome_tab_finalize (GObject * object)
 {
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_welcome_tab_parent_class)->finalize (object);
 }
 
 /*           */
@@ -209,7 +212,7 @@ new_data_composition (GtkButton *button, XfburnWelcomeTab *tab)
 {
   XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
 
-  xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->notebook), XFBURN_DATA_COMPOSITION);
+  xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->notebook), XFBURN_COMPOSITION_DATA);
 }
 
 static void
@@ -217,7 +220,7 @@ new_audio_cd (GtkButton *button, XfburnWelcomeTab *tab)
 {
   XfburnWelcomeTabPrivate *priv = XFBURN_WELCOME_TAB_GET_PRIVATE (tab);
 
-  xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->notebook), XFBURN_AUDIO_COMPOSITION);
+  xfburn_compositions_notebook_add_composition (XFBURN_COMPOSITIONS_NOTEBOOK (priv->notebook), XFBURN_COMPOSITION_AUDIO);
 }
 
 /*        */

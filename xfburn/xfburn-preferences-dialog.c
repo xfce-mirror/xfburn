@@ -27,7 +27,7 @@
 
 #define XFBURN_PREFERENCES_DIALOG_GET_PRIVATE(obj) (xfburn_preferences_dialog_get_instance_private (XFBURN_PREFERENCES_DIALOG (obj)))
 
-typedef struct
+typedef struct _XfburnPreferencesDialogPrivate
 {
   GtkWidget *notebook;
   GtkWidget *icon_bar;
@@ -41,6 +41,11 @@ typedef struct
   GtkWidget *button_scan;
   GtkWidget *scale_fifo;
 } XfburnPreferencesDialogPrivate;
+
+struct _XfburnPreferencesDialog
+{
+  XfceTitledDialog parent;
+};
 
 /* prototypes */
 static void refresh_devices_list (XfburnPreferencesDialog * dialog);
@@ -77,14 +82,12 @@ typedef struct
 /*********************************/
 /* XfburnPreferencesDialog class */
 /*********************************/
-static XfceTitledDialogClass *parent_class = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnPreferencesDialog, xfburn_preferences_dialog, XFCE_TYPE_TITLED_DIALOG);
 
 static void
 xfburn_preferences_dialog_class_init (XfburnPreferencesDialogClass * klass)
 {
-  parent_class = g_type_class_peek_parent (klass);
 }
 
 static void

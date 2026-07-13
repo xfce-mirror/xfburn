@@ -39,6 +39,7 @@
 
 /* global */
 typedef struct _Setting Setting;
+typedef struct _XfburnSettingsPrivate XfburnSettingsPrivate;
 
 static void xfburn_settings_finalize (GObject * object);
 
@@ -46,10 +47,15 @@ static void value_destroy (Setting * val);
 static void load_settings (XfburnSettingsPrivate *priv);
 
 /* private */
-struct XfburnSettingsPrivate
+struct _XfburnSettingsPrivate
 {
   GHashTable *settings;
   gchar *full_path;
+};
+
+struct _XfburnSettings
+{
+  GObject parent;
 };
 
 /* structs */
@@ -74,7 +80,6 @@ struct _Setting
 /**********************/
 /* object declaration */
 /**********************/
-static GObjectClass *parent_class = NULL;
 static XfburnSettings *instance = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnSettings, xfburn_settings, G_TYPE_OBJECT);
@@ -83,8 +88,6 @@ static void
 xfburn_settings_class_init (XfburnSettingsClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_settings_finalize;
 }

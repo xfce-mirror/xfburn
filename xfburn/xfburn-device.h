@@ -26,31 +26,7 @@
 G_BEGIN_DECLS
 
 #define XFBURN_TYPE_DEVICE xfburn_device_get_type()
-
-#define XFBURN_DEVICE(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DEVICE, XfburnDevice))
-
-#define XFBURN_DEVICE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DEVICE, XfburnDeviceClass))
-
-#define XFBURN_IS_DEVICE(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DEVICE))
-
-#define XFBURN_IS_DEVICE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DEVICE))
-
-#define XFBURN_DEVICE_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DEVICE, XfburnDeviceClass))
-
-typedef struct {
-  GObject parent;
-} XfburnDevice;
-
-typedef struct {
-  GObjectClass parent_class;
-} XfburnDeviceClass;
-
-GType xfburn_device_get_type (void);
+G_DECLARE_FINAL_TYPE (XfburnDevice, xfburn_device, XFBURN, DEVICE, GObject)
 
 XfburnDevice* xfburn_device_new (void);
 

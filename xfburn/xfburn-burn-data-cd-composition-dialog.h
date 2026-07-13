@@ -27,24 +27,8 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG         (xfburn_burn_data_cd_composition_dialog_get_type ())
-#define XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG, XfburnBurnDataCdCompositionDialog))
-#define XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG, XfburnBurnDataCdCompositionDialogClass))
-#define XFBURN_IS_BURN_DATA_CD_COMPOSITION_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG))
-#define XFBURN_IS_BURN_DATA_CD_COMPOSITION_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG))
-#define XFBURN_BURN_DATA_CD_COMPOSITION_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG, XfburnBurnDataCdCompositionDialogClass))
-
-typedef struct
-{
-  XfburnBurnDataCompositionBaseDialog parent;
-} XfburnBurnDataCdCompositionDialog;
-
-typedef struct
-{
-  XfburnBurnDataCompositionBaseDialogClass parent_class;
-} XfburnBurnDataCdCompositionDialogClass;
-
-GType xfburn_burn_data_cd_composition_dialog_get_type (void);
+#define XFBURN_TYPE_BURN_DATA_CD_COMPOSITION_DIALOG (xfburn_burn_data_cd_composition_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnBurnDataCdCompositionDialog, xfburn_burn_data_cd_composition_dialog, XFBURN, BURN_DATA_CD_COMPOSITION_DIALOG, XfburnBurnDataCompositionBaseDialog)
 
 GtkWidget *xfburn_burn_data_cd_composition_dialog_new (IsoImage *image, gboolean has_default_name);
 

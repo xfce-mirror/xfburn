@@ -31,7 +31,7 @@
 
 #define XFBURN_COPY_CD_DIALOG_GET_PRIVATE(obj) (xfburn_copy_cd_dialog_get_instance_private (XFBURN_COPY_CD_DIALOG (obj)))
 
-typedef struct
+typedef struct _XfburnCopyCdDialogPrivate
 {
   GtkWidget *device_box_src;
   GtkWidget *frame_burn;
@@ -45,6 +45,11 @@ typedef struct
   GtkWidget *check_dummy;
 } XfburnCopyCdDialogPrivate;
 
+struct _XfburnCopyCdDialog
+{
+  XfceTitledDialog parent;
+};
+
 /* prototypes */
 static void xfburn_copy_cd_dialog_class_init (XfburnCopyCdDialogClass * klass);
 static void xfburn_copy_cd_dialog_init (XfburnCopyCdDialog * sp);
@@ -57,14 +62,12 @@ static void cb_dialog_response (XfburnCopyCdDialog * dialog, gint response_id, X
 /*********************/
 /* class declaration */
 /*********************/
-static XfceTitledDialogClass *parent_class = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnCopyCdDialog, xfburn_copy_cd_dialog, XFCE_TYPE_TITLED_DIALOG);
 
 static void
 xfburn_copy_cd_dialog_class_init (XfburnCopyCdDialogClass * klass)
 {
-  parent_class = g_type_class_peek_parent (klass);
 }
 
 static void

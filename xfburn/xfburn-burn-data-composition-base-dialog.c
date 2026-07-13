@@ -38,7 +38,7 @@
 
 #define XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE(obj) (xfburn_burn_data_composition_base_dialog_get_instance_private (XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG(obj)))
 
-typedef struct
+typedef struct _XfburnBurnDataCompositionBaseDialogPrivate
 {
   IsoImage *image;
 
@@ -79,17 +79,12 @@ static void cb_volume_changed (XfburnDeviceBox *box, gboolean device_changed, Xf
 static void cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_id,
                                 XfburnBurnDataCompositionBaseDialogPrivate * priv);
 
-/* globals */
-static XfceTitledDialogClass *parent_class = NULL;
-
 G_DEFINE_TYPE_WITH_PRIVATE (XfburnBurnDataCompositionBaseDialog, xfburn_burn_data_composition_base_dialog, XFCE_TYPE_TITLED_DIALOG)
 
 static void
 xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBaseDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_burn_data_composition_base_dialog_finalize;
   object_class->get_property = xfburn_burn_data_composition_base_dialog_get_property;
@@ -270,7 +265,7 @@ xfburn_burn_data_composition_base_dialog_finalize (GObject * object)
 
   iso_image_unref (priv->image);
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_burn_data_composition_base_dialog_parent_class)->finalize (object);
 }
 
 /* internals */

@@ -24,47 +24,17 @@
 #include "xfburn-transcoder.h"
 #include "xfburn-error.h"
 
-static void xfburn_transcoder_base_init (XfburnTranscoderInterface * iface);
-
 XfburnTranscoder *transcoder = NULL;
 
 /*************************/
 /* interface declaration */
 /*************************/
-GType
-xfburn_transcoder_get_type (void)
-{
-  static GType type = 0;
 
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnTranscoderInterface),
-      (GBaseInitFunc) xfburn_transcoder_base_init ,
-      NULL,
-      NULL,
-      NULL,
-      NULL,
-      0,
-      0,
-      NULL,
-      NULL
-    };
-
-    type = g_type_register_static (G_TYPE_INTERFACE, "XfburnTranscoderInterface", &our_info, 0);
-    g_type_interface_add_prerequisite (type, G_TYPE_OBJECT);
-  }
-
-  return type;
-}
+G_DEFINE_INTERFACE (XfburnTranscoder, xfburn_transcoder, G_TYPE_OBJECT)
 
 static void
-xfburn_transcoder_base_init (XfburnTranscoderInterface * iface)
+xfburn_transcoder_default_init (XfburnTranscoderInterface * iface)
 {
-  static gboolean initialized = FALSE;
-
-  if (!initialized) {
-    initialized = TRUE;
-  }
 }
 
 /*           */
@@ -78,7 +48,7 @@ xfburn_transcoder_base_init (XfburnTranscoderInterface * iface)
 const gchar *
 xfburn_transcoder_get_name (XfburnTranscoder *trans)
 {
-  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_IFACE (trans);
   if (iface->get_name)
     return iface->get_name (trans);
   else
@@ -88,7 +58,7 @@ xfburn_transcoder_get_name (XfburnTranscoder *trans)
 const gchar *
 xfburn_transcoder_get_description (XfburnTranscoder *trans)
 {
-  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_IFACE (trans);
   if (iface->get_description)
     return iface->get_description (trans);
   else
@@ -98,7 +68,7 @@ xfburn_transcoder_get_description (XfburnTranscoder *trans)
 gboolean
 xfburn_transcoder_is_initialized (XfburnTranscoder *trans, GError **error)
 {
-  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_IFACE (trans);
   if (iface->is_initialized)
     return iface->is_initialized (trans, error);
 
@@ -110,7 +80,7 @@ xfburn_transcoder_is_initialized (XfburnTranscoder *trans, GError **error)
 XfburnAudioTrack *
 xfburn_transcoder_get_audio_track (XfburnTranscoder *trans, const gchar *fn, GError **error)
 {
-  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_IFACE (trans);
 
   if (iface->get_audio_track) {
     XfburnAudioTrack *atrack = g_new0 (XfburnAudioTrack, 1);
@@ -137,7 +107,7 @@ xfburn_transcoder_get_audio_track (XfburnTranscoder *trans, const gchar *fn, GEr
 struct burn_track *
 xfburn_transcoder_create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
 {
-  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_IFACE (trans);
   if (iface->create_burn_track)
     return iface->create_burn_track (trans, atrack, error);
 
@@ -149,7 +119,7 @@ xfburn_transcoder_create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *
 gboolean
 xfburn_transcoder_prepare (XfburnTranscoder *trans, GError **error)
 {
-  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_IFACE (trans);
 
   if (iface->prepare)
     return iface->prepare (trans, error);
@@ -161,7 +131,7 @@ xfburn_transcoder_prepare (XfburnTranscoder *trans, GError **error)
 void
 xfburn_transcoder_finish (XfburnTranscoder *trans)
 {
-  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_IFACE (trans);
 
   if (iface->finish)
     iface->finish (trans);
@@ -172,7 +142,7 @@ xfburn_transcoder_finish (XfburnTranscoder *trans)
 gboolean
 xfburn_transcoder_free_burning_resources (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error)
 {
-  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_INTERFACE (trans);
+  XfburnTranscoderInterface *iface = XFBURN_TRANSCODER_GET_IFACE (trans);
 
   /* these are part of XfburnAudioTrack, and will be present for all implementations */
   close (atrack->fd);

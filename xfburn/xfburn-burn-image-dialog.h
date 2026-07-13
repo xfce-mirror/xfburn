@@ -27,24 +27,9 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_BURN_IMAGE_DIALOG         (xfburn_burn_image_dialog_get_type ())
-#define XFBURN_BURN_IMAGE_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialog))
-#define XFBURN_BURN_IMAGE_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialogClass))
-#define XFBURN_IS_BURN_IMAGE_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_IMAGE_DIALOG))
-#define XFBURN_IS_BURN_IMAGE_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_IMAGE_DIALOG))
-#define XFBURN_BURN_IMAGE_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_IMAGE_DIALOG, XfburnBurnImageDialogClass))
+#define XFBURN_TYPE_BURN_IMAGE_DIALOG (xfburn_burn_image_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnBurnImageDialog, xfburn_burn_image_dialog, XFBURN, BURN_IMAGE_DIALOG, XfceTitledDialog)
 
-typedef struct
-{
-  XfceTitledDialog parent;
-} XfburnBurnImageDialog;
-
-typedef struct
-{
-  XfceTitledDialogClass parent_class;
-} XfburnBurnImageDialogClass;
-
-GType xfburn_burn_image_dialog_get_type (void);
 GtkWidget *xfburn_burn_image_dialog_new (void);
 void xfburn_burn_image_dialog_set_filechooser_name (GtkWidget * dialog, gchar *name);
 

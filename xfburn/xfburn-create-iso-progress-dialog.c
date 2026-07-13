@@ -35,37 +35,17 @@ static void cb_new_output (XfburnCreateIsoProgressDialog * dialog, const gchar *
 /*********************/
 /* class declaration */
 /*********************/
-static XfburnProgressDialogClass *parent_class = NULL;
 
-GType
-xfburn_create_iso_progress_dialog_get_type (void)
+struct _XfburnCreateIsoProgressDialog
 {
-  static GType type = 0;
+  XfburnProgressDialog parent;
+};
 
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnCreateIsoProgressDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_create_iso_progress_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnCreateIsoProgressDialog),
-      0,
-      (GInstanceInitFunc) xfburn_create_iso_progress_dialog_init,
-      NULL
-    };
-
-    type = g_type_register_static (XFBURN_TYPE_PROGRESS_DIALOG, "XfburnCreateIsoProgressDialog", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE (XfburnCreateIsoProgressDialog, xfburn_create_iso_progress_dialog, XFBURN_TYPE_PROGRESS_DIALOG)
 
 static void
 xfburn_create_iso_progress_dialog_class_init (XfburnCreateIsoProgressDialogClass * klass)
 {
-  parent_class = g_type_class_peek_parent (klass);
 }
 
 static void

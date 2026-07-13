@@ -25,22 +25,8 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_AUDIO_COMPOSITION            (xfburn_audio_composition_get_type ())
-#define XFBURN_AUDIO_COMPOSITION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_AUDIO_COMPOSITION, XfburnAudioComposition))
-#define XFBURN_AUDIO_COMPOSITION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_AUDIO_COMPOSITION, XfburnAudioCompositionClass))
-#define XFBURN_IS_AUDIO_COMPOSITION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_AUDIO_COMPOSITION))
-#define XFBURN_IS_AUDIO_COMPOSITION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_AUDIO_COMPOSITION))
-#define XFBURN_AUDIO_COMPOSITION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_AUDIO_COMPOSITION, XfburnAudioCompositionClass))
-
-typedef struct
-{
-  GtkVBox vbox;
-} XfburnAudioComposition;
-
-typedef struct
-{
-  GtkVBoxClass parent_class;
-} XfburnAudioCompositionClass;
+#define XFBURN_TYPE_AUDIO_COMPOSITION (xfburn_audio_composition_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnAudioComposition, xfburn_audio_composition, XFBURN, AUDIO_COMPOSITION, GtkBox)
 
 enum
 {
@@ -48,8 +34,6 @@ enum
   AUDIO_COMPOSITION_DND_TARGET_TEXT_PLAIN,
   AUDIO_COMPOSITION_DND_TARGET_TEXT_URI_LIST,
 };
-
-GType xfburn_audio_composition_get_type (void);
 
 GtkWidget *xfburn_audio_composition_new (void);
 void xfburn_audio_composition_add_files (XfburnAudioComposition *content, GSList * filelist);

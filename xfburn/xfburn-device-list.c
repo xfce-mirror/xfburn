@@ -60,9 +60,6 @@ static void cb_volumes_changed (XfburnUdevManager *udevman, XfburnDeviceList *de
 static XfburnDevice * get_selected_device (GtkComboBox *combo_device);
 static void refresh (XfburnDeviceList *devlist);
 
-/*- globals -*/
-static GObjectClass *parent_class = NULL;
-
 enum {
   PROP_0,
   PROP_NUM_DRIVES,
@@ -154,7 +151,7 @@ xfburn_device_list_constructor (GType type, guint n_construct_params, GObjectCon
   static XfburnDeviceList *global = NULL;
 
   if (!global) {
-    object = G_OBJECT_CLASS (parent_class)->constructor (type, n_construct_params, construct_params);
+    object = G_OBJECT_CLASS (xfburn_device_list_parent_class)->constructor (type, n_construct_params, construct_params);
 
     global = XFBURN_DEVICE_LIST (object);
   } else {
@@ -172,15 +169,13 @@ xfburn_device_list_finalize (GObject *object)
 
   g_list_free_full (priv->devices, (GDestroyNotify) g_object_unref);
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_device_list_parent_class)->finalize (object);
 }
 
 static void
 xfburn_device_list_class_init (XfburnDeviceListClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->get_property = xfburn_device_list_get_property;
   object_class->set_property = xfburn_device_list_set_property;

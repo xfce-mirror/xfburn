@@ -140,7 +140,7 @@ static void concat_free (char * msg, char ** combined_msg);
 static IsoImage * generate_iso_image (XfburnDataComposition * dc);
 static gboolean show_add_home_question_dialog (void);
 
-typedef struct
+typedef struct _XfburnDataCompositionPrivate
 {
   gchar *filename;
   gboolean modified;
@@ -176,8 +176,12 @@ typedef struct
   gboolean large_files;
 } XfburnDataCompositionPrivate;
 
+struct _XfburnDataComposition
+{
+  GtkBox parent;
+};
+
 /* globals */
-static GtkHPanedClass *parent_class = NULL;
 static guint instances = 0;
 
 static const GActionEntry action_entries[] = {
@@ -208,8 +212,6 @@ static void
 xfburn_data_composition_class_init (XfburnDataCompositionClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_data_composition_finalize;
 }
@@ -426,7 +428,7 @@ xfburn_data_composition_finalize (GObject * object)
 
   g_object_unref (priv->model);
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_data_composition_parent_class)->finalize (object);
 }
 
 /*************/

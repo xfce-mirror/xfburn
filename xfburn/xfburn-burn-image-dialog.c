@@ -61,7 +61,7 @@ typedef struct {
 
 } ThreadBurnIsoParams;
 
-typedef struct
+typedef struct _XfburnBurnImageDialogPrivate
 {
   GtkWidget *chooser_image;
   GtkWidget *image_label;
@@ -82,6 +82,11 @@ typedef struct
   ThreadBurnIsoParams *params;
 
 } XfburnBurnImageDialogPrivate;
+
+struct _XfburnBurnImageDialog
+{
+  XfceTitledDialog parent;
+};
 
 static gchar * last_file = NULL;
 
@@ -106,7 +111,6 @@ static void* thread_burn_iso (ThreadBurnIsoParams * params);
 /*********************/
 /* class declaration */
 /*********************/
-static XfceTitledDialogClass *parent_class = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnBurnImageDialog,xfburn_burn_image_dialog, XFCE_TYPE_TITLED_DIALOG);
 
@@ -114,8 +118,6 @@ static void
 xfburn_burn_image_dialog_class_init (XfburnBurnImageDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize     = xfburn_burn_image_dialog_finalize;
 }
@@ -247,7 +249,7 @@ xfburn_burn_image_dialog_finalize (GObject *object)
   g_signal_handler_disconnect (priv->devlist, priv->handler_volchange);
   g_object_unref (priv->devlist);
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_burn_image_dialog_parent_class)->finalize (object);
 }
 
 /*************/

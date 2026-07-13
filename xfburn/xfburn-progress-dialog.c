@@ -41,7 +41,7 @@ enum {
 };
 
 /* struct */
-typedef struct
+typedef struct _XfburnProgressDialogPrivate
 {
   XfburnProgressDialogStatus status;
   int fd_stdin;
@@ -112,7 +112,6 @@ xfburn_progress_dialog_status_get_type (void)
 /*                       */
 /* progress dialog class */
 /*                       */
-static GtkDialogClass *parent_class = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnProgressDialog, xfburn_progress_dialog, GTK_TYPE_DIALOG)
 
@@ -120,8 +119,6 @@ static void
 xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->get_property = xfburn_progress_dialog_get_property;
   object_class->set_property = xfburn_progress_dialog_set_property;

@@ -25,23 +25,9 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG         (xfburn_copy_cd_progress_dialog_get_type ())
-#define XFBURN_COPY_CD_PROGRESS_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG, XfburnCopyCdProgressDialog))
-#define XFBURN_COPY_CD_PROGRESS_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG, XfburnCopyCdProgressDialogClass))
-#define XFBURN_IS_COPY_CD_PROGRESS_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG))
-#define XFBURN_IS_COPY_CD_PROGRESS_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG))
-#define XFBURN_COPY_CD_PROGRESS_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG, XfburnCopyCdProgressDialogClass))
+#define XFBURN_TYPE_COPY_CD_PROGRESS_DIALOG (xfburn_copy_cd_progress_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnCopyCdProgressDialog, xfburn_copy_cd_progress_dialog, XFBURN, COPY_CD_PROGRESS_DIALOG, XfburnProgressDialog)
 
-typedef struct {
-	XfburnProgressDialog parent;
-} XfburnCopyCdProgressDialog;
-
-typedef struct {
-	XfburnProgressDialogClass parent_class;
-	/* Add Signal Functions Here */
-} XfburnCopyCdProgressDialogClass;
-
-GType xfburn_copy_cd_progress_dialog_get_type (void);
 GtkWidget *xfburn_copy_cd_progress_dialog_new (void);
 
 G_END_DECLS

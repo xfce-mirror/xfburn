@@ -25,24 +25,15 @@
 #include "xfburn-device-list.h"
 
 G_BEGIN_DECLS
-#define XFBURN_TYPE_DEVICE_BOX            (xfburn_device_box_get_type ())
-#define XFBURN_DEVICE_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBox))
-#define XFBURN_DEVICE_BOX_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBoxClass))
-#define XFBURN_IS_DEVICE_BOX(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DEVICE_BOX))
-#define XFBURN_IS_DEVICE_BOX_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DEVICE_BOX))
-#define XFBURN_DEVICE_BOX_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DEVICE_BOX, XfburnDeviceBoxClass))
+#define XFBURN_TYPE_DEVICE_BOX (xfburn_device_box_get_type ())
+G_DECLARE_DERIVABLE_TYPE (XfburnDeviceBox, xfburn_device_box, XFBURN, DEVICE_BOX, GtkBox)
 
-typedef struct
+struct _XfburnDeviceBoxClass
 {
-  GtkVBox window;
-} XfburnDeviceBox;
-
-typedef struct
-{
-  GtkVBoxClass parent_class;
+  GtkBoxClass parent_class;
 
   void (*volume_changed) (XfburnDeviceBox *box, gboolean device_changed, XfburnDevice *device);
-} XfburnDeviceBoxClass;
+};
 
 typedef enum
 {
@@ -68,8 +59,6 @@ typedef enum
   WRITE_MODE_RAW96R,
   WRITE_MODE_PACKET,
 } XfburnWriteMode;
-
-GType xfburn_device_box_get_type (void);
 
 GtkWidget *xfburn_device_box_new (XfburnDeviceBoxFlags);
 

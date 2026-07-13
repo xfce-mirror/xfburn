@@ -26,16 +26,12 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_TRANSCODER         (xfburn_transcoder_get_type ())
-#define XFBURN_TRANSCODER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_TRANSCODER, XfburnTranscoder))
-#define XFBURN_IS_TRANSCODER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_TRANSCODER))
-#define XFBURN_TRANSCODER_GET_INTERFACE(o) (G_TYPE_INSTANCE_GET_INTERFACE (((gpointer) o), XFBURN_TYPE_TRANSCODER, XfburnTranscoderInterface))
+#define XFBURN_TYPE_TRANSCODER (xfburn_transcoder_get_type ())
+G_DECLARE_INTERFACE (XfburnTranscoder, xfburn_transcoder, XFBURN, TRANSCODER, GObject)
 
 #define XFBURN_AUDIO_TRACK_DELETE_DATA(atrack) { g_free (atrack->data); atrack->data = NULL; }
 
-typedef struct {} XfburnTranscoder; /* dummy struct */
-
-typedef struct
+struct _XfburnTranscoderInterface
 {
   GTypeInterface parent;
 
@@ -51,9 +47,7 @@ typedef struct
   void (*finish) (XfburnTranscoder *trans);
   gboolean (*free_burning_resources) (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **error);
 
-} XfburnTranscoderInterface;
-
-GType xfburn_transcoder_get_type (void);
+};
 
 void xfburn_transcoder_set_global (XfburnTranscoder *trans);
 XfburnTranscoder *xfburn_transcoder_get_global (void);

@@ -34,24 +34,19 @@
 #include "xfburn-burn-data-cd-composition-dialog.h"
 #include "xfburn-progress-dialog.h"
 
-typedef struct
+struct _XfburnBurnDataCdCompositionDialog
 {
-  gboolean dummy; /* An empty private struct is not allowed */
-} XfburnBurnDataCdCompositionDialogPrivate;
+  XfburnBurnDataCompositionBaseDialog parent;
+};
 
 /* prototypes */
 static void xfburn_burn_data_cd_composition_dialog_finalize (GObject * object);
-G_DEFINE_TYPE_WITH_PRIVATE(XfburnBurnDataCdCompositionDialog, xfburn_burn_data_cd_composition_dialog, XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG);
-
-/* globals */
-static XfceTitledDialogClass *parent_class = NULL;
+G_DEFINE_TYPE(XfburnBurnDataCdCompositionDialog, xfburn_burn_data_cd_composition_dialog, XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG);
 
 static void
 xfburn_burn_data_cd_composition_dialog_class_init (XfburnBurnDataCdCompositionDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_burn_data_cd_composition_dialog_finalize;
 }
@@ -64,7 +59,7 @@ xfburn_burn_data_cd_composition_dialog_init (XfburnBurnDataCdCompositionDialog *
 static void
 xfburn_burn_data_cd_composition_dialog_finalize (GObject * object)
 {
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_burn_data_cd_composition_dialog_parent_class)->finalize (object);
 }
 
 /* public */

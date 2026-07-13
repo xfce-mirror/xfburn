@@ -24,25 +24,14 @@
 #include "xfburn-data-composition.h"
 
 G_BEGIN_DECLS
-#define XFBURN_TYPE_ADDING_PROGRESS            (xfburn_adding_progress_get_type ())
-#define XFBURN_ADDING_PROGRESS(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_ADDING_PROGRESS, XfburnAddingProgress))
-#define XFBURN_ADDING_PROGRESS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_ADDING_PROGRESS, XfburnAddingProgressClass))
-#define XFBURN_IS_ADDING_PROGRESS(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_ADDING_PROGRESS))
-#define XFBURN_IS_ADDING_PROGRESS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_ADDING_PROGRESS))
-#define XFBURN_ADDING_PROGRESS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_ADDING_PROGRESS, XfburnAddingProgressClass))
+#define XFBURN_TYPE_ADDING_PROGRESS (xfburn_adding_progress_get_type ())
+G_DECLARE_DERIVABLE_TYPE (XfburnAddingProgress, xfburn_adding_progress, XFBURN, ADDING_PROGRESS, GtkWindow)
 
-typedef struct
-{
-  GtkWindow window;
-} XfburnAddingProgress;
-
-typedef struct
+struct _XfburnAddingProgressClass
 {
   GtkWindowClass parent_class;
   void (*adding_done) (XfburnAddingProgress *progress, XfburnDataComposition *dc);
-} XfburnAddingProgressClass;
-
-GType xfburn_adding_progress_get_type (void);
+};
 
 XfburnAddingProgress *xfburn_adding_progress_new (void);
 void xfburn_adding_progress_pulse (XfburnAddingProgress *adding_progress);

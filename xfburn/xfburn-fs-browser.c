@@ -29,10 +29,6 @@
 #include "xfburn-main.h"
 
 
-/* prototypes */
-static void xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass, gpointer data);
-static void xfburn_fs_browser_init (XfburnFsBrowser * sp, gpointer data);
-
 static void cb_browser_row_expanded (GtkTreeView *, GtkTreeIter *, GtkTreePath *, gpointer);
 static void cb_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectionData *, guint, guint, XfburnFsBrowser *);
@@ -40,41 +36,21 @@ static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectio
 /*************************/
 /* XfburnFsBrowser class */
 /*************************/
-static GtkTreeViewClass *parent_class = NULL;
 
-GType
-xfburn_fs_browser_get_type (void)
+struct _XfburnFsBrowser
 {
-  static GType type = 0;
+  GtkTreeView parent;
+};
 
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnFsBrowserClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_fs_browser_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnFsBrowser),
-      0,
-      (GInstanceInitFunc) xfburn_fs_browser_init,
-      NULL
-    };
+G_DEFINE_TYPE (XfburnFsBrowser, xfburn_fs_browser, GTK_TYPE_TREE_VIEW)
 
-    type = g_type_register_static (GTK_TYPE_TREE_VIEW, "XfburnFsBrowser", &our_info, 0);
-  }
-
-  return type;
+static void
+xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass)
+{
 }
 
 static void
-xfburn_fs_browser_class_init (XfburnFsBrowserClass * klass, gpointer data)
-{
-  parent_class = g_type_class_peek_parent (klass);
-}
-
-static void
-xfburn_fs_browser_init (XfburnFsBrowser * browser, gpointer data)
+xfburn_fs_browser_init (XfburnFsBrowser * browser)
 {
   GtkTreeStore *model;
   GtkTreeViewColumn *column_directory;

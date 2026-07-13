@@ -31,7 +31,7 @@
 
 #define XFBURN_COPY_DVD_DIALOG_GET_PRIVATE(obj) (xfburn_copy_dvd_dialog_get_instance_private (XFBURN_COPY_DVD_DIALOG (obj)))
 
-typedef struct
+typedef struct _XfburnCopyDvdDialogPrivate
 {
   GtkWidget *device_box_src;
   GtkWidget *frame_burn;
@@ -45,6 +45,11 @@ typedef struct
   GtkWidget *check_dummy;
 } XfburnCopyDvdDialogPrivate;
 
+struct _XfburnCopyDvdDialog
+{
+  XfceTitledDialog parent;
+};
+
 static void cb_device_changed (XfburnDeviceBox *box, const gchar *device_name, XfburnCopyDvdDialogPrivate *priv);
 static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnCopyDvdDialog * dialog);
 static void cb_browse_iso (GtkButton * button, XfburnCopyDvdDialog * dialog);
@@ -53,7 +58,6 @@ static void cb_dialog_response (XfburnCopyDvdDialog * dialog, gint response_id, 
 /*********************/
 /* class declaration */
 /*********************/
-static XfceTitledDialogClass *parent_class = NULL;
 
 /* prototypes */
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnCopyDvdDialog, xfburn_copy_dvd_dialog, XFCE_TYPE_TITLED_DIALOG);
@@ -61,7 +65,6 @@ G_DEFINE_TYPE_WITH_PRIVATE(XfburnCopyDvdDialog, xfburn_copy_dvd_dialog, XFCE_TYP
 static void
 xfburn_copy_dvd_dialog_class_init (XfburnCopyDvdDialogClass * klass)
 {
-  parent_class = g_type_class_peek_parent (klass);
 }
 
 static void

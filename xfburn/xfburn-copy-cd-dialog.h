@@ -25,24 +25,8 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_COPY_CD_DIALOG         (xfburn_copy_cd_dialog_get_type ())
-#define XFBURN_COPY_CD_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_COPY_CD_DIALOG, XfburnCopyCdDialog))
-#define XFBURN_COPY_CD_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_COPY_CD_DIALOG, XfburnCopyCdDialogClass))
-#define XFBURN_IS_COPY_CD_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_COPY_CD_DIALOG))
-#define XFBURN_IS_COPY_CD_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_COPY_CD_DIALOG))
-#define XFBURN_COPY_CD_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_COPY_CD_DIALOG, XfburnCopyCdDialogClass))
-
-typedef struct
-{
-  XfceTitledDialog parent;
-} XfburnCopyCdDialog;
-
-typedef struct
-{
-  XfceTitledDialogClass parent_class;
-} XfburnCopyCdDialogClass;
-
-GType xfburn_copy_cd_dialog_get_type (void);
+#define XFBURN_TYPE_COPY_CD_DIALOG (xfburn_copy_cd_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnCopyCdDialog, xfburn_copy_cd_dialog, XFBURN, COPY_CD_DIALOG, XfceTitledDialog)
 
 GtkWidget *xfburn_copy_cd_dialog_new (void);
 

@@ -35,37 +35,17 @@ static void cb_new_output (XfburnCopyCdProgressDialog * dialog, const gchar * ou
 /*********************/
 /* class declaration */
 /*********************/
-static XfburnProgressDialogClass *parent_class = NULL;
 
-GType
-xfburn_copy_cd_progress_dialog_get_type (void)
+struct _XfburnCopyCdProgressDialog
 {
-  static GType type = 0;
+  XfburnProgressDialog parent;
+};
 
-  if (type == 0) {
-    static const GTypeInfo our_info = {
-      sizeof (XfburnCopyCdProgressDialogClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_copy_cd_progress_dialog_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnCopyCdProgressDialog),
-      0,
-      (GInstanceInitFunc) xfburn_copy_cd_progress_dialog_init,
-      NULL
-    };
-
-    type = g_type_register_static (XFBURN_TYPE_PROGRESS_DIALOG, "XfburnCopyCdProgressDialog", &our_info, 0);
-  }
-
-  return type;
-}
+G_DEFINE_TYPE (XfburnCopyCdProgressDialog, xfburn_copy_cd_progress_dialog, XFBURN_TYPE_PROGRESS_DIALOG)
 
 static void
 xfburn_copy_cd_progress_dialog_class_init (XfburnCopyCdProgressDialogClass * klass)
 {
-  parent_class = g_type_class_peek_parent (klass);
 }
 
 static void

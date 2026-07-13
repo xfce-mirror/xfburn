@@ -88,6 +88,11 @@ struct _XfburnDevicePrivate {
   int is_erasable;
 };
 
+struct _XfburnDevice
+{
+  GObject parent;
+};
+
 G_DEFINE_TYPE_WITH_PRIVATE (XfburnDevice, xfburn_device, G_TYPE_OBJECT)
 
 #define GET_PRIVATE(o) \

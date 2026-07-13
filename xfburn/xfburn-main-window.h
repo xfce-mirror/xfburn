@@ -26,26 +26,10 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_MAIN_WINDOW            (xfburn_main_window_get_type ())
-#define XFBURN_MAIN_WINDOW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindow))
-#define XFBURN_MAIN_WINDOW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
-#define XFBURN_IS_MAIN_WINDOW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_MAIN_WINDOW))
-#define XFBURN_IS_MAIN_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_MAIN_WINDOW))
-#define XFBURN_MAIN_WINDOW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_MAIN_WINDOW, XfburnMainWindowClass))
+#define XFBURN_TYPE_MAIN_WINDOW (xfburn_main_window_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnMainWindow, xfburn_main_window, XFBURN, MAIN_WINDOW, GtkWindow)
 
 typedef void (* gActionCallback) (GSimpleAction *,GVariant *,gpointer);
-
-typedef struct
-{
-  GtkWindow window;
-} XfburnMainWindow;
-
-typedef struct
-{
-  GtkWindowClass parent_class;
-} XfburnMainWindowClass;
-
-GType xfburn_main_window_get_type (void);
 
 GtkWidget *xfburn_main_window_new (void);
 XfburnMainWindow *xfburn_main_window_get_instance (void);

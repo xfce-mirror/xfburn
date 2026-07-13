@@ -39,7 +39,7 @@ enum {
   PROP_EJECT,
 };
 
-typedef struct
+typedef struct _XfburnBlankDialogPrivate
 {
   GtkWidget *device_box;
   GtkWidget *combo_type;
@@ -48,6 +48,11 @@ typedef struct
   GtkWidget *check_eject;
   gboolean eject;
 } XfburnBlankDialogPrivate;
+
+struct _XfburnBlankDialog
+{
+  XfceTitledDialog parent;
+};
 
 /* FIXME: the 128MB comes from cdrskin, but why? Is this really complete? */
 #define XFBURN_FORMAT_COMPLETE_SIZE 128*1024*1024
@@ -97,8 +102,6 @@ static void* thread_blank (ThreadBlankParams * params);
 static void xfburn_blank_dialog_response_cb (XfburnBlankDialog * dialog, gint response_id, gpointer user_data);
 static void cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice *device, XfburnBlankDialog * dialog);
 
-static XfceTitledDialogClass *parent_class = NULL;
-
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnBlankDialog, xfburn_blank_dialog, XFCE_TYPE_TITLED_DIALOG);
 
 static void
@@ -106,7 +109,6 @@ xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  parent_class = g_type_class_peek_parent (klass);
   object_class->set_property = xfburn_blank_dialog_set_property;
   object_class->get_property = xfburn_blank_dialog_get_property;
 

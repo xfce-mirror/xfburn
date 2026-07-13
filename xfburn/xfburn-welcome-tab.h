@@ -26,24 +26,9 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_WELCOME_TAB         (xfburn_welcome_tab_get_type ())
-#define XFBURN_WELCOME_TAB(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_WELCOME_TAB, XfburnWelcomeTab))
-#define XFBURN_WELCOME_TAB_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_WELCOME_TAB, XfburnWelcomeTabClass))
-#define XFBURN_IS_WELCOME_TAB(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_WELCOME_TAB))
-#define XFBURN_IS_WELCOME_TAB_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_WELCOME_TAB))
-#define XFBURN_WELCOME_TAB_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_WELCOME_TAB, XfburnWelcomeTabClass))
+#define XFBURN_TYPE_WELCOME_TAB (xfburn_welcome_tab_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnWelcomeTab, xfburn_welcome_tab, XFBURN, WELCOME_TAB, GtkBox)
 
-typedef struct
-{
-  GtkBox parent;
-} XfburnWelcomeTab;
-
-typedef struct
-{
-  GtkBoxClass parent_class;
-} XfburnWelcomeTabClass;
-
-GType xfburn_welcome_tab_get_type (void);
 GtkWidget *xfburn_welcome_tab_new (XfburnCompositionsNotebook *notebook, GActionMap *action_group);
 
 G_END_DECLS

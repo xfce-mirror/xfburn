@@ -27,31 +27,14 @@
 G_BEGIN_DECLS
 
 #define XFBURN_TYPE_DEVICE_LIST xfburn_device_list_get_type()
+G_DECLARE_DERIVABLE_TYPE (XfburnDeviceList, xfburn_device_list, XFBURN, DEVICE_LIST, GObject)
 
-#define XFBURN_DEVICE_LIST(obj) \
-    (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DEVICE_LIST, XfburnDeviceList))
-
-#define XFBURN_DEVICE_LIST_CLASS(klass) \
-    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DEVICE_LIST, XfburnDeviceListClass))
-
-#define XFBURN_IS_DEVICE_LIST(obj) \
-    (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DEVICE_LIST))
-
-#define XFBURN_IS_DEVICE_LIST_CLASS(klass) \
-    (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DEVICE_LIST))
-
-#define XFBURN_DEVICE_LIST_GET_CLASS(obj) \
-    (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DEVICE_LIST, XfburnDeviceListClass))
-
-typedef struct {
-  GObject parent;
-} XfburnDeviceList;
-
-typedef struct {
+struct _XfburnDeviceListClass
+{
   GObjectClass parent_class;
 
   void (*volume_changed) (XfburnDeviceList *devlist, guint device_changed, XfburnDevice *device);
-} XfburnDeviceListClass;
+};
 
 
 /* what kind of recordable discs are there */
@@ -86,8 +69,6 @@ enum XfburnDiscProfiles {
   XFBURN_PROFILE_DVDROM = 0x10,
   XFBURN_PROFILE_BDROM = 0x40,
 };
-
-GType xfburn_device_list_get_type (void);
 
 XfburnDeviceList* xfburn_device_list_new (void);
 

@@ -26,30 +26,14 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG         (xfburn_burn_audio_cd_composition_dialog_get_type ())
-#define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, XfburnBurnAudioCdCompositionDialog))
-#define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, XfburnBurnAudioCdCompositionDialogClass))
-#define XFBURN_IS_BURN_AUDIO_CD_COMPOSITION_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG))
-#define XFBURN_IS_BURN_AUDIO_CD_COMPOSITION_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG))
-#define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG, XfburnBurnAudioCdCompositionDialogClass))
+#define XFBURN_TYPE_BURN_AUDIO_CD_COMPOSITION_DIALOG (xfburn_burn_audio_cd_composition_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnBurnAudioCdCompositionDialog, xfburn_burn_audio_cd_composition_dialog, XFBURN, BURN_AUDIO_CD_COMPOSITION_DIALOG, XfceTitledDialog)
 
 enum {
   XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_CANCEL = -1,
   XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_BURN,
   XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_BLANK,
 };
-
-typedef struct
-{
-  XfceTitledDialog parent;
-} XfburnBurnAudioCdCompositionDialog;
-
-typedef struct
-{
-  XfceTitledDialogClass parent_class;
-} XfburnBurnAudioCdCompositionDialogClass;
-
-GType xfburn_burn_audio_cd_composition_dialog_get_type (void);
 
 GtkWidget *xfburn_burn_audio_cd_composition_dialog_new (GSList *tracklist);
 

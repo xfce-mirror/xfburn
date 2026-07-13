@@ -23,22 +23,8 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_DATA_COMPOSITION            (xfburn_data_composition_get_type ())
-#define XFBURN_DATA_COMPOSITION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataComposition))
-#define XFBURN_DATA_COMPOSITION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataCompositionClass))
-#define XFBURN_IS_DATA_COMPOSITION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DATA_COMPOSITION))
-#define XFBURN_IS_DATA_COMPOSITION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DATA_COMPOSITION))
-#define XFBURN_DATA_COMPOSITION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DATA_COMPOSITION, XfburnDataCompositionClass))
-
-typedef struct
-{
-  GtkVBox vbox;
-} XfburnDataComposition;
-
-typedef struct
-{
-  GtkVBoxClass parent_class;
-} XfburnDataCompositionClass;
+#define XFBURN_TYPE_DATA_COMPOSITION (xfburn_data_composition_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnDataComposition, xfburn_data_composition, XFBURN, DATA_COMPOSITION, GtkBox)
 
 enum
 {
@@ -46,8 +32,6 @@ enum
   DATA_COMPOSITION_DND_TARGET_TEXT_PLAIN,
   DATA_COMPOSITION_DND_TARGET_TEXT_URI_LIST,
 };
-
-GType xfburn_data_composition_get_type (void);
 
 GtkWidget *xfburn_data_composition_new (void);
 void xfburn_data_composition_add_files (XfburnDataComposition *content, GSList * filelist);

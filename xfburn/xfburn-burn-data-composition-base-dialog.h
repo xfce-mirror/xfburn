@@ -26,12 +26,8 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG         (xfburn_burn_data_composition_base_dialog_get_type ())
-#define XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, XfburnBurnDataCompositionBaseDialog))
-#define XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, XfburnBurnDataCompositionBaseDialogClass))
-#define XFBURN_IS_BURN_DATA_COMPOSITION_BASE_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG))
-#define XFBURN_IS_BURN_DATA_COMPOSITION_BASE_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG))
-#define XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG, XfburnBurnDataCompositionBaseDialogClass))
+#define XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG (xfburn_burn_data_composition_base_dialog_get_type ())
+G_DECLARE_DERIVABLE_TYPE (XfburnBurnDataCompositionBaseDialog, xfburn_burn_data_composition_base_dialog, XFBURN, BURN_DATA_COMPOSITION_BASE_DIALOG, XfceTitledDialog)
 
 enum {
   XFBURN_BURN_DATA_COMPOSITION_DIALOG_CANCEL = -1,
@@ -39,17 +35,10 @@ enum {
   XFBURN_BURN_DATA_COMPOSITION_DIALOG_BLANK,
 };
 
-typedef struct
-{
-  XfceTitledDialog parent;
-} XfburnBurnDataCompositionBaseDialog;
-
-typedef struct
+struct _XfburnBurnDataCompositionBaseDialogClass
 {
   XfceTitledDialogClass parent_class;
-} XfburnBurnDataCompositionBaseDialogClass;
-
-GType xfburn_burn_data_composition_base_dialog_get_type (void);
+};
 
 GtkWidget *xfburn_burn_data_composition_base_dialog_new (IsoImage *image);
 

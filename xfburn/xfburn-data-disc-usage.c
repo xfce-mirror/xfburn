@@ -26,14 +26,8 @@
 #include "xfburn-utils.h"
 #include "xfburn-main-window.h"
 
-/* prototypes */
-static void xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass *, gpointer data);
-
 static gboolean can_burn (XfburnDiscUsage *disc_usage);
 static void xfburn_data_disc_usage_update_size (XfburnDiscUsage * disc_usage);
-
-/* globals */
-static XfburnDiscUsageClass *parent_class = NULL;
 
 #define DEFAULT_DISK_SIZE_LABEL 2
 #define LAST_CD_LABEL 4
@@ -67,37 +61,18 @@ XfburnDiscLabels datadiscsizes[] = {
 /*******************************/
 /* XfburnDataComposition class */
 /*******************************/
-GType
-xfburn_data_disc_usage_get_type (void)
+
+struct _XfburnDataDiscUsage
 {
-  static GType disc_usage_type = 0;
+  XfburnDiscUsage parent;
+};
 
-  if (!disc_usage_type) {
-    static const GTypeInfo disc_usage_info = {
-      sizeof (XfburnDataDiscUsageClass),
-      NULL,
-      NULL,
-      (GClassInitFunc) xfburn_data_disc_usage_class_init,
-      NULL,
-      NULL,
-      sizeof (XfburnDataDiscUsage),
-      0,
-      NULL,
-      NULL
-    };
-
-    disc_usage_type = g_type_register_static (XFBURN_TYPE_DISC_USAGE, "XfburnDataDiscUsage", &disc_usage_info, 0);
-  }
-
-  return disc_usage_type;
-}
+G_DEFINE_TYPE (XfburnDataDiscUsage, xfburn_data_disc_usage, XFBURN_TYPE_DISC_USAGE)
 
 static void
-xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass * klass, gpointer data)
+xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass * klass)
 {
   XfburnDiscUsageClass *pklass;
-
-  parent_class = g_type_class_peek_parent (klass);
 
   /* override virtual methods */
   pklass = XFBURN_DISC_USAGE_CLASS(klass);
@@ -106,6 +81,11 @@ xfburn_data_disc_usage_class_init (XfburnDataDiscUsageClass * klass, gpointer da
   pklass->num_labels  = G_N_ELEMENTS (datadiscsizes);
   pklass->update_size = xfburn_data_disc_usage_update_size;
   pklass->can_burn    = can_burn;
+}
+
+static void
+xfburn_data_disc_usage_init (XfburnDataDiscUsage *disc_usage)
+{
 }
 
 /* internals */

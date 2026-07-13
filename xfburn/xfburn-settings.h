@@ -24,25 +24,8 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_SETTINGS         (xfburn_settings_get_type ())
-#define XFBURN_SETTINGS(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_SETTINGS, XfburnSettings))
-#define XFBURN_SETTINGS_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_SETTINGS, XfburnSettingsClass))
-#define XFBURN_IS_SETTINGS(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_SETTINGS))
-#define XFBURN_IS_SETTINGS_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_SETTINGS))
-#define XFBURN_SETTINGS_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_SETTINGS, XfburnSettingsClass))
-typedef struct XfburnSettingsPrivate XfburnSettingsPrivate;
-
-typedef struct
-{
-  GObject parent;
-} XfburnSettings;
-
-typedef struct
-{
-  GObjectClass parent_class;
-} XfburnSettingsClass;
-
-GType xfburn_settings_get_type (void);
+#define XFBURN_TYPE_SETTINGS (xfburn_settings_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnSettings, xfburn_settings, XFBURN, SETTINGS, GObject)
 
 void xfburn_settings_init_external (void);
 void xfburn_settings_free (void);

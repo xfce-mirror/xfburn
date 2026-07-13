@@ -50,7 +50,8 @@ enum {
   LAST_SIGNAL,
 };
 
-typedef struct {
+typedef struct _XfburnUdevManagerPrivate
+{
   GUdevClient *client;
   GVolumeMonitor *volume_monitor;
   gchar *error;
@@ -69,7 +70,6 @@ static XfburnUdevManager *instance = NULL;
 /*********************/
 /* class declaration */
 /*********************/
-static XfburnProgressDialogClass *parent_class = NULL;
 static guint signals[LAST_SIGNAL];
 
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnUdevManager, xfburn_udev_manager, G_TYPE_OBJECT);
@@ -78,8 +78,6 @@ static void
 xfburn_udev_manager_class_init (XfburnUdevManagerClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_udev_manager_finalize;
 
@@ -117,7 +115,7 @@ xfburn_udev_manager_finalize (GObject * object)
   g_object_unref (priv->volume_monitor);
   g_object_unref (priv->client);
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_udev_manager_parent_class)->finalize (object);
   instance = NULL;
 }
 

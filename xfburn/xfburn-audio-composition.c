@@ -142,7 +142,7 @@ static gboolean thread_add_file_to_list (XfburnAudioComposition * dc, GtkTreeMod
                                          GtkTreeIter * iter, GtkTreeIter * insertion, GtkTreeViewDropPosition position);
 static gboolean show_add_home_question_dialog (void);
 
-typedef struct
+typedef struct _XfburnAudioCompositionPrivate
 {
   gchar *filename;
   gboolean modified;
@@ -174,9 +174,13 @@ typedef struct
   XfburnTranscoder *trans;
 } XfburnAudioCompositionPrivate;
 
+struct _XfburnAudioComposition
+{
+  GtkBox parent;
+};
+
 /* globals */
 #define MAX_NAME_LENGTH 80
-static GtkHPanedClass *parent_class = NULL;
 static guint instances = 0;
 static gchar *did_warn = "Did warn about this already";
 static gchar trans_name[MAX_NAME_LENGTH+1] = {""};
@@ -204,8 +208,6 @@ static void
 xfburn_audio_composition_class_init (XfburnAudioCompositionClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_audio_composition_finalize;
 }
@@ -401,7 +403,7 @@ xfburn_audio_composition_finalize (GObject * object)
      must be unref'ed manually */
   g_object_unref (priv->model);
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_audio_composition_parent_class)->finalize (object);
 }
 
 /*************/

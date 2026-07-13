@@ -99,7 +99,8 @@ typedef enum {
   XFBURN_TRANSCODER_GST_STATE_TRANSCODING,
 } XfburnTranscoderGstState;
 
-typedef struct {
+typedef struct _XfburnTranscoderGstPrivate
+{
   GstElement *pipeline;
   GstElement *source, *decoder, *resample, *conv1, *conv2, *sink;
 
@@ -118,6 +119,10 @@ typedef struct {
 
 } XfburnTranscoderGstPrivate;
 
+struct _XfburnTranscoderGst
+{
+  GObject parent;
+};
 
 /* constants */
 
@@ -148,7 +153,6 @@ static const gchar *errormsg_missing_plugin = N_("%s is missing.\n"
 /*********************/
 /* class declaration */
 /*********************/
-static GObject *parent_class = NULL;
 
 G_DEFINE_TYPE_EXTENDED(
   XfburnTranscoderGst,
@@ -163,8 +167,6 @@ static void
 xfburn_transcoder_gst_class_init (XfburnTranscoderGstClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_transcoder_gst_finalize;
 }
@@ -199,7 +201,7 @@ xfburn_transcoder_gst_finalize (GObject * object)
   g_object_unref (G_OBJECT (priv->discoverer));
   priv->pipeline = NULL;
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_transcoder_gst_parent_class)->finalize (object);
 }
 
 static void

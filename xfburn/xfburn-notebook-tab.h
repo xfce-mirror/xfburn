@@ -23,26 +23,15 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_NOTEBOOK_TAB         (xfburn_notebook_tab_get_type ())
-#define XFBURN_NOTEBOOK_TAB(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_NOTEBOOK_TAB, XfburnNotebookTab))
-#define XFBURN_NOTEBOOK_TAB_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_NOTEBOOK_TAB, XfburnNotebookTabClass))
-#define XFBURN_IS_NOTEBOOK_TAB(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_NOTEBOOK_TAB))
-#define XFBURN_IS_NOTEBOOK_TAB_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_NOTEBOOK_TAB))
-#define XFBURN_NOTEBOOK_TAB_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_NOTEBOOK_TAB, XfburnNotebookTabClass))
+#define XFBURN_TYPE_NOTEBOOK_TAB (xfburn_notebook_tab_get_type ())
+G_DECLARE_DERIVABLE_TYPE (XfburnNotebookTab, xfburn_notebook_tab, XFBURN, NOTEBOOK_TAB, GtkBox)
 
-typedef struct
-{
-  GtkHBox parent;
-} XfburnNotebookTab;
-
-typedef struct
+struct _XfburnNotebookTabClass
 {
   GtkHBoxClass parent_class;
 
   void (*button_close_clicked) (XfburnNotebookTab *tab);
-} XfburnNotebookTabClass;
-
-GType xfburn_notebook_tab_get_type (void);
+};
 
 GtkWidget *xfburn_notebook_tab_new (const gchar *label, gboolean show_button_close);
 

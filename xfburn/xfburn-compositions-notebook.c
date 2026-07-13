@@ -30,11 +30,10 @@
 
 #define XFBURN_COMPOSITIONS_NOTEBOOK_GET_PRIVATE(obj) (xfburn_compositions_notebook_get_instance_private (obj))
 
-/* private members */
-typedef struct
+struct _XfburnCompositionsNotebook
 {
-  gpointer dummy;
-} XfburnCompositionsNotebookPrivate;
+  GtkNotebook parent;
+};
 
 
 /* internals */
@@ -42,19 +41,15 @@ static void cb_composition_close (XfburnNotebookTab *tab, GtkNotebook *notebook)
 static XfburnComposition * add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositionType type, XfburnMainWindow *window);
 
 
-/* static member */
-static GtkNotebookClass *parent_class = NULL;
-
-G_DEFINE_TYPE_WITH_PRIVATE(XfburnCompositionsNotebook, xfburn_compositions_notebook, GTK_TYPE_NOTEBOOK);
+G_DEFINE_TYPE(XfburnCompositionsNotebook, xfburn_compositions_notebook, GTK_TYPE_NOTEBOOK);
 
 static void
 xfburn_compositions_notebook_class_init (XfburnCompositionsNotebookClass * klass)
 {
-  parent_class = g_type_class_peek_parent (klass);
 }
 
 static void
-cb_move_focus_out (GtkNotebook *notebook, GtkDirectionType *arg1, XfburnCompositionsNotebookPrivate *priv)
+cb_move_focus_out (GtkNotebook *notebook, GtkDirectionType *arg1, XfburnCompositionsNotebook *xfburn_notebook)
 {
   DBG ("%d", gtk_notebook_get_current_page (notebook));
 }
@@ -62,9 +57,7 @@ cb_move_focus_out (GtkNotebook *notebook, GtkDirectionType *arg1, XfburnComposit
 static void
 xfburn_compositions_notebook_init (XfburnCompositionsNotebook * notebook)
 {
-  XfburnCompositionsNotebookPrivate *priv = XFBURN_COMPOSITIONS_NOTEBOOK_GET_PRIVATE (notebook);
-
-  g_signal_connect (G_OBJECT (notebook), "move-focus-out", G_CALLBACK (cb_move_focus_out), priv);
+  g_signal_connect (G_OBJECT (notebook), "move-focus-out", G_CALLBACK (cb_move_focus_out), notebook);
 }
 
 /***********/
@@ -95,11 +88,11 @@ add_composition_with_data (XfburnCompositionsNotebook *notebook, XfburnCompositi
   static guint i = 0;
 
   switch (type) {
-    case XFBURN_DATA_COMPOSITION:
+    case XFBURN_COMPOSITION_DATA:
       composition = xfburn_data_composition_new ();
       label_text = g_strdup_printf ("%s %d", _(DATA_COMPOSITION_DEFAULT_NAME), ++i);
       break;
-    case XFBURN_AUDIO_COMPOSITION:
+    case XFBURN_COMPOSITION_AUDIO:
       composition = xfburn_audio_composition_new ();
       label_text = g_strdup_printf ("%s %d", _("Audio composition"), ++i);
       break;

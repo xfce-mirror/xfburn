@@ -23,23 +23,26 @@
 
 G_BEGIN_DECLS
 
+typedef struct _XfburnDiscUsage XfburnDiscUsage;
+
 #define XFBURN_TYPE_DISC_USAGE            (xfburn_disc_usage_get_type ())
 #define XFBURN_DISC_USAGE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFBURN_TYPE_DISC_USAGE, XfburnDiscUsage))
 #define XFBURN_DISC_USAGE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFBURN_TYPE_DISC_USAGE, XfburnDiscUsageClass))
 #define XFBURN_IS_DISC_USAGE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFBURN_TYPE_DISC_USAGE))
 #define XFBURN_IS_DISC_USAGE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFBURN_TYPE_DISC_USAGE))
 #define XFBURN_DISC_USAGE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFBURN_TYPE_DISC_USAGE, XfburnDiscUsageClass))
+G_DEFINE_AUTOPTR_CLEANUP_FUNC(XfburnDiscUsage, g_object_unref)
 
-typedef struct
+struct _XfburnDiscUsage
 {
-  GtkVBox hbox;
+  GtkBox hbox;
 
   GtkWidget *progress_bar;
   GtkWidget *combo;
   GtkWidget *button;
 
   gdouble size;
-} XfburnDiscUsage;
+};
 
 typedef struct
 {
@@ -47,9 +50,9 @@ typedef struct
   gchar *label;
 } XfburnDiscLabels;
 
-typedef struct
+typedef struct _XfburnDiscUsageClass
 {
-  GtkHBoxClass parent_class;
+  GtkBoxClass parent_class;
   XfburnDiscLabels *labels;
   int num_labels;
 

@@ -67,7 +67,11 @@ static const gchar *errormsg_libburn_setup = N_("An error occurred while setting
 /*********************/
 /* class declaration */
 /*********************/
-static GObject *parent_class = NULL;
+
+struct _XfburnTranscoderBasic
+{
+  GObject parent;
+};
 
 G_DEFINE_TYPE_EXTENDED(
   XfburnTranscoderBasic,
@@ -82,8 +86,6 @@ xfburn_transcoder_basic_class_init (XfburnTranscoderBasicClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  parent_class = g_type_class_peek_parent (klass);
-
   object_class->finalize = xfburn_transcoder_basic_finalize;
 }
 
@@ -95,7 +97,7 @@ xfburn_transcoder_basic_init (XfburnTranscoderBasic * obj)
 static void
 xfburn_transcoder_basic_finalize (GObject * object)
 {
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_transcoder_basic_parent_class)->finalize (object);
 }
 
 static void

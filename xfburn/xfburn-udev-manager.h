@@ -29,26 +29,16 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_UDEV_MANAGER         (xfburn_udev_manager_get_type ())
-#define XFBURN_UDEV_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_UDEV_MANAGER, XfburnUdevManager))
-#define XFBURN_UDEV_MANAGER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_UDEV_MANAGER, XfburnUdevManagerClass))
-#define XFBURN_IS_UDEV_MANAGER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_UDEV_MANAGER))
-#define XFBURN_IS_UDEV_MANAGER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_UDEV_MANAGER))
-#define XFBURN_UDEV_MANAGER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_UDEV_MANAGER, XfburnUdevManagerClass))
+#define XFBURN_TYPE_UDEV_MANAGER (xfburn_udev_manager_get_type ())
+G_DECLARE_DERIVABLE_TYPE (XfburnUdevManager, xfburn_udev_manager, XFBURN, UDEV_MANAGER, GObject)
 
-typedef struct
-{
-  GObject parent;
-} XfburnUdevManager;
-
-typedef struct
+struct _XfburnUdevManagerClass
 {
   XfburnProgressDialogClass parent_class;
 
   void (*volume_changed) (XfburnUdevManager *udevman);
-} XfburnUdevManagerClass;
+};
 
-GType xfburn_udev_manager_get_type (void);
 gchar *xfburn_udev_manager_create_global (void);
 XfburnUdevManager * xfburn_udev_manager_get_global (void);
 void xfburn_udev_manager_shutdown (void);

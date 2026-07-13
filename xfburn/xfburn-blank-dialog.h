@@ -26,24 +26,9 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_BLANK_DIALOG         (xfburn_blank_dialog_get_type ())
-#define XFBURN_BLANK_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_BLANK_DIALOG, XfburnBlankDialog))
-#define XFBURN_BLANK_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_BLANK_DIALOG, XfburnBlankDialogClass))
-#define XFBURN_IS_BLANK_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_BLANK_DIALOG))
-#define XFBURN_IS_BLANK_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_BLANK_DIALOG))
-#define XFBURN_BLANK_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_BLANK_DIALOG, XfburnBlankDialogClass))
+#define XFBURN_TYPE_BLANK_DIALOG (xfburn_blank_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnBlankDialog, xfburn_blank_dialog, XFBURN, BLANK_DIALOG, XfceTitledDialog)
 
-typedef struct
-{
-  XfceTitledDialog parent;
-} XfburnBlankDialog;
-
-typedef struct
-{
-  XfceTitledDialogClass parent_class;
-} XfburnBlankDialogClass;
-
-GType xfburn_blank_dialog_get_type (void);
 GtkWidget *xfburn_blank_dialog_new (void);
 GtkWidget * xfburn_blank_dialog_new_eject (gboolean eject);
 

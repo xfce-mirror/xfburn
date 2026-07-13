@@ -25,24 +25,8 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_COPY_DVD_DIALOG         (xfburn_copy_dvd_dialog_get_type ())
-#define XFBURN_COPY_DVD_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_COPY_DVD_DIALOG, XfburnCopyDvdDialog))
-#define XFBURN_COPY_DVD_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_COPY_DVD_DIALOG, XfburnCopyDvdDialogClass))
-#define XFBURN_IS_COPY_DVD_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_COPY_DVD_DIALOG))
-#define XFBURN_IS_COPY_DVD_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_COPY_DVD_DIALOG))
-#define XFBURN_COPY_DVD_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_COPY_DVD_DIALOG, XfburnCopyDvdDialogClass))
-
-typedef struct
-{
-  XfceTitledDialog parent;
-} XfburnCopyDvdDialog;
-
-typedef struct
-{
-  XfceTitledDialogClass parent_class;
-} XfburnCopyDvdDialogClass;
-
-GType xfburn_copy_dvd_dialog_get_type (void);
+#define XFBURN_TYPE_COPY_DVD_DIALOG (xfburn_copy_dvd_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnCopyDvdDialog, xfburn_copy_dvd_dialog, XFBURN, COPY_DVD_DIALOG, XfceTitledDialog)
 
 GtkWidget *xfburn_copy_dvd_dialog_new (void);
 

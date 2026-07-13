@@ -56,7 +56,7 @@ enum {
 };
 
 /* private struct */
-typedef struct
+typedef struct _XfburnDeviceBoxPrivate
 {
   gboolean show_writers_only;
   gboolean show_speed_selection;
@@ -103,9 +103,6 @@ static void fill_combo_mode (XfburnDeviceBox *box, XfburnDevice *device);
 static void cb_volume_change_start (XfburnDeviceList *devlist, gboolean device_changed, XfburnDeviceBox *box);
 static void cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnDeviceBox *box);
 
-/* globals */
-static GtkBoxClass *parent_class = NULL;
-
 /*************************/
 /* XfburnDeviceBox class */
 /*************************/
@@ -118,8 +115,6 @@ static void
 xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->constructor  = xfburn_device_box_constructor;
   object_class->finalize     = xfburn_device_box_finalize;
@@ -156,7 +151,7 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
 static GObject *
 xfburn_device_box_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
 {
-  GObject *gobj = G_OBJECT_CLASS (parent_class)->constructor(type, n_construct_properties, construct_properties);
+  GObject *gobj = G_OBJECT_CLASS (xfburn_device_box_parent_class)->constructor(type, n_construct_properties, construct_properties);
   XfburnDeviceBoxPrivate *priv = xfburn_device_box_get_instance_private(XFBURN_DEVICE_BOX(gobj));
   refresh_drive_info (XFBURN_DEVICE_BOX(gobj), xfburn_device_list_get_current_device (priv->devlist));
   return gobj;
@@ -264,7 +259,7 @@ xfburn_device_box_finalize (GObject * object)
 
   g_object_unref (G_OBJECT (priv->devlist));
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_device_box_parent_class)->finalize (object);
 }
 
 static void

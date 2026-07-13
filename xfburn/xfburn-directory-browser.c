@@ -32,10 +32,15 @@
 
 #define XFBURN_DIRECTORY_BROWSER_GET_PRIVATE(obj) (xfburn_directory_browser_get_instance_private (XFBURN_DIRECTORY_BROWSER(obj)))
 
-typedef struct
+typedef struct _XfburnDirectoryBrowserPrivate
 {
   gchar *current_path;
 } XfburnDirectoryBrowserPrivate;
+
+struct _XfburnDirectoryBrowser
+{
+  GtkTreeView parent;
+};
 
 /* prototypes */
 static void cb_browser_drag_data_get (GtkWidget *, GdkDragContext *, GtkSelectionData *, guint, guint, gpointer);
@@ -48,7 +53,6 @@ static const gchar *DIRECTORY = N_("Folder");
 /********************************/
 /* XfburnDirectoryBrowser class */
 /********************************/
-static GtkTreeViewClass *parent_class = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnDirectoryBrowser, xfburn_directory_browser, GTK_TYPE_TREE_VIEW);
 
@@ -59,15 +63,13 @@ xfburn_directory_browser_finalize (GObject * object)
 
   g_free (priv->current_path);
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_directory_browser_parent_class)->finalize (object);
 }
 
 static void
 xfburn_directory_browser_class_init (XfburnDirectoryBrowserClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   gobject_class->finalize = xfburn_directory_browser_finalize;
 }

@@ -25,25 +25,9 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_CREATE_ISO_PROGRESS_DIALOG         (xfburn_create_iso_progress_dialog_get_type ())
-#define XFBURN_CREATE_ISO_PROGRESS_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XFBURN_TYPE_CREATE_ISO_PROGRESS_DIALOG, XfburnCreateIsoProgressDialog))
-#define XFBURN_CREATE_ISO_PROGRESS_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XFBURN_TYPE_CREATE_ISO_PROGRESS_DIALOG, XfburnCreateIsoProgressDialogClass))
-#define XFBURN_IS_CREATE_ISO_PROGRESS_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XFBURN_TYPE_CREATE_ISO_PROGRESS_DIALOG))
-#define XFBURN_IS_CREATE_ISO_PROGRESS_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XFBURN_TYPE_CREATE_ISO_PROGRESS_DIALOG))
-#define XFBURN_CREATE_ISO_PROGRESS_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XFBURN_TYPE_CREATE_ISO_PROGRESS_DIALOG, XfburnCreateIsoProgressDialogClass))
+#define XFBURN_TYPE_CREATE_ISO_PROGRESS_DIALOG (xfburn_create_iso_progress_dialog_get_type ())
+G_DECLARE_FINAL_TYPE (XfburnCreateIsoProgressDialog, xfburn_create_iso_progress_dialog, XFBURN, CREATE_ISO_PROGRESS_DIALOG, XfburnProgressDialog)
 
-typedef struct
-{
-  XfburnProgressDialog parent;
-} XfburnCreateIsoProgressDialog;
-
-typedef struct
-{
-  XfburnProgressDialogClass parent_class;
-  /* Add Signal Functions Here */
-} XfburnCreateIsoProgressDialogClass;
-
-GType xfburn_create_iso_progress_dialog_get_type (void);
 GtkWidget *xfburn_create_iso_progress_dialog_new (void);
 
 G_END_DECLS

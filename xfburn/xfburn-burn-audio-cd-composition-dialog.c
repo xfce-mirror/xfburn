@@ -40,7 +40,7 @@
 
 #define XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE(obj) (xfburn_burn_audio_cd_composition_dialog_get_instance_private (XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG (obj)))
 
-typedef struct
+typedef struct _XfburnBurnAudioCdCompositionDialogPrivate
 {
   GSList *track_list;
 
@@ -57,6 +57,11 @@ typedef struct
   gint response;
 } XfburnBurnAudioCdCompositionDialogPrivate;
 
+struct _XfburnBurnAudioCdCompositionDialog
+{
+  XfceTitledDialog parent;
+};
+
 enum {
   PROP_0,
   PROP_TRACK_LIST,
@@ -72,8 +77,6 @@ static void cb_volume_changed (GtkWidget *device_box, gboolean device_changed, X
 static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_id,
                                 XfburnBurnAudioCdCompositionDialogPrivate * priv);
 
-/* globals */
-static XfceTitledDialogClass *parent_class = NULL;
 
 G_DEFINE_TYPE_WITH_PRIVATE(XfburnBurnAudioCdCompositionDialog, xfburn_burn_audio_cd_composition_dialog, XFCE_TYPE_TITLED_DIALOG);
 
@@ -81,8 +84,6 @@ static void
 xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdCompositionDialogClass * klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  parent_class = g_type_class_peek_parent (klass);
 
   object_class->finalize = xfburn_burn_audio_cd_composition_dialog_finalize;
   object_class->get_property = xfburn_burn_audio_cd_composition_dialog_get_property;
@@ -191,7 +192,7 @@ xfburn_burn_audio_cd_composition_dialog_set_property (GObject * object, guint pr
 static void
 xfburn_burn_audio_cd_composition_dialog_finalize (GObject * object)
 {
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  G_OBJECT_CLASS (xfburn_burn_audio_cd_composition_dialog_parent_class)->finalize (object);
 }
 
 /* internals */

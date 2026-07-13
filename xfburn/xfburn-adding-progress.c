@@ -31,7 +31,7 @@ enum {
 };
 
 /* private struct */
-typedef struct
+typedef struct _XfburnAddingProgressPrivate
 {
   GtkWidget *progress_bar;
   gboolean aborted;
@@ -43,7 +43,6 @@ static gboolean cb_delete (XfburnAddingProgress *widget, GdkEvent *event, gpoint
 static gboolean cb_cancel (GtkButton *widget, gpointer data);
 
 /* globals */
-static GtkWindowClass *parent_class = NULL;
 static guint signals[LAST_SIGNAL];
 
 /******************************/
@@ -53,8 +52,6 @@ static guint signals[LAST_SIGNAL];
 static void
 xfburn_adding_progress_class_init (XfburnAddingProgressClass * klass)
 {
-  parent_class = g_type_class_peek_parent (klass);
-
   signals[ADDING_DONE] = g_signal_new ("adding-done", XFBURN_TYPE_ADDING_PROGRESS, G_SIGNAL_ACTION,
                                           G_STRUCT_OFFSET (XfburnAddingProgressClass, adding_done),
                                           NULL, NULL, g_cclosure_marshal_VOID__VOID,
