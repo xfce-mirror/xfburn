@@ -205,7 +205,7 @@ cb_device_changed (XfburnDeviceBox *box, const gchar *device_name, XfburnCopyCdD
   source_device_name = xfburn_device_box_get_selected (XFBURN_DEVICE_BOX (priv->device_box_src));
   dest_device_name = xfburn_device_box_get_selected (XFBURN_DEVICE_BOX (priv->device_box_dest));
 
-  if (source_device_name && dest_device_name && !strcmp (source_device_name, dest_device_name)) {
+  if (source_device_name && dest_device_name && strcmp (source_device_name, dest_device_name) == 0) {
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_onthefly), FALSE);
     gtk_widget_set_sensitive (priv->check_onthefly, FALSE);
   } else

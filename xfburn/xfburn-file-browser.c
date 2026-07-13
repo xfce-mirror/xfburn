@@ -139,7 +139,7 @@ cb_directory_browser_row_activated (GtkWidget * treeview, GtkTreePath * path, Gt
 
         gtk_tree_model_get (model_fs, &iter, FS_BROWSER_COLUMN_DIRECTORY, &temp, -1);
 
-        if (temp && !strcmp (temp, directory)) {
+        if (temp && strcmp (temp, directory) == 0) {
           found = TRUE;
           g_free (temp);
           break;

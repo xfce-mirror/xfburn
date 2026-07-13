@@ -184,7 +184,7 @@ _find_attribute (const gchar ** attribute_names, const gchar * attr)
   gint i;
 
   for (i = 0; attribute_names[i]; i++) {
-    if (!strcmp (attribute_names[i], attr))
+    if (strcmp (attribute_names[i], attr) == 0)
       return i;
   }
 
@@ -198,27 +198,27 @@ load_settings_start (GMarkupParseContext * context, const gchar * element_name,
 {
   gboolean *started = (gboolean *) user_data;
 
-  if (!(*started) && !strcmp (element_name, "xfburn-settings"))
+  if (!(*started) && strcmp (element_name, "xfburn-settings") == 0)
     *started = TRUE;
   else if (!(*started))
     return;
 
-  if (!strcmp (element_name, "setting")) {
+  if (strcmp (element_name, "setting") == 0) {
     int i, j, k;
 
     if ((i = _find_attribute (attribute_names, "name")) != -1 &&
         (j = _find_attribute (attribute_names, "type")) != -1 &&
         (k = _find_attribute (attribute_names, "value")) != -1) {
 
-      if (!strcmp (attribute_values[j], "int"))
+      if (strcmp (attribute_values[j], "int") == 0)
         xfburn_settings_set_int (attribute_values[i], atoi (attribute_values[k]));
-      else if (!strcmp (attribute_values[j], "boolean")) {
-        if (!strcmp (attribute_values[k], "true"))
+      else if (strcmp (attribute_values[j], "boolean") == 0) {
+        if (strcmp (attribute_values[k], "true") == 0)
           xfburn_settings_set_boolean (attribute_values[i], TRUE);
         else
           xfburn_settings_set_boolean (attribute_values[i], FALSE);
       }
-      else if (!strcmp (attribute_values[j], "string"))
+      else if (strcmp (attribute_values[j], "string") == 0)
         xfburn_settings_set_string (attribute_values[i], attribute_values[k]);
     }
   }
@@ -229,7 +229,7 @@ load_settings_end (GMarkupParseContext * context, const gchar * element_name, gp
 {
   gboolean *started = (gboolean *) user_data;
 
-  if (!strcmp (element_name, "xfburn-settings"))
+  if (strcmp (element_name, "xfburn-settings") == 0)
     *started = FALSE;
 }
 
