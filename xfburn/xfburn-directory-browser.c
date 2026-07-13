@@ -251,12 +251,10 @@ xfburn_directory_browser_load_path (XfburnDirectoryBrowser * browser, const gcha
 
       path_utf8 = g_filename_to_utf8 (full_path, -1, NULL, NULL, &conv_error);
 
-      if (!path_utf8 || conv_error) {
+      if (path_utf8 == NULL) {
         g_warning ("Failed to convert filename '%s' to utf8: %s. Falling back to native encoding.", full_path, conv_error->message);
         path_utf8 = g_strdup (full_path);
-
-        if (conv_error)
-          g_error_free (conv_error);
+        g_error_free (conv_error);
       }
 
       humansize = xfburn_humanreadable_filesize (s.st_size);
