@@ -129,23 +129,23 @@ xfburn_device_box_class_init (XfburnDeviceBoxClass * klass)
   g_object_class_install_property (object_class, PROP_SHOW_WRITERS_ONLY,
                                    g_param_spec_boolean ("show-writers-only", _("Show writers only"),
                                                         _("Show writers only"),
-                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_SHOW_SPEED_SELECTION,
                                    g_param_spec_boolean ("show-speed-selection", _("Show speed selection"),
                                                         _("Show speed selection combo"),
-                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_SHOW_MODE_SELECTION,
                                    g_param_spec_boolean ("show-mode-selection", _("Show mode selection"),
                                                         _("Show mode selection combo"),
-                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_VALID,
                                    g_param_spec_boolean ("valid", _("Is it a valid combination"),
                                                         _("Is the combination of hardware and disc valid to burn the composition?"),
-                                                        FALSE, G_PARAM_READABLE));
+                                                        FALSE, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_BLANK_MODE,
                                    g_param_spec_boolean ("blank-mode", _("Blank mode"),
                                                         _("The blank mode shows different disc status messages than regular mode"),
-                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                        FALSE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS));
 }
 
 static GObject *

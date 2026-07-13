@@ -193,16 +193,16 @@ xfburn_device_list_class_init (XfburnDeviceListClass *klass)
 
   g_object_class_install_property (object_class, PROP_NUM_BURNERS,
                                    g_param_spec_int ("num-burners", _("Number of burners in the system"),
-                                                     _("Number of burners in the system"), 0, G_MAXINT, 0, G_PARAM_READABLE));
+                                                     _("Number of burners in the system"), 0, G_MAXINT, 0, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_NUM_DRIVES,
                                    g_param_spec_int ("num-drives", _("Number of drives in the system"),
-                                                     _("Number of drives in the system (readers and writers)"), 0, G_MAXINT, 0, G_PARAM_READABLE));
+                                                     _("Number of drives in the system (readers and writers)"), 0, G_MAXINT, 0, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_DEVICES,
                                    g_param_spec_pointer ("devices", _("List of devices"),
-                                                         _("List of devices"), G_PARAM_READABLE));
+                                                         _("List of devices"), G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_CURRENT_DEVICE,
                                    g_param_spec_object ("current-device", _("Currently selected device"),
-                                                        _("Currently selected device"), XFBURN_TYPE_DEVICE, G_PARAM_READWRITE));
+                                                        _("Currently selected device"), XFBURN_TYPE_DEVICE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void

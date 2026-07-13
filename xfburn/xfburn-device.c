@@ -254,58 +254,58 @@ xfburn_device_class_init (XfburnDeviceClass *klass)
 
   g_object_class_install_property (object_class, PROP_NAME,
                                    g_param_spec_string ("name", _("Display name"),
-                                                        _("Display name"), NULL, G_PARAM_READABLE));
+                                                        _("Display name"), NULL, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_ADDRESS,
                                    g_param_spec_string ("address", _("Device address"),
-                                                        _("Device address"), "", G_PARAM_READWRITE));
+                                                        _("Device address"), "", G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_REVISION,
                                    g_param_spec_string ("revision", _("Device revision"),
-                                                        _("Device Revision"), "", G_PARAM_READWRITE));
+                                                        _("Device Revision"), "", G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_SUPPORTED_SPEEDS,
                                    g_param_spec_pointer ("supported-speeds", _("Burn speeds supported by the device"),
-                                                        _("Burn speeds supported by the device"), G_PARAM_READABLE));
+                                                        _("Burn speeds supported by the device"), G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_DISC_STATUS,
                                    g_param_spec_int ("disc-status", _("Disc status"),
-                                                     _("Disc status"), 0, 6, 0, G_PARAM_READABLE));
+                                                     _("Disc status"), 0, 6, 0, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_PROFILE_NO,
                                    g_param_spec_int ("profile-no", _("Profile no. as reported by libburn"),
-                                                     _("Profile no. as reported by libburn"), 0, 0xffff, 0, G_PARAM_READABLE));
+                                                     _("Profile no. as reported by libburn"), 0, 0xffff, 0, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_PROFILE_NAME,
                                    g_param_spec_string ("profile-name", _("Profile name as reported by libburn"),
-                                                        _("Profile name as reported by libburn"), "", G_PARAM_READABLE));
+                                                        _("Profile name as reported by libburn"), "", G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_ERASABLE,
                                    g_param_spec_boolean ("erasable", _("Is the disc erasable"),
-                                                        _("Is the disc erasable"), FALSE, G_PARAM_READABLE));
+                                                        _("Is the disc erasable"), FALSE, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_CDR,
                                    g_param_spec_boolean ("cdr", _("Can burn CDR"),
-                                                        _("Can burn CDR"), FALSE, G_PARAM_READWRITE));
+                                                        _("Can burn CDR"), FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_CDRW,
                                    g_param_spec_boolean ("cdrw", _("Can burn CDRW"),
-                                                        _("Can burn CDRW"), FALSE, G_PARAM_READWRITE));
+                                                        _("Can burn CDRW"), FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_DVDR,
                                    g_param_spec_boolean ("dvdr", _("Can burn DVDR"),
-                                                        _("Can burn DVDR"), FALSE, G_PARAM_READWRITE));
+                                                        _("Can burn DVDR"), FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_DVDPLUSR,
                                    g_param_spec_boolean ("dvdplusr", _("Can burn DVDPLUSR"),
-                                                        _("Can burn DVDPLUSR"), FALSE, G_PARAM_READWRITE));
+                                                        _("Can burn DVDPLUSR"), FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_DVDRAM,
                                    g_param_spec_boolean ("dvdram", _("Can burn DVDRAM"),
-                                                        _("Can burn DVDRAM"), FALSE, G_PARAM_READWRITE));
+                                                        _("Can burn DVDRAM"), FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_BD,
                                    g_param_spec_boolean ("bd", _("Can burn Blu-ray"),
-                                                        _("Can burn Blu-ray"), FALSE, G_PARAM_READWRITE));
+                                                        _("Can burn Blu-ray"), FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_TAO_BLOCK_TYPES,
                                    g_param_spec_int ("tao-block-types", _("libburn TAO block types"),
-                                                     _("libburn TAO block types"), 0, G_MAXINT, 0, G_PARAM_READABLE));
+                                                     _("libburn TAO block types"), 0, G_MAXINT, 0, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_SAO_BLOCK_TYPES,
                                    g_param_spec_int ("sao-block-types", _("libburn SAO block types"),
-                                                     _("libburn SAO block types"), 0, G_MAXINT, 0, G_PARAM_READABLE));
+                                                     _("libburn SAO block types"), 0, G_MAXINT, 0, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_RAW_BLOCK_TYPES,
                                    g_param_spec_int ("raw-block-types", _("libburn RAW block types"),
-                                                     _("libburn RAW block types"), 0, G_MAXINT, 0, G_PARAM_READABLE));
+                                                     _("libburn RAW block types"), 0, G_MAXINT, 0, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_PACKET_BLOCK_TYPES,
                                    g_param_spec_int ("packet-block-types", _("libburn PACKET block types"),
-                                                     _("libburn PACKET block types"), 0, G_MAXINT, 0, G_PARAM_READABLE));
+                                                     _("libburn PACKET block types"), 0, G_MAXINT, 0, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 }
 
 static void

@@ -72,10 +72,10 @@ xfburn_notebook_tab_class_init (XfburnNotebookTabClass * klass)
 
   g_object_class_install_property (object_class, PROP_LABEL,
                                    g_param_spec_string ("label", _("Label"), _("The text of the label"),
-                                                        NULL, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                        NULL, G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_SHOW_BUTTON_CLOSE,
                                    g_param_spec_boolean ("show-button-close", _("Show close button"), _("Determine whether the close button is visible"),
-                                                        TRUE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                        TRUE, G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS));
 }
 
 static void

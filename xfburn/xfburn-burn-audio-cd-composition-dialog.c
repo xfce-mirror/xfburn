@@ -91,7 +91,7 @@ xfburn_burn_audio_cd_composition_dialog_class_init (XfburnBurnAudioCdComposition
 
   /* properties */
   g_object_class_install_property (object_class, PROP_TRACK_LIST,
-				   g_param_spec_pointer ("track-list", "Track List", "Track List", G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
+				   g_param_spec_pointer ("track-list", "Track List", "Track List", G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void

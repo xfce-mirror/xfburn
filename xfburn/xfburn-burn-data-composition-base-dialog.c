@@ -92,9 +92,9 @@ xfburn_burn_data_composition_base_dialog_class_init (XfburnBurnDataCompositionBa
 
   /* properties */
   g_object_class_install_property (object_class, PROP_IMAGE,
-				   g_param_spec_pointer ("image", _("Image"), _("Image"), G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
+				   g_param_spec_pointer ("image", _("Image"), _("Image"), G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_SHOW_VOLUME_NAME,
-				   g_param_spec_boolean ("show-volume-name", _("Show volume name"), _("Show a text entry for the name of the volume"), FALSE, G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
+				   g_param_spec_boolean ("show-volume-name", _("Show volume name"), _("Show a text entry for the name of the volume"), FALSE, G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void

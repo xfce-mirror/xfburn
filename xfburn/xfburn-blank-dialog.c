@@ -114,7 +114,7 @@ xfburn_blank_dialog_class_init (XfburnBlankDialogClass * klass)
 
   g_object_class_install_property (object_class, PROP_EJECT,
                                    g_param_spec_boolean ("eject", _("Eject the disc"),
-                                                        _("Default value for eject checkbox"), XFBURN_BLANK_DIALOG_EJECT_DEFAULT, G_PARAM_READWRITE));
+                                                        _("Default value for eject checkbox"), XFBURN_BLANK_DIALOG_EJECT_DEFAULT, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void

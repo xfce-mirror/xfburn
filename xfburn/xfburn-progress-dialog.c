@@ -126,19 +126,19 @@ xfburn_progress_dialog_class_init (XfburnProgressDialogClass * klass)
   /* properties */
   g_object_class_install_property (object_class, PROP_STATUS,
                                    g_param_spec_enum ("status", "Status", "Status", XFBURN_TYPE_PROGRESS_DIALOG_STATUS,
-                                                      XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, G_PARAM_READWRITE));
+                                                      XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_SHOW_BUFFERS,
                                    g_param_spec_boolean ("show-buffers", "Show buffers", "Show buffers",
-                                                         TRUE, G_PARAM_READWRITE));
+                                                         TRUE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_ANIMATE,
                                    g_param_spec_boolean ("animate", "Show an animation", "Show an animation",
-                                                         FALSE, G_PARAM_READWRITE));
+                                                         FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_QUIT,
                                    g_param_spec_boolean ("quit", "Quit", "Quit after successful completion",
-                                                         FALSE, G_PARAM_READWRITE));
+                                                         FALSE, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (object_class, PROP_STOP,
                                    g_param_spec_boolean ("stop", "Stop the burning process", "Stop the burning process",
-                                                         FALSE, G_PARAM_READABLE));
+                                                         FALSE, G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
   /* signals */
   signals[BURNING_DONE] = g_signal_new ("burning-done", XFBURN_TYPE_PROGRESS_DIALOG, G_SIGNAL_ACTION,
                                           G_STRUCT_OFFSET (XfburnProgressDialogClass, burning_done),
