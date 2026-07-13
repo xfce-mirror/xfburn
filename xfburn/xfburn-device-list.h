@@ -73,7 +73,6 @@ enum XfburnDiscProfiles {
 XfburnDeviceList* xfburn_device_list_new (void);
 
 XfburnDevice * xfburn_device_list_lookup_by_name (XfburnDeviceList *devlist, const gchar * name);
-gchar * xfburn_device_list_get_selected (XfburnDeviceList *devlist);
 GtkWidget * xfburn_device_list_get_refresh_button (XfburnDeviceList *devlist);
 GtkWidget * xfburn_device_list_get_device_combo (XfburnDeviceList *devlist);
 XfburnDevice * xfburn_device_list_get_current_device (XfburnDeviceList *devlist);

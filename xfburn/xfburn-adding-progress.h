@@ -35,7 +35,6 @@ struct _XfburnAddingProgressClass
 
 XfburnAddingProgress *xfburn_adding_progress_new (void);
 void xfburn_adding_progress_pulse (XfburnAddingProgress *adding_progress);
-void xfburn_adding_progress_wait_until_done (XfburnAddingProgress *adding_progress);
 void xfburn_adding_progress_done (XfburnAddingProgress *adding_progress);
 gboolean xfburn_adding_progress_is_aborted (XfburnAddingProgress *adding_progress);
 void xfburn_adding_progress_show (XfburnAddingProgress *adding_progress);
