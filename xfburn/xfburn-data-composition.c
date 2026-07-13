@@ -949,8 +949,6 @@ cb_content_drag_data_get (GtkWidget * widget, GdkDragContext * dc,
     GList *selected_rows = NULL, *row = NULL;
     GList *references = NULL;
 
-    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (widget));
-
     row = selected_rows = gtk_tree_selection_get_selected_rows (selection, &model);
 
     while (row) {
@@ -1215,7 +1213,7 @@ thread_add_files_cli (ThreadAddFilesCLIParams *params)
 static gboolean
 show_add_home_question_dialog (void)
 {
-  gboolean ok = TRUE;
+  gboolean ok;
 
   gdk_threads_enter ();
   DBG ("Adding home directory");
