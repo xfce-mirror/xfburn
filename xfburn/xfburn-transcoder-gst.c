@@ -396,7 +396,7 @@ bus_call (GstBus *bus, GstMessage *msg, gpointer data)
 
     case GST_MESSAGE_ERROR: {
       gchar  *debug;
-      GError *error;
+      GError *error = NULL;
 
       gst_message_parse_error (msg, &error, &debug);
       g_free (debug);
