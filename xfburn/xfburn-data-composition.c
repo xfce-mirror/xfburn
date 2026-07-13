@@ -909,8 +909,7 @@ set_default_name (XfburnDataComposition * dc)
   tm = time (NULL);
   today = localtime (&tm);
 
-  if (priv->default_vol_name)
-    g_free (priv->default_vol_name);
+  g_free (priv->default_vol_name);
 
   if (tm && strftime (timestr, 80, "%Y-%m-%d", today))
     /* Note to translators: first %s is the date in "i18n" format (year-month-day), %d is a running number of compositions */

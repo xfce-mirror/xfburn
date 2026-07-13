@@ -472,8 +472,7 @@ check_burn_button (XfburnBurnImageDialog * dialog)
   g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
   filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (priv->chooser_image));
   if (filename != NULL) {
-    if (last_file)
-      g_free (last_file);
+    g_free (last_file);
     last_file = filename;
     gtk_widget_set_sensitive (priv->burn_button, valid_disc);
   } else {

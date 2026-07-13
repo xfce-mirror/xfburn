@@ -161,11 +161,8 @@ void
 xfburn_transcoder_free_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack)
 {
   g_free (atrack->inputfile);
-
-  if (atrack->artist)
-    g_free (atrack->artist);
-  if (atrack->title)
-    g_free (atrack->title);
+  g_free (atrack->artist);
+  g_free (atrack->title);
 }
 
 void

@@ -271,8 +271,7 @@ load_settings (XfburnSettingsPrivate *priv)
 cleanup:
   if (gpcontext)
     g_markup_parse_context_free (gpcontext);
-  if (file_contents)
-    g_free (file_contents);
+  g_free (file_contents);
 }
 
 static void
