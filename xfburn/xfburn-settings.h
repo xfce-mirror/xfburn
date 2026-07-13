@@ -31,7 +31,7 @@ void xfburn_settings_init_external (void);
 void xfburn_settings_free (void);
 void xfburn_settings_flush (void);
 
-gint xfburn_settings_get_boolean (const gchar *key, gboolean fallback);
+gboolean xfburn_settings_get_boolean (const gchar *key, gboolean fallback);
 gint xfburn_settings_get_int (const gchar *key, gint fallback);
 gchar *xfburn_settings_get_string (const gchar *key, const gchar *fallback);
 
