@@ -390,6 +390,7 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
 
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), final_status, final_message);
   g_free (final_message);
+  g_free (params);
 
   return TRUE;
 }
