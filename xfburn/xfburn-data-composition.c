@@ -1829,9 +1829,6 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
       g_free (basename);
     }
 
-    g_free (name);
-    g_free (src);
-
     if (type == DATA_COMPOSITION_TYPE_DIRECTORY && gtk_tree_model_iter_has_child (model, iter)) {
       GtkTreeIter child;
 
@@ -1843,6 +1840,9 @@ fill_image_with_composition (GtkTreeModel *model, IsoImage *image, IsoDir * pare
       gtk_tree_model_iter_children (model, &child, iter);
       fill_image_with_composition (model, image, dir, &child, errors);
     }
+
+    g_free (name);
+    g_free (src);
   } while (gtk_tree_model_iter_next (model, iter));
 }
 
