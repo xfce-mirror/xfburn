@@ -75,7 +75,7 @@ typedef struct _XfburnDiscUsagePrivate
 {
 } XfburnDiscUsagePrivate;
 
-G_DEFINE_TYPE (XfburnDiscUsage, xfburn_disc_usage, G_TYPE_OBJECT)
+G_DEFINE_TYPE (XfburnDiscUsage, xfburn_disc_usage, GTK_TYPE_BOX)
 
 static void
 xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass)
