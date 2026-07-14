@@ -278,7 +278,6 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
 
   struct burn_drive *drive;
   enum burn_disc_status disc_state;
-  enum burn_drive_status drive_state;
   struct burn_progress progress;
 
   int ret;
@@ -356,7 +355,7 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
 
   xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, _("Blanking disc..."));
 
-  while ((drive_state = burn_drive_get_status (drive, &progress)) != BURN_DRIVE_IDLE) {
+  while (burn_drive_get_status (drive, &progress) != BURN_DRIVE_IDLE) {
     if(progress.sectors>0 && progress.sector>=0) {
       gdouble percent = 1.0 + ((gdouble) progress.sector+1.0) / ((gdouble) progress.sectors) * 98.0;
 
@@ -366,11 +365,12 @@ thread_blank_perform_blank (ThreadBlankParams * params, struct burn_drive_info *
   }
 
   /* check the libburn message queue for errors */
+#ifndef DEBUG
   while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
     g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
     error = TRUE;
   }
-#ifdef DEBUG
+#else
   while ((ret = burn_msgs_obtain ("ALL", &error_code, msg_text, &os_errno, severity)) == 1) {
     g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
   }
