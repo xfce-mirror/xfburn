@@ -441,10 +441,11 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
 #endif
 
   /* check the libburn message queue for errors */
+#ifndef DEBUG
   while ((ret = burn_msgs_obtain ("FAILURE", &error_code, msg_text, &os_errno, severity)) == 1) {
     g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
   }
-#ifdef DEBUG
+#else
   while ((ret = burn_msgs_obtain ("ALL", &error_code, msg_text, &os_errno, severity)) == 1) {
     g_warning ("[%s] %d: %s (%d)", severity, error_code, msg_text, os_errno);
   }
