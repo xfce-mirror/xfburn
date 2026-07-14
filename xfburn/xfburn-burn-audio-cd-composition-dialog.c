@@ -274,6 +274,8 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
 
   struct burn_drive_info *drive_info = NULL;
 
+  g_return_if_fail (params->tracks != NULL);
+
   disc = burn_disc_create ();
   session = burn_session_create ();
 
