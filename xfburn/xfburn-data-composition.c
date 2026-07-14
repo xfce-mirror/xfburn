@@ -1032,8 +1032,10 @@ thread_add_file_to_list_with_name (const gchar *name, XfburnDataComposition * dc
         break;
       case GTK_TREE_VIEW_DROP_INTO_OR_BEFORE:
       case GTK_TREE_VIEW_DROP_INTO_OR_AFTER:
-        parent = g_new0 (GtkTreeIter, 1);
-        memcpy (parent, insertion, sizeof (GtkTreeIter));
+        if (insertion != NULL) {
+          parent = g_new0 (GtkTreeIter, 1);
+          memcpy (parent, insertion, sizeof (GtkTreeIter));
+        }
         break;
     }
 
