@@ -284,6 +284,8 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   trans = xfburn_transcoder_get_global ();
 
   track_list = params->tracks;
+  g_return_val_if_fail (track_list != NULL, NULL);
+
   for (i=0; i<n_tracks; i++) {
     XfburnAudioTrack *atrack = track_list->data;
 
