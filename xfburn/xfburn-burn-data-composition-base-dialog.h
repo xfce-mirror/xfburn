@@ -26,6 +26,12 @@
 
 G_BEGIN_DECLS
 
+#if !LIBXFCE4UI_CHECK_VERSION(4, 21, 8)
+#ifndef XFBURN_LIBXFCE4UI_AUTOPTR_CLEANUP_FUNC_ALREADY_DEFINED
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceTitledDialog, g_object_unref)
+#define XFBURN_LIBXFCE4UI_AUTOPTR_CLEANUP_FUNC_ALREADY_DEFINED 1
+#endif
+#endif
 #define XFBURN_TYPE_BURN_DATA_COMPOSITION_BASE_DIALOG (xfburn_burn_data_composition_base_dialog_get_type ())
 G_DECLARE_DERIVABLE_TYPE (XfburnBurnDataCompositionBaseDialog, xfburn_burn_data_composition_base_dialog, XFBURN, BURN_DATA_COMPOSITION_BASE_DIALOG, XfceTitledDialog)
 

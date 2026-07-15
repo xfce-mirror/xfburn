@@ -23,7 +23,13 @@
 
 G_BEGIN_DECLS
 
-#define XFBURN_TYPE_PREFERENCES_DIALOG         (xfburn_preferences_dialog_get_type ())
+#if !LIBXFCE4UI_CHECK_VERSION(4, 21, 8)
+#ifndef XFBURN_LIBXFCE4UI_AUTOPTR_CLEANUP_FUNC_ALREADY_DEFINED
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (XfceTitledDialog, g_object_unref)
+#define XFBURN_LIBXFCE4UI_AUTOPTR_CLEANUP_FUNC_ALREADY_DEFINED 1
+#endif
+#endif
+#define XFBURN_TYPE_PREFERENCES_DIALOG (xfburn_preferences_dialog_get_type ())
 G_DECLARE_FINAL_TYPE (XfburnPreferencesDialog, xfburn_preferences_dialog, XFBURN, PREFERENCES_DIALOG, XfceTitledDialog)
 
 GtkWidget *xfburn_preferences_dialog_new (void);
