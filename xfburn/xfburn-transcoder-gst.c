@@ -198,7 +198,7 @@ xfburn_transcoder_gst_finalize (GObject * object)
   gst_element_set_state (priv->pipeline, GST_STATE_NULL);
 
   gst_object_unref (GST_OBJECT (priv->pipeline));
-  g_object_unref (G_OBJECT (priv->discoverer));
+  gst_object_unref (G_OBJECT (priv->discoverer));
   priv->pipeline = NULL;
 
   G_OBJECT_CLASS (xfburn_transcoder_gst_parent_class)->finalize (object);
@@ -235,7 +235,7 @@ create_pipeline (XfburnTranscoderGst *trans)
 
   priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
 
-  priv->pipeline = pipeline = gst_pipeline_new ("transcoder");
+  priv->pipeline = pipeline = g_object_ref_sink (gst_pipeline_new ("transcoder"));
 
   priv->source   = source   = gst_element_factory_make ("filesrc",       "file-source");
   priv->decoder  = decoder  = gst_element_factory_make ("decodebin",     "decoder");
@@ -513,7 +513,7 @@ on_pad_added (GstElement *element, GstPad *pad, gpointer data)
   audiopad = gst_element_get_static_pad (audio, "sink");
   if (GST_PAD_IS_LINKED (audiopad)) {
     DBG ("pads are already linked!");
-    g_object_unref (audiopad);
+    gst_object_unref (audiopad);
     return;
   }
 
@@ -547,9 +547,9 @@ on_pad_added (GstElement *element, GstPad *pad, gpointer data)
     bus = gst_element_get_bus (element);
     if (!gst_bus_post (bus, msg)) {
       DBG ("Could not post the message on the gst bus!");
-      g_object_unref (msg);
+      gst_object_unref (msg);
     }
-    g_object_unref (bus);
+    gst_object_unref (bus);
 
     return;
   }
