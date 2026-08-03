@@ -235,7 +235,10 @@ create_pipeline (XfburnTranscoderGst *trans)
 
   priv->state = XFBURN_TRANSCODER_GST_STATE_IDLE;
 
-  priv->pipeline = pipeline = g_object_ref_sink (gst_pipeline_new ("transcoder"));
+  priv->pipeline = pipeline = gst_pipeline_new ("transcoder");
+  if (pipeline != NULL) {
+    gst_object_ref_sink (pipeline);
+  }
 
   priv->source   = source   = gst_element_factory_make ("filesrc",       "file-source");
   priv->decoder  = decoder  = gst_element_factory_make ("decodebin",     "decoder");
