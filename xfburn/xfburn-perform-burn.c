@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  * Copyright (c) 2008      David Mohr (squisher@xfce.org)
+ * Copyright (c) 2026      Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,15 +18,264 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
+#include <stdlib.h>
 #include <glib.h>
 #include <libburn.h>
 #include <unistd.h>
 
-#include <libburn.h>
-
+#include "xfburn-global.h"
 #include "xfburn-perform-burn.h"
 #include "xfburn-progress-dialog.h"
 #include "xfburn-utils.h"
+
+struct _XfburnVerifyData
+{
+  GArray *sector_hashes;       /* guint64 per sector */
+  GArray *track_sector_counts; /* guint per track */
+  gint sector_size;
+  guchar *partial_buf;
+  gint partial_len;
+  gboolean partial_swap;
+  guint partial_track_idx;
+  off_t max_bytes;
+  off_t total_bytes_seen;
+};
+
+typedef struct
+{
+  struct burn_source *inner;
+  gboolean swap;
+  guint track_idx;
+  XfburnVerifyData *verify_data;
+} VerifySourcePriv;
+
+static guint64
+xfburn_hash_sector (const guchar *buf, gint size)
+{
+  guint64 h = G_GUINT64_CONSTANT (0xcbf29ce484222325);
+  gint i;
+
+  for (i = 0; i < size; i++) {
+    h ^= (guint64) buf[i];
+    h *= G_GUINT64_CONSTANT (0x100000001b3);
+  }
+  h ^= h >> 33;
+  h *= G_GUINT64_CONSTANT (0xff51afd7ed558ccd);
+  h ^= h >> 33;
+  h *= G_GUINT64_CONSTANT (0xc4ceb9fe1a85ec53);
+  h ^= h >> 33;
+  return h;
+}
+
+static void
+xfburn_verify_commit_partial_sector (XfburnVerifyData *vdata)
+{
+  gint i;
+  guint64 h;
+
+  if (vdata == NULL || vdata->partial_len <= 0)
+    return;
+
+  if (vdata->partial_len < vdata->sector_size)
+    memset (vdata->partial_buf + vdata->partial_len, 0, vdata->sector_size - vdata->partial_len);
+
+  if (vdata->partial_swap) {
+    for (i = 0; i + 1 < vdata->sector_size; i += 2) {
+      guchar tmp = vdata->partial_buf[i];
+      vdata->partial_buf[i] = vdata->partial_buf[i + 1];
+      vdata->partial_buf[i + 1] = tmp;
+    }
+  }
+
+  h = xfburn_hash_sector (vdata->partial_buf, vdata->sector_size);
+  g_array_append_val (vdata->sector_hashes, h);
+
+  if (vdata->partial_track_idx < vdata->track_sector_counts->len)
+    g_array_index (vdata->track_sector_counts, guint, vdata->partial_track_idx)++;
+
+  vdata->partial_len = 0;
+}
+
+static void
+xfburn_verify_feed_bytes (XfburnVerifyData *vdata, const guchar *buf, gint len, gboolean swap, guint track_idx)
+{
+  gint offset = 0;
+  gint to_feed = len;
+
+  if (vdata == NULL || len <= 0)
+    return;
+
+  if (vdata->partial_len > 0 && vdata->partial_track_idx != track_idx)
+    xfburn_verify_commit_partial_sector (vdata);
+
+  if (vdata->max_bytes > 0) {
+    off_t rem = vdata->max_bytes - vdata->total_bytes_seen;
+    if (rem <= 0) {
+      vdata->total_bytes_seen += len;
+      return;
+    }
+    if ((off_t) to_feed > rem)
+      to_feed = (gint) rem;
+  }
+  vdata->total_bytes_seen += len;
+
+  while (offset < to_feed) {
+    gint space = vdata->sector_size - vdata->partial_len;
+    gint chunk = MIN (space, to_feed - offset);
+
+    memcpy (vdata->partial_buf + vdata->partial_len, buf + offset, chunk);
+    vdata->partial_len += chunk;
+    vdata->partial_swap = swap;
+    vdata->partial_track_idx = track_idx;
+    offset += chunk;
+
+    if (vdata->partial_len == vdata->sector_size)
+      xfburn_verify_commit_partial_sector (vdata);
+  }
+}
+
+static int
+verify_source_read (struct burn_source *src, unsigned char *buffer, int size)
+{
+  VerifySourcePriv *priv = (VerifySourcePriv *) src->data;
+  int ret;
+
+  if (priv == NULL || priv->inner == NULL)
+    return -1;
+
+  if (priv->inner->read != NULL)
+    ret = priv->inner->read (priv->inner, buffer, size);
+  else if (priv->inner->read_xt != NULL)
+    ret = priv->inner->read_xt (priv->inner, buffer, size);
+  else
+    return -1;
+
+  if (ret > 0) {
+    xfburn_verify_feed_bytes (priv->verify_data, buffer, ret, priv->swap, priv->track_idx);
+  } else if (ret == 0) {
+    if (priv->verify_data && priv->verify_data->partial_len > 0 &&
+        priv->verify_data->partial_track_idx == priv->track_idx) {
+      xfburn_verify_commit_partial_sector (priv->verify_data);
+    }
+  }
+
+  return ret;
+}
+
+static off_t
+verify_source_get_size (struct burn_source *src)
+{
+  VerifySourcePriv *priv = (VerifySourcePriv *) src->data;
+  if (priv && priv->inner && priv->inner->get_size)
+    return priv->inner->get_size (priv->inner);
+  return 0;
+}
+
+static int
+verify_source_set_size (struct burn_source *src, off_t size)
+{
+  VerifySourcePriv *priv = (VerifySourcePriv *) src->data;
+  if (priv && priv->inner && priv->inner->set_size)
+    return priv->inner->set_size (priv->inner, size);
+  return 1;
+}
+
+static int
+verify_source_cancel (struct burn_source *src)
+{
+  VerifySourcePriv *priv = (VerifySourcePriv *) src->data;
+  if (priv && priv->inner && priv->inner->read == NULL && priv->inner->version >= 1 && priv->inner->cancel)
+    return priv->inner->cancel (priv->inner);
+  return 1;
+}
+
+static void
+verify_source_free_data (struct burn_source *src)
+{
+  VerifySourcePriv *priv = (VerifySourcePriv *) src->data;
+  if (priv) {
+    if (priv->inner)
+      burn_source_free (priv->inner);
+    g_free (priv);
+    src->data = NULL;
+  }
+}
+
+XfburnVerifyData *
+xfburn_verify_data_new (gint sector_size, off_t max_bytes)
+{
+  XfburnVerifyData *vdata = g_new0 (XfburnVerifyData, 1);
+  guint initial_sectors = 0;
+
+  if (max_bytes > 0 && sector_size > 0)
+    initial_sectors = (guint) ((max_bytes + sector_size - 1) / sector_size);
+
+  vdata->sector_hashes = g_array_sized_new (FALSE, FALSE, sizeof (guint64),
+                                            initial_sectors > 0 ? initial_sectors : 4096);
+  vdata->track_sector_counts = g_array_new (FALSE, TRUE, sizeof (guint));
+  vdata->sector_size = sector_size;
+  vdata->partial_buf = g_malloc0 (sector_size);
+  vdata->partial_len = 0;
+  vdata->max_bytes = max_bytes;
+  vdata->total_bytes_seen = 0;
+
+  return vdata;
+}
+
+void
+xfburn_verify_data_free (XfburnVerifyData *verify_data)
+{
+  if (verify_data == NULL)
+    return;
+
+  if (verify_data->sector_hashes)
+    g_array_free (verify_data->sector_hashes, TRUE);
+  if (verify_data->track_sector_counts)
+    g_array_free (verify_data->track_sector_counts, TRUE);
+  g_free (verify_data->partial_buf);
+  g_free (verify_data);
+}
+
+struct burn_source *
+xfburn_verify_wrap_source (struct burn_source *inner, gboolean swap, XfburnVerifyData *verify_data)
+{
+  struct burn_source *wrapper;
+  VerifySourcePriv *priv;
+  guint zero = 0;
+
+  g_return_val_if_fail (inner != NULL, NULL);
+  g_return_val_if_fail (verify_data != NULL, NULL);
+
+  wrapper = calloc (1, sizeof (struct burn_source));
+  if (wrapper == NULL)
+    return NULL;
+
+  priv = g_new0 (VerifySourcePriv, 1);
+  inner->refcount++;
+  priv->inner = inner;
+  priv->swap = swap;
+  priv->verify_data = verify_data;
+  priv->track_idx = verify_data->track_sector_counts->len;
+  g_array_append_val (verify_data->track_sector_counts, zero);
+
+  wrapper->refcount = 1;
+  wrapper->read = NULL;
+  wrapper->read_sub = NULL;
+  wrapper->get_size = verify_source_get_size;
+  wrapper->set_size = verify_source_set_size;
+  wrapper->free_data = verify_source_free_data;
+  wrapper->next = NULL;
+  wrapper->data = priv;
+  wrapper->version = 1;
+  wrapper->read_xt = verify_source_read;
+  wrapper->cancel = verify_source_cancel;
+
+  return wrapper;
+}
 
 /*************/
 /* internals */
@@ -206,10 +456,397 @@ xfburn_set_write_mode (struct burn_write_opts *opts, XfburnWriteMode write_mode,
   return TRUE;
 }
 
+static gchar *
+xfburn_format_failed_sectors (GArray *failed_sectors)
+{
+  GString *str = g_string_new (NULL);
+  guint i = 0;
+  guint ranges_shown = 0;
+  const guint max_ranges = 24;
+
+  while (i < failed_sectors->len) {
+    guint start = g_array_index (failed_sectors, guint, i);
+    guint end = start;
+
+    while (i + 1 < failed_sectors->len &&
+           g_array_index (failed_sectors, guint, i + 1) == end + 1) {
+      end++;
+      i++;
+    }
+
+    if (ranges_shown < max_ranges) {
+      if (ranges_shown > 0)
+        g_string_append (str, ", ");
+      if (start == end)
+        g_string_append_printf (str, "%u", start);
+      else
+        g_string_append_printf (str, "%u-%u", start, end);
+    }
+    ranges_shown++;
+    i++;
+  }
+
+  if (ranges_shown > max_ranges)
+    g_string_append_printf (str, " ... (%u %s)", failed_sectors->len, _("sectors total"));
+
+  return g_string_free (str, FALSE);
+}
+
+static gboolean
+xfburn_perform_burn_verify (GtkWidget *dialog_progress,
+                            struct burn_drive *drive,
+                            int factor,
+                            XfburnVerifyData *verify_data,
+                            gboolean *stopped,
+                            gchar **verify_failed_msg)
+{
+  guint total_verify_sectors;
+  guint verified_sectors = 0;
+  gint sector_size;
+  gint chunk_max_sectors;
+  guchar *buf = NULL;
+  GArray *failed_sectors = NULL;
+  gint64 time_start_us;
+  gboolean stop = FALSE;
+  gboolean success = TRUE;
+  /* bit1 (2): suppress libburn error message on read error
+   * bit2 (4): do NOT retry on error with single-block steps inside libburn
+   * bit4 (16): do NOT retry on ILLEGAL MODE FOR THIS TRACK */
+  const int read_flags = (1 << 1) | (1 << 2) | (1 << 4);
+
+  *stopped = FALSE;
+  *verify_failed_msg = NULL;
+
+  if (verify_data == NULL)
+    return TRUE;
+
+  if (verify_data->partial_len > 0)
+    xfburn_verify_commit_partial_sector (verify_data);
+
+  total_verify_sectors = verify_data->sector_hashes->len;
+  if (total_verify_sectors == 0)
+    return TRUE;
+
+  sector_size = verify_data->sector_size;
+  chunk_max_sectors = (sector_size == DATA_BYTES_PER_SECTOR) ? 32 : 16;
+
+  xfburn_progress_dialog_reset (XFBURN_PROGRESS_DIALOG (dialog_progress));
+  xfburn_progress_dialog_set_speed_label (XFBURN_PROGRESS_DIALOG (dialog_progress), _("Estimated reading speed:"));
+  xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
+  xfburn_progress_dialog_set_fifo_bar_text (XFBURN_PROGRESS_DIALOG (dialog_progress), _("unused"));
+  xfburn_progress_dialog_set_buffer_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), -1);
+  xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress),
+                                               XFBURN_PROGRESS_DIALOG_STATUS_RUNNING,
+                                               _("Verifying..."));
+  xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), 0.0);
+
+  burn_drive_re_assess (drive, 0);
+  while (burn_drive_get_status (drive, NULL) != BURN_DRIVE_IDLE)
+    usleep (100001);
+
+  burn_drive_set_speed (drive, 0, 0);
+
+  buf = g_malloc ((gsize) chunk_max_sectors * (gsize) sector_size);
+  failed_sectors = g_array_new (FALSE, FALSE, sizeof (guint));
+  time_start_us = g_get_monotonic_time ();
+
+  if (sector_size == DATA_BYTES_PER_SECTOR) {
+    int start_lba = 0;
+    int nwa = 0;
+    guint s = 0;
+
+    if (burn_disc_track_lba_nwa (drive, NULL, 1, &start_lba, &nwa) <= 0 || start_lba < 0)
+      start_lba = 0;
+
+    while (s < total_verify_sectors) {
+      guint chunk_sectors = MIN ((guint) chunk_max_sectors, total_verify_sectors - s);
+      off_t chunk_bytes = (off_t) chunk_sectors * DATA_BYTES_PER_SECTOR;
+      off_t data_count = 0;
+      int ret;
+      guint good_sectors;
+      guint k;
+      gdouble percent;
+      gdouble elapsed_sec;
+
+      g_object_get (G_OBJECT (dialog_progress), "stop", &stop, NULL);
+      if (stop) {
+        *stopped = TRUE;
+        xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress),
+                                           XFBURN_PROGRESS_DIALOG_STATUS_STOPPING);
+        break;
+      }
+
+      ret = burn_read_data (drive,
+                            (off_t) (start_lba + (int) s) * DATA_BYTES_PER_SECTOR,
+                            (char *) buf,
+                            chunk_bytes,
+                            &data_count,
+                            read_flags);
+
+      if (ret > 0 && data_count >= chunk_bytes)
+        good_sectors = chunk_sectors;
+      else if (data_count > 0)
+        good_sectors = (guint) (data_count / DATA_BYTES_PER_SECTOR);
+      else
+        good_sectors = 0;
+
+      for (k = 0; k < good_sectors; k++) {
+        guint64 expected_h = g_array_index (verify_data->sector_hashes, guint64, s + k);
+        guint64 actual_h = xfburn_hash_sector (buf + (gsize) k * DATA_BYTES_PER_SECTOR, DATA_BYTES_PER_SECTOR);
+        if (actual_h != expected_h) {
+          guint bad_lba = (guint) (start_lba + (int) (s + k));
+          g_array_append_val (failed_sectors, bad_lba);
+        }
+      }
+
+      if (good_sectors < chunk_sectors) {
+        /* Sector at s + good_sectors failed on read: do not retry it, record and skip */
+        guint bad_k = good_sectors;
+        guint bad_lba = (guint) (start_lba + (int) (s + bad_k));
+        g_array_append_val (failed_sectors, bad_lba);
+
+        /* Probe remaining sectors in this chunk one sector at a time (without retrying) */
+        for (k = bad_k + 1; k < chunk_sectors; k++) {
+          off_t single_count = 0;
+          int ret_single;
+          guint cur_lba = (guint) (start_lba + (int) (s + k));
+
+          g_object_get (G_OBJECT (dialog_progress), "stop", &stop, NULL);
+          if (stop) {
+            *stopped = TRUE;
+            xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress),
+                                               XFBURN_PROGRESS_DIALOG_STATUS_STOPPING);
+            break;
+          }
+
+          ret_single = burn_read_data (drive,
+                                       (off_t) cur_lba * DATA_BYTES_PER_SECTOR,
+                                       (char *) buf,
+                                       DATA_BYTES_PER_SECTOR,
+                                       &single_count,
+                                       read_flags);
+          if (ret_single <= 0 || single_count != DATA_BYTES_PER_SECTOR) {
+            g_array_append_val (failed_sectors, cur_lba);
+          } else {
+            guint64 expected_h = g_array_index (verify_data->sector_hashes, guint64, s + k);
+            guint64 actual_h = xfburn_hash_sector (buf, DATA_BYTES_PER_SECTOR);
+            if (actual_h != expected_h)
+              g_array_append_val (failed_sectors, cur_lba);
+          }
+        }
+
+        if (*stopped)
+          break;
+      }
+
+      s += chunk_sectors;
+      verified_sectors = s;
+
+      percent = ((gdouble) verified_sectors / (gdouble) total_verify_sectors) * 100.0;
+      if (percent >= 100.0)
+        percent = 99.9;
+      xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
+
+      elapsed_sec = (gdouble) (g_get_monotonic_time () - time_start_us) / 1000000.0;
+      if (elapsed_sec >= 0.25 && verified_sectors > 0 && factor > 0) {
+        gdouble cur_speed = (((gdouble) verified_sectors * (gdouble) DATA_BYTES_PER_SECTOR) / elapsed_sec) /
+                            ((gdouble) (factor * 1000.0));
+        xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), (gfloat) cur_speed);
+      }
+    }
+  } else {
+    /* Audio CD verification */
+    guint n_tracks = verify_data->track_sector_counts->len;
+    guint t;
+    guint global_s = 0;
+    int fallback_lba = 0;
+    struct burn_disc *read_disc = burn_drive_get_disc (drive);
+    struct burn_session **read_sessions = NULL;
+    int n_read_sessions = 0;
+    struct burn_track **read_tracks = NULL;
+    int n_read_tracks = 0;
+    guchar zero_sector[AUDIO_BYTES_PER_SECTOR];
+    guint64 zero_sector_hash;
+
+    memset (zero_sector, 0, sizeof (zero_sector));
+    zero_sector_hash = xfburn_hash_sector (zero_sector, AUDIO_BYTES_PER_SECTOR);
+
+    if (read_disc != NULL) {
+      read_sessions = burn_disc_get_sessions (read_disc, &n_read_sessions);
+      if (read_sessions != NULL && n_read_sessions > 0)
+        read_tracks = burn_session_get_tracks (read_sessions[n_read_sessions - 1], &n_read_tracks);
+    }
+
+    for (t = 0; t < n_tracks && !(*stopped); t++) {
+      guint t_sectors = g_array_index (verify_data->track_sector_counts, guint, t);
+      guint disc_t_sectors = t_sectors;
+      int track_lba = fallback_lba;
+      int nwa = 0;
+      guint ts = 0;
+
+      if (t_sectors == 0)
+        continue;
+
+      if (read_tracks != NULL && (int) t < n_read_tracks) {
+        struct burn_toc_entry toc_entry;
+        memset (&toc_entry, 0, sizeof (toc_entry));
+        burn_track_get_entry (read_tracks[t], &toc_entry);
+        track_lba = toc_entry.start_lba;
+        if (toc_entry.track_blocks > (int) t_sectors)
+          disc_t_sectors = (guint) toc_entry.track_blocks;
+      } else if (burn_disc_track_lba_nwa (drive, NULL, (int) t + 1, &track_lba, &nwa) <= 0) {
+        track_lba = fallback_lba;
+      }
+
+      if (n_tracks > 1) {
+        gchar *str = g_strdup_printf (_("Verifying track %2u/%u..."), t + 1, n_tracks);
+        xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress),
+                                                     XFBURN_PROGRESS_DIALOG_STATUS_RUNNING, str);
+        g_free (str);
+      }
+
+      while (ts < disc_t_sectors) {
+        guint chunk_sectors = MIN ((guint) chunk_max_sectors, disc_t_sectors - ts);
+        off_t chunk_bytes = (off_t) chunk_sectors * AUDIO_BYTES_PER_SECTOR;
+        off_t data_count = 0;
+        int ret;
+        guint good_sectors;
+        guint k;
+        gdouble percent;
+        gdouble elapsed_sec;
+
+        g_object_get (G_OBJECT (dialog_progress), "stop", &stop, NULL);
+        if (stop) {
+          *stopped = TRUE;
+          xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress),
+                                             XFBURN_PROGRESS_DIALOG_STATUS_STOPPING);
+          break;
+        }
+
+        ret = burn_read_audio (drive,
+                               track_lba + (int) ts,
+                               (char *) buf,
+                               chunk_bytes,
+                               &data_count,
+                               read_flags);
+
+        if (ret > 0 && data_count >= chunk_bytes)
+          good_sectors = chunk_sectors;
+        else if (data_count > 0)
+          good_sectors = (guint) (data_count / AUDIO_BYTES_PER_SECTOR);
+        else
+          good_sectors = 0;
+
+        for (k = 0; k < good_sectors; k++) {
+          guint64 expected_h = (ts + k < t_sectors)
+                               ? g_array_index (verify_data->sector_hashes, guint64, global_s + ts + k)
+                               : zero_sector_hash;
+          guint64 actual_h = xfburn_hash_sector (buf + (gsize) k * AUDIO_BYTES_PER_SECTOR, AUDIO_BYTES_PER_SECTOR);
+          if (actual_h != expected_h) {
+            guint bad_lba = (guint) MAX (0, track_lba + (int) (ts + k));
+            g_array_append_val (failed_sectors, bad_lba);
+          }
+        }
+
+        if (good_sectors < chunk_sectors) {
+          guint bad_k = good_sectors;
+          guint bad_lba = (guint) MAX (0, track_lba + (int) (ts + bad_k));
+          g_array_append_val (failed_sectors, bad_lba);
+
+          for (k = bad_k + 1; k < chunk_sectors; k++) {
+            off_t single_count = 0;
+            int ret_single;
+            int cur_lba_signed = track_lba + (int) (ts + k);
+            guint cur_lba = (guint) MAX (0, cur_lba_signed);
+
+            g_object_get (G_OBJECT (dialog_progress), "stop", &stop, NULL);
+            if (stop) {
+              *stopped = TRUE;
+              xfburn_progress_dialog_set_status (XFBURN_PROGRESS_DIALOG (dialog_progress),
+                                                 XFBURN_PROGRESS_DIALOG_STATUS_STOPPING);
+              break;
+            }
+
+            ret_single = burn_read_audio (drive,
+                                          cur_lba_signed,
+                                          (char *) buf,
+                                          AUDIO_BYTES_PER_SECTOR,
+                                          &single_count,
+                                          read_flags);
+            if (ret_single <= 0 || single_count != AUDIO_BYTES_PER_SECTOR) {
+              g_array_append_val (failed_sectors, cur_lba);
+            } else {
+              guint64 expected_h = (ts + k < t_sectors)
+                                   ? g_array_index (verify_data->sector_hashes, guint64, global_s + ts + k)
+                                   : zero_sector_hash;
+              guint64 actual_h = xfburn_hash_sector (buf, AUDIO_BYTES_PER_SECTOR);
+              if (actual_h != expected_h)
+                g_array_append_val (failed_sectors, cur_lba);
+            }
+          }
+
+          if (*stopped)
+            break;
+        }
+
+        ts += chunk_sectors;
+        verified_sectors = global_s + MIN (ts, t_sectors);
+
+        percent = ((gdouble) verified_sectors / (gdouble) total_verify_sectors) * 100.0;
+        if (percent >= 100.0)
+          percent = 99.9;
+        xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
+
+        elapsed_sec = (gdouble) (g_get_monotonic_time () - time_start_us) / 1000000.0;
+        if (elapsed_sec >= 0.25 && verified_sectors > 0 && factor > 0) {
+          gdouble cur_speed = (((gdouble) verified_sectors * (gdouble) AUDIO_BYTES_PER_SECTOR) / elapsed_sec) /
+                              ((gdouble) (factor * 1000.0));
+          xfburn_progress_dialog_set_writing_speed (XFBURN_PROGRESS_DIALOG (dialog_progress), (gfloat) cur_speed);
+        }
+      }
+
+      global_s += t_sectors;
+      fallback_lba = track_lba + (int) disc_t_sectors;
+    }
+
+    if (read_disc != NULL)
+      burn_disc_free (read_disc);
+  }
+
+  /* Clear any pending libburn messages from read probes */
+  {
+    int error_code = 0, os_errno = 0;
+    char msg_text[BURN_MSGS_MESSAGE_LEN];
+    char severity[80];
+    burn_msgs_obtain ("NEVER", &error_code, msg_text, &os_errno, severity);
+  }
+
+  if (!(*stopped)) {
+    xfburn_progress_dialog_set_progress_bar_fraction (XFBURN_PROGRESS_DIALOG (dialog_progress), 100.0);
+
+    if (failed_sectors->len == 0) {
+      success = TRUE;
+    } else {
+      gchar *sectors_str = xfburn_format_failed_sectors (failed_sectors);
+      *verify_failed_msg = g_strdup_printf (_("Disc Read Error: %s"), sectors_str);
+      g_free (sectors_str);
+      success = FALSE;
+    }
+  } else {
+    success = FALSE;
+  }
+
+  g_array_free (failed_sectors, TRUE);
+  g_free (buf);
+
+  return success;
+}
+
 void
 xfburn_perform_burn_write (GtkWidget *dialog_progress,
                            struct burn_drive *drive, XfburnWriteMode write_mode, struct burn_write_opts *burn_options, int sector_size,
-                           struct burn_disc *disc, struct burn_source **fifos, int *track_sectors)
+                           struct burn_disc *disc, struct burn_source **fifos, int *track_sectors,
+                           XfburnVerifyData *verify_data)
 {
   enum burn_disc_status disc_state;
   enum burn_drive_status status;
@@ -460,8 +1097,55 @@ xfburn_perform_burn_write (GtkWidget *dialog_progress,
   xfburn_progress_dialog_set_buffer_bar_min_fill (XFBURN_PROGRESS_DIALOG (dialog_progress), percent);
 
   if (G_LIKELY (burn_drive_wrote_well (drive))) {
-    final_message = g_strdup (_("Done"));
-    final_status = XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED;
+    if (verify_data != NULL && (verify_data->sector_hashes->len > 0 || verify_data->partial_len > 0)) {
+      gboolean verify_stopped = FALSE;
+      gchar *verify_failed_msg = NULL;
+      gchar *popup_msg = NULL;
+      GtkMessageType popup_type = GTK_MESSAGE_INFO;
+
+      if (xfburn_perform_burn_verify (dialog_progress, drive, factor, verify_data,
+                                      &verify_stopped, &verify_failed_msg)) {
+        final_message = g_strdup (_("Done"));
+        final_status = XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED;
+        popup_msg = g_strdup (_("Disc successfully verified"));
+        popup_type = GTK_MESSAGE_INFO;
+      } else if (verify_stopped) {
+        final_message = g_strdup (_("User Aborted"));
+        final_status = XFBURN_PROGRESS_DIALOG_STATUS_CANCELLED;
+      } else {
+        final_message = verify_failed_msg ? verify_failed_msg : g_strdup (_("Failure"));
+        verify_failed_msg = NULL;
+        final_status = XFBURN_PROGRESS_DIALOG_STATUS_FAILED;
+        popup_msg = g_strdup (final_message);
+        popup_type = GTK_MESSAGE_ERROR;
+      }
+      g_free (verify_failed_msg);
+
+      /* restore default signal handlers */
+      burn_set_signal_handling (NULL, NULL, 1);
+
+      xfburn_progress_dialog_set_status_with_text (XFBURN_PROGRESS_DIALOG (dialog_progress), final_status, final_message);
+      g_free (final_message);
+
+      if (popup_msg != NULL) {
+        GtkWidget *popup;
+
+        gdk_threads_enter ();
+        popup = gtk_message_dialog_new (GTK_WINDOW (dialog_progress),
+                                        GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                        popup_type,
+                                        GTK_BUTTONS_OK,
+                                        "%s", popup_msg);
+        g_signal_connect (G_OBJECT (popup), "response", G_CALLBACK (gtk_widget_destroy), NULL);
+        gtk_widget_show (popup);
+        gdk_threads_leave ();
+        g_free (popup_msg);
+      }
+      return;
+    } else {
+      final_message = g_strdup (_("Done"));
+      final_status = XFBURN_PROGRESS_DIALOG_STATUS_COMPLETED;
+    }
   } else {
     if (stopping) {
       final_status_text  = _("User Aborted");

@@ -1,5 +1,6 @@
 /*
  *  Copyright (C) 2009 David Mohr <david@mcbf.net>
+ *  Copyright (c) 2026 Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -34,6 +35,7 @@ void xfburn_device_fillin_libburn_info (XfburnDevice *device, struct burn_drive_
 gboolean xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info);
 gboolean xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info);
 gboolean xfburn_device_release (struct burn_drive_info *drive_info, gboolean eject);
+gboolean xfburn_device_is_busy (void);
 const gchar * xfburn_device_set_name (XfburnDevice *device, const gchar *vendor, const gchar *product);
 gboolean xfburn_device_can_burn (XfburnDevice *device);
 gboolean xfburn_device_can_dummy_write (XfburnDevice *device);

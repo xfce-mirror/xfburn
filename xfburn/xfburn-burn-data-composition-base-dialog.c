@@ -1,5 +1,6 @@
 /*
  *  Copyright (c) 2005-2007 Jean-François Wauthy (pollux@xfce.org)
+ *  Copyright (c) 2026      Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -53,6 +54,7 @@ typedef struct _XfburnBurnDataCompositionBaseDialogPrivate
   GtkWidget *hbox_iso;
   GtkWidget *entry_path_iso;
   GtkWidget *check_dummy;
+  GtkWidget *check_verify;
   GtkWidget *button_proceed;
 
   gboolean show_volume_name;
@@ -71,6 +73,7 @@ static void xfburn_burn_data_composition_base_dialog_get_property (GObject * obj
 static void xfburn_burn_data_composition_base_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec);
 
 static void cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
+static void cb_check_dummy_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_browse_iso (GtkButton * button, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_volume_changed (XfburnDeviceBox *box, gboolean device_changed, XfburnDevice *device, XfburnBurnDataCompositionBaseDialog * dialog);
 static void cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_id,
@@ -163,6 +166,7 @@ xfburn_burn_data_composition_base_dialog_init(XfburnBurnDataCompositionBaseDialo
   priv->check_dummy = gtk_check_button_new_with_mnemonic (_("_Dummy write"));
   gtk_widget_show (priv->check_dummy);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_dummy, FALSE, FALSE, BORDER);
+  g_signal_connect (G_OBJECT (priv->check_dummy), "toggled", G_CALLBACK (cb_check_dummy_toggled), obj);
 
   priv->check_burnfree = gtk_check_button_new_with_mnemonic (_("Burn_Free"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_burnfree), TRUE);
@@ -201,6 +205,11 @@ xfburn_burn_data_composition_base_dialog_init(XfburnBurnDataCompositionBaseDialo
   gtk_widget_show (button);
   gtk_box_pack_start (GTK_BOX (priv->hbox_iso), button, FALSE, FALSE, 0);
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (cb_browse_iso), obj);
+
+  priv->check_verify = gtk_check_button_new_with_mnemonic (_("_Verify after burn"));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_verify), TRUE);
+  gtk_widget_show (priv->check_verify);
+  gtk_box_pack_start (GTK_BOX (vbox), priv->check_verify, FALSE, FALSE, BORDER);
 
   /* action buttons */
   button = gtk_button_new_with_mnemonic (_("_Cancel"));
@@ -280,12 +289,25 @@ cb_check_only_iso_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBa
   gtk_widget_set_sensitive (priv->check_burnfree, !gtk_toggle_button_get_active (button));
   gtk_widget_set_sensitive (priv->check_stream_recording, !gtk_toggle_button_get_active (button));
   gtk_widget_set_sensitive (priv->check_dummy, !gtk_toggle_button_get_active (button));
+  gtk_widget_set_sensitive (priv->check_verify,
+                            !gtk_toggle_button_get_active (button) &&
+                            !gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy)));
   if (!gtk_toggle_button_get_active (button)) {
     g_object_get (G_OBJECT (priv->device_box), "valid", &valid_disc, NULL);
     gtk_widget_set_sensitive (priv->button_proceed, valid_disc);
   } else {
     gtk_widget_set_sensitive (priv->button_proceed, TRUE);
   }
+}
+
+static void
+cb_check_dummy_toggled (GtkToggleButton * button, XfburnBurnDataCompositionBaseDialog * dialog)
+{
+  XfburnBurnDataCompositionBaseDialogPrivate *priv = XFBURN_BURN_DATA_COMPOSITION_BASE_DIALOG_GET_PRIVATE (dialog);
+
+  gtk_widget_set_sensitive (priv->check_verify,
+                            !gtk_toggle_button_get_active (button) &&
+                            !gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_only_iso)));
 }
 
 static void
@@ -396,6 +418,7 @@ typedef struct {
   gboolean dummy;
   gboolean burnfree;
   gboolean stream_recording;
+  XfburnVerifyData *verify_data;
 } ThreadBurnCompositionParams;
 
 static void
@@ -450,7 +473,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
       fifos[0] = params->src;
     }
 
-    xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, DATA_BYTES_PER_SECTOR, disc, fifos, sectors);
+    xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, DATA_BYTES_PER_SECTOR, disc, fifos, sectors, params->verify_data);
 
     if (params->is_fifo) {
       g_free (fifos);
@@ -486,6 +509,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   burn_session_free (session);
   burn_disc_free (disc);
   burn_source_free (params->src);
+  xfburn_verify_data_free (params->verify_data);
 
   g_free (params);
   return NULL;
@@ -546,10 +570,24 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
       gint speed;
       XfburnWriteMode write_mode;
       struct burn_source * src_fifo = NULL;
+      XfburnVerifyData *verify_data = NULL;
+      gboolean dummy;
+      gboolean verify;
 
       device = xfburn_device_box_get_selected_device (XFBURN_DEVICE_BOX (priv->device_box));
       speed = xfburn_device_box_get_speed (XFBURN_DEVICE_BOX (priv->device_box));
       write_mode = xfburn_device_box_get_mode (XFBURN_DEVICE_BOX (priv->device_box));
+      dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
+      verify = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_verify));
+
+      if (verify && !dummy) {
+        struct burn_source *verify_src;
+
+        verify_data = xfburn_verify_data_new (DATA_BYTES_PER_SECTOR, 0);
+        verify_src = xfburn_verify_wrap_source (src, FALSE, verify_data);
+        burn_source_free (src);
+        src = verify_src;
+      }
 
       src_fifo = burn_fifo_source_new (src, 2048, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
       burn_source_free (src);
@@ -563,9 +601,10 @@ cb_dialog_response (XfburnBurnDataCompositionBaseDialog * dialog, gint response_
       params->speed = speed;
       params->write_mode = write_mode;
       params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));
-      params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
+      params->dummy = dummy;
       params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
       params->stream_recording = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_stream_recording));
+      params->verify_data = verify_data;
       g_thread_unref (g_thread_new ("burn_composition", (GThreadFunc) thread_burn_composition, params));
     }
   }
