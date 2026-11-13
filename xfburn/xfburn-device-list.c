@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  * Copyright (c) 2008-2009 David Mohr <david@mcbf.net>
+ * Copyright (c) 2026      Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -45,9 +46,11 @@ struct _XfburnDeviceListPrivate {
   gint num_drives;
   gint num_burners;
   XfburnDevice *curr_device;
+  gboolean needs_refresh;
 
 #ifdef HAVE_GUDEV
   gulong volume_changed_handlerid;
+  guint udev_refresh_timeout;
 #endif
 };
 
@@ -166,6 +169,13 @@ xfburn_device_list_finalize (GObject *object)
 {
   XfburnDeviceList *devlist = XFBURN_DEVICE_LIST (object);
   XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
+
+#ifdef HAVE_GUDEV
+  if (priv->udev_refresh_timeout > 0) {
+    g_source_remove (priv->udev_refresh_timeout);
+    priv->udev_refresh_timeout = 0;
+  }
+#endif
 
   g_list_free_full (priv->devices, (GDestroyNotify) g_object_unref);
 
@@ -331,11 +341,45 @@ cb_combo_device_changed (GtkComboBox *combo, XfburnDeviceList *devlist)
 }
 
 #ifdef HAVE_GUDEV
+static gboolean
+cb_udev_refresh_timeout (gpointer user_data)
+{
+  XfburnDeviceList *devlist = XFBURN_DEVICE_LIST (user_data);
+  XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
+
+  priv->udev_refresh_timeout = 0;
+
+  if (xfburn_device_is_busy () ||
+      !g_signal_has_handler_pending (G_OBJECT (devlist), signals[VOLUME_CHANGE_END], 0, FALSE)) {
+    priv->needs_refresh = TRUE;
+    return FALSE;
+  }
+
+  priv->needs_refresh = FALSE;
+  refresh (devlist);
+  return FALSE;
+}
+
 static void
 cb_volumes_changed (XfburnUdevManager *udevman, XfburnDeviceList *devlist)
 {
+  XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
+
   DBG ("Udev volume changed");
-  refresh (devlist);
+
+  /* When no device-box/burn dialog is open or when a burn/verify thread holds the drive,
+   * defer refreshing until a dialog is actually opened so XfBurn never blocks the UI
+   * or auto-unmounts a newly burned disc in the background. */
+  if (xfburn_device_is_busy () ||
+      !g_signal_has_handler_pending (G_OBJECT (devlist), signals[VOLUME_CHANGE_END], 0, FALSE)) {
+    priv->needs_refresh = TRUE;
+    return;
+  }
+
+  if (priv->udev_refresh_timeout > 0)
+    g_source_remove (priv->udev_refresh_timeout);
+
+  priv->udev_refresh_timeout = gdk_threads_add_timeout (1000, cb_udev_refresh_timeout, devlist);
 }
 #endif
 
@@ -353,8 +397,17 @@ refresh (XfburnDeviceList *devlist)
   XfburnUdevManager *udevman = xfburn_udev_manager_get_global ();
 #endif
 
+  if (xfburn_device_is_busy ()) {
+    priv->needs_refresh = TRUE;
+    return;
+  }
+
+  priv->needs_refresh = FALSE;
   g_signal_emit (G_OBJECT (devlist), signals[VOLUME_CHANGE_START], 0, FALSE);
-  usleep (1000001);
+
+  g_list_free_full (priv->devices, (GDestroyNotify) g_object_unref);
+  priv->devices = NULL;
+
 #ifdef HAVE_GUDEV
   priv->devices = xfburn_udev_manager_get_devices (udevman, &priv->num_drives, &priv->num_burners);
 #else
@@ -501,7 +554,15 @@ xfburn_device_list_get_current_device (XfburnDeviceList *devlist)
 XfburnDeviceList*
 xfburn_device_list_new (void)
 {
-  return g_object_new (XFBURN_TYPE_DEVICE_LIST, NULL);
+  XfburnDeviceList *devlist = g_object_new (XFBURN_TYPE_DEVICE_LIST, NULL);
+  XfburnDeviceListPrivate *priv = GET_PRIVATE (devlist);
+
+  if (priv->needs_refresh && !xfburn_device_is_busy ()) {
+    priv->needs_refresh = FALSE;
+    refresh (devlist);
+  }
+
+  return devlist;
 }
 
 

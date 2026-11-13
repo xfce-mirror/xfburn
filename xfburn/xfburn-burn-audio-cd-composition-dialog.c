@@ -1,5 +1,6 @@
 /*
  *  Copyright (c) 2005-2007 Jean-François Wauthy (pollux@xfce.org)
+ *  Copyright (c) 2026      Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -50,6 +51,7 @@ typedef struct _XfburnBurnAudioCdCompositionDialogPrivate
   GtkWidget *check_eject;
   GtkWidget *check_burnfree;
   GtkWidget *check_dummy;
+  GtkWidget *check_verify;
   GtkWidget *button_proceed;
 } XfburnBurnAudioCdCompositionDialogPrivate;
 
@@ -70,6 +72,7 @@ static void xfburn_burn_audio_cd_composition_dialog_get_property (GObject * obje
 static void xfburn_burn_audio_cd_composition_dialog_set_property (GObject * object, guint prop_id, const GValue * value, GParamSpec * pspec);
 
 static void cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice *device, XfburnBurnAudioCdCompositionDialog * dialog);
+static void cb_check_dummy_toggled (GtkToggleButton * button, XfburnBurnAudioCdCompositionDialog * dialog);
 static void cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_id,
                                 XfburnBurnAudioCdCompositionDialogPrivate * priv);
 
@@ -132,11 +135,17 @@ xfburn_burn_audio_cd_composition_dialog_init(XfburnBurnAudioCdCompositionDialog 
   priv->check_dummy = gtk_check_button_new_with_mnemonic (_("_Dummy write"));
   gtk_widget_show (priv->check_dummy);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_dummy, FALSE, FALSE, BORDER);
+  g_signal_connect (G_OBJECT (priv->check_dummy), "toggled", G_CALLBACK (cb_check_dummy_toggled), obj);
 
   priv->check_burnfree = gtk_check_button_new_with_mnemonic (_("Burn_Free"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_burnfree), TRUE);
   gtk_widget_show (priv->check_burnfree);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_burnfree, FALSE, FALSE, BORDER);
+
+  priv->check_verify = gtk_check_button_new_with_mnemonic (_("_Verify after burn"));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_verify), TRUE);
+  gtk_widget_show (priv->check_verify);
+  gtk_box_pack_start (GTK_BOX (vbox), priv->check_verify, FALSE, FALSE, BORDER);
 
   /* action buttons */
   button = gtk_button_new_with_mnemonic (_("_Cancel"));
@@ -203,6 +212,14 @@ cb_volume_changed (GtkWidget *device_box, gboolean device_changed, XfburnDevice 
   gtk_widget_set_sensitive (priv->button_proceed, valid_disc);
 }
 
+static void
+cb_check_dummy_toggled (GtkToggleButton * button, XfburnBurnAudioCdCompositionDialog * dialog)
+{
+  XfburnBurnAudioCdCompositionDialogPrivate *priv = XFBURN_BURN_AUDIO_CD_COMPOSITION_DIALOG_GET_PRIVATE (dialog);
+
+  gtk_widget_set_sensitive (priv->check_verify, !gtk_toggle_button_get_active (button));
+}
+
 typedef struct {
   GtkWidget *dialog_progress;
   XfburnDevice *device;
@@ -212,6 +229,8 @@ typedef struct {
   gboolean eject;
   gboolean dummy;
   gboolean burnfree;
+  gboolean verify;
+  XfburnVerifyData *verify_data;
 } ThreadBurnCompositionParams;
 
 static void
@@ -249,7 +268,7 @@ thread_burn_prep_and_burn (ThreadBurnCompositionParams * params, struct burn_dri
     burn_drive_set_speed (drive, 0, params->speed);
     burn_drive_set_buffer_waiting (drive, 1, -1, -1, -1, 75, 95);
 
-    xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, AUDIO_BYTES_PER_SECTOR, disc, srcs, track_sectors);
+    xfburn_perform_burn_write (dialog_progress, drive, params->write_mode, burn_options, AUDIO_BYTES_PER_SECTOR, disc, srcs, track_sectors, params->verify_data);
   }
 
   burn_write_opts_free (burn_options);
@@ -283,6 +302,9 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
   srcs = g_new (struct burn_source *, n_tracks);
   trans = xfburn_transcoder_get_global ();
 
+  if (params->verify && !params->dummy)
+    params->verify_data = xfburn_verify_data_new (AUDIO_BYTES_PER_SECTOR, 0);
+
   track_list = params->tracks;
   for (i=0; i<n_tracks; i++) {
     XfburnAudioTrack *atrack = track_list->data;
@@ -295,6 +317,15 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
       break;
     }
     srcs[i] = atrack->src;
+
+    if (params->verify_data != NULL) {
+      struct burn_source *verify_src = xfburn_verify_wrap_source (atrack->src, atrack->swap, params->verify_data);
+      if (verify_src != NULL) {
+        burn_track_set_source (tracks[i], verify_src);
+        burn_source_free (atrack->src);
+        burn_source_free (verify_src);
+      }
+    }
 
     track_sectors[i] = atrack->sectors;
 
@@ -331,6 +362,7 @@ thread_burn_composition (ThreadBurnCompositionParams * params)
 
   burn_session_free (session);
   burn_disc_free (disc);
+  xfburn_verify_data_free (params->verify_data);
 
   /* FIXME: free track_list here? */
   g_free (params);
@@ -369,6 +401,7 @@ cb_dialog_response (XfburnBurnAudioCdCompositionDialog * dialog, gint response_i
     params->eject = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_eject));
     params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
     params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
+    params->verify = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_verify));
     g_thread_unref (g_thread_new ("audio_cd_burn", (GThreadFunc) thread_burn_composition, params));
   }
 }

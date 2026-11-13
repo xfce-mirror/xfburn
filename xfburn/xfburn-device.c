@@ -1,5 +1,6 @@
 /*
  *  Copyright (C) 2009 David Mohr <david@mcbf.net>
+ *  Copyright (c) 2026 Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -346,10 +347,13 @@ static void
 refresh_disc (XfburnDevice * device, struct burn_drive_info *drive_info)
 {
   XfburnDevicePrivate *priv = GET_PRIVATE (device);
+  int wait_ticks = 0;
 
   /* check if there is a disc in the drive */
-  while ((priv->disc_status = burn_disc_get_status (drive_info->drive)) == BURN_DISC_UNREADY)
+  while ((priv->disc_status = burn_disc_get_status (drive_info->drive)) == BURN_DISC_UNREADY && wait_ticks < 50) {
     usleep(100001);
+    wait_ticks++;
+  }
 
   DBG ("disc_status = %d", priv->disc_status);
 
@@ -428,6 +432,14 @@ xfburn_device_fillin_libburn_info (XfburnDevice *device, struct burn_drive_info 
   DBG (DEVICE_INFO_PRINTF (priv));
 }
 
+static gint active_drive_grabs = 0;
+
+gboolean
+xfburn_device_is_busy (void)
+{
+  return g_atomic_int_get (&active_drive_grabs) > 0;
+}
+
 gboolean
 xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
 {
@@ -440,11 +452,18 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
   XfburnUdevManager *udevman = xfburn_udev_manager_get_global ();
 #endif
 
+  if (g_atomic_int_get (&active_drive_grabs) > 0) {
+    DBG ("Drive already grabbed, skipping concurrent grab attempt for '%s'", priv->addr);
+    return FALSE;
+  }
+
   ret = burn_drive_convert_fs_adr (priv->addr, drive_addr);
   if (ret <= 0) {
     g_error ("Device address does not lead to a burner '%s' (ret=%d).", priv->addr, ret);
     return FALSE;
   }
+
+  g_atomic_int_inc (&active_drive_grabs);
 
   /* we need to try to grab several times, because
    * the drive might be busy detecting the disc */
@@ -454,7 +473,8 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
       break;
     else if  (i < max_checks) {
 #ifdef HAVE_GUDEV
-      if (!xfburn_udev_manager_check_ask_umount (udevman, device))
+      if (!g_main_context_is_owner (g_main_context_default ()) ||
+          !xfburn_udev_manager_check_ask_umount (udevman, device))
         usleep(i*100001);
 #else
       usleep(i*100001);
@@ -463,6 +483,7 @@ xfburn_device_grab (XfburnDevice * device, struct burn_drive_info **drive_info)
   }
 
   if (ret <= 0) {
+    g_atomic_int_add (&active_drive_grabs, -1);
     g_warning ("Unable to grab the drive at path '%s' (ret=%d).", priv->addr, ret);
     return FALSE;
   }
@@ -480,6 +501,11 @@ xfburn_device_refresh_info (XfburnDevice * device, gboolean get_speed_info)
 
   if (G_UNLIKELY (device == NULL)) {
     g_warning ("Hmm, why can we refresh when there is no drive?");
+    return FALSE;
+  }
+
+  if (xfburn_device_is_busy ()) {
+    DBG ("Skipping device refresh while drive is busy");
     return FALSE;
   }
 
@@ -519,6 +545,7 @@ xfburn_device_release (struct burn_drive_info *drive_info, gboolean eject)
   burn_drive_release (drive_info->drive, eject);
 
   ret = burn_drive_info_forget (drive_info, 0);
+  g_atomic_int_add (&active_drive_grabs, -1);
 
   if (G_LIKELY (ret == 1))
     return TRUE;

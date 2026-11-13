@@ -1,5 +1,6 @@
 /*
  *  Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
+ *  Copyright (c) 2026      Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -63,6 +64,7 @@ void xfburn_progress_dialog_set_fifo_bar_text (XfburnProgressDialog * dialog, co
 void xfburn_progress_dialog_set_buffer_bar_fraction (XfburnProgressDialog * dialog, gdouble fraction);
 void xfburn_progress_dialog_set_buffer_bar_min_fill (XfburnProgressDialog * dialog, gdouble fraction);
 void xfburn_progress_dialog_set_writing_speed (XfburnProgressDialog * dialog, gfloat speed);
+void xfburn_progress_dialog_set_speed_label (XfburnProgressDialog * dialog, const gchar * label);
 void xfburn_progress_dialog_set_status (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status);
 void xfburn_progress_dialog_set_status_with_text (XfburnProgressDialog * dialog, XfburnProgressDialogStatus status, const gchar * text);
 

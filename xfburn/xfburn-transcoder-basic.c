@@ -1,6 +1,7 @@
 /*
  *  Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  *  Copyright (c) 2008      David Mohr (dmohr@mcbf.net)
+ *  Copyright (c) 2026      Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -304,7 +305,8 @@ create_burn_track (XfburnTranscoder *trans, XfburnAudioTrack *atrack, GError **e
     return NULL;
   }
 
-  if (needs_swap (header))
+  atrack->swap = needs_swap (header);
+  if (atrack->swap)
     burn_track_set_byte_swap (track, TRUE);
 
   burn_track_define_data (track, 0, 0, 1, BURN_AUDIO);

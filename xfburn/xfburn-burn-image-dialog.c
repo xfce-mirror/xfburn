@@ -1,6 +1,7 @@
 /*
  *  Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  *  Copyright (c) 2008      David Mohr (squisher@xfce.org)
+ *  Copyright (c) 2026      Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -52,12 +53,14 @@ typedef struct {
   gboolean burnfree;
   gboolean stream_recording;
   gboolean quit;
+  gboolean verify;
 
   struct burn_disc *disc;
   struct burn_session *session;
   struct burn_track *track;
   struct burn_source *fifo_src;
   struct burn_write_opts * burn_options;
+  XfburnVerifyData *verify_data;
 
 } ThreadBurnIsoParams;
 
@@ -73,6 +76,7 @@ typedef struct _XfburnBurnImageDialogPrivate
   GtkWidget *check_stream_recording;
   GtkWidget *check_quit;
   GtkWidget *check_dummy;
+  GtkWidget *check_verify;
 
   GtkWidget *burn_button;
 
@@ -96,6 +100,7 @@ static void xfburn_burn_image_dialog_finalize (GObject *object);
 /* internal prototypes */
 void burn_image_dialog_error (XfburnBurnImageDialog * dialog, const gchar * msg_error);
 static void cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, XfburnDevice *device, XfburnBurnImageDialog * dialog);
+static void cb_check_dummy_toggled (GtkToggleButton * button, XfburnBurnImageDialog * dialog);
 static void cb_dialog_response (XfburnBurnImageDialog * dialog, gint response_id, gpointer user_data);
 
 static void update_image_label (GtkFileChooser *chooser, XfburnBurnImageDialog * dialog);
@@ -213,6 +218,12 @@ xfburn_burn_image_dialog_init (XfburnBurnImageDialog * obj)
   gtk_widget_show (priv->check_quit);
   gtk_box_pack_start (GTK_BOX (vbox), priv->check_quit, FALSE, FALSE, BORDER);
 
+  priv->check_verify = gtk_check_button_new_with_mnemonic (_("_Verify after burn"));
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->check_verify), TRUE);
+  gtk_widget_show (priv->check_verify);
+  gtk_box_pack_start (GTK_BOX (vbox), priv->check_verify, FALSE, FALSE, BORDER);
+  g_signal_connect (G_OBJECT (priv->check_dummy), "toggled", G_CALLBACK (cb_check_dummy_toggled), obj);
+
   /* action buttons */
   button = gtk_button_new_with_mnemonic (_("_Cancel"));
   gtk_widget_show (button);
@@ -309,6 +320,9 @@ free_params (ThreadBurnIsoParams *params)
   if (params->disc)
     burn_disc_free (params->disc);
 
+  if (params->verify_data)
+    xfburn_verify_data_free (params->verify_data);
+
   g_free (params->iso_path);
 }
 
@@ -349,6 +363,15 @@ create_disc (ThreadBurnIsoParams *params, gchar **failure_msg)
     return FALSE;
   }
 
+  if (params->verify && !params->dummy) {
+    struct burn_source *verify_src;
+
+    params->verify_data = xfburn_verify_data_new (DATA_BYTES_PER_SECTOR, fixed_size);
+    verify_src = xfburn_verify_wrap_source (data_src, FALSE, params->verify_data);
+    burn_source_free (data_src);
+    data_src = verify_src;
+  }
+
   params->fifo_src = burn_fifo_source_new (data_src, 2048, xfburn_settings_get_int ("fifo-size", FIFO_DEFAULT_SIZE) / 2, 0);
   burn_source_free (data_src);
 
@@ -387,7 +410,7 @@ thread_burn_iso (ThreadBurnIsoParams * params)
     fifos = g_new(struct burn_source *,1);
     fifos[0] = params->fifo_src;
 
-    xfburn_perform_burn_write (dialog_progress, drive_info->drive, params->write_mode, params->burn_options, DATA_BYTES_PER_SECTOR, params->disc, fifos, sectors);
+    xfburn_perform_burn_write (dialog_progress, drive_info->drive, params->write_mode, params->burn_options, DATA_BYTES_PER_SECTOR, params->disc, fifos, sectors, params->verify_data);
 
     xfburn_device_release (drive_info, params->eject);
   } else {
@@ -418,6 +441,14 @@ cb_volume_change_end (XfburnDeviceList *devlist, gboolean device_changed, Xfburn
   if (device_changed)
     gtk_widget_set_sensitive (priv->check_dummy, xfburn_device_can_dummy_write (device));
   check_burn_button (dialog);
+}
+
+static void
+cb_check_dummy_toggled (GtkToggleButton * button, XfburnBurnImageDialog * dialog)
+{
+  XfburnBurnImageDialogPrivate *priv = XFBURN_BURN_IMAGE_DIALOG_GET_PRIVATE (dialog);
+
+  gtk_widget_set_sensitive (priv->check_verify, !gtk_toggle_button_get_active (button));
 }
 
 static void
@@ -566,6 +597,7 @@ cb_clicked_ok (GtkButton *button, gpointer user_data)
   params->dummy = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_dummy));
   params->burnfree = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_burnfree));
   params->stream_recording = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_stream_recording));
+  params->verify = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->check_verify));
 
   if (!xfburn_device_grab (device, &drive_info)) {
     burn_image_dialog_error (dialog, _("Unable to grab the drive."));
