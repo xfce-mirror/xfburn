@@ -1,5 +1,6 @@
 /*
  *  Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
+ *  Copyright (c) 2026      Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -624,10 +625,18 @@ xfburn_progress_dialog_set_status_with_text (XfburnProgressDialog * dialog, Xfbu
 void
 xfburn_progress_dialog_burning_failed (XfburnProgressDialog * dialog, const gchar * msg_error)
 {
+  GtkWidget *popup;
+
   xfburn_progress_dialog_set_status_with_text (dialog, XFBURN_PROGRESS_DIALOG_STATUS_FAILED, _("Failure"));
 
   gdk_threads_enter ();
-  xfce_dialog_show_error (NULL, NULL, "%s", msg_error);
+  popup = gtk_message_dialog_new (GTK_WINDOW (dialog),
+                                  GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                  GTK_MESSAGE_ERROR,
+                                  GTK_BUTTONS_CLOSE,
+                                  "%s", msg_error);
+  g_signal_connect (G_OBJECT (popup), "response", G_CALLBACK (gtk_widget_destroy), NULL);
+  gtk_widget_show (popup);
   gdk_threads_leave ();
 }
 

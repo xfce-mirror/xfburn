@@ -1,6 +1,7 @@
 /*
  *  Copyright (c) 2005-2006 Jean-François Wauthy (pollux@xfce.org)
  *  Copyright (c) 2008      David Mohr (dmohr@mcbf.net)
+ *  Copyright (c) 2026      Dominik Klein
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -124,12 +125,29 @@ static void cb_device_monitor_uevent(GUdevClient  *client,
 				     GUdevDevice  *udevice,
 				     XfburnUdevManager *obj)
 {
+  const gchar *id_type;
+  gboolean is_cdrom;
+
   DBG ("UDEV: device uevent: %s", action);
 
-  if (g_str_equal (action, "remove") || g_str_equal (action, "add") ||
-      g_str_equal (action, "change"))
-    g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
+  if (udevice == NULL) {
+    return;
+  }
 
+  id_type = g_udev_device_get_property (udevice, "ID_TYPE");
+  is_cdrom = g_udev_device_get_property_as_boolean (udevice, "ID_CDROM") ||
+             g_strcmp0 (id_type, "cd") == 0 ||
+             g_strcmp0 (id_type, "cd/dvd") == 0;
+  if (!is_cdrom) {
+    return;
+  }
+
+  if (g_str_equal (action, "remove") || g_str_equal (action, "add") ||
+      g_str_equal (action, "change")) {
+    gdk_threads_enter ();
+    g_signal_emit (instance, signals[VOLUME_CHANGED], 0);
+    gdk_threads_leave ();
+  }
 }
 
 static GObject *
