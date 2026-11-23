@@ -36,6 +36,8 @@
 
 
 
+static GObject * xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties);
+
 static void update_size_default (XfburnDiscUsage *du);
 static gboolean can_burn_default (XfburnDiscUsage *du);
 static void cb_button_clicked (GtkButton *, XfburnDiscUsage *);
@@ -81,6 +83,7 @@ static void
 xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+  gobject_class->constructor = xfburn_disc_usage_constructor;
 
   signals[BEGIN_BURN] = g_signal_new ("begin-burn", G_TYPE_FROM_CLASS (gobject_class), G_SIGNAL_ACTION,
                                       G_STRUCT_OFFSET (XfburnDiscUsageClass, begin_burn),
@@ -93,9 +96,10 @@ xfburn_disc_usage_class_init (XfburnDiscUsageClass * klass)
   klass->num_labels = G_N_ELEMENTS (testdiscsizes);
 }
 
-static void
-xfburn_disc_usage_init (XfburnDiscUsage* disc_usage)
+static GObject * xfburn_disc_usage_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_properties)
 {
+  GObject *object = G_OBJECT_CLASS (xfburn_disc_usage_parent_class)->constructor (type, n_construct_properties, construct_properties);
+  XfburnDiscUsage *disc_usage = XFBURN_DISC_USAGE (object);
   XfburnDiscUsageClass *class = XFBURN_DISC_USAGE_GET_CLASS (disc_usage);
 
   disc_usage->size = 0;
@@ -121,6 +125,13 @@ xfburn_disc_usage_init (XfburnDiscUsage* disc_usage)
   g_signal_connect (G_OBJECT (disc_usage->combo), "changed", G_CALLBACK (cb_combo_changed), disc_usage);
 
   class->update_size (disc_usage);
+
+  return object;
+}
+
+static void
+xfburn_disc_usage_init (XfburnDiscUsage* disc_usage)
+{
 }
 
 /* internals */
